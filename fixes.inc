@@ -3599,7 +3599,7 @@ public OnGameModeInit()
 					#endif
 					for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 					{
-						if (FIXES_gsCurrentMenu[playerid] = menuid)
+						if (FIXES_gsCurrentMenu[playerid] == menuid)
 						{
 							if (HideMenuForPlayer(menuid, i))
 							{
