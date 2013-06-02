@@ -1844,7 +1844,7 @@ public OnFilterScriptInit()
 public OnGameModeInit()
 {
 	// =============================
-	//  START: AllowInteriorWeapons 
+	//  BEGIN: AllowInteriorWeapons 
 	// =============================
 	#if FIX_AllowInteriorWeapons
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_INTERIOR;
@@ -1854,7 +1854,7 @@ public OnGameModeInit()
 	// ===========================
 	
 	// ======================
-	//  START: AllowTeleport 
+	//  BEGIN: AllowTeleport 
 	// ======================
 	#if FIX_AllowTeleport && !defined FILTERSCRIPT
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_ADMIN_TELEPORT;
@@ -1964,7 +1964,7 @@ public OnGameModeInit()
 	public OnPlayerCommandText(playerid, cmdtext[])
 	{
 		// ============================
-		//  START: OnPlayerCommandText 
+		//  BEGIN: OnPlayerCommandText 
 		// ============================
 		#if FIX_OnPlayerCommandText
 			// If this "#if" is around the whole function, it doesn't always
@@ -1983,7 +1983,7 @@ public OnGameModeInit()
 			#endif
 		#endif
 		// ============================
-		//  START: OnPlayerCommandText 
+		//  END: OnPlayerCommandText 
 		// ============================
 	}
 	
@@ -2046,7 +2046,7 @@ public OnGameModeInit()
 			{
 				FIXES_PRINTF("FIXES_OnPlayerConnect: First (%d)", FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE);
 				// ======================
-				//  START: SetPlayerName 
+				//  BEGIN: SetPlayerName 
 				// ======================
 				#if FIX_SetPlayerName
 					new
@@ -2062,7 +2062,7 @@ public OnGameModeInit()
 				// ======================
 				
 				// =============================
-				//  START: SetPlayerWorldBounds 
+				//  BEGIN: SetPlayerWorldBounds 
 				// =============================
 				#if FIX_SetPlayerWorldBounds && !FIXES_Single
 					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] =
@@ -2076,7 +2076,7 @@ public OnGameModeInit()
 				// =============================
 				
 				// =======================
-				//  START: SetPlayerColor 
+				//  BEGIN: SetPlayerColor 
 				// =======================
 				#if FIX_GetPlayerColor
 					SetPlayerColor(playerid, FIXES_gscPlayerColours[playerid % 100]);
@@ -2086,7 +2086,7 @@ public OnGameModeInit()
 				// =======================
 				
 				// ======================
-				//  START: GetPlayerSkin 
+				//  BEGIN: GetPlayerSkin 
 				// ======================
 				#if FIX_GetPlayerSkin
 					#if FIXES_Single
@@ -2100,7 +2100,7 @@ public OnGameModeInit()
 				// ======================
 				
 				// =============================
-				//  START: IsPlayerInCheckpoint 
+				//  BEGIN: IsPlayerInCheckpoint 
 				// =============================
 				#if FIX_IsPlayerInCheckpoint
 					DisablePlayerCheckpoint(playerid);
@@ -2110,7 +2110,7 @@ public OnGameModeInit()
 				// =============================
 				
 				// =================================
-				//  START: IsPlayerInRaceCheckpoint 
+				//  BEGIN: IsPlayerInRaceCheckpoint 
 				// =================================
 				#if FIX_IsPlayerInRaceCheckpoint
 					DisablePlayerRaceCheckpoint(playerid);
@@ -2120,7 +2120,7 @@ public OnGameModeInit()
 				// =================================
 				
 				// ========================
-				//  START: GetPlayerWeapon 
+				//  BEGIN: GetPlayerWeapon 
 				// ========================
 				#if FIX_GetPlayerWeapon
 					#if FIXES_Single
@@ -2134,7 +2134,7 @@ public OnGameModeInit()
 				// ========================
 				
 				// =========================
-				//  START: OnDialogResponse 
+				//  BEGIN: OnDialogResponse 
 				// =========================
 				#if FIX_OnDialogResponse || FIX_GetPlayerDialog
 					#if FIXES_Single
@@ -2148,7 +2148,7 @@ public OnGameModeInit()
 				// =========================
 				
 				// =====================
-				//  START: SetSpawnInfo 
+				//  BEGIN: SetSpawnInfo 
 				// =====================
 				#if FIX_SetSpawnInfo
 					SetSpawnInfo(playerid, NO_TEAM, 0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0, 0);
@@ -2163,7 +2163,7 @@ public OnGameModeInit()
 				#endif
 			}
 		// =============
-		//  START: Kick 
+		//  BEGIN: Kick 
 		// =============
 		#if FIX_Kick
 			#if defined FIXES_OnPlayerConnect
@@ -2218,7 +2218,7 @@ public OnGameModeInit()
 		#endif
 		
 		// ======================
-		//  START: GetPlayerMenu 
+		//  BEGIN: GetPlayerMenu 
 		// ======================
 		#if FIX_GetPlayerMenu
 			FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
@@ -2228,7 +2228,7 @@ public OnGameModeInit()
 		// ======================
 		
 		// ==========================
-		//  START: FIXES_SilentKick 
+		//  BEGIN: FIXES_SilentKick 
 		// ==========================
 		#if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
 			new
@@ -2247,7 +2247,7 @@ public OnGameModeInit()
 		// ==========================
 		
 		// ================================
-		//  START: SetPlayerAttachedObject 
+		//  BEGIN: SetPlayerAttachedObject 
 		// ================================
 		#if FIX_SetPlayerAttachedObject
 			#if !(FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2))
@@ -2277,7 +2277,7 @@ public OnGameModeInit()
 		// ================================
 		
 		// =======================================
-		//  START: IsPlayerAttachedObjectSlotUsed 
+		//  BEGIN: IsPlayerAttachedObjectSlotUsed 
 		// =======================================
 		#if FIX_IsPlayerAttachedObjSlotUsed && !FIX_SetPlayerAttachedObject
 			FIXES_gsObjectSlots[playerid / _FIXES_ATTACHMENTS] &= ~((1 << MAX_PLAYER_ATTACHED_OBJECTS) - 1 << playerid % _FIXES_ATTACHMENTS * MAX_PLAYER_ATTACHED_OBJECTS);
@@ -2287,7 +2287,7 @@ public OnGameModeInit()
 		// =======================================
 		
 		// =============
-		//  START: Kick 
+		//  BEGIN: Kick 
 		// =============
 		#if FIX_Kick
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_KICKED)
@@ -2333,7 +2333,7 @@ public OnGameModeInit()
 		#endif
 			{
 				// ======================
-				//  START: OnPlayerDeath 
+				//  BEGIN: OnPlayerDeath 
 				// ======================
 				#if FIX_OnPlayerDeath
 					static
@@ -2455,7 +2455,7 @@ public OnGameModeInit()
 	public OnPlayerSpawn(playerid)
 	{
 		// ======================
-		//  START: GetPlayerSkin 
+		//  BEGIN: GetPlayerSkin 
 		// ======================
 		#if FIX_GetPlayerSkin
 			#if FIXES_Single
@@ -2469,7 +2469,7 @@ public OnGameModeInit()
 		// ======================
 		
 		// =================================
-		//  START: TogglePlayerControllable 
+		//  BEGIN: TogglePlayerControllable 
 		// =================================
 		#if FIX_TogglePlayerControllable
 			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_UNCONTROLLABLE;
@@ -2518,7 +2518,7 @@ public OnGameModeInit()
 		#endif
 		
 		// =====================
-		//  START: OnVehicleMod 
+		//  BEGIN: OnVehicleMod 
 		// =====================
 		new
 			modelid = GetVehicleModel(vehicleid);
@@ -2585,7 +2585,7 @@ public OnGameModeInit()
 	stock FIXES_SetPlayerSkin(playerid, skinid)
 	{
 		// ======================
-		//  START: SetPlayerSkin 
+		//  BEGIN: SetPlayerSkin 
 		// ======================
 		#if FIX_SetPlayerSkin
 			new
@@ -2600,7 +2600,7 @@ public OnGameModeInit()
 				PutPlayerInVehicle(playerid, vehicleid, seat);
 				
 				// ======================
-				//  START: GetPlayerSkin 
+				//  BEGIN: GetPlayerSkin 
 				// ======================
 				#if FIX_GetPlayerSkin
 					#if FIXES_Single
@@ -2617,7 +2617,7 @@ public OnGameModeInit()
 			}
 			
 			// ======================
-			//  START: GetPlayerSkin 
+			//  BEGIN: GetPlayerSkin 
 			// ======================
 			#if FIX_GetPlayerSkin
 				else
@@ -2631,7 +2631,7 @@ public OnGameModeInit()
 		// ======================
 		
 		// ======================
-		//  START: GetPlayerSkin 
+		//  BEGIN: GetPlayerSkin 
 		// ======================
 		#if FIX_GetPlayerSkin
 			// Watch fot the "else" above if this code ever changes.
@@ -2783,7 +2783,7 @@ public OnGameModeInit()
 		#endif
 		
 		// =============================
-		//  START: AllowInteriorWeapons 
+		//  BEGIN: AllowInteriorWeapons 
 		// =============================
 		#if FIX_AllowInteriorWeapons
 			//if (FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR && GetPlayerInterior(playerid) && GetPlayerWeapon(playerid))
@@ -2810,7 +2810,7 @@ public OnGameModeInit()
 		#endif
 		
 		// =============================
-		//  START: SetPlayerWorldBounds 
+		//  BEGIN: SetPlayerWorldBounds 
 		// =============================
 		#if FIX_SetPlayerWorldBounds
 			if (pbools & e_FIXES_BOOLS_WORLDBOUNDS && keys & _FIXES_KEY_AIM)
@@ -2837,7 +2837,7 @@ public OnGameModeInit()
 		// =============================
 		
 		// ======================
-		//  START: OnPlayerDeath 
+		//  BEGIN: OnPlayerDeath 
 		// ======================
 		#if FIX_OnPlayerDeath
 			FIXES_gsLastAnimation[playerid] = GetPlayerAnimationIndex(playerid);
@@ -2847,7 +2847,7 @@ public OnGameModeInit()
 		// ======================
 		
 		// =================================
-		//  START: TogglePlayerControllable 
+		//  BEGIN: TogglePlayerControllable 
 		// =================================
 		#if FIX_TogglePlayerControllable
 			// MUST come last.
@@ -4021,7 +4021,7 @@ public OnGameModeInit()
 				// ==================
 				
 				// ===========================
-				//  START: PutPlayerInVehicle 
+				//  BEGIN: PutPlayerInVehicle 
 				// ===========================
 				#if FIX_PutPlayerInVehicle
 					// Update their vehicle once we KNOW the client has done the
@@ -5383,17 +5383,17 @@ public OnGameModeInit()
 			}
 			// Make sure certain data is synced with what the GM thinks it is.
 			// =============================
-			//  START: AllowInteriorWeapons 
+			//  BEGIN: AllowInteriorWeapons 
 			// =============================
 			#if FIX_AllowInteriorWeapons
 				CallRemoteFunction(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, !(FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR));
 			#endif
 			// =============================
-			//  START: AllowInteriorWeapons 
+			//  END: AllowInteriorWeapons 
 			// =============================
 			
 			// ================================
-			//  START: SetPlayerAttachedObject 
+			//  BEGIN: SetPlayerAttachedObject 
 			// ================================
 			#if FIX_IsPlayerAttachedObjSlotUsed || FIX_SetPlayerAttachedObject
 				for (new i = 0; i != _FIXES_ATTACHMENTS; ++i)
@@ -5434,7 +5434,7 @@ public OnGameModeInit()
 						if (IsPlayerConnected(i))
 						{
 							// =============================
-							//  START: SetPlayerWorldBounds 
+							//  BEGIN: SetPlayerWorldBounds 
 							// =============================
 							#if FIX_SetPlayerWorldBounds
 								//if (FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_WORLDBOUNDS)
@@ -5453,7 +5453,7 @@ public OnGameModeInit()
 							// =============================
 							
 							// =================================
-							//  START: TogglePlayerControllable 
+							//  BEGIN: TogglePlayerControllable 
 							// =================================
 							#if FIX_TogglePlayerControllable
 								CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, i, !(FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_UNCONTROLLABLE));
@@ -5463,7 +5463,7 @@ public OnGameModeInit()
 							// =================================
 							
 							// ===========================
-							//  START: PutPlayerInVehicle 
+							//  BEGIN: PutPlayerInVehicle 
 							// ===========================
 							#if FIX_PutPlayerInVehicle
 								if (FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_PUT_IN_VEHICLE)
