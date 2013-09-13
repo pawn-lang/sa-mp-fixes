@@ -3601,7 +3601,7 @@ public OnGameModeInit()
 					{
 						if (FIXES_gsCurrentMenu[playerid] == menuid)
 						{
-							if (HideMenuForPlayer(menuid, i))
+							if (HideMenuForPlayer(menuid, playerid))
 							{
 								#if FIXES_Single
 									FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
