@@ -444,21 +444,25 @@
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/4
  *
  * FIX:      ClearAnimations_2
- * PROBLEM:  ClearAnimations don't do anithing when the anim end if we pass 1 in freeze parameter in ApplyAnimation.
+ * PROBLEM:  ClearAnimations don't do anithing when the anim end if we pass 1
+ *           in freeze parameter in ApplyAnimation.
  * SOLUTION: Apply a idle animation for stop and then use clearanimation.
  * SEE:      "FIXES_ClearAnimations".
  * AUTHOR:   xX_Simon_Xx
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/4
  *
  * FIX:      KEY_CROUCH
- * PROBLEM:  If you press KEY_CROUCH while you're passenger and if you are armed, the player start to aim; if you repress KEY_CROUCH the player don't return in vehicle
+ * PROBLEM:  If you press KEY_CROUCH while you're passenger and if you are
+ *           armed, the player start to aim; if you repress KEY_CROUCH the
+ *           player don't return in vehicle.
  * SOLUTION: Apply the animation to return the player in the vehicle.
  * SEE:      "OnPlayerKeyStateChange".
  * AUTHOR:   xX_Simon_Xx
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/13
  *
  * FIX:      GangZoneCreate
- * PROBLEM:  When player angle bad to gangzone, the gangzone is bugged on full map.
+ * PROBLEM:  When player angle bad to gangzone, the gangzone is bugged on full
+ *           map.
  * SOLUTION: Set a non floating value for the gang zone cordinate.
  * SEE:      "FIXES_GangZoneCreate".
  * AUTHOR:   xX_Simon_Xx
@@ -470,6 +474,13 @@
  * SEE:      N/A.
  * AUTHOR:   xX_Simon_Xx
  * POST:  	 https://github.com/Y-Less/sa-mp-fixes/issues/6
+ * 
+ * FIX:      IsValidVehicle
+ * PROBLEM:  "IsValidVehicle" isn't defined by default.
+ * SOLUTION: Define it.
+ * SEE:      N/A.
+ * AUTHOR:   xX_Simon_Xx
+ * POST:  	 http://forum.sa-mp.com/showpost.php?p=2693650&postcount=441
  * 
  * ==============
  *  STYLE RULES: 
@@ -695,6 +706,17 @@
 	#define FIX_SPECIAL_ACTION_PISSING       (0)
 #endif
 
+#if !defined FIX_IsValidVehicle
+	#if defined IsValidVehicle
+		#define FIX_IsValidVehicle   (0)
+	#else
+		#define FIX_IsValidVehicle   (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
+	#undef FIX_IsValidVehicle
+	#define FIX_IsValidVehicle       (0)
+#endif
+
 #if !defined FIX_KEY_CROUCH
 	#define FIX_KEY_CROUCH      (1)
 #elseif _FIXES_IS_UNSET(FIX_KEY_CROUCH)
@@ -806,7 +828,7 @@
 #endif
 
 #if !defined FIX_GetPlayerDialog
-	#define FIX_GetPlayerDialog          (1)
+	#define FIX_GetPlayerDialog          (0)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
 	#define FIX_GetPlayerDialog          (0)
@@ -986,7 +1008,7 @@
 #endif
 
 #if !defined FIX_random
-	#define FIX_random                   (1)
+	#define FIX_random                   (0)
 #elseif _FIXES_IS_UNSET(FIX_random)
 	#undef FIX_random
 	#define FIX_random                   (0)
@@ -1175,7 +1197,8 @@ enum e_FIXES_BOOLS (<<= 1)
 	e_FIXES_BOOLS_INTERIOR,
 	e_FIXES_BOOLS_PUT_IN_TRAIN,
 	e_FIXES_BOOLS_KICKED,
-	e_FIXES_BOOLS_ON_PLAYER_CONNECT
+	e_FIXES_BOOLS_ON_PLAYER_CONNECT,
+	e_FIXES_BOOLS_KEY_CROUCH
 }
 
 /* 
@@ -1326,13 +1349,7 @@ static stock
 	 * 
 	 * NULL.  This is stored as a global string to reduce memory usage.
 	 */
-	FIXES_gscNULL[] = "\1\0",
-	/* 
-	 * FIXES_gsKEY_CROUCH[MAX_PLAYERS]
-	 * 
-	 * The player's current interior.
-	 */
-	FIXES_gsKEY_CROUCH[MAX_PLAYERS];
+	FIXES_gscNULL[] = "\1\0";
 
 static stock const
 	/* 
@@ -1814,6 +1831,15 @@ static stock
 #define _FIXES_SPECIAL_ACTION_PISSING    (68 )
 #if FIX_SPECIAL_ACTION_PISSING
 	#define SPECIAL_ACTION_PISSING       _FIXES_SPECIAL_ACTION_PISSING
+#endif
+
+/* 
+ * IsValidVehicle
+ * 
+ * Because the default SA:MP includes missed this one.
+ */
+#if FIX_IsValidVehicle
+	native IsValidVehicle(vehicleid);
 #endif
 
 /* 
@@ -3282,13 +3308,13 @@ public OnGameModeInit()
 		// ===============================
 		#if FIX_KEY_CROUCH
 			if(newkeys & KEY_CROUCH && GetPlayerState(playerid) == PLAYER_STATE_PASSENGER) {
-				if(!FIXES_gsKEY_CROUCH[playerid]) {
-					if(GetPlayerWeapon(playerid) > 0) FIXES_gsKEY_CROUCH[playerid] = 1;
-					else FIXES_gsKEY_CROUCH[playerid] = 0;
+				if(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_KEY_CROUCH) {
+					ApplyAnimation(playerid,"PED","CAR_GETIN_RHS",4.1,0,0,0,0,1,1);
+					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_KEY_CROUCH;
 				}
 				else {
-					ApplyAnimation(playerid,"PED","CAR_GETIN_RHS",4.1,0,0,0,0,1,1);
-					FIXES_gsKEY_CROUCH[playerid] = 0;
+					if(GetPlayerWeapon(playerid) > 0) FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_KEY_CROUCH;
+					else FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_KEY_CROUCH;
 				}
 			}
 			return 0;
