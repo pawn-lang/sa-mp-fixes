@@ -36,7 +36,8 @@
  * SOLUTION: Change their name twice - once to "_FIXES TEMP NAME" and then to
  *           the actual required name.
  * SEE:      "OnPlayerConnect" and "FIXES_SetPlayerName".
- * AUTHOR:   Y_Less/Slice
+ * AUTHOR:   Y_Less/Slice/xX_Simon_Xx
+ * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/3
  * 
  * FIX:      GetPlayerSkin
  * PROBLEM:  Returns the new skin after "SetSpawnInfo" is called but before the
@@ -435,6 +436,41 @@
  * AUTHOR:   Y_Less
  * POST:     http://forum.sa-mp.com/showpost.php?p=2309246
  * 
+ * FIX:      ClearAnimations
+ * PROBLEM:  Use ClearAnimation while you are in a vehicle cause the player exit from it.
+ * SOLUTION: Apply an animation intest of clear animation.
+ * SEE:      "FIXES_ClearAnimations".
+ * AUTHOR:   xX_Simon_Xx
+ * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/4
+ *
+ * FIX:      ClearAnimations_2
+ * PROBLEM:  ClearAnimations don't do anithing when the anim end if we pass 1 in freeze parameter in ApplyAnimation.
+ * SOLUTION: Apply a idle animation for stop and then use clearanimation.
+ * SEE:      "FIXES_ClearAnimations".
+ * AUTHOR:   xX_Simon_Xx
+ * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/4
+ *
+ * FIX:      KEY_CROUCH
+ * PROBLEM:  If you press KEY_CROUCH while you're passenger and if you are armed, the player start to aim; if you repress KEY_CROUCH the player don't return in vehicle
+ * SOLUTION: Apply the animation to return the player in the vehicle.
+ * SEE:      "OnPlayerKeyStateChange".
+ * AUTHOR:   xX_Simon_Xx
+ * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/13
+ *
+ * FIX:      GangZoneCreate
+ * PROBLEM:  When player angle bad to gangzone, the gangzone is bugged on full map.
+ * SOLUTION: Set a non floating value for the gang zone cordinate.
+ * SEE:      "FIXES_GangZoneCreate".
+ * AUTHOR:   xX_Simon_Xx
+ * POST:     http://forum.sa-mp.com/showpost.php?p=2144109&postcount=273
+ * 
+ * FIX:      SPECIAL_ACTION_PISSING
+ * PROBLEM:  "SPECIAL_ACTION_PISSING" isn't defined by default.
+ * SOLUTION: Define it.
+ * SEE:      N/A.
+ * AUTHOR:   xX_Simon_Xx
+ * POST:  	 https://github.com/Y-Less/sa-mp-fixes/issues/6
+ * 
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -648,6 +684,24 @@
 	#define FIX_KEY_AIM                  (0)
 #endif
 
+#if !defined FIX_SPECIAL_ACTION_PISSING
+	#if defined SPECIAL_ACTION_PISSING
+		#define FIX_SPECIAL_ACTION_PISSING   (0)
+	#else
+		#define FIX_SPECIAL_ACTION_PISSING   (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_SPECIAL_ACTION_PISSING)
+	#undef FIX_SPECIAL_ACTION_PISSING
+	#define FIX_SPECIAL_ACTION_PISSING       (0)
+#endif
+
+#if !defined FIX_KEY_CROUCH
+	#define FIX_KEY_CROUCH      (1)
+#elseif _FIXES_IS_UNSET(FIX_KEY_CROUCH)
+	#undef FIX_KEY_CROUCH
+	#define FIX_KEY_CROUCH     (0)
+#endif
+
 #if !defined FIX_SetPlayerCheckpoint
 	#define FIX_SetPlayerCheckpoint      (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCheckpoint)
@@ -719,6 +773,27 @@
 	#define FIX_SetPlayerSpecialAction   (0)
 #endif
 
+#if !defined FIX_ClearAnimations
+	#define FIX_ClearAnimations   (1)
+#elseif _FIXES_IS_UNSET(FIX_ClearAnimations)
+	#undef FIX_ClearAnimations
+	#define FIX_ClearAnimations   (0)
+#endif
+
+#if !defined FIX_ClearAnimations_2
+	#define FIX_ClearAnimations_2   (1)
+#elseif _FIXES_IS_UNSET(FIX_ClearAnimations_2)
+	#undef FIX_ClearAnimations_2
+	#define FIX_ClearAnimations_2   (0)
+#endif
+
+#if !defined FIX_GangZoneCreate
+	#define FIX_GangZoneCreate   (1)
+#elseif _FIXES_IS_UNSET(FIX_GangZoneCreate)
+	#undef FIX_GangZoneCreate
+	#define FIX_GangZoneCreate   (0)
+#endif
+
 #if !defined FIX_OnDialogResponse
 	#if defined GetVehicleModelInfo
 		#define FIX_OnDialogResponse     (0)
@@ -731,7 +806,7 @@
 #endif
 
 #if !defined FIX_GetPlayerDialog
-	#define FIX_GetPlayerDialog          (0)
+	#define FIX_GetPlayerDialog          (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
 	#define FIX_GetPlayerDialog          (0)
@@ -911,7 +986,7 @@
 #endif
 
 #if !defined FIX_random
-	#define FIX_random                   (0)
+	#define FIX_random                   (1)
 #elseif _FIXES_IS_UNSET(FIX_random)
 	#undef FIX_random
 	#define FIX_random                   (0)
@@ -1251,7 +1326,13 @@ static stock
 	 * 
 	 * NULL.  This is stored as a global string to reduce memory usage.
 	 */
-	FIXES_gscNULL[] = "\1\0";
+	FIXES_gscNULL[] = "\1\0",
+	/* 
+	 * FIXES_gsKEY_CROUCH[MAX_PLAYERS]
+	 * 
+	 * The player's current interior.
+	 */
+	FIXES_gsKEY_CROUCH[MAX_PLAYERS];
 
 static stock const
 	/* 
@@ -1722,6 +1803,17 @@ static stock
 #define _FIXES_KEY_AIM                   (128)
 #if FIX_KEY_AIM
 	#define KEY_AIM                      _FIXES_KEY_AIM
+#endif
+
+/* 
+ * _FIXES_SPECIAL_ACTION_PISSING
+ * SPECIAL_ACTION_PISSING
+ * 
+ * Because the default SA:MP includes missed this one.
+ */
+#define _FIXES_SPECIAL_ACTION_PISSING    (68 )
+#if FIX_SPECIAL_ACTION_PISSING
+	#define SPECIAL_ACTION_PISSING       _FIXES_SPECIAL_ACTION_PISSING
 #endif
 
 /* 
@@ -3179,6 +3271,42 @@ public OnGameModeInit()
 	
 	#if defined FIXES_OnPlayerInteriorChange
 		forward FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
+	#endif
+#endif
+
+#if FIX_KEY_CROUCH
+	public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
+	{
+		// ===============================
+		//  BEGIN: KEY_CROUCH 
+		// ===============================
+		#if FIX_KEY_CROUCH
+			if(newkeys & KEY_CROUCH && GetPlayerState(playerid) == PLAYER_STATE_PASSENGER) {
+				if(!FIXES_gsKEY_CROUCH[playerid]) {
+					if(GetPlayerWeapon(playerid) > 0) FIXES_gsKEY_CROUCH[playerid] = 1;
+					else FIXES_gsKEY_CROUCH[playerid] = 0;
+				}
+				else {
+					ApplyAnimation(playerid,"PED","CAR_GETIN_RHS",4.1,0,0,0,0,1,1);
+					FIXES_gsKEY_CROUCH[playerid] = 0;
+				}
+			}
+			return 0;
+		#endif
+		// =============================
+		//  END: KEY_CROUCH 
+		// =============================
+	}
+	
+	#if defined _ALS_OnPlayerKeyStateChange
+		#undef OnPlayerKeyStateChange
+	#else
+		#define _ALS_OnPlayerKeyStateChange
+	#endif
+	#define OnPlayerKeyStateChange FIXES_OnPlayerKeyStateChange
+	
+	#if defined FIXES_OnPlayerKeyStateChange
+		forward FIXES_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 	#endif
 #endif
 
@@ -4738,6 +4866,71 @@ public OnGameModeInit()
 		#define _ALS_SetPlayerSpecialAction
 	#endif
 	#define SetPlayerSpecialAction FIXES_SetPlayerSpecialAction
+#endif
+
+/*
+ * FIXES_ClearAnimations(playerid, forcesync = 0)
+ *
+ * FIXES:
+ *     ClearAnimations
+ */
+#if FIX_ClearAnimations || FIX_ClearAnimations_2
+	stock FIXES_ClearAnimations(playerid, forcesync  = 0)
+	{
+		new
+			vehicleid = GetPlayerVehicleID(playerid);
+		#if FIX_ClearAnimations
+			if (vehicleid)
+			{
+				return ApplyAnimation(playerid,"PED","CAR_SIT",4.0,0,0,0,0,1,forcesync);
+			}
+		#endif
+		#if FIX_ClearAnimations_2
+			if (!vehicleid)
+			{
+				new
+					ret = ClearAnimations(playerid, forcesync);
+				ApplyAnimation(playerid,"PED","IDLE_STANCE",4.0,0,0,0,0,1,forcesync);
+				ApplyAnimation(playerid,"PED","IDLE_CHAT",4.0,0,0,0,0,1,forcesync);
+				ApplyAnimation(playerid,"PED","WALK_PLAYER",4.0,0,0,0,0,1,forcesync);
+				return ret;
+			}
+		#endif
+		return ClearAnimations(playerid, forcesync);
+	}
+	
+	#if defined _ALS_ClearAnimations
+		#undef ClearAnimations
+	#else
+		
+		native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
+		
+		#define _ALS_ClearAnimations
+	#endif
+	#define ClearAnimations FIXES_ClearAnimations
+#endif
+
+/*
+ * FIXES_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy)
+ *
+ * FIXES:
+ *     GangZoneCreate
+ */
+#if FIX_GangZoneCreate
+	stock FIXES_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy)
+	{
+		return GangZoneCreate(floatround(minx),floatround(miny),floatround(maxx),floatround(maxy));
+	}
+	
+	#if defined _ALS_GangZoneCreate
+		#undef GangZoneCreate
+	#else
+		
+		native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = GangZoneCreate;
+		
+		#define _ALS_GangZoneCreate
+	#endif
+	#define GangZoneCreate FIXES_GangZoneCreate
 #endif
 
 /*
