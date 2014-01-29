@@ -442,7 +442,7 @@
  * PROBLEM:  Always returns 0 for NPCs.
  * SOLUTION: Return the correct value.
  * SEE:      "FIXES_GetPlayerInterior", "FIXES_SetPlayerInterior".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less/xX_Simon_Xx
  * POST:     http://forum.sa-mp.com/showpost.php?p=2309246
  * 
  * FIX:      ClearAnimations
@@ -1338,6 +1338,12 @@ static stock
 	 */
 	FIXES_gsDialogID[MAX_PLAYERS] = {-1, ...},
 	/* 
+	 * FIXES_gsInterior[MAX_PLAYERS]
+	 * 
+	 * The player's current interior.
+	 */
+	FIXES_gsInterior[MAX_PLAYERS],
+	/* 
 	 * e_FIXES_SETTINGS:FIXES_gsSettings
 	 * 
 	 * A collection of 1-bit options, compressed together to save space.
@@ -1821,6 +1827,12 @@ static stock
 	 */
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog",
 	/*
+	 * FIXES_pvarPlayerInterior[]
+	 * 
+	 * A player's current interior.
+	 */
+	FIXES_pvarPlayerInterior[] = "FIXES_pvarPlayerInterior",
+	/*
 	 * FIXES_pvarCurrentDialog[]
 	 * 
 	 * Used in OnDialogResponse to be able to get the correct ID in multiple
@@ -2183,7 +2195,7 @@ public OnGameModeInit()
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_GetPlayerDialog      || FIX_SetSpawnInfo             || FIX_AllowInteriorWeapons     || FIX_TrainExit
 	#define _FIXES_ON_PLAYER_CONNECT
-#elseif FIX_Kick                 || FIX_OnPlayerEnterVehicle_2   || FIX_PlayerDialogResponse
+#elseif FIX_Kick                 || FIX_OnPlayerEnterVehicle_2   || FIX_PlayerDialogResponse     || FIX_GetPlayerInterior
 	#define _FIXES_ON_PLAYER_CONNECT
 #endif
 #if defined _FIXES_ON_PLAYER_CONNECT
@@ -2295,6 +2307,20 @@ public OnGameModeInit()
 				// ========================
 				//  END:   GetPlayerWeapon 
 				// ========================
+				
+				// ==========================
+				//  BEGIN: GetPlayerInterior 
+				// ==========================
+				#if FIX_GetPlayerInterior
+					#if FIXES_Single
+						FIXES_gsInterior[playerid] = 0;
+					#else
+						SetPVarInt(playerid, FIXES_pvarPlayerInterior, 0);
+					#endif
+				#endif
+				// ==========================
+				//  END:   GetPlayerInterior 
+				// ==========================
 				
 				// =========================
 				//  BEGIN: OnDialogResponse 
@@ -2624,7 +2650,7 @@ public OnGameModeInit()
  *     GetPlayerSkin
  *     TogglePlayerControllable
  */
-#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable
+#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior
 	public OnPlayerSpawn(playerid)
 	{
 		// ======================
@@ -2640,6 +2666,23 @@ public OnGameModeInit()
 		// ======================
 		//  END:   GetPlayerSkin 
 		// ======================
+		
+		// ==========================
+		//  BEGIN: GetPlayerInterior 
+		// ==========================
+		#if FIX_GetPlayerInterior
+			#if FIXES_Single
+				FIXES_gsInterior[playerid] = 0;
+			#else
+				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+				{
+					SetPVarInt(playerid, FIXES_pvarPlayerInterior, 0);
+				}
+			#endif
+		#endif
+		// ==========================
+		//  END:   GetPlayerInterior 
+		// ==========================
 		
 		// =================================
 		//  BEGIN: TogglePlayerControllable 
@@ -3287,11 +3330,28 @@ public OnGameModeInit()
  * 
  * FIXES:
  *     AllowInteriorWeapons
+ *     GetPlayerInterior
  */
-
-#if FIX_AllowInteriorWeapons
+#if FIX_AllowInteriorWeapons || FIX_GetPlayerInterior
 	public OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid)
 	{
+		// ==========================
+		//  BEGIN: GetPlayerInterior 
+		// ==========================
+		#if FIX_GetPlayerInterior
+			#if FIXES_Single
+				FIXES_gsInterior[playerid] = newinteriorid;
+			#else
+				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+				{
+					SetPVarInt(playerid, FIXES_pvarPlayerInterior, newinteriorid);
+				}
+			#endif
+		#endif
+		// ==========================
+		//  END:   GetPlayerInterior 
+		// ==========================
+		
 		// =============================
 		//  BEGIN: AllowInteriorWeapons 
 		// =============================
@@ -3354,6 +3414,12 @@ public OnGameModeInit()
 	#endif
 #endif
 
+/* 
+ * OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
+ * 
+ * FIXES:
+ *     KEY_CROUCH
+ */
 #if FIX_KEY_CROUCH
 	public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	{
@@ -3380,11 +3446,16 @@ public OnGameModeInit()
 					}
 				}
 			}
-			return 0;
 		#endif
 		// =============================
 		//  END: KEY_CROUCH 
 		// =============================
+		
+		#if defined FIXES_OnPlayerKeyStateChange
+			return FIXES_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
+		#else
+			return 1;
+		#endif
 	}
 	
 	#if defined _ALS_OnPlayerKeyStateChange
@@ -4759,6 +4830,69 @@ public OnGameModeInit()
 		#define _ALS_AllowInteriorWeapons
 	#endif
 	#define AllowInteriorWeapons FIXES_AllowInteriorWeapons
+#endif
+
+/* 
+ * FIXES_GetPlayerInterior(playerid)
+ * 
+ * FIXES:
+ *     GetPlayerInterior
+ */
+#if FIX_GetPlayerInterior
+	stock FIXES_GetPlayerInterior(playerid)
+	{
+		if (0 <= playerid < MAX_PLAYERS)
+		{
+			#if FIXES_Single
+				return FIXES_gsInterior[playerid];
+			#else
+				return GetPVarInt(playerid, FIXES_pvarPlayerInterior);
+			#endif
+		}
+		return 0;
+	}
+	
+	#if defined _ALS_GetPlayerInterior
+		#undef GetPlayerInterior
+	#else
+		
+		native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
+		
+		#define _ALS_GetPlayerInterior
+	#endif
+	#define GetPlayerInterior FIXES_GetPlayerInterior
+#endif
+
+/* 
+ * FIXES_SetPlayerInterior(playerid, interiorid)
+ * 
+ * FIXES:
+ *     GetPlayerInterior
+ */
+#if FIX_GetPlayerInterior
+	stock FIXES_SetPlayerInterior(playerid, interiorid)
+	{
+		if (0 <= playerid < MAX_PLAYERS)
+		{
+			#if FIXES_Single
+				FIXES_gsInterior[playerid] = interiorid;
+			#else
+				SetPVarInt(playerid, FIXES_pvarPlayerInterior, interiorid);
+			#endif
+			return SetPlayerInterior(playerid, interiorid);
+		}
+		return 0;
+	}
+	
+	#if defined _ALS_SetPlayerInterior
+		#undef SetPlayerInterior
+	#else
+		
+		native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
+		
+		#define _ALS_SetPlayerInterior
+	#endif
+	#define SetPlayerInterior FIXES_SetPlayerInterior
 #endif
 
 /* 
