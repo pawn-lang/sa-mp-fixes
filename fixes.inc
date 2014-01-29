@@ -195,6 +195,15 @@
  * AUTHOR:   Y_Less/xX_Simon_Xx
  * POST:     http://forum.sa-mp.com/showpost.php?p=2141254
  * 
+ * FIX:      PlayerDialogResponse
+ * PROBLEM:  A player's dialog doesn't hide when the gamemode restarts, causing
+ *           the server to print "Warning: PlayerDialogResponse PlayerId: 0
+ *           dialog ID doesn't match last sent dialog ID".
+ * SOLUTION: Hide it.
+ * SEE:      "OnPlayerConnect", "OnGameModeExit".
+ * AUTHOR:   xX_Simon_Xx
+ * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/2
+ *
  * FIX:      SetSpawnInfo
  * PROBLEM:  Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo".
  * SOLUTION: Call "SetSpawnInfo" at least once.
@@ -437,16 +446,17 @@
  * POST:     http://forum.sa-mp.com/showpost.php?p=2309246
  * 
  * FIX:      ClearAnimations
- * PROBLEM:  Use ClearAnimation while you are in a vehicle cause the player exit from it.
- * SOLUTION: Apply an animation intest of clear animation.
+ * PROBLEM:  Use ClearAnimation while you are in a vehicle cause the player exit
+ *           from it.
+ * SOLUTION: Apply an animation instead of clear animation.
  * SEE:      "FIXES_ClearAnimations".
  * AUTHOR:   xX_Simon_Xx
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/4
  *
  * FIX:      ClearAnimations_2
- * PROBLEM:  ClearAnimations don't do anithing when the anim end if we pass 1
- *           in freeze parameter in ApplyAnimation.
- * SOLUTION: Apply a idle animation for stop and then use clearanimation.
+ * PROBLEM:  ClearAnimations doesn't do anything when the animation ends if we
+ *           pass 1 for the freeze parameter in ApplyAnimation.
+ * SOLUTION: Apply an idle animation for stop and then use ClearAnimation.
  * SEE:      "FIXES_ClearAnimations".
  * AUTHOR:   xX_Simon_Xx
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/4
@@ -461,11 +471,11 @@
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/13
  *
  * FIX:      GangZoneCreate
- * PROBLEM:  When player angle bad to gangzone, the gangzone is bugged on full
- *           map.
- * SOLUTION: Set a non floating value for the gang zone cordinate.
+ * PROBLEM:  Gang zones bug on the main map for players at certain angles
+ *           relative to them.
+ * SOLUTION: Set a non floating value for the gang zone co-ordinate.
  * SEE:      "FIXES_GangZoneCreate".
- * AUTHOR:   xX_Simon_Xx
+ * AUTHOR:   xX_Simon_Xx/Y_Less
  * POST:     http://forum.sa-mp.com/showpost.php?p=2144109&postcount=273
  * 
  * FIX:      SPECIAL_ACTION_PISSING
@@ -477,7 +487,7 @@
  * 
  * FIX:      IsValidVehicle
  * PROBLEM:  "IsValidVehicle" isn't defined by default.
- * SOLUTION: Define it.
+ * SOLUTION: Define it.  DEFAULTS TO FALSE!
  * SEE:      N/A.
  * AUTHOR:   xX_Simon_Xx
  * POST:  	 http://forum.sa-mp.com/showpost.php?p=2693650&postcount=441
@@ -832,6 +842,13 @@
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
 	#define FIX_GetPlayerDialog          (0)
+#endif
+
+#if !defined FIX_PlayerDialogResponse
+	#define FIX_PlayerDialogResponse     (1)
+#elseif _FIXES_IS_UNSET(FIX_PlayerDialogResponse)
+	#undef FIX_PlayerDialogResponse
+	#define FIX_PlayerDialogResponse     (0)
 #endif
 
 #if !defined FIX_SetSpawnInfo
@@ -1828,7 +1845,7 @@ static stock
  * 
  * Because the default SA:MP includes missed this one.
  */
-#define _FIXES_SPECIAL_ACTION_PISSING    (68 )
+#define _FIXES_SPECIAL_ACTION_PISSING    (68)
 #if FIX_SPECIAL_ACTION_PISSING
 	#define SPECIAL_ACTION_PISSING       _FIXES_SPECIAL_ACTION_PISSING
 #endif
@@ -2012,15 +2029,29 @@ public OnGameModeInit()
  * 
  * Fast way of detecting not to retain any data.
  */
-#if !FIXES_Single
+#if !FIXES_Single || FIX_PlayerDialogResponse
 	public OnGameModeExit()
 	{
-		FIXES_gsSettings |= e_FIXES_SETTINGS_DROP_ALL_DATA;
-		if (!_FIXES_gIsFilterscript && FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+		#if !FIXES_Single
+			FIXES_gsSettings |= e_FIXES_SETTINGS_DROP_ALL_DATA;
+			if (!_FIXES_gIsFilterscript && FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+			{
+				FIXES_gsSettings |= e_FIXES_SETTINGS_ENDING,
+				FIXES_DetermineOrder();
+			}
+		#endif
+		
+		// =============================
+		//  BEGIN: PlayerDialogResponse 
+		// =============================
+		for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 		{
-			FIXES_gsSettings |= e_FIXES_SETTINGS_ENDING,
-			FIXES_DetermineOrder();
+			ShowPlayerDialog(playerid, -1, 0, " ", " ", " ", " ");
 		}
+		// =============================
+		//  END:   PlayerDialogResponse 
+		// =============================
+		
 		#if defined FIXES_OnGameModeExit
 			return FIXES_OnGameModeExit();
 		#else
@@ -2121,7 +2152,8 @@ public OnGameModeInit()
  * OnPlayerConnect(playerid)
  * 
  * Almost every fix uses this callback for initialisation.  It is only
- * explicitly referenced for those fixes where this is all the code.
+ * explicitly referenced for those fixes where this is all the code.  The
+ * inclusion code was approaching the 512 line length limit, so I shrank it.
  * 
  * FIXES:
  *     TogglePlayerControllable
@@ -2140,8 +2172,21 @@ public OnGameModeInit()
  *     AllowInteriorWeapons
  *     TrainExit
  *     Kick
+ *     OnPlayerEnterVehicle_2
+ *     PlayerDialogResponse
  */
-#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_SetPlayerName || FIX_GetPlayerColor || FIX_GetPlayerSkin || FIX_IsPlayerInCheckpoint || FIX_IsPlayerInRaceCheckpoint || FIX_GetPlayerWeapon || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_OnDialogResponse || FIX_GetPlayerDialog || FIX_SetSpawnInfo || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_Kick || FIX_OnPlayerEnterVehicle_2
+#if     FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_SetPlayerName            || FIX_GetPlayerColor
+	#define _FIXES_ON_PLAYER_CONNECT
+#elseif FIX_GetPlayerSkin        || FIX_IsPlayerInCheckpoint     || FIX_IsPlayerInRaceCheckpoint || FIX_GetPlayerWeapon
+	#define _FIXES_ON_PLAYER_CONNECT
+#elseif FIX_PutPlayerInVehicle   || FIX_OnPlayerEnterVehicle     || FIX_AllowTeleport            || FIX_OnDialogResponse
+	#define _FIXES_ON_PLAYER_CONNECT
+#elseif FIX_GetPlayerDialog      || FIX_SetSpawnInfo             || FIX_AllowInteriorWeapons     || FIX_TrainExit
+	#define _FIXES_ON_PLAYER_CONNECT
+#elseif FIX_Kick                 || FIX_OnPlayerEnterVehicle_2   || FIX_PlayerDialogResponse
+	#define _FIXES_ON_PLAYER_CONNECT
+#endif
+#if defined _FIXES_ON_PLAYER_CONNECT
 	public OnPlayerConnect(playerid)
 	{
 		FIXES_PRINTF("FIXES_OnPlayerConnect: %d", playerid);
@@ -2264,6 +2309,16 @@ public OnGameModeInit()
 				// =========================
 				//  END:   OnDialogResponse 
 				// =========================
+				
+				// =============================
+				//  BEGIN: PlayerDialogResponse 
+				// =============================
+				#if FIX_PlayerDialogResponse
+					ShowPlayerDialog(playerid, -1, 0, " ", " ", " ", " ");
+				#endif
+				// =============================
+				//  END:   PlayerDialogResponse 
+				// =============================
 				
 				// =====================
 				//  BEGIN: SetSpawnInfo 
@@ -2904,7 +2959,6 @@ public OnGameModeInit()
 		//  BEGIN: AllowInteriorWeapons 
 		// =============================
 		#if FIX_AllowInteriorWeapons
-			//if (FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR && GetPlayerInterior(playerid) && GetPlayerWeapon(playerid))
 			if (pbools & e_FIXES_BOOLS_INTERIOR)
 			{
 				// DONE: May need integration with "FIX_GetPlayerWeapon".
@@ -3307,14 +3361,23 @@ public OnGameModeInit()
 		//  BEGIN: KEY_CROUCH 
 		// ===============================
 		#if FIX_KEY_CROUCH
-			if(newkeys & KEY_CROUCH && GetPlayerState(playerid) == PLAYER_STATE_PASSENGER) {
-				if(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_KEY_CROUCH) {
-					ApplyAnimation(playerid,"PED","CAR_GETIN_RHS",4.1,0,0,0,0,1,1);
+			if ((newkeys & KEY_CROUCH) && !(oldkeys & KEY_CROUCH) && GetPlayerState(playerid) == PLAYER_STATE_PASSENGER)
+			{
+				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_KEY_CROUCH)
+				{
+					ApplyAnimation(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1);
 					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_KEY_CROUCH;
 				}
-				else {
-					if(GetPlayerWeapon(playerid) > 0) FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_KEY_CROUCH;
-					else FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_KEY_CROUCH;
+				else
+				{
+					if (GetPlayerWeapon(playerid) > 0)
+					{
+						FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_KEY_CROUCH;
+					}
+					else
+					{
+						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_KEY_CROUCH;
+					}
 				}
 			}
 			return 0;
@@ -4901,28 +4964,29 @@ public OnGameModeInit()
  *     ClearAnimations
  */
 #if FIX_ClearAnimations || FIX_ClearAnimations_2
-	stock FIXES_ClearAnimations(playerid, forcesync  = 0)
+	stock FIXES_ClearAnimations(playerid, forcesync = 0)
 	{
-		new
-			vehicleid = GetPlayerVehicleID(playerid);
+		#if FIX_ClearAnimations || FIX_ClearAnimations_2
+			if (IsPlayerInAnyVehicle(playerid))
+		#endif
 		#if FIX_ClearAnimations
-			if (vehicleid)
 			{
-				return ApplyAnimation(playerid,"PED","CAR_SIT",4.0,0,0,0,0,1,forcesync);
+				return ApplyAnimation(playerid, "PED", "CAR_SIT", 4.0, 0, 0, 0, 0, 1, forcesync);
+			}
+		#endif
+		#if FIX_ClearAnimations + FIX_ClearAnimations_2 == 1 // XOR
+			{
+				return ClearAnimations(playerid, forcesync);
 			}
 		#endif
 		#if FIX_ClearAnimations_2
-			if (!vehicleid)
-			{
-				new
-					ret = ClearAnimations(playerid, forcesync);
-				ApplyAnimation(playerid,"PED","IDLE_STANCE",4.0,0,0,0,0,1,forcesync);
-				ApplyAnimation(playerid,"PED","IDLE_CHAT",4.0,0,0,0,0,1,forcesync);
-				ApplyAnimation(playerid,"PED","WALK_PLAYER",4.0,0,0,0,0,1,forcesync);
-				return ret;
-			}
+			new
+				ret = ClearAnimations(playerid, forcesync);
+			ApplyAnimation(playerid, "PED", "IDLE_STANCE", 4.0, 0, 0, 0, 0, 1, forcesync);
+			ApplyAnimation(playerid, "PED", "IDLE_CHAT", 4.0, 0, 0, 0, 0, 1, forcesync);
+			ApplyAnimation(playerid, "PED", "WALK_PLAYER", 4.0, 0, 0, 0, 0, 1, forcesync);
+			return ret;
 		#endif
-		return ClearAnimations(playerid, forcesync);
 	}
 	
 	#if defined _ALS_ClearAnimations
@@ -4945,7 +5009,7 @@ public OnGameModeInit()
 #if FIX_GangZoneCreate
 	stock FIXES_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy)
 	{
-		return GangZoneCreate(floatround(minx),floatround(miny),floatround(maxx),floatround(maxy));
+		return GangZoneCreate(floatsub(minx, floatfract(minx)), floatsub(miny, floatfract(miny)), floatsub(maxx, floatfract(maxx)), floatsub(maxy, floatfract(maxy)));
 	}
 	
 	#if defined _ALS_GangZoneCreate
@@ -5882,3 +5946,4 @@ public OnGameModeInit()
 #undef _FIXES_ATTACHMENTS
 #undef _FIXES_IS_UNSET
 #undef FIXES_PRINTF
+
