@@ -492,6 +492,22 @@
  * AUTHOR:   xX_Simon_Xx
  * POST:  	 http://forum.sa-mp.com/showpost.php?p=2693650&postcount=441
  * 
+ * FIX:      ApplyAnimation
+ * PROBLEM:  Passing an invalid animation library in ApplyAnimation causes a
+ *           client crash for streamed in players.
+ * SOLUTION: Block ApplyAnimation when an invalid library is passed.
+ * SEE:      "FIXES_ApplyAnimation".
+ * AUTHOR:   xX_Simon_Xx
+ * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/5
+ * 
+ * FIX:      ApplyAnimation_2
+ * PROBLEM:  When ApplyAnimation was called the first time next the player
+ *           spawn, it don't work.
+ * SOLUTION: Apply a null animation at spawn.
+ * SEE:      "OnPlayerConnect".
+ * AUTHOR:   xX_Simon_Xx
+ * POST:  	 https://github.com/Y-Less/sa-mp-fixes/issues/5
+ * 
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -707,31 +723,31 @@
 
 #if !defined FIX_SPECIAL_ACTION_PISSING
 	#if defined SPECIAL_ACTION_PISSING
-		#define FIX_SPECIAL_ACTION_PISSING   (0)
+		#define FIX_SPECIAL_ACTION_PISSING (0)
 	#else
-		#define FIX_SPECIAL_ACTION_PISSING   (1)
+		#define FIX_SPECIAL_ACTION_PISSING (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SPECIAL_ACTION_PISSING)
 	#undef FIX_SPECIAL_ACTION_PISSING
-	#define FIX_SPECIAL_ACTION_PISSING       (0)
+	#define FIX_SPECIAL_ACTION_PISSING   (0)
 #endif
 
 #if !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
-		#define FIX_IsValidVehicle   (0)
+		#define FIX_IsValidVehicle       (0)
 	#else
-		#define FIX_IsValidVehicle   (1)
+		#define FIX_IsValidVehicle       (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
 	#undef FIX_IsValidVehicle
-	#define FIX_IsValidVehicle       (0)
+	#define FIX_IsValidVehicle           (0)
 #endif
 
 #if !defined FIX_KEY_CROUCH
-	#define FIX_KEY_CROUCH      (1)
+	#define FIX_KEY_CROUCH               (1)
 #elseif _FIXES_IS_UNSET(FIX_KEY_CROUCH)
 	#undef FIX_KEY_CROUCH
-	#define FIX_KEY_CROUCH     (0)
+	#define FIX_KEY_CROUCH               (0)
 #endif
 
 #if !defined FIX_SetPlayerCheckpoint
@@ -806,24 +822,24 @@
 #endif
 
 #if !defined FIX_ClearAnimations
-	#define FIX_ClearAnimations   (1)
+	#define FIX_ClearAnimations          (1)
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations)
 	#undef FIX_ClearAnimations
-	#define FIX_ClearAnimations   (0)
+	#define FIX_ClearAnimations          (0)
 #endif
 
 #if !defined FIX_ClearAnimations_2
-	#define FIX_ClearAnimations_2   (1)
+	#define FIX_ClearAnimations_2        (1)
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations_2)
 	#undef FIX_ClearAnimations_2
-	#define FIX_ClearAnimations_2   (0)
+	#define FIX_ClearAnimations_2        (0)
 #endif
 
 #if !defined FIX_GangZoneCreate
-	#define FIX_GangZoneCreate   (1)
+	#define FIX_GangZoneCreate           (1)
 #elseif _FIXES_IS_UNSET(FIX_GangZoneCreate)
 	#undef FIX_GangZoneCreate
-	#define FIX_GangZoneCreate   (0)
+	#define FIX_GangZoneCreate           (0)
 #endif
 
 #if !defined FIX_OnDialogResponse
@@ -1104,9 +1120,9 @@
 #endif
 
 #if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
-	#define _FIX_Menus                (1)
+	#define _FIX_Menus                   (1)
 #else
-	#define _FIX_Menus                (0)
+	#define _FIX_Menus                   (0)
 #endif
 
 #if !defined FIX_GetPlayerInterior
@@ -1114,6 +1130,20 @@
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerInterior)
 	#undef FIX_GetPlayerInterior
 	#define FIX_GetPlayerInterior        (0)
+#endif
+
+#if !defined FIX_ApplyAnimation
+	#define FIX_ApplyAnimation           (1)
+#elseif _FIXES_IS_UNSET(FIX_ApplyAnimation)
+	#undef FIX_ApplyAnimation
+	#define FIX_ApplyAnimation           (0)
+#endif
+
+#if !defined FIX_ApplyAnimation_2
+	#define FIX_ApplyAnimation_2         (1)
+#elseif _FIXES_IS_UNSET(FIX_ApplyAnimation_2)
+	#undef FIX_ApplyAnimation_2
+	#define FIX_ApplyAnimation_2         (0)
 #endif
 
 /* 
@@ -1366,13 +1396,7 @@ static stock
 	 * 
 	 * The menu the player can currently see.
 	 */
-	Menu:FIXES_gsCurrentMenu[MAX_PLAYERS] = {Menu:INVALID_MENU, ...},
-	/*
-	 * FIXES_gscNULL[]
-	 * 
-	 * NULL.  This is stored as a global string to reduce memory usage.
-	 */
-	FIXES_gscNULL[] = "\1\0";
+	Menu:FIXES_gsCurrentMenu[MAX_PLAYERS] = {Menu:INVALID_MENU, ...};
 
 static stock const
 	/* 
@@ -1381,6 +1405,7 @@ static stock const
 	 * There are only 100 colours used by default, with SA:MP looping through
 	 * them repeatedly.
 	 */
+#if FIX_GetPlayerColor
 	FIXES_gscPlayerColours[100] =
 		{
 			0xFF8C13FF, 0xC715FFFF, 0x20B2AAFF, 0xDC143CFF, 0x6495EDFF,
@@ -1404,6 +1429,7 @@ static stock const
 			0x10C9C5FF, 0x70524DFF, 0x0BE472FF, 0x8A2CD7FF, 0x6152C2FF,
 			0xCF72A9FF, 0xE59338FF, 0xEEDC2DFF, 0xD8C762FF, 0xD8C762FF
 		},
+#endif
 	/* 
 	 * FIXES_gscMaxPassengers[]
 	 * 
@@ -1411,12 +1437,14 @@ static stock const
 	 * any vehicle, confirmed by a number of sources. "F" (15) means invalid
 	 * vehicle.
 	 */
+#if FIX_OnPlayerEnterVehicle
 	FIXES_gscMaxPassengers[] =
 		{
 			0x10331113, 0x11311131, 0x11331313, 0x80133301, 0x1381F110, 0x10311103, 0x10001F10, 0x11113311, 0x13113311,
 			0x31101100, 0x30001301, 0x11031311, 0x11111331, 0x10013111, 0x01131100, 0x11111110, 0x11100031, 0x11130221,
 			0x33113311, 0x11111101, 0x33101133, 0x101001F0, 0x03133111, 0xFF11113F, 0x13330111, 0xFF131111, 0x0000FF3F
 		},
+#endif
 	/*
 	 * FIXES_gscVehicleMods[][]
 	 * 
@@ -1426,6 +1454,7 @@ static stock const
 	 * 848 bytes of data total to make the array work).  Instead this (hopefully
 	 * rare) case is handled explicitly in "OnVehicleMod".
 	 */
+#if FIX_OnVehicleMod
 	FIXES_gscVehicleMods[][] =
 		{
 			{0b00000011001111000010011100000000, 0b00000000000000000000000000000000, 0b00000000111111111111111000000000, 0b00000000000000000000000000000111, 0b00000000000000000000000000000000, 0b00000000000000000000000000000000},
@@ -1641,6 +1670,54 @@ static stock const
 			{0b00000010000000000000011100000000, 0b00000000000000000000000000000000, 0b00000000111111111111111000000000, 0b00000000000000000000000000000111, 0b00000000000000000000000000000000, 0b00000000000000000000000000000000},
 			{0b00000010000000000000011100000000, 0b00000000000000000000000000000000, 0b00000000111111111111111000000000, 0b00000000000000000000000000000111, 0b00000000000000000000000000000000, 0b00000000000000000000000000000000}
 		},
+#endif
+	/*
+	 * FIXES_gscAnimIndexes[]
+	 * 
+	 * Which index each letter starts at.  Sometimes crashes the compiler...
+	 */
+#if FIX_ApplyAnimation
+	FIXES_gscAnimIndexes[] =
+		{
+			0, 1, 19, 33, 130, 40, 51, 60, 62, 65, 66, 69, 73, 79, 80, 82, 92, 94, 102, 117, 122, 123, 126
+		},
+#endif
+	/*
+	 * FIXES_gscAnimLib[]
+	 * 
+	 * List of valid library animations.
+	 */
+#if FIX_ApplyAnimation
+	FIXES_gscAnimLib[130][] =
+		{
+			"Attractors",   "Bar",          "Baseball",     "Bd_fire",      "Beach",
+			"Benchpress",   "Bf_injection", "Bike_dbz",     "Biked",        "Bikeh",
+			"Bikeleap",     "Bikes",        "Bikev",        "Bmx",          "Bomber",
+			"Box",          "Bsktball",     "Buddy",        "Bus",          "Camera",
+			"Car",          "Car_chat",     "Carry",        "Casino",       "Chainsaw",
+			"Choppa",       "Clothes",      "Coach",        "Colt45",       "Cop_ambient",
+			"Cop_dvbyz",    "Crack",        "Crib",         "Dam_jump",     "Dancing",
+			"Dealer",       "Dildo",        "Dodge",        "Dozer",        "Drivebys",
+			"Fat",          "Fight_b",      "Fight_c",      "Fight_d",      "Fight_e",
+			"Finale",       "Finale2",      "Flame",        "Flowers",      "Food",
+			"Freeweights",  "Gangs",        "Gfunk",        "Ghands",       "Ghetto_db",
+			"Goggles",      "Graffiti",     "Graveyard",    "Grenade",      "Gymnasium",
+			"Haircuts",     "Heist9",       "Int_house",    "Int_office",   "Int_shop",
+			"Jst_buisness", "Kart",         "Kissing",      "Knife",        "Lapdan1",
+			"Lapdan2",      "Lapdan3",      "Lowrider",     "Md_chase",     "Md_end",
+			"Medic",        "Misc",         "Mtb",          "Muscular",     "Nevada",
+			"On_lookers",   "Otb",          "Parachute",    "Park",         "Paulnmac",
+			"Ped",          "Player_dvbys", "Playidles",    "Police",       "Pool",
+			"Poor",         "Python",       "Quad",         "Quad_dbz",     "Rapping",
+			"Rifle",        "Riot",         "Rob_bank",     "Rocket",       "Runningman",
+			"Rustler",      "Ryder",        "Scratching",   "Shamal",       "Shop",
+			"Shotgun",      "Silenced",     "Skate",        "Smoking",      "Sniper",
+			"Spraycan",     "Strip",        "Sunbathe",     "Swat",         "Sweet",
+			"Swim",         "Sword",        "Tank",         "Tattoos",      "Tec",
+			"Train",        "Truck",        "Uzi",          "Van",          "Vending",
+			"Vortex",       "Wayfarer",     "Weapons",      "Wop",          "Wuzi"
+		},
+#endif
 	/*
 	 * FIXES_gscDot[]
 	 * 
@@ -1784,9 +1861,7 @@ static stock const
 	 * 
 	 * The property for a player's current menu.
 	 */
-	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty";
-
-static stock
+	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
 	/*
 	 * FIXES_pvarNotNewPlayer[]
 	 * 
@@ -1838,7 +1913,13 @@ static stock
 	 * Used in OnDialogResponse to be able to get the correct ID in multiple
 	 * scripts while still correctly resetting the ID for future use.
 	 */
-	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog";
+	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog",
+	/*
+	 * FIXES_gscNULL[]
+	 * 
+	 * NULL.  This is stored as a global string to reduce memory usage.
+	 */
+	FIXES_gscNULL[] = "\1";
 
 /* 
  * _FIXES_KEY_AIM
@@ -2056,10 +2137,12 @@ public OnGameModeInit()
 		// =============================
 		//  BEGIN: PlayerDialogResponse 
 		// =============================
-		for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
-		{
-			ShowPlayerDialog(playerid, -1, 0, " ", " ", " ", " ");
-		}
+		#if FIX_PlayerDialogResponse
+			for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
+			{
+				ShowPlayerDialog(playerid, -1, 0, " ", " ", " ", " ");
+			}
+		#endif
 		// =============================
 		//  END:   PlayerDialogResponse 
 		// =============================
@@ -6002,6 +6085,50 @@ public OnGameModeInit()
 		#define _ALS_strins
 	#endif
 	#define strins FIXES_strins
+#endif
+
+/*
+ * FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+ *
+ * FIXES:
+ *     ApplyAnimation
+ */
+#if FIX_ApplyAnimation
+	stock FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+	{
+		new
+			idx = toupper(str[0]);
+		if ('A' <= idx <= 'W')
+		{
+			idx = FIXES_gscAnimIndexes[idx - 'A'];
+			while (idx != sizeof (FIXES_gscAnimLib))
+			{
+				switch (strcmp(FIXES_gscAnimLib[idx], animlib, true))
+				{
+					case 1:
+					{
+						return 0;
+					}
+					case 0:
+					{
+						return ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
+					}
+				}
+				++idx;
+			}
+		}
+		return 0;
+	}
+	
+	#if defined _ALS_ApplyAnimation
+		#undef ApplyAnimation
+	#else
+		
+		native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+		
+		#define _ALS_ApplyAnimation
+	#endif
+	#define ApplyAnimation FIXES_ApplyAnimation
 #endif
 
 /*
