@@ -6091,7 +6091,7 @@ public OnGameModeInit()
 	stock FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
 	{
 		new
-			idx = toupper(animlib[0]);
+			idx = animlib[0] & ~0x20;
 		if ('A' <= idx <= 'W')
 		{
 			idx = FIXES_gscAnimIndexes[idx - 'A'];
