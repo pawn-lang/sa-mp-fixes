@@ -1450,7 +1450,13 @@ static stock
 	 * Used in OnDialogResponse to be able to get the correct ID in multiple
 	 * scripts while still correctly resetting the ID for future use.
 	 */
-	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog";
+	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog",
+	/*
+	 * FIXES_gscNULL[]
+	 * 
+	 * NULL.  This is stored as a global string to reduce memory usage.
+	 */
+	FIXES_gscNULL[] = "\1";
 
 static stock const
 	/* 
@@ -1915,13 +1921,7 @@ static stock const
 	 * 
 	 * The property for a player's current menu.
 	 */
-	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
-	/*
-	 * FIXES_gscNULL[]
-	 * 
-	 * NULL.  This is stored as a global string to reduce memory usage.
-	 */
-	FIXES_gscNULL[] = "\1";
+	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty";
 
 /* 
  * _FIXES_KEY_AIM
@@ -6201,4 +6201,3 @@ public OnGameModeInit()
 #undef _FIXES_ATTACHMENTS
 #undef _FIXES_IS_UNSET
 #undef FIXES_PRINTF
-
