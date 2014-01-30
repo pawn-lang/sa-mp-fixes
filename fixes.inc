@@ -1398,7 +1398,59 @@ static stock
 	 * 
 	 * The menu the player can currently see.
 	 */
-	Menu:FIXES_gsCurrentMenu[MAX_PLAYERS] = {Menu:INVALID_MENU, ...};
+	Menu:FIXES_gsCurrentMenu[MAX_PLAYERS] = {Menu:INVALID_MENU, ...},
+	/*
+	 * FIXES_pvarNotNewPlayer[]
+	 * 
+	 * This variable records wether or not this player is brand new to the
+	 * server, and not just having "OnPlayerConnect" called due to a script
+	 * load.  There are certain functions that need applying only the very first
+	 * time they connect, then this gets set.
+	 */
+	FIXES_pvarNotNewPlayer[] = "FIXES_pvarNotNewPlayer",
+	/*
+	 * FIXES_pvarPlayerWeapon[]
+	 * 
+	 * Name of the pvar in which to store the player's current weapon.
+	 */
+	FIXES_pvarPlayerWeapon[] = "FIXES_pvarPlayerWeapon",
+	/*
+	 * FIXES_pvarPlayerSkin[]
+	 * 
+	 * Name of the pvar in which to store the player's current skin.
+	 */
+	FIXES_pvarPlayerSkin[] = "FIXES_pvarPlayerSkin",
+	/*
+	 * FIXES_gscKick[]
+	 * 
+	 * Name of the kick timer function.
+	 */
+	FIXES_gscKick[] = "_FIXES_Kick",
+	/*
+	 * FIXES_pvarKick[]
+	 * 
+	 * Name of the pvar in which to store a player's kick timer.
+	 */
+	FIXES_pvarKick[] = "FIXES_pvarKick",
+	/*
+	 * FIXES_pvarPlayerDialog[]
+	 * 
+	 * Name of the pvar in which to store the player's current dialogid.
+	 */
+	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog",
+	/*
+	 * FIXES_pvarPlayerInterior[]
+	 * 
+	 * A player's current interior.
+	 */
+	FIXES_pvarPlayerInterior[] = "FIXES_pvarPlayerInterior",
+	/*
+	 * FIXES_pvarCurrentDialog[]
+	 * 
+	 * Used in OnDialogResponse to be able to get the correct ID in multiple
+	 * scripts while still correctly resetting the ID for future use.
+	 */
+	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog";
 
 static stock const
 	/* 
@@ -1864,58 +1916,6 @@ static stock const
 	 * The property for a player's current menu.
 	 */
 	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
-	/*
-	 * FIXES_pvarNotNewPlayer[]
-	 * 
-	 * This variable records wether or not this player is brand new to the
-	 * server, and not just having "OnPlayerConnect" called due to a script
-	 * load.  There are certain functions that need applying only the very first
-	 * time they connect, then this gets set.
-	 */
-	FIXES_pvarNotNewPlayer[] = "FIXES_pvarNotNewPlayer",
-	/*
-	 * FIXES_pvarPlayerWeapon[]
-	 * 
-	 * Name of the pvar in which to store the player's current weapon.
-	 */
-	FIXES_pvarPlayerWeapon[] = "FIXES_pvarPlayerWeapon",
-	/*
-	 * FIXES_pvarPlayerSkin[]
-	 * 
-	 * Name of the pvar in which to store the player's current skin.
-	 */
-	FIXES_pvarPlayerSkin[] = "FIXES_pvarPlayerSkin",
-	/*
-	 * FIXES_gscKick[]
-	 * 
-	 * Name of the kick timer function.
-	 */
-	FIXES_gscKick[] = "_FIXES_Kick",
-	/*
-	 * FIXES_pvarKick[]
-	 * 
-	 * Name of the pvar in which to store a player's kick timer.
-	 */
-	FIXES_pvarKick[] = "FIXES_pvarKick",
-	/*
-	 * FIXES_pvarPlayerDialog[]
-	 * 
-	 * Name of the pvar in which to store the player's current dialogid.
-	 */
-	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog",
-	/*
-	 * FIXES_pvarPlayerInterior[]
-	 * 
-	 * A player's current interior.
-	 */
-	FIXES_pvarPlayerInterior[] = "FIXES_pvarPlayerInterior",
-	/*
-	 * FIXES_pvarCurrentDialog[]
-	 * 
-	 * Used in OnDialogResponse to be able to get the correct ID in multiple
-	 * scripts while still correctly resetting the ID for future use.
-	 */
-	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog",
 	/*
 	 * FIXES_gscNULL[]
 	 * 
@@ -3690,67 +3690,60 @@ public OnGameModeInit()
 		//  BEGIN: GetPlayerMenu 
 		// ======================
 		#if FIXES_Single
-			FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
+				FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
 			#if defined FIXES_OnPlayerSelectedMenuRow
 				new
 					ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
+				if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
+				{
 			#endif
-			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
-			{
-				FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
-			}
+					FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 			#if defined FIXES_OnPlayerSelectedMenuRow
+				}
 				return ret;
 			#else
 				return 1;
 			#endif
 		#else
-			if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
-			{
-				CallRemoteFunction(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
-				setproperty(5, FIXES_gscMenuProperty, _:FIXES_gsCurrentMenu[playerid]);
-				#if defined FIXES_OnPlayerSelectedMenuRow
-					new
-						ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
-				#endif
-				if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
-				{
-					FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
-				}
-				#if defined FIXES_OnPlayerSelectedMenuRow
-					return ret;
-				#else
-					return 1;
-				#endif
-			}
-			else
-			{
+			#if defined FIXES_OnPlayerSelectedMenuRow
 				new
-					setyet = _:(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET),
 					Menu:cur = FIXES_gsCurrentMenu[playerid];
-				FIXES_gsCurrentMenu[playerid] = Menu:getproperty(5, FIXES_gscMenuProperty);
-				FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
-				#if defined FIXES_OnPlayerSelectedMenuRow
+			#endif
+				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+				{
+			#if defined FIXES_OnPlayerSelectedMenuRow
+					setproperty(5, FIXES_gscMenuProperty, _:cur);
+			#else
+					setproperty(5, FIXES_gscMenuProperty, _:FIXES_gsCurrentMenu[playerid]);
+			#endif
+					CallRemoteFunction(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
+			#if defined FIXES_OnPlayerSelectedMenuRow
+					FIXES_gsCurrentMenu[playerid] = cur;
 					new
 						ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
-				#endif
-				if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
-				{
-					if (setyet)
-					{
-						FIXES_gsCurrentMenu[playerid] = cur;
-					}
-					else
+					if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 					{
 						FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 					}
-				}
-				#if defined FIXES_OnPlayerSelectedMenuRow
 					return ret;
-				#else
-					return 1;
-				#endif
-			}
+			#endif
+				}
+			#if defined FIXES_OnPlayerSelectedMenuRow
+				else	
+				{
+					FIXES_gsCurrentMenu[playerid] = Menu:getproperty(5, FIXES_gscMenuProperty);
+					FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
+					new
+						ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
+					if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
+					{
+						FIXES_gsCurrentMenu[playerid] = cur;
+					}
+					return ret;
+				}
+			#else
+				return 1;
+			#endif
 		#endif
 		// ======================
 		//  END:   GetPlayerMenu 
@@ -3782,8 +3775,8 @@ public OnGameModeInit()
 		//  BEGIN: GetPlayerMenu 
 		// ======================
 		#if FIXES_Single
-			#if defined FIXES_OnPlayerExitedMenu
 				FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
+			#if defined FIXES_OnPlayerExitedMenu
 				new
 					ret = FIXES_OnPlayerExitedMenu(playerid);
 				if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
@@ -3798,10 +3791,19 @@ public OnGameModeInit()
 			#endif
 		#else
 			#if defined FIXES_OnPlayerExitedMenu
+				new
+					Menu:cur = FIXES_gsCurrentMenu[playerid];
+			#endif
 				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
 				{
-					CallRemoteFunction(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
+			#if defined FIXES_OnPlayerExitedMenu
+					setproperty(5, FIXES_gscMenuProperty, _:cur);
+			#else
 					setproperty(5, FIXES_gscMenuProperty, _:FIXES_gsCurrentMenu[playerid]);
+			#endif
+					CallRemoteFunction(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
+			#if defined FIXES_OnPlayerExitedMenu
+					FIXES_gsCurrentMenu[playerid] = cur;
 					new
 						ret = FIXES_OnPlayerExitedMenu(playerid);
 					if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
@@ -3809,28 +3811,18 @@ public OnGameModeInit()
 						FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 					}
 					return ret;
+			#endif
 				}
+			#if defined FIXES_OnPlayerExitedMenu
 				else
 				{
-					new
-						setyet = _:(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET),
-						Menu:cur = FIXES_gsCurrentMenu[playerid];
 					FIXES_gsCurrentMenu[playerid] = Menu:getproperty(5, FIXES_gscMenuProperty);
 					FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
 					new
 						ret = FIXES_OnPlayerExitedMenu(playerid);
 					if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 					{
-						if (setyet)
-						{
-							FIXES_gsCurrentMenu[playerid] = cur;
-						}
-						else
-						{
-			#endif
-							FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
-			#if defined FIXES_OnPlayerExitedMenu
-						}
+						FIXES_gsCurrentMenu[playerid] = cur;
 					}
 					return ret;
 				}
@@ -4074,7 +4066,7 @@ public OnGameModeInit()
 					if (ShowMenuForPlayer(menuid, playerid))
 					{
 						#if FIXES_Single
-							FIXES_gsSettings |= ~e_FIXES_SETTINGS_MENU_SET;
+							FIXES_gsSettings |= e_FIXES_SETTINGS_MENU_SET;
 							FIXES_gsCurrentMenu[playerid] = menuid;
 						#else
 							CallRemoteFunction(FIXES_gscSetPlayerMenu, FIXES_gscSpec@ii, playerid, _:menuid);
