@@ -497,7 +497,7 @@
  *           client crash for streamed in players.
  * SOLUTION: Block ApplyAnimation when an invalid library is passed.
  * SEE:      "FIXES_ApplyAnimation".
- * AUTHOR:   xX_Simon_Xx
+ * AUTHOR:   xX_Simon_Xx/Y_Less
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/5
  * 
  * FIX:      ApplyAnimation_2
@@ -506,7 +506,7 @@
  * SOLUTION: Apply a null animation at spawn.
  * SEE:      "OnPlayerConnect".
  * AUTHOR:   xX_Simon_Xx
- * POST:  	 https://github.com/Y-Less/sa-mp-fixes/issues/5
+ * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/5
  * 
  * ==============
  *  STYLE RULES: 
