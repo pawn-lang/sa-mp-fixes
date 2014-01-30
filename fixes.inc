@@ -508,6 +508,12 @@
  * AUTHOR:   xX_Simon_Xx
  * POST:  	 https://github.com/Y-Less/sa-mp-fixes/issues/5
  * 
+ * FIX:      OnPlayerSpawn
+ * PROBLEM:  San Andreas deducts $100 from players.
+ * SOLUTION: Give them it back.
+ * SEE:      "OnPlayerSpawn".
+ * AUTHOR:   Y_Less
+ * 
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -1146,6 +1152,13 @@
 	#define FIX_ApplyAnimation_2         (0)
 #endif
 
+#if !defined FIX_OnPlayerSpawn
+	#define FIX_OnPlayerSpawn            (1)
+#elseif _FIXES_IS_UNSET(FIX_OnPlayerSpawn)
+	#undef FIX_OnPlayerSpawn
+	#define FIX_OnPlayerSpawn            (0)
+#endif
+
 /* 
  * FIXES_SilentKick
  * 
@@ -1394,6 +1407,12 @@ static stock
 	 */
 	FIXES_gsLastAnimation[MAX_PLAYERS],
 	/* 
+	 * FIXES_gsLastCash[MAX_PLAYERS]
+	 * 
+	 * A player's cash before dying.
+	 */
+	FIXES_gsLastCash[MAX_PLAYERS],
+	/* 
 	 * FIXES_gsCurrentMenu[MAX_PLAYERS]
 	 * 
 	 * The menu the player can currently see.
@@ -1451,6 +1470,12 @@ static stock
 	 * scripts while still correctly resetting the ID for future use.
 	 */
 	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog",
+	/*
+	 * FIXES_pvarPlayerLastCash[]
+	 * 
+	 * Used in OnPlayerDeath to save a player's cash before death.
+	 */
+	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash",
 	/*
 	 * FIXES_gscNULL[]
 	 * 
@@ -2271,6 +2296,7 @@ public OnGameModeInit()
  *     Kick
  *     OnPlayerEnterVehicle_2
  *     PlayerDialogResponse
+ *     OnPlayerSpawn
  */
 #if     FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_SetPlayerName            || FIX_GetPlayerColor
 	#define _FIXES_ON_PLAYER_CONNECT
@@ -2281,6 +2307,8 @@ public OnGameModeInit()
 #elseif FIX_GetPlayerDialog      || FIX_SetSpawnInfo             || FIX_AllowInteriorWeapons     || FIX_TrainExit
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_Kick                 || FIX_OnPlayerEnterVehicle_2   || FIX_PlayerDialogResponse     || FIX_GetPlayerInterior
+	#define _FIXES_ON_PLAYER_CONNECT
+#elseif FIX_OnPlayerSpawn
 	#define _FIXES_ON_PLAYER_CONNECT
 #endif
 #if defined _FIXES_ON_PLAYER_CONNECT
@@ -2440,6 +2468,20 @@ public OnGameModeInit()
 				// =====================
 				//  END:   SetSpawnInfo 
 				// =====================
+				
+				// ======================
+				//  BEGIN: OnPlayerSpawn 
+				// ======================
+				#if FIX_OnPlayerSpawn
+					#if FIXES_Single
+						FIXES_gsLastCash[playerid] = 0;
+					#else
+						SetPVarInt(playerid, FIXES_pvarPlayerLastCash, 0);
+					#endif
+				#endif
+				// ======================
+				//  END:   OnPlayerSpawn 
+				// ======================
 				
 				#if !FIXES_Single
 					// No longer their first time.
@@ -2608,8 +2650,9 @@ public OnGameModeInit()
  * 
  * FIXES:
  *     OnPlayerDeath
+ *     OnPlayerSpawn
  */
-#if FIX_OnPlayerDeath
+#if FIX_OnPlayerDeath || FIX_OnPlayerSpawn
 	public OnPlayerDeath(playerid, killerid, reason)
 	{
 		#if !FIXES_Single
@@ -2634,7 +2677,32 @@ public OnGameModeInit()
 				// ======================
 			}
 		#if defined FIXES_OnPlayerDeath
-			return FIXES_OnPlayerDeath(playerid, killerid, reason);
+			#if FIX_OnPlayerSpawn
+				new
+					ret = FIXES_OnPlayerDeath(playerid, killerid, reason);
+			#else
+				return FIXES_OnPlayerDeath(playerid, killerid, reason);
+			#endif
+		#endif
+		
+		// ======================
+		//  BEGIN: OnPlayerSpawn 
+		// ======================
+		#if FIX_OnPlayerSpawn
+			#if FIXES_Single
+				FIXES_gsLastCash[playerid] = GetPlayerMoney(playerid);
+			#else
+				SetPVarInt(playerid, FIXES_pvarPlayerLastCash, GetPlayerMoney(playerid));
+			#endif
+		#endif
+		// ======================
+		//  END:   OnPlayerSpawn 
+		// ======================
+		
+		#if defined FIXES_OnPlayerDeath
+			#if FIX_OnPlayerSpawn
+				return ret;
+			#endif
 		#else
 			return 1;
 		#endif
@@ -2734,10 +2802,48 @@ public OnGameModeInit()
  * FIXES:
  *     GetPlayerSkin
  *     TogglePlayerControllable
+ *     GetPlayerInterior
+ *     OnPlayerSpawn
  */
-#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior
+#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn
 	public OnPlayerSpawn(playerid)
 	{
+		#if !FIXES_Single
+			if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+		#endif
+			{
+				// ======================
+				//  BEGIN: OnPlayerSpawn 
+				// ======================
+				#if FIX_OnPlayerSpawn
+					ResetPlayerMoney(playerid);
+					#if FIXES_Single
+						GivePlayerMoney(playerid, FIXES_gsLastCash[playerid]);
+						FIXES_gsLastCash[playerid] = 0;
+					#else
+						GivePlayerMoney(playerid, GetPVarInt(playerid, FIXES_pvarPlayerLastCash));
+						SetPVarInt(playerid, FIXES_pvarPlayerLastCash, 0);
+					#endif
+				#endif
+				// ======================
+				//  END:   OnPlayerSpawn 
+				// ======================
+				
+				// ==========================
+				//  BEGIN: GetPlayerInterior 
+				// ==========================
+				#if FIX_GetPlayerInterior
+					#if FIXES_Single
+						FIXES_gsInterior[playerid] = 0;
+					#else
+						SetPVarInt(playerid, FIXES_pvarPlayerInterior, 0);
+					#endif
+				#endif
+				// ==========================
+				//  END:   GetPlayerInterior 
+				// ==========================
+			}
+		
 		// ======================
 		//  BEGIN: GetPlayerSkin 
 		// ======================
@@ -2751,23 +2857,6 @@ public OnGameModeInit()
 		// ======================
 		//  END:   GetPlayerSkin 
 		// ======================
-		
-		// ==========================
-		//  BEGIN: GetPlayerInterior 
-		// ==========================
-		#if FIX_GetPlayerInterior
-			#if FIXES_Single
-				FIXES_gsInterior[playerid] = 0;
-			#else
-				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
-				{
-					SetPVarInt(playerid, FIXES_pvarPlayerInterior, 0);
-				}
-			#endif
-		#endif
-		// ==========================
-		//  END:   GetPlayerInterior 
-		// ==========================
 		
 		// =================================
 		//  BEGIN: TogglePlayerControllable 
