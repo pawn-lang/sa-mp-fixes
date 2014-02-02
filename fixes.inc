@@ -2765,25 +2765,27 @@ public OnGameModeInit()
 #if FIX_SetPlayerName
 	stock FIXES_SetPlayerName(playerid, name[])
 	{
-		if (!strcmp(name, FIXES_gscTempName, true))
-		{
-			return 0;
-		}
 		static
 			sOldName[MAX_PLAYER_NAME];
 		GetPlayerName(playerid, sOldName, sizeof (sOldName));
-		if (strcmp(name, sOldName, true))
+		if (!strcmp(name, sOldName, true))
 		{
-			return SetPlayerName(playerid, name);
+			if(strcmp(name, sOldName, false))
+			{
+				SetPlayerName(playerid, FIXES_gscTempName);
+				if(SetPlayerName(playerid, name) == -1)
+				{
+					SetPlayerName(playerid, sOldName);
+					return -1;
+				}
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
 		}
-		SetPlayerName(playerid, FIXES_gscTempName);
-		new
-			retval = SetPlayerName(playerid, name);
-		if (retval != 1)
-		{
-			SetPlayerName(playerid, sOldName);
-		}
-		return retval;
+		return SetPlayerName(playerid, name);
 	}
 	#if defined _ALS_SetPlayerName
 		#undef SetPlayerName
