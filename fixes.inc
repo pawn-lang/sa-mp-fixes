@@ -504,7 +504,7 @@
  * PROBLEM:  When ApplyAnimation was called the first time next the player
  *           spawn, it don't work.
  * SOLUTION: Apply a null animation at spawn.
- * SEE:      "OnPlayerConnect".
+ * SEE:      "OnPlayerSpawn".
  * AUTHOR:   xX_Simon_Xx
  * POST:  	 https://github.com/Y-Less/sa-mp-fixes/issues/5
  * 
@@ -514,6 +514,20 @@
  * SEE:      "OnPlayerSpawn".
  * AUTHOR:   Y_Less
  * 
+ * FIX:      GetGravity
+ * PROBLEM:  "GetGravity" isn't defined by default.
+ * SOLUTION: Define it. DEFAULTS TO FALSE!
+ * SEE:      N/A.
+ * AUTHOR:   Whitetiger
+ * POST:     http://forum.sa-mp.com/showpost.php?p=1706447&postcount=277
+ *
+ * FIX:      gpci
+ * PROBLEM:  "gpci" isn't defined by default.
+ * SOLUTION: Define it. DEFAULTS TO FALSE!
+ * SEE:      N/A.
+ * AUTHOR:   xX_Simon_Xx
+ * POST:     http://pastebin.com/VQSGpbSm
+ *
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -747,6 +761,28 @@
 #elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
 	#undef FIX_IsValidVehicle
 	#define FIX_IsValidVehicle           (0)
+#endif
+
+#if !defined FIX_GetGravity
+	#if defined GetGravity
+		#define FIX_GetGravity       (0)
+	#else
+		#define FIX_GetGravity       (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetGravity)
+	#undef FIX_GetGravity
+	#define FIX_GetGravity           (0)
+#endif
+
+#if !defined FIX_gpci
+	#if defined gpci
+		#define FIX_gpci       (0)
+	#else
+		#define FIX_gpci       (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_gpci)
+	#undef FIX_gpci
+	#define FIX_gpci           (0)
 #endif
 
 #if !defined FIX_KEY_CROUCH
@@ -1258,7 +1294,8 @@ enum e_FIXES_BOOLS (<<= 1)
 	e_FIXES_BOOLS_PUT_IN_TRAIN,
 	e_FIXES_BOOLS_KICKED,
 	e_FIXES_BOOLS_ON_PLAYER_CONNECT,
-	e_FIXES_BOOLS_KEY_CROUCH
+	e_FIXES_BOOLS_KEY_CROUCH,
+	e_FIXES_BOOLS_FIRST_SPAWN
 }
 
 /* 
@@ -1772,7 +1809,7 @@ static stock const
 	 * 
 	 * List of valid library animations.
 	 */
-#if FIX_ApplyAnimation
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2
 	FIXES_gscAnimLib[130][] =
 		{
 			"ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",      "BEACH",
@@ -1977,6 +2014,24 @@ static stock const
  */
 #if FIX_IsValidVehicle
 	native IsValidVehicle(vehicleid);
+#endif
+
+/*
+ * GetGravity
+ *
+ * Because the default SA:MP includes missed this one.
+ */
+#if FIX_GetGravity
+	native Float:GetGravity();
+#endif
+
+/*
+ * gpci
+ *
+ * Because the default SA:MP includes missed this one.
+ */
+#if FIX_gpci
+	native gpci(playerid, serial[], maxlen);
 #endif
 
 /* 
@@ -2807,7 +2862,7 @@ public OnGameModeInit()
  *     GetPlayerInterior
  *     OnPlayerSpawn
  */
-#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn
+#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_ApplyAnimation_2
 	public OnPlayerSpawn(playerid)
 	{
 		#if !FIXES_Single
@@ -2855,6 +2910,21 @@ public OnGameModeInit()
 			#else
 				SetPVarInt(playerid, FIXES_pvarPlayerSkin, GetPlayerSkin(playerid));
 			#endif
+		#endif
+		// ======================
+		//  END:   GetPlayerSkin 
+		// ======================
+		
+		// ======================
+		//  BEGIN: ApplyAnimation
+		// ======================
+		#if FIX_ApplyAnimation_2
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_FIRST_SPAWN) {
+				for(new i = 0; i < 130; i++) {
+					ApplyAnimation(playerid,FIXES_gscAnimLib[i],"null",1.0,0,0,0,0,0);
+				}
+				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_FIRST_SPAWN;
+			}
 		#endif
 		// ======================
 		//  END:   GetPlayerSkin 
