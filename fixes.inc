@@ -488,7 +488,7 @@
  * 
  * FIX:      IsValidVehicle
  * PROBLEM:  "IsValidVehicle" isn't defined by default.
- * SOLUTION: Define it.  DEFAULTS TO FALSE!
+ * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   xX_Simon_Xx
  * POST:  	 http://forum.sa-mp.com/showpost.php?p=2693650&postcount=441
