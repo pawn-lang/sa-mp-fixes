@@ -295,7 +295,8 @@
  * POST:     http://forum.sa-mp.com/showpost.php?p=1790300
  * 
  * FIX:      file_inc
- * PROBLEM:  All file.inc fixes are included separately for major overhead.
+ * PROBLEM:  Includes or excludes all the file function fixes together (can
+ *           cause major overhead).
  * SOLUTION: Optionally group them all under one define.  DEFAULTS TO FALSE!
  * SEE:      "FIX_file_inc".
  * AUTHOR:   Y_Less
@@ -529,8 +530,8 @@
  * POST:     http://pastebin.com/VQSGpbSm
  * 
  * FIX:      Natives
- * PROBLEM:  Several natives don't exist by default.  This is an umbrella fix
- *           for several other fixes.
+ * PROBLEM:  Several natives are included by default, this enables or disables
+ *           them all.  Therefore this is an umbrella fix for several fixes.
  * SOLUTION: Define them.
  * SEE:      FIX_GetGravity, FIX_gpci, FIX_IsValidVehicle.
  * AUTHOR:   Y_Less
