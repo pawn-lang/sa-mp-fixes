@@ -119,7 +119,7 @@
  * SEE:      "FIXES_SetPlayerCheckpoint".
  * AUTHOR:   KoczkaHUN
  * POST:     http://forum.sa-mp.com/showpost.php?p=1482401
- *
+ * 
  * FIX:      SetPlayerRaceCheckpoint
  * PROBLEM:  If a checkpoint is already set it will use the size of that
  *           checkpoint instead of the new one.
@@ -127,7 +127,7 @@
  * SEE:      "FIXES_SetPlayerRaceCheckpoint".
  * AUTHOR:   KoczkaHUN
  * POST:     http://forum.sa-mp.com/showpost.php?p=1482401
- *
+ * 
  * FIX:      TextDrawCreate
  * PROBLEM:  Crashes on a blank string.
  * SOLUTION: Intercept blank strings.
@@ -203,7 +203,7 @@
  * SEE:      "OnPlayerConnect", "OnGameModeExit".
  * AUTHOR:   xX_Simon_Xx
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/2
- *
+ * 
  * FIX:      SetSpawnInfo
  * PROBLEM:  Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo".
  * SOLUTION: Call "SetSpawnInfo" at least once.
@@ -452,7 +452,7 @@
  * SEE:      "FIXES_ClearAnimations".
  * AUTHOR:   xX_Simon_Xx
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/4
- *
+ * 
  * FIX:      ClearAnimations_2
  * PROBLEM:  ClearAnimations doesn't do anything when the animation ends if we
  *           pass 1 for the freeze parameter in ApplyAnimation.
@@ -460,7 +460,7 @@
  * SEE:      "FIXES_ClearAnimations".
  * AUTHOR:   xX_Simon_Xx
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/4
- *
+ * 
  * FIX:      KEY_CROUCH
  * PROBLEM:  If you press KEY_CROUCH while you're passenger and if you are
  *           armed, the player start to aim; if you repress KEY_CROUCH the
@@ -469,7 +469,7 @@
  * SEE:      "OnPlayerKeyStateChange".
  * AUTHOR:   xX_Simon_Xx
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/13
- *
+ * 
  * FIX:      GangZoneCreate
  * PROBLEM:  Gang zones bug on the main map for players at certain angles
  *           relative to them.
@@ -516,18 +516,25 @@
  * 
  * FIX:      GetGravity
  * PROBLEM:  "GetGravity" isn't defined by default.
- * SOLUTION: Define it. DEFAULTS TO FALSE!
+ * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   Whitetiger
  * POST:     http://forum.sa-mp.com/showpost.php?p=1706447&postcount=277
- *
+ * 
  * FIX:      gpci
  * PROBLEM:  "gpci" isn't defined by default.
- * SOLUTION: Define it. DEFAULTS TO FALSE!
+ * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   xX_Simon_Xx
  * POST:     http://pastebin.com/VQSGpbSm
- *
+ * 
+ * FIX:      Natives
+ * PROBLEM:  Several natives don't exist by default.  This is an umbrella fix
+ *           for several other fixes.
+ * SOLUTION: Define them.
+ * SEE:      FIX_GetGravity, FIX_gpci, FIX_IsValidVehicle.
+ * AUTHOR:   Y_Less
+ * 
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -752,11 +759,18 @@
 	#define FIX_SPECIAL_ACTION_PISSING   (0)
 #endif
 
+#if !defined FIX_Natives
+	#define FIX_Natives                  (1)
+#elseif _FIXES_IS_UNSET(FIX_Natives)
+	#undef FIX_Natives
+	#define FIX_Natives                  (0)
+#endif
+
 #if !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
 		#define FIX_IsValidVehicle       (0)
 	#else
-		#define FIX_IsValidVehicle       (1)
+		#define FIX_IsValidVehicle       (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
 	#undef FIX_IsValidVehicle
@@ -765,24 +779,24 @@
 
 #if !defined FIX_GetGravity
 	#if defined GetGravity
-		#define FIX_GetGravity       (0)
+		#define FIX_GetGravity           (0)
 	#else
-		#define FIX_GetGravity       (1)
+		#define FIX_GetGravity           (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetGravity)
 	#undef FIX_GetGravity
-	#define FIX_GetGravity           (0)
+	#define FIX_GetGravity               (0)
 #endif
 
 #if !defined FIX_gpci
 	#if defined gpci
-		#define FIX_gpci       (0)
+		#define FIX_gpci                 (0)
 	#else
-		#define FIX_gpci       (1)
+		#define FIX_gpci                 (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_gpci)
 	#undef FIX_gpci
-	#define FIX_gpci           (0)
+	#define FIX_gpci                     (0)
 #endif
 
 #if !defined FIX_KEY_CROUCH
@@ -1807,7 +1821,7 @@ static stock const
 	/*
 	 * FIXES_gscAnimLib[]
 	 * 
-	 * List of valid library animations.
+	 * List of valid animation libraries.
 	 */
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
 	FIXES_gscAnimLib[130][] =
@@ -2352,6 +2366,7 @@ public OnGameModeInit()
  *     OnPlayerEnterVehicle_2
  *     PlayerDialogResponse
  *     OnPlayerSpawn
+ *     ApplyAnimation_2
  */
 #if     FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_SetPlayerName            || FIX_GetPlayerColor
 	#define _FIXES_ON_PLAYER_CONNECT
@@ -2363,20 +2378,24 @@ public OnGameModeInit()
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_Kick                 || FIX_OnPlayerEnterVehicle_2   || FIX_PlayerDialogResponse     || FIX_GetPlayerInterior
 	#define _FIXES_ON_PLAYER_CONNECT
-#elseif FIX_OnPlayerSpawn
+#elseif FIX_OnPlayerSpawn        || FIX_ApplyAnimation_2
 	#define _FIXES_ON_PLAYER_CONNECT
 #endif
 #if defined _FIXES_ON_PLAYER_CONNECT
 	public OnPlayerConnect(playerid)
 	{
 		FIXES_PRINTF("FIXES_OnPlayerConnect: %d", playerid);
-		#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2
+		#if FIX_Kick || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2 || FIX_ApplyAnimation_2
 			// This is only reset when the Game Mode changes or when a new
 			// player connects, which is what we want.  The other items are the
 			// same, but must be done only once.  This variable will tend to
 			// hold data relevant only in the master script (the first
 			// filterscript).
-			#if FIX_Kick
+			#if FIX_ApplyAnimation_2 && FIX_Kick
+				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_SPAWN | e_FIXES_BOOLS_ON_PLAYER_CONNECT;
+			#elseif FIX_ApplyAnimation_2
+				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_SPAWN;
+			#elseif FIX_Kick
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_ON_PLAYER_CONNECT;
 			#else
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_NONE;
@@ -2551,7 +2570,7 @@ public OnGameModeInit()
 				new
 					ret = FIXES_OnPlayerConnect(playerid);
 			#endif
-			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_ON_PLAYER_CONNECT;
+				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_ON_PLAYER_CONNECT;
 			#if defined FIXES_OnPlayerConnect
 				return ret;
 			#else
@@ -2861,6 +2880,7 @@ public OnGameModeInit()
  *     TogglePlayerControllable
  *     GetPlayerInterior
  *     OnPlayerSpawn
+ *     ApplyAnimation_2
  */
 #if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_ApplyAnimation_2
 	public OnPlayerSpawn(playerid)
@@ -2899,6 +2919,23 @@ public OnGameModeInit()
 				// ==========================
 				//  END:   GetPlayerInterior 
 				// ==========================
+				
+				// =========================
+				//  BEGIN: ApplyAnimation_2 
+				// =========================
+				#if FIX_ApplyAnimation_2
+					if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_FIRST_SPAWN)
+					{
+						for (new i = 0; i != sizeof (FIXES_gscAnimLib); ++i)
+						{
+							ApplyAnimation(playerid, FIXES_gscAnimLib[i], "null", 1.0, 0, 0, 0, 0, 0);
+						}
+						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_FIRST_SPAWN;
+					}
+				#endif
+				// =========================
+				//  END:   ApplyAnimation_2 
+				// =========================
 			}
 		
 		// ======================
@@ -2910,21 +2947,6 @@ public OnGameModeInit()
 			#else
 				SetPVarInt(playerid, FIXES_pvarPlayerSkin, GetPlayerSkin(playerid));
 			#endif
-		#endif
-		// ======================
-		//  END:   GetPlayerSkin 
-		// ======================
-		
-		// ======================
-		//  BEGIN: ApplyAnimation
-		// ======================
-		#if FIX_ApplyAnimation_2
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_FIRST_SPAWN) {
-				for(new i = 0; i < 130; i++) {
-					ApplyAnimation(playerid,FIXES_gscAnimLib[i],"null",1.0,0,0,0,0,0);
-				}
-				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_FIRST_SPAWN;
-			}
 		#endif
 		// ======================
 		//  END:   GetPlayerSkin 
@@ -6362,3 +6384,4 @@ public OnGameModeInit()
 #undef _FIXES_ATTACHMENTS
 #undef _FIXES_IS_UNSET
 #undef FIXES_PRINTF
+
