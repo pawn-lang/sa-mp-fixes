@@ -3710,11 +3710,10 @@ public OnGameModeInit()
 		{
 			if(GetPlayerState(playerid) == PLAYER_STATE_PASSENGER)
 			{
-				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DRIVE_BY;
 				SetPlayerArmedWeapon(playerid, FIXES_gsDriveByWeapon[playerid]);
-				return 1;
 			}
-			return 0;
+			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DRIVE_BY;
+			return 1;
 		}
 	#endif
 	
