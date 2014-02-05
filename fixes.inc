@@ -5593,11 +5593,7 @@ public OnGameModeInit()
 #if FIX_fclose
 	stock bool:FIXES_fclose(File:handle)
 	{
-		if (handle)
-		{
-			return fclose(handle);
-		}
-		return false;
+		return handle && fclose(handle);
 	}
 	
 	#if defined _ALS_fclose
@@ -5620,11 +5616,7 @@ public OnGameModeInit()
 #if FIX_fwrite
 	stock FIXES_fwrite(File:handle, const string[])
 	{
-		if (handle)
-		{
-			return fwrite(handle, string);
-		}
-		return 0;
+		return handle && fwrite(handle, string);
 	}
 	
 	#if defined _ALS_fwrite
@@ -5647,11 +5639,7 @@ public OnGameModeInit()
 #if FIX_fread
 	stock FIXES_fread(File:handle, string[], size = sizeof (string), bool:pack = false)
 	{
-		if (handle)
-		{
-			return fread(handle, string, size, pack);
-		}
-		return 0;
+		return handle && fread(handle, string, size, pack);
 	}
 	
 	#if defined _ALS_fread
@@ -5674,11 +5662,7 @@ public OnGameModeInit()
 #if FIX_fputchar
 	stock bool:FIXES_fputchar(File:handle, value, bool:utf8 = true)
 	{
-		if (handle)
-		{
-			return fputchar(handle, value, utf8);
-		}
-		return false;
+		return handle && fputchar(handle, value, utf8);
 	}
 	
 	#if defined _ALS_fputchar
@@ -5701,11 +5685,7 @@ public OnGameModeInit()
 #if FIX_fgetchar
 	stock FIXES_fgetchar(File:handle, value, bool:utf8 = true)
 	{
-		if (handle)
-		{
-			return fgetchar(handle, value, utf8);
-		}
-		return 0;
+		return handle && fgetchar(handle, value, utf8);
 	}
 	
 	#if defined _ALS_fgetchar
@@ -5728,11 +5708,7 @@ public OnGameModeInit()
 #if FIX_fblockwrite
 	stock FIXES_fblockwrite(File:handle, const buffer[], size = sizeof (buffer))
 	{
-		if (handle)
-		{
-			return fblockwrite(handle, buffer, size);
-		}
-		return 0;
+		return handle && fblockwrite(handle, buffer, size);
 	}
 	
 	#if defined _ALS_fblockwrite
@@ -5755,11 +5731,7 @@ public OnGameModeInit()
 #if FIX_fblockread
 	stock FIXES_fblockread(File:handle, buffer[], size = sizeof (buffer))
 	{
-		if (handle)
-		{
-			return fblockread(handle, buffer, size);
-		}
-		return 0;
+		return handle && fblockread(handle, buffer, size);
 	}
 	
 	#if defined _ALS_fblockread
@@ -5782,11 +5754,7 @@ public OnGameModeInit()
 #if FIX_fseek
 	stock FIXES_fseek(File:handle, position = 0, seek_whence:whence = seek_start)
 	{
-		if (handle)
-		{
-			return fseek(handle, position, whence);
-		}
-		return 0;
+		return handle && fseek(handle, position, whence);
 	}
 	
 	#if defined _ALS_fseek
@@ -5809,11 +5777,7 @@ public OnGameModeInit()
 #if FIX_flength
 	stock FIXES_flength(File:handle)
 	{
-		if (handle)
-		{
-			return flength(handle);
-		}
-		return 0;
+		return handle && flength(handle);
 	}
 	
 	#if defined _ALS_flength
@@ -5838,7 +5802,7 @@ public OnGameModeInit()
 	
 	public _FIXES_Kick(playerid)
 	{
-		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_KICKED;
+		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_KICKED,
 		Kick(playerid);
 	}
 	
@@ -5856,17 +5820,17 @@ public OnGameModeInit()
 		if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
 		{
 			// Disable as much of the server as possible quickly.
-			#if FIXES_Single
-				FIXES_BlockUpdate(playerid, true, 0);
-			#else
-				CallRemoteFunction("@FIXES_Kick", "i", playerid);
-			#endif
 			return
-				TogglePlayerSpectating(playerid, true),
-				TogglePlayerControllable(playerid, false),
-				SetPVarInt(playerid, FIXES_pvarKick, SetTimerEx(FIXES_gscKick, 1000, 0, FIXES_gscSpec@i, playerid)),
-				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_KICKED,
-				1;
+				#if FIXES_Single
+					FIXES_BlockUpdate(playerid, true, 0),
+				#else
+					CallRemoteFunction("@FIXES_Kick", "i", playerid),
+				#endif
+					TogglePlayerSpectating(playerid, true),
+					TogglePlayerControllable(playerid, false),
+					SetPVarInt(playerid, FIXES_pvarKick, SetTimerEx(FIXES_gscKick, 1000, 0, FIXES_gscSpec@i, playerid)),
+					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_KICKED,
+					1;
 		}
 		else
 		{
