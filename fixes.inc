@@ -484,14 +484,14 @@
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   xX_Simon_Xx
- * POST:  	 https://github.com/Y-Less/sa-mp-fixes/issues/6
+ * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/6
  * 
  * FIX:      IsValidVehicle
  * PROBLEM:  "IsValidVehicle" isn't defined by default.
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   xX_Simon_Xx
- * POST:  	 http://forum.sa-mp.com/showpost.php?p=2693650&postcount=441
+ * POST:     http://forum.sa-mp.com/showpost.php?p=2693650&postcount=441
  * 
  * FIX:      ApplyAnimation
  * PROBLEM:  Passing an invalid animation library in ApplyAnimation causes a
@@ -507,7 +507,7 @@
  * SOLUTION: Apply a null animation at spawn.
  * SEE:      "OnPlayerSpawn".
  * AUTHOR:   xX_Simon_Xx
- * POST:  	 https://github.com/Y-Less/sa-mp-fixes/issues/5
+ * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/5
  * 
  * FIX:      OnPlayerSpawn
  * PROBLEM:  San Andreas deducts $100 from players.
