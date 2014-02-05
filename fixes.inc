@@ -3708,9 +3708,13 @@ public OnGameModeInit()
 		
 		public  _FIXES_DriveBy(playerid)
 		{
-			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DRIVE_BY;
-			SetPlayerArmedWeapon(playerid, FIXES_gsDriveByWeapon[playerid]);
-			return 1;
+			if(GetPlayerState(playerid) == PLAYER_STATE_PASSENGER)
+			{
+				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DRIVE_BY;
+				SetPlayerArmedWeapon(playerid, FIXES_gsDriveByWeapon[playerid]);
+				return 1;
+			}
+			return 0;
 		}
 	#endif
 	
@@ -3723,11 +3727,10 @@ public OnGameModeInit()
 			if((newkeys & KEY_CROUCH) && !(oldkeys & KEY_CROUCH) && GetPlayerState(playerid) == PLAYER_STATE_PASSENGER && GetPlayerCameraMode(playerid) == 55 && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DRIVE_BY))
 			{
 				FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon(playerid);
+				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY;
 				SetPlayerArmedWeapon(playerid, 0);
 				ApplyAnimation(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1);
-				SetTimerEx(FIXES_DriveBy, 100, 0, FIXES_gscSpec@i, playerid);
-				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY;
-				SetTimerEx(FIXES_DriveBy, 100, 0, FIXES_gscSpec@i, playerid);
+				SetTimerEx(FIXES_DriveBy, 500, 0, FIXES_gscSpec@i, playerid);
 			}
 		#endif
 		// =============================
