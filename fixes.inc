@@ -2400,11 +2400,12 @@ static stock const
  * OnFilterScriptInit()
  * 
  * Set "IS_FILTERSCRIPT" to true as this callback is ONLY called if this script
- * Set "IS_FILTERSCRIPT" to true as this callback is ONLY called if this script
  * is actually a FilterScript.  Then call "FIXES_OnScriptInit".
  * 
  * FIXES:
  *     IS_FILTERSCRIPT
+ *     OnPlayerConnect
+ *     GameText
  */
 public OnFilterScriptInit()
 {
@@ -2446,9 +2447,13 @@ public OnFilterScriptInit()
 									// ========================
 									//  BEGIN: OnPlayerConnect 
 									// ========================
-									// Use "CallLocalFunction" because it calls
-									// past hooks too.
-									CallLocalFunction("OnPlayerConnect", FIXES_gscSpec@i, playerid);
+									// No "defined" checks - if you don't want
+									// this fix because you don't have an
+									// "OnPlayerConnect" check, don't use it!
+									// Of course, it helps that the copy of
+									// "OnPlayerConnect" in this include is
+									// almost always called!
+									OnPlayerConnect(playerid);
 									// ========================
 									//  END:   OnPlayerConnect 
 									// ========================
@@ -2505,30 +2510,24 @@ public OnGameModeInit()
 	// =============================
 	//  BEGIN: AllowInteriorWeapons 
 	// =============================
-	#if FIX_AllowInteriorWeapons
-		FIXES_gsSettings &= ~e_FIXES_SETTINGS_INTERIOR;
-	#endif
-	// ===========================
-	//  END: AllowInteriorWeapons 
-	// ===========================
-	
 	// ======================
 	//  BEGIN: AllowTeleport 
 	// ======================
-	#if FIX_AllowTeleport && !defined FILTERSCRIPT
+	#if FIX_AllowInteriorWeapons && FIX_AllowTeleport && !defined FILTERSCRIPT
+		FIXES_gsSettings &= ~(e_FIXES_SETTINGS_INTERIOR | e_FIXES_SETTINGS_ADMIN_TELEPORT);
+	#elseif FIX_AllowInteriorWeapons
+		FIXES_gsSettings &= ~e_FIXES_SETTINGS_INTERIOR;
+	#elseif FIX_AllowTeleport && !defined FILTERSCRIPT
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_ADMIN_TELEPORT;
 	#endif
 	// ======================
 	//  END:   AllowTeleport 
 	// ======================
+	// ===========================
+	//  END: AllowInteriorWeapons 
+	// ===========================
 	
-	#if !FIXES_Single
-		if (!_FIXES_gIsFilterscript)
-		{
-			FIXES_DetermineOrder();
-		}
-		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
-	#else
+	#if FIXES_Single
 		// =================
 		//  BEGIN: GameText 
 		// =================
@@ -2541,6 +2540,12 @@ public OnGameModeInit()
 		// =================
 		//  END:   GameText 
 		// =================
+	#else
+		if (!_FIXES_gIsFilterscript)
+		{
+			FIXES_DetermineOrder();
+		}
+		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
 	#endif
 	
 	#if defined FIXES_OnGameModeInit
@@ -2618,7 +2623,7 @@ public OnGameModeInit()
 #if !FIXES_Single
 	public OnFilterScriptExit()
 	{
-		if (_FIXES_gIsFilterscript && FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+		if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
 		{
 			FIXES_gsSettings |= e_FIXES_SETTINGS_ENDING,
 			FIXES_DetermineOrder();
