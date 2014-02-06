@@ -2655,7 +2655,7 @@ public OnGameModeInit()
 			// =================
 			#if FIX_GameText
 				#if defined FIXES_OnFilterScriptExit
-					FIXES_OnFilterScriptExit();
+						FIXES_OnFilterScriptExit();
 				#endif
 						for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 						{
@@ -2665,30 +2665,30 @@ public OnGameModeInit()
 								if (IsPlayerConnected(playerid))
 							#endif
 								{
-										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][0]);
-										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][1]);
-										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][2]);
-										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][3]);
 									#if FIX_GameTextStyles
-										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][4]);
-										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][5]);
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][5]),
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][4]),
 									#endif
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][3]),
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][2]),
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][1]),
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][0]);
 								}
 						}
-						TextDrawDestroy(FIXES_gsGTStyle[0]);
-						TextDrawDestroy(FIXES_gsGTStyle[1]);
-						TextDrawDestroy(FIXES_gsGTStyle[2]);
-						TextDrawDestroy(FIXES_gsGTStyle[3]);
 					#if FIX_GameTextStyles
-						TextDrawDestroy(FIXES_gsGTStyle[4]);
-						TextDrawDestroy(FIXES_gsGTStyle[5]);
+						TextDrawDestroy(FIXES_gsGTStyle[5]),
+						TextDrawDestroy(FIXES_gsGTStyle[4]),
 					#endif
-					return 1;
+						TextDrawDestroy(FIXES_gsGTStyle[3]),
+						TextDrawDestroy(FIXES_gsGTStyle[2]),
+						TextDrawDestroy(FIXES_gsGTStyle[1]),
+						TextDrawDestroy(FIXES_gsGTStyle[0]);
+						return 1;
 			#else
 				#if defined FIXES_OnFilterScriptExit
-					return FIXES_OnFilterScriptExit();
+						return FIXES_OnFilterScriptExit();
 				#else
-					return 1;
+						return 1;
 				#endif
 			#endif
 			// =================
@@ -6622,24 +6622,24 @@ public OnGameModeInit()
 							if (IsPlayerConnected(playerid))
 						#endif
 							{
-									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][0]);
-									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][1]);
-									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][2]);
-									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][3]);
 								#if FIX_GameTextStyles
-									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][4]);
-									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][5]);
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][5]),
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][4]),
 								#endif
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][3]),
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][2]),
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][1]),
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][0]);
 							}
 					}
-					TextDrawDestroy(FIXES_gsGTStyle[0]);
-					TextDrawDestroy(FIXES_gsGTStyle[1]);
-					TextDrawDestroy(FIXES_gsGTStyle[2]);
-					TextDrawDestroy(FIXES_gsGTStyle[3]);
 				#if FIX_GameTextStyles
-					TextDrawDestroy(FIXES_gsGTStyle[4]);
-					TextDrawDestroy(FIXES_gsGTStyle[5]);
+					TextDrawDestroy(FIXES_gsGTStyle[5]),
+					TextDrawDestroy(FIXES_gsGTStyle[4]),
 				#endif
+					TextDrawDestroy(FIXES_gsGTStyle[3]),
+					TextDrawDestroy(FIXES_gsGTStyle[2]),
+					TextDrawDestroy(FIXES_gsGTStyle[1]),
+					TextDrawDestroy(FIXES_gsGTStyle[0]);
 			#endif
 			// =================
 			//  END:   GameText 
