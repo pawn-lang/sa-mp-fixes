@@ -1345,6 +1345,17 @@
 #endif
 
 /* 
+ * IS_IN_CHARGE
+ * 
+ * Test to see if this script is in command or not (master).
+ */
+#if FIXES_Single
+	#define IS_IN_CHARGE(%0)
+#else
+	#define IS_IN_CHARGE(%0) if (%0(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
+#endif
+
+/* 
  * E_FIXES_WORLDBOUND_DATA
  * 
  * Store data for each player on their worldbound data.
@@ -2486,12 +2497,10 @@ public OnFilterScriptInit()
 							// =================
 							//  BEGIN: GameText 
 							// =================
-							#if !FIXES_Single
-								if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
-							#endif
-								{
-									_FIXES_CreateGameTextDraws(playerid);
-								}
+							IS_IN_CHARGE()
+							{
+								_FIXES_CreateGameTextDraws(playerid);
+							}
 							// =================
 							//  END:   GameText 
 							// =================
@@ -3200,27 +3209,25 @@ public OnGameModeInit()
 #if FIX_OnPlayerDeath || FIX_OnPlayerSpawn
 	public OnPlayerDeath(playerid, killerid, reason)
 	{
-		#if !FIXES_Single
-			if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
-		#endif
-			{
-				// ======================
-				//  BEGIN: OnPlayerDeath 
-				// ======================
-				#if FIX_OnPlayerDeath
-					static
-						sAnimlib[32],
-						sAnimname[32];
-					GetAnimationName(FIXES_gsLastAnimation[playerid], sAnimlib, sizeof (sAnimlib), sAnimname, sizeof (sAnimname));
-					if (strcmp(sAnimlib, "PED", true))
-					{
-						ClearAnimations(playerid);
-					}
-				#endif
-				// ======================
-				//  END:   OnPlayerDeath 
-				// ======================
-			}
+		IS_IN_CHARGE()
+		{
+			// ======================
+			//  BEGIN: OnPlayerDeath 
+			// ======================
+			#if FIX_OnPlayerDeath
+				static
+					sAnimlib[32],
+					sAnimname[32];
+				GetAnimationName(FIXES_gsLastAnimation[playerid], sAnimlib, sizeof (sAnimlib), sAnimname, sizeof (sAnimname));
+				if (strcmp(sAnimlib, "PED", true))
+				{
+					ClearAnimations(playerid);
+				}
+			#endif
+			// ======================
+			//  END:   OnPlayerDeath 
+			// ======================
+		}
 		#if defined FIXES_OnPlayerDeath
 			#if FIX_OnPlayerSpawn
 				new
@@ -3356,58 +3363,56 @@ public OnGameModeInit()
 #if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_ApplyAnimation_2
 	public OnPlayerSpawn(playerid)
 	{
-		#if !FIXES_Single
-			if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
-		#endif
-			{
-				// ======================
-				//  BEGIN: OnPlayerSpawn 
-				// ======================
-				#if FIX_OnPlayerSpawn
-					ResetPlayerMoney(playerid);
-					#if FIXES_Single
-						GivePlayerMoney(playerid, FIXES_gsLastCash[playerid]);
-						FIXES_gsLastCash[playerid] = 0;
-					#else
-						GivePlayerMoney(playerid, GetPVarInt(playerid, FIXES_pvarPlayerLastCash));
-						SetPVarInt(playerid, FIXES_pvarPlayerLastCash, 0);
-					#endif
+		IS_IN_CHARGE()
+		{
+			// ======================
+			//  BEGIN: OnPlayerSpawn 
+			// ======================
+			#if FIX_OnPlayerSpawn
+				ResetPlayerMoney(playerid);
+				#if FIXES_Single
+					GivePlayerMoney(playerid, FIXES_gsLastCash[playerid]);
+					FIXES_gsLastCash[playerid] = 0;
+				#else
+					GivePlayerMoney(playerid, GetPVarInt(playerid, FIXES_pvarPlayerLastCash));
+					SetPVarInt(playerid, FIXES_pvarPlayerLastCash, 0);
 				#endif
-				// ======================
-				//  END:   OnPlayerSpawn 
-				// ======================
-				
-				// ==========================
-				//  BEGIN: GetPlayerInterior 
-				// ==========================
-				#if FIX_GetPlayerInterior
-					#if FIXES_Single
-						FIXES_gsInterior[playerid] = 0;
-					#else
-						SetPVarInt(playerid, FIXES_pvarPlayerInterior, 0);
-					#endif
+			#endif
+			// ======================
+			//  END:   OnPlayerSpawn 
+			// ======================
+			
+			// ==========================
+			//  BEGIN: GetPlayerInterior 
+			// ==========================
+			#if FIX_GetPlayerInterior
+				#if FIXES_Single
+					FIXES_gsInterior[playerid] = 0;
+				#else
+					SetPVarInt(playerid, FIXES_pvarPlayerInterior, 0);
 				#endif
-				// ==========================
-				//  END:   GetPlayerInterior 
-				// ==========================
-				
-				// =========================
-				//  BEGIN: ApplyAnimation_2 
-				// =========================
-				#if FIX_ApplyAnimation_2
-					if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_FIRST_SPAWN)
+			#endif
+			// ==========================
+			//  END:   GetPlayerInterior 
+			// ==========================
+			
+			// =========================
+			//  BEGIN: ApplyAnimation_2 
+			// =========================
+			#if FIX_ApplyAnimation_2
+				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_FIRST_SPAWN)
+				{
+					for (new i = 0; i != sizeof (FIXES_gscAnimLib); ++i)
 					{
-						for (new i = 0; i != sizeof (FIXES_gscAnimLib); ++i)
-						{
-							ApplyAnimation(playerid, FIXES_gscAnimLib[i], "null", 1.0, 0, 0, 0, 0, 0);
-						}
-						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_FIRST_SPAWN;
+						ApplyAnimation(playerid, FIXES_gscAnimLib[i], "null", 1.0, 0, 0, 0, 0, 0);
 					}
-				#endif
-				// =========================
-				//  END:   ApplyAnimation_2 
-				// =========================
-			}
+					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_FIRST_SPAWN;
+				}
+			#endif
+			// =========================
+			//  END:   ApplyAnimation_2 
+			// =========================
+		}
 		
 		// ======================
 		//  BEGIN: GetPlayerSkin 
@@ -3932,7 +3937,7 @@ public OnGameModeInit()
 		public _FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
 		{
 			FIXES_PRINTF("_FIXES_SetPlayerWorldBounds: %d %.2f %.2f %.2f %.2f", playerid, x_max, x_min, y_max, y_min);
-			if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+			IS_IN_CHARGE()
 			{
 				FIXES_PRINTF("SetPlayerWorldBounds");
 				//if (x_max == _FIXES_INFINITY && x_min == _FIXES_INFINITY && y_max == _FIXES_INFINITY && y_min == _FIXES_INFINITY)
@@ -4038,7 +4043,7 @@ public OnGameModeInit()
 		
 		public _FIXES_TogglePlayerControllable(playerid, toggle)
 		{
-			if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+			IS_IN_CHARGE()
 			{
 				if (toggle)
 				{
@@ -4081,7 +4086,7 @@ public OnGameModeInit()
 			#if FIXES_Single
 				FIXES_gsInterior[playerid] = newinteriorid;
 			#else
-				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+				IS_IN_CHARGE()
 				{
 					SetPVarInt(playerid, FIXES_pvarPlayerInterior, newinteriorid);
 				}
@@ -4108,22 +4113,20 @@ public OnGameModeInit()
 					// the "OnPlayerUpdate" callback, instead of several checks.
 					// DONE!
 					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_INTERIOR;
-					#if !FIXES_Single
-						if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
-					#endif
-						{
-							SetPlayerArmedWeapon(playerid, 0);
-							#if FIX_GetPlayerWeapon
-								if (IsPlayerInAnyVehicle(playerid))
-								{
-									#if FIXES_Single
-										FIXES_gsPlayerWeapon[playerid] = 0;
-									#else
-										SetPVarInt(playerid, FIXES_pvarPlayerWeapon, 0);
-									#endif
-								}
-							#endif
-						}
+					IS_IN_CHARGE()
+					{
+						SetPlayerArmedWeapon(playerid, 0);
+						#if FIX_GetPlayerWeapon
+							if (IsPlayerInAnyVehicle(playerid))
+							{
+								#if FIXES_Single
+									FIXES_gsPlayerWeapon[playerid] = 0;
+								#else
+									SetPVarInt(playerid, FIXES_pvarPlayerWeapon, 0);
+								#endif
+							}
+						#endif
+					}
 				}
 			}
 			else
@@ -4363,7 +4366,7 @@ public OnGameModeInit()
 				new
 					Menu:cur = FIXES_gsCurrentMenu[playerid];
 			#endif
-				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+				IS_IN_CHARGE()
 				{
 			#if defined FIXES_OnPlayerSelectedMenuRow
 					setproperty(5, FIXES_gscMenuProperty, _:cur);
@@ -4448,7 +4451,7 @@ public OnGameModeInit()
 				new
 					Menu:cur = FIXES_gsCurrentMenu[playerid];
 			#endif
-				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+				IS_IN_CHARGE()
 				{
 			#if defined FIXES_OnPlayerExitedMenu
 					setproperty(5, FIXES_gscMenuProperty, _:cur);
@@ -5323,7 +5326,7 @@ public OnGameModeInit()
 		public _FIXES_PutPlayerInVehicle(playerid, vehicleid, seatid, from, data)
 		{
 			FIXES_PRINTF("IN CHARGE: %d", (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE));
-			if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+			IS_IN_CHARGE()
 			{
 				// ===========================
 				//  BEGIN: PutPlayerInVehicle 
@@ -5942,7 +5945,7 @@ public OnGameModeInit()
 				#endif
 				FIXES_gsDialogID[playerid] = INVALID_DIALOG_ID;
 			#elseif FIX_OnDialogResponse
-				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+				IS_IN_CHARGE()
 				{
 					// If there are multiple scripts, we can't just wipe the
 					// current dialog data or subsequent scripts will display
