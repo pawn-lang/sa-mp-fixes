@@ -561,6 +561,12 @@
  * SEE:      "FIXES_GameTextForAll", "FIXES_GameTextForPlayer".
  * AUTHOR:   Y_Less
  * 
+ * FIX:      HideGameText
+ * PROBLEM:  There is no "HideGameTextForXYZ" function.
+ * SOLUTION: Show a single space for a game text.  DEFAULTS TO FALSE.
+ * SEE:      "HideGameTextForAll", "HideGameTextForPlayer".
+ * AUTHOR:   Y_Less
+ * 
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -1242,6 +1248,13 @@
 	#define FIX_GameText                 (0)
 #endif
 
+#if !defined FIX_HideGameText
+	#define FIX_HideGameText             (0)
+#elseif _FIXES_IS_UNSET(FIX_HideGameText)
+	#undef FIX_HideGameText
+	#define FIX_HideGameText             (0)
+#endif
+
 #if !defined FIX_GameTextStyles
 	#define FIX_GameTextStyles           (0)
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
@@ -1479,6 +1492,14 @@ stock
 	 */
 	bool:_FIXES_gIsFilterscript;
 
+stock
+	/*
+	 * FIXES_gscSpace[]
+	 * 
+	 * A single re-usable space.
+	 */
+	FIXES_gscSpace[] = " ";
+
 #if FIXES_Debug
 new
 #else
@@ -1688,12 +1709,6 @@ static stock
 	 * Name of the GameText hide timer function.
 	 */
 	FIXES_gscHideGameTextTimer[] = "_FIXES_HideGameTextTimer",
-	/*
-	 * FIXES_gscSpace[]
-	 * 
-	 * A single re-usable space.
-	 */
-	FIXES_gscSpace[] = " ",
 	/*
 	 * FIXES_gscNULL[]
 	 * 
@@ -6987,6 +7002,12 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 	}
 #endif
 
+/* 
+ * _FIXES_HideGameTextTimer(playerid, s2)
+ * 
+ * FIXES:
+ *     GameText
+ */
 #if FIX_GameText
 	forward _FIXES_HideGameTextTimer(playerid, s2);
 	
@@ -7000,6 +7021,12 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 	}
 #endif
 
+/* 
+ * _FIXES_GameTextShow(playerid, string[], time, s2)
+ * 
+ * FIXES:
+ *     GameText
+ */
 #if FIX_GameText
 	forward _FIXES_GameTextShow(playerid, string[], time, s2);
 	
@@ -7020,15 +7047,24 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 				PlayerTextDrawShow(playerid, FIXES_gsPGTStyle[playerid][s2]),
 				_FIXES_AddInternal(FIXES_gsPlayerPGTShown[s2], playerid, MAX_PLAYERS);
 			}
-			// Tiny offset because timers are inaccurate.
-			FIXES_gsGTTimer[s2][playerid] = GetTickCount() + time - 10,
-			// Don't need to save the timer's ID.
-			SetTimerEx(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, s2);
+			if (time)
+			{
+				// Tiny offset because timers are inaccurate.
+				FIXES_gsGTTimer[s2][playerid] = GetTickCount() + time - 10,
+				// Don't need to save the timer's ID.
+				SetTimerEx(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, s2);
+			}
 		}
 		return 1;
 	}
 #endif
 
+/* 
+ * FIXES_GameTextForAll(string[], time, style)
+ * 
+ * FIXES:
+ *     GameText
+ */
 #if FIX_GameText
 	stock FIXES_GameTextForAll(string[], time, style)
 	{
@@ -7053,7 +7089,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 						#endif
 				}
 			#if FIX_GameTextStyles
-				/*case 7, 8:
+				case 7, 8:
 				{
 					return
 						// TODO: Optional extras.
@@ -7062,7 +7098,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 						#else
 							CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, string, time, style - 3);
 						#endif
-				}*/
+				}
 			#endif
 				case 3, 4, 6:
 				{
@@ -7084,6 +7120,12 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 	#define GameTextForAll FIXES_GameTextForAll
 #endif
 
+/* 
+ * FIXES_GameTextForPlayer(playerid, string[], time, style)
+ * 
+ * FIXES:
+ *     GameText
+ */
 #if FIX_GameText
 	FIXES_GameTextForPlayer(playerid, string[], time, style)
 	{
@@ -7110,7 +7152,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 							#endif
 					}
 				#if FIX_GameTextStyles
-					/*case 7, 8:
+					case 7, 8:
 					{
 						return
 							// TODO: Optional extras.
@@ -7119,7 +7161,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 							#else
 								CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, string, time, style - 3);
 							#endif
-					}*/
+					}
 				#endif
 					case 3, 4, 6:
 					{
@@ -7140,6 +7182,38 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 	#endif
 	
 	#define GameTextForPlayer FIXES_GameTextForPlayer
+#endif
+
+/* 
+ * HideGameTextForAll(style)
+ * 
+ * FIXES:
+ *     HideGameText
+ */
+#if FIX_HideGameText
+	#if defined _ALS_HideGameTextForAll
+		#undef HideGameTextForAll
+	#else
+		#define _ALS_HideGameTextForAll
+	#endif
+	
+	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gscSpace, 0, (%0))
+#endif
+
+/* 
+ * HideGameTextForPlayer(playerid, style)
+ * 
+ * FIXES:
+ *     HideGameText
+ */
+#if FIX_HideGameText
+	#if defined _ALS_HideGameTextForPlayer
+		#undef HideGameTextForPlayer
+	#else
+		#define _ALS_HideGameTextForPlayer
+	#endif
+	
+	#define HideGameTextForPlayer(%1,%0) GameTextForPlayer((%1), FIXES_gscSpace, 0, (%0))
 #endif
 
 /*
