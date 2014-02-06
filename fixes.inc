@@ -2657,14 +2657,32 @@ public OnGameModeInit()
 				#if defined FIXES_OnFilterScriptExit
 					FIXES_OnFilterScriptExit();
 				#endif
-					for (new i = 0; i != FIXES_GT_STYLE_COUNT; ++i)
-					{
 						for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 						{
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][i]);
+							#if FIX_IsPlayerConnected
+								if (BAD_IsPlayerConnected(playerid))
+							#else
+								if (IsPlayerConnected(playerid))
+							#endif
+								{
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][0]);
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][1]);
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][2]);
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][3]);
+									#if FIX_GameTextStyles
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][4]);
+										PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][5]);
+									#endif
+								}
 						}
-						TextDrawDestroy(FIXES_gsGTStyle[i]);
-					}
+						TextDrawDestroy(FIXES_gsGTStyle[0]);
+						TextDrawDestroy(FIXES_gsGTStyle[1]);
+						TextDrawDestroy(FIXES_gsGTStyle[2]);
+						TextDrawDestroy(FIXES_gsGTStyle[3]);
+					#if FIX_GameTextStyles
+						TextDrawDestroy(FIXES_gsGTStyle[4]);
+						TextDrawDestroy(FIXES_gsGTStyle[5]);
+					#endif
 					return 1;
 			#else
 				#if defined FIXES_OnFilterScriptExit
@@ -6526,10 +6544,14 @@ public OnGameModeInit()
 				//  BEGIN: GameText 
 				// =================
 				#if FIX_GameText
-					for (new j = 0; j != FIXES_GT_STYLE_COUNT; ++j)
-					{
-						TextDrawDestroy(FIXES_gsGTStyle[j]);
-					}
+						TextDrawDestroy(FIXES_gsGTStyle[0]);
+						TextDrawDestroy(FIXES_gsGTStyle[1]);
+						TextDrawDestroy(FIXES_gsGTStyle[2]);
+						TextDrawDestroy(FIXES_gsGTStyle[3]);
+					#if FIX_GameTextStyles
+						TextDrawDestroy(FIXES_gsGTStyle[4]);
+						TextDrawDestroy(FIXES_gsGTStyle[5]);
+					#endif
 				#endif
 				// =================
 				//  END:   GameText 
@@ -6591,15 +6613,33 @@ public OnGameModeInit()
 			//  BEGIN: GameText 
 			// =================
 			#if FIX_GameText
-				// Destroy all the relevant TextDraws.
-				for (new i = 0; i != FIXES_GT_STYLE_COUNT; ++i)
-				{
+					// Destroy all the relevant TextDraws.
 					for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 					{
-						PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][i]);
+						#if FIX_IsPlayerConnected
+							if (BAD_IsPlayerConnected(playerid))
+						#else
+							if (IsPlayerConnected(playerid))
+						#endif
+							{
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][0]);
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][1]);
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][2]);
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][3]);
+								#if FIX_GameTextStyles
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][4]);
+									PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][5]);
+								#endif
+							}
 					}
-					TextDrawDestroy(FIXES_gsGTStyle[i]);
-				}
+					TextDrawDestroy(FIXES_gsGTStyle[0]);
+					TextDrawDestroy(FIXES_gsGTStyle[1]);
+					TextDrawDestroy(FIXES_gsGTStyle[2]);
+					TextDrawDestroy(FIXES_gsGTStyle[3]);
+				#if FIX_GameTextStyles
+					TextDrawDestroy(FIXES_gsGTStyle[4]);
+					TextDrawDestroy(FIXES_gsGTStyle[5]);
+				#endif
 			#endif
 			// =================
 			//  END:   GameText 
