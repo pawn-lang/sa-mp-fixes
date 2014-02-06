@@ -1355,6 +1355,11 @@
 	#define _FIXES_IS_IN_CHARGE(%0) if (%0(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
 #endif
 
+/* 
+ * _FIXES_IS_PLAYER_CONNECTED
+ * 
+ * Call "IsPlayerConnected", without calling our hooked version.
+ */
 #if FIX_IsPlayerConnected
 	#define _FIXES_IS_PLAYER_CONNECTED BAD_IsPlayerConnected
 #else
@@ -1459,7 +1464,7 @@ enum e_FIXES_SETTINGS (<<= 1)
  * 
  * A new version of "foreach", but just for this library.
  */
-#define _FIXES_FOREACH(%0) for (new %0 = MAX_PLAYERS; (%0 = FIXES_gsPlayersIterator[%0]) != MAX_PLAYERS; )
+#define _FIXES_FOREACH(%1,%0) for (new %0 = MAX_PLAYERS; (%0 = %1[%0]) != MAX_PLAYERS; )
 
 // These varaibles are NOT pre-processor dependent as they are stock.  It's just
 // simpler than trying to figure out when or if a semi-colon is needed.
@@ -1595,14 +1600,6 @@ static stock
 	Text:FIXES_gsGTStyle[FIXES_GT_STYLE_COUNT],
 #endif
 	/* 
-	 * FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT]
-	 * 
-	 * The timers used to hide global GameText styles after their set time.
-	 */
-#if FIX_GameText
-	FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT],
-#endif
-	/* 
 	 * FIXES_gsPlayerPGTShown[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1]
 	 * 
 	 * A linked list of which players can see a certain GameText style.
@@ -1625,7 +1622,7 @@ static stock
 	 * The timers used to hide per-player GameText messages.
 	 */
 #if FIX_GameText
-	FIXES_gsPGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS],
+	FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1],
 #endif
 	/*
 	 * FIXES_pvarNotNewPlayer[]
@@ -1685,6 +1682,12 @@ static stock
 	 * Used in OnPlayerDeath to save a player's cash before death.
 	 */
 	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash",
+	/*
+	 * FIXES_gscHideGameTextTimer[]
+	 * 
+	 * Name of the GameText hide timer function.
+	 */
+	FIXES_gscHideGameTextTimer[] = "_FIXES_HideGameTextTimer",
 	/*
 	 * FIXES_gscSpace[]
 	 * 
@@ -2061,6 +2064,12 @@ static stock const
 	 */
 	FIXES_gscSpec@iii[] = "iii",
 	/*
+	 * FIXES_gscSpec@isii[]
+	 * 
+	 * Specifier "isii".
+	 */
+	FIXES_gscSpec@isii[] = "isii",
+	/*
 	 * FIXES_gscSpec@ifff[]
 	 * 
 	 * Specifier "ifff".
@@ -2163,17 +2172,11 @@ static stock const
 	 */
 	FIXES_gscSetPlayerWorldBounds[] = "_FIXES_SetPlayerWorldBounds",
 	/*
-	 * FIXES_gscGameTextForAll[]
+	 * FIXES_gscGameTextShow[]
 	 * 
-	 * Name of the remote GameTextForPlayer function.
+	 * Name of the remote GameText show function.
 	 */
-	FIXES_gscGameTextForAll[] = "_FIXES_GameTextForAll",
-	/*
-	 * FIXES_gscHideGameTextForPlayer[]
-	 * 
-	 * Name of the remote GameText hide function.
-	 */
-	FIXES_gscHideGameTextForPlayer[] = "_FIXES_HideGameTextForPlayer",
+	FIXES_gscGameTextShow[] = "_FIXES_GameTextShow",
 	/*
 	 * FIXES_gscReturnProperty[]
 	 * 
@@ -2325,48 +2328,60 @@ static stock const
 					Text:t;
 				
 				// Global style 0.
-				t = FIXES_gsGTStyle[0] = TextDrawCreate(320.0, 214.0, FIXES_gscSpace);
-				TextDrawLetterSize(t, 1.3, 3.6);
-				TextDrawAlignment(t, 2);
-				TextDrawColor(t, 0x906210FF);
-				TextDrawSetShadow(t, 0);
-				TextDrawSetOutline(t, 2);
-				TextDrawBackgroundColor(t, 0x000000FF);
-				TextDrawFont(t, 3);
-				TextDrawSetProportional(t, 1);
+				t = FIXES_gsGTStyle[0] = TextDrawCreate(320.0, 214.0, FIXES_gscSpace),
+				TextDrawLetterSize(t, 1.3, 3.6),
+				TextDrawAlignment(t, 2),
+				TextDrawColor(t, 0x906210FF),
+				TextDrawSetShadow(t, 0),
+				TextDrawSetOutline(t, 2),
+				TextDrawBackgroundColor(t, 0x000000FF),
+				TextDrawFont(t, 3),
+				TextDrawSetProportional(t, 1),
+				TextDrawUseBox(t, true),
+				TextDrawBoxColor(t, 0x00000000),
+				TextDrawTextSize(t, 200.0, 620.0),
 				
 				// Global style 1.
-				t = FIXES_gsGTStyle[1] = TextDrawCreate(620.0, 310.0, FIXES_gscSpace);
-				TextDrawLetterSize(t, 1.0, 2.6);
-				TextDrawAlignment(t, 3);
-				TextDrawColor(t, 0x906210FF);
-				TextDrawSetShadow(t, 0);
-				TextDrawSetOutline(t, 2);
-				TextDrawBackgroundColor(t, 0x000000FF);
-				TextDrawFont(t, 3);
-				TextDrawSetProportional(t, 1);
+				t = FIXES_gsGTStyle[1] = TextDrawCreate(620.0, 310.0, FIXES_gscSpace),
+				TextDrawLetterSize(t, 1.0, 2.6),
+				TextDrawAlignment(t, 3),
+				TextDrawColor(t, 0x906210FF),
+				TextDrawSetShadow(t, 0),
+				TextDrawSetOutline(t, 2),
+				TextDrawBackgroundColor(t, 0x000000FF),
+				TextDrawFont(t, 3),
+				TextDrawSetProportional(t, 1),
+				TextDrawUseBox(t, true),
+				TextDrawBoxColor(t, 0x00000000),
+				TextDrawTextSize(t, 10.0, 200.0),
 				
 				// Global style 2.
-				t = FIXES_gsGTStyle[2] = TextDrawCreate(320.0, 156.0, FIXES_gscSpace);
-				TextDrawLetterSize(t, 2.1, 4.2);
-				TextDrawAlignment(t, 2);
-				TextDrawColor(t, 0xE1E1E1FF);
-				TextDrawSetShadow(t, 0);
-				TextDrawSetOutline(t, 3);
-				TextDrawBackgroundColor(t, 0x000000FF);
-				TextDrawFont(t, 0);
-				TextDrawSetProportional(t, 1);
+				t = FIXES_gsGTStyle[2] = TextDrawCreate(320.0, 156.0, FIXES_gscSpace),
+				TextDrawLetterSize(t, 2.1, 4.2),
+				TextDrawAlignment(t, 2),
+				TextDrawColor(t, 0xE1E1E1FF),
+				TextDrawSetShadow(t, 0),
+				TextDrawSetOutline(t, 3),
+				TextDrawBackgroundColor(t, 0x000000FF),
+				TextDrawFont(t, 0),
+				TextDrawSetProportional(t, 1),
+				TextDrawUseBox(t, true),
+				TextDrawBoxColor(t, 0x00000000),
+				TextDrawTextSize(t, 200.0, 620.0),
 				
 				// Global style 5.
-				t = FIXES_gsGTStyle[3] = TextDrawCreate(320.0, 217.0, FIXES_gscSpace);
-				TextDrawLetterSize(t, 0.6, 2.75);
-				TextDrawAlignment(t, 2);
-				TextDrawColor(t, 0xE1E1E1FF);
-				TextDrawSetShadow(t, 0);
-				TextDrawSetOutline(t, 2);
-				TextDrawBackgroundColor(t, 0x000000FF);
-				TextDrawFont(t, 2);
-				TextDrawSetProportional(t, 1);
+				t = FIXES_gsGTStyle[3] = TextDrawCreate(320.0, 217.0, FIXES_gscSpace),
+				TextDrawLetterSize(t, 0.6, 2.75),
+				TextDrawAlignment(t, 2),
+				TextDrawColor(t, 0xE1E1E1FF),
+				TextDrawSetShadow(t, 0),
+				TextDrawSetOutline(t, 2),
+				TextDrawBackgroundColor(t, 0x000000FF),
+				TextDrawFont(t, 2),
+				TextDrawSetProportional(t, 1),
+				TextDrawUseBox(t, true),
+				TextDrawBoxColor(t, 0x00000000),
+				TextDrawTextSize(t, 200.0, 620.0);
 				
 			#if FIX_GameTextStyles
 				#error GameText styles 7 and 8 don't yet exist.
@@ -2384,48 +2399,60 @@ static stock const
 					PlayerText:t;
 				
 				// Global style 0.
-				t = FIXES_gsPGTStyle[playerid][0] = CreatePlayerTextDraw(playerid, 320.0, 214.0, FIXES_gscSpace);
-				PlayerTextDrawLetterSize(playerid, t, 1.3, 3.6);
-				PlayerTextDrawAlignment(playerid, t, 2);
-				PlayerTextDrawColor(playerid, t, 0x906210FF);
-				PlayerTextDrawSetShadow(playerid, t, 0);
-				PlayerTextDrawSetOutline(playerid, t, 2);
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
-				PlayerTextDrawFont(playerid, t, 3);
-				PlayerTextDrawSetProportional(playerid, t, 1);
+				t = FIXES_gsPGTStyle[playerid][0] = CreatePlayerTextDraw(playerid, 320.0, 214.0, FIXES_gscSpace),
+				PlayerTextDrawLetterSize(playerid, t, 1.3, 3.6),
+				PlayerTextDrawAlignment(playerid, t, 2),
+				PlayerTextDrawColor(playerid, t, 0x906210FF),
+				PlayerTextDrawSetShadow(playerid, t, 0),
+				PlayerTextDrawSetOutline(playerid, t, 2),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF),
+				PlayerTextDrawFont(playerid, t, 3),
+				PlayerTextDrawSetProportional(playerid, t, 1),
+				PlayerTextDrawUseBox(playerid, t, true),
+				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0),
 				
 				// Global style 1.
-				t = FIXES_gsPGTStyle[playerid][1] = CreatePlayerTextDraw(playerid, 620.0, 310.0, FIXES_gscSpace);
-				PlayerTextDrawLetterSize(playerid, t, 1.0, 2.6);
-				PlayerTextDrawAlignment(playerid, t, 3);
-				PlayerTextDrawColor(playerid, t, 0x906210FF);
-				PlayerTextDrawSetShadow(playerid, t, 0);
-				PlayerTextDrawSetOutline(playerid, t, 2);
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
-				PlayerTextDrawFont(playerid, t, 3);
-				PlayerTextDrawSetProportional(playerid, t, 1);
+				t = FIXES_gsPGTStyle[playerid][1] = CreatePlayerTextDraw(playerid, 620.0, 310.0, FIXES_gscSpace),
+				PlayerTextDrawLetterSize(playerid, t, 1.0, 2.6),
+				PlayerTextDrawAlignment(playerid, t, 3),
+				PlayerTextDrawColor(playerid, t, 0x906210FF),
+				PlayerTextDrawSetShadow(playerid, t, 0),
+				PlayerTextDrawSetOutline(playerid, t, 2),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF),
+				PlayerTextDrawFont(playerid, t, 3),
+				PlayerTextDrawSetProportional(playerid, t, 1),
+				PlayerTextDrawUseBox(playerid, t, true),
+				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0),
 				
 				// Global style 2.
-				t = FIXES_gsPGTStyle[playerid][2] = CreatePlayerTextDraw(playerid, 320.0, 156.0, FIXES_gscSpace);
-				PlayerTextDrawLetterSize(playerid, t, 2.1, 4.2);
-				PlayerTextDrawAlignment(playerid, t, 2);
-				PlayerTextDrawColor(playerid, t, 0xE1E1E1FF);
-				PlayerTextDrawSetShadow(playerid, t, 0);
-				PlayerTextDrawSetOutline(playerid, t, 3);
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
-				PlayerTextDrawFont(playerid, t, 0);
-				PlayerTextDrawSetProportional(playerid, t, 1);
+				t = FIXES_gsPGTStyle[playerid][2] = CreatePlayerTextDraw(playerid, 320.0, 156.0, FIXES_gscSpace),
+				PlayerTextDrawLetterSize(playerid, t, 2.1, 4.2),
+				PlayerTextDrawAlignment(playerid, t, 2),
+				PlayerTextDrawColor(playerid, t, 0xE1E1E1FF),
+				PlayerTextDrawSetShadow(playerid, t, 0),
+				PlayerTextDrawSetOutline(playerid, t, 3),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF),
+				PlayerTextDrawFont(playerid, t, 0),
+				PlayerTextDrawSetProportional(playerid, t, 1),
+				PlayerTextDrawUseBox(playerid, t, true),
+				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0),
 				
 				// Global style 5.
-				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw(playerid, 320.0, 217.0, FIXES_gscSpace);
-				PlayerTextDrawLetterSize(playerid, t, 0.6, 2.75);
-				PlayerTextDrawAlignment(playerid, t, 2);
-				PlayerTextDrawColor(playerid, t, 0xE1E1E1FF);
-				PlayerTextDrawSetShadow(playerid, t, 0);
-				PlayerTextDrawSetOutline(playerid, t, 2);
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
-				PlayerTextDrawFont(playerid, t, 2);
-				PlayerTextDrawSetProportional(playerid, t, 1);
+				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw(playerid, 320.0, 217.0, FIXES_gscSpace),
+				PlayerTextDrawLetterSize(playerid, t, 0.6, 2.75),
+				PlayerTextDrawAlignment(playerid, t, 2),
+				PlayerTextDrawColor(playerid, t, 0xE1E1E1FF),
+				PlayerTextDrawSetShadow(playerid, t, 0),
+				PlayerTextDrawSetOutline(playerid, t, 2),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF),
+				PlayerTextDrawFont(playerid, t, 2),
+				PlayerTextDrawSetProportional(playerid, t, 1),
+				PlayerTextDrawUseBox(playerid, t, true),
+				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
 				
 			#if FIX_GameTextStyles
 				#error GameText styles 7 and 8 don't yet exist.
@@ -2456,10 +2483,16 @@ public OnFilterScriptInit()
 		// It is possible for this to be the only thing done in this function!
 		_FIXES_gIsFilterscript = true;
 	
+	// =================
+	//  BEGIN: GameText 
+	// =================
+	#if FIX_GameText
+		for (new i = 0; i != sizeof (FIXES_gsPlayerPGTShown); ++i)
+		{
+			FIXES_gsPlayerPGTShown[i][MAX_PLAYERS] = MAX_PLAYERS;
+		}
+	#endif
 	#if FIXES_Single
-		// =================
-		//  BEGIN: GameText 
-		// =================
 		#if FIX_GameText
 			_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
 		#endif
@@ -2565,24 +2598,30 @@ public OnGameModeInit()
 	//  END: AllowInteriorWeapons 
 	// ===========================
 	
-	#if FIXES_Single
-		// =================
-		//  BEGIN: GameText 
-		// =================
-		#if FIX_GameText
-			if (!_FIXES_gIsFilterscript)
-			{
-				_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
-			}
-		#endif
-		// =================
-		//  END:   GameText 
-		// =================
-	#else
+	#if FIX_GameText || !FIXES_Single
 		if (!_FIXES_gIsFilterscript)
 		{
-			FIXES_DetermineOrder();
+			// =================
+			//  BEGIN: GameText 
+			// =================
+			#if FIX_GameText
+					for (new i = 0; i != sizeof (FIXES_gsPlayerPGTShown); ++i)
+					{
+						FIXES_gsPlayerPGTShown[i][MAX_PLAYERS] = MAX_PLAYERS;
+					}
+				#if FIXES_Single
+					_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
+				#endif
+			#endif
+			// =================
+			//  END:   GameText 
+			// =================
+			#if !FIXES_Single
+				FIXES_DetermineOrder();
+			#endif
 		}
+	#endif
+	#if !FIXES_Single
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
 	#endif
 	
@@ -2665,7 +2704,7 @@ public OnGameModeInit()
 			// Removal safe loop.
 			for (new next, playerid = FIXES_gsPlayersIterator[MAX_PLAYERS]; playerid != MAX_PLAYERS; playerid = next)
 			{
-				next = FIXES_gsPlayersIterator[playerid];
+				next = FIXES_gsPlayersIterator[playerid],
 				OnPlayerDisconnect(playerid, 4);
 				#if FIXES_Single
 					// =================
@@ -2693,7 +2732,7 @@ public OnGameModeInit()
 					FIXES_OnFilterScriptExit();
 				#endif
 				#if !FIX_OnPlayerDisconnect
-					_FIXES_FOREACH(playerid)
+					_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
 					{
 						#if FIX_GameTextStyles
 							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][5]),
@@ -4621,7 +4660,7 @@ public OnGameModeInit()
 							CallRemoteFunction("_FIXES_DestroyMenu", FIXES_gscSpec@i, _:menuid);
 						#endif
 					#endif
-					_FIXES_FOREACH(playerid)
+					_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
 					{
 						if (FIXES_gsCurrentMenu[playerid] == menuid)
 						{
@@ -5505,7 +5544,7 @@ public OnGameModeInit()
 			if (allow)
 			{
 				FIXES_gsSettings &= ~e_FIXES_SETTINGS_INTERIOR;
-				_FIXES_FOREACH(i)
+				_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 				{
 					FIXES_gsPlayerBools[i] &= ~e_FIXES_BOOLS_INTERIOR;
 				}
@@ -5513,7 +5552,7 @@ public OnGameModeInit()
 			else
 			{
 				FIXES_gsSettings |= e_FIXES_SETTINGS_INTERIOR;
-				_FIXES_FOREACH(i)
+				_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 				{
 					if (GetPlayerInterior(i))
 					{
@@ -5537,7 +5576,7 @@ public OnGameModeInit()
 			if (allow)
 			{
 				FIXES_gsSettings &= ~e_FIXES_SETTINGS_INTERIOR;
-				_FIXES_FOREACH(i)
+				_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 				{
 					FIXES_gsPlayerBools[i] &= ~e_FIXES_BOOLS_INTERIOR;
 				}
@@ -5545,7 +5584,7 @@ public OnGameModeInit()
 			else
 			{
 				FIXES_gsSettings |= e_FIXES_SETTINGS_INTERIOR;
-				_FIXES_FOREACH(i)
+				_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 				{
 					if (GetPlayerInterior(i))
 					{
@@ -6334,7 +6373,7 @@ public OnGameModeInit()
 #if FIX_IsPlayerAttachedObjSlotUsed
 	stock FIXES_IsPAttachedObjectSlotUsed(playerid, index)
 	{
-		if (_FIXES_IS_PLAYER_CONNECTED(playerid))
+		if (IsPlayerConnected(playerid))
 		{
 			return FIXES_gsObjectSlots[playerid / _FIXES_ATTACHMENTS] & 1 << playerid % _FIXES_ATTACHMENTS * MAX_PLAYER_ATTACHED_OBJECTS + index;
 		}
@@ -6511,7 +6550,7 @@ public OnGameModeInit()
 				// blank.
 				FIXES_gsSettings &= ~e_FIXES_SETTINGS_IN_CHARGE;
 				#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
-					_FIXES_FOREACH(i)
+					_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 					{
 						// =================
 						//  BEGIN: GameText 
@@ -6610,7 +6649,7 @@ public OnGameModeInit()
 			// =================
 			#if FIX_GameText
 				// Create all the relevant TextDraws.
-				_FIXES_FOREACH(playerid)
+				_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
 				{
 					_FIXES_CreateGameTextDraws(playerid);
 				}
@@ -6633,7 +6672,7 @@ public OnGameModeInit()
 			// =================
 			#if FIX_GameText
 					// Destroy all the relevant TextDraws.
-					_FIXES_FOREACH(playerid)
+					_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
 					{
 						#if FIX_GameTextStyles
 							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][5]),
@@ -6865,7 +6904,7 @@ public OnGameModeInit()
  */
 static stock _FIXES_AddInternal(array[], value, size)
 {
-	if (0 <= value < size && array[value] <= value)
+	if (array[value] <= value)
 	{
 		new
 			last = size,
@@ -6875,13 +6914,12 @@ static stock _FIXES_AddInternal(array[], value, size)
 			last = next,
 			next = array[last];
 		}
-		return
-			array[next - 1] = value + 1,
-			array[(value - 1) % (size + 1)] = (last + 1) % (size + 1),
-			array[last] = value,
-			array[value] = next;
+		printf("next: %d, last: %d", next, last);
+		array[next - 1] = value + 1,
+		array[(value - 1) % (size + 1)] = (last + 1) % (size + 1),
+		array[last] = value,
+		array[value] = next;
 	}
-	return 0;
 }
 
 /* 
@@ -6891,23 +6929,218 @@ static stock _FIXES_AddInternal(array[], value, size)
  */
 static stock _FIXES_RemoveInternal(array[], value, size)
 {
-	if (0 <= value < size && array[value] > value)
+	if (array[value] > value)
 	{
 		static
 			last;
-		return
-			// Adjustment for easier "mod"ing.
-			++size,
-			last = (array[(value - 1) % size] - 1) % size,
-			// Store the reverse value here as well as in the previous slot.
-			array[value] =
-				// Copy the next value to the last value.
-				array[(array[last] = array[value]) - 1] =
-					// Set the reverse iterator value.
-					(last + 1) % size;
+		// Adjustment for easier "mod"ing.
+		++size,
+		last = (array[(value - 1) % size] - 1) % size,
+		// Store the reverse value here as well as in the previous slot.
+		array[value] =
+			// Copy the next value to the last value.
+			array[(array[last] = array[value]) - 1] =
+				// Set the reverse iterator value.
+				(last + 1) % size;
 	}
-	return 0;
 }
+
+/* 
+ * _FIXES_HideGameTextForPlayer(playerid, s2, parr[])
+ * 
+ * Hides a GameText style for one or more players, and accounts for the fact
+ * that they may have different messages being shown.
+ * 
+ * FIXES:
+ *     GameText
+ */
+#if FIX_GameText
+	static stock _FIXES_HideGameTextForPlayer(playerid, s2, parr[])
+	{
+		// s2 is not style - 5 becomes 3, 7 and 8 become 4 and 5.
+		switch (playerid)
+		{
+			case MAX_PLAYERS:
+			{
+				// Remove the global GameText for everyone that can see it.
+				TextDrawHideForAll(FIXES_gsGTStyle[s2]);
+			}
+			case INVALID_PLAYER_ID:
+			{
+				// Hide any player-local ones.  This is similar to "foreach".
+				playerid = parr[MAX_PLAYERS],
+				parr[MAX_PLAYERS] = MAX_PLAYERS;
+				for (new next; playerid != MAX_PLAYERS; playerid = next)
+				{
+					next = parr[playerid],
+					PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][s2]),
+					parr[playerid] = 0;
+				}
+			}
+			default:
+			{
+				// Remove 
+				PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][s2]),
+				_FIXES_RemoveInternal(parr, playerid, MAX_PLAYERS);
+			}
+		}
+	}
+#endif
+
+#if FIX_GameText
+	forward _FIXES_HideGameTextTimer(playerid, s2);
+	
+	public _FIXES_HideGameTextTimer(playerid, s2)
+	{
+		if (GetTickCount() >= FIXES_gsGTTimer[s2][playerid])
+		{
+			// Only hide it if it hasn't been re-shown in the interim.
+			_FIXES_HideGameTextForPlayer(playerid, s2, FIXES_gsPlayerPGTShown[s2]);
+		}
+	}
+#endif
+
+#if FIX_GameText
+	forward _FIXES_GameTextShow(playerid, string[], time, s2);
+	
+	public _FIXES_GameTextShow(playerid, string[], time, s2)
+	{
+		_FIXES_IS_IN_CHARGE()
+		{
+			if (playerid == MAX_PLAYERS)
+			{
+				_FIXES_HideGameTextForPlayer(INVALID_PLAYER_ID, s2, FIXES_gsPlayerPGTShown[s2]),
+				TextDrawSetString(FIXES_gsGTStyle[s2], string),
+				TextDrawShowForAll(FIXES_gsGTStyle[s2]);
+			}
+			else
+			{
+				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[s2]),
+				PlayerTextDrawSetString(playerid, FIXES_gsPGTStyle[playerid][s2], string),
+				PlayerTextDrawShow(playerid, FIXES_gsPGTStyle[playerid][s2]),
+				_FIXES_AddInternal(FIXES_gsPlayerPGTShown[s2], playerid, MAX_PLAYERS);
+			}
+			// Tiny offset because timers are inaccurate.
+			FIXES_gsGTTimer[s2][playerid] = GetTickCount() + time - 10,
+			// Don't need to save the timer's ID.
+			SetTimerEx(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, s2);
+		}
+		return 1;
+	}
+#endif
+
+#if FIX_GameText
+	stock FIXES_GameTextForAll(string[], time, style)
+	{
+		switch (style)
+		{
+				case 0, 1, 2:
+				{
+					return
+						#if FIXES_Single
+							_FIXES_GameTextShow(MAX_PLAYERS, string, time, style);
+						#else
+							CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, string, time, style);
+						#endif
+				}
+				case 5:
+				{
+					return
+						#if FIXES_Single
+							_FIXES_GameTextShow(MAX_PLAYERS, string, time, 3);
+						#else
+							CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, string, time, 3);
+						#endif
+				}
+			#if FIX_GameTextStyles
+				/*case 7, 8:
+				{
+					return
+						// TODO: Optional extras.
+						#if FIXES_Single
+							_FIXES_GameTextShow(MAX_PLAYERS, string, time, style - 3);
+						#else
+							CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, string, time, style - 3);
+						#endif
+				}*/
+			#endif
+				case 3, 4, 6:
+				{
+					return GameTextForAll(string, time, style);
+				}
+		}
+		return 0;
+	}
+	
+	#if defined _ALS_GameTextForAll
+		#undef GameTextForAll
+	#else
+		
+		native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
+		
+		#define _ALS_GameTextForAll
+	#endif
+	
+	#define GameTextForAll FIXES_GameTextForAll
+#endif
+
+#if FIX_GameText
+	FIXES_GameTextForPlayer(playerid, string[], time, style)
+	{
+		if (IsPlayerConnected(playerid))
+		{
+			switch (style)
+			{
+					case 0, 1, 2:
+					{
+						return
+							#if FIXES_Single
+								_FIXES_GameTextShow(playerid, string, time, style);
+							#else
+								CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, string, time, style);
+							#endif
+					}
+					case 5:
+					{
+						return
+							#if FIXES_Single
+								_FIXES_GameTextShow(playerid, string, time, 3);
+							#else
+								CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, string, time, 3);
+							#endif
+					}
+				#if FIX_GameTextStyles
+					/*case 7, 8:
+					{
+						return
+							// TODO: Optional extras.
+							#if FIXES_Single
+								_FIXES_GameTextShow(playerid, string, time, style - 3);
+							#else
+								CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, string, time, style - 3);
+							#endif
+					}*/
+				#endif
+					case 3, 4, 6:
+					{
+						return GameTextForPlayer(playerid, string, time, style);
+					}
+			}
+		}
+		return 0;
+	}
+	
+	#if defined _ALS_GameTextForPlayer
+		#undef GameTextForPlayer
+	#else
+		
+		native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
+		
+		#define _ALS_GameTextForPlayer
+	#endif
+	
+	#define GameTextForPlayer FIXES_GameTextForPlayer
+#endif
 
 /*
  * FIXES_%%%!!!
