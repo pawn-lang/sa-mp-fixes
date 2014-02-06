@@ -1535,11 +1535,11 @@ static stock
 	 */
 	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash",
 	/*
-	 * FIXES_DriveBy[]
+	 * FIXES_gscDriveBy[]
 	 * 
 	 * Name of the Drive-By timer function.
 	 */
-	FIXES_DriveBy[] = "_FIXES_DriveBy",
+	FIXES_gscDriveBy[] = "_FIXES_DriveBy",
 	/*
 	 * FIXES_gscNULL[]
 	 * 
@@ -3737,7 +3737,7 @@ public OnGameModeInit()
 						FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
 						SetPlayerArmedWeapon(playerid, 0),
 						ApplyAnimation(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1),
-						SetTimerEx(FIXES_DriveBy, 500, 0, FIXES_gscSpec@i, playerid);
+						SetTimerEx(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
 					}
 				}
 		#endif
