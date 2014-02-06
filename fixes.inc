@@ -533,7 +533,26 @@
  * PROBLEM:  Several natives are included by default, this enables or disables
  *           them all.  Therefore this is an umbrella fix for several fixes.
  * SOLUTION: Define them.
- * SEE:      FIX_GetGravity, FIX_gpci, FIX_IsValidVehicle.
+ * SEE:      "FIX_GetGravity", "FIX_gpci", "FIX_IsValidVehicle".
+ * AUTHOR:   Y_Less
+ * 
+ * FIX:      OnPlayerConnect
+ * PROBLEM:  This function isn't called for players when a filterscript starts.
+ * SOLUTION: Call it for all connected players.
+ * SEE:      "FIXES_OnFilterScriptInit".
+ * AUTHOR:   Y_Less
+ * 
+ * FIX:      GameText
+ * PROBLEM:  Several styles do not display for the time specified.
+ * SOLUTION: Recreate the styles in Text Draws and use those instead.
+ * SEE:      "FIXES_GameTextForAll", "FIXES_GameTextForPlayer".
+ * AUTHOR:   Y_Less
+ * 
+ * FIX:      GameTextStyles
+ * PROBLEM:  San Andreas has fixed styles for area and vehicle names, but they
+ *           are not included in the GameText styles list.
+ * SOLUTION: Add them.  DEFAULTS TO FALSE.
+ * SEE:      "FIXES_GameTextForAll", "FIXES_GameTextForPlayer".
  * AUTHOR:   Y_Less
  * 
  * ==============
@@ -1218,12 +1237,19 @@
 #endif
 
 #if !defined FIX_GameTextStyles
-	#define FIX_GameTextStyles           (1)
+	#define FIX_GameTextStyles           (0)
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
 	#undef FIX_GameTextStyles
 	#define FIX_GameTextStyles           (0)
 #elseif FIX_GameTextStyles && !FIX_GameText
 	#error FIX_GameTextStyles requires FIX_GameText
+#endif
+
+#if !defined FIX_OnPlayerConnect
+	#define FIX_OnPlayerConnect          (1)
+#elseif _FIXES_IS_UNSET(FIX_OnPlayerConnect)
+	#undef FIX_OnPlayerConnect
+	#define FIX_OnPlayerConnect          (0)
 #endif
 
 /* 
@@ -1270,6 +1296,12 @@
 		#undef FIXES_Debug
 	#endif
 #endif
+
+/* 
+ * FIXES_PRINTF
+ * 
+ * A special "printf" function only compiled when "FIXES_Debug" is set.
+ */
 #if !defined FIXES_PRINTF
 	#define FIXES_Debug 0
 	#define FIXES_PRINTF(%0);
@@ -1358,7 +1390,9 @@ enum e_FIXES_SETTINGS (<<= 1)
 	e_FIXES_SETTINGS_IN_CHARGE,
 	e_FIXES_SETTINGS_DROP_ALL_DATA,
 	e_FIXES_SETTINGS_MENU_SET,
-	e_FIXES_SETTINGS_ENDING
+	e_FIXES_SETTINGS_ENDING,
+	e_FIXES_SETTINGS_ENDED,
+	e_FIXES_SETTINGS_NO_GAME_TEXT
 }
 
 /* 
@@ -1403,7 +1437,11 @@ stock
 	 */
 	bool:_FIXES_gIsFilterscript;
 
+#if FIXES_Debug
+new
+#else
 static stock
+#endif
 	/* 
 	 * FIXES_gsValidMenus[_FIXES_CEILDIV(MAX_MENUS, cellbits)]
 	 * 
@@ -1542,12 +1580,6 @@ static stock
 #if FIX_GameText
 	FIXES_gsPGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS],
 #endif
-	/*
-	 * FIXES_pvarGameTextDraw[]
-	 * 
-	 * The PVar storage for per-player text draws that replicate
-	 */
-	FIXES_pvarGameTextDraw[] = "@FIXES_pvarGameTextDraw",
 	/*
 	 * FIXES_pvarNotNewPlayer[]
 	 * 
@@ -2096,19 +2128,6 @@ static stock const
 	 */
 	FIXES_gscHideGameTextForPlayer[] = "_FIXES_HideGameTextForPlayer",
 	/*
-	 * FIXES_gscRequestGTTDs[]
-	 * 
-	 * Name of the remote function that acquires the IDs of the text draws used
-	 * to fake game texts.
-	 */
-	FIXES_gscRequestGTTDs[] = "_FIXES_RequestGameTextDraws",
-	/*
-	 * FIXES_gscDistributeGTTDs[]
-	 * 
-	 * Name of the remote function that we send game text draw IDs to.
-	 */
-	FIXES_gscDistributeGTTDs[] = "_FIXES_DistributeGameTextDraws",
-	/*
 	 * FIXES_gscReturnProperty[]
 	 * 
 	 * The property for accurate returns.
@@ -2181,6 +2200,22 @@ static stock const
 #endif
 
 /* 
+ * _FIXES_IncludeFuncs()
+ * 
+ * Include functions used by "SYSREQ.C".
+ */
+#if FIX_sleep
+	forward _FIXES_IncludeFuncs();
+	
+	public _FIXES_IncludeFuncs()
+	{
+		#if FIX_sleep
+			heapspace();
+		#endif
+	}
+#endif
+
+/* 
  * FIXES_DetermineOrder()
  * 
  * Figure out which script is called first by callbacks.
@@ -2196,23 +2231,6 @@ static stock const
 		CallRemoteFunction(FIXES_gscDetermineOrder, FIXES_gscSpec@),
 		deleteproperty(5, FIXES_gscNoGMProperty),
 		CallRemoteFunction(FIXES_gscDetermineOrder, FIXES_gscSpec@);
-	}
-#endif
-
-/* 
- * _FIXES_IncludeFuncs()
- * 
- * Include functions used by "SYSREQ.C".
- */
-
-#if FIX_sleep
-	forward _FIXES_IncludeFuncs();
-	
-	public _FIXES_IncludeFuncs()
-	{
-		#if FIX_sleep
-			heapspace();
-		#endif
 	}
 #endif
 
@@ -2244,52 +2262,6 @@ static stock const
 #endif
 
 /* 
- * _FIXES_RequestGameTextDraws()
- * 
- * Get the text draws used to replicate game texts.
- * 
- * FIXES:
- *     GameText
- */
-
-#if FIX_GameText
-	forward _FIXES_RequestGameTextDraws();
-	
-	public _FIXES_RequestGameTextDraws()
-	{
-		if (FIXES_gsGTStyle[0] != FIXES_gsGTStyle[1])
-		{
-			CallRemoteFunction(FIXES_gscDistributeGTTDs, FIXES_gscSpec@ai, FIXES_gsGTStyle, sizeof (FIXES_gsGTStyle));
-		}
-	}
-#endif
-
-/* 
- * _FIXES_DistributeGameTextDraws()
- * 
- * When we create new textdraws, make sure all the currently running scripts
- * have them.
- * 
- * FIXES:
- *     GameText
- */
-
-#if FIX_GameText
-	forward _FIXES_DistributeGameTextDraws(Text:tds[], s);
-	
-	public _FIXES_DistributeGameTextDraws(Text:tds[], s)
-	{
-		#if FIXES_Debug
-			if (s != sizeof (FIXES_gsGTStyle))
-			{
-				FIXES_PRINTF("Incompatible FIX_GameTextStyles combinations - all scripts must be the same.");
-			}
-		#endif
-			memcpy(_:FIXES_gsGTStyle, _:tds, 0, s * 4);
-	}
-#endif
-
-/* 
  * _FIXES_CreateGameTextDraws(playerid, test)
  * 
  * Create the text draws used to replicate game texts.
@@ -2297,176 +2269,137 @@ static stock const
  * FIXES:
  *     GameText
  */
-
 #if FIX_GameText
-	static _FIXES_CreateGameTextDraws(const playerid = INVALID_PLAYER_ID, const bool:test = true)
+	static _FIXES_CreateGameTextDraws(const playerid)
 	{
-		if (playerid == INVALID_PLAYER_ID)
-		{
-			#if FIXES_Single
-				#pragma unused test
-			#else
-				if (test)
-				{
-					CallRemoteFunction(FIXES_gscRequestGTTDs, FIXES_gscSpec@);
-					if (FIXES_gsGTStyle[0] != FIXES_gsGTStyle[1]) return;
-				}
-			#endif
-				new
-					Text:t;
-				
-				// Global style 0.
-				t = FIXES_gsGTStyle[0] = TextDrawCreate(320.0, 214.0, FIXES_gscSpace);
-				TextDrawLetterSize(t, 1.3, 3.6);
-				TextDrawAlignment(t, 2);
-				TextDrawColor(t, 0x906210FF);
-				TextDrawSetShadow(t, 0);
-				TextDrawSetOutline(t, 2);
-				TextDrawBackgroundColor(t, 0x000000FF);
-				TextDrawFont(t, 3);
-				TextDrawSetProportional(t, 1);
-				
-				// Global style 1.
-				t = FIXES_gsGTStyle[1] = TextDrawCreate(620.0, 310.0, FIXES_gscSpace);
-				TextDrawLetterSize(t, 1.0, 2.6);
-				TextDrawAlignment(t, 3);
-				TextDrawColor(t, 0x906210FF);
-				TextDrawSetShadow(t, 0);
-				TextDrawSetOutline(t, 2);
-				TextDrawBackgroundColor(t, 0x000000FF);
-				TextDrawFont(t, 3);
-				TextDrawSetProportional(t, 1);
-				
-				// Global style 2.
-				t = FIXES_gsGTStyle[2] = TextDrawCreate(320.0, 156.0, FIXES_gscSpace);
-				TextDrawLetterSize(t, 2.1, 4.2);
-				TextDrawAlignment(t, 2);
-				TextDrawColor(t, 0xE1E1E1FF);
-				TextDrawSetShadow(t, 0);
-				TextDrawSetOutline(t, 3);
-				TextDrawBackgroundColor(t, 0x000000FF);
-				TextDrawFont(t, 0);
-				TextDrawSetProportional(t, 1);
-				
-				// Global style 5.
-				t = FIXES_gsGTStyle[3] = TextDrawCreate(320.0, 217.0, FIXES_gscSpace);
-				TextDrawLetterSize(t, 0.6, 2.75);
-				TextDrawAlignment(t, 2);
-				TextDrawColor(t, 0xE1E1E1FF);
-				TextDrawSetShadow(t, 0);
-				TextDrawSetOutline(t, 2);
-				TextDrawBackgroundColor(t, 0x000000FF);
-				TextDrawFont(t, 2);
-				TextDrawSetProportional(t, 1);
-				
-			#if FIX_GameTextStyles
-				#error GameText styles 7 and 8 don't yet exist.
-				
-				// Global style 7.
-				FIXES_gsGTStyle[4] = t;
-				
-				// Global style 8.
-				FIXES_gsGTStyle[5] = t;
-			#endif
-			
-			#if !FIXES_Single
-				CallRemoteFunction(FIXES_gscDistributeGTTDs, FIXES_gscSpec@ai, FIXES_gsGTStyle, sizeof (FIXES_gsGTStyle));
-			#endif
-		}
-		else
-		{
-			#if !FIXES_Single
-				if (GetPVarType(playerid, FIXES_pvarGameTextDraw) == PLAYER_VARTYPE_NONE)
-				{
-			#endif
-						new
-							PlayerText:t;
-						
-						// Global style 0.
-						t = FIXES_gsPGTStyle[playerid][0] = CreatePlayerTextDraw(playerid, 320.0, 214.0, FIXES_gscSpace);
-						PlayerTextDrawLetterSize(playerid, t, 1.3, 3.6);
-						PlayerTextDrawAlignment(playerid, t, 2);
-						PlayerTextDrawColor(playerid, t, 0x906210FF);
-						PlayerTextDrawSetShadow(playerid, t, 0);
-						PlayerTextDrawSetOutline(playerid, t, 2);
-						PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
-						PlayerTextDrawFont(playerid, t, 3);
-						PlayerTextDrawSetProportional(playerid, t, 1);
-						
-						// Global style 1.
-						t = FIXES_gsPGTStyle[playerid][1] = CreatePlayerTextDraw(playerid, 620.0, 310.0, FIXES_gscSpace);
-						PlayerTextDrawLetterSize(playerid, t, 1.0, 2.6);
-						PlayerTextDrawAlignment(playerid, t, 3);
-						PlayerTextDrawColor(playerid, t, 0x906210FF);
-						PlayerTextDrawSetShadow(playerid, t, 0);
-						PlayerTextDrawSetOutline(playerid, t, 2);
-						PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
-						PlayerTextDrawFont(playerid, t, 3);
-						PlayerTextDrawSetProportional(playerid, t, 1);
-						
-						// Global style 2.
-						t = FIXES_gsPGTStyle[playerid][2] = CreatePlayerTextDraw(playerid, 320.0, 156.0, FIXES_gscSpace);
-						PlayerTextDrawLetterSize(playerid, t, 2.1, 4.2);
-						PlayerTextDrawAlignment(playerid, t, 2);
-						PlayerTextDrawColor(playerid, t, 0xE1E1E1FF);
-						PlayerTextDrawSetShadow(playerid, t, 0);
-						PlayerTextDrawSetOutline(playerid, t, 3);
-						PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
-						PlayerTextDrawFont(playerid, t, 0);
-						PlayerTextDrawSetProportional(playerid, t, 1);
-						
-						// Global style 5.
-						t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw(playerid, 320.0, 217.0, FIXES_gscSpace);
-						PlayerTextDrawLetterSize(playerid, t, 0.6, 2.75);
-						PlayerTextDrawAlignment(playerid, t, 2);
-						PlayerTextDrawColor(playerid, t, 0xE1E1E1FF);
-						PlayerTextDrawSetShadow(playerid, t, 0);
-						PlayerTextDrawSetOutline(playerid, t, 2);
-						PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
-						PlayerTextDrawFont(playerid, t, 2);
-						PlayerTextDrawSetProportional(playerid, t, 1);
-						
-					#if FIX_GameTextStyles
-						#error GameText styles 7 and 8 don't yet exist.
-						
-						// Global style 7.
-						FIXES_gsPGTStyle[playerid][4] = t;
-						
-						// Global style 8.
-						FIXES_gsPGTStyle[playerid][5] = t;
-					#endif
-			#if !FIXES_Single
-						for (new i = 0; i != sizeof (FIXES_gsPGTStyle[]); ++i)
-						{
-							FIXES_pvarGameTextDraw[0] = i + '0',
-							SetPVarInt(playerid, FIXES_pvarGameTextDraw, _:FIXES_gsPGTStyle[playerid][i]);
-						}
-						FIXES_pvarGameTextDraw[0] = '@';
-						SetPVarInt(playerid, FIXES_pvarGameTextDraw, 1);
-				}
-				else
-				{
-						for (new i = 0; i != sizeof (FIXES_gsPGTStyle[]); ++i)
-						{
-							FIXES_pvarGameTextDraw[0] = i + '0',
-							FIXES_gsPGTStyle[playerid][i] = Text:GetPVarInt(playerid, FIXES_pvarGameTextDraw);
-						}
-						FIXES_pvarGameTextDraw[0] = '@';
-					#if FIX_GameTextStyles && FIXES_Debug
-						if (FIXES_gsPGTStyle[playerid][4] == FIXES_gsPGTStyle[playerid][5])
-						{
-							FIXES_PRINTF("Incompatible FIX_GameTextStyles combinations - all scripts must be the same.");
-						}
-					#endif
-				}
-			#endif
-		}
+		#if !FIXES_Single
+			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)) return;
+		#endif
+			if (playerid == INVALID_PLAYER_ID)
+			{
+					new
+						Text:t;
+					
+					// Global style 0.
+					t = FIXES_gsGTStyle[0] = TextDrawCreate(320.0, 214.0, FIXES_gscSpace);
+					TextDrawLetterSize(t, 1.3, 3.6);
+					TextDrawAlignment(t, 2);
+					TextDrawColor(t, 0x906210FF);
+					TextDrawSetShadow(t, 0);
+					TextDrawSetOutline(t, 2);
+					TextDrawBackgroundColor(t, 0x000000FF);
+					TextDrawFont(t, 3);
+					TextDrawSetProportional(t, 1);
+					
+					// Global style 1.
+					t = FIXES_gsGTStyle[1] = TextDrawCreate(620.0, 310.0, FIXES_gscSpace);
+					TextDrawLetterSize(t, 1.0, 2.6);
+					TextDrawAlignment(t, 3);
+					TextDrawColor(t, 0x906210FF);
+					TextDrawSetShadow(t, 0);
+					TextDrawSetOutline(t, 2);
+					TextDrawBackgroundColor(t, 0x000000FF);
+					TextDrawFont(t, 3);
+					TextDrawSetProportional(t, 1);
+					
+					// Global style 2.
+					t = FIXES_gsGTStyle[2] = TextDrawCreate(320.0, 156.0, FIXES_gscSpace);
+					TextDrawLetterSize(t, 2.1, 4.2);
+					TextDrawAlignment(t, 2);
+					TextDrawColor(t, 0xE1E1E1FF);
+					TextDrawSetShadow(t, 0);
+					TextDrawSetOutline(t, 3);
+					TextDrawBackgroundColor(t, 0x000000FF);
+					TextDrawFont(t, 0);
+					TextDrawSetProportional(t, 1);
+					
+					// Global style 5.
+					t = FIXES_gsGTStyle[3] = TextDrawCreate(320.0, 217.0, FIXES_gscSpace);
+					TextDrawLetterSize(t, 0.6, 2.75);
+					TextDrawAlignment(t, 2);
+					TextDrawColor(t, 0xE1E1E1FF);
+					TextDrawSetShadow(t, 0);
+					TextDrawSetOutline(t, 2);
+					TextDrawBackgroundColor(t, 0x000000FF);
+					TextDrawFont(t, 2);
+					TextDrawSetProportional(t, 1);
+					
+				#if FIX_GameTextStyles
+					#error GameText styles 7 and 8 don't yet exist.
+					
+					// Global style 7.
+					FIXES_gsGTStyle[4] = t;
+					
+					// Global style 8.
+					FIXES_gsGTStyle[5] = t;
+				#endif
+			}
+			else
+			{
+					new
+						PlayerText:t;
+					
+					// Global style 0.
+					t = FIXES_gsPGTStyle[playerid][0] = CreatePlayerTextDraw(playerid, 320.0, 214.0, FIXES_gscSpace);
+					PlayerTextDrawLetterSize(playerid, t, 1.3, 3.6);
+					PlayerTextDrawAlignment(playerid, t, 2);
+					PlayerTextDrawColor(playerid, t, 0x906210FF);
+					PlayerTextDrawSetShadow(playerid, t, 0);
+					PlayerTextDrawSetOutline(playerid, t, 2);
+					PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
+					PlayerTextDrawFont(playerid, t, 3);
+					PlayerTextDrawSetProportional(playerid, t, 1);
+					
+					// Global style 1.
+					t = FIXES_gsPGTStyle[playerid][1] = CreatePlayerTextDraw(playerid, 620.0, 310.0, FIXES_gscSpace);
+					PlayerTextDrawLetterSize(playerid, t, 1.0, 2.6);
+					PlayerTextDrawAlignment(playerid, t, 3);
+					PlayerTextDrawColor(playerid, t, 0x906210FF);
+					PlayerTextDrawSetShadow(playerid, t, 0);
+					PlayerTextDrawSetOutline(playerid, t, 2);
+					PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
+					PlayerTextDrawFont(playerid, t, 3);
+					PlayerTextDrawSetProportional(playerid, t, 1);
+					
+					// Global style 2.
+					t = FIXES_gsPGTStyle[playerid][2] = CreatePlayerTextDraw(playerid, 320.0, 156.0, FIXES_gscSpace);
+					PlayerTextDrawLetterSize(playerid, t, 2.1, 4.2);
+					PlayerTextDrawAlignment(playerid, t, 2);
+					PlayerTextDrawColor(playerid, t, 0xE1E1E1FF);
+					PlayerTextDrawSetShadow(playerid, t, 0);
+					PlayerTextDrawSetOutline(playerid, t, 3);
+					PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
+					PlayerTextDrawFont(playerid, t, 0);
+					PlayerTextDrawSetProportional(playerid, t, 1);
+					
+					// Global style 5.
+					t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw(playerid, 320.0, 217.0, FIXES_gscSpace);
+					PlayerTextDrawLetterSize(playerid, t, 0.6, 2.75);
+					PlayerTextDrawAlignment(playerid, t, 2);
+					PlayerTextDrawColor(playerid, t, 0xE1E1E1FF);
+					PlayerTextDrawSetShadow(playerid, t, 0);
+					PlayerTextDrawSetOutline(playerid, t, 2);
+					PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF);
+					PlayerTextDrawFont(playerid, t, 2);
+					PlayerTextDrawSetProportional(playerid, t, 1);
+					
+				#if FIX_GameTextStyles
+					#error GameText styles 7 and 8 don't yet exist.
+					
+					// Global style 7.
+					FIXES_gsPGTStyle[playerid][4] = t;
+					
+					// Global style 8.
+					FIXES_gsPGTStyle[playerid][5] = t;
+				#endif
+			}
 	}
 #endif
 
 /* 
  * OnFilterScriptInit()
  * 
+ * Set "IS_FILTERSCRIPT" to true as this callback is ONLY called if this script
  * Set "IS_FILTERSCRIPT" to true as this callback is ONLY called if this script
  * is actually a FilterScript.  Then call "FIXES_OnScriptInit".
  * 
@@ -2475,21 +2408,69 @@ static stock const
  */
 public OnFilterScriptInit()
 {
-	_FIXES_gIsFilterscript = true;
-	#if !FIXES_Single
+		_FIXES_gIsFilterscript = true;
+		
+	#if FIXES_Single
+		// =================
+		//  BEGIN: GameText 
+		// =================
+		#if FIX_GameText
+			_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
+		#endif
+		// =================
+		//  END:   GameText 
+		// =================
+	#else
 		FIXES_DetermineOrder(),
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
 	#endif
 	
-	// =================
-	//  BEGIN: GameText 
-	// =================
-	#if FIX_GameText
-		_FIXES_CreateGameTextDraws();
+	#if FIX_OnPlayerConnect || FIX_GameText
+		#if !FIXES_Single && FIX_GameText
+			#if FIX_OnPlayerConnect
+				FIXES_gsSettings |= e_FIXES_SETTINGS_NO_GAME_TEXT;
+			#else
+				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+				{
+			#endif
+		#endif
+					for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
+					{
+						#if FIX_IsPlayerConnected
+							if (BAD_IsPlayerConnected(playerid))
+						#else
+							if (IsPlayerConnected(playerid))
+						#endif
+							{
+								#if FIX_OnPlayerConnect
+									// ========================
+									//  BEGIN: OnPlayerConnect 
+									// ========================
+									// Use "CallLocalFunction" because it calls
+									// past hooks too.
+									CallLocalFunction("OnPlayerConnect", FIXES_gscSpec@i, playerid);
+									// ========================
+									//  END:   OnPlayerConnect 
+									// ========================
+								#elseif FIX_GameText
+									// =================
+									//  BEGIN: GameText 
+									// =================
+									_FIXES_CreateGameTextDraws(playerid);
+									// =================
+									//  END:   GameText 
+									// =================
+								#endif
+							}
+					}
+		#if !FIXES_Single && FIX_GameText
+			#if FIX_OnPlayerConnect
+				FIXES_gsSettings &= ~e_FIXES_SETTINGS_NO_GAME_TEXT;
+			#else
+				}
+			#endif
+		#endif
 	#endif
-	// =================
-	//  END:   GameText 
-	// =================
 	
 	#if defined FIXES_OnFilterScriptInit
 		return FIXES_OnFilterScriptInit();
@@ -2521,16 +2502,6 @@ public OnFilterScriptInit()
  */
 public OnGameModeInit()
 {
-	// =================
-	//  BEGIN: GameText 
-	// =================
-	#if FIX_GameText
-		_FIXES_CreateGameTextDraws(_, false);
-	#endif
-	// =================
-	//  END:   GameText 
-	// =================
-	
 	// =============================
 	//  BEGIN: AllowInteriorWeapons 
 	// =============================
@@ -2557,6 +2528,19 @@ public OnGameModeInit()
 			FIXES_DetermineOrder();
 		}
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
+	#else
+		// =================
+		//  BEGIN: GameText 
+		// =================
+		#if FIX_GameText
+			if (!_FIXES_gIsFilterscript)
+			{
+				_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
+			}
+		#endif
+		// =================
+		//  END:   GameText 
+		// =================
 	#endif
 	
 	#if defined FIXES_OnGameModeInit
@@ -2770,7 +2754,12 @@ public OnGameModeInit()
 		//  BEGIN: GameText 
 		// =================
 		#if FIX_GameText
-			_FIXES_CreateGameTextDraws(playerid);
+			#if !FIXES_Single
+				if (FIXES_gsSettings & (e_FIXES_SETTINGS_NO_GAME_TEXT | e_FIXES_SETTINGS_IN_CHARGE) == e_FIXES_SETTINGS_IN_CHARGE)
+			#endif
+				{
+					_FIXES_CreateGameTextDraws(playerid);
+				}
 		#endif
 		// =================
 		//  END:   GameText 
@@ -4537,7 +4526,7 @@ public OnGameModeInit()
 					return 1;
 				}
 			}
-		return 0;
+			return 0;
 	}
 	
 	#if defined _ALS_DestroyMenu
@@ -5644,8 +5633,9 @@ public OnGameModeInit()
 	#else
 		stock FIXES_AllowAdminTeleport(allow)
 		{
-			CallRemoteFunction(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, INVALID_PLAYER_ID, allow)
-			return allow;
+			return
+				CallRemoteFunction(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, INVALID_PLAYER_ID, allow),
+				allow;
 		}
 	#endif
 	
@@ -6351,13 +6341,6 @@ public OnGameModeInit()
 		{
 			if (existproperty(5, FIXES_gscNoGMProperty))
 			{
-				// Either this is a Filter Script (1) and we don't want Game
-				// Modes (1) or this isn't a filterscript (0) and we do want
-				// Game Modes (0).  All other cases return here due to a logic
-				// mismatch.  This is to rectify the difference in call orders
-				// between "CallRemoteFunction" and normal callbacks.
-				// Now DOESN'T end on the second time round for filterscripts to
-				// correctly pass on the data to GameModes.
 				return 0;
 			}
 			// Make sure certain data is synced with what the GM thinks it is.
@@ -6386,6 +6369,13 @@ public OnGameModeInit()
 		}
 		if (existproperty(5, FIXES_gscOrderProperty))
 		{
+			// Either this is a Filter Script (1) and we don't want gamemodes
+			// (1) or this isn't a filterscript (0) and we do want gamemodes
+			// (0).  All other cases return here due to a logic mismatch.  This
+			// is to rectify the difference in call orders between
+			// "CallRemoteFunction" and normal callbacks.  Now DOESN'T end on
+			// the second time round for filterscripts to correctly pass on the
+			// data to GameModes.
 			if (!existproperty(5, FIXES_gscNoGMProperty) && _FIXES_gIsFilterscript == bool:getproperty(5, FIXES_gscOrderProperty))
 			{
 				// The game mode is not in charge, which means we are checking
@@ -6410,49 +6400,80 @@ public OnGameModeInit()
 				#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 					for (new i = 0; i != MAX_PLAYERS; ++i)
 					{
-						if (IsPlayerConnected(i))
-						{
-							// =============================
-							//  BEGIN: SetPlayerWorldBounds 
-							// =============================
-							#if FIX_SetPlayerWorldBounds
-								// I realised that you could have the GM in
-								// charge, set their bounds, load an FS, remove
-								// their bounds then unload the FS again and it
-								// would result in the old GM setting of them
-								// HAVING bounds being re-applied, so the check
-								// was removed and.
-								CallRemoteFunction(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, i, FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_UX], FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_LX], FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_UY], FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_LY]);
-							#endif
-							// =============================
-							//  END:   SetPlayerWorldBounds 
-							// =============================
-							
-							// =================================
-							//  BEGIN: TogglePlayerControllable 
-							// =================================
-							#if FIX_TogglePlayerControllable
-								CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, i, !(FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_UNCONTROLLABLE));
-							#endif
-							// =================================
-							//  END:   TogglePlayerControllable 
-							// =================================
-							
-							// ===========================
-							//  BEGIN: PutPlayerInVehicle 
-							// ===========================
-							#if FIX_PutPlayerInVehicle
-								if (FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_PUT_IN_VEHICLE)
-								{
-									CallRemoteFunction(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iii, i, FIXES_gsVehicleSeatData[i] & 0x00FFFFFF, FIXES_gsVehicleSeatData[i] >>> 24);
-								}
-							#endif
-							// ===========================
-							//  END:   PutPlayerInVehicle 
-							// ===========================
-						}
+						#if FIX_IsPlayerConnected
+							if (BAD_IsPlayerConnected(i))
+						#else
+							if (IsPlayerConnected(i))
+						#endif
+							{
+								// =================
+								//  BEGIN: GameText 
+								// =================
+								#if FIX_GameText
+									for (new j = 0; j != FIXES_GT_STYLE_COUNT; ++j)
+									{
+										PlayerTextDrawDestroy(i, FIXES_gsPGTStyle[i][j]);
+									}
+								#endif
+								// =================
+								//  END:   GameText 
+								// =================
+								
+								// =============================
+								//  BEGIN: SetPlayerWorldBounds 
+								// =============================
+								#if FIX_SetPlayerWorldBounds
+									// I realised that you could have the GM in
+									// charge, set their bounds, load an FS,
+									// remove their bounds then unload the FS
+									// again and it would result in the old GM
+									// setting of them HAVING bounds being re-
+									// applied, so the check is removed.
+									CallRemoteFunction(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, i, FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_UX], FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_LX], FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_UY], FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_LY]);
+								#endif
+								// =============================
+								//  END:   SetPlayerWorldBounds 
+								// =============================
+								
+								// =================================
+								//  BEGIN: TogglePlayerControllable 
+								// =================================
+								#if FIX_TogglePlayerControllable
+									CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, i, !(FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_UNCONTROLLABLE));
+								#endif
+								// =================================
+								//  END:   TogglePlayerControllable 
+								// =================================
+								
+								// ===========================
+								//  BEGIN: PutPlayerInVehicle 
+								// ===========================
+								#if FIX_PutPlayerInVehicle
+									if (FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_PUT_IN_VEHICLE)
+									{
+										CallRemoteFunction(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iii, i, FIXES_gsVehicleSeatData[i] & 0x00FFFFFF, FIXES_gsVehicleSeatData[i] >>> 24);
+									}
+								#endif
+								// ===========================
+								//  END:   PutPlayerInVehicle 
+								// ===========================
+							}
 					}
 				#endif
+				
+				// =================
+				//  BEGIN: GameText 
+				// =================
+				#if FIX_GameText
+					for (new j = 0; j != FIXES_GT_STYLE_COUNT; ++j)
+					{
+						TextDrawDestroy(FIXES_gsGTStyle[j]);
+					}
+				#endif
+				// =================
+				//  END:   GameText 
+				// =================
+				
 				FIXES_PRINTF("_FIXES_DetermineOrder: Not in charge");
 				return 0;
 			}
@@ -6474,14 +6495,61 @@ public OnGameModeInit()
 			#endif
 			FIXES_gsSettings |= e_FIXES_SETTINGS_IN_CHARGE;
 			FIXES_PRINTF("_FIXES_DetermineOrder: Now in charge");
+			
+			// =================
+			//  BEGIN: GameText 
+			// =================
+			#if FIX_GameText
+				// Create all the relevant TextDraws.
+				for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
+				{
+					#if FIX_IsPlayerConnected
+						if (BAD_IsPlayerConnected(playerid))
+					#else
+						if (IsPlayerConnected(playerid))
+					#endif
+						{
+							_FIXES_CreateGameTextDraws(playerid);
+						}
+				}
+				_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
+			#endif
+			// =================
+			//  END:   GameText 
+			// =================
 			return 1;
 		}
-		#if FIXES_Debug
-			else
-			{
+		else if (!(FIXES_gsSettings & e_FIXES_SETTINGS_ENDED))
+		{
+			// Only called when a filterscript that is currently master (and
+			// thus called first by "CallRemoteFunction") ends.  This doesn't
+			// get triggered when a gamemode is master, but that doesn't matter
+			// because in that case all the textdraws are destroyed anyway.
+			
+			// =================
+			//  BEGIN: GameText 
+			// =================
+			#if FIX_GameText
+				// Destroy all the relevant TextDraws.
+				for (new i = 0; i != FIXES_GT_STYLE_COUNT; ++i)
+				{
+					for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
+					{
+						PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][i]);
+					}
+					TextDrawDestroy(FIXES_gsGTStyle[i]);
+				}
+			#endif
+			// =================
+			//  END:   GameText 
+			// =================
+			
+			#if FIXES_Debug
 				FIXES_PRINTF("_FIXES_DetermineOrder: Ending");
-			}
-		#endif
+			#endif
+			
+			FIXES_gsSettings |= e_FIXES_SETTINGS_ENDED;
+		}
 		return 0;
 	}
 #endif
