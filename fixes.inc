@@ -542,6 +542,12 @@
  * SEE:      "FIXES_OnFilterScriptInit".
  * AUTHOR:   Y_Less
  * 
+ * FIX:      OnPlayerDisconnect
+ * PROBLEM:  This function isn't called for players when a filterscript ends.
+ * SOLUTION: Call it for all connected players.
+ * SEE:      "FIXES_OnFilterScriptExit".
+ * AUTHOR:   Y_Less
+ * 
  * FIX:      GameText
  * PROBLEM:  Several styles do not display for the time specified.
  * SOLUTION: Recreate the styles in Text Draws and use those instead.
@@ -1250,6 +1256,13 @@
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerConnect)
 	#undef FIX_OnPlayerConnect
 	#define FIX_OnPlayerConnect          (0)
+#endif
+
+#if !defined FIX_OnPlayerDisconnect
+	#define FIX_OnPlayerDisconnect       (1)
+#elseif _FIXES_IS_UNSET(FIX_OnPlayerDisconnect)
+	#undef FIX_OnPlayerDisconnect
+	#define FIX_OnPlayerDisconnect       (0)
 #endif
 
 /* 
@@ -2620,18 +2633,60 @@ public OnGameModeInit()
  * 
  * Fast way of detecting not to retain any data.
  */
-#if !FIXES_Single
+#if !FIXES_Single || FIX_GameText || FIX_OnPlayerDisconnect
 	public OnFilterScriptExit()
 	{
-		if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
-		{
-			FIXES_gsSettings |= e_FIXES_SETTINGS_ENDING,
-			FIXES_DetermineOrder();
-		}
-		#if defined FIXES_OnFilterScriptExit
-			return FIXES_OnFilterScriptExit();
+		#if FIX_OnPlayerDisconnect
+			for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
+			{
+				#if FIX_IsPlayerConnected
+					if (BAD_IsPlayerConnected(playerid))
+				#else
+					if (IsPlayerConnected(playerid))
+				#endif
+					{
+						OnPlayerDisconnect(playerid, 4);
+					}
+			}
+		#endif
+		#if FIXES_Single
+			// =================
+			//  BEGIN: GameText 
+			// =================
+			#if FIX_GameText
+				#if defined FIXES_OnFilterScriptExit
+					FIXES_OnFilterScriptExit();
+				#endif
+					for (new i = 0; i != FIXES_GT_STYLE_COUNT; ++i)
+					{
+						for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
+						{
+							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][i]);
+						}
+						TextDrawDestroy(FIXES_gsGTStyle[i]);
+					}
+					return 1;
+			#else
+				#if defined FIXES_OnFilterScriptExit
+					return FIXES_OnFilterScriptExit();
+				#else
+					return 1;
+				#endif
+			#endif
+			// =================
+			//  END:   GameText 
+			// =================
 		#else
-			return 1;
+			if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+			{
+				FIXES_gsSettings |= e_FIXES_SETTINGS_ENDING,
+				FIXES_DetermineOrder();
+			}
+			#if defined FIXES_OnFilterScriptExit
+				return FIXES_OnFilterScriptExit();
+			#else
+				return 1;
+			#endif
 		#endif
 	}
 	
@@ -2640,6 +2695,7 @@ public OnGameModeInit()
 	#else
 		#define _ALS_OnFilterScriptExit
 	#endif
+	
 	#define OnFilterScriptExit FIXES_OnFilterScriptExit
 	
 	#if defined FIXES_OnFilterScriptExit
@@ -6749,6 +6805,48 @@ public OnGameModeInit()
 	#define FIXES_sleep(%0;) FIXES_sleep _FIXES_SLEEP_BRACKET %0);
 	#define _FIXES_SLEEP_BRACKET (
 #endif
+
+static stock _FIXES_AddInternal(array[], value, size)
+{
+	if (0 <= value < size && array[value] <= value)
+	{
+		new
+			last = size,
+			next = array[last];
+		while (next < value)
+		{
+			last = next,
+			next = array[last];
+		}
+		return
+			array[next - 1] = value + 1,
+			array[(value - 1) % (size + 1)] = (last + 1) % (size + 1),
+			array[last] = value,
+			array[value] = next,
+			++count;
+	}
+	return 0;
+}
+
+static stock _FIXES_RemoveInternal(array[], value, size)
+{
+	if (0 <= value < size && array[value] > value)
+	{
+		static
+			last;
+		return
+			// Adjustment for easier "mod"ing.
+			++size,
+			last = (array[(value - 1) % size] - 1) % size,
+			// Store the reverse value here as well as in the previous slot.
+			array[value] =
+				// Copy the next value to the last value.
+				array[(array[last] = array[value]) - 1] =
+					// Set the reverse iterator value.
+					(last + 1) % size;
+	}
+	return 0;
+}
 
 /*
  * FIXES_%%%!!!
