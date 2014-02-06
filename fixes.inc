@@ -6853,6 +6853,11 @@ public OnGameModeInit()
 	#define _FIXES_SLEEP_BRACKET (
 #endif
 
+/* 
+ * _FIXES_AddInternal(array[], value, size)
+ * 
+ * Add something to an internal linked list.
+ */
 static stock _FIXES_AddInternal(array[], value, size)
 {
 	if (0 <= value < size && array[value] <= value)
@@ -6874,6 +6879,11 @@ static stock _FIXES_AddInternal(array[], value, size)
 	return 0;
 }
 
+/* 
+ * _FIXES_RemoveInternal(array[], value, size)
+ * 
+ * Remove something from an internal linked list.
+ */
 static stock _FIXES_RemoveInternal(array[], value, size)
 {
 	if (0 <= value < size && array[value] > value)
