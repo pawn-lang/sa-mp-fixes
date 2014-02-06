@@ -2941,7 +2941,7 @@ public OnGameModeInit()
 					{
 						for (new i = 0; i != sizeof (FIXES_gscAnimLib); ++i)
 						{
-							ApplyAnimation(playerid, FIXES_gscAnimLib[i], "null", 1.0, 0, 0, 0, 0, 0);
+							ApplyAnimation(playerid, FIXES_gscAnimLib[i], "null", 0.0, 0, 0, 0, 0, 0);
 						}
 						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_FIRST_SPAWN;
 					}
