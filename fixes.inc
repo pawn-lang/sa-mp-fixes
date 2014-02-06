@@ -1345,14 +1345,20 @@
 #endif
 
 /* 
- * IS_IN_CHARGE
+ * _FIXES_IS_IN_CHARGE
  * 
  * Test to see if this script is in command or not (master).
  */
 #if FIXES_Single
-	#define IS_IN_CHARGE(%0)
+	#define _FIXES_IS_IN_CHARGE(%0)
 #else
-	#define IS_IN_CHARGE(%0) if (%0(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
+	#define _FIXES_IS_IN_CHARGE(%0) if (%0(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
+#endif
+
+#if FIX_IsPlayerConnected
+	#define _FIXES_IS_PLAYER_CONNECTED BAD_IsPlayerConnected
+#else
+	#define _FIXES_IS_PLAYER_CONNECTED IsPlayerConnected
 #endif
 
 /* 
@@ -2472,41 +2478,37 @@ public OnFilterScriptInit()
 	#if FIX_OnPlayerConnect || _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 		for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 		{
-			#if FIX_IsPlayerConnected
-				if (BAD_IsPlayerConnected(playerid))
-			#else
-				if (IsPlayerConnected(playerid))
-			#endif
-				{
-					// No "defined" checks - if you don't want this fix because
-					// you don't have an "OnPlayerConnect", just don't use it!
-					// Of course, it helps that the copy of "OnPlayerConnect"
-					// in this include is almost always called!
-					#if FIX_OnPlayerConnect
-						// ========================
-						//  BEGIN: OnPlayerConnect 
-						// ========================
-						OnPlayerConnect(playerid);
-						// ========================
-						//  END:   OnPlayerConnect 
-						// ========================
-					#else
-						_FIXES_AddInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
-						
-						#if FIX_GameText
-							// =================
-							//  BEGIN: GameText 
-							// =================
-							IS_IN_CHARGE()
-							{
-								_FIXES_CreateGameTextDraws(playerid);
-							}
-							// =================
-							//  END:   GameText 
-							// =================
-						#endif
+			if (_FIXES_IS_PLAYER_CONNECTED(playerid))
+			{
+				// No "defined" checks - if you don't want this fix because
+				// you don't have an "OnPlayerConnect", just don't use it!
+				// Of course, it helps that the copy of "OnPlayerConnect"
+				// in this include is almost always called!
+				#if FIX_OnPlayerConnect
+					// ========================
+					//  BEGIN: OnPlayerConnect 
+					// ========================
+					OnPlayerConnect(playerid);
+					// ========================
+					//  END:   OnPlayerConnect 
+					// ========================
+				#else
+					_FIXES_AddInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
+					
+					#if FIX_GameText
+						// =================
+						//  BEGIN: GameText 
+						// =================
+						_FIXES_IS_IN_CHARGE()
+						{
+							_FIXES_CreateGameTextDraws(playerid);
+						}
+						// =================
+						//  END:   GameText 
+						// =================
 					#endif
-				}
+				#endif
+			}
 		}
 	#endif
 	#if !FIXES_Single && FIX_GameText && FIX_OnPlayerConnect
@@ -3209,7 +3211,7 @@ public OnGameModeInit()
 #if FIX_OnPlayerDeath || FIX_OnPlayerSpawn
 	public OnPlayerDeath(playerid, killerid, reason)
 	{
-		IS_IN_CHARGE()
+		_FIXES_IS_IN_CHARGE()
 		{
 			// ======================
 			//  BEGIN: OnPlayerDeath 
@@ -3363,7 +3365,7 @@ public OnGameModeInit()
 #if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_ApplyAnimation_2
 	public OnPlayerSpawn(playerid)
 	{
-		IS_IN_CHARGE()
+		_FIXES_IS_IN_CHARGE()
 		{
 			// ======================
 			//  BEGIN: OnPlayerSpawn 
@@ -3937,7 +3939,7 @@ public OnGameModeInit()
 		public _FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
 		{
 			FIXES_PRINTF("_FIXES_SetPlayerWorldBounds: %d %.2f %.2f %.2f %.2f", playerid, x_max, x_min, y_max, y_min);
-			IS_IN_CHARGE()
+			_FIXES_IS_IN_CHARGE()
 			{
 				FIXES_PRINTF("SetPlayerWorldBounds");
 				//if (x_max == _FIXES_INFINITY && x_min == _FIXES_INFINITY && y_max == _FIXES_INFINITY && y_min == _FIXES_INFINITY)
@@ -4043,7 +4045,7 @@ public OnGameModeInit()
 		
 		public _FIXES_TogglePlayerControllable(playerid, toggle)
 		{
-			IS_IN_CHARGE()
+			_FIXES_IS_IN_CHARGE()
 			{
 				if (toggle)
 				{
@@ -4086,7 +4088,7 @@ public OnGameModeInit()
 			#if FIXES_Single
 				FIXES_gsInterior[playerid] = newinteriorid;
 			#else
-				IS_IN_CHARGE()
+				_FIXES_IS_IN_CHARGE()
 				{
 					SetPVarInt(playerid, FIXES_pvarPlayerInterior, newinteriorid);
 				}
@@ -4113,7 +4115,7 @@ public OnGameModeInit()
 					// the "OnPlayerUpdate" callback, instead of several checks.
 					// DONE!
 					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_INTERIOR;
-					IS_IN_CHARGE()
+					_FIXES_IS_IN_CHARGE()
 					{
 						SetPlayerArmedWeapon(playerid, 0);
 						#if FIX_GetPlayerWeapon
@@ -4366,7 +4368,7 @@ public OnGameModeInit()
 				new
 					Menu:cur = FIXES_gsCurrentMenu[playerid];
 			#endif
-				IS_IN_CHARGE()
+				_FIXES_IS_IN_CHARGE()
 				{
 			#if defined FIXES_OnPlayerSelectedMenuRow
 					setproperty(5, FIXES_gscMenuProperty, _:cur);
@@ -4451,7 +4453,7 @@ public OnGameModeInit()
 				new
 					Menu:cur = FIXES_gsCurrentMenu[playerid];
 			#endif
-				IS_IN_CHARGE()
+				_FIXES_IS_IN_CHARGE()
 				{
 			#if defined FIXES_OnPlayerExitedMenu
 					setproperty(5, FIXES_gscMenuProperty, _:cur);
@@ -5326,7 +5328,7 @@ public OnGameModeInit()
 		public _FIXES_PutPlayerInVehicle(playerid, vehicleid, seatid, from, data)
 		{
 			FIXES_PRINTF("IN CHARGE: %d", (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE));
-			IS_IN_CHARGE()
+			_FIXES_IS_IN_CHARGE()
 			{
 				// ===========================
 				//  BEGIN: PutPlayerInVehicle 
@@ -5945,7 +5947,7 @@ public OnGameModeInit()
 				#endif
 				FIXES_gsDialogID[playerid] = INVALID_DIALOG_ID;
 			#elseif FIX_OnDialogResponse
-				IS_IN_CHARGE()
+				_FIXES_IS_IN_CHARGE()
 				{
 					// If there are multiple scripts, we can't just wipe the
 					// current dialog data or subsequent scripts will display
@@ -6332,7 +6334,7 @@ public OnGameModeInit()
 #if FIX_IsPlayerAttachedObjSlotUsed
 	stock FIXES_IsPAttachedObjectSlotUsed(playerid, index)
 	{
-		if (IsPlayerConnected(playerid))
+		if (_FIXES_IS_PLAYER_CONNECTED(playerid))
 		{
 			return FIXES_gsObjectSlots[playerid / _FIXES_ATTACHMENTS] & 1 << playerid % _FIXES_ATTACHMENTS * MAX_PLAYER_ATTACHED_OBJECTS + index;
 		}
@@ -6937,5 +6939,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_ATTACHMENTS
 #undef _FIXES_FOREACH
 #undef _FIXES_IS_UNSET
+#undef _FIXES_IS_IN_CHARGE
+#undef _FIXES_IS_PLAYER_CONNECTED
 #undef FIXES_PRINTF
 
