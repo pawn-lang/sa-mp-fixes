@@ -2285,9 +2285,6 @@ static stock const
 #if FIX_GameText
 	static _FIXES_CreateGameTextDraws(const playerid)
 	{
-		#if !FIXES_Single
-			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)) return;
-		#endif
 			if (playerid == INVALID_PLAYER_ID)
 			{
 					new
