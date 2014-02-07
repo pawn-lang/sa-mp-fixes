@@ -142,6 +142,18 @@
  * AUTHOR:   TomTrox
  * POST:     http://forum.sa-mp.com/showpost.php?p=1487870
  * 
+ * FIX:      CreatePlayerTextDraw
+ * PROBLEM:  Crashes on a blank string.
+ * SOLUTION: Intercept blank strings.
+ * SEE:      "FIXES_CreatePlayerTextDraw".
+ * AUTHOR:   wups/Y_Less
+ * 
+ * FIX:      PlayerTextDrawSetString
+ * PROBLEM:  Crashes on a blank string and size greater than 1024.
+ * SOLUTION: Intercept blank strings and truncate long strings.
+ * SEE:      "FIXES_PlayerTextDrawSetString".
+ * AUTHOR:   TomTrox/Y_Less
+ * 
  * FIX:      AllowInteriorWeapons
  * PROBLEM:  Does nothing.
  * SOLUTION: Set the player's weapon to fists in an interior.
@@ -1278,6 +1290,20 @@
 	#define FIX_OnPlayerDisconnect       (0)
 #endif
 
+#if !defined FIX_CreatePlayerTextDraw
+	#define FIX_CreatePlayerTextDraw     (1)
+#elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw)
+	#undef FIX_CreatePlayerTextDraw
+	#define FIX_CreatePlayerTextDraw     (0)
+#endif
+
+#if !defined FIX_PlayerTextDrawSetString
+	#define FIX_PlayerTextDrawSetString  (1)
+#elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString)
+	#undef FIX_PlayerTextDrawSetString
+	#define FIX_PlayerTextDrawSetString  (0)
+#endif
+
 /* 
  * FIXES_GT_STYLE_COUNT
  * 
@@ -2345,13 +2371,13 @@ static stock const
 			#if FIX_GameTextStyles
 				
 				// Global style 7 (vehicle name).
-				t = FIXES_gsGTStyle[7] = TextDrawCreate(608.000000, 344.000000, "Majestic"),
+				t = FIXES_gsGTStyle[7] = TextDrawCreate(608.000000, 344.000000, FIXES_gscSpace),
 				TextDrawLetterSize(t, 1.000000, 3.000000),
 				TextDrawAlignment(t, 3),
-				TextDrawColor(t, 912796927),
+				TextDrawColor(t, 0x36682CFF),
 				TextDrawSetShadow(t, 0),
 				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 170),
+				TextDrawBackgroundColor(t, 0x000000AA),
 				TextDrawFont(t, 2),
 				TextDrawSetProportional(t, 1),
 				TextDrawUseBox(t, true),
@@ -2359,13 +2385,13 @@ static stock const
 				TextDrawTextSize(t, 10.0, 200.0);
 				
 				// Global style 8 (location name).
-				t = FIXES_gsGTStyle[8] = TextDrawCreate(608.000000, 386.500000, "East Los Santos"),
+				t = FIXES_gsGTStyle[8] = TextDrawCreate(608.000000, 386.500000, FIXES_gscSpace),
 				TextDrawLetterSize(t, 1.200000, 3.799998),
 				TextDrawAlignment(t, 3),
-				TextDrawColor(t, -1412763393),
+				TextDrawColor(t, 0xACCBF1FF),
 				TextDrawSetShadow(t, 0),
 				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 255),
+				TextDrawBackgroundColor(t, 0x000000AA),
 				TextDrawFont(t, 0),
 				TextDrawSetProportional(t, 1),
 				TextDrawUseBox(t, true),
@@ -2373,13 +2399,13 @@ static stock const
 				TextDrawTextSize(t, 10.0, 200.0);
 				
 				// Global style 9 (radio name).
-				t = FIXES_gsGTStyle[9] = TextDrawCreate(320.000000, 22.000000, "K-Jah West"),
+				t = FIXES_gsGTStyle[9] = TextDrawCreate(320.000000, 22.000000, FIXES_gscSpace),
 				TextDrawLetterSize(t, 0.600000, 1.899999),
 				TextDrawAlignment(t, 2),
-				TextDrawColor(t, -1872621313),
+				TextDrawColor(t, 0x906210FF),
 				TextDrawSetShadow(t, 0),
 				TextDrawSetOutline(t, 1),
-				TextDrawBackgroundColor(t, 170),
+				TextDrawBackgroundColor(t, 0x000000AA),
 				TextDrawFont(t, 2),
 				TextDrawSetProportional(t, 1),
 				TextDrawUseBox(t, true),
@@ -2387,13 +2413,13 @@ static stock const
 				TextDrawTextSize(t, 200.0, 620.0);
 				
 				// Global style 10 (radio switch).
-				t = FIXES_gsGTStyle[10] = TextDrawCreate(320.000000, 22.000000, "K-Jah West"),
+				t = FIXES_gsGTStyle[10] = TextDrawCreate(320.000000, 22.000000, FIXES_gscSpace),
 				TextDrawLetterSize(t, 0.600000, 1.899999),
 				TextDrawAlignment(t, 2),
-				TextDrawColor(t, -1768515841),
+				TextDrawColor(t, 0x969696FF),
 				TextDrawSetShadow(t, 0),
 				TextDrawSetOutline(t, 1),
-				TextDrawBackgroundColor(t, 170),
+				TextDrawBackgroundColor(t, 0x000000AA),
 				TextDrawFont(t, 2),
 				TextDrawSetProportional(t, 1),
 				TextDrawUseBox(t, true),
@@ -2401,13 +2427,13 @@ static stock const
 				TextDrawTextSize(t, 200.0, 620.0);
 				
 				// Global style 11 (positive money).
-				t = FIXES_gsGTStyle[11] = TextDrawCreate(607.000000, 78.000000, "$00000052"),
+				t = FIXES_gsGTStyle[11] = TextDrawCreate(607.000000, 78.000000, FIXES_gscSpace),
 				TextDrawLetterSize(t, 0.550000, 2.150000),
 				TextDrawAlignment(t, 3),
-				TextDrawColor(t, 912796927),
+				TextDrawColor(t, 0x36682CFF),
 				TextDrawSetShadow(t, 0),
 				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 255),
+				TextDrawBackgroundColor(t, 0x000000FF),
 				TextDrawFont(t, 3),
 				TextDrawSetProportional(t, 1),
 				TextDrawUseBox(t, true),
@@ -2415,13 +2441,13 @@ static stock const
 				TextDrawTextSize(t, 10.0, 200.0);
 				
 				// Global style 12 (negative money).
-				t = FIXES_gsGTStyle[12] = TextDrawCreate(607.000000, 78.000000, "-$0004948"),
+				t = FIXES_gsGTStyle[12] = TextDrawCreate(607.000000, 78.000000, FIXES_gscSpace),
 				TextDrawLetterSize(t, 0.550000, 2.150000),
 				TextDrawAlignment(t, 3),
-				TextDrawColor(t, -1273422337),
+				TextDrawColor(t, 0xB4191DFF),
 				TextDrawSetShadow(t, 0),
 				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 255),
+				TextDrawBackgroundColor(t, 0x000000FF),
 				TextDrawFont(t, 3),
 				TextDrawSetProportional(t, 1),
 				TextDrawUseBox(t, true),
@@ -2429,16 +2455,16 @@ static stock const
 				TextDrawTextSize(t, 10.0, 200.0);
 				
 				// Global style 13 (stunt).
-				t = FIXES_gsGTStyle[13] = TextDrawCreate(380.000000, 341.000000, "Distance: 153ft Height: 0ft Flips: 0 Rotation: 38|"),
+				t = FIXES_gsGTStyle[13] = TextDrawCreate(380.000000, 341.000000, FIXES_gscSpace),
 				TextDrawLetterSize(t, 0.579999, 2.400000),
 				TextDrawTextSize(t, 40.000000, 460.000000),
 				TextDrawAlignment(t, 2),
-				TextDrawColor(t, -673985281),
+				TextDrawColor(t, 0xD7D3CCFF),
 				TextDrawUseBox(t, true),
 				TextDrawBoxColor(t, 0),
 				TextDrawSetShadow(t, 2),
 				TextDrawSetOutline(t, 0),
-				TextDrawBackgroundColor(t, 170),
+				TextDrawBackgroundColor(t, 0x000000AA),
 				TextDrawFont(t, 1),
 				TextDrawSetProportional(t, 1),
 				
@@ -2490,10 +2516,10 @@ static stock const
 				t = FIXES_gsGTStyle[3] = TextDrawCreate(320.000000, 154.500000, FIXES_gscSpace),
 				TextDrawLetterSize(t, 0.600000, 2.750000),
 				TextDrawAlignment(t, 2),
-				TextDrawColor(t, -1872621313),
+				TextDrawColor(t, 0x906210FF),
 				TextDrawSetShadow(t, 0),
 				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 170),
+				TextDrawBackgroundColor(t, 0x000000AA),
 				TextDrawFont(t, 2),
 				TextDrawSetProportional(t, 1),
 				TextDrawUseBox(t, true),
@@ -2504,10 +2530,10 @@ static stock const
 				t = FIXES_gsGTStyle[4] = TextDrawCreate(320.000000, 115.500000, FIXES_gscSpace),
 				TextDrawLetterSize(t, 0.600000, 2.750000),
 				TextDrawAlignment(t, 2),
-				TextDrawColor(t, -1872621313),
+				TextDrawColor(t, 0x906210FF),
 				TextDrawSetShadow(t, 0),
 				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 170),
+				TextDrawBackgroundColor(t, 0x000000AA),
 				TextDrawFont(t, 2),
 				TextDrawSetProportional(t, 1),
 				TextDrawUseBox(t, true),
@@ -2532,10 +2558,10 @@ static stock const
 				t = FIXES_gsGTStyle[6] = TextDrawCreate(320.000000, 60.000000, FIXES_gscSpace),
 				TextDrawLetterSize(t, 1.000000, 3.599998),
 				TextDrawAlignment(t, 2),
-				TextDrawColor(t, -1395920385),
+				TextDrawColor(t, 0xACCBF1FF),
 				TextDrawSetShadow(t, 0),
 				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 170),
+				TextDrawBackgroundColor(t, 0x000000AA),
 				TextDrawFont(t, 3),
 				TextDrawSetProportional(t, 1),
 				TextDrawUseBox(t, true),
@@ -2550,13 +2576,13 @@ static stock const
 			#if FIX_GameTextStyles
 				
 				// Global style 7 (playerid, vehicle name).
-				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw(playerid, 608.000000, 344.000000, "Majestic"),
+				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw(playerid, 608.000000, 344.000000, FIXES_gscSpace),
 				PlayerTextDrawLetterSize(playerid, t, 1.000000, 3.000000),
 				PlayerTextDrawAlignment(playerid, t, 3),
-				PlayerTextDrawColor(playerid, t, 912796927),
+				PlayerTextDrawColor(playerid, t, 0x36682CFF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
 				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 170),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
 				PlayerTextDrawFont(playerid, t, 2),
 				PlayerTextDrawSetProportional(playerid, t, 1),
 				PlayerTextDrawUseBox(playerid, t, true),
@@ -2564,13 +2590,13 @@ static stock const
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 				
 				// Global style 8 (playerid, location name).
-				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw(playerid, 608.000000, 386.500000, "East Los Santos"),
+				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw(playerid, 608.000000, 386.500000, FIXES_gscSpace),
 				PlayerTextDrawLetterSize(playerid, t, 1.200000, 3.799998),
 				PlayerTextDrawAlignment(playerid, t, 3),
-				PlayerTextDrawColor(playerid, t, -1412763393),
+				PlayerTextDrawColor(playerid, t, 0xACCBF1FF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
 				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 255),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
 				PlayerTextDrawFont(playerid, t, 0),
 				PlayerTextDrawSetProportional(playerid, t, 1),
 				PlayerTextDrawUseBox(playerid, t, true),
@@ -2578,10 +2604,10 @@ static stock const
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 				
 				// Global style 9 (playerid, radio name).
-				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, "K-Jah West"),
+				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, FIXES_gscSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.600000, 1.899999),
 				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, -1872621313),
+				PlayerTextDrawColor(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
 				PlayerTextDrawSetOutline(playerid, t, 1),
 				PlayerTextDrawBackgroundColor(playerid, t, 170),
@@ -2592,10 +2618,10 @@ static stock const
 				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
 				
 				// Global style 10 (playerid, radio switch).
-				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, "K-Jah West"),
+				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, FIXES_gscSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.600000, 1.899999),
 				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, -1768515841),
+				PlayerTextDrawColor(playerid, t, 0x969696FF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
 				PlayerTextDrawSetOutline(playerid, t, 1),
 				PlayerTextDrawBackgroundColor(playerid, t, 170),
@@ -2606,13 +2632,13 @@ static stock const
 				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
 				
 				// Global style 11 (playerid, positive money).
-				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw(playerid, 607.000000, 78.000000, "$00000052"),
+				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw(playerid, 607.000000, 78.000000, FIXES_gscSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.550000, 2.150000),
 				PlayerTextDrawAlignment(playerid, t, 3),
-				PlayerTextDrawColor(playerid, t, 912796927),
+				PlayerTextDrawColor(playerid, t, 0x36682CFF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
 				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 255),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF),
 				PlayerTextDrawFont(playerid, t, 3),
 				PlayerTextDrawSetProportional(playerid, t, 1),
 				PlayerTextDrawUseBox(playerid, t, true),
@@ -2620,13 +2646,13 @@ static stock const
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 				
 				// Global style 12 (playerid, negative money).
-				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw(playerid, 607.000000, 78.000000, "-$0004948"),
+				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw(playerid, 607.000000, 78.000000, FIXES_gscSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.550000, 2.150000),
 				PlayerTextDrawAlignment(playerid, t, 3),
-				PlayerTextDrawColor(playerid, t, -1273422337),
+				PlayerTextDrawColor(playerid, t, 0xB4191DFF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
 				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 255),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF),
 				PlayerTextDrawFont(playerid, t, 3),
 				PlayerTextDrawSetProportional(playerid, t, 1),
 				PlayerTextDrawUseBox(playerid, t, true),
@@ -2634,11 +2660,11 @@ static stock const
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 				
 				// Global style 13 (playerid, stunt).
-				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw(playerid, 380.000000, 341.000000, "Distance: 153ft Height: 0ft Flips: 0 Rotation: 38|"),
+				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw(playerid, 380.000000, 341.000000, FIXES_gscSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.579999, 2.400000),
 				PlayerTextDrawTextSize(playerid, t, 40.000000, 460.000000),
 				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, -673985281),
+				PlayerTextDrawColor(playerid, t, 0xD7D3CCFF),
 				PlayerTextDrawUseBox(playerid, t, true),
 				PlayerTextDrawBoxColor(playerid, t, 0),
 				PlayerTextDrawSetShadow(playerid, t, 2),
@@ -2695,10 +2721,10 @@ static stock const
 				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw(playerid, 320.000000, 154.500000, FIXES_gscSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.600000, 2.750000),
 				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, -1872621313),
+				PlayerTextDrawColor(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
 				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 170),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
 				PlayerTextDrawFont(playerid, t, 2),
 				PlayerTextDrawSetProportional(playerid, t, 1),
 				PlayerTextDrawUseBox(playerid, t, true),
@@ -2709,10 +2735,10 @@ static stock const
 				t = FIXES_gsPGTStyle[playerid][4] = CreatePlayerTextDraw(playerid, 320.000000, 115.500000, FIXES_gscSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.600000, 2.750000),
 				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, -1872621313),
+				PlayerTextDrawColor(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
 				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 170),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
 				PlayerTextDrawFont(playerid, t, 2),
 				PlayerTextDrawSetProportional(playerid, t, 1),
 				PlayerTextDrawUseBox(playerid, t, true),
@@ -2737,10 +2763,10 @@ static stock const
 				t = FIXES_gsPGTStyle[playerid][6] = CreatePlayerTextDraw(playerid, 320.000000, 60.000000, FIXES_gscSpace),
 				PlayerTextDrawLetterSize(playerid, t, 1.000000, 3.599998),
 				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, -1395920385),
+				PlayerTextDrawColor(playerid, t, 0xACCBF1FF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
 				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 170),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
 				PlayerTextDrawFont(playerid, t, 3),
 				PlayerTextDrawSetProportional(playerid, t, 1),
 				PlayerTextDrawUseBox(playerid, t, true),
@@ -5778,6 +5804,152 @@ public OnGameModeInit()
 	#define SetPlayerRaceCheckpoint FIXES_SetPlayerRaceCheckpoint
 #endif
 
+/* 
+ * FIXES_GameTextForAll(string[], time, style)
+ * 
+ * FIXES:
+ *     GameText
+ */
+#if FIX_GameText
+	stock FIXES_GameTextForAll(string[], time, style)
+	{
+		if (0 <= style < FIXES_GT_STYLE_COUNT)
+		{
+			if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
+			{
+				#if FIXES_Single
+					return _FIXES_GameTextShow(MAX_PLAYERS, FIXES_gscSpace, time, style);
+				#else
+					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, FIXES_gscSpace, time, style);
+				#endif
+			}
+			else
+			{
+				#if FIXES_Single
+					return _FIXES_GameTextShow(MAX_PLAYERS, string, time, style);
+				#else
+					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, string, time, style);
+				#endif
+			}
+		}
+		return 0;
+	}
+	
+	#if defined _ALS_GameTextForAll
+		#undef GameTextForAll
+	#else
+		
+		native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
+		
+		#define _ALS_GameTextForAll
+	#endif
+	
+	#define GameTextForAll FIXES_GameTextForAll
+#endif
+
+/* 
+ * FIXES_GameTextForPlayer(playerid, string[], time, style)
+ * 
+ * FIXES:
+ *     GameText
+ */
+#if FIX_GameText
+	FIXES_GameTextForPlayer(playerid, string[], time, style)
+	{
+		if (0 <= style < FIXES_GT_STYLE_COUNT && IsPlayerConnected(playerid))
+		{
+			if ((string[0] <= '\0') || (string[0] == '\1' && string[1] == '\0'))
+			{
+				#if FIXES_Single
+					return _FIXES_GameTextShow(playerid, FIXES_gscSpace, time, style);
+				#else
+					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, FIXES_gscSpace, time, style);
+				#endif
+			}
+			else
+			{
+				#if FIXES_Single
+					return _FIXES_GameTextShow(playerid, string, time, style);
+				#else
+					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, string, time, style);
+				#endif
+			}
+		}
+		return 0;
+	}
+	
+	#if defined _ALS_GameTextForPlayer
+		#undef GameTextForPlayer
+	#else
+		
+		native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
+		
+		#define _ALS_GameTextForPlayer
+	#endif
+	
+	#define GameTextForPlayer FIXES_GameTextForPlayer
+#endif
+
+/*
+ * PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
+ *
+ * FIXES:
+ *     CreatePlayerTextDraw
+ */
+#if FIX_CreatePlayerTextDraw
+	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
+	{
+		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
+		{
+			return CreatePlayerTextDraw(playerid, x, y, FIXES_gscSpace);
+		}
+		else
+		{
+			return CreatePlayerTextDraw(playerid, x, y, text);
+		}
+	}
+	
+	#if defined _ALS_CreatePlayerTextDraw
+		#undef CreatePlayerTextDraw
+	#else
+		
+		native Text:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
+		
+		#define _ALS_CreatePlayerTextDraw
+	#endif
+	#define CreatePlayerTextDraw FIXES_CreatePlayerTextDraw
+#endif
+
+/*
+ * FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
+ *
+ * FIXES:
+ *     PlayerTextDrawSetString
+ */
+#if FIX_PlayerTextDrawSetString
+	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
+	{
+		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
+		{
+			return PlayerTextDrawSetString(playerid, text, FIXES_gscSpace);
+		}
+		else
+		{
+			return PlayerTextDrawSetString(playerid, text, string);
+		}
+	}
+	
+	#if defined _ALS_PlayerTextDrawSetString
+		#undef PlayerTextDrawSetString
+	#else
+		
+		native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
+		
+		#define _ALS_PlayerTextDrawSetString
+	#endif
+	#define PlayerTextDrawSetString FIXES_PlayerTextDrawSetString
+#endif
+
 /*
  * Text:FIXES_TextDrawCreate(Float:x, Float:y, text[])
  *
@@ -5787,7 +5959,7 @@ public OnGameModeInit()
 #if FIX_TextDrawCreate
 	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, text[])
 	{
-		if (text[0] == '\0' || text[0] == '\1' && text[1] == '\0')
+		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
 		{
 			return TextDrawCreate(x, y, FIXES_gscSpace);
 		}
@@ -5817,7 +5989,7 @@ public OnGameModeInit()
 #if FIX_TextDrawSetString
 	stock FIXES_TextDrawSetString(Text:text, string[])
 	{
-		if (string[0] == '\0' || string[0] == '\1' && string[1] == '\0')
+		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
 		{
 			return TextDrawSetString(text, FIXES_gscSpace);
 		}
@@ -7245,7 +7417,6 @@ static stock _FIXES_AddInternal(array[], value, size)
 			last = next,
 			next = array[last];
 		}
-		printf("next: %d, last: %d", next, last);
 		array[next - 1] = value + 1,
 		array[(value - 1) % (size + 1)] = (last + 1) % (size + 1),
 		array[last] = value,
@@ -7373,70 +7544,6 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 		}
 		return 1;
 	}
-#endif
-
-/* 
- * FIXES_GameTextForAll(string[], time, style)
- * 
- * FIXES:
- *     GameText
- */
-#if FIX_GameText
-	stock FIXES_GameTextForAll(string[], time, style)
-	{
-		if (0 <= style < FIXES_GT_STYLE_COUNT)
-		{
-			#if FIXES_Single
-				return _FIXES_GameTextShow(MAX_PLAYERS, string, time, style);
-			#else
-				return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, string, time, style);
-			#endif
-		}
-		return 0;
-	}
-	
-	#if defined _ALS_GameTextForAll
-		#undef GameTextForAll
-	#else
-		
-		native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
-		
-		#define _ALS_GameTextForAll
-	#endif
-	
-	#define GameTextForAll FIXES_GameTextForAll
-#endif
-
-/* 
- * FIXES_GameTextForPlayer(playerid, string[], time, style)
- * 
- * FIXES:
- *     GameText
- */
-#if FIX_GameText
-	FIXES_GameTextForPlayer(playerid, string[], time, style)
-	{
-		if (0 <= style < FIXES_GT_STYLE_COUNT && IsPlayerConnected(playerid))
-		{
-			#if FIXES_Single
-				return _FIXES_GameTextShow(playerid, string, time, style);
-			#else
-				return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, string, time, style);
-			#endif
-		}
-		return 0;
-	}
-	
-	#if defined _ALS_GameTextForPlayer
-		#undef GameTextForPlayer
-	#else
-		
-		native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
-		
-		#define _ALS_GameTextForPlayer
-	#endif
-	
-	#define GameTextForPlayer FIXES_GameTextForPlayer
 #endif
 
 /* 
