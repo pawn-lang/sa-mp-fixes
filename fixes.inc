@@ -1240,7 +1240,7 @@
 #endif
 
 #if !defined FIX_ApplyAnimation_2
-	#define FIX_ApplyAnimation_2         (1)
+	#define FIX_ApplyAnimation_2         (0)
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation_2)
 	#undef FIX_ApplyAnimation_2
 	#define FIX_ApplyAnimation_2         (0)
@@ -3745,8 +3745,9 @@ public OnGameModeInit()
  *     GetPlayerInterior
  *     OnPlayerSpawn
  *     ApplyAnimation_2
+ *     GameText
  */
-#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_ApplyAnimation_2
+#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_ApplyAnimation_2 || FIX_GameText
 	public OnPlayerSpawn(playerid)
 	{
 		_FIXES_IS_IN_CHARGE()
@@ -3798,6 +3799,56 @@ public OnGameModeInit()
 			// =========================
 			//  END:   ApplyAnimation_2 
 			// =========================
+			
+			// =================
+			//  BEGIN: GameText 
+			// =================
+			#if FIX_GameText
+				// Per-player GTs.
+				
+				#define _FIXES_PER_PLAYER_GT(%0) if (FIXES_gsPlayerPGTShown[%0][playerid] > playerid) PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][%0]), _FIXES_RemoveInternal(FIXES_gsPlayerPGTShown[%0], playerid, MAX_PLAYERS)
+				
+				#if FIX_GameTextStyles
+					_FIXES_PER_PLAYER_GT(13);
+					_FIXES_PER_PLAYER_GT(12);
+					_FIXES_PER_PLAYER_GT(11);
+					_FIXES_PER_PLAYER_GT(10);
+					_FIXES_PER_PLAYER_GT(9);
+					_FIXES_PER_PLAYER_GT(8);
+					_FIXES_PER_PLAYER_GT(7);
+				#endif
+				_FIXES_PER_PLAYER_GT(6);
+				_FIXES_PER_PLAYER_GT(5);
+				_FIXES_PER_PLAYER_GT(4);
+				_FIXES_PER_PLAYER_GT(3);
+				_FIXES_PER_PLAYER_GT(2);
+				_FIXES_PER_PLAYER_GT(1);
+				_FIXES_PER_PLAYER_GT(0);
+				
+				#undef _FIXES_PER_PLAYER_GT
+				
+				// Global GTs.
+				#if FIX_GameTextStyles
+					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[13]),
+					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[12]),
+					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[11]),
+					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[10]),
+					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[9]),
+					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[8]),
+					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[7]);
+				#endif
+				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[6]),
+				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[5]),
+				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[4]),
+				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[3]),
+				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[2]),
+				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[1]),
+				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[0]);
+				
+			#endif
+			// =================
+			//  END:   GameText 
+			// =================
 		}
 		
 		// ======================
@@ -5831,6 +5882,104 @@ public OnGameModeInit()
 #endif
 
 /* 
+ * _FIXES_HideGameTextForPlayer(playerid, style, parr[])
+ * 
+ * Hides a GameText style for one or more players, and accounts for the fact
+ * that they may have different messages being shown.
+ * 
+ * FIXES:
+ *     GameText
+ */
+#if FIX_GameText
+	static stock _FIXES_HideGameTextForPlayer(playerid, style, parr[])
+	{
+		switch (playerid)
+		{
+			case MAX_PLAYERS:
+			{
+				// Remove the global GameText for everyone that can see it.
+				TextDrawHideForAll(FIXES_gsGTStyle[style]);
+			}
+			case INVALID_PLAYER_ID:
+			{
+				// Hide any player-local ones.  This is similar to "foreach".
+				playerid = parr[MAX_PLAYERS],
+				parr[MAX_PLAYERS] = MAX_PLAYERS;
+				for (new next; playerid != MAX_PLAYERS; playerid = next)
+				{
+					PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][style]),
+					next = parr[playerid],
+					parr[playerid] = 0;
+				}
+			}
+			default:
+			{
+				// Remove 
+				PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][style]),
+				_FIXES_RemoveInternal(parr, playerid, MAX_PLAYERS);
+			}
+		}
+	}
+#endif
+
+/* 
+ * _FIXES_HideGameTextTimer(playerid, style)
+ * 
+ * FIXES:
+ *     GameText
+ */
+#if FIX_GameText
+	forward _FIXES_HideGameTextTimer(playerid, style);
+	
+	public _FIXES_HideGameTextTimer(playerid, style)
+	{
+		if (GetTickCount() >= FIXES_gsGTTimer[style][playerid])
+		{
+			// Only hide it if it hasn't been re-shown in the interim.
+			_FIXES_HideGameTextForPlayer(playerid, style, FIXES_gsPlayerPGTShown[style]);
+		}
+	}
+#endif
+
+/* 
+ * _FIXES_GameTextShow(playerid, string[], time, style)
+ * 
+ * FIXES:
+ *     GameText
+ */
+#if FIX_GameText
+	forward _FIXES_GameTextShow(playerid, string[], time, style);
+	
+	public _FIXES_GameTextShow(playerid, string[], time, style)
+	{
+		_FIXES_IS_IN_CHARGE()
+		{
+			if (playerid == MAX_PLAYERS)
+			{
+				_FIXES_HideGameTextForPlayer(INVALID_PLAYER_ID, style, FIXES_gsPlayerPGTShown[style]),
+				TextDrawSetString(FIXES_gsGTStyle[style], string),
+				TextDrawShowForAll(FIXES_gsGTStyle[style]);
+			}
+			else
+			{
+				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[style]),
+				PlayerTextDrawSetString(playerid, FIXES_gsPGTStyle[playerid][style], string),
+				PlayerTextDrawShow(playerid, FIXES_gsPGTStyle[playerid][style]),
+				_FIXES_AddInternal(FIXES_gsPlayerPGTShown[style], playerid, MAX_PLAYERS);
+			}
+			if (time)
+			{
+				// Tiny offset because timers are inaccurate.
+				FIXES_gsGTTimer[style][playerid] = GetTickCount() + time - 10,
+				// Don't need to save the timer's ID.
+				SetTimerEx(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, style);
+			}
+		}
+		return 1;
+	}
+#endif
+
+/* 
  * FIXES_GameTextForAll(string[], time, style)
  * 
  * FIXES:
@@ -5914,6 +6063,38 @@ public OnGameModeInit()
 	#endif
 	
 	#define GameTextForPlayer FIXES_GameTextForPlayer
+#endif
+
+/* 
+ * HideGameTextForAll(style)
+ * 
+ * FIXES:
+ *     HideGameText
+ */
+#if FIX_HideGameText
+	#if defined _ALS_HideGameTextForAll
+		#undef HideGameTextForAll
+	#else
+		#define _ALS_HideGameTextForAll
+	#endif
+	
+	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gscSpace, 0, (%0))
+#endif
+
+/* 
+ * HideGameTextForPlayer(playerid, style)
+ * 
+ * FIXES:
+ *     HideGameText
+ */
+#if FIX_HideGameText
+	#if defined _ALS_HideGameTextForPlayer
+		#undef HideGameTextForPlayer
+	#else
+		#define _ALS_HideGameTextForPlayer
+	#endif
+	
+	#define HideGameTextForPlayer(%1,%0) GameTextForPlayer((%1), FIXES_gscSpace, 0, (%0))
 #endif
 
 /*
@@ -7472,137 +7653,6 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 				(last + 1) % size;
 	}
 }
-
-/* 
- * _FIXES_HideGameTextForPlayer(playerid, s2, parr[])
- * 
- * Hides a GameText style for one or more players, and accounts for the fact
- * that they may have different messages being shown.
- * 
- * FIXES:
- *     GameText
- */
-#if FIX_GameText
-	static stock _FIXES_HideGameTextForPlayer(playerid, s2, parr[])
-	{
-		// s2 is not style - 5 becomes 3, 7 and 8 become 4 and 5.
-		switch (playerid)
-		{
-			case MAX_PLAYERS:
-			{
-				// Remove the global GameText for everyone that can see it.
-				TextDrawHideForAll(FIXES_gsGTStyle[s2]);
-			}
-			case INVALID_PLAYER_ID:
-			{
-				// Hide any player-local ones.  This is similar to "foreach".
-				playerid = parr[MAX_PLAYERS],
-				parr[MAX_PLAYERS] = MAX_PLAYERS;
-				for (new next; playerid != MAX_PLAYERS; playerid = next)
-				{
-					next = parr[playerid],
-					PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][s2]),
-					parr[playerid] = 0;
-				}
-			}
-			default:
-			{
-				// Remove 
-				PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][s2]),
-				_FIXES_RemoveInternal(parr, playerid, MAX_PLAYERS);
-			}
-		}
-	}
-#endif
-
-/* 
- * _FIXES_HideGameTextTimer(playerid, s2)
- * 
- * FIXES:
- *     GameText
- */
-#if FIX_GameText
-	forward _FIXES_HideGameTextTimer(playerid, s2);
-	
-	public _FIXES_HideGameTextTimer(playerid, s2)
-	{
-		if (GetTickCount() >= FIXES_gsGTTimer[s2][playerid])
-		{
-			// Only hide it if it hasn't been re-shown in the interim.
-			_FIXES_HideGameTextForPlayer(playerid, s2, FIXES_gsPlayerPGTShown[s2]);
-		}
-	}
-#endif
-
-/* 
- * _FIXES_GameTextShow(playerid, string[], time, s2)
- * 
- * FIXES:
- *     GameText
- */
-#if FIX_GameText
-	forward _FIXES_GameTextShow(playerid, string[], time, s2);
-	
-	public _FIXES_GameTextShow(playerid, string[], time, s2)
-	{
-		_FIXES_IS_IN_CHARGE()
-		{
-			if (playerid == MAX_PLAYERS)
-			{
-				_FIXES_HideGameTextForPlayer(INVALID_PLAYER_ID, s2, FIXES_gsPlayerPGTShown[s2]),
-				TextDrawSetString(FIXES_gsGTStyle[s2], string),
-				TextDrawShowForAll(FIXES_gsGTStyle[s2]);
-			}
-			else
-			{
-				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[s2]),
-				PlayerTextDrawSetString(playerid, FIXES_gsPGTStyle[playerid][s2], string),
-				PlayerTextDrawShow(playerid, FIXES_gsPGTStyle[playerid][s2]),
-				_FIXES_AddInternal(FIXES_gsPlayerPGTShown[s2], playerid, MAX_PLAYERS);
-			}
-			if (time)
-			{
-				// Tiny offset because timers are inaccurate.
-				FIXES_gsGTTimer[s2][playerid] = GetTickCount() + time - 10,
-				// Don't need to save the timer's ID.
-				SetTimerEx(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, s2);
-			}
-		}
-		return 1;
-	}
-#endif
-
-/* 
- * HideGameTextForAll(style)
- * 
- * FIXES:
- *     HideGameText
- */
-#if FIX_HideGameText
-	#if defined _ALS_HideGameTextForAll
-		#undef HideGameTextForAll
-	#else
-		#define _ALS_HideGameTextForAll
-	#endif
-	
-	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gscSpace, 0, (%0))
-#endif
-
-/* 
- * HideGameTextForPlayer(playerid, style)
- * 
- * FIXES:
- *     HideGameText
- */
-#if FIX_HideGameText
-	#if defined _ALS_HideGameTextForPlayer
-		#undef HideGameTextForPlayer
-	#else
-		#define _ALS_HideGameTextForPlayer
-	#endif
-	
-	#define HideGameTextForPlayer(%1,%0) GameTextForPlayer((%1), FIXES_gscSpace, 0, (%0))
-#endif
 
 /*
  * FIXES_%%%!!!
