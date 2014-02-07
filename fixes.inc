@@ -474,7 +474,7 @@
  * AUTHOR:   xX_Simon_Xx
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/4
  * 
- * FIX:      KEY_CROUCH
+ * FIX:      DriveBy
  * PROBLEM:  If you press KEY_CROUCH while you're passenger and if you are
  *           armed, the player start to aim; if you repress KEY_CROUCH the
  *           player don't return in vehicle.
@@ -843,11 +843,11 @@
 	#define FIX_gpci                     (0)
 #endif
 
-#if !defined FIX_KEY_CROUCH
-	#define FIX_KEY_CROUCH               (1)
-#elseif _FIXES_IS_UNSET(FIX_KEY_CROUCH)
-	#undef FIX_KEY_CROUCH
-	#define FIX_KEY_CROUCH               (0)
+#if !defined FIX_DriveBy
+	#define FIX_DriveBy               (1)
+#elseif _FIXES_IS_UNSET(FIX_DriveBy)
+	#undef FIX_DriveBy
+	#define FIX_DriveBy               (0)
 #endif
 
 #if !defined FIX_SetPlayerCheckpoint
@@ -1445,7 +1445,7 @@ enum e_FIXES_BOOLS (<<= 1)
 	e_FIXES_BOOLS_PUT_IN_TRAIN,
 	e_FIXES_BOOLS_KICKED,
 	e_FIXES_BOOLS_ON_PLAYER_CONNECT,
-	e_FIXES_BOOLS_KEY_CROUCH,
+	e_FIXES_BOOLS_DRIVE_BY,
 	e_FIXES_BOOLS_FIRST_SPAWN
 }
 
@@ -1632,6 +1632,12 @@ static stock
 	 */
 	FIXES_gsLastCash[MAX_PLAYERS],
 	/* 
+	 * FIXES_gsDriveByWeapon[MAX_PLAYERS]
+	 * 
+	 * The weapon to set after re-enter to vehicle.
+	 */
+	FIXES_gsDriveByWeapon[MAX_PLAYERS],
+	/* 
 	 * FIXES_gsCurrentMenu[MAX_PLAYERS]
 	 * 
 	 * The menu the player can currently see.
@@ -1735,6 +1741,12 @@ static stock
 	 * Name of the GameText hide timer function.
 	 */
 	FIXES_gscHideGameTextTimer[] = "_FIXES_HideGameTextTimer",
+	/*
+	 * FIXES_gscDriveBy[]
+	 * 
+	 * Name of the Drive-By timer function.
+	 */
+	FIXES_gscDriveBy[] = "_FIXES_DriveBy",
 	/*
 	 * FIXES_gscNULL[]
 	 * 
@@ -4531,40 +4543,53 @@ public OnGameModeInit()
 #endif
 
 /* 
+ * _FIXES_DriveBy(playerid)
+ * 
+ * FIXES:
+ *     DriveBy
+ */
+#if FIX_DriveBy
+	forward _FIXES_DriveBy(playerid);
+	
+	public  _FIXES_DriveBy(playerid)
+	{
+		if (GetPlayerState(playerid) == PLAYER_STATE_PASSENGER)
+		{
+			SetPlayerArmedWeapon(playerid, FIXES_gsDriveByWeapon[playerid]);
+		}
+		return FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DRIVE_BY;
+	}
+#endif
+
+/* 
  * OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
  * 
  * FIXES:
- *     KEY_CROUCH
+ *     DriveBy
  */
-#if FIX_KEY_CROUCH
+#if FIX_DriveBy
 	public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	{
 		// ===============================
-		//  BEGIN: KEY_CROUCH 
+		//  BEGIN: DriveBy 
 		// ===============================
-		#if FIX_KEY_CROUCH
-			if ((newkeys & KEY_CROUCH) && !(oldkeys & KEY_CROUCH) && GetPlayerState(playerid) == PLAYER_STATE_PASSENGER)
-			{
-				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_KEY_CROUCH)
+		#if FIX_DriveBy
+			#if !FIXES_Single
+				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+			#endif
 				{
-					ApplyAnimation(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1);
-					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_KEY_CROUCH;
-				}
-				else
-				{
-					if (GetPlayerWeapon(playerid) > 0)
+					if ((newkeys & KEY_CROUCH) && !(oldkeys & KEY_CROUCH) && GetPlayerState(playerid) == PLAYER_STATE_PASSENGER && GetPlayerCameraMode(playerid) == 55 && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DRIVE_BY))
 					{
-						FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_KEY_CROUCH;
-					}
-					else
-					{
-						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_KEY_CROUCH;
+						FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon(playerid),
+						FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
+						SetPlayerArmedWeapon(playerid, 0),
+						ApplyAnimation(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1),
+						SetTimerEx(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
 					}
 				}
-			}
 		#endif
 		// =============================
-		//  END: KEY_CROUCH 
+		//  END: DriveBy 
 		// =============================
 		
 		#if defined FIXES_OnPlayerKeyStateChange
@@ -4579,6 +4604,7 @@ public OnGameModeInit()
 	#else
 		#define _ALS_OnPlayerKeyStateChange
 	#endif
+	
 	#define OnPlayerKeyStateChange FIXES_OnPlayerKeyStateChange
 	
 	#if defined FIXES_OnPlayerKeyStateChange
