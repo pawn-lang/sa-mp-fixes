@@ -2128,7 +2128,7 @@ static stock const
 	#define CAM_MODE_CAM_ON_A_STRING            (18)
 	#define CAM_MODE_BEHINDBOAT                 (22)
 	#define CAM_MODE_CAMERA			            (46)
-	#define CAM_MODE_MODE_ROCKETLAUNCHER_HS     (51)
+	#define CAM_MODE_ROCKETLAUNCHER_HS 		    (51)
 	#define CAM_MODE_AIMWEAPON                  (53)
 	#define CAM_MODE_AIMWEAPON_FROMCAR          (55)
 	#define CAM_MODE_DW_HELI_CHASE              (56)
