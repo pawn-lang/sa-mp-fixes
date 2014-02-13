@@ -477,7 +477,7 @@
  * SOLUTION: Set a non floating value for the gang zone co-ordinate.
  * SEE:      "FIXES_GangZoneCreate".
  * AUTHOR:   xX_Simon_Xx/Y_Less
- * POST:     http://forum.sa-mp.com/showpost.php?p=2144109&postcount=273
+ * POST:     http://forum.sa-mp.com/showpost.php?p=2144109
  * 
  * FIX:      SPECIAL_ACTION_PISSING
  * PROBLEM:  "SPECIAL_ACTION_PISSING" isn't defined by default.
@@ -491,7 +491,7 @@
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   xX_Simon_Xx
- * POST:     http://forum.sa-mp.com/showpost.php?p=2693650&postcount=441
+ * POST:     http://forum.sa-mp.com/showpost.php?p=2693650
  * 
  * FIX:      ApplyAnimation
  * PROBLEM:  Passing an invalid animation library in ApplyAnimation causes a
@@ -520,7 +520,7 @@
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   Whitetiger
- * POST:     http://forum.sa-mp.com/showpost.php?p=1706447&postcount=277
+ * POST:     http://forum.sa-mp.com/showpost.php?p=1706447
  * 
  * FIX:      gpci
  * PROBLEM:  "gpci" isn't defined by default.
@@ -547,7 +547,7 @@
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   Whitetiger
- * POST:     http://forum.sa-mp.com/showpost.php?p=1309730&postcount=10
+ * POST:     http://forum.sa-mp.com/showpost.php?p=1309730
  * 
  * ==============
  *  STYLE RULES: 
@@ -3423,13 +3423,13 @@ public OnGameModeInit()
 			if (pbools & e_FIXES_BOOLS_UNCONTROLLABLE)
 			{
 				// Keys based sync blocking, modified based on a post by Slice:
-				// http://forum.sa-mp.com/showpost.php?p=876854&postcount=1
-				// Use "playerid" here as it's a variable that already exists,
-				// but note that after this point, you CANNOT use "playerid" as
-				// it has been "clobbered" (and yes, that's the technical term).
-				// This is just to avoid "statement has no effect" warnings.
-				// ALWAYS return 0 in this case, regardless of what other
-				// callbacks return.
+				// http://forum.sa-mp.com/showpost.php?p=876854  Use "playerid"
+				// here as it's a variable that already exists, but note that
+				// after this point, you CANNOT use "playerid" as it has been
+				// "clobbered" (and yes, that's the technical term).  This is
+				// just to avoid "statement has no effect" warnings.  ALWAYS
+				// return 0 in this case, regardless of what other callbacks
+				// return.
 				#if defined FIXES_OnPlayerUpdate
 					playerid = FIXES_OnPlayerUpdate(playerid);
 				#endif
