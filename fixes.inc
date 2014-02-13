@@ -541,6 +541,12 @@
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   Whitetiger
+ *
+ * FIX:      CAMERAMODES
+ * PROBLEM:  The camera modes for GetPlayerCameraMode are not defined by default
+ * SOLUTION: Define it.
+ * SEE:      N/A.
+ * AUTHOR:   Whitetiger
  * 
  * ==============
  *  STYLE RULES: 
@@ -815,6 +821,17 @@
 #elseif _FIXES_IS_UNSET(FIX_BODYPARTS)
 	#undef FIX_BODYPARTS
 	#define FIX_BODYPARTS                 (0)
+#endif
+
+#if !defined FIX_CAMERAMODES
+	#if defined CAM_MODE_NONE
+		#define FIX_CAMERAMODES          (0)
+	#else
+		#define FIX_CAMERAMODES          (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_CAMERAMODES)
+	#undef FIX_CAMERAMODES
+	#define FIX_CAMERAMODES              (0)
 #endif
 
 #if !defined FIX_DriveBy
@@ -2091,6 +2108,29 @@ static stock const
 	#define BODY_PART_LEFT_LEG                  (7)
 	#define BODY_PART_RIGHT_LEG                 (8)
 	#define BODY_PART_HEAD                      (9)
+#endif
+
+/*
+ * CAMERAMODES
+ *
+ * Because the default SA:MP includes missed these.
+ */
+#if FIX_CAMERAMODES
+	#define CAM_MODE_DISCONNECTED               (-1)
+	#define CAM_MODE_NONE                       (0)
+	#define CAM_MODE_BEHIND_CAR                 (3)
+	#define CAM_MODE_BEHIND_PLAYER              (4)
+	#define CAM_MODE_SNIPER_AIM                 (7)
+	#define CAM_MODE_RPG_AIM                    (8)
+	#define CAM_MODE_PAY_N_SPRAY                (15)
+	#define CAM_MODE_FIRST_PERSON               (16)
+	#define CAM_MODE_CAR_CHASE                  (18)
+	#define CAM_MODE_BEHIND_BOAT                (22)
+	#define CAM_MODE_CAMERA_AIM                 (46)
+	#define CAM_MODE_RPG_HS_AIM                 (51)
+	#define CAM_MODE_AIM_WEAPON                 (53)
+	#define CAM_MODE_DRIVEBY_AIM                (55)
+	#define CAM_MODE_HELI_CHASE                 (56)
 #endif
 
 /* 
