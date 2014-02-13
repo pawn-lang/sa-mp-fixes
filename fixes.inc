@@ -535,6 +535,12 @@
  * SOLUTION: Define them.
  * SEE:      FIX_GetGravity, FIX_gpci, FIX_IsValidVehicle.
  * AUTHOR:   Y_Less
+ *
+ * FIX:      BODYPARTS
+ * PROBLEM:  The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined by default
+ * SOLUTION: Define it.
+ * SEE:      N/A.
+ * AUTHOR:   Whitetiger
  * 
  * ==============
  *  STYLE RULES: 
@@ -798,6 +804,17 @@
 #elseif _FIXES_IS_UNSET(FIX_gpci)
 	#undef FIX_gpci
 	#define FIX_gpci                     (0)
+#endif
+
+#if !defined FIX_BODYPARTS
+	#if defined BODY_PART_TORSO
+		#define FIX_BODYPARTS            (0)
+	#else
+		#define FIX_BODYPARTS            (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_BODYPARTS)
+	#undef FIX_BODYPARTS
+	#define FIX_BODYPARTS                 (0)
 #endif
 
 #if !defined FIX_DriveBy
@@ -2059,6 +2076,21 @@ static stock const
  */
 #if FIX_gpci
 	native gpci(playerid, serial[], maxlen);
+#endif
+
+/*
+ * BODYPARTS
+ *
+ * Because the default SA:MP includes missed these.
+ */
+#if FIX_BODYPARTS
+	#define BODY_PART_TORSO                  	(3)
+	#define BODY_PART_GROIN                     (4)
+	#define BODY_PART_LEFT_ARM                  (5)
+	#define BODY_PART_RIGHT_ARM                 (6)
+	#define BODY_PART_LEFT_LEG                  (7)
+	#define BODY_PART_RIGHT_LEG                 (8)
+	#define BODY_PART_HEAD                      (9)
 #endif
 
 /* 
