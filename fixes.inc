@@ -547,6 +547,7 @@
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   Whitetiger
+ * POST:     http://forum.sa-mp.com/showpost.php?p=1309730&postcount=10
  * 
  * ==============
  *  STYLE RULES: 
