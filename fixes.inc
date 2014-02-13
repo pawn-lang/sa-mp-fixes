@@ -535,6 +535,19 @@
  * SOLUTION: Define them.
  * SEE:      FIX_GetGravity, FIX_gpci, FIX_IsValidVehicle.
  * AUTHOR:   Y_Less
+ *
+ * FIX:      BODYPARTS
+ * PROBLEM:  The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined by default
+ * SOLUTION: Define it.
+ * SEE:      N/A.
+ * AUTHOR:   Whitetiger
+ *
+ * FIX:      CAMERAMODES
+ * PROBLEM:  The camera modes for GetPlayerCameraMode are not defined by default
+ * SOLUTION: Define it.
+ * SEE:      N/A.
+ * AUTHOR:   Whitetiger
+ * POST:     http://forum.sa-mp.com/showpost.php?p=1309730&postcount=10
  * 
  * ==============
  *  STYLE RULES: 
@@ -798,6 +811,28 @@
 #elseif _FIXES_IS_UNSET(FIX_gpci)
 	#undef FIX_gpci
 	#define FIX_gpci                     (0)
+#endif
+
+#if !defined FIX_BODYPARTS
+	#if defined BODY_PART_TORSO
+		#define FIX_BODYPARTS            (0)
+	#else
+		#define FIX_BODYPARTS            (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_BODYPARTS)
+	#undef FIX_BODYPARTS
+	#define FIX_BODYPARTS                 (0)
+#endif
+
+#if !defined FIX_CAMERAMODES
+	#if defined CAM_MODE_NONE
+		#define FIX_CAMERAMODES          (0)
+	#else
+		#define FIX_CAMERAMODES          (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_CAMERAMODES)
+	#undef FIX_CAMERAMODES
+	#define FIX_CAMERAMODES              (0)
 #endif
 
 #if !defined FIX_DriveBy
@@ -2059,6 +2094,44 @@ static stock const
  */
 #if FIX_gpci
 	native gpci(playerid, serial[], maxlen);
+#endif
+
+/*
+ * BODYPARTS
+ *
+ * Because the default SA:MP includes missed these.
+ */
+#if FIX_BODYPARTS
+	#define BODY_PART_TORSO                  	(3)
+	#define BODY_PART_GROIN                     (4)
+	#define BODY_PART_LEFT_ARM                  (5)
+	#define BODY_PART_RIGHT_ARM                 (6)
+	#define BODY_PART_LEFT_LEG                  (7)
+	#define BODY_PART_RIGHT_LEG                 (8)
+	#define BODY_PART_HEAD                      (9)
+#endif
+
+/*
+ * CAMERAMODES
+ *
+ * Because the default SA:MP includes missed these.
+ */
+#if FIX_CAMERAMODES
+	#define CAM_MODE_DISCONNECTED               (-1)
+	#define CAM_MODE_NONE                       (0)
+	#define CAM_MODE_BEHINDCAR                  (3)
+	#define CAM_MODE_FOLLOWPED		            (4)
+	#define CAM_MODE_SNIPER		                (7)
+	#define CAM_MODE_ROCKETLAUNCHER             (8)
+	#define CAM_MODE_FIXED		                (15)
+	#define CAM_MODE_1STPERSON                  (16)
+	#define CAM_MODE_CAM_ON_A_STRING            (18)
+	#define CAM_MODE_BEHINDBOAT                 (22)
+	#define CAM_MODE_CAMERA			            (46)
+	#define CAM_MODE_ROCKETLAUNCHER_HS 		    (51)
+	#define CAM_MODE_AIMWEAPON                  (53)
+	#define CAM_MODE_AIMWEAPON_FROMCAR          (55)
+	#define CAM_MODE_DW_HELI_CHASE              (56)
 #endif
 
 /* 
