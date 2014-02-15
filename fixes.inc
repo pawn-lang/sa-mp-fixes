@@ -1875,10 +1875,10 @@ static stock const
 	FIXES_gscAnimLib[134][] =
 		{
 			"AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
-			"BEACH",        "BENCHPRESS",   "BF_INJECTION", "BIKED",        "BIKEH",
-			"BIKELEAP",     "BIKES",        "BIKEV",        "BIKE_DBZ",     "BLOWJOBZ",
+			"BEACH",        "BENCHPRESS",   "BF_INJECTION", "BIKE_DBZ",     "BIKED",
+			"BIKEH",        "BIKELEAP",     "BIKES",        "BIKEV",        "BLOWJOBZ",
 			"BMX",          "BOMBER",       "BOX",          "BSKTBALL",     "BUDDY",
-			"BUS",          "CAMERA",       "CAR",          "CARRY",        "CAR_CHAT",
+			"BUS",          "CAMERA",       "CAR",          "CAR_CHAT",     "CARRY",
 			"CASINO",       "CHAINSAW",     "CHOPPA",       "CLOTHES",      "COACH",
 			"COLT45",       "COP_AMBIENT",  "COP_DVBYZ",    "CRACK",        "CRIB",
 			"DAM_JUMP",     "DANCING",      "DEALER",       "DILDO",        "DODGE",
