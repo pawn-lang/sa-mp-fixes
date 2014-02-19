@@ -489,7 +489,7 @@
  * SOLUTION: Set a non floating value for the gang zone co-ordinate.
  * SEE:      "FIXES_GangZoneCreate".
  * AUTHOR:   xX_Simon_Xx/Y_Less
- * POST:     http://forum.sa-mp.com/showpost.php?p=2144109&postcount=273
+ * POST:     http://forum.sa-mp.com/showpost.php?p=2144109
  * 
  * FIX:      SPECIAL_ACTION_PISSING
  * PROBLEM:  "SPECIAL_ACTION_PISSING" isn't defined by default.
@@ -503,7 +503,7 @@
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   xX_Simon_Xx
- * POST:     http://forum.sa-mp.com/showpost.php?p=2693650&postcount=441
+ * POST:     http://forum.sa-mp.com/showpost.php?p=2693650
  * 
  * FIX:      ApplyAnimation
  * PROBLEM:  Passing an invalid animation library in ApplyAnimation causes a
@@ -532,7 +532,7 @@
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   Whitetiger
- * POST:     http://forum.sa-mp.com/showpost.php?p=1706447&postcount=277
+ * POST:     http://forum.sa-mp.com/showpost.php?p=1706447
  * 
  * FIX:      gpci
  * PROBLEM:  "gpci" isn't defined by default.
@@ -578,6 +578,19 @@
  * SOLUTION: Show a single space for a game text.  DEFAULTS TO FALSE.
  * SEE:      "HideGameTextForAll", "HideGameTextForPlayer".
  * AUTHOR:   Y_Less
+ *
+ * FIX:      BODYPARTS
+ * PROBLEM:  The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined by default
+ * SOLUTION: Define it.
+ * SEE:      N/A.
+ * AUTHOR:   Whitetiger
+ *
+ * FIX:      CAMERAMODES
+ * PROBLEM:  The camera modes for GetPlayerCameraMode are not defined by default
+ * SOLUTION: Define it.
+ * SEE:      N/A.
+ * AUTHOR:   Whitetiger
+ * POST:     http://forum.sa-mp.com/showpost.php?p=1309730
  * 
  * ==============
  *  STYLE RULES: 
@@ -841,6 +854,28 @@
 #elseif _FIXES_IS_UNSET(FIX_gpci)
 	#undef FIX_gpci
 	#define FIX_gpci                     (0)
+#endif
+
+#if !defined FIX_BODYPARTS
+	#if defined BODY_PART_TORSO
+		#define FIX_BODYPARTS            (0)
+	#else
+		#define FIX_BODYPARTS            (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_BODYPARTS)
+	#undef FIX_BODYPARTS
+	#define FIX_BODYPARTS                 (0)
+#endif
+
+#if !defined FIX_CAMERAMODES
+	#if defined CAM_MODE_NONE
+		#define FIX_CAMERAMODES          (0)
+	#else
+		#define FIX_CAMERAMODES          (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_CAMERAMODES)
+	#undef FIX_CAMERAMODES
+	#define FIX_CAMERAMODES              (0)
 #endif
 
 #if !defined FIX_DriveBy
@@ -2033,9 +2068,9 @@ static stock const
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
 	 */
 #if FIX_ApplyAnimation
-	FIXES_gscAnimIndexes[] =
+	FIXES_gscAnimIndexes[24] =
 		{
-			0, 1, 19, 33, 130, 40, 51, 60, 62, 65, 66, 69, 73, 79, 80, 82, 92, 94, 102, 117, 122, 123, 126
+			0, 2, 21, 35, 42, 42, 53, 62, 64, 67, 68, 71, 75, 81, 82, 84, 94, 96, 104, 121, 126, 127, 130, 134
 		},
 #endif
 	/*
@@ -2044,34 +2079,35 @@ static stock const
 	 * List of valid animation libraries.
 	 */
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
-	FIXES_gscAnimLib[130][] =
+	FIXES_gscAnimLib[134][] =
 		{
-			"ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",      "BEACH",
-			"BENCHPRESS",   "BF_INJECTION", "BIKE_DBZ",     "BIKED",        "BIKEH",
-			"BIKELEAP",     "BIKES",        "BIKEV",        "BMX",          "BOMBER",
-			"BOX",          "BSKTBALL",     "BUDDY",        "BUS",          "CAMERA",
-			"CAR",          "CAR_CHAT",     "CARRY",        "CASINO",       "CHAINSAW",
-			"CHOPPA",       "CLOTHES",      "COACH",        "COLT45",       "COP_AMBIENT",
-			"COP_DVBYZ",    "CRACK",        "CRIB",         "DAM_JUMP",     "DANCING",
-			"DEALER",       "DILDO",        "DODGE",        "DOZER",        "DRIVEBYS",
-			"FAT",          "FIGHT_B",      "FIGHT_C",      "FIGHT_D",      "FIGHT_E",
-			"FINALE",       "FINALE2",      "FLAME",        "FLOWERS",      "FOOD",
-			"FREEWEIGHTS",  "GANGS",        "GFUNK",        "GHANDS",       "GHETTO_DB",
-			"GOGGLES",      "GRAFFITI",     "GRAVEYARD",    "GRENADE",      "GYMNASIUM",
-			"HAIRCUTS",     "HEIST9",       "INT_HOUSE",    "INT_OFFICE",   "INT_SHOP",
-			"JST_BUISNESS", "KART",         "KISSING",      "KNIFE",        "LAPDAN1",
-			"LAPDAN2",      "LAPDAN3",      "LOWRIDER",     "MD_CHASE",     "MD_END",
-			"MEDIC",        "MISC",         "MTB",          "MUSCULAR",     "NEVADA",
-			"ON_LOOKERS",   "OTB",          "PARACHUTE",    "PARK",         "PAULNMAC",
-			"PED",          "PLAYER_DVBYS", "PLAYIDLES",    "POLICE",       "POOL",
-			"POOR",         "PYTHON",       "QUAD",         "QUAD_DBZ",     "RAPPING",
-			"RIFLE",        "RIOT",         "ROB_BANK",     "ROCKET",       "RUNNINGMAN",
-			"RUSTLER",      "RYDER",        "SCRATCHING",   "SHAMAL",       "SHOP",
-			"SHOTGUN",      "SILENCED",     "SKATE",        "SMOKING",      "SNIPER",
-			"SPRAYCAN",     "STRIP",        "SUNBATHE",     "SWAT",         "SWEET",
-			"SWIM",         "SWORD",        "TANK",         "TATTOOS",      "TEC",
-			"TRAIN",        "TRUCK",        "UZI",          "VAN",          "VENDING",
-			"VORTEX",       "WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
+			"AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
+			"BEACH",        "BENCHPRESS",   "BF_INJECTION", "BIKE_DBZ",     "BIKED",
+			"BIKEH",        "BIKELEAP",     "BIKES",        "BIKEV",        "BLOWJOBZ",
+			"BMX",          "BOMBER",       "BOX",          "BSKTBALL",     "BUDDY",
+			"BUS",          "CAMERA",       "CAR",          "CAR_CHAT",     "CARRY",
+			"CASINO",       "CHAINSAW",     "CHOPPA",       "CLOTHES",      "COACH",
+			"COLT45",       "COP_AMBIENT",  "COP_DVBYZ",    "CRACK",        "CRIB",
+			"DAM_JUMP",     "DANCING",      "DEALER",       "DILDO",        "DODGE",
+			"DOZER",        "DRIVEBYS",     "FAT",          "FIGHT_B",      "FIGHT_C",
+			"FIGHT_D",      "FIGHT_E",      "FINALE",       "FINALE2",      "FLAME",
+			"FLOWERS",      "FOOD",         "FREEWEIGHTS",  "GANGS",        "GFUNK",
+			"GHANDS",       "GHETTO_DB",    "GOGGLES",      "GRAFFITI",     "GRAVEYARD",
+			"GRENADE",      "GYMNASIUM",    "HAIRCUTS",     "HEIST9",       "INT_HOUSE",
+			"INT_OFFICE",   "INT_SHOP",     "JST_BUISNESS", "KART",         "KISSING",
+			"KNIFE",        "LAPDAN1",      "LAPDAN2",      "LAPDAN3",      "LOWRIDER",
+			"MD_CHASE",     "MD_END",       "MEDIC",        "MISC",         "MTB",
+			"MUSCULAR",     "NEVADA",       "ON_LOOKERS",   "OTB",          "PARACHUTE",
+			"PARK",         "PAULNMAC",     "PED",          "PLAYER_DVBYS", "PLAYIDLES",
+			"POLICE",       "POOL",         "POOR",         "PYTHON",       "QUAD",
+			"QUAD_DBZ",     "RAPPING",      "RIFLE",        "RIOT",         "ROB_BANK",
+			"ROCKET",       "RUNNINGMAN",   "RUSTLER",      "RYDER",        "SCRATCHING",
+			"SEX",          "SHAMAL",       "SHOP",         "SHOTGUN",      "SILENCED",
+			"SKATE",        "SMOKING",      "SNIPER",       "SNM",          "SPRAYCAN",
+			"STRIP",        "SUNBATHE",     "SWAT",         "SWEET",        "SWIM",
+			"SWORD",        "TANK",         "TATTOOS",      "TEC",          "TRAIN",
+			"TRUCK",        "UZI",          "VAN",          "VENDING",      "VORTEX",
+			"WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
 		},
 #endif
 	/*
@@ -2290,6 +2326,44 @@ static stock const
  */
 #if FIX_gpci
 	native gpci(playerid, serial[], maxlen);
+#endif
+
+/*
+ * BODYPARTS
+ *
+ * Because the default SA:MP includes missed these.
+ */
+#if FIX_BODYPARTS
+	#define BODY_PART_TORSO                  	(3)
+	#define BODY_PART_GROIN                     (4)
+	#define BODY_PART_LEFT_ARM                  (5)
+	#define BODY_PART_RIGHT_ARM                 (6)
+	#define BODY_PART_LEFT_LEG                  (7)
+	#define BODY_PART_RIGHT_LEG                 (8)
+	#define BODY_PART_HEAD                      (9)
+#endif
+
+/*
+ * CAMERAMODES
+ *
+ * Because the default SA:MP includes missed these.
+ */
+#if FIX_CAMERAMODES
+	#define CAM_MODE_DISCONNECTED               (-1)
+	#define CAM_MODE_NONE                       (0)
+	#define CAM_MODE_BEHINDCAR                  (3)
+	#define CAM_MODE_FOLLOWPED		            (4)
+	#define CAM_MODE_SNIPER		                (7)
+	#define CAM_MODE_ROCKETLAUNCHER             (8)
+	#define CAM_MODE_FIXED		                (15)
+	#define CAM_MODE_1STPERSON                  (16)
+	#define CAM_MODE_CAM_ON_A_STRING            (18)
+	#define CAM_MODE_BEHINDBOAT                 (22)
+	#define CAM_MODE_CAMERA			            (46)
+	#define CAM_MODE_ROCKETLAUNCHER_HS 		    (51)
+	#define CAM_MODE_AIMWEAPON                  (53)
+	#define CAM_MODE_AIMWEAPON_FROMCAR          (55)
+	#define CAM_MODE_DW_HELI_CHASE              (56)
 #endif
 
 /* 
@@ -4250,13 +4324,13 @@ public OnGameModeInit()
 			if (pbools & e_FIXES_BOOLS_UNCONTROLLABLE)
 			{
 				// Keys based sync blocking, modified based on a post by Slice:
-				// http://forum.sa-mp.com/showpost.php?p=876854&postcount=1
-				// Use "playerid" here as it's a variable that already exists,
-				// but note that after this point, you CANNOT use "playerid" as
-				// it has been "clobbered" (and yes, that's the technical term).
-				// This is just to avoid "statement has no effect" warnings.
-				// ALWAYS return 0 in this case, regardless of what other
-				// callbacks return.
+				// http://forum.sa-mp.com/showpost.php?p=876854  Use "playerid"
+				// here as it's a variable that already exists, but note that
+				// after this point, you CANNOT use "playerid" as it has been
+				// "clobbered" (and yes, that's the technical term).  This is
+				// just to avoid "statement has no effect" warnings.  ALWAYS
+				// return 0 in this case, regardless of what other callbacks
+				// return.
 				#if defined FIXES_OnPlayerUpdate
 					playerid = FIXES_OnPlayerUpdate(playerid);
 				#endif
@@ -7503,24 +7577,32 @@ public OnGameModeInit()
 	stock FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
 	{
 		new
+			diff,
 			idx = animlib[0] & ~0x20;
+		// Uses a sort of optimised binary search.  The code first identifies the area in the array
+		// in which libraries with this first letter are, then does a binary search using only that
+		// subset of the array.  This used to use an N-ary search that just went linearly through
+		// the identified subset of the array, and that was 5x faster than a simple linear loop over
+		// the whole array.  This new version is 50% faster than even that was.  "E" has no
+		// libraries, but we don't check for that explicitly as it would slow down the more common
+		// code path - and it ends fairly quickly anyway as "upper == lower".
 		if ('A' <= idx <= 'W')
 		{
-			idx = FIXES_gscAnimIndexes[idx - 'A'];
-			while (idx != sizeof (FIXES_gscAnimLib))
+			new
+				upper = FIXES_gscAnimIndexes[idx - ('A' - 1)],
+				lower = FIXES_gscAnimIndexes[idx - 'A'];
+			while (upper != lower)
 			{
-				switch (strcmp(FIXES_gscAnimLib[idx], animlib, true))
+				idx = (upper - lower) / 2 + lower;
+				if ((diff = strcmp(FIXES_gscAnimLib[idx], animlib, true)))
 				{
-					case 1:
-					{
-						return 0;
-					}
-					case 0:
-					{
-						return ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
-					}
+					if (diff > 0) upper = idx;
+					else lower = idx + 1;
 				}
-				++idx;
+				else
+				{
+					return ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
+				}
 			}
 		}
 		return 0;
