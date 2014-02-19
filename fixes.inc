@@ -5067,7 +5067,7 @@ public OnGameModeInit()
  *     Menus
  */
 #if _FIX_Menus
-	#define FIXES_IS_VALID_MENU(%0) (_FIXES_IN_RANGE((%0), 0, MAX_MENUS) && (FIXES_gsValidMenus[_:(%0) >>> 5] & (1 << (_:(%0) & 0x1F))))
+	#define FIXES_IS_VALID_MENU(%0) (_FIXES_IN_RANGE(_:(%0), 0, MAX_MENUS) && (FIXES_gsValidMenus[_:(%0) >>> 5] & (1 << (_:(%0) & 0x1F))))
 #endif
 
 /* 
@@ -7616,7 +7616,7 @@ public OnGameModeInit()
 		// the whole array.  This new version is 50% faster than even that was.  "E" has no
 		// libraries, but we don't check for that explicitly as it would slow down the more common
 		// code path - and it ends fairly quickly anyway as "upper == lower".
-		if (_FIXES_IN_RANGE(idx, 'A', 'X'))
+		if (_FIXES_IN_RANGE(idx, 'A', 'W' + 1))
 		{
 			new
 				upper = FIXES_gscAnimIndexes[idx - ('A' - 1)],
