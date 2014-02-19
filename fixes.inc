@@ -690,6 +690,15 @@
  *     FIXED IN: <Server version of official fix where applicable>
  */
 
+#if defined _INC_SAMP_Community_fixes
+	#endinput
+#endif
+#define _INC_SAMP_Community_fixes
+
+#if !defined _inc_fixes
+	#define _inc_fixes
+#endif
+
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
 // We can add server version compiler code here to only compile fixes that apply
