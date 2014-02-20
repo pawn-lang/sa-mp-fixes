@@ -703,16 +703,15 @@
 
 // We can add server version compiler code here to only compile fixes that apply
 // to the version of the includes for which the user is compiling.
-#if !defined FIX_GetPlayerColor
-	#if defined FIX_GetPlayerColour
-		#define FIX_GetPlayerColor       (FIX_GetPlayerColour)
+#if !defined FIX_GetPlayerColour
+	#if defined FIX_GetPlayerColor && !_FIXES_IS_UNSET(FIX_GetPlayerColor)
+		#define FIX_GetPlayerColour       (FIX_GetPlayerColor)
 	#else
-		#define FIX_GetPlayerColor       (1)
+		#define FIX_GetPlayerColour       (1)
 	#endif
-#endif
-#if _FIXES_IS_UNSET(FIX_GetPlayerColor)
-	#undef FIX_GetPlayerColor
-	#define FIX_GetPlayerColor           (2)
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerColour)
+	#undef FIX_GetPlayerColour
+	#define FIX_GetPlayerColour           (2)
 #endif
 
 #if !defined FIX_FILTERSCRIPT
@@ -1807,7 +1806,7 @@ static stock const
 	 * There are only 100 colours used by default, with SA:MP looping through
 	 * them repeatedly.
 	 */
-#if FIX_GetPlayerColor
+#if FIX_GetPlayerColour
 	FIXES_gscPlayerColours[100] =
 		{
 			0xFF8C13FF, 0xC715FFFF, 0x20B2AAFF, 0xDC143CFF, 0x6495EDFF,
@@ -3336,7 +3335,7 @@ public OnGameModeInit()
  *     OnPlayerSpawn
  *     ApplyAnimation_2
  */
-#if     FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_SetPlayerName            || FIX_GetPlayerColor
+#if     FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_SetPlayerName            || FIX_GetPlayerColour
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_GetPlayerSkin        || FIX_IsPlayerInCheckpoint     || FIX_IsPlayerInRaceCheckpoint || FIX_GetPlayerWeapon
 	#define _FIXES_ON_PLAYER_CONNECT
@@ -3429,7 +3428,7 @@ public OnGameModeInit()
 				// =======================
 				//  BEGIN: SetPlayerColor 
 				// =======================
-				#if FIX_GetPlayerColor
+				#if FIX_GetPlayerColour
 					SetPlayerColor(playerid, FIXES_gscPlayerColours[playerid % 100]);
 				#endif
 				// =======================
