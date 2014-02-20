@@ -1369,7 +1369,7 @@
 	#define FIXES_SilentKick 0
 #elseif _FIXES_IS_UNSET(FIXES_SilentKick)
 	#undef FIXES_SilentKick
-	#define FIXES_SilentKick 0
+	#define FIXES_SilentKick 2
 #endif
 
 /* 
@@ -1417,10 +1417,10 @@
  * other or bugs.
  */
 #if !defined FIXES_Single
-	#define FIXES_Single (0)
+	#define FIXES_Single (1)
 #elseif _FIXES_IS_UNSET(FIXES_Single)
 	#undef FIXES_Single
-	#define FIXES_Single (1)
+	#define FIXES_Single (2)
 #endif
 
 /* 
@@ -1495,7 +1495,8 @@ enum e_FIXES_SETTINGS (<<= 1)
 	e_FIXES_SETTINGS_MENU_SET,
 	e_FIXES_SETTINGS_ENDING,
 	e_FIXES_SETTINGS_ENDED,
-	e_FIXES_SETTINGS_NO_GAME_TEXT
+	e_FIXES_SETTINGS_NO_GAME_TEXT,
+	e_FIXES_SETTINGS_SECOND_USE
 }
 
 /* 
@@ -1657,7 +1658,7 @@ static stock
 	 * 
 	 * A collection of 1-bit options, compressed together to save space.
 	 */
-	e_FIXES_SETTINGS:FIXES_gsSettings,
+	e_FIXES_SETTINGS:FIXES_gsSettings = e_FIXES_SETTINGS_SECOND_USE,
 	/* 
 	 * FIXES_gsObjectSlots[_FIXES_CEILDIV(MAX_PLAYERS, _FIXES_ATTACHMENTS)]
 	 * 
@@ -2289,11 +2290,26 @@ static stock const
 	 */
 	FIXES_gscReturnProperty[] = "FIXES_gscReturnProperty",
 	/*
+	 * FIXES_gscSingleProperty[]
+	 * 
+	 * The property for checking this is the only running script with fixes in.
+	 */
+	FIXES_gscSingleProperty[] = "FIXES_gscSingleProperty",
+	/*
 	 * FIXES_gscMenuProperty[]
 	 * 
 	 * The property for a player's current menu.
 	 */
-	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty";
+	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
+	/*
+	 * FIXES_gscFixesError[]
+	 * 
+	 * Error shown when multiple scripts are detected.
+	 */
+	FIXES_gscFixesError[] = "\7\7\7\7\7\r\n" \
+		"*** fixes.inc error: Running multiple scripts compiled with \"fixes.inc\"...\r\n" \
+		"***     Please compile your modes with \"#define FIXES_Single 0\" at the top, as\r\n" \
+		"***     this setting is no longer the default (to improve the more common case).";
 
 /* 
  * _FIXES_KEY_AIM
@@ -2890,8 +2906,21 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
  */
 public OnFilterScriptInit()
 {
-		// It is possible for this to be the only thing done in this function!
-		_FIXES_gIsFilterscript = true;
+	// It is possible for this to be the only thing done in this function!
+	_FIXES_gIsFilterscript = true;
+	
+	#if FIXES_Single
+		// Check this really IS the only script running.
+		if (existproperty(5, FIXES_gscSingleProperty))
+		{
+			print(FIXES_gscFixesError);
+		}
+		else
+		{
+			FIXES_gsSettings &= ~e_FIXES_SETTINGS_SECOND_USE,
+			setproperty(5, FIXES_gscSingleProperty, 1);
+		}
+	#endif
 	
 	// =================
 	//  BEGIN: GameText 
@@ -2987,6 +3016,21 @@ public OnFilterScriptInit()
  */
 public OnGameModeInit()
 {
+	#if FIXES_Single
+		// Check this really IS the only script running.  Properties reset when
+		// a gamemode restarts, so we don't have to worry about filterscipts
+		// detecting themselves.
+		if (FIXES_gsSettings & e_FIXES_SETTINGS_SECOND_USE && existproperty(5, FIXES_gscSingleProperty))
+		{
+			print(FIXES_gscFixesError);
+		}
+		else
+		{
+			FIXES_gsSettings |= e_FIXES_SETTINGS_SECOND_USE,
+			setproperty(5, FIXES_gscSingleProperty, 1);
+		}
+	#endif
+	
 	// =============================
 	//  BEGIN: AllowInteriorWeapons 
 	// =============================
@@ -6079,7 +6123,7 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
 
 #if FIX_GameText
-	FIXES_GameTextForPlayer(playerid, string[], time, style)
+	stock FIXES_GameTextForPlayer(playerid, string[], time, style)
 	{
 		if (_FIXES_IN_RANGE(style, 0, FIXES_GT_STYLE_COUNT) && IsPlayerConnected(playerid))
 		{
