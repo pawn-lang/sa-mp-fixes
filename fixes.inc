@@ -1149,11 +1149,7 @@
 #endif
 
 #if !defined FIX_OnPlayerCommandText
-	#if defined _ALS_OnPlayerCommandText
-		#define FIX_OnPlayerCommandText  (0)
-	#else
-		#define FIX_OnPlayerCommandText  (1)
-	#endif
+	#define FIX_OnPlayerCommandText      (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerCommandText)
 	#undef FIX_OnPlayerCommandText
 	#define FIX_OnPlayerCommandText      (2)
@@ -2448,6 +2444,9 @@ static stock const
  * FIXES:
  *     IsPlayerConnected
  */
+
+native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
+
 #if FIX_IsPlayerConnected
 	stock FIXES_IsPlayerConnected(playerid)
 	{
@@ -2459,13 +2458,9 @@ static stock const
 	}
 	
 	#if defined _ALS_IsPlayerConnected
-		#undef IsPlayerConnected
-	#else
-		
-		native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
-		
-		#define _ALS_IsPlayerConnected
+		#error _ALS_IsPlayerConnected defined
 	#endif
+	#define _ALS_IsPlayerConnected
 	#define IsPlayerConnected FIXES_IsPlayerConnected
 #endif
 
@@ -2982,10 +2977,9 @@ public OnFilterScriptInit()
 }
 
 #if defined _ALS_OnFilterScriptInit
-	#undef OnFilterScriptInit
-#else
-	#define _ALS_OnFilterScriptInit
+	#error _ALS_OnFilterScriptInit defined
 #endif
+#define _ALS_OnFilterScriptInit
 #define OnFilterScriptInit FIXES_OnFilterScriptInit
 
 #if defined FIXES_OnFilterScriptInit
@@ -3059,10 +3053,9 @@ public OnGameModeInit()
 }
 
 #if defined _ALS_OnGameModeInit
-	#undef OnGameModeInit
-#else
-	#define _ALS_OnGameModeInit
+	#error _ALS_OnGameModeInit defined
 #endif
+#define _ALS_OnGameModeInit
 #define OnGameModeInit FIXES_OnGameModeInit
 
 #if defined FIXES_OnGameModeInit
@@ -3107,10 +3100,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnGameModeExit
-		#undef OnGameModeExit
-	#else
-		#define _ALS_OnGameModeExit
+		#error _ALS_OnGameModeExit defined
 	#endif
+	#define _ALS_OnGameModeExit
 	#define OnGameModeExit FIXES_OnGameModeExit
 	
 	#if defined FIXES_OnGameModeExit
@@ -3228,10 +3220,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnFilterScriptExit
-		#undef OnFilterScriptExit
-	#else
-		#define _ALS_OnFilterScriptExit
+		#error _ALS_OnFilterScriptExit defined
 	#endif
+	#define _ALS_OnFilterScriptExit
 	
 	#define OnFilterScriptExit FIXES_OnFilterScriptExit
 	
@@ -3274,10 +3265,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerCommandText
-		#undef OnPlayerCommandText
-	#else
-		#define _ALS_OnPlayerCommandText
+		#error _ALS_OnPlayerCommandText defined
 	#endif
+	#define _ALS_OnPlayerCommandText
 	#define OnPlayerCommandText FIXES_OnPlayerCommandText
 	
 	#if defined FIXES_OnPlayerCommandText
@@ -3556,10 +3546,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerConnect
-		#undef OnPlayerConnect
-	#else
-		#define _ALS_OnPlayerConnect
+		#error _ALS_OnPlayerConnect defined
 	#endif
+	#define _ALS_OnPlayerConnect
 	#define OnPlayerConnect FIXES_OnPlayerConnect
 	
 	#if defined FIXES_OnPlayerConnect
@@ -3679,10 +3668,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerDisconnect
-		#undef OnPlayerDisconnect
-	#else
-		#define _ALS_OnPlayerDisconnect
+		#error _ALS_OnPlayerDisconnect defined
 	#endif
+	#define _ALS_OnPlayerDisconnect
 	#define OnPlayerDisconnect FIXES_OnPlayerDisconnect
 	
 	#if defined FIXES_OnPlayerDisconnect
@@ -3752,10 +3740,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerDeath
-		#undef OnPlayerDeath
-	#else
-		#define _ALS_OnPlayerDeath
+		#error _ALS_OnPlayerDeath defined
 	#endif
+	#define _ALS_OnPlayerDeath
 	#define OnPlayerDeath FIXES_OnPlayerDeath
 	
 	#if defined FIXES_OnPlayerDeath
@@ -3988,10 +3975,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerSpawn
-		#undef OnPlayerSpawn
-	#else
-		#define _ALS_OnPlayerSpawn
+		#error _ALS_OnPlayerSpawn defined
 	#endif
+	#define _ALS_OnPlayerSpawn
 	#define OnPlayerSpawn FIXES_OnPlayerSpawn
 	
 	#if defined FIXES_OnPlayerSpawn
@@ -4065,10 +4051,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnVehicleMod
-		#undef OnVehicleMod
-	#else
-		#define _ALS_OnVehicleMod
+		#error _ALS_OnVehicleMod defined
 	#endif
+	#define _ALS_OnVehicleMod
 	#define OnVehicleMod FIXES_OnVehicleMod
 	
 	#if defined FIXES_OnVehicleMod
@@ -4391,10 +4376,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerUpdate
-		#undef OnPlayerUpdate
-	#else
-		#define _ALS_OnPlayerUpdate
+		#error _ALS_OnPlayerUpdate defined
 	#endif
+	#define _ALS_OnPlayerUpdate
 	#define OnPlayerUpdate FIXES_OnPlayerUpdate
 	
 	#if defined FIXES_OnPlayerUpdate
@@ -4687,10 +4671,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerInteriorChange
-		#undef OnPlayerInteriorChange
-	#else
-		#define _ALS_OnPlayerInteriorChange
+		#error _ALS_OnPlayerInteriorChange defined
 	#endif
+	#define _ALS_OnPlayerInteriorChange
 	#define OnPlayerInteriorChange FIXES_OnPlayerInteriorChange
 	
 	#if defined FIXES_OnPlayerInteriorChange
@@ -4756,10 +4739,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerKeyStateChange
-		#undef OnPlayerKeyStateChange
-	#else
-		#define _ALS_OnPlayerKeyStateChange
+		#error _ALS_OnPlayerKeyStateChange defined
 	#endif
+	#define _ALS_OnPlayerKeyStateChange
 	
 	#define OnPlayerKeyStateChange FIXES_OnPlayerKeyStateChange
 	
@@ -4798,10 +4780,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerEnterVehicle
-		#undef OnPlayerEnterVehicle
-	#else
-		#define _ALS_OnPlayerEnterVehicle
+		#error _ALS_OnPlayerEnterVehicle defined
 	#endif
+	#define _ALS_OnPlayerEnterVehicle
 	#define OnPlayerEnterVehicle FIXES_OnPlayerEnterVehicle
 	
 	#if defined FIXES_OnPlayerEnterVehicle
@@ -4839,10 +4820,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerExitVehicle
-		#undef OnPlayerExitVehicle
-	#else
-		#define _ALS_OnPlayerExitVehicle
+		#error _ALS_OnPlayerExitVehicle defined
 	#endif
+	#define _ALS_OnPlayerExitVehicle
 	#define OnPlayerExitVehicle FIXES_OnPlayerExitVehicle
 	
 	#if defined FIXES_OnPlayerExitVehicle
@@ -4964,10 +4944,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerSelectedMenuRow
-		#undef OnPlayerSelectedMenuRow
-	#else
-		#define _ALS_OnPlayerSelectedMenuRow
+		#error _ALS_OnPlayerSelectedMenuRow defined
 	#endif
+	#define _ALS_OnPlayerSelectedMenuRow
 	#define OnPlayerSelectedMenuRow FIXES_OnPlayerSelectedMenuRow
 	
 	#if defined FIXES_OnPlayerSelectedMenuRow
@@ -5049,10 +5028,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerExitedMenu
-		#undef OnPlayerExitedMenu
-	#else
-		#define _ALS_OnPlayerExitedMenu
+		#error _ALS_OnPlayerExitedMenu defined
 	#endif
+	#define _ALS_OnPlayerExitedMenu
 	#define OnPlayerExitedMenu FIXES_OnPlayerExitedMenu
 	
 	#if defined FIXES_OnPlayerExitedMenu
@@ -5639,10 +5617,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerStateChange
-		#undef OnPlayerStateChange
-	#else
-		#define _ALS_OnPlayerStateChange
+		#error _ALS_OnPlayerStateChange defined
 	#endif
+	#define _ALS_OnPlayerStateChange
 	#define OnPlayerStateChange FIXES_OnPlayerStateChange
 	
 	#if defined FIXES_OnPlayerStateChange
@@ -6177,10 +6154,9 @@ public OnGameModeInit()
  */
 #if FIX_HideGameText
 	#if defined _ALS_HideGameTextForAll
-		#undef HideGameTextForAll
-	#else
-		#define _ALS_HideGameTextForAll
+		#error _ALS_HideGameTextForAll defined
 	#endif
+	#define _ALS_HideGameTextForAll
 	
 	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gscSpace, 0, (%0))
 #endif
@@ -6193,10 +6169,9 @@ public OnGameModeInit()
  */
 #if FIX_HideGameText
 	#if defined _ALS_HideGameTextForPlayer
-		#undef HideGameTextForPlayer
-	#else
-		#define _ALS_HideGameTextForPlayer
+		#error _ALS_HideGameTextForPlayer defined
 	#endif
+	#define _ALS_HideGameTextForPlayer
 	
 	#define HideGameTextForPlayer(%1,%0) GameTextForPlayer((%1), FIXES_gscSpace, 0, (%0))
 #endif
@@ -6496,10 +6471,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnPlayerClickMap
-		#undef OnPlayerClickMap
-	#else
-		#define _ALS_OnPlayerClickMap
+		#error _ALS_OnPlayerClickMap defined
 	#endif
+	#define _ALS_OnPlayerClickMap
 	#define OnPlayerClickMap FIXES_OnPlayerClickMap
 	
 	#if defined FIXES_OnPlayerClickMap
@@ -6815,10 +6789,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_OnDialogResponse
-		#undef OnDialogResponse
-	#else
-		#define _ALS_OnDialogResponse
+		#error _ALS_OnDialogResponse defined
 	#endif
+	#define _ALS_OnDialogResponse
 	#define OnDialogResponse FIXES_OnDialogResponse
 	
 	#if defined FIXES_OnDialogResponse
@@ -6847,10 +6820,9 @@ public OnGameModeInit()
 	}
 	
 	#if defined _ALS_GetPlayerDialog
-		#undef GetPlayerDialog
-	#else
-		#define _ALS_GetPlayerDialog
+		#error _ALS_GetPlayerDialog defined
 	#endif
+	#define _ALS_GetPlayerDialog
 	#define GetPlayerDialog FIXES_GetPlayerDialog
 #endif
 
