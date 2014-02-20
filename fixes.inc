@@ -1435,17 +1435,6 @@
 #endif
 
 /* 
- * _FIXES_IS_PLAYER_CONNECTED
- * 
- * Call "IsPlayerConnected", without calling our hooked version.
- */
-#if FIX_IsPlayerConnected
-	#define _FIXES_IS_PLAYER_CONNECTED BAD_IsPlayerConnected
-#else
-	#define _FIXES_IS_PLAYER_CONNECTED IsPlayerConnected
-#endif
-
-/* 
  * E_FIXES_WORLDBOUND_DATA
  * 
  * Store data for each player on their worldbound data.
@@ -2932,7 +2921,7 @@ public OnFilterScriptInit()
 	#if FIX_OnPlayerConnect || _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 		for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 		{
-			if (_FIXES_IS_PLAYER_CONNECTED(playerid))
+			if (BAD_IsPlayerConnected(playerid))
 			{
 				// No "defined" checks - if you don't want this fix because
 				// you don't have an "OnPlayerConnect", just don't use it!
@@ -3756,6 +3745,9 @@ public OnGameModeInit()
  * FIXES:
  *     SpawnPlayer
  */
+
+native BAD_SpawnPlayer(playerid) = SpawnPlayer;
+
 #if FIX_SpawnPlayer
 	stock FIXES_SpawnPlayer(playerid)
 	{
@@ -3778,9 +3770,6 @@ public OnGameModeInit()
 	#if defined _ALS_SpawnPlayer
 		#undef SpawnPlayer
 	#else
-		
-		native BAD_SpawnPlayer(playerid) = SpawnPlayer;
-		
 		#define _ALS_SpawnPlayer
 	#endif
 	#define SpawnPlayer FIXES_SpawnPlayer
@@ -3792,6 +3781,9 @@ public OnGameModeInit()
  * FIXES:
  *     SetPlayerName
  */
+
+native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
+
 #if FIX_SetPlayerName
 	stock FIXES_SetPlayerName(playerid, name[])
 	{
@@ -3820,9 +3812,6 @@ public OnGameModeInit()
 	#if defined _ALS_SetPlayerName
 		#undef SetPlayerName
 	#else
-		
-		native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
-		
 		#define _ALS_SetPlayerName
 	#endif
 	#define SetPlayerName FIXES_SetPlayerName
@@ -4068,6 +4057,9 @@ public OnGameModeInit()
  *     GetPlayerSkin
  *     SetPlayerSkin
  */
+
+native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
+
 #if FIX_GetPlayerSkin || FIX_SetPlayerSkin
 	stock FIXES_SetPlayerSkin(playerid, skinid)
 	{
@@ -4138,9 +4130,6 @@ public OnGameModeInit()
 	#if defined _ALS_SetPlayerSkin
 		#undef SetPlayerSkin
 	#else
-		
-		native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
-		
 		#define _ALS_SetPlayerSkin
 	#endif
 	#define SetPlayerSkin FIXES_SetPlayerSkin
@@ -4152,6 +4141,9 @@ public OnGameModeInit()
  * FIXES:
  *     GetPlayerSkin
  */
+
+native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
+
 #if FIX_GetPlayerSkin
 	stock FIXES_GetPlayerSkin(playerid)
 	{
@@ -4165,9 +4157,6 @@ public OnGameModeInit()
 	#if defined _ALS_GetPlayerSkin
 		#undef GetPlayerSkin
 	#else
-		
-		native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
-		
 		#define _ALS_GetPlayerSkin
 	#endif
 	#define GetPlayerSkin FIXES_GetPlayerSkin
@@ -4179,6 +4168,9 @@ public OnGameModeInit()
  * FIXES:
  *     GetWeaponName
  */
+
+native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
+
 #if FIX_GetWeaponName
 	stock FIXES_GetWeaponName(weaponid, weapon[], len)
 	{
@@ -4216,9 +4208,6 @@ public OnGameModeInit()
 	#if defined _ALS_GetWeaponName
 		#undef GetWeaponName
 	#else
-		
-		native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
-		
 		#define _ALS_GetWeaponName
 	#endif
 	#define GetWeaponName FIXES_GetWeaponName
@@ -4394,6 +4383,9 @@ public OnGameModeInit()
  * FIXES:
  *     SetPlayerWorldBounds
  */
+
+native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min) = SetPlayerWorldBounds;
+
 #if FIX_SetPlayerWorldBounds
 	#if FIXES_Single
 		stock FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
@@ -4521,9 +4513,6 @@ public OnGameModeInit()
 	#if defined _ALS_SetPlayerWorldBounds
 		#undef SetPlayerWorldBounds
 	#else
-		
-		native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min) = SetPlayerWorldBounds;
-		
 		#define _ALS_SetPlayerWorldBounds
 	#endif
 	#define SetPlayerWorldBounds FIXES_SetPlayerWorldBounds
@@ -4535,6 +4524,9 @@ public OnGameModeInit()
  * FIXES:
  *     TogglePlayerControllable
  */
+
+native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable;
+
 #if FIX_TogglePlayerControllable
 	#if FIXES_Single
 		stock FIXES_TogglePlayerControllable(playerid, toggle)
@@ -4587,9 +4579,6 @@ public OnGameModeInit()
 	#if defined _ALS_TogglePlayerControllable
 		#undef TogglePlayerControllable
 	#else
-		
-		native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable;
-		
 		#define _ALS_TogglePlayerControllable
 	#endif
 	#define TogglePlayerControllable FIXES_TogglePlayerControllable
@@ -5054,6 +5043,9 @@ public OnGameModeInit()
  * FIXES:
  *     Menus
  */
+
+native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
+
 #if _FIX_Menus
 	#if !FIXES_Single
 		forward _FIXES_CreateMenu(ret);
@@ -5082,9 +5074,6 @@ public OnGameModeInit()
 	#if defined _ALS_CreateMenu
 		#undef CreateMenu
 	#else
-		
-		native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
-		
 		#define _ALS_CreateMenu
 	#endif
 	#define CreateMenu FIXES_CreateMenu
@@ -5128,6 +5117,9 @@ public OnGameModeInit()
  * FIXES:
  *     GetPlayerMenu
  */
+
+native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
+
 #if _FIX_Menus || FIX_GetPlayerMenu
 	#if _FIX_Menus && !FIXES_Single
 		forward _FIXES_DestroyMenu(ret);
@@ -5177,9 +5169,6 @@ public OnGameModeInit()
 	#if defined _ALS_DestroyMenu
 		#undef DestroyMenu
 	#else
-		
-		native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
-		
 		#define _ALS_DestroyMenu
 	#endif
 	#define DestroyMenu FIXES_DestroyMenu
@@ -5191,6 +5180,9 @@ public OnGameModeInit()
  * FIXES:
  *     AddMenuItem
  */
+
+native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
+
 #if FIX_AddMenuItem
 	stock FIXES_AddMenuItem(Menu:menuid, column, const menutext[])
 	{
@@ -5204,9 +5196,6 @@ public OnGameModeInit()
 	#if defined _ALS_AddMenuItem
 		#undef AddMenuItem
 	#else
-		
-		native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
-		
 		#define _ALS_AddMenuItem
 	#endif
 	#define AddMenuItem FIXES_AddMenuItem
@@ -5218,6 +5207,9 @@ public OnGameModeInit()
  * FIXES:
  *     SetMenuColumnHeader
  */
+
+native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetMenuColumnHeader;
+
 #if FIX_SetMenuColumnHeader
 	stock FIXES_SetMenuColumnHeader(Menu:menuid, column, const columnheader[])
 	{
@@ -5231,9 +5223,6 @@ public OnGameModeInit()
 	#if defined _ALS_SetMenuColumnHeader
 		#undef SetMenuColumnHeader
 	#else
-		
-		native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetMenuColumnHeader;
-		
 		#define _ALS_SetMenuColumnHeader
 	#endif
 	#define SetMenuColumnHeader FIXES_SetMenuColumnHeader
@@ -5246,6 +5235,9 @@ public OnGameModeInit()
  *     ShowMenuForPlayer
  *     GetPlayerMenu
  */
+
+native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
+
 #if FIX_ShowMenuForPlayer || FIX_GetPlayerMenu
 	stock FIXES_ShowMenuForPlayer(Menu:menuid, playerid)
 	{
@@ -5274,9 +5266,6 @@ public OnGameModeInit()
 	#if defined _ALS_ShowMenuForPlayer
 		#undef ShowMenuForPlayer
 	#else
-		
-		native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
-		
 		#define _ALS_ShowMenuForPlayer
 	#endif
 	#define ShowMenuForPlayer FIXES_ShowMenuForPlayer
@@ -5290,6 +5279,9 @@ public OnGameModeInit()
  *     HideMenuForPlayer_2
  *     GetPlayerMenu
  */
+
+native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
+
 #if FIX_HideMenuForPlayer || FIX_GetPlayerMenu
 	stock FIXES_HideMenuForPlayer(Menu:menuid, playerid)
 	{
@@ -5326,9 +5318,6 @@ public OnGameModeInit()
 	#if defined _ALS_HideMenuForPlayer
 		#undef HideMenuForPlayer
 	#else
-		
-		native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
-		
 		#define _ALS_HideMenuForPlayer
 	#endif
 	#define HideMenuForPlayer FIXES_HideMenuForPlayer
@@ -5340,6 +5329,9 @@ public OnGameModeInit()
  * FIXES:
  *     DisableMenu
  */
+
+native BAD_DisableMenu(Menu:menuid) = DisableMenu;
+
 #if FIX_DisableMenu
 	stock FIXES_DisableMenu(Menu:menuid)
 	{
@@ -5353,9 +5345,6 @@ public OnGameModeInit()
 	#if defined _ALS_DisableMenu
 		#undef DisableMenu
 	#else
-		
-		native BAD_DisableMenu(Menu:menuid) = DisableMenu;
-		
 		#define _ALS_DisableMenu
 	#endif
 	#define DisableMenu FIXES_DisableMenu
@@ -5367,6 +5356,9 @@ public OnGameModeInit()
  * FIXES:
  *     DisableMenuRow
  */
+
+native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
+
 #if FIX_DisableMenuRow
 	stock FIXES_DisableMenuRow(Menu:menuid, row)
 	{
@@ -5380,9 +5372,6 @@ public OnGameModeInit()
 	#if defined _ALS_DisableMenuRow
 		#undef DisableMenuRow
 	#else
-		
-		native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
-		
 		#define _ALS_DisableMenuRow
 	#endif
 	#define DisableMenuRow FIXES_DisableMenuRow
@@ -5394,6 +5383,9 @@ public OnGameModeInit()
  * FIXES:
  *     GetPlayerMenu
  */
+
+native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
+
 #if FIX_GetPlayerMenu
 	stock Menu:FIXES_GetPlayerMenu(playerid)
 	{
@@ -5407,9 +5399,6 @@ public OnGameModeInit()
 	#if defined _ALS_GetPlayerMenu
 		#undef GetPlayerMenu
 	#else
-		
-		native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
-		
 		#define _ALS_GetPlayerMenu
 	#endif
 	#define GetPlayerMenu FIXES_GetPlayerMenu
@@ -5633,6 +5622,9 @@ public OnGameModeInit()
  * FIXES:
  *     HydraSniper
  */
+
+native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
+
 #if FIX_HydraSniper
 	stock FIXES_GivePlayerWeapon(playerid, weaponid, ammo)
 	{
@@ -5661,9 +5653,6 @@ public OnGameModeInit()
 	#if defined _ALS_GivePlayerWeapon
 		#undef GivePlayerWeapon
 	#else
-		
-		native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
-		
 		#define _ALS_GivePlayerWeapon
 	#endif
 	#define GivePlayerWeapon FIXES_GivePlayerWeapon
@@ -5675,6 +5664,9 @@ public OnGameModeInit()
  * FIXES:
  *     GetPlayerWeapon
  */
+
+native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
+
 #if FIX_GetPlayerWeapon
 	stock FIXES_SetPlayerArmedWeapon(playerid, weaponid)
 	{
@@ -5709,9 +5701,6 @@ public OnGameModeInit()
 	#if defined _ALS_SetPlayerArmedWeapon
 		#undef SetPlayerArmedWeapon
 	#else
-		
-		native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
-		
 		#define _ALS_SetPlayerArmedWeapon
 	#endif
 	#define SetPlayerArmedWeapon FIXES_SetPlayerArmedWeapon
@@ -5723,6 +5712,9 @@ public OnGameModeInit()
  * FIXES:
  *     GetPlayerWeapon
  */
+
+native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
+
 #if FIX_GetPlayerWeapon
 	stock FIXES_GetPlayerWeapon(playerid)
 	{
@@ -5743,9 +5735,6 @@ public OnGameModeInit()
 	#if defined _ALS_GetPlayerWeapon
 		#undef GetPlayerWeapon
 	#else
-		
-		native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
-		
 		#define _ALS_GetPlayerWeapon
 	#endif
 	#define GetPlayerWeapon FIXES_GetPlayerWeapon
@@ -5757,6 +5746,9 @@ public OnGameModeInit()
  * FIXES:
  *     PutPlayerInVehicle
  */
+
+native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
+
 #if FIX_PutPlayerInVehicle || FIX_TrainExit
 	#if FIXES_Single
 		stock FIXES_PutPlayerInVehicle(playerid, vehicleid, seatid)
@@ -5904,9 +5896,6 @@ public OnGameModeInit()
 	#if defined _ALS_PutPlayerInVehicle
 		#undef PutPlayerInVehicle
 	#else
-		
-		native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
-		
 		#define _ALS_PutPlayerInVehicle
 	#endif
 	#define PutPlayerInVehicle FIXES_PutPlayerInVehicle
@@ -5918,6 +5907,9 @@ public OnGameModeInit()
  * FIXES:
  *     SetPlayerCheckpoint
  */
+
+native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
+
 #if FIX_SetPlayerCheckpoint
 	stock FIXES_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
 	{
@@ -5929,9 +5921,6 @@ public OnGameModeInit()
 	#if defined _ALS_SetPlayerCheckpoint
 		#undef SetPlayerCheckpoint
 	#else
-		
-		native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
-		
 		#define _ALS_SetPlayerCheckpoint
 	#endif
 	#define SetPlayerCheckpoint FIXES_SetPlayerCheckpoint
@@ -5943,6 +5932,9 @@ public OnGameModeInit()
  * FIXES:
  *     SetPlayerRaceCheckpoint
  */
+
+native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size) = SetPlayerRaceCheckpoint;
+
 #if FIX_SetPlayerRaceCheckpoint
 	stock FIXES_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
 	{
@@ -5954,9 +5946,6 @@ public OnGameModeInit()
 	#if defined _ALS_SetPlayerRaceCheckpoint
 		#undef SetPlayerRaceCheckpoint
 	#else
-		
-		native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size) = SetPlayerRaceCheckpoint;
-		
 		#define _ALS_SetPlayerRaceCheckpoint
 	#endif
 	#define SetPlayerRaceCheckpoint FIXES_SetPlayerRaceCheckpoint
@@ -6066,6 +6055,9 @@ public OnGameModeInit()
  * FIXES:
  *     GameText
  */
+
+native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
+
 #if FIX_GameText
 	stock FIXES_GameTextForAll(string[], time, style)
 	{
@@ -6094,9 +6086,6 @@ public OnGameModeInit()
 	#if defined _ALS_GameTextForAll
 		#undef GameTextForAll
 	#else
-		
-		native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
-		
 		#define _ALS_GameTextForAll
 	#endif
 	
@@ -6109,6 +6098,9 @@ public OnGameModeInit()
  * FIXES:
  *     GameText
  */
+
+native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
+
 #if FIX_GameText
 	FIXES_GameTextForPlayer(playerid, string[], time, style)
 	{
@@ -6137,9 +6129,6 @@ public OnGameModeInit()
 	#if defined _ALS_GameTextForPlayer
 		#undef GameTextForPlayer
 	#else
-		
-		native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
-		
 		#define _ALS_GameTextForPlayer
 	#endif
 	
@@ -6182,6 +6171,9 @@ public OnGameModeInit()
  * FIXES:
  *     CreatePlayerTextDraw
  */
+
+native Text:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
+
 #if FIX_CreatePlayerTextDraw
 	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
 	{
@@ -6198,9 +6190,6 @@ public OnGameModeInit()
 	#if defined _ALS_CreatePlayerTextDraw
 		#undef CreatePlayerTextDraw
 	#else
-		
-		native Text:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
-		
 		#define _ALS_CreatePlayerTextDraw
 	#endif
 	#define CreatePlayerTextDraw FIXES_CreatePlayerTextDraw
@@ -6212,6 +6201,9 @@ public OnGameModeInit()
  * FIXES:
  *     PlayerTextDrawSetString
  */
+
+native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
+
 #if FIX_PlayerTextDrawSetString
 	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
 	{
@@ -6228,9 +6220,6 @@ public OnGameModeInit()
 	#if defined _ALS_PlayerTextDrawSetString
 		#undef PlayerTextDrawSetString
 	#else
-		
-		native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
-		
 		#define _ALS_PlayerTextDrawSetString
 	#endif
 	#define PlayerTextDrawSetString FIXES_PlayerTextDrawSetString
@@ -6242,6 +6231,9 @@ public OnGameModeInit()
  * FIXES:
  *     TextDrawCreate
  */
+
+native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
+
 #if FIX_TextDrawCreate
 	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, text[])
 	{
@@ -6258,9 +6250,6 @@ public OnGameModeInit()
 	#if defined _ALS_TextDrawCreate
 		#undef TextDrawCreate
 	#else
-		
-		native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
-		
 		#define _ALS_TextDrawCreate
 	#endif
 	#define TextDrawCreate FIXES_TextDrawCreate
@@ -6272,6 +6261,9 @@ public OnGameModeInit()
  * FIXES:
  *     TextDrawSetString
  */
+
+native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
+
 #if FIX_TextDrawSetString
 	stock FIXES_TextDrawSetString(Text:text, string[])
 	{
@@ -6288,9 +6280,6 @@ public OnGameModeInit()
 	#if defined _ALS_TextDrawSetString
 		#undef TextDrawSetString
 	#else
-		
-		native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
-		
 		#define _ALS_TextDrawSetString
 	#endif
 	#define TextDrawSetString FIXES_TextDrawSetString
@@ -6302,6 +6291,9 @@ public OnGameModeInit()
  * FIXES:
  *     AllowInteriorWeapons
  */
+
+native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
+
 #if FIX_AllowInteriorWeapons
 	#if FIXES_Single
 		stock FIXES_AllowInteriorWeapons(allow)
@@ -6364,9 +6356,6 @@ public OnGameModeInit()
 	#if defined _ALS_AllowInteriorWeapons
 		#undef AllowInteriorWeapons
 	#else
-		
-		native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
-		
 		#define _ALS_AllowInteriorWeapons
 	#endif
 	#define AllowInteriorWeapons FIXES_AllowInteriorWeapons
@@ -6378,6 +6367,9 @@ public OnGameModeInit()
  * FIXES:
  *     GetPlayerInterior
  */
+
+native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
+
 #if FIX_GetPlayerInterior
 	stock FIXES_GetPlayerInterior(playerid)
 	{
@@ -6395,9 +6387,6 @@ public OnGameModeInit()
 	#if defined _ALS_GetPlayerInterior
 		#undef GetPlayerInterior
 	#else
-		
-		native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
-		
 		#define _ALS_GetPlayerInterior
 	#endif
 	#define GetPlayerInterior FIXES_GetPlayerInterior
@@ -6409,6 +6398,9 @@ public OnGameModeInit()
  * FIXES:
  *     GetPlayerInterior
  */
+
+native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
+
 #if FIX_GetPlayerInterior
 	stock FIXES_SetPlayerInterior(playerid, interiorid)
 	{
@@ -6427,9 +6419,6 @@ public OnGameModeInit()
 	#if defined _ALS_SetPlayerInterior
 		#undef SetPlayerInterior
 	#else
-		
-		native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
-		
 		#define _ALS_SetPlayerInterior
 	#endif
 	#define SetPlayerInterior FIXES_SetPlayerInterior
@@ -6487,6 +6476,9 @@ public OnGameModeInit()
  * FIXES:
  *     AllowTeleport
  */
+
+native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
+
 #if FIX_AllowTeleport
 	#if FIXES_Single
 		stock FIXES_AllowPlayerTeleport(playerid, allow)
@@ -6518,9 +6510,6 @@ public OnGameModeInit()
 	#if defined _ALS_AllowPlayerTeleport
 		#undef AllowPlayerTeleport
 	#else
-		
-		native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
-		
 		#define _ALS_AllowPlayerTeleport
 	#endif
 	#define AllowPlayerTeleport FIXES_AllowPlayerTeleport
@@ -6532,6 +6521,9 @@ public OnGameModeInit()
  * FIXES:
  *     AllowTeleport
  */
+
+native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
+
 #if FIX_AllowTeleport
 	#if FIXES_Single
 		stock FIXES_AllowAdminTeleport(allow)
@@ -6558,9 +6550,6 @@ public OnGameModeInit()
 	#if defined _ALS_AllowAdminTeleport
 		#undef AllowAdminTeleport
 	#else
-		
-		native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
-		
 		#define _ALS_AllowAdminTeleport
 	#endif
 	#define AllowAdminTeleport FIXES_AllowAdminTeleport
@@ -6609,6 +6598,9 @@ public OnGameModeInit()
  * FIXES:
  *     SetPlayerSpecialAction
  */
+
+native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
+
 #if FIX_SetPlayerSpecialAction
 	stock FIXES_SetPlayerSpecialAction(playerid, actionid)
 	{
@@ -6623,9 +6615,6 @@ public OnGameModeInit()
 	#if defined _ALS_SetPlayerSpecialAction
 		#undef SetPlayerSpecialAction
 	#else
-		
-		native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
-		
 		#define _ALS_SetPlayerSpecialAction
 	#endif
 	#define SetPlayerSpecialAction FIXES_SetPlayerSpecialAction
@@ -6637,6 +6626,9 @@ public OnGameModeInit()
  * FIXES:
  *     ClearAnimations
  */
+
+native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
+
 #if FIX_ClearAnimations || FIX_ClearAnimations_2
 	stock FIXES_ClearAnimations(playerid, forcesync = 0)
 	{
@@ -6666,9 +6658,6 @@ public OnGameModeInit()
 	#if defined _ALS_ClearAnimations
 		#undef ClearAnimations
 	#else
-		
-		native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
-		
 		#define _ALS_ClearAnimations
 	#endif
 	#define ClearAnimations FIXES_ClearAnimations
@@ -6680,6 +6669,9 @@ public OnGameModeInit()
  * FIXES:
  *     GangZoneCreate
  */
+
+native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = GangZoneCreate;
+
 #if FIX_GangZoneCreate
 	stock FIXES_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy)
 	{
@@ -6689,9 +6681,6 @@ public OnGameModeInit()
 	#if defined _ALS_GangZoneCreate
 		#undef GangZoneCreate
 	#else
-		
-		native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = GangZoneCreate;
-		
 		#define _ALS_GangZoneCreate
 	#endif
 	#define GangZoneCreate FIXES_GangZoneCreate
@@ -6704,6 +6693,9 @@ public OnGameModeInit()
  *     OnDialogResponse
  *     GetPlayerDialog
  */
+
+native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
+
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 	stock FIXES_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[])
 	{
@@ -6722,9 +6714,6 @@ public OnGameModeInit()
 	#if defined _ALS_ShowPlayerDialog
 		#undef ShowPlayerDialog
 	#else
-		
-		native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
-		
 		#define _ALS_ShowPlayerDialog
 	#endif
 	#define ShowPlayerDialog FIXES_ShowPlayerDialog
@@ -6832,6 +6821,9 @@ public OnGameModeInit()
  * FIXES:
  *     valstr
  */
+
+native BAD_valstr(dest[], value, bool:pack = false) = valstr;
+
 #if FIX_valstr
 	stock FIXES_valstr(dest[], value, bool:pack = false)
 	{
@@ -6853,9 +6845,6 @@ public OnGameModeInit()
 	#if defined _ALS_valstr
 		#undef valstr
 	#else
-		
-		native BAD_valstr(dest[], value, bool:pack = false) = valstr;
-		
 		#define _ALS_valstr
 	#endif
 	#define valstr FIXES_valstr
@@ -6867,6 +6856,9 @@ public OnGameModeInit()
  * FIXES:
  *     fclose
  */
+
+native BAD_fclose(File:handle) = fclose;
+
 #if FIX_fclose
 	stock bool:FIXES_fclose(File:handle)
 	{
@@ -6876,9 +6868,6 @@ public OnGameModeInit()
 	#if defined _ALS_fclose
 		#undef fclose
 	#else
-		
-		native BAD_fclose(File:handle) = fclose;
-		
 		#define _ALS_fclose
 	#endif
 	#define fclose FIXES_fclose
@@ -6890,6 +6879,9 @@ public OnGameModeInit()
  * FIXES:
  *     fwrite
  */
+
+native BAD_fwrite(File:handle, const string[]) = fwrite;
+
 #if FIX_fwrite
 	stock FIXES_fwrite(File:handle, const string[])
 	{
@@ -6899,9 +6891,6 @@ public OnGameModeInit()
 	#if defined _ALS_fwrite
 		#undef fwrite
 	#else
-		
-		native BAD_fwrite(File:handle, const string[]) = fwrite;
-		
 		#define _ALS_fwrite
 	#endif
 	#define fwrite FIXES_fwrite
@@ -6913,6 +6902,9 @@ public OnGameModeInit()
  * FIXES:
  *     fread
  */
+
+native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = false) = fread;
+
 #if FIX_fread
 	stock FIXES_fread(File:handle, string[], size = sizeof (string), bool:pack = false)
 	{
@@ -6922,9 +6914,6 @@ public OnGameModeInit()
 	#if defined _ALS_fread
 		#undef fread
 	#else
-		
-		native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = false) = fread;
-		
 		#define _ALS_fread
 	#endif
 	#define fread FIXES_fread
@@ -6936,6 +6925,9 @@ public OnGameModeInit()
  * FIXES:
  *     fputchar
  */
+
+native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
+
 #if FIX_fputchar
 	stock bool:FIXES_fputchar(File:handle, value, bool:utf8 = true)
 	{
@@ -6945,9 +6937,6 @@ public OnGameModeInit()
 	#if defined _ALS_fputchar
 		#undef fputchar
 	#else
-		
-		native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
-		
 		#define _ALS_fputchar
 	#endif
 	#define fputchar FIXES_fputchar
@@ -6959,6 +6948,9 @@ public OnGameModeInit()
  * FIXES:
  *     fgetchar
  */
+
+native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
+
 #if FIX_fgetchar
 	stock FIXES_fgetchar(File:handle, value, bool:utf8 = true)
 	{
@@ -6968,9 +6960,6 @@ public OnGameModeInit()
 	#if defined _ALS_fgetchar
 		#undef fgetchar
 	#else
-		
-		native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
-		
 		#define _ALS_fgetchar
 	#endif
 	#define fgetchar FIXES_fgetchar
@@ -6982,6 +6971,9 @@ public OnGameModeInit()
  * FIXES:
  *     fblockwrite
  */
+
+native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fblockwrite;
+
 #if FIX_fblockwrite
 	stock FIXES_fblockwrite(File:handle, const buffer[], size = sizeof (buffer))
 	{
@@ -6991,9 +6983,6 @@ public OnGameModeInit()
 	#if defined _ALS_fblockwrite
 		#undef fblockwrite
 	#else
-		
-		native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fblockwrite;
-		
 		#define _ALS_fblockwrite
 	#endif
 	#define fblockwrite FIXES_fblockwrite
@@ -7005,6 +6994,9 @@ public OnGameModeInit()
  * FIXES:
  *     fblockread
  */
+
+native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockread;
+
 #if FIX_fblockread
 	stock FIXES_fblockread(File:handle, buffer[], size = sizeof (buffer))
 	{
@@ -7014,9 +7006,6 @@ public OnGameModeInit()
 	#if defined _ALS_fblockread
 		#undef fblockread
 	#else
-		
-		native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockread;
-		
 		#define _ALS_fblockread
 	#endif
 	#define fblockread FIXES_fblockread
@@ -7028,6 +7017,9 @@ public OnGameModeInit()
  * FIXES:
  *     fseek
  */
+
+native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = fseek;
+
 #if FIX_fseek
 	stock FIXES_fseek(File:handle, position = 0, seek_whence:whence = seek_start)
 	{
@@ -7037,9 +7029,6 @@ public OnGameModeInit()
 	#if defined _ALS_fseek
 		#undef fseek
 	#else
-		
-		native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = fseek;
-		
 		#define _ALS_fseek
 	#endif
 	#define fseek FIXES_fseek
@@ -7051,6 +7040,9 @@ public OnGameModeInit()
  * FIXES:
  *     flength
  */
+
+native BAD_flength(File:handle) = flength;
+
 #if FIX_flength
 	stock FIXES_flength(File:handle)
 	{
@@ -7060,9 +7052,6 @@ public OnGameModeInit()
 	#if defined _ALS_flength
 		#undef flength
 	#else
-		
-		native BAD_flength(File:handle) = flength;
-		
 		#define _ALS_flength
 	#endif
 	#define flength FIXES_flength
@@ -7074,6 +7063,9 @@ public OnGameModeInit()
  * FIXES:
  *     Kick
  */
+
+native BAD_Kick(playerid) = Kick;
+
 #if FIX_Kick
 	forward _FIXES_Kick(playerid);
 	
@@ -7118,9 +7110,6 @@ public OnGameModeInit()
 	#if defined _ALS_Kick
 		#undef Kick
 	#else
-		
-		native BAD_Kick(playerid) = Kick;
-		
 		#define _ALS_Kick
 	#endif
 	#define Kick FIXES_Kick
@@ -7132,6 +7121,9 @@ public OnGameModeInit()
  * FIXES:
  *     IsPlayerAttachedObjectSlotUsed
  */
+
+native BAD_IsPlayerAttachedObjSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+
 #if FIX_IsPlayerAttachedObjSlotUsed
 	stock FIXES_IsPAttachedObjectSlotUsed(playerid, index)
 	{
@@ -7145,9 +7137,6 @@ public OnGameModeInit()
 	#if defined _ALS_IsPAttachedObjSlotUsed
 		#undef IsPlayerAttachedObjectSlotUsed
 	#else
-		
-		native BAD_IsPlayerAttachedObjSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
-		
 		#define _ALS_IsPAttachedObjSlotUsed
 	#endif
 	#define IsPlayerAttachedObjectSlotUsed FIXES_IsPAttachedObjectSlotUsed
@@ -7175,6 +7164,9 @@ public OnGameModeInit()
  *     IsPlayerAttachedObjectSlotUsed
  *     SetPlayerAttachedObject
  */
+
+native BAD_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0, materialcolor1 = 0, materialcolor2 = 0) = SetPlayerAttachedObject;
+
 #if FIX_IsPlayerAttachedObjSlotUsed || FIX_SetPlayerAttachedObject
 	stock FIXES_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0, materialcolor1 = 0, materialcolor2 = 0)
 	{
@@ -7195,9 +7187,6 @@ public OnGameModeInit()
 	#if defined _ALS_SetPlayerAttachedObject
 		#undef SetPlayerAttachedObject
 	#else
-		
-		native BAD_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0, materialcolor1 = 0, materialcolor2 = 0) = SetPlayerAttachedObject;
-		
 		#define _ALS_SetPlayerAttachedObject
 	#endif
 	#define SetPlayerAttachedObject FIXES_SetPlayerAttachedObject
@@ -7209,6 +7198,9 @@ public OnGameModeInit()
  * FIXES:
  *     IsPlayerAttachedObjectSlotUsed
  */
+
+native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObject;
+
 #if FIX_IsPlayerAttachedObjSlotUsed || FIX_SetPlayerAttachedObject
 	stock FIXES_RemovePlayerAttachedObj(playerid, index)
 	{
@@ -7229,9 +7221,6 @@ public OnGameModeInit()
 	#if defined _ALS_RemovePlayerAttachedObject
 		#undef RemovePlayerAttachedObject
 	#else
-		
-		native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObject;
-		
 		#define _ALS_RemovePlayerAttachedObject
 	#endif
 	#define RemovePlayerAttachedObject FIXES_RemovePlayerAttachedObj
@@ -7498,6 +7487,9 @@ public OnGameModeInit()
  * FIXES:
  *     strins
  */
+
+native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = strins;
+
 #if FIX_strins
 	stock FIXES_strins(string[], const substr[], pos, maxlength = sizeof string)
 	{
@@ -7561,9 +7553,6 @@ public OnGameModeInit()
 	#if defined _ALS_strins
 		#undef strins
 	#else
-		
-		native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = strins;
-		
 		#define _ALS_strins
 	#endif
 	#define strins FIXES_strins
@@ -7575,6 +7564,9 @@ public OnGameModeInit()
  * FIXES:
  *     ApplyAnimation
  */
+
+native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+
 #if FIX_ApplyAnimation
 	stock FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
 	{
@@ -7613,9 +7605,6 @@ public OnGameModeInit()
 	#if defined _ALS_ApplyAnimation
 		#undef ApplyAnimation
 	#else
-		
-		native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
-		
 		#define _ALS_ApplyAnimation
 	#endif
 	#define ApplyAnimation FIXES_ApplyAnimation
@@ -7627,6 +7616,9 @@ public OnGameModeInit()
  * FIXES:
  *     random
  */
+
+native BAD_random(max) = random;
+
 #if FIX_random
 	stock FIXES_random(max)
 	{
@@ -7643,9 +7635,6 @@ public OnGameModeInit()
 	#if defined _ALS_random
 		#undef random
 	#else
-		
-		native BAD_random(max) = random;
-		
 		#define _ALS_random
 	#endif
 	#define random FIXES_random
@@ -7657,6 +7646,11 @@ public OnGameModeInit()
  * FIXES:
  *     sleep
  */
+
+// Uses a little trick to consume part of the line and thus not match
+// our hooked version.
+#define BAD_sleep%0\n%9 sleep%0
+
 #if FIX_sleep
 	stock FIXES_sleep(ms)
 	{
@@ -7668,11 +7662,6 @@ public OnGameModeInit()
 	#if defined _ALS_sleep
 		#undef sleep
 	#else
-		
-		// Uses a little trick to consume part of the line and thus not match
-		// our hooked version.
-		#define BAD_sleep%0\n%9 sleep%0
-		
 		#define _ALS_sleep
 	#endif
 	
@@ -7769,7 +7758,6 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_FOREACH
 #undef _FIXES_IS_UNSET
 #undef _FIXES_IS_IN_CHARGE
-#undef _FIXES_IS_PLAYER_CONNECTED
 #undef _FIXES_IN_RANGE
 #undef _FIXES_NO_RANGE
 #undef FIXES_PRINTF
