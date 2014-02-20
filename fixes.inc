@@ -2450,6 +2450,9 @@ static stock const
  *     IsPlayerConnected
  */
 
+#if defined _ALS_IsPlayerConnected
+	#error _ALS_IsPlayerConnected defined
+#endif
 native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 
 #if FIX_IsPlayerConnected
@@ -2462,9 +2465,6 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 		return IsPlayerConnected(playerid);
 	}
 	
-	#if defined _ALS_IsPlayerConnected
-		#error _ALS_IsPlayerConnected defined
-	#endif
 	#define _ALS_IsPlayerConnected
 	#define IsPlayerConnected FIXES_IsPlayerConnected
 #endif
@@ -3256,7 +3256,6 @@ public OnGameModeInit()
 		#error _ALS_OnFilterScriptExit defined
 	#endif
 	#define _ALS_OnFilterScriptExit
-	
 	#define OnFilterScriptExit FIXES_OnFilterScriptExit
 	
 	#if defined FIXES_OnFilterScriptExit
@@ -3790,6 +3789,9 @@ public OnGameModeInit()
  *     SpawnPlayer
  */
 
+#if defined _ALS_SpawnPlayer
+	#error _ALS_SpawnPlayer defined
+#endif
 native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 
 #if FIX_SpawnPlayer
@@ -3811,9 +3813,6 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 		return SpawnPlayer(playerid);
 	}
 	
-	#if defined _ALS_SpawnPlayer
-		#error _ALS_SpawnPlayer defined
-	#endif
 	#define _ALS_SpawnPlayer
 	#define SpawnPlayer FIXES_SpawnPlayer
 #endif
@@ -3825,6 +3824,9 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
  *     SetPlayerName
  */
 
+#if defined _ALS_SetPlayerName
+	#error _ALS_SetPlayerName defined
+#endif
 native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 
 #if FIX_SetPlayerName
@@ -3852,9 +3854,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		}
 		return SetPlayerName(playerid, name);
 	}
-	#if defined _ALS_SetPlayerName
-		#error _ALS_SetPlayerName defined
-	#endif
+	
 	#define _ALS_SetPlayerName
 	#define SetPlayerName FIXES_SetPlayerName
 #endif
@@ -4100,6 +4100,9 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  *     SetPlayerSkin
  */
 
+#if defined _ALS_SetPlayerSkin
+	#error _ALS_SetPlayerSkin defined
+#endif
 native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 
 #if FIX_GetPlayerSkin || FIX_SetPlayerSkin
@@ -4169,9 +4172,6 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 		return SetPlayerSkin(playerid, skinid);
 	}
 	
-	#if defined _ALS_SetPlayerSkin
-		#error _ALS_SetPlayerSkin defined
-	#endif
 	#define _ALS_SetPlayerSkin
 	#define SetPlayerSkin FIXES_SetPlayerSkin
 #endif
@@ -4183,6 +4183,9 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
  *     GetPlayerSkin
  */
 
+#if defined _ALS_GetPlayerSkin
+	#error _ALS_GetPlayerSkin defined
+#endif
 native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 
 #if FIX_GetPlayerSkin
@@ -4195,9 +4198,6 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 		#endif
 	}
 	
-	#if defined _ALS_GetPlayerSkin
-		#error _ALS_GetPlayerSkin defined
-	#endif
 	#define _ALS_GetPlayerSkin
 	#define GetPlayerSkin FIXES_GetPlayerSkin
 #endif
@@ -4209,6 +4209,9 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
  *     GetWeaponName
  */
 
+#if defined _ALS_GetWeaponName
+	#error _ALS_GetWeaponName defined
+#endif
 native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 
 #if FIX_GetWeaponName
@@ -4245,9 +4248,6 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		return 0;
 	}
 	
-	#if defined _ALS_GetWeaponName
-		#error _ALS_GetWeaponName defined
-	#endif
 	#define _ALS_GetWeaponName
 	#define GetWeaponName FIXES_GetWeaponName
 #endif
@@ -4423,6 +4423,9 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  *     SetPlayerWorldBounds
  */
 
+#if defined _ALS_SetPlayerWorldBounds
+	#error _ALS_SetPlayerWorldBounds defined
+#endif
 native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min) = SetPlayerWorldBounds;
 
 #if FIX_SetPlayerWorldBounds
@@ -4549,9 +4552,6 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 		}
 	#endif
 	
-	#if defined _ALS_SetPlayerWorldBounds
-		#error _ALS_SetPlayerWorldBounds defined
-	#endif
 	#define _ALS_SetPlayerWorldBounds
 	#define SetPlayerWorldBounds FIXES_SetPlayerWorldBounds
 #endif
@@ -4563,6 +4563,9 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
  *     TogglePlayerControllable
  */
 
+#if defined _ALS_TogglePlayerControllable
+	#error _ALS_TogglePlayerControllable defined
+#endif
 native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable;
 
 #if FIX_TogglePlayerControllable
@@ -4614,9 +4617,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		}
 	#endif
 	
-	#if defined _ALS_TogglePlayerControllable
-		#error _ALS_TogglePlayerControllable defined
-	#endif
 	#define _ALS_TogglePlayerControllable
 	#define TogglePlayerControllable FIXES_TogglePlayerControllable
 #endif
@@ -4768,7 +4768,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#error _ALS_OnPlayerKeyStateChange defined
 	#endif
 	#define _ALS_OnPlayerKeyStateChange
-	
 	#define OnPlayerKeyStateChange FIXES_OnPlayerKeyStateChange
 	
 	#if defined FIXES_OnPlayerKeyStateChange
@@ -5081,6 +5080,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  *     Menus
  */
 
+#if defined _ALS_CreateMenu
+	#error _ALS_CreateMenu defined
+#endif
 native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
 
 #if _FIX_Menus
@@ -5108,9 +5110,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 		return ret;
 	}
 	
-	#if defined _ALS_CreateMenu
-		#error _ALS_CreateMenu defined
-	#endif
 	#define _ALS_CreateMenu
 	#define CreateMenu FIXES_CreateMenu
 #endif
@@ -5154,6 +5153,9 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
  *     GetPlayerMenu
  */
 
+#if defined _ALS_DestroyMenu
+	#error _ALS_DestroyMenu defined
+#endif
 native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 
 #if _FIX_Menus || FIX_GetPlayerMenu
@@ -5202,9 +5204,6 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 			return 0;
 	}
 	
-	#if defined _ALS_DestroyMenu
-		#error _ALS_DestroyMenu defined
-	#endif
 	#define _ALS_DestroyMenu
 	#define DestroyMenu FIXES_DestroyMenu
 #endif
@@ -5216,6 +5215,9 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
  *     AddMenuItem
  */
 
+#if defined _ALS_AddMenuItem
+	#error _ALS_AddMenuItem defined
+#endif
 native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 
 #if FIX_AddMenuItem
@@ -5228,9 +5230,6 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 		return 0;
 	}
 	
-	#if defined _ALS_AddMenuItem
-		#error _ALS_AddMenuItem defined
-	#endif
 	#define _ALS_AddMenuItem
 	#define AddMenuItem FIXES_AddMenuItem
 #endif
@@ -5242,6 +5241,9 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
  *     SetMenuColumnHeader
  */
 
+#if defined _ALS_SetMenuColumnHeader
+	#error _ALS_SetMenuColumnHeader defined
+#endif
 native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetMenuColumnHeader;
 
 #if FIX_SetMenuColumnHeader
@@ -5254,9 +5256,6 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
 		return 0;
 	}
 	
-	#if defined _ALS_SetMenuColumnHeader
-		#error _ALS_SetMenuColumnHeader defined
-	#endif
 	#define _ALS_SetMenuColumnHeader
 	#define SetMenuColumnHeader FIXES_SetMenuColumnHeader
 #endif
@@ -5269,6 +5268,9 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
  *     GetPlayerMenu
  */
 
+#if defined _ALS_ShowMenuForPlayer
+	#error _ALS_ShowMenuForPlayer defined
+#endif
 native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 
 #if FIX_ShowMenuForPlayer || FIX_GetPlayerMenu
@@ -5296,9 +5298,6 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 		return 0;
 	}
 	
-	#if defined _ALS_ShowMenuForPlayer
-		#error _ALS_ShowMenuForPlayer defined
-	#endif
 	#define _ALS_ShowMenuForPlayer
 	#define ShowMenuForPlayer FIXES_ShowMenuForPlayer
 #endif
@@ -5312,6 +5311,9 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
  *     GetPlayerMenu
  */
 
+#if defined _ALS_HideMenuForPlayer
+	#error _ALS_HideMenuForPlayer defined
+#endif
 native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 
 #if FIX_HideMenuForPlayer || FIX_GetPlayerMenu
@@ -5347,9 +5349,6 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 		return 0;
 	}
 	
-	#if defined _ALS_HideMenuForPlayer
-		#error _ALS_HideMenuForPlayer defined
-	#endif
 	#define _ALS_HideMenuForPlayer
 	#define HideMenuForPlayer FIXES_HideMenuForPlayer
 #endif
@@ -5361,6 +5360,9 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
  *     DisableMenu
  */
 
+#if defined _ALS_DisableMenu
+	#error _ALS_DisableMenu defined
+#endif
 native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 
 #if FIX_DisableMenu
@@ -5373,9 +5375,6 @@ native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 		return 0;
 	}
 	
-	#if defined _ALS_DisableMenu
-		#error _ALS_DisableMenu defined
-	#endif
 	#define _ALS_DisableMenu
 	#define DisableMenu FIXES_DisableMenu
 #endif
@@ -5387,6 +5386,9 @@ native BAD_DisableMenu(Menu:menuid) = DisableMenu;
  *     DisableMenuRow
  */
 
+#if defined _ALS_DisableMenuRow
+	#error _ALS_DisableMenuRow defined
+#endif
 native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 
 #if FIX_DisableMenuRow
@@ -5399,9 +5401,6 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 		return 0;
 	}
 	
-	#if defined _ALS_DisableMenuRow
-		#error _ALS_DisableMenuRow defined
-	#endif
 	#define _ALS_DisableMenuRow
 	#define DisableMenuRow FIXES_DisableMenuRow
 #endif
@@ -5413,6 +5412,9 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
  *     GetPlayerMenu
  */
 
+#if defined _ALS_GetPlayerMenu
+	#error _ALS_GetPlayerMenu defined
+#endif
 native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 
 #if FIX_GetPlayerMenu
@@ -5425,9 +5427,6 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 		return Menu:INVALID_MENU;
 	}
 	
-	#if defined _ALS_GetPlayerMenu
-		#error _ALS_GetPlayerMenu defined
-	#endif
 	#define _ALS_GetPlayerMenu
 	#define GetPlayerMenu FIXES_GetPlayerMenu
 #endif
@@ -5651,6 +5650,9 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
  *     HydraSniper
  */
 
+#if defined _ALS_GivePlayerWeapon
+	#error _ALS_GivePlayerWeapon defined
+#endif
 native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 
 #if FIX_HydraSniper
@@ -5678,9 +5680,6 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 		return GivePlayerWeapon(playerid, weaponid, ammo);
 	}
 	
-	#if defined _ALS_GivePlayerWeapon
-		#error _ALS_GivePlayerWeapon defined
-	#endif
 	#define _ALS_GivePlayerWeapon
 	#define GivePlayerWeapon FIXES_GivePlayerWeapon
 #endif
@@ -5692,6 +5691,9 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
  *     GetPlayerWeapon
  */
 
+#if defined _ALS_SetPlayerArmedWeapon
+	#error _ALS_SetPlayerArmedWeapon defined
+#endif
 native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 
 #if FIX_GetPlayerWeapon
@@ -5725,9 +5727,6 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 		return SetPlayerArmedWeapon(playerid, weaponid);
 	}
 	
-	#if defined _ALS_SetPlayerArmedWeapon
-		#error _ALS_SetPlayerArmedWeapon defined
-	#endif
 	#define _ALS_SetPlayerArmedWeapon
 	#define SetPlayerArmedWeapon FIXES_SetPlayerArmedWeapon
 #endif
@@ -5739,6 +5738,9 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
  *     GetPlayerWeapon
  */
 
+#if defined _ALS_GetPlayerWeapon
+	#error _ALS_GetPlayerWeapon defined
+#endif
 native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 
 #if FIX_GetPlayerWeapon
@@ -5758,9 +5760,6 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 		return ret;
 	}
 	
-	#if defined _ALS_GetPlayerWeapon
-		#error _ALS_GetPlayerWeapon defined
-	#endif
 	#define _ALS_GetPlayerWeapon
 	#define GetPlayerWeapon FIXES_GetPlayerWeapon
 #endif
@@ -5772,6 +5771,9 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
  *     PutPlayerInVehicle
  */
 
+#if defined _ALS_PutPlayerInVehicle
+	#error _ALS_PutPlayerInVehicle defined
+#endif
 native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 
 #if FIX_PutPlayerInVehicle || FIX_TrainExit
@@ -5918,9 +5920,6 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 		}
 	#endif
 	
-	#if defined _ALS_PutPlayerInVehicle
-		#error _ALS_PutPlayerInVehicle defined
-	#endif
 	#define _ALS_PutPlayerInVehicle
 	#define PutPlayerInVehicle FIXES_PutPlayerInVehicle
 #endif
@@ -5932,6 +5931,9 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
  *     SetPlayerCheckpoint
  */
 
+#if defined _ALS_SetPlayerCheckpoint
+	#error _ALS_SetPlayerCheckpoint defined
+#endif
 native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
 
 #if FIX_SetPlayerCheckpoint
@@ -5942,9 +5944,6 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 			SetPlayerCheckpoint(playerid, x, y, z, size);
 	}
 	
-	#if defined _ALS_SetPlayerCheckpoint
-		#error _ALS_SetPlayerCheckpoint defined
-	#endif
 	#define _ALS_SetPlayerCheckpoint
 	#define SetPlayerCheckpoint FIXES_SetPlayerCheckpoint
 #endif
@@ -5956,6 +5955,9 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
  *     SetPlayerRaceCheckpoint
  */
 
+#if defined _ALS_SetPlayerRaceCheckpoint
+	#error _ALS_SetPlayerRaceCheckpoint defined
+#endif
 native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size) = SetPlayerRaceCheckpoint;
 
 #if FIX_SetPlayerRaceCheckpoint
@@ -5966,9 +5968,6 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 			SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, size);
 	}
 	
-	#if defined _ALS_SetPlayerRaceCheckpoint
-		#error _ALS_SetPlayerRaceCheckpoint defined
-	#endif
 	#define _ALS_SetPlayerRaceCheckpoint
 	#define SetPlayerRaceCheckpoint FIXES_SetPlayerRaceCheckpoint
 #endif
@@ -6078,6 +6077,9 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
  *     GameText
  */
 
+#if defined _ALS_GameTextForAll
+	#error _ALS_GameTextForAll defined
+#endif
 native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 
 #if FIX_GameText
@@ -6105,9 +6107,6 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 		return 0;
 	}
 	
-	#if defined _ALS_GameTextForAll
-		#error _ALS_GameTextForAll defined
-	#endif
 	#define _ALS_GameTextForAll
 	
 	#define GameTextForAll FIXES_GameTextForAll
@@ -6120,6 +6119,9 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
  *     GameText
  */
 
+#if defined _ALS_GameTextForPlayer
+	#error _ALS_GameTextForPlayer defined
+#endif
 native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
 
 #if FIX_GameText
@@ -6147,9 +6149,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		return 0;
 	}
 	
-	#if defined _ALS_GameTextForPlayer
-		#error _ALS_GameTextForPlayer defined
-	#endif
 	#define _ALS_GameTextForPlayer
 	
 	#define GameTextForPlayer FIXES_GameTextForPlayer
@@ -6161,10 +6160,13 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  * FIXES:
  *     HideGameText
  */
+
+#if defined _ALS_HideGameTextForAll
+	#error _ALS_HideGameTextForAll defined
+#endif
+native BAD_HideGameTextForAll(style) = HideGameTextForAll;
+
 #if FIX_HideGameText
-	#if defined _ALS_HideGameTextForAll
-		#error _ALS_HideGameTextForAll defined
-	#endif
 	#define _ALS_HideGameTextForAll
 	
 	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gscSpace, 0, (%0))
@@ -6176,10 +6178,13 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  * FIXES:
  *     HideGameText
  */
+
+#if defined _ALS_HideGameTextForPlayer
+	#error _ALS_HideGameTextForPlayer defined
+#endif
+native BAD_HideGameTextForPlayer(playerid, style) = HideGameTextForPlayer;
+
 #if FIX_HideGameText
-	#if defined _ALS_HideGameTextForPlayer
-		#error _ALS_HideGameTextForPlayer defined
-	#endif
 	#define _ALS_HideGameTextForPlayer
 	
 	#define HideGameTextForPlayer(%1,%0) GameTextForPlayer((%1), FIXES_gscSpace, 0, (%0))
@@ -6192,6 +6197,9 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  *     CreatePlayerTextDraw
  */
 
+#if defined _ALS_CreatePlayerTextDraw
+	#error _ALS_CreatePlayerTextDraw defined
+#endif
 native Text:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
 
 #if FIX_CreatePlayerTextDraw
@@ -6207,9 +6215,6 @@ native Text:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = Creat
 		}
 	}
 	
-	#if defined _ALS_CreatePlayerTextDraw
-		#error _ALS_CreatePlayerTextDraw defined
-	#endif
 	#define _ALS_CreatePlayerTextDraw
 	#define CreatePlayerTextDraw FIXES_CreatePlayerTextDraw
 #endif
@@ -6221,6 +6226,9 @@ native Text:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = Creat
  *     PlayerTextDrawSetString
  */
 
+#if defined _ALS_PlayerTextDrawSetString
+	#error _ALS_PlayerTextDrawSetString defined
+#endif
 native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
 
 #if FIX_PlayerTextDrawSetString
@@ -6236,9 +6244,6 @@ native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = Player
 		}
 	}
 	
-	#if defined _ALS_PlayerTextDrawSetString
-		#error _ALS_PlayerTextDrawSetString defined
-	#endif
 	#define _ALS_PlayerTextDrawSetString
 	#define PlayerTextDrawSetString FIXES_PlayerTextDrawSetString
 #endif
@@ -6250,6 +6255,8 @@ native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = Player
  *     TextDrawCreate
  */
 
+	#if defined _ALS_TextDrawCreate
+		#error _ALS_TextDrawCreate defined
 native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 
 #if FIX_TextDrawCreate
@@ -6265,8 +6272,6 @@ native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 		}
 	}
 	
-	#if defined _ALS_TextDrawCreate
-		#error _ALS_TextDrawCreate defined
 	#endif
 	#define _ALS_TextDrawCreate
 	#define TextDrawCreate FIXES_TextDrawCreate
@@ -6279,6 +6284,9 @@ native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
  *     TextDrawSetString
  */
 
+#if defined _ALS_TextDrawSetString
+	#error _ALS_TextDrawSetString defined
+#endif
 native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 
 #if FIX_TextDrawSetString
@@ -6294,9 +6302,6 @@ native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 		}
 	}
 	
-	#if defined _ALS_TextDrawSetString
-		#error _ALS_TextDrawSetString defined
-	#endif
 	#define _ALS_TextDrawSetString
 	#define TextDrawSetString FIXES_TextDrawSetString
 #endif
@@ -6308,6 +6313,9 @@ native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
  *     AllowInteriorWeapons
  */
 
+#if defined _ALS_AllowInteriorWeapons
+	#error _ALS_AllowInteriorWeapons defined
+#endif
 native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 
 #if FIX_AllowInteriorWeapons
@@ -6369,9 +6377,6 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 		}
 	#endif
 	
-	#if defined _ALS_AllowInteriorWeapons
-		#error _ALS_AllowInteriorWeapons defined
-	#endif
 	#define _ALS_AllowInteriorWeapons
 	#define AllowInteriorWeapons FIXES_AllowInteriorWeapons
 #endif
@@ -6383,6 +6388,9 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
  *     GetPlayerInterior
  */
 
+#if defined _ALS_GetPlayerInterior
+	#error _ALS_GetPlayerInterior defined
+#endif
 native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 
 #if FIX_GetPlayerInterior
@@ -6399,9 +6407,6 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 		return 0;
 	}
 	
-	#if defined _ALS_GetPlayerInterior
-		#error _ALS_GetPlayerInterior defined
-	#endif
 	#define _ALS_GetPlayerInterior
 	#define GetPlayerInterior FIXES_GetPlayerInterior
 #endif
@@ -6413,6 +6418,9 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
  *     GetPlayerInterior
  */
 
+#if defined _ALS_SetPlayerInterior
+	#error _ALS_SetPlayerInterior defined
+#endif
 native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 
 #if FIX_GetPlayerInterior
@@ -6430,9 +6438,6 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 		return 0;
 	}
 	
-	#if defined _ALS_SetPlayerInterior
-		#error _ALS_SetPlayerInterior defined
-	#endif
 	#define _ALS_SetPlayerInterior
 	#define SetPlayerInterior FIXES_SetPlayerInterior
 #endif
@@ -6490,6 +6495,9 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
  *     AllowTeleport
  */
 
+#if defined _ALS_AllowPlayerTeleport
+	#error _ALS_AllowPlayerTeleport defined
+#endif
 native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 
 #if FIX_AllowTeleport
@@ -6520,9 +6528,6 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 		}
 	#endif
 	
-	#if defined _ALS_AllowPlayerTeleport
-		#error _ALS_AllowPlayerTeleport defined
-	#endif
 	#define _ALS_AllowPlayerTeleport
 	#define AllowPlayerTeleport FIXES_AllowPlayerTeleport
 #endif
@@ -6534,6 +6539,9 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
  *     AllowTeleport
  */
 
+#if defined _ALS_AllowAdminTeleport
+	#error _ALS_AllowAdminTeleport defined
+#endif
 native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 
 #if FIX_AllowTeleport
@@ -6559,9 +6567,6 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 		}
 	#endif
 	
-	#if defined _ALS_AllowAdminTeleport
-		#error _ALS_AllowAdminTeleport defined
-	#endif
 	#define _ALS_AllowAdminTeleport
 	#define AllowAdminTeleport FIXES_AllowAdminTeleport
 #endif
@@ -6610,6 +6615,9 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
  *     SetPlayerSpecialAction
  */
 
+#if defined _ALS_SetPlayerSpecialAction
+	#error _ALS_SetPlayerSpecialAction defined
+#endif
 native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 
 #if FIX_SetPlayerSpecialAction
@@ -6623,9 +6631,6 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 		return 1;
 	}
 	
-	#if defined _ALS_SetPlayerSpecialAction
-		#error _ALS_SetPlayerSpecialAction defined
-	#endif
 	#define _ALS_SetPlayerSpecialAction
 	#define SetPlayerSpecialAction FIXES_SetPlayerSpecialAction
 #endif
@@ -6637,6 +6642,9 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
  *     ClearAnimations
  */
 
+#if defined _ALS_ClearAnimations
+	#error _ALS_ClearAnimations defined
+#endif
 native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 
 #if FIX_ClearAnimations || FIX_ClearAnimations_2
@@ -6665,9 +6673,6 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 		#endif
 	}
 	
-	#if defined _ALS_ClearAnimations
-		#error _ALS_ClearAnimations defined
-	#endif
 	#define _ALS_ClearAnimations
 	#define ClearAnimations FIXES_ClearAnimations
 #endif
@@ -6679,6 +6684,9 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
  *     GangZoneCreate
  */
 
+#if defined _ALS_GangZoneCreate
+	#error _ALS_GangZoneCreate defined
+#endif
 native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = GangZoneCreate;
 
 #if FIX_GangZoneCreate
@@ -6687,9 +6695,6 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		return GangZoneCreate(floatsub(minx, floatfract(minx)), floatsub(miny, floatfract(miny)), floatsub(maxx, floatfract(maxx)), floatsub(maxy, floatfract(maxy)));
 	}
 	
-	#if defined _ALS_GangZoneCreate
-		#error _ALS_GangZoneCreate defined
-	#endif
 	#define _ALS_GangZoneCreate
 	#define GangZoneCreate FIXES_GangZoneCreate
 #endif
@@ -6702,6 +6707,9 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  *     GetPlayerDialog
  */
 
+#if defined _ALS_ShowPlayerDialog
+	#error _ALS_ShowPlayerDialog defined
+#endif
 native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
 
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
@@ -6719,9 +6727,6 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 		return 0;
 	}
 	
-	#if defined _ALS_ShowPlayerDialog
-		#error _ALS_ShowPlayerDialog defined
-	#endif
 	#define _ALS_ShowPlayerDialog
 	#define ShowPlayerDialog FIXES_ShowPlayerDialog
 #endif
@@ -6801,6 +6806,12 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
  * FIXES:
  *     GetPlayerDialog
  */
+
+#if defined _ALS_GetPlayerDialog
+	#error _ALS_GetPlayerDialog defined
+#endif
+native BAD_GetPlayerDialog(playerid) = GetPlayerDialog;
+
 #if FIX_GetPlayerDialog
 	stock FIXES_GetPlayerDialog(playerid)
 	{
@@ -6815,9 +6826,6 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 		return -1;
 	}
 	
-	#if defined _ALS_GetPlayerDialog
-		#error _ALS_GetPlayerDialog defined
-	#endif
 	#define _ALS_GetPlayerDialog
 	#define GetPlayerDialog FIXES_GetPlayerDialog
 #endif
@@ -6829,6 +6837,9 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
  *     valstr
  */
 
+#if defined _ALS_valstr
+	#error _ALS_valstr defined
+#endif
 native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 
 #if FIX_valstr
@@ -6849,9 +6860,6 @@ native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 		return 0;
 	}
 	
-	#if defined _ALS_valstr
-		#error _ALS_valstr defined
-	#endif
 	#define _ALS_valstr
 	#define valstr FIXES_valstr
 #endif
@@ -6863,6 +6871,9 @@ native BAD_valstr(dest[], value, bool:pack = false) = valstr;
  *     fclose
  */
 
+#if defined _ALS_fclose
+	#error _ALS_fclose defined
+#endif
 native BAD_fclose(File:handle) = fclose;
 
 #if FIX_fclose
@@ -6871,9 +6882,6 @@ native BAD_fclose(File:handle) = fclose;
 		return handle && fclose(handle);
 	}
 	
-	#if defined _ALS_fclose
-		#error _ALS_fclose defined
-	#endif
 	#define _ALS_fclose
 	#define fclose FIXES_fclose
 #endif
@@ -6885,6 +6893,9 @@ native BAD_fclose(File:handle) = fclose;
  *     fwrite
  */
 
+#if defined _ALS_fwrite
+	#error _ALS_fwrite defined
+#endif
 native BAD_fwrite(File:handle, const string[]) = fwrite;
 
 #if FIX_fwrite
@@ -6893,9 +6904,6 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 		return handle && fwrite(handle, string);
 	}
 	
-	#if defined _ALS_fwrite
-		#error _ALS_fwrite defined
-	#endif
 	#define _ALS_fwrite
 	#define fwrite FIXES_fwrite
 #endif
@@ -6907,6 +6915,9 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
  *     fread
  */
 
+#if defined _ALS_fread
+	#error _ALS_fread defined
+#endif
 native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = false) = fread;
 
 #if FIX_fread
@@ -6915,9 +6926,6 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 		return handle && fread(handle, string, size, pack);
 	}
 	
-	#if defined _ALS_fread
-		#error _ALS_fread defined
-	#endif
 	#define _ALS_fread
 	#define fread FIXES_fread
 #endif
@@ -6929,6 +6937,9 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
  *     fputchar
  */
 
+#if defined _ALS_fputchar
+	#error _ALS_fputchar defined
+#endif
 native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 
 #if FIX_fputchar
@@ -6937,9 +6948,6 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 		return handle && fputchar(handle, value, utf8);
 	}
 	
-	#if defined _ALS_fputchar
-		#error _ALS_fputchar defined
-	#endif
 	#define _ALS_fputchar
 	#define fputchar FIXES_fputchar
 #endif
@@ -6951,6 +6959,9 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
  *     fgetchar
  */
 
+#if defined _ALS_fgetchar
+	#error _ALS_fgetchar defined
+#endif
 native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 
 #if FIX_fgetchar
@@ -6959,9 +6970,6 @@ native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 		return handle && fgetchar(handle, value, utf8);
 	}
 	
-	#if defined _ALS_fgetchar
-		#error _ALS_fgetchar defined
-	#endif
 	#define _ALS_fgetchar
 	#define fgetchar FIXES_fgetchar
 #endif
@@ -6973,6 +6981,9 @@ native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
  *     fblockwrite
  */
 
+#if defined _ALS_fblockwrite
+	#error _ALS_fblockwrite defined
+#endif
 native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fblockwrite;
 
 #if FIX_fblockwrite
@@ -6981,9 +6992,6 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
 		return handle && fblockwrite(handle, buffer, size);
 	}
 	
-	#if defined _ALS_fblockwrite
-		#error _ALS_fblockwrite defined
-	#endif
 	#define _ALS_fblockwrite
 	#define fblockwrite FIXES_fblockwrite
 #endif
@@ -6995,6 +7003,9 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
  *     fblockread
  */
 
+#if defined _ALS_fblockread
+	#error _ALS_fblockread defined
+#endif
 native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockread;
 
 #if FIX_fblockread
@@ -7003,9 +7014,6 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
 		return handle && fblockread(handle, buffer, size);
 	}
 	
-	#if defined _ALS_fblockread
-		#error _ALS_fblockread defined
-	#endif
 	#define _ALS_fblockread
 	#define fblockread FIXES_fblockread
 #endif
@@ -7017,6 +7025,9 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
  *     fseek
  */
 
+#if defined _ALS_fseek
+	#error _ALS_fseek defined
+#endif
 native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = fseek;
 
 #if FIX_fseek
@@ -7025,9 +7036,6 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
 		return handle && fseek(handle, position, whence);
 	}
 	
-	#if defined _ALS_fseek
-		#error _ALS_fseek defined
-	#endif
 	#define _ALS_fseek
 	#define fseek FIXES_fseek
 #endif
@@ -7039,6 +7047,9 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
  *     flength
  */
 
+#if defined _ALS_flength
+	#error _ALS_flength defined
+#endif
 native BAD_flength(File:handle) = flength;
 
 #if FIX_flength
@@ -7047,9 +7058,6 @@ native BAD_flength(File:handle) = flength;
 		return handle && flength(handle);
 	}
 	
-	#if defined _ALS_flength
-		#error _ALS_flength defined
-	#endif
 	#define _ALS_flength
 	#define flength FIXES_flength
 #endif
@@ -7061,6 +7069,9 @@ native BAD_flength(File:handle) = flength;
  *     Kick
  */
 
+#if defined _ALS_Kick
+	#error _ALS_Kick defined
+#endif
 native BAD_Kick(playerid) = Kick;
 
 #if FIX_Kick
@@ -7104,9 +7115,6 @@ native BAD_Kick(playerid) = Kick;
 		}
 	}
 	
-	#if defined _ALS_Kick
-		#error _ALS_Kick defined
-	#endif
 	#define _ALS_Kick
 	#define Kick FIXES_Kick
 #endif
@@ -7118,6 +7126,9 @@ native BAD_Kick(playerid) = Kick;
  *     IsPlayerAttachedObjectSlotUsed
  */
 
+#if defined _ALS_IsPAttachedObjSlotUsed
+	#error _ALS_IsPAttachedObjSlotUsed defined
+#endif
 native BAD_IsPlayerAttachedObjSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 
 #if FIX_IsPlayerAttachedObjSlotUsed
@@ -7130,9 +7141,6 @@ native BAD_IsPlayerAttachedObjSlotUsed(playerid, index) = IsPlayerAttachedObject
 		return 0;
 	}
 	
-	#if defined _ALS_IsPAttachedObjSlotUsed
-		#error _ALS_IsPAttachedObjSlotUsed defined
-	#endif
 	#define _ALS_IsPAttachedObjSlotUsed
 	#define IsPlayerAttachedObjectSlotUsed FIXES_IsPAttachedObjectSlotUsed
 #endif
@@ -7160,6 +7168,9 @@ native BAD_IsPlayerAttachedObjSlotUsed(playerid, index) = IsPlayerAttachedObject
  *     SetPlayerAttachedObject
  */
 
+#if defined _ALS_SetPlayerAttachedObject
+	#error _ALS_SetPlayerAttachedObject defined
+#endif
 native BAD_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0, materialcolor1 = 0, materialcolor2 = 0) = SetPlayerAttachedObject;
 
 #if FIX_IsPlayerAttachedObjSlotUsed || FIX_SetPlayerAttachedObject
@@ -7179,9 +7190,6 @@ native BAD_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffset
 		return 0;
 	}
 	
-	#if defined _ALS_SetPlayerAttachedObject
-		#error _ALS_SetPlayerAttachedObject defined
-	#endif
 	#define _ALS_SetPlayerAttachedObject
 	#define SetPlayerAttachedObject FIXES_SetPlayerAttachedObject
 #endif
@@ -7193,6 +7201,9 @@ native BAD_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffset
  *     IsPlayerAttachedObjectSlotUsed
  */
 
+#if defined _ALS_RemovePlayerAttachedObject
+	#error _ALS_RemovePlayerAttachedObject defined
+#endif
 native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObject;
 
 #if FIX_IsPlayerAttachedObjSlotUsed || FIX_SetPlayerAttachedObject
@@ -7212,9 +7223,6 @@ native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObj
 		return 0;
 	}
 	
-	#if defined _ALS_RemovePlayerAttachedObject
-		#error _ALS_RemovePlayerAttachedObject defined
-	#endif
 	#define _ALS_RemovePlayerAttachedObject
 	#define RemovePlayerAttachedObject FIXES_RemovePlayerAttachedObj
 #endif
@@ -7481,6 +7489,9 @@ native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObj
  *     strins
  */
 
+#if defined _ALS_strins
+	#error _ALS_strins defined
+#endif
 native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = strins;
 
 #if FIX_strins
@@ -7543,9 +7554,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		}
 	}
 	
-	#if defined _ALS_strins
-		#error _ALS_strins defined
-	#endif
 	#define _ALS_strins
 	#define strins FIXES_strins
 #endif
@@ -7557,6 +7565,9 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  *     ApplyAnimation
  */
 
+#if defined _ALS_ApplyAnimation
+	#error _ALS_ApplyAnimation defined
+#endif
 native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
 
 #if FIX_ApplyAnimation
@@ -7594,9 +7605,6 @@ native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, l
 		return 0;
 	}
 	
-	#if defined _ALS_ApplyAnimation
-		#error _ALS_ApplyAnimation defined
-	#endif
 	#define _ALS_ApplyAnimation
 	#define ApplyAnimation FIXES_ApplyAnimation
 #endif
@@ -7608,6 +7616,9 @@ native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, l
  *     random
  */
 
+#if defined _ALS_random
+	#error _ALS_random defined
+#endif
 native BAD_random(max) = random;
 
 #if FIX_random
@@ -7623,9 +7634,6 @@ native BAD_random(max) = random;
 		}
 	}
 	
-	#if defined _ALS_random
-		#error _ALS_random defined
-	#endif
 	#define _ALS_random
 	#define random FIXES_random
 #endif
@@ -7639,6 +7647,9 @@ native BAD_random(max) = random;
 
 // Uses a little trick to consume part of the line and thus not match
 // our hooked version.
+#if defined _ALS_sleep
+	#error _ALS_sleep defined
+#endif
 #define BAD_sleep%0\n%9 sleep%0
 
 #if FIX_sleep
@@ -7649,9 +7660,6 @@ native BAD_random(max) = random;
 		return heapspace(), ms;
 	}
 	
-	#if defined _ALS_sleep
-		#error _ALS_sleep defined
-	#endif
 	#define _ALS_sleep
 	
 	#define sleep%0\n%9 sleep FIXES_sleep(%0)
