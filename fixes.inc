@@ -3019,14 +3019,20 @@ public OnGameModeInit()
 		// Check this really IS the only script running.  Properties reset when
 		// a gamemode restarts, so we don't have to worry about filterscipts
 		// detecting themselves.
-		if (FIXES_gsSettings & e_FIXES_SETTINGS_SECOND_USE && existproperty(5, FIXES_gscSingleProperty))
+		if (FIXES_gsSettings & e_FIXES_SETTINGS_SECOND_USE)
 		{
-			print(FIXES_gscFixesError);
+			if (existproperty(5, FIXES_gscSingleProperty))
+			{
+				print(FIXES_gscFixesError);
+			}
+			else
+			{
+				setproperty(5, FIXES_gscSingleProperty, 1);
+			}
 		}
 		else
 		{
-			FIXES_gsSettings |= e_FIXES_SETTINGS_SECOND_USE,
-			setproperty(5, FIXES_gscSingleProperty, 1);
+			FIXES_gsSettings |= e_FIXES_SETTINGS_SECOND_USE;
 		}
 	#endif
 	
