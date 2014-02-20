@@ -1349,6 +1349,7 @@
  * The number of GameText styles recreated using TextDraw functions.  This is 4
  * by default, but can be extended to 6 if you want location and vehicle styles.
  */
+
 #if FIX_GameText
 	#if FIX_GameTextStyles
 		#define FIXES_GT_STYLE_COUNT (14)
@@ -1364,6 +1365,7 @@
  * they are kicked for cheats, instead they will just loose connection to the
  * server.
  */
+
 #if !defined FIXES_SilentKick
 	#define FIXES_SilentKick 0
 #elseif _FIXES_IS_UNSET(FIXES_SilentKick)
@@ -1378,6 +1380,7 @@
  * functions which may use it.  Otherwise, the compiler entirely removes the
  * code to print anything, leaving 0 run-time overhead.
  */
+
 #if defined FIXES_Debug
 	#if _FIXES_IS_UNSET(FIXES_Debug)
 		#undef FIXES_Debug
@@ -1393,6 +1396,7 @@
  * 
  * A special "printf" function only compiled when "FIXES_Debug" is set.
  */
+
 #if !defined FIXES_PRINTF
 	#define FIXES_Debug 0
 	#define FIXES_PRINTF(%0);
@@ -1403,6 +1407,7 @@
  * 
  * Set when a player can't see a dialog.
  */
+
 #if !defined INVALID_DIALOG_ID
 	#define INVALID_DIALOG_ID (-1)
 #endif
@@ -1415,6 +1420,7 @@
  * gamemodes and filter scripts at the same time).  You can only have one or the
  * other or bugs.
  */
+
 #if !defined FIXES_Single
 	#define FIXES_Single (1)
 #elseif _FIXES_IS_UNSET(FIXES_Single)
@@ -1427,6 +1433,7 @@
  * 
  * Test to see if this script is in command or not (master).
  */
+
 #if FIXES_Single
 	#define _FIXES_IS_IN_CHARGE(%0)
 #else
@@ -1583,6 +1590,7 @@ static stock
 	 * this only exists when required, since it depends on add and remove
 	 * functions to be called at the right time.
 	 */
+
 #if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 	FIXES_gsPlayersIterator[MAX_PLAYERS + 1] = {0, 1, ...},
 #endif
@@ -1616,6 +1624,7 @@ static stock
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
 	 */
+
 #if FIX_SetPlayerWorldBounds
 	FIXES_gsWorldbounds[MAX_PLAYERS][E_FIXES_WORLDBOUND_DATA],
 #endif
@@ -1694,6 +1703,7 @@ static stock
 	 * The pre-defined TextDraw styles used to recreate the bugged GameText
 	 * styles for GameTextForAll.
 	 */
+
 #if FIX_GameText
 	Text:FIXES_gsGTStyle[FIXES_GT_STYLE_COUNT],
 #endif
@@ -1702,6 +1712,7 @@ static stock
 	 * 
 	 * A linked list of which players can see a certain GameText style.
 	 */
+
 #if FIX_GameText
 	FIXES_gsPlayerPGTShown[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1],
 #endif
@@ -1711,6 +1722,7 @@ static stock
 	 * The predefined TextDraw styles used to recreate the bugged GameText
 	 * styles for GameTextForPlayer.
 	 */
+
 #if FIX_GameText
 	PlayerText:FIXES_gsPGTStyle[MAX_PLAYERS][FIXES_GT_STYLE_COUNT],
 #endif
@@ -1719,6 +1731,7 @@ static stock
 	 * 
 	 * The timers used to hide per-player GameText messages.
 	 */
+
 #if FIX_GameText
 	FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1],
 #endif
@@ -1806,6 +1819,7 @@ static stock const
 	 * There are only 100 colours used by default, with SA:MP looping through
 	 * them repeatedly.
 	 */
+
 #if FIX_GetPlayerColour
 	FIXES_gscPlayerColours[100] =
 		{
@@ -1838,6 +1852,7 @@ static stock const
 	 * any vehicle, confirmed by a number of sources. "F" (15) means invalid
 	 * vehicle.
 	 */
+
 #if FIX_OnPlayerEnterVehicle
 	FIXES_gscMaxPassengers[] =
 		{
@@ -1861,6 +1876,7 @@ static stock const
 	 * I don't know yet if this can be used to our advantage to improve the code
 	 * somehow - it seems like that would require more explicit model handling.
 	 */
+
 #if FIX_OnVehicleMod
 	FIXES_gscVehicleMods[] =
 		{
@@ -2083,6 +2099,7 @@ static stock const
 	 * 
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
 	 */
+
 #if FIX_ApplyAnimation
 	FIXES_gscAnimIndexes[24] =
 		{
@@ -2094,6 +2111,7 @@ static stock const
 	 * 
 	 * List of valid animation libraries.
 	 */
+
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
 	FIXES_gscAnimLib[134][] =
 		{
@@ -2337,6 +2355,7 @@ static stock const
  * 
  * Because the default SA:MP includes missed this one.
  */
+
 #if FIX_IsValidVehicle
 	native IsValidVehicle(vehicleid);
 #endif
@@ -2346,6 +2365,7 @@ static stock const
  *
  * Because the default SA:MP includes missed this one.
  */
+
 #if FIX_GetGravity
 	native Float:GetGravity();
 #endif
@@ -2355,6 +2375,7 @@ static stock const
  *
  * Because the default SA:MP includes missed this one.
  */
+
 #if FIX_gpci
 	native gpci(playerid, serial[], maxlen);
 #endif
@@ -2364,6 +2385,7 @@ static stock const
  *
  * Because the default SA:MP includes missed these.
  */
+
 #if FIX_BODYPARTS
 	#define BODY_PART_TORSO                     (3)
 	#define BODY_PART_GROIN                     (4)
@@ -2379,6 +2401,7 @@ static stock const
  *
  * Because the default SA:MP includes missed these.
  */
+
 #if FIX_CAMERAMODES
 	#define CAM_MODE_DISCONNECTED               (-1)
 	#define CAM_MODE_NONE                       (0)
@@ -2403,6 +2426,7 @@ static stock const
  * "FILTERSCRIPT" can't always be relied on to be set.  This is not a pre-
  * processor macro, but may be better than nothing (also used internally).
  */
+
 #if FIX_FILTERSCRIPT
 	#define IS_FILTERSCRIPT _FIXES_gIsFilterscript
 #endif
@@ -2412,6 +2436,7 @@ static stock const
  * 
  * Include functions used by "SYSREQ.C".
  */
+
 #if FIX_sleep
 	forward _FIXES_IncludeFuncs();
 	
@@ -2428,6 +2453,7 @@ static stock const
  * 
  * Figure out which script is called first by callbacks.
  */
+
 #if !FIXES_Single
 	forward _FIXES_DetermineOrder();
 	
@@ -2476,6 +2502,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
  * FIXES:
  *     GameText
  */
+
 #if FIX_GameText
 	static _FIXES_CreateGameTextDraws(const playerid)
 	{
@@ -2903,6 +2930,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
  *     OnPlayerConnect
  *     GameText
  */
+
 public OnFilterScriptInit()
 {
 	// It is possible for this to be the only thing done in this function!
@@ -3013,6 +3041,7 @@ public OnFilterScriptInit()
  *     AllowInteriorWeapons
  *     AllowTeleport
  */
+
 public OnGameModeInit()
 {
 	#if FIXES_Single
@@ -3110,6 +3139,7 @@ public OnGameModeInit()
  * 
  * Fast way of detecting not to retain any data.
  */
+
 #if !FIXES_Single || FIX_PlayerDialogResponse
 	public OnGameModeExit()
 	{
@@ -3158,6 +3188,7 @@ public OnGameModeInit()
  * 
  * Fast way of detecting not to retain any data.
  */
+
 #if !FIXES_Single || FIX_GameText || FIX_OnPlayerDisconnect
 	public OnFilterScriptExit()
 	{
@@ -3279,6 +3310,7 @@ public OnGameModeInit()
  * FIXES:
  *     OnPlayerCommandText
  */
+
 #if FIX_OnPlayerCommandText
 	public OnPlayerCommandText(playerid, cmdtext[])
 	{
@@ -3346,6 +3378,7 @@ public OnGameModeInit()
  *     OnPlayerSpawn
  *     ApplyAnimation_2
  */
+
 #if     FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_SetPlayerName            || FIX_GetPlayerColour
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_GetPlayerSkin        || FIX_IsPlayerInCheckpoint     || FIX_IsPlayerInRaceCheckpoint || FIX_GetPlayerWeapon
@@ -3607,6 +3640,7 @@ public OnGameModeInit()
  *     Kick
  *     GetPlayerMenu
  */
+
 #if FIX_SetPlayerAttachedObject || FIX_IsPlayerAttachedObjSlotUsed || FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 	public OnPlayerDisconnect(playerid, reason)
 	{
@@ -3727,6 +3761,7 @@ public OnGameModeInit()
  *     OnPlayerDeath
  *     OnPlayerSpawn
  */
+
 #if FIX_OnPlayerDeath || FIX_OnPlayerSpawn
 	public OnPlayerDeath(playerid, killerid, reason)
 	{
@@ -3880,6 +3915,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  *     ApplyAnimation_2
  *     GameText
  */
+
 #if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_ApplyAnimation_2 || FIX_GameText
 	public OnPlayerSpawn(playerid)
 	{
@@ -4032,6 +4068,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  * FIXES:
  *     OnVehicleMod
  */
+
 #if FIX_OnVehicleMod
 	public OnVehicleMod(playerid, vehicleid, componentid)
 	{
@@ -4275,6 +4312,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  *     OnPlayerEnterVehicle
  *     OnPlayerEnterVehicle_2
  */
+
 #if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod
 	public OnPlayerUpdate(playerid)
 	{
@@ -4638,6 +4676,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  *     AllowInteriorWeapons
  *     GetPlayerInterior
  */
+
 #if FIX_AllowInteriorWeapons || FIX_GetPlayerInterior
 	public OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid)
 	{
@@ -4723,6 +4762,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * FIXES:
  *     DriveBy
  */
+
 #if FIX_DriveBy
 	forward _FIXES_DriveBy(playerid);
 	
@@ -4742,6 +4782,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * FIXES:
  *     DriveBy
  */
+
 #if FIX_DriveBy
 	public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	{
@@ -4791,6 +4832,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * FIXES:
  *     OnPlayerEnterVehicle_2
  */
+
 #if FIX_OnPlayerEnterVehicle_2
 	public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	{
@@ -4831,6 +4873,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * FIXES:
  *     OnPlayerEnterVehicle_2
  */
+
 #if FIX_OnPlayerEnterVehicle_2
 	public OnPlayerExitVehicle(playerid, vehicleid)
 	{
@@ -4870,6 +4913,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  *
  * Block a player from using OnPlayerUpdate at all.
  */
+
 #if FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_Kick || FIX_OnVehicleMod
 	static stock FIXES_BlockUpdate(playerid, bool:block, kick = 6)
 	{
@@ -4911,6 +4955,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * FIXES:
  *     GetPlayerMenu
  */
+
 #if FIX_GetPlayerMenu
 	public OnPlayerSelectedMenuRow(playerid, row)
 	{
@@ -4995,6 +5040,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * FIXES:
  *     GetPlayerMenu
  */
+
 #if FIX_GetPlayerMenu
 	public OnPlayerExitedMenu(playerid)
 	{
@@ -5079,6 +5125,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * FIXES:
  *     Menus
  */
+
 #if _FIX_Menus
 	#define FIXES_IS_VALID_MENU(%0) (_FIXES_IN_RANGE(_:(%0), 0, MAX_MENUS) && (FIXES_gsValidMenus[_:(%0) >>> 5] & (1 << (_:(%0) & 0x1F))))
 #endif
@@ -5130,6 +5177,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
  * FIXES:
  *     GetPlayerMenu
  */
+
 #if FIX_GetPlayerMenu && !FIXES_Single
 	forward _FIXES_SetPlayerMenu(playerid, Menu:menuid);
 	
@@ -5146,6 +5194,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
  * FIXES:
  *     GetPlayerMenu
  */
+
 #if FIX_GetPlayerMenu && !FIXES_Single
 	forward _FIXES_ClearPlayerMenu(playerid);
 	
@@ -5450,6 +5499,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
  *     PutPlayerInVehicle
  *     TrainExit
  */
+
 #if FIX_HydraSniper || FIX_GetPlayerWeapon || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_TrainExit
 	public OnPlayerStateChange(playerid, newstate, oldstate)
 	{
@@ -5991,6 +6041,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
  * FIXES:
  *     GameText
  */
+
 #if FIX_GameText
 	static stock _FIXES_HideGameTextForPlayer(playerid, style, parr[])
 	{
@@ -6029,6 +6080,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
  * FIXES:
  *     GameText
  */
+
 #if FIX_GameText
 	forward _FIXES_HideGameTextTimer(playerid, style);
 	
@@ -6048,6 +6100,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
  * FIXES:
  *     GameText
  */
+
 #if FIX_GameText
 	forward _FIXES_GameTextShow(playerid, string[], time, style);
 	
@@ -6458,6 +6511,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
  * FIXES:
  *     AllowTeleport
  */
+
 #if FIX_AllowTeleport && !defined FILTERSCRIPT
 	forward _FIXES_AllowTeleport(playerid, allow);
 	
@@ -6587,6 +6641,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
  * FIXES:
  *     AllowTeleport
  */
+
 #if FIX_AllowTeleport && !defined FILTERSCRIPT && !FIXES_Single
 	public _FIXES_AllowTeleport(playerid, allow)
 	{
@@ -6748,6 +6803,7 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
  *     OnDialogResponse
  *     GetPlayerDialog
  */
+
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 	public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	{
@@ -7161,6 +7217,7 @@ native BAD_IsPlayerAttachedObjSlotUsed(playerid, index) = IsPlayerAttachedObject
  * FIXES:
  *     IsPlayerAttachedObjectSlotUsed
  */
+
 #if (FIX_IsPlayerAttachedObjSlotUsed || FIX_SetPlayerAttachedObject) && !FIXES_Single
 	forward _FIXES_SetPlayerAttachedObject(slot, to);
 	
@@ -7247,6 +7304,7 @@ native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObj
  * in advance which script will be called first (at least out of all the fixed
  * scripts).
  */
+
 #if !FIXES_Single
 	public _FIXES_DetermineOrder()
 	{
