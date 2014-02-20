@@ -609,32 +609,60 @@
  * Functions should be upper camel case (as the original functions are)
  *     "FIXES_LikeThis".
  * 
- * Globals (after the prefix) should be upper camel case, and locals lower camel
- *     case "likeThis".
+ * Globals (after the prefix) should be upper camel case "LikeThis", and locals
+ *     lower camel case "likeThis".
  * 
- * ALS should be used to hook functions and callbacks.
+ * ALS should be used to hook functions and callbacks.  See this topic for more
+ *    details:
+ *    
+ *        http://forum.sa-mp.com/showthread.php?t=441293
  * 
- * The ALS prefix for chaining is also "FIXES_"
+ * The ALS prefix for chaining is "FIXES_".
+ * 
+ * When redefining a native, add a "BAD_" external name declaration with the
+ *     "_ALS_" definition so that others may use the original native if they so
+ *     desire (with the caveat that it may break all fixes).  Note the "BAD_"
+ *     name is meant to indicate the possibility of breaking the fix, not a
+ *     comment on the original native function.
+ * 
+ * The ALS hook defines used here are a little different to the normal ones as
+ *     this file assumes that it is always first.  The pattern is:
+ *     
+ *         #if defined _ALS_NameOfFixHere
+ *             #error _ALS_NameOfFixHere defined
+ *         #endif
+ *         native BAD_NameOfFixHere(params) = NameOfFixHere;
+ *         
+ *         #if FIX_NameOfFixHere
+ *             stock FIXES_NameOfFixHere(params)
+ *             {
+ *                 return 0;
+ *             }
+ *             
+ *             #define _ALS_NameOfFixHere
+ *             #define NameOfFixHere FIXES_NameOfFixHere
+ *         #endif
+ *    
+ *    A copyable version of this pattern is at the end of the file.
  * 
  * Enums start with "E_" or "e_" depending on type, then follow rules for
  *     macros.
- * 
- * Use "FIXES_gsCallbackHooks" and "E_FIXES_CALLBACK_HOOKS" for ALS chaining.
  * 
  * NO libraries should be included - not even the default SA:MP ones.  Let the
  *     user do it.
  * 
  * Due to the above rule, you cannot assume any third party libraries AT ALL, so
- *     do not use them.
+ *     do not use them.  This can lead to some code duplication, but also means
+ *     that the version of the code used here can be tailored for optimisations.
  * 
  * Certain terms may be shortened when dealing with long callback names to avoid
  *     compile truncation warnings (max symbol length is 31).  Current list:
  *     
- *     "Checkpoint" -> "CP"
- *     "Update"     -> "Upd"
- *     "TextDraw"   -> "TD"
- *     "Object"     -> "Obj"
- *     "Player"     -> "P"
+ *         "Checkpoint" -> "CP"
+ *         "Update"     -> "Upd"
+ *         "TextDraw"   -> "TD"
+ *         "Object"     -> "Obj"
+ *         "Player"     -> "P"
  * 
  * Document all fixes at the top of the file, and highlight code.
  * 
@@ -652,23 +680,25 @@
  * 
  * No comments beyond the end of column 80 (where the line in "PAWNO" is).
  * 
- * When redefining a native, add a "BAD_" external name declaration with the
- *     "_ALS_" definition so that others may use the original native if they so
- *     desire (with the caveat that it may break all fixes).  Note the "BAD_"
- *     name is meant to indicate the possibility of breaking the fix, not a
- *     comment on the original native function.
- * 
  * If a bug is fixed in some version of the server it can be conditionally
  *     included here.  This is done by checking for the existance of a native
  *     function introduced in the same server version.  For example
  *     "TogglePlayerControllable" was fixed in 0.3eRC6, the same time as the
  *     "SetObjectMaterial" native was introduced, thus the inclusion becomes:
  *     
- *     #if !defined FIX_TogglePlayerControllable
- *         #define FIX_TogglePlayerControllable (!defined SetObjectMaterial)
- *     #endif
+ *         #if !defined FIX_TogglePlayerControllable
+ *             #if defined SetObjectMaterial
+ *                 #define FIX_TogglePlayerControllable (0)
+ *             #else
+ *                 #define FIX_TogglePlayerControllable (1)
+ *             #endif
+ *         #elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)
+ *             #undef FIX_TogglePlayerControllable
+ *             #define FIX_TogglePlayerControllable     (2)
+ *         #endif
  *     
- *     This only includes this fix if that native doesn't exist.
+ *     This only includes this fix if that native doesn't exist.  A copyable
+ *     version of this pattern is at the end of the file.
  * 
  * To reduce general memory consumption, strings in this include are stored
  *     globally in constant arrays and referenced.  This is EXACTLY as fast as
@@ -677,17 +707,18 @@
  *     once, in which case it's more work for no gain).  See this post for more
  *     details:
  *     
- *     http://forum.sa-mp.com/showpost.php?p=1795601
+ *         http://forum.sa-mp.com/showpost.php?p=1795601
  * 
  * Documentation explanation:
+ *     
+ *         FIX:      <Short name>
+ *         PROBLEM:  <Description of problem>
+ *         SOLUTION: <Description of solution>
+ *         SEE:      <List of relevant functions>
+ *         AUTHOR:   <Person who wrote the fix>
+ *         POST:     <Optional link to the original post where applicable>
+ *         FIXED IN: <Optional server version of official fix where applicable>
  * 
- *     FIX:      <Short name>
- *     PROBLEM:  <Description of problem>
- *     SOLUTION: <Description of solution>
- *     SEE:      <List of relevant functions>
- *     AUTHOR:   <Person who wrote the fix>
- *     POST:     <Link to the original post where applicable>
- *     FIXED IN: <Server version of official fix where applicable>
  */
 
 #if defined _INC_SAMP_Community_fixes
@@ -3394,6 +3425,7 @@ public OnGameModeInit()
 #elseif FIX_GetPlayerMenu        || FIX_OnPlayerDisconnect       || FIX_OnPlayerConnect
 	#define _FIXES_ON_PLAYER_CONNECT
 #endif
+
 #if defined _FIXES_ON_PLAYER_CONNECT
 	public OnPlayerConnect(playerid)
 	{
@@ -7750,6 +7782,7 @@ native BAD_random(max) = random;
  * 
  * Add something to an internal linked list.
  */
+
 static stock _FIXES_AddInternal(array[], value, size)
 {
 	if (array[value] <= value)
@@ -7774,6 +7807,7 @@ static stock _FIXES_AddInternal(array[], value, size)
  * 
  * Remove something from an internal linked list.
  */
+
 static stock _FIXES_RemoveInternal(array[], value, size)
 {
 	if (array[value] > value)
@@ -7792,30 +7826,6 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 	}
 }
 
-/*
- * FIXES_%%%!!!
- *
- * FIXES:
- *     %%%
- */
-/*#if FIX_%%%
-	stock FIXES_%%%!!!
-	{
-		return 0;
-	}
-	
-	#if defined _ALS_%%%
-		#undef %%%
-	#else
-		
-		native BAD_%%%!!! = %%%;
-		
-		#define _ALS_%%%
-	#endif
-	#define %%% FIXES_%%%
-#endif
-*/
-
 #undef _FIXES_CEILDIV
 #undef _FIXES_INFINITY
 #undef _FIXES_N_INFINITY
@@ -7826,4 +7836,39 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_IN_RANGE
 #undef _FIXES_NO_RANGE
 #undef FIXES_PRINTF
+
+#endinput
+
+// Fix inclusion template.
+
+#if !defined FIX_NameOfFixHere
+	#define FIX_NameOfFixHere            (1)
+#elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)
+	#undef FIX_NameOfFixHere
+	#define FIX_NameOfFixHere            (2)
+#endif
+
+// Fix function template.
+
+/*
+ * FIXES_NameOfFixHere
+ *
+ * FIXES:
+ *     NameOfFixHere
+ */
+
+#if defined _ALS_NameOfFixHere
+	#error _ALS_NameOfFixHere defined
+#endif
+native BAD_NameOfFixHere(params) = NameOfFixHere;
+
+#if FIX_NameOfFixHere
+	stock FIXES_NameOfFixHere(params)
+	{
+		return 0;
+	}
+	
+	#define _ALS_NameOfFixHere
+	#define NameOfFixHere FIXES_NameOfFixHere
+#endif
 
