@@ -3032,6 +3032,11 @@ public OnGameModeInit()
 		}
 		else
 		{
+			// When the server starts, we need to allow an FS to load with a GM
+			// that doesn't use fixes.inc.  This is the only case where a
+			// property can be set while a ganemode isn't running.  This will
+			// mean that the FS won't complain if they are both using fixes, but
+			// the GM still will, so all is good.
 			FIXES_gsSettings |= e_FIXES_SETTINGS_SECOND_USE;
 		}
 	#endif
