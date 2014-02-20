@@ -2306,10 +2306,10 @@ static stock const
 	 * 
 	 * Error shown when multiple scripts are detected.
 	 */
-	FIXES_gscFixesError[] = "\7\7\7\7\7\r\n" \
-		"*** fixes.inc error: Running multiple scripts compiled with \"fixes.inc\"...\r\n" \
-		"***     Please compile your modes with \"#define FIXES_Single 0\" at the top, as\r\n" \
-		"***     this setting is no longer the default (to improve the more common case).";
+	FIXES_gscFixesError[] = "\7\7\7\7\7"                                                     "\n"   \
+		"*** fixes.inc error: Running multiple scripts compiled with \"fixes.inc\"..."       "\n"   \
+		"***     Please compile your modes with \"#define FIXES_Single 0\" at the top, as"   "\n"   \
+		"***     this setting is no longer the default (to improve the more common case)."          ;
 
 /* 
  * _FIXES_KEY_AIM
