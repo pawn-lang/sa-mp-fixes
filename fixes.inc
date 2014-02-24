@@ -735,8 +735,12 @@
 // We can add server version compiler code here to only compile fixes that apply
 // to the version of the includes for which the user is compiling.
 #if !defined FIX_GetPlayerColour
-	#if defined FIX_GetPlayerColor && !_FIXES_IS_UNSET(FIX_GetPlayerColor)
-		#define FIX_GetPlayerColour       (FIX_GetPlayerColor)
+	#if defined FIX_GetPlayerColor
+		#if _FIXES_IS_UNSET(FIX_GetPlayerColor)
+			#define FIX_GetPlayerColour   (2)
+		#else
+			#define FIX_GetPlayerColour   (FIX_GetPlayerColor)
+		#endif
 	#else
 		#define FIX_GetPlayerColour       (1)
 	#endif
