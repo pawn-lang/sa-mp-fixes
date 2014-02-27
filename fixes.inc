@@ -591,7 +591,13 @@
  * SEE:      N/A.
  * AUTHOR:   Whitetiger
  * POST:     http://forum.sa-mp.com/showpost.php?p=1309730
- * 
+ *
+ * FIX:      SetCamera
+ * PROBLEM:  Using the camera functions after enabling spectator mode doesn't work.
+ * SOLUTION: Defer it.
+ * SEE:      N/A.
+ * AUTHOR:   Emmet_
+ *
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -1378,6 +1384,13 @@
 	#define FIX_PlayerTextDrawSetString  (2)
 #endif
 
+#if !defined FIX_SetCamera
+	#define FIX_SetCamera  		         (1)
+#elseif _FIXES_IS_UNSET(FIX_SetCamera)
+	#undef FIX_SetCamera
+	#define FIX_SetCamera  		         (2)
+#endif
+
 /* 
  * FIXES_GT_STYLE_COUNT
  * 
@@ -1516,7 +1529,8 @@ enum e_FIXES_BOOLS (<<= 1)
 	e_FIXES_BOOLS_KICKED,
 	e_FIXES_BOOLS_ON_PLAYER_CONNECT,
 	e_FIXES_BOOLS_DRIVE_BY,
-	e_FIXES_BOOLS_FIRST_SPAWN
+	e_FIXES_BOOLS_FIRST_SPAWN,
+	e_FIXES_BOOLS_SPECTATING
 }
 
 /* 
@@ -1840,6 +1854,12 @@ static stock
 	 * Name of the Drive-By timer function.
 	 */
 	FIXES_gscDriveBy[] = "_FIXES_DriveBy",
+	/*
+	 * FIXES_gscSetCamera[]
+	 * 
+	 * Name of the SetCamera timer function.
+	 */
+	FIXES_gscSetCamera[] = "_FIXES_SetCamera",
 	/*
 	 * FIXES_gscNULL[]
 	 * 
@@ -2233,6 +2253,12 @@ static stock const
 	 * Specifier "ifff".
 	 */
 	FIXES_gscSpec@ifff[] = "ifff",
+	/*
+	 * FIXES_gscSpec@iifff[]
+	 * 
+	 * Specifier "iifff".
+	 */
+	FIXES_gscSpec@iifff[] = "iifff",
 	/*
 	 * FIXES_gscSpec@iffff[]
 	 * 
@@ -7740,6 +7766,122 @@ native BAD_random(max) = random;
 	
 	#define _ALS_random
 	#define random FIXES_random
+#endif
+
+/*
+ * FIXES_SetCamera
+ *
+ * FIXES:
+ *     SetPlayerCameraPos
+ *	   SetPlayerCameraLookAt
+ *     TogglePlayerSpectating
+ */
+
+#if defined _ALS_SetPlayerCameraPos
+	#error _ALS_SetPlayerCameraPos defined
+#endif
+native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
+
+#if FIX_SetCamera
+	forward _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z);
+	public _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z)
+	{
+		switch (type)
+		{
+			case 1:
+			{
+				SetPlayerCameraPos(playerid, x, y, z);
+			}
+			case 2:
+			{
+				SetPlayerCameraLookAt(playerid, x, y, z);
+			}
+		}
+		return 0;
+	}
+
+	stock FIXES_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
+			{
+				SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 1, x, y, z); 
+			}
+			else
+			{
+				SetPlayerCameraPos(playerid, x, y, z);
+			}
+		}
+		return 0;
+	}
+	
+	#define _ALS_SetPlayerCameraPos
+	#define SetPlayerCameraPos FIXES_SetPlayerCameraPos
+#endif
+
+#if defined _ALS_SetPlayerCameraLookAt
+	#error _ALS_SetPlayerCameraLookAt defined
+#endif
+native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraLookAt;
+
+#if FIX_SetCamera
+	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
+			{
+				SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 2, x, y, z); 
+			}
+			else
+			{
+				SetPlayerCameraLookAt(playerid, x, y, z);
+			}
+		}
+		return 0;
+	}
+	
+	#define _ALS_SetPlayerCameraLookAt
+	#define SetPlayerCameraLookAt FIXES_SetPlayerCameraLookAt
+#endif
+
+#if defined _ALS_TogglePlayerSpectating
+	#error _ALS_TogglePlayerSpectating defined
+#endif
+native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
+
+#if FIX_SetCamera
+	stock FIXES_TogglePlayerSpectating(playerid, toggle)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			switch (toggle)
+			{
+				case 0:
+				{
+					if (!(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING))
+					{
+						return 0;
+					}
+					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_SPECTATING;
+				}
+				case 1:
+				{
+					if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING)
+					{
+						return 0;
+					}
+					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_SPECTATING;
+				}
+			}
+			TogglePlayerSpectating(playerid, toggle);
+		}
+		return 0;
+	}
+	
+	#define _ALS_TogglePlayerSpectating
+	#define TogglePlayerSpectating FIXES_TogglePlayerSpectating
 #endif
 
 /*
