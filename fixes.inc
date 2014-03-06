@@ -1806,6 +1806,12 @@ static stock
 	 */
 	FIXES_pvarPlayerSkin[] = "FIXES_pvarPlayerSkin",
 	/*
+	 * FIXES_pvarPlayerSpectate[]
+	 *
+	 * Name of the pvar in which to store the player's spectator mode.
+	 */
+	FIXES_pvarPlayerSpectate[] = "FIXES_pvarPlayerSpectate",
+	/*
 	 * FIXES_gscKick[]
 	 * 
 	 * Name of the kick timer function.
@@ -7786,16 +7792,13 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 	forward _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z);
 	public _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z)
 	{
-		switch (type)
+		if (type == 1)
 		{
-			case 1:
-			{
-				SetPlayerCameraPos(playerid, x, y, z);
-			}
-			case 2:
-			{
-				SetPlayerCameraLookAt(playerid, x, y, z);
-			}
+	        SetPlayerCameraPos(playerid, x, y, z);
+	    }
+		else			
+		{
+			SetPlayerCameraLookAt(playerid, x, y, z);
 		}
 		return 0;
 	}
@@ -7804,7 +7807,11 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
+			#if FIXES_Single
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+			#else
+			if (GetPVarInt(playerid, pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+			#endif
 			{
 				SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 1, x, y, z); 
 			}
@@ -7830,12 +7837,16 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING && GetPlayerState(playerid) != PLAYER_STATE_SPECTATING)
+			#if FIXES_Single
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+			#else
+		    if (GetPVarInt(playerid, pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+			#endif
 			{
 				SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 2, x, y, z); 
 			}
 			else
-			{
+            {
 				SetPlayerCameraLookAt(playerid, x, y, z);
 			}
 		}
@@ -7860,19 +7871,19 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 			{
 				case 0:
 				{
-					if (!(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING))
-					{
-						return 0;
-					}
-					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_SPECTATING;
+					#if FIXES_Single
+						FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_SPECTATING;
+					#else
+						SetPVarInt(playerid, FIXES_pvarPlayerSpectate, 1);
+					#endif
 				}
 				case 1:
 				{
-					if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING)
-					{
-						return 0;
-					}
-					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_SPECTATING;
+					#if FIXES_Single
+						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_SPECTATING;
+					#else
+						DeletePVar(playerid, FIXES_pvarPlayerSpectate);
+					#endif
 				}
 			}
 			TogglePlayerSpectating(playerid, toggle);
