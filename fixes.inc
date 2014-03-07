@@ -576,26 +576,30 @@
  * FIX:      HideGameText
  * PROBLEM:  There is no "HideGameTextForXYZ" function.
  * SOLUTION: Show a single space for a game text.  DEFAULTS TO FALSE.
- * SEE:      "HideGameTextForAll", "HideGameTextForPlayer".
+ * SEE:      "FIXES_HideGameTextForAll", "FIXES_HideGameTextForPlayer".
  * AUTHOR:   Y_Less
  *
  * FIX:      BODYPARTS
- * PROBLEM:  The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined by default
+ * PROBLEM:  The bodyparts to be used in OnPlayer(Take/Give)Damage are not
+ *           defined by default
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   Whitetiger
  *
  * FIX:      CAMERAMODES
- * PROBLEM:  The camera modes for GetPlayerCameraMode are not defined by default
+ * PROBLEM:  The camera modes for GetPlayerCameraMode are not defined by
+ *           default.
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   Whitetiger
  * POST:     http://forum.sa-mp.com/showpost.php?p=1309730
  *
- * FIX:      SetCamera
- * PROBLEM:  Using the camera functions after enabling spectator mode doesn't work.
- * SOLUTION: Defer it.
- * SEE:      N/A.
+ * FIX:      SetPlayerCamera
+ * PROBLEM:  Using the camera functions directly after enabling spectator mode
+ *           doesn't work.
+ * SOLUTION: Defer them.
+ * SEE:      "FIXES_SetPlayerCameraPos", "FIXES_SetPlayerCameraLookAt",
+ *           "FIXES_TogglePlayerSpectating".
  * AUTHOR:   Emmet_
  *
  * ==============
@@ -1384,11 +1388,11 @@
 	#define FIX_PlayerTextDrawSetString  (2)
 #endif
 
-#if !defined FIX_SetCamera
-	#define FIX_SetCamera  		         (1)
-#elseif _FIXES_IS_UNSET(FIX_SetCamera)
-	#undef FIX_SetCamera
-	#define FIX_SetCamera  		         (2)
+#if !defined FIX_SetPlayerCamera
+	#define FIX_SetPlayerCamera  		 (1)
+#elseif _FIXES_IS_UNSET(FIX_SetPlayerCamera)
+	#undef FIX_SetPlayerCamera
+	#define FIX_SetPlayerCamera  		 (2)
 #endif
 
 /* 
@@ -7778,9 +7782,31 @@ native BAD_random(max) = random;
  * FIXES_SetCamera
  *
  * FIXES:
- *     SetPlayerCameraPos
- *	   SetPlayerCameraLookAt
- *     TogglePlayerSpectating
+ *     SetPlayerCamera
+ */
+
+#if FIX_SetPlayerCamera
+	forward _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z);
+	
+	public _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z)
+	{
+		if (type)
+		{
+			SetPlayerCameraPos(playerid, x, y, z);
+		}
+		else
+		{
+			SetPlayerCameraLookAt(playerid, x, y, z);
+		}
+		return 0;
+	}
+#endif
+
+/*
+ * FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z)
+ *
+ * FIXES:
+ *     SetPlayerCamera
  */
 
 #if defined _ALS_SetPlayerCameraPos
@@ -7788,37 +7814,23 @@ native BAD_random(max) = random;
 #endif
 native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
 
-#if FIX_SetCamera
-	forward _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z);
-	public _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z)
-	{
-		if (type == 1)
-		{
-	        SetPlayerCameraPos(playerid, x, y, z);
-	    }
-		else			
-		{
-			SetPlayerCameraLookAt(playerid, x, y, z);
-		}
-		return 0;
-	}
-
+#if FIX_SetPlayerCamera
 	stock FIXES_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z)
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
 			#if FIXES_Single
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#else
-			if (GetPVarInt(playerid, pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+				if (GetPVarInt(playerid, pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
-			{
-				SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 1, x, y, z); 
-			}
-			else
-			{
-				SetPlayerCameraPos(playerid, x, y, z);
-			}
+				{
+					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 1, x, y, z); 
+				}
+				else
+				{
+					SetPlayerCameraPos(playerid, x, y, z);
+				}
 		}
 		return 0;
 	}
@@ -7827,28 +7839,35 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 	#define SetPlayerCameraPos FIXES_SetPlayerCameraPos
 #endif
 
+/*
+ * FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z)
+ *
+ * FIXES:
+ *     SetPlayerCamera
+ */
+
 #if defined _ALS_SetPlayerCameraLookAt
 	#error _ALS_SetPlayerCameraLookAt defined
 #endif
 native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraLookAt;
 
-#if FIX_SetCamera
+#if FIX_SetPlayerCamera
 	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z)
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
 			#if FIXES_Single
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#else
-		    if (GetPVarInt(playerid, pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+				if (GetPVarInt(playerid, pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
-			{
-				SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 2, x, y, z); 
-			}
-			else
-            {
-				SetPlayerCameraLookAt(playerid, x, y, z);
-			}
+				{
+					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 2, x, y, z); 
+				}
+				else
+				{
+					SetPlayerCameraLookAt(playerid, x, y, z);
+				}
 		}
 		return 0;
 	}
@@ -7857,36 +7876,40 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 	#define SetPlayerCameraLookAt FIXES_SetPlayerCameraLookAt
 #endif
 
+/*
+ * FIXES_TogglePlayerSpectating(playerid, toggle)
+ *
+ * FIXES:
+ *     SetPlayerCamera
+ */
+
 #if defined _ALS_TogglePlayerSpectating
 	#error _ALS_TogglePlayerSpectating defined
 #endif
 native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 
-#if FIX_SetCamera
+#if FIX_SetPlayerCamera
 	stock FIXES_TogglePlayerSpectating(playerid, toggle)
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
-			switch (toggle)
+			if (toggle)
 			{
-				case 0:
-				{
-					#if FIXES_Single
-						FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_SPECTATING;
-					#else
-						SetPVarInt(playerid, FIXES_pvarPlayerSpectate, 1);
-					#endif
-				}
-				case 1:
-				{
-					#if FIXES_Single
-						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_SPECTATING;
-					#else
-						DeletePVar(playerid, FIXES_pvarPlayerSpectate);
-					#endif
-				}
+				#if FIXES_Single
+					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_SPECTATING;
+				#else
+					DeletePVar(playerid, FIXES_pvarPlayerSpectate);
+				#endif
 			}
-			TogglePlayerSpectating(playerid, toggle);
+			else
+			{
+				#if FIXES_Single
+					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_SPECTATING;
+				#else
+					SetPVarInt(playerid, FIXES_pvarPlayerSpectate, 1);
+				#endif
+			}
+			return TogglePlayerSpectating(playerid, toggle);
 		}
 		return 0;
 	}
