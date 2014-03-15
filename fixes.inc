@@ -3499,7 +3499,7 @@ public OnGameModeInit()
 			// same, but must be done only once.  This variable will tend to
 			// hold data relevant only in the master script (the first
 			// filterscript).
-			#if FIX_ApplyAnimation_2 && FIX_Kick
+			#if FIX_ApplyAnimation_2 && (FIX_Kick || FIX_SetPlayerTime)
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_SPAWN | e_FIXES_BOOLS_ON_PLAYER_CONNECT;
 			#elseif FIX_ApplyAnimation_2
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_SPAWN;
@@ -7951,24 +7951,24 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 
 #if FIX_SetPlayerTime
 	forward _FIXES_SetTime(playerid, hour, minute);
-
+	
 	public _FIXES_SetTime(playerid, hour, minute)
 	{
-	    if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
-	    {
-		    return SetPlayerTime(playerid, hour, minute);
+		if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
+		{
+			return SetPlayerTime(playerid, hour, minute);
 		}
 		return 0;
 	}
-
+	
 	stock FIXES_SetPlayerTime(playerid, hour, minute)
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
-		    {
-		    	return SetTimerEx(FIXES_gscSetTime, 250, 0, FIXES_gscSpec@iii, playerid, hour, minute);
-		    }
+			{
+				return SetTimerEx(FIXES_gscSetTime, 250, 0, FIXES_gscSpec@iii, playerid, hour, minute);
+			}
 			return SetPlayerTime(playerid, hour, minute);
 		}
 		return 0;
