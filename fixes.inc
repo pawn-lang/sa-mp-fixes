@@ -2292,7 +2292,7 @@ static stock const
 	 * 
 	 * Specifier "iiiiii".
 	 */
-	FIXES_gscSpec@iiiiii[] = "iiiii",
+	FIXES_gscSpec@iiiiii[] = "iiiiii",
 	/*
 	 * FIXES_gscTempName[]
 	 * 
