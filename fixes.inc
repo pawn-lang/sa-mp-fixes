@@ -7954,7 +7954,11 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 
 	public _FIXES_SetTime(playerid, hour, minute)
 	{
-	    return SetPlayerTime(playerid, hour, minute);
+	    if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
+	    {
+		    return SetPlayerTime(playerid, hour, minute);
+		}
+		return 0;
 	}
 
 	stock FIXES_SetPlayerTime(playerid, hour, minute)
