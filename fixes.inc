@@ -602,6 +602,12 @@
  *           "FIXES_TogglePlayerSpectating".
  * AUTHOR:   Emmet_
  *
+ * FIX:      SetPlayerTime
+ * PROBLEM:  Using this function under "OnPlayerConnect" doesn't work.
+ * SOLUTION: Defer it.
+ * SEE:      "FIXES_SetPlayerTime"
+ * AUTHOR:   Emmet_
+ *
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -1395,6 +1401,13 @@
 	#define FIX_SetPlayerCamera  		 (2)
 #endif
 
+#if !defined FIX_SetPlayerTime
+	#define FIX_SetPlayerTime   		 (1)
+#elseif _FIXES_IS_UNSET(FIX_SetPlayerTime)
+	#undef FIX_SetPlayerTime
+	#define FIX_SetPlayerTime   		 (2)
+#endif
+
 /* 
  * FIXES_GT_STYLE_COUNT
  * 
@@ -1870,6 +1883,12 @@ static stock
 	 * Name of the SetCamera timer function.
 	 */
 	FIXES_gscSetCamera[] = "_FIXES_SetCamera",
+	/*
+	 * FIXES_gscSetTime[]
+	 * 
+	 * Name of the SetTime timer function.
+	 */
+	FIXES_gscSetTime[] = "_FIXES_SetTime",
 	/*
 	 * FIXES_gscNULL[]
 	 * 
@@ -3462,7 +3481,7 @@ public OnGameModeInit()
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_OnPlayerSpawn        || FIX_ApplyAnimation_2         || FIX_GameText                 || _FIX_Menus
 	#define _FIXES_ON_PLAYER_CONNECT
-#elseif FIX_GetPlayerMenu        || FIX_OnPlayerDisconnect       || FIX_OnPlayerConnect
+#elseif FIX_GetPlayerMenu        || FIX_OnPlayerDisconnect       || FIX_OnPlayerConnect          || FIX_SetPlayerTime
 	#define _FIXES_ON_PLAYER_CONNECT
 #endif
 
@@ -3484,7 +3503,7 @@ public OnGameModeInit()
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_SPAWN | e_FIXES_BOOLS_ON_PLAYER_CONNECT;
 			#elseif FIX_ApplyAnimation_2
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_SPAWN;
-			#elseif FIX_Kick
+			#elseif FIX_Kick || FIX_SetPlayerTime
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_ON_PLAYER_CONNECT;
 			#else
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_NONE;
@@ -7916,6 +7935,47 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 	
 	#define _ALS_TogglePlayerSpectating
 	#define TogglePlayerSpectating FIXES_TogglePlayerSpectating
+#endif
+
+/*
+ * FIXES_SetPlayerTime(playerid, hour, minute)
+ *
+ * FIXES:
+ *     SetPlayerTime
+ */
+
+#if defined _ALS_SetPlayerTime
+	#error _ALS_SetPlayerTime defined
+#endif
+native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
+
+#if FIX_SetPlayerTime
+	forward _FIXES_SetTime(playerid, hour, minute);
+
+	public _FIXES_SetTime(playerid, hour, minute)
+	{
+	    if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
+	    {
+		    return SetPlayerTime(playerid, hour, minute);
+		}
+		return 0;
+	}
+
+	stock FIXES_SetPlayerTime(playerid, hour, minute)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
+		    {
+		    	return SetTimerEx(FIXES_gscSetTime, 250, 0, FIXES_gscSpec@iii, playerid, hour, minute);
+		    }
+			return SetPlayerTime(playerid, hour, minute);
+		}
+		return 0;
+	}
+	
+	#define _ALS_SetPlayerTime
+	#define SetPlayerTime FIXES_SetPlayerTime
 #endif
 
 /*
