@@ -3677,7 +3677,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		// =============
 		//  BEGIN: Kick 
 		// =============
-		#if FIX_Kick
+		#if FIX_Kick || FIX_SetPlayerTime
 			new
 				ret = FIXES_OnPlayerConnect(playerid);
 			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_ON_PLAYER_CONNECT;
