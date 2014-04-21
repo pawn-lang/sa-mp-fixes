@@ -391,7 +391,7 @@
  * 
  * FIX:      sleep
  * PROBLEM:  Leaks bytes from the stack.
- * SOLUTION: Invoke "SYSREQ.C" and "RETN" first to store the correct values.
+ * SOLUTION: Call a function to store the correct value.
  * SEE:      "FIXES_sleep".
  * AUTHOR:   Y_Less
  * 
@@ -578,14 +578,14 @@
  * SOLUTION: Show a single space for a game text.  DEFAULTS TO FALSE.
  * SEE:      "FIXES_HideGameTextForAll", "FIXES_HideGameTextForPlayer".
  * AUTHOR:   Y_Less
- *
+ * 
  * FIX:      BODYPARTS
  * PROBLEM:  The bodyparts to be used in OnPlayer(Take/Give)Damage are not
  *           defined by default
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   Whitetiger
- *
+ * 
  * FIX:      CAMERAMODES
  * PROBLEM:  The camera modes for GetPlayerCameraMode are not defined by
  *           default.
@@ -593,7 +593,7 @@
  * SEE:      N/A.
  * AUTHOR:   Whitetiger
  * POST:     http://forum.sa-mp.com/showpost.php?p=1309730
- *
+ * 
  * FIX:      SetPlayerCamera
  * PROBLEM:  Using the camera functions directly after enabling spectator mode
  *           doesn't work.
@@ -601,7 +601,7 @@
  * SEE:      "FIXES_SetPlayerCameraPos", "FIXES_SetPlayerCameraLookAt",
  *           "FIXES_TogglePlayerSpectating".
  * AUTHOR:   Emmet_
- *
+ * 
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -1444,6 +1444,13 @@
 #endif
 
 /* 
+ * FIXES_UseStateHooks
+ * 
+ * A marker to indicate that this version of fixes.inc uses state-based hooks.
+ */
+#define FIXES_UseStateHooks
+
+/* 
  * FIXES_PRINTF
  * 
  * A special "printf" function only compiled when "FIXES_Debug" is set.
@@ -1610,6 +1617,16 @@ enum e_FIXES_SETTINGS (<<= 1)
  */
 #define _FIXES_NO_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) >= ((%2) - ((%1) + cellmin)))
 
+/* 
+ * _FIXES_FORWARD
+ * 
+ * Forwards a hooked callbacks, and defines the default state implementations.
+ */
+#define _FIXES_FORWARD%0(%1); \
+	forward%0(%1); \
+	public%0(%1) <_fixes_ALS : _fixes_ALS_x0, _fixes_ALS : _fixes_ALS_x1> { return 1; } \
+	public%0(%1) <> { return 1; }
+
 // These varaibles are NOT pre-processor dependent as they are stock.  It's just
 // simpler than trying to figure out when or if a semi-colon is needed.
 #if !FIX_FILTERSCRIPT
@@ -1624,7 +1641,7 @@ stock
 	bool:_FIXES_gIsFilterscript;
 
 stock
-	/*
+	/* 
 	 * FIXES_gscSpace[]
 	 * 
 	 * A single re-usable space.
@@ -1788,7 +1805,7 @@ static stock
 #if FIX_GameText
 	FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1],
 #endif
-	/*
+	/* 
 	 * FIXES_pvarNotNewPlayer[]
 	 * 
 	 * This variable records wether or not this player is brand new to the
@@ -1797,80 +1814,80 @@ static stock
 	 * time they connect, then this gets set.
 	 */
 	FIXES_pvarNotNewPlayer[] = "FIXES_pvarNotNewPlayer",
-	/*
+	/* 
 	 * FIXES_pvarPlayerWeapon[]
 	 * 
 	 * Name of the pvar in which to store the player's current weapon.
 	 */
 	FIXES_pvarPlayerWeapon[] = "FIXES_pvarPlayerWeapon",
-	/*
+	/* 
 	 * FIXES_pvarPlayerSkin[]
 	 * 
 	 * Name of the pvar in which to store the player's current skin.
 	 */
 	FIXES_pvarPlayerSkin[] = "FIXES_pvarPlayerSkin",
-	/*
+	/* 
 	 * FIXES_pvarPlayerSpectate[]
-	 *
+	 * 
 	 * Name of the pvar in which to store the player's spectator mode.
 	 */
 	FIXES_pvarPlayerSpectate[] = "FIXES_pvarPlayerSpectate",
-	/*
+	/* 
 	 * FIXES_gscKick[]
 	 * 
 	 * Name of the kick timer function.
 	 */
 	FIXES_gscKick[] = "_FIXES_Kick",
-	/*
+	/* 
 	 * FIXES_pvarKick[]
 	 * 
 	 * Name of the pvar in which to store a player's kick timer.
 	 */
 	FIXES_pvarKick[] = "FIXES_pvarKick",
-	/*
+	/* 
 	 * FIXES_pvarPlayerDialog[]
 	 * 
 	 * Name of the pvar in which to store the player's current dialogid.
 	 */
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog",
-	/*
+	/* 
 	 * FIXES_pvarPlayerInterior[]
 	 * 
 	 * A player's current interior.
 	 */
 	FIXES_pvarPlayerInterior[] = "FIXES_pvarPlayerInterior",
-	/*
+	/* 
 	 * FIXES_pvarCurrentDialog[]
 	 * 
 	 * Used in OnDialogResponse to be able to get the correct ID in multiple
 	 * scripts while still correctly resetting the ID for future use.
 	 */
 	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog",
-	/*
+	/* 
 	 * FIXES_pvarPlayerLastCash[]
 	 * 
 	 * Used in OnPlayerDeath to save a player's cash before death.
 	 */
 	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash",
-	/*
+	/* 
 	 * FIXES_gscHideGameTextTimer[]
 	 * 
 	 * Name of the GameText hide timer function.
 	 */
 	FIXES_gscHideGameTextTimer[] = "_FIXES_HideGameTextTimer",
-	/*
+	/* 
 	 * FIXES_gscDriveBy[]
 	 * 
 	 * Name of the Drive-By timer function.
 	 */
 	FIXES_gscDriveBy[] = "_FIXES_DriveBy",
-	/*
+	/* 
 	 * FIXES_gscSetCamera[]
 	 * 
 	 * Name of the SetCamera timer function.
 	 */
 	FIXES_gscSetCamera[] = "_FIXES_SetCamera",
-	/*
+	/* 
 	 * FIXES_gscNULL[]
 	 * 
 	 * NULL.  This is stored as a global string to reduce memory usage.
@@ -1896,7 +1913,7 @@ static stock const
 			0xCB7ED3FF, 0x65ADEBFF, 0x5C1ACCFF, 0xF2F853FF, 0x11F891FF,
 			0x7B39AAFF, 0x53EB10FF, 0x54137DFF, 0x275222FF, 0xF09F5BFF,
 			0x3D0A4FFF, 0x22F767FF, 0xD63034FF, 0x9A6980FF, 0xDFB935FF,
-			0x3793FAFF, 0x90239DFF, 0xE9AB2FFF, 0xAF2FF3FF, 0x057F94FF, 
+			0x3793FAFF, 0x90239DFF, 0xE9AB2FFF, 0xAF2FF3FF, 0x057F94FF,
 			0xB98519FF, 0x388EEAFF, 0x028151FF, 0xA55043FF, 0x0DE018FF,
 			0x93AB1CFF, 0x95BAF0FF, 0x369976FF, 0x18F71FFF, 0x4B8987FF,
 			0x491B9EFF, 0x829DC7FF, 0xBCE635FF, 0xCEA6DFFF, 0x20D4ADFF,
@@ -1905,7 +1922,7 @@ static stock const
 			0x42ACF5FF, 0x2FD9DEFF, 0xFAFB71FF, 0x05D1CDFF, 0xC471BDFF,
 			0x94436EFF, 0xC1F7ECFF, 0xCE79EEFF, 0xBD1EF2FF, 0x93B7E4FF,
 			0x3214AAFF, 0x184D3BFF, 0xAE4B99FF, 0x7E49D7FF, 0x4C436EFF,
-			0xFA24CCFF, 0xCE76BEFF, 0xA04E0AFF, 0x9F945CFF, 0xDCDE3DFF, 
+			0xFA24CCFF, 0xCE76BEFF, 0xA04E0AFF, 0x9F945CFF, 0xDCDE3DFF,
 			0x10C9C5FF, 0x70524DFF, 0x0BE472FF, 0x8A2CD7FF, 0x6152C2FF,
 			0xCF72A9FF, 0xE59338FF, 0xEEDC2DFF, 0xD8C762FF, 0xD8C762FF
 		},
@@ -1926,7 +1943,7 @@ static stock const
 			0x33113311, 0x11111101, 0x33101133, 0x101001F0, 0x03133111, 0xFF11113F, 0x13330111, 0xFF131111, 0x0000FF3F
 		},
 #endif
-	/*
+	/* 
 	 * FIXES_gscVehicleMods[]
 	 * 
 	 * This is a bit array of all the valid mods (-1000) for all vehicles (-400)
@@ -1935,9 +1952,9 @@ static stock const
 	 * 848 bytes of data total to make the array work).  Instead this (hopefully
 	 * rare) case is handled explicitly in "OnVehicleMod".  It seems that most
 	 * vehicles are:
-	 *   
+	 * 
 	 *   0x02000700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000,
-	 *   
+	 * 
 	 * I don't know yet if this can be used to our advantage to improve the code
 	 * somehow - it seems like that would require more explicit model handling.
 	 */
@@ -2159,7 +2176,7 @@ static stock const
 			0x02000700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000
 		},
 #endif
-	/*
+	/* 
 	 * FIXES_gscAnimIndexes[]
 	 * 
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
@@ -2171,7 +2188,7 @@ static stock const
 			0, 2, 21, 35, 42, 42, 53, 62, 64, 67, 68, 71, 75, 81, 82, 84, 94, 96, 104, 121, 126, 127, 130, 134
 		},
 #endif
-	/*
+	/* 
 	 * FIXES_gscAnimLib[]
 	 * 
 	 * List of valid animation libraries.
@@ -2209,187 +2226,187 @@ static stock const
 			"WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
 		},
 #endif
-	/*
+	/* 
 	 * FIXES_gscDot[]
 	 * 
 	 * ".".
 	 */
 	FIXES_gscDot[] = ".",
-	/*
+	/* 
 	 * FIXES_gscSpec@[]
 	 * 
 	 * Specifier "".
 	 */
 	FIXES_gscSpec@[] = "",
-	/*
+	/* 
 	 * FIXES_gscSpec@i[]
 	 * 
 	 * Specifier "i".
 	 */
 	FIXES_gscSpec@i[] = "i",
-	/*
+	/* 
 	 * FIXES_gscSpec@ii[]
 	 * 
 	 * Specifier "ii".
 	 */
 	FIXES_gscSpec@ii[] = "ii",
-	/*
+	/* 
 	 * FIXES_gscSpec@ai[]
 	 * 
 	 * Specifier "ai".
 	 */
 	FIXES_gscSpec@ai[] = "ai",
-	/*
+	/* 
 	 * FIXES_gscSpec@is[]
 	 * 
 	 * Specifier "is".
 	 */
 	FIXES_gscSpec@is[] = "is",
-	/*
+	/* 
 	 * FIXES_gscSpec@iii[]
 	 * 
 	 * Specifier "iii".
 	 */
 	FIXES_gscSpec@iii[] = "iii",
-	/*
+	/* 
 	 * FIXES_gscSpec@isii[]
 	 * 
 	 * Specifier "isii".
 	 */
 	FIXES_gscSpec@isii[] = "isii",
-	/*
+	/* 
 	 * FIXES_gscSpec@ifff[]
 	 * 
 	 * Specifier "ifff".
 	 */
 	FIXES_gscSpec@ifff[] = "ifff",
-	/*
+	/* 
 	 * FIXES_gscSpec@iifff[]
 	 * 
 	 * Specifier "iifff".
 	 */
 	FIXES_gscSpec@iifff[] = "iifff",
-	/*
+	/* 
 	 * FIXES_gscSpec@iffff[]
 	 * 
 	 * Specifier "iffff".
 	 */
 	FIXES_gscSpec@iffff[] = "iffff",
-	/*
+	/* 
 	 * FIXES_gscSpec@iiiis[]
 	 * 
 	 * Specifier "iiiis".
 	 */
 	FIXES_gscSpec@iiiis[] = "iiiis",
-	/*
+	/* 
 	 * FIXES_gscSpec@iiiii[]
 	 * 
 	 * Specifier "iiiii".
 	 */
 	FIXES_gscSpec@iiiii[] = "iiiii",
-	/*
+	/* 
 	 * FIXES_gscSpec@iiiiii[]
 	 * 
 	 * Specifier "iiiiii".
 	 */
-	FIXES_gscSpec@iiiiii[] = "iiiii",
-	/*
+	FIXES_gscSpec@iiiiii[] = "iiiiii",
+	/* 
 	 * FIXES_gscTempName[]
 	 * 
 	 * The temporary name to give when renaming people.
 	 */
 	FIXES_gscTempName[] = "FIXES_TEMP_NAME",
-	/*
+	/* 
 	 * FIXES_gscOrderProperty[]
 	 * 
 	 * The property to check for script ordering.
 	 */
 	FIXES_gscOrderProperty[] = "FIXES_gscOrderProperty",
-	/*
+	/* 
 	 * FIXES_gscNoGMProperty[]
 	 * 
 	 * Call "_FIXES_DetermineOrder" in the GM or not?
 	 */
 	FIXES_gscNoGMProperty[] = "FIXES_gscNoGMProperty",
-	/*
+	/* 
 	 * FIXES_gscDetermineOrder[]
 	 * 
 	 * Name of the ordering callback.
 	 */
 	FIXES_gscDetermineOrder[] = "_FIXES_DetermineOrder",
-	/*
+	/* 
 	 * FIXES_gscSetPlayerMenu[]
 	 * 
 	 * Name of the remote set player menu function.
 	 */
 	FIXES_gscSetPlayerMenu[] = "_FIXES_SetPlayerMenu",
-	/*
+	/* 
 	 * FIXES_gscClearPlayerMenu[]
 	 * 
 	 * Name of the remote function to clear a player's menu set.
 	 */
 	FIXES_gscClearPlayerMenu[] = "_FIXES_ClearPlayerMenu",
-	/*
+	/* 
 	 * FIXES_gscAllowTeleport[]
 	 * 
 	 * Name of the remote allow teleport function.
 	 */
 	FIXES_gscAllowTeleport[] = "_FIXES_AllowTeleport",
-	/*
+	/* 
 	 * FIXES_gscPutPlayerInVehicle[]
 	 * 
 	 * Name of the remote vehicle entry function.
 	 */
 	FIXES_gscPutPlayerInVehicle[] = "_FIXES_PutPlayerInVehicle",
-	/*
+	/* 
 	 * FIXES_gscAllowInteriorWeapons[]
 	 * 
 	 * Name of the remote interior weapons function.
 	 */
 	FIXES_gscAllowInteriorWeapons[] = "_FIXES_AllowInteriorWeapons",
-	/*
+	/* 
 	 * FIXES_gscSetPlayerAttachedObj[]
 	 * 
 	 * Name of the remote attache object function.
 	 */
 	FIXES_gscSetPlayerAttachedObj[] = "_FIXES_SetPlayerAttachedObject",
-	/*
+	/* 
 	 * FIXES_gscTogglePlayerControl[]
 	 * 
 	 * Name of the remote player toggle function.
 	 */
 	FIXES_gscTogglePlayerControl[] = "_FIXES_TogglePlayerControllable",
-	/*
+	/* 
 	 * FIXES_gscSetPlayerWorldBounds[]
 	 * 
 	 * Name of the remote world bounds function.
 	 */
 	FIXES_gscSetPlayerWorldBounds[] = "_FIXES_SetPlayerWorldBounds",
-	/*
+	/* 
 	 * FIXES_gscGameTextShow[]
 	 * 
 	 * Name of the remote GameText show function.
 	 */
 	FIXES_gscGameTextShow[] = "_FIXES_GameTextShow",
-	/*
+	/* 
 	 * FIXES_gscReturnProperty[]
 	 * 
 	 * The property for accurate returns.
 	 */
 	FIXES_gscReturnProperty[] = "FIXES_gscReturnProperty",
-	/*
+	/* 
 	 * FIXES_gscSingleProperty[]
 	 * 
 	 * The property for checking this is the only running script with fixes in.
 	 */
 	FIXES_gscSingleProperty[] = "FIXES_gscSingleProperty",
-	/*
+	/* 
 	 * FIXES_gscMenuProperty[]
 	 * 
 	 * The property for a player's current menu.
 	 */
 	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
-	/*
+	/* 
 	 * FIXES_gscFixesError[]
 	 * 
 	 * Error shown when multiple scripts are detected.
@@ -2431,9 +2448,9 @@ static stock const
 	native IsValidVehicle(vehicleid);
 #endif
 
-/*
+/* 
  * GetGravity
- *
+ * 
  * Because the default SA:MP includes missed this one.
  */
 
@@ -2441,9 +2458,9 @@ static stock const
 	native Float:GetGravity();
 #endif
 
-/*
+/* 
  * gpci
- *
+ * 
  * Because the default SA:MP includes missed this one.
  */
 
@@ -2451,9 +2468,9 @@ static stock const
 	native gpci(playerid, serial[], maxlen);
 #endif
 
-/*
+/* 
  * BODYPARTS
- *
+ * 
  * Because the default SA:MP includes missed these.
  */
 
@@ -2467,9 +2484,9 @@ static stock const
 	#define BODY_PART_HEAD                      (9)
 #endif
 
-/*
+/* 
  * CAMERAMODES
- *
+ * 
  * Because the default SA:MP includes missed these.
  */
 
@@ -2503,21 +2520,23 @@ static stock const
 #endif
 
 /* 
- * _FIXES_IncludeFuncs()
+ * _FIXES_IncludeStates()
  * 
- * Include functions used by "SYSREQ.C".
+ * Define all the "_fixes_ALS" states.
  */
 
-#if FIX_sleep
-	forward _FIXES_IncludeFuncs();
-	
-	public _FIXES_IncludeFuncs()
-	{
-		#if FIX_sleep
-			heapspace();
-		#endif
-	}
-#endif
+static stock _FIXES_IncludeStates() <
+	_fixes_ALS : _fixes_ALS_x0,
+	_fixes_ALS : _fixes_ALS_x1,
+	_fixes_ALS : _fixes_ALS_x2,
+	_fixes_ALS : _fixes_ALS_x3>
+{
+}
+
+static stock _FIXES_IncludeStates() <
+	_fixes_ALS : _fixes_ALS_go>
+{
+}
 
 /* 
  * FIXES_DetermineOrder()
@@ -2539,9 +2558,9 @@ static stock const
 	}
 #endif
 
-/*
+/* 
  * FIXES_IsPlayerConnected(playerid)
- *
+ * 
  * FIXES:
  *     IsPlayerConnected
  */
@@ -2560,7 +2579,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 		}
 		return IsPlayerConnected(playerid);
 	}
-	
+
 	#define _ALS_IsPlayerConnected
 	#define IsPlayerConnected FIXES_IsPlayerConnected
 #endif
@@ -3007,6 +3026,8 @@ public OnFilterScriptInit()
 	// It is possible for this to be the only thing done in this function!
 	_FIXES_gIsFilterscript = true;
 	
+	state _fixes_ALS : _fixes_ALS_go;
+	
 	#if FIXES_Single
 		// Check this really IS the only script running.
 		if (existproperty(5, FIXES_gscSingleProperty))
@@ -3085,22 +3106,16 @@ public OnFilterScriptInit()
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_NO_GAME_TEXT;
 	#endif
 	
-	#if defined FIXES_OnFilterScriptInit
-		return FIXES_OnFilterScriptInit();
-	#else
-		return 1;
-	#endif
+	return FIXES_OnFilterScriptInit();
 }
 
 #if defined _ALS_OnFilterScriptInit
 	#error _ALS_OnFilterScriptInit defined
 #endif
 #define _ALS_OnFilterScriptInit
-#define OnFilterScriptInit FIXES_OnFilterScriptInit
+#define OnFilterScriptInit(%0) FIXES_OnFilterScriptInit(%0) <_fixes_ALS : _fixes_ALS_go>
 
-#if defined FIXES_OnFilterScriptInit
-	forward FIXES_OnFilterScriptInit();
-#endif
+_FIXES_FORWARD FIXES_OnFilterScriptInit();
 
 /* 
  * OnGameModeInit()
@@ -3115,6 +3130,8 @@ public OnFilterScriptInit()
 
 public OnGameModeInit()
 {
+	state _fixes_ALS : _fixes_ALS_go;
+	
 	#if FIXES_Single
 		// Check this really IS the only script running.  Properties reset when
 		// a gamemode restarts, so we don't have to worry about filterscipts
@@ -3188,22 +3205,16 @@ public OnGameModeInit()
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
 	#endif
 	
-	#if defined FIXES_OnGameModeInit
-		return FIXES_OnGameModeInit();
-	#else
-		return 1;
-	#endif
+	return FIXES_OnGameModeInit();
 }
 
 #if defined _ALS_OnGameModeInit
 	#error _ALS_OnGameModeInit defined
 #endif
 #define _ALS_OnGameModeInit
-#define OnGameModeInit FIXES_OnGameModeInit
+#define OnGameModeInit(%0) FIXES_OnGameModeInit(%0) <_fixes_ALS : _fixes_ALS_go>
 
-#if defined FIXES_OnGameModeInit
-	forward FIXES_OnGameModeInit();
-#endif
+_FIXES_FORWARD FIXES_OnGameModeInit();
 
 /* 
  * OnGameModeExit()
@@ -3236,22 +3247,16 @@ public OnGameModeInit()
 		//  END:   PlayerDialogResponse 
 		// =============================
 		
-		#if defined FIXES_OnGameModeExit
-			return FIXES_OnGameModeExit();
-		#else
-			return 1;
-		#endif
+		return FIXES_OnGameModeExit();
 	}
 	
 	#if defined _ALS_OnGameModeExit
 		#error _ALS_OnGameModeExit defined
 	#endif
 	#define _ALS_OnGameModeExit
-	#define OnGameModeExit FIXES_OnGameModeExit
+	#define OnGameModeExit(%0) FIXES_OnGameModeExit(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnGameModeExit
-		forward FIXES_OnGameModeExit();
-	#endif
+	_FIXES_FORWARD FIXES_OnGameModeExit();
 #endif
 
 /* 
@@ -3341,11 +3346,7 @@ public OnGameModeInit()
 							TextDrawDestroy(FIXES_gsGTStyle[1]),
 							TextDrawDestroy(FIXES_gsGTStyle[0]);
 			#else
-				#if defined FIXES_OnFilterScriptExit
-						return FIXES_OnFilterScriptExit();
-				#else
-						return 1;
-				#endif
+					return FIXES_OnFilterScriptExit();
 			#endif
 			// =================
 			//  END:   GameText 
@@ -3356,11 +3357,7 @@ public OnGameModeInit()
 				FIXES_gsSettings |= e_FIXES_SETTINGS_ENDING,
 				FIXES_DetermineOrder();
 			}
-			#if defined FIXES_OnFilterScriptExit
-				return FIXES_OnFilterScriptExit();
-			#else
-				return 1;
-			#endif
+			return FIXES_OnFilterScriptExit();
 		#endif
 	}
 	
@@ -3368,11 +3365,9 @@ public OnGameModeInit()
 		#error _ALS_OnFilterScriptExit defined
 	#endif
 	#define _ALS_OnFilterScriptExit
-	#define OnFilterScriptExit FIXES_OnFilterScriptExit
+	#define OnFilterScriptExit(%0) FIXES_OnFilterScriptExit(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnFilterScriptExit
-		forward FIXES_OnFilterScriptExit();
-	#endif
+	_FIXES_FORWARD FIXES_OnFilterScriptExit();
 #endif
 
 /* 
@@ -3391,18 +3386,14 @@ public OnGameModeInit()
 		#if FIX_OnPlayerCommandText
 			// If this "#if" is around the whole function, it doesn't always
 			// compile properly.
-			#if defined FIXES_OnPlayerCommandText
-				if (cmdtext[0] <= '\1')
-				{
-					return FIXES_OnPlayerCommandText(playerid, FIXES_gscNULL);
-				}
-				else
-				{
-					return FIXES_OnPlayerCommandText(playerid, cmdtext);
-				}
-			#else
-				return 0;
-			#endif
+			if (cmdtext[0] <= '\1')
+			{
+				return FIXES_OnPlayerCommandText(playerid, FIXES_gscNULL);
+			}
+			else
+			{
+				return FIXES_OnPlayerCommandText(playerid, cmdtext);
+			}
 		#endif
 		// ============================
 		//  END: OnPlayerCommandText 
@@ -3413,11 +3404,9 @@ public OnGameModeInit()
 		#error _ALS_OnPlayerCommandText defined
 	#endif
 	#define _ALS_OnPlayerCommandText
-	#define OnPlayerCommandText FIXES_OnPlayerCommandText
+	#define OnPlayerCommandText(%0) FIXES_OnPlayerCommandText(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerCommandText
-		forward FIXES_OnPlayerCommandText(playerid, cmdtext[]);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerCommandText(playerid, cmdtext[]);
 #endif
 
 /* 
@@ -3670,22 +3659,12 @@ public OnGameModeInit()
 		//  BEGIN: Kick 
 		// =============
 		#if FIX_Kick
-			#if defined FIXES_OnPlayerConnect
-				new
-					ret = FIXES_OnPlayerConnect(playerid);
-			#endif
-				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_ON_PLAYER_CONNECT;
-			#if defined FIXES_OnPlayerConnect
-				return ret;
-			#else
-				return 1;
-			#endif
+			new
+				ret = FIXES_OnPlayerConnect(playerid);
+			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_ON_PLAYER_CONNECT;
+			return ret;
 		#else
-			#if defined FIXES_OnPlayerConnect
-				return FIXES_OnPlayerConnect(playerid);
-			#else
-				return 1;
-			#endif
+			return FIXES_OnPlayerConnect(playerid);
 		#endif
 		// =============
 		//  END:   Kick 
@@ -3696,11 +3675,9 @@ public OnGameModeInit()
 		#error _ALS_OnPlayerConnect defined
 	#endif
 	#define _ALS_OnPlayerConnect
-	#define OnPlayerConnect FIXES_OnPlayerConnect
+	#define OnPlayerConnect(%0) FIXES_OnPlayerConnect(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerConnect
-		forward FIXES_OnPlayerConnect(playerid);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerConnect(playerid);
 #endif
 
 /* 
@@ -3716,10 +3693,8 @@ public OnGameModeInit()
 #if FIX_SetPlayerAttachedObject || FIX_IsPlayerAttachedObjSlotUsed || FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 	public OnPlayerDisconnect(playerid, reason)
 	{
-		#if defined FIXES_OnPlayerDisconnect
-			new
-				ret = FIXES_OnPlayerDisconnect(playerid, reason);
-		#endif
+		new
+			ret = FIXES_OnPlayerDisconnect(playerid, reason);
 		
 		// ======================
 		//  BEGIN: GetPlayerMenu 
@@ -3808,22 +3783,16 @@ public OnGameModeInit()
 			_FIXES_RemoveInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
 		#endif
 		
-		#if defined FIXES_OnPlayerDisconnect
-			return ret;
-		#else
-			return 1;
-		#endif
+		return ret;
 	}
 	
 	#if defined _ALS_OnPlayerDisconnect
 		#error _ALS_OnPlayerDisconnect defined
 	#endif
 	#define _ALS_OnPlayerDisconnect
-	#define OnPlayerDisconnect FIXES_OnPlayerDisconnect
+	#define OnPlayerDisconnect(%0) FIXES_OnPlayerDisconnect(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerDisconnect
-		forward FIXES_OnPlayerDisconnect(playerid, reason);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerDisconnect(playerid, reason);
 #endif
 
 /* 
@@ -3856,47 +3825,36 @@ public OnGameModeInit()
 			//  END:   OnPlayerDeath 
 			// ======================
 		}
-		#if defined FIXES_OnPlayerDeath
-			#if FIX_OnPlayerSpawn
-				new
-					ret = FIXES_OnPlayerDeath(playerid, killerid, reason);
-			#else
-				return FIXES_OnPlayerDeath(playerid, killerid, reason);
-			#endif
-		#endif
 		
 		// ======================
 		//  BEGIN: OnPlayerSpawn 
 		// ======================
 		#if FIX_OnPlayerSpawn
+			new
+				ret = FIXES_OnPlayerDeath(playerid, killerid, reason);
+			
 			#if FIXES_Single
 				FIXES_gsLastCash[playerid] = GetPlayerMoney(playerid);
 			#else
 				SetPVarInt(playerid, FIXES_pvarPlayerLastCash, GetPlayerMoney(playerid));
 			#endif
+			
+			return ret;
+		#else
+			return FIXES_OnPlayerDeath(playerid, killerid, reason);
 		#endif
 		// ======================
 		//  END:   OnPlayerSpawn 
 		// ======================
-		
-		#if defined FIXES_OnPlayerDeath
-			#if FIX_OnPlayerSpawn
-				return ret;
-			#endif
-		#else
-			return 1;
-		#endif
 	}
 	
 	#if defined _ALS_OnPlayerDeath
 		#error _ALS_OnPlayerDeath defined
 	#endif
 	#define _ALS_OnPlayerDeath
-	#define OnPlayerDeath FIXES_OnPlayerDeath
+	#define OnPlayerDeath(%0) FIXES_OnPlayerDeath(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerDeath
-		forward FIXES_OnPlayerDeath(playerid, killerid, reason);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerDeath(playerid, killerid, reason);
 #endif
 
 /* 
@@ -4116,22 +4074,16 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		//  END:   TogglePlayerControllable 
 		// =================================
 		
-		#if defined FIXES_OnPlayerSpawn
-			return FIXES_OnPlayerSpawn(playerid);
-		#else
-			return 1;
-		#endif
+		return FIXES_OnPlayerSpawn(playerid);
 	}
 	
 	#if defined _ALS_OnPlayerSpawn
 		#error _ALS_OnPlayerSpawn defined
 	#endif
 	#define _ALS_OnPlayerSpawn
-	#define OnPlayerSpawn FIXES_OnPlayerSpawn
+	#define OnPlayerSpawn(%0) FIXES_OnPlayerSpawn(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerSpawn
-		forward FIXES_OnPlayerSpawn(playerid);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerSpawn(playerid);
 #endif
 
 /* 
@@ -4147,11 +4099,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		#if !FIXES_Single
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
 			{
-				#if defined FIXES_OnVehicleMod
-					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-				#else
-					return 1;
-				#endif
+				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			}
 		#endif
 		
@@ -4168,11 +4116,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 				{
 					if (FIXES_gscVehicleMods[(modelid - 400) * 6 + (componentid - 1000 >>> 5)] & 1 << (componentid - 1000 & 0b00011111))
 					{
-						#if defined FIXES_OnVehicleMod
-							return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-						#else
-							return 1;
-						#endif
+						return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 					}
 				}
 				case 1192, 1193:
@@ -4183,11 +4127,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 						// is the ONLY vehicle with any mods over "6 * 32 + 999"
 						// (1191), the highest value you can fit in 6 cells of a
 						// bit array (minus 1000).
-						#if defined FIXES_OnVehicleMod
-							return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-						#else
-							return 1;
-						#endif
+						return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 					}
 				}
 			}
@@ -4204,11 +4144,9 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		#error _ALS_OnVehicleMod defined
 	#endif
 	#define _ALS_OnVehicleMod
-	#define OnVehicleMod FIXES_OnVehicleMod
+	#define OnVehicleMod(%0) FIXES_OnVehicleMod(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnVehicleMod
-		forward FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-	#endif
+	_FIXES_FORWARD FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 #endif
 
 /* 
@@ -4404,11 +4342,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if !FIXES_Single
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
 			{
-				#if defined FIXES_OnPlayerUpdate
-					return FIXES_OnPlayerUpdate(playerid);
-				#else
-					return 1;
-				#endif
+				return FIXES_OnPlayerUpdate(playerid);
 			}
 		#endif
 		
@@ -4495,20 +4429,14 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 				// just to avoid "statement has no effect" warnings.  ALWAYS
 				// return 0 in this case, regardless of what other callbacks
 				// return.
-				#if defined FIXES_OnPlayerUpdate
-					playerid = FIXES_OnPlayerUpdate(playerid);
-				#endif
+				playerid = FIXES_OnPlayerUpdate(playerid);
 				if (keys || ud || lr)
 				{
 					return 0;
 				}
 				else
 				{
-					#if defined FIXES_OnPlayerUpdate
-						return playerid;
-					#else
-						return 1;
-					#endif
+					return playerid;
 				}
 			}
 		#endif
@@ -4516,22 +4444,16 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  END:   TogglePlayerControllable 
 		// =================================
 		
-		#if defined FIXES_OnPlayerUpdate
-			return FIXES_OnPlayerUpdate(playerid);
-		#else
-			return 1;
-		#endif
+		return FIXES_OnPlayerUpdate(playerid);
 	}
 	
 	#if defined _ALS_OnPlayerUpdate
 		#error _ALS_OnPlayerUpdate defined
 	#endif
 	#define _ALS_OnPlayerUpdate
-	#define OnPlayerUpdate FIXES_OnPlayerUpdate
+	#define OnPlayerUpdate(%0) FIXES_OnPlayerUpdate(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerUpdate
-		forward FIXES_OnPlayerUpdate(playerid);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerUpdate(playerid);
 #endif
 
 /* 
@@ -4810,22 +4732,16 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		// ===========================
 		//  END: AllowInteriorWeapons 
 		// ===========================
-		#if defined FIXES_OnPlayerInteriorChange
-			return FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
-		#else
-			return 1;
-		#endif
+		return FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
 	}
 	
 	#if defined _ALS_OnPlayerInteriorChange
 		#error _ALS_OnPlayerInteriorChange defined
 	#endif
 	#define _ALS_OnPlayerInteriorChange
-	#define OnPlayerInteriorChange FIXES_OnPlayerInteriorChange
+	#define OnPlayerInteriorChange(%0) FIXES_OnPlayerInteriorChange(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerInteriorChange
-		forward FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
 #endif
 
 /* 
@@ -4880,22 +4796,16 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  END: DriveBy 
 		// =============================
 		
-		#if defined FIXES_OnPlayerKeyStateChange
-			return FIXES_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
-		#else
-			return 1;
-		#endif
+		return FIXES_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 	}
 	
 	#if defined _ALS_OnPlayerKeyStateChange
 		#error _ALS_OnPlayerKeyStateChange defined
 	#endif
 	#define _ALS_OnPlayerKeyStateChange
-	#define OnPlayerKeyStateChange FIXES_OnPlayerKeyStateChange
+	#define OnPlayerKeyStateChange(%0) FIXES_OnPlayerKeyStateChange(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerKeyStateChange
-		forward FIXES_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 #endif
 
 /* 
@@ -4914,11 +4824,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#if FIX_OnPlayerEnterVehicle_2
 			if (0 < vehicleid < MAX_VEHICLES)
 			{
-				#if defined FIXES_OnPlayerEnterVehicle
-					return FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
-				#else
-					return 1;
-				#endif
+				return FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
 			}
 			FIXES_BlockUpdate(playerid, true);
 			return 0;
@@ -4932,11 +4838,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#error _ALS_OnPlayerEnterVehicle defined
 	#endif
 	#define _ALS_OnPlayerEnterVehicle
-	#define OnPlayerEnterVehicle FIXES_OnPlayerEnterVehicle
+	#define OnPlayerEnterVehicle(%0) FIXES_OnPlayerEnterVehicle(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerEnterVehicle
-		forward FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
 #endif
 
 /* 
@@ -4955,11 +4859,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#if FIX_OnPlayerEnterVehicle_2
 			if (0 < vehicleid < MAX_VEHICLES)
 			{
-				#if defined FIXES_OnPlayerExitVehicle
-					return FIXES_OnPlayerExitVehicle(playerid, vehicleid);
-				#else
-					return 1;
-				#endif
+				return FIXES_OnPlayerExitVehicle(playerid, vehicleid);
 			}
 			FIXES_BlockUpdate(playerid, true);
 			return 0;
@@ -4973,16 +4873,14 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#error _ALS_OnPlayerExitVehicle defined
 	#endif
 	#define _ALS_OnPlayerExitVehicle
-	#define OnPlayerExitVehicle FIXES_OnPlayerExitVehicle
+	#define OnPlayerExitVehicle(%0) FIXES_OnPlayerExitVehicle(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerExitVehicle
-		forward FIXES_OnPlayerExitVehicle(playerid, vehicleid);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerExitVehicle(playerid, vehicleid);
 #endif
 
-/*
+/* 
  * FIXES_BlockUpdate(playerid, bool:block)
- *
+ * 
  * Block a player from using OnPlayerUpdate at all.
  */
 
@@ -5035,60 +4933,42 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: GetPlayerMenu 
 		// ======================
 		#if FIXES_Single
-				FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
-			#if defined FIXES_OnPlayerSelectedMenuRow
+			FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
+			new
+				ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
+			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
+			{
+				FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
+			}
+			return ret;
+		#else
+			new
+				Menu:cur = FIXES_gsCurrentMenu[playerid];
+			_FIXES_IS_IN_CHARGE()
+			{
+				setproperty(5, FIXES_gscMenuProperty, _:cur);
+				CallRemoteFunction(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
+				FIXES_gsCurrentMenu[playerid] = cur;
 				new
 					ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
 				if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 				{
-			#endif
 					FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
-			#if defined FIXES_OnPlayerSelectedMenuRow
 				}
 				return ret;
-			#else
-				return 1;
-			#endif
-		#else
-			#if defined FIXES_OnPlayerSelectedMenuRow
+			}
+			else
+			{
+				FIXES_gsCurrentMenu[playerid] = Menu:getproperty(5, FIXES_gscMenuProperty);
+				FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
 				new
-					Menu:cur = FIXES_gsCurrentMenu[playerid];
-			#endif
-				_FIXES_IS_IN_CHARGE()
+					ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
+				if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 				{
-			#if defined FIXES_OnPlayerSelectedMenuRow
-					setproperty(5, FIXES_gscMenuProperty, _:cur);
-			#else
-					setproperty(5, FIXES_gscMenuProperty, _:FIXES_gsCurrentMenu[playerid]);
-			#endif
-					CallRemoteFunction(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
-			#if defined FIXES_OnPlayerSelectedMenuRow
 					FIXES_gsCurrentMenu[playerid] = cur;
-					new
-						ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
-					if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
-					{
-						FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
-					}
-					return ret;
-			#endif
 				}
-			#if defined FIXES_OnPlayerSelectedMenuRow
-				else	
-				{
-					FIXES_gsCurrentMenu[playerid] = Menu:getproperty(5, FIXES_gscMenuProperty);
-					FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
-					new
-						ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
-					if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
-					{
-						FIXES_gsCurrentMenu[playerid] = cur;
-					}
-					return ret;
-				}
-			#else
-				return 1;
-			#endif
+				return ret;
+			}
 		#endif
 		// ======================
 		//  END:   GetPlayerMenu 
@@ -5099,11 +4979,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#error _ALS_OnPlayerSelectedMenuRow defined
 	#endif
 	#define _ALS_OnPlayerSelectedMenuRow
-	#define OnPlayerSelectedMenuRow FIXES_OnPlayerSelectedMenuRow
+	#define OnPlayerSelectedMenuRow(%0) FIXES_OnPlayerSelectedMenuRow(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerSelectedMenuRow
-		forward FIXES_OnPlayerSelectedMenuRow(playerid, row);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerSelectedMenuRow(playerid, row);
 #endif
 
 /* 
@@ -5120,60 +4998,42 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: GetPlayerMenu 
 		// ======================
 		#if FIXES_Single
-				FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
-			#if defined FIXES_OnPlayerExitedMenu
+			FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
+			new
+				ret = FIXES_OnPlayerExitedMenu(playerid);
+			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
+			{
+				FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
+			}
+			return ret;
+		#else
+			new
+				Menu:cur = FIXES_gsCurrentMenu[playerid];
+			_FIXES_IS_IN_CHARGE()
+			{
+				setproperty(5, FIXES_gscMenuProperty, _:cur);
+				CallRemoteFunction(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
+				FIXES_gsCurrentMenu[playerid] = cur;
 				new
 					ret = FIXES_OnPlayerExitedMenu(playerid);
 				if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 				{
-			#endif
 					FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
-			#if defined FIXES_OnPlayerExitedMenu
 				}
 				return ret;
-			#else
-				return 1;
-			#endif
-		#else
-			#if defined FIXES_OnPlayerExitedMenu
+			}
+			else
+			{
+				FIXES_gsCurrentMenu[playerid] = Menu:getproperty(5, FIXES_gscMenuProperty);
+				FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
 				new
-					Menu:cur = FIXES_gsCurrentMenu[playerid];
-			#endif
-				_FIXES_IS_IN_CHARGE()
+					ret = FIXES_OnPlayerExitedMenu(playerid);
+				if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 				{
-			#if defined FIXES_OnPlayerExitedMenu
-					setproperty(5, FIXES_gscMenuProperty, _:cur);
-			#else
-					setproperty(5, FIXES_gscMenuProperty, _:FIXES_gsCurrentMenu[playerid]);
-			#endif
-					CallRemoteFunction(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
-			#if defined FIXES_OnPlayerExitedMenu
 					FIXES_gsCurrentMenu[playerid] = cur;
-					new
-						ret = FIXES_OnPlayerExitedMenu(playerid);
-					if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
-					{
-						FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
-					}
-					return ret;
-			#endif
 				}
-			#if defined FIXES_OnPlayerExitedMenu
-				else
-				{
-					FIXES_gsCurrentMenu[playerid] = Menu:getproperty(5, FIXES_gscMenuProperty);
-					FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
-					new
-						ret = FIXES_OnPlayerExitedMenu(playerid);
-					if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
-					{
-						FIXES_gsCurrentMenu[playerid] = cur;
-					}
-					return ret;
-				}
-			#else
-				return 1;
-			#endif
+				return ret;
+			}
 		#endif
 		// ======================
 		//  END:   GetPlayerMenu 
@@ -5184,11 +5044,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#error _ALS_OnPlayerExitedMenu defined
 	#endif
 	#define _ALS_OnPlayerExitedMenu
-	#define OnPlayerExitedMenu FIXES_OnPlayerExitedMenu
+	#define OnPlayerExitedMenu(%0) FIXES_OnPlayerExitedMenu(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerExitedMenu
-		forward FIXES_OnPlayerExitedMenu(playerid);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerExitedMenu(playerid);
 #endif
 
 /* 
@@ -5578,11 +5436,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 		#if !FIXES_Single
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
 			{
-				#if defined FIXES_OnPlayerStateChange
-					return FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
-				#else
-					return 1;
-				#endif
+				return FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
 			}
 		#endif
 		
@@ -5757,22 +5611,16 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 			}
 		#endif
 		
-		#if defined FIXES_OnPlayerStateChange
-			return FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
-		#else
-			return 1;
-		#endif
+		return FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
 	}
 	
 	#if defined _ALS_OnPlayerStateChange
 		#error _ALS_OnPlayerStateChange defined
 	#endif
 	#define _ALS_OnPlayerStateChange
-	#define OnPlayerStateChange FIXES_OnPlayerStateChange
+	#define OnPlayerStateChange(%0) FIXES_OnPlayerStateChange(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerStateChange
-		forward FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
 #endif
 
 /* 
@@ -6056,9 +5904,9 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 	#define PutPlayerInVehicle FIXES_PutPlayerInVehicle
 #endif
 
-/*
+/* 
  * FIXES_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
- *
+ * 
  * FIXES:
  *     SetPlayerCheckpoint
  */
@@ -6080,9 +5928,9 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 	#define SetPlayerCheckpoint FIXES_SetPlayerCheckpoint
 #endif
 
-/*
+/* 
  * FIXES_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
- *
+ * 
  * FIXES:
  *     SetPlayerRaceCheckpoint
  */
@@ -6138,7 +5986,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 			}
 			default:
 			{
-				// Remove 
+				// Remove.
 				PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][style]),
 				_FIXES_RemoveInternal(parr, playerid, MAX_PLAYERS);
 			}
@@ -6325,9 +6173,9 @@ native BAD_HideGameTextForPlayer(playerid, style) = HideGameTextForPlayer;
 	#define HideGameTextForPlayer(%1,%0) GameTextForPlayer((%1), FIXES_gscSpace, 0, (%0))
 #endif
 
-/*
+/* 
  * PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
- *
+ * 
  * FIXES:
  *     CreatePlayerTextDraw
  */
@@ -6354,9 +6202,9 @@ native Text:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = Creat
 	#define CreatePlayerTextDraw FIXES_CreatePlayerTextDraw
 #endif
 
-/*
+/* 
  * FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
- *
+ * 
  * FIXES:
  *     PlayerTextDrawSetString
  */
@@ -6383,9 +6231,9 @@ native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = Player
 	#define PlayerTextDrawSetString FIXES_PlayerTextDrawSetString
 #endif
 
-/*
+/* 
  * Text:FIXES_TextDrawCreate(Float:x, Float:y, text[])
- *
+ * 
  * FIXES:
  *     TextDrawCreate
  */
@@ -6412,9 +6260,9 @@ native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 	#define TextDrawCreate FIXES_TextDrawCreate
 #endif
 
-/*
+/* 
  * FIXES_TextDrawSetString(Text:text, string[])
- *
+ * 
  * FIXES:
  *     TextDrawSetString
  */
@@ -6441,9 +6289,9 @@ native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 	#define TextDrawSetString FIXES_TextDrawSetString
 #endif
 
-/*
+/* 
  * FIXES_AllowInteriorWeapons(allow)
- *
+ * 
  * FIXES:
  *     AllowInteriorWeapons
  */
@@ -6606,27 +6454,21 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 		// ======================
 		//  END:   AllowTeleport 
 		// ======================
-		#if defined FIXES_OnPlayerClickMap
-			return FIXES_OnPlayerClickMap(playerid, fX, fY, fZ);
-		#else
-			return 1;
-		#endif
+		return FIXES_OnPlayerClickMap(playerid, fX, fY, fZ);
 	}
 	
 	#if defined _ALS_OnPlayerClickMap
 		#error _ALS_OnPlayerClickMap defined
 	#endif
 	#define _ALS_OnPlayerClickMap
-	#define OnPlayerClickMap FIXES_OnPlayerClickMap
+	#define OnPlayerClickMap(%0) FIXES_OnPlayerClickMap(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnPlayerClickMap
-		forward FIXES_OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ);
-	#endif
+	_FIXES_FORWARD FIXES_OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ);
 #endif
 
-/*
+/* 
  * FIXES_AllowPlayerTeleport(playerid, allow)
- *
+ * 
  * FIXES:
  *     AllowTeleport
  */
@@ -6668,9 +6510,9 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 	#define AllowPlayerTeleport FIXES_AllowPlayerTeleport
 #endif
 
-/*
+/* 
  * FIXES_AllowAdminTeleport(allow)
- *
+ * 
  * FIXES:
  *     AllowTeleport
  */
@@ -6707,9 +6549,9 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 	#define AllowAdminTeleport FIXES_AllowAdminTeleport
 #endif
 
-/*
+/* 
  * FIXES_AllowAdminTeleport(allow)
- *
+ * 
  * FIXES:
  *     AllowTeleport
  */
@@ -6745,9 +6587,9 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 	}
 #endif
 
-/*
+/* 
  * FIXES_SetPlayerSpecialAction(playerid, actionid)
- *
+ * 
  * FIXES:
  *     SetPlayerSpecialAction
  */
@@ -6760,7 +6602,7 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 #if FIX_SetPlayerSpecialAction
 	stock FIXES_SetPlayerSpecialAction(playerid, actionid)
 	{
-		if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USEJETPACK) 
+		if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USEJETPACK)
 		{
 			ClearAnimations(playerid);
 		}
@@ -6772,9 +6614,9 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 	#define SetPlayerSpecialAction FIXES_SetPlayerSpecialAction
 #endif
 
-/*
+/* 
  * FIXES_ClearAnimations(playerid, forcesync = 0)
- *
+ * 
  * FIXES:
  *     ClearAnimations
  */
@@ -6814,9 +6656,9 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 	#define ClearAnimations FIXES_ClearAnimations
 #endif
 
-/*
+/* 
  * FIXES_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy)
- *
+ * 
  * FIXES:
  *     GangZoneCreate
  */
@@ -6836,9 +6678,9 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 	#define GangZoneCreate FIXES_GangZoneCreate
 #endif
 
-/*
+/* 
  * FIXES_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[])
- *
+ * 
  * FIXES:
  *     OnDialogResponse
  *     GetPlayerDialog
@@ -6907,19 +6749,11 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 			#endif
 			if (inputtext[0])
 			{
-				#if defined FIXES_OnDialogResponse
-					return FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext);
-				#else
-					return 1;
-				#endif
+				return FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext);
 			}
 			else
 			{
-				#if defined FIXES_OnDialogResponse
-					return FIXES_OnDialogResponse(playerid, dialogid, response, listitem, FIXES_gscNULL);
-				#else
-					return 1;
-				#endif
+				return FIXES_OnDialogResponse(playerid, dialogid, response, listitem, FIXES_gscNULL);
 			}
 		#endif
 		// =========================
@@ -6931,16 +6765,14 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 		#error _ALS_OnDialogResponse defined
 	#endif
 	#define _ALS_OnDialogResponse
-	#define OnDialogResponse FIXES_OnDialogResponse
+	#define OnDialogResponse(%0) FIXES_OnDialogResponse(%0) <_fixes_ALS : _fixes_ALS_go>
 	
-	#if defined FIXES_OnDialogResponse
-		forward FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]);
-	#endif
+	_FIXES_FORWARD FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]);
 #endif
 
-/*
+/* 
  * FIXES_GetPlayerDialog(playerid)
- *
+ * 
  * FIXES:
  *     GetPlayerDialog
  */
@@ -6968,9 +6800,9 @@ native BAD_GetPlayerDialog(playerid) = GetPlayerDialog;
 	#define GetPlayerDialog FIXES_GetPlayerDialog
 #endif
 
-/*
+/* 
  * FIXES_valstr(dest[], value, bool:pack = false)
- *
+ * 
  * FIXES:
  *     valstr
  */
@@ -7002,9 +6834,9 @@ native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 	#define valstr FIXES_valstr
 #endif
 
-/*
+/* 
  * FIXES_fclose(File:handle)
- *
+ * 
  * FIXES:
  *     fclose
  */
@@ -7024,9 +6856,9 @@ native BAD_fclose(File:handle) = fclose;
 	#define fclose FIXES_fclose
 #endif
 
-/*
+/* 
  * FIXES_fwrite(File:handle, const string[])
- *
+ * 
  * FIXES:
  *     fwrite
  */
@@ -7046,9 +6878,9 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 	#define fwrite FIXES_fwrite
 #endif
 
-/*
+/* 
  * FIXES_fread(File:handle, string[], size = sizeof (string), bool:pack = false)
- *
+ * 
  * FIXES:
  *     fread
  */
@@ -7068,9 +6900,9 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 	#define fread FIXES_fread
 #endif
 
-/*
+/* 
  * FIXES_fputchar(File:handle, value, bool:utf8 = true)
- *
+ * 
  * FIXES:
  *     fputchar
  */
@@ -7090,9 +6922,9 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 	#define fputchar FIXES_fputchar
 #endif
 
-/*
+/* 
  * FIXES_fgetchar(File:handle, value, bool:utf8 = true)
- *
+ * 
  * FIXES:
  *     fgetchar
  */
@@ -7112,9 +6944,9 @@ native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 	#define fgetchar FIXES_fgetchar
 #endif
 
-/*
+/* 
  * FIXES_fblockwrite(File:handle, const buffer[], size = sizeof (buffer))
- *
+ * 
  * FIXES:
  *     fblockwrite
  */
@@ -7134,9 +6966,9 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
 	#define fblockwrite FIXES_fblockwrite
 #endif
 
-/*
+/* 
  * FIXES_fblockread(File:handle, buffer[], size = sizeof (buffer))
- *
+ * 
  * FIXES:
  *     fblockread
  */
@@ -7156,9 +6988,9 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
 	#define fblockread FIXES_fblockread
 #endif
 
-/*
+/* 
  * FIXES_fseek(File:handle, position = 0, seek_whence:whence = seek_start)
- *
+ * 
  * FIXES:
  *     fseek
  */
@@ -7178,9 +7010,9 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
 	#define fseek FIXES_fseek
 #endif
 
-/*
+/* 
  * FIXES_flength(File:handle)
- *
+ * 
  * FIXES:
  *     flength
  */
@@ -7200,9 +7032,9 @@ native BAD_flength(File:handle) = flength;
 	#define flength FIXES_flength
 #endif
 
-/*
+/* 
  * FIXES_Kick(playerid)
- *
+ * 
  * FIXES:
  *     Kick
  */
@@ -7257,9 +7089,9 @@ native BAD_Kick(playerid) = Kick;
 	#define Kick FIXES_Kick
 #endif
 
-/*
+/* 
  * FIXES_IsPAttachedObjectSlotUsed(playerid, index)
- *
+ * 
  * FIXES:
  *     IsPlayerAttachedObjectSlotUsed
  */
@@ -7283,9 +7115,9 @@ native BAD_IsPlayerAttachedObjSlotUsed(playerid, index) = IsPlayerAttachedObject
 	#define IsPlayerAttachedObjectSlotUsed FIXES_IsPAttachedObjectSlotUsed
 #endif
 
-/*
+/* 
  * _FIXES_SetPlayerAttachedObject(slot, to)
- *
+ * 
  * FIXES:
  *     IsPlayerAttachedObjectSlotUsed
  */
@@ -7299,9 +7131,9 @@ native BAD_IsPlayerAttachedObjSlotUsed(playerid, index) = IsPlayerAttachedObject
 	}
 #endif
 
-/*
+/* 
  * FIXES_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0)
- *
+ * 
  * FIXES:
  *     IsPlayerAttachedObjectSlotUsed
  *     SetPlayerAttachedObject
@@ -7333,9 +7165,9 @@ native BAD_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffset
 	#define SetPlayerAttachedObject FIXES_SetPlayerAttachedObject
 #endif
 
-/*
+/* 
  * FIXES_RemovePlayerAttachedObj(playerid, index)
- *
+ * 
  * FIXES:
  *     IsPlayerAttachedObjectSlotUsed
  */
@@ -7366,9 +7198,9 @@ native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObj
 	#define RemovePlayerAttachedObject FIXES_RemovePlayerAttachedObj
 #endif
 
-/*
+/* 
  * _FIXES_DetermineOrder()
- *
+ * 
  * Figure out which the first filterscript to be called is so that it can do the
  * majority of the work.  More detail:  Several pieces of code for some fixes
  * rely on things like blocking "OnPlayerUpdate".  This should be done in the
@@ -7622,9 +7454,9 @@ native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObj
 	}
 #endif
 
-/*
+/* 
  * FIXES_strins(string[], const substr[], pos, maxlength = sizeof string)
- *
+ * 
  * FIXES:
  *     strins
  */
@@ -7698,9 +7530,9 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 	#define strins FIXES_strins
 #endif
 
-/*
+/* 
  * FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
- *
+ * 
  * FIXES:
  *     ApplyAnimation
  */
@@ -7749,9 +7581,9 @@ native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, l
 	#define ApplyAnimation FIXES_ApplyAnimation
 #endif
 
-/*
+/* 
  * FIXES_random(max)
- *
+ * 
  * FIXES:
  *     random
  */
@@ -7778,16 +7610,16 @@ native BAD_random(max) = random;
 	#define random FIXES_random
 #endif
 
-/*
+/* 
  * FIXES_SetCamera
- *
+ * 
  * FIXES:
  *     SetPlayerCamera
  */
 
 #if FIX_SetPlayerCamera
 	forward _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z);
-	
+
 	public _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z)
 	{
 		if (type)
@@ -7802,9 +7634,9 @@ native BAD_random(max) = random;
 	}
 #endif
 
-/*
+/* 
  * FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z)
- *
+ * 
  * FIXES:
  *     SetPlayerCamera
  */
@@ -7825,7 +7657,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 				if (GetPVarInt(playerid, pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
-					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 1, x, y, z); 
+					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 1, x, y, z);
 				}
 				else
 				{
@@ -7839,9 +7671,9 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 	#define SetPlayerCameraPos FIXES_SetPlayerCameraPos
 #endif
 
-/*
+/* 
  * FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z)
- *
+ * 
  * FIXES:
  *     SetPlayerCamera
  */
@@ -7862,7 +7694,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 				if (GetPVarInt(playerid, pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
-					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 2, x, y, z); 
+					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 2, x, y, z);
 				}
 				else
 				{
@@ -7876,9 +7708,9 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 	#define SetPlayerCameraLookAt FIXES_SetPlayerCameraLookAt
 #endif
 
-/*
+/* 
  * FIXES_TogglePlayerSpectating(playerid, toggle)
- *
+ * 
  * FIXES:
  *     SetPlayerCamera
  */
@@ -7918,9 +7750,9 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 	#define TogglePlayerSpectating FIXES_TogglePlayerSpectating
 #endif
 
-/*
+/* 
  * FIXES_sleep(const time)
- *
+ * 
  * FIXES:
  *     sleep
  */
@@ -7944,13 +7776,13 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 	
 	#define sleep%0\n%9 sleep FIXES_sleep(%0)
 	// This fixes another BIZZARE bug.  Just doing:
-	//  
+	//
 	//  #define FIXES_sleep(%0;) FIXES_sleep(%0)
-	//  
+	//
 	// Results in:
-	//  
+	//
 	//  FIXES_sleep(n));
-	//  
+	//
 	// Which clearly it shouldn't.  I've stepped through the compilation and that
 	// extra bracket comes from nowhere!
 	#define FIXES_sleep(%0;) FIXES_sleep _FIXES_SLEEP_BRACKET %0);
@@ -8015,6 +7847,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_IS_IN_CHARGE
 #undef _FIXES_IN_RANGE
 #undef _FIXES_NO_RANGE
+#undef _FIXES_FORWARD
 #undef FIXES_PRINTF
 
 #endinput
@@ -8030,9 +7863,9 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 
 // Fix function template.
 
-/*
+/* 
  * FIXES_NameOfFixHere
- *
+ * 
  * FIXES:
  *     NameOfFixHere
  */
