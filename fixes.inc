@@ -1409,6 +1409,21 @@
 #endif
 
 /* 
+ * CHAIN_ORDER
+ * 
+ * Allows y_hooks to call things in the correct order when it exists.
+ */
+
+#if !defined CHAIN_ORDER
+	#define CHAIN_ORDER() 0
+#endif
+#define PRE_HOOK(%0) forward @CO_%0(); public @CO_%0() { return CHAIN_ORDER() + 1; }
+
+PRE_HOOK(FIXES)
+#undef CHAIN_ORDER
+#define CHAIN_ORDER @CO_FIXES
+
+/* 
  * FIXES_GT_STYLE_COUNT
  * 
  * The number of GameText styles recreated using TextDraw functions.  This is 4
