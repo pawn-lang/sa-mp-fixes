@@ -1418,13 +1418,32 @@
 	#define CHAIN_ORDER() 0
 #endif
 
-#define PRE_HOOK(%0) forward @CO_%0();public @CO_%0(){return CHAIN_ORDER()+1;}\
-	static stock _%0_IncludeStates()<_%0_ALS:_%0_ALS_x0,_%0_ALS:_%0_ALS_x1,_%0_ALS:_%0_ALS_x2,_%0_ALS:_%0_ALS_x3>{}\
-	static stock _%0_IncludeStates()<_%0_ALS:_%0_ALS_go>{}
+/* 
+ * PRE_HOOK
+ * 
+ * A method of pre-hooking callbacks to still have them called before any ones
+ * re-written by y_hooks.
+ */
+
+#define PRE_HOOK(%0) forward @CO_%0();public @CO_%0(){return CHAIN_ORDER()+1;}
 
 PRE_HOOK(FIXES)
 #undef CHAIN_ORDER
 #define CHAIN_ORDER @CO_FIXES
+
+/* 
+ * _FIXES_IncludeStates
+ * 
+ * Define the "_ALS" states used by hooks.
+ */
+
+static stock _FIXES_IncludeStates() <_ALS : _ALS_x0, _ALS : _ALS_x1, _ALS : _ALS_x2, _ALS : _ALS_x3>
+{
+}
+
+static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
+{
+}
 
 /* 
  * FIXES_GT_STYLE_COUNT
@@ -1655,7 +1674,7 @@ enum e_FIXES_SETTINGS (<<= 1)
  */
 #define _FIXES_FORWARD%0(%1); \
 	forward%0(%1); \
-	public%0(%1) <_FIXES_ALS : _FIXES_ALS_x0, _FIXES_ALS : _FIXES_ALS_x1> { return 1; } \
+	public%0(%1) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 1; } \
 	public%0(%1) <> { return 1; }
 
 // These varaibles are NOT pre-processor dependent as they are stock.  It's just
@@ -3044,7 +3063,7 @@ public OnFilterScriptInit()
 	// It is possible for this to be the only thing done in this function!
 	_FIXES_gIsFilterscript = true;
 	
-	state _FIXES_ALS : _FIXES_ALS_go;
+	state _ALS : _ALS_go;
 	
 	#if FIXES_Single
 		// Check this really IS the only script running.
@@ -3131,7 +3150,7 @@ public OnFilterScriptInit()
 	#error _ALS_OnFilterScriptInit defined
 #endif
 #define _ALS_OnFilterScriptInit
-#define OnFilterScriptInit(%0) FIXES_OnFilterScriptInit(%0) <_FIXES_ALS : _FIXES_ALS_go>
+#define OnFilterScriptInit(%0) FIXES_OnFilterScriptInit(%0) <_ALS : _ALS_go>
 
 _FIXES_FORWARD FIXES_OnFilterScriptInit();
 
@@ -3148,7 +3167,7 @@ _FIXES_FORWARD FIXES_OnFilterScriptInit();
 
 public OnGameModeInit()
 {
-	state _FIXES_ALS : _FIXES_ALS_go;
+	state _ALS : _ALS_go;
 	
 	#if FIXES_Single
 		// Check this really IS the only script running.  Properties reset when
@@ -3230,7 +3249,7 @@ public OnGameModeInit()
 	#error _ALS_OnGameModeInit defined
 #endif
 #define _ALS_OnGameModeInit
-#define OnGameModeInit(%0) FIXES_OnGameModeInit(%0) <_FIXES_ALS : _FIXES_ALS_go>
+#define OnGameModeInit(%0) FIXES_OnGameModeInit(%0) <_ALS : _ALS_go>
 
 _FIXES_FORWARD FIXES_OnGameModeInit();
 
@@ -3272,7 +3291,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#error _ALS_OnGameModeExit defined
 	#endif
 	#define _ALS_OnGameModeExit
-	#define OnGameModeExit(%0) FIXES_OnGameModeExit(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnGameModeExit(%0) FIXES_OnGameModeExit(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnGameModeExit();
 #endif
@@ -3383,7 +3402,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#error _ALS_OnFilterScriptExit defined
 	#endif
 	#define _ALS_OnFilterScriptExit
-	#define OnFilterScriptExit(%0) FIXES_OnFilterScriptExit(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnFilterScriptExit(%0) FIXES_OnFilterScriptExit(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnFilterScriptExit();
 #endif
@@ -3415,10 +3434,10 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#error _ALS_OnPlayerCommandText defined
 	#endif
 	#define _ALS_OnPlayerCommandText
-	#define OnPlayerCommandText(%0) FIXES_OnPlayerCommandText(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerCommandText(%0) FIXES_OnPlayerCommandText(%0) <_ALS : _ALS_go>
 	
 	forward FIXES_OnPlayerCommandText(playerid, cmdtext[]);
-	public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <_FIXES_ALS : _FIXES_ALS_x0, _FIXES_ALS : _FIXES_ALS_x1> { return 0; }
+	public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 0; }
 	public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <> { return 0; }
 #endif
 
@@ -3688,7 +3707,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#error _ALS_OnPlayerConnect defined
 	#endif
 	#define _ALS_OnPlayerConnect
-	#define OnPlayerConnect(%0) FIXES_OnPlayerConnect(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerConnect(%0) FIXES_OnPlayerConnect(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerConnect(playerid);
 #endif
@@ -3803,7 +3822,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#error _ALS_OnPlayerDisconnect defined
 	#endif
 	#define _ALS_OnPlayerDisconnect
-	#define OnPlayerDisconnect(%0) FIXES_OnPlayerDisconnect(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerDisconnect(%0) FIXES_OnPlayerDisconnect(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerDisconnect(playerid, reason);
 #endif
@@ -3865,7 +3884,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#error _ALS_OnPlayerDeath defined
 	#endif
 	#define _ALS_OnPlayerDeath
-	#define OnPlayerDeath(%0) FIXES_OnPlayerDeath(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerDeath(%0) FIXES_OnPlayerDeath(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerDeath(playerid, killerid, reason);
 #endif
@@ -4094,7 +4113,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		#error _ALS_OnPlayerSpawn defined
 	#endif
 	#define _ALS_OnPlayerSpawn
-	#define OnPlayerSpawn(%0) FIXES_OnPlayerSpawn(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerSpawn(%0) FIXES_OnPlayerSpawn(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerSpawn(playerid);
 #endif
@@ -4157,7 +4176,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		#error _ALS_OnVehicleMod defined
 	#endif
 	#define _ALS_OnVehicleMod
-	#define OnVehicleMod(%0) FIXES_OnVehicleMod(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnVehicleMod(%0) FIXES_OnVehicleMod(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 #endif
@@ -4464,7 +4483,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#error _ALS_OnPlayerUpdate defined
 	#endif
 	#define _ALS_OnPlayerUpdate
-	#define OnPlayerUpdate(%0) FIXES_OnPlayerUpdate(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerUpdate(%0) FIXES_OnPlayerUpdate(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerUpdate(playerid);
 #endif
@@ -4752,7 +4771,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#error _ALS_OnPlayerInteriorChange defined
 	#endif
 	#define _ALS_OnPlayerInteriorChange
-	#define OnPlayerInteriorChange(%0) FIXES_OnPlayerInteriorChange(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerInteriorChange(%0) FIXES_OnPlayerInteriorChange(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
 #endif
@@ -4816,7 +4835,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#error _ALS_OnPlayerKeyStateChange defined
 	#endif
 	#define _ALS_OnPlayerKeyStateChange
-	#define OnPlayerKeyStateChange(%0) FIXES_OnPlayerKeyStateChange(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerKeyStateChange(%0) FIXES_OnPlayerKeyStateChange(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 #endif
@@ -4851,7 +4870,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#error _ALS_OnPlayerEnterVehicle defined
 	#endif
 	#define _ALS_OnPlayerEnterVehicle
-	#define OnPlayerEnterVehicle(%0) FIXES_OnPlayerEnterVehicle(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerEnterVehicle(%0) FIXES_OnPlayerEnterVehicle(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
 #endif
@@ -4886,7 +4905,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#error _ALS_OnPlayerExitVehicle defined
 	#endif
 	#define _ALS_OnPlayerExitVehicle
-	#define OnPlayerExitVehicle(%0) FIXES_OnPlayerExitVehicle(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerExitVehicle(%0) FIXES_OnPlayerExitVehicle(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerExitVehicle(playerid, vehicleid);
 #endif
@@ -4992,7 +5011,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#error _ALS_OnPlayerSelectedMenuRow defined
 	#endif
 	#define _ALS_OnPlayerSelectedMenuRow
-	#define OnPlayerSelectedMenuRow(%0) FIXES_OnPlayerSelectedMenuRow(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerSelectedMenuRow(%0) FIXES_OnPlayerSelectedMenuRow(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerSelectedMenuRow(playerid, row);
 #endif
@@ -5057,7 +5076,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#error _ALS_OnPlayerExitedMenu defined
 	#endif
 	#define _ALS_OnPlayerExitedMenu
-	#define OnPlayerExitedMenu(%0) FIXES_OnPlayerExitedMenu(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerExitedMenu(%0) FIXES_OnPlayerExitedMenu(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerExitedMenu(playerid);
 #endif
@@ -5631,7 +5650,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 		#error _ALS_OnPlayerStateChange defined
 	#endif
 	#define _ALS_OnPlayerStateChange
-	#define OnPlayerStateChange(%0) FIXES_OnPlayerStateChange(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerStateChange(%0) FIXES_OnPlayerStateChange(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
 #endif
@@ -6474,7 +6493,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 		#error _ALS_OnPlayerClickMap defined
 	#endif
 	#define _ALS_OnPlayerClickMap
-	#define OnPlayerClickMap(%0) FIXES_OnPlayerClickMap(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnPlayerClickMap(%0) FIXES_OnPlayerClickMap(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ);
 #endif
@@ -6778,7 +6797,7 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 		#error _ALS_OnDialogResponse defined
 	#endif
 	#define _ALS_OnDialogResponse
-	#define OnDialogResponse(%0) FIXES_OnDialogResponse(%0) <_FIXES_ALS : _FIXES_ALS_go>
+	#define OnDialogResponse(%0) FIXES_OnDialogResponse(%0) <_ALS : _ALS_go>
 	
 	_FIXES_FORWARD FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]);
 #endif
