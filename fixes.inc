@@ -2640,13 +2640,14 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 #if FIX_IsPlayerConnected
 	stock FIXES_IsPlayerConnected(playerid)
 	{
-		if (playerid & 0xFFFF0000)
-		{
-			return false;
-		}
-		return IsPlayerConnected(playerid);
+		return _FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS) && IsPlayerConnected(playerid);
+		// if (playerid & 0xFFFF0000)
+		// {
+			// return false;
+		// }
+		// return IsPlayerConnected(playerid);
 	}
-
+	
 	#define _ALS_IsPlayerConnected
 	#define IsPlayerConnected FIXES_IsPlayerConnected
 #endif
