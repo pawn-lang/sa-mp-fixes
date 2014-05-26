@@ -1701,6 +1701,13 @@ enum e_FIXES_SETTINGS (<<= 1)
 	public%0(%1) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 1; } \
 	public%0(%1) <> { return 1; }
 
+/* 
+ * _FIXES_IS_PLAYER_CONNECTED
+ * 
+ * Always valid "IsPlayerConnected" check.
+ */
+#define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IN_RANGE((%0), 0, MAX_PLAYERS) && IsPlayerConnected((%0)))
+
 // These varaibles are NOT pre-processor dependent as they are stock.  It's just
 // simpler than trying to figure out when or if a semi-colon is needed.
 #if !FIX_FILTERSCRIPT
@@ -2640,12 +2647,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 #if FIX_IsPlayerConnected
 	stock FIXES_IsPlayerConnected(playerid)
 	{
-		return _FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS) && IsPlayerConnected(playerid);
-		// if (playerid & 0xFFFF0000)
-		// {
-			// return false;
-		// }
-		// return IsPlayerConnected(playerid);
+		return _FIXES_IS_PLAYER_CONNECTED(playerid);
 	}
 	
 	#define _ALS_IsPlayerConnected
@@ -6223,7 +6225,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #if FIX_GameText
 	stock FIXES_GameTextForPlayer(playerid, string[], time, style)
 	{
-		if (_FIXES_IN_RANGE(style, 0, FIXES_GT_STYLE_COUNT) && IsPlayerConnected(playerid))
+		if (_FIXES_IN_RANGE(style, 0, FIXES_GT_STYLE_COUNT) && _FIXES_IS_PLAYER_CONNECTED(playerid))
 		{
 			if ((string[0] <= '\0') || (string[0] == '\1' && string[1] == '\0'))
 			{
@@ -7217,7 +7219,7 @@ native BAD_IsPlayerAttachedObjSlotUsed(playerid, index) = IsPlayerAttachedObject
 #if FIX_IsPlayerAttachedObjSlotUsed
 	stock FIXES_IsPAttachedObjectSlotUsed(playerid, index)
 	{
-		if (IsPlayerConnected(playerid))
+		if (_FIXES_IS_PLAYER_CONNECTED(playerid))
 		{
 			return FIXES_gsObjectSlots[playerid / _FIXES_ATTACHMENTS] & 1 << playerid % _FIXES_ATTACHMENTS * MAX_PLAYER_ATTACHED_OBJECTS + index;
 		}
@@ -7655,7 +7657,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 	
 	public _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
 	{
-		if (IsPlayerConnected(playerid))
+		if (_FIXES_IS_PLAYER_CONNECTED(playerid))
 		{
 			ApplyAnimation(playerid, FIXES_gscAnimLib[animlib], FIXES_gsClassAnimName[playerid], fDelta, loop, lockx, locky, freeze, time, forcesync);
 		}
@@ -8043,6 +8045,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_IN_RANGE
 #undef _FIXES_NO_RANGE
 #undef _FIXES_FORWARD
+#undef _FIXES_IS_PLAYER_CONNECTED
 #undef FIXES_PRINTF
 
 #endinput
