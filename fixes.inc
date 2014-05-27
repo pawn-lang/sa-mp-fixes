@@ -608,6 +608,12 @@
  * SEE:      "FIXES_SetPlayerTime"
  * AUTHOR:   Emmet_
  * 
+ * FIX:      OnPlayerRequestClass
+ * PROBLEM:  Random blunts and bottles sometimes appear in class selection.
+ * SOLUTION: Call "RemoveBuildingForPlayer".
+ * SEE:      "OnPlayerRequestClass"
+ * AUTHOR:   Y_Less
+ * 
  * FIX:      ApplyAnimation_3
  * PROBLEM:  Using this function under "OnPlayerRequestClass" doesn't work when
  *           player is on the selection for the first time since connected.
@@ -1418,17 +1424,24 @@
 #endif
 
 #if !defined FIX_SetPlayerCamera
-	#define FIX_SetPlayerCamera  		 (1)
+	#define FIX_SetPlayerCamera          (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCamera)
 	#undef FIX_SetPlayerCamera
-	#define FIX_SetPlayerCamera  		 (2)
+	#define FIX_SetPlayerCamera          (2)
 #endif
 
 #if !defined FIX_SetPlayerTime
-	#define FIX_SetPlayerTime   		 (1)
+	#define FIX_SetPlayerTime            (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerTime)
 	#undef FIX_SetPlayerTime
-	#define FIX_SetPlayerTime   		 (2)
+	#define FIX_SetPlayerTime            (2)
+#endif
+
+#if !defined FIX_OnPlayerRequestClass
+	#define FIX_OnPlayerRequestClass     (1)
+#elseif _FIXES_IS_UNSET(FIX_OnPlayerRequestClass)
+	#undef FIX_OnPlayerRequestClass
+	#define FIX_OnPlayerRequestClass     (2)
 #endif
 
 /* 
@@ -4019,14 +4032,31 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  * 
  * FIXES:
  *      ApplyAnimation_3
+ *      OnPlayerRequestClass
  */
 
-#if FIX_ApplyAnimation_3
+#if FIX_ApplyAnimation_3 || FIX_OnPlayerRequestClass
 	public OnPlayerRequestClass(playerid, classid)
 	{
-		// ==========================
-		//  BEGIN : ApplyAnimation_3 
-		// ==========================
+		// =============================
+		//  BEGIN: OnPlayerRequestClass 
+		// =============================
+		#if FIX_OnPlayerRequestClass
+			new
+				Float:x,
+				Float:y,
+				Float:z;
+			GetPlayerPos(playerid, x, y, z),
+			RemoveBuildingForPlayer(playerid, 1484, x, y, z, 10.0),
+			RemoveBuildingForPlayer(playerid, 1485, x, y, z, 10.0),
+			RemoveBuildingForPlayer(playerid, 1486, x, y, z, 10.0);
+		#endif
+		// ===========================
+		//  END: OnPlayerRequestClass 
+		// ===========================
+		// =========================
+		//  BEGIN: ApplyAnimation_3 
+		// =========================
 		#if FIX_ApplyAnimation_3
 			new
 				ret = FIXES_OnPlayerRequestClass(playerid, classid);
@@ -4035,17 +4065,17 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		#else
 			return FIXES_OnPlayerRequestClass(playerid, classid);
 		#endif
-		// ========================
-		//  END : ApplyAnimation_3 
-		// ========================
+		// =======================
+		//  END: ApplyAnimation_3 
+		// =======================
 	}
-
+	
 	#if defined _ALS_OnPlayerRequestClass
 		#error _ALS_OnPlayerRequestClass defined
 	#endif
 	#define _ALS_OnPlayerRequestClass
 	#define OnPlayerRequestClass(%0) FIXES_OnPlayerRequestClass(%0) <_ALS : _ALS_go>
-
+	
 	_FIXES_FORWARD FIXES_OnPlayerRequestClass(playerid, classid);
 #endif
 
