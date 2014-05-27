@@ -514,12 +514,11 @@
  * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/5
  * 
  * FIX:      ApplyAnimation_2
- * PROBLEM:  When ApplyAnimation was called the first time next the player
- *           spawn, it don't work.
- * SOLUTION: Apply a null animation at spawn.
- * SEE:      "OnPlayerSpawn".
- * AUTHOR:   xX_Simon_Xx
- * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/5
+ * PROBLEM:  First time a library is used, it does nothing.
+ * SOLUTION: Apply animations twice when first using a library.
+ * SEE:      "FIXES_ApplyAnimation".
+ * AUTHOR:   xX_Simon_Xx/Lordzy/Y_Less
+ * POST:     http://forum.sa-mp.com/showpost.php?p=3052627
  * 
  * FIX:      OnPlayerSpawn
  * PROBLEM:  San Andreas deducts $100 from players.
@@ -613,15 +612,6 @@
  * SOLUTION: Call "RemoveBuildingForPlayer".
  * SEE:      "OnPlayerRequestClass"
  * AUTHOR:   Y_Less
- * 
- * FIX:      ApplyAnimation_3
- * PROBLEM:  Using this function under "OnPlayerRequestClass" doesn't work when
- *           player is on the selection for the first time since connected.
- * SOLUTION: ApplyAnimation has to be called twice at that time and the second
- *           call should be slightly delayed.
- * SEE:      "FIXES_ApplyAnimation" and "OnPlayerRequestClass"
- * POST:     https://github.com/Lordzy/AnimFix_OnPlayerRequestClass
- * AUTHOR:   Lordzy
  * 
  * ==============
  *  STYLE RULES: 
@@ -1352,17 +1342,10 @@
 #endif
 
 #if !defined FIX_ApplyAnimation_2
-	#define FIX_ApplyAnimation_2         (0)
+	#define FIX_ApplyAnimation_2         (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation_2)
 	#undef FIX_ApplyAnimation_2
 	#define FIX_ApplyAnimation_2         (2)
-#endif
-
-#if !defined FIX_ApplyAnimation_3
-	#define FIX_ApplyAnimation_3         (1)
-#elseif _FIXES_IS_UNSET(FIX_ApplyAnimation_3)
-	#undef FIX_ApplyAnimation_3
-	#define FIX_ApplyAnimation_3         (2)
 #endif
 
 #if !defined FIX_OnPlayerSpawn
@@ -1899,16 +1882,22 @@ static stock
 	 * Used for storing the timer ID for deferring class selection animation
 	 * application.
 	 */
-#if FIX_ApplyAnimation_3
-	FIXES_gsClassAnimTimer[MAX_PLAYERS],
-#endif
+	FIXES_gsAnimTimer[MAX_PLAYERS],
 	/* 
 	 * FIXES_gsClassAnimName[MAX_PLAYERS][60],
 	 * 
 	 * Used for storing the animation name.
 	 */
-#if FIX_ApplyAnimation_3
+#if FIX_ApplyAnimation_2
 	FIXES_gsClassAnimName[MAX_PLAYERS][60],
+#endif
+	/* 
+	 * FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(134, cellbits)],
+	 * 
+	 * Which animation libraries the player has synced.
+	 */
+#if FIX_ApplyAnimation_2
+	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(134, cellbits)],
 #endif
 	/* 
 	 * FIXES_pvarNotNewPlayer[]
@@ -2289,7 +2278,7 @@ static stock const
 	 * 
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
 	 */
-#if FIX_ApplyAnimation || FIX_ApplyAnimation_3
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2
 	FIXES_gscAnimIndexes[24] =
 		{
 			0, 2, 21, 35, 42, 42, 53, 62, 64, 67, 68, 71, 75, 81, 82, 84, 94, 96, 104, 121, 126, 127, 130, 134
@@ -2300,7 +2289,7 @@ static stock const
 	 * 
 	 * List of valid animation libraries.
 	 */
-#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyAnimation_3
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2
 	FIXES_gscAnimLib[134][] =
 		{
 			"AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
@@ -3515,7 +3504,6 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  *     PlayerDialogResponse
  *     OnPlayerSpawn
  *     ApplyAnimation_2
- *     ApplyAnimation_3
  */
 
 #if     FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_SetPlayerName            || FIX_GetPlayerColour
@@ -3532,44 +3520,40 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_GetPlayerMenu        || FIX_OnPlayerDisconnect       || FIX_OnPlayerConnect          || FIX_SetPlayerTime
 	#define _FIXES_ON_PLAYER_CONNECT
-#elseif FIX_ApplyAnimation_3
-	#define _FIXES_ON_PLAYER_CONNECT
 #endif
 
 #if defined _FIXES_ON_PLAYER_CONNECT
 	public OnPlayerConnect(playerid)
 	{
+		// =========================
+		//  BEGIN: ApplyAnimation_2 
+		// =========================
+		#if FIX_ApplyAnimation_2
+			FIXES_gsPlayerAnimLibs[playerid][0] =
+				FIXES_gsPlayerAnimLibs[playerid][1] =
+					FIXES_gsPlayerAnimLibs[playerid][2] =
+						FIXES_gsPlayerAnimLibs[playerid][3] =
+							FIXES_gsPlayerAnimLibs[playerid][4] = -1;
+		#endif
+		// =======================
+		//  END: ApplyAnimation_2 
+		// =======================
+		
 		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 			_FIXES_AddInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
 		#endif
 		
 		FIXES_PRINTF("FIXES_OnPlayerConnect: %d", playerid);
 			// This is only reset when the Game Mode changes or when a new
-		#if FIX_Kick || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2 || FIX_ApplyAnimation_2 || FIX_ApplyAnimation_3
+		#if FIX_Kick || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2
 			// player connects, which is what we want.  The other items are the
 			// same, but must be done only once.  This variable will tend to
 			// hold data relevant only in the master script (the first
 			// filterscript).
-			#if FIX_ApplyAnimation_3
-				#if FIX_ApplyAnimation_2 && (FIX_Kick || FIX_SetPlayerTime)
-					FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_CLASS | e_FIXES_BOOLS_FIRST_SPAWN | e_FIXES_BOOLS_ON_PLAYER_CONNECT;
-				#elseif FIX_ApplyAnimation_2
-					FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_CLASS | e_FIXES_BOOLS_FIRST_SPAWN;
-				#elseif FIX_Kick || FIX_SetPlayerTime
-					FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_CLASS | e_FIXES_BOOLS_ON_PLAYER_CONNECT;
-				#else
-					FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_CLASS;
-				#endif
+			#if FIX_Kick || FIX_SetPlayerTime
+				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_ON_PLAYER_CONNECT;
 			#else
-				#if FIX_ApplyAnimation_2 && (FIX_Kick || FIX_SetPlayerTime)
-					FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_SPAWN | e_FIXES_BOOLS_ON_PLAYER_CONNECT;
-				#elseif FIX_ApplyAnimation_2
-					FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_FIRST_SPAWN;
-				#elseif FIX_Kick || FIX_SetPlayerTime
-					FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_ON_PLAYER_CONNECT;
-				#else
-					FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_NONE;
-				#endif
+				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_NONE;
 			#endif
 		#endif
 		
@@ -3783,11 +3767,25 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  *     GetPlayerMenu
  */
 
-#if FIX_SetPlayerAttachedObject || FIX_IsPlayerAttachedObjSlotUsed || FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+#if FIX_SetPlayerAttachedObject || FIX_IsPlayerAttachedObjSlotUsed || FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
 	public OnPlayerDisconnect(playerid, reason)
 	{
 		new
 			ret = FIXES_OnPlayerDisconnect(playerid, reason);
+		
+		// =========================
+		//  BEGIN: ApplyAnimation_2 
+		// =========================
+		#if FIX_ApplyAnimation_2
+			if (FIXES_gsAnimTimer[playerid])
+			{
+				KillTimer(FIXES_gsAnimTimer[playerid]),
+				FIXES_gsAnimTimer[playerid] = 0;
+			}
+		#endif
+		// =======================
+		//  END: ApplyAnimation_2 
+		// =======================
 		
 		// ======================
 		//  BEGIN: GetPlayerMenu 
@@ -4031,11 +4029,10 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  * OnPlayerRequestClass(playerid, classid)
  * 
  * FIXES:
- *      ApplyAnimation_3
  *      OnPlayerRequestClass
  */
 
-#if FIX_ApplyAnimation_3 || FIX_OnPlayerRequestClass
+#if FIX_OnPlayerRequestClass
 	public OnPlayerRequestClass(playerid, classid)
 	{
 		// =============================
@@ -4054,20 +4051,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		// ===========================
 		//  END: OnPlayerRequestClass 
 		// ===========================
-		// =========================
-		//  BEGIN: ApplyAnimation_3 
-		// =========================
-		#if FIX_ApplyAnimation_3
-			new
-				ret = FIXES_OnPlayerRequestClass(playerid, classid);
-			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_FIRST_CLASS;
-			return ret;
-		#else
-			return FIXES_OnPlayerRequestClass(playerid, classid);
-		#endif
-		// =======================
-		//  END: ApplyAnimation_3 
-		// =======================
+		return FIXES_OnPlayerRequestClass(playerid, classid);
 	}
 	
 	#if defined _ALS_OnPlayerRequestClass
@@ -4087,11 +4071,10 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  *     TogglePlayerControllable
  *     GetPlayerInterior
  *     OnPlayerSpawn
- *     ApplyAnimation_2
  *     GameText
  */
 
-#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_ApplyAnimation_2 || FIX_GameText
+#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_GameText
 	public OnPlayerSpawn(playerid)
 	{
 		_FIXES_IS_IN_CHARGE()
@@ -4126,23 +4109,6 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			// ==========================
 			//  END:   GetPlayerInterior 
 			// ==========================
-			
-			// =========================
-			//  BEGIN: ApplyAnimation_2 
-			// =========================
-			#if FIX_ApplyAnimation_2
-				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_FIRST_SPAWN)
-				{
-					for (new i = 0; i != sizeof (FIXES_gscAnimLib); ++i)
-					{
-						ApplyAnimation(playerid, FIXES_gscAnimLib[i], "null", 1.0, 0, 0, 0, 0, 0);
-					}
-					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_FIRST_SPAWN;
-				}
-			#endif
-			// =========================
-			//  END:   ApplyAnimation_2 
-			// =========================
 			
 			// =================
 			//  BEGIN: GameText 
@@ -7679,20 +7645,16 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  * _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
  * 
  * FIXES:
- *     ApplyAnimation_3
+ *     ApplyAnimation_2
  */
 
-#if FIX_ApplyAnimation_3
+#if FIX_ApplyAnimation_2
 	forward _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync);
 	
 	public _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
 	{
-		if (_FIXES_IS_PLAYER_CONNECTED(playerid))
-		{
-			ApplyAnimation(playerid, FIXES_gscAnimLib[animlib], FIXES_gsClassAnimName[playerid], fDelta, loop, lockx, locky, freeze, time, forcesync);
-		}
-		FIXES_gsClassAnimTimer[playerid] = 0;
-		return 1;
+		ApplyAnimation(playerid, FIXES_gscAnimLib[animlib], FIXES_gsClassAnimName[playerid], fDelta, loop, lockx, locky, freeze, time, forcesync),
+		FIXES_gsAnimTimer[playerid] = 0;
 	}
 #endif
 
@@ -7701,7 +7663,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  * 
  * FIXES:
  *     ApplyAnimation
- *     ApplyAnimation_3
+ *     ApplyAnimation_2
  */
 
 #if defined _ALS_ApplyAnimation
@@ -7709,7 +7671,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 #endif
 native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
 
-#if FIX_ApplyAnimation || FIX_ApplyAnimation_3
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2
 	stock FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
 	{
 		new
@@ -7739,21 +7701,18 @@ native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, l
 				{
 					// If we hit the "else" branch, we have found the correct
 					// animation library from the n-ary search.
-					#if FIX_ApplyAnimation_3
-						if (FIXES_gsClassAnimTimer[playerid])
+					#if FIX_ApplyAnimation_2
+						if (FIXES_gsAnimTimer[playerid])
 						{
-							KillTimer(FIXES_gsClassAnimTimer[playerid]),
-							FIXES_gsClassAnimTimer[playerid] = 0;
+							KillTimer(FIXES_gsAnimTimer[playerid]),
+							FIXES_gsAnimTimer[playerid] = 0;
 						}
-						if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_FIRST_CLASS)
+						if (FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] & (1 << (idx & 0x1F)))
 						{
-							new
-								ret = ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
-							return
-								FIXES_gsClassAnimName[playerid][0] = '\0',
-								strcat(FIXES_gsClassAnimName[playerid], animname),
-								FIXES_gsClassAnimTimer[playerid] = SetTimerEx("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync),
-								ret;
+							FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
+							FIXES_gsClassAnimName[playerid][0] = '\0',
+							strcat(FIXES_gsClassAnimName[playerid], animname),
+							FIXES_gsAnimTimer[playerid] = SetTimerEx("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
 						}
 					#endif
 						return ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
