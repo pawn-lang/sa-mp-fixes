@@ -7799,7 +7799,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 			#if FIXES_Single
 				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#else
-				if (GetPVarInt(playerid, pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+				if (GetPVarInt(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
 					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 1, x, y, z);
@@ -7836,7 +7836,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 			#if FIXES_Single
 				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#else
-				if (GetPVarInt(playerid, pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+				if (GetPVarInt(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
 					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 2, x, y, z);
