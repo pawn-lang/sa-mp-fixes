@@ -615,7 +615,7 @@
  * 
  * FIX:      SetPlayerColor
  * PROBLEM:  If used under OnPlayerConnect, the affecting player will not
-             see the color in the TAB menu.
+ *           see the color in the TAB menu.
  * SOLUTION: Defer it.
  * SEE:      "FIXES_SetPlayerColor"
  * AUTHOR:   Emmet_
@@ -3541,6 +3541,8 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_GetPlayerMenu        || FIX_OnPlayerDisconnect       || FIX_OnPlayerConnect          || FIX_SetPlayerTime
 	#define _FIXES_ON_PLAYER_CONNECT
+#elseif FIX_SetPlayerColor
+	#define _FIXES_ON_PLAYER_CONNECT
 #endif
 
 #if defined _FIXES_ON_PLAYER_CONNECT
@@ -3566,12 +3568,12 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		
 		FIXES_PRINTF("FIXES_OnPlayerConnect: %d", playerid);
 			// This is only reset when the Game Mode changes or when a new
-		#if FIX_Kick || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2
+		#if FIX_Kick || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2 || FIX_SetPlayerColor
 			// player connects, which is what we want.  The other items are the
 			// same, but must be done only once.  This variable will tend to
 			// hold data relevant only in the master script (the first
 			// filterscript).
-			#if FIX_Kick || FIX_SetPlayerTime
+			#if FIX_Kick || FIX_SetPlayerTime || FIX_SetPlayerColor
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_ON_PLAYER_CONNECT;
 			#else
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_NONE;
@@ -3629,13 +3631,13 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				// =============================
 				
 				// =======================
-				//  BEGIN: SetPlayerColor 
+				//  BEGIN: GetPlayerColor 
 				// =======================
 				#if FIX_GetPlayerColour
 					SetPlayerColor(playerid, FIXES_gscPlayerColours[playerid % 100]);
 				#endif
 				// =======================
-				//  END:   SetPlayerColor 
+				//  END:   GetPlayerColor 
 				// =======================
 				
 				// ======================
