@@ -1435,11 +1435,19 @@
 	#define FIX_OnPlayerRequestClass     (2)
 #endif
 
-#if !defined FIX_SetPlayerColor
-	#define FIX_SetPlayerColor           (1)
-#elseif _FIXES_IS_UNSET(FIX_SetPlayerColor)
-	#undef FIX_SetPlayerColor
-	#define FIX_SetPlayerColor           (2)
+#if !defined FIX_SetPlayerColour
+	#if defined FIX_SetPlayerColor
+		#if _FIXES_IS_UNSET(FIX_SetPlayerColor)
+			#define FIX_SetPlayerColour   (2)
+		#else
+			#define FIX_SetPlayerColour   (FIX_SetPlayerColor)
+		#endif
+	#else
+		#define FIX_SetPlayerColour       (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_SetPlayerColour)
+	#undef FIX_SetPlayerColour
+	#define FIX_SetPlayerColour           (2)
 #endif
 
 /* 
@@ -3541,7 +3549,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_GetPlayerMenu        || FIX_OnPlayerDisconnect       || FIX_OnPlayerConnect          || FIX_SetPlayerTime
 	#define _FIXES_ON_PLAYER_CONNECT
-#elseif FIX_SetPlayerColor
+#elseif FIX_SetPlayerColour
 	#define _FIXES_ON_PLAYER_CONNECT
 #endif
 
@@ -3568,12 +3576,12 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		
 		FIXES_PRINTF("FIXES_OnPlayerConnect: %d", playerid);
 			// This is only reset when the Game Mode changes or when a new
-		#if FIX_Kick || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2 || FIX_SetPlayerColor
+		#if FIX_Kick || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2 || FIX_SetPlayerColour
 			// player connects, which is what we want.  The other items are the
 			// same, but must be done only once.  This variable will tend to
 			// hold data relevant only in the master script (the first
 			// filterscript).
-			#if FIX_Kick || FIX_SetPlayerTime || FIX_SetPlayerColor
+			#if FIX_Kick || FIX_SetPlayerTime || FIX_SetPlayerColour
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_ON_PLAYER_CONNECT;
 			#else
 				FIXES_gsPlayerBools[playerid] = e_FIXES_BOOLS_NONE;
@@ -3758,7 +3766,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		// =============
 		//  BEGIN: Kick 
 		// =============
-		#if FIX_Kick || FIX_SetPlayerTime || FIX_SetPlayerColor
+		#if FIX_Kick || FIX_SetPlayerTime || FIX_SetPlayerColour
 			new
 				ret = FIXES_OnPlayerConnect(playerid);
 			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_ON_PLAYER_CONNECT;
@@ -7971,7 +7979,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 #endif
 native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 
-#if FIX_SetPlayerColor
+#if FIX_SetPlayerColour
 	forward _FIXES_SetColor(playerid, color);
 	
 	public _FIXES_SetColor(playerid, color)
