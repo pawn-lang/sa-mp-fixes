@@ -613,6 +613,14 @@
  * SEE:      "OnPlayerRequestClass"
  * AUTHOR:   Y_Less
  * 
+ * FIX:      SetPlayerColor
+ * PROBLEM:  If used under OnPlayerConnect, the affecting player will not
+             see the color in the TAB menu.
+ * SOLUTION: Defer it.
+ * SEE:      "FIXES_SetPlayerColor"
+ * AUTHOR:   Emmet_
+ * POST:     http://forum.sa-mp.com/showthread.php?t=452407  
+ * 
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -1427,6 +1435,13 @@
 	#define FIX_OnPlayerRequestClass     (2)
 #endif
 
+#if !defined FIX_SetPlayerColor
+	#define FIX_SetPlayerColor           (1)
+#elseif _FIXES_IS_UNSET(FIX_SetPlayerColor)
+	#undef FIX_SetPlayerColor
+	#define FIX_SetPlayerColor           (2)
+#endif
+
 /* 
  * CHAIN_ORDER
  * 
@@ -1987,6 +2002,12 @@ static stock
 	 * Name of the SetTime timer function.
 	 */
 	FIXES_gscSetTime[] = "_FIXES_SetTime",
+	/* 
+	 * FIXES_gscSetColor[]
+	 * 
+	 * Name of the SetColor timer function.
+	 */
+	FIXES_gscSetColor[] = "_FIXES_SetColor",
 	/* 
 	 * FIXES_gscNULL[]
 	 * 
@@ -3735,7 +3756,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		// =============
 		//  BEGIN: Kick 
 		// =============
-		#if FIX_Kick || FIX_SetPlayerTime
+		#if FIX_Kick || FIX_SetPlayerTime || FIX_SetPlayerColor
 			new
 				ret = FIXES_OnPlayerConnect(playerid);
 			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_ON_PLAYER_CONNECT;
@@ -3758,7 +3779,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 #endif
 
 /* 
- * OnPlayerDisonnect(playerid, reason)
+ * OnPlayerDisconnect(playerid, reason)
  * 
  * FIXES:
  *     SetPlayerAttachedObject
@@ -7934,6 +7955,47 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 	
 	#define _ALS_SetPlayerTime
 	#define SetPlayerTime FIXES_SetPlayerTime
+#endif
+
+/* 
+ * FIXES_SetPlayerColor(playerid, color)
+ * 
+ * FIXES:
+ *     SetPlayerColor
+ */
+
+#if defined _ALS_SetPlayerColor
+	#error _ALS_SetPlayerColor defined
+#endif
+native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
+
+#if FIX_SetPlayerColor
+	forward _FIXES_SetColor(playerid, color);
+	
+	public _FIXES_SetColor(playerid, color)
+	{
+		if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
+		{
+			return SetPlayerColor(playerid, color);
+		}
+		return 0;
+	}
+	
+	stock FIXES_SetPlayerColor(playerid, color)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
+			{
+				return SetTimerEx(FIXES_gscSetColor, 300, 0, FIXES_gscSpec@ii, playerid, color);
+			}
+			return SetPlayerColor(playerid, color);
+		}
+		return 0;
+	}
+	
+	#define _ALS_SetPlayerColor
+	#define SetPlayerColor FIXES_SetPlayerColor
 #endif
 
 /* 
