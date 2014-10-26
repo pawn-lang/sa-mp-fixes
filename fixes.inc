@@ -621,6 +621,12 @@
  * AUTHOR:   Emmet_
  * POST:     http://forum.sa-mp.com/showthread.php?t=452407  
  * 
+ * FIX:      FileMaths
+ * PROBLEM:  You can write gibberish like "File:a; ++a;".
+ * SOLUTION: Remove the operators.
+ * SEE:      "File:operator"
+ * AUTHOR:   Y_Less
+ * 
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -1438,16 +1444,23 @@
 #if !defined FIX_SetPlayerColour
 	#if defined FIX_SetPlayerColor
 		#if _FIXES_IS_UNSET(FIX_SetPlayerColor)
-			#define FIX_SetPlayerColour   (2)
+			#define FIX_SetPlayerColour  (2)
 		#else
 			#define FIX_SetPlayerColour   (FIX_SetPlayerColor)
 		#endif
 	#else
-		#define FIX_SetPlayerColour       (1)
+		#define FIX_SetPlayerColour      (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerColour)
 	#undef FIX_SetPlayerColour
-	#define FIX_SetPlayerColour           (2)
+	#define FIX_SetPlayerColour          (2)
+#endif
+
+#if !defined FIX_FileMaths
+	#define FIX_FileMaths                (1)
+#elseif _FIXES_IS_UNSET(FIX_FileMaths)
+	#undef FIX_FileMaths
+	#define FIX_FileMaths                (2)
 #endif
 
 /* 
@@ -2546,6 +2559,7 @@ static stock const
  * 
  * Because the default SA:MP includes missed this one.
  */
+
 #define _FIXES_KEY_AIM                   (128)
 #if FIX_KEY_AIM
 	#define KEY_AIM                      _FIXES_KEY_AIM
@@ -2557,6 +2571,7 @@ static stock const
  * 
  * Because the default SA:MP includes missed this one.
  */
+
 #define _FIXES_SPECIAL_ACTION_PISSING    (68)
 #if FIX_SPECIAL_ACTION_PISSING
 	#define SPECIAL_ACTION_PISSING       _FIXES_SPECIAL_ACTION_PISSING
@@ -2641,6 +2656,43 @@ static stock const
 
 #if FIX_FILTERSCRIPT
 	#define IS_FILTERSCRIPT _FIXES_gIsFilterscript
+#endif
+
+/* 
+ * File operators
+ * 
+ * Forwards for operators that shouldn't exist, so they won't exist.
+ */
+
+#if FIX_FileMaths
+	forward File:operator++(File:a);
+	forward File:operator--(File:a);
+	forward File:operator-(File:a);
+	forward File:operator+(File:a, File:b);
+	forward File:operator+(File:a, _:b);
+	forward File:operator-(File:a, File:b);
+	forward File:operator-(_:a, File:b);
+	forward File:operator-(File:a, _:b);
+	forward File:operator*(File:a, File:b);
+	forward File:operator*(File:a, _:b);
+	forward File:operator/(File:a, File:b);
+	forward File:operator/(_:a, File:b);
+	forward File:operator/(File:a, _:b);
+	forward File:operator%(File:a, File:b);
+	forward File:operator%(_:a, File:b);
+	forward File:operator%(File:a, _:b);
+	forward bool:operator<(File:a, File:b);
+	forward bool:operator<(_:a, File:b);
+	forward bool:operator<(File:a, _:b);
+	forward bool:operator<=(File:a, File:b);
+	forward bool:operator<=(_:a, File:b);
+	forward bool:operator<=(File:a, _:b);
+	forward bool:operator>(File:a, File:b);
+	forward bool:operator>(_:a, File:b);
+	forward bool:operator>(File:a, _:b);
+	forward bool:operator>=(File:a, File:b);
+	forward bool:operator>=(_:a, File:b);
+	forward bool:operator>=(File:a, _:b);
 #endif
 
 /* 
