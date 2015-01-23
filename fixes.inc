@@ -4481,14 +4481,14 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			{
 				return
 					weapon[0] = 0,
-					strcat(weapon, "Thermal Goggles", len),
+					strcat(weapon, "Night Vision Goggles", len),
 					1;
 			}
 			case 45:
 			{
 				return
 					weapon[0] = 0,
-					strcat(weapon, "Night Vision Goggles", len),
+					strcat(weapon, "Thermal Goggles", len),
 					1;
 			}
 			default:
