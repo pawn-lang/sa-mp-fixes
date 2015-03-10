@@ -977,25 +977,11 @@
 	#define FIX_SetPlayerCheckpoint      (2)
 #endif
 
-#if !defined FIX_DisablePlayerCheckpoint
-	#define FIX_DisablePlayerCheckpoint      (1)
-#elseif _FIXES_IS_UNSET(FIX_DisablePlayerCheckpoint)
-	#undef FIX_DisablePlayerCheckpoint
-	#define FIX_DisablePlayerCheckpoint      (2)
-#endif
-
 #if !defined FIX_SetPlayerRaceCheckpoint
 	#define FIX_SetPlayerRaceCheckpoint  (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerRaceCheckpoint)
 	#undef FIX_SetPlayerRaceCheckpoint
 	#define FIX_SetPlayerRaceCheckpoint  (2)
-#endif
-
-#if !defined FIX_DisablePlayerRaceCheckpoint
-	#define FIX_DisablePlayerRaceCheckpoint  (1)
-#elseif _FIXES_IS_UNSET(FIX_DisablePlayerRaceCheckpoint)
-	#undef FIX_DisablePlayerRaceCheckpoint
-	#define FIX_DisablePlayerRaceCheckpoint  (2)
 #endif
 
 #if !defined FIX_TextDrawCreate
@@ -1944,12 +1930,12 @@ static stock
 	FIXES_gsClassAnimName[MAX_PLAYERS][60],
 #endif
 	/* 
-	 * FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(134, cellbits)],
+	 * FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)],
 	 * 
 	 * Which animation libraries the player has synced.
 	 */
 #if FIX_ApplyAnimation_2
-	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(134, cellbits)],
+	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)],
 #endif
 	/* 
 	 * FIXES_pvarNotNewPlayer[]
@@ -2363,7 +2349,7 @@ static stock const
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
 	FIXES_gscAnimIndexes[24] =
 		{
-			0, 2, 21, 35, 42, 42, 53, 62, 64, 67, 68, 71, 75, 81, 82, 84, 94, 96, 104, 121, 126, 127, 130, 134
+			0, 2, 21, 35, 42, 42, 53, 62, 64, 67, 68, 71, 75, 81, 82, 84, 94, 96, 104, 122, 127, 128, 131, 135
 		},
 #endif
 	/* 
@@ -2372,7 +2358,7 @@ static stock const
 	 * List of valid animation libraries.
 	 */
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
-	FIXES_gscAnimLib[134][] =
+	FIXES_gscAnimLib[135][] =
 		{
 			"AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
 			"BEACH",        "BENCHPRESS",   "BF_INJECTION", "BIKE_DBZ",     "BIKED",
@@ -2394,13 +2380,13 @@ static stock const
 			"PARK",         "PAULNMAC",     "PED",          "PLAYER_DVBYS", "PLAYIDLES",
 			"POLICE",       "POOL",         "POOR",         "PYTHON",       "QUAD",
 			"QUAD_DBZ",     "RAPPING",      "RIFLE",        "RIOT",         "ROB_BANK",
-			"ROCKET",       "RUNNINGMAN",   "RUSTLER",      "RYDER",        "SCRATCHING",
-			"SEX",          "SHAMAL",       "SHOP",         "SHOTGUN",      "SILENCED",
-			"SKATE",        "SMOKING",      "SNIPER",       "SNM",          "SPRAYCAN",
-			"STRIP",        "SUNBATHE",     "SWAT",         "SWEET",        "SWIM",
-			"SWORD",        "TANK",         "TATTOOS",      "TEC",          "TRAIN",
-			"TRUCK",        "UZI",          "VAN",          "VENDING",      "VORTEX",
-			"WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
+			"ROCKET",       "RUNNINGMAN",   "RUSTLER",      "RYDER",        "SAMP",
+			"SCRATCHING",   "SEX",          "SHAMAL",       "SHOP",         "SHOTGUN",
+			"SILENCED",     "SKATE",        "SMOKING",      "SNIPER",       "SNM",
+			"SPRAYCAN",     "STRIP",        "SUNBATHE",     "SWAT",         "SWEET",
+			"SWIM",         "SWORD",        "TANK",         "TATTOOS",      "TEC",
+			"TRAIN",        "TRUCK",        "UZI",          "VAN",          "VENDING",
+			"VORTEX",       "WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
 		},
 #endif
 	/* 
@@ -6139,28 +6125,23 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 #endif
 
 /* 
- * FIXES_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
+ * _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
  * 
  * FIXES:
  *     SetPlayerCheckpoint
- *     DisablePlayerCheckpoint
  */
 
-#if defined _ALS_SetPlayerCheckpoint
-	#error _ALS_SetPlayerCheckpoint defined
-#endif
-native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
-
-#if FIX_SetPlayerCheckpoint || FIX_DisablePlayerCheckpoint
+#if FIX_SetPlayerCheckpoint
 	forward _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size);
-
+	
 	public _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
 	{
 		#if FIXES_Single
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CP_DELAYED) {
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CP_DELAYED)
 		#else
-			if (GetPVarInt(playerid, FIXES_pvarPlayerCheckpoint)) {
+			if (GetPVarInt(playerid, FIXES_pvarPlayerCheckpoint))
 		#endif
+			{
 				return
 					#if FIXES_Single
 						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CP_DELAYED,
@@ -6171,7 +6152,21 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 			}
 			return 0;
 	}
+#endif
 
+/* 
+ * FIXES_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
+ * 
+ * FIXES:
+ *     SetPlayerCheckpoint
+ */
+
+#if defined _ALS_SetPlayerCheckpoint
+	#error _ALS_SetPlayerCheckpoint defined
+#endif
+native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
+
+#if FIX_SetPlayerCheckpoint
 	stock FIXES_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
 	{
 		return
@@ -6194,7 +6189,6 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
  * 
  * FIXES:
  *     SetPlayerCheckpoint
- *     DisablePlayerCheckpoint
  */
 
 #if defined _ALS_DisablePlayerCheckpoint
@@ -6202,23 +6196,50 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 #endif
 native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 
-#if FIX_SetPlayerCheckpoint || FIX_DisablePlayerCheckpoint
+#if FIX_SetPlayerCheckpoint
 	stock FIXES_DisablePlayerCheckpoint(playerid)
 	{
-		#if FIXES_Single
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CP_DELAYED) {
-				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CP_DELAYED;
-			}
-		#else
-			if (GetPVarInt(playerid, FIXES_pvarPlayerCheckpoint)) {
-				DeletePVar(playerid, FIXES_pvarPlayerCheckpoint);
-			}
-		#endif
-			return DisablePlayerCheckpoint(playerid);
+		return
+			#if FIXES_Single
+				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CP_DELAYED,
+			#else
+				DeletePVar(playerid, FIXES_pvarPlayerCheckpoint),
+			#endif
+				DisablePlayerCheckpoint(playerid);
 	}
 	
 	#define _ALS_DisablePlayerCheckpoint
 	#define DisablePlayerCheckpoint FIXES_DisablePlayerCheckpoint
+#endif
+
+/* 
+ * _FIXES_SetRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
+ * 
+ * FIXES:
+ *     SetPlayerRaceCheckpoint
+ */
+
+#if FIX_SetPlayerRaceCheckpoint
+	forward _FIXES_SetRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size);
+	
+	public _FIXES_SetRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
+	{
+		#if FIXES_Single
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_RACE_CP_DELAYED)
+		#else
+			if (GetPVarInt(playerid, FIXES_pvarPlayerRaceCheckpoint))
+		#endif
+			{
+				return
+					#if FIXES_Single
+						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_RACE_CP_DELAYED,
+					#else
+						DeletePVar(playerid, FIXES_pvarPlayerRaceCheckpoint),
+					#endif
+						SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, size);
+			}
+			return 0;
+	}
 #endif
 
 /* 
@@ -6233,27 +6254,7 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 #endif
 native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size) = SetPlayerRaceCheckpoint;
 
-#if FIX_SetPlayerRaceCheckpoint || FIX_DisablePlayerRaceCheckpoint
-	forward _FIXES_SetRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size);
-
-	public _FIXES_SetRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
-	{
-		#if FIXES_Single
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_RACE_CP_DELAYED) {
-		#else
-			if (GetPVarInt(playerid, FIXES_pvarPlayerRaceCheckpoint)) {
-		#endif
-				return
-					#if FIXES_Single
-						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_RACE_CP_DELAYED,
-					#else
-						DeletePVar(playerid, FIXES_pvarPlayerRaceCheckpoint),
-					#endif
-						SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, size);
-			}
-			return 0;
-	}
-
+#if FIX_SetPlayerRaceCheckpoint
 	stock FIXES_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
 	{
 		return
@@ -6275,7 +6276,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
  * FIXES_DisablePlayerRaceCheckpoint(playerid)
  * 
  * FIXES:
- *     DisablePlayerRaceCheckpoint
+ *     SetPlayerRaceCheckpoint
  */
 
 #if defined _ALS_DisablePlayerRaceCP
@@ -6283,19 +6284,16 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 #endif
 native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 
-#if FIX_SetPlayerRaceCheckpoint || FIX_DisablePlayerRaceCheckpoint
+#if FIX_SetPlayerRaceCheckpoint
 	stock FIXES_DisablePlayerRaceCP(playerid)
 	{
-		#if FIXES_Single
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_RACE_CP_DELAYED) {
-				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_RACE_CP_DELAYED;
-			}
-		#else
-			if (GetPVarInt(playerid, FIXES_pvarPlayerRaceCheckpoint)) {
-				DeletePVar(playerid, FIXES_pvarPlayerRaceCheckpoint);
-			}
-		#endif
-			return DisablePlayerRaceCheckpoint(playerid);
+		return
+			#if FIXES_Single
+				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_RACE_CP_DELAYED,
+			#else
+				DeletePVar(playerid, FIXES_pvarPlayerRaceCheckpoint),
+			#endif
+				DisablePlayerRaceCheckpoint(playerid);
 	}
 	
 	#define _ALS_DisablePlayerRaceCP
@@ -8078,7 +8076,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 				if (GetPVarInt(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
-					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 2, x, y, z);
+					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 0, x, y, z);
 				}
 				else
 				{
@@ -8112,17 +8110,17 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 			if (toggle)
 			{
 				#if FIXES_Single
-					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_SPECTATING;
+					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_SPECTATING;
 				#else
-					DeletePVar(playerid, FIXES_pvarPlayerSpectate);
+					SetPVarInt(playerid, FIXES_pvarPlayerSpectate, 1);
 				#endif
 			}
 			else
 			{
 				#if FIXES_Single
-					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_SPECTATING;
+					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_SPECTATING;
 				#else
-					SetPVarInt(playerid, FIXES_pvarPlayerSpectate, 1);
+					DeletePVar(playerid, FIXES_pvarPlayerSpectate);
 				#endif
 			}
 			return TogglePlayerSpectating(playerid, toggle);
