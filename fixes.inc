@@ -1928,12 +1928,12 @@ static stock
 	FIXES_gsClassAnimName[MAX_PLAYERS][60],
 #endif
 	/* 
-	 * FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(134, cellbits)],
+	 * FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)],
 	 * 
 	 * Which animation libraries the player has synced.
 	 */
 #if FIX_ApplyAnimation_2
-	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(134, cellbits)],
+	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)],
 #endif
 	/* 
 	 * FIXES_pvarNotNewPlayer[]
@@ -2332,7 +2332,7 @@ static stock const
 	 * List of valid animation libraries.
 	 */
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
-	FIXES_gscAnimLib[134][] =
+	FIXES_gscAnimLib[135][] =
 		{
 			"AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
 			"BEACH",        "BENCHPRESS",   "BF_INJECTION", "BIKE_DBZ",     "BIKED",
@@ -2354,13 +2354,13 @@ static stock const
 			"PARK",         "PAULNMAC",     "PED",          "PLAYER_DVBYS", "PLAYIDLES",
 			"POLICE",       "POOL",         "POOR",         "PYTHON",       "QUAD",
 			"QUAD_DBZ",     "RAPPING",      "RIFLE",        "RIOT",         "ROB_BANK",
-			"ROCKET",       "RUNNINGMAN",   "RUSTLER",      "RYDER",        "SCRATCHING",
-			"SEX",          "SHAMAL",       "SHOP",         "SHOTGUN",      "SILENCED",
-			"SKATE",        "SMOKING",      "SNIPER",       "SNM",          "SPRAYCAN",
-			"STRIP",        "SUNBATHE",     "SWAT",         "SWEET",        "SWIM",
-			"SWORD",        "TANK",         "TATTOOS",      "TEC",          "TRAIN",
-			"TRUCK",        "UZI",          "VAN",          "VENDING",      "VORTEX",
-			"WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
+			"ROCKET",       "RUNNINGMAN",   "RUSTLER",      "RYDER",        "SAMP",
+			"SCRATCHING",   "SEX",          "SHAMAL",       "SHOP",         "SHOTGUN",
+			"SILENCED",     "SKATE",        "SMOKING",      "SNIPER",       "SNM",
+			"SPRAYCAN",     "STRIP",        "SUNBATHE",     "SWAT",         "SWEET",
+			"SWIM",         "SWORD",        "TANK",         "TATTOOS",      "TEC",
+			"TRAIN",        "TRUCK",        "UZI",          "VAN",          "VENDING",
+			"VORTEX",       "WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
 		},
 #endif
 	/* 
