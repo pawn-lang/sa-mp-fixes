@@ -7922,7 +7922,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 				if (GetPVarInt(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
-					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 2, x, y, z);
+					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 0, x, y, z);
 				}
 				else
 				{
@@ -7956,17 +7956,17 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 			if (toggle)
 			{
 				#if FIXES_Single
-					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_SPECTATING;
+					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_SPECTATING;
 				#else
-					DeletePVar(playerid, FIXES_pvarPlayerSpectate);
+					SetPVarInt(playerid, FIXES_pvarPlayerSpectate, 1);
 				#endif
 			}
 			else
 			{
 				#if FIXES_Single
-					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_SPECTATING;
+					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_SPECTATING;
 				#else
-					SetPVarInt(playerid, FIXES_pvarPlayerSpectate, 1);
+					DeletePVar(playerid, FIXES_pvarPlayerSpectate);
 				#endif
 			}
 			return TogglePlayerSpectating(playerid, toggle);
