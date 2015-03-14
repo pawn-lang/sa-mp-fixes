@@ -627,6 +627,13 @@
  * SEE:      "File:operator"
  * AUTHOR:   Y_Less
  * 
+ * FIX:      GetPlayerWeaponData
+ * PROBLEM:  Old weapons with no ammo left are still returned.
+ * SOLUTION: Set "weapons" to 0.  DEFAULTS TO FALSE!
+ * SEE:      "FIXES_GetPlayerWeaponData"
+ * AUTHOR:   Y_Less
+ * POST:     http://forum.sa-mp.com/showthread.php?t=567400
+ * 
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -1461,6 +1468,13 @@
 #elseif _FIXES_IS_UNSET(FIX_FileMaths)
 	#undef FIX_FileMaths
 	#define FIX_FileMaths                (2)
+#endif
+
+#if !defined FIX_GetPlayerWeaponData
+	#define FIX_GetPlayerWeaponData      (0)
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerWeaponData)
+	#undef FIX_GetPlayerWeaponData
+	#define FIX_GetPlayerWeaponData      (2)
 #endif
 
 /* 
@@ -8058,6 +8072,33 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 	
 	#define _ALS_SetPlayerColor
 	#define SetPlayerColor FIXES_SetPlayerColor
+#endif
+
+/* 
+ * FIXES_GetPlayerWeaponData(playerid, slot, &weapons, &ammo)
+ * 
+ * FIXES:
+ *     GetPlayerWeaponData
+ */
+
+#if defined _ALS_GetPlayerWeaponData
+	#error _ALS_GetPlayerWeaponData defined
+#endif
+native BAD_GetPlayerWeaponData(playerid, slot, &weapons, &ammo) = GetPlayerWeaponData;
+
+#if FIX_GetPlayerWeaponData
+	stock FIXES_GetPlayerWeaponData(playerid, slot, &weapons, &ammo)
+	{
+		// This reuses the "slot" variable so we don't have to declare a new one
+		// and can put all the code in a single statement.
+		return
+			slot = GetPlayerWeaponData(playerid, slot, weapons, ammo),
+			weapons = ammo ? weapons : 0,
+			slot;
+	}
+	
+	#define _ALS_GetPlayerWeaponData
+	#define GetPlayerWeaponData FIXES_GetPlayerWeaponData
 #endif
 
 /* 
