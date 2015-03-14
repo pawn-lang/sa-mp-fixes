@@ -68,7 +68,7 @@
  * POST:     http://forum.sa-mp.com/showpost.php?p=876854
  * 
  * FIX:      HydraSniper
- * PROBLEM:  Entring military aircraft with a sniper rifle messes up vies.
+ * PROBLEM:  Entering military aircraft with a sniper rifle messes up views.
  * SOLUTION: Set their armed weapon to fists.
  * SEE:      "OnPlayerStateChange", "FIXES_GivePlayerWeapon",
  *           "FIXES_SetPlayerArmedWeapon".
