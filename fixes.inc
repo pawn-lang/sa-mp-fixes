@@ -1661,7 +1661,9 @@ enum e_FIXES_BOOLS (<<= 1)
 	e_FIXES_BOOLS_DRIVE_BY,
 	e_FIXES_BOOLS_FIRST_SPAWN,
 	e_FIXES_BOOLS_FIRST_CLASS,
-	e_FIXES_BOOLS_SPECTATING
+	e_FIXES_BOOLS_SPECTATING,
+	e_FIXES_BOOLS_CP_DELAYED,
+	e_FIXES_BOOLS_RACE_CP_DELAYED
 }
 
 /* 
@@ -2043,6 +2045,30 @@ static stock
 	 * Name of the SetColor timer function.
 	 */
 	FIXES_gscSetColor[] = "_FIXES_SetColor",
+	/* 
+	 * FIXES_gscSetCheckpoint[]
+	 * 
+	 * Name of the SetCheckpoint timer function.
+	 */
+	FIXES_gscSetCheckpoint[] = "_FIXES_SetCheckpoint",
+	/* 
+	 * FIXES_pvarPlayerCheckpoint[]
+	 * 
+	 * Name of the pvar in which to store the player's checkpoint state.
+	 */
+	FIXES_pvarPlayerCheckpoint[] = "FIXES_pvarPlayerCheckpoint",
+	/* 
+	 * FIXES_gscSetRaceCheckpoint[]
+	 * 
+	 * Name of the SetRaceCheckpoint timer function.
+	 */
+	FIXES_gscSetRaceCheckpoint[] = "_FIXES_SetRaceCheckpoint",
+	/* 
+	 * FIXES_pvarPlayerRaceCheckpoint[]
+	 * 
+	 * Name of the pvar in which to store the player's race checkpoint state.
+	 */
+	FIXES_pvarPlayerRaceCheckpoint[] = "FIXES_pvarPlayerRaceCheckpoint",
 	/* 
 	 * FIXES_gscNULL[]
 	 * 
@@ -6113,6 +6139,36 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 #endif
 
 /* 
+ * _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
+ * 
+ * FIXES:
+ *     SetPlayerCheckpoint
+ */
+
+#if FIX_SetPlayerCheckpoint
+	forward _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size);
+	
+	public _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
+	{
+		#if FIXES_Single
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CP_DELAYED)
+		#else
+			if (GetPVarInt(playerid, FIXES_pvarPlayerCheckpoint))
+		#endif
+			{
+				return
+					#if FIXES_Single
+						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CP_DELAYED,
+					#else
+						DeletePVar(playerid, FIXES_pvarPlayerCheckpoint),
+					#endif
+						SetPlayerCheckpoint(playerid, x, y, z, size);
+			}
+			return 0;
+	}
+#endif
+
+/* 
  * FIXES_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
  * 
  * FIXES:
@@ -6128,12 +6184,76 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 	stock FIXES_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
 	{
 		return
-			DisablePlayerCheckpoint(playerid),
-			SetPlayerCheckpoint(playerid, x, y, z, size);
+			#if FIXES_Single
+				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_CP_DELAYED,
+			#else
+				SetPVarInt(playerid, FIXES_pvarPlayerCheckpoint, 1),
+			#endif
+				DisablePlayerCheckpoint(playerid),
+				SetTimerEx(FIXES_gscSetCheckpoint, 50, 0, FIXES_gscSpec@iffff, playerid, x, y, z, size),
+				1;
 	}
 	
 	#define _ALS_SetPlayerCheckpoint
 	#define SetPlayerCheckpoint FIXES_SetPlayerCheckpoint
+#endif
+
+/* 
+ * FIXES_DisablePlayerCheckpoint(playerid)
+ * 
+ * FIXES:
+ *     SetPlayerCheckpoint
+ */
+
+#if defined _ALS_DisablePlayerCheckpoint
+	#error _ALS_DisablePlayerCheckpoint defined
+#endif
+native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
+
+#if FIX_SetPlayerCheckpoint
+	stock FIXES_DisablePlayerCheckpoint(playerid)
+	{
+		return
+			#if FIXES_Single
+				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CP_DELAYED,
+			#else
+				DeletePVar(playerid, FIXES_pvarPlayerCheckpoint),
+			#endif
+				DisablePlayerCheckpoint(playerid);
+	}
+	
+	#define _ALS_DisablePlayerCheckpoint
+	#define DisablePlayerCheckpoint FIXES_DisablePlayerCheckpoint
+#endif
+
+/* 
+ * _FIXES_SetRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
+ * 
+ * FIXES:
+ *     SetPlayerRaceCheckpoint
+ */
+
+#if FIX_SetPlayerRaceCheckpoint
+	forward _FIXES_SetRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size);
+	
+	public _FIXES_SetRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
+	{
+		#if FIXES_Single
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_RACE_CP_DELAYED)
+		#else
+			if (GetPVarInt(playerid, FIXES_pvarPlayerRaceCheckpoint))
+		#endif
+			{
+				return
+					#if FIXES_Single
+						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_RACE_CP_DELAYED,
+					#else
+						DeletePVar(playerid, FIXES_pvarPlayerRaceCheckpoint),
+					#endif
+						SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, size);
+			}
+			return 0;
+	}
 #endif
 
 /* 
@@ -6152,12 +6272,46 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 	stock FIXES_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
 	{
 		return
-			DisablePlayerRaceCheckpoint(playerid),
-			SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, size);
+			#if FIXES_Single
+				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_RACE_CP_DELAYED,
+			#else
+				SetPVarInt(playerid, FIXES_pvarPlayerRaceCheckpoint, 1),
+			#endif
+				DisablePlayerRaceCheckpoint(playerid),
+				SetTimerEx(FIXES_gscSetRaceCheckpoint, 50, 0, FIXES_gscSpec@iifffffff, playerid, type, x, y, z, nextx, nexty, nextz, size),
+				1;
 	}
 	
 	#define _ALS_SetPlayerRaceCheckpoint
 	#define SetPlayerRaceCheckpoint FIXES_SetPlayerRaceCheckpoint
+#endif
+
+/* 
+ * FIXES_DisablePlayerRaceCheckpoint(playerid)
+ * 
+ * FIXES:
+ *     SetPlayerRaceCheckpoint
+ */
+
+#if defined _ALS_DisablePlayerRaceCP
+	#error _ALS_DisablePlayerRaceCP defined
+#endif
+native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
+
+#if FIX_SetPlayerRaceCheckpoint
+	stock FIXES_DisablePlayerRaceCP(playerid)
+	{
+		return
+			#if FIXES_Single
+				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_RACE_CP_DELAYED,
+			#else
+				DeletePVar(playerid, FIXES_pvarPlayerRaceCheckpoint),
+			#endif
+				DisablePlayerRaceCheckpoint(playerid);
+	}
+	
+	#define _ALS_DisablePlayerRaceCP
+	#define DisablePlayerRaceCheckpoint FIXES_DisablePlayerRaceCP
 #endif
 
 /* 
