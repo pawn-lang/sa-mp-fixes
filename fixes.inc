@@ -2468,7 +2468,7 @@ static stock const
 	 * 
 	 * Specifier "iifffffff".
 	 */
-	FIXES_gscSpec@iifffffff = "iifffffff",
+	FIXES_gscSpec@iifffffff[] = "iifffffff",
 	/* 
 	 * FIXES_gscSpec@iffff[]
 	 * 
