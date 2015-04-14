@@ -14,7 +14,6 @@
  * SOLUTION: Call "SetPlayerColor" in "OnPlayerConnect".
  * SEE:      "OnPlayerConnect".
  * AUTHOR:   KoczkaHUN
- * POST:     http://forum.sa-mp.com/showpost.php?p=1486048
  * 
  * FIX:      FILTERSCRIPT
  * PROBLEM:  Despite the fact that is in every new script, many people don't
@@ -37,7 +36,6 @@
  *           the actual required name.
  * SEE:      "OnPlayerConnect" and "FIXES_SetPlayerName".
  * AUTHOR:   Y_Less/Slice/xX_Simon_Xx
- * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/3
  * 
  * FIX:      GetPlayerSkin
  * PROBLEM:  Returns the new skin after "SetSpawnInfo" is called but before the
@@ -117,30 +115,26 @@
  *           checkpoint instead of the new one.
  * SOLUTION: Call "DisablePlayerCheckpoint" before setting the checkpoint.
  * SEE:      "FIXES_SetPlayerCheckpoint".
- * AUTHOR:   KoczkaHUN
- * POST:     http://forum.sa-mp.com/showpost.php?p=1482401
+ * AUTHOR:   ziggi
  * 
  * FIX:      SetPlayerRaceCheckpoint
  * PROBLEM:  If a checkpoint is already set it will use the size of that
  *           checkpoint instead of the new one.
  * SOLUTION: Call "DisablePlayerRaceCheckpoint" before setting the checkpoint.
  * SEE:      "FIXES_SetPlayerRaceCheckpoint".
- * AUTHOR:   KoczkaHUN
- * POST:     http://forum.sa-mp.com/showpost.php?p=1482401
+ * AUTHOR:   ziggi
  * 
  * FIX:      TextDrawCreate
  * PROBLEM:  Crashes on a blank string.
  * SOLUTION: Intercept blank strings.
  * SEE:      "FIXES_TextDrawCreate".
  * AUTHOR:   wups
- * POST:     http://forum.sa-mp.com/showpost.php?p=1484008
  * 
  * FIX:      TextDrawSetString
  * PROBLEM:  Crashes on a blank string and size greater than 1024.
  * SOLUTION: Intercept blank strings and truncate long strings.
  * SEE:      "FIXES_TextDrawSetString".
  * AUTHOR:   TomTrox
- * POST:     http://forum.sa-mp.com/showpost.php?p=1487870
  * 
  * FIX:      CreatePlayerTextDraw
  * PROBLEM:  Crashes on a blank string.
@@ -160,7 +154,6 @@
  * SEE:      "FIXES_AllowInteriorWeapons", "OnGameModeInit" and
  *           "OnPlayerUpdate".
  * AUTHOR:   KoczkaHUN
- * POST:     http://forum.sa-mp.com/showpost.php?p=1502696
  * 
  * FIX:      OnPlayerEnterVehicle
  * PROBLEM:  Crashes other players when people enter an invalid seat.
@@ -174,7 +167,6 @@
  * SOLUTION: Desync the people with invalid vehicles.
  * SEE:      "OnPlayerEnterVehicle".
  * AUTHOR:   im/Y_Less
- * POST:     http://forum.sa-mp.com/showpost.php?p=2340900
  * 
  * FIX:      AllowTeleport
  * PROBLEM:  0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in
@@ -190,7 +182,6 @@
  * SOLUTION: Call "ClearAnimations" before "SetPlayerSpecialAction".
  * SEE:      "FIXES_SetPlayerSpecialAction".
  * AUTHOR:   MP2
- * POST:     Private message from MP2.
  * 
  * FIX:      OnDialogResponse
  * PROBLEM:  Cheaters can spoof the dialogid they are using to respond to ones
@@ -205,7 +196,6 @@
  * SOLUTION: Add it.  DEFAULTS TO FALSE!
  * SEE:      "FIXES_GetPlayerDialog".
  * AUTHOR:   Y_Less/xX_Simon_Xx
- * POST:     http://forum.sa-mp.com/showpost.php?p=2141254
  * 
  * FIX:      PlayerDialogResponse
  * PROBLEM:  A player's dialog doesn't hide when the gamemode restarts, causing
@@ -214,7 +204,6 @@
  * SOLUTION: Hide it.
  * SEE:      "OnPlayerConnect", "OnGameModeExit".
  * AUTHOR:   xX_Simon_Xx
- * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/2
  * 
  * FIX:      SetSpawnInfo
  * PROBLEM:  Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo".
@@ -241,70 +230,60 @@
  * SOLUTION: Use "format" instead.
  * SEE:      "FIXES_valstr".
  * AUTHOR:   Slice
- * POST:     http://forum.sa-mp.com/showpost.php?p=1790300
  * 
  * FIX:      fclose
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fclose".
  * AUTHOR:   Slice
- * POST:     http://forum.sa-mp.com/showpost.php?p=1790300
  * 
  * FIX:      fwrite
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fwrite".
  * AUTHOR:   Slice
- * POST:     http://forum.sa-mp.com/showpost.php?p=1790300
  * 
  * FIX:      fread
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fread".
  * AUTHOR:   Slice
- * POST:     http://forum.sa-mp.com/showpost.php?p=1790300
  * 
  * FIX:      fputchar
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fputchar".
  * AUTHOR:   Slice
- * POST:     http://forum.sa-mp.com/showpost.php?p=1790300
  * 
  * FIX:      fgetchar
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fgetchar".
  * AUTHOR:   Slice
- * POST:     http://forum.sa-mp.com/showpost.php?p=1790300
  * 
  * FIX:      fblockwrite
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fblockwrite".
  * AUTHOR:   Slice
- * POST:     http://forum.sa-mp.com/showpost.php?p=1790300
  * 
  * FIX:      fblockread
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fblockread".
  * AUTHOR:   Slice
- * POST:     http://forum.sa-mp.com/showpost.php?p=1790300
  * 
  * FIX:      fseek
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fseek".
  * AUTHOR:   Slice
- * POST:     http://forum.sa-mp.com/showpost.php?p=1790300
  * 
  * FIX:      flength
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_flength".
  * AUTHOR:   Slice
- * POST:     http://forum.sa-mp.com/showpost.php?p=1790300
  * 
  * FIX:      file_inc
  * PROBLEM:  Includes or excludes all the file function fixes together (can
@@ -342,15 +321,12 @@
  * SOLUTION: Manually check the length.
  * SEE:      "FIXES_strins".
  * AUTHOR:   Slice/Y_Less
- * POST:     http://forum.sa-mp.com/showpost.php?p=1860495
- * POST:     http://forum.sa-mp.com/showpost.php?p=1864706
  * 
  * FIX:      IsPlayerConnected
  * PROBLEM:  Only uses the lower two bytes of a passed ID.
  * SOLUTION: Mask the numbers.
  * SEE:      "FIXES_IsPlayerConnected".
  * AUTHOR:   Slice
- * POST:     http://forum.sa-mp.com/showpost.php?p=1860464
  * 
  * FIX:      OnPlayerCommandText
  * PROBLEM:  Can crash ZCMD when passed a null string.
@@ -365,7 +341,6 @@
  * SOLUTION: Reset the camera.
  * SEE:      "FIXES_PutPlayerInVehicle", "FIXES_OnPlayerStateChange".
  * AUTHOR:   Terminator3/Y_Less
- * POST:     http://forum.sa-mp.com/showpost.php?p=1980214
  * 
  * FIX:      Kick
  * PROBLEM:  Calling "Kick" in "OnPlayerConnect" doesn't work properly.
@@ -387,7 +362,6 @@
  * SOLUTION: Invert then reinvert.  DEFAULTS TO FALSE!
  * SEE:      "FIXES_random".
  * AUTHOR:   xX_Simon_Xx
- * POST:     http://forum.sa-mp.com/showpost.php?p=2141254
  * 
  * FIX:      sleep
  * PROBLEM:  Leaks bytes from the stack.
@@ -449,14 +423,12 @@
  * SOLUTION: Return the correct value.
  * SEE:      "FIXES_GetPlayerMenu", "OnPlayerSelectedMenuRow".
  * AUTHOR:   Y_Less
- * POST:     http://forum.sa-mp.com/showpost.php?p=2295867
  * 
  * FIX:      GetPlayerInterior
  * PROBLEM:  Always returns 0 for NPCs.
  * SOLUTION: Return the correct value.
  * SEE:      "FIXES_GetPlayerInterior", "FIXES_SetPlayerInterior".
  * AUTHOR:   Y_Less/xX_Simon_Xx
- * POST:     http://forum.sa-mp.com/showpost.php?p=2309246
  * 
  * FIX:      ClearAnimations
  * PROBLEM:  Use ClearAnimation while you are in a vehicle cause the player exit
@@ -464,7 +436,6 @@
  * SOLUTION: Apply an animation instead of clear animation.
  * SEE:      "FIXES_ClearAnimations".
  * AUTHOR:   xX_Simon_Xx
- * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/4
  * 
  * FIX:      ClearAnimations_2
  * PROBLEM:  ClearAnimations doesn't do anything when the animation ends if we
@@ -472,7 +443,6 @@
  * SOLUTION: Apply an idle animation for stop and then use ClearAnimation.
  * SEE:      "FIXES_ClearAnimations".
  * AUTHOR:   xX_Simon_Xx
- * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/4
  * 
  * FIX:      DriveBy
  * PROBLEM:  If you press KEY_CROUCH while you're passenger and if you are
@@ -481,7 +451,6 @@
  * SOLUTION: Apply the animation to return the player in the vehicle.
  * SEE:      "OnPlayerKeyStateChange".
  * AUTHOR:   xX_Simon_Xx
- * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/13
  * 
  * FIX:      GangZoneCreate
  * PROBLEM:  Gang zones bug on the main map for players at certain angles
@@ -489,21 +458,18 @@
  * SOLUTION: Set a non floating value for the gang zone co-ordinate.
  * SEE:      "FIXES_GangZoneCreate".
  * AUTHOR:   xX_Simon_Xx/Y_Less
- * POST:     http://forum.sa-mp.com/showpost.php?p=2144109
  * 
  * FIX:      SPECIAL_ACTION_PISSING
  * PROBLEM:  "SPECIAL_ACTION_PISSING" isn't defined by default.
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   xX_Simon_Xx
- * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/6
  * 
  * FIX:      IsValidVehicle
  * PROBLEM:  "IsValidVehicle" isn't defined by default.
  * SOLUTION: Define it.
  * SEE:      N/A.
  * AUTHOR:   xX_Simon_Xx
- * POST:     http://forum.sa-mp.com/showpost.php?p=2693650
  * 
  * FIX:      ApplyAnimation
  * PROBLEM:  Passing an invalid animation library in ApplyAnimation causes a
@@ -511,14 +477,12 @@
  * SOLUTION: Block ApplyAnimation when an invalid library is passed.
  * SEE:      "FIXES_ApplyAnimation".
  * AUTHOR:   xX_Simon_Xx
- * POST:     https://github.com/Y-Less/sa-mp-fixes/issues/5
  * 
  * FIX:      ApplyAnimation_2
  * PROBLEM:  First time a library is used, it does nothing.
  * SOLUTION: Apply animations twice when first using a library.
  * SEE:      "FIXES_ApplyAnimation".
  * AUTHOR:   xX_Simon_Xx/Lordzy/Y_Less
- * POST:     http://forum.sa-mp.com/showpost.php?p=3052627
  * 
  * FIX:      OnPlayerSpawn
  * PROBLEM:  San Andreas deducts $100 from players.
@@ -619,7 +583,7 @@
  * SOLUTION: Defer it.
  * SEE:      "FIXES_SetPlayerColor"
  * AUTHOR:   Emmet_
- * POST:     http://forum.sa-mp.com/showthread.php?t=452407  
+ * POST:     http://forum.sa-mp.com/showthread.php?t=452407
  * 
  * FIX:      FileMaths
  * PROBLEM:  You can write gibberish like "File:a; ++a;".
