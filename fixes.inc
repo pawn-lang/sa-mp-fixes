@@ -2428,6 +2428,12 @@ static stock const
 	 */
 	FIXES_gscSpec@iifff[] = "iifff",
 	/* 
+	 * FIXES_gscSpec@iifffi[]
+	 * 
+	 * Specifier "iifffi".
+	 */
+	FIXES_gscSpec@iifffi[] = "iifffi",
+	/* 
 	 * FIXES_gscSpec@iifffffff[]
 	 * 
 	 * Specifier "iifffffff".
@@ -7984,9 +7990,9 @@ native BAD_random(max) = random;
  */
 
 #if FIX_SetPlayerCamera
-	forward _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z);
+	forward _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z, cut);
 
-	public _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z)
+	public _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z, cut)
 	{
 		if (type)
 		{
@@ -7994,7 +8000,7 @@ native BAD_random(max) = random;
 		}
 		else
 		{
-			SetPlayerCameraLookAt(playerid, x, y, z);
+			SetPlayerCameraLookAt(playerid, x, y, z, cut);
 		}
 		return 0;
 	}
@@ -8038,7 +8044,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 #endif
 
 /* 
- * FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z)
+ * FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, cut = CAMERA_CUT)
  * 
  * FIXES:
  *     SetPlayerCamera
@@ -8050,7 +8056,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraLookAt;
 
 #if FIX_SetPlayerCamera
-	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z)
+	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, cut = CAMERA_CUT)
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
@@ -8060,11 +8066,11 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 				if (GetPVarInt(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
-					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 0, x, y, z);
+					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifffi, playerid, 0, x, y, z, cut);
 				}
 				else
 				{
-					SetPlayerCameraLookAt(playerid, x, y, z);
+					SetPlayerCameraLookAt(playerid, x, y, z, cut);
 				}
 		}
 		return 0;
