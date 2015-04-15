@@ -117,6 +117,19 @@ OnPlayerSpawn | San Andreas deducts $100 from players. | Y_Less |  |
 GetGravity | "GetGravity" isn't defined by default. | Whitetiger | [Link](http://forum.sa-mp.com/showpost.php?p=1706447) | 
 gpci | "gpci" isn't defined by default. | xX_Simon_Xx | [Link](http://pastebin.com/VQSGpbSm) | 
 Natives | Several natives are included by default, this enables or disables them all. Therefore this is an umbrella fix for several fixes. | Y_Less |  | 
+OnPlayerConnect | This function isn't called for players when a filterscript starts. | Y_Less |  |
+OnPlayerDisconnect | This function isn't called for players when a filterscript ends. | Y_Less |  |
+GameText | Several styles do not display for the time specified. | Y_Less |  |
+GameTextStyles | San Andreas has fixed styles for area and vehicle names, but they are not included in the GameText styles list. | Y_Less |  |
+HideGameText | There is no "HideGameTextForXYZ" function. | Y_Less |  |
+BODYPARTS | The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined by default | Whitetiger |  |
+CAMERAMODES | The camera modes for GetPlayerCameraMode are not defined by default. | Whitetiger | [Link](http://forum.sa-mp.com/showpost.php?p=1309730) |  |
+SetPlayerCamera | Using the camera functions directly after enabling spectator mode doesn't work. | Emmet_ |  |
+SetPlayerTime | Using this function under "OnPlayerConnect" doesn't work. | Emmet_ |  |
+OnPlayerRequestClass | Random blunts and bottles sometimes appear in class selection. | Y_Less |  |
+SetPlayerColor | If used under OnPlayerConnect, the affecting player will not see the color in the TAB menu. | Emmet_ | [Link](http://forum.sa-mp.com/showthread.php?t=452407) |  |
+FileMaths | You can write gibberish like "File:a; ++a;". | Y_Less |  |
+GetPlayerWeaponData | Old weapons with no ammo left are still returned. | Y_Less | [Link](http://forum.sa-mp.com/showthread.php?t=567400) |  |
 
 # Options
 
