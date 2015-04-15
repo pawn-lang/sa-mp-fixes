@@ -157,8 +157,8 @@ Again, this is a community project, merely managed by Y_Less - if anyone has com
 There are a few other includes which aim to fix issues too large to be included here:
 
 - Fixes2 - Y_Less fixes to make "SetTimer" and "SetTimerEx" and other.
-- SQLitei - Slice's fixes and improvements for many SQLite functions
-- Timer Fix - Slice's fixes to make "SetTimer" and "SetTimerEx" vastly more accurate in their delays.
+- [SQLitei](http://forum.sa-mp.com/showthread.php?t=303682) - Slice's fixes and improvements for many SQLite functions
+- [Timer Fix](http://forum.sa-mp.com/showthread.php?t=289675) - Slice's fixes to make "SetTimer" and "SetTimerEx" vastly more accurate in their delays.
 
 # Bugs
 
