@@ -4390,6 +4390,16 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 					ret = SetPlayerSkin(playerid, skinid);
 				PutPlayerInVehicle(playerid, vehicleid, seat);
 				
+				// ===============================
+				//  BEGIN: DriveBy 
+				// ===============================
+				#if FIX_DriveBy
+					OnPlayerKeyStateChange(playerid, KEY_CROUCH, 0);
+				#endif
+				// ======================
+				//  END:   DriveBy 
+				// ======================
+				
 				// ======================
 				//  BEGIN: GetPlayerSkin 
 				// ======================
