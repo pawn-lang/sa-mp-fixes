@@ -1767,13 +1767,17 @@ static stock
 	 * 
 	 * A player's IP as a 32-bit integer.
 	 */
+#if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
 	FIXES_gsPlayerIP[MAX_PLAYERS] = {-1, ...},
+#endif
 	/* 
 	 * FIXES_gsPlayerSkin[MAX_PLAYERS]
 	 * 
 	 * The skin the player is currently using.
 	 */
+#if FIXES_Single && FIX_GetPlayerSkin
 	FIXES_gsPlayerSkin[MAX_PLAYERS],
+#endif
 	/* 
 	 * e_FIXES_BOOLEAN_DATA:FIXES_gsPlayerBools[MAX_PLAYERS]
 	 * 
@@ -1794,7 +1798,9 @@ static stock
 	 * 
 	 * Stores the weapon set by "SetPlayerArmedWeapon" when in a vehicle.
 	 */
+#if FIXES_Single && FIX_GetPlayerWeapon
 	FIXES_gsPlayerWeapon[MAX_PLAYERS],
+#endif
 	/* 
 	 * FIXES_gsVehicleSeatData[MAX_PLAYERS]
 	 * 
@@ -1802,26 +1808,22 @@ static stock
 	 */
 	FIXES_gsVehicleSeatData[MAX_PLAYERS],
 	/* 
-	 * FIXES_gsVehicleLocked[(MAX_PLAYERS * MAX_VEHICLES + cellbits - 1) / cellbits]
-	 * 
-	 * Is this vehicle locked for a player.  This is a compressed 2D binary
-	 * array, made by concatenating many bits together (saves 1kb-3kb)!  Is
-	 * there a reason this array exists?
-	 */
-	//FIXES_gsVehicleLocked[_FIXES_CEILDIV(MAX_PLAYERS * MAX_VEHICLES, cellbits)],
-	/* 
 	 * FIXES_gsDialogID[MAX_PLAYERS]
 	 * 
 	 * Stores the true ID of the dialog the player is looking at to prevent
 	 * spoofing.
 	 */
+#if FIX_OnDialogResponse || FIX_GetPlayerDialog
 	FIXES_gsDialogID[MAX_PLAYERS] = {-1, ...},
+#endif
 	/* 
 	 * FIXES_gsInterior[MAX_PLAYERS]
 	 * 
 	 * The player's current interior.
 	 */
+#if FIXES_Single && FIX_GetPlayerInterior
 	FIXES_gsInterior[MAX_PLAYERS],
+#endif
 	/* 
 	 * e_FIXES_SETTINGS:FIXES_gsSettings
 	 * 
@@ -1845,7 +1847,9 @@ static stock
 	 * 
 	 * A player's cash before dying.
 	 */
+#if FIX_OnPlayerSpawn
 	FIXES_gsLastCash[MAX_PLAYERS],
+#endif
 	/* 
 	 * FIXES_gsDriveByWeapon[MAX_PLAYERS]
 	 * 
@@ -1923,62 +1927,82 @@ static stock
 	 * load.  There are certain functions that need applying only the very first
 	 * time they connect, then this gets set.
 	 */
+#if !FIXES_Single
 	FIXES_pvarNotNewPlayer[] = "FIXES_pvarNotNewPlayer",
+#endif
 	/* 
 	 * FIXES_pvarPlayerWeapon[]
 	 * 
 	 * Name of the pvar in which to store the player's current weapon.
 	 */
+#if !FIXES_Single && FIX_GetPlayerWeapon
 	FIXES_pvarPlayerWeapon[] = "FIXES_pvarPlayerWeapon",
+#endif
 	/* 
 	 * FIXES_pvarPlayerSkin[]
 	 * 
 	 * Name of the pvar in which to store the player's current skin.
 	 */
+#if !FIXES_Single && FIX_GetPlayerSkin
 	FIXES_pvarPlayerSkin[] = "FIXES_pvarPlayerSkin",
+#endif
 	/* 
 	 * FIXES_pvarPlayerSpectate[]
 	 * 
 	 * Name of the pvar in which to store the player's spectator mode.
 	 */
+#if !FIXES_Single && FIX_SetPlayerCamera
 	FIXES_pvarPlayerSpectate[] = "FIXES_pvarPlayerSpectate",
+#endif
 	/* 
 	 * FIXES_gscKick[]
 	 * 
 	 * Name of the kick timer function.
 	 */
+#if FIX_Kick
 	FIXES_gscKick[] = "_FIXES_Kick",
+#endif
 	/* 
 	 * FIXES_pvarKick[]
 	 * 
 	 * Name of the pvar in which to store a player's kick timer.
 	 */
+#if !FIXES_Single && FIX_Kick
 	FIXES_pvarKick[] = "FIXES_pvarKick",
+#endif
 	/* 
 	 * FIXES_pvarPlayerDialog[]
 	 * 
 	 * Name of the pvar in which to store the player's current dialogid.
 	 */
+#if !FIXES_Single && FIX_OnDialogResponse || FIX_GetPlayerDialog
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog",
+#endif
 	/* 
 	 * FIXES_pvarPlayerInterior[]
 	 * 
 	 * A player's current interior.
 	 */
+#if !FIXES_Single && FIX_GetPlayerInterior
 	FIXES_pvarPlayerInterior[] = "FIXES_pvarPlayerInterior",
+#endif
 	/* 
 	 * FIXES_pvarCurrentDialog[]
 	 * 
 	 * Used in OnDialogResponse to be able to get the correct ID in multiple
 	 * scripts while still correctly resetting the ID for future use.
 	 */
+#if !FIXES_Single && FIX_OnDialogResponse
 	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog",
+#endif
 	/* 
 	 * FIXES_pvarPlayerLastCash[]
 	 * 
 	 * Used in OnPlayerDeath to save a player's cash before death.
 	 */
+#if !FIXES_Single && FIX_OnPlayerSpawn
 	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash",
+#endif
 	/* 
 	 * FIXES_gscHideGameTextTimer[]
 	 * 
@@ -2020,7 +2044,9 @@ static stock
 	 * 
 	 * Name of the pvar in which to store the player's checkpoint state.
 	 */
+#if !FIXES_Single && FIX_SetPlayerCheckpoint
 	FIXES_pvarPlayerCheckpoint[] = "FIXES_pvarPlayerCheckpoint",
+#endif
 	/* 
 	 * FIXES_gscSetRaceCheckpoint[]
 	 * 
@@ -2032,7 +2058,9 @@ static stock
 	 * 
 	 * Name of the pvar in which to store the player's race checkpoint state.
 	 */
+#if !FIXES_Single && FIX_SetPlayerRaceCheckpoint
 	FIXES_pvarPlayerRaceCheckpoint[] = "FIXES_pvarPlayerRaceCheckpoint",
+#endif
 	/* 
 	 * FIXES_gscNULL[]
 	 * 
@@ -5917,7 +5945,7 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 					return 0;
 				}
 			#endif
-			//FIXES_gsPlayerWeapon[playerid] = weaponid;
+
 			#if FIXES_Single
 				FIXES_gsPlayerWeapon[playerid] = weaponid;
 			#else
