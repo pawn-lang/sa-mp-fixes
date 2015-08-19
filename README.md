@@ -51,7 +51,7 @@ SetPlayerName | Using "SetPlayerName" when the new name only differs from the ol
 GetPlayerSkin | Returns the new skin after "SetSpawnInfo" is called but before the player actually respawns to get the new skin. | [Y_Less](https://github.com/Y-Less/) |  | 
 GetWeaponName | Returns nothing for 18, 44, and 45. | [Y_Less](https://github.com/Y-Less/) |  | 
 SetPlayerWorldBounds | Aiming can bypass the edge. | [Y_Less](https://github.com/Y-Less/) |  | 
-TogglePlayerControllable | Other players see you moving on the spot. | Slice | [Link](http://forum.sa-mp.com/showpost.php?p=876854) | 
+TogglePlayerControllable | Other players see you moving on the spot. | [Slice](https://github.com/oscar-broman/) | [Link](http://forum.sa-mp.com/showpost.php?p=876854) | 
 HydraSniper | Entring military aircraft with a sniper rifle messes up vies. | funky1234 | [Link](http://forum.sa-mp.com/showpost.php?p=965644) | 
 IsPlayerInCheckpoint | Function returns an undefined value if it is called before any other checkpoint functions are called to initialise the value. | [Y_Less](https://github.com/Y-Less/) |  | 
 IsPlayerInRaceCheckpoint | Function returns an undefined value if it is called before any other race checkpoint functions are called to initialise the value. | [Y_Less](https://github.com/Y-Less/) |  | 
@@ -73,22 +73,22 @@ PlayerDialogResponse | A player's dialog doesn't hide when the gamemode restarts
 SetSpawnInfo | Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo". | [Y_Less](https://github.com/Y-Less/) |  | 
 SetPlayerSkin | Breaks sitting on bikes. | CyNiC | [Link](http://forum.sa-mp.com/showpost.php?p=1756094) | 
 HideMenuForPlayer | Crashes when passed an invalid menu ID. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1787297) | 
-valstr | Crashes on large numbers. | Slice |  | 
-fclose (Disabled) | Crashes on an invalid handle. | Slice |  | 
-fwrite (Disabled) | Crashes on an invalid handle. | Slice |  | 
-fread (Disabled) | Crashes on an invalid handle. | Slice |  | 
-fputchar (Disabled) | Crashes on an invalid handle. | Slice |  | 
-fgetchar (Disabled) | Crashes on an invalid handle. | Slice |  | 
-fblockwrite (Disabled) | Crashes on an invalid handle. | Slice |  | 
-fblockread (Disabled) | Crashes on an invalid handle. | Slice |  | 
-fseek (Disabled) | Crashes on an invalid handle. | Slice |  | 
-flength (Disabled) | Crashes on an invalid handle. | Slice |  | 
+valstr | Crashes on large numbers. | [Slice](https://github.com/oscar-broman/) |  | 
+fclose (Disabled) | Crashes on an invalid handle. | [Slice](https://github.com/oscar-broman/) |  | 
+fwrite (Disabled) | Crashes on an invalid handle. | [Slice](https://github.com/oscar-broman/) |  | 
+fread (Disabled) | Crashes on an invalid handle. | [Slice](https://github.com/oscar-broman/) |  | 
+fputchar (Disabled) | Crashes on an invalid handle. | [Slice](https://github.com/oscar-broman/) |  | 
+fgetchar (Disabled) | Crashes on an invalid handle. | [Slice](https://github.com/oscar-broman/) |  | 
+fblockwrite (Disabled) | Crashes on an invalid handle. | [Slice](https://github.com/oscar-broman/) |  | 
+fblockread (Disabled) | Crashes on an invalid handle. | [Slice](https://github.com/oscar-broman/) |  | 
+fseek (Disabled) | Crashes on an invalid handle. | [Slice](https://github.com/oscar-broman/) |  | 
+flength (Disabled) | Crashes on an invalid handle. | [Slice](https://github.com/oscar-broman/) |  | 
 file_inc (Disabled) | Includes or excludes all the file function fixes together (can cause major overhead). | [Y_Less](https://github.com/Y-Less/) |  | 
 IsPlayerAttachedObjectSlotUsed | Doesn't work in OnPlayerDisconnect. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1794167) | 
 SetPlayerAttachedObject | Doesn't remove objects when the mode ends. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1794167) | 
 OnPlayerDeath | Clients get stuck when they die with an animation applied. | h02 | [Link](http://forum.sa-mp.com/showpost.php?p=1641144) | 
-strins | Ignores the "maxlength" parameter causing possible crashes. | Slice | | 
-IsPlayerConnected | Only uses the lower two bytes of a passed ID. | Slice |  | 
+strins | Ignores the "maxlength" parameter causing possible crashes. | [Slice](https://github.com/oscar-broman/) | | 
+IsPlayerConnected | Only uses the lower two bytes of a passed ID. | [Slice](https://github.com/oscar-broman/) |  | 
 OnPlayerCommandText | Can crash ZCMD when passed a null string. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1909511) | 
 TrainExit | When getting out of a train entered by "PutPlayerInVehicle", the camera does not reset properly. | Terminator3/[Y_Less](https://github.com/Y-Less/) |  | 
 Kick | Calling "Kick" in "OnPlayerConnect" doesn't work properly. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1989453) | 0.3x
@@ -157,8 +157,8 @@ Again, this is a community project, merely managed by [Y_Less](https://github.co
 There are a few other includes which aim to fix issues too large to be included here:
 
 - [Fixes2](http://forum.sa-mp.com/showthread.php?t=571505) - [Y_Less](https://github.com/Y-Less/) fixes to make "SetTimer" and "SetTimerEx" and other.
-- [SQLitei](http://forum.sa-mp.com/showthread.php?t=303682) - Slice's fixes and improvements for many SQLite functions
-- [Timer Fix](http://forum.sa-mp.com/showthread.php?t=289675) - Slice's fixes to make "SetTimer" and "SetTimerEx" vastly more accurate in their delays.
+- [SQLitei](http://forum.sa-mp.com/showthread.php?t=303682) - [Slice](https://github.com/oscar-broman/)'s fixes and improvements for many SQLite functions
+- [Timer Fix](http://forum.sa-mp.com/showthread.php?t=289675) - [Slice](https://github.com/oscar-broman/)'s fixes to make "SetTimer" and "SetTimerEx" vastly more accurate in their delays.
 
 # Bugs
 
