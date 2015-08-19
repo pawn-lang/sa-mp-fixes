@@ -36,7 +36,7 @@
  *           the actual required name.
  * SEE:      "OnPlayerConnect" and "FIXES_SetPlayerName".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      GetPlayerSkin
@@ -64,7 +64,7 @@
  * PROBLEM:  Other players see you moving on the spot.
  * SOLUTION: Return 0 in OnPlayerUpdate.
  * SEE:      "FIXES_TogglePlayerControllable" and "OnPlayerUpdate".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * POST:     http://forum.sa-mp.com/showpost.php?p=876854
  * 
  * FIX:      HydraSniper
@@ -237,61 +237,61 @@
  * PROBLEM:  Crashes on large numbers.
  * SOLUTION: Use "format" instead.
  * SEE:      "FIXES_valstr".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fclose
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fclose".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fwrite
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fwrite".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fread
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fread".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fputchar
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fputchar".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fgetchar
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fgetchar".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fblockwrite
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fblockwrite".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fblockread
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fblockread".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fseek
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fseek".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      flength
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_flength".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      file_inc
  * PROBLEM:  Includes or excludes all the file function fixes together (can
@@ -328,14 +328,14 @@
  * PROBLEM:  Ignores the "maxlength" parameter causing possible crashes.
  * SOLUTION: Manually check the length.
  * SEE:      "FIXES_strins".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
  * 
  * FIX:      IsPlayerConnected
  * PROBLEM:  Only uses the lower two bytes of a passed ID.
  * SOLUTION: Mask the numbers.
  * SEE:      "FIXES_IsPlayerConnected".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      OnPlayerCommandText
  * PROBLEM:  Can crash ZCMD when passed a null string.
@@ -4684,7 +4684,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
       // MUST come last.
       if (pbools & e_FIXES_BOOLS_UNCONTROLLABLE)
       {
-        // Keys based sync blocking, modified based on a post by Slice:
+        // Keys based sync blocking, modified based on a post by Slice (https://github.com/oscar-broman/):
         // http://forum.sa-mp.com/showpost.php?p=876854  Use "playerid"
         // here as it's a variable that already exists, but note that
         // after this point, you CANNOT use "playerid" as it has been
