@@ -20,14 +20,14 @@
  *           define "FILTERSCRIPT" where appropriate.
  * SOLUTION: Provide an "IS_FILTERSCRIPT" variable (note the naming to match
  *           the original macro).
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * SEE:      "OnFilterScriptInit" and "OnGameModeInit".
  * 
  * FIX:      SpawnPlayer
  * PROBLEM:  Kills the player if they are in a vehicle.
  * SOLUTION: Remove the from the vehicle.
  * SEE:      "FIXES_SpawnPlayer".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      SetPlayerName
  * PROBLEM:  Using "SetPlayerName" when the new name only differs from the old
@@ -35,34 +35,36 @@
  * SOLUTION: Change their name twice - once to "_FIXES TEMP NAME" and then to
  *           the actual required name.
  * SEE:      "OnPlayerConnect" and "FIXES_SetPlayerName".
- * AUTHOR:   Y_Less/Slice/xX_Simon_Xx
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      GetPlayerSkin
  * PROBLEM:  Returns the new skin after "SetSpawnInfo" is called but before the
  *           player actually respawns to get the new skin.
  * SOLUTION: Record the skin in "OnPlayerSpawn" and always return that one.
  * SEE:      "OnPlayerSpawn", "FIXES_GetPlayerSkin" and "FIXES_SetPlayerSkin".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      GetWeaponName
  * PROBLEM:  Returns nothing for 18, 44, and 45.
  * SOLUTION: Return the correct names ("Molotov Cocktail", "Thermal Goggles",
  *           and "Night vision Goggles").
  * SEE:      "FIXES_GetWeaponName".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      SetPlayerWorldBounds
  * PROBLEM:  Aiming can bypass the edge.
  * SOLUTION: Check for the player leaving the area and reset them to their last
  *           good position if they leave the area (aiming or not).
  * SEE:      "OnPlayerUpdate" and "FIXES_SetPlayerWorldBounds".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      TogglePlayerControllable
  * PROBLEM:  Other players see you moving on the spot.
  * SOLUTION: Return 0 in OnPlayerUpdate.
  * SEE:      "FIXES_TogglePlayerControllable" and "OnPlayerUpdate".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * POST:     http://forum.sa-mp.com/showpost.php?p=876854
  * 
  * FIX:      HydraSniper
@@ -78,14 +80,14 @@
  *           other checkpoint functions are called to initialise the value.
  * SOLUTION: Call "DisablePlayerCheckpoint" when they connect.
  * SEE:      "OnPlayerConnect".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      IsPlayerInRaceCheckpoint
  * PROBLEM:  Function returns an undefined value if it is called before any
  *           other race checkpoint functions are called to initialise the value.
  * SOLUTION: Call "DisablePlayerRaceCheckpoint" when they connect.
  * SEE:      "OnPlayerConnect".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      GetPlayerWeapon
  * PROBLEM:  Returns the old value after using "SetPlayerArmedWeapon" when they
@@ -94,35 +96,36 @@
  *           value and return that instead.
  * SEE:      "OnPlayerStateChange", "FIXES_SetPlayerArmedWeapon", and
  *           "FIXES_GetPlayerWeapon".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      PutPlayerInVehicle
  * PROBLEM:  If this is used on a passenger the driver of their old vehicle
  *           doesn't see them in their new vehicle.
  * SOLUTION: Remove them from the vehicle first.
  * SEE:      "OnPlayerStateChange" and "FIXES_PutPlayerInVehicle".
- * AUTHOR:   leong124/Y_Less
+ * AUTHOR:   leong124
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * POST:     http://forum.sa-mp.com/showpost.php?p=1265965
  * 
  * FIX:      KEY_AIM
  * PROBLEM:  "KEY_AIM" isn't defined by default.
  * SOLUTION: Define it.
  * SEE:      N/A.
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      SetPlayerCheckpoint
  * PROBLEM:  If a checkpoint is already set it will use the size of that
  *           checkpoint instead of the new one.
  * SOLUTION: Call "DisablePlayerCheckpoint" before setting the checkpoint.
  * SEE:      "FIXES_SetPlayerCheckpoint".
- * AUTHOR:   ziggi
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
  * 
  * FIX:      SetPlayerRaceCheckpoint
  * PROBLEM:  If a checkpoint is already set it will use the size of that
  *           checkpoint instead of the new one.
  * SOLUTION: Call "DisablePlayerRaceCheckpoint" before setting the checkpoint.
  * SEE:      "FIXES_SetPlayerRaceCheckpoint".
- * AUTHOR:   ziggi
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
  * 
  * FIX:      TextDrawCreate
  * PROBLEM:  Crashes on a blank string.
@@ -140,13 +143,15 @@
  * PROBLEM:  Crashes on a blank string.
  * SOLUTION: Intercept blank strings.
  * SEE:      "FIXES_CreatePlayerTextDraw".
- * AUTHOR:   wups/Y_Less
+ * AUTHOR:   wups
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      PlayerTextDrawSetString
  * PROBLEM:  Crashes on a blank string and size greater than 1024.
  * SOLUTION: Intercept blank strings and truncate long strings.
  * SEE:      "FIXES_PlayerTextDrawSetString".
- * AUTHOR:   TomTrox/Y_Less
+ * AUTHOR:   TomTrox
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      AllowInteriorWeapons
  * PROBLEM:  Does nothing.
@@ -159,14 +164,16 @@
  * PROBLEM:  Crashes other players when people enter an invalid seat.
  * SOLUTION: Desync the people with invalid seats.
  * SEE:      "OnPlayerStateChange" and "OnPlayerUpdate".
- * AUTHOR:   RyDeR`/Y_Less
+ * AUTHOR:   RyDeR`
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * POST:     http://forum.sa-mp.com/showpost.php?p=1410296
  * 
  * FIX:      OnPlayerEnterVehicle_2
  * PROBLEM:  Crashes the server when hacks enter an invalid vehicle.
  * SOLUTION: Desync the people with invalid vehicles.
  * SEE:      "OnPlayerEnterVehicle".
- * AUTHOR:   im/Y_Less
+ * AUTHOR:   im
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      AllowTeleport
  * PROBLEM:  0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in
@@ -174,7 +181,7 @@
  * SOLUTION: Teleport the player in "OnPlayerClickMap".
  * SEE:      "OnPlayerClickMap", "FIXES_AllowPlayerTeleport", and
  *           "FIXES_AllowAdminTeleport".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      SetPlayerSpecialAction
  * PROBLEM:  Removing jetpacks from players by setting their special action to 0
@@ -188,14 +195,15 @@
  *           they can't actually see.
  * SOLUTION: Store the displayed dialogid and use that instead.
  * SEE:      "FIXES_OnDialogResponse", "FIXES_ShowPlayerDialog".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * FIXED IN: 0.3e RC6
  * 
  * FIX:      GetPlayerDialog
  * PROBLEM:  This function doesn't exist.  Fixed for hidden dialogs.
  * SOLUTION: Add it.  DEFAULTS TO FALSE!
  * SEE:      "FIXES_GetPlayerDialog".
- * AUTHOR:   Y_Less/xX_Simon_Xx
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      PlayerDialogResponse
  * PROBLEM:  A player's dialog doesn't hide when the gamemode restarts, causing
@@ -203,13 +211,13 @@
  *           dialog ID doesn't match last sent dialog ID".
  * SOLUTION: Hide it.
  * SEE:      "OnPlayerConnect", "OnGameModeExit".
- * AUTHOR:   xX_Simon_Xx
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      SetSpawnInfo
  * PROBLEM:  Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo".
  * SOLUTION: Call "SetSpawnInfo" at least once.
  * SEE:      "OnPlayerConnect".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      SetPlayerSkin
  * PROBLEM:  Breaks sitting on bikes.
@@ -222,75 +230,75 @@
  * PROBLEM:  Crashes when passed an invalid menu ID.
  * SOLUTION: Don't hide it when passed an invalid menu.
  * SEE:      "FIXES_HideMenuForPlayer".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * POST:     http://forum.sa-mp.com/showpost.php?p=1787297
  * 
  * FIX:      valstr
  * PROBLEM:  Crashes on large numbers.
  * SOLUTION: Use "format" instead.
  * SEE:      "FIXES_valstr".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fclose
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fclose".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fwrite
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fwrite".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fread
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fread".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fputchar
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fputchar".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fgetchar
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fgetchar".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fblockwrite
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fblockwrite".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fblockread
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fblockread".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      fseek
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_fseek".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      flength
  * PROBLEM:  Crashes on an invalid handle.
  * SOLUTION: Check for an invalid handle.
  * SEE:      "FIXES_flength".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      file_inc
  * PROBLEM:  Includes or excludes all the file function fixes together (can
  *           cause major overhead).
  * SOLUTION: Optionally group them all under one define.  DEFAULTS TO FALSE!
  * SEE:      "FIX_file_inc".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      IsPlayerAttachedObjectSlotUsed
  * PROBLEM:  Doesn't work in OnPlayerDisconnect.
@@ -299,7 +307,7 @@
  *           "FIXES_RemovePlayerAttachedObject",
  *           "FIXES_IsPAttachedObjectSlotUsed", and
  *           "OnPlayerDisconnect".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      SetPlayerAttachedObject
  * PROBLEM:  Doesn't remove objects when the mode ends.
@@ -307,7 +315,7 @@
  * SEE:      "FIXES_SetPlayerAttachedObject",
  *           "FIXES_RemovePlayerAttachedObject", and
  *           "OnPlayerDisconnect".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      OnPlayerDeath
  * PROBLEM:  Clients get stuck when they die with an animation applied.
@@ -320,19 +328,20 @@
  * PROBLEM:  Ignores the "maxlength" parameter causing possible crashes.
  * SOLUTION: Manually check the length.
  * SEE:      "FIXES_strins".
- * AUTHOR:   Slice/Y_Less
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
  * 
  * FIX:      IsPlayerConnected
  * PROBLEM:  Only uses the lower two bytes of a passed ID.
  * SOLUTION: Mask the numbers.
  * SEE:      "FIXES_IsPlayerConnected".
- * AUTHOR:   Slice
+ * AUTHOR:   Slice (https://github.com/oscar-broman/)
  * 
  * FIX:      OnPlayerCommandText
  * PROBLEM:  Can crash ZCMD when passed a null string.
  * SOLUTION: Pass NULL if invalid inputs given.
  * SEE:      "OnPlayerCommandText".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * POST:     http://forum.sa-mp.com/showpost.php?p=1909511
  * 
  * FIX:      TrainExit
@@ -340,13 +349,14 @@
  *           camera does not reset properly.
  * SOLUTION: Reset the camera.
  * SEE:      "FIXES_PutPlayerInVehicle", "FIXES_OnPlayerStateChange".
- * AUTHOR:   Terminator3/Y_Less
+ * AUTHOR:   Terminator3
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      Kick
  * PROBLEM:  Calling "Kick" in "OnPlayerConnect" doesn't work properly.
  * SOLUTION: Defer it.
  * SEE:      "OnPlayerConnect", "FIXES_Kick".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * POST:     http://forum.sa-mp.com/showpost.php?p=1989453
  * FIXED IN: 0.3x
  * 
@@ -354,95 +364,97 @@
  * PROBLEM:  Crashes other players when invalid mods are applied.
  * SOLUTION: Desync the player.
  * SEE:      "OnVehicleMod".
- * AUTHOR:   JernejL/Y_Less
+ * AUTHOR:   JernejL (https://github.com/JernejL/)
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * POST:     http://forum.sa-mp.com/showpost.php?p=1671500
  * 
  * FIX:      random
  * PROBLEM:  Doesn't work with negative numbers.
  * SOLUTION: Invert then reinvert.  DEFAULTS TO FALSE!
  * SEE:      "FIXES_random".
- * AUTHOR:   xX_Simon_Xx
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      sleep
  * PROBLEM:  Leaks bytes from the stack.
  * SOLUTION: Call a function to store the correct value.
  * SEE:      "FIXES_sleep".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      AddMenuItem
  * PROBLEM:  Crashes when passed an invalid menu ID.
  * SOLUTION: Don't hide it when passed an invalid menu.
  * SEE:      "FIXES_AddMenuItem".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      SetMenuColumnHeader
  * PROBLEM:  Crashes when passed an invalid menu ID.
  * SOLUTION: Don't hide it when passed an invalid menu.
  * SEE:      "FIXES_SetMenuColumnHeader".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      ShowMenuForPlayer
  * PROBLEM:  Crashes when passed an invalid menu ID.
  * SOLUTION: Don't hide it when passed an invalid menu.
  * SEE:      "FIXES_ShowMenuForPlayer".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      HideMenuForPlayer
  * PROBLEM:  Crashes when passed an invalid menu ID.
  * SOLUTION: Don't hide it when passed an invalid menu.
  * SEE:      "FIXES_HideMenuForPlayer".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * POST:     http://forum.sa-mp.com/showpost.php?p=1787297
  * 
  * FIX:      HideMenuForPlayer_2
  * PROBLEM:  Ignores the "menuid" parameter.
  * SOLUTION: Only hide the correct menu.  DEFAULTS TO FALSE!
  * SEE:      "FIXES_HideMenuForPlayer".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      DisableMenu
  * PROBLEM:  Crashes when passed an invalid menu ID.
  * SOLUTION: Don't hide it when passed an invalid menu.
  * SEE:      "FIXES_DisableMenu".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      DisableMenuRow
  * PROBLEM:  Crashes when passed an invalid menu ID.
  * SOLUTION: Don't hide it when passed an invalid menu.
  * SEE:      "FIXES_DisableMenuRow".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      Menus
  * PROBLEM:  All menu function fixes are included separately for major overhead.
  * SOLUTION: Optionally group them all under one define.
  * SEE:      "FIX_Menus", "_FIX_Menus"
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      GetPlayerMenu
  * PROBLEM:  Returns previous menu when none is displayed.
  * SOLUTION: Return the correct value.
  * SEE:      "FIXES_GetPlayerMenu", "OnPlayerSelectedMenuRow".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      GetPlayerInterior
  * PROBLEM:  Always returns 0 for NPCs.
  * SOLUTION: Return the correct value.
  * SEE:      "FIXES_GetPlayerInterior", "FIXES_SetPlayerInterior".
- * AUTHOR:   Y_Less/xX_Simon_Xx
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      ClearAnimations
  * PROBLEM:  Use ClearAnimation while you are in a vehicle cause the player exit
  *           from it.
  * SOLUTION: Apply an animation instead of clear animation.
  * SEE:      "FIXES_ClearAnimations".
- * AUTHOR:   xX_Simon_Xx
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      ClearAnimations_2
  * PROBLEM:  ClearAnimations doesn't do anything when the animation ends if we
  *           pass 1 for the freeze parameter in ApplyAnimation.
  * SOLUTION: Apply an idle animation for stop and then use ClearAnimation.
  * SEE:      "FIXES_ClearAnimations".
- * AUTHOR:   xX_Simon_Xx
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      DriveBy
  * PROBLEM:  If you press KEY_CROUCH while you're passenger and if you are
@@ -450,58 +462,61 @@
  *           player don't return in vehicle.
  * SOLUTION: Apply the animation to return the player in the vehicle.
  * SEE:      "OnPlayerKeyStateChange".
- * AUTHOR:   xX_Simon_Xx
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      GangZoneCreate
  * PROBLEM:  Gang zones bug on the main map for players at certain angles
  *           relative to them.
  * SOLUTION: Set a non floating value for the gang zone co-ordinate.
  * SEE:      "FIXES_GangZoneCreate".
- * AUTHOR:   xX_Simon_Xx/Y_Less
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      SPECIAL_ACTION_PISSING
  * PROBLEM:  "SPECIAL_ACTION_PISSING" isn't defined by default.
  * SOLUTION: Define it.
  * SEE:      N/A.
- * AUTHOR:   xX_Simon_Xx
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      IsValidVehicle
  * PROBLEM:  "IsValidVehicle" isn't defined by default.
  * SOLUTION: Define it.
  * SEE:      N/A.
- * AUTHOR:   xX_Simon_Xx
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      ApplyAnimation
  * PROBLEM:  Passing an invalid animation library in ApplyAnimation causes a
  *           client crash for streamed in players.
  * SOLUTION: Block ApplyAnimation when an invalid library is passed.
  * SEE:      "FIXES_ApplyAnimation".
- * AUTHOR:   xX_Simon_Xx
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * 
  * FIX:      ApplyAnimation_2
  * PROBLEM:  First time a library is used, it does nothing.
  * SOLUTION: Apply animations twice when first using a library.
  * SEE:      "FIXES_ApplyAnimation".
- * AUTHOR:   xX_Simon_Xx/Lordzy/Y_Less
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
+ * AUTHOR:   Lordzy (https://github.com/Lordzy/)
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      OnPlayerSpawn
  * PROBLEM:  San Andreas deducts $100 from players.
  * SOLUTION: Give them it back.
  * SEE:      "OnPlayerSpawn".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      GetGravity
  * PROBLEM:  "GetGravity" isn't defined by default.
  * SOLUTION: Define it.
  * SEE:      N/A.
- * AUTHOR:   Whitetiger
+ * AUTHOR:   Whitetiger (https://github.com/Whitetigerswt)
  * POST:     http://forum.sa-mp.com/showpost.php?p=1706447
  * 
  * FIX:      gpci
  * PROBLEM:  "gpci" isn't defined by default.
  * SOLUTION: Define it.
  * SEE:      N/A.
- * AUTHOR:   xX_Simon_Xx
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
  * POST:     http://pastebin.com/VQSGpbSm
  * 
  * FIX:      Natives
@@ -509,52 +524,52 @@
  *           them all.  Therefore this is an umbrella fix for several fixes.
  * SOLUTION: Define them.
  * SEE:      "FIX_GetGravity", "FIX_gpci", "FIX_IsValidVehicle".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      OnPlayerConnect
  * PROBLEM:  This function isn't called for players when a filterscript starts.
  * SOLUTION: Call it for all connected players.
  * SEE:      "FIXES_OnFilterScriptInit".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      OnPlayerDisconnect
  * PROBLEM:  This function isn't called for players when a filterscript ends.
  * SOLUTION: Call it for all connected players.
  * SEE:      "FIXES_OnFilterScriptExit".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      GameText
  * PROBLEM:  Several styles do not display for the time specified.
  * SOLUTION: Recreate the styles in Text Draws and use those instead.
  * SEE:      "FIXES_GameTextForAll", "FIXES_GameTextForPlayer".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      GameTextStyles
  * PROBLEM:  San Andreas has fixed styles for area and vehicle names, but they
  *           are not included in the GameText styles list.
  * SOLUTION: Add them.  DEFAULTS TO FALSE.
  * SEE:      "FIXES_GameTextForAll", "FIXES_GameTextForPlayer".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      HideGameText
  * PROBLEM:  There is no "HideGameTextForXYZ" function.
  * SOLUTION: Show a single space for a game text.  DEFAULTS TO FALSE.
  * SEE:      "FIXES_HideGameTextForAll", "FIXES_HideGameTextForPlayer".
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      BODYPARTS
  * PROBLEM:  The bodyparts to be used in OnPlayer(Take/Give)Damage are not
  *           defined by default
  * SOLUTION: Define it.
  * SEE:      N/A.
- * AUTHOR:   Whitetiger
+ * AUTHOR:   Whitetiger (https://github.com/Whitetigerswt)
  * 
  * FIX:      CAMERAMODES
  * PROBLEM:  The camera modes for GetPlayerCameraMode are not defined by
  *           default.
  * SOLUTION: Define it.
  * SEE:      N/A.
- * AUTHOR:   Whitetiger
+ * AUTHOR:   Whitetiger (https://github.com/Whitetigerswt)
  * POST:     http://forum.sa-mp.com/showpost.php?p=1309730
  * 
  * FIX:      SetPlayerCamera
@@ -563,39 +578,39 @@
  * SOLUTION: Defer them.
  * SEE:      "FIXES_SetPlayerCameraPos", "FIXES_SetPlayerCameraLookAt",
  *           "FIXES_TogglePlayerSpectating".
- * AUTHOR:   Emmet_
+ * AUTHOR:   Emmet_ (https://github.com/emmet-jones)
  * 
  * FIX:      SetPlayerTime
  * PROBLEM:  Using this function under "OnPlayerConnect" doesn't work.
  * SOLUTION: Defer it.
  * SEE:      "FIXES_SetPlayerTime"
- * AUTHOR:   Emmet_
+ * AUTHOR:   Emmet_ (https://github.com/emmet-jones)
  * 
  * FIX:      OnPlayerRequestClass
  * PROBLEM:  Random blunts and bottles sometimes appear in class selection.
  * SOLUTION: Call "RemoveBuildingForPlayer".
  * SEE:      "OnPlayerRequestClass"
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      SetPlayerColor
  * PROBLEM:  If used under OnPlayerConnect, the affecting player will not
  *           see the color in the TAB menu.
  * SOLUTION: Defer it.
  * SEE:      "FIXES_SetPlayerColor"
- * AUTHOR:   Emmet_
+ * AUTHOR:   Emmet_ (https://github.com/emmet-jones)
  * POST:     http://forum.sa-mp.com/showthread.php?t=452407
  * 
  * FIX:      FileMaths
  * PROBLEM:  You can write gibberish like "File:a; ++a;".
  * SOLUTION: Remove the operators.
  * SEE:      "File:operator"
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
  * FIX:      GetPlayerWeaponData
  * PROBLEM:  Old weapons with no ammo left are still returned.
  * SOLUTION: Set "weapons" to 0.  DEFAULTS TO FALSE!
  * SEE:      "FIXES_GetPlayerWeaponData"
- * AUTHOR:   Y_Less
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * POST:     http://forum.sa-mp.com/showthread.php?t=567400
  * 
  * ==============
