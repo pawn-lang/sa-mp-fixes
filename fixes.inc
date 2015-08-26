@@ -636,7 +636,7 @@
  * ALS should be used to hook functions and callbacks.  See this topic for more
  *    details:
  *    
- *        http://forum.sa-mp.com/showthread.php?t=441293
+ *        http://forum.sa-mp.com/showthread.php?t=570910
  * 
  * The ALS prefix for chaining is "FIXES_".
  * 
