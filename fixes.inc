@@ -499,6 +499,23 @@
  * AUTHOR:   Lordzy (https://github.com/Lordzy/)
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * 
+ * FIX:      ApplyActorAnimation
+ * PROBLEM:  Passing an invalid animation library in ApplyAnimation causes a
+ *           client crash for streamed in players.
+ * SOLUTION: Block ApplyActorAnimation when an invalid library is passed.
+ * SEE:      "FIXES_ApplyActorAnimation".
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ * 
+ * FIX:      ApplyActorAnimation_2
+ * PROBLEM:  First time a library is used, it does nothing.
+ * SOLUTION: Apply animations twice when first using a library.
+ * SEE:      "FIXES_ApplyActorAnimation".
+ * AUTHOR:   simonepri (https://github.com/simonepri/)
+ * AUTHOR:   Lordzy (https://github.com/Lordzy/)
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ * 
  * FIX:      OnPlayerSpawn
  * PROBLEM:  San Andreas deducts $100 from players.
  * SOLUTION: Give them it back.
@@ -1354,6 +1371,20 @@
 	#define FIX_ApplyAnimation_2         (2)
 #endif
 
+#if !defined FIX_ApplyActorAnimation
+	#define FIX_ApplyActorAnimation           (1)
+#elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation)
+	#undef FIX_ApplyActorAnimation
+	#define FIX_ApplyActorAnimation           (2)
+#endif
+
+#if !defined FIX_ApplyActorAnimation_2
+	#define FIX_ApplyActorAnimation_2         (1)
+#elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation_2)
+	#undef FIX_ApplyActorAnimation_2
+	#define FIX_ApplyActorAnimation_2         (2)
+#endif
+
 #if !defined FIX_OnPlayerSpawn
 	#define FIX_OnPlayerSpawn            (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerSpawn)
@@ -1925,19 +1956,21 @@ static stock
 	FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1],
 #endif
 	/* 
-	 * FIXES_gsClassAnimTimer[MAX_PLAYERS],
+	 * FIXES_gsPlayerAnimTimer[MAX_PLAYERS],
 	 * 
 	 * Used for storing the timer ID for deferring class selection animation
 	 * application.
 	 */
-	FIXES_gsAnimTimer[MAX_PLAYERS],
+#if FIX_ApplyAnimation_2
+	FIXES_gsPlayerAnimTimer[MAX_PLAYERS],
+#endif
 	/* 
-	 * FIXES_gsClassAnimName[MAX_PLAYERS][60],
+	 * FIXES_gsPlayerAnimName[MAX_PLAYERS][60],
 	 * 
 	 * Used for storing the animation name.
 	 */
 #if FIX_ApplyAnimation_2
-	FIXES_gsClassAnimName[MAX_PLAYERS][60],
+	FIXES_gsPlayerAnimName[MAX_PLAYERS][60],
 #endif
 	/* 
 	 * FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)],
@@ -1946,6 +1979,31 @@ static stock
 	 */
 #if FIX_ApplyAnimation_2
 	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)],
+#endif
+	/* 
+	 * FIXES_gsActorAnimTimer[MAX_ACTORS],
+	 * 
+	 * Used for storing the timer ID for deferring class selection animation
+	 * application.
+	 */
+#if FIX_ApplyActorAnimation_2
+	FIXES_gsActorAnimTimer[MAX_ACTORS],
+#endif
+	/* 
+	 * FIXES_gsActorAnimName[MAX_ACTORS][60],
+	 * 
+	 * Used for storing the animation name.
+	 */
+#if FIX_ApplyActorAnimation_2
+	FIXES_gsActorAnimName[MAX_ACTORS][60],
+#endif
+	/* 
+	 * FIXES_gsActorAnimLibs[MAX_ACTORS][_FIXES_CEILDIV(135, cellbits)],
+	 * 
+	 * Which animation libraries the actor has synced.
+	 */
+#if FIX_ApplyActorAnimation_2
+	FIXES_gsActorAnimLibs[MAX_ACTORS][_FIXES_CEILDIV(135, cellbits)],
 #endif
 	/* 
 	 * FIXES_pvarNotNewPlayer[]
@@ -2380,7 +2438,7 @@ static stock const
 	 * 
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
 	 */
-#if FIX_ApplyAnimation || FIX_ApplyAnimation_2
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
 	FIXES_gscAnimIndexes[24] =
 		{
 			0, 2, 21, 35, 42, 42, 53, 62, 64, 67, 68, 71, 75, 81, 82, 84, 94, 96, 104, 122, 127, 128, 131, 135
@@ -2391,7 +2449,7 @@ static stock const
 	 * 
 	 * List of valid animation libraries.
 	 */
-#if FIX_ApplyAnimation || FIX_ApplyAnimation_2
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
 	FIXES_gscAnimLib[135][] =
 		{
 			"AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
@@ -3680,9 +3738,9 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 #if defined _FIXES_ON_PLAYER_CONNECT
 	public OnPlayerConnect(playerid)
 	{
-		// =========================
+		// ==================================
 		//  BEGIN: ApplyAnimation_2 
-		// =========================
+		// ==================================
 		#if FIX_ApplyAnimation_2
 			FIXES_gsPlayerAnimLibs[playerid][0] =
 				FIXES_gsPlayerAnimLibs[playerid][1] =
@@ -3690,9 +3748,9 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 						FIXES_gsPlayerAnimLibs[playerid][3] =
 							FIXES_gsPlayerAnimLibs[playerid][4] = -1;
 		#endif
-		// =======================
+		// ================================
 		//  END: ApplyAnimation_2 
-		// =======================
+		// ================================
 		
 		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 			_FIXES_AddInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
@@ -3927,15 +3985,15 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	{
 		new
 			ret = FIXES_OnPlayerDisconnect(playerid, reason);
-		
+
 		// =========================
 		//  BEGIN: ApplyAnimation_2 
 		// =========================
 		#if FIX_ApplyAnimation_2
-			if (FIXES_gsAnimTimer[playerid])
+			if (FIXES_gsPlayerAnimTimer[playerid])
 			{
-				KillTimer(FIXES_gsAnimTimer[playerid]),
-				FIXES_gsAnimTimer[playerid] = 0;
+				KillTimer(FIXES_gsPlayerAnimTimer[playerid]),
+				FIXES_gsPlayerAnimTimer[playerid] = 0;
 			}
 		#endif
 		// =======================
@@ -7935,37 +7993,17 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 #endif
 
 /* 
- * _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
- * 
- * FIXES:
- *     ApplyAnimation_2
- */
-
-#if FIX_ApplyAnimation_2
-	forward _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync);
-	
-	public _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
-	{
-		ApplyAnimation(playerid, FIXES_gscAnimLib[animlib], FIXES_gsClassAnimName[playerid], fDelta, loop, lockx, locky, freeze, time, forcesync),
-		FIXES_gsAnimTimer[playerid] = 0;
-	}
-#endif
-
-/* 
- * FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+ * _FIXES_GetAnimLibIndex(animlib[])
  * 
  * FIXES:
  *     ApplyAnimation
  *     ApplyAnimation_2
+ *     ApplyActorAnimation
+ *     ApplyActorAnimation_2
  */
 
-#if defined _ALS_ApplyAnimation
-	#error _ALS_ApplyAnimation defined
-#endif
-native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
-
-#if FIX_ApplyAnimation || FIX_ApplyAnimation_2
-	stock FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
+	static stock _FIXES_GetAnimLibIndex(animlib[])
 	{
 		new
 			diff,
@@ -7992,31 +8030,229 @@ native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, l
 				}
 				else
 				{
-					// If we hit the "else" branch, we have found the correct
-					// animation library from the n-ary search.
-					#if FIX_ApplyAnimation_2
-						if (FIXES_gsAnimTimer[playerid])
-						{
-							KillTimer(FIXES_gsAnimTimer[playerid]),
-							FIXES_gsAnimTimer[playerid] = 0;
-						}
-						if (FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] & (1 << (idx & 0x1F)))
-						{
-							FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
-							FIXES_gsClassAnimName[playerid][0] = '\0',
-							strcat(FIXES_gsClassAnimName[playerid], animname),
-							FIXES_gsAnimTimer[playerid] = SetTimerEx("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
-						}
-					#endif
-						return ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
+					return idx;
 				}
 			}
 		}
+
+		return -1;
+	}
+#endif
+
+/* 
+ * _FIXES_ApplyAnimationDelay(animname[], playerid, idx, Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+ * 
+ * FIXES:
+ *     ApplyAnimation_2
+ */
+
+#if FIX_ApplyAnimation_2
+	static stock _FIXES_ApplyAnimationDelay(animname[], playerid, idx, Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+	{
+		if (FIXES_gsPlayerAnimTimer[playerid])
+		{
+			KillTimer(FIXES_gsPlayerAnimTimer[playerid]),
+			FIXES_gsPlayerAnimTimer[playerid] = 0;
+		}
+		if (FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] & (1 << (idx & 0x1F)))
+		{
+			FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
+			FIXES_gsPlayerAnimName[playerid][0] = '\0',
+			strcat(FIXES_gsPlayerAnimName[playerid], animname);
+			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
+		}
+	}
+#endif
+
+/* 
+ * _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
+ * 
+ * FIXES:
+ *     ApplyAnimation_2
+ */
+
+#if FIX_ApplyAnimation_2
+	forward _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync);
+	
+	public _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
+	{
+		ApplyAnimation(playerid, FIXES_gscAnimLib[animlib], FIXES_gsPlayerAnimName[playerid], fDelta, loop, lockx, locky, freeze, time, forcesync),
+		FIXES_gsPlayerAnimTimer[playerid] = 0;
+	}
+#endif
+
+/* 
+ * FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+ * 
+ * FIXES:
+ *     ApplyAnimation
+ *     ApplyAnimation_2
+ */
+
+#if defined _ALS_ApplyAnimation
+	#error _ALS_ApplyAnimation defined
+#endif
+native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2
+	stock FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+	{
+		new
+			idx;
+
+		idx = _FIXES_GetAnimLibIndex(animlib);
+
+		if (idx != -1)
+		{
+			#if FIX_ApplyAnimation_2
+				_FIXES_ApplyAnimationDelay(animname, playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
+			#endif
+				return ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
+		}
+
 		return 0;
 	}
 	
 	#define _ALS_ApplyAnimation
 	#define ApplyAnimation FIXES_ApplyAnimation
+#endif
+
+/* 
+ * _FIXES_ApplyActorAnimationDelay(animname[], actorid, idx, Float:fDelta, loop, lockx, locky, freeze, time)
+ * 
+ * FIXES:
+ *     ApplyActorAnimation_2
+ */
+
+#if FIX_ApplyActorAnimation_2
+	static stock _FIXES_ApplyActorAnimationDelay(animname[], actorid, idx, Float:fDelta, loop, lockx, locky, freeze, time)
+	{
+		if (FIXES_gsActorAnimTimer[actorid])
+		{
+			KillTimer(FIXES_gsActorAnimTimer[actorid]),
+			FIXES_gsActorAnimTimer[actorid] = 0;
+		}
+		if (FIXES_gsActorAnimLibs[actorid][idx >>> 5] & (1 << (idx & 0x1F)))
+		{
+			FIXES_gsActorAnimLibs[actorid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
+			FIXES_gsActorAnimName[actorid][0] = '\0',
+			strcat(FIXES_gsActorAnimName[actorid], animname);
+			FIXES_gsActorAnimTimer[actorid] = SetTimerEx("_FIXES_ApplyActorAnimation", 350, false, "ddfdddddd", actorid, idx, fDelta, loop, lockx, locky, freeze, time);
+		}
+	}
+#endif
+
+/* 
+ * _FIXES_ApplyActorAnimation(actorid, animlib, Float:fDelta, loop, lockx, locky, freeze, time)
+ * 
+ * FIXES:
+ *     ApplyActorAnimation_2
+ */
+
+#if FIX_ApplyActorAnimation_2
+	forward _FIXES_ApplyActorAnimation(actorid, animlib, Float:fDelta, loop, lockx, locky, freeze, time);
+	
+	public _FIXES_ApplyActorAnimation(actorid, animlib, Float:fDelta, loop, lockx, locky, freeze, time)
+	{
+		ApplyActorAnimation(actorid, FIXES_gsActorAnimLibs[animlib], FIXES_gsActorAnimName[actorid], fDelta, loop, lockx, locky, freeze, time),
+		FIXES_gsActorAnimTimer[actorid] = 0;
+	}
+#endif
+
+/* 
+ * FIXES_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time)
+ * 
+ * FIXES:
+ *     ApplyActorAnimation
+ *     ApplyActorAnimation_2
+ */
+
+#if defined _ALS_ApplyActorAnimation
+	#error _ALS_ApplyActorAnimation defined
+#endif
+native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
+
+#if FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
+	stock FIXES_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time)
+	{
+		new
+			idx;
+
+		idx = _FIXES_GetAnimLibIndex(animlib);
+
+		if (idx != -1)
+		{
+			#if FIX_ApplyActorAnimation_2
+				_FIXES_ApplyActorAnimationDelay(animname, actorid, idx, fDelta, loop, lockx, locky, freeze, time);
+			#endif
+				return ApplyActorAnimation(actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time);
+		}
+
+		return 0;
+	}
+	
+	#define _ALS_ApplyActorAnimation
+	#define ApplyActorAnimation FIXES_ApplyActorAnimation
+#endif
+
+/* 
+ * FIXES_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation)
+ * 
+ * FIXES:
+ *     ApplyActorAnimation_2
+ */
+
+#if defined _ALS_CreateActor
+	#error _ALS_CreateActor defined
+#endif
+native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = CreateActor;
+
+#if FIX_ApplyActorAnimation_2
+	stock FIXES_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation)
+	{
+		new
+			actorid;
+
+		return
+			actorid = CreateActor(modelid, X, Y, Z, Rotation),
+			FIXES_gsActorAnimLibs[actorid][0] =
+				FIXES_gsActorAnimLibs[actorid][1] =
+					FIXES_gsActorAnimLibs[actorid][2] =
+						FIXES_gsActorAnimLibs[actorid][3] =
+							FIXES_gsActorAnimLibs[actorid][4] = -1,
+			actorid;
+	}
+	
+	#define _ALS_CreateActor
+	#define CreateActor FIXES_CreateActor
+#endif
+
+/* 
+ * FIXES_DestroyActor(actorid)
+ * 
+ * FIXES:
+ *     ApplyActorAnimation_2
+ */
+
+#if defined _ALS_DestroyActor
+	#error _ALS_DestroyActor defined
+#endif
+native BAD_DestroyActor(actorid) = DestroyActor;
+
+#if FIX_ApplyActorAnimation_2
+	stock FIXES_DestroyActor(actorid)
+	{
+		if (FIXES_gsActorAnimTimer[actorid])
+		{
+			KillTimer(FIXES_gsActorAnimTimer[actorid]),
+			FIXES_gsActorAnimTimer[actorid] = 0;
+		}
+
+		return DestroyActor(actorid);
+	}
+	
+	#define _ALS_DestroyActor
+	#define DestroyActor FIXES_DestroyActor
 #endif
 
 /* 
