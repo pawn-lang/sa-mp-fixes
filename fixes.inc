@@ -8307,10 +8307,10 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapons, &ammo) = GetPlayerWeapo
 #if defined _ALS_strcmp
 	#error _ALS_strcmp defined
 #endif
-native BAD_strcmp(const string1[], const string2[], bool:ignorecase, length=cellmax) = strcmp;
+native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, length=cellmax) = strcmp;
 
 #if FIX_strcmp
-	stock FIXES_strcmp(const string1[], const string2[], bool:ignorecase, length=cellmax)
+	stock FIXES_strcmp(const string1[], const string2[], bool:ignorecase=false, length=cellmax)
 	{
 		if (string1[0])
 		{
