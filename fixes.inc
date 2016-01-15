@@ -8154,7 +8154,7 @@ native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, l
 	
 	public _FIXES_ApplyActorAnimation(actorid, animlib, Float:fDelta, loop, lockx, locky, freeze, time)
 	{
-		ApplyActorAnimation(actorid, FIXES_gsActorAnimLibs[animlib], FIXES_gsActorAnimName[actorid], fDelta, loop, lockx, locky, freeze, time),
+		ApplyActorAnimation(actorid, FIXES_gscAnimLib[animlib], FIXES_gsActorAnimName[actorid], fDelta, loop, lockx, locky, freeze, time),
 		FIXES_gsActorAnimTimer[actorid] = 0;
 	}
 #endif
