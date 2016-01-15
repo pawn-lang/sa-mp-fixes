@@ -636,6 +636,22 @@
  * SEE:      "FIXES_strcmp".
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
  * 
+ * FIX:      GetPVarString
+ * PROBLEM:  Wrong symbol code for cyrillic symbols.
+ * SOLUTION: Use logical conjunction on symbol and 0xFF.
+ * SEE:      "FIXES_GetPVarString".
+ * AUTHOR:   ziggi (https://github.com/ziggi)
+ * AUTHOR:   Mutha_X
+ * POST:     http://forum.sa-mp.com/showthread.php?t=572724&page=11
+ * 
+ * FIX:      GetSVarString
+ * PROBLEM:  Wrong symbol code for cyrillic symbols.
+ * SOLUTION: Use logical conjunction on symbol and 0xFF.
+ * SEE:      "FIXES_GetSVarString".
+ * AUTHOR:   ziggi (https://github.com/ziggi)
+ * AUTHOR:   Mutha_X
+ * POST:     http://forum.sa-mp.com/showthread.php?t=572724&page=11
+ * 
  * ==============
  *  STYLE RULES: 
  * ==============
@@ -1498,6 +1514,20 @@
 #elseif _FIXES_IS_UNSET(FIX_strcmp)
 	#undef FIX_strcmp
 	#define FIX_strcmp      (2)
+#endif
+
+#if !defined FIX_GetPVarString
+	#define FIX_GetPVarString      (0)
+#elseif _FIXES_IS_UNSET(FIX_GetPVarString)
+	#undef FIX_GetPVarString
+	#define FIX_GetPVarString      (2)
+#endif
+
+#if !defined FIX_GetSVarString
+	#define FIX_GetSVarString      (0)
+#elseif _FIXES_IS_UNSET(FIX_GetSVarString)
+	#undef FIX_GetSVarString
+	#define FIX_GetSVarString      (2)
 #endif
 
 /* 
@@ -8577,6 +8607,73 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 	
 	#define _ALS_strcmp
 	#define strcmp FIXES_strcmp
+#endif
+
+/* 
+ * _FIXES_FixAscii(text[])
+ * 
+ * FIXES:
+ *     GetPVarString
+ *     GetSVarString
+ */
+
+#if FIX_GetPVarString || FIX_GetSVarString
+	static stock _FIXES_FixAscii(text[])
+	{
+		for (new i = 0; text[i] != '\0'; i++) {
+			text[i] &= 0xFF;
+		}
+	}
+#endif
+
+/* 
+ * FIXES_GetPVarString(playerid, varname[], string_return[], len)
+ * 
+ * FIXES:
+ *     GetPVarString
+ */
+
+#if defined _ALS_GetPVarString
+	#error _ALS_GetPVarString defined
+#endif
+native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
+
+#if FIX_GetPVarString
+	stock FIXES_GetPVarString(playerid, varname[], string_return[], len)
+	{
+		return
+			len = GetPVarString(playerid, varname, string_return, len),
+			_FIXES_FixAscii(string_return),
+			len;
+	}
+	
+	#define _ALS_GetPVarString
+	#define GetPVarString FIXES_GetPVarString
+#endif
+
+/* 
+ * FIXES_GetSVarString(varname[], string_return[], len)
+ * 
+ * FIXES:
+ *     GetSVarString
+ */
+
+#if defined _ALS_GetSVarString
+	#error _ALS_GetSVarString defined
+#endif
+native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
+
+#if FIX_GetSVarString
+	stock FIXES_GetSVarString(varname[], string_return[], len)
+	{
+		return
+			len = GetSVarString(varname, string_return, len),
+			_FIXES_FixAscii(string_return),
+			len;
+	}
+	
+	#define _ALS_GetSVarString
+	#define GetSVarString FIXES_GetSVarString
 #endif
 
 /* 
