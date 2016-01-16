@@ -8629,8 +8629,8 @@ native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarStr
 	stock FIXES_GetPVarString(playerid, varname[], string_return[], len)
 	{
 		len = GetPVarString(playerid, varname, string_return, len);
-		do {
-		} while ((string_return[i] &= 0xFF) != '\0');
+		static i; i = -1;
+		do {} while ((string_return[++i] &= 0xFF) != '\0');
 		return len;
 	}
 	
@@ -8654,8 +8654,8 @@ native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
 	stock FIXES_GetSVarString(varname[], string_return[], len)
 	{
 		len = GetSVarString(varname, string_return, len);
-		do {
-		} while ((string_return[i] &= 0xFF) != '\0');
+		static i; i = -1;
+		do {} while ((string_return[++i] &= 0xFF) != '\0');
 		return len;
 	}
 	
