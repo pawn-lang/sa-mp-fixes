@@ -637,20 +637,24 @@
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
  * 
  * FIX:      GetPVarString
- * PROBLEM:  Wrong symbol code for cyrillic symbols.
+ * PROBLEM:  Wrong symbol code for symbols with code 128 and above.
  * SOLUTION: Use logical conjunction on symbol and 0xFF.
  * SEE:      "FIXES_GetPVarString".
  * AUTHOR:   ziggi (https://github.com/ziggi)
  * AUTHOR:   Mutha_X
+ * AUTHOR:   Daniel_Cortez
  * POST:     http://forum.sa-mp.com/showthread.php?t=572724&page=11
+ * POST:     http://pro-pawn.ru/showthread.php?13007
  * 
  * FIX:      GetSVarString
- * PROBLEM:  Wrong symbol code for cyrillic symbols.
+ * PROBLEM:  Wrong symbol code for symbols with code 128 and above.
  * SOLUTION: Use logical conjunction on symbol and 0xFF.
  * SEE:      "FIXES_GetSVarString".
  * AUTHOR:   ziggi (https://github.com/ziggi)
  * AUTHOR:   Mutha_X
+ * AUTHOR:   Daniel_Cortez
  * POST:     http://forum.sa-mp.com/showthread.php?t=572724&page=11
+ * POST:     http://pro-pawn.ru/showthread.php?13007
  * 
  * ==============
  *  STYLE RULES: 
@@ -8610,23 +8614,6 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 #endif
 
 /* 
- * _FIXES_FixAscii(text[])
- * 
- * FIXES:
- *     GetPVarString
- *     GetSVarString
- */
-
-#if FIX_GetPVarString || FIX_GetSVarString
-	static stock _FIXES_FixAscii(text[])
-	{
-		for (new i = 0; text[i] != '\0'; i++) {
-			text[i] &= 0xFF;
-		}
-	}
-#endif
-
-/* 
  * FIXES_GetPVarString(playerid, varname[], string_return[], len)
  * 
  * FIXES:
@@ -8641,10 +8628,10 @@ native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarStr
 #if FIX_GetPVarString
 	stock FIXES_GetPVarString(playerid, varname[], string_return[], len)
 	{
-		return
-			len = GetPVarString(playerid, varname, string_return, len),
-			_FIXES_FixAscii(string_return),
-			len;
+		len = GetPVarString(playerid, varname, string_return, len);
+		do {
+		} while ((string_return[i] &= 0xFF) != '\0');
+		return len;
 	}
 	
 	#define _ALS_GetPVarString
@@ -8666,10 +8653,10 @@ native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
 #if FIX_GetSVarString
 	stock FIXES_GetSVarString(varname[], string_return[], len)
 	{
-		return
-			len = GetSVarString(varname, string_return, len),
-			_FIXES_FixAscii(string_return),
-			len;
+		len = GetSVarString(varname, string_return, len);
+		do {
+		} while ((string_return[i] &= 0xFF) != '\0');
+		return len;
 	}
 	
 	#define _ALS_GetSVarString
