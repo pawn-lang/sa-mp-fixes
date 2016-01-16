@@ -642,7 +642,7 @@
  * SEE:      "FIXES_GetPVarString".
  * AUTHOR:   ziggi (https://github.com/ziggi)
  * AUTHOR:   Mutha_X
- * AUTHOR:   Daniel_Cortez
+ * AUTHOR:   Daniel_Cortez (https://github.com/Daniel-Cortez)
  * POST:     http://forum.sa-mp.com/showthread.php?t=572724&page=11
  * POST:     http://pro-pawn.ru/showthread.php?13007
  * 
@@ -652,7 +652,7 @@
  * SEE:      "FIXES_GetSVarString".
  * AUTHOR:   ziggi (https://github.com/ziggi)
  * AUTHOR:   Mutha_X
- * AUTHOR:   Daniel_Cortez
+ * AUTHOR:   Daniel_Cortez (https://github.com/Daniel-Cortez)
  * POST:     http://forum.sa-mp.com/showthread.php?t=572724&page=11
  * POST:     http://pro-pawn.ru/showthread.php?13007
  * 
