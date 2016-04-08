@@ -52,6 +52,7 @@
  *           and "Night vision Goggles").
  * SEE:      "FIXES_GetWeaponName".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ * FIXED IN: 0.3.7
  *
  * FIX:      SetPlayerWorldBounds
  * PROBLEM:  Aiming can bypass the edge.
@@ -849,7 +850,11 @@
 #endif
 
 #if !defined FIX_GetWeaponName
-	#define FIX_GetWeaponName            (1)
+	#if defined GetVehicleParamsSirenState
+		#define FIX_GetWeaponName (0)
+	#else
+		#define FIX_GetWeaponName (1)
+	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeaponName)
 	#undef FIX_GetWeaponName
 	#define FIX_GetWeaponName            (2)
