@@ -657,6 +657,20 @@
  * POST:     http://forum.sa-mp.com/showthread.php?t=572724&page=11
  * POST:     http://pro-pawn.ru/showthread.php?13007
  *
+ * FIX:      toupper
+ * PROBLEM:  Not working on Linux for symbols with code 128 and above.
+ * SOLUTION: Recreate the function.
+ * SEE:      "FIXES_toupper".
+ * AUTHOR:   ziggi (https://github.com/ziggi)
+ * POST:     http://pro-pawn.ru/showthread.php?13466&p=72954#post72954
+ *
+ * FIX:      tolower
+ * PROBLEM:  Not working on Linux for symbols with code 128 and above.
+ * SOLUTION: Recreate the function.
+ * SEE:      "FIXES_tolower".
+ * AUTHOR:   ziggi (https://github.com/ziggi)
+ * POST:     http://pro-pawn.ru/showthread.php?13466&p=72954#post72954
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1537,6 +1551,20 @@
 #elseif _FIXES_IS_UNSET(FIX_GetSVarString)
 	#undef FIX_GetSVarString
 	#define FIX_GetSVarString      (2)
+#endif
+
+#if !defined FIX_toupper
+	#define FIX_toupper      (1)
+#elseif _FIXES_IS_UNSET(FIX_toupper)
+	#undef FIX_toupper
+	#define FIX_toupper      (2)
+#endif
+
+#if !defined FIX_tolower
+	#define FIX_tolower      (1)
+#elseif _FIXES_IS_UNSET(FIX_tolower)
+	#undef FIX_tolower
+	#define FIX_tolower      (2)
 #endif
 
 /*
@@ -8666,6 +8694,72 @@ native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
 
 	#define _ALS_GetSVarString
 	#define GetSVarString FIXES_GetSVarString
+#endif
+
+/*
+ * FIXES_toupper(c)
+ *
+ * FIXES:
+ *     toupper
+ */
+
+#if defined _ALS_toupper
+	#error _ALS_toupper defined
+#endif
+native BAD_toupper(c) = toupper;
+
+#if FIX_toupper
+	stock FIXES_toupper(c)
+	{
+		switch (c)
+		{
+			case 'a'..'z', 'а'..'я':
+			{
+				return c - 32;
+			}
+			case 'ё':
+			{
+				return c - 16;
+			}
+		}
+		return c;
+	}
+
+	#define _ALS_toupper
+	#define toupper FIXES_toupper
+#endif
+
+/*
+ * FIXES_tolower(c)
+ *
+ * FIXES:
+ *     tolower
+ */
+
+#if defined _ALS_tolower
+	#error _ALS_tolower defined
+#endif
+native BAD_tolower(c) = tolower;
+
+#if FIX_tolower
+	stock FIXES_tolower(c)
+	{
+		switch (c)
+		{
+			case 'A'..'Z', 'А'..'Я':
+			{
+				return c + 32;
+			}
+			case 'Ё':
+			{
+				return c + 16;
+			}
+		}
+		return c;
+	}
+
+	#define _ALS_tolower
+	#define tolower FIXES_tolower
 #endif
 
 /*
