@@ -130,6 +130,11 @@ OnPlayerRequestClass | Random blunts and bottles sometimes appear in class selec
 SetPlayerColor | If used under OnPlayerConnect, the affecting player will not see the color in the TAB menu. | [Emmet_](https://github.com/emmet-jones/) | [Link](http://forum.sa-mp.com/showthread.php?t=452407) |  |
 FileMaths | You can write gibberish like "File:a; ++a;". | [Y_Less](https://github.com/Y-Less/) |  |
 GetPlayerWeaponData | Old weapons with no ammo left are still returned. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showthread.php?t=567400) |  |
+strcmp | Return 0 if anyone of the string is empty. | [Y_Less](https://github.com/Y-Less/) |  |  |
+GetPVarString | Wrong symbol code for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)/Mutha_X/[Daniel_Cortez](https://github.com/Daniel-Cortez) | [Link](http://forum.sa-mp.com/showthread.php?t=572724&page=11)/[Link](http://pro-pawn.ru/showthread.php?13007) |  |
+GetSVarString | Wrong symbol code for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)/Mutha_X/[Daniel_Cortez](https://github.com/Daniel-Cortez) | [Link](http://forum.sa-mp.com/showthread.php?t=572724&page=11)/[Link](http://pro-pawn.ru/showthread.php?13007) |  |
+toupper | Not working on Linux for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)| [Link](http://pro-pawn.ru/showthread.php?13466&p=72954#post72954) |  |
+tolower | Not working on Linux for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)| [Link](http://pro-pawn.ru/showthread.php?13466&p=72954#post72954) |  |
 
 # Options
 
