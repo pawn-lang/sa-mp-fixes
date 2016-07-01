@@ -8713,11 +8713,11 @@ native BAD_toupper(c) = toupper;
 	{
 		switch (c)
 		{
-			case 'a'..'z', 'а'..'я':
+			case 'a'..'z', 192..223:
 			{
 				return c - 32;
 			}
-			case 'ё':
+			case 168:
 			{
 				return c - 16;
 			}
@@ -8746,11 +8746,11 @@ native BAD_tolower(c) = tolower;
 	{
 		switch (c)
 		{
-			case 'A'..'Z', 'А'..'Я':
+			case 'A'..'Z', 224..255:
 			{
 				return c + 32;
 			}
-			case 'Ё':
+			case 184:
 			{
 				return c + 16;
 			}
