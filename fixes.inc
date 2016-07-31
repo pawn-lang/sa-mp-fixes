@@ -91,13 +91,14 @@
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
  * FIX:      GetPlayerWeapon
- * PROBLEM:  Returns the old value after using "SetPlayerArmedWeapon" when they
- *           are in a vehicle.
- * SOLUTION: If "SetPlayerArmedWeapon" is called in a vehicle, store the new
- *           value and return that instead.
+ * PROBLEM:  Returns the old value after entering in a vehicle.
+ * SOLUTION: If "SetPlayerArmedWeapon" and other similar functions is called in
+ *           a vehicle, store the new value and return that instead.
  * SEE:      "OnPlayerStateChange", "FIXES_SetPlayerArmedWeapon", and
- *           "FIXES_GetPlayerWeapon".
+ *           "FIXES_GetPlayerWeapon", "FIXES_GivePlayerWeapon",
+ *           "FIXES_ResetPlayerWeapons".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ * AUTHOR:   Xerieos (https://github.com/Xerieos/)
  *
  * FIX:      PutPlayerInVehicle
  * PROBLEM:  If this is used on a passenger the driver of their old vehicle
@@ -4758,7 +4759,6 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if FIX_AllowInteriorWeapons
 			if (pbools & e_FIXES_BOOLS_INTERIOR)
 			{
-				// DONE: May need integration with "FIX_GetPlayerWeapon".
 				SetPlayerArmedWeapon(playerid, 0);
 			}
 		#endif
@@ -5937,9 +5937,39 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 		//  END:   HydraSniper
 		// ====================
 
+		#if FIX_GetPlayerWeapon
+			#if PLAYER_STATE_PASSENGER != PLAYER_STATE_DRIVER + 1
+				#error FIX_GetPlayerWeapon state assertation failed.
+			#endif
+			if (_FIXES_IN_RANGE(newstate, PLAYER_STATE_DRIVER, PLAYER_STATE_PASSENGER + 1))
+			{
+				// ========================
+				//  BEGIN: GetPlayerWeapon
+				// ========================
+				#if FIX_GetPlayerWeapon
+					new
+						weapon,
+						ammo;
+					GetPlayerWeaponData(playerid, 4, weapon, ammo);
+					if (weapon)
+					{
+						SetPlayerArmedWeapon(playerid, weapon);
+						#if FIXES_Single
+							FIXES_gsPlayerWeapon[playerid] = weapon;
+						#else
+							SetPVarInt(playerid, FIXES_pvarPlayerWeapon, weapon);
+						#endif
+					}
+				#endif
+				// ========================
+				//  END:   GetPlayerWeapon
+				// ========================
+			}
+		#endif
+
 		#if FIX_GetPlayerWeapon || FIX_PutPlayerInVehicle || FIX_TrainExit
 			#if PLAYER_STATE_PASSENGER != PLAYER_STATE_DRIVER + 1
-				#error FIX_GetPlayerWeapon/FIX_PutPlayerInVehicle state assertation failed.
+				#error FIX_GetPlayerWeapon/FIX_PutPlayerInVehicle/FIX_TrainExit state assertation failed.
 			#endif
 			if (_FIXES_IN_RANGE(oldstate, PLAYER_STATE_DRIVER, PLAYER_STATE_PASSENGER + 1))
 			{
@@ -6036,33 +6066,74 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 #endif
 native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 
-#if FIX_HydraSniper
+#if FIX_HydraSniper || FIX_GetPlayerWeapon
 	stock FIXES_GivePlayerWeapon(playerid, weaponid, ammo)
 	{
 		new
 			vid = GetPlayerVehicleID(playerid);
 		if (vid)
 		{
-			vid = GetVehicleModel(vid);
-			if (weaponid == 34 && (vid == 520 || vid == 425))
-			{
-				vid = GivePlayerWeapon(playerid, weaponid, ammo),
-				SetPlayerArmedWeapon(playerid, 0);
-				#if FIX_GetPlayerWeapon
-					#if FIXES_Single
-						FIXES_gsPlayerWeapon[playerid] = 0;
-					#else
-						SetPVarInt(playerid, FIXES_pvarPlayerWeapon, 0);
+			#if FIX_HydraSniper
+				vid = GetVehicleModel(vid);
+				if (weaponid == 34 && (vid == 520 || vid == 425))
+				{
+					vid = GivePlayerWeapon(playerid, weaponid, ammo),
+					SetPlayerArmedWeapon(playerid, 0);
+					#if FIX_GetPlayerWeapon
+						#if FIXES_Single
+							FIXES_gsPlayerWeapon[playerid] = 0;
+						#else
+							SetPVarInt(playerid, FIXES_pvarPlayerWeapon, 0);
+						#endif
 					#endif
+					return vid;
+				}
+			#endif
+
+			#if FIX_GetPlayerWeapon
+				#if FIXES_Single
+					FIXES_gsPlayerWeapon[playerid] = weaponid;
+				#else
+					SetPVarInt(playerid, FIXES_pvarPlayerWeapon, weaponid);
 				#endif
-				return vid;
-			}
+			#endif
 		}
 		return GivePlayerWeapon(playerid, weaponid, ammo);
 	}
 
 	#define _ALS_GivePlayerWeapon
 	#define GivePlayerWeapon FIXES_GivePlayerWeapon
+#endif
+
+
+/*
+ * FIXES_ResetPlayerWeapons(playerid)
+ *
+ * FIXES:
+ *     GetPlayerWeapon
+ */
+
+#if defined _ALS_ResetPlayerWeapons
+	#error _ALS_ResetPlayerWeapons defined
+#endif
+native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
+
+#if FIX_GetPlayerWeapon
+	stock FIXES_ResetPlayerWeapons(playerid)
+	{
+		if (IsPlayerInAnyVehicle(playerid))
+		{
+			#if FIXES_Single
+				FIXES_gsPlayerWeapon[playerid] = 0;
+			#else
+				SetPVarInt(playerid, FIXES_pvarPlayerWeapon, 0);
+			#endif
+		}
+		return ResetPlayerWeapons(playerid);
+	}
+
+	#define _ALS_ResetPlayerWeapons
+	#define ResetPlayerWeapons FIXES_ResetPlayerWeapons
 #endif
 
 /*
@@ -6077,7 +6148,7 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 #endif
 native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 
-#if FIX_GetPlayerWeapon
+#if FIX_GetPlayerWeapon || FIX_AllowInteriorWeapons || FIX_HydraSniper
 	stock FIXES_SetPlayerArmedWeapon(playerid, weaponid)
 	{
 		#if FIX_AllowInteriorWeapons
@@ -6099,10 +6170,12 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 				}
 			#endif
 
-			#if FIXES_Single
-				FIXES_gsPlayerWeapon[playerid] = weaponid;
-			#else
-				SetPVarInt(playerid, FIXES_pvarPlayerWeapon, weaponid);
+			#if FIX_GetPlayerWeapon
+				#if FIXES_Single
+					FIXES_gsPlayerWeapon[playerid] = weaponid;
+				#else
+					SetPVarInt(playerid, FIXES_pvarPlayerWeapon, weaponid);
+				#endif
 			#endif
 		}
 		return SetPlayerArmedWeapon(playerid, weaponid);
