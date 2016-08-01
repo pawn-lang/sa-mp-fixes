@@ -5900,7 +5900,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 							model = GetVehicleModel(GetPlayerVehicleID(playerid));
 						}
 					#endif
-			#if !FIX_HydraSniper
+			#if !FIX_HydraSniper && !FIX_GetPlayerWeapon
 				}
 			#endif
 		#endif
@@ -5931,22 +5931,23 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 							#endif
 						#endif
 					}
+			#if !FIX_GetPlayerWeapon
 				}
+			#endif
 		#endif
 		// ====================
 		//  END:   HydraSniper
 		// ====================
 
+		// ========================
+		//  BEGIN: GetPlayerWeapon
+		// ========================
 		#if FIX_GetPlayerWeapon
-			#if PLAYER_STATE_PASSENGER != PLAYER_STATE_DRIVER + 1
-				#error FIX_GetPlayerWeapon state assertation failed.
+			#if !FIX_OnPlayerEnterVehicle && !FIX_HydraSniper
+				// Only called if the same check above isn't called.
+				if (newstate == PLAYER_STATE_DRIVER)
+				{
 			#endif
-			if (_FIXES_IN_RANGE(newstate, PLAYER_STATE_DRIVER, PLAYER_STATE_PASSENGER + 1))
-			{
-				// ========================
-				//  BEGIN: GetPlayerWeapon
-				// ========================
-				#if FIX_GetPlayerWeapon
 					new
 						weapon,
 						ammo;
@@ -5960,12 +5961,11 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 							SetPVarInt(playerid, FIXES_pvarPlayerWeapon, weapon);
 						#endif
 					}
-				#endif
-				// ========================
-				//  END:   GetPlayerWeapon
-				// ========================
-			}
+				}
 		#endif
+		// ========================
+		//  END:   GetPlayerWeapon
+		// ========================
 
 		#if FIX_GetPlayerWeapon || FIX_PutPlayerInVehicle || FIX_TrainExit
 			#if PLAYER_STATE_PASSENGER != PLAYER_STATE_DRIVER + 1
