@@ -4576,7 +4576,7 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 				//  BEGIN: DriveBy
 				// ===============================
 				#if FIX_DriveBy
-					OnPlayerKeyStateChange(playerid, KEY_CROUCH, 0);
+					_FIXES_HideDriveByWeapon(playerid);
 				#endif
 				// ======================
 				//  END:   DriveBy
@@ -5163,6 +5163,15 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		}
 		return FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DRIVE_BY;
 	}
+
+	static stock _FIXES_HideDriveByWeapon(playerid)
+	{
+		FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon(playerid),
+		FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
+		SetPlayerArmedWeapon(playerid, 0),
+		ApplyAnimation(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1),
+		SetTimerEx(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
+	}
 #endif
 
 /*
@@ -5185,11 +5194,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				{
 					if ((newkeys & KEY_CROUCH) && !(oldkeys & KEY_CROUCH) && GetPlayerState(playerid) == PLAYER_STATE_PASSENGER && GetPlayerCameraMode(playerid) == 55 && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DRIVE_BY))
 					{
-						FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon(playerid),
-						FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
-						SetPlayerArmedWeapon(playerid, 0),
-						ApplyAnimation(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1),
-						SetTimerEx(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
+						_FIXES_HideDriveByWeapon(playerid);
 					}
 				}
 		#endif
