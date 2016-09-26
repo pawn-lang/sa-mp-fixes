@@ -5281,7 +5281,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: PassengerSeating
 		// =============================
 		#if FIX_PassengerSeating
-			FIXES_gsPSTimer[playerid] = GetTickCount() + 1300;
+			FIXES_gsPSTimer[playerid] = GetTickCount() + 2800;
 		#endif
 		// =============================
 		//  END: PassengerSeating
