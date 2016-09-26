@@ -672,6 +672,12 @@
  * AUTHOR:   ziggi (https://github.com/ziggi)
  * POST:     http://pro-pawn.ru/showthread.php?13466&p=72954#post72954
  *
+ * FIX:      PassengerSeating
+ * PROBLEM:  Teleporting player to passenger seat after delay.
+ * SOLUTION: Call ClearAnimation after some delay.
+ * SEE:      "OnPlayerEnterVehicle", "OnPlayerStateChange".
+ * AUTHOR:   ziggi (https://github.com/ziggi)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1568,6 +1574,13 @@
 	#define FIX_tolower      (2)
 #endif
 
+#if !defined FIX_PassengerSeating
+	#define FIX_PassengerSeating      (1)
+#elseif _FIXES_IS_UNSET(FIX_PassengerSeating)
+	#undef FIX_PassengerSeating
+	#define FIX_PassengerSeating      (2)
+#endif
+
 /*
  * CHAIN_ORDER
  *
@@ -2156,6 +2169,14 @@ static stock
 	 */
 #if !FIXES_Single && FIX_OnPlayerSpawn
 	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash",
+#endif
+	/*
+	 * FIXES_gsPSTimer[MAX_PLAYERS]
+	 *
+	 * The timers used to prevent players seating.
+	 */
+#if FIX_PassengerSeating
+	FIXES_gsPSTimer[MAX_PLAYERS],
 #endif
 	/*
 	 * FIXES_gscHideGameTextTimer[]
@@ -4723,9 +4744,10 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  *     OnVehicleMod
  *     OnPlayerEnterVehicle
  *     OnPlayerEnterVehicle_2
+ *     PassengerSeating
  */
 
-#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod
+#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating
 	public OnPlayerUpdate(playerid)
 	{
 		// =============================
@@ -4843,6 +4865,22 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#endif
 		// =================================
 		//  END:   TogglePlayerControllable
+		// =================================
+
+		// =================================
+		//  BEGIN: PassengerSeating
+		// =================================
+		#if FIX_PassengerSeating
+			if (FIXES_gsPSTimer[playerid] != 0
+				&& GetTickCount() > FIXES_gsPSTimer[playerid]
+				&& GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE)
+			{
+				ClearAnimations(playerid, 1);
+				FIXES_gsPSTimer[playerid] = 0;
+			}
+		#endif
+		// =================================
+		//  END:   PassengerSeating
 		// =================================
 
 		return FIXES_OnPlayerUpdate(playerid);
@@ -5219,25 +5257,37 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  *
  * FIXES:
  *     OnPlayerEnterVehicle_2
+ *     PassengerSeating
  */
 
-#if FIX_OnPlayerEnterVehicle_2
+#if FIX_OnPlayerEnterVehicle_2 || FIX_PassengerSeating
 	public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	{
 		// ===============================
 		//  BEGIN: OnPlayerEnterVehicle_2
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_2
-			if (0 < vehicleid < MAX_VEHICLES)
+			if (!(0 < vehicleid < MAX_VEHICLES))
 			{
-				return FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
+				FIXES_BlockUpdate(playerid, true);
+				return 0;
 			}
-			FIXES_BlockUpdate(playerid, true);
-			return 0;
 		#endif
 		// =============================
 		//  END: OnPlayerEnterVehicle_2
 		// =============================
+
+		// =============================
+		//  BEGIN: PassengerSeating
+		// =============================
+		#if FIX_PassengerSeating
+			FIXES_gsPSTimer[playerid] = GetTickCount() + 1300;
+		#endif
+		// =============================
+		//  END: PassengerSeating
+		// =============================
+
+		return FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
 	}
 
 	#if defined _ALS_OnPlayerEnterVehicle
@@ -6046,6 +6096,19 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 				#endif
 			}
 		#endif
+
+		// =================================
+		//  BEGIN: PassengerSeating
+		// =================================
+		#if FIX_PassengerSeating
+			if (newstate == PLAYER_STATE_PASSENGER && FIXES_gsPSTimer[playerid] != 0)
+			{
+				FIXES_gsPSTimer[playerid] = 0;
+			}
+		#endif
+		// =================================
+		//  END:   PassengerSeating
+		// =================================
 
 		return FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
 	}
