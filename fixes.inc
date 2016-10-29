@@ -302,23 +302,6 @@
  * SEE:      "FIX_file_inc".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
- * FIX:      IsPlayerAttachedObjectSlotUsed
- * PROBLEM:  Doesn't work in OnPlayerDisconnect.
- * SOLUTION: Maintain an internal record of slots used.
- * SEE:      "FIXES_SetPlayerAttachedObject",
- *           "FIXES_RemovePlayerAttachedObject",
- *           "FIXES_IsPAttachedObjectSlotUsed", and
- *           "OnPlayerDisconnect".
- * AUTHOR:   Y_Less (https://github.com/Y-Less/)
- *
- * FIX:      SetPlayerAttachedObject
- * PROBLEM:  Doesn't remove objects when the mode ends.
- * SOLUTION: Remove them.
- * SEE:      "FIXES_SetPlayerAttachedObject",
- *           "FIXES_RemovePlayerAttachedObject", and
- *           "OnPlayerDisconnect".
- * AUTHOR:   Y_Less (https://github.com/Y-Less/)
- *
  * FIX:      OnPlayerDeath
  * PROBLEM:  Clients get stuck when they die with an animation applied.
  * SOLUTION: Clear their animations.
@@ -1244,20 +1227,6 @@
 	#define FIX_flength                  (2)
 #endif
 
-#if !defined FIX_IsPlayerAttachedObjSlotUsed
-	#define FIX_IsPlayerAttachedObjSlotUsed (1)
-#elseif _FIXES_IS_UNSET(FIX_IsPlayerAttachedObjSlotUsed)
-	#undef FIX_IsPlayerAttachedObjSlotUsed
-	#define FIX_IsPlayerAttachedObjSlotUsed (2)
-#endif
-
-#if !defined FIX_SetPlayerAttachedObject
-	#define FIX_SetPlayerAttachedObject  (1)
-#elseif _FIXES_IS_UNSET(FIX_SetPlayerAttachedObject)
-	#undef FIX_SetPlayerAttachedObject
-	#define FIX_SetPlayerAttachedObject  (2)
-#endif
-
 #if !defined FIX_OnPlayerDeath
 	#define FIX_OnPlayerDeath            (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDeath)
@@ -1970,12 +1939,6 @@ static stock
 	 * A collection of 1-bit options, compressed together to save space.
 	 */
 	e_FIXES_SETTINGS:FIXES_gsSettings = e_FIXES_SETTINGS_SECOND_USE,
-	/*
-	 * FIXES_gsObjectSlots[_FIXES_CEILDIV(MAX_PLAYERS, _FIXES_ATTACHMENTS)]
-	 *
-	 * A record of which attached object slots a player has used.
-	 */
-	FIXES_gsObjectSlots[_FIXES_CEILDIV(MAX_PLAYERS, _FIXES_ATTACHMENTS)],
 	/*
 	 * FIXES_gsLastAnimation[MAX_PLAYERS]
 	 *
@@ -4069,7 +4032,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  *     GetPlayerMenu
  */
 
-#if FIX_SetPlayerAttachedObject || FIX_IsPlayerAttachedObjSlotUsed || FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
+#if FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
 	public OnPlayerDisconnect(playerid, reason)
 	{
 		new
@@ -4122,41 +4085,17 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		//  BEGIN: SetPlayerAttachedObject
 		// ================================
 		#if FIX_SetPlayerAttachedObject
-			#if !(FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2))
-				new
-			#endif
-					shift = playerid % _FIXES_ATTACHMENTS * MAX_PLAYER_ATTACHED_OBJECTS;
-			#pragma tabsize 4
-			new
-				slot = playerid / _FIXES_ATTACHMENTS;
-			#if !FIXES_Single
-				if (!_FIXES_gIsFilterscript)
-			#endif
+			for (new i = 0; i != MAX_PLAYER_ATTACHED_OBJECTS; ++i)
+			{
+				if (IsPlayerAttachedObjectSlotUsed(playerid, i))
 				{
-					for (new i = 0; i != MAX_PLAYER_ATTACHED_OBJECTS; ++i)
-					{
-						if (FIXES_gsObjectSlots[slot] & 1 << shift + i)
-						{
-							RemovePlayerAttachedObject(playerid, i);
-						}
-					}
+					RemovePlayerAttachedObject(playerid, i);
 				}
-			#pragma tabsize 4
-			FIXES_gsObjectSlots[slot] &= ~((1 << MAX_PLAYER_ATTACHED_OBJECTS) - 1 << shift);
+			}
 		#endif
 		// ================================
 		//  END:   SetPlayerAttachedObject
 		// ================================
-
-		// =======================================
-		//  BEGIN: IsPlayerAttachedObjectSlotUsed
-		// =======================================
-		#if FIX_IsPlayerAttachedObjSlotUsed && !FIX_SetPlayerAttachedObject
-			FIXES_gsObjectSlots[playerid / _FIXES_ATTACHMENTS] &= ~((1 << MAX_PLAYER_ATTACHED_OBJECTS) - 1 << playerid % _FIXES_ATTACHMENTS * MAX_PLAYER_ATTACHED_OBJECTS);
-		#endif
-		// =======================================
-		//  END:   IsPlayerAttachedObjectSlotUsed
-		// =======================================
 
 		// =============
 		//  BEGIN: Kick
@@ -7761,115 +7700,6 @@ native BAD_Kick(playerid) = Kick;
 #endif
 
 /*
- * FIXES_IsPAttachedObjectSlotUsed(playerid, index)
- *
- * FIXES:
- *     IsPlayerAttachedObjectSlotUsed
- */
-
-#if defined _ALS_IsPAttachedObjSlotUsed
-	#error _ALS_IsPAttachedObjSlotUsed defined
-#endif
-native BAD_IsPlayerAttachedObjSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
-
-#if FIX_IsPlayerAttachedObjSlotUsed
-	stock FIXES_IsPAttachedObjectSlotUsed(playerid, index)
-	{
-		if (_FIXES_IS_PLAYER_CONNECTED(playerid))
-		{
-			return FIXES_gsObjectSlots[playerid / _FIXES_ATTACHMENTS] & 1 << playerid % _FIXES_ATTACHMENTS * MAX_PLAYER_ATTACHED_OBJECTS + index;
-		}
-		return 0;
-	}
-
-	#define _ALS_IsPAttachedObjSlotUsed
-	#define IsPlayerAttachedObjectSlotUsed FIXES_IsPAttachedObjectSlotUsed
-#endif
-
-/*
- * _FIXES_SetPlayerAttachedObject(slot, to)
- *
- * FIXES:
- *     IsPlayerAttachedObjectSlotUsed
- */
-
-#if (FIX_IsPlayerAttachedObjSlotUsed || FIX_SetPlayerAttachedObject) && !FIXES_Single
-	forward _FIXES_SetPlayerAttachedObject(slot, to);
-
-	public _FIXES_SetPlayerAttachedObject(slot, to)
-	{
-		FIXES_gsObjectSlots[slot] = to;
-	}
-#endif
-
-/*
- * FIXES_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0)
- *
- * FIXES:
- *     IsPlayerAttachedObjectSlotUsed
- *     SetPlayerAttachedObject
- */
-
-#if defined _ALS_SetPlayerAttachedObject
-	#error _ALS_SetPlayerAttachedObject defined
-#endif
-native BAD_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0, materialcolor1 = 0, materialcolor2 = 0) = SetPlayerAttachedObject;
-
-#if FIX_IsPlayerAttachedObjSlotUsed || FIX_SetPlayerAttachedObject
-	stock FIXES_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0, materialcolor1 = 0, materialcolor2 = 0)
-	{
-		if (SetPlayerAttachedObject(playerid, index, modelid, bone, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, fRotZ, fScaleX, fScaleY, fScaleZ, materialcolor1, materialcolor2))
-		{
-			#if FIXES_Single
-				FIXES_gsObjectSlots[playerid / _FIXES_ATTACHMENTS] |= (1 << playerid % _FIXES_ATTACHMENTS * MAX_PLAYER_ATTACHED_OBJECTS + index);
-			#else
-				new
-					slot = playerid / _FIXES_ATTACHMENTS;
-				CallRemoteFunction(FIXES_gscSetPlayerAttachedObj, FIXES_gscSpec@ii, slot, FIXES_gsObjectSlots[slot] | (1 << playerid % _FIXES_ATTACHMENTS * MAX_PLAYER_ATTACHED_OBJECTS + index));
-			#endif
-			return 1;
-		}
-		return 0;
-	}
-
-	#define _ALS_SetPlayerAttachedObject
-	#define SetPlayerAttachedObject FIXES_SetPlayerAttachedObject
-#endif
-
-/*
- * FIXES_RemovePlayerAttachedObj(playerid, index)
- *
- * FIXES:
- *     IsPlayerAttachedObjectSlotUsed
- */
-
-#if defined _ALS_RemovePlayerAttachedObject
-	#error _ALS_RemovePlayerAttachedObject defined
-#endif
-native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObject;
-
-#if FIX_IsPlayerAttachedObjSlotUsed || FIX_SetPlayerAttachedObject
-	stock FIXES_RemovePlayerAttachedObj(playerid, index)
-	{
-		if (RemovePlayerAttachedObject(playerid, index))
-		{
-			#if FIXES_Single
-				FIXES_gsObjectSlots[playerid / _FIXES_ATTACHMENTS] &= ~(1 << playerid % _FIXES_ATTACHMENTS * MAX_PLAYER_ATTACHED_OBJECTS + index);
-			#else
-				new
-					slot = playerid / _FIXES_ATTACHMENTS;
-				CallRemoteFunction(FIXES_gscSetPlayerAttachedObj, FIXES_gscSpec@ii, slot, FIXES_gsObjectSlots[slot] & ~(1 << playerid % _FIXES_ATTACHMENTS * MAX_PLAYER_ATTACHED_OBJECTS + index));
-			#endif
-			return 1;
-		}
-		return 0;
-	}
-
-	#define _ALS_RemovePlayerAttachedObject
-	#define RemovePlayerAttachedObject FIXES_RemovePlayerAttachedObj
-#endif
-
-/*
  * _FIXES_DetermineOrder()
  *
  * Figure out which the first filterscript to be called is so that it can do the
@@ -7900,19 +7730,6 @@ native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObj
 			// =============================
 			//  END: AllowInteriorWeapons
 			// =============================
-
-			// ================================
-			//  BEGIN: SetPlayerAttachedObject
-			// ================================
-			#if FIX_IsPlayerAttachedObjSlotUsed || FIX_SetPlayerAttachedObject
-				for (new i = 0; i != _FIXES_ATTACHMENTS; ++i)
-				{
-					CallRemoteFunction(FIXES_gscSetPlayerAttachedObj, FIXES_gscSpec@ii, i, FIXES_gsObjectSlots[i]);
-				}
-			#endif
-			// ==============================
-			//  END: SetPlayerAttachedObject
-			// ==============================
 		}
 		if (existproperty(5, FIXES_gscOrderProperty))
 		{
