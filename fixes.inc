@@ -4873,7 +4873,8 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if FIX_PassengerSeating
 			if (FIXES_gsPSTimer[playerid] != 0
 				&& GetTickCount() > FIXES_gsPSTimer[playerid]
-				&& GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE)
+				&& GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE
+				&& !(1007 <= GetPlayerAnimationIndex(playerid) <= 1060))
 			{
 				ClearAnimations(playerid, 1);
 				FIXES_gsPSTimer[playerid] = 0;
