@@ -302,6 +302,12 @@
  * SEE:      "FIX_file_inc".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
+ * FIX:      SetPlayerAttachedObject
+ * PROBLEM:  Doesn't remove objects when the mode ends.
+ * SOLUTION: Remove them.
+ * SEE:      "OnPlayerDisconnect"
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ *
  * FIX:      OnPlayerDeath
  * PROBLEM:  Clients get stuck when they die with an animation applied.
  * SOLUTION: Clear their animations.
@@ -2683,12 +2689,6 @@ static stock const
 	 * Name of the remote interior weapons function.
 	 */
 	FIXES_gscAllowInteriorWeapons[] = "_FIXES_AllowInteriorWeapons",
-	/*
-	 * FIXES_gscSetPlayerAttachedObj[]
-	 *
-	 * Name of the remote attache object function.
-	 */
-	FIXES_gscSetPlayerAttachedObj[] = "_FIXES_SetPlayerAttachedObject",
 	/*
 	 * FIXES_gscTogglePlayerControl[]
 	 *
