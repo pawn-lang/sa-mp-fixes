@@ -1233,6 +1233,13 @@
 	#define FIX_flength                  (2)
 #endif
 
+#if !defined FIX_SetPlayerAttachedObject
+	#define FIX_SetPlayerAttachedObject  (1)
+#elseif _FIXES_IS_UNSET(FIX_SetPlayerAttachedObject)
+	#undef FIX_SetPlayerAttachedObject
+	#define FIX_SetPlayerAttachedObject  (2)
+#endif
+
 #if !defined FIX_OnPlayerDeath
 	#define FIX_OnPlayerDeath            (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDeath)
