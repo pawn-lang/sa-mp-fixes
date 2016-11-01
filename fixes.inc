@@ -8474,11 +8474,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 
 	public _FIXES_SetTime(playerid, hour, minute)
 	{
-		if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
-		{
-			return SetPlayerTime(playerid, hour, minute);
-		}
-		return 0;
+		return SetPlayerTime(playerid, hour, minute);
 	}
 
 	stock FIXES_SetPlayerTime(playerid, hour, minute)
@@ -8515,11 +8511,7 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 
 	public _FIXES_SetColor(playerid, color)
 	{
-		if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
-		{
-			return SetPlayerColor(playerid, color);
-		}
-		return 0;
+		return SetPlayerColor(playerid, color);
 	}
 
 	stock FIXES_SetPlayerColor(playerid, color)
