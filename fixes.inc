@@ -673,6 +673,12 @@
  * SEE:      "OnPlayerEnterVehicle", "OnPlayerStateChange".
  * AUTHOR:   ziggi (https://github.com/ziggi)
  *
+ * FIX:      GooglesSync
+ * PROBLEM:  Visual effects show for all players.
+ * SOLUTION: return 0 in OnPlayerUpdate after key pressed.
+ * SEE:      "OnPlayerUpdate".
+ * AUTHOR:   ziggi (https://github.com/ziggi)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1578,6 +1584,13 @@
 #elseif _FIXES_IS_UNSET(FIX_PassengerSeating)
 	#undef FIX_PassengerSeating
 	#define FIX_PassengerSeating      (2)
+#endif
+
+#if !defined FIX_GooglesSync
+	#define FIX_GooglesSync      (1)
+#elseif _FIXES_IS_UNSET(FIX_GooglesSync)
+	#undef FIX_GooglesSync
+	#define FIX_GooglesSync      (2)
 #endif
 
 /*
@@ -2819,10 +2832,14 @@ static stock const
  * Because the default SA:MP includes missed some of these.
  */
 
+#define _FIXES_WEAPON_FIST                      (0)
+#define _FIXES_WEAPON_NIGHT_VIS_GOGGLES         (44)
+#define _FIXES_WEAPON_THERMAL_GOGGLES           (45)
+
 #if FIX_WEAPONS
-	#define WEAPON_FIST                         (0)
-	#define WEAPON_NIGHT_VIS_GOGGLES            (44)
-	#define WEAPON_THERMAL_GOGGLES              (45)
+	#define WEAPON_FIST               _FIXES_WEAPON_FIST
+	#define WEAPON_NIGHT_VIS_GOGGLES  _FIXES_WEAPON_NIGHT_VIS_GOGGLES
+	#define WEAPON_THERMAL_GOGGLES    _FIXES_WEAPON_THERMAL_GOGGLES
 #endif
 
 /*
@@ -4720,9 +4737,10 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  *     OnPlayerEnterVehicle
  *     OnPlayerEnterVehicle_2
  *     PassengerSeating
+ *     GooglesSync
  */
 
-#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating
+#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GooglesSync
 	public OnPlayerUpdate(playerid)
 	{
 		// =============================
@@ -4763,7 +4781,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  END: AllowInteriorWeapons
 		// ============================
 
-		#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+		#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_GooglesSync
 			new
 				ud,
 				lr,
@@ -4771,7 +4789,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			GetPlayerKeys(playerid, keys, ud, lr);
 		#endif
 
-		#if FIX_SetPlayerWorldBounds && !FIX_TogglePlayerControllable
+		#if (FIX_SetPlayerWorldBounds || FIX_GooglesSync) && !FIX_TogglePlayerControllable
 			#pragma unused ud, lr
 		#endif
 
@@ -4857,6 +4875,25 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#endif
 		// =================================
 		//  END:   PassengerSeating
+		// =================================
+
+		// =================================
+		//  BEGIN: GooglesSync
+		// =================================
+		#if FIX_GooglesSync
+			switch (GetPlayerWeapon(playerid))
+			{
+				case _FIXES_WEAPON_NIGHT_VIS_GOGGLES, _FIXES_WEAPON_THERMAL_GOGGLES:
+				{
+					if ((keys & KEY_FIRE) && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
+					{
+						return 0;
+					}
+				}
+			}
+		#endif
+		// =================================
+		//  END:   GooglesSync
 		// =================================
 
 		return FIXES_OnPlayerUpdate(playerid);
