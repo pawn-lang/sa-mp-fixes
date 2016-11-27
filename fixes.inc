@@ -565,6 +565,12 @@
  * SEE:      "FIXES_HideGameTextForAll", "FIXES_HideGameTextForPlayer".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
+ * FIX:      WEAPONS
+ * PROBLEM:  Some weapons are not defined by default.
+ * SOLUTION: Define it.
+ * SEE:      N/A.
+ * AUTHOR:   ziggi (https://github.com/ziggi)
+ *
  * FIX:      BODYPARTS
  * PROBLEM:  The bodyparts to be used in OnPlayer(Take/Give)Damage are not
  *           defined by default
@@ -983,6 +989,17 @@
 #elseif _FIXES_IS_UNSET(FIX_gpci)
 	#undef FIX_gpci
 	#define FIX_gpci                     (2)
+#endif
+
+#if !defined FIX_WEAPONS
+	#if defined WEAPON_FIST
+		#define FIX_WEAPONS            (0)
+	#else
+		#define FIX_WEAPONS            (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_WEAPONS)
+	#undef FIX_WEAPONS
+	#define FIX_WEAPONS                (2)
 #endif
 
 #if !defined FIX_BODYPARTS
@@ -2794,6 +2811,18 @@ static stock const
 
 #if FIX_gpci
 	native gpci(playerid, serial[], maxlen);
+#endif
+
+/*
+ * WEAPONS
+ *
+ * Because the default SA:MP includes missed some of these.
+ */
+
+#if FIX_WEAPONS
+	#define WEAPON_FIST                         (0)
+	#define WEAPON_NIGHT_VIS_GOGGLES            (44)
+	#define WEAPON_THERMAL_GOGGLES              (45)
 #endif
 
 /*
