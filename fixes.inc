@@ -673,7 +673,7 @@
  * SEE:      "OnPlayerEnterVehicle", "OnPlayerStateChange".
  * AUTHOR:   ziggi (https://github.com/ziggi)
  *
- * FIX:      GooglesSync
+ * FIX:      GogglesSync
  * PROBLEM:  Visual effects show for all players.
  * SOLUTION: return 0 in OnPlayerUpdate after key pressed.
  * SEE:      "OnPlayerUpdate".
@@ -1586,11 +1586,11 @@
 	#define FIX_PassengerSeating      (2)
 #endif
 
-#if !defined FIX_GooglesSync
-	#define FIX_GooglesSync      (1)
-#elseif _FIXES_IS_UNSET(FIX_GooglesSync)
-	#undef FIX_GooglesSync
-	#define FIX_GooglesSync      (2)
+#if !defined FIX_GogglesSync
+	#define FIX_GogglesSync      (1)
+#elseif _FIXES_IS_UNSET(FIX_GogglesSync)
+	#undef FIX_GogglesSync
+	#define FIX_GogglesSync      (2)
 #endif
 
 /*
@@ -4737,10 +4737,10 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  *     OnPlayerEnterVehicle
  *     OnPlayerEnterVehicle_2
  *     PassengerSeating
- *     GooglesSync
+ *     GogglesSync
  */
 
-#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GooglesSync
+#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GogglesSync
 	public OnPlayerUpdate(playerid)
 	{
 		// =============================
@@ -4781,7 +4781,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  END: AllowInteriorWeapons
 		// ============================
 
-		#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_GooglesSync
+		#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_GogglesSync
 			new
 				ud,
 				lr,
@@ -4789,7 +4789,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			GetPlayerKeys(playerid, keys, ud, lr);
 		#endif
 
-		#if (FIX_SetPlayerWorldBounds || FIX_GooglesSync) && !FIX_TogglePlayerControllable
+		#if (FIX_SetPlayerWorldBounds || FIX_GogglesSync) && !FIX_TogglePlayerControllable
 			#pragma unused ud, lr
 		#endif
 
@@ -4878,9 +4878,9 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		// =================================
 
 		// =================================
-		//  BEGIN: GooglesSync
+		//  BEGIN: GogglesSync
 		// =================================
-		#if FIX_GooglesSync
+		#if FIX_GogglesSync
 			switch (GetPlayerWeapon(playerid))
 			{
 				case _FIXES_WEAPON_NIGHT_VIS_GOGGLES, _FIXES_WEAPON_THERMAL_GOGGLES:
@@ -4893,7 +4893,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			}
 		#endif
 		// =================================
-		//  END:   GooglesSync
+		//  END:   GogglesSync
 		// =================================
 
 		return FIXES_OnPlayerUpdate(playerid);
