@@ -7430,14 +7430,7 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 			#else
 				SetPVarInt(playerid, FIXES_pvarPlayerDialog, INVALID_DIALOG_ID);
 			#endif
-			if (inputtext[0])
-			{
-				return FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext);
-			}
-			else
-			{
-				return FIXES_OnDialogResponse(playerid, dialogid, response, listitem, FIXES_gscNULL);
-			}
+			return FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext);
 		#endif
 		// =========================
 		//  END:   OnDialogResponse
