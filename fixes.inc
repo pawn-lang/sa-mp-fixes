@@ -8730,7 +8730,7 @@ native BAD_toupper(c) = toupper;
 	{
 		switch (c)
 		{
-			case 'a'..'z', 192..223:
+			case 'a'..'z', 224..255:
 			{
 				return c - 32;
 			}
@@ -8763,7 +8763,7 @@ native BAD_tolower(c) = tolower;
 	{
 		switch (c)
 		{
-			case 'A'..'Z', 224..255:
+			case 'A'..'Z', 192..223:
 			{
 				return c + 32;
 			}
