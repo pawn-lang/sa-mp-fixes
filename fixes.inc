@@ -328,13 +328,6 @@
  * SEE:      "FIXES_IsPlayerConnected".
  * AUTHOR:   Slice (https://github.com/oscar-broman/)
  *
- * FIX:      OnPlayerCommandText
- * PROBLEM:  Can crash ZCMD when passed a null string.
- * SOLUTION: Pass NULL if invalid inputs given.
- * SEE:      "OnPlayerCommandText".
- * AUTHOR:   Y_Less (https://github.com/Y-Less/)
- * POST:     http://forum.sa-mp.com/showpost.php?p=1909511
- *
  * FIX:      TrainExit
  * PROBLEM:  When getting out of a train entered by "PutPlayerInVehicle", the
  *           camera does not reset properly.
@@ -1282,13 +1275,6 @@
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerConnected)
 	#undef FIX_IsPlayerConnected
 	#define FIX_IsPlayerConnected        (2)
-#endif
-
-#if !defined FIX_OnPlayerCommandText
-	#define FIX_OnPlayerCommandText      (1)
-#elseif _FIXES_IS_UNSET(FIX_OnPlayerCommandText)
-	#undef FIX_OnPlayerCommandText
-	#define FIX_OnPlayerCommandText      (2)
 #endif
 
 #if !defined FIX_TrainExit
@@ -3756,40 +3742,6 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define OnFilterScriptExit(%0) FIXES_OnFilterScriptExit(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnFilterScriptExit();
-#endif
-
-/*
- * OnPlayerCommandText(playerid, cmdtext[])
- *
- * FIXES:
- *     OnPlayerCommandText
- */
-
-#if FIX_OnPlayerCommandText
-	public OnPlayerCommandText(playerid, cmdtext[])
-	{
-		// ============================
-		//  BEGIN: OnPlayerCommandText
-		// ============================
-		#if FIX_OnPlayerCommandText
-			// If this "#if" is around the whole function, it doesn't always
-			// compile properly.
-			return FIXES_OnPlayerCommandText(playerid, (cmdtext[0] <= '\1') ? FIXES_gscNULL : cmdtext);
-		#endif
-		// ============================
-		//  END: OnPlayerCommandText
-		// ============================
-	}
-
-	#if defined _ALS_OnPlayerCommandText
-		#error _ALS_OnPlayerCommandText defined
-	#endif
-	#define _ALS_OnPlayerCommandText
-	#define OnPlayerCommandText(%0) FIXES_OnPlayerCommandText(%0) <_ALS : _ALS_go>
-
-	forward FIXES_OnPlayerCommandText(playerid, cmdtext[]);
-	public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 0; }
-	public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <> { return 0; }
 #endif
 
 /*

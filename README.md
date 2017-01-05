@@ -89,7 +89,6 @@ SetPlayerAttachedObject | Doesn't remove objects when the mode ends. | [Y_Less](
 OnPlayerDeath | Clients get stuck when they die with an animation applied. | h02 | [Link](http://forum.sa-mp.com/showpost.php?p=1641144) |
 strins | Ignores the "maxlength" parameter causing possible crashes. | [Slice](https://github.com/oscar-broman/) | |
 IsPlayerConnected | Only uses the lower two bytes of a passed ID. | [Slice](https://github.com/oscar-broman/) |  |
-OnPlayerCommandText | Can crash ZCMD when passed a null string. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1909511) |
 TrainExit | When getting out of a train entered by "PutPlayerInVehicle", the camera does not reset properly. | Terminator3/[Y_Less](https://github.com/Y-Less/) |  |
 Kick | Calling "Kick" in "OnPlayerConnect" doesn't work properly. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1989453) | 0.3x
 OnVehicleMod | Crashes other players when invalid mods are applied. | [JernejL](https://github.com/JernejL/)/[Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1671500) |
