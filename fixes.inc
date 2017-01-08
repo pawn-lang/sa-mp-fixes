@@ -825,6 +825,13 @@
 
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
+#if !defined FIX_GetPlayerPoolSize
+	#define FIX_GetPlayerPoolSize		(0)
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
+	#undef FIX_GetPlayerPoolSize
+	#define FIX_GetPlayerPoolSize		(2)
+#endif
+
 // We can add server version compiler code here to only compile fixes that apply
 // to the version of the includes for which the user is compiling.
 #if !defined FIX_GetPlayerColour
@@ -6424,13 +6431,40 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 	#define PutPlayerInVehicle FIXES_PutPlayerInVehicle
 #endif
 
-/*
+ /*
+ * FIXES_GetPlayerPoolSize()
+ *
+ * FIXES:
+ *     GetPlayerPoolSize
+ */
+
+ #if defined _ALS_GetPlayerPoolSize
+	#error _ALS_GetPlayerPoolSize defined
+#endif
+native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
+
+#if FIX_GetPlayerPoolSize
+	stock FIXES_GetPlayerPoolSize()
+	{
+		new poolSize = GetPlayerPoolSize();
+		return poolSize == 0 && !IsPlayerConnected(0) ? -1 : poolSize;
+	}
+	#if defined _ALS_GetPlayerPoolSize
+		#undef GetPlayerPoolSize
+	#else
+		#define _ALS_GetPlayerPoolSize
+	#endif
+
+	#define GetPlayerPoolSize FIXES_GetPlayerPoolSize
+#endif
+
+ /*
  * _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
  *
  * FIXES:
  *     SetPlayerCheckpoint
  */
-
+ 
 #if FIX_SetPlayerCheckpoint
 	forward _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size);
 
