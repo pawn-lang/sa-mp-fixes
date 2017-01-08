@@ -826,7 +826,7 @@
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
 #if !defined FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize		(1)
+	#define FIX_GetPlayerPoolSize		(0)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
 	#define FIX_GetPlayerPoolSize		(2)
