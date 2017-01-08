@@ -144,7 +144,6 @@ There are a few options for improved execution of this script. Define these symb
 
 A few fixes are disabled by default, to enable them all do:
 ```Pawn
-#define FIX_GetPlayerPoolSize 1 // Might break scripts, that's why it is disabled by default.
 #define FIX_GetPlayerDialog 1 // Adds a new function, not really the point of this include.
 #define FIX_random 1 // I don't think negative numbers not working is a bug.
 #define FIX_file_inc 1 // This will enable all the "fwhatever" fixes.
