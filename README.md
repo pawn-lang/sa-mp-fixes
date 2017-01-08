@@ -134,6 +134,7 @@ GetPVarString | Wrong symbol code for symbols with code 128 and above. | [ziggi]
 GetSVarString | Wrong symbol code for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)/Mutha_X/[Daniel_Cortez](https://github.com/Daniel-Cortez) | [Link](http://forum.sa-mp.com/showthread.php?t=572724&page=11)/[Link](http://pro-pawn.ru/showthread.php?13007) |  |
 toupper | Not working on Linux for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)| [Link](http://pro-pawn.ru/showthread.php?13466&p=72954#post72954) |  |
 tolower | Not working on Linux for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)| [Link](http://pro-pawn.ru/showthread.php?13466&p=72954#post72954) |  |
+GetPlayerPoolSize | Returns "0" even if there are no players on the server | [Bios-Marcel](https://github.com/Bios-Marcel) |  |
 
 # Options
 
