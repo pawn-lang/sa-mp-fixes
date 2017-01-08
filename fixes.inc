@@ -825,13 +825,6 @@
 
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
-#if !defined FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize		(0)
-#elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
-	#undef FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize		(2)
-#endif
-
 // We can add server version compiler code here to only compile fixes that apply
 // to the version of the includes for which the user is compiling.
 #if !defined FIX_GetPlayerColour
@@ -1590,6 +1583,13 @@
 #elseif _FIXES_IS_UNSET(FIX_GogglesSync)
 	#undef FIX_GogglesSync
 	#define FIX_GogglesSync      (2)
+#endif
+
+#if !defined FIX_GetPlayerPoolSize
+	#define FIX_GetPlayerPoolSize      (0)
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
+	#undef FIX_GetPlayerPoolSize
+	#define FIX_GetPlayerPoolSize      (2)
 #endif
 
 /*
@@ -6424,40 +6424,13 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 	#define PutPlayerInVehicle FIXES_PutPlayerInVehicle
 #endif
 
- /*
- * FIXES_GetPlayerPoolSize()
- *
- * FIXES:
- *     GetPlayerPoolSize
- */
-
- #if defined _ALS_GetPlayerPoolSize
-	#error _ALS_GetPlayerPoolSize defined
-#endif
-native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
-
-#if FIX_GetPlayerPoolSize
-	stock FIXES_GetPlayerPoolSize()
-	{
-		new poolSize = GetPlayerPoolSize();
-		return poolSize == 0 && !IsPlayerConnected(0) ? -1 : poolSize;
-	}
-	#if defined _ALS_GetPlayerPoolSize
-		#undef GetPlayerPoolSize
-	#else
-		#define _ALS_GetPlayerPoolSize
-	#endif
-
-	#define GetPlayerPoolSize FIXES_GetPlayerPoolSize
-#endif
-
- /*
+/*
  * _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
  *
  * FIXES:
  *     SetPlayerCheckpoint
  */
- 
+
 #if FIX_SetPlayerCheckpoint
 	forward _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size);
 
@@ -8369,6 +8342,45 @@ native BAD_random(max) = random;
 #endif
 
 /*
+ * FIXES_sleep(const time)
+ *
+ * FIXES:
+ *     sleep
+ */
+
+// Uses a little trick to consume part of the line and thus not match
+// our hooked version.
+#if defined _ALS_sleep
+	#error _ALS_sleep defined
+#endif
+#define BAD_sleep%0\n%9 sleep%0
+
+#if FIX_sleep
+	stock FIXES_sleep(ms)
+	{
+		// Call a native function that does very little, but saves the current
+		// heap pointer.  Then return to save the accurate stack pointer.
+		return heapspace(), ms;
+	}
+
+	#define _ALS_sleep
+
+	#define sleep%0\n%9 sleep FIXES_sleep(%0)
+	// This fixes another BIZZARE bug.  Just doing:
+	//
+	//  #define FIXES_sleep(%0;) FIXES_sleep(%0)
+	//
+	// Results in:
+	//
+	//  FIXES_sleep(n));
+	//
+	// Which clearly it shouldn't.  I've stepped through the compilation and that
+	// extra bracket comes from nowhere!
+	#define FIXES_sleep(%0;) FIXES_sleep _FIXES_SLEEP_BRACKET %0);
+	#define _FIXES_SLEEP_BRACKET (
+#endif
+
+/*
  * _FIXES_SetCamera
  *
  * FIXES:
@@ -8772,42 +8784,27 @@ native BAD_tolower(c) = tolower;
 #endif
 
 /*
- * FIXES_sleep(const time)
+ * FIXES_GetPlayerPoolSize()
  *
  * FIXES:
- *     sleep
+ *     GetPlayerPoolSize
  */
 
-// Uses a little trick to consume part of the line and thus not match
-// our hooked version.
-#if defined _ALS_sleep
-	#error _ALS_sleep defined
+#if defined _ALS_GetPlayerPoolSize
+	#error _ALS_GetPlayerPoolSize defined
 #endif
-#define BAD_sleep%0\n%9 sleep%0
+native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 
-#if FIX_sleep
-	stock FIXES_sleep(ms)
+#if FIX_GetPlayerPoolSize
+	stock FIXES_GetPlayerPoolSize()
 	{
-		// Call a native function that does very little, but saves the current
-		// heap pointer.  Then return to save the accurate stack pointer.
-		return heapspace(), ms;
+		new
+			size = GetPlayerPoolSize();
+		return size == 0 && !IsPlayerConnected(0) ? -1 : size;
 	}
 
-	#define _ALS_sleep
-
-	#define sleep%0\n%9 sleep FIXES_sleep(%0)
-	// This fixes another BIZZARE bug.  Just doing:
-	//
-	//  #define FIXES_sleep(%0;) FIXES_sleep(%0)
-	//
-	// Results in:
-	//
-	//  FIXES_sleep(n));
-	//
-	// Which clearly it shouldn't.  I've stepped through the compilation and that
-	// extra bracket comes from nowhere!
-	#define FIXES_sleep(%0;) FIXES_sleep _FIXES_SLEEP_BRACKET %0);
-	#define _FIXES_SLEEP_BRACKET (
+	#define _ALS_GetPlayerPoolSize
+	#define GetPlayerPoolSize FIXES_GetPlayerPoolSize
 #endif
 
 /*
