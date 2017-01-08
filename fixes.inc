@@ -11,6 +11,7 @@
  *
  * FIX:      GetPlayerPoolSize
  * PROBLEM:  Returns "0" even if there are no players on the server
+ * SOLUTION: Return "-1" if PlayerPoolsize is 0 but Player 0 is not connected
  * SEE:      "FIXES_GetPlayerPoolSize".
  * AUTHOR:   Bios-Marcel
  *
