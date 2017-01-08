@@ -9,12 +9,6 @@
  *  LIST OF FIXES:
  * ================
  *
- * FIX:      GetPlayerPoolSize
- * PROBLEM:  Returns "0" even if there are no players on the server
- * SOLUTION: Return "-1" if PlayerPoolsize is 0 but Player 0 is not connected
- * SEE:      "FIXES_GetPlayerPoolSize".
- * AUTHOR:   Bios-Marcel
- *
  * FIX:      GetPlayerColor
  * PROBLEM:  Returns "0" if "SetPlayerColor" has never been called.
  * SOLUTION: Call "SetPlayerColor" in "OnPlayerConnect".
@@ -677,6 +671,12 @@
  * SOLUTION: return 0 in OnPlayerUpdate after key pressed.
  * SEE:      "OnPlayerUpdate".
  * AUTHOR:   ziggi (https://github.com/ziggi)
+ *
+ * FIX:      GetPlayerPoolSize
+ * PROBLEM:  Returns "0" even if there are no players on the server
+ * SOLUTION: Return "-1" if PlayerPoolsize is 0 but Player 0 is not connected
+ * SEE:      "FIXES_GetPlayerPoolSize".
+ * AUTHOR:   Bios-Marcel
  *
  * ==============
  *  STYLE RULES:
@@ -6424,17 +6424,21 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 	#define PutPlayerInVehicle FIXES_PutPlayerInVehicle
 #endif
 
-/*
- * _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
+ /*
+ * FIXES_GetPlayerPoolSize()
  *
  * FIXES:
- *     SetPlayerCheckpoint
+ *     GetPlayerPoolSize
  */
 
+ #if defined _ALS_GetPlayerPoolSize
+	#error _ALS_GetPlayerPoolSize defined
+#endif
+native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
+
 #if FIX_GetPlayerPoolSize
-	stock Fix_GetPlayerPoolSize()
+	stock FIXES_GetPlayerPoolSize()
 	{
-		print("Test");
 		new poolSize = GetPlayerPoolSize();
 		return poolSize == 0 && !IsPlayerConnected(0) ? -1 : poolSize;
 	}
@@ -6444,8 +6448,15 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 		#define _ALS_GetPlayerPoolSize
 	#endif
 
-	#define GetPlayerPoolSize Fix_GetPlayerPoolSize
+	#define GetPlayerPoolSize FIXES_GetPlayerPoolSize
 #endif
+
+ /*
+ * _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
+ *
+ * FIXES:
+ *     SetPlayerCheckpoint
+ */
  
 #if FIX_SetPlayerCheckpoint
 	forward _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size);
