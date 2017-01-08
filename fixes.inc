@@ -9,6 +9,11 @@
  *  LIST OF FIXES:
  * ================
  *
+ * FIX:      GetPlayerPoolSize
+ * PROBLEM:  Returns "0" even if there are no players on the server
+ * SEE:      "FIXES_GetPlayerPoolSize".
+ * AUTHOR:   Bios-Marcel
+ *
  * FIX:      GetPlayerColor
  * PROBLEM:  Returns "0" if "SetPlayerColor" has never been called.
  * SOLUTION: Call "SetPlayerColor" in "OnPlayerConnect".
@@ -818,6 +823,13 @@
 #endif
 
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
+
+#if !defined FIX_GetPlayerPoolSize
+	#define FIX_GetPlayerPoolSize		(1)
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
+	#undef FIX_GetPlayerPoolSize
+	#define FIX_GetPlayerPoolSize		(2)
+#endif
 
 // We can add server version compiler code here to only compile fixes that apply
 // to the version of the includes for which the user is compiling.
@@ -6418,6 +6430,22 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
  *     SetPlayerCheckpoint
  */
 
+#if FIX_GetPlayerPoolSize
+	stock Fix_GetPlayerPoolSize()
+	{
+		print("Test");
+		new poolSize = GetPlayerPoolSize();
+		return poolSize == 0 && !IsPlayerConnected(0) ? -1 : poolSize;
+	}
+	#if defined _ALS_GetPlayerPoolSize
+		#undef GetPlayerPoolSize
+	#else
+		#define _ALS_GetPlayerPoolSize
+	#endif
+
+	#define GetPlayerPoolSize Fix_GetPlayerPoolSize
+#endif
+ 
 #if FIX_SetPlayerCheckpoint
 	forward _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size);
 
