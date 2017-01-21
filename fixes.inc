@@ -6131,6 +6131,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
  *
  * FIXES:
  *     HydraSniper
+ *     GetPlayerWeapon
  *     GetPlayerAmmo
  */
 
