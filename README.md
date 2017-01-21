@@ -162,9 +162,8 @@ Again, this is a community project, merely managed by [Y_Less](https://github.co
 
 There are a few other includes which aim to fix issues too large to be included here:
 
-- [Fixes2](http://forum.sa-mp.com/showthread.php?t=571505) - [Y_Less](https://github.com/Y-Less/) fixes to make "SetTimer" and "SetTimerEx" and other.
-- [SQLitei](http://forum.sa-mp.com/showthread.php?t=303682) - [Slice](https://github.com/oscar-broman/)'s fixes and improvements for many SQLite functions
-- [Timer Fix](http://forum.sa-mp.com/showthread.php?t=289675) - [Slice](https://github.com/oscar-broman/)'s fixes to make "SetTimer" and "SetTimerEx" vastly more accurate in their delays.
+- [Timerfix](http://forum.sa-mp.com/showthread.php?t=435525) - [Dan..](https://github.com/udan11)'s fixes to make "SetTimer" and "SetTimerEx" vastly more accurate in their delays.
+- [SQLitei](http://forum.sa-mp.com/showthread.php?t=303682) - [Slice](https://github.com/oscar-broman/)'s fixes and improvements for many SQLite functions.
 
 # Bugs
 
