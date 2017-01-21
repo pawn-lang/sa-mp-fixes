@@ -690,6 +690,12 @@
  * SEE:      "FIXES_SetPlayerAmmo".
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
+ * FIX:      GivePlayerWeapon
+ * PROBLEM:  GetPlayerAmmo will return erroneous values when over 32767 and under -32768 due to overflow.
+ * SOLUTION: Prevent adding ammo above 32767 and removing ammo below 0.
+ * SEE:      "FIXES_GivePlayerWeapon".
+ * AUTHOR:   Freaksken (https://github.com/WoutProvost)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1616,6 +1622,13 @@
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerAmmo)
 	#undef FIX_SetPlayerAmmo
 	#define FIX_SetPlayerAmmo      (2)
+#endif
+
+#if !defined FIX_GivePlayerWeapon
+	#define FIX_GivePlayerWeapon      (1)
+#elseif _FIXES_IS_UNSET(FIX_GivePlayerWeapon)
+	#undef FIX_GivePlayerWeapon
+	#define FIX_GivePlayerWeapon      (2)
 #endif
 
 /*
@@ -6131,6 +6144,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
  *
  * FIXES:
  *     HydraSniper
+ *     GivePlayerWeapon
  */
 
 #if defined _ALS_GivePlayerWeapon
@@ -6141,6 +6155,12 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 #if FIX_HydraSniper || FIX_GetPlayerWeapon
 	stock FIXES_GivePlayerWeapon(playerid, weaponid, ammo)
 	{
+		new currentAmmo = GetPlayerAmmo(playerid);
+		if (currentAmmo + ammo > 32767) {
+			ammo = 32767 - currentAmmo;
+		} else if (currentAmmo + ammo < 0) {
+			ammo = -1 * currentAmmo;
+		}
 		new
 			vid = GetPlayerVehicleID(playerid);
 		if (vid)
