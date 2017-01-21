@@ -678,6 +678,12 @@
  * SEE:      "FIXES_GetPlayerPoolSize".
  * AUTHOR:   Bios-Marcel (https://github.com/Bios-Marcel)
  *
+ * FIX:      SetPlayerPos
+ * PROBLEM:  Using this function on skydiving players, kills them. WARNING: This fix removes the parachute when using this function.
+ * SOLUTION: Remove the parachute.
+ * SEE:      "FIXES_SetPlayerPos".
+ * AUTHOR:   Freaksken (https://github.com/WoutProvost)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1590,6 +1596,13 @@
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
 	#define FIX_GetPlayerPoolSize      (2)
+#endif
+
+#if !defined FIX_SetPlayerPos
+	#define FIX_SetPlayerPos      (1)
+#elseif _FIXES_IS_UNSET(FIX_SetPlayerPos)
+	#undef FIX_SetPlayerPos
+	#define FIX_SetPlayerPos      (2)
 #endif
 
 /*
@@ -8805,6 +8818,45 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 
 	#define _ALS_GetPlayerPoolSize
 	#define GetPlayerPoolSize FIXES_GetPlayerPoolSize
+#endif
+
+/*
+ * FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
+ *
+ * FIXES:
+ *     SetPlayerPos
+ */
+
+#if defined _ALS_SetPlayerPos
+	#error _ALS_SetPlayerPos defined
+#endif
+native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
+
+#if FIX_SetPlayerPos
+	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
+	{
+		new ret = SetPlayerPos(playerid, x, y, z);
+		new armedWeapon = GetPlayerWeapon(playerid);
+		new weapons[13][2];
+		for (new slot = 0; slot < 13; slot++)
+		{
+			GetPlayerWeaponData(playerid, slot, weapons[slot][0], weapons[slot][1]);
+		}
+		if (weapons[11][0] == WEAPON_PARACHUTE)
+		{
+			weapons[11][0] = 0;
+		}
+		ResetPlayerWeapons(playerid);
+		for (new slot = 0; slot < 13; slot++)
+		{
+			GivePlayerWeapon(playerid, weapons[slot][0], weapons[slot][1]);
+		}
+		SetPlayerArmedWeapon(playerid, armedWeapon);
+		return ret;
+	}
+
+	#define _ALS_SetPlayerPos
+	#define SetPlayerPos FIXES_SetPlayerPos
 #endif
 
 /*
