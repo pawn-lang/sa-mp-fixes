@@ -685,8 +685,8 @@
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
  * FIX:      SetPlayerAmmo
- * PROBLEM:  Using ammo > 32767 causes bugs due to overflow.
- * SOLUTION: Replace ammo values > 32767 to 32767.
+ * PROBLEM:  GetPlayerAmmo will return erroneous values when over 32767 and under -32768 due to overflow.
+ * SOLUTION: Prevent adding ammo above 32767 and removing ammo below 0.
  * SEE:      "FIXES_SetPlayerAmmo".
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
@@ -8909,6 +8909,8 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	{
 		if (ammo > 32767) {
 			ammo = 32767;
+		} else if (ammo < 0) {
+			ammo = 0;
 		}
 		return SetPlayerAmmo(playerid, weaponid, ammo);
 	}

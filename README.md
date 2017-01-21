@@ -136,7 +136,7 @@ toupper | Not working on Linux for symbols with code 128 and above. | [ziggi](ht
 tolower | Not working on Linux for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)| [Link](http://pro-pawn.ru/showthread.php?13466&p=72954#post72954) |  |
 GetPlayerPoolSize | Returns "0" even if there are no players on the server. | [Bios-Marcel](https://github.com/Bios-Marcel) |  |
 SetPlayerPos | Using this function on skydiving players, kills them. **WARNING:** This fix removes the parachute when using this function. | [Freaksken](https://github.com/WoutProvost) |  |
-SetPlayerAmmo | Using ammo > 32767 causes bugs due to overflow. | [Freaksken](https://github.com/WoutProvost) |  |
+SetPlayerAmmo | GetPlayerAmmo will return erroneous values when over 32767 and under -32768 due to overflow. | [Freaksken](https://github.com/WoutProvost) |  |
 GivePlayerWeapon | GetPlayerAmmo will return erroneous values when over 32767 and under -32768 due to overflow. | [Freaksken](https://github.com/WoutProvost) |  |
 
 # Options
