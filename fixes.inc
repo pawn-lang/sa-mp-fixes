@@ -684,16 +684,10 @@
  * SEE:      "FIXES_SetPlayerPos".
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
- * FIX:      SetPlayerAmmo
- * PROBLEM:  GetPlayerAmmo will return erroneous values when over 32767 and under -32768 due to overflow.
- * SOLUTION: Prevent adding ammo above 32767 and removing ammo below 0.
- * SEE:      "FIXES_SetPlayerAmmo".
- * AUTHOR:   Freaksken (https://github.com/WoutProvost)
- *
- * FIX:      GivePlayerWeapon
- * PROBLEM:  GetPlayerAmmo will return erroneous values when over 32767 and under -32768 due to overflow.
- * SOLUTION: Prevent adding ammo above 32767 and removing ammo below 0.
- * SEE:      "FIXES_GivePlayerWeapon".
+ * FIX:      GetPlayerAmmo
+ * PROBLEM:  Returns erroneous values with over 32767 and under -32768 due to overflow.
+ * SOLUTION: Prevent setting or adding ammo above 32767 and setting or removing ammo below 0.
+ * SEE:      "FIXES_SetPlayerAmmo", "FIXES_GivePlayerWeapon".
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
  * ==============
@@ -1617,18 +1611,11 @@
 	#define FIX_SetPlayerPos      (2)
 #endif
 
-#if !defined FIX_SetPlayerAmmo
-	#define FIX_SetPlayerAmmo      (1)
-#elseif _FIXES_IS_UNSET(FIX_SetPlayerAmmo)
-	#undef FIX_SetPlayerAmmo
-	#define FIX_SetPlayerAmmo      (2)
-#endif
-
-#if !defined FIX_GivePlayerWeapon
-	#define FIX_GivePlayerWeapon      (1)
-#elseif _FIXES_IS_UNSET(FIX_GivePlayerWeapon)
-	#undef FIX_GivePlayerWeapon
-	#define FIX_GivePlayerWeapon      (2)
+#if !defined FIX_GetPlayerAmmo
+	#define FIX_GetPlayerAmmo      (1)
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerAmmo)
+	#undef FIX_GetPlayerAmmo
+	#define FIX_GetPlayerAmmo      (2)
 #endif
 
 /*
@@ -6144,7 +6131,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
  *
  * FIXES:
  *     HydraSniper
- *     GivePlayerWeapon
+ *     GetPlayerAmmo
  */
 
 #if defined _ALS_GivePlayerWeapon
@@ -6152,15 +6139,18 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 #endif
 native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 
-#if FIX_HydraSniper || FIX_GetPlayerWeapon
+#if FIX_HydraSniper || FIX_GetPlayerWeapon || FIX_GetPlayerAmmo
 	stock FIXES_GivePlayerWeapon(playerid, weaponid, ammo)
 	{
+		#if FIX_GetPlayerAmmo
 		new currentAmmo = GetPlayerAmmo(playerid);
 		if (currentAmmo + ammo > 32767) {
 			ammo = 32767 - currentAmmo;
 		} else if (currentAmmo + ammo < 0) {
 			ammo = -1 * currentAmmo;
 		}
+		#endif
+		
 		new
 			vid = GetPlayerVehicleID(playerid);
 		if (vid)
@@ -8896,7 +8886,7 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
  * FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
  *
  * FIXES:
- *     SetPlayerAmmo
+ *     GetPlayerAmmo
  */
 
 #if defined _ALS_SetPlayerAmmo
@@ -8904,7 +8894,7 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 #endif
 native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 
-#if FIX_SetPlayerAmmo
+#if FIX_GetPlayerAmmo
 	stock FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
 	{
 		if (ammo > 32767) {
