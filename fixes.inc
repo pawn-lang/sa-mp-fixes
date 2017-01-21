@@ -685,7 +685,7 @@
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
  * FIX:      GetPlayerAmmo
- * PROBLEM:  Returns erroneous values with over 32767 and under -32768 due to overflow.
+ * PROBLEM:  Returns erroneous values over 32767 and under -32768 due to overflow.
  * SOLUTION: Prevent setting or adding ammo above 32767 and setting or removing ammo below 0.
  * SEE:      "FIXES_SetPlayerAmmo", "FIXES_GivePlayerWeapon".
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
