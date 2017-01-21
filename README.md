@@ -135,7 +135,7 @@ GetSVarString | Wrong symbol code for symbols with code 128 and above. | [ziggi]
 toupper | Not working on Linux for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)| [Link](http://pro-pawn.ru/showthread.php?13466&p=72954#post72954) |  |
 tolower | Not working on Linux for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)| [Link](http://pro-pawn.ru/showthread.php?13466&p=72954#post72954) |  |
 GetPlayerPoolSize | Returns "0" even if there are no players on the server. | [Bios-Marcel](https://github.com/Bios-Marcel) |  |
-SetPlayerPos | Using this function on skydiving players, kills them. **WARNING:** This fix removes the parachute when using this function. | [Freaksken](https://github.com/WoutProvost) |  |
+SetPlayerPos | Using this function on skydiving players kills them. | [Freaksken](https://github.com/WoutProvost) |  |
 GetPlayerAmmo | Returns erroneous values with over 32767 and under -32768 due to overflow. | [Freaksken](https://github.com/WoutProvost) |  |
 
 # Options

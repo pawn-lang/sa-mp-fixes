@@ -679,8 +679,8 @@
  * AUTHOR:   Bios-Marcel (https://github.com/Bios-Marcel)
  *
  * FIX:      SetPlayerPos
- * PROBLEM:  Using this function on skydiving players, kills them. WARNING: This fix removes the parachute when using this function.
- * SOLUTION: Remove the parachute.
+ * PROBLEM:  Using this function on skydiving players kills them.
+ * SOLUTION: Remove the parachute when the player is skydiving.
  * SEE:      "FIXES_SetPlayerPos".
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
@@ -8859,23 +8859,25 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 #if FIX_SetPlayerPos
 	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 	{
-		new ret = SetPlayerPos(playerid, x, y, z);
-		new armedWeapon = GetPlayerWeapon(playerid);
-		new weapons[13][2];
-		for (new slot = 0; slot < 13; slot++)
+		new ret = SetPlayerPos(playerid, x, y, z);		
+		new animlib[32 + 1];
+        new animname[32 + 1];
+        GetAnimationName(GetPlayerAnimationIndex(playerid), animlib, sizeof(animlib), animname, sizeof(animname));
+        if ( (!strcmp(animlib, "PARACHUTE", true) && (!strcmp(animname, "FALL_skyDive", true) ||  !strcmp(animname, "FALL_SkyDive_Accel", true) ||  !strcmp(animname, "FALL_skyDive_DIE", true) ||  !strcmp(animname, "FALL_SkyDive_L", true) ||  !strcmp(animname, "FALL_SkyDive_R", true)))
+		|| (!strcmp(animlib, "ped", true) && !strcmp(animname, "FALL_skyDive", true)) )
 		{
-			GetPlayerWeaponData(playerid, slot, weapons[slot][0], weapons[slot][1]);
-		}
-		if (weapons[11][0] == WEAPON_PARACHUTE)
-		{
+			new weapons[13][2];
+			for (new slot = 0; slot < 13; slot++)
+			{
+				GetPlayerWeaponData(playerid, slot, weapons[slot][0], weapons[slot][1]);
+			}
 			weapons[11][0] = 0;
-		}
-		ResetPlayerWeapons(playerid);
-		for (new slot = 0; slot < 13; slot++)
-		{
-			GivePlayerWeapon(playerid, weapons[slot][0], weapons[slot][1]);
-		}
-		SetPlayerArmedWeapon(playerid, armedWeapon);
+			ResetPlayerWeapons(playerid);
+			for (new slot = 0; slot < 13; slot++)
+			{
+				GivePlayerWeapon(playerid, weapons[slot][0], weapons[slot][1]);
+			}
+		}		
 		return ret;
 	}
 
