@@ -684,6 +684,12 @@
  * SEE:      "FIXES_SetPlayerPos".
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
+ * FIX:      SetPlayerAmmo
+ * PROBLEM:  Using ammo > 32767 causes bugs due to overflow.
+ * SOLUTION: Replace ammo values > 32767 to 32767.
+ * SEE:      "FIXES_SetPlayerAmmo".
+ * AUTHOR:   Freaksken (https://github.com/WoutProvost)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1603,6 +1609,13 @@
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerPos)
 	#undef FIX_SetPlayerPos
 	#define FIX_SetPlayerPos      (2)
+#endif
+
+#if !defined FIX_SetPlayerAmmo
+	#define FIX_SetPlayerAmmo      (1)
+#elseif _FIXES_IS_UNSET(FIX_SetPlayerAmmo)
+	#undef FIX_SetPlayerAmmo
+	#define FIX_SetPlayerAmmo      (2)
 #endif
 
 /*
@@ -8857,6 +8870,31 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 
 	#define _ALS_SetPlayerPos
 	#define SetPlayerPos FIXES_SetPlayerPos
+#endif
+
+/*
+ * FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
+ *
+ * FIXES:
+ *     SetPlayerAmmo
+ */
+
+#if defined _ALS_SetPlayerAmmo
+	#error _ALS_SetPlayerAmmo defined
+#endif
+native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
+
+#if FIX_SetPlayerAmmo
+	stock FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
+	{
+		if (ammo > 32767) {
+			ammo = 32767;
+		}
+		return SetPlayerAmmo(playerid, weaponid, ammo);
+	}
+
+	#define _ALS_SetPlayerAmmo
+	#define SetPlayerAmmo FIXES_SetPlayerAmmo
 #endif
 
 /*
