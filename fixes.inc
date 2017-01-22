@@ -6144,12 +6144,15 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 	stock FIXES_GivePlayerWeapon(playerid, weaponid, ammo)
 	{
 		#if FIX_GetPlayerAmmo
-		new currentAmmo = GetPlayerAmmo(playerid);
-		if (currentAmmo + ammo > 32767) {
-			ammo = 32767 - currentAmmo;
-		} else if (currentAmmo + ammo < 0) {
-			ammo = -1 * currentAmmo;
-		}
+			new currentAmmo = GetPlayerAmmo(playerid);
+			if (currentAmmo + ammo > 32767)
+			{
+				ammo = 32767 - currentAmmo;
+			}
+			else if (currentAmmo + ammo < 0)
+			{
+				ammo = -1 * currentAmmo;
+			}
 		#endif
 		
 		new
@@ -8859,12 +8862,15 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 #if FIX_SetPlayerPos
 	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 	{
-		new ret = SetPlayerPos(playerid, x, y, z);		
-		new animlib[32 + 1];
-        new animname[32 + 1];
-        GetAnimationName(GetPlayerAnimationIndex(playerid), animlib, sizeof(animlib), animname, sizeof(animname));
-        if ( (!strcmp(animlib, "PARACHUTE", true) && (!strcmp(animname, "FALL_skyDive", true) ||  !strcmp(animname, "FALL_SkyDive_Accel", true) ||  !strcmp(animname, "FALL_skyDive_DIE", true) ||  !strcmp(animname, "FALL_SkyDive_L", true) ||  !strcmp(animname, "FALL_SkyDive_R", true)))
-		|| (!strcmp(animlib, "ped", true) && !strcmp(animname, "FALL_skyDive", true)) )
+		new ret = SetPlayerPos(playerid, x, y, z);
+		//"PARACHUTE", "FALL_skyDive", 958
+		//"PARACHUTE", "FALL_SkyDive_Accel", 959
+		//"PARACHUTE", "FALL_skyDive_DIE", 960
+		//"PARACHUTE", "FALL_SkyDive_L", 961
+		//"PARACHUTE", "FALL_SkyDive_R", 962
+		//"ped", "FALL_skyDive", 1134
+		new index = GetPlayerAnimationIndex(playerid);
+		if (index == 958 || index == 959 || index == 960 || index == 961 || index == 962 || index == 1134)
 		{
 			new weapons[13][2];
 			for (new slot = 0; slot < 13; slot++)
@@ -8900,9 +8906,12 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #if FIX_GetPlayerAmmo
 	stock FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
 	{
-		if (ammo > 32767) {
+		if (ammo > 32767)
+		{
 			ammo = 32767;
-		} else if (ammo < 0) {
+		}
+		else if (ammo < 0)
+		{
 			ammo = 0;
 		}
 		return SetPlayerAmmo(playerid, weaponid, ammo);
