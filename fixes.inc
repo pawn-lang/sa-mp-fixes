@@ -673,10 +673,22 @@
  * AUTHOR:   ziggi (https://github.com/ziggi)
  *
  * FIX:      GetPlayerPoolSize
- * PROBLEM:  Returns "0" even if there are no players on the server
- * SOLUTION: Return "-1" if PlayerPoolsize is 0 but Player 0 is not connected
+ * PROBLEM:  Returns "0" even if there are no players on the server.
+ * SOLUTION: Return "-1" if PlayerPoolsize is 0 but Player 0 is not connected.
  * SEE:      "FIXES_GetPlayerPoolSize".
- * AUTHOR:   Bios-Marcel
+ * AUTHOR:   Bios-Marcel (https://github.com/Bios-Marcel)
+ *
+ * FIX:      SetPlayerPos
+ * PROBLEM:  Using this function on skydiving players kills them.
+ * SOLUTION: Remove the parachute when the player is skydiving.
+ * SEE:      "FIXES_SetPlayerPos".
+ * AUTHOR:   Freaksken (https://github.com/WoutProvost)
+ *
+ * FIX:      GetPlayerAmmo
+ * PROBLEM:  Returns erroneous values over 32767 and under -32768 due to overflow.
+ * SOLUTION: Prevent setting or adding ammo above 32767 and setting or removing ammo below 0.
+ * SEE:      "FIXES_SetPlayerAmmo", "FIXES_GivePlayerWeapon".
+ * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
  * ==============
  *  STYLE RULES:
@@ -1590,6 +1602,20 @@
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
 	#define FIX_GetPlayerPoolSize      (2)
+#endif
+
+#if !defined FIX_SetPlayerPos
+	#define FIX_SetPlayerPos      (1)
+#elseif _FIXES_IS_UNSET(FIX_SetPlayerPos)
+	#undef FIX_SetPlayerPos
+	#define FIX_SetPlayerPos      (2)
+#endif
+
+#if !defined FIX_GetPlayerAmmo
+	#define FIX_GetPlayerAmmo      (1)
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerAmmo)
+	#undef FIX_GetPlayerAmmo
+	#define FIX_GetPlayerAmmo      (2)
 #endif
 
 /*
@@ -6105,6 +6131,8 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
  *
  * FIXES:
  *     HydraSniper
+ *     GetPlayerWeapon
+ *     GetPlayerAmmo
  */
 
 #if defined _ALS_GivePlayerWeapon
@@ -6112,9 +6140,21 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 #endif
 native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 
-#if FIX_HydraSniper || FIX_GetPlayerWeapon
+#if FIX_HydraSniper || FIX_GetPlayerWeapon || FIX_GetPlayerAmmo
 	stock FIXES_GivePlayerWeapon(playerid, weaponid, ammo)
 	{
+		#if FIX_GetPlayerAmmo
+			new currentAmmo = GetPlayerAmmo(playerid);
+			if (currentAmmo + ammo > 32767)
+			{
+				ammo = 32767 - currentAmmo;
+			}
+			else if (currentAmmo + ammo < 0)
+			{
+				ammo = -1 * currentAmmo;
+			}
+		#endif
+		
 		new
 			vid = GetPlayerVehicleID(playerid);
 		if (vid)
@@ -8805,6 +8845,80 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 
 	#define _ALS_GetPlayerPoolSize
 	#define GetPlayerPoolSize FIXES_GetPlayerPoolSize
+#endif
+
+/*
+ * FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
+ *
+ * FIXES:
+ *     SetPlayerPos
+ */
+
+#if defined _ALS_SetPlayerPos
+	#error _ALS_SetPlayerPos defined
+#endif
+native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
+
+#if FIX_SetPlayerPos
+	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
+	{
+		new ret = SetPlayerPos(playerid, x, y, z);
+		//"PARACHUTE", "FALL_skyDive", 958
+		//"PARACHUTE", "FALL_SkyDive_Accel", 959
+		//"PARACHUTE", "FALL_skyDive_DIE", 960
+		//"PARACHUTE", "FALL_SkyDive_L", 961
+		//"PARACHUTE", "FALL_SkyDive_R", 962
+		//"ped", "FALL_skyDive", 1134
+		new index = GetPlayerAnimationIndex(playerid);
+		if (index == 958 || index == 959 || index == 960 || index == 961 || index == 962 || index == 1134)
+		{
+			new weapons[13][2];
+			for (new slot = 0; slot < 13; slot++)
+			{
+				GetPlayerWeaponData(playerid, slot, weapons[slot][0], weapons[slot][1]);
+			}
+			weapons[11][0] = 0;
+			ResetPlayerWeapons(playerid);
+			for (new slot = 0; slot < 13; slot++)
+			{
+				GivePlayerWeapon(playerid, weapons[slot][0], weapons[slot][1]);
+			}
+		}		
+		return ret;
+	}
+
+	#define _ALS_SetPlayerPos
+	#define SetPlayerPos FIXES_SetPlayerPos
+#endif
+
+/*
+ * FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
+ *
+ * FIXES:
+ *     GetPlayerAmmo
+ */
+
+#if defined _ALS_SetPlayerAmmo
+	#error _ALS_SetPlayerAmmo defined
+#endif
+native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
+
+#if FIX_GetPlayerAmmo
+	stock FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
+	{
+		if (ammo > 32767)
+		{
+			ammo = 32767;
+		}
+		else if (ammo < 0)
+		{
+			ammo = 0;
+		}
+		return SetPlayerAmmo(playerid, weaponid, ammo);
+	}
+
+	#define _ALS_SetPlayerAmmo
+	#define SetPlayerAmmo FIXES_SetPlayerAmmo
 #endif
 
 /*

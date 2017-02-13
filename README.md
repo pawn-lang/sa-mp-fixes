@@ -134,7 +134,9 @@ GetPVarString | Wrong symbol code for symbols with code 128 and above. | [ziggi]
 GetSVarString | Wrong symbol code for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)/Mutha_X/[Daniel_Cortez](https://github.com/Daniel-Cortez) | [Link](http://forum.sa-mp.com/showthread.php?t=572724&page=11)/[Link](http://pro-pawn.ru/showthread.php?13007) |  |
 toupper | Not working on Linux for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)| [Link](http://pro-pawn.ru/showthread.php?13466&p=72954#post72954) |  |
 tolower | Not working on Linux for symbols with code 128 and above. | [ziggi](https://github.com/ziggi/)| [Link](http://pro-pawn.ru/showthread.php?13466&p=72954#post72954) |  |
-GetPlayerPoolSize | Returns "0" even if there are no players on the server | [Bios-Marcel](https://github.com/Bios-Marcel) |  |
+GetPlayerPoolSize | Returns "0" even if there are no players on the server. | [Bios-Marcel](https://github.com/Bios-Marcel) |  |
+SetPlayerPos | Using this function on skydiving players kills them. | [Freaksken](https://github.com/WoutProvost) |  |
+GetPlayerAmmo | Returns erroneous values over 32767 and under -32768 due to overflow. | [Freaksken](https://github.com/WoutProvost) |  |
 
 # Options
 
@@ -162,9 +164,8 @@ Again, this is a community project, merely managed by [Y_Less](https://github.co
 
 There are a few other includes which aim to fix issues too large to be included here:
 
-- [Fixes2](http://forum.sa-mp.com/showthread.php?t=571505) - [Y_Less](https://github.com/Y-Less/) fixes to make "SetTimer" and "SetTimerEx" and other.
-- [SQLitei](http://forum.sa-mp.com/showthread.php?t=303682) - [Slice](https://github.com/oscar-broman/)'s fixes and improvements for many SQLite functions
-- [Timer Fix](http://forum.sa-mp.com/showthread.php?t=289675) - [Slice](https://github.com/oscar-broman/)'s fixes to make "SetTimer" and "SetTimerEx" vastly more accurate in their delays.
+- [Timerfix](http://forum.sa-mp.com/showthread.php?t=435525) - [Dan..](https://github.com/udan11)'s fixes to make "SetTimer" and "SetTimerEx" vastly more accurate in their delays.
+- [SQLitei](http://forum.sa-mp.com/showthread.php?t=303682) - [Slice](https://github.com/oscar-broman/)'s fixes and improvements for many SQLite functions.
 
 # Bugs
 
