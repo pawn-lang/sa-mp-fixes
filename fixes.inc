@@ -2867,6 +2867,8 @@ static stock const
 	#define WEAPON_THERMAL_GOGGLES    _FIXES_WEAPON_THERMAL_GOGGLES
 #endif
 
+#define _FIXES_WEAPON_SLOTS                     (13)
+
 /*
  * BODYPARTS
  *
@@ -6144,17 +6146,18 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 	stock FIXES_GivePlayerWeapon(playerid, weaponid, ammo)
 	{
 		#if FIX_GetPlayerAmmo
-			new currentAmmo = GetPlayerAmmo(playerid);
+			new
+				currentAmmo = GetPlayerAmmo(playerid);
 			if (currentAmmo + ammo > 32767)
 			{
 				ammo = 32767 - currentAmmo;
 			}
 			else if (currentAmmo + ammo < 0)
 			{
-				ammo = -1 * currentAmmo;
+				ammo = -currentAmmo;
 			}
 		#endif
-		
+
 		new
 			vid = GetPlayerVehicleID(playerid);
 		if (vid)
@@ -8852,6 +8855,14 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
  *
  * FIXES:
  *     SetPlayerPos
+ *
+ * NOTE:
+ *     "PARACHUTE", "FALL_skyDive", 958
+ *     "PARACHUTE", "FALL_SkyDive_Accel", 959
+ *     "PARACHUTE", "FALL_skyDive_DIE", 960
+ *     "PARACHUTE", "FALL_SkyDive_L", 961
+ *     "PARACHUTE", "FALL_SkyDive_R", 962
+ *     "ped", "FALL_skyDive", 1134
  */
 
 #if defined _ALS_SetPlayerPos
@@ -8862,28 +8873,28 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 #if FIX_SetPlayerPos
 	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 	{
-		new ret = SetPlayerPos(playerid, x, y, z);
-		//"PARACHUTE", "FALL_skyDive", 958
-		//"PARACHUTE", "FALL_SkyDive_Accel", 959
-		//"PARACHUTE", "FALL_skyDive_DIE", 960
-		//"PARACHUTE", "FALL_SkyDive_L", 961
-		//"PARACHUTE", "FALL_SkyDive_R", 962
-		//"ped", "FALL_skyDive", 1134
-		new index = GetPlayerAnimationIndex(playerid);
-		if (index == 958 || index == 959 || index == 960 || index == 961 || index == 962 || index == 1134)
+		new
+			ret = SetPlayerPos(playerid, x, y, z),
+			index = GetPlayerAnimationIndex(playerid);
+		switch (index)
 		{
-			new weapons[13][2];
-			for (new slot = 0; slot < 13; slot++)
+			case 958, 959, 960, 961, 962, 1134:
 			{
-				GetPlayerWeaponData(playerid, slot, weapons[slot][0], weapons[slot][1]);
+				new
+					slot,
+					weapons[_FIXES_WEAPON_SLOTS][2];
+				for (slot = 0; slot < sizeof(weapons); slot++)
+				{
+					GetPlayerWeaponData(playerid, slot, weapons[slot][0], weapons[slot][1]);
+				}
+				weapons[11][0] = 0;
+				ResetPlayerWeapons(playerid);
+				for (slot = 0; slot < sizeof(weapons); slot++)
+				{
+					GivePlayerWeapon(playerid, weapons[slot][0], weapons[slot][1]);
+				}
 			}
-			weapons[11][0] = 0;
-			ResetPlayerWeapons(playerid);
-			for (new slot = 0; slot < 13; slot++)
-			{
-				GivePlayerWeapon(playerid, weapons[slot][0], weapons[slot][1]);
-			}
-		}		
+		}
 		return ret;
 	}
 
