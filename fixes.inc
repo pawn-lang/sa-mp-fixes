@@ -690,6 +690,18 @@
  * SEE:      "FIXES_SetPlayerAmmo", "FIXES_GivePlayerWeapon".
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
+ * FIX:      JIT
+ * PROBLEM:  Can't easily determine if the script is JIT compiled.
+ * SOLUTION: Provide "IS_JIT" to the script for tests.
+ * SEE:      "OnJITCompile".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
+ * FIX:      OS
+ * PROBLEM:  Can't easily determine what OS the script is running on.
+ * SOLUTION: Provide "IS_WINDOWS" and "IS_LINUX" to the script for tests.
+ * SEE:      "_FIXES_DetermineOS".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1618,6 +1630,20 @@
 	#define FIX_GetPlayerAmmo      (2)
 #endif
 
+#if !defined FIX_JIT
+	#define FIX_JIT                      (1)
+#elseif _FIXES_IS_UNSET(FIX_JIT)
+	#undef FIX_JIT
+	#define FIX_JIT                      (2)
+#endif
+
+#if !defined FIX_OS
+	#define FIX_OS                       (1)
+#elseif _FIXES_IS_UNSET(FIX_OS)
+	#undef FIX_OS
+	#define FIX_OS                       (2)
+#endif
+
 /*
  * CHAIN_ORDER
  *
@@ -1898,7 +1924,9 @@ enum e_FIXES_SETTINGS (<<= 1)
 #define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IN_RANGE((%0), 0, MAX_PLAYERS) && IsPlayerConnected((%0)))
 
 // These varaibles are NOT pre-processor dependent as they are stock.  It's just
-// simpler than trying to figure out when or if a semi-colon is needed.
+// simpler than trying to figure out when or if a semi-colon is needed.  The
+// three `_FIXES_gIs...` variables always exist, they are only `static` if the
+// relevant fixes are not enabled since they may still be needed in this file.
 #if !FIX_FILTERSCRIPT
 static
 #endif
@@ -1909,6 +1937,28 @@ stock
 	 * Runtime equivalent of "FILTERSCRIPT" for when it is not set by the user.
 	 */
 	bool:_FIXES_gIsFilterscript;
+
+#if !FIX_JIT
+static
+#endif
+stock
+	/*
+	 * bool:_FIXES_gIsJIT
+	 *
+	 * True when the JIT plugin is being used.
+	 */
+	bool:_FIXES_gIsJIT = false;
+
+#if !FIX_OS
+static
+#endif
+stock
+	/*
+	 * bool:_FIXES_gIsWindows
+	 *
+	 * True on Windows, false on Linux.
+	 */
+	bool:_FIXES_gIsWindows;
 
 stock const
 	/*
@@ -1931,6 +1981,12 @@ static stock
 	 * file in functions that don't take `const` strings.
 	 */
 	FIXES_gsSpace[] = " ",
+	/*
+	 * bool:FIXES_gsKnownOS
+	 *
+	 * Only determine the OS once.
+	 */
+	bool:FIXES_gsKnownOS = false,
 	/*
 	 * FIXES_gsPlayersIterator[MAX_PLAYERS + 1]
 	 *
@@ -2808,11 +2864,11 @@ static stock const
 	 */
 	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
 	/*
-	 * FIXES_gscFixesError[]
+	 * FIXES_gscMultiScriptError[]
 	 *
-	 * Error shown when multiple scripts are detected.
+	 * Error shown when multiple scripts are detected with `FIXES_SINGLE`.
 	 */
-	FIXES_gscFixesError[] = "\7\7\7\7\7"                                                     "\n"   \
+	FIXES_gscMultiScriptError[] = "\7\7\7\7\7"                                               "\n"   \
 		"*** fixes.inc error: Running multiple scripts compiled with \"fixes.inc\"..."       "\n"   \
 		"***     Please compile your modes with \"#define FIXES_Single 0\" at the top, as"   "\n"   \
 		"***     this setting is no longer the default (to improve the more common case)."          ;
@@ -2930,6 +2986,16 @@ static stock const
 #endif
 
 /*
+ * IS_JIT
+ *
+ * True when the code is JIT compiled.
+ */
+
+#if FIX_JIT
+	#define IS_JIT (_FIXES_gIsJIT)
+#endif
+
+/*
  * IS_FILTERSCRIPT
  *
  * "FILTERSCRIPT" can't always be relied on to be set.  This is not a pre-
@@ -2937,8 +3003,55 @@ static stock const
  */
 
 #if FIX_FILTERSCRIPT
-	#define IS_FILTERSCRIPT _FIXES_gIsFilterscript
+	#define IS_FILTERSCRIPT (_FIXES_gIsFilterscript)
 #endif
+
+/*
+ * IS_WINDOWS
+ *
+ * True when the code is running on Windows.  NOT a pre-processor macro, since
+ * the OS you are running the code on can't be determined at compile-time.
+ *
+ * IS_LINUX
+ *
+ * True when the code is running on Linux.  NOT a pre-processor macro, since the
+ * OS you are running the code on can't be determined at compile-time.
+ */
+
+#if FIX_OS
+	#define IS_WINDOWS (_FIXES_gIsWindows)
+	#define IS_LINUX (!_FIXES_gIsWindows)
+#endif
+
+/*
+ * _FIXES_DetermineOS()
+ *
+ * Figure out what OS this is running on.
+ *
+ * FIXES:
+ *     IS_WINDOWS
+ *     IS_LINUX
+ */
+
+static _FIXES_DetermineOS()
+{
+	if (FIXES_gsKnownOS)
+	{
+		return;
+	}
+	FIXES_gsKnownOS = true;
+	new
+		val;
+	// The code at address 0 is always `HALT`.
+	#emit LCTRL                0
+	#emit MOVE.alt
+	#emit LCTRL                1
+	#emit SUB.alt
+	#emit STOR.S.pri           val
+	#emit LREF.S.alt           val
+	#emit STOR.S.alt           val
+	_FIXES_gIsWindows = (val == 120);
+}
 
 /*
  * File operators
@@ -3445,6 +3558,34 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 #endif
 
 /*
+ * OnJITCompile()()
+ *
+ * Set "IS_JIT" to true.
+ *
+ * FIXES:
+ *     IS_JIT
+ */
+
+forward OnJITCompile();
+
+public OnJITCompile()
+{
+	state _ALS : _ALS_go;
+	_FIXES_gIsJIT = true;
+	_FIXES_DetermineOS();
+
+	return FIXES_OnJITCompile();
+}
+
+#if defined _ALS_OnJITCompile
+	#error _ALS_OnJITCompile defined
+#endif
+#define _ALS_OnJITCompile
+#define OnJITCompile(%0) FIXES_OnJITCompile(%0) <_ALS : _ALS_go>
+
+_FIXES_FORWARD FIXES_OnJITCompile();
+
+/*
  * OnFilterScriptInit()
  *
  * Set "IS_FILTERSCRIPT" to true as this callback is ONLY called if this script
@@ -3459,13 +3600,15 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 public OnFilterScriptInit()
 {
 	// It is possible for this to be the only thing done in this function!
+	state _ALS : _ALS_go;
 	_FIXES_gIsFilterscript = true;
+	_FIXES_DetermineOS();
 
 	#if FIXES_Single
 		// Check this really IS the only script running.
 		if (existproperty(5, FIXES_gscSingleProperty))
 		{
-			print(FIXES_gscFixesError);
+			print(FIXES_gscMultiScriptError);
 		}
 		else
 		{
@@ -3564,6 +3707,7 @@ _FIXES_FORWARD FIXES_OnFilterScriptInit();
 public OnGameModeInit()
 {
 	state _ALS : _ALS_go;
+	_FIXES_DetermineOS();
 
 	#if FIXES_Single
 		// Check this really IS the only script running.  Properties reset when
@@ -3573,7 +3717,7 @@ public OnGameModeInit()
 		{
 			if (existproperty(5, FIXES_gscSingleProperty))
 			{
-				print(FIXES_gscFixesError);
+				print(FIXES_gscMultiScriptError);
 			}
 			else
 			{
