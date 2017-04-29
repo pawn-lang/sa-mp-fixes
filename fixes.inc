@@ -98,7 +98,7 @@
  *           "FIXES_GetPlayerWeapon", "FIXES_GivePlayerWeapon",
  *           "FIXES_ResetPlayerWeapons".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
- * AUTHOR:   Xerieos (https://github.com/Xerieos/)
+ * AUTHOR:   ronixtey (https://github.com/ronixtey/)
  *
  * FIX:      PutPlayerInVehicle
  * PROBLEM:  If this is used on a passenger the driver of their old vehicle
