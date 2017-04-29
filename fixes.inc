@@ -2935,15 +2935,16 @@ static stock const
 	/*
 	 * FIXES_gscCONError[]
 	 *
-	 * Error shown when `stdout` (`CON`) can't be opened.
+	 * Error shown when `stdout` (`CON`) can't be opened.  Not as neat as other
+	 * variables for line-length limit reasons.
 	 */
-	FIXES_gscCONError[] = "\7\7\7\7\7"                                                     "\n"   \
-		"*** fixes.inc error: Could not open `CON` for console writing.  If you are"       "\n"   \
-		"***     running on Linux, please type the following in the root directory of the" "\n"   \
-		"***     server to set up the sym link:"                                           "\n"   \
-		"***     "                                                                         "\n"   \
-		"***         ln -s /dev/tty ./scriptfiles/CON"                                     "\n"   \
-		"***     "                                                                                ,
+	FIXES_gscCONError[] = "\7\7\7\7\7\n" \
+		"*** fixes.inc error: Could not open `CON` for console writing.  If you are\n" \
+		"***     running on Linux, please type the following in the root directory of the\n" \
+		"***     server to set up the sym link:\n" \
+		"***\n" \
+		"***         ln -s /dev/tty ./scriptfiles/CON\n" \
+		"***",
 	/*
 	 * FIXES_gscMultiScriptError[]
 	 *
