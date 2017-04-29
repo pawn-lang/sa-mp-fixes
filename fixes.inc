@@ -702,28 +702,6 @@
  * SEE:      "_FIXES_DetermineOS".
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
  *
- * FIX:      print
- * PROBLEM:  Printed text doesn't show up in the console on Linux.
- * SOLUTION: Provide a second "stdout" handle and use "fwrite" to that.
- * SEE:      "FIXES_print", "_FIXES_OpenCON".
- * AUTHOR:   Y_Less (https://github.com/Y-Less)
- * AUTHOR:   OneDay (http://forum.sa-mp.com/member.php?u=266844)
- * BASED ON: http://forum.sa-mp.com/showpost.php?p=3812622
- *
- * FIX:      printf
- * PROBLEM:  Printed text doesn't show up in the console on Linux.
- * SOLUTION: Provide a second "stdout" handle and use "fwrite" to that.
- * SEE:      "FIXES_printf", "_FIXES_OpenCON".
- * AUTHOR:   Y_Less (https://github.com/Y-Less)
- * AUTHOR:   OneDay (http://forum.sa-mp.com/member.php?u=266844)
- * BASED ON: http://forum.sa-mp.com/showpost.php?p=3812622
- *
- * FIX:      printf_2
- * PROBLEM:  "print" shows "(null)" for nothing, "printf" doesn't.
- * SOLUTION: Print "(null)" for nothing.  DEFAULTS TO FALSE.
- * SEE:      "FIXES_printf".
- * AUTHOR:   Y_Less (https://github.com/Y-Less)
- *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1666,27 +1644,6 @@
 	#define FIX_OS                       (2)
 #endif
 
-#if !defined FIX_print
-	#define FIX_print                    (1)
-#elseif _FIXES_IS_UNSET(FIX_print)
-	#undef FIX_print
-	#define FIX_print                    (2)
-#endif
-
-#if !defined FIX_printf
-	#define FIX_printf                   (1)
-#elseif _FIXES_IS_UNSET(FIX_printf)
-	#undef FIX_printf
-	#define FIX_printf                   (2)
-#endif
-
-#if !defined FIX_printf_2
-	#define FIX_printf_2                 (0)
-#elseif _FIXES_IS_UNSET(FIX_printf_2)
-	#undef FIX_printf_2
-	#define FIX_printf_2                 (2)
-#endif
-
 /*
  * CHAIN_ORDER
  *
@@ -2025,37 +1982,11 @@ static stock
 	 */
 	FIXES_gsSpace[] = " ",
 	/*
-	 * File:FIXES_gsStdOut
-	 *
-	 * File handle to a fake `stdout` we can use in place of `print` and that
-	 * will actually output to the Linux console.
-	 */
-	File:FIXES_gsStdOut,
-	/*
-	 * bool:_FIXES_gsUsePrintf
-	 *
-	 * Which `printf` #emit-dependent fixes should be used.
-	 */
-	_FIXES_gsUsePrintf = 0,
-	/*
 	 * bool:FIXES_gsKnownOS
 	 *
 	 * Only determine the OS once.
 	 */
 	bool:FIXES_gsKnownOS = false,
-	/*
-	 * FIXES_gsScratchSpace[512]
-	 *
-	 * Just a large array for use in functions when they need some space for
-	 * things like string formatting.  To be shared between multiple functions
-	 * that may all need some scratch space for different reasons.  Note that
-	 * this does mean that one function using the scratch space can't call
-	 * another function also using the scratch space (at least while the data is
-	 * still live) as the second function will destroy the data from the first
-	 * function.  This is the same for recursive calls, and is the reason why
-	 * global arrays for things like strings are usually a very bad idea.
-	 */
-	FIXES_gsScratchSpace[512],
 	/*
 	 * FIXES_gsPlayersIterator[MAX_PLAYERS + 1]
 	 *
@@ -2933,19 +2864,6 @@ static stock const
 	 */
 	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
 	/*
-	 * FIXES_gscCONError[]
-	 *
-	 * Error shown when `stdout` (`CON`) can't be opened.  Not as neat as other
-	 * variables for line-length limit reasons.
-	 */
-	FIXES_gscCONError[] = "\7\7\7\7\7\n" \
-		"*** fixes.inc error: Could not open `CON` for console writing.  If you are\n" \
-		"***     running on Linux, please type the following in the root directory of the\n" \
-		"***     server to set up the sym link:\n" \
-		"***\n" \
-		"***         ln -s /dev/tty ./scriptfiles/CON\n" \
-		"***",
-	/*
 	 * FIXES_gscMultiScriptError[]
 	 *
 	 * Error shown when multiple scripts are detected with `FIXES_SINGLE`.
@@ -3106,26 +3024,6 @@ static stock const
 #endif
 
 /*
- * _FIXES_FunctionInclusion()
- *
- * FIXES:
- *     printf
- *     print
- *     printf_2
- */
-
-forward _FIXES_FunctionInclusion();
-
-public _FIXES_FunctionInclusion()
-{
-	// Force-include the functions in to the AMX (fixes a compiler bug with
-	// `#emit SYSREQ.C`).  Must always be included even if the fixes aren't
-	// because of another bug with `#emit` not being conditionally excluded.
-	format("", 0, "");
-	printf("");
-}
-
-/*
  * _FIXES_DetermineOS()
  *
  * Figure out what OS this is running on.
@@ -3153,42 +3051,6 @@ static _FIXES_DetermineOS()
 	#emit LREF.S.alt           val
 	#emit STOR.S.alt           val
 	_FIXES_gIsWindows = (val == 120);
-}
-
-/*
- * _FIXES_OpenCON()
- *
- * Opens `stdout` as a console write target.
- *
- * FIXES:
- *     print
- *     printf
- */
-
-static stock _FIXES_OpenCON()
-{
-	if (FIXES_gsStdOut)
-	{
-		fclose(FIXES_gsStdOut);
-	}
-	FIXES_gsStdOut = File:0;
-	if (_FIXES_gIsWindows || fexist("CON"))
-	{
-		FIXES_gsStdOut = fopen("CON", io_write);
-	}
-	if (!FIXES_gsStdOut)
-	{
-		// The file wasn't opened - this can only fail on Linux when the symlink
-		// doesn't exist and something goes horribly wrong.  Sadly, there's not
-		// a lot we can do to alert the user since on Linux `print` doesn't go
-		// to the console, but try anyway.
-		print(FIXES_gscCONError);
-	}
-	#if FIX_printf_2
-		_FIXES_gsUsePrintf = (_FIXES_gIsWindows || !FIXES_gsStdOut) ? 0 : 2;
-	#else
-		_FIXES_gsUsePrintf = (_FIXES_gIsWindows || !FIXES_gsStdOut) ? 1 : 2;
-	#endif
 }
 
 /*
@@ -3226,141 +3088,6 @@ static stock _FIXES_OpenCON()
 	forward bool:operator>=(File:a, File:b);
 	forward bool:operator>=(_:a, File:b);
 	forward bool:operator>=(File:a, _:b);
-#endif
-
-/*
- * FIXES_printf(const format[], {Float, _}:...)
- *
- * FIXES:
- *     printf
- */
-
-#if defined _ALS_printf
-	#error _ALS_printf defined
-#endif
-native BAD_printf(const fmat[], {Float, _}:...) = printf;
-
-stock FIXES_printf(const fmat[], {Float, _}:...)
-{
-		// The parameter is not called `format` like it is in the original
-		// include because having it as that name messes up the call to the
-		// function also called `format` in the `SYSREQ.C` below.  This function
-		// is NOT conditionally compiled based on `FIX_printf` because it uses
-		// `#emit` which ignores the pre-processor and so would compile wrong.
-		#pragma unused fmat
-		static
-			sFrame,
-			sReturn,
-			sCount;
-		// Store the function header.
-		#emit POP.pri
-		#emit STOR.pri         sFrame
-		#emit POP.pri
-		#emit STOR.pri         sReturn
-		// We don't need the fix on Windows, and we can't use the fix if the
-		// console redirection wasn't set up correctly.
-		if (_FIXES_gsUsePrintf == 1)
-		{
-			// Mangle the stack slightly here.  What actually happens is that
-			// because we want to call `printf` with exactly the same arguments
-			// as were passed to this function, they are already on the stack
-			// exactly as they need to be used.  So instead of looping through
-			// them all and pushing them all again (which would be an acceptable
-			// method), we just remove some data from the stack.  Call the
-			// original `printf` function.
-			#emit SYSREQ.C         printf
-			// DO NOT remove anything from the stack.  Put the header back.
-			#emit PUSH             sReturn
-			#emit PUSH             sFrame
-			// Return.
-			#emit RETN
-			// The compiler will think this will fall through, but it won't.
-		}
-		{} // Zero-cost bug fix.
-		// Store the function count.  This is the number of BYTES pushed, and
-		// needs adjusting because we need to push two extra parameters for
-		// `format` compared to `printf`.  Remove the function header.
-		#emit POP.pri
-		#emit STOR.pri         sCount
-		// Push the two additional parameters.
-		#emit PUSH.C           512
-		#emit PUSH.C           FIXES_gsScratchSpace
-		// Add the extra parameters sizes.
-		#emit ADD.C            8
-		#emit PUSH.pri
-		// Call the `format` function to create the output.
-		#emit SYSREQ.C         format
-		// Restore the function header.
-		#emit STACK            12
-		#emit PUSH             sCount
-		#emit PUSH             sReturn
-		#emit PUSH             sFrame
-		// Defer to the real `printf` method.  This is before any hooks of
-		// `print` we may have below so the redirection isn't done twice.  We
-		// use `printf` instead of `print` here to preserve `(null)` behaviour.
-	#if FIX_printf_2
-		if (FIXES_gsScratchSpace[0])
-	#endif
-		{
-			sReturn = printf(FIXES_gsScratchSpace);
-			if (_FIXES_gsUsePrintf == 2)
-			{
-				fwrite(FIXES_gsStdOut, FIXES_gsScratchSpace),
-				fwrite(FIXES_gsStdOut, FIXES_gscLF);
-			}
-		}
-	#if FIX_printf_2
-		else
-		{
-			sReturn = printf(FIXES_gscNull);
-			if (_FIXES_gsUsePrintf == 2)
-			{
-				fwrite(FIXES_gsStdOut, FIXES_gscNull),
-				fwrite(FIXES_gsStdOut, FIXES_gscLF);
-			}
-		}
-	#endif
-		return sReturn;
-}
-
-#if FIX_printf || FIX_printf_2
-	#define _ALS_printf
-	#define printf FIXES_printf
-#endif
-
-/*
- * FIXES_print(const string[])
- *
- * FIXES:
- *     print
- */
-
-#if defined _ALS_print
-	#error _ALS_print defined
-#endif
-native BAD_print(const string[]) = print;
-
-#if FIX_print
-	stock FIXES_print(const string[])
-	{
-		// This fix is very high up in the file because `print` may be used by
-		// other fixed functions in debugging, so we need the hooked `print`.
-		new
-			ret = print(string);
-		if (_FIXES_gsUsePrintf == 2)
-		{
-			// If we are not on Windows, use the opened stream to print directly
-			// to the console.  Already written to the server log by `print`.
-			// This doesn't need to conditionally write `(null)` - `print`
-			// always does that so replicate the original behaviour always.
-			fwrite(FIXES_gsStdOut, string[0] ? string : FIXES_gscNull),
-			fwrite(FIXES_gsStdOut, FIXES_gscLF);
-		}
-		return ret;
-	}
-
-	#define _ALS_print
-	#define print FIXES_print
 #endif
 
 /*
@@ -3846,9 +3573,6 @@ public OnJITCompile()
 	state _ALS : _ALS_go;
 	_FIXES_gIsJIT = true;
 	_FIXES_DetermineOS();
-	#if FIX_print || FIX_printf
-		_FIXES_OpenCON();
-	#endif
 
 	return FIXES_OnJITCompile();
 }
@@ -3879,9 +3603,6 @@ public OnFilterScriptInit()
 	state _ALS : _ALS_go;
 	_FIXES_gIsFilterscript = true;
 	_FIXES_DetermineOS();
-	#if FIX_print || FIX_printf
-		_FIXES_OpenCON();
-	#endif
 
 	#if FIXES_Single
 		// Check this really IS the only script running.
@@ -3987,9 +3708,6 @@ public OnGameModeInit()
 {
 	state _ALS : _ALS_go;
 	_FIXES_DetermineOS();
-	#if FIX_print || FIX_printf
-		_FIXES_OpenCON();
-	#endif
 
 	#if FIXES_Single
 		// Check this really IS the only script running.  Properties reset when
@@ -4081,14 +3799,9 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  * Fast way of detecting not to retain any data.
  */
 
-#if !FIXES_Single || FIX_PlayerDialogResponse || FIX_print || FIX_printf
+#if !FIXES_Single || FIX_PlayerDialogResponse
 	public OnGameModeExit()
 	{
-		// Flush stdout by closing and reopening it.
-		#if FIX_print || FIX_printf
-			_FIXES_OpenCON();
-		#endif
-
 		#if !FIXES_Single
 			FIXES_gsSettings |= e_FIXES_SETTINGS_DROP_ALL_DATA;
 			if (!_FIXES_gIsFilterscript && FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
@@ -4129,14 +3842,9 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  * Fast way of detecting not to retain any data.
  */
 
-#if !FIXES_Single || FIX_GameText || FIX_OnPlayerDisconnect || FIX_print || FIX_printf
+#if !FIXES_Single || FIX_GameText || FIX_OnPlayerDisconnect
 	public OnFilterScriptExit()
 	{
-		// Flush stdout by closing and reopening it.
-		#if FIX_print || FIX_printf
-			_FIXES_OpenCON();
-		#endif
-
 		#if FIX_OnPlayerDisconnect
 			// Removal safe loop.
 			for (new next, playerid = FIXES_gsPlayersIterator[MAX_PLAYERS]; playerid != MAX_PLAYERS; playerid = next)
@@ -9482,4 +9190,3 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_NameOfFixHere
 	#define NameOfFixHere FIXES_NameOfFixHere
 #endif
-
