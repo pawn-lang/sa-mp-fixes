@@ -690,6 +690,18 @@
  * SEE:      "FIXES_SetPlayerAmmo", "FIXES_GivePlayerWeapon".
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
+ * FIX:      JIT
+ * PROBLEM:  Can't easily determine if the script is JIT compiled.
+ * SOLUTION: Provide "IS_JIT" to the script for tests.
+ * SEE:      "OnJITCompile".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
+ * FIX:      OS
+ * PROBLEM:  Can't easily determine what OS the script is running on.
+ * SOLUTION: Provide "IS_WINDOWS" and "IS_LINUX" to the script for tests.
+ * SEE:      "_FIXES_DetermineOS".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1618,6 +1630,20 @@
 	#define FIX_GetPlayerAmmo      (2)
 #endif
 
+#if !defined FIX_JIT
+	#define FIX_JIT                      (1)
+#elseif _FIXES_IS_UNSET(FIX_JIT)
+	#undef FIX_JIT
+	#define FIX_JIT                      (2)
+#endif
+
+#if !defined FIX_OS
+	#define FIX_OS                       (1)
+#elseif _FIXES_IS_UNSET(FIX_OS)
+	#undef FIX_OS
+	#define FIX_OS                       (2)
+#endif
+
 /*
  * CHAIN_ORDER
  *
@@ -1898,7 +1924,9 @@ enum e_FIXES_SETTINGS (<<= 1)
 #define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IN_RANGE((%0), 0, MAX_PLAYERS) && IsPlayerConnected((%0)))
 
 // These varaibles are NOT pre-processor dependent as they are stock.  It's just
-// simpler than trying to figure out when or if a semi-colon is needed.
+// simpler than trying to figure out when or if a semi-colon is needed.  The
+// three `_FIXES_gIs...` variables always exist, they are only `static` if the
+// relevant fixes are not enabled since they may still be needed in this file.
 #if !FIX_FILTERSCRIPT
 static
 #endif
@@ -1910,13 +1938,36 @@ stock
 	 */
 	bool:_FIXES_gIsFilterscript;
 
+#if !FIX_JIT
+static
+#endif
 stock
 	/*
-	 * FIXES_gscSpace[]
+	 * bool:_FIXES_gIsJIT
 	 *
-	 * A single re-usable space.
+	 * True when the JIT plugin is being used.
 	 */
-	FIXES_gscSpace[] = " ";
+	bool:_FIXES_gIsJIT = false;
+
+#if !FIX_OS
+static
+#endif
+stock
+	/*
+	 * bool:_FIXES_gIsWindows
+	 *
+	 * True on Windows, false on Linux.
+	 */
+	bool:_FIXES_gIsWindows;
+
+stock const
+	/*
+	 * FIXES_gcSpace[]
+	 *
+	 * A single re-usable space.  Const not static because it is used in macros
+	 * `HideGameTextForAll` and `HideGameTextForPlayer`.
+	 */
+	FIXES_gcSpace[] = " ";
 
 #if FIXES_Debug
 new
@@ -1924,9 +1975,22 @@ new
 static stock
 #endif
 	/*
-	 * FIXES_gsValidMenus[_FIXES_CEILDIV(MAX_MENUS, cellbits)]
+	 * FIXES_gsSpace[]
 	 *
-	 * A record of which menus have and haven't been shown yet.  We ensure that
+	 * A single re-usable space.  Static not const because it is used in this
+	 * file in functions that don't take `const` strings.
+	 */
+	FIXES_gsSpace[] = " ",
+	/*
+	 * bool:FIXES_gsKnownOS
+	 *
+	 * Only determine the OS once.
+	 */
+	bool:FIXES_gsKnownOS = false,
+	/*
+	 * FIXES_gsPlayersIterator[MAX_PLAYERS + 1]
+	 *
+	 * A record of which players are connected to the server.  We ensure that
 	 * this only exists when required, since it depends on add and remove
 	 * functions to be called at the right time.
 	 */
@@ -2275,6 +2339,18 @@ static stock
 	FIXES_gscNULL[] = "\1";
 
 static stock const
+	/*
+	 * FIXES_gscNull[]
+	 *
+	 * (null).  This is stored as a global string to reduce memory usage.
+	 */
+	FIXES_gscNull[] = "(null)",
+	/*
+	 * FIXES_gscLF[]
+	 *
+	 * A single re-usable new line.
+	 */
+	FIXES_gscLF[] = "\n",
 	/*
 	 * FIXES_gscPlayerColours[100]
 	 *
@@ -2788,11 +2864,11 @@ static stock const
 	 */
 	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
 	/*
-	 * FIXES_gscFixesError[]
+	 * FIXES_gscMultiScriptError[]
 	 *
-	 * Error shown when multiple scripts are detected.
+	 * Error shown when multiple scripts are detected with `FIXES_SINGLE`.
 	 */
-	FIXES_gscFixesError[] = "\7\7\7\7\7"                                                     "\n"   \
+	FIXES_gscMultiScriptError[] = "\7\7\7\7\7"                                               "\n"   \
 		"*** fixes.inc error: Running multiple scripts compiled with \"fixes.inc\"..."       "\n"   \
 		"***     Please compile your modes with \"#define FIXES_Single 0\" at the top, as"   "\n"   \
 		"***     this setting is no longer the default (to improve the more common case)."          ;
@@ -2910,6 +2986,16 @@ static stock const
 #endif
 
 /*
+ * IS_JIT
+ *
+ * True when the code is JIT compiled.
+ */
+
+#if FIX_JIT
+	#define IS_JIT (_FIXES_gIsJIT)
+#endif
+
+/*
  * IS_FILTERSCRIPT
  *
  * "FILTERSCRIPT" can't always be relied on to be set.  This is not a pre-
@@ -2917,8 +3003,55 @@ static stock const
  */
 
 #if FIX_FILTERSCRIPT
-	#define IS_FILTERSCRIPT _FIXES_gIsFilterscript
+	#define IS_FILTERSCRIPT (_FIXES_gIsFilterscript)
 #endif
+
+/*
+ * IS_WINDOWS
+ *
+ * True when the code is running on Windows.  NOT a pre-processor macro, since
+ * the OS you are running the code on can't be determined at compile-time.
+ *
+ * IS_LINUX
+ *
+ * True when the code is running on Linux.  NOT a pre-processor macro, since the
+ * OS you are running the code on can't be determined at compile-time.
+ */
+
+#if FIX_OS
+	#define IS_WINDOWS (_FIXES_gIsWindows)
+	#define IS_LINUX (!_FIXES_gIsWindows)
+#endif
+
+/*
+ * _FIXES_DetermineOS()
+ *
+ * Figure out what OS this is running on.
+ *
+ * FIXES:
+ *     IS_WINDOWS
+ *     IS_LINUX
+ */
+
+static _FIXES_DetermineOS()
+{
+	if (FIXES_gsKnownOS)
+	{
+		return;
+	}
+	FIXES_gsKnownOS = true;
+	new
+		val;
+	// The code at address 0 is always `HALT`.
+	#emit LCTRL                0
+	#emit MOVE.alt
+	#emit LCTRL                1
+	#emit SUB.alt
+	#emit STOR.S.pri           val
+	#emit LREF.S.alt           val
+	#emit STOR.S.alt           val
+	_FIXES_gIsWindows = (val == 120);
+}
 
 /*
  * File operators
@@ -3019,7 +3152,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 			#if FIX_GameTextStyles
 
 				// Global style 7 (vehicle name).
-				t = FIXES_gsGTStyle[7] = TextDrawCreate(608.000000, 344.000000, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[7] = TextDrawCreate(608.000000, 344.000000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 1.000000, 3.000000),
 				TextDrawAlignment(t, 3),
 				TextDrawColor(t, 0x36682CFF),
@@ -3033,7 +3166,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 10.0, 200.0);
 
 				// Global style 8 (location name).
-				t = FIXES_gsGTStyle[8] = TextDrawCreate(608.000000, 386.500000, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[8] = TextDrawCreate(608.000000, 386.500000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 1.200000, 3.799998),
 				TextDrawAlignment(t, 3),
 				TextDrawColor(t, 0xACCBF1FF),
@@ -3047,7 +3180,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 10.0, 200.0);
 
 				// Global style 9 (radio name).
-				t = FIXES_gsGTStyle[9] = TextDrawCreate(320.000000, 22.000000, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[9] = TextDrawCreate(320.000000, 22.000000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 0.600000, 1.899999),
 				TextDrawAlignment(t, 2),
 				TextDrawColor(t, 0x906210FF),
@@ -3061,7 +3194,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 200.0, 620.0);
 
 				// Global style 10 (radio switch).
-				t = FIXES_gsGTStyle[10] = TextDrawCreate(320.000000, 22.000000, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[10] = TextDrawCreate(320.000000, 22.000000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 0.600000, 1.899999),
 				TextDrawAlignment(t, 2),
 				TextDrawColor(t, 0x969696FF),
@@ -3075,7 +3208,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 200.0, 620.0);
 
 				// Global style 11 (positive money).
-				t = FIXES_gsGTStyle[11] = TextDrawCreate(607.000000, 78.000000, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[11] = TextDrawCreate(607.000000, 78.000000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 0.550000, 2.150000),
 				TextDrawAlignment(t, 3),
 				TextDrawColor(t, 0x36682CFF),
@@ -3089,7 +3222,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 10.0, 200.0);
 
 				// Global style 12 (negative money).
-				t = FIXES_gsGTStyle[12] = TextDrawCreate(607.000000, 78.000000, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[12] = TextDrawCreate(607.000000, 78.000000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 0.550000, 2.150000),
 				TextDrawAlignment(t, 3),
 				TextDrawColor(t, 0xB4191DFF),
@@ -3103,7 +3236,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 10.0, 200.0);
 
 				// Global style 13 (stunt).
-				t = FIXES_gsGTStyle[13] = TextDrawCreate(380.000000, 341.000000, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[13] = TextDrawCreate(380.000000, 341.000000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 0.579999, 2.400000),
 				TextDrawTextSize(t, 40.000000, 460.000000),
 				TextDrawAlignment(t, 2),
@@ -3119,7 +3252,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 			#endif
 
 				// Global style 0.
-				t = FIXES_gsGTStyle[0] = TextDrawCreate(320.0, 214.0, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[0] = TextDrawCreate(320.0, 214.0, FIXES_gsSpace),
 				TextDrawLetterSize(t, 1.3, 3.6),
 				TextDrawAlignment(t, 2),
 				TextDrawColor(t, 0x906210FF),
@@ -3133,7 +3266,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 200.0, 620.0);
 
 				// Global style 1.
-				t = FIXES_gsGTStyle[1] = TextDrawCreate(620.0, 310.0, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[1] = TextDrawCreate(620.0, 310.0, FIXES_gsSpace),
 				TextDrawLetterSize(t, 1.0, 2.6),
 				TextDrawAlignment(t, 3),
 				TextDrawColor(t, 0x906210FF),
@@ -3147,7 +3280,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 10.0, 200.0);
 
 				// Global style 2.
-				t = FIXES_gsGTStyle[2] = TextDrawCreate(320.0, 156.0, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[2] = TextDrawCreate(320.0, 156.0, FIXES_gsSpace),
 				TextDrawLetterSize(t, 2.1, 4.2),
 				TextDrawAlignment(t, 2),
 				TextDrawColor(t, 0xE1E1E1FF),
@@ -3161,7 +3294,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 200.0, 620.0);
 
 				// Global style 3.
-				t = FIXES_gsGTStyle[3] = TextDrawCreate(320.000000, 154.500000, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[3] = TextDrawCreate(320.000000, 154.500000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 0.600000, 2.750000),
 				TextDrawAlignment(t, 2),
 				TextDrawColor(t, 0x906210FF),
@@ -3175,7 +3308,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 200.0, 620.0);
 
 				// Global style 4.
-				t = FIXES_gsGTStyle[4] = TextDrawCreate(320.000000, 115.500000, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[4] = TextDrawCreate(320.000000, 115.500000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 0.600000, 2.750000),
 				TextDrawAlignment(t, 2),
 				TextDrawColor(t, 0x906210FF),
@@ -3189,7 +3322,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 200.0, 620.0);
 
 				// Global style 5.
-				t = FIXES_gsGTStyle[5] = TextDrawCreate(320.0, 217.0, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[5] = TextDrawCreate(320.0, 217.0, FIXES_gsSpace),
 				TextDrawLetterSize(t, 0.6, 2.75),
 				TextDrawAlignment(t, 2),
 				TextDrawColor(t, 0xE1E1E1FF),
@@ -3203,7 +3336,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 200.0, 620.0);
 
 				// Global style 6.
-				t = FIXES_gsGTStyle[6] = TextDrawCreate(320.000000, 60.000000, FIXES_gscSpace),
+				t = FIXES_gsGTStyle[6] = TextDrawCreate(320.000000, 60.000000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 1.000000, 3.599998),
 				TextDrawAlignment(t, 2),
 				TextDrawColor(t, 0xACCBF1FF),
@@ -3224,7 +3357,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 			#if FIX_GameTextStyles
 
 				// Global style 7 (playerid, vehicle name).
-				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw(playerid, 608.000000, 344.000000, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw(playerid, 608.000000, 344.000000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 1.000000, 3.000000),
 				PlayerTextDrawAlignment(playerid, t, 3),
 				PlayerTextDrawColor(playerid, t, 0x36682CFF),
@@ -3238,7 +3371,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 
 				// Global style 8 (playerid, location name).
-				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw(playerid, 608.000000, 386.500000, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw(playerid, 608.000000, 386.500000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 1.200000, 3.799998),
 				PlayerTextDrawAlignment(playerid, t, 3),
 				PlayerTextDrawColor(playerid, t, 0xACCBF1FF),
@@ -3252,7 +3385,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 
 				// Global style 9 (playerid, radio name).
-				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.600000, 1.899999),
 				PlayerTextDrawAlignment(playerid, t, 2),
 				PlayerTextDrawColor(playerid, t, 0x906210FF),
@@ -3266,7 +3399,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
 
 				// Global style 10 (playerid, radio switch).
-				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.600000, 1.899999),
 				PlayerTextDrawAlignment(playerid, t, 2),
 				PlayerTextDrawColor(playerid, t, 0x969696FF),
@@ -3280,7 +3413,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
 
 				// Global style 11 (playerid, positive money).
-				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw(playerid, 607.000000, 78.000000, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw(playerid, 607.000000, 78.000000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.550000, 2.150000),
 				PlayerTextDrawAlignment(playerid, t, 3),
 				PlayerTextDrawColor(playerid, t, 0x36682CFF),
@@ -3294,7 +3427,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 
 				// Global style 12 (playerid, negative money).
-				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw(playerid, 607.000000, 78.000000, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw(playerid, 607.000000, 78.000000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.550000, 2.150000),
 				PlayerTextDrawAlignment(playerid, t, 3),
 				PlayerTextDrawColor(playerid, t, 0xB4191DFF),
@@ -3308,7 +3441,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 
 				// Global style 13 (playerid, stunt).
-				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw(playerid, 380.000000, 341.000000, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw(playerid, 380.000000, 341.000000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.579999, 2.400000),
 				PlayerTextDrawTextSize(playerid, t, 40.000000, 460.000000),
 				PlayerTextDrawAlignment(playerid, t, 2),
@@ -3324,7 +3457,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 			#endif
 
 				// Global style 0.
-				t = FIXES_gsPGTStyle[playerid][0] = CreatePlayerTextDraw(playerid, 320.0, 214.0, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][0] = CreatePlayerTextDraw(playerid, 320.0, 214.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 1.3, 3.6),
 				PlayerTextDrawAlignment(playerid, t, 2),
 				PlayerTextDrawColor(playerid, t, 0x906210FF),
@@ -3338,7 +3471,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
 
 				// Global style 1.
-				t = FIXES_gsPGTStyle[playerid][1] = CreatePlayerTextDraw(playerid, 620.0, 310.0, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][1] = CreatePlayerTextDraw(playerid, 620.0, 310.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 1.0, 2.6),
 				PlayerTextDrawAlignment(playerid, t, 3),
 				PlayerTextDrawColor(playerid, t, 0x906210FF),
@@ -3352,7 +3485,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 
 				// Global style 2.
-				t = FIXES_gsPGTStyle[playerid][2] = CreatePlayerTextDraw(playerid, 320.0, 156.0, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][2] = CreatePlayerTextDraw(playerid, 320.0, 156.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 2.1, 4.2),
 				PlayerTextDrawAlignment(playerid, t, 2),
 				PlayerTextDrawColor(playerid, t, 0xE1E1E1FF),
@@ -3366,7 +3499,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
 
 				// Global style 3.
-				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw(playerid, 320.000000, 154.500000, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw(playerid, 320.000000, 154.500000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.600000, 2.750000),
 				PlayerTextDrawAlignment(playerid, t, 2),
 				PlayerTextDrawColor(playerid, t, 0x906210FF),
@@ -3380,7 +3513,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
 
 				// Global style 4.
-				t = FIXES_gsPGTStyle[playerid][4] = CreatePlayerTextDraw(playerid, 320.000000, 115.500000, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][4] = CreatePlayerTextDraw(playerid, 320.000000, 115.500000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.600000, 2.750000),
 				PlayerTextDrawAlignment(playerid, t, 2),
 				PlayerTextDrawColor(playerid, t, 0x906210FF),
@@ -3394,7 +3527,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
 
 				// Global style 5.
-				t = FIXES_gsPGTStyle[playerid][5] = CreatePlayerTextDraw(playerid, 320.0, 217.0, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][5] = CreatePlayerTextDraw(playerid, 320.0, 217.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 0.6, 2.75),
 				PlayerTextDrawAlignment(playerid, t, 2),
 				PlayerTextDrawColor(playerid, t, 0xE1E1E1FF),
@@ -3408,7 +3541,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
 
 				// Global style 6.
-				t = FIXES_gsPGTStyle[playerid][6] = CreatePlayerTextDraw(playerid, 320.000000, 60.000000, FIXES_gscSpace),
+				t = FIXES_gsPGTStyle[playerid][6] = CreatePlayerTextDraw(playerid, 320.000000, 60.000000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 1.000000, 3.599998),
 				PlayerTextDrawAlignment(playerid, t, 2),
 				PlayerTextDrawColor(playerid, t, 0xACCBF1FF),
@@ -3425,6 +3558,34 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 #endif
 
 /*
+ * OnJITCompile()()
+ *
+ * Set "IS_JIT" to true.
+ *
+ * FIXES:
+ *     IS_JIT
+ */
+
+forward OnJITCompile();
+
+public OnJITCompile()
+{
+	state _ALS : _ALS_go;
+	_FIXES_gIsJIT = true;
+	_FIXES_DetermineOS();
+
+	return FIXES_OnJITCompile();
+}
+
+#if defined _ALS_OnJITCompile
+	#error _ALS_OnJITCompile defined
+#endif
+#define _ALS_OnJITCompile
+#define OnJITCompile(%0) FIXES_OnJITCompile(%0) <_ALS : _ALS_go>
+
+_FIXES_FORWARD FIXES_OnJITCompile();
+
+/*
  * OnFilterScriptInit()
  *
  * Set "IS_FILTERSCRIPT" to true as this callback is ONLY called if this script
@@ -3439,15 +3600,15 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 public OnFilterScriptInit()
 {
 	// It is possible for this to be the only thing done in this function!
-	_FIXES_gIsFilterscript = true;
-
 	state _ALS : _ALS_go;
+	_FIXES_gIsFilterscript = true;
+	_FIXES_DetermineOS();
 
 	#if FIXES_Single
 		// Check this really IS the only script running.
 		if (existproperty(5, FIXES_gscSingleProperty))
 		{
-			print(FIXES_gscFixesError);
+			print(FIXES_gscMultiScriptError);
 		}
 		else
 		{
@@ -3546,6 +3707,7 @@ _FIXES_FORWARD FIXES_OnFilterScriptInit();
 public OnGameModeInit()
 {
 	state _ALS : _ALS_go;
+	_FIXES_DetermineOS();
 
 	#if FIXES_Single
 		// Check this really IS the only script running.  Properties reset when
@@ -3555,7 +3717,7 @@ public OnGameModeInit()
 		{
 			if (existproperty(5, FIXES_gscSingleProperty))
 			{
-				print(FIXES_gscFixesError);
+				print(FIXES_gscMultiScriptError);
 			}
 			else
 			{
@@ -3655,7 +3817,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#if FIX_PlayerDialogResponse
 			for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 			{
-				ShowPlayerDialog(playerid, -1, 0, FIXES_gscSpace, FIXES_gscSpace, FIXES_gscSpace, FIXES_gscSpace);
+				ShowPlayerDialog(playerid, -1, 0, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace);
 			}
 		#endif
 		// =============================
@@ -4008,7 +4170,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: PlayerDialogResponse
 				// =============================
 				#if FIX_PlayerDialogResponse
-					ShowPlayerDialog(playerid, -1, 0, FIXES_gscSpace, FIXES_gscSpace, FIXES_gscSpace, FIXES_gscSpace);
+					ShowPlayerDialog(playerid, -1, 0, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace);
 				#endif
 				// =============================
 				//  END:   PlayerDialogResponse
@@ -6764,9 +6926,9 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 			if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
 			{
 				#if FIXES_Single
-					return _FIXES_GameTextShow(MAX_PLAYERS, FIXES_gscSpace, time, style);
+					return _FIXES_GameTextShow(MAX_PLAYERS, FIXES_gsSpace, time, style);
 				#else
-					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, FIXES_gscSpace, time, style);
+					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, FIXES_gsSpace, time, style);
 				#endif
 			}
 			else
@@ -6806,9 +6968,9 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			if ((string[0] <= '\0') || (string[0] == '\1' && string[1] == '\0'))
 			{
 				#if FIXES_Single
-					return _FIXES_GameTextShow(playerid, FIXES_gscSpace, time, style);
+					return _FIXES_GameTextShow(playerid, FIXES_gsSpace, time, style);
 				#else
-					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, FIXES_gscSpace, time, style);
+					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, FIXES_gsSpace, time, style);
 				#endif
 			}
 			else
@@ -6843,7 +7005,7 @@ native BAD_HideGameTextForAll(style) = HideGameTextForAll;
 #if FIX_HideGameText
 	#define _ALS_HideGameTextForAll
 
-	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gscSpace, 0, (%0))
+	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gcSpace, 0, (%0))
 #endif
 
 /*
@@ -6861,7 +7023,7 @@ native BAD_HideGameTextForPlayer(playerid, style) = HideGameTextForPlayer;
 #if FIX_HideGameText
 	#define _ALS_HideGameTextForPlayer
 
-	#define HideGameTextForPlayer(%1,%0) GameTextForPlayer((%1), FIXES_gscSpace, 0, (%0))
+	#define HideGameTextForPlayer(%1,%0) GameTextForPlayer((%1), FIXES_gcSpace, 0, (%0))
 #endif
 
 /*
@@ -6881,7 +7043,7 @@ native Text:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = Creat
 	{
 		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
 		{
-			return CreatePlayerTextDraw(playerid, x, y, FIXES_gscSpace);
+			return CreatePlayerTextDraw(playerid, x, y, FIXES_gsSpace);
 		}
 		else
 		{
@@ -6910,7 +7072,7 @@ native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = Player
 	{
 		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
 		{
-			return PlayerTextDrawSetString(playerid, text, FIXES_gscSpace);
+			return PlayerTextDrawSetString(playerid, text, FIXES_gsSpace);
 		}
 		else
 		{
@@ -6938,7 +7100,7 @@ native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 	{
 		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
 		{
-			return TextDrawCreate(x, y, FIXES_gscSpace);
+			return TextDrawCreate(x, y, FIXES_gsSpace);
 		}
 		else
 		{
@@ -6968,7 +7130,7 @@ native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 	{
 		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
 		{
-			return TextDrawSetString(text, FIXES_gscSpace);
+			return TextDrawSetString(text, FIXES_gsSpace);
 		}
 		else
 		{
@@ -9028,3 +9190,4 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_NameOfFixHere
 	#define NameOfFixHere FIXES_NameOfFixHere
 #endif
+
