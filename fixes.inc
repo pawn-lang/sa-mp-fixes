@@ -554,7 +554,7 @@
  *
  * FIX:      HideGameText
  * PROBLEM:  There is no "HideGameTextForXYZ" function.
- * SOLUTION: Show a single space for a game text.  DEFAULTS TO FALSE.
+ * SOLUTION: Show a single space for a game text.
  * SEE:      "FIXES_HideGameTextForAll", "FIXES_HideGameTextForPlayer".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
@@ -615,7 +615,7 @@
  *
  * FIX:      GetPlayerWeaponData
  * PROBLEM:  Old weapons with no ammo left are still returned.
- * SOLUTION: Set "weapons" to 0.  DEFAULTS TO FALSE!
+ * SOLUTION: Set "weapons" to 0.
  * SEE:      "FIXES_GetPlayerWeaponData"
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * POST:     http://forum.sa-mp.com/showthread.php?t=567400
@@ -1164,7 +1164,11 @@
 #endif
 
 #if !defined FIX_GetPlayerDialog
-	#define FIX_GetPlayerDialog          (0)
+	#if defined GetPlayerDialog
+		#define FIX_GetPlayerDialog      (0)
+	#else
+		#define FIX_GetPlayerDialog      (FIX_Natives)
+	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
 	#define FIX_GetPlayerDialog          (2)
@@ -1467,7 +1471,11 @@
 #endif
 
 #if !defined FIX_HideGameText
-	#define FIX_HideGameText             (0)
+	#if defined HideGameText
+		#define FIX_HideGameText         (0)
+	#else
+		#define FIX_HideGameText         (FIX_Natives)
+	#endif
 #elseif _FIXES_IS_UNSET(FIX_HideGameText)
 	#undef FIX_HideGameText
 	#define FIX_HideGameText             (2)
@@ -1554,7 +1562,7 @@
 #endif
 
 #if !defined FIX_GetPlayerWeaponData
-	#define FIX_GetPlayerWeaponData      (0)
+	#define FIX_GetPlayerWeaponData      (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeaponData)
 	#undef FIX_GetPlayerWeaponData
 	#define FIX_GetPlayerWeaponData      (2)
@@ -1610,7 +1618,7 @@
 #endif
 
 #if !defined FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize      (0)
+	#define FIX_GetPlayerPoolSize      (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
 	#define FIX_GetPlayerPoolSize      (2)
@@ -7626,7 +7634,6 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 #if defined _ALS_GetPlayerDialog
 	#error _ALS_GetPlayerDialog defined
 #endif
-native BAD_GetPlayerDialog(playerid) = GetPlayerDialog;
 
 #if FIX_GetPlayerDialog
 	stock FIXES_GetPlayerDialog(playerid)
