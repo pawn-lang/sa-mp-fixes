@@ -554,7 +554,7 @@
  *
  * FIX:      HideGameText
  * PROBLEM:  There is no "HideGameTextForXYZ" function.
- * SOLUTION: Show a single space for a game text.  DEFAULTS TO FALSE.
+ * SOLUTION: Show a single space for a game text.
  * SEE:      "FIXES_HideGameTextForAll", "FIXES_HideGameTextForPlayer".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
@@ -615,7 +615,7 @@
  *
  * FIX:      GetPlayerWeaponData
  * PROBLEM:  Old weapons with no ammo left are still returned.
- * SOLUTION: Set "weapons" to 0.  DEFAULTS TO FALSE!
+ * SOLUTION: Set "weapons" to 0.
  * SEE:      "FIXES_GetPlayerWeaponData"
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  * POST:     http://forum.sa-mp.com/showthread.php?t=567400
@@ -1164,7 +1164,11 @@
 #endif
 
 #if !defined FIX_GetPlayerDialog
-	#define FIX_GetPlayerDialog          (0)
+	#if defined GetPlayerDialog
+		#define FIX_GetPlayerDialog      (0)
+	#else
+		#define FIX_GetPlayerDialog      (FIX_Natives)
+	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
 	#define FIX_GetPlayerDialog          (2)
@@ -1467,7 +1471,11 @@
 #endif
 
 #if !defined FIX_HideGameText
-	#define FIX_HideGameText             (0)
+	#if defined HideGameText
+		#define FIX_HideGameText         (0)
+	#else
+		#define FIX_HideGameText         (FIX_Natives)
+	#endif
 #elseif _FIXES_IS_UNSET(FIX_HideGameText)
 	#undef FIX_HideGameText
 	#define FIX_HideGameText             (2)
@@ -1554,7 +1562,7 @@
 #endif
 
 #if !defined FIX_GetPlayerWeaponData
-	#define FIX_GetPlayerWeaponData      (0)
+	#define FIX_GetPlayerWeaponData      (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeaponData)
 	#undef FIX_GetPlayerWeaponData
 	#define FIX_GetPlayerWeaponData      (2)
@@ -1610,7 +1618,7 @@
 #endif
 
 #if !defined FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize      (0)
+	#define FIX_GetPlayerPoolSize      (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
 	#define FIX_GetPlayerPoolSize      (2)
@@ -2394,7 +2402,7 @@ static stock const
 		{
 			0x10331113, 0x11311131, 0x11331313, 0x80133301, 0x1381F110, 0x10311103, 0x10001F10, 0x11113311, 0x13113311,
 			0x31101100, 0x30002301, 0x11031311, 0x11111331, 0x10013111, 0x01131100, 0x11111110, 0x11100031, 0x11130221,
-			0x33113311, 0x11111101, 0x33101133, 0x101001F0, 0x03133111, 0xFF11113F, 0x13330111, 0xFF131111, 0x0000FF3F
+			0x33113311, 0x11111101, 0x33101133, 0x101005F0, 0x03133111, 0xFF11113F, 0x13330111, 0xFF131111, 0x0000FF3F
 		},
 #endif
 	/*
@@ -7626,7 +7634,6 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 #if defined _ALS_GetPlayerDialog
 	#error _ALS_GetPlayerDialog defined
 #endif
-native BAD_GetPlayerDialog(playerid) = GetPlayerDialog;
 
 #if FIX_GetPlayerDialog
 	stock FIXES_GetPlayerDialog(playerid)
