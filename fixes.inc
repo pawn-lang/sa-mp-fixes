@@ -4417,22 +4417,47 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 #endif
 native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 
-#if FIX_SpawnPlayer
+#if FIX_SpawnPlayer || FIX_OnPlayerSpawn
 	stock FIXES_SpawnPlayer(playerid)
 	{
-		// Valid "playerid" check inside "GetPlayerVehicleID".
-		new
-			vid = GetPlayerVehicleID(playerid);
-		if (vid)
-		{
+		// ======================
+		//  BEGIN: SpawnPlayer
+		// ======================
+		#if FIX_SpawnPlayer
+			// Valid "playerid" check inside "GetPlayerVehicleID".
 			new
-				Float:x,
-				Float:y,
-				Float:z;
-			// Remove them without the animation.
-			GetVehiclePos(vid, x, y, z),
-			SetPlayerPos(playerid, x, y, z);
-		}
+				vid = GetPlayerVehicleID(playerid);
+			if (vid)
+			{
+				new
+					Float:x,
+					Float:y,
+					Float:z;
+				// Remove them without the animation.
+				GetVehiclePos(vid, x, y, z),
+				SetPlayerPos(playerid, x, y, z);
+			}
+		#endif
+		// ======================
+		//  END:   SpawnPlayer
+		// ======================
+		
+		// ======================
+		//  BEGIN: OnPlayerSpawn
+		// ======================
+		#if FIX_OnPlayerSpawn
+			#if FIXES_Single
+				printf("[fixes]: var money %i", GetPlayerMoney(playerid));
+				FIXES_gsLastCash[playerid] = GetPlayerMoney(playerid);
+			#else
+				printf("[fixes]: var money %i", GetPlayerMoney(playerid));
+				SetPVarInt(playerid, FIXES_pvarPlayerLastCash, GetPlayerMoney(playerid));
+			#endif
+		#endif
+		// ======================
+		//  END:   OnPlayerSpawn
+		// ======================
+		
 		return SpawnPlayer(playerid);
 	}
 
