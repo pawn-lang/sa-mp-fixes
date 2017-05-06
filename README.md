@@ -152,6 +152,7 @@ A few fixes are disabled by default, to enable them all do:
 #define FIX_random 1 // I don't think negative numbers not working is a bug.
 #define FIX_file_inc 1 // This will enable all the "fwhatever" fixes.
 #define FIX_HideMenuForPlayer_2 1 // Hide a specific menu, not just whatever the current one is.
+#define FIX_GameTextStyles 1 // Adds new game styles
 ```
 
 # Expansion
