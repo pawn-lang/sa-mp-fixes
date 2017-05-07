@@ -4410,6 +4410,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  *
  * FIXES:
  *     SpawnPlayer
+ *     OnPlayerSpawn
  */
 
 #if defined _ALS_SpawnPlayer
