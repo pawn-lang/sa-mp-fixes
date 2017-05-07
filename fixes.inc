@@ -4447,10 +4447,8 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 		// ======================
 		#if FIX_OnPlayerSpawn
 			#if FIXES_Single
-				printf("[fixes]: var money %i", GetPlayerMoney(playerid));
 				FIXES_gsLastCash[playerid] = GetPlayerMoney(playerid);
 			#else
-				printf("[fixes]: var money %i", GetPlayerMoney(playerid));
 				SetPVarInt(playerid, FIXES_pvarPlayerLastCash, GetPlayerMoney(playerid));
 			#endif
 		#endif
