@@ -6891,11 +6891,8 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 
 	public _FIXES_HideGameTextTimer(playerid, style)
 	{
-		if (GetTickCount() >= FIXES_gsGTTimer[style][playerid])
-		{
-			// Only hide it if it hasn't been re-shown in the interim.
-			_FIXES_HideGameTextForPlayer(playerid, style, FIXES_gsPlayerPGTShown[style]);
-		}
+		_FIXES_HideGameTextForPlayer(playerid, style, FIXES_gsPlayerPGTShown[style]);
+		FIXES_gsGTTimer[style][playerid] = 0;
 	}
 #endif
 
@@ -6928,10 +6925,11 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 			}
 			if (time)
 			{
-				// Tiny offset because timers are inaccurate.
-				FIXES_gsGTTimer[style][playerid] = GetTickCount() + time - 10,
-				// Don't need to save the timer's ID.
-				SetTimerEx(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, style);
+				if (FIXES_gsGTTimer[style][playerid] != 0)
+				{
+					KillTimer(FIXES_gsGTTimer[style][playerid]);
+				}
+				FIXES_gsGTTimer[style][playerid] = SetTimerEx(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, style);
 			}
 		}
 		return 1;
