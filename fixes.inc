@@ -7030,12 +7030,20 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #if defined _ALS_HideGameTextForAll
 	#error _ALS_HideGameTextForAll defined
 #endif
-native BAD_HideGameTextForAll(style) = HideGameTextForAll;
 
-#if FIX_HideGameText
+#if FIX_HideGameTextForAll
+	stock FIXES_HideGameTextForAll(style)
+	{
+		if (FIXES_gsGTTimer[style][MAX_PLAYERS] != 0)
+		{
+			KillTimer(FIXES_gsGTTimer[style][MAX_PLAYERS]);
+			FIXES_gsGTTimer[style][MAX_PLAYERS] = 0;
+		}
+		return GameTextForAll(FIXES_gcSpace, 0, style);
+	}
+
 	#define _ALS_HideGameTextForAll
-
-	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gcSpace, 0, (%0))
+	#define HideGameTextForAll FIXES_HideGameTextForAll
 #endif
 
 /*
@@ -7048,12 +7056,24 @@ native BAD_HideGameTextForAll(style) = HideGameTextForAll;
 #if defined _ALS_HideGameTextForPlayer
 	#error _ALS_HideGameTextForPlayer defined
 #endif
-native BAD_HideGameTextForPlayer(playerid, style) = HideGameTextForPlayer;
 
 #if FIX_HideGameText
-	#define _ALS_HideGameTextForPlayer
+	stock HideGameTextForPlayer(playerid, style)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			if (FIXES_gsGTTimer[style][playerid] != 0)
+			{
+				KillTimer(FIXES_gsGTTimer[style][playerid]);
+				FIXES_gsGTTimer[style][playerid] = 0;
+			}
+			return GameTextForPlayer(playerid, FIXES_gcSpace, 0, style);
+		}
+		return 0;
+	}
 
-	#define HideGameTextForPlayer(%1,%0) GameTextForPlayer((%1), FIXES_gcSpace, 0, (%0))
+	#define _ALS_HideGameTextForPlayer
+	#define HideGameTextForPlayer FIXES_HideGameTextForPlayer
 #endif
 
 /*
