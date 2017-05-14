@@ -7123,8 +7123,9 @@ native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = Player
  *     TextDrawCreate
  */
 
-	#if defined _ALS_TextDrawCreate
-		#error _ALS_TextDrawCreate defined
+#if defined _ALS_TextDrawCreate
+	#error _ALS_TextDrawCreate defined
+#endif
 native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 
 #if FIX_TextDrawCreate
@@ -7140,7 +7141,6 @@ native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 		}
 	}
 
-	#endif
 	#define _ALS_TextDrawCreate
 	#define TextDrawCreate FIXES_TextDrawCreate
 #endif
