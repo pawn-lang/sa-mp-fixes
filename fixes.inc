@@ -6891,7 +6891,20 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 
 	public _FIXES_HideGameTextTimer(playerid, style)
 	{
-		_FIXES_HideGameTextForPlayer(playerid, style, FIXES_gsPlayerPGTShown[style]);
+		if (playerid == MAX_PLAYERS)
+		{
+			_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
+			{
+				if (FIXES_gsGTTimer[style][i] == 0)
+				{
+					TextDrawHideForPlayer(i, FIXES_gsGTStyle[style]);
+				}
+			}
+		}
+		else
+		{
+			_FIXES_HideGameTextForPlayer(playerid, style, FIXES_gsPlayerPGTShown[style]);
+		}
 		FIXES_gsGTTimer[style][playerid] = 0;
 	}
 #endif
