@@ -2084,7 +2084,9 @@ static stock
 	 *
 	 * The last animation a player used.
 	 */
+#if FIX_OnPlayerDeath
 	FIXES_gsLastAnimation[MAX_PLAYERS],
+#endif
 	/*
 	 * FIXES_gsLastCash[MAX_PLAYERS]
 	 *
@@ -4950,7 +4952,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			}
 		#endif
 
-		#if FIX_OnPlayerEnterVehicle || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+		#if FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 			new
 				e_FIXES_BOOLS:pbools = FIXES_gsPlayerBools[playerid];
 		#endif
@@ -5007,11 +5009,16 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  END:   SetPlayerWorldBounds
 		// =============================
 
+		#if FIX_OnPlayerDeath || FIX_PassengerSeating
+			new
+				animation = GetPlayerAnimationIndex(playerid);
+		#endif
+
 		// ======================
 		//  BEGIN: OnPlayerDeath
 		// ======================
 		#if FIX_OnPlayerDeath
-			FIXES_gsLastAnimation[playerid] = GetPlayerAnimationIndex(playerid);
+			FIXES_gsLastAnimation[playerid] = animation;
 		#endif
 		// ======================
 		//  END:   OnPlayerDeath
@@ -5051,15 +5058,20 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  BEGIN: PassengerSeating
 		// =================================
 		#if FIX_PassengerSeating
-			new animation = GetPlayerAnimationIndex(playerid);
-			if (FIXES_gsPSTimer[playerid] != 0
-				&& GetTickCount() > FIXES_gsPSTimer[playerid]
-				&& GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE
-				&& !(1007 <= animation <= 1060)
-				&& !(225 <= animation <= 233))
+			if (FIXES_gsPSTimer[playerid] != 0 && GetTickCount() > FIXES_gsPSTimer[playerid])
 			{
-				ClearAnimations(playerid, 1);
-				FIXES_gsPSTimer[playerid] = 0;
+				if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE)
+				{
+					if (!(1007 <= animation <= 1060) && !(225 <= animation <= 233))
+					{
+						ClearAnimations(playerid, 1);
+						FIXES_gsPSTimer[playerid] = 0;
+					}
+				}
+				else
+				{
+					FIXES_gsPSTimer[playerid] = 0;
+				}
 			}
 		#endif
 		// =================================
@@ -5483,7 +5495,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: PassengerSeating
 		// =============================
 		#if FIX_PassengerSeating
-			new model = GetVehicleModel(vehicleid);
+			new
+				model = GetVehicleModel(vehicleid);
+
 			FIXES_gsPSTimer[playerid] = GetTickCount() + ((model == 431 || model == 437) ? 8000 : 2800);
 		#endif
 		// =============================
