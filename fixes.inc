@@ -5484,7 +5484,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		// =============================
 		#if FIX_PassengerSeating
 			new model = GetVehicleModel(vehicleid);
-			FIXES_gsPSTimer[playerid] = GetTickCount() + (model == 431 || model == 437) ? 8000 : 2800;
+			FIXES_gsPSTimer[playerid] = GetTickCount() + ((model == 431 || model == 437) ? 8000 : 2800);
 		#endif
 		// =============================
 		//  END: PassengerSeating
@@ -7055,7 +7055,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#error _ALS_HideGameTextForAll defined
 #endif
 
-#if FIX_HideGameTextForAll
+#if FIX_HideGameText
 	stock FIXES_HideGameTextForAll(style)
 	{
 		if (FIXES_gsGTTimer[style][MAX_PLAYERS] != 0)
