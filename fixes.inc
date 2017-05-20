@@ -1794,6 +1794,26 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /*
+ * FIXES_SET
+ */
+
+#if FIXES_Single
+	#define FIXES_SET(%0,%1,%2) (FIXES_gs%0[%1] = %2)
+#else
+	#define FIXES_SET(%0,%1,%2) SetPVarInt(%1, FIXES_pvar%0, %2)
+#endif
+
+/*
+ * FIXES_GET
+ */
+
+#if FIXES_Single
+	#define FIXES_GET(%0,%1) (FIXES_gs%0[%1])
+#else
+	#define FIXES_GET(%0,%1) GetPVarInt(%1, FIXES_pvar%0)
+#endif
+
+/*
  * E_FIXES_WORLDBOUND_DATA
  *
  * Store data for each player on their worldbound data.
@@ -2057,21 +2077,21 @@ static stock
 	 */
 	FIXES_gsVehicleSeatData[MAX_PLAYERS],
 	/*
-	 * FIXES_gsDialogID[MAX_PLAYERS]
+	 * FIXES_gsPlayerDialog[MAX_PLAYERS]
 	 *
 	 * Stores the true ID of the dialog the player is looking at to prevent
 	 * spoofing.
 	 */
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
-	FIXES_gsDialogID[MAX_PLAYERS] = {-1, ...},
+	FIXES_gsPlayerDialog[MAX_PLAYERS] = {-1, ...},
 #endif
 	/*
-	 * FIXES_gsInterior[MAX_PLAYERS]
+	 * FIXES_gsPlayerInterior[MAX_PLAYERS]
 	 *
 	 * The player's current interior.
 	 */
 #if FIXES_Single && FIX_GetPlayerInterior
-	FIXES_gsInterior[MAX_PLAYERS],
+	FIXES_gsPlayerInterior[MAX_PLAYERS],
 #endif
 	/*
 	 * e_FIXES_SETTINGS:FIXES_gsSettings
@@ -2088,12 +2108,12 @@ static stock
 	FIXES_gsLastAnimation[MAX_PLAYERS],
 #endif
 	/*
-	 * FIXES_gsLastCash[MAX_PLAYERS]
+	 * FIXES_gsPlayerLastCash[MAX_PLAYERS]
 	 *
 	 * A player's cash before dying.
 	 */
 #if FIX_OnPlayerSpawn
-	FIXES_gsLastCash[MAX_PLAYERS],
+	FIXES_gsPlayerLastCash[MAX_PLAYERS],
 #endif
 	/*
 	 * FIXES_gsDriveByWeapon[MAX_PLAYERS]
@@ -4104,11 +4124,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: GetPlayerSkin
 				// ======================
 				#if FIX_GetPlayerSkin
-					#if FIXES_Single
-						FIXES_gsPlayerSkin[playerid] = 0;
-					#else
-						SetPVarInt(playerid, FIXES_pvarPlayerSkin, 0);
-					#endif
+					FIXES_SET(PlayerSkin, playerid, 0);
 				#endif
 				// ======================
 				//  END:   GetPlayerSkin
@@ -4138,11 +4154,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: GetPlayerWeapon
 				// ========================
 				#if FIX_GetPlayerWeapon
-					#if FIXES_Single
-						FIXES_gsPlayerWeapon[playerid] = -1;
-					#else
-						SetPVarInt(playerid, FIXES_pvarPlayerWeapon, -1);
-					#endif
+					FIXES_SET(PlayerWeapon, playerid, -1);
 				#endif
 				// ========================
 				//  END:   GetPlayerWeapon
@@ -4152,11 +4164,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: GetPlayerInterior
 				// ==========================
 				#if FIX_GetPlayerInterior
-					#if FIXES_Single
-						FIXES_gsInterior[playerid] = 0;
-					#else
-						SetPVarInt(playerid, FIXES_pvarPlayerInterior, 0);
-					#endif
+					FIXES_SET(PlayerInterior, playerid, 0);
 				#endif
 				// ==========================
 				//  END:   GetPlayerInterior
@@ -4166,11 +4174,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: OnDialogResponse
 				// =========================
 				#if FIX_OnDialogResponse || FIX_GetPlayerDialog
-					#if FIXES_Single
-						FIXES_gsDialogID[playerid] = INVALID_DIALOG_ID;
-					#else
-						SetPVarInt(playerid, FIXES_pvarPlayerDialog, INVALID_DIALOG_ID);
-					#endif
+					FIXES_SET(PlayerDialog, playerid, INVALID_DIALOG_ID);
 				#endif
 				// =========================
 				//  END:   OnDialogResponse
@@ -4200,11 +4204,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: OnPlayerSpawn
 				// ======================
 				#if FIX_OnPlayerSpawn
-					#if FIXES_Single
-						FIXES_gsLastCash[playerid] = 0;
-					#else
-						SetPVarInt(playerid, FIXES_pvarPlayerLastCash, 0);
-					#endif
+					FIXES_SET(PlayerLastCash, playerid, 0);
 				#endif
 				// ======================
 				//  END:   OnPlayerSpawn
@@ -4383,11 +4383,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 			new
 				ret = FIXES_OnPlayerDeath(playerid, killerid, reason);
 
-			#if FIXES_Single
-				FIXES_gsLastCash[playerid] = GetPlayerMoney(playerid);
-			#else
-				SetPVarInt(playerid, FIXES_pvarPlayerLastCash, GetPlayerMoney(playerid));
-			#endif
+			FIXES_SET(PlayerLastCash, playerid, GetPlayerMoney(playerid));
 
 			return ret;
 		#else
@@ -4449,11 +4445,7 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 		//  BEGIN: OnPlayerSpawn
 		// ======================
 		#if FIX_OnPlayerSpawn
-			#if FIXES_Single
-				FIXES_gsLastCash[playerid] = GetPlayerMoney(playerid);
-			#else
-				SetPVarInt(playerid, FIXES_pvarPlayerLastCash, GetPlayerMoney(playerid));
-			#endif
+			FIXES_SET(PlayerLastCash, playerid, GetPlayerMoney(playerid));
 		#endif
 		// ======================
 		//  END:   OnPlayerSpawn
@@ -4567,13 +4559,8 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			// ======================
 			#if FIX_OnPlayerSpawn
 				ResetPlayerMoney(playerid);
-				#if FIXES_Single
-					GivePlayerMoney(playerid, FIXES_gsLastCash[playerid]);
-					FIXES_gsLastCash[playerid] = 0;
-				#else
-					GivePlayerMoney(playerid, GetPVarInt(playerid, FIXES_pvarPlayerLastCash));
-					SetPVarInt(playerid, FIXES_pvarPlayerLastCash, 0);
-				#endif
+				GivePlayerMoney(playerid, FIXES_GET(PlayerLastCash, playerid));
+				FIXES_SET(PlayerLastCash, playerid, 0);
 			#endif
 			// ======================
 			//  END:   OnPlayerSpawn
@@ -4583,11 +4570,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			//  BEGIN: GetPlayerInterior
 			// ==========================
 			#if FIX_GetPlayerInterior
-				#if FIXES_Single
-					FIXES_gsInterior[playerid] = 0;
-				#else
-					SetPVarInt(playerid, FIXES_pvarPlayerInterior, 0);
-				#endif
+				FIXES_SET(PlayerInterior, playerid, 0);
 			#endif
 			// ==========================
 			//  END:   GetPlayerInterior
@@ -4648,11 +4631,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		//  BEGIN: GetPlayerSkin
 		// ======================
 		#if FIX_GetPlayerSkin
-			#if FIXES_Single
-				FIXES_gsPlayerSkin[playerid] = GetPlayerSkin(playerid);
-			#else
-				SetPVarInt(playerid, FIXES_pvarPlayerSkin, GetPlayerSkin(playerid));
-			#endif
+			FIXES_SET(PlayerSkin, playerid, GetPlayerSkin(playerid));
 		#endif
 		// ======================
 		//  END:   GetPlayerSkin
@@ -4788,11 +4767,7 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 				//  BEGIN: GetPlayerSkin
 				// ======================
 				#if FIX_GetPlayerSkin
-					#if FIXES_Single
-						FIXES_gsPlayerSkin[playerid] = skinid;
-					#else
-						SetPVarInt(playerid, FIXES_pvarPlayerSkin, skinid);
-					#endif
+					FIXES_SET(PlayerSkin, playerid, skinid);
 				#endif
 				// ======================
 				//  END:   GetPlayerSkin
@@ -4820,11 +4795,7 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 		// ======================
 		#if FIX_GetPlayerSkin
 			// Watch fot the "else" above if this code ever changes.
-			#if FIXES_Single
-				FIXES_gsPlayerSkin[playerid] = skinid;
-			#else
-				SetPVarInt(playerid, FIXES_pvarPlayerSkin, skinid);
-			#endif
+			FIXES_SET(PlayerSkin, playerid, skinid);
 		#endif
 		// ======================
 		//  END:   GetPlayerSkin
@@ -4852,11 +4823,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 #if FIX_GetPlayerSkin
 	stock FIXES_GetPlayerSkin(playerid)
 	{
-		#if FIXES_Single
-			return FIXES_gsPlayerSkin[playerid];
-		#else
-			return GetPVarInt(playerid, FIXES_pvarPlayerSkin);
-		#endif
+		return FIXES_GET(PlayerSkin, playerid);
 	}
 
 	#define _ALS_GetPlayerSkin
@@ -5331,14 +5298,10 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: GetPlayerInterior
 		// ==========================
 		#if FIX_GetPlayerInterior
-			#if FIXES_Single
-				FIXES_gsInterior[playerid] = newinteriorid;
-			#else
-				_FIXES_IS_IN_CHARGE()
-				{
-					SetPVarInt(playerid, FIXES_pvarPlayerInterior, newinteriorid);
-				}
-			#endif
+			_FIXES_IS_IN_CHARGE()
+			{
+				FIXES_SET(PlayerInterior, playerid, newinteriorid);
+			}
 		#endif
 		// ==========================
 		//  END:   GetPlayerInterior
@@ -5367,11 +5330,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 						#if FIX_GetPlayerWeapon
 							if (IsPlayerInAnyVehicle(playerid))
 							{
-								#if FIXES_Single
-									FIXES_gsPlayerWeapon[playerid] = 0;
-								#else
-									SetPVarInt(playerid, FIXES_pvarPlayerWeapon, 0);
-								#endif
+								FIXES_SET(PlayerWeapon, playerid, 0);
 							}
 						#endif
 					}
@@ -6196,11 +6155,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 						SetPlayerArmedWeapon(playerid, 0);
 						#if FIX_GetPlayerWeapon
 							// This is the first cross-dependednt fix.
-							#if FIXES_Single
-								FIXES_gsPlayerWeapon[playerid] = 0;
-							#else
-								SetPVarInt(playerid, FIXES_pvarPlayerWeapon, 0);
-							#endif
+							FIXES_SET(PlayerWeapon, playerid, 0);
 						#endif
 					}
 			#if !FIX_GetPlayerWeapon
@@ -6227,11 +6182,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 					if (weapon)
 					{
 						SetPlayerArmedWeapon(playerid, weapon);
-						#if FIXES_Single
-							FIXES_gsPlayerWeapon[playerid] = weapon;
-						#else
-							SetPVarInt(playerid, FIXES_pvarPlayerWeapon, weapon);
-						#endif
+						FIXES_SET(PlayerWeapon, playerid, weapon);
 					}
 				}
 		#endif
@@ -6254,11 +6205,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 				//  BEGIN: GetPlayerWeapon
 				// ========================
 				#if FIX_GetPlayerWeapon
-					#if FIXES_Single
-						FIXES_gsPlayerWeapon[playerid] = -1;
-					#else
-						SetPVarInt(playerid, FIXES_pvarPlayerWeapon, -1);
-					#endif
+					FIXES_SET(PlayerWeapon, playerid, -1);
 				#endif
 				// ========================
 				//  END:   GetPlayerWeapon
@@ -6380,22 +6327,14 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 					vid = GivePlayerWeapon(playerid, weaponid, ammo),
 					SetPlayerArmedWeapon(playerid, 0);
 					#if FIX_GetPlayerWeapon
-						#if FIXES_Single
-							FIXES_gsPlayerWeapon[playerid] = 0;
-						#else
-							SetPVarInt(playerid, FIXES_pvarPlayerWeapon, 0);
-						#endif
+						FIXES_SET(PlayerWeapon, playerid, 0);
 					#endif
 					return vid;
 				}
 			#endif
 
 			#if FIX_GetPlayerWeapon
-				#if FIXES_Single
-					FIXES_gsPlayerWeapon[playerid] = weaponid;
-				#else
-					SetPVarInt(playerid, FIXES_pvarPlayerWeapon, weaponid);
-				#endif
+				FIXES_SET(PlayerWeapon, playerid, weaponid);
 			#endif
 		}
 		return GivePlayerWeapon(playerid, weaponid, ammo);
@@ -6423,11 +6362,7 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 	{
 		if (IsPlayerInAnyVehicle(playerid))
 		{
-			#if FIXES_Single
-				FIXES_gsPlayerWeapon[playerid] = 0;
-			#else
-				SetPVarInt(playerid, FIXES_pvarPlayerWeapon, 0);
-			#endif
+			FIXES_SET(PlayerWeapon, playerid, 0);
 		}
 		return ResetPlayerWeapons(playerid);
 	}
@@ -6471,11 +6406,7 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 			#endif
 
 			#if FIX_GetPlayerWeapon
-				#if FIXES_Single
-					FIXES_gsPlayerWeapon[playerid] = weaponid;
-				#else
-					SetPVarInt(playerid, FIXES_pvarPlayerWeapon, weaponid);
-				#endif
+				FIXES_SET(PlayerWeapon, playerid, weaponid);
 			#endif
 		}
 		return SetPlayerArmedWeapon(playerid, weaponid);
@@ -6500,13 +6431,8 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 #if FIX_GetPlayerWeapon
 	stock FIXES_GetPlayerWeapon(playerid)
 	{
-		#if FIXES_Single
-			new
-				ret = FIXES_gsPlayerWeapon[playerid];
-		#else
-			new
-				ret = GetPVarInt(playerid, FIXES_pvarPlayerWeapon);
-		#endif
+		new
+			ret = FIXES_GET(PlayerWeapon, playerid);
 		if (ret == -1)
 		{
 			return GetPlayerWeapon(playerid);
@@ -7322,11 +7248,7 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
-			#if FIXES_Single
-				return FIXES_gsInterior[playerid];
-			#else
-				return GetPVarInt(playerid, FIXES_pvarPlayerInterior);
-			#endif
+			return FIXES_GET(PlayerInterior, playerid);
 		}
 		return 0;
 	}
@@ -7352,11 +7274,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
-			#if FIXES_Single
-				FIXES_gsInterior[playerid] = interiorid;
-			#else
-				SetPVarInt(playerid, FIXES_pvarPlayerInterior, interiorid);
-			#endif
+			FIXES_SET(PlayerInterior, playerid, interiorid);
 			return SetPlayerInterior(playerid, interiorid);
 		}
 		return 0;
@@ -7637,11 +7555,7 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
-			#if FIXES_Single
-				FIXES_gsDialogID[playerid] = dialog;
-			#else
-				SetPVarInt(playerid, FIXES_pvarPlayerDialog, dialog);
-			#endif
+			FIXES_SET(PlayerDialog, playerid, dialog);
 			return ShowPlayerDialog(playerid, dialog, style, title, caption, button1, button2);
 		}
 		return 0;
@@ -7668,9 +7582,9 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 		#if FIX_OnDialogResponse || FIX_GetPlayerDialog
 			#if FIXES_Single
 				#if FIX_OnDialogResponse
-					dialogid = FIXES_gsDialogID[playerid];
+					dialogid = FIXES_gsPlayerDialog[playerid];
 				#endif
-				FIXES_gsDialogID[playerid] = INVALID_DIALOG_ID;
+				FIXES_gsPlayerDialog[playerid] = INVALID_DIALOG_ID;
 			#elseif FIX_OnDialogResponse
 				_FIXES_IS_IN_CHARGE()
 				{
@@ -7720,11 +7634,7 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
-			#if FIXES_Single
-				return FIXES_gsDialogID[playerid];
-			#else
-				return GetPVarInt(playerid, FIXES_pvarPlayerDialog);
-			#endif
+			return FIXES_GET(PlayerDialog, playerid);
 		}
 		return -1;
 	}
