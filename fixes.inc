@@ -5051,10 +5051,12 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  BEGIN: PassengerSeating
 		// =================================
 		#if FIX_PassengerSeating
+			new animation = GetPlayerAnimationIndex(playerid);
 			if (FIXES_gsPSTimer[playerid] != 0
 				&& GetTickCount() > FIXES_gsPSTimer[playerid]
 				&& GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE
-				&& !(1007 <= GetPlayerAnimationIndex(playerid) <= 1060))
+				&& !(1007 <= animation <= 1060)
+				&& !(225 <= animation <= 233))
 			{
 				ClearAnimations(playerid, 1);
 				FIXES_gsPSTimer[playerid] = 0;
@@ -5481,7 +5483,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: PassengerSeating
 		// =============================
 		#if FIX_PassengerSeating
-			FIXES_gsPSTimer[playerid] = GetTickCount() + 2800;
+			new model = GetVehicleModel(vehicleid);
+			FIXES_gsPSTimer[playerid] = GetTickCount() + (model == 431 || model == 437) ? 8000 : 2800;
 		#endif
 		// =============================
 		//  END: PassengerSeating
