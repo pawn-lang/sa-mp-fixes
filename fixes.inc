@@ -6894,11 +6894,21 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 
 	public _FIXES_HideGameTextTimer(playerid, style)
 	{
-		if (GetTickCount() >= FIXES_gsGTTimer[style][playerid])
+		if (playerid == MAX_PLAYERS)
 		{
-			// Only hide it if it hasn't been re-shown in the interim.
+			_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
+			{
+				if (FIXES_gsGTTimer[style][i] == 0)
+				{
+					TextDrawHideForPlayer(i, FIXES_gsGTStyle[style]);
+				}
+			}
+		}
+		else
+		{
 			_FIXES_HideGameTextForPlayer(playerid, style, FIXES_gsPlayerPGTShown[style]);
 		}
+		FIXES_gsGTTimer[style][playerid] = 0;
 	}
 #endif
 
@@ -6918,6 +6928,14 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 		{
 			if (playerid == MAX_PLAYERS)
 			{
+				_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
+				{
+					if (FIXES_gsGTTimer[style][i] != 0)
+					{
+						KillTimer(FIXES_gsGTTimer[style][i]);
+						FIXES_gsGTTimer[style][i] = 0;
+					}
+				}
 				_FIXES_HideGameTextForPlayer(INVALID_PLAYER_ID, style, FIXES_gsPlayerPGTShown[style]),
 				TextDrawSetString(FIXES_gsGTStyle[style], string),
 				TextDrawShowForAll(FIXES_gsGTStyle[style]);
@@ -6931,10 +6949,11 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 			}
 			if (time)
 			{
-				// Tiny offset because timers are inaccurate.
-				FIXES_gsGTTimer[style][playerid] = GetTickCount() + time - 10,
-				// Don't need to save the timer's ID.
-				SetTimerEx(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, style);
+				if (FIXES_gsGTTimer[style][playerid] != 0)
+				{
+					KillTimer(FIXES_gsGTTimer[style][playerid]);
+				}
+				FIXES_gsGTTimer[style][playerid] = SetTimerEx(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, style);
 			}
 		}
 		return 1;
@@ -7035,12 +7054,20 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #if defined _ALS_HideGameTextForAll
 	#error _ALS_HideGameTextForAll defined
 #endif
-native BAD_HideGameTextForAll(style) = HideGameTextForAll;
 
-#if FIX_HideGameText
+#if FIX_HideGameTextForAll
+	stock FIXES_HideGameTextForAll(style)
+	{
+		if (FIXES_gsGTTimer[style][MAX_PLAYERS] != 0)
+		{
+			KillTimer(FIXES_gsGTTimer[style][MAX_PLAYERS]);
+			FIXES_gsGTTimer[style][MAX_PLAYERS] = 0;
+		}
+		return GameTextForAll(FIXES_gcSpace, 0, style);
+	}
+
 	#define _ALS_HideGameTextForAll
-
-	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gcSpace, 0, (%0))
+	#define HideGameTextForAll FIXES_HideGameTextForAll
 #endif
 
 /*
@@ -7053,12 +7080,24 @@ native BAD_HideGameTextForAll(style) = HideGameTextForAll;
 #if defined _ALS_HideGameTextForPlayer
 	#error _ALS_HideGameTextForPlayer defined
 #endif
-native BAD_HideGameTextForPlayer(playerid, style) = HideGameTextForPlayer;
 
 #if FIX_HideGameText
-	#define _ALS_HideGameTextForPlayer
+	stock HideGameTextForPlayer(playerid, style)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			if (FIXES_gsGTTimer[style][playerid] != 0)
+			{
+				KillTimer(FIXES_gsGTTimer[style][playerid]);
+				FIXES_gsGTTimer[style][playerid] = 0;
+			}
+			return GameTextForPlayer(playerid, FIXES_gcSpace, 0, style);
+		}
+		return 0;
+	}
 
-	#define HideGameTextForPlayer(%1,%0) GameTextForPlayer((%1), FIXES_gcSpace, 0, (%0))
+	#define _ALS_HideGameTextForPlayer
+	#define HideGameTextForPlayer FIXES_HideGameTextForPlayer
 #endif
 
 /*
