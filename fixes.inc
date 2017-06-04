@@ -856,6 +856,13 @@
 	#define FIX_ALL             (2)
 #endif
 
+#if !defined FIX_OLD
+	#define FIX_OLD             (0)
+#elseif _FIXES_IS_UNSET(FIX_OLD)
+	#undef FIX_OLD
+	#define FIX_OLD             (2)
+#endif
+
 // We can add server version compiler code here to only compile fixes that apply
 // to the version of the includes for which the user is compiling.
 #if !defined FIX_GetPlayerColour
@@ -903,7 +910,7 @@
 
 #if !defined FIX_GetWeaponName
 	#if defined GetVehicleParamsSirenState
-		#define FIX_GetWeaponName (0)
+		#define FIX_GetWeaponName (FIX_OLD)
 	#else
 		#define FIX_GetWeaponName (1)
 	#endif
@@ -921,7 +928,7 @@
 
 #if !defined FIX_TogglePlayerControllable
 	#if defined SetObjectMaterial
-		#define FIX_TogglePlayerControllable (0)
+		#define FIX_TogglePlayerControllable (FIX_OLD)
 	#else
 		#define FIX_TogglePlayerControllable (1)
 	#endif
@@ -967,7 +974,7 @@
 
 #if !defined FIX_KEY_AIM
 	#if defined KEY_AIM
-		#define FIX_KEY_AIM              (0)
+		#define FIX_KEY_AIM              (FIX_OLD)
 	#else
 		#define FIX_KEY_AIM              (1)
 	#endif
@@ -978,7 +985,7 @@
 
 #if !defined FIX_SPECIAL_ACTION_PISSING
 	#if defined SPECIAL_ACTION_PISSING
-		#define FIX_SPECIAL_ACTION_PISSING (0)
+		#define FIX_SPECIAL_ACTION_PISSING (FIX_OLD)
 	#else
 		#define FIX_SPECIAL_ACTION_PISSING (1)
 	#endif
@@ -996,7 +1003,7 @@
 
 #if !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
-		#define FIX_IsValidVehicle       (0)
+		#define FIX_IsValidVehicle       (FIX_OLD)
 	#else
 		#define FIX_IsValidVehicle       (FIX_Natives)
 	#endif
@@ -1007,7 +1014,7 @@
 
 #if !defined FIX_GetGravity
 	#if defined GetGravity
-		#define FIX_GetGravity           (0)
+		#define FIX_GetGravity           (FIX_OLD)
 	#else
 		#define FIX_GetGravity           (FIX_Natives)
 	#endif
@@ -1018,7 +1025,7 @@
 
 #if !defined FIX_gpci
 	#if defined gpci
-		#define FIX_gpci                 (0)
+		#define FIX_gpci                 (FIX_OLD)
 	#else
 		#define FIX_gpci                 (FIX_Natives)
 	#endif
@@ -1029,7 +1036,7 @@
 
 #if !defined FIX_WEAPONS
 	#if defined WEAPON_FIST
-		#define FIX_WEAPONS            (0)
+		#define FIX_WEAPONS            (FIX_OLD)
 	#else
 		#define FIX_WEAPONS            (1)
 	#endif
@@ -1040,7 +1047,7 @@
 
 #if !defined FIX_BODYPARTS
 	#if defined BODY_PART_LEFT_ARM
-		#define FIX_BODYPARTS            (0)
+		#define FIX_BODYPARTS            (FIX_OLD)
 	#else
 		#define FIX_BODYPARTS            (1)
 	#endif
@@ -1051,7 +1058,7 @@
 
 #if !defined FIX_CAMERAMODES
 	#if defined CAM_MODE_NONE
-		#define FIX_CAMERAMODES          (0)
+		#define FIX_CAMERAMODES          (FIX_OLD)
 	#else
 		#define FIX_CAMERAMODES          (1)
 	#endif
@@ -1104,7 +1111,7 @@
 
 #if !defined FIX_OnPlayerEnterVehicle
 	#if defined OnPlayerClickMap
-		#define FIX_OnPlayerEnterVehicle (0)
+		#define FIX_OnPlayerEnterVehicle (FIX_OLD)
 	#else
 		#define FIX_OnPlayerEnterVehicle (1)
 	#endif
@@ -1124,7 +1131,7 @@
 	#if defined OnPlayerClickMap
 		#define FIX_AllowTeleport        (1)
 	#else
-		#define FIX_AllowTeleport        (0)
+		#define FIX_AllowTeleport        (FIX_OLD)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_AllowTeleport)
 	#undef FIX_AllowTeleport
@@ -1161,7 +1168,7 @@
 
 #if !defined FIX_OnDialogResponse
 	#if defined GetVehicleModelInfo
-		#define FIX_OnDialogResponse     (0)
+		#define FIX_OnDialogResponse     (FIX_OLD)
 	#else
 		#define FIX_OnDialogResponse     (1)
 	#endif
@@ -1172,7 +1179,7 @@
 
 #if !defined FIX_GetPlayerDialog
 	#if defined GetPlayerDialog
-		#define FIX_GetPlayerDialog      (0)
+		#define FIX_GetPlayerDialog      (FIX_OLD)
 	#else
 		#define FIX_GetPlayerDialog      (FIX_Natives)
 	#endif
@@ -1190,7 +1197,7 @@
 
 #if !defined FIX_SetSpawnInfo
 	#if defined GetPlayerVersion
-		#define FIX_SetSpawnInfo         (0)
+		#define FIX_SetSpawnInfo         (FIX_OLD)
 	#else
 		#define FIX_SetSpawnInfo         (1)
 	#endif
@@ -1327,7 +1334,7 @@
 
 #if !defined FIX_Kick
 	#if defined EnableVehicleFriendlyFire
-		#define FIX_Kick                 (0)
+		#define FIX_Kick                 (FIX_OLD)
 	#else
 		#define FIX_Kick                 (1)
 	#endif
@@ -1479,7 +1486,7 @@
 
 #if !defined FIX_HideGameText
 	#if defined HideGameText
-		#define FIX_HideGameText         (0)
+		#define FIX_HideGameText         (FIX_OLD)
 	#else
 		#define FIX_HideGameText         (FIX_Natives)
 	#endif
