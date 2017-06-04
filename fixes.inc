@@ -4748,7 +4748,7 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 			{
 				new
 					seat = GetPlayerVehicleSeat(playerid);
-				ClearAnimations(playerid);
+				ClearAnimations(playerid, 1);
 				new
 					ret = SetPlayerSkin(playerid, skinid);
 				PutPlayerInVehicle(playerid, vehicleid, seat);
