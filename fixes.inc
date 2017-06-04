@@ -849,6 +849,13 @@
 
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
+#if !defined FIX_ALL
+	#define FIX_ALL             (0)
+#elseif _FIXES_IS_UNSET(FIX_ALL)
+	#undef FIX_ALL
+	#define FIX_ALL             (2)
+#endif
+
 // We can add server version compiler code here to only compile fixes that apply
 // to the version of the includes for which the user is compiling.
 #if !defined FIX_GetPlayerColour
@@ -1214,7 +1221,7 @@
 #endif
 
 #if !defined FIX_file_inc
-	#define FIX_file_inc                 (0)
+	#define FIX_file_inc                 (FIX_ALL)
 #elseif _FIXES_IS_UNSET(FIX_file_inc)
 	#undef FIX_file_inc
 	#define FIX_file_inc                 (2)
@@ -1337,7 +1344,7 @@
 #endif
 
 #if !defined FIX_random
-	#define FIX_random                   (0)
+	#define FIX_random                   (FIX_ALL)
 #elseif _FIXES_IS_UNSET(FIX_random)
 	#undef FIX_random
 	#define FIX_random                   (2)
@@ -1393,7 +1400,7 @@
 #endif
 
 #if !defined FIX_HideMenuForPlayer_2
-	#define FIX_HideMenuForPlayer_2      (0)
+	#define FIX_HideMenuForPlayer_2      (FIX_ALL)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer_2)
 	#undef FIX_HideMenuForPlayer_2
 	#define FIX_HideMenuForPlayer_2      (2)
@@ -1482,7 +1489,7 @@
 #endif
 
 #if !defined FIX_GameTextStyles
-	#define FIX_GameTextStyles           (0)
+	#define FIX_GameTextStyles           (FIX_ALL)
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
 	#undef FIX_GameTextStyles
 	#define FIX_GameTextStyles           (2)
@@ -1576,14 +1583,14 @@
 #endif
 
 #if !defined FIX_GetPVarString
-	#define FIX_GetPVarString      (0)
+	#define FIX_GetPVarString      (FIX_ALL)
 #elseif _FIXES_IS_UNSET(FIX_GetPVarString)
 	#undef FIX_GetPVarString
 	#define FIX_GetPVarString      (2)
 #endif
 
 #if !defined FIX_GetSVarString
-	#define FIX_GetSVarString      (0)
+	#define FIX_GetSVarString      (FIX_ALL)
 #elseif _FIXES_IS_UNSET(FIX_GetSVarString)
 	#undef FIX_GetSVarString
 	#define FIX_GetSVarString      (2)
