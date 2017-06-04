@@ -5837,7 +5837,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: OnPlayerEnterVehicle_2
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_2
-			if (0 < vehicleid < MAX_VEHICLES)
+			if (_FIXES_IN_RANGE(vehicleid, 1, MAX_VEHICLES))
 			{
 				return FIXES_OnPlayerExitVehicle(playerid, vehicleid);
 			}
