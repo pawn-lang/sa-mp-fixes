@@ -849,18 +849,18 @@
 
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
-#if !defined FIX_ALL
-	#define FIX_ALL             (0)
-#elseif _FIXES_IS_UNSET(FIX_ALL)
-	#undef FIX_ALL
-	#define FIX_ALL             (2)
+#if !defined FIXES_EnableAll
+	#define FIXES_EnableAll             (0)
+#elseif _FIXES_IS_UNSET(FIXES_EnableAll)
+	#undef FIXES_EnableAll
+	#define FIXES_EnableAll             (2)
 #endif
 
-#if !defined FIX_OLD
-	#define FIX_OLD             (0)
-#elseif _FIXES_IS_UNSET(FIX_OLD)
-	#undef FIX_OLD
-	#define FIX_OLD             (2)
+#if !defined FIXES_EnableDeprecated
+	#define FIXES_EnableDeprecated             (0)
+#elseif _FIXES_IS_UNSET(FIXES_EnableDeprecated)
+	#undef FIXES_EnableDeprecated
+	#define FIXES_EnableDeprecated             (2)
 #endif
 
 // We can add server version compiler code here to only compile fixes that apply
@@ -910,7 +910,7 @@
 
 #if !defined FIX_GetWeaponName
 	#if defined GetVehicleParamsSirenState
-		#define FIX_GetWeaponName (FIX_OLD)
+		#define FIX_GetWeaponName (FIXES_EnableDeprecated)
 	#else
 		#define FIX_GetWeaponName (1)
 	#endif
@@ -928,7 +928,7 @@
 
 #if !defined FIX_TogglePlayerControllable
 	#if defined SetObjectMaterial
-		#define FIX_TogglePlayerControllable (FIX_OLD)
+		#define FIX_TogglePlayerControllable (FIXES_EnableDeprecated)
 	#else
 		#define FIX_TogglePlayerControllable (1)
 	#endif
@@ -974,7 +974,7 @@
 
 #if !defined FIX_KEY_AIM
 	#if defined KEY_AIM
-		#define FIX_KEY_AIM              (FIX_OLD)
+		#define FIX_KEY_AIM              (FIXES_EnableDeprecated)
 	#else
 		#define FIX_KEY_AIM              (1)
 	#endif
@@ -985,7 +985,7 @@
 
 #if !defined FIX_SPECIAL_ACTION_PISSING
 	#if defined SPECIAL_ACTION_PISSING
-		#define FIX_SPECIAL_ACTION_PISSING (FIX_OLD)
+		#define FIX_SPECIAL_ACTION_PISSING (FIXES_EnableDeprecated)
 	#else
 		#define FIX_SPECIAL_ACTION_PISSING (1)
 	#endif
@@ -1003,7 +1003,7 @@
 
 #if !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
-		#define FIX_IsValidVehicle       (FIX_OLD)
+		#define FIX_IsValidVehicle       (FIXES_EnableDeprecated)
 	#else
 		#define FIX_IsValidVehicle       (FIX_Natives)
 	#endif
@@ -1014,7 +1014,7 @@
 
 #if !defined FIX_GetGravity
 	#if defined GetGravity
-		#define FIX_GetGravity           (FIX_OLD)
+		#define FIX_GetGravity           (FIXES_EnableDeprecated)
 	#else
 		#define FIX_GetGravity           (FIX_Natives)
 	#endif
@@ -1025,7 +1025,7 @@
 
 #if !defined FIX_gpci
 	#if defined gpci
-		#define FIX_gpci                 (FIX_OLD)
+		#define FIX_gpci                 (FIXES_EnableDeprecated)
 	#else
 		#define FIX_gpci                 (FIX_Natives)
 	#endif
@@ -1036,7 +1036,7 @@
 
 #if !defined FIX_WEAPONS
 	#if defined WEAPON_FIST
-		#define FIX_WEAPONS            (FIX_OLD)
+		#define FIX_WEAPONS            (FIXES_EnableDeprecated)
 	#else
 		#define FIX_WEAPONS            (1)
 	#endif
@@ -1047,7 +1047,7 @@
 
 #if !defined FIX_BODYPARTS
 	#if defined BODY_PART_LEFT_ARM
-		#define FIX_BODYPARTS            (FIX_OLD)
+		#define FIX_BODYPARTS            (FIXES_EnableDeprecated)
 	#else
 		#define FIX_BODYPARTS            (1)
 	#endif
@@ -1058,7 +1058,7 @@
 
 #if !defined FIX_CAMERAMODES
 	#if defined CAM_MODE_NONE
-		#define FIX_CAMERAMODES          (FIX_OLD)
+		#define FIX_CAMERAMODES          (FIXES_EnableDeprecated)
 	#else
 		#define FIX_CAMERAMODES          (1)
 	#endif
@@ -1102,16 +1102,16 @@
 	#define FIX_TextDrawSetString        (2)
 #endif
 
-#if !defined FIX_AllowInteriorWeapons
-	#define FIX_AllowInteriorWeapons     (1)
-#elseif _FIXES_IS_UNSET(FIX_AllowInteriorWeapons)
-	#undef FIX_AllowInteriorWeapons
-	#define FIX_AllowInteriorWeapons     (2)
+#if !defined FIXES_EnableAllowInteriorWeapons
+	#define FIXES_EnableAllowInteriorWeapons     (1)
+#elseif _FIXES_IS_UNSET(FIXES_EnableAllowInteriorWeapons)
+	#undef FIXES_EnableAllowInteriorWeapons
+	#define FIXES_EnableAllowInteriorWeapons     (2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle
 	#if defined OnPlayerClickMap
-		#define FIX_OnPlayerEnterVehicle (FIX_OLD)
+		#define FIX_OnPlayerEnterVehicle (FIXES_EnableDeprecated)
 	#else
 		#define FIX_OnPlayerEnterVehicle (1)
 	#endif
@@ -1127,15 +1127,15 @@
 	#define FIX_OnPlayerEnterVehicle_2   (2)
 #endif
 
-#if !defined FIX_AllowTeleport
+#if !defined FIXES_EnableAllowTeleport
 	#if defined OnPlayerClickMap
-		#define FIX_AllowTeleport        (1)
+		#define FIXES_EnableAllowTeleport        (1)
 	#else
-		#define FIX_AllowTeleport        (FIX_OLD)
+		#define FIXES_EnableAllowTeleport        (FIXES_EnableDeprecated)
 	#endif
-#elseif _FIXES_IS_UNSET(FIX_AllowTeleport)
-	#undef FIX_AllowTeleport
-	#define FIX_AllowTeleport            (2)
+#elseif _FIXES_IS_UNSET(FIXES_EnableAllowTeleport)
+	#undef FIXES_EnableAllowTeleport
+	#define FIXES_EnableAllowTeleport            (2)
 #endif
 
 #if !defined FIX_SetPlayerSpecialAction
@@ -1168,7 +1168,7 @@
 
 #if !defined FIX_OnDialogResponse
 	#if defined GetVehicleModelInfo
-		#define FIX_OnDialogResponse     (FIX_OLD)
+		#define FIX_OnDialogResponse     (FIXES_EnableDeprecated)
 	#else
 		#define FIX_OnDialogResponse     (1)
 	#endif
@@ -1179,7 +1179,7 @@
 
 #if !defined FIX_GetPlayerDialog
 	#if defined GetPlayerDialog
-		#define FIX_GetPlayerDialog      (FIX_OLD)
+		#define FIX_GetPlayerDialog      (FIXES_EnableDeprecated)
 	#else
 		#define FIX_GetPlayerDialog      (FIX_Natives)
 	#endif
@@ -1197,7 +1197,7 @@
 
 #if !defined FIX_SetSpawnInfo
 	#if defined GetPlayerVersion
-		#define FIX_SetSpawnInfo         (FIX_OLD)
+		#define FIX_SetSpawnInfo         (FIXES_EnableDeprecated)
 	#else
 		#define FIX_SetSpawnInfo         (1)
 	#endif
@@ -1228,7 +1228,7 @@
 #endif
 
 #if !defined FIX_file_inc
-	#define FIX_file_inc                 (FIX_ALL)
+	#define FIX_file_inc                 (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_file_inc)
 	#undef FIX_file_inc
 	#define FIX_file_inc                 (2)
@@ -1334,7 +1334,7 @@
 
 #if !defined FIX_Kick
 	#if defined EnableVehicleFriendlyFire
-		#define FIX_Kick                 (FIX_OLD)
+		#define FIX_Kick                 (FIXES_EnableDeprecated)
 	#else
 		#define FIX_Kick                 (1)
 	#endif
@@ -1351,7 +1351,7 @@
 #endif
 
 #if !defined FIX_random
-	#define FIX_random                   (FIX_ALL)
+	#define FIX_random                   (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_random)
 	#undef FIX_random
 	#define FIX_random                   (2)
@@ -1407,7 +1407,7 @@
 #endif
 
 #if !defined FIX_HideMenuForPlayer_2
-	#define FIX_HideMenuForPlayer_2      (FIX_ALL)
+	#define FIX_HideMenuForPlayer_2      (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer_2)
 	#undef FIX_HideMenuForPlayer_2
 	#define FIX_HideMenuForPlayer_2      (2)
@@ -1486,7 +1486,7 @@
 
 #if !defined FIX_HideGameText
 	#if defined HideGameText
-		#define FIX_HideGameText         (FIX_OLD)
+		#define FIX_HideGameText         (FIXES_EnableDeprecated)
 	#else
 		#define FIX_HideGameText         (FIX_Natives)
 	#endif
@@ -1496,7 +1496,7 @@
 #endif
 
 #if !defined FIX_GameTextStyles
-	#define FIX_GameTextStyles           (FIX_ALL)
+	#define FIX_GameTextStyles           (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
 	#undef FIX_GameTextStyles
 	#define FIX_GameTextStyles           (2)
@@ -1590,14 +1590,14 @@
 #endif
 
 #if !defined FIX_GetPVarString
-	#define FIX_GetPVarString      (FIX_ALL)
+	#define FIX_GetPVarString      (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetPVarString)
 	#undef FIX_GetPVarString
 	#define FIX_GetPVarString      (2)
 #endif
 
 #if !defined FIX_GetSVarString
-	#define FIX_GetSVarString      (FIX_ALL)
+	#define FIX_GetSVarString      (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetSVarString)
 	#undef FIX_GetSVarString
 	#define FIX_GetSVarString      (2)
@@ -2043,7 +2043,7 @@ static stock
 	 * this only exists when required, since it depends on add and remove
 	 * functions to be called at the right time.
 	 */
-#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIXES_EnableAllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 	FIXES_gsPlayersIterator[MAX_PLAYERS + 1] = {0, 1, ...},
 #endif
 	/*
@@ -4020,7 +4020,7 @@ public OnFilterScriptInit()
 		FIXES_gsSettings |= e_FIXES_SETTINGS_NO_GAME_TEXT;
 	#endif
 	// These are all the fixes that use "_FIXES_FOREACH".
-	#if FIX_OnPlayerConnect || _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+	#if FIX_OnPlayerConnect || _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIXES_EnableAllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 		for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 		{
 			if (BAD_IsPlayerConnected(playerid))
@@ -4119,11 +4119,11 @@ public OnGameModeInit()
 	// ======================
 	//  BEGIN: AllowTeleport
 	// ======================
-	#if FIX_AllowInteriorWeapons && FIX_AllowTeleport && !defined FILTERSCRIPT
+	#if FIXES_EnableAllowInteriorWeapons && FIXES_EnableAllowTeleport && !defined FILTERSCRIPT
 		FIXES_gsSettings &= ~(e_FIXES_SETTINGS_INTERIOR | e_FIXES_SETTINGS_ADMIN_TELEPORT);
-	#elseif FIX_AllowInteriorWeapons
+	#elseif FIXES_EnableAllowInteriorWeapons
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_INTERIOR;
-	#elseif FIX_AllowTeleport && !defined FILTERSCRIPT
+	#elseif FIXES_EnableAllowTeleport && !defined FILTERSCRIPT
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_ADMIN_TELEPORT;
 	#endif
 	// ======================
@@ -4359,9 +4359,9 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_GetPlayerSkin        || FIX_IsPlayerInCheckpoint     || FIX_IsPlayerInRaceCheckpoint || FIX_GetPlayerWeapon
 	#define _FIXES_ON_PLAYER_CONNECT
-#elseif FIX_PutPlayerInVehicle   || FIX_OnPlayerEnterVehicle     || FIX_AllowTeleport            || FIX_OnDialogResponse
+#elseif FIX_PutPlayerInVehicle   || FIX_OnPlayerEnterVehicle     || FIXES_EnableAllowTeleport            || FIX_OnDialogResponse
 	#define _FIXES_ON_PLAYER_CONNECT
-#elseif FIX_GetPlayerDialog      || FIX_SetSpawnInfo             || FIX_AllowInteriorWeapons     || FIX_TrainExit
+#elseif FIX_GetPlayerDialog      || FIX_SetSpawnInfo             || FIXES_EnableAllowInteriorWeapons     || FIX_TrainExit
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_Kick                 || FIX_OnPlayerEnterVehicle_2   || FIX_PlayerDialogResponse     || FIX_GetPlayerInterior
 	#define _FIXES_ON_PLAYER_CONNECT
@@ -4390,13 +4390,13 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		//  END: ApplyAnimation_2
 		// ================================
 
-		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIXES_EnableAllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 			_FIXES_AddInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
 		#endif
 
 		FIXES_PRINTF("FIXES_OnPlayerConnect: %d", playerid);
 			// This is only reset when the Game Mode changes or when a new
-		#if FIX_Kick || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2 || FIX_SetPlayerColour
+		#if FIX_Kick || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIXES_EnableAllowTeleport || FIXES_EnableAllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2 || FIX_SetPlayerColour
 			// player connects, which is what we want.  The other items are the
 			// same, but must be done only once.  This variable will tend to
 			// hold data relevant only in the master script (the first
@@ -4598,7 +4598,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  *     GetPlayerMenu
  */
 
-#if FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
+#if FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIXES_EnableAllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
 	public OnPlayerDisconnect(playerid, reason)
 	{
 		new
@@ -4677,7 +4677,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		//  END:   Kick
 		// =============
 
-		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIXES_EnableAllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 			_FIXES_RemoveInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
 		#endif
 
@@ -5244,7 +5244,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  *     GogglesSync
  */
 
-#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GogglesSync
+#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIXES_EnableAllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GogglesSync
 	public OnPlayerUpdate(playerid)
 	{
 		// =============================
@@ -5267,7 +5267,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			}
 		#endif
 
-		#if FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+		#if FIXES_EnableAllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
 			new
 				e_FIXES_BOOLS:pbools = FIXES_gsPlayerBools[playerid];
 		#endif
@@ -5275,7 +5275,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		// =============================
 		//  BEGIN: AllowInteriorWeapons
 		// =============================
-		#if FIX_AllowInteriorWeapons
+		#if FIXES_EnableAllowInteriorWeapons
 			if (pbools & e_FIXES_BOOLS_INTERIOR)
 			{
 				SetPlayerArmedWeapon(playerid, 0);
@@ -5639,7 +5639,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  *     GetPlayerInterior
  */
 
-#if FIX_AllowInteriorWeapons || FIX_GetPlayerInterior
+#if FIXES_EnableAllowInteriorWeapons || FIX_GetPlayerInterior
 	public OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid)
 	{
 		// ==========================
@@ -5658,7 +5658,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		// =============================
 		//  BEGIN: AllowInteriorWeapons
 		// =============================
-		#if FIX_AllowInteriorWeapons
+		#if FIXES_EnableAllowInteriorWeapons
 			if (newinteriorid)
 			{
 				if (FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR)
@@ -6731,10 +6731,10 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 #endif
 native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 
-#if FIX_GetPlayerWeapon || FIX_AllowInteriorWeapons || FIX_HydraSniper
+#if FIX_GetPlayerWeapon || FIXES_EnableAllowInteriorWeapons || FIX_HydraSniper
 	stock FIXES_SetPlayerArmedWeapon(playerid, weaponid)
 	{
-		#if FIX_AllowInteriorWeapons
+		#if FIXES_EnableAllowInteriorWeapons
 			if (FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR && GetPlayerInterior(playerid))
 			{
 				// Not allowed weapons.
@@ -7540,7 +7540,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 
-#if FIX_AllowInteriorWeapons
+#if FIXES_EnableAllowInteriorWeapons
 	#if FIXES_Single
 		stock FIXES_AllowInteriorWeapons(allow)
 		{
@@ -7663,7 +7663,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
  *     AllowTeleport
  */
 
-#if FIX_AllowTeleport && !defined FILTERSCRIPT
+#if FIXES_EnableAllowTeleport && !defined FILTERSCRIPT
 	forward _FIXES_AllowTeleport(playerid, allow);
 
 	public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
@@ -7671,7 +7671,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 		// ======================
 		//  BEGIN: AllowTeleport
 		// ======================
-		#if FIX_AllowTeleport
+		#if FIXES_EnableAllowTeleport
 			if (!_FIXES_gIsFilterscript)
 			{
 				// Unusually, the call order here is always Game Mode first -
@@ -7709,7 +7709,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 #endif
 native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 
-#if FIX_AllowTeleport
+#if FIXES_EnableAllowTeleport
 	#if FIXES_Single
 		stock FIXES_AllowPlayerTeleport(playerid, allow)
 		{
@@ -7753,7 +7753,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 #endif
 native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 
-#if FIX_AllowTeleport
+#if FIXES_EnableAllowTeleport
 	#if FIXES_Single
 		stock FIXES_AllowAdminTeleport(allow)
 		{
@@ -7787,7 +7787,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
  *     AllowTeleport
  */
 
-#if FIX_AllowTeleport && !defined FILTERSCRIPT && !FIXES_Single
+#if FIXES_EnableAllowTeleport && !defined FILTERSCRIPT && !FIXES_Single
 	public _FIXES_AllowTeleport(playerid, allow)
 	{
 		if (!_FIXES_gIsFilterscript)
@@ -8335,7 +8335,7 @@ native BAD_Kick(playerid) = Kick;
 			// =============================
 			//  BEGIN: AllowInteriorWeapons
 			// =============================
-			#if FIX_AllowInteriorWeapons
+			#if FIXES_EnableAllowInteriorWeapons
 				CallRemoteFunction(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, !(FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR));
 			#endif
 			// =============================
