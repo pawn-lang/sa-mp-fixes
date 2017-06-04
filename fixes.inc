@@ -2280,7 +2280,7 @@ static stock
 	 *
 	 * Name of the pvar in which to store a player's kick timer.
 	 */
-#if !FIXES_Single && FIX_Kick
+#if FIX_Kick
 	FIXES_pvarKick[] = "FIXES_pvarKick",
 #endif
 	/*
