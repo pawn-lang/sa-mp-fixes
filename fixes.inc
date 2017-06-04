@@ -1652,6 +1652,13 @@
 	#define FIX_OS                       (2)
 #endif
 
+#if !defined FIX_const
+	#define FIX_const                       (1)
+#elseif _FIXES_IS_UNSET(FIX_const)
+	#undef FIX_const
+	#define FIX_const                       (2)
+#endif
+
 /*
  * CHAIN_ORDER
  *
@@ -2955,6 +2962,333 @@ static stock const
 
 #if FIX_gpci
 	native gpci(playerid, serial[], maxlen);
+#endif
+
+/*
+ * const
+ *
+ * Better const-correctness on native functions.
+ */
+
+#if FIX_const
+
+	// a_actor
+	#if defined _ALS_ApplyActorAnimation
+		#error _ALS_ApplyActorAnimation defined
+	#endif
+	native CST_ApplyActorAnimation(actorid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
+	native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
+	#define _ALS_ApplyActorAnimation
+	#define ApplyActorAnimation CST_ApplyActorAnimation
+
+	// a_http
+	#if defined _ALS_HTTP
+		#error _ALS_HTTP defined
+	#endif
+	native CST_HTTP(index, type, const url[], const data[], const callback[]) = HTTP;
+	#define _ALS_HTTP
+	#define HTTP CST_HTTP
+
+	// a_npc
+	//   
+	//   native CONST_SetTimer(const funcname[], interval, repeating) = SetTimer;
+	//   native CONST_SendChat(const msg[]) = SendChat;
+	//   native CONST_SendCommand(const commandtext[]) = SendCommand;
+	//   native CONST_StartRecordingPlayback(playbacktype, const recordname[]) = StartRecordingPlayback;
+	//   
+
+	// a_objects
+	#if defined _ALS_SetObjectMaterial
+		#error _ALS_SetObjectMaterial defined
+	#endif
+	native CST_SetObjectMaterial(objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor=0) = SetObjectMaterial;
+	#define _ALS_SetObjectMaterial
+	#define SetObjectMaterial CST_SetObjectMaterial
+	#if defined _ALS_SetPlayerObjectMaterial
+		#error _ALS_SetPlayerObjectMaterial defined
+	#endif
+	native CST_SetPlayerObjectMaterial(playerid, objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor=0) = SetPlayerObjectMaterial;
+	#define _ALS_SetPlayerObjectMaterial
+	#define SetPlayerObjectMaterial CST_SetPlayerObjectMaterial
+	#if defined _ALS_SetObjectMaterialText
+		#error _ALS_SetObjectMaterialText defined
+	#endif
+	native CST_SetObjectMaterialText(objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetObjectMaterialText;
+	#define _ALS_SetObjectMaterialText
+	#define SetObjectMaterialText CST_SetObjectMaterialText
+	#if defined _ALS_SetPlayerObjMaterialText
+		#error _ALS_SetPlayerObjMaterialText defined
+	#endif
+	native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetPlayerObjectMaterialText;
+	#define _ALS_SetPlayerObjMaterialText
+	#define SetPlayerObjectMaterialText CST_SetPlayerObjectMaterialText
+
+	// a_players
+	#if defined _ALS_PlayAudioStreamForPlayer
+		#error _ALS_PlayAudioStreamForPlayer defined
+	#endif
+	native CST_PlayAudioStreamForPlayer(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0) = PlayAudioStreamForPlayer;
+	#define _ALS_PlayAudioStreamForPlayer
+	#define PlayAudioStreamForPlayer CST_PlayAudioStreamForPlayer
+	#if defined _ALS_SetPlayerShopName
+		#error _ALS_SetPlayerShopName defined
+	#endif
+	native CST_SetPlayerShopName(playerid, const shopname[]) = SetPlayerShopName;
+	#define _ALS_SetPlayerShopName
+	#define SetPlayerShopName CST_SetPlayerShopName
+	#if defined _ALS_CreatePlayerTextDraw
+		#error _ALS_CreatePlayerTextDraw defined
+	#endif
+	native PlayerText:CST_CreatePlayerTextDraw(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
+	native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
+	#define _ALS_CreatePlayerTextDraw
+	#define CreatePlayerTextDraw CST_CreatePlayerTextDraw
+	#if defined _ALS_PlayerTextDrawSetString
+		#error _ALS_PlayerTextDrawSetString defined
+	#endif
+	native CST_PlayerTextDrawSetString(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
+	native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
+	#define _ALS_PlayerTextDrawSetString
+	#define PlayerTextDrawSetString CST_PlayerTextDrawSetString
+	#if defined _ALS_SetPVarInt
+		#error _ALS_SetPVarInt defined
+	#endif
+	native CST_SetPVarInt(playerid, const varname[], int_value) = SetPVarInt;
+	#define _ALS_SetPVarInt
+	#define SetPVarInt CST_SetPVarInt
+	#if defined _ALS_GetPVarInt
+		#error _ALS_GetPVarInt defined
+	#endif
+	native CST_GetPVarInt(playerid, const varname[]) = GetPVarInt;
+	#define _ALS_GetPVarInt
+	#define GetPVarInt CST_GetPVarInt
+	#if defined _ALS_SetPVarString
+		#error _ALS_SetPVarString defined
+	#endif
+	native CST_SetPVarString(playerid, const varname[], const string_value[]) = SetPVarString;
+	#define _ALS_SetPVarString
+	#define SetPVarString CST_SetPVarString
+	#if defined _ALS_GetPVarString
+		#error _ALS_GetPVarString defined
+	#endif
+	native CST_GetPVarString(playerid, const varname[], string_return[], len) = GetPVarString;
+	native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
+	#define _ALS_GetPVarString
+	#define GetPVarString CST_GetPVarString
+	#if defined _ALS_SetPVarFloat
+		#error _ALS_SetPVarFloat defined
+	#endif
+	native CST_SetPVarFloat(playerid, const varname[], Float:float_value) = SetPVarFloat;
+	#define _ALS_SetPVarFloat
+	#define SetPVarFloat CST_SetPVarFloat
+	#if defined _ALS_GetPVarFloat
+		#error _ALS_GetPVarFloat defined
+	#endif
+	native Float:CST_GetPVarFloat(playerid, const varname[]) = GetPVarFloat;
+	#define _ALS_GetPVarFloat
+	#define GetPVarFloat CST_GetPVarFloat
+	#if defined _ALS_DeletePVar
+		#error _ALS_DeletePVar defined
+	#endif
+	native CST_DeletePVar(playerid, const varname[]) = DeletePVar;
+	#define _ALS_DeletePVar
+	#define DeletePVar CST_DeletePVar
+	#if defined _ALS_GetPVarType
+		#error _ALS_GetPVarType defined
+	#endif
+	native CST_GetPVarType(playerid, const varname[]) = GetPVarType;
+	#define _ALS_GetPVarType
+	#define GetPVarType CST_GetPVarType
+	#if defined _ALS_SetPlayerChatBubble
+		#error _ALS_SetPlayerChatBubble defined
+	#endif
+	native CST_SetPlayerChatBubble(playerid, const text[], color, Float:drawdistance, expiretime) = SetPlayerChatBubble;
+	#define _ALS_SetPlayerChatBubble
+	#define SetPlayerChatBubble CST_SetPlayerChatBubble
+	#if defined _ALS_ApplyAnimation
+		#error _ALS_ApplyAnimation defined
+	#endif
+	native CST_ApplyAnimation(playerid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+	native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+	#define _ALS_ApplyAnimation
+	#define ApplyAnimation CST_ApplyAnimation
+	#if defined _ALS_StartRecordingPlayerData
+		#error _ALS_StartRecordingPlayerData defined
+	#endif
+	native CST_StartRecordingPlayerData(playerid, recordtype, const recordname[]) = StartRecordingPlayerData;
+	#define _ALS_StartRecordingPlayerData
+	#define StartRecordingPlayerData CST_StartRecordingPlayerData
+
+	// a_samp
+	#if defined _ALS_SetTimer
+		#error _ALS_SetTimer defined
+	#endif
+	native CST_SetTimer(const funcname[], interval, repeating) = SetTimer;
+	#define _ALS_SetTimer
+	#define SetTimer CST_SetTimer
+	#if defined _ALS_SetTimerEx
+		#error _ALS_SetTimerEx defined
+	#endif
+	native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+	#define _ALS_SetTimerEx
+	#define SetTimerEx CST_SetTimerEx
+	#if defined _ALS_SHA256_PassHash
+		#error _ALS_SHA256_PassHash defined
+	#endif
+	native CST_SHA256_PassHash(const password[], const salt[], ret_hash[], ret_hash_len) = SHA256_PassHash;
+	#define _ALS_SHA256_PassHash // SHA256 for password hashing
+	#define SHA256_PassHash CST_SHA256_PassHash
+	#if defined _ALS_SetSVarInt
+		#error _ALS_SetSVarInt defined
+	#endif
+	native CST_SetSVarInt(const varname[], int_value) = SetSVarInt;
+	#define _ALS_SetSVarInt
+	#define SetSVarInt CST_SetSVarInt
+	#if defined _ALS_GetSVarInt
+		#error _ALS_GetSVarInt defined
+	#endif
+	native CST_GetSVarInt(const varname[]) = GetSVarInt;
+	#define _ALS_GetSVarInt
+	#define GetSVarInt CST_GetSVarInt
+	#if defined _ALS_SetSVarString
+		#error _ALS_SetSVarString defined
+	#endif
+	native CST_SetSVarString(const varname[], const string_value[]) = SetSVarString;
+	#define _ALS_SetSVarString
+	#define SetSVarString CST_SetSVarString
+	#if defined _ALS_GetSVarString
+		#error _ALS_GetSVarString defined
+	#endif
+	native CST_GetSVarString(const varname[], string_return[], len) = GetSVarString;
+	native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
+	#define _ALS_GetSVarString
+	#define GetSVarString CST_GetSVarString
+	#if defined _ALS_SetSVarFloat
+		#error _ALS_SetSVarFloat defined
+	#endif
+	native CST_SetSVarFloat(const varname[], Float:float_value) = SetSVarFloat;
+	#define _ALS_SetSVarFloat
+	#define SetSVarFloat CST_SetSVarFloat
+	#if defined _ALS_GetSVarFloat
+		#error _ALS_GetSVarFloat defined
+	#endif
+	native Float:CST_GetSVarFloat(const varname[]) = GetSVarFloat;
+	#define _ALS_GetSVarFloat
+	#define GetSVarFloat CST_GetSVarFloat
+	#if defined _ALS_DeleteSVar
+		#error _ALS_DeleteSVar defined
+	#endif
+	native CST_DeleteSVar(const varname[]) = DeleteSVar;
+	#define _ALS_DeleteSVar
+	#define DeleteSVar CST_DeleteSVar
+	#if defined _ALS_GetSVarType
+		#error _ALS_GetSVarType defined
+	#endif
+	native CST_GetSVarType(const varname[]) = GetSVarType;
+	#define _ALS_GetSVarType
+	#define GetSVarType CST_GetSVarType
+	#if defined _ALS_ConnectNPC
+		#error _ALS_ConnectNPC defined
+	#endif
+	native CST_ConnectNPC(const name[], const script[]) = ConnectNPC;
+	#define _ALS_ConnectNPC
+	#define ConnectNPC CST_ConnectNPC
+	#if defined _ALS_SendRconCommand
+		#error _ALS_SendRconCommand defined
+	#endif
+	native CST_SendRconCommand(const command[]) = SendRconCommand;
+	#define _ALS_SendRconCommand
+	#define SendRconCommand CST_SendRconCommand
+	// This is the only case where a variable is "const" but shouldn't be.
+	#if defined _ALS_GetPlayerVersion
+		#error _ALS_GetPlayerVersion defined
+	#endif
+	native CST_GetPlayerVersion(playerid, version[], len) = GetPlayerVersion;
+	#define _ALS_GetPlayerVersion
+	#define GetPlayerVersion CST_GetPlayerVersion
+	#if defined _ALS_BlockIpAddress
+		#error _ALS_BlockIpAddress defined
+	#endif
+	native CST_BlockIpAddress(const ip_address[], timems) = BlockIpAddress;
+	#define _ALS_BlockIpAddress
+	#define BlockIpAddress CST_BlockIpAddress
+	#if defined _ALS_UnBlockIpAddress
+		#error _ALS_UnBlockIpAddress defined
+	#endif
+	native CST_UnBlockIpAddress(const ip_address[]) = UnBlockIpAddress;
+	#define _ALS_UnBlockIpAddress
+	#define UnBlockIpAddress CST_UnBlockIpAddress
+	#if defined _ALS_TextDrawCreate
+		#error _ALS_TextDrawCreate defined
+	#endif
+	native Text:CST_TextDrawCreate(Float:x, Float:y, const text[]) = TextDrawCreate;
+	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
+	#define _ALS_TextDrawCreate
+	#define TextDrawCreate CST_TextDrawCreate
+	#if defined _ALS_TextDrawSetString
+		#error _ALS_TextDrawSetString defined
+	#endif
+	native CST_TextDrawSetString(Text:text, const string[]) = TextDrawSetString;
+	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
+	#define _ALS_TextDrawSetString
+	#define TextDrawSetString CST_TextDrawSetString
+	#if defined _ALS_Create3DTextLabel
+		#error _ALS_Create3DTextLabel defined
+	#endif
+	native Text3D:CST_Create3DTextLabel(const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, virtualworld, testLOS=0) = Create3DTextLabel;
+	#define _ALS_Create3DTextLabel
+	#define Create3DTextLabel CST_Create3DTextLabel
+	#if defined _ALS_Update3DTextLabelText
+		#error _ALS_Update3DTextLabelText defined
+	#endif
+	native CST_Update3DTextLabelText(Text3D:id, color, const text[]) = Update3DTextLabelText;
+	#define _ALS_Update3DTextLabelText
+	#define Update3DTextLabelText CST_Update3DTextLabelText
+	#if defined _ALS_CreatePlayer3DTextLabel
+		#error _ALS_CreatePlayer3DTextLabel defined
+	#endif
+	native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, attachedplayer=INVALID_PLAYER_ID, attachedvehicle=INVALID_VEHICLE_ID, testLOS=0) = CreatePlayer3DTextLabel;
+	#define _ALS_CreatePlayer3DTextLabel
+	#define CreatePlayer3DTextLabel CST_CreatePlayer3DTextLabel
+	#if defined _ALS_UpdPlayer3DTextLabelText
+		#error _ALS_UpdPlayer3DTextLabelText defined
+	#endif
+	native CST_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:id, color, const text[]) = UpdatePlayer3DTextLabelText;
+	#define _ALS_UpdPlayer3DTextLabelText
+	#define UpdatePlayer3DTextLabelText CST_UpdatePlayer3DTextLabelText
+	#if defined _ALS_ShowPlayerDialog
+		#error _ALS_ShowPlayerDialog defined
+	#endif
+	native CST_ShowPlayerDialog(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
+	native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
+	#define _ALS_ShowPlayerDialog
+	#define ShowPlayerDialog CST_ShowPlayerDialog
+
+	// a_sampdb
+	#if defined _ALS_db_open
+		#error _ALS_db_open defined
+	#endif
+	native DB:CST_db_open(const name[]) = db_open;
+	#define _ALS_db_open
+	#define db_open CST_db_open
+	#if defined _ALS_db_query
+		#error _ALS_db_query defined
+	#endif
+	native DBResult:CST_db_query(DB:db, const query[]) = db_query;
+	#define _ALS_db_query
+	#define db_query CST_db_query
+
+	// a_vehicles
+	#if defined _ALS_SetVehicleNumberPlate
+		#error _ALS_SetVehicleNumberPlate defined
+	#endif
+	native CST_SetVehicleNumberPlate(vehicleid, const numberplate[]) = SetVehicleNumberPlate;
+	#define _ALS_SetVehicleNumberPlate
+	#define SetVehicleNumberPlate CST_SetVehicleNumberPlate
+
+	#define _FIXES_MAYBE_CONST const
+#else
+	#define _FIXES_MAYBE_CONST
 #endif
 
 /*
@@ -7047,13 +7381,15 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  *     CreatePlayerTextDraw
  */
 
-#if defined _ALS_CreatePlayerTextDraw
-	#error _ALS_CreatePlayerTextDraw defined
+#if !FIX_const
+	#if defined _ALS_CreatePlayerTextDraw
+		#error _ALS_CreatePlayerTextDraw defined
+	#endif
+	native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
 #endif
-native Text:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
 
 #if FIX_CreatePlayerTextDraw
-	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
+	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[])
 	{
 		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
 		{
@@ -7065,7 +7401,11 @@ native Text:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = Creat
 		}
 	}
 
-	#define _ALS_CreatePlayerTextDraw
+	#if defined _ALS_CreatePlayerTextDraw
+		#undef CreatePlayerTextDraw
+	#else
+		#define _ALS_CreatePlayerTextDraw
+	#endif
 	#define CreatePlayerTextDraw FIXES_CreatePlayerTextDraw
 #endif
 
@@ -7076,13 +7416,15 @@ native Text:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = Creat
  *     PlayerTextDrawSetString
  */
 
-#if defined _ALS_PlayerTextDrawSetString
-	#error _ALS_PlayerTextDrawSetString defined
+#if !FIX_const
+	#if defined _ALS_PlayerTextDrawSetString
+		#error _ALS_PlayerTextDrawSetString defined
+	#endif
+	native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
 #endif
-native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
 
 #if FIX_PlayerTextDrawSetString
-	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
+	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[])
 	{
 		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
 		{
@@ -7094,7 +7436,11 @@ native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = Player
 		}
 	}
 
-	#define _ALS_PlayerTextDrawSetString
+	#if defined _ALS_PlayerTextDrawSetString
+		#undef PlayerTextDrawSetString
+	#else
+		#define _ALS_PlayerTextDrawSetString
+	#endif
 	#define PlayerTextDrawSetString FIXES_PlayerTextDrawSetString
 #endif
 
@@ -7105,13 +7451,15 @@ native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = Player
  *     TextDrawCreate
  */
 
-#if defined _ALS_TextDrawCreate
-	#error _ALS_TextDrawCreate defined
+#if !FIX_const
+	#if defined _ALS_TextDrawCreate
+		#error _ALS_TextDrawCreate defined
+	#endif
+	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 #endif
-native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 
 #if FIX_TextDrawCreate
-	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, text[])
+	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[])
 	{
 		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
 		{
@@ -7123,7 +7471,11 @@ native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 		}
 	}
 
-	#define _ALS_TextDrawCreate
+	#if defined _ALS_TextDrawCreate
+		#undef TextDrawCreate
+	#else
+		#define _ALS_TextDrawCreate
+	#endif
 	#define TextDrawCreate FIXES_TextDrawCreate
 #endif
 
@@ -7134,13 +7486,15 @@ native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
  *     TextDrawSetString
  */
 
-#if defined _ALS_TextDrawSetString
-	#error _ALS_TextDrawSetString defined
+#if !FIX_const
+	#if defined _ALS_TextDrawSetString
+		#error _ALS_TextDrawSetString defined
+	#endif
+	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 #endif
-native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 
 #if FIX_TextDrawSetString
-	stock FIXES_TextDrawSetString(Text:text, string[])
+	stock FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[])
 	{
 		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
 		{
@@ -7152,7 +7506,11 @@ native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 		}
 	}
 
-	#define _ALS_TextDrawSetString
+	#if defined _ALS_TextDrawSetString
+		#undef TextDrawSetString
+	#else
+		#define _ALS_TextDrawSetString
+	#endif
 	#define TextDrawSetString FIXES_TextDrawSetString
 #endif
 
@@ -7545,13 +7903,15 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  *     GetPlayerDialog
  */
 
-#if defined _ALS_ShowPlayerDialog
-	#error _ALS_ShowPlayerDialog defined
+#if !FIX_const
+	#if defined _ALS_ShowPlayerDialog
+		#error _ALS_ShowPlayerDialog defined
+	#endif
+	native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
 #endif
-native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
 
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
-	stock FIXES_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[])
+	stock FIXES_ShowPlayerDialog(playerid, dialog, style, _FIXES_MAYBE_CONST title[], _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[])
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
@@ -7561,7 +7921,11 @@ native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1
 		return 0;
 	}
 
-	#define _ALS_ShowPlayerDialog
+	#if defined _ALS_ShowPlayerDialog
+		#undef ShowPlayerDialog
+	#else
+		#define _ALS_ShowPlayerDialog
+	#endif
 	#define ShowPlayerDialog FIXES_ShowPlayerDialog
 #endif
 
@@ -8306,7 +8670,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  */
 
 #if FIX_ApplyAnimation_2
-	static stock _FIXES_ApplyAnimationDelay(animname[], playerid, idx, Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+	static stock _FIXES_ApplyAnimationDelay(const animname[], playerid, idx, Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
 	{
 		if (FIXES_gsPlayerAnimTimer[playerid])
 		{
@@ -8317,7 +8681,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		{
 			FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
 			FIXES_gsPlayerAnimName[playerid][0] = '\0',
-			strcat(FIXES_gsPlayerAnimName[playerid], animname);
+			strcat(FIXES_gsPlayerAnimName[playerid], animname),
 			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
 		}
 	}
@@ -8348,13 +8712,15 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  *     ApplyAnimation_2
  */
 
-#if defined _ALS_ApplyAnimation
-	#error _ALS_ApplyAnimation defined
+#if !FIX_const
+	#if defined _ALS_ApplyAnimation
+		#error _ALS_ApplyAnimation defined
+	#endif
+	native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
 #endif
-native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
 
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
-	stock FIXES_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animlib[], _FIXES_MAYBE_CONST animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
 	{
 		new
 			idx;
@@ -8372,7 +8738,11 @@ native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, l
 		return 0;
 	}
 
-	#define _ALS_ApplyAnimation
+	#if defined _ALS_ApplyAnimation
+		#undef ApplyAnimation
+	#else
+		#define _ALS_ApplyAnimation
+	#endif
 	#define ApplyAnimation FIXES_ApplyAnimation
 #endif
 
@@ -8384,7 +8754,7 @@ native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, l
  */
 
 #if FIX_ApplyActorAnimation_2
-	static stock _FIXES_ApplyActorAnimationDelay(animname[], actorid, idx, Float:fDelta, loop, lockx, locky, freeze, time)
+	static stock _FIXES_ApplyActorAnimationDelay(const animname[], actorid, idx, Float:fDelta, loop, lockx, locky, freeze, time)
 	{
 		if (FIXES_gsActorAnimTimer[actorid])
 		{
@@ -8395,7 +8765,7 @@ native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, l
 		{
 			FIXES_gsActorAnimLibs[actorid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
 			FIXES_gsActorAnimName[actorid][0] = '\0',
-			strcat(FIXES_gsActorAnimName[actorid], animname);
+			strcat(FIXES_gsActorAnimName[actorid], animname),
 			FIXES_gsActorAnimTimer[actorid] = SetTimerEx("_FIXES_ApplyActorAnimation", 350, false, "ddfdddddd", actorid, idx, fDelta, loop, lockx, locky, freeze, time);
 		}
 	}
@@ -8426,13 +8796,15 @@ native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, l
  *     ApplyActorAnimation_2
  */
 
-#if defined _ALS_ApplyActorAnimation
-	#error _ALS_ApplyActorAnimation defined
+#if !FIX_const
+	#if defined _ALS_ApplyActorAnimation
+		#error _ALS_ApplyActorAnimation defined
+	#endif
+	native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
 #endif
-native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
 
 #if FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
-	stock FIXES_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time)
+	stock FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animlib[], _FIXES_MAYBE_CONST animname[], Float:fDelta, loop, lockx, locky, freeze, time)
 	{
 		new
 			idx;
@@ -8450,7 +8822,11 @@ native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loo
 		return 0;
 	}
 
-	#define _ALS_ApplyActorAnimation
+	#if defined _ALS_ApplyActorAnimation
+		#undef ApplyActorAnimation
+	#else
+		#define _ALS_ApplyActorAnimation
+	#endif
 	#define ApplyActorAnimation FIXES_ApplyActorAnimation
 #endif
 
@@ -8876,13 +9252,15 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
  *     GetPVarString
  */
 
-#if defined _ALS_GetPVarString
-	#error _ALS_GetPVarString defined
+#if !FIX_const
+	#if defined _ALS_GetPVarString
+		#error _ALS_GetPVarString defined
+	#endif
+	native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
 #endif
-native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
 
 #if FIX_GetPVarString
-	stock FIXES_GetPVarString(playerid, varname[], string_return[], len)
+	stock FIXES_GetPVarString(playerid, _FIXES_MAYBE_CONST varname[], string_return[], len)
 	{
 		len = GetPVarString(playerid, varname, string_return, len);
 		static i; i = -1;
@@ -8890,7 +9268,11 @@ native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarStr
 		return len;
 	}
 
-	#define _ALS_GetPVarString
+	#if defined _ALS_GetPVarString
+		#undef GetPVarString
+	#else
+		#define _ALS_GetPVarString
+	#endif
 	#define GetPVarString FIXES_GetPVarString
 #endif
 
@@ -8901,13 +9283,15 @@ native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarStr
  *     GetSVarString
  */
 
-#if defined _ALS_GetSVarString
-	#error _ALS_GetSVarString defined
+#if !FIX_const
+	#if defined _ALS_GetSVarString
+		#error _ALS_GetSVarString defined
+	#endif
+	native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
 #endif
-native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
 
 #if FIX_GetSVarString
-	stock FIXES_GetSVarString(varname[], string_return[], len)
+	stock FIXES_GetSVarString(_FIXES_MAYBE_CONST varname[], string_return[], len)
 	{
 		len = GetSVarString(varname, string_return, len);
 		static i; i = -1;
@@ -8915,7 +9299,11 @@ native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
 		return len;
 	}
 
-	#define _ALS_GetSVarString
+	#if defined _ALS_GetSVarString
+		#undef GetSVarString
+	#else
+		#define _ALS_GetSVarString
+	#endif
 	#define GetSVarString FIXES_GetSVarString
 #endif
 
@@ -9187,4 +9575,3 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_NameOfFixHere
 	#define NameOfFixHere FIXES_NameOfFixHere
 #endif
-
