@@ -5054,7 +5054,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			}
 		}
 		// Desync the player entirely.
-		FIXES_BlockUpdate(playerid, true);
+		FIXES_BlockUpdate(playerid);
 		return 0;
 		// =====================
 		//  END:   OnVehicleMod
@@ -5790,7 +5790,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#if FIX_OnPlayerEnterVehicle_2
 			if (!(0 < vehicleid < MAX_VEHICLES))
 			{
-				FIXES_BlockUpdate(playerid, true);
+				FIXES_BlockUpdate(playerid);
 				return 0;
 			}
 		#endif
@@ -5841,7 +5841,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			{
 				return FIXES_OnPlayerExitVehicle(playerid, vehicleid);
 			}
-			FIXES_BlockUpdate(playerid, true);
+			FIXES_BlockUpdate(playerid);
 			return 0;
 		#endif
 		// =============================
@@ -5859,13 +5859,13 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 
 /*
- * FIXES_BlockUpdate(playerid, bool:block)
+ * FIXES_BlockUpdate(playerid, bool:kick)
  *
  * Block a player from using OnPlayerUpdate at all.
  */
 
 #if FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_Kick || FIX_OnVehicleMod
-	static stock FIXES_BlockUpdate(playerid, bool:block, kick = 6)
+	static stock FIXES_BlockUpdate(playerid, bool:kick = true)
 	{
 		if (kick)
 		{
@@ -5886,16 +5886,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				Kick(playerid);
 			#endif
 		}
-		if (block)
-		{
-			FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_BLOCK;
-			return 0;
-		}
-		else
-		{
-			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_BLOCK;
-			return 1;
-		}
+		return
+			FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_BLOCK,
+			0;
 	}
 #endif
 
@@ -6438,18 +6431,18 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 							if (model == 0 || model == 15)
 							{
 								// Shouldn't be in this vehicle at all.
-								FIXES_BlockUpdate(playerid, true);
+								FIXES_BlockUpdate(playerid);
 							}
 							else if (!(0 < seat <= model)) // Slower with "_FIXES_NO_RANGE".
 							{
 								// In an out of range seat.
-								FIXES_BlockUpdate(playerid, true);
+								FIXES_BlockUpdate(playerid);
 							}
 						}
 					}
 					else
 					{
-						FIXES_BlockUpdate(playerid, true);
+						FIXES_BlockUpdate(playerid);
 					}
 				}
 				else if (newstate == PLAYER_STATE_DRIVER)
@@ -6464,13 +6457,13 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 								if (_FIXES_NO_RANGE(model, 0, 211 + 1) || FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2) & 0xF == 15)
 								{
 									// In an invalid vehicle (one you can't drive).
-									FIXES_BlockUpdate(playerid, true);
+									FIXES_BlockUpdate(playerid);
 								}
 							}
 							else
 							{
 								// They are a driver, but not in the driver's seat.
-								FIXES_BlockUpdate(playerid, true);
+								FIXES_BlockUpdate(playerid);
 							}
 						}
 					#if FIX_HydraSniper
@@ -8279,7 +8272,7 @@ native BAD_Kick(playerid) = Kick;
 
 		public @FIXES_Kick(playerid)
 		{
-			FIXES_BlockUpdate(playerid, true, 0);
+			FIXES_BlockUpdate(playerid, false);
 		}
 	#endif
 
@@ -8290,7 +8283,7 @@ native BAD_Kick(playerid) = Kick;
 			// Disable as much of the server as possible quickly.
 			return
 				#if FIXES_Single
-					FIXES_BlockUpdate(playerid, true, 0),
+					FIXES_BlockUpdate(playerid, false),
 				#else
 					CallRemoteFunction("@FIXES_Kick", "i", playerid),
 				#endif
