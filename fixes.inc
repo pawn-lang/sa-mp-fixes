@@ -702,6 +702,12 @@
  * SEE:      "_FIXES_DetermineOS".
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
  *
+ * FIX:      const
+ * PROBLEM:  Some SA-MP natives don't use "const" when they could.
+ * SOLUTION: Redefine the natives.
+ * SEE:      "FIX_const".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -850,17 +856,17 @@
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
 #if !defined FIXES_EnableAll
-	#define FIXES_EnableAll             (0)
+	#define FIXES_EnableAll              (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableAll)
 	#undef FIXES_EnableAll
-	#define FIXES_EnableAll             (2)
+	#define FIXES_EnableAll              (2)
 #endif
 
 #if !defined FIXES_EnableDeprecated
-	#define FIXES_EnableDeprecated             (0)
+	#define FIXES_EnableDeprecated       (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableDeprecated)
 	#undef FIXES_EnableDeprecated
-	#define FIXES_EnableDeprecated             (2)
+	#define FIXES_EnableDeprecated       (2)
 #endif
 
 // We can add server version compiler code here to only compile fixes that apply
@@ -868,16 +874,16 @@
 #if !defined FIX_GetPlayerColour
 	#if defined FIX_GetPlayerColor
 		#if _FIXES_IS_UNSET(FIX_GetPlayerColor)
-			#define FIX_GetPlayerColour   (2)
+			#define FIX_GetPlayerColour  (2)
 		#else
-			#define FIX_GetPlayerColour   (FIX_GetPlayerColor)
+			#define FIX_GetPlayerColour  (FIX_GetPlayerColor)
 		#endif
 	#else
-		#define FIX_GetPlayerColour       (1)
+		#define FIX_GetPlayerColour      (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerColour)
 	#undef FIX_GetPlayerColour
-	#define FIX_GetPlayerColour           (2)
+	#define FIX_GetPlayerColour          (2)
 #endif
 
 #if !defined FIX_FILTERSCRIPT
@@ -1036,13 +1042,13 @@
 
 #if !defined FIX_WEAPONS
 	#if defined WEAPON_FIST
-		#define FIX_WEAPONS            (FIXES_EnableDeprecated)
+		#define FIX_WEAPONS              (FIXES_EnableDeprecated)
 	#else
-		#define FIX_WEAPONS            (1)
+		#define FIX_WEAPONS              (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_WEAPONS)
 	#undef FIX_WEAPONS
-	#define FIX_WEAPONS                (2)
+	#define FIX_WEAPONS                  (2)
 #endif
 
 #if !defined FIX_BODYPARTS
@@ -1457,17 +1463,17 @@
 #endif
 
 #if !defined FIX_ApplyActorAnimation
-	#define FIX_ApplyActorAnimation           (1)
+	#define FIX_ApplyActorAnimation      (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation)
 	#undef FIX_ApplyActorAnimation
-	#define FIX_ApplyActorAnimation           (2)
+	#define FIX_ApplyActorAnimation      (2)
 #endif
 
 #if !defined FIX_ApplyActorAnimation_2
-	#define FIX_ApplyActorAnimation_2         (1)
+	#define FIX_ApplyActorAnimation_2    (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation_2)
 	#undef FIX_ApplyActorAnimation_2
-	#define FIX_ApplyActorAnimation_2         (2)
+	#define FIX_ApplyActorAnimation_2    (2)
 #endif
 
 #if !defined FIX_OnPlayerSpawn
@@ -1558,7 +1564,7 @@
 		#if _FIXES_IS_UNSET(FIX_SetPlayerColor)
 			#define FIX_SetPlayerColour  (2)
 		#else
-			#define FIX_SetPlayerColour   (FIX_SetPlayerColor)
+			#define FIX_SetPlayerColour  (FIX_SetPlayerColor)
 		#endif
 	#else
 		#define FIX_SetPlayerColour      (1)
@@ -1583,73 +1589,73 @@
 #endif
 
 #if !defined FIX_strcmp
-	#define FIX_strcmp      (1)
+	#define FIX_strcmp                   (1)
 #elseif _FIXES_IS_UNSET(FIX_strcmp)
 	#undef FIX_strcmp
-	#define FIX_strcmp      (2)
+	#define FIX_strcmp                   (2)
 #endif
 
 #if !defined FIX_GetPVarString
-	#define FIX_GetPVarString      (FIXES_EnableAll)
+	#define FIX_GetPVarString            (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetPVarString)
 	#undef FIX_GetPVarString
-	#define FIX_GetPVarString      (2)
+	#define FIX_GetPVarString            (2)
 #endif
 
 #if !defined FIX_GetSVarString
-	#define FIX_GetSVarString      (FIXES_EnableAll)
+	#define FIX_GetSVarString            (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetSVarString)
 	#undef FIX_GetSVarString
-	#define FIX_GetSVarString      (2)
+	#define FIX_GetSVarString            (2)
 #endif
 
 #if !defined FIX_toupper
-	#define FIX_toupper      (1)
+	#define FIX_toupper                  (1)
 #elseif _FIXES_IS_UNSET(FIX_toupper)
 	#undef FIX_toupper
-	#define FIX_toupper      (2)
+	#define FIX_toupper                  (2)
 #endif
 
 #if !defined FIX_tolower
-	#define FIX_tolower      (1)
+	#define FIX_tolower                  (1)
 #elseif _FIXES_IS_UNSET(FIX_tolower)
 	#undef FIX_tolower
-	#define FIX_tolower      (2)
+	#define FIX_tolower                  (2)
 #endif
 
 #if !defined FIX_PassengerSeating
-	#define FIX_PassengerSeating      (1)
+	#define FIX_PassengerSeating         (1)
 #elseif _FIXES_IS_UNSET(FIX_PassengerSeating)
 	#undef FIX_PassengerSeating
-	#define FIX_PassengerSeating      (2)
+	#define FIX_PassengerSeating         (2)
 #endif
 
 #if !defined FIX_GogglesSync
-	#define FIX_GogglesSync      (1)
+	#define FIX_GogglesSync              (1)
 #elseif _FIXES_IS_UNSET(FIX_GogglesSync)
 	#undef FIX_GogglesSync
-	#define FIX_GogglesSync      (2)
+	#define FIX_GogglesSync              (2)
 #endif
 
 #if !defined FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize      (1)
+	#define FIX_GetPlayerPoolSize        (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize      (2)
+	#define FIX_GetPlayerPoolSize        (2)
 #endif
 
 #if !defined FIX_SetPlayerPos
-	#define FIX_SetPlayerPos      (1)
+	#define FIX_SetPlayerPos             (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerPos)
 	#undef FIX_SetPlayerPos
-	#define FIX_SetPlayerPos      (2)
+	#define FIX_SetPlayerPos             (2)
 #endif
 
 #if !defined FIX_GetPlayerAmmo
-	#define FIX_GetPlayerAmmo      (1)
+	#define FIX_GetPlayerAmmo            (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerAmmo)
 	#undef FIX_GetPlayerAmmo
-	#define FIX_GetPlayerAmmo      (2)
+	#define FIX_GetPlayerAmmo            (2)
 #endif
 
 #if !defined FIX_JIT
@@ -1667,10 +1673,10 @@
 #endif
 
 #if !defined FIX_const
-	#define FIX_const                       (1)
+	#define FIX_const                    (1)
 #elseif _FIXES_IS_UNSET(FIX_const)
 	#undef FIX_const
-	#define FIX_const                       (2)
+	#define FIX_const                    (2)
 #endif
 
 /*
