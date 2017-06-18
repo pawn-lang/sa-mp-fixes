@@ -8861,14 +8861,20 @@ native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = Cre
 		new
 			actorid;
 
-		return
-			actorid = CreateActor(modelid, X, Y, Z, Rotation),
-			FIXES_gsActorAnimLibs[actorid][0] =
-				FIXES_gsActorAnimLibs[actorid][1] =
-					FIXES_gsActorAnimLibs[actorid][2] =
-						FIXES_gsActorAnimLibs[actorid][3] =
-							FIXES_gsActorAnimLibs[actorid][4] = -1,
-			actorid;
+		actorid = CreateActor(modelid, X, Y, Z, Rotation);
+
+		if (actorid == INVALID_ACTOR_ID)
+		{
+			return INVALID_ACTOR_ID;
+		}
+
+		FIXES_gsActorAnimLibs[actorid][0] =
+			FIXES_gsActorAnimLibs[actorid][1] =
+				FIXES_gsActorAnimLibs[actorid][2] =
+					FIXES_gsActorAnimLibs[actorid][3] =
+						FIXES_gsActorAnimLibs[actorid][4] = -1;
+
+		return actorid;
 	}
 
 	#define _ALS_CreateActor
