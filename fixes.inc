@@ -8639,7 +8639,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  */
 
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
-	static stock _FIXES_GetAnimLibIndex(animlib[])
+	static stock _FIXES_GetAnimLibIndex(const animlib[])
 	{
 		new
 			diff,
