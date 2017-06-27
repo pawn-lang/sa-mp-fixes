@@ -9862,6 +9862,30 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #endif
 
 /*
+ * _FIXES_Bernstein()
+ *
+ * Convert a string to a number (hash it).
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if FIX_ChangeVehicleColour
+	static stock _FIXES_Bernstein(const name[])
+	{
+		new
+			i = -1,
+			ch,
+			hash = -1;
+		while ((ch = name[++i]))
+		{
+			hash = hash * 33 + ch;
+		}
+		return hash;
+	}
+#endif
+
+/*
  * _FIXES_GetVehicleModelFromName()
  *
  * Convert a model name (as found in `carcols.dat` to a model number).  Use
