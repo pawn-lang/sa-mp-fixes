@@ -6137,7 +6137,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: OnPlayerEnterVehicle_2
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_2
-			if (!(0 < vehicleid < MAX_VEHICLES))
+			if (!_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
 			{
 				FIXES_BlockUpdate(playerid);
 				return 0;
@@ -6189,7 +6189,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: OnPlayerEnterVehicle_2
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_2
-			if (_FIXES_IN_RANGE(vehicleid, 1, MAX_VEHICLES))
+			if (_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
 			{
 				return FIXES_OnPlayerExitVehicle(playerid, vehicleid);
 			}
@@ -10268,6 +10268,7 @@ native BAD_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
  *
  * FIXES:
  *     ChangeVehicleColor
+ *     AddStaticVehicle
  */
 
 #if defined _ALS_AddStaticVehicle
@@ -10275,13 +10276,27 @@ native BAD_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
 #endif
 native BAD_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2) = AddStaticVehicle;
 
-#if FIX_ChangeVehicleColour
+#if FIX_ChangeVehicleColour || FIX_AddStaticVehicle
 	stock FIXES_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2)
 	{
-		new
-			vehicleid = AddStaticVehicle(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2);
-		ChangeVehicleColor(vehicleid, color1, color2);
-		return vehicleid;
+		#if FIX_AddStaticVehicle
+			// First, collect all the currently valid vehicle IDs.
+			new
+				validIDs[_FIXES_CEILDIV(MAX_VEHICLES, cellbits)];
+			for (new i = 0; i != MAX_VEHICLES; ++i)
+			{
+				
+			}
+			new
+				vehicleid = AddStaticVehicle(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2);
+		#else
+			new
+				vehicleid = AddStaticVehicle(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2);
+		#endif
+		#if FIX_ChangeVehicleColour
+			ChangeVehicleColor(vehicleid, color1, color2);
+		#endif
+			return vehicleid;
 	}
 
 	#define _ALS_AddStaticVehicle
@@ -10293,6 +10308,7 @@ native BAD_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z
  *
  * FIXES:
  *     ChangeVehicleColor
+ *     AddStaticVehicle
  */
 
 #if defined _ALS_AddStaticVehicleEx
@@ -10300,13 +10316,20 @@ native BAD_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z
 #endif
 native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren=0) = AddStaticVehicleEx;
 
-#if FIX_ChangeVehicleColour
+#if FIX_ChangeVehicleColour || FIX_AddStaticVehicle
 	stock FIXES_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren=0)
 	{
-		new
-			vehicleid = AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, addsiren);
-		ChangeVehicleColor(vehicleid, color1, color2);
-		return vehicleid;
+		#if FIX_AddStaticVehicle
+			new
+				vehicleid = AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, addsiren);
+		#else
+			new
+				vehicleid = AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, addsiren);
+		#endif
+		#if FIX_ChangeVehicleColour
+			ChangeVehicleColor(vehicleid, color1, color2);
+		#endif
+			return vehicleid;
 	}
 
 	#define _ALS_AddStaticVehicleEx
