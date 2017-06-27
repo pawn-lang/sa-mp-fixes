@@ -707,6 +707,7 @@
  * SOLUTION: Redefine the natives.
  * SEE:      "FIX_const".
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ * ISSUE:    https://github.com/Open-GTO/sa-mp-fixes/issues/29
  *
  * ==============
  *  STYLE RULES:
