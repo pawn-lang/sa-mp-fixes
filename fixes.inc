@@ -722,6 +722,12 @@
  * SEE:      "FIXES_GetVehicleColour".
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
  *
+ * FIX:      AddStaticVehicle
+ * PROBLEM:  This function doesn't return the ID of the created vehicle.
+ * SOLUTION: Scan for ID changes and return that one.
+ * SEE:      "FIXES_AddStaticVehicle", "FIXES_AddStaticVehicleEx".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1724,6 +1730,13 @@
 #elseif _FIXES_IS_UNSET(FIX_GetVehicleColour)
 	#undef FIX_GetVehicleColour
 	#define FIX_GetVehicleColour         (2)
+#endif
+
+#if !defined FIX_AddStaticVehicle
+	#define FIX_AddStaticVehicle         (1)
+#elseif _FIXES_IS_UNSET(FIX_AddStaticVehicle)
+	#undef FIX_AddStaticVehicle
+	#define FIX_AddStaticVehicle         (2)
 #endif
 
 #if !defined FIX_const
@@ -10282,13 +10295,32 @@ native BAD_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z
 		#if FIX_AddStaticVehicle
 			// First, collect all the currently valid vehicle IDs.
 			new
-				validIDs[_FIXES_CEILDIV(MAX_VEHICLES, cellbits)];
-			for (new i = 0; i != MAX_VEHICLES; ++i)
+				validIDs[_FIXES_CEILDIV(MAX_VEHICLES, cellbits)],
+				vehicleid;
+			for (new i = 1, j = 0, k = 1; i != MAX_VEHICLES; ++i)
 			{
-				
+				if (GetVehicleModel(i))
+					validIDs[j] |= k;
+				if ((k <<= 1) == 0)
+					k = 1, ++j;
 			}
-			new
-				vehicleid = AddStaticVehicle(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2);
+			AddStaticVehicle(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2);
+			// Now loop back over all the possible vehicle IDs and return the
+			// correct one.
+			for (new i = 1, j = 0, k = 1; i != MAX_VEHICLES; ++i)
+			{
+				if (GetVehicleModel(i))
+				{
+					// This is now an assigned vehicle ID, but wasn't before.
+					if (!(validIDs[j] & k))
+					{
+						vehicleid = i;
+						break;
+					}
+				}
+				if ((k <<= 1) == 0)
+					k = 1, ++j;
+			}
 		#else
 			new
 				vehicleid = AddStaticVehicle(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2);
@@ -10314,14 +10346,40 @@ native BAD_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z
 #if defined _ALS_AddStaticVehicleEx
 	#error _ALS_AddStaticVehicleEx defined
 #endif
-native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren=0) = AddStaticVehicleEx;
+native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren = 0) = AddStaticVehicleEx;
 
 #if FIX_ChangeVehicleColour || FIX_AddStaticVehicle
-	stock FIXES_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren=0)
+	stock FIXES_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren = 0)
 	{
 		#if FIX_AddStaticVehicle
+			// First, collect all the currently valid vehicle IDs.
 			new
-				vehicleid = AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, addsiren);
+				validIDs[_FIXES_CEILDIV(MAX_VEHICLES, cellbits)],
+				vehicleid;
+			for (new i = 1, j = 0, k = 1; i != MAX_VEHICLES; ++i)
+			{
+				if (GetVehicleModel(i))
+					validIDs[j] |= k;
+				if ((k <<= 1) == 0)
+					k = 1, ++j;
+			}
+			AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, addsiren);
+			// Now loop back over all the possible vehicle IDs and return the
+			// correct one.
+			for (new i = 1, j = 0, k = 1; i != MAX_VEHICLES; ++i)
+			{
+				if (GetVehicleModel(i))
+				{
+					// This is now an assigned vehicle ID, but wasn't before.
+					if (!(validIDs[j] & k))
+					{
+						vehicleid = i;
+						break;
+					}
+				}
+				if ((k <<= 1) == 0)
+					k = 1, ++j;
+			}
 		#else
 			new
 				vehicleid = AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, addsiren);
@@ -10437,7 +10495,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_IS_PLAYER_CONNECTED
 #undef FIXES_PRINTF
 #undef _FIXES_IS_VALID_PLAYER
-#undef _FIXES_VALID_VEHICLE_ID
+#undef _FIXES_IS_VALID_VEHICLE_ID
 #undef _FIXES_IS_VALID_VEHICLE_MODEL
 
 #endinput
