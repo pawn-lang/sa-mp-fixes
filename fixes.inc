@@ -1724,7 +1724,7 @@
 		#elseif defined GetVehicleColour
 			#define FIX_GetVehicleColour (FIXES_EnableDeprecated)
 		#else
-			#define FIX_GetVehicleColour (FIX_Natives && FIX_ChangeVehicleColour)
+			#define FIX_GetVehicleColour (FIX_Natives * FIX_ChangeVehicleColour)
 		#endif
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetVehicleColour)
