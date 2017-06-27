@@ -1680,11 +1680,44 @@
 	#define FIX_OS                       (2)
 #endif
 
-#if !defined FIX_ChangeVehicleColor
-	#define FIX_ChangeVehicleColor       (1)
-#elseif _FIXES_IS_UNSET(FIX_ChangeVehicleColor)
-	#undef FIX_ChangeVehicleColor
-	#define FIX_ChangeVehicleColor       (2)
+#if !defined FIX_ChangeVehicleColour
+	#if defined FIX_ChangeVehicleColor
+		#if _FIXES_IS_UNSET(FIX_ChangeVehicleColor)
+			#define FIX_ChangeVehicleColour  (2)
+		#else
+			#define FIX_ChangeVehicleColour  (FIX_ChangeVehicleColor)
+		#endif
+	#else
+		#define FIX_ChangeVehicleColour  (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_ChangeVehicleColour)
+	#undef FIX_ChangeVehicleColour
+	#define FIX_ChangeVehicleColour      (2)
+#endif
+
+// This is so far the most complex inclusion determiner.  There are two possible
+// spellings of "colour" - the correct one, and "color".  In addition, this
+// function is an addition not a change, so we need to account for that and not
+// include it if it becomes native.  Finally, it depends on another fix.
+#if !defined FIX_GetVehicleColour
+	#if defined FIX_GetVehicleColor
+		#if _FIXES_IS_UNSET(FIX_GetVehicleColor)
+			#define FIX_GetVehicleColour (2)
+		#else
+			#define FIX_GetVehicleColour (FIX_GetVehicleColor)
+		#endif
+	#else
+		#if defined GetVehicleColor
+			#define FIX_GetVehicleColour (FIXES_EnableDeprecated)
+		#elseif defined GetVehicleColour
+			#define FIX_GetVehicleColour (FIXES_EnableDeprecated)
+		#else
+			#define FIX_GetVehicleColour (FIX_Natives && FIX_ChangeVehicleColour)
+		#endif
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetVehicleColour)
+	#undef FIX_GetVehicleColour
+	#define FIX_GetVehicleColour         (2)
 #endif
 
 #if !defined FIX_const
@@ -1854,6 +1887,24 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #else
 	#define FIXES_GET(%0,%1) GetPVarInt(%1, FIXES_pvar%0)
 #endif
+
+/*
+ * _FIXES_IS_VALID_PLAYER
+ */
+
+#define _FIXES_IS_VALID_PLAYER(%0) _FIXES_IN_RANGE(%0, 0, MAX_PLAYERS)
+
+/*
+ * _FIXES_IS_VALID_VEHICLE_ID
+ */
+
+#define _FIXES_IS_VALID_VEHICLE_ID(%0) _FIXES_IN_RANGE(%0, 1, MAX_VEHICLES)
+
+/*
+ * _FIXES_IS_VALID_VEHICLE_MODEL
+ */
+
+#define _FIXES_IS_VALID_VEHICLE_MODEL(%0) _FIXES_IN_RANGE(%0, 400, 611 + 1)
 
 /*
  * E_FIXES_WORLDBOUND_DATA
@@ -2264,10 +2315,39 @@ static stock
 	 * `cement`, and `squalo`).  In theory, for these we would need a full cell
 	 * per set (or rather, four arrays), but there's no way to set these extra
 	 * parts in SA:MP, so there's no need to store them anywhere.
+	 *
+	 * I wanted to just use one array, and actually that would waste slightly
+	 * less memory since `(20 char)` is exactly 5 cells while `(10 char) * 2` is
+	 * 6 cells.  However, that would make the code more complex and slower, plus
+	 * memory is cheap.
 	 */
-#if FIX_ChangeVehicleColor
+#if FIX_ChangeVehicleColour
 	FIXES_gsVehicleModelColours1[611 + 1 - 400][10 char],
 	FIXES_gsVehicleModelColours2[611 + 1 - 400][10 char],
+#endif
+	/*
+	 * FIXES_gsVehicleBaseColours1[MAX_VEHICLES char]
+	 * FIXES_gsVehicleBaseColours2[MAX_VEHICLES char]
+	 *
+	 * Which colour indexes will be used for each spawned vehicle.  This will
+	 * only store the originally set colour (i.e. `-1` (255) for random).  It
+	 * will not store the currently assigned colour when a random one is
+	 * selected.
+	 */
+#if FIX_ChangeVehicleColour
+	FIXES_gsVehicleBaseColours1[MAX_VEHICLES char],
+	FIXES_gsVehicleBaseColours2[MAX_VEHICLES char],
+#endif
+	/*
+	 * FIXES_gsVehicleCurColours1[MAX_VEHICLES char]
+	 * FIXES_gsVehicleCurColours2[MAX_VEHICLES char]
+	 *
+	 * Which colour indexes will be used for each spawned vehicle.  This will
+	 * store the currently assigned colours when they vary via `-1`.
+	 */
+#if FIX_ChangeVehicleColour
+	FIXES_gsVehicleCurColours1[MAX_VEHICLES char],
+	FIXES_gsVehicleCurColours2[MAX_VEHICLES char],
 #endif
 	/*
 	 * FIXES_pvarNotNewPlayer[]
@@ -4198,286 +4278,6 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 	}
 #endif
 
-static stock
-	gCarcls[100][100];
-
-/*
- * _FIXES_GetVehicleModelFromName()
- *
- * Convert a model name (as found in `carcols.dat` to a model number).  Use
- * string hashing to enable `switch`.
- *
- * FIXES:
- *     ChangeVehicleColor
- */
-
-static stock _FIXES_GetVehicleModelFromName(const name[])
-{
-	// This is actually probably quite a generically useful function.  Maybe,
-	// since it is written anyway, it should be exposed.
-	switch (_FIXES_Bernstein(name))
-	{
-	case _FIXES_MODEL_BERNSTEIN_landstal: return 400;
-	case _FIXES_MODEL_BERNSTEIN_bravura : return 401;
-	case _FIXES_MODEL_BERNSTEIN_buffalo : return 402;
-	case _FIXES_MODEL_BERNSTEIN_linerun : return 403;
-	case _FIXES_MODEL_BERNSTEIN_peren   : return 404;
-	case _FIXES_MODEL_BERNSTEIN_sentinel: return 405;
-	case _FIXES_MODEL_BERNSTEIN_dumper  : return 406;
-	case _FIXES_MODEL_BERNSTEIN_firetruk: return 407;
-	case _FIXES_MODEL_BERNSTEIN_trash   : return 408;
-	case _FIXES_MODEL_BERNSTEIN_stretch : return 409;
-	case _FIXES_MODEL_BERNSTEIN_manana  : return 410;
-	case _FIXES_MODEL_BERNSTEIN_infernus: return 411;
-	case _FIXES_MODEL_BERNSTEIN_voodoo  : return 412;
-	case _FIXES_MODEL_BERNSTEIN_pony    : return 413;
-	case _FIXES_MODEL_BERNSTEIN_mule    : return 414;
-	case _FIXES_MODEL_BERNSTEIN_cheetah : return 415;
-	case _FIXES_MODEL_BERNSTEIN_ambulan : return 416;
-	case _FIXES_MODEL_BERNSTEIN_leviathn: return 417;
-	case _FIXES_MODEL_BERNSTEIN_moonbeam: return 418;
-	case _FIXES_MODEL_BERNSTEIN_esperant: return 419;
-	case _FIXES_MODEL_BERNSTEIN_taxi    : return 420;
-	case _FIXES_MODEL_BERNSTEIN_washing : return 421;
-	case _FIXES_MODEL_BERNSTEIN_bobcat  : return 422;
-	case _FIXES_MODEL_BERNSTEIN_mrwhoop : return 423;
-	case _FIXES_MODEL_BERNSTEIN_bfinject: return 424;
-	case _FIXES_MODEL_BERNSTEIN_hunter  : return 425;
-	case _FIXES_MODEL_BERNSTEIN_premier : return 426;
-	case _FIXES_MODEL_BERNSTEIN_enforcer: return 427;
-	case _FIXES_MODEL_BERNSTEIN_securica: return 428;
-	case _FIXES_MODEL_BERNSTEIN_banshee : return 429;
-	case _FIXES_MODEL_BERNSTEIN_predator: return 430;
-	case _FIXES_MODEL_BERNSTEIN_bus     : return 431;
-	case _FIXES_MODEL_BERNSTEIN_rhino   : return 432;
-	case _FIXES_MODEL_BERNSTEIN_barracks: return 433;
-	case _FIXES_MODEL_BERNSTEIN_hotknife: return 434;
-	case _FIXES_MODEL_BERNSTEIN_artict1 : return 435;
-	case _FIXES_MODEL_BERNSTEIN_previon : return 436;
-	case _FIXES_MODEL_BERNSTEIN_coach   : return 437;
-	case _FIXES_MODEL_BERNSTEIN_cabbie  : return 438;
-	case _FIXES_MODEL_BERNSTEIN_stallion: return 439;
-	case _FIXES_MODEL_BERNSTEIN_rumpo   : return 440;
-	case _FIXES_MODEL_BERNSTEIN_rcbandit: return 441;
-	case _FIXES_MODEL_BERNSTEIN_romero  : return 442;
-	case _FIXES_MODEL_BERNSTEIN_packer  : return 443;
-	case _FIXES_MODEL_BERNSTEIN_monster : return 444;
-	case _FIXES_MODEL_BERNSTEIN_admiral : return 445;
-	case _FIXES_MODEL_BERNSTEIN_squalo  : return 446;
-	case _FIXES_MODEL_BERNSTEIN_seaspar : return 447;
-	case _FIXES_MODEL_BERNSTEIN_pizzaboy: return 448;
-	case _FIXES_MODEL_BERNSTEIN_tram    : return 449;
-	case _FIXES_MODEL_BERNSTEIN_artict2 : return 450;
-	case _FIXES_MODEL_BERNSTEIN_turismo : return 451;
-	case _FIXES_MODEL_BERNSTEIN_speeder : return 452;
-	case _FIXES_MODEL_BERNSTEIN_reefer  : return 453;
-	case _FIXES_MODEL_BERNSTEIN_tropic  : return 454;
-	case _FIXES_MODEL_BERNSTEIN_flatbed : return 455;
-	case _FIXES_MODEL_BERNSTEIN_yankee  : return 456;
-	case _FIXES_MODEL_BERNSTEIN_caddy   : return 457;
-	case _FIXES_MODEL_BERNSTEIN_solair  : return 458;
-	case _FIXES_MODEL_BERNSTEIN_topfun  : return 459;
-	case _FIXES_MODEL_BERNSTEIN_skimmer : return 460;
-	case _FIXES_MODEL_BERNSTEIN_pcj600  : return 461;
-	case _FIXES_MODEL_BERNSTEIN_faggio  : return 462;
-	case _FIXES_MODEL_BERNSTEIN_freeway : return 463;
-	case _FIXES_MODEL_BERNSTEIN_rcbaron : return 464;
-	case _FIXES_MODEL_BERNSTEIN_rcraider: return 465;
-	case _FIXES_MODEL_BERNSTEIN_glendale: return 466;
-	case _FIXES_MODEL_BERNSTEIN_oceanic : return 467;
-	case _FIXES_MODEL_BERNSTEIN_sanchez : return 468;
-	case _FIXES_MODEL_BERNSTEIN_sparrow : return 469;
-	case _FIXES_MODEL_BERNSTEIN_patriot : return 470;
-	case _FIXES_MODEL_BERNSTEIN_quad    : return 471;
-	case _FIXES_MODEL_BERNSTEIN_coastg  : return 472;
-	case _FIXES_MODEL_BERNSTEIN_dinghy  : return 473;
-	case _FIXES_MODEL_BERNSTEIN_hermes  : return 474;
-	case _FIXES_MODEL_BERNSTEIN_sabre   : return 475;
-	case _FIXES_MODEL_BERNSTEIN_rustler : return 476;
-	case _FIXES_MODEL_BERNSTEIN_zr350   : return 477;
-	case _FIXES_MODEL_BERNSTEIN_walton  : return 478;
-	case _FIXES_MODEL_BERNSTEIN_regina  : return 479;
-	case _FIXES_MODEL_BERNSTEIN_comet   : return 480;
-	case _FIXES_MODEL_BERNSTEIN_bmx     : return 481;
-	case _FIXES_MODEL_BERNSTEIN_burrito : return 482;
-	case _FIXES_MODEL_BERNSTEIN_camper  : return 483;
-	case _FIXES_MODEL_BERNSTEIN_marquis : return 484;
-	case _FIXES_MODEL_BERNSTEIN_baggage : return 485;
-	case _FIXES_MODEL_BERNSTEIN_dozer   : return 486;
-	case _FIXES_MODEL_BERNSTEIN_maverick: return 487;
-	case _FIXES_MODEL_BERNSTEIN_vcnmav  : return 488;
-	case _FIXES_MODEL_BERNSTEIN_rancher : return 489;
-	case _FIXES_MODEL_BERNSTEIN_fbiranch: return 490;
-	case _FIXES_MODEL_BERNSTEIN_virgo   : return 491;
-	case _FIXES_MODEL_BERNSTEIN_greenwoo: return 492;
-	case _FIXES_MODEL_BERNSTEIN_jetmax  : return 493;
-	case _FIXES_MODEL_BERNSTEIN_hotring : return 494;
-	case _FIXES_MODEL_BERNSTEIN_sandking: return 495;
-	case _FIXES_MODEL_BERNSTEIN_blistac : return 496;
-	case _FIXES_MODEL_BERNSTEIN_polmav  : return 497;
-	case _FIXES_MODEL_BERNSTEIN_boxville: return 498;
-	case _FIXES_MODEL_BERNSTEIN_benson  : return 499;
-	case _FIXES_MODEL_BERNSTEIN_mesa    : return 500;
-	case _FIXES_MODEL_BERNSTEIN_rcgoblin: return 501;
-	case _FIXES_MODEL_BERNSTEIN_hotrina : return 502;
-	case _FIXES_MODEL_BERNSTEIN_hotrinb : return 503;
-	case _FIXES_MODEL_BERNSTEIN_bloodra : return 504;
-	case _FIXES_MODEL_BERNSTEIN_bloodrb : return 504;
-	case _FIXES_MODEL_BERNSTEIN_rnchlure: return 505;
-	case _FIXES_MODEL_BERNSTEIN_supergt : return 506;
-	case _FIXES_MODEL_BERNSTEIN_elegant : return 507;
-	case _FIXES_MODEL_BERNSTEIN_journey : return 508;
-	case _FIXES_MODEL_BERNSTEIN_bike    : return 509;
-	case _FIXES_MODEL_BERNSTEIN_mtbike  : return 510;
-	case _FIXES_MODEL_BERNSTEIN_beagle  : return 511;
-	case _FIXES_MODEL_BERNSTEIN_cropdust: return 512;
-	case _FIXES_MODEL_BERNSTEIN_stunt   : return 513;
-	case _FIXES_MODEL_BERNSTEIN_petro   : return 514;
-	case _FIXES_MODEL_BERNSTEIN_rdtrain : return 515;
-	case _FIXES_MODEL_BERNSTEIN_nebula  : return 516;
-	case _FIXES_MODEL_BERNSTEIN_majestic: return 517;
-	case _FIXES_MODEL_BERNSTEIN_buccanee: return 518;
-	case _FIXES_MODEL_BERNSTEIN_shamal  : return 519;
-	case _FIXES_MODEL_BERNSTEIN_hydra   : return 520;
-	case _FIXES_MODEL_BERNSTEIN_fcr900  : return 521;
-	case _FIXES_MODEL_BERNSTEIN_nrg500  : return 522;
-	case _FIXES_MODEL_BERNSTEIN_copbike : return 523;
-	case _FIXES_MODEL_BERNSTEIN_cement  : return 524;
-	case _FIXES_MODEL_BERNSTEIN_towtruck: return 525;
-	case _FIXES_MODEL_BERNSTEIN_fortune : return 526;
-	case _FIXES_MODEL_BERNSTEIN_cadrona : return 527;
-	case _FIXES_MODEL_BERNSTEIN_fbitruck: return 528;
-	case _FIXES_MODEL_BERNSTEIN_willard : return 529;
-	case _FIXES_MODEL_BERNSTEIN_forklift: return 530;
-	case _FIXES_MODEL_BERNSTEIN_tractor : return 531;
-	case _FIXES_MODEL_BERNSTEIN_combine : return 532;
-	case _FIXES_MODEL_BERNSTEIN_feltzer : return 533;
-	case _FIXES_MODEL_BERNSTEIN_remingtn: return 534;
-	case _FIXES_MODEL_BERNSTEIN_slamvan : return 535;
-	case _FIXES_MODEL_BERNSTEIN_blade   : return 536;
-	case _FIXES_MODEL_BERNSTEIN_freight : return 537;
-	case _FIXES_MODEL_BERNSTEIN_streak  : return 538;
-	case _FIXES_MODEL_BERNSTEIN_vortex  : return 539;
-	case _FIXES_MODEL_BERNSTEIN_vincent : return 540;
-	case _FIXES_MODEL_BERNSTEIN_bullet  : return 541;
-	case _FIXES_MODEL_BERNSTEIN_clover  : return 542;
-	case _FIXES_MODEL_BERNSTEIN_sadler  : return 543;
-	case _FIXES_MODEL_BERNSTEIN_firela  : return 544;
-	case _FIXES_MODEL_BERNSTEIN_hustler : return 545;
-	case _FIXES_MODEL_BERNSTEIN_intruder: return 546;
-	case _FIXES_MODEL_BERNSTEIN_primo   : return 547;
-	case _FIXES_MODEL_BERNSTEIN_cargobob: return 548;
-	case _FIXES_MODEL_BERNSTEIN_tampa   : return 549;
-	case _FIXES_MODEL_BERNSTEIN_sunrise : return 550;
-	case _FIXES_MODEL_BERNSTEIN_merit   : return 551;
-	case _FIXES_MODEL_BERNSTEIN_utility : return 552;
-	case _FIXES_MODEL_BERNSTEIN_nevada  : return 553;
-	case _FIXES_MODEL_BERNSTEIN_yosemite: return 554;
-	case _FIXES_MODEL_BERNSTEIN_windsor : return 555;
-	case _FIXES_MODEL_BERNSTEIN_monstera: return 556;
-	case _FIXES_MODEL_BERNSTEIN_monsterb: return 557;
-	case _FIXES_MODEL_BERNSTEIN_uranus  : return 558;
-	case _FIXES_MODEL_BERNSTEIN_jester  : return 559;
-	case _FIXES_MODEL_BERNSTEIN_sultan  : return 560;
-	case _FIXES_MODEL_BERNSTEIN_stratum : return 561;
-	case _FIXES_MODEL_BERNSTEIN_elegy   : return 562;
-	case _FIXES_MODEL_BERNSTEIN_raindanc: return 563;
-	case _FIXES_MODEL_BERNSTEIN_rctiger : return 564;
-	case _FIXES_MODEL_BERNSTEIN_flash   : return 565;
-	case _FIXES_MODEL_BERNSTEIN_tahoma  : return 566;
-	case _FIXES_MODEL_BERNSTEIN_savanna : return 567;
-	case _FIXES_MODEL_BERNSTEIN_bandito : return 568;
-	case _FIXES_MODEL_BERNSTEIN_freiflat: return 569;
-	case _FIXES_MODEL_BERNSTEIN_streakc : return 570;
-	case _FIXES_MODEL_BERNSTEIN_kart    : return 571;
-	case _FIXES_MODEL_BERNSTEIN_mower   : return 572;
-	case _FIXES_MODEL_BERNSTEIN_duneride: return 573;
-	case _FIXES_MODEL_BERNSTEIN_sweeper : return 574;
-	case _FIXES_MODEL_BERNSTEIN_broadway: return 575;
-	case _FIXES_MODEL_BERNSTEIN_tornado : return 576;
-	case _FIXES_MODEL_BERNSTEIN_at400   : return 577;
-	case _FIXES_MODEL_BERNSTEIN_dft30   : return 578;
-	case _FIXES_MODEL_BERNSTEIN_huntley : return 579;
-	case _FIXES_MODEL_BERNSTEIN_stafford: return 580;
-	case _FIXES_MODEL_BERNSTEIN_bf400   : return 581;
-	case _FIXES_MODEL_BERNSTEIN_newsvan : return 582;
-	case _FIXES_MODEL_BERNSTEIN_tug     : return 583;
-	case _FIXES_MODEL_BERNSTEIN_petrotr : return 584;
-	case _FIXES_MODEL_BERNSTEIN_emperor : return 585;
-	case _FIXES_MODEL_BERNSTEIN_wayfarer: return 586;
-	case _FIXES_MODEL_BERNSTEIN_euros   : return 587;
-	case _FIXES_MODEL_BERNSTEIN_hotdog  : return 588;
-	case _FIXES_MODEL_BERNSTEIN_club    : return 589;
-	case _FIXES_MODEL_BERNSTEIN_freibox : return 590;
-	case _FIXES_MODEL_BERNSTEIN_artict3 : return 591;
-	case _FIXES_MODEL_BERNSTEIN_androm  : return 592;
-	case _FIXES_MODEL_BERNSTEIN_dodo    : return 593;
-	case _FIXES_MODEL_BERNSTEIN_rccam   : return 594;
-	case _FIXES_MODEL_BERNSTEIN_launch  : return 595;
-	case _FIXES_MODEL_BERNSTEIN_copcarla: return 596;
-	case _FIXES_MODEL_BERNSTEIN_copcarsf: return 597;
-	case _FIXES_MODEL_BERNSTEIN_copcarvg: return 598;
-	case _FIXES_MODEL_BERNSTEIN_copcarru: return 599;
-	case _FIXES_MODEL_BERNSTEIN_picador : return 600;
-	case _FIXES_MODEL_BERNSTEIN_swatvan : return 601;
-	case _FIXES_MODEL_BERNSTEIN_alpha   : return 602;
-	case _FIXES_MODEL_BERNSTEIN_phoenix : return 603;
-	case _FIXES_MODEL_BERNSTEIN_glenshit: return 604;
-	case _FIXES_MODEL_BERNSTEIN_sadlshit: return 605;
-	case _FIXES_MODEL_BERNSTEIN_bagboxa : return 606;
-	case _FIXES_MODEL_BERNSTEIN_bagboxb : return 607;
-	case _FIXES_MODEL_BERNSTEIN_tugstair: return 608;
-	case _FIXES_MODEL_BERNSTEIN_boxburg : return 609;
-	case _FIXES_MODEL_BERNSTEIN_farmtr1 : return 610;
-	case _FIXES_MODEL_BERNSTEIN_utiltr1 : return 611;
-	}
-	return 0;
-}
-
-/*
- * _FIXES_LoadCarcols()
- *
- * Try load a copy of carcols.dat from the server, so that if they have a custom
- * version it is used instead of the defaults.  However, if the file doesn't
- * exist or can't be read correctly, just use the defaults.
- *
- * FIXES:
- *     ChangeVehicleColor
- */
-
-static stock _FIXES_LoadCarcols()
-{
-	// They don't have the file.
-	if (!fexist("fixes.inc\carcols.dat"))
-		return;
-	new
-		File:fhnd = fopen("fixes.inc\carcols.dat");
-	// The file couldn't be opened.
-	if (!fhnd)
-		return;
-	// Try and load the file in to a local array.  If this works copy that
-	// array in its entirety to the global version.  If it fails, don't do any
-	// copying to stick with the defaults.
-	new
-		localCarcols[sizeof (gCarcls)][sizeof (gCarcls[])];
-	
-	// Skip everything up to the "CAR" section.  While "COL" (colours) could be
-	// of interest, we can't use it even if it is modified since only indexes
-	// can be sent to clients, not the full RGB value.
-	
-	// Everything after "#" or ";" is a comment.  Ignore it.
-	
-	// Entries are:
-	//   
-	//   name, col1,col2 ..."
-	//   
-	// Parts are space delimited.  Pairs are comma delimited (and may have a
-	// trailing comma).  In later versions of the file, there are three or four
-	// colours to an entry, so always just use the first two.  I doubt that will
-	// mean that newer versions are supported due to the different vehicle
-	// names, but it is accepting a wider range of input data.
-}
-
 /*
  * OnJITCompile()()
  *
@@ -5572,7 +5372,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		// =====================
 		new
 			modelid = GetVehicleModel(vehicleid);
-		if (_FIXES_IN_RANGE(modelid, 400, 611 + 1))
+		if (_FIXES_IS_VALID_VEHICLE_MODEL(modelid))
 		{
 			switch (componentid)
 			{
@@ -5985,7 +5785,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 	#if FIXES_Single
 		stock FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				FIXES_PRINTF("Call SetPlayerWorldBounds");
 				if (x_max == x_min || y_max == y_min)
@@ -6037,7 +5837,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 
 		stock FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				FIXES_PRINTF("Call SetPlayerWorldBounds");
 				return
@@ -6144,7 +5944,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 		stock FIXES_TogglePlayerControllable(playerid, toggle)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
 					CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
@@ -6833,7 +6633,7 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 			{
 				#if FIX_GetPlayerMenu
 					#if FIX_HideMenuForPlayer_2
-						if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS) && FIXES_gsCurrentMenu[playerid] == menuid)
+						if (_FIXES_IS_VALID_PLAYER(playerid) && FIXES_gsCurrentMenu[playerid] == menuid)
 					#else
 						if (FIXES_gsCurrentMenu[playerid] == menuid && HideMenuForPlayer(menuid, playerid))
 					#endif
@@ -6928,7 +6728,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 #if FIX_GetPlayerMenu
 	stock Menu:FIXES_GetPlayerMenu(playerid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			return FIXES_gsCurrentMenu[playerid];
 		}
@@ -7911,7 +7711,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #if FIX_HideGameText
 	stock HideGameTextForPlayer(playerid, style)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			if (FIXES_gsGTTimer[style][playerid] != 0)
 			{
@@ -8157,7 +7957,7 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 #if FIX_GetPlayerInterior
 	stock FIXES_GetPlayerInterior(playerid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			return FIXES_GET(PlayerInterior, playerid);
 		}
@@ -8183,7 +7983,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 #if FIX_GetPlayerInterior
 	stock FIXES_SetPlayerInterior(playerid, interiorid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			FIXES_SET(PlayerInterior, playerid, interiorid);
 			return SetPlayerInterior(playerid, interiorid);
@@ -8252,7 +8052,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 	#if FIXES_Single
 		stock FIXES_AllowPlayerTeleport(playerid, allow)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				if (allow)
 				{
@@ -8268,7 +8068,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 	#else
 		stock FIXES_AllowPlayerTeleport(playerid, allow)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				CallRemoteFunction(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, playerid, allow);
 			}
@@ -8466,7 +8266,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 	stock FIXES_ShowPlayerDialog(playerid, dialog, style, _FIXES_MAYBE_CONST title[], _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[])
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			FIXES_SET(PlayerDialog, playerid, dialog);
 			return ShowPlayerDialog(playerid, dialog, style, title, caption, button1, button2);
@@ -8549,7 +8349,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #if FIX_GetPlayerDialog
 	stock FIXES_GetPlayerDialog(playerid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			return FIXES_GET(PlayerDialog, playerid);
 		}
@@ -9556,7 +9356,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 #if FIX_SetPlayerCamera
 	stock FIXES_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			#if FIXES_Single
 				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
@@ -9593,7 +9393,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 #if FIX_SetPlayerCamera
 	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, cut = CAMERA_CUT)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			#if FIXES_Single
 				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
@@ -9630,7 +9430,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 #if FIX_SetPlayerCamera
 	stock FIXES_TogglePlayerSpectating(playerid, toggle)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			if (toggle)
 			{
@@ -9679,7 +9479,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 
 	stock FIXES_SetPlayerTime(playerid, hour, minute)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
 			{
@@ -9716,7 +9516,7 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 
 	stock FIXES_SetPlayerColor(playerid, color)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
 			{
@@ -10039,6 +9839,360 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #endif
 
 /*
+ * _FIXES_GetVehicleModelFromName()
+ *
+ * Convert a model name (as found in `carcols.dat` to a model number).  Use
+ * string hashing to enable `switch`.
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if FIX_ChangeVehicleColour
+	static stock _FIXES_GetVehicleModelFromName(const name[])
+	{
+		// This is actually probably quite a generically useful function.
+		// Maybe, since it is written anyway, it should be exposed.
+		switch (_FIXES_Bernstein(name))
+		{
+		case _FIXES_MODEL_BERNSTEIN_landstal: return 400;
+		case _FIXES_MODEL_BERNSTEIN_bravura : return 401;
+		case _FIXES_MODEL_BERNSTEIN_buffalo : return 402;
+		case _FIXES_MODEL_BERNSTEIN_linerun : return 403;
+		case _FIXES_MODEL_BERNSTEIN_peren   : return 404;
+		case _FIXES_MODEL_BERNSTEIN_sentinel: return 405;
+		case _FIXES_MODEL_BERNSTEIN_dumper  : return 406;
+		case _FIXES_MODEL_BERNSTEIN_firetruk: return 407;
+		case _FIXES_MODEL_BERNSTEIN_trash   : return 408;
+		case _FIXES_MODEL_BERNSTEIN_stretch : return 409;
+		case _FIXES_MODEL_BERNSTEIN_manana  : return 410;
+		case _FIXES_MODEL_BERNSTEIN_infernus: return 411;
+		case _FIXES_MODEL_BERNSTEIN_voodoo  : return 412;
+		case _FIXES_MODEL_BERNSTEIN_pony    : return 413;
+		case _FIXES_MODEL_BERNSTEIN_mule    : return 414;
+		case _FIXES_MODEL_BERNSTEIN_cheetah : return 415;
+		case _FIXES_MODEL_BERNSTEIN_ambulan : return 416;
+		case _FIXES_MODEL_BERNSTEIN_leviathn: return 417;
+		case _FIXES_MODEL_BERNSTEIN_moonbeam: return 418;
+		case _FIXES_MODEL_BERNSTEIN_esperant: return 419;
+		case _FIXES_MODEL_BERNSTEIN_taxi    : return 420;
+		case _FIXES_MODEL_BERNSTEIN_washing : return 421;
+		case _FIXES_MODEL_BERNSTEIN_bobcat  : return 422;
+		case _FIXES_MODEL_BERNSTEIN_mrwhoop : return 423;
+		case _FIXES_MODEL_BERNSTEIN_bfinject: return 424;
+		case _FIXES_MODEL_BERNSTEIN_hunter  : return 425;
+		case _FIXES_MODEL_BERNSTEIN_premier : return 426;
+		case _FIXES_MODEL_BERNSTEIN_enforcer: return 427;
+		case _FIXES_MODEL_BERNSTEIN_securica: return 428;
+		case _FIXES_MODEL_BERNSTEIN_banshee : return 429;
+		case _FIXES_MODEL_BERNSTEIN_predator: return 430;
+		case _FIXES_MODEL_BERNSTEIN_bus     : return 431;
+		case _FIXES_MODEL_BERNSTEIN_rhino   : return 432;
+		case _FIXES_MODEL_BERNSTEIN_barracks: return 433;
+		case _FIXES_MODEL_BERNSTEIN_hotknife: return 434;
+		case _FIXES_MODEL_BERNSTEIN_artict1 : return 435;
+		case _FIXES_MODEL_BERNSTEIN_previon : return 436;
+		case _FIXES_MODEL_BERNSTEIN_coach   : return 437;
+		case _FIXES_MODEL_BERNSTEIN_cabbie  : return 438;
+		case _FIXES_MODEL_BERNSTEIN_stallion: return 439;
+		case _FIXES_MODEL_BERNSTEIN_rumpo   : return 440;
+		case _FIXES_MODEL_BERNSTEIN_rcbandit: return 441;
+		case _FIXES_MODEL_BERNSTEIN_romero  : return 442;
+		case _FIXES_MODEL_BERNSTEIN_packer  : return 443;
+		case _FIXES_MODEL_BERNSTEIN_monster : return 444;
+		case _FIXES_MODEL_BERNSTEIN_admiral : return 445;
+		case _FIXES_MODEL_BERNSTEIN_squalo  : return 446;
+		case _FIXES_MODEL_BERNSTEIN_seaspar : return 447;
+		case _FIXES_MODEL_BERNSTEIN_pizzaboy: return 448;
+		case _FIXES_MODEL_BERNSTEIN_tram    : return 449;
+		case _FIXES_MODEL_BERNSTEIN_artict2 : return 450;
+		case _FIXES_MODEL_BERNSTEIN_turismo : return 451;
+		case _FIXES_MODEL_BERNSTEIN_speeder : return 452;
+		case _FIXES_MODEL_BERNSTEIN_reefer  : return 453;
+		case _FIXES_MODEL_BERNSTEIN_tropic  : return 454;
+		case _FIXES_MODEL_BERNSTEIN_flatbed : return 455;
+		case _FIXES_MODEL_BERNSTEIN_yankee  : return 456;
+		case _FIXES_MODEL_BERNSTEIN_caddy   : return 457;
+		case _FIXES_MODEL_BERNSTEIN_solair  : return 458;
+		case _FIXES_MODEL_BERNSTEIN_topfun  : return 459;
+		case _FIXES_MODEL_BERNSTEIN_skimmer : return 460;
+		case _FIXES_MODEL_BERNSTEIN_pcj600  : return 461;
+		case _FIXES_MODEL_BERNSTEIN_faggio  : return 462;
+		case _FIXES_MODEL_BERNSTEIN_freeway : return 463;
+		case _FIXES_MODEL_BERNSTEIN_rcbaron : return 464;
+		case _FIXES_MODEL_BERNSTEIN_rcraider: return 465;
+		case _FIXES_MODEL_BERNSTEIN_glendale: return 466;
+		case _FIXES_MODEL_BERNSTEIN_oceanic : return 467;
+		case _FIXES_MODEL_BERNSTEIN_sanchez : return 468;
+		case _FIXES_MODEL_BERNSTEIN_sparrow : return 469;
+		case _FIXES_MODEL_BERNSTEIN_patriot : return 470;
+		case _FIXES_MODEL_BERNSTEIN_quad    : return 471;
+		case _FIXES_MODEL_BERNSTEIN_coastg  : return 472;
+		case _FIXES_MODEL_BERNSTEIN_dinghy  : return 473;
+		case _FIXES_MODEL_BERNSTEIN_hermes  : return 474;
+		case _FIXES_MODEL_BERNSTEIN_sabre   : return 475;
+		case _FIXES_MODEL_BERNSTEIN_rustler : return 476;
+		case _FIXES_MODEL_BERNSTEIN_zr350   : return 477;
+		case _FIXES_MODEL_BERNSTEIN_walton  : return 478;
+		case _FIXES_MODEL_BERNSTEIN_regina  : return 479;
+		case _FIXES_MODEL_BERNSTEIN_comet   : return 480;
+		case _FIXES_MODEL_BERNSTEIN_bmx     : return 481;
+		case _FIXES_MODEL_BERNSTEIN_burrito : return 482;
+		case _FIXES_MODEL_BERNSTEIN_camper  : return 483;
+		case _FIXES_MODEL_BERNSTEIN_marquis : return 484;
+		case _FIXES_MODEL_BERNSTEIN_baggage : return 485;
+		case _FIXES_MODEL_BERNSTEIN_dozer   : return 486;
+		case _FIXES_MODEL_BERNSTEIN_maverick: return 487;
+		case _FIXES_MODEL_BERNSTEIN_vcnmav  : return 488;
+		case _FIXES_MODEL_BERNSTEIN_rancher : return 489;
+		case _FIXES_MODEL_BERNSTEIN_fbiranch: return 490;
+		case _FIXES_MODEL_BERNSTEIN_virgo   : return 491;
+		case _FIXES_MODEL_BERNSTEIN_greenwoo: return 492;
+		case _FIXES_MODEL_BERNSTEIN_jetmax  : return 493;
+		case _FIXES_MODEL_BERNSTEIN_hotring : return 494;
+		case _FIXES_MODEL_BERNSTEIN_sandking: return 495;
+		case _FIXES_MODEL_BERNSTEIN_blistac : return 496;
+		case _FIXES_MODEL_BERNSTEIN_polmav  : return 497;
+		case _FIXES_MODEL_BERNSTEIN_boxville: return 498;
+		case _FIXES_MODEL_BERNSTEIN_benson  : return 499;
+		case _FIXES_MODEL_BERNSTEIN_mesa    : return 500;
+		case _FIXES_MODEL_BERNSTEIN_rcgoblin: return 501;
+		case _FIXES_MODEL_BERNSTEIN_hotrina : return 502;
+		case _FIXES_MODEL_BERNSTEIN_hotrinb : return 503;
+		case _FIXES_MODEL_BERNSTEIN_bloodra : return 504;
+		case _FIXES_MODEL_BERNSTEIN_bloodrb : return 504;
+		case _FIXES_MODEL_BERNSTEIN_rnchlure: return 505;
+		case _FIXES_MODEL_BERNSTEIN_supergt : return 506;
+		case _FIXES_MODEL_BERNSTEIN_elegant : return 507;
+		case _FIXES_MODEL_BERNSTEIN_journey : return 508;
+		case _FIXES_MODEL_BERNSTEIN_bike    : return 509;
+		case _FIXES_MODEL_BERNSTEIN_mtbike  : return 510;
+		case _FIXES_MODEL_BERNSTEIN_beagle  : return 511;
+		case _FIXES_MODEL_BERNSTEIN_cropdust: return 512;
+		case _FIXES_MODEL_BERNSTEIN_stunt   : return 513;
+		case _FIXES_MODEL_BERNSTEIN_petro   : return 514;
+		case _FIXES_MODEL_BERNSTEIN_rdtrain : return 515;
+		case _FIXES_MODEL_BERNSTEIN_nebula  : return 516;
+		case _FIXES_MODEL_BERNSTEIN_majestic: return 517;
+		case _FIXES_MODEL_BERNSTEIN_buccanee: return 518;
+		case _FIXES_MODEL_BERNSTEIN_shamal  : return 519;
+		case _FIXES_MODEL_BERNSTEIN_hydra   : return 520;
+		case _FIXES_MODEL_BERNSTEIN_fcr900  : return 521;
+		case _FIXES_MODEL_BERNSTEIN_nrg500  : return 522;
+		case _FIXES_MODEL_BERNSTEIN_copbike : return 523;
+		case _FIXES_MODEL_BERNSTEIN_cement  : return 524;
+		case _FIXES_MODEL_BERNSTEIN_towtruck: return 525;
+		case _FIXES_MODEL_BERNSTEIN_fortune : return 526;
+		case _FIXES_MODEL_BERNSTEIN_cadrona : return 527;
+		case _FIXES_MODEL_BERNSTEIN_fbitruck: return 528;
+		case _FIXES_MODEL_BERNSTEIN_willard : return 529;
+		case _FIXES_MODEL_BERNSTEIN_forklift: return 530;
+		case _FIXES_MODEL_BERNSTEIN_tractor : return 531;
+		case _FIXES_MODEL_BERNSTEIN_combine : return 532;
+		case _FIXES_MODEL_BERNSTEIN_feltzer : return 533;
+		case _FIXES_MODEL_BERNSTEIN_remingtn: return 534;
+		case _FIXES_MODEL_BERNSTEIN_slamvan : return 535;
+		case _FIXES_MODEL_BERNSTEIN_blade   : return 536;
+		case _FIXES_MODEL_BERNSTEIN_freight : return 537;
+		case _FIXES_MODEL_BERNSTEIN_streak  : return 538;
+		case _FIXES_MODEL_BERNSTEIN_vortex  : return 539;
+		case _FIXES_MODEL_BERNSTEIN_vincent : return 540;
+		case _FIXES_MODEL_BERNSTEIN_bullet  : return 541;
+		case _FIXES_MODEL_BERNSTEIN_clover  : return 542;
+		case _FIXES_MODEL_BERNSTEIN_sadler  : return 543;
+		case _FIXES_MODEL_BERNSTEIN_firela  : return 544;
+		case _FIXES_MODEL_BERNSTEIN_hustler : return 545;
+		case _FIXES_MODEL_BERNSTEIN_intruder: return 546;
+		case _FIXES_MODEL_BERNSTEIN_primo   : return 547;
+		case _FIXES_MODEL_BERNSTEIN_cargobob: return 548;
+		case _FIXES_MODEL_BERNSTEIN_tampa   : return 549;
+		case _FIXES_MODEL_BERNSTEIN_sunrise : return 550;
+		case _FIXES_MODEL_BERNSTEIN_merit   : return 551;
+		case _FIXES_MODEL_BERNSTEIN_utility : return 552;
+		case _FIXES_MODEL_BERNSTEIN_nevada  : return 553;
+		case _FIXES_MODEL_BERNSTEIN_yosemite: return 554;
+		case _FIXES_MODEL_BERNSTEIN_windsor : return 555;
+		case _FIXES_MODEL_BERNSTEIN_monstera: return 556;
+		case _FIXES_MODEL_BERNSTEIN_monsterb: return 557;
+		case _FIXES_MODEL_BERNSTEIN_uranus  : return 558;
+		case _FIXES_MODEL_BERNSTEIN_jester  : return 559;
+		case _FIXES_MODEL_BERNSTEIN_sultan  : return 560;
+		case _FIXES_MODEL_BERNSTEIN_stratum : return 561;
+		case _FIXES_MODEL_BERNSTEIN_elegy   : return 562;
+		case _FIXES_MODEL_BERNSTEIN_raindanc: return 563;
+		case _FIXES_MODEL_BERNSTEIN_rctiger : return 564;
+		case _FIXES_MODEL_BERNSTEIN_flash   : return 565;
+		case _FIXES_MODEL_BERNSTEIN_tahoma  : return 566;
+		case _FIXES_MODEL_BERNSTEIN_savanna : return 567;
+		case _FIXES_MODEL_BERNSTEIN_bandito : return 568;
+		case _FIXES_MODEL_BERNSTEIN_freiflat: return 569;
+		case _FIXES_MODEL_BERNSTEIN_streakc : return 570;
+		case _FIXES_MODEL_BERNSTEIN_kart    : return 571;
+		case _FIXES_MODEL_BERNSTEIN_mower   : return 572;
+		case _FIXES_MODEL_BERNSTEIN_duneride: return 573;
+		case _FIXES_MODEL_BERNSTEIN_sweeper : return 574;
+		case _FIXES_MODEL_BERNSTEIN_broadway: return 575;
+		case _FIXES_MODEL_BERNSTEIN_tornado : return 576;
+		case _FIXES_MODEL_BERNSTEIN_at400   : return 577;
+		case _FIXES_MODEL_BERNSTEIN_dft30   : return 578;
+		case _FIXES_MODEL_BERNSTEIN_huntley : return 579;
+		case _FIXES_MODEL_BERNSTEIN_stafford: return 580;
+		case _FIXES_MODEL_BERNSTEIN_bf400   : return 581;
+		case _FIXES_MODEL_BERNSTEIN_newsvan : return 582;
+		case _FIXES_MODEL_BERNSTEIN_tug     : return 583;
+		case _FIXES_MODEL_BERNSTEIN_petrotr : return 584;
+		case _FIXES_MODEL_BERNSTEIN_emperor : return 585;
+		case _FIXES_MODEL_BERNSTEIN_wayfarer: return 586;
+		case _FIXES_MODEL_BERNSTEIN_euros   : return 587;
+		case _FIXES_MODEL_BERNSTEIN_hotdog  : return 588;
+		case _FIXES_MODEL_BERNSTEIN_club    : return 589;
+		case _FIXES_MODEL_BERNSTEIN_freibox : return 590;
+		case _FIXES_MODEL_BERNSTEIN_artict3 : return 591;
+		case _FIXES_MODEL_BERNSTEIN_androm  : return 592;
+		case _FIXES_MODEL_BERNSTEIN_dodo    : return 593;
+		case _FIXES_MODEL_BERNSTEIN_rccam   : return 594;
+		case _FIXES_MODEL_BERNSTEIN_launch  : return 595;
+		case _FIXES_MODEL_BERNSTEIN_copcarla: return 596;
+		case _FIXES_MODEL_BERNSTEIN_copcarsf: return 597;
+		case _FIXES_MODEL_BERNSTEIN_copcarvg: return 598;
+		case _FIXES_MODEL_BERNSTEIN_copcarru: return 599;
+		case _FIXES_MODEL_BERNSTEIN_picador : return 600;
+		case _FIXES_MODEL_BERNSTEIN_swatvan : return 601;
+		case _FIXES_MODEL_BERNSTEIN_alpha   : return 602;
+		case _FIXES_MODEL_BERNSTEIN_phoenix : return 603;
+		case _FIXES_MODEL_BERNSTEIN_glenshit: return 604;
+		case _FIXES_MODEL_BERNSTEIN_sadlshit: return 605;
+		case _FIXES_MODEL_BERNSTEIN_bagboxa : return 606;
+		case _FIXES_MODEL_BERNSTEIN_bagboxb : return 607;
+		case _FIXES_MODEL_BERNSTEIN_tugstair: return 608;
+		case _FIXES_MODEL_BERNSTEIN_boxburg : return 609;
+		case _FIXES_MODEL_BERNSTEIN_farmtr1 : return 610;
+		case _FIXES_MODEL_BERNSTEIN_utiltr1 : return 611;
+		}
+		return 0;
+	}
+#endif
+
+/*
+ * _FIXES_LoadCarcols()
+ *
+ * Try load a copy of carcols.dat from the server, so that if they have a custom
+ * version it is used instead of the defaults.  However, if the file doesn't
+ * exist or can't be read correctly, just use the defaults.
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if FIX_ChangeVehicleColour
+	static stock _FIXES_LoadCarcols()
+	{
+		// They don't have the file.
+		if (!fexist("fixes.inc\carcols.dat"))
+			return;
+		new
+			File:fhnd = fopen("fixes.inc\carcols.dat");
+		// The file couldn't be opened.
+		if (!fhnd)
+			return;
+		// Try and load the file in to a local array.  If this works copy that
+		// array in its entirety to the global version.  If it fails, don't do any
+		// copying to stick with the defaults.  Allocated on the stack ONLY.
+		new
+			localCarcols1[sizeof (FIXES_gsVehicleModelColours1)][sizeof (FIXES_gsVehicleModelColours1[])],
+			localCarcols2[sizeof (FIXES_gsVehicleModelColours2)][sizeof (FIXES_gsVehicleModelColours2[])];
+		
+		// Skip everything up to the "CAR" section.  While "COL" (colours) could be
+		// of interest, we can't use it even if it is modified since only indexes
+		// can be sent to clients, not the full RGB value.
+		
+		// Everything after "#" or ";" is a comment.  Ignore it.
+		
+		// Entries are:
+		//
+		//   name, col1,col2 ..."
+		//
+		// Parts are space delimited.  Pairs are comma delimited (and may have a
+		// trailing comma).  In later versions of the file, there are three or four
+		// colours to an entry, so always just use the first two.  I doubt that will
+		// mean that newer versions are supported due to the different vehicle
+		// names, but it is accepting a wider range of input data.
+	}
+#endif
+
+#if defined _ALS_ChangeVehicleColor
+	#error _ALS_ChangeVehicleColor defined
+#endif
+native BAD_ChangeVehicleColor(vehicleid, color1, color2) = ChangeVehicleColor;
+
+#if FIX_ChangeVehicleColour
+	stock FIXES_ChangeVehicleColour(vehicleid, color1, color2)
+	{
+		new
+			model = GetVehicleModel(vehicleid);
+		if (model) //_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
+		{
+			model -= 400;
+			if (color1 < 0)
+			{
+				// Random.  TODO!  This is the very core of the fix...
+				FIXES_gsVehicleBaseColours1{vehicleid} = 255,
+				color1 = FIXES_gsVehicleCurColours1{vehicleid} = random(5);
+			}
+			else
+			{
+				color1 = FIXES_gsVehicleBaseColours1{vehicleid} = FIXES_gsVehicleCurColours1{vehicleid} = color1 % 128;
+			}
+			if (color2 < 0)
+			{
+				// Random.  TODO!  This is the very core of the fix...
+				FIXES_gsVehicleBaseColours2{vehicleid} = 255,
+				color2 = FIXES_gsVehicleCurColours2{vehicleid} = random(5);
+			}
+			else
+			{
+				color2 = FIXES_gsVehicleBaseColours2{vehicleid} = FIXES_gsVehicleCurColours2{vehicleid} = color2 % 128;
+			}
+			return ChangeVehicleColor(vehicleid, color1, color2);
+		}
+		return 0;
+	}
+
+	#define _ALS_ChangeVehicleColor
+	#define ChangeVehicleColor( FIXES_ChangeVehicleColour(
+	#define _ALS_ChangeVehicleColour
+	#define ChangeVehicleColour( FIXES_ChangeVehicleColour(
+#endif
+
+#if FIX_GetVehicleColour
+	stock FIXES_GetVehicleColour(const vehicleid, &color1, &color2, const bool:returnMinus1 = false)
+	{
+		if (!_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
+			return 0;
+		if (returnMinus1)
+		{
+			// Return -1 when the colour is random.
+			color1 = FIXES_gsVehicleBaseColours1{vehicleid},
+			color2 = FIXES_gsVehicleBaseColours2{vehicleid},
+			color1 = (color1 == 255) ? -1 : color1,
+			color2 = (color2 == 255) ? -1 : color2;
+		}
+		else
+		{
+			// Return only the current colours.
+			color1 = FIXES_gsVehicleCurColours1{vehicleid},
+			color2 = FIXES_gsVehicleCurColours2{vehicleid};
+		}
+		return 1;
+	}
+
+	#define _ALS_ChangeVehicleColor
+	#define GetVehicleColor( FIXES_GetVehicleColour(
+	#define _ALS_ChangeVehicleColour
+	#define GetVehicleColour( FIXES_GetVehicleColour(
+#endif
+
+/*
  * _FIXES_AddInternal(array[], value, size)
  *
  * Add something to an internal linked list.
@@ -10099,6 +10253,9 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_FORWARD
 #undef _FIXES_IS_PLAYER_CONNECTED
 #undef FIXES_PRINTF
+#undef _FIXES_IS_VALID_PLAYER
+#undef _FIXES_VALID_VEHICLE_ID
+#undef _FIXES_IS_VALID_VEHICLE_MODEL
 
 #endinput
 
