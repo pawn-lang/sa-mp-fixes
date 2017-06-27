@@ -1733,7 +1733,11 @@
 #endif
 
 #if !defined FIX_AddStaticVehicle
-	#define FIX_AddStaticVehicle         (1)
+	#if defined GetPlayerVersion
+		#define FIX_AddStaticVehicle     (FIXES_EnableDeprecated)
+	#else
+		#define FIX_AddStaticVehicle     (1)
+	#endif
 #elseif _FIXES_IS_UNSET(FIX_AddStaticVehicle)
 	#undef FIX_AddStaticVehicle
 	#define FIX_AddStaticVehicle         (2)
