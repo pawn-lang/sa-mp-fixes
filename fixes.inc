@@ -10145,6 +10145,7 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 #if FIX_ChangeVehicleColour
 	stock FIXES_ChangeVehicleColour(vehicleid, color1, color2)
 	{
+		// TODO:  Multi-script support.
 		new
 			model = GetVehicleModel(vehicleid);
 		if (model) //_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
@@ -10223,7 +10224,7 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 #endif
 native BAD_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, addsiren = 0) = CreateVehicle;
 
-#if FIX_CreateVehicle
+#if FIX_ChangeVehicleColour
 	stock FIXES_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, addsiren = 0)
 	{
 		new
@@ -10248,13 +10249,13 @@ native BAD_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation,
 #endif
 native BAD_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
 
-#if FIX_SetVehicleToRespawn
+#if FIX_ChangeVehicleColour
 	stock FIXES_SetVehicleToRespawn(vehicleid)
 	{
 		new
 			ret = SetVehicleToRespawn(vehicleid);
 		if (_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
-			ChangeVehicleColour(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
+			ChangeVehicleColor(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
 		return ret;
 	}
 
@@ -10274,7 +10275,7 @@ native BAD_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
 #endif
 native BAD_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2) = AddStaticVehicle;
 
-#if FIX_AddStaticVehicle
+#if FIX_ChangeVehicleColour
 	stock FIXES_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2)
 	{
 		new
@@ -10299,7 +10300,7 @@ native BAD_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z
 #endif
 native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren=0) = AddStaticVehicleEx;
 
-#if FIX_AddStaticVehicleEx
+#if FIX_ChangeVehicleColour
 	stock FIXES_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren=0)
 	{
 		new
@@ -10326,7 +10327,6 @@ native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn
 #if FIX_GetVehicleColour
 	stock FIXES_GetVehicleColour(const vehicleid, &color1, &color2, const bool:returnMinus1 = false)
 	{
-		// TODO:  Multi-script support.
 		if (!_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
 			return 0;
 		if (returnMinus1)
