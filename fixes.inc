@@ -716,6 +716,12 @@
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
  * ISSUE:    https://github.com/Open-GTO/sa-mp-fixes/issues/36
  *
+ * FIX:      GetVehicleColor
+ * PROBLEM:  Doesn't exist.
+ * SOLUTION: Store it and return it.
+ * SEE:      "FIXES_GetVehicleColour".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -10120,10 +10126,21 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	}
 #endif
 
+/*
+ * FIXES_ChangeVehicleColour(vehicleid, color1, color2)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
 #if defined _ALS_ChangeVehicleColor
 	#error _ALS_ChangeVehicleColor defined
 #endif
+#if defined _ALS_ChangeVehicleColour
+	#error _ALS_ChangeVehicleColour defined
+#endif
 native BAD_ChangeVehicleColor(vehicleid, color1, color2) = ChangeVehicleColor;
+native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 
 #if FIX_ChangeVehicleColour
 	stock FIXES_ChangeVehicleColour(vehicleid, color1, color2)
@@ -10133,25 +10150,28 @@ native BAD_ChangeVehicleColor(vehicleid, color1, color2) = ChangeVehicleColor;
 		if (model) //_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
 		{
 			model -= 400;
-			if (color1 < 0)
+			// This code checks for ANY invalid colour and assumes they are
+			// random.  This is mostly because randoms are stored by this code
+			// as `255` not `-1` (because unsigned bytes).
+			if (_FIXES_IN_RANGE(color1, 0, 128))
+			{
+				FIXES_gsVehicleBaseColours1{vehicleid} = FIXES_gsVehicleCurColours1{vehicleid} = color1;
+			}
+			else
 			{
 				// Random.  TODO!  This is the very core of the fix...
 				FIXES_gsVehicleBaseColours1{vehicleid} = 255,
 				color1 = FIXES_gsVehicleCurColours1{vehicleid} = random(5);
 			}
-			else
+			if (_FIXES_IN_RANGE(color2, 0, 128))
 			{
-				color1 = FIXES_gsVehicleBaseColours1{vehicleid} = FIXES_gsVehicleCurColours1{vehicleid} = color1 % 128;
+				FIXES_gsVehicleBaseColours2{vehicleid} = FIXES_gsVehicleCurColours2{vehicleid} = color2;
 			}
-			if (color2 < 0)
+			else
 			{
 				// Random.  TODO!  This is the very core of the fix...
 				FIXES_gsVehicleBaseColours2{vehicleid} = 255,
 				color2 = FIXES_gsVehicleCurColours2{vehicleid} = random(5);
-			}
-			else
-			{
-				color2 = FIXES_gsVehicleBaseColours2{vehicleid} = FIXES_gsVehicleCurColours2{vehicleid} = color2 % 128;
 			}
 			return ChangeVehicleColor(vehicleid, color1, color2);
 		}
@@ -10164,9 +10184,149 @@ native BAD_ChangeVehicleColor(vehicleid, color1, color2) = ChangeVehicleColor;
 	#define ChangeVehicleColour( FIXES_ChangeVehicleColour(
 #endif
 
+/*
+ * OnVehicleSpawn(vehicleid)
+ *
+ * FIXES:
+ *     ChangeVehicleColour
+ */
+
+#if FIX_ChangeVehicleColour
+	public OnVehicleSpawn(vehicleid)
+	{
+		_FIXES_IS_IN_CHARGE()
+		{
+			if (_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
+				ChangeVehicleColour(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
+		}
+		return FIXES_OnVehicleSpawn(vehicleid);
+	}
+
+	#if defined _ALS_OnVehicleSpawn
+		#error _ALS_OnVehicleSpawn defined
+	#endif
+	#define _ALS_OnVehicleSpawn
+	#define OnVehicleSpawn(%0) FIXES_OnVehicleSpawn(%0) <_ALS : _ALS_go>
+
+	_FIXES_FORWARD FIXES_OnVehicleSpawn(vehicleid);
+#endif
+
+/*
+ * FIXES_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, addsiren = 0)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if defined _ALS_CreateVehicle
+	#error _ALS_CreateVehicle defined
+#endif
+native BAD_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, addsiren = 0) = CreateVehicle;
+
+#if FIX_CreateVehicle
+	stock FIXES_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, addsiren = 0)
+	{
+		new
+			vehicleid = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+		ChangeVehicleColor(vehicleid, color1, color2);
+		return vehicleid;
+	}
+
+	#define _ALS_CreateVehicle
+	#define CreateVehicle( FIXES_CreateVehicle(
+#endif
+
+/*
+ * FIXES_SetVehicleToRespawn(vehicleid)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if defined _ALS_SetVehicleToRespawn
+	#error _ALS_SetVehicleToRespawn defined
+#endif
+native BAD_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
+
+#if FIX_SetVehicleToRespawn
+	stock FIXES_SetVehicleToRespawn(vehicleid)
+	{
+		new
+			ret = SetVehicleToRespawn(vehicleid);
+		if (_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
+			ChangeVehicleColour(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
+		return ret;
+	}
+
+	#define _ALS_SetVehicleToRespawn
+	#define SetVehicleToRespawn( FIXES_SetVehicleToRespawn(
+#endif
+
+/*
+ * FIXES_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if defined _ALS_AddStaticVehicle
+	#error _ALS_AddStaticVehicle defined
+#endif
+native BAD_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2) = AddStaticVehicle;
+
+#if FIX_AddStaticVehicle
+	stock FIXES_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2)
+	{
+		new
+			vehicleid = AddStaticVehicle(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2);
+		ChangeVehicleColor(vehicleid, color1, color2);
+		return vehicleid;
+	}
+
+	#define _ALS_AddStaticVehicle
+	#define AddStaticVehicle( FIXES_AddStaticVehicle(
+#endif
+
+/*
+ * FIXES_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren=0)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if defined _ALS_AddStaticVehicleEx
+	#error _ALS_AddStaticVehicleEx defined
+#endif
+native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren=0) = AddStaticVehicleEx;
+
+#if FIX_AddStaticVehicleEx
+	stock FIXES_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren=0)
+	{
+		new
+			vehicleid = AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, addsiren);
+		ChangeVehicleColor(vehicleid, color1, color2);
+		return vehicleid;
+	}
+
+	#define _ALS_AddStaticVehicleEx
+	#define AddStaticVehicleEx( FIXES_AddStaticVehicleEx(
+#endif
+
+/*
+ * FIXES_GetVehicleColour(const vehicleid, &color1, &color2, const bool:returnMinus1 = false)
+ *
+ * FIXES:
+ *     GetVehicleColor
+ *
+ * NOTES:
+ *     Returns `-1` only if `returnMinus1` is true.  Otherwise returns the
+ *     current colour instead.
+ */
+
 #if FIX_GetVehicleColour
 	stock FIXES_GetVehicleColour(const vehicleid, &color1, &color2, const bool:returnMinus1 = false)
 	{
+		// TODO:  Multi-script support.
 		if (!_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
 			return 0;
 		if (returnMinus1)
