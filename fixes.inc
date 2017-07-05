@@ -3336,7 +3336,7 @@ static stock const
  */
 
 #if FIX_BODYPARTS
-	#define BODY_PART_CHEST                     (3)
+	#define BODY_PART_TORSO                     (3)
 	#define BODY_PART_GROIN                     (4)
 	#define BODY_PART_LEFT_ARM                  (5)
 	#define BODY_PART_RIGHT_ARM                 (6)
