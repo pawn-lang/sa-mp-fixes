@@ -1895,7 +1895,7 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 		#define FIXES_Debug 1
 	#endif
 	#if FIXES_Debug == 1
-		#define FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):")),printf("***" %0);
+		#define FIXES_PRINTF(%0); (print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):")),printf("***" %0));
 	#else
 		#undef FIXES_Debug
 	#endif
