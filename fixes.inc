@@ -10649,43 +10649,6 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #if FIX_ChangeVehicleColour
 	stock _FIXES_LoadCarcols()
 	{
-		//printf("FIXES_gsVehicleModelColours1[611 + 1 - 400][10 char] = {");
-		//for (new i = 0; i != sizeof (FIXES_gsVehicleModelColours1); ++i)
-		//{
-		//	printf("		_FIXES_12_PACK(%3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d), "
-		//		, FIXES_gsVehicleModelColours1[i]{0}
-		//		, FIXES_gsVehicleModelColours1[i]{1}
-		//		, FIXES_gsVehicleModelColours1[i]{2}
-		//		, FIXES_gsVehicleModelColours1[i]{3}
-		//		, FIXES_gsVehicleModelColours1[i]{4}
-		//		, FIXES_gsVehicleModelColours1[i]{5}
-		//		, FIXES_gsVehicleModelColours1[i]{6}
-		//		, FIXES_gsVehicleModelColours1[i]{7}
-		//		, FIXES_gsVehicleModelColours1[i]{8}
-		//		, FIXES_gsVehicleModelColours1[i]{9}
-		//		, FIXES_gsVehicleModelColours2[i]{10}
-		//		, FIXES_gsVehicleModelColours2[i]{11});
-		//}
-		//printf("	},");
-		//
-		//printf("FIXES_gsVehicleModelColours2[611 + 1 - 400][10 char] = {");
-		//for (new i = 0; i != sizeof (FIXES_gsVehicleModelColours2); ++i)
-		//{
-		//	printf("		_FIXES_12_PACK(%3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d), "
-		//		, FIXES_gsVehicleModelColours2[i]{0}
-		//		, FIXES_gsVehicleModelColours2[i]{1}
-		//		, FIXES_gsVehicleModelColours2[i]{2}
-		//		, FIXES_gsVehicleModelColours2[i]{3}
-		//		, FIXES_gsVehicleModelColours2[i]{4}
-		//		, FIXES_gsVehicleModelColours2[i]{5}
-		//		, FIXES_gsVehicleModelColours2[i]{6}
-		//		, FIXES_gsVehicleModelColours2[i]{7}
-		//		, FIXES_gsVehicleModelColours2[i]{8}
-		//		, FIXES_gsVehicleModelColours2[i]{9}
-		//		, FIXES_gsVehicleModelColours2[i]{10}
-		//		, FIXES_gsVehicleModelColours2[i]{11});
-		//}
-		//printf("	},");
 		// They don't have the file.
 		if (!fexist(FIXES_gscCarcols))
 			return;
@@ -10698,9 +10661,6 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 		// array in its entirety to the global version.  If it fails, don't do
 		// any copying to stick with the defaults.  Allocated on the stack ONLY.
 		new
-			//count[sizeof (FIXES_gsVehicleColoursCount)],
-			//localCarcols1[sizeof (FIXES_gsVehicleModelColours1)][sizeof (FIXES_gsVehicleModelColours1[])],
-			//localCarcols2[sizeof (FIXES_gsVehicleModelColours2)][sizeof (FIXES_gsVehicleModelColours2[])],
 			line[128],
 			section = 0;
 		// Skip everything up to the "CAR" section.  While "COL" (colours) could
@@ -10737,9 +10697,6 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 				}
 				if (!line[0])
 					continue;
-			//#if FIXES_Debug
-			//	print(line);
-			//#endif
 				switch (section)
 				{
 					case 0:
@@ -10773,7 +10730,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 							c1,
 							c2;
 						if (modelid == -1)
-							continue; //goto _FIXES_LoadCarcols_fail;
+							continue;
 						pos = 0;
 						while ((pos = strfind(line, FIXES_gsSpace, false, pos) + 1))
 						{
@@ -10784,64 +10741,9 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 								break;
 						}
 						FIXES_gsVehicleColoursCount[modelid] = idx;
-//						continue;
-//_FIXES_LoadCarcols_fail:
-//						// Don't really know what you want to do here.  It is
-//						// only hit when the file structure is wrong somehow.
-//						// Discard the results.
-//						FIXES_PRINTF("_FIXES_LoadCarcols: Format error");
-//						return;
 					}
 				}
 		}
-		//FIXES_gsVehicleModelColours1 = localCarcols1;
-		//FIXES_gsVehicleModelColours2 = localCarcols2;
-		//FIXES_gsVehicleColoursCount = count;
-		
-		//printf("FIXES_gsVehicleModelColours1[611 + 1 - 400][10 char] = {");
-		//for (new i = 0; i != sizeof (FIXES_gsVehicleModelColours1); ++i)
-		//{
-		//	printf("		_FIXES_12_PACK(%3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d), "
-		//		, FIXES_gsVehicleModelColours1[i]{0}
-		//		, FIXES_gsVehicleModelColours1[i]{1}
-		//		, FIXES_gsVehicleModelColours1[i]{2}
-		//		, FIXES_gsVehicleModelColours1[i]{3}
-		//		, FIXES_gsVehicleModelColours1[i]{4}
-		//		, FIXES_gsVehicleModelColours1[i]{5}
-		//		, FIXES_gsVehicleModelColours1[i]{6}
-		//		, FIXES_gsVehicleModelColours1[i]{7}
-		//		, FIXES_gsVehicleModelColours1[i]{8}
-		//		, FIXES_gsVehicleModelColours1[i]{9}
-		//		, FIXES_gsVehicleModelColours2[i]{10}
-		//		, FIXES_gsVehicleModelColours2[i]{11});
-		//}
-		//printf("	},");
-		//
-		//printf("FIXES_gsVehicleModelColours2[611 + 1 - 400][10 char] = {");
-		//for (new i = 0; i != sizeof (FIXES_gsVehicleModelColours2); ++i)
-		//{
-		//	printf("		_FIXES_12_PACK(%3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d), "
-		//		, FIXES_gsVehicleModelColours2[i]{0}
-		//		, FIXES_gsVehicleModelColours2[i]{1}
-		//		, FIXES_gsVehicleModelColours2[i]{2}
-		//		, FIXES_gsVehicleModelColours2[i]{3}
-		//		, FIXES_gsVehicleModelColours2[i]{4}
-		//		, FIXES_gsVehicleModelColours2[i]{5}
-		//		, FIXES_gsVehicleModelColours2[i]{6}
-		//		, FIXES_gsVehicleModelColours2[i]{7}
-		//		, FIXES_gsVehicleModelColours2[i]{8}
-		//		, FIXES_gsVehicleModelColours2[i]{9}
-		//		, FIXES_gsVehicleModelColours2[i]{10}
-		//		, FIXES_gsVehicleModelColours2[i]{11});
-		//}
-		//printf("	},");
-		//
-		//printf("FIXES_gsVehicleColoursCount[611 + 1 - 400] = {");
-		//for (new i = 0; i != sizeof (FIXES_gsVehicleColoursCount); ++i)
-		//{
-		//	printf("%d, ", FIXES_gsVehicleColoursCount[i]);
-		//}
-		//printf("	},");
 	}
 #endif
 
@@ -11203,6 +11105,8 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_IS_VALID_PLAYER
 #undef _FIXES_IS_VALID_VEHICLE_ID
 #undef _FIXES_IS_VALID_VEHICLE_MODEL
+#undef _FIXES_PACK
+#undef _FIXES_10_PACK
 
 #endinput
 
