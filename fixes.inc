@@ -10769,7 +10769,7 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 		// TODO:  Multi-script support.
 		new
 			model = GetVehicleModel(vehicleid);
-		if (model) //_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
+		if (model)
 		{
 			model -= 400;
 			// This code checks for ANY invalid colour and assumes they are
@@ -10781,9 +10781,13 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 			}
 			else
 			{
-				// Random.  TODO!  This is the very core of the fix...
 				FIXES_gsVehicleBaseColours1{vehicleid} = 255,
-				color1 = FIXES_gsVehicleCurColours1{vehicleid} = random(5);
+				color1 = FIXES_gsVehicleColoursCount[model];
+				// If there are no colours defined, default to black.
+				if (color1)
+					color1 = FIXES_gsVehicleCurColours1{vehicleid} = FIXES_gsVehicleModelColours1[model]{random(color1)};
+				else
+					color1 = FIXES_gsVehicleCurColours1{vehicleid} = 0;
 			}
 			if (_FIXES_IN_RANGE(color2, 0, 128))
 			{
@@ -10791,9 +10795,13 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 			}
 			else
 			{
-				// Random.  TODO!  This is the very core of the fix...
 				FIXES_gsVehicleBaseColours2{vehicleid} = 255,
-				color2 = FIXES_gsVehicleCurColours2{vehicleid} = random(5);
+				color2 = FIXES_gsVehicleColoursCount[model];
+				// If there are no colours defined, default to black.
+				if (color2)
+					color2 = FIXES_gsVehicleCurColours2{vehicleid} = FIXES_gsVehicleModelColours2[model]{random(color2)};
+				else
+					color2 = FIXES_gsVehicleCurColours2{vehicleid} = 0;
 			}
 			return ChangeVehicleColor(vehicleid, color1, color2);
 		}
