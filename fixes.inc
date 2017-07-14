@@ -4919,6 +4919,16 @@ public OnFilterScriptInit()
 	_FIXES_gIsFilterscript = true;
 	_FIXES_DetermineOS();
 
+	// ===========================
+	//  BEGIN: ChangeVehicleColor
+	// ===========================
+	#if FIX_ChangeVehicleColour
+		_FIXES_LoadCarcols();
+	#endif
+	// ===========================
+	//  END:   ChangeVehicleColor
+	// ===========================
+
 	#if FIXES_Single
 		// Check this really IS the only script running.
 		if (existproperty(5, FIXES_gscSingleProperty))
@@ -5070,9 +5080,18 @@ public OnGameModeInit()
 	//  END: AllowInteriorWeapons
 	// ===========================
 
-	#if FIX_GameText || !FIXES_Single
+	#if FIX_GameText || !FIXES_Single || FIX_ChangeVehicleColour
 		if (!_FIXES_gIsFilterscript)
 		{
+			// ===========================
+			//  BEGIN: ChangeVehicleColor
+			// ===========================
+			#if FIX_ChangeVehicleColour
+				_FIXES_LoadCarcols();
+			#endif
+			// ===========================
+			//  END:   ChangeVehicleColor
+			// ===========================
 			// =================
 			//  BEGIN: GameText
 			// =================
