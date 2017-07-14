@@ -1932,6 +1932,22 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #define _FIXES_IS_VALID_VEHICLE_MODEL(%0) _FIXES_IN_RANGE(%0, 400, 611 + 1)
 
 /*
+ * _FIXES_PACK
+ * 
+ * Initialise 4 values in to a packed cell.
+ */
+
+#define _FIXES_PACK(%0,%1,%2,%3) (((%0) << 24) | ((%1) << 16) | ((%2) << 8) | ((%3)))
+
+/*
+ * _FIXES_10_PACK
+ * 
+ * Initialise 10 values in to 3 packed cells.
+ */
+
+#define _FIXES_10_PACK(%0,%1,%2,%3,%4,%5,%6,%7,%8,%9) { _FIXES_PACK(%0,%1,%2,%3), _FIXES_PACK(%4,%5,%6,%7), _FIXES_PACK(%8,%9,0,0) }
+
+/*
  * E_FIXES_WORLDBOUND_DATA
  *
  * Store data for each player on their worldbound data.
@@ -2347,8 +2363,463 @@ static stock
 	 * memory is cheap.
 	 */
 #if FIX_ChangeVehicleColour
-	FIXES_gsVehicleModelColours1[611 + 1 - 400][10 char],
-	FIXES_gsVehicleModelColours2[611 + 1 - 400][10 char],
+	FIXES_gsVehicleModelColours1[611 + 1 - 400][10 char] = {
+		_FIXES_10_PACK(  4, 123, 113, 101,  75,  62,  40,  36,   0,   0), // landstal
+		_FIXES_10_PACK( 41,  47,  52,  66,  74,  87, 113,   0,   0,   0), // bravura
+		_FIXES_10_PACK( 10,  13,  22,  30,  39,  90,  98, 110,   0,   0), // buffalo
+		_FIXES_10_PACK( 36,  37,  30,  28,  25,  40, 101, 113,   0,   0), // linerun
+		_FIXES_10_PACK(113, 119, 123, 109, 101,  95,  83,  66,   0,   0), // peren
+		_FIXES_10_PACK( 11,  24,  36,  40,  75,  91, 123,   4,   0,   0), // sentinel
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dumper
+		_FIXES_10_PACK(  3,   0,   0,   0,   0,   0,   0,   0,   0,   0), // firetruk
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // trash
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // stretch
+		_FIXES_10_PACK(  4,   9,  10,  25,  36,  40,  45,  84,   0,   0), // manana
+		_FIXES_10_PACK( 12,  64, 123, 116, 112, 106,  80,  75,   0,   0), // infernus
+		_FIXES_10_PACK(  9,  10,  11,  25,  27,  29,  30,  37,   0,   0), // voodoo
+		_FIXES_10_PACK( 87,  88,  91, 105, 109, 119,   4,  25,   0,   0), // pony
+		_FIXES_10_PACK( 25,  28,  43,  67,  72,   9,  95,  24,   0,   0), // mule
+		_FIXES_10_PACK(  0,  25,  36,  40,  75,  92,   0,   0,   0,   0), // cheetah
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // ambulan
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // leviathn
+		_FIXES_10_PACK(119, 117, 114, 108,  95,  81,  61,  41,   0,   0), // moonbeam
+		_FIXES_10_PACK( 45,  47,  33,  13,  54,  69,  59,  87,   0,   0), // esperant
+		_FIXES_10_PACK(  6,   0,   0,   0,   0,   0,   0,   0,   0,   0), // taxi
+		_FIXES_10_PACK(  4,  13,  25,  30,  36,  40,  75,  95,   0,   0), // washing
+		_FIXES_10_PACK( 96,  97, 101, 111, 113,  83,  67,   0,   0,   0), // bobcat
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   0,   0,   0,   0), // mrwhoop
+		_FIXES_10_PACK(  1,   2,   3,   3,   6,  15,  24,  35,   0,   0), // bfinject
+		_FIXES_10_PACK( 43,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hunter
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // premier
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // enforcer
+		_FIXES_10_PACK(  4,   0,   0,   0,   0,   0,   0,   0,   0,   0), // securica
+		_FIXES_10_PACK( 12,  13,  14,   1,   2,   1,   3,  10,   0,   0), // banshee
+		_FIXES_10_PACK( 46,   0,   0,   0,   0,   0,   0,   0,   0,   0), // predator
+		_FIXES_10_PACK( 71,  75,  92,  47,  55,  59,  71,  82,   0,   0), // bus
+		_FIXES_10_PACK( 43,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rhino
+		_FIXES_10_PACK( 43,   0,   0,   0,   0,   0,   0,   0,   0,   0), // barracks
+		_FIXES_10_PACK(  1,  12,   2,   6,   4,  46,  53,   0,   0,   0), // hotknife
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict1
+		_FIXES_10_PACK( 83,  87,  92,  95, 109, 119,  11,   0,   0,   0), // previon
+		_FIXES_10_PACK(  0,  79,  87,  95,  98, 105, 123, 125,   0,   0), // coach
+		_FIXES_10_PACK(  6,   0,   0,   0,   0,   0,   0,   0,   0,   0), // cabbie
+		_FIXES_10_PACK( 57,   8,  43,  54,  67,  37,  65,  25,   0,   0), // stallion
+		_FIXES_10_PACK( 34,  32,  20, 110,  66,  84, 118, 121,   0,   0), // rumpo
+		_FIXES_10_PACK(  2,  79,  82,  67, 126,  70, 110,  67,   0,   0), // rcbandit
+		_FIXES_10_PACK(  0,  11,  25,  36,  40,  75,   0,   0,   0,   0), // romero
+		_FIXES_10_PACK(  4,  20,  24,  25,  36,  40,  54,  84,   0,   0), // packer
+		_FIXES_10_PACK( 32,  32,  32,  32,  32,  32,   0,   0,   0,   0), // monster
+		_FIXES_10_PACK( 34,  35,  37,  39,  41,  43,  45,  47,   0,   0), // admiral
+		_FIXES_10_PACK(  0,   1,   3,   1,   1,   1,   1,   1,   0,   0), // squalo
+		_FIXES_10_PACK( 75,   0,   0,   0,   0,   0,   0,   0,   0,   0), // seaspar
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // pizzaboy
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tram
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict2
+		_FIXES_10_PACK(123, 125,  36,  16,  18,  46,  61,  75,   0,   0), // turismo
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // speeder
+		_FIXES_10_PACK( 56,   0,   0,   0,   0,   0,   0,   0,   0,   0), // reefer
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tropic
+		_FIXES_10_PACK( 84,  84,  84,  32,  43,   1,  77,  32,   0,   0), // flatbed
+		_FIXES_10_PACK( 84,  91, 102, 105, 110, 121,  12,  23,   0,   0), // yankee
+		_FIXES_10_PACK( 58,   2,  63,  18,  32,  45,  13,  34,   0,   0), // caddy
+		_FIXES_10_PACK( 91, 101, 109, 113,   4,  25,  30,  36,   0,   0), // solair
+		_FIXES_10_PACK( 26,  28,  44,  51,  57,  72, 106, 112,   0,   0), // topfun
+		_FIXES_10_PACK(  1,   1,   1,   1,  17,  46,  46,  57,   0,   0), // skimmer
+		_FIXES_10_PACK( 36,  37,  43,  53,  61,  75,  79,  88,   0,   0), // pcj600
+		_FIXES_10_PACK( 12,  13,  14,   1,   2,   1,   3,  10,   0,   0), // faggio
+		_FIXES_10_PACK( 79,  84,   7,  11,  19,  22,  36,  53,   0,   0), // freeway
+		_FIXES_10_PACK( 14,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcbaron
+		_FIXES_10_PACK( 14,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcraider
+		_FIXES_10_PACK( 67,  68,  78,   2,  16,  18,  25,  45,   0,   0), // glendale
+		_FIXES_10_PACK( 51,  58,  60,  68,   2,  13,  22,  36,   0,   0), // oceanic
+		_FIXES_10_PACK(  6,  46,  53,   3,   0,   0,   0,   0,   0,   0), // sanchez
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // sparrow
+		_FIXES_10_PACK( 43,   0,   0,   0,   0,   0,   0,   0,   0,   0), // patriot
+		_FIXES_10_PACK(120, 103, 120,  74, 120,  74, 120,  66,   0,   0), // quad
+		_FIXES_10_PACK( 56,  56,   0,   0,   0,   0,   0,   0,   0,   0), // coastg
+		_FIXES_10_PACK( 56,  56,   0,   0,   0,   0,   0,   0,   0,   0), // dinghy
+		_FIXES_10_PACK( 97,  81, 105, 110,  91,  74,  84,  83,   0,   0), // hermes
+		_FIXES_10_PACK(  2,   9,  17,  21,  33,  37,  41,  56,   0,   0), // sabre
+		_FIXES_10_PACK(  6,   7,   1,  89, 119, 103,  77,  71,   0,   0), // rustler
+		_FIXES_10_PACK( 92,  94, 101, 121,   0,  22,  36,  75,   0,   0), // zr350
+		_FIXES_10_PACK( 72,  66,  59,  45,  40,  39,  35,  20,   0,   0), // walton
+		_FIXES_10_PACK( 27,  59,  60,  55,  54,  49,  45,  40,   0,   0), // regina
+		_FIXES_10_PACK( 73,  12,   2,   6,   4,  46,  53,   0,   0,   0), // comet
+		_FIXES_10_PACK(  1,   3,   6,  46,  65,  14,  12,  26,   0,   0), // bmx
+		_FIXES_10_PACK( 41,  48,  52,  64,  71,  85,  10,  62,   0,   0), // burrito
+		_FIXES_10_PACK(  1,   1,   1,   1,   0,   3,  16,  17,   0,   0), // camper
+		_FIXES_10_PACK( 12,  50,  40,  66,   0,   0,   0,   0,   0,   0), // marquis
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   0,   0,   0), // baggage
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dozer
+		_FIXES_10_PACK( 26,  29,  26,  54,  26,   3,  12,  74,   0,   0), // maverick
+		_FIXES_10_PACK(  2,   2,   0,   0,   0,   0,   0,   0,   0,   0), // vcnmav
+		_FIXES_10_PACK( 13,  14, 120, 112,  84,  76,   0,   0,   0,   0), // rancher
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // fbiranch
+		_FIXES_10_PACK( 40,  71,  52,  64,  30,  60,   0,   0,   0,   0), // virgo
+		_FIXES_10_PACK( 30,  77,  81,  24,  28,  49,  52,  71,   0,   0), // greenwoo
+		_FIXES_10_PACK( 36,   0,   0,   0,   0,   0,   0,   0,   0,   0), // jetmax
+		_FIXES_10_PACK( 36,  36,  42,  42,  54,  75,  92,  98,   0,   0), // hotring
+		_FIXES_10_PACK(123, 119, 118, 116, 114, 101,  88,   5,   0,   0), // sandking
+		_FIXES_10_PACK( 74,  66,  53,  37,  22,  20,   9,   0,   0,   0), // blistac
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // polmav
+		_FIXES_10_PACK( 11,  13,  20,  24,  27,  36,  37,  43,   0,   0), // boxville
+		_FIXES_10_PACK(  0, 109, 112,  10,  30,  32,  84,  84,   0,   0), // benson
+		_FIXES_10_PACK( 75,  40,  40,  28,  25,  21,  13,   4,   0,   0), // mesa
+		_FIXES_10_PACK( 14,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcgoblin
+		_FIXES_10_PACK(  7,  36,  51,  53,  75,  75,  79,   0,   0,   0), // hotrina
+		_FIXES_10_PACK( 83,  87,  87,  98, 101, 103, 117, 123,   0,   0), // hotrinb
+		_FIXES_10_PACK( 51,  57,  45,  34,  65,  14,  12,  26,   0,   0), // bloodra/bloodrb
+		_FIXES_10_PACK( 13,  14, 120, 112,  84,  76,   0,   0,   0,   0), // rnchlure
+		_FIXES_10_PACK(  3,   6,   7,  52,  76,   0,   0,   0,   0,   0), // supergt
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // elegant
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // journey
+		_FIXES_10_PACK(  7,  74,  61,  16,  25,  30,  36,  53,   0,   0), // bike
+		_FIXES_10_PACK( 43,  46,  39,  28,  16,   6,   5,   2,   0,   0), // mtbike
+		_FIXES_10_PACK(  3,   4,   7,   8,  12,  27,  34,  37,   0,   0), // beagle
+		_FIXES_10_PACK( 17,  15,  32,  45,  52,  57,  61,  96,   0,   0), // cropdust
+		_FIXES_10_PACK( 38,  21,  21,  30,  54,  55,  48,  51,   0,   0), // stunt
+		_FIXES_10_PACK( 10,  25,  28,  36,  40,  54,  75, 113,   0,   0), // petro
+		_FIXES_10_PACK( 13,  24,  63,  42,  54,  39,  11,  62,   0,   0), // rdtrain
+		_FIXES_10_PACK(116, 119, 122,   4,   9,  24,  27,  36,   0,   0), // nebula
+		_FIXES_10_PACK( 37,  36,  40,  43,  47,  51,  54,  55,   0,   0), // majestic
+		_FIXES_10_PACK(  2,   9,  17,  21,  33,  37,  41,  56,   0,   0), // buccanee
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // shamal
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hydra
+		_FIXES_10_PACK( 74,  75,  87,  92, 115,  25,  36, 118,   0,   0), // fcr900
+		_FIXES_10_PACK(  3,   3,   6,   7,   8,  36,  39,  51,   0,   0), // nrg500
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copbike
+		_FIXES_10_PACK( 60,  61,  65,  61,  81,  62,  83,  83,   0,   0), // cement
+		_FIXES_10_PACK(  1,  17,  18,  22,  36,  44,  52,   0,   0,   0), // towtruck
+		_FIXES_10_PACK(  2,   9,  17,  21,  33,  37,  41,  56,   0,   0), // fortune
+		_FIXES_10_PACK( 52,  53,  66,  75,  76,  81,  95, 109,   0,   0), // cadrona
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // fbitruck
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // willard
+		_FIXES_10_PACK(110, 111, 112, 114, 119, 122,   4,  13,   0,   0), // forklift
+		_FIXES_10_PACK(  2,  36,  51,  91,  11,  40,   0,   0,   0,   0), // tractor
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // combine
+		_FIXES_10_PACK( 73,  74,  75,  77,  79,  83,  84,  91,   0,   0), // feltzer
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // remingtn
+		_FIXES_10_PACK(  3,  28,  31,  55,  66, 123, 118,   0,   0,   0), // slamvan
+		_FIXES_10_PACK(  9,  12,  26,  30,  32,  37,  57,  71,   0,   0), // blade
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freight
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // streak
+		_FIXES_10_PACK( 96,  86,  79,  70,  61,  75,  75,   0,   0,   0), // vortex
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // vincent
+		_FIXES_10_PACK( 51,  58,  60,  68,   2,  13,  22,  36,   0,   0), // bullet
+		_FIXES_10_PACK( 13,  24,  31,  32,  45, 113, 119, 122,   0,   0), // clover
+		_FIXES_10_PACK( 76,  32,  43,  67,  11,   8,   2,  83,   0,   0), // sadler
+		_FIXES_10_PACK(  3,   0,   0,   0,   0,   0,   0,   0,   0,   0), // firela
+		_FIXES_10_PACK( 50,  47,  44,  40,  39,  30,  28,   9,   0,   0), // hustler
+		_FIXES_10_PACK( 62,  78,   2,   3,   2, 113, 119,   7,   0,   0), // intruder
+		_FIXES_10_PACK(122, 123, 125,  10,  24,  37,  55,  66,   0,   0), // primo
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // cargobob
+		_FIXES_10_PACK( 74,  72,  75,  79,  83,  84,  89,  91,   0,   0), // tampa
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // sunrise
+		_FIXES_10_PACK( 67,  72,  75,  83,  91, 101, 109,  20,   0,   0), // merit
+		_FIXES_10_PACK( 56,  49,  26,   0,   0,   0,   0,   0,   0,   0), // utility
+		_FIXES_10_PACK( 38,  55,  61,  71,  91,  98, 102, 111,   0,   0), // nevada
+		_FIXES_10_PACK( 53,  15,  45,  34,  65,  14,  12,  43,   0,   0), // yosemite
+		_FIXES_10_PACK( 51,  58,  60,  68,   2,  13,  22,  36,   0,   0), // windsor
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // monstera
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // monsterb
+		_FIXES_10_PACK(112, 116, 117,  24,  30,  35,  36,  40,   0,   0), // uranus
+		_FIXES_10_PACK( 51,  58,  60,  68,   2,  13,  22,  36,   0,   0), // jester
+		_FIXES_10_PACK( 52,   9,  17,  21,  33,  37,  41,  56,   0,   0), // sultan
+		_FIXES_10_PACK( 57,   8,  43,  54,  67,  37,  65,  25,   0,   0), // stratum
+		_FIXES_10_PACK( 36,  35,  17,  11, 116, 113, 101,  92,   0,   0), // elegy
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // raindanc
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rctiger
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // flash
+		_FIXES_10_PACK(109,  30,  95,  84,  83,  72,  71,  52,   0,   0), // tahoma
+		_FIXES_10_PACK( 97,  88,  90,  93,  97,  99, 102, 114,   0,   0), // savanna
+		_FIXES_10_PACK(  2,   9,  17,  21,  33,  37,  41,  56,   0,   0), // bandito
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freiflat
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // streakc
+		_FIXES_10_PACK(  2,  36,  51,  91,  11,  40,   0,   0,   0,   0), // kart
+		_FIXES_10_PACK( 94, 101, 116, 117,   4,  25,  30,  37,   0,   0), // mower
+		_FIXES_10_PACK( 91, 115,  85,  79,  78,  77,  79,  86,   0,   0), // duneride
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // sweeper
+		_FIXES_10_PACK( 12,  19,  31,  25,  38,  51,  57,  66,   0,   0), // broadway
+		_FIXES_10_PACK( 67,  68,  72,  74,  75,  76,  79,  84,   0,   0), // tornado
+		_FIXES_10_PACK(  1,   8,   8,   8,  23,  40,   0,   0,   0,   0), // at400
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dft30
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // huntley
+		_FIXES_10_PACK( 92,  81,  67,  66,  61,  53,  51,  47,  43,   0), // stafford
+		_FIXES_10_PACK( 54,  58,  66,  72,  75,  87, 101,  36,   0,   0), // bf400
+		_FIXES_10_PACK( 41,  41,  49,  56, 110, 112, 114, 119,   0,   0), // newsvan
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tug
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // petrotr
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // emperor
+		_FIXES_10_PACK(119, 122,   8,  10,  13,  25,  27,  32,   0,   0), // wayfarer
+		_FIXES_10_PACK( 36,  40,  43,  53,  72,  75,  95, 101,   0,   0), // euros
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hotdog
+		_FIXES_10_PACK( 37,  31,  23,  22,   7, 124, 114, 112,   0,   0), // club
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freibox
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict3
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // androm
+		_FIXES_10_PACK( 51,  58,  60,  68,   2,  13,  22,  36,   0,   0), // dodo
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rccam
+		_FIXES_10_PACK(112,   0,   0,   0,   0,   0,   0,   0,   0,   0), // launch
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarla
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarsf
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarvg
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarru
+		_FIXES_10_PACK( 81,  32,  43,  67,  11,   8,   2,  83,   0,   0), // picador
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // swatvan
+		_FIXES_10_PACK( 58,  69,  75,  18,  32,  45,  13,  34,   0,   0), // alpha
+		_FIXES_10_PACK( 58,  69,  75,  18,  32,  45,  13,  34,   0,   0), // phoenix
+		_FIXES_10_PACK( 67,  68,  78,   2,  16,  18,  25,  45,   0,   0), // glenshit
+		_FIXES_10_PACK( 61,  32,  43,  67,  11,   8,   2,  83,   0,   0), // sadlshit
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // bagboxa
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // bagboxb
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tugstair
+		_FIXES_10_PACK( 36,   0,   0,   0,   0,   0,   0,   0,   0,   0), // boxburg
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // farmtr1
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0)  // utiltr1
+	},
+	FIXES_gsVehicleModelColours2[611 + 1 - 400][10 char] = {
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // landstal
+		_FIXES_10_PACK( 41,  47,  52,  66,  74,  87, 113,   0,   0,   0), // bravura
+		_FIXES_10_PACK( 10,  13,  22,  30,  39,  90,  98, 110,   0,   0), // buffalo
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // linerun
+		_FIXES_10_PACK( 39,  50,  92, 100, 101, 105, 110,  25,   0,   0), // peren
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // sentinel
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dumper
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // firetruk
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // trash
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // stretch
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // manana
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // infernus
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // voodoo
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // pony
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // mule
+		_FIXES_10_PACK( 20,   1,   1,   1,   1,   1,   1,   0,   0,   0), // cheetah
+		_FIXES_10_PACK(  3,   0,   0,   0,   0,   0,   0,   0,   0,   0), // ambulan
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // leviathn
+		_FIXES_10_PACK(119, 227, 114, 108,  95,  81,  61,  41,   0,   0), // moonbeam
+		_FIXES_10_PACK( 75,  76,  75,  76,  75,  76,  75,  76,   0,   0), // esperant
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // taxi
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // washing
+		_FIXES_10_PACK( 25,  25,  25,  31,  36,  57,  59,   0,   0,   0), // bobcat
+		_FIXES_10_PACK( 16,  56,  17,  53,   5,  35,   0,   0,   0,   0), // mrwhoop
+		_FIXES_10_PACK(  0,   2,   2,   6,  16,  30,  53,  61,   0,   0), // bfinject
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hunter
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // premier
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // enforcer
+		_FIXES_10_PACK( 75,   0,   0,   0,   0,   0,   0,   0,   0,   0), // securica
+		_FIXES_10_PACK( 12,  13,  14,   2,   1,   3,   1,  10,   0,   0), // banshee
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // predator
+		_FIXES_10_PACK( 59,  59,  72,  74,  83,  83,  87,  87,   0,   0), // bus
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rhino
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // barracks
+		_FIXES_10_PACK(  1,  12,   2,   6,   4,  46,  53,   0,   0,   0), // hotknife
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict1
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,  45,   1,   0,   0,   0), // previon
+		_FIXES_10_PACK(  0,   7,   7,  16,  20,  20,  20,  21,   0,   0), // coach
+		_FIXES_10_PACK( 76,   0,   0,   0,   0,   0,   0,   0,   0,   0), // cabbie
+		_FIXES_10_PACK(  8,  17,  21,  38,   8,  78,  79,  78,   0,   0), // stallion
+		_FIXES_10_PACK( 34,  32,  20, 110,  66,  84, 118, 121,   0,   0), // rumpo
+		_FIXES_10_PACK( 96,  42,  54,  86,  96,  96,  54,  98,   0,   0), // rcbandit
+		_FIXES_10_PACK(  0, 105, 109,   0,  36,  36,  36, 109,   0,   0), // romero
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // packer
+		_FIXES_10_PACK( 36,  42,  53,  66,  14,  32,   0,   0,   0,   0), // monster
+		_FIXES_10_PACK( 34,  35,  37,  39,  41,  43,  45,  47,   0,   0), // admiral
+		_FIXES_10_PACK(  0,   5,   3,  22,  35,  44,  53,  57,   0,   0), // squalo
+		_FIXES_10_PACK(  2,   0,   0,   0,   0,   0,   0,   0,   0,   0), // seaspar
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // pizzaboy
+		_FIXES_10_PACK( 74,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tram
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict2
+		_FIXES_10_PACK(123, 125,  36,  16,  18,  46,  61,  75,   0,   0), // turismo
+		_FIXES_10_PACK(  3,   5,  16,  22,  35,  44,  53,  57,   0,   0), // speeder
+		_FIXES_10_PACK( 56,   0,   0,   0,   0,   0,   0,   0,   0,   0), // reefer
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tropic
+		_FIXES_10_PACK( 15,  58,  31,  74,  31,  31,  31,  74,   0,   0), // flatbed
+		_FIXES_10_PACK( 63,  63,  65,  72,  93,  93,  95,   1,   0,   0), // yankee
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // caddy
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // solair
+		_FIXES_10_PACK( 26,  28,  44,  51,  57,  72, 106, 112,   0,   0), // topfun
+		_FIXES_10_PACK(  3,   9,  18,  30,  23,  23,  32,  34,   0,   0), // skimmer
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // pcj600
+		_FIXES_10_PACK( 12,  13,  14,   2,   1,   3,   1,  10,   0,   0), // faggio
+		_FIXES_10_PACK( 79,  84,   7,  11,  19,  22,  36,  53,   0,   0), // freeway
+		_FIXES_10_PACK( 75,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcbaron
+		_FIXES_10_PACK( 75,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcraider
+		_FIXES_10_PACK( 76,  76,  76,  76,  76,  76,  76,  88,   0,   0), // glendale
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // oceanic
+		_FIXES_10_PACK(  6,  46,  53,   3,   0,   0,   0,   0,   0,   0), // sanchez
+		_FIXES_10_PACK(  3,   0,   0,   0,   0,   0,   0,   0,   0,   0), // sparrow
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // patriot
+		_FIXES_10_PACK(117, 111, 114,  91, 112,  83, 113,  71,   0,   0), // quad
+		_FIXES_10_PACK( 15,  53,   0,   0,   0,   0,   0,   0,   0,   0), // coastg
+		_FIXES_10_PACK( 15,  53,   0,   0,   0,   0,   0,   0,   0,   0), // dinghy
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // hermes
+		_FIXES_10_PACK( 39,  39,   1,   1,   0,   0,  29,  29,   0,   0), // sabre
+		_FIXES_10_PACK(  7,   6,   6,  91, 117, 102,  87,  77,   0,   0), // rustler
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // zr350
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // walton
+		_FIXES_10_PACK( 36,  36,  35,  41,  31,  23,  32,  29,   0,   0), // regina
+		_FIXES_10_PACK( 45,  12,   2,   6,   4,  46,  53,   0,   0,   0), // comet
+		_FIXES_10_PACK(  1,   3,   6,  46,   9,   1,   9,   1,   0,   0), // bmx
+		_FIXES_10_PACK( 41,  48,  52,  64,  71,  85,  10,  62,   0,   0), // burrito
+		_FIXES_10_PACK( 31,  31,  20,   5,   6,   6,   0,   0,   0,   0), // camper
+		_FIXES_10_PACK( 35,  32,  26,  36,   0,   0,   0,   0,   0,   0), // marquis
+		_FIXES_10_PACK( 73,  74,  75,  76,  77,  78,  79,   0,   0,   0), // baggage
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dozer
+		_FIXES_10_PACK( 14,  42,  57,  29,   3,  29,  39,  35,   0,   0), // maverick
+		_FIXES_10_PACK( 26,  29,   0,   0,   0,   0,   0,   0,   0,   0), // vcnmav
+		_FIXES_10_PACK(118, 123, 123, 120, 110, 102,   0,   0,   0,   0), // rancher
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // fbiranch
+		_FIXES_10_PACK( 65,  72,  66,  72,  72,  72,   0,   0,   0,   0), // virgo
+		_FIXES_10_PACK( 26,  26,  27,  55,  56,  59,  69, 107,   0,   0), // greenwoo
+		_FIXES_10_PACK( 13,   0,   0,   0,   0,   0,   0,   0,   0,   0), // jetmax
+		_FIXES_10_PACK(117,  13,  30,  33,  36,  79, 101, 109,   0,   0), // hotring
+		_FIXES_10_PACK(124, 122, 117, 115, 108, 106,  99,   6,   0,   0), // sandking
+		_FIXES_10_PACK( 72,  72,  56,  19,  22,  20,  14,   0,   0,   0), // blistac
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // polmav
+		_FIXES_10_PACK(123, 120, 117, 112, 107, 105, 107,  93,   0,   0), // boxville
+		_FIXES_10_PACK(109,  32,  32,  32,  44,  52,  66,  69,   0,   0), // benson
+		_FIXES_10_PACK( 84,  84, 110, 119, 119, 119, 119, 119,   0,   0), // mesa
+		_FIXES_10_PACK( 75,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcgoblin
+		_FIXES_10_PACK( 94,  88,  75,  75,  67,  61,  62,   0,   0,   0), // hotrina
+		_FIXES_10_PACK( 66,  74,  75,  83, 100, 101, 116,  36,   0,   0), // hotrinb
+		_FIXES_10_PACK( 39,  38,  29,   9,   9,   1,   9,   1,   0,   0), // bloodra/bloodrb
+		_FIXES_10_PACK(118, 123, 123, 120, 110, 102,   0,   0,   0,   0), // rnchlure
+		_FIXES_10_PACK(  3,   6,   7,  52,  76,   0,   0,   0,   0,   0), // supergt
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // elegant
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // journey
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // bike
+		_FIXES_10_PACK( 43,  46,  39,  28,  16,   6,   5,   2,   0,   0), // mtbike
+		_FIXES_10_PACK( 90,  90,  68,  66,  60,  97,  51,  51,   0,   0), // beagle
+		_FIXES_10_PACK( 39, 123, 112,  88,  71,  67,  96,  96,   0,   0), // cropdust
+		_FIXES_10_PACK( 51,  36,  34,  34,  34,  20,  18,   6,   0,   0), // stunt
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // petro
+		_FIXES_10_PACK( 76,  77,  78,  76,  77,  78,  76,  77,   0,   0), // rdtrain
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // nebula
+		_FIXES_10_PACK( 36,  36,  36,  41,  41,  72,  75,  84,   0,   0), // majestic
+		_FIXES_10_PACK( 39,  39,   1,   1,   0,   0,  29,  29,   0,   0), // buccanee
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // shamal
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hydra
+		_FIXES_10_PACK( 74,  13, 118,   3, 118, 118,   0, 118,   0,   0), // fcr900
+		_FIXES_10_PACK(  3,   8,  25,  79,  82, 105, 106, 118,   0,   0), // nrg500
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copbike
+		_FIXES_10_PACK( 24,  27,  31,  61,  35,  61,  66,  64,   0,   0), // cement
+		_FIXES_10_PACK(  1,  20,  20,  30,  43,  51,  54,   0,   0,   0), // towtruck
+		_FIXES_10_PACK( 39,  39,   1,   1,   0,   0,  29,  29,   0,   0), // fortune
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // cadrona
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // fbitruck
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // willard
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // forklift
+		_FIXES_10_PACK( 35,   2,  53,   2,  22,  35,   0,   0,   0,   0), // tractor
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // combine
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // feltzer
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // remingtn
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   0,   0,   0), // slamvan
+		_FIXES_10_PACK(  1,   1,  96,  96,   1,   1,  96,  96,   0,   0), // blade
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freight
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // streak
+		_FIXES_10_PACK( 67,  70,  74,  86,  98,  75,  91,   0,   0,   0), // vortex
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // vincent
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // bullet
+		_FIXES_10_PACK(118, 118,  93,  92,  92,  92, 113, 113,   0,   0), // clover
+		_FIXES_10_PACK(  8,   8,   8,   8,  11,  90,   2,  13,   0,   0), // sadler
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // firela
+		_FIXES_10_PACK(  1,   1,  96,  96,   1,   1,  96,  96,   0,   0), // hustler
+		_FIXES_10_PACK( 37,  38,  62,  87,  78,  78,  62,  78,   0,   0), // intruder
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // primo
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // cargobob
+		_FIXES_10_PACK( 39,  39,  39,  39,  36,  36,  35,  35,   0,   0), // tampa
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // sunrise
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // merit
+		_FIXES_10_PACK( 56,  49, 124,   0,   0,   0,   0,   0,   0,   0), // utility
+		_FIXES_10_PACK(  9,  23,  74,  87,  87, 114, 119,   3,   0,   0), // nevada
+		_FIXES_10_PACK( 32,  32,  32,  30,  32,  32,  32,  32,   0,   0), // yosemite
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // windsor
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // monstera
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // monsterb
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // uranus
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // jester
+		_FIXES_10_PACK( 39,  39,   1,   1,   0,   0,  29,  29,   0,   0), // sultan
+		_FIXES_10_PACK(  8,  17,  21,  38,   8,  78,  79,  78,   0,   0), // stratum
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // elegy
+		_FIXES_10_PACK(  6,   0,   0,   0,   0,   0,   0,   0,   0,   0), // raindanc
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rctiger
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // flash
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // tahoma
+		_FIXES_10_PACK( 96,  64,  96,  64,  96,  81, 114,   1,   0,   0), // savanna
+		_FIXES_10_PACK( 39,  39,   1,   1,   0,   0,  29,  29,   0,   0), // bandito
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freiflat
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // streakc
+		_FIXES_10_PACK( 35,   2,  53,   2,  22,  35,   0,   0,   0,   0), // kart
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // mower
+		_FIXES_10_PACK( 38,  43,   6,   7,   8,  18,  18,  24,   0,   0), // duneride
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // sweeper
+		_FIXES_10_PACK(  1,  96,  64,  96,   1,  96,   1,  96,   0,   0), // broadway
+		_FIXES_10_PACK(  1,  96,   1,   8,  96,   8,   1,  96,   0,   0), // tornado
+		_FIXES_10_PACK(  3,   7,  10,  16,  31,  44,   0,   0,   0,   0), // at400
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dft30
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // huntley
+		_FIXES_10_PACK( 92,  81,  67,  66,  61,  53,  51,  47,  43,   0), // stafford
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // bf400
+		_FIXES_10_PACK( 10,  20,  11, 123, 113, 116, 118, 101,   0,   0), // newsvan
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tug
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // petrotr
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // emperor
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // wayfarer
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // euros
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hotdog
+		_FIXES_10_PACK( 37,  31,  23,  22,   7, 124, 114, 112,   0,   0), // club
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freibox
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict3
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // androm
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // dodo
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rccam
+		_FIXES_10_PACK( 20,   0,   0,   0,   0,   0,   0,   0,   0,   0), // launch
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarla
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarsf
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarvg
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarru
+		_FIXES_10_PACK(  8,   8,   8,   8,  11,  90,   2,  13,   0,   0), // picador
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // swatvan
+		_FIXES_10_PACK(  1,   1,  77,   1,   1,  45,   1,   1,   0,   0), // alpha
+		_FIXES_10_PACK(  1,   1,  77,   1,   1,  45,   1,   1,   0,   0), // phoenix
+		_FIXES_10_PACK( 76,  76,  76,  76,  76,  76,  76,  88,   0,   0), // glenshit
+		_FIXES_10_PACK(  8,   8,   8,   8,  11,  90,   2,  13,   0,   0), // sadlshit
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // bagboxa
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // bagboxb
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tugstair
+		_FIXES_10_PACK( 36,   0,   0,   0,   0,   0,   0,   0,   0,   0), // boxburg
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // farmtr1
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0)  // utiltr1
+	},
+#endif
+	/*
+	 * FIXES_gsVehicleColoursCount[611 + 1 - 400]
+	 *
+	 * By default, the vehicle with the highest number of colour variants is the
+	 * `stafford` for some reason.  That model has 9 colours.  We store the
+	 * colour pairs two to a cell, since each index can only be 0-127.  There
+	 * are three vehicles with tertiary and quaterniary colours (`camper`,
+	 * `cement`, and `squalo`).  In theory, for these we would need a full cell
+	 * per set (or rather, four arrays), but there's no way to set these extra
+	 * parts in SA:MP, so there's no need to store them anywhere.
+	 *
+	 * I wanted to just use one array, and actually that would waste slightly
+	 * less memory since `(20 char)` is exactly 5 cells while `(10 char) * 2` is
+	 * 6 cells.  However, that would make the code more complex and slower, plus
+	 * memory is cheap.
+	 */
+#if FIX_ChangeVehicleColour
+	FIXES_gsVehicleColoursCount[611 + 1 - 400] = {
+		8, 7, 8, 8, 8, 8, 1, 1, 1, 1, 8, 8, 8, 8, 8, 7, 1, 0, 8, 8, 1, 8, 7, 6,
+		8, 1, 8, 1, 1, 8, 1, 8, 1, 1, 7, 1, 7, 8, 1, 8, 8, 8, 8, 8, 6, 8, 8, 1,
+		0, 1, 1, 8, 8, 1, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 8, 8, 4, 1, 1, 8,
+		2, 2, 8, 8, 8, 8, 8, 8, 7, 8, 8, 8, 4, 7, 1, 8, 2, 6, 1, 6, 8, 1, 8, 8,
+		8, 1, 8, 8, 8, 1, 7, 8, 8, 6, 5, 8, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1,
+		0, 8, 8, 0, 8, 7, 8, 8, 0, 8, 8, 6, 0, 8, 8, 7, 8, 1, 1, 7, 8, 8, 8, 8,
+		1, 8, 8, 8, 1, 8, 8, 8, 3, 8, 8, 8, 1, 1, 8, 8, 8, 8, 8, 1, 0, 8, 8, 8,
+		8, 0, 1, 6, 8, 8, 1, 8, 8, 6, 1, 8, 9, 8, 8, 1, 1, 8, 8, 8, 1, 8, 0, 1,
+		1, 8, 0, 1, 1, 1, 1, 1, 8, 1, 8, 8, 8, 8, 0, 0, 1, 1, 0, 0,
+	},
 #endif
 	/*
 	 * FIXES_gsVehicleBaseColours1[MAX_VEHICLES char]
@@ -10178,6 +10649,43 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #if FIX_ChangeVehicleColour
 	stock _FIXES_LoadCarcols()
 	{
+		//printf("FIXES_gsVehicleModelColours1[611 + 1 - 400][10 char] = {");
+		//for (new i = 0; i != sizeof (FIXES_gsVehicleModelColours1); ++i)
+		//{
+		//	printf("		_FIXES_12_PACK(%3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d), "
+		//		, FIXES_gsVehicleModelColours1[i]{0}
+		//		, FIXES_gsVehicleModelColours1[i]{1}
+		//		, FIXES_gsVehicleModelColours1[i]{2}
+		//		, FIXES_gsVehicleModelColours1[i]{3}
+		//		, FIXES_gsVehicleModelColours1[i]{4}
+		//		, FIXES_gsVehicleModelColours1[i]{5}
+		//		, FIXES_gsVehicleModelColours1[i]{6}
+		//		, FIXES_gsVehicleModelColours1[i]{7}
+		//		, FIXES_gsVehicleModelColours1[i]{8}
+		//		, FIXES_gsVehicleModelColours1[i]{9}
+		//		, FIXES_gsVehicleModelColours2[i]{10}
+		//		, FIXES_gsVehicleModelColours2[i]{11});
+		//}
+		//printf("	},");
+		//
+		//printf("FIXES_gsVehicleModelColours2[611 + 1 - 400][10 char] = {");
+		//for (new i = 0; i != sizeof (FIXES_gsVehicleModelColours2); ++i)
+		//{
+		//	printf("		_FIXES_12_PACK(%3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d), "
+		//		, FIXES_gsVehicleModelColours2[i]{0}
+		//		, FIXES_gsVehicleModelColours2[i]{1}
+		//		, FIXES_gsVehicleModelColours2[i]{2}
+		//		, FIXES_gsVehicleModelColours2[i]{3}
+		//		, FIXES_gsVehicleModelColours2[i]{4}
+		//		, FIXES_gsVehicleModelColours2[i]{5}
+		//		, FIXES_gsVehicleModelColours2[i]{6}
+		//		, FIXES_gsVehicleModelColours2[i]{7}
+		//		, FIXES_gsVehicleModelColours2[i]{8}
+		//		, FIXES_gsVehicleModelColours2[i]{9}
+		//		, FIXES_gsVehicleModelColours2[i]{10}
+		//		, FIXES_gsVehicleModelColours2[i]{11});
+		//}
+		//printf("	},");
 		// They don't have the file.
 		if (!fexist(FIXES_gscCarcols))
 			return;
@@ -10190,17 +10698,17 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 		// array in its entirety to the global version.  If it fails, don't do
 		// any copying to stick with the defaults.  Allocated on the stack ONLY.
 		new
-			localCarcols1[sizeof (FIXES_gsVehicleModelColours1)][sizeof (FIXES_gsVehicleModelColours1[])],
-			localCarcols2[sizeof (FIXES_gsVehicleModelColours2)][sizeof (FIXES_gsVehicleModelColours2[])],
+			//count[sizeof (FIXES_gsVehicleColoursCount)],
+			//localCarcols1[sizeof (FIXES_gsVehicleModelColours1)][sizeof (FIXES_gsVehicleModelColours1[])],
+			//localCarcols2[sizeof (FIXES_gsVehicleModelColours2)][sizeof (FIXES_gsVehicleModelColours2[])],
 			line[128],
 			section = 0;
-		
 		// Skip everything up to the "CAR" section.  While "COL" (colours) could
 		// be of interest, we can't use it even if it is modified since only
 		// indexes can be sent to clients, not the full RGB value.
-		
+		// 
 		// Everything after "#" is a comment.  Ignore it.
-		
+		// 
 		// Entries are:
 		//
 		//   name, col1,col2 ..."
@@ -10229,9 +10737,9 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 				}
 				if (!line[0])
 					continue;
-			#if FIXES_Debug
-				print(line);
-			#endif
+			//#if FIXES_Debug
+			//	print(line);
+			//#endif
 				switch (section)
 				{
 					case 0:
@@ -10261,18 +10769,21 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 						}
 						new
 							modelid = _FIXES_GetVehicleModelFromName(line),
+							idx = 0,
 							c1,
 							c2;
 						if (modelid == -1)
-							return; //goto _FIXES_LoadCarcols_fail;
-						printf("model = %d", modelid);
+							continue; //goto _FIXES_LoadCarcols_fail;
 						pos = 0;
 						while ((pos = strfind(line, FIXES_gsSpace, false, pos) + 1))
 						{
 							pos += _FIXES_CarcolsStrval(line[pos], c1, c2);
-							printf("colour 1 = %d", c1);
-							printf("colour 2 = %d", c2);
+							FIXES_gsVehicleModelColours1[modelid]{idx} = c1;
+							FIXES_gsVehicleModelColours2[modelid]{idx} = c2;
+							if (++idx >= sizeof (FIXES_gsVehicleModelColours2[]) * (cellbits / 8))
+								break;
 						}
+						FIXES_gsVehicleColoursCount[modelid] = idx;
 //						continue;
 //_FIXES_LoadCarcols_fail:
 //						// Don't really know what you want to do here.  It is
@@ -10283,6 +10794,54 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 					}
 				}
 		}
+		//FIXES_gsVehicleModelColours1 = localCarcols1;
+		//FIXES_gsVehicleModelColours2 = localCarcols2;
+		//FIXES_gsVehicleColoursCount = count;
+		
+		//printf("FIXES_gsVehicleModelColours1[611 + 1 - 400][10 char] = {");
+		//for (new i = 0; i != sizeof (FIXES_gsVehicleModelColours1); ++i)
+		//{
+		//	printf("		_FIXES_12_PACK(%3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d), "
+		//		, FIXES_gsVehicleModelColours1[i]{0}
+		//		, FIXES_gsVehicleModelColours1[i]{1}
+		//		, FIXES_gsVehicleModelColours1[i]{2}
+		//		, FIXES_gsVehicleModelColours1[i]{3}
+		//		, FIXES_gsVehicleModelColours1[i]{4}
+		//		, FIXES_gsVehicleModelColours1[i]{5}
+		//		, FIXES_gsVehicleModelColours1[i]{6}
+		//		, FIXES_gsVehicleModelColours1[i]{7}
+		//		, FIXES_gsVehicleModelColours1[i]{8}
+		//		, FIXES_gsVehicleModelColours1[i]{9}
+		//		, FIXES_gsVehicleModelColours2[i]{10}
+		//		, FIXES_gsVehicleModelColours2[i]{11});
+		//}
+		//printf("	},");
+		//
+		//printf("FIXES_gsVehicleModelColours2[611 + 1 - 400][10 char] = {");
+		//for (new i = 0; i != sizeof (FIXES_gsVehicleModelColours2); ++i)
+		//{
+		//	printf("		_FIXES_12_PACK(%3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d, %3d), "
+		//		, FIXES_gsVehicleModelColours2[i]{0}
+		//		, FIXES_gsVehicleModelColours2[i]{1}
+		//		, FIXES_gsVehicleModelColours2[i]{2}
+		//		, FIXES_gsVehicleModelColours2[i]{3}
+		//		, FIXES_gsVehicleModelColours2[i]{4}
+		//		, FIXES_gsVehicleModelColours2[i]{5}
+		//		, FIXES_gsVehicleModelColours2[i]{6}
+		//		, FIXES_gsVehicleModelColours2[i]{7}
+		//		, FIXES_gsVehicleModelColours2[i]{8}
+		//		, FIXES_gsVehicleModelColours2[i]{9}
+		//		, FIXES_gsVehicleModelColours2[i]{10}
+		//		, FIXES_gsVehicleModelColours2[i]{11});
+		//}
+		//printf("	},");
+		//
+		//printf("FIXES_gsVehicleColoursCount[611 + 1 - 400] = {");
+		//for (new i = 0; i != sizeof (FIXES_gsVehicleColoursCount); ++i)
+		//{
+		//	printf("%d, ", FIXES_gsVehicleColoursCount[i]);
+		//}
+		//printf("	},");
 	}
 #endif
 
