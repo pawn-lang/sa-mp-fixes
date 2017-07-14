@@ -558,6 +558,18 @@
  * SEE:      "FIXES_HideGameTextForAll", "FIXES_HideGameTextForPlayer".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
+ * FIX:      ClearPlayerWorldBounds
+ * PROBLEM:  There is no "ClearPlayerWorldBounds" function.
+ * SOLUTION: Put the world bounds back to the default.
+ * SEE:      "FIXES_ClearPlayerWorldBounds".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ *
+ * FIX:      GetPlayerWorldBounds
+ * PROBLEM:  There is no "GetPlayerWorldBounds" function.
+ * SOLUTION: Store them and retrieve them.
+ * SEE:      "FIXES_GetPlayerWorldBounds".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ *
  * FIX:      WEAPONS
  * PROBLEM:  Some weapons are not defined by default.
  * SOLUTION: Define it.
@@ -1539,6 +1551,28 @@
 	#define FIX_HideGameText                     (2)
 #endif
 
+#if !defined FIX_GetPlayerWorldBounds
+	#if defined GetPlayerWorldBounds
+		#define FIX_GetPlayerWorldBounds (FIXES_EnableDeprecated)
+	#else
+		#define FIX_GetPlayerWorldBounds (FIX_Natives)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerWorldBounds)
+	#undef FIX_GetPlayerWorldBounds
+	#define FIX_GetPlayerWorldBounds     (2)
+#endif
+
+#if !defined FIX_ClearPlayerWorldBounds
+	#if defined ClearPlayerWorldBounds
+		#define FIX_ClearPlayerWorldBounds (FIXES_EnableDeprecated)
+	#else
+		#define FIX_ClearPlayerWorldBounds (FIX_Natives)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_ClearPlayerWorldBounds)
+	#undef FIX_ClearPlayerWorldBounds
+	#define FIX_ClearPlayerWorldBounds   (2)
+#endif
+
 #if !defined FIX_GameTextStyles
 	#define FIX_GameTextStyles                   (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
@@ -2089,8 +2123,7 @@ enum e_FIXES_BOOLS (<<= 1)
 	// Handy definition for nothing set.
 	e_FIXES_BOOLS_NONE = 0,
 	// Does this player have worldbounds enabled?
-	e_FIXES_BOOLS_WORLDBOUNDS = 1,
-	e_FIXES_BOOLS_UNCONTROLLABLE,
+	e_FIXES_BOOLS_UNCONTROLLABLE = 1,
 	e_FIXES_BOOLS_PUT_IN_VEHICLE,
 	e_FIXES_BOOLS_BLOCK,
 	e_FIXES_BOOLS_TELEPORT,
@@ -2134,6 +2167,20 @@ enum e_FIXES_SETTINGS (<<= 1)
  * Do a ceiling division of the first number by the second number.
  */
 #define _FIXES_CEILDIV(%0,%1) (((%0) + (%1) - 1) / (%1))
+
+/*
+ * _FIXES_MIN_WORLDBOUNDS
+ *
+ * Default worldbound range.
+ */
+#define _FIXES_MIN_WORLDBOUNDS (-20000.0)
+
+/*
+ * _FIXES_MAX_WORLDBOUNDS
+ *
+ * Default worldbound range.
+ */
+#define _FIXES_MAX_WORLDBOUNDS (20000.0)
 
 /*
  * _FIXES_INFINITY
@@ -2268,7 +2315,7 @@ static stock
 	 * this only exists when required, since it depends on add and remove
 	 * functions to be called at the right time.
 	 */
-#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 	FIXES_gsPlayersIterator[MAX_PLAYERS + 1] = {0, 1, ...},
 #endif
 	/*
@@ -2305,7 +2352,7 @@ static stock
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
 	 */
-#if FIX_SetPlayerWorldBounds
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 	FIXES_gsWorldbounds[MAX_PLAYERS][E_FIXES_WORLDBOUND_DATA],
 #endif
 	/*
@@ -3866,12 +3913,31 @@ static stock const
 	#define ApplyActorAnimation( CST_ApplyActorAnimation(
 
 	// a_http
-	#if defined _ALS_HTTP
-		#error _ALS_HTTP defined
+	// Try very hard to include it!  The first one should be enough.  Shame that
+	// include has no include guard in it, making it harder to use with Zeex's
+	// compiler.
+	#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+		#tryinclude <a_http>
 	#endif
-	native CST_HTTP(index, type, const url[], const data[], const callback[]) = HTTP;
-	#define _ALS_HTTP
-	#define HTTP( CST_HTTP(
+	#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+		#tryinclude "a_http"
+	#endif
+	#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+		#tryinclude "..\a_http"
+	#endif
+	#if defined HTTP_ERROR_MALFORMED_RESPONSE
+		#if defined _ALS_HTTP
+			#error _ALS_HTTP defined
+		#endif
+		native CST_HTTP(index, type, const url[], const data[], const callback[]) = HTTP;
+		#define _ALS_HTTP
+		#define HTTP( CST_HTTP(
+		// Because a_http can be included multiple times (on one compiler),
+		// ensure that multiple definitions don't break (too quickly - there's
+		// nothing we can do if it gets included a load of times, but that's an
+		// issue you would get with the new compiler anyway).
+		#define CST_HTTP(%0,%1,%2[],%3[],%4[]); a_http_included_too_many_times(%0,%1,%2[],%3[],%4[]) = HTTP;
+	#endif
 
 	// a_npc
 	//   
@@ -4200,7 +4266,7 @@ static stock const
  */
 
 #if FIX_BODYPARTS
-	#define BODY_PART_CHEST                     (3)
+	#define BODY_PART_TORSO                     (3)
 	#define BODY_PART_GROIN                     (4)
 	#define BODY_PART_LEFT_ARM                  (5)
 	#define BODY_PART_RIGHT_ARM                 (6)
@@ -5125,7 +5191,7 @@ public OnFilterScriptInit()
 		FIXES_gsSettings |= e_FIXES_SETTINGS_NO_GAME_TEXT;
 	#endif
 	// These are all the fixes that use "_FIXES_FOREACH".
-	#if FIX_OnPlayerConnect || _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+	#if FIX_OnPlayerConnect || _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 		for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 		{
 			if (BAD_IsPlayerConnected(playerid))
@@ -5483,7 +5549,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_GetPlayerMenu        || FIX_OnPlayerDisconnect       || FIX_OnPlayerConnect          || FIX_SetPlayerTime
 	#define _FIXES_ON_PLAYER_CONNECT
-#elseif FIX_SetPlayerColour
+#elseif FIX_SetPlayerColour      || FIX_GetPlayerWorldBounds
 	#define _FIXES_ON_PLAYER_CONNECT
 #endif
 
@@ -5504,13 +5570,13 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		//  END: ApplyAnimation_2
 		// ================================
 
-		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 			_FIXES_AddInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
 		#endif
 
 		FIXES_PRINTF("FIXES_OnPlayerConnect: %d", playerid);
 			// This is only reset when the Game Mode changes or when a new
-		#if FIX_Kick || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2 || FIX_SetPlayerColour
+		#if FIX_Kick || FIX_TogglePlayerControllable || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_AllowTeleport || FIX_AllowInteriorWeapons || FIX_TrainExit || FIX_OnPlayerEnterVehicle_2 || FIX_SetPlayerColour
 			// player connects, which is what we want.  The other items are the
 			// same, but must be done only once.  This variable will tend to
 			// hold data relevant only in the master script (the first
@@ -5561,12 +5627,9 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				// =============================
 				//  BEGIN: SetPlayerWorldBounds
 				// =============================
-				#if FIX_SetPlayerWorldBounds && !FIXES_Single
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] =
-						FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] =
-							FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] =
-								FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] =
-									0.0;
+				#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
+					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] = _FIXES_MAX_WORLDBOUNDS,
+					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] = _FIXES_MIN_WORLDBOUNDS;
 				#endif
 				// =============================
 				//  END:   SetPlayerWorldBounds
@@ -5712,7 +5775,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  *     GetPlayerMenu
  */
 
-#if FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
+#if FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
 	public OnPlayerDisconnect(playerid, reason)
 	{
 		new
@@ -5791,7 +5854,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		//  END:   Kick
 		// =============
 
-		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 			_FIXES_RemoveInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
 		#endif
 
@@ -6381,7 +6444,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			}
 		#endif
 
-		#if FIX_AllowInteriorWeapons || FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+		#if FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 			new
 				e_FIXES_BOOLS:pbools = FIXES_gsPlayerBools[playerid];
 		#endif
@@ -6415,7 +6478,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  BEGIN: SetPlayerWorldBounds
 		// =============================
 		#if FIX_SetPlayerWorldBounds
-			if (pbools & e_FIXES_BOOLS_WORLDBOUNDS && keys & _FIXES_KEY_AIM)
+			if (keys & _FIXES_KEY_AIM)
 			{
 				new
 					Float:x,
@@ -6552,7 +6615,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 #endif
 native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min) = SetPlayerWorldBounds;
 
-#if FIX_SetPlayerWorldBounds
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 	#if FIXES_Single
 		stock FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
 		{
@@ -6563,13 +6626,13 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 				{
 					// Impossibly small area, disable checks entirely.
 					return
-						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_WORLDBOUNDS,
-						SetPlayerWorldBounds(playerid, _FIXES_INFINITY, _FIXES_N_INFINITY, _FIXES_INFINITY, _FIXES_N_INFINITY);
+						FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] = _FIXES_MAX_WORLDBOUNDS,
+						FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] = _FIXES_MIN_WORLDBOUNDS,
+						SetPlayerWorldBounds(playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS);
 				}
 				// This code could do with a way to mostly remove the checks.  Maybe
 				// when setting everything to FIXES_INFINITY (with default
 				// parameters).
-				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_WORLDBOUNDS;
 				new
 					Float:tmp;
 				if (x_max < x_min)
@@ -6611,37 +6674,11 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				FIXES_PRINTF("Call SetPlayerWorldBounds");
-				return
-					CallRemoteFunction(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, playerid, x_max, x_min, y_max, y_min),
-					getproperty(5, FIXES_gscReturnProperty);
-			}
-			return 0;
-		}
-
-		public _FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
-		{
-			FIXES_PRINTF("_FIXES_SetPlayerWorldBounds: %d %.2f %.2f %.2f %.2f", playerid, x_max, x_min, y_max, y_min);
-			_FIXES_IS_IN_CHARGE()
-			{
-				FIXES_PRINTF("SetPlayerWorldBounds");
-				//if (x_max == _FIXES_INFINITY && x_min == _FIXES_INFINITY && y_max == _FIXES_INFINITY && y_min == _FIXES_INFINITY)
+				// Impossibly small area, disable checks entirely.
 				if (x_max == x_min || y_max == y_min)
-				{
-					// Impossibly small area, disable checks entirely.
 					return
-						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_WORLDBOUNDS,
-						FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] =
-							FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] =
-								FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] =
-									FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] =
-										0.0,
-						setproperty(5, FIXES_gscReturnProperty, SetPlayerWorldBounds(playerid, _FIXES_INFINITY, _FIXES_N_INFINITY, _FIXES_INFINITY, _FIXES_N_INFINITY)),
-						-1;
-				}
-				// This code could do with a way to mostly remove the checks.  Maybe
-				// when setting everything to FIXES_INFINITY (with default
-				// parameters).
-				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_WORLDBOUNDS;
+						CallRemoteFunction(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS),
+						getproperty(5, FIXES_gscReturnProperty);
 				new
 					Float:tmp;
 				if (x_max < x_min)
@@ -6656,20 +6693,31 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 					y_min = y_max,
 					y_max = tmp;
 				}
-				// Give a little leway so this fix isn't noticed if you're not
-				// trying to break through the world bounds.  Leway removed in
-				// favour of keys.
-				FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] = x_min,
-				FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] = x_max,
+				return
+					CallRemoteFunction(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, playerid, x_max, x_min, y_max, y_min),
+					getproperty(5, FIXES_gscReturnProperty);
+			}
+			return 0;
+		}
 
-				FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] = y_min,
-				FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] = y_max,
+		public _FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
+		{
+			FIXES_PRINTF("_FIXES_SetPlayerWorldBounds: %d %.2f %.2f %.2f %.2f", playerid, x_max, x_min, y_max, y_min);
+			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] = x_min,
+			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] = x_max,
 
-				GetPlayerPos(playerid, tmp, tmp, tmp),
-				FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PX] = (x_max - x_min) / 2 + x_min,
-				FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PY] = (y_max - y_min) / 2 + y_min,
-				FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PZ] = tmp,
+			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] = y_min,
+			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] = y_max;
+			
+			new
+				Float:tmp;
+			GetPlayerPos(playerid, tmp, tmp, tmp),
+			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PX] = (x_max - x_min) / 2 + x_min,
+			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PY] = (y_max - y_min) / 2 + y_min,
+			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PZ] = tmp;
 
+			_FIXES_IS_IN_CHARGE()
+			{
 				setproperty(5, FIXES_gscReturnProperty, SetPlayerWorldBounds(playerid, x_max, x_min, y_max, y_min));
 			}
 			return 0;
@@ -6678,6 +6726,32 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 
 	#define _ALS_SetPlayerWorldBounds
 	#define SetPlayerWorldBounds( FIXES_SetPlayerWorldBounds(
+#endif
+
+#if FIX_GetPlayerWorldBounds
+	stock FIXES_GetPlayerWorldBounds(playerid, &Float:x_max, &Float:x_min, &Float:y_max, &Float:y_min)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			x_min = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX],
+			x_max = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX],
+			y_min = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY],
+			y_max = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY];
+		}
+	}
+
+	#define _ALS_GetPlayerWorldBounds
+	#define GetPlayerWorldBounds( FIXES_GetPlayerWorldBounds(
+#endif
+
+#if FIX_ClearPlayerWorldBounds
+	stock FIXES_ClearPlayerWorldBounds(playerid)
+	{
+		SetPlayerWorldBounds(playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS);
+	}
+
+	#define _ALS_ClearPlayerWorldBounds
+	#define ClearPlayerWorldBounds( FIXES_ClearPlayerWorldBounds(
 #endif
 
 /*
@@ -9482,7 +9556,7 @@ native BAD_Kick(playerid) = Kick;
 				// the Game Mode, so it will either be correct, or it will be
 				// blank.
 				FIXES_gsSettings &= ~e_FIXES_SETTINGS_IN_CHARGE;
-				#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable
+				#if FIX_PutPlayerInVehicle || FIX_GameText || FIX_TogglePlayerControllable
 					_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 					{
 						// =================
@@ -9497,21 +9571,6 @@ native BAD_Kick(playerid) = Kick;
 						// =================
 						//  END:   GameText
 						// =================
-
-						// =============================
-						//  BEGIN: SetPlayerWorldBounds
-						// =============================
-						#if FIX_SetPlayerWorldBounds
-							// I realised that you could have the GM in charge,
-							// set their bounds, load an FS, remove their bounds
-							// then unload the FS again and it would result in
-							// the old GM setting of them HAVING bounds being
-							// re-applied, so the check is removed.
-							CallRemoteFunction(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, i, FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_UX], FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_LX], FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_UY], FIXES_gsWorldbounds[i][E_FIXES_WORLDBOUND_DATA_LY]);
-						#endif
-						// =============================
-						//  END:   SetPlayerWorldBounds
-						// =============================
 
 						// =================================
 						//  BEGIN: TogglePlayerControllable
@@ -11417,6 +11476,8 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_CEILDIV
 #undef _FIXES_INFINITY
 #undef _FIXES_N_INFINITY
+#undef _FIXES_MIN_WORLDBOUNDS
+#undef _FIXES_MAX_WORLDBOUNDS
 #undef _FIXES_ATTACHMENTS
 #undef _FIXES_FOREACH
 #undef _FIXES_IS_UNSET
