@@ -11075,6 +11075,32 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #endif
 
 /*
+ * _FIXES_ChangeVehicleColour(vehicleid, color1, color2)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if FIX_ChangeVehicleColour
+	#if FIXES_Single
+		static stock _FIXES_AssignVehicleColour(vehicleid, color1, color2, base1, base2)
+	#else
+		forward _FIXES_AssignVehicleColour(vehicleid, color1, color2, base1, base2);
+	
+		public _FIXES_AssignVehicleColour(vehicleid, color1, color2, base1, base2)
+	#endif
+		{
+			// All ranges have already been checked.  Plus if the colours are
+			// any invalid values here, they will be invalid when read and thus
+			// always resolve to random when out of bounds.
+			FIXES_gsVehicleCurColours1{vehicleid} = color1,
+			FIXES_gsVehicleCurColours2{vehicleid} = color2,
+			FIXES_gsVehicleBaseColours1{vehicleid} = base1,
+			FIXES_gsVehicleBaseColours2{vehicleid} = base2;
+		}
+#endif
+
+/*
  * FIXES_ChangeVehicleColour(vehicleid, color1, color2)
  *
  * FIXES:
@@ -11091,6 +11117,12 @@ native BAD_ChangeVehicleColor(vehicleid, color1, color2) = ChangeVehicleColor;
 native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 
 #if FIX_ChangeVehicleColour
+	#if FIXES_Single
+		#define _FIXES_ASSIGN_COLOURS(%0) _FIXES_AssignVehicleColour(%0)
+	#else
+		#define _FIXES_ASSIGN_COLOURS(%0) CallRemoteFunction("_FIXES_AssignVehicleColour", FIXES_gscSpec@iiiii, %0)
+	#endif
+
 	stock FIXES_ChangeVehicleColour(vehicleid, color1, color2)
 	{
 		// TODO:  Multi-script support.
@@ -11112,21 +11144,17 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 				rand = 0;
 			if (_FIXES_IN_RANGE(color1, 0, 127))
 			{
-				FIXES_gsVehicleBaseColours1{vehicleid} = FIXES_gsVehicleCurColours1{vehicleid} = color1;
+				if (_FIXES_IN_RANGE(color2, 0, 127))
+					_FIXES_ASSIGN_COLOURS(vehicleid, color1, color2, color1, color2);
+				else
+					_FIXES_ASSIGN_COLOURS(vehicleid, color1, (color2 = FIXES_gsVehicleModelColours2[model]{rand}), color1, 255);
 			}
 			else
 			{
-				FIXES_gsVehicleBaseColours1{vehicleid} = 255,
-				color1 = FIXES_gsVehicleCurColours1{vehicleid} = FIXES_gsVehicleModelColours1[model]{rand};
-			}
-			if (_FIXES_IN_RANGE(color2, 0, 127))
-			{
-				FIXES_gsVehicleBaseColours2{vehicleid} = FIXES_gsVehicleCurColours2{vehicleid} = color2;
-			}
-			else
-			{
-				FIXES_gsVehicleBaseColours2{vehicleid} = 255,
-				color2 = FIXES_gsVehicleCurColours2{vehicleid} = FIXES_gsVehicleModelColours2[model]{rand};
+				if (_FIXES_IN_RANGE(color2, 0, 127))
+					_FIXES_ASSIGN_COLOURS(vehicleid, (color1 = FIXES_gsVehicleModelColours1[model]{rand}), color2, 255, color2);
+				else
+					_FIXES_ASSIGN_COLOURS(vehicleid, (color1 = FIXES_gsVehicleModelColours1[model]{rand}), (color2 = FIXES_gsVehicleModelColours2[model]{rand}), 255, 255);
 			}
 			return ChangeVehicleColor(vehicleid, color1, color2);
 		}
@@ -11137,6 +11165,8 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 	#define ChangeVehicleColor( FIXES_ChangeVehicleColour(
 	#define _ALS_ChangeVehicleColour
 	#define ChangeVehicleColour( FIXES_ChangeVehicleColour(
+
+	#undef _FIXES_ASSIGN_COLOURS
 #endif
 
 /*
@@ -11151,8 +11181,7 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
-			if (_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
-				ChangeVehicleColour(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
+			ChangeVehicleColour(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
 		}
 		return FIXES_OnVehicleSpawn(vehicleid);
 	}
