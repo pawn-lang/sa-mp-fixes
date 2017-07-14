@@ -740,6 +740,12 @@
  * SEE:      "FIXES_AddRandomModelColour".
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
  *
+ * FIX:      GetVehicleModelRGB
+ * PROBLEM:  Doesn't exist.
+ * SOLUTION: Convert a vehicle colour index to its RGB value.
+ * SEE:      "FIXES_GetVehicleModelRGB".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1807,6 +1813,17 @@
 	#define FIX_ResetRandomModelColours          (2)
 #endif
 
+#if !defined FIX_GetVehicleModelRGB
+	#if defined GetVehicleModelRGB
+		#define FIX_GetVehicleModelRGB           (FIXES_EnableDeprecated)
+	#else
+		#define FIX_GetVehicleModelRGB           (FIX_Natives * FIX_ChangeVehicleColour)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetVehicleModelRGB)
+	#undef FIX_GetVehicleModelRGB
+	#define FIX_GetVehicleModelRGB               (2)
+#endif
+
 #if !defined FIX_const
 	#define FIX_const                            (1)
 #elseif _FIXES_IS_UNSET(FIX_const)
@@ -2033,6 +2050,14 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
  */
 
 #define _FIXES_10_PACK(%0,%1,%2,%3,%4,%5,%6,%7,%8,%9) { _FIXES_PACK(%0,%1,%2,%3), _FIXES_PACK(%4,%5,%6,%7), _FIXES_PACK(%8,%9,0,0) }
+
+/*
+ * _FIXES_MAKE_RGB
+ * 
+ * Convert three values in to an RGB number (no alpha).
+ */
+
+#define _FIXES_MAKE_RGB(%0,%1,%2) (((%0) << 24) | ((%1) << 16) | ((%2) << 8))
 
 /*
  * E_FIXES_WORLDBOUND_DATA
@@ -3131,6 +3156,151 @@ static stock const
 			0xFA24CCFF, 0xCE76BEFF, 0xA04E0AFF, 0x9F945CFF, 0xDCDE3DFF,
 			0x10C9C5FF, 0x70524DFF, 0x0BE472FF, 0x8A2CD7FF, 0x6152C2FF,
 			0xCF72A9FF, 0xE59338FF, 0xEEDC2DFF, 0xD8C762FF, 0xD8C762FF
+		},
+#endif
+	/*
+	 * FIXES_gscVehicleModelRGBs[127]
+	 *
+	 * This is a compressed (4-bit) list of the maximum number of passengers in
+	 * any vehicle, confirmed by a number of sources. "F" (15) means invalid
+	 * vehicle.
+	 */
+#if FIX_ChangeVehicleColour
+	FIXES_gscVehicleModelRGBs[127] =
+		{
+			_FIXES_MAKE_RGB(  0,   0,   0), //   0 black                         black
+			_FIXES_MAKE_RGB(245, 245, 245), //   1 white                         white
+			_FIXES_MAKE_RGB( 42, 119, 161), //   2 police car blue               blue
+			_FIXES_MAKE_RGB(132,   4,  16), //   3 cherry red                    red
+			_FIXES_MAKE_RGB( 38,  55,  57), //   4 midnight blue                 dark blue
+			_FIXES_MAKE_RGB(134,  68, 110), //   5 temple curtain purple         purple
+			_FIXES_MAKE_RGB(215, 142,  16), //   6 taxi yellow                   yellow
+			_FIXES_MAKE_RGB( 76, 117, 183), //   7 striking blue                 bright blue
+			_FIXES_MAKE_RGB(189, 190, 198), //   8 light blue grey               light blue grey
+			_FIXES_MAKE_RGB( 94, 112, 114), //   9 hoods                         light
+			// maibatsu
+			_FIXES_MAKE_RGB( 70,  89, 122), //  10 saxony blue poly              blue
+			_FIXES_MAKE_RGB(101, 106, 121), //  11 concord blue poly             grey
+			_FIXES_MAKE_RGB( 93, 126, 141), //  12 jasper green poly             blue
+			_FIXES_MAKE_RGB( 88,  89,  90), //  13 pewter gray poly              grey
+			_FIXES_MAKE_RGB(214, 218, 214), //  14 frost white                   light
+			_FIXES_MAKE_RGB(156, 161, 163), //  15 silver stone poly             grey
+			_FIXES_MAKE_RGB( 51,  95,  63), //  16 rio red                       green
+			_FIXES_MAKE_RGB(115,  14,  26), //  17 torino red pearl              red
+			_FIXES_MAKE_RGB(123,  10,  42), //  18 formula red                   red
+			_FIXES_MAKE_RGB(159, 157, 148), //  19 honey beige poly              light
+			// shitsu and nioka
+			_FIXES_MAKE_RGB( 59,  78, 120), //  20 mariner blue                  blue
+			_FIXES_MAKE_RGB(115,  46,  62), //  21 blaze red                     red
+			_FIXES_MAKE_RGB(105,  30,  59), //  22 classic red                   red
+			_FIXES_MAKE_RGB(150, 145, 140), //  23 winning silver poly           grey
+			_FIXES_MAKE_RGB( 81,  84,  89), //  24 steel gray poly               grey
+			_FIXES_MAKE_RGB( 63,  62,  69), //  25 shadow silver poly            dark
+			_FIXES_MAKE_RGB(165, 169, 167), //  26 silver stone poly             grey
+			_FIXES_MAKE_RGB( 99,  92,  90), //  27 warm grey mica                grey
+			_FIXES_MAKE_RGB( 61,  74, 104), //  28 harbor blue poly              blue
+			_FIXES_MAKE_RGB(151, 149, 146), //  29 porcelain silver poly         grey
+			_FIXES_MAKE_RGB( 66,  31,  33), //  30 mellow burgundy               dark
+			_FIXES_MAKE_RGB( 95,  39,  43), //  31 graceful red mica             red
+			_FIXES_MAKE_RGB(132, 148, 171), //  32 currant blue poly             blue
+			// kunst
+			_FIXES_MAKE_RGB(118, 123, 124), //  33 gray poly                     grey
+			_FIXES_MAKE_RGB(100, 100, 100), //  34 arctic white                  light
+			_FIXES_MAKE_RGB( 90,  87,  82), //  35 anthracite gray poly          grey
+			_FIXES_MAKE_RGB( 37,  37,  39), //  36 black poly                    dark
+			_FIXES_MAKE_RGB( 45,  58,  53), //  37 dark green poly               green
+			_FIXES_MAKE_RGB(147, 163, 150), //  38 seafoam poly                  light
+			_FIXES_MAKE_RGB(109, 122, 136), //  39 diamond blue poly             blue
+			_FIXES_MAKE_RGB( 34,  25,  24), //  40 biston brown poly             dark
+			_FIXES_MAKE_RGB(111, 103,  95), //  41 desert taupe poly             dark
+			_FIXES_MAKE_RGB(124,  28,  42), //  42 garnet red poly               red
+			_FIXES_MAKE_RGB( 95,  10,  21), //  43 desert red                    red
+			_FIXES_MAKE_RGB( 25,  56,  38), //  44 green                         green
+			_FIXES_MAKE_RGB( 93,  27,  32), //  45 cabernet red poly             red
+			_FIXES_MAKE_RGB(157, 152, 114), //  46 light ivory                   light
+			_FIXES_MAKE_RGB(122, 117,  96), //  47 pueblo beige                  green
+			_FIXES_MAKE_RGB(152, 149, 134), //  48 smoke silver poly             light
+			_FIXES_MAKE_RGB(173, 176, 176), //  49 astra silver poly             grey
+			_FIXES_MAKE_RGB(132, 137, 136), //  50 ascot gray                    grey
+			_FIXES_MAKE_RGB( 48,  79,  69), //  51 agate green                   green
+			_FIXES_MAKE_RGB( 77,  98, 104), //  52 petrol blue green poly        green
+			_FIXES_MAKE_RGB( 22,  34,  72), //  53 surf blue                     blue
+			_FIXES_MAKE_RGB( 39,  47,  75), //  54 nautical blue poly            blue
+			// stuff
+			_FIXES_MAKE_RGB(125,  98,  86), //  55 woodrose poly                 dark
+			_FIXES_MAKE_RGB(158, 164, 171), //  56 crystal blue poly             blue
+			_FIXES_MAKE_RGB(156, 141, 113), //  57 bisque frost poly             light
+			_FIXES_MAKE_RGB(109,  24,  34), //  58 currant red solid             red
+			_FIXES_MAKE_RGB( 78, 104, 129), //  59 lt.crystal blue poly          blue
+			_FIXES_MAKE_RGB(156, 156, 152), //  60 lt.titanium poly              light
+			_FIXES_MAKE_RGB(145, 115,  71), //  61 race yellow solid             yellow
+			_FIXES_MAKE_RGB(102,  28,  38), //  62 brt.currant red poly          red
+			_FIXES_MAKE_RGB(148, 157, 159), //  63 clear crystal blue frost poly grey
+			_FIXES_MAKE_RGB(164, 167, 165), //  64 silver poly                   grey
+			_FIXES_MAKE_RGB(142, 140,  70), //  65 pastel alabaster              yellow
+			_FIXES_MAKE_RGB( 52,  26,  30), //  66 mid currant red poly          dark
+			_FIXES_MAKE_RGB(106, 122, 140), //  67 med regatta blue poly         blue
+			_FIXES_MAKE_RGB(170, 173, 142), //  68 oxford white solid            yellow
+			_FIXES_MAKE_RGB(171, 152, 143), //  69 alabaster solid               light
+			_FIXES_MAKE_RGB(133,  31,  46), //  70 elec.currant red poly         red
+			_FIXES_MAKE_RGB(111, 130, 151), //  71 spinnaker blue solid          blue
+			_FIXES_MAKE_RGB( 88,  88,  83), //  72 dk.titanium poly              grey
+			_FIXES_MAKE_RGB(154, 167, 144), //  73 pastel alabaster solid        light
+			_FIXES_MAKE_RGB( 96,  26,  35), //  74 med.cabernet solid            red
+			_FIXES_MAKE_RGB( 32,  32,  44), //  75 twilight blue poly            dark
+			_FIXES_MAKE_RGB(164, 160, 150), //  76 titanium frost poly           grey
+			_FIXES_MAKE_RGB(170, 157, 132), //  77 sandalwood frost poly         light
+			_FIXES_MAKE_RGB(120,  34,  43), //  78 wild strawberry poly          red
+			_FIXES_MAKE_RGB( 14,  49, 109), //  79 ultra blue poly               blue
+			_FIXES_MAKE_RGB(114,  42,  63), //  80 vermilion solid               red
+			_FIXES_MAKE_RGB(123, 113,  94), //  81 med.sandalwood poly           light
+			_FIXES_MAKE_RGB(116,  29,  40), //  82 med.red solid                 red
+			_FIXES_MAKE_RGB( 30,  46,  50), //  83 deep jewel green              green
+			_FIXES_MAKE_RGB( 77,  50,  47), //  84 med.woodrose poly             dark
+			_FIXES_MAKE_RGB(124,  27,  68), //  85 vermillion solid              red
+			// more stuff
+			_FIXES_MAKE_RGB( 46,  91,  32), //  86 green                         green
+			_FIXES_MAKE_RGB( 57,  90, 131), //  87 bright blue poly              blue
+			_FIXES_MAKE_RGB(109,  40,  55), //  88 bright red                    red
+			_FIXES_MAKE_RGB(167, 162, 143), //  89 lt.champagne poly             light
+			_FIXES_MAKE_RGB(175, 177, 177), //  90 silver poly                   silver
+			_FIXES_MAKE_RGB( 54,  65,  85), //  91 steel blue poly               blue
+			_FIXES_MAKE_RGB(109, 108, 110), //  92 medium gray poly              grey
+			// generic
+			_FIXES_MAKE_RGB( 15, 106, 137), //  93 arctic pearl                  light
+			_FIXES_MAKE_RGB( 32,  75, 107), //  94 nassau blue poly              blue
+			_FIXES_MAKE_RGB( 43,  62,  87), //  95 med.sapphire blue poly        blue
+			_FIXES_MAKE_RGB(155, 159, 157), //  96 silver poly                   silver
+			_FIXES_MAKE_RGB(108, 132, 149), //  97 lt.sapphire blue poly         blue
+			_FIXES_MAKE_RGB( 77,  93,  96), //  98 malachite poly                blue
+			_FIXES_MAKE_RGB(174, 155, 127), //  99 flax                          yellow
+			_FIXES_MAKE_RGB( 64, 108, 143), // 100 med.maui blue poly            blue
+			_FIXES_MAKE_RGB( 31,  37,  59), // 101 dk.sapphire blue poly         dark
+			_FIXES_MAKE_RGB(171, 146, 118), // 102 copper beige                  light
+			_FIXES_MAKE_RGB( 19,  69, 115), // 103 bright blue poly              blue
+			_FIXES_MAKE_RGB(150, 129, 108), // 104 med.flax                      yellow
+			_FIXES_MAKE_RGB(100, 104, 106), // 105 med.gray poly                 grey
+			_FIXES_MAKE_RGB( 16,  80, 130), // 106 bright blue poly              blue
+			_FIXES_MAKE_RGB(161, 153, 131), // 107 lt.driftwood poly             light
+			_FIXES_MAKE_RGB( 56,  86, 148), // 108 blue                          blue
+			_FIXES_MAKE_RGB( 82,  86,  97), // 109 steel gray poly               grey
+			_FIXES_MAKE_RGB(127, 105,  86), // 110 lt.beechwood poly             dark
+			_FIXES_MAKE_RGB(140, 146, 154), // 111 slate gray                    grey
+			_FIXES_MAKE_RGB( 89, 110, 135), // 112 lt.sapphire blue poly         blue
+			_FIXES_MAKE_RGB( 71,  53,  50), // 113 dk.beechwood poly             dark
+			_FIXES_MAKE_RGB( 68,  98,  79), // 114 torch red                     green
+			_FIXES_MAKE_RGB(115,  10,  39), // 115 bright red                    red
+			_FIXES_MAKE_RGB( 34,  52,  87), // 116 med.sapphire blue firemist    blue
+			_FIXES_MAKE_RGB(100,  13,  27), // 117 med.garnet red poly           red
+			_FIXES_MAKE_RGB(163, 173, 198), // 118 white diamond pearl           light
+			_FIXES_MAKE_RGB(105,  88,  83), // 119 dk.sable poly                 dark
+			_FIXES_MAKE_RGB(155, 139, 128), // 120 antelope beige                light
+			_FIXES_MAKE_RGB( 98,  11,  28), // 121 brilliant red poly            red
+			_FIXES_MAKE_RGB( 91,  93,  94), // 122 gun metal poly                grey
+			_FIXES_MAKE_RGB( 98,  68,  40), // 123 med.beechwood poly            dark
+			_FIXES_MAKE_RGB(115,  24,  39), // 124 brilliant red poly            red
+			_FIXES_MAKE_RGB( 27,  55, 109), // 125 bright blue poly              blue
+			_FIXES_MAKE_RGB(236, 106, 174)  // 126 pink                          light
 		},
 #endif
 	/*
@@ -10872,7 +11042,15 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 			model -= 400;
 			// This code checks for ANY invalid colour and assumes they are
 			// random.  This is mostly because randoms are stored by this code
-			// as `255` not `-1` (because unsigned bytes).
+			// as `255` not `-1` (because unsigned bytes).  If both colours are
+			// random, they should use the same slot.
+			new
+				rand = FIXES_gsVehicleColoursCount[model];
+			// If there are no colours defined, default to black (colour 0).
+			if (rand)
+				rand = random(rand);
+			else
+				rand = 0;
 			if (_FIXES_IN_RANGE(color1, 0, 127))
 			{
 				FIXES_gsVehicleBaseColours1{vehicleid} = FIXES_gsVehicleCurColours1{vehicleid} = color1;
@@ -10880,12 +11058,7 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 			else
 			{
 				FIXES_gsVehicleBaseColours1{vehicleid} = 255,
-				color1 = FIXES_gsVehicleColoursCount[model];
-				// If there are no colours defined, default to black.
-				if (color1)
-					color1 = FIXES_gsVehicleCurColours1{vehicleid} = FIXES_gsVehicleModelColours1[model]{random(color1)};
-				else
-					color1 = FIXES_gsVehicleCurColours1{vehicleid} = 0;
+				color1 = FIXES_gsVehicleCurColours1{vehicleid} = FIXES_gsVehicleModelColours1[model]{rand};
 			}
 			if (_FIXES_IN_RANGE(color2, 0, 127))
 			{
@@ -10894,12 +11067,7 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 			else
 			{
 				FIXES_gsVehicleBaseColours2{vehicleid} = 255,
-				color2 = FIXES_gsVehicleColoursCount[model];
-				// If there are no colours defined, default to black.
-				if (color2)
-					color2 = FIXES_gsVehicleCurColours2{vehicleid} = FIXES_gsVehicleModelColours2[model]{random(color2)};
-				else
-					color2 = FIXES_gsVehicleCurColours2{vehicleid} = 0;
+				color2 = FIXES_gsVehicleCurColours2{vehicleid} = FIXES_gsVehicleModelColours2[model]{rand};
 			}
 			return ChangeVehicleColor(vehicleid, color1, color2);
 		}
@@ -11176,6 +11344,28 @@ native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn
 #endif
 
 /*
+ * FIXES_GetVehicleModelRGB(const idx, const alpha = 0xFF)
+ *
+ * FIXES:
+ *     GetVehicleModelRGB
+ *
+ * NOTES:
+ *     Reloads the random colours for a model type from carcols.dat.
+ */
+
+#if FIX_GetVehicleModelRGB
+	stock FIXES_GetVehicleModelRGB(const idx, const alpha = 0xFF)
+	{
+		if (_FIXES_IN_RANGE(idx, 0, sizeof (FIXES_gscVehicleModelRGBs)))
+			return FIXES_gscVehicleModelRGBs[idx] | (alpha & 0xFF);
+		return 0;
+	}
+
+	#define _ALS_GetVehicleModelRGB
+	#define GetVehicleModelRGB( FIXES_GetVehicleModelRGB(
+#endif
+
+/*
  * _FIXES_AddInternal(array[], value, size)
  *
  * Add something to an internal linked list.
@@ -11241,6 +11431,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_IS_VALID_VEHICLE_MODEL
 #undef _FIXES_PACK
 #undef _FIXES_10_PACK
+#undef _FIXES_MAKE_RGB
 
 #endinput
 
