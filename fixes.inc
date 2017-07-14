@@ -3814,7 +3814,7 @@ static stock const
 	 */
 	FIXES_gscGameTextShow[] = "_FIXES_GameTextShow",
 	/*
-	 * FIXES_gscGameTextShow[]
+	 * FIXES_gscAssignVehicleColour[]
 	 *
 	 * Name of the remote vehicle colour storage function.
 	 */
