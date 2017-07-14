@@ -2988,7 +2988,7 @@ static stock
 	 *
 	 * Name of the pvar in which to store the player's current dialogid.
 	 */
-#if !FIXES_Single && FIX_OnDialogResponse || FIX_GetPlayerDialog
+#if !FIXES_Single && (FIX_OnDialogResponse || FIX_GetPlayerDialog)
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog",
 #endif
 	/*
@@ -3069,12 +3069,6 @@ static stock
 	FIXES_pvarPlayerCheckpoint[] = "FIXES_pvarPlayerCheckpoint",
 #endif
 	/*
-	 * FIXES_gscSetRaceCheckpoint[]
-	 *
-	 * Name of the SetRaceCheckpoint timer function.
-	 */
-	FIXES_gscSetRaceCheckpoint[] = "_FIXES_SetRaceCheckpoint",
-	/*
 	 * FIXES_pvarPlayerRaceCheckpoint[]
 	 *
 	 * Name of the pvar in which to store the player's race checkpoint state.
@@ -3083,19 +3077,13 @@ static stock
 	FIXES_pvarPlayerRaceCheckpoint[] = "FIXES_pvarPlayerRaceCheckpoint",
 #endif
 	/*
-	 * FIXES_gscNULL[]
+	 * FIXES_gscSetRaceCheckpoint[]
 	 *
-	 * NULL.  This is stored as a global string to reduce memory usage.
+	 * Name of the SetRaceCheckpoint timer function.
 	 */
-	FIXES_gscNULL[] = "\1";
+	FIXES_gscSetRaceCheckpoint[] = "_FIXES_SetRaceCheckpoint";
 
 static stock const
-	/*
-	 * FIXES_gscNull[]
-	 *
-	 * (null).  This is stored as a global string to reduce memory usage.
-	 */
-	FIXES_gscNull[] = "(null)",
 	/*
 	 * FIXES_gscLF[]
 	 *
