@@ -11187,7 +11187,7 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
-			ChangeVehicleColour(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
+			FIXES_ChangeVehicleColour(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
 		}
 		return FIXES_OnVehicleSpawn(vehicleid);
 	}
@@ -11218,7 +11218,7 @@ native BAD_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation,
 	{
 		new
 			vehicleid = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
-		ChangeVehicleColor(vehicleid, color1, color2);
+		FIXES_ChangeVehicleColour(vehicleid, color1, color2);
 		return vehicleid;
 	}
 
@@ -11243,8 +11243,7 @@ native BAD_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
 	{
 		new
 			ret = SetVehicleToRespawn(vehicleid);
-		if (_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
-			ChangeVehicleColor(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
+		FIXES_ChangeVehicleColour(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
 		return ret;
 	}
 
@@ -11257,7 +11256,6 @@ native BAD_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
  *
  * FIXES:
  *     ChangeVehicleColor
- *     AddStaticVehicle
  */
 
 #if defined _ALS_AddStaticVehicle
@@ -11270,7 +11268,7 @@ native BAD_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z
 	{
 		new
 			vehicleid = AddStaticVehicle(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2);
-		ChangeVehicleColor(vehicleid, color1, color2);
+		FIXES_ChangeVehicleColour(vehicleid, color1, color2);
 		return vehicleid;
 	}
 
@@ -11283,7 +11281,6 @@ native BAD_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z
  *
  * FIXES:
  *     ChangeVehicleColor
- *     AddStaticVehicle
  */
 
 #if defined _ALS_AddStaticVehicleEx
@@ -11296,7 +11293,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn
 	{
 		new
 			vehicleid = AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, addsiren);
-		ChangeVehicleColor(vehicleid, color1, color2);
+		FIXES_ChangeVehicleColour(vehicleid, color1, color2);
 		return vehicleid;
 	}
 
@@ -11337,9 +11334,9 @@ native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn
 		return 1;
 	}
 
-	#define _ALS_ChangeVehicleColor
+	#define _ALS_GetVehicleColor
 	#define GetVehicleColor( FIXES_GetVehicleColour(
-	#define _ALS_ChangeVehicleColour
+	#define _ALS_GetVehicleColour
 	#define GetVehicleColour( FIXES_GetVehicleColour(
 #endif
 
