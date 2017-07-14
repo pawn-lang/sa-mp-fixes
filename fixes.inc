@@ -722,6 +722,24 @@
  * SEE:      "FIXES_GetVehicleColour".
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
  *
+ * FIX:      ResetRandomModelColors
+ * PROBLEM:  Doesn't exist.
+ * SOLUTION: Let people adjust the random vehicle colours for "-1".
+ * SEE:      "FIXES_ResetRandomModelColours".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
+ * FIX:      ClearRandomModelColors
+ * PROBLEM:  Doesn't exist.
+ * SOLUTION: Let people adjust the random vehicle colours for "-1".
+ * SEE:      "FIXES_ClearRandomModelColours".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
+ * FIX:      AddRandomModelColor
+ * PROBLEM:  Doesn't exist.
+ * SOLUTION: Let people adjust the random vehicle colours for "-1".
+ * SEE:      "FIXES_AddRandomModelColour".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1724,6 +1742,69 @@
 #elseif _FIXES_IS_UNSET(FIX_GetVehicleColour)
 	#undef FIX_GetVehicleColour
 	#define FIX_GetVehicleColour         (2)
+#endif
+
+#if !defined FIX_AddRandomModelColour
+	#if defined FIX_AddRandomModelColor
+		#if _FIXES_IS_UNSET(FIX_AddRandomModelColor)
+			#define FIX_AddRandomModelColour     (2)
+		#else
+			#define FIX_AddRandomModelColour     (FIX_AddRandomModelColor)
+		#endif
+	#else
+		#if defined FIX_AddRandomModelColor
+			#define FIX_AddRandomModelColour     (FIXES_EnableDeprecated)
+		#elseif defined FIX_AddRandomModelColour
+			#define FIX_AddRandomModelColour     (FIXES_EnableDeprecated)
+		#else
+			#define FIX_AddRandomModelColour     (FIX_Natives * FIX_ChangeVehicleColour)
+		#endif
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_AddRandomModelColour)
+	#undef FIX_AddRandomModelColour
+	#define FIX_AddRandomModelColour             (2)
+#endif
+
+#if !defined FIX_ClearRandomModelColours
+	#if defined FIX_ClearRandomModelColors
+		#if _FIXES_IS_UNSET(FIX_ClearRandomModelColors)
+			#define FIX_ClearRandomModelColours  (2)
+		#else
+			#define FIX_ClearRandomModelColours  (FIX_ClearRandomModelColors)
+		#endif
+	#else
+		#if defined ClearRandomModelColors
+			#define FIX_ClearRandomModelColours  (FIXES_EnableDeprecated)
+		#elseif defined ClearRandomModelColours
+			#define FIX_ClearRandomModelColours  (FIXES_EnableDeprecated)
+		#else
+			#define FIX_ClearRandomModelColours  (FIX_Natives * FIX_ChangeVehicleColour)
+		#endif
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_ClearRandomModelColours)
+	#undef FIX_ClearRandomModelColours
+	#define FIX_ClearRandomModelColours          (2)
+#endif
+
+#if !defined FIX_ResetRandomModelColours
+	#if defined FIX_ResetRandomModelColors
+		#if _FIXES_IS_UNSET(FIX_ResetRandomModelColors)
+			#define FIX_ResetRandomModelColours  (2)
+		#else
+			#define FIX_ResetRandomModelColours  (FIX_ResetRandomModelColors)
+		#endif
+	#else
+		#if defined ResetRandomModelColors
+			#define FIX_ResetRandomModelColours  (FIXES_EnableDeprecated)
+		#elseif defined ResetRandomModelColours
+			#define FIX_ResetRandomModelColours  (FIXES_EnableDeprecated)
+		#else
+			#define FIX_ResetRandomModelColours  (FIX_Natives * FIX_ChangeVehicleColour)
+		#endif
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_ResetRandomModelColours)
+	#undef FIX_ResetRandomModelColours
+	#define FIX_ResetRandomModelColours          (2)
 #endif
 
 #if !defined FIX_const
@@ -10630,7 +10711,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
  */
 
 #if FIX_ChangeVehicleColour
-	stock _FIXES_LoadCarcols()
+	static stock _FIXES_LoadCarcols(singleModel = -1)
 	{
 		// They don't have the file.
 		if (!fexist(FIXES_gscCarcols))
@@ -10714,13 +10795,17 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 							c2;
 						if (modelid == -1)
 							continue;
+						// Don't load the colours for this vehicle if it isn't
+						// the only one we want to load (if there is just one).
+						if (singleModel != -1 && singleModel != modelid)
+							continue;
 						pos = 0;
 						while ((pos = strfind(line, FIXES_gsSpace, false, pos) + 1))
 						{
 							pos += _FIXES_CarcolsStrval(line[pos], c1, c2);
 							FIXES_gsVehicleModelColours1[modelid]{idx} = c1;
 							FIXES_gsVehicleModelColours2[modelid]{idx} = c2;
-							if (++idx >= sizeof (FIXES_gsVehicleModelColours2[]) * (cellbits / 8))
+							if (++idx >= _FIXES_MAX_RANDOM_MODEL_COLOURS)
 								break;
 						}
 						FIXES_gsVehicleColoursCount[modelid] = idx;
@@ -10964,6 +11049,100 @@ native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn
 	#define GetVehicleColor( FIXES_GetVehicleColour(
 	#define _ALS_ChangeVehicleColour
 	#define GetVehicleColour( FIXES_GetVehicleColour(
+#endif
+
+/*
+ * FIXES_AddRandomModelColour(const modelid, const color1, const color2)
+ *
+ * FIXES:
+ *     AddRandomModelColor
+ *
+ * NOTES:
+ *     Returns the number of colours defined for that vehicle, or 0 on error.
+ */
+
+#if FIX_AddRandomModelColour
+	stock FIXES_AddRandomModelColour(const modelid, const color1, const color2)
+	{
+		if (_FIXES_IS_VALID_VEHICLE_MODEL(modelid) && _FIXES_IN_RANGE(color1, 0, 128) && _FIXES_IN_RANGE(color2, 0, 128))
+		{
+			// Adjust to internal IDs.
+			modelid -= 400;
+			new
+				count = FIXES_gsVehicleColoursCount[modelid];
+			if (count < _FIXES_MAX_RANDOM_MODEL_COLOURS)
+			{
+				// Can only have up to 12 colours per vehicle by default.
+				return
+					FIXES_gsVehicleModelColours1[modelid]{count} = color1,
+					FIXES_gsVehicleModelColours2[modelid]{count} = color2,
+					++FIXES_gsVehicleColoursCount[modelid];
+			}
+		}
+		return 0;
+	}
+
+	#define _ALS_AddRandomModelColor
+	#define AddRandomModelColor( FIXES_AddRandomModelColour(
+	#define _ALS_AddRandomModelColour
+	#define AddRandomModelColour( FIXES_AddRandomModelColour(
+#endif
+
+/*
+ * FIXES_ClearRandomModelColours(const modelid)
+ *
+ * FIXES:
+ *     ClearRandomModelColors
+ *
+ * NOTES:
+ *     Removes all the random colours defined for a model type.  Does not Clear
+ *     existing vehicles of that type.
+ */
+
+#if FIX_ClearRandomModelColours
+	stock FIXES_ClearRandomModelColours(const modelid = 0)
+	{
+		if (modelid == 0)
+			FIXES_gsVehicleColoursCount = { 0, ... };
+		else if (_FIXES_IS_VALID_VEHICLE_MODEL(modelid))
+			FIXES_gsVehicleColoursCount[modelid - 400] = 0;
+		else
+			return 0;
+		return 1;
+	}
+
+	#define _ALS_ClearRandomModelColors
+	#define ClearRandomModelColors( FIXES_ClearRandomModelColours(
+	#define _ALS_ClearRandomModelColours
+	#define ClearRandomModelColours( FIXES_ClearRandomModelColours(
+#endif
+
+/*
+ * FIXES_ResetRandomModelColours(const modelid)
+ *
+ * FIXES:
+ *     ResetRandomModelColors
+ *
+ * NOTES:
+ *     Reloads the random colours for a model type from carcols.dat.
+ */
+
+#if FIX_ResetRandomModelColours
+	stock FIXES_ResetRandomModelColours(const modelid = 0)
+	{
+		if (modelid == 0)
+			_FIXES_LoadCarcols();
+		else if (_FIXES_IS_VALID_VEHICLE_MODEL(modelid))
+			_FIXES_LoadCarcols(modelid - 400);
+		else
+			return 0;
+		return 1;
+	}
+
+	#define _ALS_ResetRandomModelColors
+	#define ResetRandomModelColors( FIXES_ResetRandomModelColours(
+	#define _ALS_ResetRandomModelColours
+	#define ResetRandomModelColours( FIXES_ResetRandomModelColours(
 #endif
 
 /*
