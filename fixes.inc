@@ -527,6 +527,14 @@
  * SEE:      "FIX_GetGravity", "FIX_gpci", "FIX_IsValidVehicle".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
+ * FIX:      Extensions
+ * PROBLEM:  This include does not create new functions generally, but a few
+ *           become obvious and easy from the code.  This fix enables all of
+ *           extensions that are new features not just fixes.
+ * SOLUTION: Include them by default.
+ * SEE:      Several fixes.
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ *
  * FIX:      OnPlayerConnect
  * PROBLEM:  This function isn't called for players when a filterscript starts.
  * SOLUTION: Call it for all connected players.
@@ -1057,6 +1065,13 @@
 	#define FIX_Natives                          (2)
 #endif
 
+#if !defined FIX_Extensions
+	#define FIX_Extensions                       (1)
+#elseif _FIXES_IS_UNSET(FIX_Extensions)
+	#undef FIX_Extensions
+	#define FIX_Extensions                       (2)
+#endif
+
 #if !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
 		#define FIX_IsValidVehicle               (FIXES_EnableDeprecated)
@@ -1237,7 +1252,7 @@
 	#if defined GetPlayerDialog
 		#define FIX_GetPlayerDialog              (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerDialog              (FIX_Natives)
+		#define FIX_GetPlayerDialog              (FIX_Extensions)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
@@ -1544,7 +1559,7 @@
 	#if defined HideGameText
 		#define FIX_HideGameText                 (FIXES_EnableDeprecated)
 	#else
-		#define FIX_HideGameText                 (FIX_Natives)
+		#define FIX_HideGameText                 (FIX_Extensions)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_HideGameText)
 	#undef FIX_HideGameText
@@ -1553,24 +1568,24 @@
 
 #if !defined FIX_GetPlayerWorldBounds
 	#if defined GetPlayerWorldBounds
-		#define FIX_GetPlayerWorldBounds (FIXES_EnableDeprecated)
+		#define FIX_GetPlayerWorldBounds         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerWorldBounds (FIX_Natives)
+		#define FIX_GetPlayerWorldBounds         (FIX_Extensions)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWorldBounds)
 	#undef FIX_GetPlayerWorldBounds
-	#define FIX_GetPlayerWorldBounds     (2)
+	#define FIX_GetPlayerWorldBounds             (2)
 #endif
 
 #if !defined FIX_ClearPlayerWorldBounds
 	#if defined ClearPlayerWorldBounds
-		#define FIX_ClearPlayerWorldBounds (FIXES_EnableDeprecated)
+		#define FIX_ClearPlayerWorldBounds       (FIXES_EnableDeprecated)
 	#else
-		#define FIX_ClearPlayerWorldBounds (FIX_Natives)
+		#define FIX_ClearPlayerWorldBounds       (FIX_Extensions)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_ClearPlayerWorldBounds)
 	#undef FIX_ClearPlayerWorldBounds
-	#define FIX_ClearPlayerWorldBounds   (2)
+	#define FIX_ClearPlayerWorldBounds           (2)
 #endif
 
 #if !defined FIX_GameTextStyles
@@ -1776,7 +1791,7 @@
 		#elseif defined GetVehicleColour
 			#define FIX_GetVehicleColour         (FIXES_EnableDeprecated)
 		#else
-			#define FIX_GetVehicleColour         (FIX_Natives * FIX_ChangeVehicleColour)
+			#define FIX_GetVehicleColour         (FIX_Extensions * FIX_ChangeVehicleColour)
 		#endif
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetVehicleColour)
@@ -1797,7 +1812,7 @@
 		#elseif defined AddRandomModelColour
 			#define FIX_AddRandomModelColour     (FIXES_EnableDeprecated)
 		#else
-			#define FIX_AddRandomModelColour     (FIX_Natives * FIX_ChangeVehicleColour)
+			#define FIX_AddRandomModelColour     (FIX_Extensions * FIX_ChangeVehicleColour)
 		#endif
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_AddRandomModelColour)
@@ -1818,7 +1833,7 @@
 		#elseif defined ClearRandomModelColours
 			#define FIX_ClearRandomModelColours  (FIXES_EnableDeprecated)
 		#else
-			#define FIX_ClearRandomModelColours  (FIX_Natives * FIX_ChangeVehicleColour)
+			#define FIX_ClearRandomModelColours  (FIX_Extensions * FIX_ChangeVehicleColour)
 		#endif
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_ClearRandomModelColours)
@@ -1839,7 +1854,7 @@
 		#elseif defined ResetRandomModelColours
 			#define FIX_ResetRandomModelColours  (FIXES_EnableDeprecated)
 		#else
-			#define FIX_ResetRandomModelColours  (FIX_Natives * FIX_ChangeVehicleColour)
+			#define FIX_ResetRandomModelColours  (FIX_Extensions * FIX_ChangeVehicleColour)
 		#endif
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_ResetRandomModelColours)
@@ -1851,7 +1866,7 @@
 	#if defined GetVehicleModelRGB
 		#define FIX_GetVehicleModelRGB           (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetVehicleModelRGB           (FIX_Natives * FIX_ChangeVehicleColour)
+		#define FIX_GetVehicleModelRGB           (FIX_Extensions * FIX_ChangeVehicleColour)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetVehicleModelRGB)
 	#undef FIX_GetVehicleModelRGB
