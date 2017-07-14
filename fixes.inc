@@ -3814,6 +3814,12 @@ static stock const
 	 */
 	FIXES_gscGameTextShow[] = "_FIXES_GameTextShow",
 	/*
+	 * FIXES_gscGameTextShow[]
+	 *
+	 * Name of the remote vehicle colour storage function.
+	 */
+	FIXES_gscAssignVehicleColour[] = "_FIXES_AssignVehicleColour",
+	/*
 	 * FIXES_gscReturnProperty[]
 	 *
 	 * The property for accurate returns.
@@ -11120,7 +11126,7 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 	#if FIXES_Single
 		#define _FIXES_ASSIGN_COLOURS(%0) _FIXES_AssignVehicleColour(%0)
 	#else
-		#define _FIXES_ASSIGN_COLOURS(%0) CallRemoteFunction("_FIXES_AssignVehicleColour", FIXES_gscSpec@iiiii, %0)
+		#define _FIXES_ASSIGN_COLOURS(%0) CallRemoteFunction(FIXES_gscAssignVehicleColour, FIXES_gscSpec@iiiii, %0)
 	#endif
 
 	stock FIXES_ChangeVehicleColour(vehicleid, color1, color2)
