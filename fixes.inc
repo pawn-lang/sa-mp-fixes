@@ -1828,8 +1828,10 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #if defined FIXES_Debug
 	#if _FIXES_IS_UNSET(FIXES_Debug)
 		#undef FIXES_Debug
-	#elseif FIXES_Debug == 1
-		#define FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):")),printf("*** " %0);
+		#define FIXES_Debug 1
+	#endif
+	#if FIXES_Debug == 1
+		#define FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):")),printf("***" %0);
 	#else
 		#undef FIXES_Debug
 	#endif
@@ -2542,6 +2544,18 @@ static stock const
 	 * A single re-usable new line.
 	 */
 	FIXES_gscLF[] = "\n",
+	/*
+	 * FIXES_gscEnd[]
+	 *
+	 * The string to end sections in carcols.dat.
+	 */
+	FIXES_gscEnd[] = "end",
+	/*
+	 * FIXES_gscCarcols[]
+	 *
+	 * The path of carcols.dat.
+	 */
+	FIXES_gscCarcols[] = "fixes.inc/carcols.dat",
 	/*
 	 * FIXES_gscPlayerColours[100]
 	 *
@@ -3544,228 +3558,227 @@ static stock const
 /*
  * _FIXES_MODEL_BERNSTEIN
  *
- * The names of all the vehicle models, as Bernstein hashes.  These are not
- * fully resolved because I couldn't be bothered.  The compiler will evaluate
- * the maths at compile-time, so the resulting code will just be a single
- * number.  The sums were generated using `YSI\y_stringhash` with `-l`.
+ * The names of all the vehicle models, as Bernstein hashes.  Generated using
+ * y_stringhash and the compiler on `-a` to get the final results (instead of
+ * including all the extensive compile-time string hashing code here).
  *
  * FIXES:
  *     ChangeVehicleColor
  */
 
-#define _FIXES_MODEL_BERNSTEIN_landstal ((((((((-33+108)*33+97)*33+110)*33+100)*33+115)*33+116)*33+97)*33+108)
-#define _FIXES_MODEL_BERNSTEIN_bravura  (((((((-33+98)*33+114)*33+97)*33+118)*33+117)*33+114)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_buffalo  (((((((-33+98)*33+117)*33+102)*33+102)*33+97)*33+108)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_linerun  (((((((-33+108)*33+105)*33+110)*33+101)*33+114)*33+117)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_peren    (((((-33+112)*33+101)*33+114)*33+101)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_sentinel ((((((((-33+115)*33+101)*33+110)*33+116)*33+105)*33+110)*33+101)*33+108)
-#define _FIXES_MODEL_BERNSTEIN_dumper   ((((((-33+100)*33+117)*33+109)*33+112)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_firetruk ((((((((-33+102)*33+105)*33+114)*33+101)*33+116)*33+114)*33+117)*33+107)
-#define _FIXES_MODEL_BERNSTEIN_trash    (((((-33+116)*33+114)*33+97)*33+115)*33+104)
-#define _FIXES_MODEL_BERNSTEIN_stretch  (((((((-33+115)*33+116)*33+114)*33+101)*33+116)*33+99)*33+104)
-#define _FIXES_MODEL_BERNSTEIN_manana   ((((((-33+109)*33+97)*33+110)*33+97)*33+110)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_infernus ((((((((-33+105)*33+110)*33+102)*33+101)*33+114)*33+110)*33+117)*33+115)
-#define _FIXES_MODEL_BERNSTEIN_voodoo   ((((((-33+118)*33+111)*33+111)*33+100)*33+111)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_pony     ((((-33+112)*33+111)*33+110)*33+121)
-#define _FIXES_MODEL_BERNSTEIN_mule     ((((-33+109)*33+117)*33+108)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_cheetah  (((((((-33+99)*33+104)*33+101)*33+101)*33+116)*33+97)*33+104)
-#define _FIXES_MODEL_BERNSTEIN_ambulan  (((((((-33+97)*33+109)*33+98)*33+117)*33+108)*33+97)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_leviathn ((((((((-33+108)*33+101)*33+118)*33+105)*33+97)*33+116)*33+104)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_moonbeam ((((((((-33+109)*33+111)*33+111)*33+110)*33+98)*33+101)*33+97)*33+109)
-#define _FIXES_MODEL_BERNSTEIN_esperant ((((((((-33+101)*33+115)*33+112)*33+101)*33+114)*33+97)*33+110)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_taxi     ((((-33+116)*33+97)*33+120)*33+105)
-#define _FIXES_MODEL_BERNSTEIN_washing  (((((((-33+119)*33+97)*33+115)*33+104)*33+105)*33+110)*33+103)
-#define _FIXES_MODEL_BERNSTEIN_bobcat   ((((((-33+98)*33+111)*33+98)*33+99)*33+97)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_mrwhoop  (((((((-33+109)*33+114)*33+119)*33+104)*33+111)*33+111)*33+112)
-#define _FIXES_MODEL_BERNSTEIN_bfinject ((((((((-33+98)*33+102)*33+105)*33+110)*33+106)*33+101)*33+99)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_hunter   ((((((-33+104)*33+117)*33+110)*33+116)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_premier  (((((((-33+112)*33+114)*33+101)*33+109)*33+105)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_enforcer ((((((((-33+101)*33+110)*33+102)*33+111)*33+114)*33+99)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_securica ((((((((-33+115)*33+101)*33+99)*33+117)*33+114)*33+105)*33+99)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_banshee  (((((((-33+98)*33+97)*33+110)*33+115)*33+104)*33+101)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_predator ((((((((-33+112)*33+114)*33+101)*33+100)*33+97)*33+116)*33+111)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_bus      (((-33+98)*33+117)*33+115)
-#define _FIXES_MODEL_BERNSTEIN_rhino    (((((-33+114)*33+104)*33+105)*33+110)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_barracks ((((((((-33+98)*33+97)*33+114)*33+114)*33+97)*33+99)*33+107)*33+115)
-#define _FIXES_MODEL_BERNSTEIN_hotknife ((((((((-33+104)*33+111)*33+116)*33+107)*33+110)*33+105)*33+102)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_artict1  (((((((-33+97)*33+114)*33+116)*33+105)*33+99)*33+116)*33+'1')
-#define _FIXES_MODEL_BERNSTEIN_previon  (((((((-33+112)*33+114)*33+101)*33+118)*33+105)*33+111)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_coach    (((((-33+99)*33+111)*33+97)*33+99)*33+104)
-#define _FIXES_MODEL_BERNSTEIN_cabbie   ((((((-33+99)*33+97)*33+98)*33+98)*33+105)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_stallion ((((((((-33+115)*33+116)*33+97)*33+108)*33+108)*33+105)*33+111)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_rumpo    (((((-33+114)*33+117)*33+109)*33+112)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_rcbandit ((((((((-33+114)*33+99)*33+98)*33+97)*33+110)*33+100)*33+105)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_romero   ((((((-33+114)*33+111)*33+109)*33+101)*33+114)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_packer   ((((((-33+112)*33+97)*33+99)*33+107)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_monster  (((((((-33+109)*33+111)*33+110)*33+115)*33+116)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_admiral  (((((((-33+97)*33+100)*33+109)*33+105)*33+114)*33+97)*33+108)
-#define _FIXES_MODEL_BERNSTEIN_squalo   ((((((-33+115)*33+113)*33+117)*33+97)*33+108)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_seaspar  (((((((-33+115)*33+101)*33+97)*33+115)*33+112)*33+97)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_pizzaboy ((((((((-33+112)*33+105)*33+122)*33+122)*33+97)*33+98)*33+111)*33+121)
-#define _FIXES_MODEL_BERNSTEIN_tram     ((((-33+116)*33+114)*33+97)*33+109)
-#define _FIXES_MODEL_BERNSTEIN_artict2  (((((((-33+97)*33+114)*33+116)*33+105)*33+99)*33+116)*33+'2')
-#define _FIXES_MODEL_BERNSTEIN_turismo  (((((((-33+116)*33+117)*33+114)*33+105)*33+115)*33+109)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_speeder  (((((((-33+115)*33+112)*33+101)*33+101)*33+100)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_reefer   ((((((-33+114)*33+101)*33+101)*33+102)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_tropic   ((((((-33+116)*33+114)*33+111)*33+112)*33+105)*33+99)
-#define _FIXES_MODEL_BERNSTEIN_flatbed  (((((((-33+102)*33+108)*33+97)*33+116)*33+98)*33+101)*33+100)
-#define _FIXES_MODEL_BERNSTEIN_yankee   ((((((-33+121)*33+97)*33+110)*33+107)*33+101)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_caddy    (((((-33+99)*33+97)*33+100)*33+100)*33+121)
-#define _FIXES_MODEL_BERNSTEIN_solair   ((((((-33+115)*33+111)*33+108)*33+97)*33+105)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_topfun   ((((((-33+116)*33+111)*33+112)*33+102)*33+117)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_skimmer  (((((((-33+115)*33+107)*33+105)*33+109)*33+109)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_pcj600   ((((((-33+112)*33+99)*33+106)*33+'6')*33+'0')*33+'0')
-#define _FIXES_MODEL_BERNSTEIN_faggio   ((((((-33+102)*33+97)*33+103)*33+103)*33+105)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_freeway  (((((((-33+102)*33+114)*33+101)*33+101)*33+119)*33+97)*33+121)
-#define _FIXES_MODEL_BERNSTEIN_rcbaron  (((((((-33+114)*33+99)*33+98)*33+97)*33+114)*33+111)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_rcraider ((((((((-33+114)*33+99)*33+114)*33+97)*33+105)*33+100)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_glendale ((((((((-33+103)*33+108)*33+101)*33+110)*33+100)*33+97)*33+108)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_oceanic  (((((((-33+111)*33+99)*33+101)*33+97)*33+110)*33+105)*33+99)
-#define _FIXES_MODEL_BERNSTEIN_sanchez  (((((((-33+115)*33+97)*33+110)*33+99)*33+104)*33+101)*33+122)
-#define _FIXES_MODEL_BERNSTEIN_sparrow  (((((((-33+115)*33+112)*33+97)*33+114)*33+114)*33+111)*33+119)
-#define _FIXES_MODEL_BERNSTEIN_patriot  (((((((-33+112)*33+97)*33+116)*33+114)*33+105)*33+111)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_quad     ((((-33+113)*33+117)*33+97)*33+100)
-#define _FIXES_MODEL_BERNSTEIN_coastg   ((((((-33+99)*33+111)*33+97)*33+115)*33+116)*33+103)
-#define _FIXES_MODEL_BERNSTEIN_dinghy   ((((((-33+100)*33+105)*33+110)*33+103)*33+104)*33+121)
-#define _FIXES_MODEL_BERNSTEIN_hermes   ((((((-33+104)*33+101)*33+114)*33+109)*33+101)*33+115)
-#define _FIXES_MODEL_BERNSTEIN_sabre    (((((-33+115)*33+97)*33+98)*33+114)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_rustler  (((((((-33+114)*33+117)*33+115)*33+116)*33+108)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_zr350    (((((-33+122)*33+114)*33+'3')*33+'5')*33+'0')
-#define _FIXES_MODEL_BERNSTEIN_walton   ((((((-33+119)*33+97)*33+108)*33+116)*33+111)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_regina   ((((((-33+114)*33+101)*33+103)*33+105)*33+110)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_comet    (((((-33+99)*33+111)*33+109)*33+101)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_bmx      (((-33+98)*33+109)*33+120)
-#define _FIXES_MODEL_BERNSTEIN_burrito  (((((((-33+98)*33+117)*33+114)*33+114)*33+105)*33+116)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_camper   ((((((-33+99)*33+97)*33+109)*33+112)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_marquis  (((((((-33+109)*33+97)*33+114)*33+113)*33+117)*33+105)*33+115)
-#define _FIXES_MODEL_BERNSTEIN_baggage  (((((((-33+98)*33+97)*33+103)*33+103)*33+97)*33+103)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_dozer    (((((-33+100)*33+111)*33+122)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_maverick ((((((((-33+109)*33+97)*33+118)*33+101)*33+114)*33+105)*33+99)*33+107)
-#define _FIXES_MODEL_BERNSTEIN_vcnmav   ((((((-33+118)*33+99)*33+110)*33+109)*33+97)*33+118)
-#define _FIXES_MODEL_BERNSTEIN_rancher  (((((((-33+114)*33+97)*33+110)*33+99)*33+104)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_fbiranch ((((((((-33+102)*33+98)*33+105)*33+114)*33+97)*33+110)*33+99)*33+104)
-#define _FIXES_MODEL_BERNSTEIN_virgo    (((((-33+118)*33+105)*33+114)*33+103)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_greenwoo ((((((((-33+103)*33+114)*33+101)*33+101)*33+110)*33+119)*33+111)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_jetmax   ((((((-33+106)*33+101)*33+116)*33+109)*33+97)*33+120)
-#define _FIXES_MODEL_BERNSTEIN_hotring  (((((((-33+104)*33+111)*33+116)*33+114)*33+105)*33+110)*33+103)
-#define _FIXES_MODEL_BERNSTEIN_sandking ((((((((-33+115)*33+97)*33+110)*33+100)*33+107)*33+105)*33+110)*33+103)
-#define _FIXES_MODEL_BERNSTEIN_blistac  (((((((-33+98)*33+108)*33+105)*33+115)*33+116)*33+97)*33+99)
-#define _FIXES_MODEL_BERNSTEIN_polmav   ((((((-33+112)*33+111)*33+108)*33+109)*33+97)*33+118)
-#define _FIXES_MODEL_BERNSTEIN_boxville ((((((((-33+98)*33+111)*33+120)*33+118)*33+105)*33+108)*33+108)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_benson   ((((((-33+98)*33+101)*33+110)*33+115)*33+111)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_mesa     ((((-33+109)*33+101)*33+115)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_rcgoblin ((((((((-33+114)*33+99)*33+103)*33+111)*33+98)*33+108)*33+105)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_hotrina  (((((((-33+104)*33+111)*33+116)*33+114)*33+105)*33+110)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_hotrinb  (((((((-33+104)*33+111)*33+116)*33+114)*33+105)*33+110)*33+98)
-#define _FIXES_MODEL_BERNSTEIN_bloodra  (((((((-33+98)*33+108)*33+111)*33+111)*33+100)*33+114)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_bloodrb  (((((((-33+98)*33+108)*33+111)*33+111)*33+100)*33+114)*33+98)
-#define _FIXES_MODEL_BERNSTEIN_rnchlure ((((((((-33+114)*33+110)*33+99)*33+104)*33+108)*33+117)*33+114)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_supergt  (((((((-33+115)*33+117)*33+112)*33+101)*33+114)*33+103)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_elegant  (((((((-33+101)*33+108)*33+101)*33+103)*33+97)*33+110)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_journey  (((((((-33+106)*33+111)*33+117)*33+114)*33+110)*33+101)*33+121)
-#define _FIXES_MODEL_BERNSTEIN_bike     ((((-33+98)*33+105)*33+107)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_mtbike   ((((((-33+109)*33+116)*33+98)*33+105)*33+107)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_beagle   ((((((-33+98)*33+101)*33+97)*33+103)*33+108)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_cropdust ((((((((-33+99)*33+114)*33+111)*33+112)*33+100)*33+117)*33+115)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_stunt    (((((-33+115)*33+116)*33+117)*33+110)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_petro    (((((-33+112)*33+101)*33+116)*33+114)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_rdtrain  (((((((-33+114)*33+100)*33+116)*33+114)*33+97)*33+105)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_nebula   ((((((-33+110)*33+101)*33+98)*33+117)*33+108)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_majestic ((((((((-33+109)*33+97)*33+106)*33+101)*33+115)*33+116)*33+105)*33+99)
-#define _FIXES_MODEL_BERNSTEIN_buccanee ((((((((-33+98)*33+117)*33+99)*33+99)*33+97)*33+110)*33+101)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_shamal   ((((((-33+115)*33+104)*33+97)*33+109)*33+97)*33+108)
-#define _FIXES_MODEL_BERNSTEIN_hydra    (((((-33+104)*33+121)*33+100)*33+114)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_fcr900   ((((((-33+102)*33+99)*33+114)*33+'9')*33+'0')*33+'0')
-#define _FIXES_MODEL_BERNSTEIN_nrg500   ((((((-33+110)*33+114)*33+103)*33+'5')*33+'0')*33+'0')
-#define _FIXES_MODEL_BERNSTEIN_copbike  (((((((-33+99)*33+111)*33+112)*33+98)*33+105)*33+107)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_cement   ((((((-33+99)*33+101)*33+109)*33+101)*33+110)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_towtruck ((((((((-33+116)*33+111)*33+119)*33+116)*33+114)*33+117)*33+99)*33+107)
-#define _FIXES_MODEL_BERNSTEIN_fortune  (((((((-33+102)*33+111)*33+114)*33+116)*33+117)*33+110)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_cadrona  (((((((-33+99)*33+97)*33+100)*33+114)*33+111)*33+110)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_fbitruck ((((((((-33+102)*33+98)*33+105)*33+116)*33+114)*33+117)*33+99)*33+107)
-#define _FIXES_MODEL_BERNSTEIN_willard  (((((((-33+119)*33+105)*33+108)*33+108)*33+97)*33+114)*33+100)
-#define _FIXES_MODEL_BERNSTEIN_forklift ((((((((-33+102)*33+111)*33+114)*33+107)*33+108)*33+105)*33+102)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_tractor  (((((((-33+116)*33+114)*33+97)*33+99)*33+116)*33+111)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_combine  (((((((-33+99)*33+111)*33+109)*33+98)*33+105)*33+110)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_feltzer  (((((((-33+102)*33+101)*33+108)*33+116)*33+122)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_remingtn ((((((((-33+114)*33+101)*33+109)*33+105)*33+110)*33+103)*33+116)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_slamvan  (((((((-33+115)*33+108)*33+97)*33+109)*33+118)*33+97)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_blade    (((((-33+98)*33+108)*33+97)*33+100)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_freight  (((((((-33+102)*33+114)*33+101)*33+105)*33+103)*33+104)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_streak   ((((((-33+115)*33+116)*33+114)*33+101)*33+97)*33+107)
-#define _FIXES_MODEL_BERNSTEIN_vortex   ((((((-33+118)*33+111)*33+114)*33+116)*33+101)*33+120)
-#define _FIXES_MODEL_BERNSTEIN_vincent  (((((((-33+118)*33+105)*33+110)*33+99)*33+101)*33+110)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_bullet   ((((((-33+98)*33+117)*33+108)*33+108)*33+101)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_clover   ((((((-33+99)*33+108)*33+111)*33+118)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_sadler   ((((((-33+115)*33+97)*33+100)*33+108)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_firela   ((((((-33+102)*33+105)*33+114)*33+101)*33+108)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_hustler  (((((((-33+104)*33+117)*33+115)*33+116)*33+108)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_intruder ((((((((-33+105)*33+110)*33+116)*33+114)*33+117)*33+100)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_primo    (((((-33+112)*33+114)*33+105)*33+109)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_cargobob ((((((((-33+99)*33+97)*33+114)*33+103)*33+111)*33+98)*33+111)*33+98)
-#define _FIXES_MODEL_BERNSTEIN_tampa    (((((-33+116)*33+97)*33+109)*33+112)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_sunrise  (((((((-33+115)*33+117)*33+110)*33+114)*33+105)*33+115)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_merit    (((((-33+109)*33+101)*33+114)*33+105)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_utility  (((((((-33+117)*33+116)*33+105)*33+108)*33+105)*33+116)*33+121)
-#define _FIXES_MODEL_BERNSTEIN_nevada   ((((((-33+110)*33+101)*33+118)*33+97)*33+100)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_yosemite ((((((((-33+121)*33+111)*33+115)*33+101)*33+109)*33+105)*33+116)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_windsor  (((((((-33+119)*33+105)*33+110)*33+100)*33+115)*33+111)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_monstera ((((((((-33+109)*33+111)*33+110)*33+115)*33+116)*33+101)*33+114)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_monsterb ((((((((-33+109)*33+111)*33+110)*33+115)*33+116)*33+101)*33+114)*33+98)
-#define _FIXES_MODEL_BERNSTEIN_uranus   ((((((-33+117)*33+114)*33+97)*33+110)*33+117)*33+115)
-#define _FIXES_MODEL_BERNSTEIN_jester   ((((((-33+106)*33+101)*33+115)*33+116)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_sultan   ((((((-33+115)*33+117)*33+108)*33+116)*33+97)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_stratum  (((((((-33+115)*33+116)*33+114)*33+97)*33+116)*33+117)*33+109)
-#define _FIXES_MODEL_BERNSTEIN_elegy    (((((-33+101)*33+108)*33+101)*33+103)*33+121)
-#define _FIXES_MODEL_BERNSTEIN_raindanc ((((((((-33+114)*33+97)*33+105)*33+110)*33+100)*33+97)*33+110)*33+99)
-#define _FIXES_MODEL_BERNSTEIN_rctiger  (((((((-33+114)*33+99)*33+116)*33+105)*33+103)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_flash    (((((-33+102)*33+108)*33+97)*33+115)*33+104)
-#define _FIXES_MODEL_BERNSTEIN_tahoma   ((((((-33+116)*33+97)*33+104)*33+111)*33+109)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_savanna  (((((((-33+115)*33+97)*33+118)*33+97)*33+110)*33+110)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_bandito  (((((((-33+98)*33+97)*33+110)*33+100)*33+105)*33+116)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_freiflat ((((((((-33+102)*33+114)*33+101)*33+105)*33+102)*33+108)*33+97)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_streakc  (((((((-33+115)*33+116)*33+114)*33+101)*33+97)*33+107)*33+99)
-#define _FIXES_MODEL_BERNSTEIN_kart     ((((-33+107)*33+97)*33+114)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_mower    (((((-33+109)*33+111)*33+119)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_duneride ((((((((-33+100)*33+117)*33+110)*33+101)*33+114)*33+105)*33+100)*33+101)
-#define _FIXES_MODEL_BERNSTEIN_sweeper  (((((((-33+115)*33+119)*33+101)*33+101)*33+112)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_broadway ((((((((-33+98)*33+114)*33+111)*33+97)*33+100)*33+119)*33+97)*33+121)
-#define _FIXES_MODEL_BERNSTEIN_tornado  (((((((-33+116)*33+111)*33+114)*33+110)*33+97)*33+100)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_at400    (((((-33+97)*33+116)*33+'4')*33+'0')*33+'0')
-#define _FIXES_MODEL_BERNSTEIN_dft30    (((((-33+100)*33+102)*33+116)*33+'3')*33+'0')
-#define _FIXES_MODEL_BERNSTEIN_huntley  (((((((-33+104)*33+117)*33+110)*33+116)*33+108)*33+101)*33+121)
-#define _FIXES_MODEL_BERNSTEIN_stafford ((((((((-33+115)*33+116)*33+97)*33+102)*33+102)*33+111)*33+114)*33+100)
-#define _FIXES_MODEL_BERNSTEIN_bf400    (((((-33+98)*33+102)*33+'4')*33+'0')*33+'0')
-#define _FIXES_MODEL_BERNSTEIN_newsvan  (((((((-33+110)*33+101)*33+119)*33+115)*33+118)*33+97)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_tug      (((-33+116)*33+117)*33+103)
-#define _FIXES_MODEL_BERNSTEIN_petrotr  (((((((-33+112)*33+101)*33+116)*33+114)*33+111)*33+116)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_emperor  (((((((-33+101)*33+109)*33+112)*33+101)*33+114)*33+111)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_wayfarer ((((((((-33+119)*33+97)*33+121)*33+102)*33+97)*33+114)*33+101)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_euros    (((((-33+101)*33+117)*33+114)*33+111)*33+115)
-#define _FIXES_MODEL_BERNSTEIN_hotdog   ((((((-33+104)*33+111)*33+116)*33+100)*33+111)*33+103)
-#define _FIXES_MODEL_BERNSTEIN_club     ((((-33+99)*33+108)*33+117)*33+98)
-#define _FIXES_MODEL_BERNSTEIN_freibox  (((((((-33+102)*33+114)*33+101)*33+105)*33+98)*33+111)*33+120)
-#define _FIXES_MODEL_BERNSTEIN_artict3  (((((((-33+97)*33+114)*33+116)*33+105)*33+99)*33+116)*33+'3')
-#define _FIXES_MODEL_BERNSTEIN_androm   ((((((-33+97)*33+110)*33+100)*33+114)*33+111)*33+109)
-#define _FIXES_MODEL_BERNSTEIN_dodo     ((((-33+100)*33+111)*33+100)*33+111)
-#define _FIXES_MODEL_BERNSTEIN_rccam    (((((-33+114)*33+99)*33+99)*33+97)*33+109)
-#define _FIXES_MODEL_BERNSTEIN_launch   ((((((-33+108)*33+97)*33+117)*33+110)*33+99)*33+104)
-#define _FIXES_MODEL_BERNSTEIN_copcarla ((((((((-33+99)*33+111)*33+112)*33+99)*33+97)*33+114)*33+108)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_copcarsf ((((((((-33+99)*33+111)*33+112)*33+99)*33+97)*33+114)*33+115)*33+102)
-#define _FIXES_MODEL_BERNSTEIN_copcarvg ((((((((-33+99)*33+111)*33+112)*33+99)*33+97)*33+114)*33+118)*33+103)
-#define _FIXES_MODEL_BERNSTEIN_copcarru ((((((((-33+99)*33+111)*33+112)*33+99)*33+97)*33+114)*33+114)*33+117)
-#define _FIXES_MODEL_BERNSTEIN_picador  (((((((-33+112)*33+105)*33+99)*33+97)*33+100)*33+111)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_swatvan  (((((((-33+115)*33+119)*33+97)*33+116)*33+118)*33+97)*33+110)
-#define _FIXES_MODEL_BERNSTEIN_alpha    (((((-33+97)*33+108)*33+112)*33+104)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_phoenix  (((((((-33+112)*33+104)*33+111)*33+101)*33+110)*33+105)*33+120)
-#define _FIXES_MODEL_BERNSTEIN_glenshit ((((((((-33+103)*33+108)*33+101)*33+110)*33+115)*33+104)*33+105)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_sadlshit ((((((((-33+115)*33+97)*33+100)*33+108)*33+115)*33+104)*33+105)*33+116)
-#define _FIXES_MODEL_BERNSTEIN_bagboxa  (((((((-33+98)*33+97)*33+103)*33+98)*33+111)*33+120)*33+97)
-#define _FIXES_MODEL_BERNSTEIN_bagboxb  (((((((-33+98)*33+97)*33+103)*33+98)*33+111)*33+120)*33+98)
-#define _FIXES_MODEL_BERNSTEIN_tugstair ((((((((-33+116)*33+117)*33+103)*33+115)*33+116)*33+97)*33+105)*33+114)
-#define _FIXES_MODEL_BERNSTEIN_boxburg  (((((((-33+98)*33+111)*33+120)*33+98)*33+117)*33+114)*33+103)
-#define _FIXES_MODEL_BERNSTEIN_farmtr1  (((((((-33+102)*33+97)*33+114)*33+109)*33+116)*33+114)*33+'1')
-#define _FIXES_MODEL_BERNSTEIN_utiltr1  (((((((-33+117)*33+116)*33+105)*33+108)*33+116)*33+114)*33+'1')
+#define _FIXES_MODEL_BERNSTEIN_landstal (0x6A047492)
+#define _FIXES_MODEL_BERNSTEIN_bravura  (0x9C938312)
+#define _FIXES_MODEL_BERNSTEIN_buffalo  (0xA3E45B9E)
+#define _FIXES_MODEL_BERNSTEIN_linerun  (0x8A3D54BC)
+#define _FIXES_MODEL_BERNSTEIN_peren    (0x05CEE479)
+#define _FIXES_MODEL_BERNSTEIN_sentinel (0x14D62D01)
+#define _FIXES_MODEL_BERNSTEIN_dumper   (0xA4CC844C)
+#define _FIXES_MODEL_BERNSTEIN_firetruk (0x51B29ECB)
+#define _FIXES_MODEL_BERNSTEIN_trash    (0x061E20E1)
+#define _FIXES_MODEL_BERNSTEIN_stretch  (0xBF06251C)
+#define _FIXES_MODEL_BERNSTEIN_manana   (0xB861558B)
+#define _FIXES_MODEL_BERNSTEIN_infernus (0x7B5C3BE9)
+#define _FIXES_MODEL_BERNSTEIN_voodoo   (0xCE5DB395)
+#define _FIXES_MODEL_BERNSTEIN_pony     (0x002D38C5)
+#define _FIXES_MODEL_BERNSTEIN_mule     (0x002BACD2)
+#define _FIXES_MODEL_BERNSTEIN_cheetah  (0xD27932B1)
+#define _FIXES_MODEL_BERNSTEIN_ambulan  (0x4400DEDF)
+#define _FIXES_MODEL_BERNSTEIN_leviathn (0xB0E7493A)
+#define _FIXES_MODEL_BERNSTEIN_moonbeam (0x8EF6276D)
+#define _FIXES_MODEL_BERNSTEIN_esperant (0x628B7641)
+#define _FIXES_MODEL_BERNSTEIN_taxi     (0x002F2FF5)
+#define _FIXES_MODEL_BERNSTEIN_washing  (0xC6B0A470)
+#define _FIXES_MODEL_BERNSTEIN_bobcat   (0x9FAF600A)
+#define _FIXES_MODEL_BERNSTEIN_mrwhoop  (0xECDA734B)
+#define _FIXES_MODEL_BERNSTEIN_bfinject (0xA55B4E84)
+#define _FIXES_MODEL_BERNSTEIN_hunter   (0xAE21C435)
+#define _FIXES_MODEL_BERNSTEIN_premier  (0xD2861393)
+#define _FIXES_MODEL_BERNSTEIN_enforcer (0xCB09AC93)
+#define _FIXES_MODEL_BERNSTEIN_securica (0xFB44606E)
+#define _FIXES_MODEL_BERNSTEIN_banshee  (0x75D530D5)
+#define _FIXES_MODEL_BERNSTEIN_predator (0x22A18640)
+#define _FIXES_MODEL_BERNSTEIN_bus      (0x00012409)
+#define _FIXES_MODEL_BERNSTEIN_rhino    (0x05F4957F)
+#define _FIXES_MODEL_BERNSTEIN_barracks (0x39B9F788)
+#define _FIXES_MODEL_BERNSTEIN_hotknife (0xFD2726D7)
+#define _FIXES_MODEL_BERNSTEIN_artict1  (0x50E9AA77)
+#define _FIXES_MODEL_BERNSTEIN_previon  (0xD28B0442)
+#define _FIXES_MODEL_BERNSTEIN_coach    (0x04E8D91D)
+#define _FIXES_MODEL_BERNSTEIN_cabbie   (0xA1072E55)
+#define _FIXES_MODEL_BERNSTEIN_stallion (0x789D7945)
+#define _FIXES_MODEL_BERNSTEIN_rumpo    (0x05FBC7B2)
+#define _FIXES_MODEL_BERNSTEIN_rcbandit (0x714CB966)
+#define _FIXES_MODEL_BERNSTEIN_romero   (0xC507FCF3)
+#define _FIXES_MODEL_BERNSTEIN_packer   (0xBF5AF0B5)
+#define _FIXES_MODEL_BERNSTEIN_monster  (0xE53E3907)
+#define _FIXES_MODEL_BERNSTEIN_admiral  (0x2FC303B9)
+#define _FIXES_MODEL_BERNSTEIN_squalo   (0xC785A7D4)
+#define _FIXES_MODEL_BERNSTEIN_seaspar  (0x9ADCBF2E)
+#define _FIXES_MODEL_BERNSTEIN_pizzaboy (0xA05F8737)
+#define _FIXES_MODEL_BERNSTEIN_tram     (0x002F7553)
+#define _FIXES_MODEL_BERNSTEIN_artict2  (0x50E9AA78)
+#define _FIXES_MODEL_BERNSTEIN_turismo  (0x0E57B912)
+#define _FIXES_MODEL_BERNSTEIN_speeder  (0xB4C60047)
+#define _FIXES_MODEL_BERNSTEIN_reefer   (0xC44EA778)
+#define _FIXES_MODEL_BERNSTEIN_tropic   (0xC9E9DE10)
+#define _FIXES_MODEL_BERNSTEIN_flatbed  (0xC27C1711)
+#define _FIXES_MODEL_BERNSTEIN_yankee   (0xD45F667C)
+#define _FIXES_MODEL_BERNSTEIN_caddy    (0x04E138C4)
+#define _FIXES_MODEL_BERNSTEIN_solair   (0xC75C8709)
+#define _FIXES_MODEL_BERNSTEIN_topfun   (0xC9B3F7FB)
+#define _FIXES_MODEL_BERNSTEIN_skimmer  (0xA9692077)
+#define _FIXES_MODEL_BERNSTEIN_pcj600   (0xBF820FD2)
+#define _FIXES_MODEL_BERNSTEIN_faggio   (0xA8097B6C)
+#define _FIXES_MODEL_BERNSTEIN_freeway  (0xD0BB8C12)
+#define _FIXES_MODEL_BERNSTEIN_rcbaron  (0x49407526)
+#define _FIXES_MODEL_BERNSTEIN_rcraider (0x969C850B)
+#define _FIXES_MODEL_BERNSTEIN_glendale (0x0729E6BB)
+#define _FIXES_MODEL_BERNSTEIN_oceanic  (0x6287F691)
+#define _FIXES_MODEL_BERNSTEIN_sanchez  (0x926A73AB)
+#define _FIXES_MODEL_BERNSTEIN_sparrow  (0xB484FC0D)
+#define _FIXES_MODEL_BERNSTEIN_patriot  (0xABF08FA2)
+#define _FIXES_MODEL_BERNSTEIN_quad     (0x002DDCEA)
+#define _FIXES_MODEL_BERNSTEIN_coastg   (0xA20442C0)
+#define _FIXES_MODEL_BERNSTEIN_dinghy   (0xA3F3C4C2)
+#define _FIXES_MODEL_BERNSTEIN_hermes   (0xAD024FE3)
+#define _FIXES_MODEL_BERNSTEIN_sabre    (0x0602BA0C)
+#define _FIXES_MODEL_BERNSTEIN_rustler  (0x747B4170)
+#define _FIXES_MODEL_BERNSTEIN_zr350    (0x0689E803)
+#define _FIXES_MODEL_BERNSTEIN_walton   (0xCFB42414)
+#define _FIXES_MODEL_BERNSTEIN_regina   (0xC44FCE15)
+#define _FIXES_MODEL_BERNSTEIN_comet    (0x04E90C77)
+#define _FIXES_MODEL_BERNSTEIN_bmx      (0x00012306)
+#define _FIXES_MODEL_BERNSTEIN_burrito  (0xA4C43946)
+#define _FIXES_MODEL_BERNSTEIN_camper   (0xA10D7197)
+#define _FIXES_MODEL_BERNSTEIN_marquis  (0xC4DD4E41)
+#define _FIXES_MODEL_BERNSTEIN_baggage  (0x754FD33D)
+#define _FIXES_MODEL_BERNSTEIN_dozer    (0x04FB5C43)
+#define _FIXES_MODEL_BERNSTEIN_maverick (0x6900EC11)
+#define _FIXES_MODEL_BERNSTEIN_vcnmav   (0xCD8425AA)
+#define _FIXES_MODEL_BERNSTEIN_rancher  (0x457036E2)
+#define _FIXES_MODEL_BERNSTEIN_fbiranch (0x22BD47DC)
+#define _FIXES_MODEL_BERNSTEIN_virgo    (0x063DA946)
+#define _FIXES_MODEL_BERNSTEIN_greenwoo (0xD46A5085)
+#define _FIXES_MODEL_BERNSTEIN_jetmax   (0xB1ADB968)
+#define _FIXES_MODEL_BERNSTEIN_hotring  (0x64C6E23A)
+#define _FIXES_MODEL_BERNSTEIN_sandking (0xDFCCB68E)
+#define _FIXES_MODEL_BERNSTEIN_blistac  (0x8F23A7C1)
+#define _FIXES_MODEL_BERNSTEIN_polmav   (0xC05D3F2E)
+#define _FIXES_MODEL_BERNSTEIN_boxville (0x7DB52944)
+#define _FIXES_MODEL_BERNSTEIN_benson   (0x9F014564)
+#define _FIXES_MODEL_BERNSTEIN_mesa     (0x002B69A5)
+#define _FIXES_MODEL_BERNSTEIN_rcgoblin (0x7DED690F)
+#define _FIXES_MODEL_BERNSTEIN_hotrina  (0x64C6E234)
+#define _FIXES_MODEL_BERNSTEIN_hotrinb  (0x64C6E235)
+#define _FIXES_MODEL_BERNSTEIN_bloodra  (0x8F8DC762)
+#define _FIXES_MODEL_BERNSTEIN_bloodrb  (0x8F8DC763)
+#define _FIXES_MODEL_BERNSTEIN_rnchlure (0xC2E05A82)
+#define _FIXES_MODEL_BERNSTEIN_supergt  (0xC13714C9)
+#define _FIXES_MODEL_BERNSTEIN_elegant  (0x75C3185F)
+#define _FIXES_MODEL_BERNSTEIN_journey  (0xFECD886B)
+#define _FIXES_MODEL_BERNSTEIN_bike     (0x0025717A)
+#define _FIXES_MODEL_BERNSTEIN_mtbike   (0xB9B2B43B)
+#define _FIXES_MODEL_BERNSTEIN_beagle   (0x9EF9F0FF)
+#define _FIXES_MODEL_BERNSTEIN_cropdust (0x3B781D13)
+#define _FIXES_MODEL_BERNSTEIN_stunt    (0x060D759D)
+#define _FIXES_MODEL_BERNSTEIN_petro    (0x05CEEEA9)
+#define _FIXES_MODEL_BERNSTEIN_rdtrain  (0x4CE46033)
+#define _FIXES_MODEL_BERNSTEIN_nebula   (0xBAF8A076)
+#define _FIXES_MODEL_BERNSTEIN_majestic (0x4D03C06F)
+#define _FIXES_MODEL_BERNSTEIN_buccanee (0x193A1395)
+#define _FIXES_MODEL_BERNSTEIN_shamal   (0xC6D80555)
+#define _FIXES_MODEL_BERNSTEIN_hydra    (0x0548DE17)
+#define _FIXES_MODEL_BERNSTEIN_fcr900   (0xA832E953)
+#define _FIXES_MODEL_BERNSTEIN_nrg500   (0xBBE584BB)
+#define _FIXES_MODEL_BERNSTEIN_copbike  (0xE39289FC)
+#define _FIXES_MODEL_BERNSTEIN_cement   (0xA155A5FB)
+#define _FIXES_MODEL_BERNSTEIN_towtruck (0x17E1DC02)
+#define _FIXES_MODEL_BERNSTEIN_fortune  (0xCAAF8382)
+#define _FIXES_MODEL_BERNSTEIN_cadrona  (0xC21A0B17)
+#define _FIXES_MODEL_BERNSTEIN_fbitruck (0x22EAE919)
+#define _FIXES_MODEL_BERNSTEIN_willard  (0xD8DD4DEE)
+#define _FIXES_MODEL_BERNSTEIN_forklift (0x1FF81320)
+#define _FIXES_MODEL_BERNSTEIN_tractor  (0x062158DE)
+#define _FIXES_MODEL_BERNSTEIN_combine  (0xE35C40DC)
+#define _FIXES_MODEL_BERNSTEIN_feltzer  (0xB2EF6E5B)
+#define _FIXES_MODEL_BERNSTEIN_remingtn (0x257AC403)
+#define _FIXES_MODEL_BERNSTEIN_slamvan  (0xAB2DAAD1)
+#define _FIXES_MODEL_BERNSTEIN_blade    (0x04D51B97)
+#define _FIXES_MODEL_BERNSTEIN_freight  (0xD0BD7A68)
+#define _FIXES_MODEL_BERNSTEIN_streak   (0xC7BA5BC9)
+#define _FIXES_MODEL_BERNSTEIN_vortex   (0xCE5F9B87)
+#define _FIXES_MODEL_BERNSTEIN_vincent  (0x8C026356)
+#define _FIXES_MODEL_BERNSTEIN_bullet   (0xA02195A7)
+#define _FIXES_MODEL_BERNSTEIN_clover   (0xA1D5B16A)
+#define _FIXES_MODEL_BERNSTEIN_sadler   (0xC65AFB3A)
+#define _FIXES_MODEL_BERNSTEIN_firela   (0xA8A03F72)
+#define _FIXES_MODEL_BERNSTEIN_hustler  (0x72B4E1E6)
+#define _FIXES_MODEL_BERNSTEIN_intruder (0x9CF12BCC)
+#define _FIXES_MODEL_BERNSTEIN_primo    (0x05D5E026)
+#define _FIXES_MODEL_BERNSTEIN_cargobob (0x253C685E)
+#define _FIXES_MODEL_BERNSTEIN_tampa    (0x06150112)
+#define _FIXES_MODEL_BERNSTEIN_sunrise  (0xC119DFE8)
+#define _FIXES_MODEL_BERNSTEIN_merit    (0x05989B80)
+#define _FIXES_MODEL_BERNSTEIN_utility  (0x585B6C33)
+#define _FIXES_MODEL_BERNSTEIN_nevada   (0xBB0341EE)
+#define _FIXES_MODEL_BERNSTEIN_yosemite (0xAAC4038E)
+#define _FIXES_MODEL_BERNSTEIN_windsor  (0xD8FD6825)
+#define _FIXES_MODEL_BERNSTEIN_monstera (0x8D055A48)
+#define _FIXES_MODEL_BERNSTEIN_monsterb (0x8D055A49)
+#define _FIXES_MODEL_BERNSTEIN_uranus   (0xCC37527D)
+#define _FIXES_MODEL_BERNSTEIN_jester   (0xB1AD4B4C)
+#define _FIXES_MODEL_BERNSTEIN_sultan   (0xC7C969D6)
+#define _FIXES_MODEL_BERNSTEIN_stratum  (0xBF03F5EF)
+#define _FIXES_MODEL_BERNSTEIN_elegy    (0x050B7695)
+#define _FIXES_MODEL_BERNSTEIN_raindanc (0xE89212DF)
+#define _FIXES_MODEL_BERNSTEIN_rctiger  (0x4A8A612F)
+#define _FIXES_MODEL_BERNSTEIN_flash    (0x051D7F8D)
+#define _FIXES_MODEL_BERNSTEIN_tahoma   (0xC8B26319)
+#define _FIXES_MODEL_BERNSTEIN_savanna  (0x92FA3987)
+#define _FIXES_MODEL_BERNSTEIN_bandito  (0x75CCFD60)
+#define _FIXES_MODEL_BERNSTEIN_freiflat (0xE86C4A0C)
+#define _FIXES_MODEL_BERNSTEIN_streakc  (0xBF05D54C)
+#define _FIXES_MODEL_BERNSTEIN_kart     (0x002A3FD1)
+#define _FIXES_MODEL_BERNSTEIN_mower    (0x059E2C09)
+#define _FIXES_MODEL_BERNSTEIN_duneride (0x0B93EA4F)
+#define _FIXES_MODEL_BERNSTEIN_sweeper  (0xC51A4FBA)
+#define _FIXES_MODEL_BERNSTEIN_broadway (0x4E26DED8)
+#define _FIXES_MODEL_BERNSTEIN_tornado  (0x005B3576)
+#define _FIXES_MODEL_BERNSTEIN_at400    (0x04C69FC8)
+#define _FIXES_MODEL_BERNSTEIN_dft30    (0x04F64CA0)
+#define _FIXES_MODEL_BERNSTEIN_huntley  (0x725A6768)
+#define _FIXES_MODEL_BERNSTEIN_stafford (0x782DB5D8)
+#define _FIXES_MODEL_BERNSTEIN_bf400    (0x04D10AFB)
+#define _FIXES_MODEL_BERNSTEIN_newsvan  (0x1B87C401)
+#define _FIXES_MODEL_BERNSTEIN_tug      (0x0001708F)
+#define _FIXES_MODEL_BERNSTEIN_petrotr  (0xB5454C4F)
+#define _FIXES_MODEL_BERNSTEIN_emperor  (0x78DE7E39)
+#define _FIXES_MODEL_BERNSTEIN_wayfarer (0xAA9BA360)
+#define _FIXES_MODEL_BERNSTEIN_euros    (0x05109E4D)
+#define _FIXES_MODEL_BERNSTEIN_hotdog   (0xADB838A4)
+#define _FIXES_MODEL_BERNSTEIN_club     (0x00260BE5)
+#define _FIXES_MODEL_BERNSTEIN_freibox  (0xD0BD660E)
+#define _FIXES_MODEL_BERNSTEIN_artict3  (0x50E9AA79)
+#define _FIXES_MODEL_BERNSTEIN_androm   (0x9D497940)
+#define _FIXES_MODEL_BERNSTEIN_dodo     (0x0026A2E5)
+#define _FIXES_MODEL_BERNSTEIN_rccam    (0x05F1BC65)
+#define _FIXES_MODEL_BERNSTEIN_launch   (0xB610397A)
+#define _FIXES_MODEL_BERNSTEIN_copcarla (0x55F19E04)
+#define _FIXES_MODEL_BERNSTEIN_copcarsf (0x55F19EF0)
+#define _FIXES_MODEL_BERNSTEIN_copcarvg (0x55F19F54)
+#define _FIXES_MODEL_BERNSTEIN_copcarru (0x55F19EDE)
+#define _FIXES_MODEL_BERNSTEIN_picador  (0xBD5CCC61)
+#define _FIXES_MODEL_BERNSTEIN_swatvan  (0xC4DA4063)
+#define _FIXES_MODEL_BERNSTEIN_alpha    (0x04C34365)
+#define _FIXES_MODEL_BERNSTEIN_phoenix  (0xBBE3251A)
+#define _FIXES_MODEL_BERNSTEIN_glenshit (0x07323DDD)
+#define _FIXES_MODEL_BERNSTEIN_sadlshit (0xC90E427B)
+#define _FIXES_MODEL_BERNSTEIN_bagboxa  (0x754D5313)
+#define _FIXES_MODEL_BERNSTEIN_bagboxb  (0x754D5314)
+#define _FIXES_MODEL_BERNSTEIN_tugstair (0xC05B6A72)
+#define _FIXES_MODEL_BERNSTEIN_boxburg  (0x97294538)
+#define _FIXES_MODEL_BERNSTEIN_farmtr1  (0xAA03701C)
+#define _FIXES_MODEL_BERNSTEIN_utiltr1  (0x585B9A74)
 
 /*
  * _FIXES_DetermineOS()
@@ -9862,7 +9875,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #endif
 
 /*
- * _FIXES_Bernstein()
+ * _FIXES_CarcolsBernstein()
  *
  * Convert a string to a number (hash it).
  *
@@ -9871,13 +9884,15 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
  */
 
 #if FIX_ChangeVehicleColour
-	static stock _FIXES_Bernstein(const name[])
+	static stock _FIXES_CarcolsBernstein(const name[])
 	{
 		new
 			i = -1,
 			ch,
 			hash = -1;
-		while ((ch = name[++i]))
+		// In carcols.dat the vehicle names end at ",".  That makes this code
+		// very specific to one use-case.
+		while ((ch = name[++i]) >= '0')
 		{
 			hash = hash * 33 + ch;
 		}
@@ -9899,224 +9914,253 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	static stock _FIXES_GetVehicleModelFromName(const name[])
 	{
 		// This is actually probably quite a generically useful function.
-		// Maybe, since it is written anyway, it should be exposed.
-		switch (_FIXES_Bernstein(name))
+		// Maybe, since it is written anyway, it should be exposed (but not
+		// while it returns IDs - 400 to be relative to 0).
+		switch (_FIXES_CarcolsBernstein(name))
 		{
-		case _FIXES_MODEL_BERNSTEIN_landstal: return 400;
-		case _FIXES_MODEL_BERNSTEIN_bravura : return 401;
-		case _FIXES_MODEL_BERNSTEIN_buffalo : return 402;
-		case _FIXES_MODEL_BERNSTEIN_linerun : return 403;
-		case _FIXES_MODEL_BERNSTEIN_peren   : return 404;
-		case _FIXES_MODEL_BERNSTEIN_sentinel: return 405;
-		case _FIXES_MODEL_BERNSTEIN_dumper  : return 406;
-		case _FIXES_MODEL_BERNSTEIN_firetruk: return 407;
-		case _FIXES_MODEL_BERNSTEIN_trash   : return 408;
-		case _FIXES_MODEL_BERNSTEIN_stretch : return 409;
-		case _FIXES_MODEL_BERNSTEIN_manana  : return 410;
-		case _FIXES_MODEL_BERNSTEIN_infernus: return 411;
-		case _FIXES_MODEL_BERNSTEIN_voodoo  : return 412;
-		case _FIXES_MODEL_BERNSTEIN_pony    : return 413;
-		case _FIXES_MODEL_BERNSTEIN_mule    : return 414;
-		case _FIXES_MODEL_BERNSTEIN_cheetah : return 415;
-		case _FIXES_MODEL_BERNSTEIN_ambulan : return 416;
-		case _FIXES_MODEL_BERNSTEIN_leviathn: return 417;
-		case _FIXES_MODEL_BERNSTEIN_moonbeam: return 418;
-		case _FIXES_MODEL_BERNSTEIN_esperant: return 419;
-		case _FIXES_MODEL_BERNSTEIN_taxi    : return 420;
-		case _FIXES_MODEL_BERNSTEIN_washing : return 421;
-		case _FIXES_MODEL_BERNSTEIN_bobcat  : return 422;
-		case _FIXES_MODEL_BERNSTEIN_mrwhoop : return 423;
-		case _FIXES_MODEL_BERNSTEIN_bfinject: return 424;
-		case _FIXES_MODEL_BERNSTEIN_hunter  : return 425;
-		case _FIXES_MODEL_BERNSTEIN_premier : return 426;
-		case _FIXES_MODEL_BERNSTEIN_enforcer: return 427;
-		case _FIXES_MODEL_BERNSTEIN_securica: return 428;
-		case _FIXES_MODEL_BERNSTEIN_banshee : return 429;
-		case _FIXES_MODEL_BERNSTEIN_predator: return 430;
-		case _FIXES_MODEL_BERNSTEIN_bus     : return 431;
-		case _FIXES_MODEL_BERNSTEIN_rhino   : return 432;
-		case _FIXES_MODEL_BERNSTEIN_barracks: return 433;
-		case _FIXES_MODEL_BERNSTEIN_hotknife: return 434;
-		case _FIXES_MODEL_BERNSTEIN_artict1 : return 435;
-		case _FIXES_MODEL_BERNSTEIN_previon : return 436;
-		case _FIXES_MODEL_BERNSTEIN_coach   : return 437;
-		case _FIXES_MODEL_BERNSTEIN_cabbie  : return 438;
-		case _FIXES_MODEL_BERNSTEIN_stallion: return 439;
-		case _FIXES_MODEL_BERNSTEIN_rumpo   : return 440;
-		case _FIXES_MODEL_BERNSTEIN_rcbandit: return 441;
-		case _FIXES_MODEL_BERNSTEIN_romero  : return 442;
-		case _FIXES_MODEL_BERNSTEIN_packer  : return 443;
-		case _FIXES_MODEL_BERNSTEIN_monster : return 444;
-		case _FIXES_MODEL_BERNSTEIN_admiral : return 445;
-		case _FIXES_MODEL_BERNSTEIN_squalo  : return 446;
-		case _FIXES_MODEL_BERNSTEIN_seaspar : return 447;
-		case _FIXES_MODEL_BERNSTEIN_pizzaboy: return 448;
-		case _FIXES_MODEL_BERNSTEIN_tram    : return 449;
-		case _FIXES_MODEL_BERNSTEIN_artict2 : return 450;
-		case _FIXES_MODEL_BERNSTEIN_turismo : return 451;
-		case _FIXES_MODEL_BERNSTEIN_speeder : return 452;
-		case _FIXES_MODEL_BERNSTEIN_reefer  : return 453;
-		case _FIXES_MODEL_BERNSTEIN_tropic  : return 454;
-		case _FIXES_MODEL_BERNSTEIN_flatbed : return 455;
-		case _FIXES_MODEL_BERNSTEIN_yankee  : return 456;
-		case _FIXES_MODEL_BERNSTEIN_caddy   : return 457;
-		case _FIXES_MODEL_BERNSTEIN_solair  : return 458;
-		case _FIXES_MODEL_BERNSTEIN_topfun  : return 459;
-		case _FIXES_MODEL_BERNSTEIN_skimmer : return 460;
-		case _FIXES_MODEL_BERNSTEIN_pcj600  : return 461;
-		case _FIXES_MODEL_BERNSTEIN_faggio  : return 462;
-		case _FIXES_MODEL_BERNSTEIN_freeway : return 463;
-		case _FIXES_MODEL_BERNSTEIN_rcbaron : return 464;
-		case _FIXES_MODEL_BERNSTEIN_rcraider: return 465;
-		case _FIXES_MODEL_BERNSTEIN_glendale: return 466;
-		case _FIXES_MODEL_BERNSTEIN_oceanic : return 467;
-		case _FIXES_MODEL_BERNSTEIN_sanchez : return 468;
-		case _FIXES_MODEL_BERNSTEIN_sparrow : return 469;
-		case _FIXES_MODEL_BERNSTEIN_patriot : return 470;
-		case _FIXES_MODEL_BERNSTEIN_quad    : return 471;
-		case _FIXES_MODEL_BERNSTEIN_coastg  : return 472;
-		case _FIXES_MODEL_BERNSTEIN_dinghy  : return 473;
-		case _FIXES_MODEL_BERNSTEIN_hermes  : return 474;
-		case _FIXES_MODEL_BERNSTEIN_sabre   : return 475;
-		case _FIXES_MODEL_BERNSTEIN_rustler : return 476;
-		case _FIXES_MODEL_BERNSTEIN_zr350   : return 477;
-		case _FIXES_MODEL_BERNSTEIN_walton  : return 478;
-		case _FIXES_MODEL_BERNSTEIN_regina  : return 479;
-		case _FIXES_MODEL_BERNSTEIN_comet   : return 480;
-		case _FIXES_MODEL_BERNSTEIN_bmx     : return 481;
-		case _FIXES_MODEL_BERNSTEIN_burrito : return 482;
-		case _FIXES_MODEL_BERNSTEIN_camper  : return 483;
-		case _FIXES_MODEL_BERNSTEIN_marquis : return 484;
-		case _FIXES_MODEL_BERNSTEIN_baggage : return 485;
-		case _FIXES_MODEL_BERNSTEIN_dozer   : return 486;
-		case _FIXES_MODEL_BERNSTEIN_maverick: return 487;
-		case _FIXES_MODEL_BERNSTEIN_vcnmav  : return 488;
-		case _FIXES_MODEL_BERNSTEIN_rancher : return 489;
-		case _FIXES_MODEL_BERNSTEIN_fbiranch: return 490;
-		case _FIXES_MODEL_BERNSTEIN_virgo   : return 491;
-		case _FIXES_MODEL_BERNSTEIN_greenwoo: return 492;
-		case _FIXES_MODEL_BERNSTEIN_jetmax  : return 493;
-		case _FIXES_MODEL_BERNSTEIN_hotring : return 494;
-		case _FIXES_MODEL_BERNSTEIN_sandking: return 495;
-		case _FIXES_MODEL_BERNSTEIN_blistac : return 496;
-		case _FIXES_MODEL_BERNSTEIN_polmav  : return 497;
-		case _FIXES_MODEL_BERNSTEIN_boxville: return 498;
-		case _FIXES_MODEL_BERNSTEIN_benson  : return 499;
-		case _FIXES_MODEL_BERNSTEIN_mesa    : return 500;
-		case _FIXES_MODEL_BERNSTEIN_rcgoblin: return 501;
-		case _FIXES_MODEL_BERNSTEIN_hotrina : return 502;
-		case _FIXES_MODEL_BERNSTEIN_hotrinb : return 503;
-		case _FIXES_MODEL_BERNSTEIN_bloodra : return 504;
-		case _FIXES_MODEL_BERNSTEIN_bloodrb : return 504;
-		case _FIXES_MODEL_BERNSTEIN_rnchlure: return 505;
-		case _FIXES_MODEL_BERNSTEIN_supergt : return 506;
-		case _FIXES_MODEL_BERNSTEIN_elegant : return 507;
-		case _FIXES_MODEL_BERNSTEIN_journey : return 508;
-		case _FIXES_MODEL_BERNSTEIN_bike    : return 509;
-		case _FIXES_MODEL_BERNSTEIN_mtbike  : return 510;
-		case _FIXES_MODEL_BERNSTEIN_beagle  : return 511;
-		case _FIXES_MODEL_BERNSTEIN_cropdust: return 512;
-		case _FIXES_MODEL_BERNSTEIN_stunt   : return 513;
-		case _FIXES_MODEL_BERNSTEIN_petro   : return 514;
-		case _FIXES_MODEL_BERNSTEIN_rdtrain : return 515;
-		case _FIXES_MODEL_BERNSTEIN_nebula  : return 516;
-		case _FIXES_MODEL_BERNSTEIN_majestic: return 517;
-		case _FIXES_MODEL_BERNSTEIN_buccanee: return 518;
-		case _FIXES_MODEL_BERNSTEIN_shamal  : return 519;
-		case _FIXES_MODEL_BERNSTEIN_hydra   : return 520;
-		case _FIXES_MODEL_BERNSTEIN_fcr900  : return 521;
-		case _FIXES_MODEL_BERNSTEIN_nrg500  : return 522;
-		case _FIXES_MODEL_BERNSTEIN_copbike : return 523;
-		case _FIXES_MODEL_BERNSTEIN_cement  : return 524;
-		case _FIXES_MODEL_BERNSTEIN_towtruck: return 525;
-		case _FIXES_MODEL_BERNSTEIN_fortune : return 526;
-		case _FIXES_MODEL_BERNSTEIN_cadrona : return 527;
-		case _FIXES_MODEL_BERNSTEIN_fbitruck: return 528;
-		case _FIXES_MODEL_BERNSTEIN_willard : return 529;
-		case _FIXES_MODEL_BERNSTEIN_forklift: return 530;
-		case _FIXES_MODEL_BERNSTEIN_tractor : return 531;
-		case _FIXES_MODEL_BERNSTEIN_combine : return 532;
-		case _FIXES_MODEL_BERNSTEIN_feltzer : return 533;
-		case _FIXES_MODEL_BERNSTEIN_remingtn: return 534;
-		case _FIXES_MODEL_BERNSTEIN_slamvan : return 535;
-		case _FIXES_MODEL_BERNSTEIN_blade   : return 536;
-		case _FIXES_MODEL_BERNSTEIN_freight : return 537;
-		case _FIXES_MODEL_BERNSTEIN_streak  : return 538;
-		case _FIXES_MODEL_BERNSTEIN_vortex  : return 539;
-		case _FIXES_MODEL_BERNSTEIN_vincent : return 540;
-		case _FIXES_MODEL_BERNSTEIN_bullet  : return 541;
-		case _FIXES_MODEL_BERNSTEIN_clover  : return 542;
-		case _FIXES_MODEL_BERNSTEIN_sadler  : return 543;
-		case _FIXES_MODEL_BERNSTEIN_firela  : return 544;
-		case _FIXES_MODEL_BERNSTEIN_hustler : return 545;
-		case _FIXES_MODEL_BERNSTEIN_intruder: return 546;
-		case _FIXES_MODEL_BERNSTEIN_primo   : return 547;
-		case _FIXES_MODEL_BERNSTEIN_cargobob: return 548;
-		case _FIXES_MODEL_BERNSTEIN_tampa   : return 549;
-		case _FIXES_MODEL_BERNSTEIN_sunrise : return 550;
-		case _FIXES_MODEL_BERNSTEIN_merit   : return 551;
-		case _FIXES_MODEL_BERNSTEIN_utility : return 552;
-		case _FIXES_MODEL_BERNSTEIN_nevada  : return 553;
-		case _FIXES_MODEL_BERNSTEIN_yosemite: return 554;
-		case _FIXES_MODEL_BERNSTEIN_windsor : return 555;
-		case _FIXES_MODEL_BERNSTEIN_monstera: return 556;
-		case _FIXES_MODEL_BERNSTEIN_monsterb: return 557;
-		case _FIXES_MODEL_BERNSTEIN_uranus  : return 558;
-		case _FIXES_MODEL_BERNSTEIN_jester  : return 559;
-		case _FIXES_MODEL_BERNSTEIN_sultan  : return 560;
-		case _FIXES_MODEL_BERNSTEIN_stratum : return 561;
-		case _FIXES_MODEL_BERNSTEIN_elegy   : return 562;
-		case _FIXES_MODEL_BERNSTEIN_raindanc: return 563;
-		case _FIXES_MODEL_BERNSTEIN_rctiger : return 564;
-		case _FIXES_MODEL_BERNSTEIN_flash   : return 565;
-		case _FIXES_MODEL_BERNSTEIN_tahoma  : return 566;
-		case _FIXES_MODEL_BERNSTEIN_savanna : return 567;
-		case _FIXES_MODEL_BERNSTEIN_bandito : return 568;
-		case _FIXES_MODEL_BERNSTEIN_freiflat: return 569;
-		case _FIXES_MODEL_BERNSTEIN_streakc : return 570;
-		case _FIXES_MODEL_BERNSTEIN_kart    : return 571;
-		case _FIXES_MODEL_BERNSTEIN_mower   : return 572;
-		case _FIXES_MODEL_BERNSTEIN_duneride: return 573;
-		case _FIXES_MODEL_BERNSTEIN_sweeper : return 574;
-		case _FIXES_MODEL_BERNSTEIN_broadway: return 575;
-		case _FIXES_MODEL_BERNSTEIN_tornado : return 576;
-		case _FIXES_MODEL_BERNSTEIN_at400   : return 577;
-		case _FIXES_MODEL_BERNSTEIN_dft30   : return 578;
-		case _FIXES_MODEL_BERNSTEIN_huntley : return 579;
-		case _FIXES_MODEL_BERNSTEIN_stafford: return 580;
-		case _FIXES_MODEL_BERNSTEIN_bf400   : return 581;
-		case _FIXES_MODEL_BERNSTEIN_newsvan : return 582;
-		case _FIXES_MODEL_BERNSTEIN_tug     : return 583;
-		case _FIXES_MODEL_BERNSTEIN_petrotr : return 584;
-		case _FIXES_MODEL_BERNSTEIN_emperor : return 585;
-		case _FIXES_MODEL_BERNSTEIN_wayfarer: return 586;
-		case _FIXES_MODEL_BERNSTEIN_euros   : return 587;
-		case _FIXES_MODEL_BERNSTEIN_hotdog  : return 588;
-		case _FIXES_MODEL_BERNSTEIN_club    : return 589;
-		case _FIXES_MODEL_BERNSTEIN_freibox : return 590;
-		case _FIXES_MODEL_BERNSTEIN_artict3 : return 591;
-		case _FIXES_MODEL_BERNSTEIN_androm  : return 592;
-		case _FIXES_MODEL_BERNSTEIN_dodo    : return 593;
-		case _FIXES_MODEL_BERNSTEIN_rccam   : return 594;
-		case _FIXES_MODEL_BERNSTEIN_launch  : return 595;
-		case _FIXES_MODEL_BERNSTEIN_copcarla: return 596;
-		case _FIXES_MODEL_BERNSTEIN_copcarsf: return 597;
-		case _FIXES_MODEL_BERNSTEIN_copcarvg: return 598;
-		case _FIXES_MODEL_BERNSTEIN_copcarru: return 599;
-		case _FIXES_MODEL_BERNSTEIN_picador : return 600;
-		case _FIXES_MODEL_BERNSTEIN_swatvan : return 601;
-		case _FIXES_MODEL_BERNSTEIN_alpha   : return 602;
-		case _FIXES_MODEL_BERNSTEIN_phoenix : return 603;
-		case _FIXES_MODEL_BERNSTEIN_glenshit: return 604;
-		case _FIXES_MODEL_BERNSTEIN_sadlshit: return 605;
-		case _FIXES_MODEL_BERNSTEIN_bagboxa : return 606;
-		case _FIXES_MODEL_BERNSTEIN_bagboxb : return 607;
-		case _FIXES_MODEL_BERNSTEIN_tugstair: return 608;
-		case _FIXES_MODEL_BERNSTEIN_boxburg : return 609;
-		case _FIXES_MODEL_BERNSTEIN_farmtr1 : return 610;
-		case _FIXES_MODEL_BERNSTEIN_utiltr1 : return 611;
+		case _FIXES_MODEL_BERNSTEIN_landstal: return   0; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bravura : return   1; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_buffalo : return   2; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_linerun : return   3; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_peren   : return   4; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sentinel: return   5; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_dumper  : return   6; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_firetruk: return   7; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_trash   : return   8; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_stretch : return   9; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_manana  : return  10; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_infernus: return  11; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_voodoo  : return  12; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_pony    : return  13; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_mule    : return  14; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cheetah : return  15; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_ambulan : return  16; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_leviathn: return  17; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_moonbeam: return  18; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_esperant: return  19; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_taxi    : return  20; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_washing : return  21; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bobcat  : return  22; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_mrwhoop : return  23; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bfinject: return  24; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hunter  : return  25; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_premier : return  26; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_enforcer: return  27; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_securica: return  28; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_banshee : return  29; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_predator: return  30; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bus     : return  31; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rhino   : return  32; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_barracks: return  33; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hotknife: return  34; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_artict1 : return  35; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_previon : return  36; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_coach   : return  37; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cabbie  : return  38; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_stallion: return  39; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rumpo   : return  40; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rcbandit: return  41; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_romero  : return  42; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_packer  : return  43; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_monster : return  44; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_admiral : return  45; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_squalo  : return  46; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_seaspar : return  47; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_pizzaboy: return  48; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tram    : return  49; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_artict2 : return  50; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_turismo : return  51; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_speeder : return  52; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_reefer  : return  53; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tropic  : return  54; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_flatbed : return  55; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_yankee  : return  56; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_caddy   : return  57; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_solair  : return  58; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_topfun  : return  59; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_skimmer : return  60; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_pcj600  : return  61; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_faggio  : return  62; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_freeway : return  63; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rcbaron : return  64; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rcraider: return  65; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_glendale: return  66; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_oceanic : return  67; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sanchez : return  68; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sparrow : return  69; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_patriot : return  70; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_quad    : return  71; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_coastg  : return  72; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_dinghy  : return  73; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hermes  : return  74; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sabre   : return  75; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rustler : return  76; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_zr350   : return  77; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_walton  : return  78; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_regina  : return  79; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_comet   : return  80; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bmx     : return  81; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_burrito : return  82; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_camper  : return  83; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_marquis : return  84; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_baggage : return  85; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_dozer   : return  86; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_maverick: return  87; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_vcnmav  : return  88; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rancher : return  89; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_fbiranch: return  90; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_virgo   : return  91; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_greenwoo: return  92; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_jetmax  : return  93; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hotring : return  94; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sandking: return  95; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_blistac : return  96; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_polmav  : return  97; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_boxville: return  98; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_benson  : return  99; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_mesa    : return 100; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rcgoblin: return 101; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hotrina : return 102; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hotrinb : return 103; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bloodra : return 104; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bloodrb : return 104; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rnchlure: return 105; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_supergt : return 106; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_elegant : return 107; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_journey : return 108; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bike    : return 109; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_mtbike  : return 110; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_beagle  : return 111; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cropdust: return 112; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_stunt   : return 113; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_petro   : return 114; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rdtrain : return 115; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_nebula  : return 116; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_majestic: return 117; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_buccanee: return 118; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_shamal  : return 119; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hydra   : return 120; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_fcr900  : return 121; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_nrg500  : return 122; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_copbike : return 123; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cement  : return 124; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_towtruck: return 125; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_fortune : return 126; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cadrona : return 127; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_fbitruck: return 128; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_willard : return 129; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_forklift: return 130; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tractor : return 131; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_combine : return 132; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_feltzer : return 133; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_remingtn: return 134; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_slamvan : return 135; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_blade   : return 136; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_freight : return 137; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_streak  : return 138; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_vortex  : return 139; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_vincent : return 140; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bullet  : return 141; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_clover  : return 142; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sadler  : return 143; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_firela  : return 144; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hustler : return 145; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_intruder: return 146; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_primo   : return 147; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cargobob: return 148; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tampa   : return 149; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sunrise : return 150; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_merit   : return 151; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_utility : return 152; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_nevada  : return 153; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_yosemite: return 154; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_windsor : return 155; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_monstera: return 156; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_monsterb: return 157; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_uranus  : return 158; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_jester  : return 159; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sultan  : return 160; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_stratum : return 161; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_elegy   : return 162; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_raindanc: return 163; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rctiger : return 164; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_flash   : return 165; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tahoma  : return 166; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_savanna : return 167; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bandito : return 168; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_freiflat: return 169; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_streakc : return 170; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_kart    : return 171; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_mower   : return 172; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_duneride: return 173; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sweeper : return 174; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_broadway: return 175; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tornado : return 176; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_at400   : return 177; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_dft30   : return 178; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_huntley : return 179; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_stafford: return 180; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bf400   : return 181; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_newsvan : return 182; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tug     : return 183; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_petrotr : return 184; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_emperor : return 185; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_wayfarer: return 186; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_euros   : return 187; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hotdog  : return 188; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_club    : return 189; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_freibox : return 190; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_artict3 : return 191; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_androm  : return 192; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_dodo    : return 193; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rccam   : return 194; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_launch  : return 195; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_copcarla: return 196; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_copcarsf: return 197; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_copcarvg: return 198; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_copcarru: return 199; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_picador : return 200; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_swatvan : return 201; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_alpha   : return 202; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_phoenix : return 203; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_glenshit: return 204; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sadlshit: return 205; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bagboxa : return 206; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bagboxb : return 207; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tugstair: return 208; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_boxburg : return 209; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_farmtr1 : return 210; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_utiltr1 : return 211; // Offset from 0.
 		}
-		return 0;
+		return -1;
+	}
+#endif
+
+/*
+ * _FIXES_CarcolsStrval()
+ *
+ * For some reason, I was getting inconsistent results with "strval" when using
+ * it for colours.  It would sometimes report "0" for valid numbers.
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if FIX_ChangeVehicleColour
+	static stock _FIXES_CarcolsStrval(const str[], &c1, &c2)
+	{
+		new
+			ch,
+			i = 0;
+		c1 = 0;
+		while (_FIXES_IN_RANGE((ch = str[i++] - '0'), 0, 10))
+			c1 = c1 * 10 + ch;
+		if (str[i] == ',')
+			++i;
+		c2 = 0;
+		while (_FIXES_IN_RANGE((ch = str[i++] - '0'), 0, 10))
+			c2 = c2 * 10 + ch;
+		return i;
 	}
 #endif
 
@@ -10132,38 +10176,113 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
  */
 
 #if FIX_ChangeVehicleColour
-	static stock _FIXES_LoadCarcols()
+	stock _FIXES_LoadCarcols()
 	{
 		// They don't have the file.
-		if (!fexist("fixes.inc\carcols.dat"))
+		if (!fexist(FIXES_gscCarcols))
 			return;
 		new
-			File:fhnd = fopen("fixes.inc\carcols.dat");
+			File:fhnd = fopen(FIXES_gscCarcols, io_read);
 		// The file couldn't be opened.
 		if (!fhnd)
 			return;
 		// Try and load the file in to a local array.  If this works copy that
-		// array in its entirety to the global version.  If it fails, don't do any
-		// copying to stick with the defaults.  Allocated on the stack ONLY.
+		// array in its entirety to the global version.  If it fails, don't do
+		// any copying to stick with the defaults.  Allocated on the stack ONLY.
 		new
 			localCarcols1[sizeof (FIXES_gsVehicleModelColours1)][sizeof (FIXES_gsVehicleModelColours1[])],
-			localCarcols2[sizeof (FIXES_gsVehicleModelColours2)][sizeof (FIXES_gsVehicleModelColours2[])];
+			localCarcols2[sizeof (FIXES_gsVehicleModelColours2)][sizeof (FIXES_gsVehicleModelColours2[])],
+			line[128],
+			section = 0;
 		
-		// Skip everything up to the "CAR" section.  While "COL" (colours) could be
-		// of interest, we can't use it even if it is modified since only indexes
-		// can be sent to clients, not the full RGB value.
+		// Skip everything up to the "CAR" section.  While "COL" (colours) could
+		// be of interest, we can't use it even if it is modified since only
+		// indexes can be sent to clients, not the full RGB value.
 		
-		// Everything after "#" or ";" is a comment.  Ignore it.
+		// Everything after "#" is a comment.  Ignore it.
 		
 		// Entries are:
 		//
 		//   name, col1,col2 ..."
 		//
 		// Parts are space delimited.  Pairs are comma delimited (and may have a
-		// trailing comma).  In later versions of the file, there are three or four
-		// colours to an entry, so always just use the first two.  I doubt that will
-		// mean that newer versions are supported due to the different vehicle
-		// names, but it is accepting a wider range of input data.
+		// trailing comma).  In later versions of the file, there are three or
+		// four colours to an entry, so always just use the first two.  I doubt
+		// that will mean that newer versions are supported due to the different
+		// vehicle names, but it is accepting a wider range of input data.
+		while (fread(fhnd, line))
+		{
+				// Get rid of comments.
+				new
+					pos = strfind(line, "#");
+				if (pos == -1)
+					pos = strlen(line);
+				else
+					line[pos] = '\0';
+				// Trim the line.
+				while (pos--)
+				{
+					if (line[pos] <= ' ')
+						line[pos] = '\0';
+					else
+						break;
+				}
+				if (!line[0])
+					continue;
+			#if FIXES_Debug
+				print(line);
+			#endif
+				switch (section)
+				{
+					case 0:
+					{
+						// Not yet in a section.
+						if (!strcmp(line, "col"))
+							section = 1;
+						else if (!strcmp(line, "car"))
+							section = 2;
+						else if (!strcmp(line, "car4"))
+							section = 3;
+					}
+					case 1:
+					{
+						// Just wait for the end of the colours section.
+						if (!strcmp(line, FIXES_gscEnd))
+							section = 0;
+					}
+					case 2, 3:
+					{
+						// "car4" section.  Like "car", but with four colours
+						// per vehicle instead of two.  However, we only use 2.
+						if (!strcmp(line, FIXES_gscEnd))
+						{
+							section = 0;
+							continue;
+						}
+						new
+							modelid = _FIXES_GetVehicleModelFromName(line),
+							c1,
+							c2;
+						if (modelid == -1)
+							return; //goto _FIXES_LoadCarcols_fail;
+						printf("model = %d", modelid);
+						pos = 0;
+						while ((pos = strfind(line, FIXES_gsSpace, false, pos) + 1))
+						{
+							pos += _FIXES_CarcolsStrval(line[pos], c1, c2);
+							printf("colour 1 = %d", c1);
+							printf("colour 2 = %d", c2);
+						}
+//						continue;
+//_FIXES_LoadCarcols_fail:
+//						// Don't really know what you want to do here.  It is
+//						// only hit when the file structure is wrong somehow.
+//						// Discard the results.
+//						FIXES_PRINTF("_FIXES_LoadCarcols: Format error");
+//						return;
+					}
+				}
+		}
 	}
 #endif
 
