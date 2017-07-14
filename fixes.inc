@@ -1930,6 +1930,29 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /*
+ * cellbytes
+ *
+ * Number of bytes in a cell.
+ */
+
+#if !defined cellbytes
+	#define cellbytes (cellbits / 8)
+#endif
+
+/*
+ * MAX_RANDOM_MODEL_COLOURS
+ *
+ * The maximum number of colours to be selected from when using "-1" for a
+ * vehicle colour.
+ */
+
+#if !defined MAX_RANDOM_MODEL_COLOURS
+	#define MAX_RANDOM_MODEL_COLOURS (10)
+#endif
+#define _FIXES_MAX_RANDOM_MODEL_COLOURS (MAX_RANDOM_MODEL_COLOURS char * cellbytes)
+#define _FIXES_MAX_VEHICLE_MODELS (611 + 1 - 400)
+
+/*
  * FIXES_Single
  *
  * If this define is set to 1, then the old style include is used, with no
@@ -2410,8 +2433,8 @@ static stock
 	FIXES_gsActorAnimLibs[MAX_ACTORS][_FIXES_CEILDIV(135, cellbits)],
 #endif
 	/*
-	 * FIXES_gsVehicleModelColours1[611 + 1 - 400][10 char]
-	 * FIXES_gsVehicleModelColours2[611 + 1 - 400][10 char]
+	 * FIXES_gsVehicleModelColours1[_FIXES_MAX_VEHICLE_MODELS][_FIXES_MAX_RANDOM_MODEL_COLOURS char]
+	 * FIXES_gsVehicleModelColours2[_FIXES_MAX_VEHICLE_MODELS][_FIXES_MAX_RANDOM_MODEL_COLOURS char]
 	 *
 	 * By default, the vehicle with the highest number of colour variants is the
 	 * `stafford` for some reason.  That model has 9 colours.  We store the
@@ -2427,7 +2450,7 @@ static stock
 	 * memory is cheap.
 	 */
 #if FIX_ChangeVehicleColour
-	FIXES_gsVehicleModelColours1[611 + 1 - 400][10 char] = {
+	FIXES_gsVehicleModelColours1[_FIXES_MAX_VEHICLE_MODELS][_FIXES_MAX_RANDOM_MODEL_COLOURS char] = {
 		_FIXES_10_PACK(  4, 123, 113, 101,  75,  62,  40,  36,   0,   0), // landstal
 		_FIXES_10_PACK( 41,  47,  52,  66,  74,  87, 113,   0,   0,   0), // bravura
 		_FIXES_10_PACK( 10,  13,  22,  30,  39,  90,  98, 110,   0,   0), // buffalo
@@ -2641,7 +2664,7 @@ static stock
 		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // farmtr1
 		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0)  // utiltr1
 	},
-	FIXES_gsVehicleModelColours2[611 + 1 - 400][10 char] = {
+	FIXES_gsVehicleModelColours2[_FIXES_MAX_VEHICLE_MODELS][_FIXES_MAX_RANDOM_MODEL_COLOURS char] = {
 		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // landstal
 		_FIXES_10_PACK( 41,  47,  52,  66,  74,  87, 113,   0,   0,   0), // bravura
 		_FIXES_10_PACK( 10,  13,  22,  30,  39,  90,  98, 110,   0,   0), // buffalo
@@ -2857,7 +2880,7 @@ static stock
 	},
 #endif
 	/*
-	 * FIXES_gsVehicleColoursCount[611 + 1 - 400]
+	 * FIXES_gsVehicleColoursCount[_FIXES_MAX_VEHICLE_MODELS]
 	 *
 	 * By default, the vehicle with the highest number of colour variants is the
 	 * `stafford` for some reason.  That model has 9 colours.  We store the
@@ -2873,7 +2896,7 @@ static stock
 	 * memory is cheap.
 	 */
 #if FIX_ChangeVehicleColour
-	FIXES_gsVehicleColoursCount[611 + 1 - 400] = {
+	FIXES_gsVehicleColoursCount[_FIXES_MAX_VEHICLE_MODELS] = {
 		8, 7, 8, 8, 8, 8, 1, 1, 1, 1, 8, 8, 8, 8, 8, 7, 1, 0, 8, 8, 1, 8, 7, 6,
 		8, 1, 8, 1, 1, 8, 1, 8, 1, 1, 7, 1, 7, 8, 1, 8, 8, 8, 8, 8, 6, 8, 8, 1,
 		0, 1, 1, 8, 8, 1, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 8, 8, 4, 1, 1, 8,
