@@ -10873,7 +10873,7 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 			// This code checks for ANY invalid colour and assumes they are
 			// random.  This is mostly because randoms are stored by this code
 			// as `255` not `-1` (because unsigned bytes).
-			if (_FIXES_IN_RANGE(color1, 0, 128))
+			if (_FIXES_IN_RANGE(color1, 0, 127))
 			{
 				FIXES_gsVehicleBaseColours1{vehicleid} = FIXES_gsVehicleCurColours1{vehicleid} = color1;
 			}
@@ -10887,7 +10887,7 @@ native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
 				else
 					color1 = FIXES_gsVehicleCurColours1{vehicleid} = 0;
 			}
-			if (_FIXES_IN_RANGE(color2, 0, 128))
+			if (_FIXES_IN_RANGE(color2, 0, 127))
 			{
 				FIXES_gsVehicleBaseColours2{vehicleid} = FIXES_gsVehicleCurColours2{vehicleid} = color2;
 			}
@@ -11094,7 +11094,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn
 #if FIX_AddRandomModelColour
 	stock FIXES_AddRandomModelColour(const modelid, const color1, const color2)
 	{
-		if (_FIXES_IS_VALID_VEHICLE_MODEL(modelid) && _FIXES_IN_RANGE(color1, 0, 128) && _FIXES_IN_RANGE(color2, 0, 128))
+		if (_FIXES_IS_VALID_VEHICLE_MODEL(modelid) && _FIXES_IN_RANGE(color1, 0, 127) && _FIXES_IN_RANGE(color2, 0, 127))
 		{
 			// Adjust to internal IDs.
 			modelid -= 400;
