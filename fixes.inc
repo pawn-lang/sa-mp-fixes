@@ -2375,7 +2375,7 @@ static stock
 	 * Stores the true ID of the dialog the player is looking at to prevent
 	 * spoofing.
 	 */
-#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+#if FIXES_Single && (FIX_OnDialogResponse || FIX_GetPlayerDialog)
 	FIXES_gsPlayerDialog[MAX_PLAYERS] = {-1, ...},
 #endif
 	/*
@@ -2405,7 +2405,7 @@ static stock
 	 *
 	 * A player's cash before dying.
 	 */
-#if FIX_OnPlayerSpawn
+#if FIXES_Single && FIX_OnPlayerSpawn
 	FIXES_gsPlayerLastCash[MAX_PLAYERS],
 #endif
 	/*
