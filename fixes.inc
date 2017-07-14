@@ -1781,6 +1781,26 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /*
+ * FIXES_UseYSF
+ *
+ * Should this include try and use some function from the YSF plugin?
+ */
+
+#if defined GetFilterScriptName
+	#if !defined FIXES_UseYSF
+		#define FIXES_UseYSF 1
+	#elseif _FIXES_IS_UNSET(FIXES_UseYSF)
+		#undef FIXES_UseYSF
+		#define FIXES_UseYSF 2
+	#endif
+#else
+	#if defined FIXES_UseYSF
+		#undef FIXES_UseYSF
+	#endif
+	#define FIXES_UseYSF 0
+#endif
+
+/*
  * FIXES_Debug
  *
  * If this define is set to 1, then debug printing is turned on for any
@@ -2089,6 +2109,18 @@ static stock
 	 * Only determine the OS once.
 	 */
 	bool:FIXES_gsKnownOS = false,
+	/*
+	 * FIXES_gsMyID
+	 *
+	 * This script's ID as assigned by YSF.
+	 */
+	FIXES_gsMyID = -1,
+	/*
+	 * FIXES_gsInChargeName
+	 *
+	 * The name of the script that is in charge, if known.
+	 */
+	FIXES_gsInChargeName[32],
 	/*
 	 * FIXES_gsPlayersIterator[MAX_PLAYERS + 1]
 	 *
@@ -2883,6 +2915,12 @@ static stock const
 	 * The temporary name to give when renaming people.
 	 */
 	FIXES_gscTempName[] = "FIXES_TEMP_NAME",
+	/*
+	 * FIXES_gscInChargeProperty[]
+	 *
+	 * The YSF ID of the script in charge.
+	 */
+	FIXES_gscInChargeProperty[] = "FIXES_gscInChargeProperty",
 	/*
 	 * FIXES_gscOrderProperty[]
 	 *
@@ -8387,6 +8425,51 @@ native BAD_Kick(playerid) = Kick;
 #endif
 
 /*
+ * FIXES_DetermineMyID()
+ *
+ * Figure out what the ID of this script is.  There's no native function in YSF
+ * to do this currently.
+ */
+
+#if !FIXES_Single
+	forward _FIXES_DetermineMyID();
+
+	static FIXES_DetermineMyID()
+	{
+		FIXES_gsMyID = -1;
+	}
+#endif
+
+/*
+ * _FIXES_DetermineMyID()
+ *
+ * Figure out what the ID of this script is.  There's no native function in YSF
+ * to do this currently.
+ */
+
+#if FIXES_UseYSF
+	public _FIXES_DetermineMyID(id)
+	{
+		FIXES_gsMyID = id;
+		
+	}
+#endif
+
+/*
+ * _FIXES_DetermineMyID()
+ *
+ * Figure out what the ID of this script is.  There's no native function in YSF
+ * to do this currently.
+ */
+
+#if FIXES_UseYSF
+	public _FIXES_DetermineMyID(id)
+	{
+		FIXES_gsMyID = id;
+	}
+#endif
+
+/*
  * _FIXES_DetermineOrder()
  *
  * Figure out which the first filterscript to be called is so that it can do the
@@ -8415,7 +8498,7 @@ native BAD_Kick(playerid) = Kick;
 				CallRemoteFunction(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, !(FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR));
 			#endif
 			// =============================
-			//  END: AllowInteriorWeapons
+			//  END:   AllowInteriorWeapons
 			// =============================
 		}
 		if (existproperty(5, FIXES_gscOrderProperty))
@@ -8526,15 +8609,18 @@ native BAD_Kick(playerid) = Kick;
 		}
 		else if (!(FIXES_gsSettings & e_FIXES_SETTINGS_ENDING))
 		{
-			setproperty(5, FIXES_gscOrderProperty, _FIXES_gIsFilterscript);
+				setproperty(5, FIXES_gscOrderProperty, _FIXES_gIsFilterscript);
 			#if FIXES_Debug
 				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
 				{
 					FIXES_PRINTF("_FIXES_DetermineOrder: Already in charge");
 				}
 			#endif
-			FIXES_gsSettings |= e_FIXES_SETTINGS_IN_CHARGE;
-			FIXES_PRINTF("_FIXES_DetermineOrder: Now in charge");
+				FIXES_gsSettings |= e_FIXES_SETTINGS_IN_CHARGE;
+				FIXES_PRINTF("_FIXES_DetermineOrder: Now in charge");
+			#if FIXES_UseYSF
+				setproperty(5, FIXES_gscInChargeProperty, FIXES_gsMyID);
+			#endif
 
 			// =================
 			//  BEGIN: GameText
@@ -8550,7 +8636,7 @@ native BAD_Kick(playerid) = Kick;
 			// =================
 			//  END:   GameText
 			// =================
-			return 1;
+				return 1;
 		}
 		else if (!(FIXES_gsSettings & e_FIXES_SETTINGS_ENDED))
 		{
