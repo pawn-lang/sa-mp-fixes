@@ -146,16 +146,16 @@ GetPlayerWorldBounds | There is no "GetPlayerWorldBounds" function.  Store them 
 WEAPONS | Some weapons are not defined by default.  Define them. | [ziggi](https://github.com/ziggi) | |
 PassengerSeating | Teleporting player to passenger seat after delay.  Call ClearAnimation after some delay. | [ziggi](https://github.com/ziggi) | |
 GogglesSync | Visual effects show for all players.  return 0 in OnPlayerUpdate after key pressed. | [ziggi](https://github.com/ziggi) | |
-JIT | Can't easily determine if the script is JIT compiled.  Provide "IS_JIT" to the script for tests. | [Y_Less](https://github.com/Y-Less/) | |
-OS | Can't easily determine what OS the script is running on.  Provide "IS_WINDOWS" and "IS_LINUX" to the script for tests. | [Y_Less](https://github.com/Y-Less/) | |
-const | Some SA-MP natives don't use "const" when they could.  Redefine the natives. | [Y_Less](https://github.com/Y-Less/) | [link](https://github.com/Open-GTO/sa-mp-fixes/issues/29) |
-ChangeVehicleColor | Random (-1) car colours are not synced.  Use "scriptfiles/fixes.inc/carcols.dat" to recreate random generation server-side. | [Y_Less](https://github.com/Y-Less/) | [link](https://github.com/Open-GTO/sa-mp-fixes/issues/36) |
+JIT | Can't easily determine if the script is JIT compiled.  Provide `IS_JIT` to the script for tests. | [Y_Less](https://github.com/Y-Less/) | |
+OS | Can't easily determine what OS the script is running on.  Provide `IS_WINDOWS` and `IS_LINUX` to the script for tests. | [Y_Less](https://github.com/Y-Less/) | |
+const | Some SA-MP natives don't use `const` when they could.  Redefine the natives. | [Y_Less](https://github.com/Y-Less/) | [link](https://github.com/Open-GTO/sa-mp-fixes/issues/29) |
+ChangeVehicleColor | Random (-1) car colours are not synced.  Use `scriptfiles/fixes.inc/carcols.dat` to recreate random generation server-side. | [Y_Less](https://github.com/Y-Less/) | [link](https://github.com/Open-GTO/sa-mp-fixes/issues/36) |
 GetVehicleColor | Store it and return it. | [Y_Less](https://github.com/Y-Less/) | |
-ResetRandomModelColors | Reload the car colours from "scriptfiles/fixes.inc/carcols.dat". | [Y_Less](https://github.com/Y-Less/) | |
+ResetRandomModelColors | Reload the car colours from `scriptfiles/fixes.inc/carcols.dat`. | [Y_Less](https://github.com/Y-Less/) | |
 ClearRandomModelColors | Let people remove all the random vehicle colours for "-1". | [Y_Less](https://github.com/Y-Less/) | |
 AddRandomModelColor | Let people adjust the random vehicle colours for "-1". | [Y_Less](https://github.com/Y-Less/) | |
 GetVehicleModelRGB | Convert a vehicle colour index to its RGB value. | [Y_Less](https://github.com/Y-Less/) | |
-Extensions | This include does not create new functions generally, but a few become obvious and easy from the code.  This fix enables all of wxtensions that are new features not just fixes.  Include them by default. | [Y_Less](https://github.com/Y-Less/) | |
+Extensions | This include does not create new functions generally, but a few become obvious and easy from the code.  This fix enables all of the extensions that are new features not just fixes. | [Y_Less](https://github.com/Y-Less/) | |
 
 
 # Options
