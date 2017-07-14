@@ -888,17 +888,17 @@
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
 #if !defined FIXES_EnableAll
-	#define FIXES_EnableAll              (0)
+	#define FIXES_EnableAll                      (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableAll)
 	#undef FIXES_EnableAll
-	#define FIXES_EnableAll              (2)
+	#define FIXES_EnableAll                      (2)
 #endif
 
 #if !defined FIXES_EnableDeprecated
-	#define FIXES_EnableDeprecated       (0)
+	#define FIXES_EnableDeprecated               (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableDeprecated)
 	#undef FIXES_EnableDeprecated
-	#define FIXES_EnableDeprecated       (2)
+	#define FIXES_EnableDeprecated               (2)
 #endif
 
 // We can add server version compiler code here to only compile fixes that apply
@@ -906,817 +906,817 @@
 #if !defined FIX_GetPlayerColour
 	#if defined FIX_GetPlayerColor
 		#if _FIXES_IS_UNSET(FIX_GetPlayerColor)
-			#define FIX_GetPlayerColour  (2)
+			#define FIX_GetPlayerColour          (2)
 		#else
-			#define FIX_GetPlayerColour  (FIX_GetPlayerColor)
+			#define FIX_GetPlayerColour          (FIX_GetPlayerColor)
 		#endif
 	#else
-		#define FIX_GetPlayerColour      (1)
+		#define FIX_GetPlayerColour              (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerColour)
 	#undef FIX_GetPlayerColour
-	#define FIX_GetPlayerColour          (2)
+	#define FIX_GetPlayerColour                  (2)
 #endif
 
 #if !defined FIX_FILTERSCRIPT
-	#define FIX_FILTERSCRIPT             (1)
+	#define FIX_FILTERSCRIPT                     (1)
 #elseif _FIXES_IS_UNSET(FIX_FILTERSCRIPT)
 	#undef FIX_FILTERSCRIPT
-	#define FIX_FILTERSCRIPT             (2)
+	#define FIX_FILTERSCRIPT                     (2)
 #endif
 
 #if !defined FIX_SpawnPlayer
-	#define FIX_SpawnPlayer              (1)
+	#define FIX_SpawnPlayer                      (1)
 #elseif _FIXES_IS_UNSET(FIX_SpawnPlayer)
 	#undef FIX_SpawnPlayer
-	#define FIX_SpawnPlayer              (2)
+	#define FIX_SpawnPlayer                      (2)
 #endif
 
 #if !defined FIX_SetPlayerName
-	#define FIX_SetPlayerName            (1)
+	#define FIX_SetPlayerName                    (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerName)
 	#undef FIX_SetPlayerName
-	#define FIX_SetPlayerName            (2)
+	#define FIX_SetPlayerName                    (2)
 #endif
 
 #if !defined FIX_GetPlayerSkin
-	#define FIX_GetPlayerSkin            (1)
+	#define FIX_GetPlayerSkin                    (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerSkin)
 	#undef FIX_GetPlayerSkin
-	#define FIX_GetPlayerSkin            (2)
+	#define FIX_GetPlayerSkin                    (2)
 #endif
 
 #if !defined FIX_GetWeaponName
 	#if defined GetVehicleParamsSirenState
-		#define FIX_GetWeaponName (FIXES_EnableDeprecated)
+		#define FIX_GetWeaponName                (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWeaponName (1)
+		#define FIX_GetWeaponName                (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeaponName)
 	#undef FIX_GetWeaponName
-	#define FIX_GetWeaponName            (2)
+	#define FIX_GetWeaponName                    (2)
 #endif
 
 #if !defined FIX_SetPlayerWorldBounds
-	#define FIX_SetPlayerWorldBounds     (1)
+	#define FIX_SetPlayerWorldBounds             (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerWorldBounds)
 	#undef FIX_SetPlayerWorldBounds
-	#define FIX_SetPlayerWorldBounds     (2)
+	#define FIX_SetPlayerWorldBounds             (2)
 #endif
 
 #if !defined FIX_TogglePlayerControllable
 	#if defined SetObjectMaterial
-		#define FIX_TogglePlayerControllable (FIXES_EnableDeprecated)
+		#define FIX_TogglePlayerControllable     (FIXES_EnableDeprecated)
 	#else
-		#define FIX_TogglePlayerControllable (1)
+		#define FIX_TogglePlayerControllable     (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)
 	#undef FIX_TogglePlayerControllable
-	#define FIX_TogglePlayerControllable (2)
+	#define FIX_TogglePlayerControllable         (2)
 #endif
 
 #if !defined FIX_HydraSniper
-	#define FIX_HydraSniper              (1)
+	#define FIX_HydraSniper                      (1)
 #elseif _FIXES_IS_UNSET(FIX_HydraSniper)
 	#undef FIX_HydraSniper
-	#define FIX_HydraSniper              (2)
+	#define FIX_HydraSniper                      (2)
 #endif
 
 #if !defined FIX_IsPlayerInCheckpoint
-	#define FIX_IsPlayerInCheckpoint     (1)
+	#define FIX_IsPlayerInCheckpoint             (1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInCheckpoint)
 	#undef FIX_IsPlayerInCheckpoint
-	#define FIX_IsPlayerInCheckpoint     (2)
+	#define FIX_IsPlayerInCheckpoint             (2)
 #endif
 
 #if !defined FIX_IsPlayerInRaceCheckpoint
-	#define FIX_IsPlayerInRaceCheckpoint (1)
+	#define FIX_IsPlayerInRaceCheckpoint         (1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInRaceCheckpoint)
 	#undef FIX_IsPlayerInRaceCheckpoint
-	#define FIX_IsPlayerInRaceCheckpoint (2)
+	#define FIX_IsPlayerInRaceCheckpoint         (2)
 #endif
 
 #if !defined FIX_GetPlayerWeapon
-	#define FIX_GetPlayerWeapon          (1)
+	#define FIX_GetPlayerWeapon                  (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeapon)
 	#undef FIX_GetPlayerWeapon
-	#define FIX_GetPlayerWeapon          (2)
+	#define FIX_GetPlayerWeapon                  (2)
 #endif
 
 #if !defined FIX_PutPlayerInVehicle
-	#define FIX_PutPlayerInVehicle       (1)
+	#define FIX_PutPlayerInVehicle               (1)
 #elseif _FIXES_IS_UNSET(FIX_PutPlayerInVehicle)
 	#undef FIX_PutPlayerInVehicle
-	#define FIX_PutPlayerInVehicle       (2)
+	#define FIX_PutPlayerInVehicle               (2)
 #endif
 
 #if !defined FIX_KEY_AIM
 	#if defined KEY_AIM
-		#define FIX_KEY_AIM              (FIXES_EnableDeprecated)
+		#define FIX_KEY_AIM                      (FIXES_EnableDeprecated)
 	#else
-		#define FIX_KEY_AIM              (1)
+		#define FIX_KEY_AIM                      (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_KEY_AIM)
 	#undef FIX_KEY_AIM
-	#define FIX_KEY_AIM                  (2)
+	#define FIX_KEY_AIM                          (2)
 #endif
 
 #if !defined FIX_SPECIAL_ACTION_PISSING
 	#if defined SPECIAL_ACTION_PISSING
-		#define FIX_SPECIAL_ACTION_PISSING (FIXES_EnableDeprecated)
+		#define FIX_SPECIAL_ACTION_PISSING       (FIXES_EnableDeprecated)
 	#else
-		#define FIX_SPECIAL_ACTION_PISSING (1)
+		#define FIX_SPECIAL_ACTION_PISSING       (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SPECIAL_ACTION_PISSING)
 	#undef FIX_SPECIAL_ACTION_PISSING
-	#define FIX_SPECIAL_ACTION_PISSING   (2)
+	#define FIX_SPECIAL_ACTION_PISSING           (2)
 #endif
 
 #if !defined FIX_Natives
-	#define FIX_Natives                  (1)
+	#define FIX_Natives                          (1)
 #elseif _FIXES_IS_UNSET(FIX_Natives)
 	#undef FIX_Natives
-	#define FIX_Natives                  (2)
+	#define FIX_Natives                          (2)
 #endif
 
 #if !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
-		#define FIX_IsValidVehicle       (FIXES_EnableDeprecated)
+		#define FIX_IsValidVehicle               (FIXES_EnableDeprecated)
 	#else
-		#define FIX_IsValidVehicle       (FIX_Natives)
+		#define FIX_IsValidVehicle               (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
 	#undef FIX_IsValidVehicle
-	#define FIX_IsValidVehicle           (2)
+	#define FIX_IsValidVehicle                   (2)
 #endif
 
 #if !defined FIX_GetGravity
 	#if defined GetGravity
-		#define FIX_GetGravity           (FIXES_EnableDeprecated)
+		#define FIX_GetGravity                   (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetGravity           (FIX_Natives)
+		#define FIX_GetGravity                   (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetGravity)
 	#undef FIX_GetGravity
-	#define FIX_GetGravity               (2)
+	#define FIX_GetGravity                       (2)
 #endif
 
 #if !defined FIX_gpci
 	#if defined gpci
-		#define FIX_gpci                 (FIXES_EnableDeprecated)
+		#define FIX_gpci                         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_gpci                 (FIX_Natives)
+		#define FIX_gpci                         (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_gpci)
 	#undef FIX_gpci
-	#define FIX_gpci                     (2)
+	#define FIX_gpci                             (2)
 #endif
 
 #if !defined FIX_WEAPONS
 	#if defined WEAPON_FIST
-		#define FIX_WEAPONS              (FIXES_EnableDeprecated)
+		#define FIX_WEAPONS                      (FIXES_EnableDeprecated)
 	#else
-		#define FIX_WEAPONS              (1)
+		#define FIX_WEAPONS                      (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_WEAPONS)
 	#undef FIX_WEAPONS
-	#define FIX_WEAPONS                  (2)
+	#define FIX_WEAPONS                          (2)
 #endif
 
 #if !defined FIX_BODYPARTS
 	#if defined BODY_PART_LEFT_ARM
-		#define FIX_BODYPARTS            (FIXES_EnableDeprecated)
+		#define FIX_BODYPARTS                    (FIXES_EnableDeprecated)
 	#else
-		#define FIX_BODYPARTS            (1)
+		#define FIX_BODYPARTS                    (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_BODYPARTS)
 	#undef FIX_BODYPARTS
-	#define FIX_BODYPARTS                (2)
+	#define FIX_BODYPARTS                        (2)
 #endif
 
 #if !defined FIX_CAMERAMODES
 	#if defined CAM_MODE_NONE
-		#define FIX_CAMERAMODES          (FIXES_EnableDeprecated)
+		#define FIX_CAMERAMODES                  (FIXES_EnableDeprecated)
 	#else
-		#define FIX_CAMERAMODES          (1)
+		#define FIX_CAMERAMODES                  (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_CAMERAMODES)
 	#undef FIX_CAMERAMODES
-	#define FIX_CAMERAMODES              (2)
+	#define FIX_CAMERAMODES                      (2)
 #endif
 
 #if !defined FIX_DriveBy
-	#define FIX_DriveBy                  (1)
+	#define FIX_DriveBy                          (1)
 #elseif _FIXES_IS_UNSET(FIX_DriveBy)
 	#undef FIX_DriveBy
-	#define FIX_DriveBy                  (2)
+	#define FIX_DriveBy                          (2)
 #endif
 
 #if !defined FIX_SetPlayerCheckpoint
-	#define FIX_SetPlayerCheckpoint      (1)
+	#define FIX_SetPlayerCheckpoint              (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCheckpoint)
 	#undef FIX_SetPlayerCheckpoint
-	#define FIX_SetPlayerCheckpoint      (2)
+	#define FIX_SetPlayerCheckpoint              (2)
 #endif
 
 #if !defined FIX_SetPlayerRaceCheckpoint
-	#define FIX_SetPlayerRaceCheckpoint  (1)
+	#define FIX_SetPlayerRaceCheckpoint          (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerRaceCheckpoint)
 	#undef FIX_SetPlayerRaceCheckpoint
-	#define FIX_SetPlayerRaceCheckpoint  (2)
+	#define FIX_SetPlayerRaceCheckpoint          (2)
 #endif
 
 #if !defined FIX_TextDrawCreate
-	#define FIX_TextDrawCreate           (1)
+	#define FIX_TextDrawCreate                   (1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawCreate)
 	#undef FIX_TextDrawCreate
-	#define FIX_TextDrawCreate           (2)
+	#define FIX_TextDrawCreate                   (2)
 #endif
 
 #if !defined FIX_TextDrawSetString
-	#define FIX_TextDrawSetString        (1)
+	#define FIX_TextDrawSetString                (1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString)
 	#undef FIX_TextDrawSetString
-	#define FIX_TextDrawSetString        (2)
+	#define FIX_TextDrawSetString                (2)
 #endif
 
 #if !defined FIX_AllowInteriorWeapons
-	#define FIX_AllowInteriorWeapons     (1)
+	#define FIX_AllowInteriorWeapons             (1)
 #elseif _FIXES_IS_UNSET(FIX_AllowInteriorWeapons)
 	#undef FIX_AllowInteriorWeapons
-	#define FIX_AllowInteriorWeapons     (2)
+	#define FIX_AllowInteriorWeapons             (2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle
 	#if defined OnPlayerClickMap
-		#define FIX_OnPlayerEnterVehicle (FIXES_EnableDeprecated)
+		#define FIX_OnPlayerEnterVehicle         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_OnPlayerEnterVehicle (1)
+		#define FIX_OnPlayerEnterVehicle         (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle)
 	#undef FIX_OnPlayerEnterVehicle
-	#define FIX_OnPlayerEnterVehicle     (2)
+	#define FIX_OnPlayerEnterVehicle             (2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle_2
-	#define FIX_OnPlayerEnterVehicle_2   (1)
+	#define FIX_OnPlayerEnterVehicle_2           (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle)
 	#undef FIX_OnPlayerEnterVehicle_2
-	#define FIX_OnPlayerEnterVehicle_2   (2)
+	#define FIX_OnPlayerEnterVehicle_2           (2)
 #endif
 
 #if !defined FIX_AllowTeleport
 	#if defined OnPlayerClickMap
-		#define FIX_AllowTeleport        (1)
+		#define FIX_AllowTeleport                (1)
 	#else
-		#define FIX_AllowTeleport        (FIXES_EnableDeprecated)
+		#define FIX_AllowTeleport                (FIXES_EnableDeprecated)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_AllowTeleport)
 	#undef FIX_AllowTeleport
-	#define FIX_AllowTeleport            (2)
+	#define FIX_AllowTeleport                    (2)
 #endif
 
 #if !defined FIX_SetPlayerSpecialAction
-	#define FIX_SetPlayerSpecialAction   (1)
+	#define FIX_SetPlayerSpecialAction           (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSpecialAction)
 	#undef FIX_SetPlayerSpecialAction
-	#define FIX_SetPlayerSpecialAction   (2)
+	#define FIX_SetPlayerSpecialAction           (2)
 #endif
 
 #if !defined FIX_ClearAnimations
-	#define FIX_ClearAnimations          (1)
+	#define FIX_ClearAnimations                  (1)
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations)
 	#undef FIX_ClearAnimations
-	#define FIX_ClearAnimations          (2)
+	#define FIX_ClearAnimations                  (2)
 #endif
 
 #if !defined FIX_ClearAnimations_2
-	#define FIX_ClearAnimations_2        (1)
+	#define FIX_ClearAnimations_2                (1)
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations_2)
 	#undef FIX_ClearAnimations_2
-	#define FIX_ClearAnimations_2        (2)
+	#define FIX_ClearAnimations_2                (2)
 #endif
 
 #if !defined FIX_GangZoneCreate
-	#define FIX_GangZoneCreate           (1)
+	#define FIX_GangZoneCreate                   (1)
 #elseif _FIXES_IS_UNSET(FIX_GangZoneCreate)
 	#undef FIX_GangZoneCreate
-	#define FIX_GangZoneCreate           (2)
+	#define FIX_GangZoneCreate                   (2)
 #endif
 
 #if !defined FIX_OnDialogResponse
 	#if defined GetVehicleModelInfo
-		#define FIX_OnDialogResponse     (FIXES_EnableDeprecated)
+		#define FIX_OnDialogResponse             (FIXES_EnableDeprecated)
 	#else
-		#define FIX_OnDialogResponse     (1)
+		#define FIX_OnDialogResponse             (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnDialogResponse)
 	#undef FIX_OnDialogResponse
-	#define FIX_OnDialogResponse         (2)
+	#define FIX_OnDialogResponse                 (2)
 #endif
 
 #if !defined FIX_GetPlayerDialog
 	#if defined GetPlayerDialog
-		#define FIX_GetPlayerDialog      (FIXES_EnableDeprecated)
+		#define FIX_GetPlayerDialog              (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerDialog      (FIX_Natives)
+		#define FIX_GetPlayerDialog              (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
-	#define FIX_GetPlayerDialog          (2)
+	#define FIX_GetPlayerDialog                  (2)
 #endif
 
 #if !defined FIX_PlayerDialogResponse
-	#define FIX_PlayerDialogResponse     (1)
+	#define FIX_PlayerDialogResponse             (1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerDialogResponse)
 	#undef FIX_PlayerDialogResponse
-	#define FIX_PlayerDialogResponse     (2)
+	#define FIX_PlayerDialogResponse             (2)
 #endif
 
 #if !defined FIX_SetSpawnInfo
 	#if defined GetPlayerVersion
-		#define FIX_SetSpawnInfo         (FIXES_EnableDeprecated)
+		#define FIX_SetSpawnInfo                 (FIXES_EnableDeprecated)
 	#else
-		#define FIX_SetSpawnInfo         (1)
+		#define FIX_SetSpawnInfo                 (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetSpawnInfo)
 	#undef FIX_SetSpawnInfo
-	#define FIX_SetSpawnInfo             (2)
+	#define FIX_SetSpawnInfo                     (2)
 #endif
 
 #if !defined FIX_SetPlayerSkin
-	#define FIX_SetPlayerSkin            (1)
+	#define FIX_SetPlayerSkin                    (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSkin)
 	#undef FIX_SetPlayerSkin
-	#define FIX_SetPlayerSkin            (2)
+	#define FIX_SetPlayerSkin                    (2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (1)
+	#define FIX_HideMenuForPlayer                (1)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
 	#undef FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (2)
+	#define FIX_HideMenuForPlayer                (2)
 #endif
 
 #if !defined FIX_valstr
-	#define FIX_valstr                   (1)
+	#define FIX_valstr                           (1)
 #elseif _FIXES_IS_UNSET(FIX_valstr)
 	#undef FIX_valstr
-	#define FIX_valstr                   (2)
+	#define FIX_valstr                           (2)
 #endif
 
 #if !defined FIX_file_inc
-	#define FIX_file_inc                 (FIXES_EnableAll)
+	#define FIX_file_inc                         (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_file_inc)
 	#undef FIX_file_inc
-	#define FIX_file_inc                 (2)
+	#define FIX_file_inc                         (2)
 #endif
 
 #if !defined FIX_fclose
-	#define FIX_fclose                   (FIX_file_inc)
+	#define FIX_fclose                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fclose)
 	#undef FIX_fclose
-	#define FIX_fclose                   (2)
+	#define FIX_fclose                           (2)
 #endif
 
 #if !defined FIX_fwrite
-	#define FIX_fwrite                   (FIX_file_inc)
+	#define FIX_fwrite                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fwrite)
 	#undef FIX_fwrite
-	#define FIX_fwrite                   (2)
+	#define FIX_fwrite                           (2)
 #endif
 
 #if !defined FIX_fread
-	#define FIX_fread                    (FIX_file_inc)
+	#define FIX_fread                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fread)
 	#undef FIX_fread
-	#define FIX_fread                    (2)
+	#define FIX_fread                            (2)
 #endif
 
 #if !defined FIX_fputchar
-	#define FIX_fputchar                 (FIX_file_inc)
+	#define FIX_fputchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fputchar)
 	#undef FIX_fputchar
-	#define FIX_fputchar                 (2)
+	#define FIX_fputchar                         (2)
 #endif
 
 #if !defined FIX_fgetchar
-	#define FIX_fgetchar                 (FIX_file_inc)
+	#define FIX_fgetchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fgetchar)
 	#undef FIX_fgetchar
-	#define FIX_fgetchar                 (2)
+	#define FIX_fgetchar                         (2)
 #endif
 
 #if !defined FIX_fblockwrite
-	#define FIX_fblockwrite              (FIX_file_inc)
+	#define FIX_fblockwrite                      (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockwrite)
 	#undef FIX_fblockwrite
-	#define FIX_fblockwrite              (2)
+	#define FIX_fblockwrite                      (2)
 #endif
 
 #if !defined FIX_fblockread
-	#define FIX_fblockread               (FIX_file_inc)
+	#define FIX_fblockread                       (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockread)
 	#undef FIX_fblockread
-	#define FIX_fblockread               (2)
+	#define FIX_fblockread                       (2)
 #endif
 
 #if !defined FIX_fseek
-	#define FIX_fseek                    (FIX_file_inc)
+	#define FIX_fseek                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fseek)
 	#undef FIX_fseek
-	#define FIX_fseek                    (2)
+	#define FIX_fseek                            (2)
 #endif
 
 #if !defined FIX_flength
-	#define FIX_flength                  (FIX_file_inc)
+	#define FIX_flength                          (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_flength)
 	#undef FIX_flength
-	#define FIX_flength                  (2)
+	#define FIX_flength                          (2)
 #endif
 
 #if !defined FIX_SetPlayerAttachedObject
-	#define FIX_SetPlayerAttachedObject  (1)
+	#define FIX_SetPlayerAttachedObject          (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerAttachedObject)
 	#undef FIX_SetPlayerAttachedObject
-	#define FIX_SetPlayerAttachedObject  (2)
+	#define FIX_SetPlayerAttachedObject          (2)
 #endif
 
 #if !defined FIX_OnPlayerDeath
-	#define FIX_OnPlayerDeath            (1)
+	#define FIX_OnPlayerDeath                    (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDeath)
 	#undef FIX_OnPlayerDeath
-	#define FIX_OnPlayerDeath            (2)
+	#define FIX_OnPlayerDeath                    (2)
 #endif
 
 #if !defined FIX_strins
-	#define FIX_strins                   (1)
+	#define FIX_strins                           (1)
 #elseif _FIXES_IS_UNSET(FIX_strins)
 	#undef FIX_strins
-	#define FIX_strins                   (2)
+	#define FIX_strins                           (2)
 #endif
 
 #if !defined FIX_IsPlayerConnected
-	#define FIX_IsPlayerConnected        (1)
+	#define FIX_IsPlayerConnected                (1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerConnected)
 	#undef FIX_IsPlayerConnected
-	#define FIX_IsPlayerConnected        (2)
+	#define FIX_IsPlayerConnected                (2)
 #endif
 
 #if !defined FIX_TrainExit
-	#define FIX_TrainExit                (1)
+	#define FIX_TrainExit                        (1)
 #elseif _FIXES_IS_UNSET(FIX_TrainExit)
 	#undef FIX_TrainExit
-	#define FIX_TrainExit                (2)
+	#define FIX_TrainExit                        (2)
 #endif
 
 #if !defined FIX_Kick
 	#if defined EnableVehicleFriendlyFire
-		#define FIX_Kick                 (FIXES_EnableDeprecated)
+		#define FIX_Kick                         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_Kick                 (1)
+		#define FIX_Kick                         (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_Kick)
 	#undef FIX_Kick
-	#define FIX_Kick                     (2)
+	#define FIX_Kick                             (2)
 #endif
 
 #if !defined FIX_OnVehicleMod
-	#define FIX_OnVehicleMod             (1)
+	#define FIX_OnVehicleMod                     (1)
 #elseif _FIXES_IS_UNSET(FIX_OnVehicleMod)
 	#undef FIX_OnVehicleMod
-	#define FIX_OnVehicleMod             (2)
+	#define FIX_OnVehicleMod                     (2)
 #endif
 
 #if !defined FIX_random
-	#define FIX_random                   (FIXES_EnableAll)
+	#define FIX_random                           (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_random)
 	#undef FIX_random
-	#define FIX_random                   (2)
+	#define FIX_random                           (2)
 #endif
 
 #if !defined FIX_sleep
-	#define FIX_sleep                    (1)
+	#define FIX_sleep                            (1)
 #elseif _FIXES_IS_UNSET(FIX_sleep)
 	#undef FIX_sleep
-	#define FIX_sleep                    (2)
+	#define FIX_sleep                            (2)
 #endif
 
 #if !defined FIX_Menus
-	#define FIX_Menus                    (1)
+	#define FIX_Menus                            (1)
 #elseif _FIXES_IS_UNSET(FIX_Menus)
 	#undef FIX_Menus
-	#define FIX_Menus                    (2)
+	#define FIX_Menus                            (2)
 #endif
 
 #if !defined FIX_AddMenuItem
-	#define FIX_AddMenuItem              (FIX_Menus)
+	#define FIX_AddMenuItem                      (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_AddMenuItem)
 	#undef FIX_AddMenuItem
-	#define FIX_AddMenuItem              (2)
+	#define FIX_AddMenuItem                      (2)
 #endif
 
 #if !defined FIX_SetMenuColumnHeader
-	#define FIX_SetMenuColumnHeader      (FIX_Menus)
+	#define FIX_SetMenuColumnHeader              (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_SetMenuColumnHeader)
 	#undef FIX_SetMenuColumnHeader
-	#define FIX_SetMenuColumnHeader      (2)
+	#define FIX_SetMenuColumnHeader              (2)
 #endif
 
 #if !defined FIX_ShowMenuForPlayer
-	#define FIX_ShowMenuForPlayer        (FIX_Menus)
+	#define FIX_ShowMenuForPlayer                (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_ShowMenuForPlayer)
 	#undef FIX_ShowMenuForPlayer
-	#define FIX_ShowMenuForPlayer        (2)
+	#define FIX_ShowMenuForPlayer                (2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (FIX_Menus)
+	#define FIX_HideMenuForPlayer                (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
 	#undef FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (2)
+	#define FIX_HideMenuForPlayer                (2)
 #endif
 
 #if !defined FIX_GetPlayerMenu
-	#define FIX_GetPlayerMenu            (1)
+	#define FIX_GetPlayerMenu                    (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerMenu)
 	#undef FIX_GetPlayerMenu
-	#define FIX_GetPlayerMenu            (2)
+	#define FIX_GetPlayerMenu                    (2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer_2
-	#define FIX_HideMenuForPlayer_2      (FIXES_EnableAll)
+	#define FIX_HideMenuForPlayer_2              (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer_2)
 	#undef FIX_HideMenuForPlayer_2
-	#define FIX_HideMenuForPlayer_2      (2)
+	#define FIX_HideMenuForPlayer_2              (2)
 #elseif FIX_HideMenuForPlayer_2 && !FIX_GetPlayerMenu
 	#error FIX_HideMenuForPlayer_2 requires FIX_GetPlayerMenu
 #endif
 
 #if !defined FIX_DisableMenu
-	#define FIX_DisableMenu              (FIX_Menus)
+	#define FIX_DisableMenu                      (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_DisableMenu)
 	#undef FIX_DisableMenu
-	#define FIX_DisableMenu              (2)
+	#define FIX_DisableMenu                      (2)
 #endif
 
 #if !defined FIX_DisableMenuRow
-	#define FIX_DisableMenuRow           (FIX_Menus)
+	#define FIX_DisableMenuRow                   (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_DisableMenuRow)
 	#undef FIX_DisableMenuRow
-	#define FIX_DisableMenuRow           (2)
+	#define FIX_DisableMenuRow                   (2)
 #endif
 
 #if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
-	#define _FIX_Menus                   (1)
+	#define _FIX_Menus                           (1)
 #else
-	#define _FIX_Menus                   (2)
+	#define _FIX_Menus                           (2)
 #endif
 
 #if !defined FIX_GetPlayerInterior
-	#define FIX_GetPlayerInterior        (1)
+	#define FIX_GetPlayerInterior                (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerInterior)
 	#undef FIX_GetPlayerInterior
-	#define FIX_GetPlayerInterior        (2)
+	#define FIX_GetPlayerInterior                (2)
 #endif
 
 #if !defined FIX_ApplyAnimation
-	#define FIX_ApplyAnimation           (1)
+	#define FIX_ApplyAnimation                   (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation)
 	#undef FIX_ApplyAnimation
-	#define FIX_ApplyAnimation           (2)
+	#define FIX_ApplyAnimation                   (2)
 #endif
 
 #if !defined FIX_ApplyAnimation_2
-	#define FIX_ApplyAnimation_2         (1)
+	#define FIX_ApplyAnimation_2                 (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation_2)
 	#undef FIX_ApplyAnimation_2
-	#define FIX_ApplyAnimation_2         (2)
+	#define FIX_ApplyAnimation_2                 (2)
 #endif
 
 #if !defined FIX_ApplyActorAnimation
-	#define FIX_ApplyActorAnimation      (1)
+	#define FIX_ApplyActorAnimation              (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation)
 	#undef FIX_ApplyActorAnimation
-	#define FIX_ApplyActorAnimation      (2)
+	#define FIX_ApplyActorAnimation              (2)
 #endif
 
 #if !defined FIX_ApplyActorAnimation_2
-	#define FIX_ApplyActorAnimation_2    (1)
+	#define FIX_ApplyActorAnimation_2            (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation_2)
 	#undef FIX_ApplyActorAnimation_2
-	#define FIX_ApplyActorAnimation_2    (2)
+	#define FIX_ApplyActorAnimation_2            (2)
 #endif
 
 #if !defined FIX_OnPlayerSpawn
-	#define FIX_OnPlayerSpawn            (1)
+	#define FIX_OnPlayerSpawn                    (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerSpawn)
 	#undef FIX_OnPlayerSpawn
-	#define FIX_OnPlayerSpawn            (2)
+	#define FIX_OnPlayerSpawn                    (2)
 #endif
 
 #if !defined FIX_GameText
-	#define FIX_GameText                 (1)
+	#define FIX_GameText                         (1)
 #elseif _FIXES_IS_UNSET(FIX_GameText)
 	#undef FIX_GameText
-	#define FIX_GameText                 (2)
+	#define FIX_GameText                         (2)
 #endif
 
 #if !defined FIX_HideGameText
 	#if defined HideGameText
-		#define FIX_HideGameText         (FIXES_EnableDeprecated)
+		#define FIX_HideGameText                 (FIXES_EnableDeprecated)
 	#else
-		#define FIX_HideGameText         (FIX_Natives)
+		#define FIX_HideGameText                 (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_HideGameText)
 	#undef FIX_HideGameText
-	#define FIX_HideGameText             (2)
+	#define FIX_HideGameText                     (2)
 #endif
 
 #if !defined FIX_GameTextStyles
-	#define FIX_GameTextStyles           (FIXES_EnableAll)
+	#define FIX_GameTextStyles                   (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
 	#undef FIX_GameTextStyles
-	#define FIX_GameTextStyles           (2)
+	#define FIX_GameTextStyles                   (2)
 #elseif FIX_GameTextStyles && !FIX_GameText
 	#error FIX_GameTextStyles requires FIX_GameText
 #endif
 
 #if !defined FIX_OnPlayerConnect
-	#define FIX_OnPlayerConnect          (1)
+	#define FIX_OnPlayerConnect                  (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerConnect)
 	#undef FIX_OnPlayerConnect
-	#define FIX_OnPlayerConnect          (2)
+	#define FIX_OnPlayerConnect                  (2)
 #endif
 
 #if !defined FIX_OnPlayerDisconnect
-	#define FIX_OnPlayerDisconnect       (1)
+	#define FIX_OnPlayerDisconnect               (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDisconnect)
 	#undef FIX_OnPlayerDisconnect
-	#define FIX_OnPlayerDisconnect       (2)
+	#define FIX_OnPlayerDisconnect               (2)
 #endif
 
 #if !defined FIX_CreatePlayerTextDraw
-	#define FIX_CreatePlayerTextDraw     (1)
+	#define FIX_CreatePlayerTextDraw             (1)
 #elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw)
 	#undef FIX_CreatePlayerTextDraw
-	#define FIX_CreatePlayerTextDraw     (2)
+	#define FIX_CreatePlayerTextDraw             (2)
 #endif
 
 #if !defined FIX_PlayerTextDrawSetString
-	#define FIX_PlayerTextDrawSetString  (1)
+	#define FIX_PlayerTextDrawSetString          (1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString)
 	#undef FIX_PlayerTextDrawSetString
-	#define FIX_PlayerTextDrawSetString  (2)
+	#define FIX_PlayerTextDrawSetString          (2)
 #endif
 
 #if !defined FIX_SetPlayerCamera
-	#define FIX_SetPlayerCamera          (1)
+	#define FIX_SetPlayerCamera                  (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCamera)
 	#undef FIX_SetPlayerCamera
-	#define FIX_SetPlayerCamera          (2)
+	#define FIX_SetPlayerCamera                  (2)
 #endif
 
 #if !defined FIX_SetPlayerTime
-	#define FIX_SetPlayerTime            (1)
+	#define FIX_SetPlayerTime                    (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerTime)
 	#undef FIX_SetPlayerTime
-	#define FIX_SetPlayerTime            (2)
+	#define FIX_SetPlayerTime                    (2)
 #endif
 
 #if !defined FIX_OnPlayerRequestClass
-	#define FIX_OnPlayerRequestClass     (1)
+	#define FIX_OnPlayerRequestClass             (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerRequestClass)
 	#undef FIX_OnPlayerRequestClass
-	#define FIX_OnPlayerRequestClass     (2)
+	#define FIX_OnPlayerRequestClass             (2)
 #endif
 
 #if !defined FIX_SetPlayerColour
 	#if defined FIX_SetPlayerColor
 		#if _FIXES_IS_UNSET(FIX_SetPlayerColor)
-			#define FIX_SetPlayerColour  (2)
+			#define FIX_SetPlayerColour          (2)
 		#else
-			#define FIX_SetPlayerColour  (FIX_SetPlayerColor)
+			#define FIX_SetPlayerColour          (FIX_SetPlayerColor)
 		#endif
 	#else
-		#define FIX_SetPlayerColour      (1)
+		#define FIX_SetPlayerColour              (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerColour)
 	#undef FIX_SetPlayerColour
-	#define FIX_SetPlayerColour          (2)
+	#define FIX_SetPlayerColour                  (2)
 #endif
 
 #if !defined FIX_FileMaths
-	#define FIX_FileMaths                (1)
+	#define FIX_FileMaths                        (1)
 #elseif _FIXES_IS_UNSET(FIX_FileMaths)
 	#undef FIX_FileMaths
-	#define FIX_FileMaths                (2)
+	#define FIX_FileMaths                        (2)
 #endif
 
 #if !defined FIX_GetPlayerWeaponData
-	#define FIX_GetPlayerWeaponData      (1)
+	#define FIX_GetPlayerWeaponData              (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeaponData)
 	#undef FIX_GetPlayerWeaponData
-	#define FIX_GetPlayerWeaponData      (2)
+	#define FIX_GetPlayerWeaponData              (2)
 #endif
 
 #if !defined FIX_strcmp
-	#define FIX_strcmp                   (1)
+	#define FIX_strcmp                           (1)
 #elseif _FIXES_IS_UNSET(FIX_strcmp)
 	#undef FIX_strcmp
-	#define FIX_strcmp                   (2)
+	#define FIX_strcmp                           (2)
 #endif
 
 #if !defined FIX_GetPVarString
-	#define FIX_GetPVarString            (FIXES_EnableAll)
+	#define FIX_GetPVarString                    (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetPVarString)
 	#undef FIX_GetPVarString
-	#define FIX_GetPVarString            (2)
+	#define FIX_GetPVarString                    (2)
 #endif
 
 #if !defined FIX_GetSVarString
-	#define FIX_GetSVarString            (FIXES_EnableAll)
+	#define FIX_GetSVarString                    (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetSVarString)
 	#undef FIX_GetSVarString
-	#define FIX_GetSVarString            (2)
+	#define FIX_GetSVarString                    (2)
 #endif
 
 #if !defined FIX_toupper
-	#define FIX_toupper                  (1)
+	#define FIX_toupper                          (1)
 #elseif _FIXES_IS_UNSET(FIX_toupper)
 	#undef FIX_toupper
-	#define FIX_toupper                  (2)
+	#define FIX_toupper                          (2)
 #endif
 
 #if !defined FIX_tolower
-	#define FIX_tolower                  (1)
+	#define FIX_tolower                          (1)
 #elseif _FIXES_IS_UNSET(FIX_tolower)
 	#undef FIX_tolower
-	#define FIX_tolower                  (2)
+	#define FIX_tolower                          (2)
 #endif
 
 #if !defined FIX_PassengerSeating
-	#define FIX_PassengerSeating         (1)
+	#define FIX_PassengerSeating                 (1)
 #elseif _FIXES_IS_UNSET(FIX_PassengerSeating)
 	#undef FIX_PassengerSeating
-	#define FIX_PassengerSeating         (2)
+	#define FIX_PassengerSeating                 (2)
 #endif
 
 #if !defined FIX_GogglesSync
-	#define FIX_GogglesSync              (1)
+	#define FIX_GogglesSync                      (1)
 #elseif _FIXES_IS_UNSET(FIX_GogglesSync)
 	#undef FIX_GogglesSync
-	#define FIX_GogglesSync              (2)
+	#define FIX_GogglesSync                      (2)
 #endif
 
 #if !defined FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize        (1)
+	#define FIX_GetPlayerPoolSize                (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize        (2)
+	#define FIX_GetPlayerPoolSize                (2)
 #endif
 
 #if !defined FIX_SetPlayerPos
-	#define FIX_SetPlayerPos             (1)
+	#define FIX_SetPlayerPos                     (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerPos)
 	#undef FIX_SetPlayerPos
-	#define FIX_SetPlayerPos             (2)
+	#define FIX_SetPlayerPos                     (2)
 #endif
 
 #if !defined FIX_GetPlayerAmmo
-	#define FIX_GetPlayerAmmo            (1)
+	#define FIX_GetPlayerAmmo                    (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerAmmo)
 	#undef FIX_GetPlayerAmmo
-	#define FIX_GetPlayerAmmo            (2)
+	#define FIX_GetPlayerAmmo                    (2)
 #endif
 
 #if !defined FIX_JIT
-	#define FIX_JIT                      (1)
+	#define FIX_JIT                              (1)
 #elseif _FIXES_IS_UNSET(FIX_JIT)
 	#undef FIX_JIT
-	#define FIX_JIT                      (2)
+	#define FIX_JIT                              (2)
 #endif
 
 #if !defined FIX_OS
-	#define FIX_OS                       (1)
+	#define FIX_OS                               (1)
 #elseif _FIXES_IS_UNSET(FIX_OS)
 	#undef FIX_OS
-	#define FIX_OS                       (2)
+	#define FIX_OS                               (2)
 #endif
 
 #if !defined FIX_ChangeVehicleColour
 	#if defined FIX_ChangeVehicleColor
 		#if _FIXES_IS_UNSET(FIX_ChangeVehicleColor)
-			#define FIX_ChangeVehicleColour  (2)
+			#define FIX_ChangeVehicleColour      (2)
 		#else
-			#define FIX_ChangeVehicleColour  (FIX_ChangeVehicleColor)
+			#define FIX_ChangeVehicleColour      (FIX_ChangeVehicleColor)
 		#endif
 	#else
-		#define FIX_ChangeVehicleColour  (1)
+		#define FIX_ChangeVehicleColour          (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_ChangeVehicleColour)
 	#undef FIX_ChangeVehicleColour
-	#define FIX_ChangeVehicleColour      (2)
+	#define FIX_ChangeVehicleColour              (2)
 #endif
 
 // This is so far the most complex inclusion determiner.  There are two possible
@@ -1726,22 +1726,22 @@
 #if !defined FIX_GetVehicleColour
 	#if defined FIX_GetVehicleColor
 		#if _FIXES_IS_UNSET(FIX_GetVehicleColor)
-			#define FIX_GetVehicleColour (2)
+			#define FIX_GetVehicleColour         (2)
 		#else
-			#define FIX_GetVehicleColour (FIX_GetVehicleColor)
+			#define FIX_GetVehicleColour         (FIX_GetVehicleColor)
 		#endif
 	#else
 		#if defined GetVehicleColor
-			#define FIX_GetVehicleColour (FIXES_EnableDeprecated)
+			#define FIX_GetVehicleColour         (FIXES_EnableDeprecated)
 		#elseif defined GetVehicleColour
-			#define FIX_GetVehicleColour (FIXES_EnableDeprecated)
+			#define FIX_GetVehicleColour         (FIXES_EnableDeprecated)
 		#else
-			#define FIX_GetVehicleColour (FIX_Natives * FIX_ChangeVehicleColour)
+			#define FIX_GetVehicleColour         (FIX_Natives * FIX_ChangeVehicleColour)
 		#endif
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetVehicleColour)
 	#undef FIX_GetVehicleColour
-	#define FIX_GetVehicleColour         (2)
+	#define FIX_GetVehicleColour                 (2)
 #endif
 
 #if !defined FIX_AddRandomModelColour
@@ -1752,9 +1752,9 @@
 			#define FIX_AddRandomModelColour     (FIX_AddRandomModelColor)
 		#endif
 	#else
-		#if defined FIX_AddRandomModelColor
+		#if defined AddRandomModelColor
 			#define FIX_AddRandomModelColour     (FIXES_EnableDeprecated)
-		#elseif defined FIX_AddRandomModelColour
+		#elseif defined AddRandomModelColour
 			#define FIX_AddRandomModelColour     (FIXES_EnableDeprecated)
 		#else
 			#define FIX_AddRandomModelColour     (FIX_Natives * FIX_ChangeVehicleColour)
@@ -1808,10 +1808,10 @@
 #endif
 
 #if !defined FIX_const
-	#define FIX_const                    (1)
+	#define FIX_const                            (1)
 #elseif _FIXES_IS_UNSET(FIX_const)
 	#undef FIX_const
-	#define FIX_const                    (2)
+	#define FIX_const                            (2)
 #endif
 
 /*
