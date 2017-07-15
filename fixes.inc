@@ -527,6 +527,14 @@
  * SEE:      "FIX_GetGravity", "FIX_gpci", "FIX_IsValidVehicle".
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
+ * FIX:      Extensions
+ * PROBLEM:  This include does not create new functions generally, but a few
+ *           become obvious and easy from the code.  This fix enables all of
+ *           extensions that are new features not just fixes.
+ * SOLUTION: Include them by default.
+ * SEE:      Several fixes.
+ * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ *
  * FIX:      OnPlayerConnect
  * PROBLEM:  This function isn't called for players when a filterscript starts.
  * SOLUTION: Call it for all connected players.
@@ -719,6 +727,44 @@
  * SOLUTION: Redefine the natives.
  * SEE:      "FIX_const".
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ * ISSUE:    https://github.com/Open-GTO/sa-mp-fixes/issues/29
+ *
+ * FIX:      ChangeVehicleColor
+ * PROBLEM:  Random (-1) car colours are not synced.
+ * SOLUTION: Use carcols.dat to recreate random generation server-side.
+ * SEE:      "FIXES_ChangeVehicleColor".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ * ISSUE:    https://github.com/Open-GTO/sa-mp-fixes/issues/36
+ *
+ * FIX:      GetVehicleColor
+ * PROBLEM:  Doesn't exist.
+ * SOLUTION: Store it and return it.
+ * SEE:      "FIXES_GetVehicleColour".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
+ * FIX:      ResetRandomModelColors
+ * PROBLEM:  Doesn't exist.
+ * SOLUTION: Let people adjust the random vehicle colours for "-1".
+ * SEE:      "FIXES_ResetRandomModelColours".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
+ * FIX:      ClearRandomModelColors
+ * PROBLEM:  Doesn't exist.
+ * SOLUTION: Let people adjust the random vehicle colours for "-1".
+ * SEE:      "FIXES_ClearRandomModelColours".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
+ * FIX:      AddRandomModelColor
+ * PROBLEM:  Doesn't exist.
+ * SOLUTION: Let people adjust the random vehicle colours for "-1".
+ * SEE:      "FIXES_AddRandomModelColour".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
+ * FIX:      GetVehicleModelRGB
+ * PROBLEM:  Doesn't exist.
+ * SOLUTION: Convert a vehicle colour index to its RGB value.
+ * SEE:      "FIXES_GetVehicleModelRGB".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
  *
  * ==============
  *  STYLE RULES:
@@ -868,17 +914,17 @@
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
 #if !defined FIXES_EnableAll
-	#define FIXES_EnableAll              (0)
+	#define FIXES_EnableAll                      (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableAll)
 	#undef FIXES_EnableAll
-	#define FIXES_EnableAll              (2)
+	#define FIXES_EnableAll                      (2)
 #endif
 
 #if !defined FIXES_EnableDeprecated
-	#define FIXES_EnableDeprecated       (0)
+	#define FIXES_EnableDeprecated               (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableDeprecated)
 	#undef FIXES_EnableDeprecated
-	#define FIXES_EnableDeprecated       (2)
+	#define FIXES_EnableDeprecated               (2)
 #endif
 
 // We can add server version compiler code here to only compile fixes that apply
@@ -886,831 +932,952 @@
 #if !defined FIX_GetPlayerColour
 	#if defined FIX_GetPlayerColor
 		#if _FIXES_IS_UNSET(FIX_GetPlayerColor)
-			#define FIX_GetPlayerColour  (2)
+			#define FIX_GetPlayerColour          (2)
 		#else
-			#define FIX_GetPlayerColour  (FIX_GetPlayerColor)
+			#define FIX_GetPlayerColour          (FIX_GetPlayerColor)
 		#endif
 	#else
-		#define FIX_GetPlayerColour      (1)
+		#define FIX_GetPlayerColour              (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerColour)
 	#undef FIX_GetPlayerColour
-	#define FIX_GetPlayerColour          (2)
+	#define FIX_GetPlayerColour                  (2)
 #endif
 
 #if !defined FIX_FILTERSCRIPT
-	#define FIX_FILTERSCRIPT             (1)
+	#define FIX_FILTERSCRIPT                     (1)
 #elseif _FIXES_IS_UNSET(FIX_FILTERSCRIPT)
 	#undef FIX_FILTERSCRIPT
-	#define FIX_FILTERSCRIPT             (2)
+	#define FIX_FILTERSCRIPT                     (2)
 #endif
 
 #if !defined FIX_SpawnPlayer
-	#define FIX_SpawnPlayer              (1)
+	#define FIX_SpawnPlayer                      (1)
 #elseif _FIXES_IS_UNSET(FIX_SpawnPlayer)
 	#undef FIX_SpawnPlayer
-	#define FIX_SpawnPlayer              (2)
+	#define FIX_SpawnPlayer                      (2)
 #endif
 
 #if !defined FIX_SetPlayerName
-	#define FIX_SetPlayerName            (1)
+	#define FIX_SetPlayerName                    (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerName)
 	#undef FIX_SetPlayerName
-	#define FIX_SetPlayerName            (2)
+	#define FIX_SetPlayerName                    (2)
 #endif
 
 #if !defined FIX_GetPlayerSkin
-	#define FIX_GetPlayerSkin            (1)
+	#define FIX_GetPlayerSkin                    (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerSkin)
 	#undef FIX_GetPlayerSkin
-	#define FIX_GetPlayerSkin            (2)
+	#define FIX_GetPlayerSkin                    (2)
 #endif
 
 #if !defined FIX_GetWeaponName
 	#if defined GetVehicleParamsSirenState
-		#define FIX_GetWeaponName (FIXES_EnableDeprecated)
+		#define FIX_GetWeaponName                (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWeaponName (1)
+		#define FIX_GetWeaponName                (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeaponName)
 	#undef FIX_GetWeaponName
-	#define FIX_GetWeaponName            (2)
+	#define FIX_GetWeaponName                    (2)
 #endif
 
 #if !defined FIX_SetPlayerWorldBounds
-	#define FIX_SetPlayerWorldBounds     (1)
+	#define FIX_SetPlayerWorldBounds             (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerWorldBounds)
 	#undef FIX_SetPlayerWorldBounds
-	#define FIX_SetPlayerWorldBounds     (2)
+	#define FIX_SetPlayerWorldBounds             (2)
 #endif
 
 #if !defined FIX_TogglePlayerControllable
 	#if defined SetObjectMaterial
-		#define FIX_TogglePlayerControllable (FIXES_EnableDeprecated)
+		#define FIX_TogglePlayerControllable     (FIXES_EnableDeprecated)
 	#else
-		#define FIX_TogglePlayerControllable (1)
+		#define FIX_TogglePlayerControllable     (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)
 	#undef FIX_TogglePlayerControllable
-	#define FIX_TogglePlayerControllable (2)
+	#define FIX_TogglePlayerControllable         (2)
 #endif
 
 #if !defined FIX_HydraSniper
-	#define FIX_HydraSniper              (1)
+	#define FIX_HydraSniper                      (1)
 #elseif _FIXES_IS_UNSET(FIX_HydraSniper)
 	#undef FIX_HydraSniper
-	#define FIX_HydraSniper              (2)
+	#define FIX_HydraSniper                      (2)
 #endif
 
 #if !defined FIX_IsPlayerInCheckpoint
-	#define FIX_IsPlayerInCheckpoint     (1)
+	#define FIX_IsPlayerInCheckpoint             (1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInCheckpoint)
 	#undef FIX_IsPlayerInCheckpoint
-	#define FIX_IsPlayerInCheckpoint     (2)
+	#define FIX_IsPlayerInCheckpoint             (2)
 #endif
 
 #if !defined FIX_IsPlayerInRaceCheckpoint
-	#define FIX_IsPlayerInRaceCheckpoint (1)
+	#define FIX_IsPlayerInRaceCheckpoint         (1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInRaceCheckpoint)
 	#undef FIX_IsPlayerInRaceCheckpoint
-	#define FIX_IsPlayerInRaceCheckpoint (2)
+	#define FIX_IsPlayerInRaceCheckpoint         (2)
 #endif
 
 #if !defined FIX_GetPlayerWeapon
-	#define FIX_GetPlayerWeapon          (1)
+	#define FIX_GetPlayerWeapon                  (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeapon)
 	#undef FIX_GetPlayerWeapon
-	#define FIX_GetPlayerWeapon          (2)
+	#define FIX_GetPlayerWeapon                  (2)
 #endif
 
 #if !defined FIX_PutPlayerInVehicle
-	#define FIX_PutPlayerInVehicle       (1)
+	#define FIX_PutPlayerInVehicle               (1)
 #elseif _FIXES_IS_UNSET(FIX_PutPlayerInVehicle)
 	#undef FIX_PutPlayerInVehicle
-	#define FIX_PutPlayerInVehicle       (2)
+	#define FIX_PutPlayerInVehicle               (2)
 #endif
 
 #if !defined FIX_KEY_AIM
 	#if defined KEY_AIM
-		#define FIX_KEY_AIM              (FIXES_EnableDeprecated)
+		#define FIX_KEY_AIM                      (FIXES_EnableDeprecated)
 	#else
-		#define FIX_KEY_AIM              (1)
+		#define FIX_KEY_AIM                      (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_KEY_AIM)
 	#undef FIX_KEY_AIM
-	#define FIX_KEY_AIM                  (2)
+	#define FIX_KEY_AIM                          (2)
 #endif
 
 #if !defined FIX_SPECIAL_ACTION_PISSING
 	#if defined SPECIAL_ACTION_PISSING
-		#define FIX_SPECIAL_ACTION_PISSING (FIXES_EnableDeprecated)
+		#define FIX_SPECIAL_ACTION_PISSING       (FIXES_EnableDeprecated)
 	#else
-		#define FIX_SPECIAL_ACTION_PISSING (1)
+		#define FIX_SPECIAL_ACTION_PISSING       (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SPECIAL_ACTION_PISSING)
 	#undef FIX_SPECIAL_ACTION_PISSING
-	#define FIX_SPECIAL_ACTION_PISSING   (2)
+	#define FIX_SPECIAL_ACTION_PISSING           (2)
 #endif
 
 #if !defined FIX_Natives
-	#define FIX_Natives                  (1)
+	#define FIX_Natives                          (1)
 #elseif _FIXES_IS_UNSET(FIX_Natives)
 	#undef FIX_Natives
-	#define FIX_Natives                  (2)
+	#define FIX_Natives                          (2)
+#endif
+
+#if !defined FIX_Extensions
+	#define FIX_Extensions                       (1)
+#elseif _FIXES_IS_UNSET(FIX_Extensions)
+	#undef FIX_Extensions
+	#define FIX_Extensions                       (2)
 #endif
 
 #if !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
-		#define FIX_IsValidVehicle       (FIXES_EnableDeprecated)
+		#define FIX_IsValidVehicle               (FIXES_EnableDeprecated)
 	#else
-		#define FIX_IsValidVehicle       (FIX_Natives)
+		#define FIX_IsValidVehicle               (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
 	#undef FIX_IsValidVehicle
-	#define FIX_IsValidVehicle           (2)
+	#define FIX_IsValidVehicle                   (2)
 #endif
 
 #if !defined FIX_GetGravity
 	#if defined GetGravity
-		#define FIX_GetGravity           (FIXES_EnableDeprecated)
+		#define FIX_GetGravity                   (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetGravity           (FIX_Natives)
+		#define FIX_GetGravity                   (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetGravity)
 	#undef FIX_GetGravity
-	#define FIX_GetGravity               (2)
+	#define FIX_GetGravity                       (2)
 #endif
 
 #if !defined FIX_gpci
 	#if defined gpci
-		#define FIX_gpci                 (FIXES_EnableDeprecated)
+		#define FIX_gpci                         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_gpci                 (FIX_Natives)
+		#define FIX_gpci                         (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_gpci)
 	#undef FIX_gpci
-	#define FIX_gpci                     (2)
+	#define FIX_gpci                             (2)
 #endif
 
 #if !defined FIX_WEAPONS
 	#if defined WEAPON_FIST
-		#define FIX_WEAPONS              (FIXES_EnableDeprecated)
+		#define FIX_WEAPONS                      (FIXES_EnableDeprecated)
 	#else
-		#define FIX_WEAPONS              (1)
+		#define FIX_WEAPONS                      (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_WEAPONS)
 	#undef FIX_WEAPONS
-	#define FIX_WEAPONS                  (2)
+	#define FIX_WEAPONS                          (2)
 #endif
 
 #if !defined FIX_BODYPARTS
 	#if defined BODY_PART_LEFT_ARM
-		#define FIX_BODYPARTS            (FIXES_EnableDeprecated)
+		#define FIX_BODYPARTS                    (FIXES_EnableDeprecated)
 	#else
-		#define FIX_BODYPARTS            (1)
+		#define FIX_BODYPARTS                    (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_BODYPARTS)
 	#undef FIX_BODYPARTS
-	#define FIX_BODYPARTS                (2)
+	#define FIX_BODYPARTS                        (2)
 #endif
 
 #if !defined FIX_CAMERAMODES
 	#if defined CAM_MODE_NONE
-		#define FIX_CAMERAMODES          (FIXES_EnableDeprecated)
+		#define FIX_CAMERAMODES                  (FIXES_EnableDeprecated)
 	#else
-		#define FIX_CAMERAMODES          (1)
+		#define FIX_CAMERAMODES                  (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_CAMERAMODES)
 	#undef FIX_CAMERAMODES
-	#define FIX_CAMERAMODES              (2)
+	#define FIX_CAMERAMODES                      (2)
 #endif
 
 #if !defined FIX_DriveBy
-	#define FIX_DriveBy                  (1)
+	#define FIX_DriveBy                          (1)
 #elseif _FIXES_IS_UNSET(FIX_DriveBy)
 	#undef FIX_DriveBy
-	#define FIX_DriveBy                  (2)
+	#define FIX_DriveBy                          (2)
 #endif
 
 #if !defined FIX_SetPlayerCheckpoint
-	#define FIX_SetPlayerCheckpoint      (1)
+	#define FIX_SetPlayerCheckpoint              (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCheckpoint)
 	#undef FIX_SetPlayerCheckpoint
-	#define FIX_SetPlayerCheckpoint      (2)
+	#define FIX_SetPlayerCheckpoint              (2)
 #endif
 
 #if !defined FIX_SetPlayerRaceCheckpoint
-	#define FIX_SetPlayerRaceCheckpoint  (1)
+	#define FIX_SetPlayerRaceCheckpoint          (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerRaceCheckpoint)
 	#undef FIX_SetPlayerRaceCheckpoint
-	#define FIX_SetPlayerRaceCheckpoint  (2)
+	#define FIX_SetPlayerRaceCheckpoint          (2)
 #endif
 
 #if !defined FIX_TextDrawCreate
-	#define FIX_TextDrawCreate           (1)
+	#define FIX_TextDrawCreate                   (1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawCreate)
 	#undef FIX_TextDrawCreate
-	#define FIX_TextDrawCreate           (2)
+	#define FIX_TextDrawCreate                   (2)
 #endif
 
 #if !defined FIX_TextDrawSetString
-	#define FIX_TextDrawSetString        (1)
+	#define FIX_TextDrawSetString                (1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString)
 	#undef FIX_TextDrawSetString
-	#define FIX_TextDrawSetString        (2)
+	#define FIX_TextDrawSetString                (2)
 #endif
 
 #if !defined FIX_AllowInteriorWeapons
-	#define FIX_AllowInteriorWeapons     (1)
+	#define FIX_AllowInteriorWeapons             (1)
 #elseif _FIXES_IS_UNSET(FIX_AllowInteriorWeapons)
 	#undef FIX_AllowInteriorWeapons
-	#define FIX_AllowInteriorWeapons     (2)
+	#define FIX_AllowInteriorWeapons             (2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle
 	#if defined OnPlayerClickMap
-		#define FIX_OnPlayerEnterVehicle (FIXES_EnableDeprecated)
+		#define FIX_OnPlayerEnterVehicle         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_OnPlayerEnterVehicle (1)
+		#define FIX_OnPlayerEnterVehicle         (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle)
 	#undef FIX_OnPlayerEnterVehicle
-	#define FIX_OnPlayerEnterVehicle     (2)
+	#define FIX_OnPlayerEnterVehicle             (2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle_2
-	#define FIX_OnPlayerEnterVehicle_2   (1)
+	#define FIX_OnPlayerEnterVehicle_2           (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle)
 	#undef FIX_OnPlayerEnterVehicle_2
-	#define FIX_OnPlayerEnterVehicle_2   (2)
+	#define FIX_OnPlayerEnterVehicle_2           (2)
 #endif
 
 #if !defined FIX_AllowTeleport
 	#if defined OnPlayerClickMap
-		#define FIX_AllowTeleport        (1)
+		#define FIX_AllowTeleport                (1)
 	#else
-		#define FIX_AllowTeleport        (FIXES_EnableDeprecated)
+		#define FIX_AllowTeleport                (FIXES_EnableDeprecated)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_AllowTeleport)
 	#undef FIX_AllowTeleport
-	#define FIX_AllowTeleport            (2)
+	#define FIX_AllowTeleport                    (2)
 #endif
 
 #if !defined FIX_SetPlayerSpecialAction
-	#define FIX_SetPlayerSpecialAction   (1)
+	#define FIX_SetPlayerSpecialAction           (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSpecialAction)
 	#undef FIX_SetPlayerSpecialAction
-	#define FIX_SetPlayerSpecialAction   (2)
+	#define FIX_SetPlayerSpecialAction           (2)
 #endif
 
 #if !defined FIX_ClearAnimations
-	#define FIX_ClearAnimations          (1)
+	#define FIX_ClearAnimations                  (1)
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations)
 	#undef FIX_ClearAnimations
-	#define FIX_ClearAnimations          (2)
+	#define FIX_ClearAnimations                  (2)
 #endif
 
 #if !defined FIX_ClearAnimations_2
-	#define FIX_ClearAnimations_2        (1)
+	#define FIX_ClearAnimations_2                (1)
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations_2)
 	#undef FIX_ClearAnimations_2
-	#define FIX_ClearAnimations_2        (2)
+	#define FIX_ClearAnimations_2                (2)
 #endif
 
 #if !defined FIX_GangZoneCreate
-	#define FIX_GangZoneCreate           (1)
+	#define FIX_GangZoneCreate                   (1)
 #elseif _FIXES_IS_UNSET(FIX_GangZoneCreate)
 	#undef FIX_GangZoneCreate
-	#define FIX_GangZoneCreate           (2)
+	#define FIX_GangZoneCreate                   (2)
 #endif
 
 #if !defined FIX_OnDialogResponse
 	#if defined GetVehicleModelInfo
-		#define FIX_OnDialogResponse     (FIXES_EnableDeprecated)
+		#define FIX_OnDialogResponse             (FIXES_EnableDeprecated)
 	#else
-		#define FIX_OnDialogResponse     (1)
+		#define FIX_OnDialogResponse             (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnDialogResponse)
 	#undef FIX_OnDialogResponse
-	#define FIX_OnDialogResponse         (2)
+	#define FIX_OnDialogResponse                 (2)
 #endif
 
 #if !defined FIX_GetPlayerDialog
 	#if defined GetPlayerDialog
-		#define FIX_GetPlayerDialog      (FIXES_EnableDeprecated)
+		#define FIX_GetPlayerDialog              (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerDialog      (FIX_Natives)
+		#define FIX_GetPlayerDialog              (FIX_Extensions)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
-	#define FIX_GetPlayerDialog          (2)
+	#define FIX_GetPlayerDialog                  (2)
 #endif
 
 #if !defined FIX_PlayerDialogResponse
-	#define FIX_PlayerDialogResponse     (1)
+	#define FIX_PlayerDialogResponse             (1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerDialogResponse)
 	#undef FIX_PlayerDialogResponse
-	#define FIX_PlayerDialogResponse     (2)
+	#define FIX_PlayerDialogResponse             (2)
 #endif
 
 #if !defined FIX_SetSpawnInfo
 	#if defined GetPlayerVersion
-		#define FIX_SetSpawnInfo         (FIXES_EnableDeprecated)
+		#define FIX_SetSpawnInfo                 (FIXES_EnableDeprecated)
 	#else
-		#define FIX_SetSpawnInfo         (1)
+		#define FIX_SetSpawnInfo                 (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetSpawnInfo)
 	#undef FIX_SetSpawnInfo
-	#define FIX_SetSpawnInfo             (2)
+	#define FIX_SetSpawnInfo                     (2)
 #endif
 
 #if !defined FIX_SetPlayerSkin
-	#define FIX_SetPlayerSkin            (1)
+	#define FIX_SetPlayerSkin                    (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSkin)
 	#undef FIX_SetPlayerSkin
-	#define FIX_SetPlayerSkin            (2)
+	#define FIX_SetPlayerSkin                    (2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (1)
+	#define FIX_HideMenuForPlayer                (1)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
 	#undef FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (2)
+	#define FIX_HideMenuForPlayer                (2)
 #endif
 
 #if !defined FIX_valstr
-	#define FIX_valstr                   (1)
+	#define FIX_valstr                           (1)
 #elseif _FIXES_IS_UNSET(FIX_valstr)
 	#undef FIX_valstr
-	#define FIX_valstr                   (2)
+	#define FIX_valstr                           (2)
 #endif
 
 #if !defined FIX_file_inc
-	#define FIX_file_inc                 (FIXES_EnableAll)
+	#define FIX_file_inc                         (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_file_inc)
 	#undef FIX_file_inc
-	#define FIX_file_inc                 (2)
+	#define FIX_file_inc                         (2)
 #endif
 
 #if !defined FIX_fclose
-	#define FIX_fclose                   (FIX_file_inc)
+	#define FIX_fclose                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fclose)
 	#undef FIX_fclose
-	#define FIX_fclose                   (2)
+	#define FIX_fclose                           (2)
 #endif
 
 #if !defined FIX_fwrite
-	#define FIX_fwrite                   (FIX_file_inc)
+	#define FIX_fwrite                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fwrite)
 	#undef FIX_fwrite
-	#define FIX_fwrite                   (2)
+	#define FIX_fwrite                           (2)
 #endif
 
 #if !defined FIX_fread
-	#define FIX_fread                    (FIX_file_inc)
+	#define FIX_fread                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fread)
 	#undef FIX_fread
-	#define FIX_fread                    (2)
+	#define FIX_fread                            (2)
 #endif
 
 #if !defined FIX_fputchar
-	#define FIX_fputchar                 (FIX_file_inc)
+	#define FIX_fputchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fputchar)
 	#undef FIX_fputchar
-	#define FIX_fputchar                 (2)
+	#define FIX_fputchar                         (2)
 #endif
 
 #if !defined FIX_fgetchar
-	#define FIX_fgetchar                 (FIX_file_inc)
+	#define FIX_fgetchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fgetchar)
 	#undef FIX_fgetchar
-	#define FIX_fgetchar                 (2)
+	#define FIX_fgetchar                         (2)
 #endif
 
 #if !defined FIX_fblockwrite
-	#define FIX_fblockwrite              (FIX_file_inc)
+	#define FIX_fblockwrite                      (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockwrite)
 	#undef FIX_fblockwrite
-	#define FIX_fblockwrite              (2)
+	#define FIX_fblockwrite                      (2)
 #endif
 
 #if !defined FIX_fblockread
-	#define FIX_fblockread               (FIX_file_inc)
+	#define FIX_fblockread                       (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockread)
 	#undef FIX_fblockread
-	#define FIX_fblockread               (2)
+	#define FIX_fblockread                       (2)
 #endif
 
 #if !defined FIX_fseek
-	#define FIX_fseek                    (FIX_file_inc)
+	#define FIX_fseek                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fseek)
 	#undef FIX_fseek
-	#define FIX_fseek                    (2)
+	#define FIX_fseek                            (2)
 #endif
 
 #if !defined FIX_flength
-	#define FIX_flength                  (FIX_file_inc)
+	#define FIX_flength                          (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_flength)
 	#undef FIX_flength
-	#define FIX_flength                  (2)
+	#define FIX_flength                          (2)
 #endif
 
 #if !defined FIX_SetPlayerAttachedObject
-	#define FIX_SetPlayerAttachedObject  (1)
+	#define FIX_SetPlayerAttachedObject          (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerAttachedObject)
 	#undef FIX_SetPlayerAttachedObject
-	#define FIX_SetPlayerAttachedObject  (2)
+	#define FIX_SetPlayerAttachedObject          (2)
 #endif
 
 #if !defined FIX_OnPlayerDeath
-	#define FIX_OnPlayerDeath            (1)
+	#define FIX_OnPlayerDeath                    (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDeath)
 	#undef FIX_OnPlayerDeath
-	#define FIX_OnPlayerDeath            (2)
+	#define FIX_OnPlayerDeath                    (2)
 #endif
 
 #if !defined FIX_strins
-	#define FIX_strins                   (1)
+	#define FIX_strins                           (1)
 #elseif _FIXES_IS_UNSET(FIX_strins)
 	#undef FIX_strins
-	#define FIX_strins                   (2)
+	#define FIX_strins                           (2)
 #endif
 
 #if !defined FIX_IsPlayerConnected
-	#define FIX_IsPlayerConnected        (1)
+	#define FIX_IsPlayerConnected                (1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerConnected)
 	#undef FIX_IsPlayerConnected
-	#define FIX_IsPlayerConnected        (2)
+	#define FIX_IsPlayerConnected                (2)
 #endif
 
 #if !defined FIX_TrainExit
-	#define FIX_TrainExit                (1)
+	#define FIX_TrainExit                        (1)
 #elseif _FIXES_IS_UNSET(FIX_TrainExit)
 	#undef FIX_TrainExit
-	#define FIX_TrainExit                (2)
+	#define FIX_TrainExit                        (2)
 #endif
 
 #if !defined FIX_Kick
 	#if defined EnableVehicleFriendlyFire
-		#define FIX_Kick                 (FIXES_EnableDeprecated)
+		#define FIX_Kick                         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_Kick                 (1)
+		#define FIX_Kick                         (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_Kick)
 	#undef FIX_Kick
-	#define FIX_Kick                     (2)
+	#define FIX_Kick                             (2)
 #endif
 
 #if !defined FIX_OnVehicleMod
-	#define FIX_OnVehicleMod             (1)
+	#define FIX_OnVehicleMod                     (1)
 #elseif _FIXES_IS_UNSET(FIX_OnVehicleMod)
 	#undef FIX_OnVehicleMod
-	#define FIX_OnVehicleMod             (2)
+	#define FIX_OnVehicleMod                     (2)
 #endif
 
 #if !defined FIX_random
-	#define FIX_random                   (FIXES_EnableAll)
+	#define FIX_random                           (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_random)
 	#undef FIX_random
-	#define FIX_random                   (2)
+	#define FIX_random                           (2)
 #endif
 
 #if !defined FIX_sleep
-	#define FIX_sleep                    (1)
+	#define FIX_sleep                            (1)
 #elseif _FIXES_IS_UNSET(FIX_sleep)
 	#undef FIX_sleep
-	#define FIX_sleep                    (2)
+	#define FIX_sleep                            (2)
 #endif
 
 #if !defined FIX_Menus
-	#define FIX_Menus                    (1)
+	#define FIX_Menus                            (1)
 #elseif _FIXES_IS_UNSET(FIX_Menus)
 	#undef FIX_Menus
-	#define FIX_Menus                    (2)
+	#define FIX_Menus                            (2)
 #endif
 
 #if !defined FIX_AddMenuItem
-	#define FIX_AddMenuItem              (FIX_Menus)
+	#define FIX_AddMenuItem                      (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_AddMenuItem)
 	#undef FIX_AddMenuItem
-	#define FIX_AddMenuItem              (2)
+	#define FIX_AddMenuItem                      (2)
 #endif
 
 #if !defined FIX_SetMenuColumnHeader
-	#define FIX_SetMenuColumnHeader      (FIX_Menus)
+	#define FIX_SetMenuColumnHeader              (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_SetMenuColumnHeader)
 	#undef FIX_SetMenuColumnHeader
-	#define FIX_SetMenuColumnHeader      (2)
+	#define FIX_SetMenuColumnHeader              (2)
 #endif
 
 #if !defined FIX_ShowMenuForPlayer
-	#define FIX_ShowMenuForPlayer        (FIX_Menus)
+	#define FIX_ShowMenuForPlayer                (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_ShowMenuForPlayer)
 	#undef FIX_ShowMenuForPlayer
-	#define FIX_ShowMenuForPlayer        (2)
+	#define FIX_ShowMenuForPlayer                (2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (FIX_Menus)
+	#define FIX_HideMenuForPlayer                (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
 	#undef FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (2)
+	#define FIX_HideMenuForPlayer                (2)
 #endif
 
 #if !defined FIX_GetPlayerMenu
-	#define FIX_GetPlayerMenu            (1)
+	#define FIX_GetPlayerMenu                    (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerMenu)
 	#undef FIX_GetPlayerMenu
-	#define FIX_GetPlayerMenu            (2)
+	#define FIX_GetPlayerMenu                    (2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer_2
-	#define FIX_HideMenuForPlayer_2      (FIXES_EnableAll)
+	#define FIX_HideMenuForPlayer_2              (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer_2)
 	#undef FIX_HideMenuForPlayer_2
-	#define FIX_HideMenuForPlayer_2      (2)
+	#define FIX_HideMenuForPlayer_2              (2)
 #elseif FIX_HideMenuForPlayer_2 && !FIX_GetPlayerMenu
 	#error FIX_HideMenuForPlayer_2 requires FIX_GetPlayerMenu
 #endif
 
 #if !defined FIX_DisableMenu
-	#define FIX_DisableMenu              (FIX_Menus)
+	#define FIX_DisableMenu                      (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_DisableMenu)
 	#undef FIX_DisableMenu
-	#define FIX_DisableMenu              (2)
+	#define FIX_DisableMenu                      (2)
 #endif
 
 #if !defined FIX_DisableMenuRow
-	#define FIX_DisableMenuRow           (FIX_Menus)
+	#define FIX_DisableMenuRow                   (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_DisableMenuRow)
 	#undef FIX_DisableMenuRow
-	#define FIX_DisableMenuRow           (2)
+	#define FIX_DisableMenuRow                   (2)
 #endif
 
 #if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
-	#define _FIX_Menus                   (1)
+	#define _FIX_Menus                           (1)
 #else
-	#define _FIX_Menus                   (2)
+	#define _FIX_Menus                           (2)
 #endif
 
 #if !defined FIX_GetPlayerInterior
-	#define FIX_GetPlayerInterior        (1)
+	#define FIX_GetPlayerInterior                (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerInterior)
 	#undef FIX_GetPlayerInterior
-	#define FIX_GetPlayerInterior        (2)
+	#define FIX_GetPlayerInterior                (2)
 #endif
 
 #if !defined FIX_ApplyAnimation
-	#define FIX_ApplyAnimation           (1)
+	#define FIX_ApplyAnimation                   (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation)
 	#undef FIX_ApplyAnimation
-	#define FIX_ApplyAnimation           (2)
+	#define FIX_ApplyAnimation                   (2)
 #endif
 
 #if !defined FIX_ApplyAnimation_2
-	#define FIX_ApplyAnimation_2         (1)
+	#define FIX_ApplyAnimation_2                 (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation_2)
 	#undef FIX_ApplyAnimation_2
-	#define FIX_ApplyAnimation_2         (2)
+	#define FIX_ApplyAnimation_2                 (2)
 #endif
 
 #if !defined FIX_ApplyActorAnimation
-	#define FIX_ApplyActorAnimation      (1)
+	#define FIX_ApplyActorAnimation              (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation)
 	#undef FIX_ApplyActorAnimation
-	#define FIX_ApplyActorAnimation      (2)
+	#define FIX_ApplyActorAnimation              (2)
 #endif
 
 #if !defined FIX_ApplyActorAnimation_2
-	#define FIX_ApplyActorAnimation_2    (1)
+	#define FIX_ApplyActorAnimation_2            (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation_2)
 	#undef FIX_ApplyActorAnimation_2
-	#define FIX_ApplyActorAnimation_2    (2)
+	#define FIX_ApplyActorAnimation_2            (2)
 #endif
 
 #if !defined FIX_OnPlayerSpawn
-	#define FIX_OnPlayerSpawn            (1)
+	#define FIX_OnPlayerSpawn                    (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerSpawn)
 	#undef FIX_OnPlayerSpawn
-	#define FIX_OnPlayerSpawn            (2)
+	#define FIX_OnPlayerSpawn                    (2)
 #endif
 
 #if !defined FIX_GameText
-	#define FIX_GameText                 (1)
+	#define FIX_GameText                         (1)
 #elseif _FIXES_IS_UNSET(FIX_GameText)
 	#undef FIX_GameText
-	#define FIX_GameText                 (2)
+	#define FIX_GameText                         (2)
 #endif
 
 #if !defined FIX_HideGameText
 	#if defined HideGameText
-		#define FIX_HideGameText         (FIXES_EnableDeprecated)
+		#define FIX_HideGameText                 (FIXES_EnableDeprecated)
 	#else
-		#define FIX_HideGameText         (FIX_Natives)
+		#define FIX_HideGameText                 (FIX_Extensions)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_HideGameText)
 	#undef FIX_HideGameText
-	#define FIX_HideGameText             (2)
+	#define FIX_HideGameText                     (2)
 #endif
 
 #if !defined FIX_GetPlayerWorldBounds
 	#if defined GetPlayerWorldBounds
-		#define FIX_GetPlayerWorldBounds (FIXES_EnableDeprecated)
+		#define FIX_GetPlayerWorldBounds         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerWorldBounds (FIX_Natives)
+		#define FIX_GetPlayerWorldBounds         (FIX_Extensions)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWorldBounds)
 	#undef FIX_GetPlayerWorldBounds
-	#define FIX_GetPlayerWorldBounds     (2)
+	#define FIX_GetPlayerWorldBounds             (2)
 #endif
 
 #if !defined FIX_ClearPlayerWorldBounds
 	#if defined ClearPlayerWorldBounds
-		#define FIX_ClearPlayerWorldBounds (FIXES_EnableDeprecated)
+		#define FIX_ClearPlayerWorldBounds       (FIXES_EnableDeprecated)
 	#else
-		#define FIX_ClearPlayerWorldBounds (FIX_Natives)
+		#define FIX_ClearPlayerWorldBounds       (FIX_Extensions)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_ClearPlayerWorldBounds)
 	#undef FIX_ClearPlayerWorldBounds
-	#define FIX_ClearPlayerWorldBounds   (2)
+	#define FIX_ClearPlayerWorldBounds           (2)
 #endif
 
 #if !defined FIX_GameTextStyles
-	#define FIX_GameTextStyles           (FIXES_EnableAll)
+	#define FIX_GameTextStyles                   (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
 	#undef FIX_GameTextStyles
-	#define FIX_GameTextStyles           (2)
+	#define FIX_GameTextStyles                   (2)
 #elseif FIX_GameTextStyles && !FIX_GameText
 	#error FIX_GameTextStyles requires FIX_GameText
 #endif
 
 #if !defined FIX_OnPlayerConnect
-	#define FIX_OnPlayerConnect          (1)
+	#define FIX_OnPlayerConnect                  (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerConnect)
 	#undef FIX_OnPlayerConnect
-	#define FIX_OnPlayerConnect          (2)
+	#define FIX_OnPlayerConnect                  (2)
 #endif
 
 #if !defined FIX_OnPlayerDisconnect
-	#define FIX_OnPlayerDisconnect       (1)
+	#define FIX_OnPlayerDisconnect               (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDisconnect)
 	#undef FIX_OnPlayerDisconnect
-	#define FIX_OnPlayerDisconnect       (2)
+	#define FIX_OnPlayerDisconnect               (2)
 #endif
 
 #if !defined FIX_CreatePlayerTextDraw
-	#define FIX_CreatePlayerTextDraw     (1)
+	#define FIX_CreatePlayerTextDraw             (1)
 #elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw)
 	#undef FIX_CreatePlayerTextDraw
-	#define FIX_CreatePlayerTextDraw     (2)
+	#define FIX_CreatePlayerTextDraw             (2)
 #endif
 
 #if !defined FIX_PlayerTextDrawSetString
-	#define FIX_PlayerTextDrawSetString  (1)
+	#define FIX_PlayerTextDrawSetString          (1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString)
 	#undef FIX_PlayerTextDrawSetString
-	#define FIX_PlayerTextDrawSetString  (2)
+	#define FIX_PlayerTextDrawSetString          (2)
 #endif
 
 #if !defined FIX_SetPlayerCamera
-	#define FIX_SetPlayerCamera          (1)
+	#define FIX_SetPlayerCamera                  (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCamera)
 	#undef FIX_SetPlayerCamera
-	#define FIX_SetPlayerCamera          (2)
+	#define FIX_SetPlayerCamera                  (2)
 #endif
 
 #if !defined FIX_SetPlayerTime
-	#define FIX_SetPlayerTime            (1)
+	#define FIX_SetPlayerTime                    (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerTime)
 	#undef FIX_SetPlayerTime
-	#define FIX_SetPlayerTime            (2)
+	#define FIX_SetPlayerTime                    (2)
 #endif
 
 #if !defined FIX_OnPlayerRequestClass
-	#define FIX_OnPlayerRequestClass     (1)
+	#define FIX_OnPlayerRequestClass             (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerRequestClass)
 	#undef FIX_OnPlayerRequestClass
-	#define FIX_OnPlayerRequestClass     (2)
+	#define FIX_OnPlayerRequestClass             (2)
 #endif
 
 #if !defined FIX_SetPlayerColour
 	#if defined FIX_SetPlayerColor
 		#if _FIXES_IS_UNSET(FIX_SetPlayerColor)
-			#define FIX_SetPlayerColour  (2)
+			#define FIX_SetPlayerColour          (2)
 		#else
-			#define FIX_SetPlayerColour  (FIX_SetPlayerColor)
+			#define FIX_SetPlayerColour          (FIX_SetPlayerColor)
 		#endif
 	#else
-		#define FIX_SetPlayerColour      (1)
+		#define FIX_SetPlayerColour              (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerColour)
 	#undef FIX_SetPlayerColour
-	#define FIX_SetPlayerColour          (2)
+	#define FIX_SetPlayerColour                  (2)
 #endif
 
 #if !defined FIX_FileMaths
-	#define FIX_FileMaths                (1)
+	#define FIX_FileMaths                        (1)
 #elseif _FIXES_IS_UNSET(FIX_FileMaths)
 	#undef FIX_FileMaths
-	#define FIX_FileMaths                (2)
+	#define FIX_FileMaths                        (2)
 #endif
 
 #if !defined FIX_GetPlayerWeaponData
-	#define FIX_GetPlayerWeaponData      (1)
+	#define FIX_GetPlayerWeaponData              (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeaponData)
 	#undef FIX_GetPlayerWeaponData
-	#define FIX_GetPlayerWeaponData      (2)
+	#define FIX_GetPlayerWeaponData              (2)
 #endif
 
 #if !defined FIX_strcmp
-	#define FIX_strcmp                   (1)
+	#define FIX_strcmp                           (1)
 #elseif _FIXES_IS_UNSET(FIX_strcmp)
 	#undef FIX_strcmp
-	#define FIX_strcmp                   (2)
+	#define FIX_strcmp                           (2)
 #endif
 
 #if !defined FIX_GetPVarString
-	#define FIX_GetPVarString            (FIXES_EnableAll)
+	#define FIX_GetPVarString                    (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetPVarString)
 	#undef FIX_GetPVarString
-	#define FIX_GetPVarString            (2)
+	#define FIX_GetPVarString                    (2)
 #endif
 
 #if !defined FIX_GetSVarString
-	#define FIX_GetSVarString            (FIXES_EnableAll)
+	#define FIX_GetSVarString                    (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetSVarString)
 	#undef FIX_GetSVarString
-	#define FIX_GetSVarString            (2)
+	#define FIX_GetSVarString                    (2)
 #endif
 
 #if !defined FIX_toupper
-	#define FIX_toupper                  (1)
+	#define FIX_toupper                          (1)
 #elseif _FIXES_IS_UNSET(FIX_toupper)
 	#undef FIX_toupper
-	#define FIX_toupper                  (2)
+	#define FIX_toupper                          (2)
 #endif
 
 #if !defined FIX_tolower
-	#define FIX_tolower                  (1)
+	#define FIX_tolower                          (1)
 #elseif _FIXES_IS_UNSET(FIX_tolower)
 	#undef FIX_tolower
-	#define FIX_tolower                  (2)
+	#define FIX_tolower                          (2)
 #endif
 
 #if !defined FIX_PassengerSeating
-	#define FIX_PassengerSeating         (1)
+	#define FIX_PassengerSeating                 (1)
 #elseif _FIXES_IS_UNSET(FIX_PassengerSeating)
 	#undef FIX_PassengerSeating
-	#define FIX_PassengerSeating         (2)
+	#define FIX_PassengerSeating                 (2)
 #endif
 
 #if !defined FIX_GogglesSync
-	#define FIX_GogglesSync              (1)
+	#define FIX_GogglesSync                      (1)
 #elseif _FIXES_IS_UNSET(FIX_GogglesSync)
 	#undef FIX_GogglesSync
-	#define FIX_GogglesSync              (2)
+	#define FIX_GogglesSync                      (2)
 #endif
 
 #if !defined FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize        (1)
+	#define FIX_GetPlayerPoolSize                (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize        (2)
+	#define FIX_GetPlayerPoolSize                (2)
 #endif
 
 #if !defined FIX_SetPlayerPos
-	#define FIX_SetPlayerPos             (1)
+	#define FIX_SetPlayerPos                     (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerPos)
 	#undef FIX_SetPlayerPos
-	#define FIX_SetPlayerPos             (2)
+	#define FIX_SetPlayerPos                     (2)
 #endif
 
 #if !defined FIX_GetPlayerAmmo
-	#define FIX_GetPlayerAmmo            (1)
+	#define FIX_GetPlayerAmmo                    (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerAmmo)
 	#undef FIX_GetPlayerAmmo
-	#define FIX_GetPlayerAmmo            (2)
+	#define FIX_GetPlayerAmmo                    (2)
 #endif
 
 #if !defined FIX_JIT
-	#define FIX_JIT                      (1)
+	#define FIX_JIT                              (1)
 #elseif _FIXES_IS_UNSET(FIX_JIT)
 	#undef FIX_JIT
-	#define FIX_JIT                      (2)
+	#define FIX_JIT                              (2)
 #endif
 
 #if !defined FIX_OS
-	#define FIX_OS                       (1)
+	#define FIX_OS                               (1)
 #elseif _FIXES_IS_UNSET(FIX_OS)
 	#undef FIX_OS
-	#define FIX_OS                       (2)
+	#define FIX_OS                               (2)
+#endif
+
+#if !defined FIX_ChangeVehicleColour
+	#if defined FIX_ChangeVehicleColor
+		#if _FIXES_IS_UNSET(FIX_ChangeVehicleColor)
+			#define FIX_ChangeVehicleColour      (2)
+		#else
+			#define FIX_ChangeVehicleColour      (FIX_ChangeVehicleColor)
+		#endif
+	#else
+		#define FIX_ChangeVehicleColour          (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_ChangeVehicleColour)
+	#undef FIX_ChangeVehicleColour
+	#define FIX_ChangeVehicleColour              (2)
+#endif
+
+// This is so far the most complex inclusion determiner.  There are two possible
+// spellings of "colour" - the correct one, and "color".  In addition, this
+// function is an addition not a change, so we need to account for that and not
+// include it if it becomes native.  Finally, it depends on another fix.
+#if !defined FIX_GetVehicleColour
+	#if defined FIX_GetVehicleColor
+		#if _FIXES_IS_UNSET(FIX_GetVehicleColor)
+			#define FIX_GetVehicleColour         (2)
+		#else
+			#define FIX_GetVehicleColour         (FIX_GetVehicleColor)
+		#endif
+	#else
+		#if defined GetVehicleColor
+			#define FIX_GetVehicleColour         (FIXES_EnableDeprecated)
+		#elseif defined GetVehicleColour
+			#define FIX_GetVehicleColour         (FIXES_EnableDeprecated)
+		#else
+			#define FIX_GetVehicleColour         (FIX_Extensions * FIX_ChangeVehicleColour)
+		#endif
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetVehicleColour)
+	#undef FIX_GetVehicleColour
+	#define FIX_GetVehicleColour                 (2)
+#endif
+
+#if !defined FIX_AddRandomModelColour
+	#if defined FIX_AddRandomModelColor
+		#if _FIXES_IS_UNSET(FIX_AddRandomModelColor)
+			#define FIX_AddRandomModelColour     (2)
+		#else
+			#define FIX_AddRandomModelColour     (FIX_AddRandomModelColor)
+		#endif
+	#else
+		#if defined AddRandomModelColor
+			#define FIX_AddRandomModelColour     (FIXES_EnableDeprecated)
+		#elseif defined AddRandomModelColour
+			#define FIX_AddRandomModelColour     (FIXES_EnableDeprecated)
+		#else
+			#define FIX_AddRandomModelColour     (FIX_Extensions * FIX_ChangeVehicleColour)
+		#endif
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_AddRandomModelColour)
+	#undef FIX_AddRandomModelColour
+	#define FIX_AddRandomModelColour             (2)
+#endif
+
+#if !defined FIX_ClearRandomModelColours
+	#if defined FIX_ClearRandomModelColors
+		#if _FIXES_IS_UNSET(FIX_ClearRandomModelColors)
+			#define FIX_ClearRandomModelColours  (2)
+		#else
+			#define FIX_ClearRandomModelColours  (FIX_ClearRandomModelColors)
+		#endif
+	#else
+		#if defined ClearRandomModelColors
+			#define FIX_ClearRandomModelColours  (FIXES_EnableDeprecated)
+		#elseif defined ClearRandomModelColours
+			#define FIX_ClearRandomModelColours  (FIXES_EnableDeprecated)
+		#else
+			#define FIX_ClearRandomModelColours  (FIX_Extensions * FIX_ChangeVehicleColour)
+		#endif
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_ClearRandomModelColours)
+	#undef FIX_ClearRandomModelColours
+	#define FIX_ClearRandomModelColours          (2)
+#endif
+
+#if !defined FIX_ResetRandomModelColours
+	#if defined FIX_ResetRandomModelColors
+		#if _FIXES_IS_UNSET(FIX_ResetRandomModelColors)
+			#define FIX_ResetRandomModelColours  (2)
+		#else
+			#define FIX_ResetRandomModelColours  (FIX_ResetRandomModelColors)
+		#endif
+	#else
+		#if defined ResetRandomModelColors
+			#define FIX_ResetRandomModelColours  (FIXES_EnableDeprecated)
+		#elseif defined ResetRandomModelColours
+			#define FIX_ResetRandomModelColours  (FIXES_EnableDeprecated)
+		#else
+			#define FIX_ResetRandomModelColours  (FIX_Extensions * FIX_ChangeVehicleColour)
+		#endif
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_ResetRandomModelColours)
+	#undef FIX_ResetRandomModelColours
+	#define FIX_ResetRandomModelColours          (2)
+#endif
+
+#if !defined FIX_GetVehicleModelRGB
+	#if defined GetVehicleModelRGB
+		#define FIX_GetVehicleModelRGB           (FIXES_EnableDeprecated)
+	#else
+		#define FIX_GetVehicleModelRGB           (FIX_Extensions * FIX_ChangeVehicleColour)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetVehicleModelRGB)
+	#undef FIX_GetVehicleModelRGB
+	#define FIX_GetVehicleModelRGB               (2)
 #endif
 
 #if !defined FIX_const
-	#define FIX_const                    (1)
+	#define FIX_const                            (1)
 #elseif _FIXES_IS_UNSET(FIX_const)
 	#undef FIX_const
-	#define FIX_const                    (2)
+	#define FIX_const                            (2)
 #endif
 
 /*
@@ -1791,8 +1958,10 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #if defined FIXES_Debug
 	#if _FIXES_IS_UNSET(FIXES_Debug)
 		#undef FIXES_Debug
-	#elseif FIXES_Debug == 1
-		#define FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):")),printf("*** " %0);
+		#define FIXES_Debug 1
+	#endif
+	#if FIXES_Debug == 1
+		#define FIXES_PRINTF(%0); (print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):")),printf("***" %0));
 	#else
 		#undef FIXES_Debug
 	#endif
@@ -1825,6 +1994,29 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #if !defined INVALID_DIALOG_ID
 	#define INVALID_DIALOG_ID (-1)
 #endif
+
+/*
+ * cellbytes
+ *
+ * Number of bytes in a cell.
+ */
+
+#if !defined cellbytes
+	#define cellbytes (cellbits / 8)
+#endif
+
+/*
+ * MAX_RANDOM_MODEL_COLOURS
+ *
+ * The maximum number of colours to be selected from when using "-1" for a
+ * vehicle colour.
+ */
+
+#if !defined MAX_RANDOM_MODEL_COLOURS
+	#define MAX_RANDOM_MODEL_COLOURS (10)
+#endif
+#define _FIXES_MAX_RANDOM_MODEL_COLOURS (MAX_RANDOM_MODEL_COLOURS char * cellbytes)
+#define _FIXES_MAX_VEHICLE_MODELS (611 + 1 - 400)
 
 /*
  * FIXES_Single
@@ -1873,6 +2065,48 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #else
 	#define FIXES_GET(%0,%1) GetPVarInt(%1, FIXES_pvar%0)
 #endif
+
+/*
+ * _FIXES_IS_VALID_PLAYER
+ */
+
+#define _FIXES_IS_VALID_PLAYER(%0) _FIXES_IN_RANGE(%0, 0, MAX_PLAYERS)
+
+/*
+ * _FIXES_IS_VALID_VEHICLE_ID
+ */
+
+#define _FIXES_IS_VALID_VEHICLE_ID(%0) _FIXES_IN_RANGE(%0, 1, MAX_VEHICLES)
+
+/*
+ * _FIXES_IS_VALID_VEHICLE_MODEL
+ */
+
+#define _FIXES_IS_VALID_VEHICLE_MODEL(%0) _FIXES_IN_RANGE(%0, 400, 611 + 1)
+
+/*
+ * _FIXES_PACK
+ * 
+ * Initialise 4 values in to a packed cell.
+ */
+
+#define _FIXES_PACK(%0,%1,%2,%3) (((%0) << 24) | ((%1) << 16) | ((%2) << 8) | ((%3)))
+
+/*
+ * _FIXES_10_PACK
+ * 
+ * Initialise 10 values in to 3 packed cells.
+ */
+
+#define _FIXES_10_PACK(%0,%1,%2,%3,%4,%5,%6,%7,%8,%9) { _FIXES_PACK(%0,%1,%2,%3), _FIXES_PACK(%4,%5,%6,%7), _FIXES_PACK(%8,%9,0,0) }
+
+/*
+ * _FIXES_MAKE_RGB
+ * 
+ * Convert three values in to an RGB number (no alpha).
+ */
+
+#define _FIXES_MAKE_RGB(%0,%1,%2) (((%0) << 24) | ((%1) << 16) | ((%2) << 8))
 
 /*
  * E_FIXES_WORLDBOUND_DATA
@@ -2157,7 +2391,7 @@ static stock
 	 * Stores the true ID of the dialog the player is looking at to prevent
 	 * spoofing.
 	 */
-#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+#if FIXES_Single && (FIX_OnDialogResponse || FIX_GetPlayerDialog)
 	FIXES_gsPlayerDialog[MAX_PLAYERS] = {-1, ...},
 #endif
 	/*
@@ -2187,7 +2421,7 @@ static stock
 	 *
 	 * A player's cash before dying.
 	 */
-#if FIX_OnPlayerSpawn
+#if FIXES_Single && FIX_OnPlayerSpawn
 	FIXES_gsPlayerLastCash[MAX_PLAYERS],
 #endif
 	/*
@@ -2287,6 +2521,506 @@ static stock
 	FIXES_gsActorAnimLibs[MAX_ACTORS][_FIXES_CEILDIV(135, cellbits)],
 #endif
 	/*
+	 * FIXES_gsVehicleModelColours1[_FIXES_MAX_VEHICLE_MODELS][_FIXES_MAX_RANDOM_MODEL_COLOURS char]
+	 * FIXES_gsVehicleModelColours2[_FIXES_MAX_VEHICLE_MODELS][_FIXES_MAX_RANDOM_MODEL_COLOURS char]
+	 *
+	 * By default, the vehicle with the highest number of colour variants is the
+	 * `stafford` for some reason.  That model has 9 colours.  We store the
+	 * colour pairs two to a cell, since each index can only be 0-127.  There
+	 * are three vehicles with tertiary and quaterniary colours (`camper`,
+	 * `cement`, and `squalo`).  In theory, for these we would need a full cell
+	 * per set (or rather, four arrays), but there's no way to set these extra
+	 * parts in SA:MP, so there's no need to store them anywhere.
+	 *
+	 * I wanted to just use one array, and actually that would waste slightly
+	 * less memory since `(20 char)` is exactly 5 cells while `(10 char) * 2` is
+	 * 6 cells.  However, that would make the code more complex and slower, plus
+	 * memory is cheap.
+	 */
+#if FIX_ChangeVehicleColour
+	FIXES_gsVehicleModelColours1[_FIXES_MAX_VEHICLE_MODELS][_FIXES_MAX_RANDOM_MODEL_COLOURS char] = {
+		_FIXES_10_PACK(  4, 123, 113, 101,  75,  62,  40,  36,   0,   0), // landstal
+		_FIXES_10_PACK( 41,  47,  52,  66,  74,  87, 113,   0,   0,   0), // bravura
+		_FIXES_10_PACK( 10,  13,  22,  30,  39,  90,  98, 110,   0,   0), // buffalo
+		_FIXES_10_PACK( 36,  37,  30,  28,  25,  40, 101, 113,   0,   0), // linerun
+		_FIXES_10_PACK(113, 119, 123, 109, 101,  95,  83,  66,   0,   0), // peren
+		_FIXES_10_PACK( 11,  24,  36,  40,  75,  91, 123,   4,   0,   0), // sentinel
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dumper
+		_FIXES_10_PACK(  3,   0,   0,   0,   0,   0,   0,   0,   0,   0), // firetruk
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // trash
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // stretch
+		_FIXES_10_PACK(  4,   9,  10,  25,  36,  40,  45,  84,   0,   0), // manana
+		_FIXES_10_PACK( 12,  64, 123, 116, 112, 106,  80,  75,   0,   0), // infernus
+		_FIXES_10_PACK(  9,  10,  11,  25,  27,  29,  30,  37,   0,   0), // voodoo
+		_FIXES_10_PACK( 87,  88,  91, 105, 109, 119,   4,  25,   0,   0), // pony
+		_FIXES_10_PACK( 25,  28,  43,  67,  72,   9,  95,  24,   0,   0), // mule
+		_FIXES_10_PACK(  0,  25,  36,  40,  75,  92,   0,   0,   0,   0), // cheetah
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // ambulan
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // leviathn
+		_FIXES_10_PACK(119, 117, 114, 108,  95,  81,  61,  41,   0,   0), // moonbeam
+		_FIXES_10_PACK( 45,  47,  33,  13,  54,  69,  59,  87,   0,   0), // esperant
+		_FIXES_10_PACK(  6,   0,   0,   0,   0,   0,   0,   0,   0,   0), // taxi
+		_FIXES_10_PACK(  4,  13,  25,  30,  36,  40,  75,  95,   0,   0), // washing
+		_FIXES_10_PACK( 96,  97, 101, 111, 113,  83,  67,   0,   0,   0), // bobcat
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   0,   0,   0,   0), // mrwhoop
+		_FIXES_10_PACK(  1,   2,   3,   3,   6,  15,  24,  35,   0,   0), // bfinject
+		_FIXES_10_PACK( 43,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hunter
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // premier
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // enforcer
+		_FIXES_10_PACK(  4,   0,   0,   0,   0,   0,   0,   0,   0,   0), // securica
+		_FIXES_10_PACK( 12,  13,  14,   1,   2,   1,   3,  10,   0,   0), // banshee
+		_FIXES_10_PACK( 46,   0,   0,   0,   0,   0,   0,   0,   0,   0), // predator
+		_FIXES_10_PACK( 71,  75,  92,  47,  55,  59,  71,  82,   0,   0), // bus
+		_FIXES_10_PACK( 43,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rhino
+		_FIXES_10_PACK( 43,   0,   0,   0,   0,   0,   0,   0,   0,   0), // barracks
+		_FIXES_10_PACK(  1,  12,   2,   6,   4,  46,  53,   0,   0,   0), // hotknife
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict1
+		_FIXES_10_PACK( 83,  87,  92,  95, 109, 119,  11,   0,   0,   0), // previon
+		_FIXES_10_PACK(  0,  79,  87,  95,  98, 105, 123, 125,   0,   0), // coach
+		_FIXES_10_PACK(  6,   0,   0,   0,   0,   0,   0,   0,   0,   0), // cabbie
+		_FIXES_10_PACK( 57,   8,  43,  54,  67,  37,  65,  25,   0,   0), // stallion
+		_FIXES_10_PACK( 34,  32,  20, 110,  66,  84, 118, 121,   0,   0), // rumpo
+		_FIXES_10_PACK(  2,  79,  82,  67, 126,  70, 110,  67,   0,   0), // rcbandit
+		_FIXES_10_PACK(  0,  11,  25,  36,  40,  75,   0,   0,   0,   0), // romero
+		_FIXES_10_PACK(  4,  20,  24,  25,  36,  40,  54,  84,   0,   0), // packer
+		_FIXES_10_PACK( 32,  32,  32,  32,  32,  32,   0,   0,   0,   0), // monster
+		_FIXES_10_PACK( 34,  35,  37,  39,  41,  43,  45,  47,   0,   0), // admiral
+		_FIXES_10_PACK(  0,   1,   3,   1,   1,   1,   1,   1,   0,   0), // squalo
+		_FIXES_10_PACK( 75,   0,   0,   0,   0,   0,   0,   0,   0,   0), // seaspar
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // pizzaboy
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tram
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict2
+		_FIXES_10_PACK(123, 125,  36,  16,  18,  46,  61,  75,   0,   0), // turismo
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // speeder
+		_FIXES_10_PACK( 56,   0,   0,   0,   0,   0,   0,   0,   0,   0), // reefer
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tropic
+		_FIXES_10_PACK( 84,  84,  84,  32,  43,   1,  77,  32,   0,   0), // flatbed
+		_FIXES_10_PACK( 84,  91, 102, 105, 110, 121,  12,  23,   0,   0), // yankee
+		_FIXES_10_PACK( 58,   2,  63,  18,  32,  45,  13,  34,   0,   0), // caddy
+		_FIXES_10_PACK( 91, 101, 109, 113,   4,  25,  30,  36,   0,   0), // solair
+		_FIXES_10_PACK( 26,  28,  44,  51,  57,  72, 106, 112,   0,   0), // topfun
+		_FIXES_10_PACK(  1,   1,   1,   1,  17,  46,  46,  57,   0,   0), // skimmer
+		_FIXES_10_PACK( 36,  37,  43,  53,  61,  75,  79,  88,   0,   0), // pcj600
+		_FIXES_10_PACK( 12,  13,  14,   1,   2,   1,   3,  10,   0,   0), // faggio
+		_FIXES_10_PACK( 79,  84,   7,  11,  19,  22,  36,  53,   0,   0), // freeway
+		_FIXES_10_PACK( 14,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcbaron
+		_FIXES_10_PACK( 14,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcraider
+		_FIXES_10_PACK( 67,  68,  78,   2,  16,  18,  25,  45,   0,   0), // glendale
+		_FIXES_10_PACK( 51,  58,  60,  68,   2,  13,  22,  36,   0,   0), // oceanic
+		_FIXES_10_PACK(  6,  46,  53,   3,   0,   0,   0,   0,   0,   0), // sanchez
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // sparrow
+		_FIXES_10_PACK( 43,   0,   0,   0,   0,   0,   0,   0,   0,   0), // patriot
+		_FIXES_10_PACK(120, 103, 120,  74, 120,  74, 120,  66,   0,   0), // quad
+		_FIXES_10_PACK( 56,  56,   0,   0,   0,   0,   0,   0,   0,   0), // coastg
+		_FIXES_10_PACK( 56,  56,   0,   0,   0,   0,   0,   0,   0,   0), // dinghy
+		_FIXES_10_PACK( 97,  81, 105, 110,  91,  74,  84,  83,   0,   0), // hermes
+		_FIXES_10_PACK(  2,   9,  17,  21,  33,  37,  41,  56,   0,   0), // sabre
+		_FIXES_10_PACK(  6,   7,   1,  89, 119, 103,  77,  71,   0,   0), // rustler
+		_FIXES_10_PACK( 92,  94, 101, 121,   0,  22,  36,  75,   0,   0), // zr350
+		_FIXES_10_PACK( 72,  66,  59,  45,  40,  39,  35,  20,   0,   0), // walton
+		_FIXES_10_PACK( 27,  59,  60,  55,  54,  49,  45,  40,   0,   0), // regina
+		_FIXES_10_PACK( 73,  12,   2,   6,   4,  46,  53,   0,   0,   0), // comet
+		_FIXES_10_PACK(  1,   3,   6,  46,  65,  14,  12,  26,   0,   0), // bmx
+		_FIXES_10_PACK( 41,  48,  52,  64,  71,  85,  10,  62,   0,   0), // burrito
+		_FIXES_10_PACK(  1,   1,   1,   1,   0,   3,  16,  17,   0,   0), // camper
+		_FIXES_10_PACK( 12,  50,  40,  66,   0,   0,   0,   0,   0,   0), // marquis
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   0,   0,   0), // baggage
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dozer
+		_FIXES_10_PACK( 26,  29,  26,  54,  26,   3,  12,  74,   0,   0), // maverick
+		_FIXES_10_PACK(  2,   2,   0,   0,   0,   0,   0,   0,   0,   0), // vcnmav
+		_FIXES_10_PACK( 13,  14, 120, 112,  84,  76,   0,   0,   0,   0), // rancher
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // fbiranch
+		_FIXES_10_PACK( 40,  71,  52,  64,  30,  60,   0,   0,   0,   0), // virgo
+		_FIXES_10_PACK( 30,  77,  81,  24,  28,  49,  52,  71,   0,   0), // greenwoo
+		_FIXES_10_PACK( 36,   0,   0,   0,   0,   0,   0,   0,   0,   0), // jetmax
+		_FIXES_10_PACK( 36,  36,  42,  42,  54,  75,  92,  98,   0,   0), // hotring
+		_FIXES_10_PACK(123, 119, 118, 116, 114, 101,  88,   5,   0,   0), // sandking
+		_FIXES_10_PACK( 74,  66,  53,  37,  22,  20,   9,   0,   0,   0), // blistac
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // polmav
+		_FIXES_10_PACK( 11,  13,  20,  24,  27,  36,  37,  43,   0,   0), // boxville
+		_FIXES_10_PACK(  0, 109, 112,  10,  30,  32,  84,  84,   0,   0), // benson
+		_FIXES_10_PACK( 75,  40,  40,  28,  25,  21,  13,   4,   0,   0), // mesa
+		_FIXES_10_PACK( 14,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcgoblin
+		_FIXES_10_PACK(  7,  36,  51,  53,  75,  75,  79,   0,   0,   0), // hotrina
+		_FIXES_10_PACK( 83,  87,  87,  98, 101, 103, 117, 123,   0,   0), // hotrinb
+		_FIXES_10_PACK( 51,  57,  45,  34,  65,  14,  12,  26,   0,   0), // bloodra/bloodrb
+		_FIXES_10_PACK( 13,  14, 120, 112,  84,  76,   0,   0,   0,   0), // rnchlure
+		_FIXES_10_PACK(  3,   6,   7,  52,  76,   0,   0,   0,   0,   0), // supergt
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // elegant
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // journey
+		_FIXES_10_PACK(  7,  74,  61,  16,  25,  30,  36,  53,   0,   0), // bike
+		_FIXES_10_PACK( 43,  46,  39,  28,  16,   6,   5,   2,   0,   0), // mtbike
+		_FIXES_10_PACK(  3,   4,   7,   8,  12,  27,  34,  37,   0,   0), // beagle
+		_FIXES_10_PACK( 17,  15,  32,  45,  52,  57,  61,  96,   0,   0), // cropdust
+		_FIXES_10_PACK( 38,  21,  21,  30,  54,  55,  48,  51,   0,   0), // stunt
+		_FIXES_10_PACK( 10,  25,  28,  36,  40,  54,  75, 113,   0,   0), // petro
+		_FIXES_10_PACK( 13,  24,  63,  42,  54,  39,  11,  62,   0,   0), // rdtrain
+		_FIXES_10_PACK(116, 119, 122,   4,   9,  24,  27,  36,   0,   0), // nebula
+		_FIXES_10_PACK( 37,  36,  40,  43,  47,  51,  54,  55,   0,   0), // majestic
+		_FIXES_10_PACK(  2,   9,  17,  21,  33,  37,  41,  56,   0,   0), // buccanee
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // shamal
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hydra
+		_FIXES_10_PACK( 74,  75,  87,  92, 115,  25,  36, 118,   0,   0), // fcr900
+		_FIXES_10_PACK(  3,   3,   6,   7,   8,  36,  39,  51,   0,   0), // nrg500
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copbike
+		_FIXES_10_PACK( 60,  61,  65,  61,  81,  62,  83,  83,   0,   0), // cement
+		_FIXES_10_PACK(  1,  17,  18,  22,  36,  44,  52,   0,   0,   0), // towtruck
+		_FIXES_10_PACK(  2,   9,  17,  21,  33,  37,  41,  56,   0,   0), // fortune
+		_FIXES_10_PACK( 52,  53,  66,  75,  76,  81,  95, 109,   0,   0), // cadrona
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // fbitruck
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // willard
+		_FIXES_10_PACK(110, 111, 112, 114, 119, 122,   4,  13,   0,   0), // forklift
+		_FIXES_10_PACK(  2,  36,  51,  91,  11,  40,   0,   0,   0,   0), // tractor
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // combine
+		_FIXES_10_PACK( 73,  74,  75,  77,  79,  83,  84,  91,   0,   0), // feltzer
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // remingtn
+		_FIXES_10_PACK(  3,  28,  31,  55,  66, 123, 118,   0,   0,   0), // slamvan
+		_FIXES_10_PACK(  9,  12,  26,  30,  32,  37,  57,  71,   0,   0), // blade
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freight
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // streak
+		_FIXES_10_PACK( 96,  86,  79,  70,  61,  75,  75,   0,   0,   0), // vortex
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // vincent
+		_FIXES_10_PACK( 51,  58,  60,  68,   2,  13,  22,  36,   0,   0), // bullet
+		_FIXES_10_PACK( 13,  24,  31,  32,  45, 113, 119, 122,   0,   0), // clover
+		_FIXES_10_PACK( 76,  32,  43,  67,  11,   8,   2,  83,   0,   0), // sadler
+		_FIXES_10_PACK(  3,   0,   0,   0,   0,   0,   0,   0,   0,   0), // firela
+		_FIXES_10_PACK( 50,  47,  44,  40,  39,  30,  28,   9,   0,   0), // hustler
+		_FIXES_10_PACK( 62,  78,   2,   3,   2, 113, 119,   7,   0,   0), // intruder
+		_FIXES_10_PACK(122, 123, 125,  10,  24,  37,  55,  66,   0,   0), // primo
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // cargobob
+		_FIXES_10_PACK( 74,  72,  75,  79,  83,  84,  89,  91,   0,   0), // tampa
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // sunrise
+		_FIXES_10_PACK( 67,  72,  75,  83,  91, 101, 109,  20,   0,   0), // merit
+		_FIXES_10_PACK( 56,  49,  26,   0,   0,   0,   0,   0,   0,   0), // utility
+		_FIXES_10_PACK( 38,  55,  61,  71,  91,  98, 102, 111,   0,   0), // nevada
+		_FIXES_10_PACK( 53,  15,  45,  34,  65,  14,  12,  43,   0,   0), // yosemite
+		_FIXES_10_PACK( 51,  58,  60,  68,   2,  13,  22,  36,   0,   0), // windsor
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // monstera
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // monsterb
+		_FIXES_10_PACK(112, 116, 117,  24,  30,  35,  36,  40,   0,   0), // uranus
+		_FIXES_10_PACK( 51,  58,  60,  68,   2,  13,  22,  36,   0,   0), // jester
+		_FIXES_10_PACK( 52,   9,  17,  21,  33,  37,  41,  56,   0,   0), // sultan
+		_FIXES_10_PACK( 57,   8,  43,  54,  67,  37,  65,  25,   0,   0), // stratum
+		_FIXES_10_PACK( 36,  35,  17,  11, 116, 113, 101,  92,   0,   0), // elegy
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // raindanc
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rctiger
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // flash
+		_FIXES_10_PACK(109,  30,  95,  84,  83,  72,  71,  52,   0,   0), // tahoma
+		_FIXES_10_PACK( 97,  88,  90,  93,  97,  99, 102, 114,   0,   0), // savanna
+		_FIXES_10_PACK(  2,   9,  17,  21,  33,  37,  41,  56,   0,   0), // bandito
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freiflat
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // streakc
+		_FIXES_10_PACK(  2,  36,  51,  91,  11,  40,   0,   0,   0,   0), // kart
+		_FIXES_10_PACK( 94, 101, 116, 117,   4,  25,  30,  37,   0,   0), // mower
+		_FIXES_10_PACK( 91, 115,  85,  79,  78,  77,  79,  86,   0,   0), // duneride
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // sweeper
+		_FIXES_10_PACK( 12,  19,  31,  25,  38,  51,  57,  66,   0,   0), // broadway
+		_FIXES_10_PACK( 67,  68,  72,  74,  75,  76,  79,  84,   0,   0), // tornado
+		_FIXES_10_PACK(  1,   8,   8,   8,  23,  40,   0,   0,   0,   0), // at400
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dft30
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // huntley
+		_FIXES_10_PACK( 92,  81,  67,  66,  61,  53,  51,  47,  43,   0), // stafford
+		_FIXES_10_PACK( 54,  58,  66,  72,  75,  87, 101,  36,   0,   0), // bf400
+		_FIXES_10_PACK( 41,  41,  49,  56, 110, 112, 114, 119,   0,   0), // newsvan
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tug
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // petrotr
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // emperor
+		_FIXES_10_PACK(119, 122,   8,  10,  13,  25,  27,  32,   0,   0), // wayfarer
+		_FIXES_10_PACK( 36,  40,  43,  53,  72,  75,  95, 101,   0,   0), // euros
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hotdog
+		_FIXES_10_PACK( 37,  31,  23,  22,   7, 124, 114, 112,   0,   0), // club
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freibox
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict3
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // androm
+		_FIXES_10_PACK( 51,  58,  60,  68,   2,  13,  22,  36,   0,   0), // dodo
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rccam
+		_FIXES_10_PACK(112,   0,   0,   0,   0,   0,   0,   0,   0,   0), // launch
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarla
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarsf
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarvg
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarru
+		_FIXES_10_PACK( 81,  32,  43,  67,  11,   8,   2,  83,   0,   0), // picador
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // swatvan
+		_FIXES_10_PACK( 58,  69,  75,  18,  32,  45,  13,  34,   0,   0), // alpha
+		_FIXES_10_PACK( 58,  69,  75,  18,  32,  45,  13,  34,   0,   0), // phoenix
+		_FIXES_10_PACK( 67,  68,  78,   2,  16,  18,  25,  45,   0,   0), // glenshit
+		_FIXES_10_PACK( 61,  32,  43,  67,  11,   8,   2,  83,   0,   0), // sadlshit
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // bagboxa
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // bagboxb
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tugstair
+		_FIXES_10_PACK( 36,   0,   0,   0,   0,   0,   0,   0,   0,   0), // boxburg
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // farmtr1
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0)  // utiltr1
+	},
+	FIXES_gsVehicleModelColours2[_FIXES_MAX_VEHICLE_MODELS][_FIXES_MAX_RANDOM_MODEL_COLOURS char] = {
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // landstal
+		_FIXES_10_PACK( 41,  47,  52,  66,  74,  87, 113,   0,   0,   0), // bravura
+		_FIXES_10_PACK( 10,  13,  22,  30,  39,  90,  98, 110,   0,   0), // buffalo
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // linerun
+		_FIXES_10_PACK( 39,  50,  92, 100, 101, 105, 110,  25,   0,   0), // peren
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // sentinel
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dumper
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // firetruk
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // trash
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // stretch
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // manana
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // infernus
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // voodoo
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // pony
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // mule
+		_FIXES_10_PACK( 20,   1,   1,   1,   1,   1,   1,   0,   0,   0), // cheetah
+		_FIXES_10_PACK(  3,   0,   0,   0,   0,   0,   0,   0,   0,   0), // ambulan
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // leviathn
+		_FIXES_10_PACK(119, 227, 114, 108,  95,  81,  61,  41,   0,   0), // moonbeam
+		_FIXES_10_PACK( 75,  76,  75,  76,  75,  76,  75,  76,   0,   0), // esperant
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // taxi
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // washing
+		_FIXES_10_PACK( 25,  25,  25,  31,  36,  57,  59,   0,   0,   0), // bobcat
+		_FIXES_10_PACK( 16,  56,  17,  53,   5,  35,   0,   0,   0,   0), // mrwhoop
+		_FIXES_10_PACK(  0,   2,   2,   6,  16,  30,  53,  61,   0,   0), // bfinject
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hunter
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // premier
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // enforcer
+		_FIXES_10_PACK( 75,   0,   0,   0,   0,   0,   0,   0,   0,   0), // securica
+		_FIXES_10_PACK( 12,  13,  14,   2,   1,   3,   1,  10,   0,   0), // banshee
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // predator
+		_FIXES_10_PACK( 59,  59,  72,  74,  83,  83,  87,  87,   0,   0), // bus
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rhino
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // barracks
+		_FIXES_10_PACK(  1,  12,   2,   6,   4,  46,  53,   0,   0,   0), // hotknife
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict1
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,  45,   1,   0,   0,   0), // previon
+		_FIXES_10_PACK(  0,   7,   7,  16,  20,  20,  20,  21,   0,   0), // coach
+		_FIXES_10_PACK( 76,   0,   0,   0,   0,   0,   0,   0,   0,   0), // cabbie
+		_FIXES_10_PACK(  8,  17,  21,  38,   8,  78,  79,  78,   0,   0), // stallion
+		_FIXES_10_PACK( 34,  32,  20, 110,  66,  84, 118, 121,   0,   0), // rumpo
+		_FIXES_10_PACK( 96,  42,  54,  86,  96,  96,  54,  98,   0,   0), // rcbandit
+		_FIXES_10_PACK(  0, 105, 109,   0,  36,  36,  36, 109,   0,   0), // romero
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // packer
+		_FIXES_10_PACK( 36,  42,  53,  66,  14,  32,   0,   0,   0,   0), // monster
+		_FIXES_10_PACK( 34,  35,  37,  39,  41,  43,  45,  47,   0,   0), // admiral
+		_FIXES_10_PACK(  0,   5,   3,  22,  35,  44,  53,  57,   0,   0), // squalo
+		_FIXES_10_PACK(  2,   0,   0,   0,   0,   0,   0,   0,   0,   0), // seaspar
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // pizzaboy
+		_FIXES_10_PACK( 74,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tram
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict2
+		_FIXES_10_PACK(123, 125,  36,  16,  18,  46,  61,  75,   0,   0), // turismo
+		_FIXES_10_PACK(  3,   5,  16,  22,  35,  44,  53,  57,   0,   0), // speeder
+		_FIXES_10_PACK( 56,   0,   0,   0,   0,   0,   0,   0,   0,   0), // reefer
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tropic
+		_FIXES_10_PACK( 15,  58,  31,  74,  31,  31,  31,  74,   0,   0), // flatbed
+		_FIXES_10_PACK( 63,  63,  65,  72,  93,  93,  95,   1,   0,   0), // yankee
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // caddy
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // solair
+		_FIXES_10_PACK( 26,  28,  44,  51,  57,  72, 106, 112,   0,   0), // topfun
+		_FIXES_10_PACK(  3,   9,  18,  30,  23,  23,  32,  34,   0,   0), // skimmer
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // pcj600
+		_FIXES_10_PACK( 12,  13,  14,   2,   1,   3,   1,  10,   0,   0), // faggio
+		_FIXES_10_PACK( 79,  84,   7,  11,  19,  22,  36,  53,   0,   0), // freeway
+		_FIXES_10_PACK( 75,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcbaron
+		_FIXES_10_PACK( 75,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcraider
+		_FIXES_10_PACK( 76,  76,  76,  76,  76,  76,  76,  88,   0,   0), // glendale
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // oceanic
+		_FIXES_10_PACK(  6,  46,  53,   3,   0,   0,   0,   0,   0,   0), // sanchez
+		_FIXES_10_PACK(  3,   0,   0,   0,   0,   0,   0,   0,   0,   0), // sparrow
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // patriot
+		_FIXES_10_PACK(117, 111, 114,  91, 112,  83, 113,  71,   0,   0), // quad
+		_FIXES_10_PACK( 15,  53,   0,   0,   0,   0,   0,   0,   0,   0), // coastg
+		_FIXES_10_PACK( 15,  53,   0,   0,   0,   0,   0,   0,   0,   0), // dinghy
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // hermes
+		_FIXES_10_PACK( 39,  39,   1,   1,   0,   0,  29,  29,   0,   0), // sabre
+		_FIXES_10_PACK(  7,   6,   6,  91, 117, 102,  87,  77,   0,   0), // rustler
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // zr350
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // walton
+		_FIXES_10_PACK( 36,  36,  35,  41,  31,  23,  32,  29,   0,   0), // regina
+		_FIXES_10_PACK( 45,  12,   2,   6,   4,  46,  53,   0,   0,   0), // comet
+		_FIXES_10_PACK(  1,   3,   6,  46,   9,   1,   9,   1,   0,   0), // bmx
+		_FIXES_10_PACK( 41,  48,  52,  64,  71,  85,  10,  62,   0,   0), // burrito
+		_FIXES_10_PACK( 31,  31,  20,   5,   6,   6,   0,   0,   0,   0), // camper
+		_FIXES_10_PACK( 35,  32,  26,  36,   0,   0,   0,   0,   0,   0), // marquis
+		_FIXES_10_PACK( 73,  74,  75,  76,  77,  78,  79,   0,   0,   0), // baggage
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dozer
+		_FIXES_10_PACK( 14,  42,  57,  29,   3,  29,  39,  35,   0,   0), // maverick
+		_FIXES_10_PACK( 26,  29,   0,   0,   0,   0,   0,   0,   0,   0), // vcnmav
+		_FIXES_10_PACK(118, 123, 123, 120, 110, 102,   0,   0,   0,   0), // rancher
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // fbiranch
+		_FIXES_10_PACK( 65,  72,  66,  72,  72,  72,   0,   0,   0,   0), // virgo
+		_FIXES_10_PACK( 26,  26,  27,  55,  56,  59,  69, 107,   0,   0), // greenwoo
+		_FIXES_10_PACK( 13,   0,   0,   0,   0,   0,   0,   0,   0,   0), // jetmax
+		_FIXES_10_PACK(117,  13,  30,  33,  36,  79, 101, 109,   0,   0), // hotring
+		_FIXES_10_PACK(124, 122, 117, 115, 108, 106,  99,   6,   0,   0), // sandking
+		_FIXES_10_PACK( 72,  72,  56,  19,  22,  20,  14,   0,   0,   0), // blistac
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // polmav
+		_FIXES_10_PACK(123, 120, 117, 112, 107, 105, 107,  93,   0,   0), // boxville
+		_FIXES_10_PACK(109,  32,  32,  32,  44,  52,  66,  69,   0,   0), // benson
+		_FIXES_10_PACK( 84,  84, 110, 119, 119, 119, 119, 119,   0,   0), // mesa
+		_FIXES_10_PACK( 75,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rcgoblin
+		_FIXES_10_PACK( 94,  88,  75,  75,  67,  61,  62,   0,   0,   0), // hotrina
+		_FIXES_10_PACK( 66,  74,  75,  83, 100, 101, 116,  36,   0,   0), // hotrinb
+		_FIXES_10_PACK( 39,  38,  29,   9,   9,   1,   9,   1,   0,   0), // bloodra/bloodrb
+		_FIXES_10_PACK(118, 123, 123, 120, 110, 102,   0,   0,   0,   0), // rnchlure
+		_FIXES_10_PACK(  3,   6,   7,  52,  76,   0,   0,   0,   0,   0), // supergt
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // elegant
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // journey
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // bike
+		_FIXES_10_PACK( 43,  46,  39,  28,  16,   6,   5,   2,   0,   0), // mtbike
+		_FIXES_10_PACK( 90,  90,  68,  66,  60,  97,  51,  51,   0,   0), // beagle
+		_FIXES_10_PACK( 39, 123, 112,  88,  71,  67,  96,  96,   0,   0), // cropdust
+		_FIXES_10_PACK( 51,  36,  34,  34,  34,  20,  18,   6,   0,   0), // stunt
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // petro
+		_FIXES_10_PACK( 76,  77,  78,  76,  77,  78,  76,  77,   0,   0), // rdtrain
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // nebula
+		_FIXES_10_PACK( 36,  36,  36,  41,  41,  72,  75,  84,   0,   0), // majestic
+		_FIXES_10_PACK( 39,  39,   1,   1,   0,   0,  29,  29,   0,   0), // buccanee
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // shamal
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hydra
+		_FIXES_10_PACK( 74,  13, 118,   3, 118, 118,   0, 118,   0,   0), // fcr900
+		_FIXES_10_PACK(  3,   8,  25,  79,  82, 105, 106, 118,   0,   0), // nrg500
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copbike
+		_FIXES_10_PACK( 24,  27,  31,  61,  35,  61,  66,  64,   0,   0), // cement
+		_FIXES_10_PACK(  1,  20,  20,  30,  43,  51,  54,   0,   0,   0), // towtruck
+		_FIXES_10_PACK( 39,  39,   1,   1,   0,   0,  29,  29,   0,   0), // fortune
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // cadrona
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // fbitruck
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // willard
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // forklift
+		_FIXES_10_PACK( 35,   2,  53,   2,  22,  35,   0,   0,   0,   0), // tractor
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // combine
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // feltzer
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // remingtn
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   0,   0,   0), // slamvan
+		_FIXES_10_PACK(  1,   1,  96,  96,   1,   1,  96,  96,   0,   0), // blade
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freight
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // streak
+		_FIXES_10_PACK( 67,  70,  74,  86,  98,  75,  91,   0,   0,   0), // vortex
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // vincent
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // bullet
+		_FIXES_10_PACK(118, 118,  93,  92,  92,  92, 113, 113,   0,   0), // clover
+		_FIXES_10_PACK(  8,   8,   8,   8,  11,  90,   2,  13,   0,   0), // sadler
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // firela
+		_FIXES_10_PACK(  1,   1,  96,  96,   1,   1,  96,  96,   0,   0), // hustler
+		_FIXES_10_PACK( 37,  38,  62,  87,  78,  78,  62,  78,   0,   0), // intruder
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // primo
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // cargobob
+		_FIXES_10_PACK( 39,  39,  39,  39,  36,  36,  35,  35,   0,   0), // tampa
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // sunrise
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // merit
+		_FIXES_10_PACK( 56,  49, 124,   0,   0,   0,   0,   0,   0,   0), // utility
+		_FIXES_10_PACK(  9,  23,  74,  87,  87, 114, 119,   3,   0,   0), // nevada
+		_FIXES_10_PACK( 32,  32,  32,  30,  32,  32,  32,  32,   0,   0), // yosemite
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // windsor
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // monstera
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // monsterb
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // uranus
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // jester
+		_FIXES_10_PACK( 39,  39,   1,   1,   0,   0,  29,  29,   0,   0), // sultan
+		_FIXES_10_PACK(  8,  17,  21,  38,   8,  78,  79,  78,   0,   0), // stratum
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // elegy
+		_FIXES_10_PACK(  6,   0,   0,   0,   0,   0,   0,   0,   0,   0), // raindanc
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rctiger
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // flash
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // tahoma
+		_FIXES_10_PACK( 96,  64,  96,  64,  96,  81, 114,   1,   0,   0), // savanna
+		_FIXES_10_PACK( 39,  39,   1,   1,   0,   0,  29,  29,   0,   0), // bandito
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freiflat
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // streakc
+		_FIXES_10_PACK( 35,   2,  53,   2,  22,  35,   0,   0,   0,   0), // kart
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // mower
+		_FIXES_10_PACK( 38,  43,   6,   7,   8,  18,  18,  24,   0,   0), // duneride
+		_FIXES_10_PACK( 26,   0,   0,   0,   0,   0,   0,   0,   0,   0), // sweeper
+		_FIXES_10_PACK(  1,  96,  64,  96,   1,  96,   1,  96,   0,   0), // broadway
+		_FIXES_10_PACK(  1,  96,   1,   8,  96,   8,   1,  96,   0,   0), // tornado
+		_FIXES_10_PACK(  3,   7,  10,  16,  31,  44,   0,   0,   0,   0), // at400
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // dft30
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // huntley
+		_FIXES_10_PACK( 92,  81,  67,  66,  61,  53,  51,  47,  43,   0), // stafford
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // bf400
+		_FIXES_10_PACK( 10,  20,  11, 123, 113, 116, 118, 101,   0,   0), // newsvan
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tug
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // petrotr
+		_FIXES_10_PACK( 37,  42,  53,  62,   7,  10,  11,  15,   0,   0), // emperor
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // wayfarer
+		_FIXES_10_PACK(  1,   1,   1,   1,   1,   1,   1,   1,   0,   0), // euros
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // hotdog
+		_FIXES_10_PACK( 37,  31,  23,  22,   7, 124, 114, 112,   0,   0), // club
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // freibox
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // artict3
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // androm
+		_FIXES_10_PACK(  1,   8,   1,   8,   1,   8,   1,   8,   0,   0), // dodo
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // rccam
+		_FIXES_10_PACK( 20,   0,   0,   0,   0,   0,   0,   0,   0,   0), // launch
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarla
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarsf
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarvg
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // copcarru
+		_FIXES_10_PACK(  8,   8,   8,   8,  11,  90,   2,  13,   0,   0), // picador
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // swatvan
+		_FIXES_10_PACK(  1,   1,  77,   1,   1,  45,   1,   1,   0,   0), // alpha
+		_FIXES_10_PACK(  1,   1,  77,   1,   1,  45,   1,   1,   0,   0), // phoenix
+		_FIXES_10_PACK( 76,  76,  76,  76,  76,  76,  76,  88,   0,   0), // glenshit
+		_FIXES_10_PACK(  8,   8,   8,   8,  11,  90,   2,  13,   0,   0), // sadlshit
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // bagboxa
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // bagboxb
+		_FIXES_10_PACK(  1,   0,   0,   0,   0,   0,   0,   0,   0,   0), // tugstair
+		_FIXES_10_PACK( 36,   0,   0,   0,   0,   0,   0,   0,   0,   0), // boxburg
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0), // farmtr1
+		_FIXES_10_PACK(  0,   0,   0,   0,   0,   0,   0,   0,   0,   0)  // utiltr1
+	},
+#endif
+	/*
+	 * FIXES_gsVehicleColoursCount[_FIXES_MAX_VEHICLE_MODELS]
+	 *
+	 * By default, the vehicle with the highest number of colour variants is the
+	 * `stafford` for some reason.  That model has 9 colours.  We store the
+	 * colour pairs two to a cell, since each index can only be 0-127.  There
+	 * are three vehicles with tertiary and quaterniary colours (`camper`,
+	 * `cement`, and `squalo`).  In theory, for these we would need a full cell
+	 * per set (or rather, four arrays), but there's no way to set these extra
+	 * parts in SA:MP, so there's no need to store them anywhere.
+	 *
+	 * I wanted to just use one array, and actually that would waste slightly
+	 * less memory since `(20 char)` is exactly 5 cells while `(10 char) * 2` is
+	 * 6 cells.  However, that would make the code more complex and slower, plus
+	 * memory is cheap.
+	 */
+#if FIX_ChangeVehicleColour
+	FIXES_gsVehicleColoursCount[_FIXES_MAX_VEHICLE_MODELS] = {
+		8, 7, 8, 8, 8, 8, 1, 1, 1, 1, 8, 8, 8, 8, 8, 7, 1, 0, 8, 8, 1, 8, 7, 6,
+		8, 1, 8, 1, 1, 8, 1, 8, 1, 1, 7, 1, 7, 8, 1, 8, 8, 8, 8, 8, 6, 8, 8, 1,
+		0, 1, 1, 8, 8, 1, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1, 1, 8, 8, 4, 1, 1, 8,
+		2, 2, 8, 8, 8, 8, 8, 8, 7, 8, 8, 8, 4, 7, 1, 8, 2, 6, 1, 6, 8, 1, 8, 8,
+		8, 1, 8, 8, 8, 1, 7, 8, 8, 6, 5, 8, 1, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 1,
+		0, 8, 8, 0, 8, 7, 8, 8, 0, 8, 8, 6, 0, 8, 8, 7, 8, 1, 1, 7, 8, 8, 8, 8,
+		1, 8, 8, 8, 1, 8, 8, 8, 3, 8, 8, 8, 1, 1, 8, 8, 8, 8, 8, 1, 0, 8, 8, 8,
+		8, 0, 1, 6, 8, 8, 1, 8, 8, 6, 1, 8, 9, 8, 8, 1, 1, 8, 8, 8, 1, 8, 0, 1,
+		1, 8, 0, 1, 1, 1, 1, 1, 8, 1, 8, 8, 8, 8, 0, 0, 1, 1, 0, 0,
+	},
+#endif
+	/*
+	 * FIXES_gsVehicleBaseColours1[MAX_VEHICLES char]
+	 * FIXES_gsVehicleBaseColours2[MAX_VEHICLES char]
+	 *
+	 * Which colour indexes will be used for each spawned vehicle.  This will
+	 * only store the originally set colour (i.e. `-1` (255) for random).  It
+	 * will not store the currently assigned colour when a random one is
+	 * selected.
+	 */
+#if FIX_ChangeVehicleColour
+	FIXES_gsVehicleBaseColours1[MAX_VEHICLES char],
+	FIXES_gsVehicleBaseColours2[MAX_VEHICLES char],
+#endif
+	/*
+	 * FIXES_gsVehicleCurColours1[MAX_VEHICLES char]
+	 * FIXES_gsVehicleCurColours2[MAX_VEHICLES char]
+	 *
+	 * Which colour indexes will be used for each spawned vehicle.  This will
+	 * store the currently assigned colours when they vary via `-1`.
+	 */
+#if FIX_ChangeVehicleColour
+	FIXES_gsVehicleCurColours1[MAX_VEHICLES char],
+	FIXES_gsVehicleCurColours2[MAX_VEHICLES char],
+#endif
+	/*
 	 * FIXES_pvarNotNewPlayer[]
 	 *
 	 * This variable records wether or not this player is brand new to the
@@ -2342,7 +3076,7 @@ static stock
 	 *
 	 * Name of the pvar in which to store the player's current dialogid.
 	 */
-#if !FIXES_Single && FIX_OnDialogResponse || FIX_GetPlayerDialog
+#if !FIXES_Single && (FIX_OnDialogResponse || FIX_GetPlayerDialog)
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog",
 #endif
 	/*
@@ -2423,12 +3157,6 @@ static stock
 	FIXES_pvarPlayerCheckpoint[] = "FIXES_pvarPlayerCheckpoint",
 #endif
 	/*
-	 * FIXES_gscSetRaceCheckpoint[]
-	 *
-	 * Name of the SetRaceCheckpoint timer function.
-	 */
-	FIXES_gscSetRaceCheckpoint[] = "_FIXES_SetRaceCheckpoint",
-	/*
 	 * FIXES_pvarPlayerRaceCheckpoint[]
 	 *
 	 * Name of the pvar in which to store the player's race checkpoint state.
@@ -2437,25 +3165,31 @@ static stock
 	FIXES_pvarPlayerRaceCheckpoint[] = "FIXES_pvarPlayerRaceCheckpoint",
 #endif
 	/*
-	 * FIXES_gscNULL[]
+	 * FIXES_gscSetRaceCheckpoint[]
 	 *
-	 * NULL.  This is stored as a global string to reduce memory usage.
+	 * Name of the SetRaceCheckpoint timer function.
 	 */
-	FIXES_gscNULL[] = "\1";
+	FIXES_gscSetRaceCheckpoint[] = "_FIXES_SetRaceCheckpoint";
 
 static stock const
-	/*
-	 * FIXES_gscNull[]
-	 *
-	 * (null).  This is stored as a global string to reduce memory usage.
-	 */
-	FIXES_gscNull[] = "(null)",
 	/*
 	 * FIXES_gscLF[]
 	 *
 	 * A single re-usable new line.
 	 */
 	FIXES_gscLF[] = "\n",
+	/*
+	 * FIXES_gscEnd[]
+	 *
+	 * The string to end sections in carcols.dat.
+	 */
+	FIXES_gscEnd[] = "end",
+	/*
+	 * FIXES_gscCarcols[]
+	 *
+	 * The path of carcols.dat.
+	 */
+	FIXES_gscCarcols[] = "fixes.inc/carcols.dat",
 	/*
 	 * FIXES_gscPlayerColours[100]
 	 *
@@ -2485,6 +3219,151 @@ static stock const
 			0xFA24CCFF, 0xCE76BEFF, 0xA04E0AFF, 0x9F945CFF, 0xDCDE3DFF,
 			0x10C9C5FF, 0x70524DFF, 0x0BE472FF, 0x8A2CD7FF, 0x6152C2FF,
 			0xCF72A9FF, 0xE59338FF, 0xEEDC2DFF, 0xD8C762FF, 0xD8C762FF
+		},
+#endif
+	/*
+	 * FIXES_gscVehicleModelRGBs[127]
+	 *
+	 * This is a compressed (4-bit) list of the maximum number of passengers in
+	 * any vehicle, confirmed by a number of sources. "F" (15) means invalid
+	 * vehicle.
+	 */
+#if FIX_ChangeVehicleColour
+	FIXES_gscVehicleModelRGBs[127] =
+		{
+			_FIXES_MAKE_RGB(  0,   0,   0), //   0 black                         black
+			_FIXES_MAKE_RGB(245, 245, 245), //   1 white                         white
+			_FIXES_MAKE_RGB( 42, 119, 161), //   2 police car blue               blue
+			_FIXES_MAKE_RGB(132,   4,  16), //   3 cherry red                    red
+			_FIXES_MAKE_RGB( 38,  55,  57), //   4 midnight blue                 dark blue
+			_FIXES_MAKE_RGB(134,  68, 110), //   5 temple curtain purple         purple
+			_FIXES_MAKE_RGB(215, 142,  16), //   6 taxi yellow                   yellow
+			_FIXES_MAKE_RGB( 76, 117, 183), //   7 striking blue                 bright blue
+			_FIXES_MAKE_RGB(189, 190, 198), //   8 light blue grey               light blue grey
+			_FIXES_MAKE_RGB( 94, 112, 114), //   9 hoods                         light
+			// maibatsu
+			_FIXES_MAKE_RGB( 70,  89, 122), //  10 saxony blue poly              blue
+			_FIXES_MAKE_RGB(101, 106, 121), //  11 concord blue poly             grey
+			_FIXES_MAKE_RGB( 93, 126, 141), //  12 jasper green poly             blue
+			_FIXES_MAKE_RGB( 88,  89,  90), //  13 pewter gray poly              grey
+			_FIXES_MAKE_RGB(214, 218, 214), //  14 frost white                   light
+			_FIXES_MAKE_RGB(156, 161, 163), //  15 silver stone poly             grey
+			_FIXES_MAKE_RGB( 51,  95,  63), //  16 rio red                       green
+			_FIXES_MAKE_RGB(115,  14,  26), //  17 torino red pearl              red
+			_FIXES_MAKE_RGB(123,  10,  42), //  18 formula red                   red
+			_FIXES_MAKE_RGB(159, 157, 148), //  19 honey beige poly              light
+			// shitsu and nioka
+			_FIXES_MAKE_RGB( 59,  78, 120), //  20 mariner blue                  blue
+			_FIXES_MAKE_RGB(115,  46,  62), //  21 blaze red                     red
+			_FIXES_MAKE_RGB(105,  30,  59), //  22 classic red                   red
+			_FIXES_MAKE_RGB(150, 145, 140), //  23 winning silver poly           grey
+			_FIXES_MAKE_RGB( 81,  84,  89), //  24 steel gray poly               grey
+			_FIXES_MAKE_RGB( 63,  62,  69), //  25 shadow silver poly            dark
+			_FIXES_MAKE_RGB(165, 169, 167), //  26 silver stone poly             grey
+			_FIXES_MAKE_RGB( 99,  92,  90), //  27 warm grey mica                grey
+			_FIXES_MAKE_RGB( 61,  74, 104), //  28 harbor blue poly              blue
+			_FIXES_MAKE_RGB(151, 149, 146), //  29 porcelain silver poly         grey
+			_FIXES_MAKE_RGB( 66,  31,  33), //  30 mellow burgundy               dark
+			_FIXES_MAKE_RGB( 95,  39,  43), //  31 graceful red mica             red
+			_FIXES_MAKE_RGB(132, 148, 171), //  32 currant blue poly             blue
+			// kunst
+			_FIXES_MAKE_RGB(118, 123, 124), //  33 gray poly                     grey
+			_FIXES_MAKE_RGB(100, 100, 100), //  34 arctic white                  light
+			_FIXES_MAKE_RGB( 90,  87,  82), //  35 anthracite gray poly          grey
+			_FIXES_MAKE_RGB( 37,  37,  39), //  36 black poly                    dark
+			_FIXES_MAKE_RGB( 45,  58,  53), //  37 dark green poly               green
+			_FIXES_MAKE_RGB(147, 163, 150), //  38 seafoam poly                  light
+			_FIXES_MAKE_RGB(109, 122, 136), //  39 diamond blue poly             blue
+			_FIXES_MAKE_RGB( 34,  25,  24), //  40 biston brown poly             dark
+			_FIXES_MAKE_RGB(111, 103,  95), //  41 desert taupe poly             dark
+			_FIXES_MAKE_RGB(124,  28,  42), //  42 garnet red poly               red
+			_FIXES_MAKE_RGB( 95,  10,  21), //  43 desert red                    red
+			_FIXES_MAKE_RGB( 25,  56,  38), //  44 green                         green
+			_FIXES_MAKE_RGB( 93,  27,  32), //  45 cabernet red poly             red
+			_FIXES_MAKE_RGB(157, 152, 114), //  46 light ivory                   light
+			_FIXES_MAKE_RGB(122, 117,  96), //  47 pueblo beige                  green
+			_FIXES_MAKE_RGB(152, 149, 134), //  48 smoke silver poly             light
+			_FIXES_MAKE_RGB(173, 176, 176), //  49 astra silver poly             grey
+			_FIXES_MAKE_RGB(132, 137, 136), //  50 ascot gray                    grey
+			_FIXES_MAKE_RGB( 48,  79,  69), //  51 agate green                   green
+			_FIXES_MAKE_RGB( 77,  98, 104), //  52 petrol blue green poly        green
+			_FIXES_MAKE_RGB( 22,  34,  72), //  53 surf blue                     blue
+			_FIXES_MAKE_RGB( 39,  47,  75), //  54 nautical blue poly            blue
+			// stuff
+			_FIXES_MAKE_RGB(125,  98,  86), //  55 woodrose poly                 dark
+			_FIXES_MAKE_RGB(158, 164, 171), //  56 crystal blue poly             blue
+			_FIXES_MAKE_RGB(156, 141, 113), //  57 bisque frost poly             light
+			_FIXES_MAKE_RGB(109,  24,  34), //  58 currant red solid             red
+			_FIXES_MAKE_RGB( 78, 104, 129), //  59 lt.crystal blue poly          blue
+			_FIXES_MAKE_RGB(156, 156, 152), //  60 lt.titanium poly              light
+			_FIXES_MAKE_RGB(145, 115,  71), //  61 race yellow solid             yellow
+			_FIXES_MAKE_RGB(102,  28,  38), //  62 brt.currant red poly          red
+			_FIXES_MAKE_RGB(148, 157, 159), //  63 clear crystal blue frost poly grey
+			_FIXES_MAKE_RGB(164, 167, 165), //  64 silver poly                   grey
+			_FIXES_MAKE_RGB(142, 140,  70), //  65 pastel alabaster              yellow
+			_FIXES_MAKE_RGB( 52,  26,  30), //  66 mid currant red poly          dark
+			_FIXES_MAKE_RGB(106, 122, 140), //  67 med regatta blue poly         blue
+			_FIXES_MAKE_RGB(170, 173, 142), //  68 oxford white solid            yellow
+			_FIXES_MAKE_RGB(171, 152, 143), //  69 alabaster solid               light
+			_FIXES_MAKE_RGB(133,  31,  46), //  70 elec.currant red poly         red
+			_FIXES_MAKE_RGB(111, 130, 151), //  71 spinnaker blue solid          blue
+			_FIXES_MAKE_RGB( 88,  88,  83), //  72 dk.titanium poly              grey
+			_FIXES_MAKE_RGB(154, 167, 144), //  73 pastel alabaster solid        light
+			_FIXES_MAKE_RGB( 96,  26,  35), //  74 med.cabernet solid            red
+			_FIXES_MAKE_RGB( 32,  32,  44), //  75 twilight blue poly            dark
+			_FIXES_MAKE_RGB(164, 160, 150), //  76 titanium frost poly           grey
+			_FIXES_MAKE_RGB(170, 157, 132), //  77 sandalwood frost poly         light
+			_FIXES_MAKE_RGB(120,  34,  43), //  78 wild strawberry poly          red
+			_FIXES_MAKE_RGB( 14,  49, 109), //  79 ultra blue poly               blue
+			_FIXES_MAKE_RGB(114,  42,  63), //  80 vermilion solid               red
+			_FIXES_MAKE_RGB(123, 113,  94), //  81 med.sandalwood poly           light
+			_FIXES_MAKE_RGB(116,  29,  40), //  82 med.red solid                 red
+			_FIXES_MAKE_RGB( 30,  46,  50), //  83 deep jewel green              green
+			_FIXES_MAKE_RGB( 77,  50,  47), //  84 med.woodrose poly             dark
+			_FIXES_MAKE_RGB(124,  27,  68), //  85 vermillion solid              red
+			// more stuff
+			_FIXES_MAKE_RGB( 46,  91,  32), //  86 green                         green
+			_FIXES_MAKE_RGB( 57,  90, 131), //  87 bright blue poly              blue
+			_FIXES_MAKE_RGB(109,  40,  55), //  88 bright red                    red
+			_FIXES_MAKE_RGB(167, 162, 143), //  89 lt.champagne poly             light
+			_FIXES_MAKE_RGB(175, 177, 177), //  90 silver poly                   silver
+			_FIXES_MAKE_RGB( 54,  65,  85), //  91 steel blue poly               blue
+			_FIXES_MAKE_RGB(109, 108, 110), //  92 medium gray poly              grey
+			// generic
+			_FIXES_MAKE_RGB( 15, 106, 137), //  93 arctic pearl                  light
+			_FIXES_MAKE_RGB( 32,  75, 107), //  94 nassau blue poly              blue
+			_FIXES_MAKE_RGB( 43,  62,  87), //  95 med.sapphire blue poly        blue
+			_FIXES_MAKE_RGB(155, 159, 157), //  96 silver poly                   silver
+			_FIXES_MAKE_RGB(108, 132, 149), //  97 lt.sapphire blue poly         blue
+			_FIXES_MAKE_RGB( 77,  93,  96), //  98 malachite poly                blue
+			_FIXES_MAKE_RGB(174, 155, 127), //  99 flax                          yellow
+			_FIXES_MAKE_RGB( 64, 108, 143), // 100 med.maui blue poly            blue
+			_FIXES_MAKE_RGB( 31,  37,  59), // 101 dk.sapphire blue poly         dark
+			_FIXES_MAKE_RGB(171, 146, 118), // 102 copper beige                  light
+			_FIXES_MAKE_RGB( 19,  69, 115), // 103 bright blue poly              blue
+			_FIXES_MAKE_RGB(150, 129, 108), // 104 med.flax                      yellow
+			_FIXES_MAKE_RGB(100, 104, 106), // 105 med.gray poly                 grey
+			_FIXES_MAKE_RGB( 16,  80, 130), // 106 bright blue poly              blue
+			_FIXES_MAKE_RGB(161, 153, 131), // 107 lt.driftwood poly             light
+			_FIXES_MAKE_RGB( 56,  86, 148), // 108 blue                          blue
+			_FIXES_MAKE_RGB( 82,  86,  97), // 109 steel gray poly               grey
+			_FIXES_MAKE_RGB(127, 105,  86), // 110 lt.beechwood poly             dark
+			_FIXES_MAKE_RGB(140, 146, 154), // 111 slate gray                    grey
+			_FIXES_MAKE_RGB( 89, 110, 135), // 112 lt.sapphire blue poly         blue
+			_FIXES_MAKE_RGB( 71,  53,  50), // 113 dk.beechwood poly             dark
+			_FIXES_MAKE_RGB( 68,  98,  79), // 114 torch red                     green
+			_FIXES_MAKE_RGB(115,  10,  39), // 115 bright red                    red
+			_FIXES_MAKE_RGB( 34,  52,  87), // 116 med.sapphire blue firemist    blue
+			_FIXES_MAKE_RGB(100,  13,  27), // 117 med.garnet red poly           red
+			_FIXES_MAKE_RGB(163, 173, 198), // 118 white diamond pearl           light
+			_FIXES_MAKE_RGB(105,  88,  83), // 119 dk.sable poly                 dark
+			_FIXES_MAKE_RGB(155, 139, 128), // 120 antelope beige                light
+			_FIXES_MAKE_RGB( 98,  11,  28), // 121 brilliant red poly            red
+			_FIXES_MAKE_RGB( 91,  93,  94), // 122 gun metal poly                grey
+			_FIXES_MAKE_RGB( 98,  68,  40), // 123 med.beechwood poly            dark
+			_FIXES_MAKE_RGB(115,  24,  39), // 124 brilliant red poly            red
+			_FIXES_MAKE_RGB( 27,  55, 109), // 125 bright blue poly              blue
+			_FIXES_MAKE_RGB(236, 106, 174)  // 126 pink                          light
 		},
 #endif
 	/*
@@ -2950,6 +3829,12 @@ static stock const
 	 * Name of the remote GameText show function.
 	 */
 	FIXES_gscGameTextShow[] = "_FIXES_GameTextShow",
+	/*
+	 * FIXES_gscAssignVehicleColour[]
+	 *
+	 * Name of the remote vehicle colour storage function.
+	 */
+	FIXES_gscAssignVehicleColour[] = "_FIXES_AssignVehicleColour",
 	/*
 	 * FIXES_gscReturnProperty[]
 	 *
@@ -3473,6 +4358,231 @@ static stock const
 	#define IS_WINDOWS (_FIXES_gIsWindows)
 	#define IS_LINUX (!_FIXES_gIsWindows)
 #endif
+
+/*
+ * _FIXES_MODEL_BERNSTEIN
+ *
+ * The names of all the vehicle models, as Bernstein hashes.  Generated using
+ * y_stringhash and the compiler on `-a` to get the final results (instead of
+ * including all the extensive compile-time string hashing code here).
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#define _FIXES_MODEL_BERNSTEIN_landstal (0x6A047492)
+#define _FIXES_MODEL_BERNSTEIN_bravura  (0x9C938312)
+#define _FIXES_MODEL_BERNSTEIN_buffalo  (0xA3E45B9E)
+#define _FIXES_MODEL_BERNSTEIN_linerun  (0x8A3D54BC)
+#define _FIXES_MODEL_BERNSTEIN_peren    (0x05CEE479)
+#define _FIXES_MODEL_BERNSTEIN_sentinel (0x14D62D01)
+#define _FIXES_MODEL_BERNSTEIN_dumper   (0xA4CC844C)
+#define _FIXES_MODEL_BERNSTEIN_firetruk (0x51B29ECB)
+#define _FIXES_MODEL_BERNSTEIN_trash    (0x061E20E1)
+#define _FIXES_MODEL_BERNSTEIN_stretch  (0xBF06251C)
+#define _FIXES_MODEL_BERNSTEIN_manana   (0xB861558B)
+#define _FIXES_MODEL_BERNSTEIN_infernus (0x7B5C3BE9)
+#define _FIXES_MODEL_BERNSTEIN_voodoo   (0xCE5DB395)
+#define _FIXES_MODEL_BERNSTEIN_pony     (0x002D38C5)
+#define _FIXES_MODEL_BERNSTEIN_mule     (0x002BACD2)
+#define _FIXES_MODEL_BERNSTEIN_cheetah  (0xD27932B1)
+#define _FIXES_MODEL_BERNSTEIN_ambulan  (0x4400DEDF)
+#define _FIXES_MODEL_BERNSTEIN_leviathn (0xB0E7493A)
+#define _FIXES_MODEL_BERNSTEIN_moonbeam (0x8EF6276D)
+#define _FIXES_MODEL_BERNSTEIN_esperant (0x628B7641)
+#define _FIXES_MODEL_BERNSTEIN_taxi     (0x002F2FF5)
+#define _FIXES_MODEL_BERNSTEIN_washing  (0xC6B0A470)
+#define _FIXES_MODEL_BERNSTEIN_bobcat   (0x9FAF600A)
+#define _FIXES_MODEL_BERNSTEIN_mrwhoop  (0xECDA734B)
+#define _FIXES_MODEL_BERNSTEIN_bfinject (0xA55B4E84)
+#define _FIXES_MODEL_BERNSTEIN_hunter   (0xAE21C435)
+#define _FIXES_MODEL_BERNSTEIN_premier  (0xD2861393)
+#define _FIXES_MODEL_BERNSTEIN_enforcer (0xCB09AC93)
+#define _FIXES_MODEL_BERNSTEIN_securica (0xFB44606E)
+#define _FIXES_MODEL_BERNSTEIN_banshee  (0x75D530D5)
+#define _FIXES_MODEL_BERNSTEIN_predator (0x22A18640)
+#define _FIXES_MODEL_BERNSTEIN_bus      (0x00012409)
+#define _FIXES_MODEL_BERNSTEIN_rhino    (0x05F4957F)
+#define _FIXES_MODEL_BERNSTEIN_barracks (0x39B9F788)
+#define _FIXES_MODEL_BERNSTEIN_hotknife (0xFD2726D7)
+#define _FIXES_MODEL_BERNSTEIN_artict1  (0x50E9AA77)
+#define _FIXES_MODEL_BERNSTEIN_previon  (0xD28B0442)
+#define _FIXES_MODEL_BERNSTEIN_coach    (0x04E8D91D)
+#define _FIXES_MODEL_BERNSTEIN_cabbie   (0xA1072E55)
+#define _FIXES_MODEL_BERNSTEIN_stallion (0x789D7945)
+#define _FIXES_MODEL_BERNSTEIN_rumpo    (0x05FBC7B2)
+#define _FIXES_MODEL_BERNSTEIN_rcbandit (0x714CB966)
+#define _FIXES_MODEL_BERNSTEIN_romero   (0xC507FCF3)
+#define _FIXES_MODEL_BERNSTEIN_packer   (0xBF5AF0B5)
+#define _FIXES_MODEL_BERNSTEIN_monster  (0xE53E3907)
+#define _FIXES_MODEL_BERNSTEIN_admiral  (0x2FC303B9)
+#define _FIXES_MODEL_BERNSTEIN_squalo   (0xC785A7D4)
+#define _FIXES_MODEL_BERNSTEIN_seaspar  (0x9ADCBF2E)
+#define _FIXES_MODEL_BERNSTEIN_pizzaboy (0xA05F8737)
+#define _FIXES_MODEL_BERNSTEIN_tram     (0x002F7553)
+#define _FIXES_MODEL_BERNSTEIN_artict2  (0x50E9AA78)
+#define _FIXES_MODEL_BERNSTEIN_turismo  (0x0E57B912)
+#define _FIXES_MODEL_BERNSTEIN_speeder  (0xB4C60047)
+#define _FIXES_MODEL_BERNSTEIN_reefer   (0xC44EA778)
+#define _FIXES_MODEL_BERNSTEIN_tropic   (0xC9E9DE10)
+#define _FIXES_MODEL_BERNSTEIN_flatbed  (0xC27C1711)
+#define _FIXES_MODEL_BERNSTEIN_yankee   (0xD45F667C)
+#define _FIXES_MODEL_BERNSTEIN_caddy    (0x04E138C4)
+#define _FIXES_MODEL_BERNSTEIN_solair   (0xC75C8709)
+#define _FIXES_MODEL_BERNSTEIN_topfun   (0xC9B3F7FB)
+#define _FIXES_MODEL_BERNSTEIN_skimmer  (0xA9692077)
+#define _FIXES_MODEL_BERNSTEIN_pcj600   (0xBF820FD2)
+#define _FIXES_MODEL_BERNSTEIN_faggio   (0xA8097B6C)
+#define _FIXES_MODEL_BERNSTEIN_freeway  (0xD0BB8C12)
+#define _FIXES_MODEL_BERNSTEIN_rcbaron  (0x49407526)
+#define _FIXES_MODEL_BERNSTEIN_rcraider (0x969C850B)
+#define _FIXES_MODEL_BERNSTEIN_glendale (0x0729E6BB)
+#define _FIXES_MODEL_BERNSTEIN_oceanic  (0x6287F691)
+#define _FIXES_MODEL_BERNSTEIN_sanchez  (0x926A73AB)
+#define _FIXES_MODEL_BERNSTEIN_sparrow  (0xB484FC0D)
+#define _FIXES_MODEL_BERNSTEIN_patriot  (0xABF08FA2)
+#define _FIXES_MODEL_BERNSTEIN_quad     (0x002DDCEA)
+#define _FIXES_MODEL_BERNSTEIN_coastg   (0xA20442C0)
+#define _FIXES_MODEL_BERNSTEIN_dinghy   (0xA3F3C4C2)
+#define _FIXES_MODEL_BERNSTEIN_hermes   (0xAD024FE3)
+#define _FIXES_MODEL_BERNSTEIN_sabre    (0x0602BA0C)
+#define _FIXES_MODEL_BERNSTEIN_rustler  (0x747B4170)
+#define _FIXES_MODEL_BERNSTEIN_zr350    (0x0689E803)
+#define _FIXES_MODEL_BERNSTEIN_walton   (0xCFB42414)
+#define _FIXES_MODEL_BERNSTEIN_regina   (0xC44FCE15)
+#define _FIXES_MODEL_BERNSTEIN_comet    (0x04E90C77)
+#define _FIXES_MODEL_BERNSTEIN_bmx      (0x00012306)
+#define _FIXES_MODEL_BERNSTEIN_burrito  (0xA4C43946)
+#define _FIXES_MODEL_BERNSTEIN_camper   (0xA10D7197)
+#define _FIXES_MODEL_BERNSTEIN_marquis  (0xC4DD4E41)
+#define _FIXES_MODEL_BERNSTEIN_baggage  (0x754FD33D)
+#define _FIXES_MODEL_BERNSTEIN_dozer    (0x04FB5C43)
+#define _FIXES_MODEL_BERNSTEIN_maverick (0x6900EC11)
+#define _FIXES_MODEL_BERNSTEIN_vcnmav   (0xCD8425AA)
+#define _FIXES_MODEL_BERNSTEIN_rancher  (0x457036E2)
+#define _FIXES_MODEL_BERNSTEIN_fbiranch (0x22BD47DC)
+#define _FIXES_MODEL_BERNSTEIN_virgo    (0x063DA946)
+#define _FIXES_MODEL_BERNSTEIN_greenwoo (0xD46A5085)
+#define _FIXES_MODEL_BERNSTEIN_jetmax   (0xB1ADB968)
+#define _FIXES_MODEL_BERNSTEIN_hotring  (0x64C6E23A)
+#define _FIXES_MODEL_BERNSTEIN_sandking (0xDFCCB68E)
+#define _FIXES_MODEL_BERNSTEIN_blistac  (0x8F23A7C1)
+#define _FIXES_MODEL_BERNSTEIN_polmav   (0xC05D3F2E)
+#define _FIXES_MODEL_BERNSTEIN_boxville (0x7DB52944)
+#define _FIXES_MODEL_BERNSTEIN_benson   (0x9F014564)
+#define _FIXES_MODEL_BERNSTEIN_mesa     (0x002B69A5)
+#define _FIXES_MODEL_BERNSTEIN_rcgoblin (0x7DED690F)
+#define _FIXES_MODEL_BERNSTEIN_hotrina  (0x64C6E234)
+#define _FIXES_MODEL_BERNSTEIN_hotrinb  (0x64C6E235)
+#define _FIXES_MODEL_BERNSTEIN_bloodra  (0x8F8DC762)
+#define _FIXES_MODEL_BERNSTEIN_bloodrb  (0x8F8DC763)
+#define _FIXES_MODEL_BERNSTEIN_rnchlure (0xC2E05A82)
+#define _FIXES_MODEL_BERNSTEIN_supergt  (0xC13714C9)
+#define _FIXES_MODEL_BERNSTEIN_elegant  (0x75C3185F)
+#define _FIXES_MODEL_BERNSTEIN_journey  (0xFECD886B)
+#define _FIXES_MODEL_BERNSTEIN_bike     (0x0025717A)
+#define _FIXES_MODEL_BERNSTEIN_mtbike   (0xB9B2B43B)
+#define _FIXES_MODEL_BERNSTEIN_beagle   (0x9EF9F0FF)
+#define _FIXES_MODEL_BERNSTEIN_cropdust (0x3B781D13)
+#define _FIXES_MODEL_BERNSTEIN_stunt    (0x060D759D)
+#define _FIXES_MODEL_BERNSTEIN_petro    (0x05CEEEA9)
+#define _FIXES_MODEL_BERNSTEIN_rdtrain  (0x4CE46033)
+#define _FIXES_MODEL_BERNSTEIN_nebula   (0xBAF8A076)
+#define _FIXES_MODEL_BERNSTEIN_majestic (0x4D03C06F)
+#define _FIXES_MODEL_BERNSTEIN_buccanee (0x193A1395)
+#define _FIXES_MODEL_BERNSTEIN_shamal   (0xC6D80555)
+#define _FIXES_MODEL_BERNSTEIN_hydra    (0x0548DE17)
+#define _FIXES_MODEL_BERNSTEIN_fcr900   (0xA832E953)
+#define _FIXES_MODEL_BERNSTEIN_nrg500   (0xBBE584BB)
+#define _FIXES_MODEL_BERNSTEIN_copbike  (0xE39289FC)
+#define _FIXES_MODEL_BERNSTEIN_cement   (0xA155A5FB)
+#define _FIXES_MODEL_BERNSTEIN_towtruck (0x17E1DC02)
+#define _FIXES_MODEL_BERNSTEIN_fortune  (0xCAAF8382)
+#define _FIXES_MODEL_BERNSTEIN_cadrona  (0xC21A0B17)
+#define _FIXES_MODEL_BERNSTEIN_fbitruck (0x22EAE919)
+#define _FIXES_MODEL_BERNSTEIN_willard  (0xD8DD4DEE)
+#define _FIXES_MODEL_BERNSTEIN_forklift (0x1FF81320)
+#define _FIXES_MODEL_BERNSTEIN_tractor  (0x062158DE)
+#define _FIXES_MODEL_BERNSTEIN_combine  (0xE35C40DC)
+#define _FIXES_MODEL_BERNSTEIN_feltzer  (0xB2EF6E5B)
+#define _FIXES_MODEL_BERNSTEIN_remingtn (0x257AC403)
+#define _FIXES_MODEL_BERNSTEIN_slamvan  (0xAB2DAAD1)
+#define _FIXES_MODEL_BERNSTEIN_blade    (0x04D51B97)
+#define _FIXES_MODEL_BERNSTEIN_freight  (0xD0BD7A68)
+#define _FIXES_MODEL_BERNSTEIN_streak   (0xC7BA5BC9)
+#define _FIXES_MODEL_BERNSTEIN_vortex   (0xCE5F9B87)
+#define _FIXES_MODEL_BERNSTEIN_vincent  (0x8C026356)
+#define _FIXES_MODEL_BERNSTEIN_bullet   (0xA02195A7)
+#define _FIXES_MODEL_BERNSTEIN_clover   (0xA1D5B16A)
+#define _FIXES_MODEL_BERNSTEIN_sadler   (0xC65AFB3A)
+#define _FIXES_MODEL_BERNSTEIN_firela   (0xA8A03F72)
+#define _FIXES_MODEL_BERNSTEIN_hustler  (0x72B4E1E6)
+#define _FIXES_MODEL_BERNSTEIN_intruder (0x9CF12BCC)
+#define _FIXES_MODEL_BERNSTEIN_primo    (0x05D5E026)
+#define _FIXES_MODEL_BERNSTEIN_cargobob (0x253C685E)
+#define _FIXES_MODEL_BERNSTEIN_tampa    (0x06150112)
+#define _FIXES_MODEL_BERNSTEIN_sunrise  (0xC119DFE8)
+#define _FIXES_MODEL_BERNSTEIN_merit    (0x05989B80)
+#define _FIXES_MODEL_BERNSTEIN_utility  (0x585B6C33)
+#define _FIXES_MODEL_BERNSTEIN_nevada   (0xBB0341EE)
+#define _FIXES_MODEL_BERNSTEIN_yosemite (0xAAC4038E)
+#define _FIXES_MODEL_BERNSTEIN_windsor  (0xD8FD6825)
+#define _FIXES_MODEL_BERNSTEIN_monstera (0x8D055A48)
+#define _FIXES_MODEL_BERNSTEIN_monsterb (0x8D055A49)
+#define _FIXES_MODEL_BERNSTEIN_uranus   (0xCC37527D)
+#define _FIXES_MODEL_BERNSTEIN_jester   (0xB1AD4B4C)
+#define _FIXES_MODEL_BERNSTEIN_sultan   (0xC7C969D6)
+#define _FIXES_MODEL_BERNSTEIN_stratum  (0xBF03F5EF)
+#define _FIXES_MODEL_BERNSTEIN_elegy    (0x050B7695)
+#define _FIXES_MODEL_BERNSTEIN_raindanc (0xE89212DF)
+#define _FIXES_MODEL_BERNSTEIN_rctiger  (0x4A8A612F)
+#define _FIXES_MODEL_BERNSTEIN_flash    (0x051D7F8D)
+#define _FIXES_MODEL_BERNSTEIN_tahoma   (0xC8B26319)
+#define _FIXES_MODEL_BERNSTEIN_savanna  (0x92FA3987)
+#define _FIXES_MODEL_BERNSTEIN_bandito  (0x75CCFD60)
+#define _FIXES_MODEL_BERNSTEIN_freiflat (0xE86C4A0C)
+#define _FIXES_MODEL_BERNSTEIN_streakc  (0xBF05D54C)
+#define _FIXES_MODEL_BERNSTEIN_kart     (0x002A3FD1)
+#define _FIXES_MODEL_BERNSTEIN_mower    (0x059E2C09)
+#define _FIXES_MODEL_BERNSTEIN_duneride (0x0B93EA4F)
+#define _FIXES_MODEL_BERNSTEIN_sweeper  (0xC51A4FBA)
+#define _FIXES_MODEL_BERNSTEIN_broadway (0x4E26DED8)
+#define _FIXES_MODEL_BERNSTEIN_tornado  (0x005B3576)
+#define _FIXES_MODEL_BERNSTEIN_at400    (0x04C69FC8)
+#define _FIXES_MODEL_BERNSTEIN_dft30    (0x04F64CA0)
+#define _FIXES_MODEL_BERNSTEIN_huntley  (0x725A6768)
+#define _FIXES_MODEL_BERNSTEIN_stafford (0x782DB5D8)
+#define _FIXES_MODEL_BERNSTEIN_bf400    (0x04D10AFB)
+#define _FIXES_MODEL_BERNSTEIN_newsvan  (0x1B87C401)
+#define _FIXES_MODEL_BERNSTEIN_tug      (0x0001708F)
+#define _FIXES_MODEL_BERNSTEIN_petrotr  (0xB5454C4F)
+#define _FIXES_MODEL_BERNSTEIN_emperor  (0x78DE7E39)
+#define _FIXES_MODEL_BERNSTEIN_wayfarer (0xAA9BA360)
+#define _FIXES_MODEL_BERNSTEIN_euros    (0x05109E4D)
+#define _FIXES_MODEL_BERNSTEIN_hotdog   (0xADB838A4)
+#define _FIXES_MODEL_BERNSTEIN_club     (0x00260BE5)
+#define _FIXES_MODEL_BERNSTEIN_freibox  (0xD0BD660E)
+#define _FIXES_MODEL_BERNSTEIN_artict3  (0x50E9AA79)
+#define _FIXES_MODEL_BERNSTEIN_androm   (0x9D497940)
+#define _FIXES_MODEL_BERNSTEIN_dodo     (0x0026A2E5)
+#define _FIXES_MODEL_BERNSTEIN_rccam    (0x05F1BC65)
+#define _FIXES_MODEL_BERNSTEIN_launch   (0xB610397A)
+#define _FIXES_MODEL_BERNSTEIN_copcarla (0x55F19E04)
+#define _FIXES_MODEL_BERNSTEIN_copcarsf (0x55F19EF0)
+#define _FIXES_MODEL_BERNSTEIN_copcarvg (0x55F19F54)
+#define _FIXES_MODEL_BERNSTEIN_copcarru (0x55F19EDE)
+#define _FIXES_MODEL_BERNSTEIN_picador  (0xBD5CCC61)
+#define _FIXES_MODEL_BERNSTEIN_swatvan  (0xC4DA4063)
+#define _FIXES_MODEL_BERNSTEIN_alpha    (0x04C34365)
+#define _FIXES_MODEL_BERNSTEIN_phoenix  (0xBBE3251A)
+#define _FIXES_MODEL_BERNSTEIN_glenshit (0x07323DDD)
+#define _FIXES_MODEL_BERNSTEIN_sadlshit (0xC90E427B)
+#define _FIXES_MODEL_BERNSTEIN_bagboxa  (0x754D5313)
+#define _FIXES_MODEL_BERNSTEIN_bagboxb  (0x754D5314)
+#define _FIXES_MODEL_BERNSTEIN_tugstair (0xC05B6A72)
+#define _FIXES_MODEL_BERNSTEIN_boxburg  (0x97294538)
+#define _FIXES_MODEL_BERNSTEIN_farmtr1  (0xAA03701C)
+#define _FIXES_MODEL_BERNSTEIN_utiltr1  (0x585B9A74)
 
 /*
  * _FIXES_DetermineOS()
@@ -4055,6 +5165,16 @@ public OnFilterScriptInit()
 	_FIXES_gIsFilterscript = true;
 	_FIXES_DetermineOS();
 
+	// ===========================
+	//  BEGIN: ChangeVehicleColor
+	// ===========================
+	#if FIX_ChangeVehicleColour
+		_FIXES_LoadCarcols();
+	#endif
+	// ===========================
+	//  END:   ChangeVehicleColor
+	// ===========================
+
 	#if FIXES_Single
 		// Check this really IS the only script running.
 		if (existproperty(5, FIXES_gscSingleProperty))
@@ -4206,9 +5326,18 @@ public OnGameModeInit()
 	//  END: AllowInteriorWeapons
 	// ===========================
 
-	#if FIX_GameText || !FIXES_Single
+	#if FIX_GameText || !FIXES_Single || FIX_ChangeVehicleColour
 		if (!_FIXES_gIsFilterscript)
 		{
+			// ===========================
+			//  BEGIN: ChangeVehicleColor
+			// ===========================
+			#if FIX_ChangeVehicleColour
+				_FIXES_LoadCarcols();
+			#endif
+			// ===========================
+			//  END:   ChangeVehicleColor
+			// ===========================
 			// =================
 			//  BEGIN: GameText
 			// =================
@@ -5123,7 +6252,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		// =====================
 		new
 			modelid = GetVehicleModel(vehicleid);
-		if (_FIXES_IN_RANGE(modelid, 400, 611 + 1))
+		if (_FIXES_IS_VALID_VEHICLE_MODEL(modelid))
 		{
 			switch (componentid)
 			{
@@ -5536,7 +6665,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 	#if FIXES_Single
 		stock FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				FIXES_PRINTF("Call SetPlayerWorldBounds");
 				if (x_max == x_min || y_max == y_min)
@@ -5588,7 +6717,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 
 		stock FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				FIXES_PRINTF("Call SetPlayerWorldBounds");
 				// Impossibly small area, disable checks entirely.
@@ -5706,7 +6835,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 		stock FIXES_TogglePlayerControllable(playerid, toggle)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
 					CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
@@ -5893,7 +7022,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: OnPlayerEnterVehicle_2
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_2
-			if (!(0 < vehicleid < MAX_VEHICLES))
+			if (!_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
 			{
 				FIXES_BlockUpdate(playerid);
 				return 0;
@@ -5945,7 +7074,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: OnPlayerEnterVehicle_2
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_2
-			if (_FIXES_IN_RANGE(vehicleid, 1, MAX_VEHICLES))
+			if (_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
 			{
 				return FIXES_OnPlayerExitVehicle(playerid, vehicleid);
 			}
@@ -6395,7 +7524,7 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 			{
 				#if FIX_GetPlayerMenu
 					#if FIX_HideMenuForPlayer_2
-						if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS) && FIXES_gsCurrentMenu[playerid] == menuid)
+						if (_FIXES_IS_VALID_PLAYER(playerid) && FIXES_gsCurrentMenu[playerid] == menuid)
 					#else
 						if (FIXES_gsCurrentMenu[playerid] == menuid && HideMenuForPlayer(menuid, playerid))
 					#endif
@@ -6490,7 +7619,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 #if FIX_GetPlayerMenu
 	stock Menu:FIXES_GetPlayerMenu(playerid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			return FIXES_gsCurrentMenu[playerid];
 		}
@@ -7429,16 +8558,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_HideGameText
-	//stock FIXES_HideGameTextForAll(style)
-	//{
-	//	if (FIXES_gsGTTimer[style][MAX_PLAYERS] != 0)
-	//	{
-	//		KillTimer(FIXES_gsGTTimer[style][MAX_PLAYERS]);
-	//		FIXES_gsGTTimer[style][MAX_PLAYERS] = 0;
-	//	}
-	//	return GameTextForAll(FIXES_gcSpace, 0, style);
-	//}
-
 	#define _ALS_HideGameTextForAll
 	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gcNull, 0, (%0))
 #endif
@@ -7455,20 +8574,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_HideGameText
-	//stock FIXES_HideGameTextForPlayer(playerid, style)
-	//{
-	//	if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
-	//	{
-	//		if (FIXES_gsGTTimer[style][playerid] != 0)
-	//		{
-	//			KillTimer(FIXES_gsGTTimer[style][playerid]);
-	//			FIXES_gsGTTimer[style][playerid] = 0;
-	//		}
-	//		return GameTextForPlayer(playerid, FIXES_gcSpace, 0, style);
-	//	}
-	//	return 0;
-	//}
-
 	#define _ALS_HideGameTextForPlayer
 	#define HideGameTextForPlayer(%0,%1) GameTextForPlayer((%0), FIXES_gcNull, 0, (%1))
 #endif
@@ -7703,7 +8808,7 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 #if FIX_GetPlayerInterior
 	stock FIXES_GetPlayerInterior(playerid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			return FIXES_GET(PlayerInterior, playerid);
 		}
@@ -7729,7 +8834,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 #if FIX_GetPlayerInterior
 	stock FIXES_SetPlayerInterior(playerid, interiorid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			FIXES_SET(PlayerInterior, playerid, interiorid);
 			return SetPlayerInterior(playerid, interiorid);
@@ -7798,7 +8903,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 	#if FIXES_Single
 		stock FIXES_AllowPlayerTeleport(playerid, allow)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				if (allow)
 				{
@@ -7814,7 +8919,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 	#else
 		stock FIXES_AllowPlayerTeleport(playerid, allow)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				CallRemoteFunction(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, playerid, allow);
 			}
@@ -8012,7 +9117,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 	stock FIXES_ShowPlayerDialog(playerid, dialog, style, _FIXES_MAYBE_CONST title[], _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[])
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			FIXES_SET(PlayerDialog, playerid, dialog);
 			return ShowPlayerDialog(playerid, dialog, style, title, caption, button1, button2);
@@ -8095,7 +9200,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #if FIX_GetPlayerDialog
 	stock FIXES_GetPlayerDialog(playerid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			return FIXES_GET(PlayerDialog, playerid);
 		}
@@ -9087,7 +10192,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 #if FIX_SetPlayerCamera
 	stock FIXES_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			#if FIXES_Single
 				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
@@ -9124,7 +10229,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 #if FIX_SetPlayerCamera
 	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, cut = CAMERA_CUT)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			#if FIXES_Single
 				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
@@ -9161,7 +10266,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 #if FIX_SetPlayerCamera
 	stock FIXES_TogglePlayerSpectating(playerid, toggle)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			if (toggle)
 			{
@@ -9210,7 +10315,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 
 	stock FIXES_SetPlayerTime(playerid, hour, minute)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
 			{
@@ -9247,7 +10352,7 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 
 	stock FIXES_SetPlayerColor(playerid, color)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
 			{
@@ -9570,6 +10675,788 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #endif
 
 /*
+ * _FIXES_CarcolsBernstein()
+ *
+ * Convert a string to a number (hash it).
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if FIX_ChangeVehicleColour
+	static stock _FIXES_CarcolsBernstein(const name[])
+	{
+		new
+			i = -1,
+			ch,
+			hash = -1;
+		// In carcols.dat the vehicle names end at ",".  That makes this code
+		// very specific to one use-case.
+		while ((ch = name[++i]) >= '0')
+		{
+			hash = hash * 33 + ch;
+		}
+		return hash;
+	}
+#endif
+
+/*
+ * _FIXES_GetVehicleModelFromName()
+ *
+ * Convert a model name (as found in `carcols.dat` to a model number).  Use
+ * string hashing to enable `switch`.
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if FIX_ChangeVehicleColour
+	static stock _FIXES_GetVehicleModelFromName(const name[])
+	{
+		// This is actually probably quite a generically useful function.
+		// Maybe, since it is written anyway, it should be exposed (but not
+		// while it returns IDs - 400 to be relative to 0).
+		switch (_FIXES_CarcolsBernstein(name))
+		{
+		case _FIXES_MODEL_BERNSTEIN_landstal: return   0; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bravura : return   1; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_buffalo : return   2; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_linerun : return   3; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_peren   : return   4; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sentinel: return   5; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_dumper  : return   6; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_firetruk: return   7; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_trash   : return   8; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_stretch : return   9; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_manana  : return  10; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_infernus: return  11; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_voodoo  : return  12; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_pony    : return  13; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_mule    : return  14; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cheetah : return  15; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_ambulan : return  16; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_leviathn: return  17; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_moonbeam: return  18; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_esperant: return  19; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_taxi    : return  20; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_washing : return  21; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bobcat  : return  22; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_mrwhoop : return  23; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bfinject: return  24; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hunter  : return  25; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_premier : return  26; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_enforcer: return  27; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_securica: return  28; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_banshee : return  29; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_predator: return  30; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bus     : return  31; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rhino   : return  32; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_barracks: return  33; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hotknife: return  34; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_artict1 : return  35; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_previon : return  36; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_coach   : return  37; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cabbie  : return  38; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_stallion: return  39; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rumpo   : return  40; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rcbandit: return  41; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_romero  : return  42; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_packer  : return  43; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_monster : return  44; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_admiral : return  45; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_squalo  : return  46; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_seaspar : return  47; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_pizzaboy: return  48; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tram    : return  49; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_artict2 : return  50; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_turismo : return  51; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_speeder : return  52; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_reefer  : return  53; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tropic  : return  54; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_flatbed : return  55; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_yankee  : return  56; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_caddy   : return  57; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_solair  : return  58; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_topfun  : return  59; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_skimmer : return  60; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_pcj600  : return  61; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_faggio  : return  62; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_freeway : return  63; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rcbaron : return  64; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rcraider: return  65; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_glendale: return  66; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_oceanic : return  67; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sanchez : return  68; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sparrow : return  69; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_patriot : return  70; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_quad    : return  71; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_coastg  : return  72; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_dinghy  : return  73; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hermes  : return  74; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sabre   : return  75; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rustler : return  76; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_zr350   : return  77; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_walton  : return  78; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_regina  : return  79; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_comet   : return  80; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bmx     : return  81; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_burrito : return  82; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_camper  : return  83; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_marquis : return  84; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_baggage : return  85; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_dozer   : return  86; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_maverick: return  87; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_vcnmav  : return  88; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rancher : return  89; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_fbiranch: return  90; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_virgo   : return  91; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_greenwoo: return  92; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_jetmax  : return  93; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hotring : return  94; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sandking: return  95; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_blistac : return  96; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_polmav  : return  97; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_boxville: return  98; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_benson  : return  99; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_mesa    : return 100; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rcgoblin: return 101; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hotrina : return 102; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hotrinb : return 103; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bloodra : return 104; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bloodrb : return 104; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rnchlure: return 105; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_supergt : return 106; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_elegant : return 107; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_journey : return 108; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bike    : return 109; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_mtbike  : return 110; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_beagle  : return 111; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cropdust: return 112; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_stunt   : return 113; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_petro   : return 114; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rdtrain : return 115; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_nebula  : return 116; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_majestic: return 117; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_buccanee: return 118; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_shamal  : return 119; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hydra   : return 120; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_fcr900  : return 121; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_nrg500  : return 122; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_copbike : return 123; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cement  : return 124; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_towtruck: return 125; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_fortune : return 126; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cadrona : return 127; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_fbitruck: return 128; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_willard : return 129; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_forklift: return 130; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tractor : return 131; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_combine : return 132; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_feltzer : return 133; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_remingtn: return 134; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_slamvan : return 135; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_blade   : return 136; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_freight : return 137; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_streak  : return 138; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_vortex  : return 139; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_vincent : return 140; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bullet  : return 141; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_clover  : return 142; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sadler  : return 143; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_firela  : return 144; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hustler : return 145; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_intruder: return 146; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_primo   : return 147; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_cargobob: return 148; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tampa   : return 149; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sunrise : return 150; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_merit   : return 151; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_utility : return 152; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_nevada  : return 153; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_yosemite: return 154; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_windsor : return 155; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_monstera: return 156; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_monsterb: return 157; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_uranus  : return 158; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_jester  : return 159; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sultan  : return 160; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_stratum : return 161; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_elegy   : return 162; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_raindanc: return 163; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rctiger : return 164; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_flash   : return 165; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tahoma  : return 166; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_savanna : return 167; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bandito : return 168; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_freiflat: return 169; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_streakc : return 170; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_kart    : return 171; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_mower   : return 172; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_duneride: return 173; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sweeper : return 174; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_broadway: return 175; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tornado : return 176; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_at400   : return 177; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_dft30   : return 178; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_huntley : return 179; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_stafford: return 180; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bf400   : return 181; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_newsvan : return 182; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tug     : return 183; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_petrotr : return 184; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_emperor : return 185; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_wayfarer: return 186; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_euros   : return 187; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_hotdog  : return 188; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_club    : return 189; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_freibox : return 190; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_artict3 : return 191; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_androm  : return 192; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_dodo    : return 193; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_rccam   : return 194; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_launch  : return 195; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_copcarla: return 196; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_copcarsf: return 197; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_copcarvg: return 198; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_copcarru: return 199; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_picador : return 200; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_swatvan : return 201; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_alpha   : return 202; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_phoenix : return 203; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_glenshit: return 204; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_sadlshit: return 205; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bagboxa : return 206; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_bagboxb : return 207; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_tugstair: return 208; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_boxburg : return 209; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_farmtr1 : return 210; // Offset from 0.
+		case _FIXES_MODEL_BERNSTEIN_utiltr1 : return 211; // Offset from 0.
+		}
+		return -1;
+	}
+#endif
+
+/*
+ * _FIXES_CarcolsStrval()
+ *
+ * For some reason, I was getting inconsistent results with "strval" when using
+ * it for colours.  It would sometimes report "0" for valid numbers.
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if FIX_ChangeVehicleColour
+	static stock _FIXES_CarcolsStrval(const str[], &c1, &c2)
+	{
+		new
+			ch,
+			i = 0;
+		c1 = 0;
+		while (_FIXES_IN_RANGE((ch = str[i++] - '0'), 0, 10))
+			c1 = c1 * 10 + ch;
+		if (str[i] == ',')
+			++i;
+		c2 = 0;
+		while (_FIXES_IN_RANGE((ch = str[i++] - '0'), 0, 10))
+			c2 = c2 * 10 + ch;
+		return i;
+	}
+#endif
+
+/*
+ * _FIXES_LoadCarcols()
+ *
+ * Try load a copy of carcols.dat from the server, so that if they have a custom
+ * version it is used instead of the defaults.  However, if the file doesn't
+ * exist or can't be read correctly, just use the defaults.
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if FIX_ChangeVehicleColour
+	static stock _FIXES_LoadCarcols(singleModel = -1)
+	{
+		// They don't have the file.
+		if (!fexist(FIXES_gscCarcols))
+			return;
+		new
+			File:fhnd = fopen(FIXES_gscCarcols, io_read);
+		// The file couldn't be opened.
+		if (!fhnd)
+			return;
+		// Try and load the file in to a local array.  If this works copy that
+		// array in its entirety to the global version.  If it fails, don't do
+		// any copying to stick with the defaults.  Allocated on the stack ONLY.
+		new
+			line[128],
+			section = 0;
+		// Skip everything up to the "CAR" section.  While "COL" (colours) could
+		// be of interest, we can't use it even if it is modified since only
+		// indexes can be sent to clients, not the full RGB value.
+		// 
+		// Everything after "#" is a comment.  Ignore it.
+		// 
+		// Entries are:
+		//
+		//   name, col1,col2 ..."
+		//
+		// Parts are space delimited.  Pairs are comma delimited (and may have a
+		// trailing comma).  In later versions of the file, there are three or
+		// four colours to an entry, so always just use the first two.  I doubt
+		// that will mean that newer versions are supported due to the different
+		// vehicle names, but it is accepting a wider range of input data.
+		while (fread(fhnd, line))
+		{
+				// Get rid of comments.
+				new
+					pos = strfind(line, "#");
+				if (pos == -1)
+					pos = strlen(line);
+				else
+					line[pos] = '\0';
+				// Trim the line.
+				while (pos--)
+				{
+					if (line[pos] <= ' ')
+						line[pos] = '\0';
+					else
+						break;
+				}
+				if (!line[0])
+					continue;
+				switch (section)
+				{
+					case 0:
+					{
+						// Not yet in a section.
+						if (!strcmp(line, "col"))
+							section = 1;
+						else if (!strcmp(line, "car"))
+							section = 2;
+						else if (!strcmp(line, "car4"))
+							section = 3;
+					}
+					case 1:
+					{
+						// Just wait for the end of the colours section.
+						if (!strcmp(line, FIXES_gscEnd))
+							section = 0;
+					}
+					case 2, 3:
+					{
+						// "car4" section.  Like "car", but with four colours
+						// per vehicle instead of two.  However, we only use 2.
+						if (!strcmp(line, FIXES_gscEnd))
+						{
+							section = 0;
+							continue;
+						}
+						new
+							modelid = _FIXES_GetVehicleModelFromName(line),
+							idx = 0,
+							c1,
+							c2;
+						if (modelid == -1)
+							continue;
+						// Don't load the colours for this vehicle if it isn't
+						// the only one we want to load (if there is just one).
+						if (singleModel != -1 && singleModel != modelid)
+							continue;
+						pos = 0;
+						while ((pos = strfind(line, FIXES_gsSpace, false, pos) + 1))
+						{
+							pos += _FIXES_CarcolsStrval(line[pos], c1, c2);
+							FIXES_gsVehicleModelColours1[modelid]{idx} = c1;
+							FIXES_gsVehicleModelColours2[modelid]{idx} = c2;
+							if (++idx >= _FIXES_MAX_RANDOM_MODEL_COLOURS)
+								break;
+						}
+						FIXES_gsVehicleColoursCount[modelid] = idx;
+					}
+				}
+		}
+	}
+#endif
+
+/*
+ * _FIXES_ChangeVehicleColour(vehicleid, color1, color2)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if FIX_ChangeVehicleColour
+	#if FIXES_Single
+		static stock _FIXES_AssignVehicleColour(vehicleid, color1, color2, base1, base2)
+	#else
+		forward _FIXES_AssignVehicleColour(vehicleid, color1, color2, base1, base2);
+	
+		public _FIXES_AssignVehicleColour(vehicleid, color1, color2, base1, base2)
+	#endif
+		{
+			// All ranges have already been checked.  Plus if the colours are
+			// any invalid values here, they will be invalid when read and thus
+			// always resolve to random when out of bounds.
+			FIXES_gsVehicleCurColours1{vehicleid} = color1,
+			FIXES_gsVehicleCurColours2{vehicleid} = color2,
+			FIXES_gsVehicleBaseColours1{vehicleid} = base1,
+			FIXES_gsVehicleBaseColours2{vehicleid} = base2;
+		}
+#endif
+
+/*
+ * FIXES_ChangeVehicleColour(vehicleid, color1, color2)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if defined _ALS_ChangeVehicleColor
+	#error _ALS_ChangeVehicleColor defined
+#endif
+#if defined _ALS_ChangeVehicleColour
+	#error _ALS_ChangeVehicleColour defined
+#endif
+native BAD_ChangeVehicleColor(vehicleid, color1, color2) = ChangeVehicleColor;
+native BAD_ChangeVehicleColour(vehicleid, color1, color2) = ChangeVehicleColor;
+
+#if FIX_ChangeVehicleColour
+	#if FIXES_Single
+		#define _FIXES_ASSIGN_COLOURS(%0) _FIXES_AssignVehicleColour(%0)
+	#else
+		#define _FIXES_ASSIGN_COLOURS(%0) CallRemoteFunction(FIXES_gscAssignVehicleColour, FIXES_gscSpec@iiiii, %0)
+	#endif
+
+	stock FIXES_ChangeVehicleColour(vehicleid, color1, color2)
+	{
+		// TODO:  Multi-script support.
+		new
+			model = GetVehicleModel(vehicleid);
+		if (model)
+		{
+			model -= 400;
+			// This code checks for ANY invalid colour and assumes they are
+			// random.  This is mostly because randoms are stored by this code
+			// as `255` not `-1` (because unsigned bytes).  If both colours are
+			// random, they should use the same slot.
+			new
+				rand = FIXES_gsVehicleColoursCount[model];
+			// If there are no colours defined, default to black (colour 0).
+			if (rand)
+				rand = random(rand);
+			else
+				rand = 0;
+			if (_FIXES_IN_RANGE(color1, 0, 127))
+			{
+				if (_FIXES_IN_RANGE(color2, 0, 127))
+					_FIXES_ASSIGN_COLOURS(vehicleid, color1, color2, color1, color2);
+				else
+					_FIXES_ASSIGN_COLOURS(vehicleid, color1, (color2 = FIXES_gsVehicleModelColours2[model]{rand}), color1, 255);
+			}
+			else
+			{
+				if (_FIXES_IN_RANGE(color2, 0, 127))
+					_FIXES_ASSIGN_COLOURS(vehicleid, (color1 = FIXES_gsVehicleModelColours1[model]{rand}), color2, 255, color2);
+				else
+					_FIXES_ASSIGN_COLOURS(vehicleid, (color1 = FIXES_gsVehicleModelColours1[model]{rand}), (color2 = FIXES_gsVehicleModelColours2[model]{rand}), 255, 255);
+			}
+			return ChangeVehicleColor(vehicleid, color1, color2);
+		}
+		return 0;
+	}
+
+	#define _ALS_ChangeVehicleColor
+	#define ChangeVehicleColor( FIXES_ChangeVehicleColour(
+	#define _ALS_ChangeVehicleColour
+	#define ChangeVehicleColour( FIXES_ChangeVehicleColour(
+
+	#undef _FIXES_ASSIGN_COLOURS
+#endif
+
+/*
+ * OnVehicleSpawn(vehicleid)
+ *
+ * FIXES:
+ *     ChangeVehicleColour
+ */
+
+#if FIX_ChangeVehicleColour
+	public OnVehicleSpawn(vehicleid)
+	{
+		_FIXES_IS_IN_CHARGE()
+		{
+			FIXES_ChangeVehicleColour(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
+		}
+		return FIXES_OnVehicleSpawn(vehicleid);
+	}
+
+	#if defined _ALS_OnVehicleSpawn
+		#error _ALS_OnVehicleSpawn defined
+	#endif
+	#define _ALS_OnVehicleSpawn
+	#define OnVehicleSpawn(%0) FIXES_OnVehicleSpawn(%0) <_ALS : _ALS_go>
+
+	_FIXES_FORWARD FIXES_OnVehicleSpawn(vehicleid);
+#endif
+
+/*
+ * FIXES_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, addsiren = 0)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if defined _ALS_CreateVehicle
+	#error _ALS_CreateVehicle defined
+#endif
+native BAD_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, addsiren = 0) = CreateVehicle;
+
+#if FIX_ChangeVehicleColour
+	stock FIXES_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, addsiren = 0)
+	{
+		new
+			vehicleid = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+		FIXES_ChangeVehicleColour(vehicleid, color1, color2);
+		return vehicleid;
+	}
+
+	#define _ALS_CreateVehicle
+	#define CreateVehicle( FIXES_CreateVehicle(
+#endif
+
+/*
+ * FIXES_SetVehicleToRespawn(vehicleid)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if defined _ALS_SetVehicleToRespawn
+	#error _ALS_SetVehicleToRespawn defined
+#endif
+native BAD_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
+
+#if FIX_ChangeVehicleColour
+	stock FIXES_SetVehicleToRespawn(vehicleid)
+	{
+		new
+			ret = SetVehicleToRespawn(vehicleid);
+		FIXES_ChangeVehicleColour(vehicleid, FIXES_gsVehicleBaseColours1{vehicleid}, FIXES_gsVehicleBaseColours2{vehicleid});
+		return ret;
+	}
+
+	#define _ALS_SetVehicleToRespawn
+	#define SetVehicleToRespawn( FIXES_SetVehicleToRespawn(
+#endif
+
+/*
+ * FIXES_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if defined _ALS_AddStaticVehicle
+	#error _ALS_AddStaticVehicle defined
+#endif
+native BAD_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2) = AddStaticVehicle;
+
+#if FIX_ChangeVehicleColour
+	stock FIXES_AddStaticVehicle(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2)
+	{
+		new
+			vehicleid = AddStaticVehicle(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2);
+		FIXES_ChangeVehicleColour(vehicleid, color1, color2);
+		return vehicleid;
+	}
+
+	#define _ALS_AddStaticVehicle
+	#define AddStaticVehicle( FIXES_AddStaticVehicle(
+#endif
+
+/*
+ * FIXES_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren=0)
+ *
+ * FIXES:
+ *     ChangeVehicleColor
+ */
+
+#if defined _ALS_AddStaticVehicleEx
+	#error _ALS_AddStaticVehicleEx defined
+#endif
+native BAD_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren = 0) = AddStaticVehicleEx;
+
+#if FIX_ChangeVehicleColour
+	stock FIXES_AddStaticVehicleEx(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren = 0)
+	{
+		new
+			vehicleid = AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, addsiren);
+		FIXES_ChangeVehicleColour(vehicleid, color1, color2);
+		return vehicleid;
+	}
+
+	#define _ALS_AddStaticVehicleEx
+	#define AddStaticVehicleEx( FIXES_AddStaticVehicleEx(
+#endif
+
+/*
+ * FIXES_GetVehicleColour(const vehicleid, &color1, &color2, const bool:returnMinus1 = false)
+ *
+ * FIXES:
+ *     GetVehicleColor
+ *
+ * NOTES:
+ *     Returns `-1` only if `returnMinus1` is true.  Otherwise returns the
+ *     current colour instead.
+ */
+
+#if FIX_GetVehicleColour
+	stock FIXES_GetVehicleColour(const vehicleid, &color1, &color2, const bool:returnMinus1 = false)
+	{
+		if (!_FIXES_IS_VALID_VEHICLE_ID(vehicleid))
+			return 0;
+		if (returnMinus1)
+		{
+			// Return -1 when the colour is random.
+			color1 = FIXES_gsVehicleBaseColours1{vehicleid},
+			color2 = FIXES_gsVehicleBaseColours2{vehicleid},
+			color1 = (color1 == 255) ? -1 : color1,
+			color2 = (color2 == 255) ? -1 : color2;
+		}
+		else
+		{
+			// Return only the current colours.
+			color1 = FIXES_gsVehicleCurColours1{vehicleid},
+			color2 = FIXES_gsVehicleCurColours2{vehicleid};
+		}
+		return 1;
+	}
+
+	#define _ALS_GetVehicleColor
+	#define GetVehicleColor( FIXES_GetVehicleColour(
+	#define _ALS_GetVehicleColour
+	#define GetVehicleColour( FIXES_GetVehicleColour(
+#endif
+
+/*
+ * FIXES_AddRandomModelColour(const modelid, const color1, const color2)
+ *
+ * FIXES:
+ *     AddRandomModelColor
+ *
+ * NOTES:
+ *     Returns the number of colours defined for that vehicle, or 0 on error.
+ */
+
+#if FIX_AddRandomModelColour
+	stock FIXES_AddRandomModelColour(const modelid, const color1, const color2)
+	{
+		if (_FIXES_IS_VALID_VEHICLE_MODEL(modelid) && _FIXES_IN_RANGE(color1, 0, 127) && _FIXES_IN_RANGE(color2, 0, 127))
+		{
+			// Adjust to internal IDs.
+			modelid -= 400;
+			new
+				count = FIXES_gsVehicleColoursCount[modelid];
+			if (count < _FIXES_MAX_RANDOM_MODEL_COLOURS)
+			{
+				// Can only have up to 12 colours per vehicle by default.
+				return
+					FIXES_gsVehicleModelColours1[modelid]{count} = color1,
+					FIXES_gsVehicleModelColours2[modelid]{count} = color2,
+					++FIXES_gsVehicleColoursCount[modelid];
+			}
+		}
+		return 0;
+	}
+
+	#define _ALS_AddRandomModelColor
+	#define AddRandomModelColor( FIXES_AddRandomModelColour(
+	#define _ALS_AddRandomModelColour
+	#define AddRandomModelColour( FIXES_AddRandomModelColour(
+#endif
+
+/*
+ * FIXES_ClearRandomModelColours(const modelid)
+ *
+ * FIXES:
+ *     ClearRandomModelColors
+ *
+ * NOTES:
+ *     Removes all the random colours defined for a model type.  Does not Clear
+ *     existing vehicles of that type.
+ */
+
+#if FIX_ClearRandomModelColours
+	stock FIXES_ClearRandomModelColours(const modelid = 0)
+	{
+		if (modelid == 0)
+			FIXES_gsVehicleColoursCount = { 0, ... };
+		else if (_FIXES_IS_VALID_VEHICLE_MODEL(modelid))
+			FIXES_gsVehicleColoursCount[modelid - 400] = 0;
+		else
+			return 0;
+		return 1;
+	}
+
+	#define _ALS_ClearRandomModelColors
+	#define ClearRandomModelColors( FIXES_ClearRandomModelColours(
+	#define _ALS_ClearRandomModelColours
+	#define ClearRandomModelColours( FIXES_ClearRandomModelColours(
+#endif
+
+/*
+ * FIXES_ResetRandomModelColours(const modelid)
+ *
+ * FIXES:
+ *     ResetRandomModelColors
+ *
+ * NOTES:
+ *     Reloads the random colours for a model type from carcols.dat.
+ */
+
+#if FIX_ResetRandomModelColours
+	stock FIXES_ResetRandomModelColours(const modelid = 0)
+	{
+		if (modelid == 0)
+			_FIXES_LoadCarcols();
+		else if (_FIXES_IS_VALID_VEHICLE_MODEL(modelid))
+			_FIXES_LoadCarcols(modelid - 400);
+		else
+			return 0;
+		return 1;
+	}
+
+	#define _ALS_ResetRandomModelColors
+	#define ResetRandomModelColors( FIXES_ResetRandomModelColours(
+	#define _ALS_ResetRandomModelColours
+	#define ResetRandomModelColours( FIXES_ResetRandomModelColours(
+#endif
+
+/*
+ * FIXES_GetVehicleModelRGB(const idx, const alpha = 0xFF)
+ *
+ * FIXES:
+ *     GetVehicleModelRGB
+ *
+ * NOTES:
+ *     Reloads the random colours for a model type from carcols.dat.
+ */
+
+#if FIX_GetVehicleModelRGB
+	stock FIXES_GetVehicleModelRGB(const idx, const alpha = 0xFF)
+	{
+		if (_FIXES_IN_RANGE(idx, 0, sizeof (FIXES_gscVehicleModelRGBs)))
+			return FIXES_gscVehicleModelRGBs[idx] | (alpha & 0xFF);
+		return 0;
+	}
+
+	#define _ALS_GetVehicleModelRGB
+	#define GetVehicleModelRGB( FIXES_GetVehicleModelRGB(
+#endif
+
+/*
  * _FIXES_AddInternal(array[], value, size)
  *
  * Add something to an internal linked list.
@@ -9632,6 +11519,12 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_FORWARD
 #undef _FIXES_IS_PLAYER_CONNECTED
 #undef FIXES_PRINTF
+#undef _FIXES_IS_VALID_PLAYER
+#undef _FIXES_IS_VALID_VEHICLE_ID
+#undef _FIXES_IS_VALID_VEHICLE_MODEL
+#undef _FIXES_PACK
+#undef _FIXES_10_PACK
+#undef _FIXES_MAKE_RGB
 
 #endinput
 

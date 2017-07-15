@@ -106,7 +106,7 @@ GetPlayerMenu | Returns previous menu when none is displayed. | [Y_Less](https:/
 GetPlayerInterior | Always returns 0 for NPCs. | [Y_Less](https://github.com/Y-Less/)/[simonepri](https://github.com/simonepri/) |  |
 ClearAnimations | Use ClearAnimation while you are in a vehicle cause the player exit from it. | [simonepri](https://github.com/simonepri/) |  |
 ClearAnimations_2 | ClearAnimations doesn't do anything when the animation ends if we pass 1 for the freeze parameter in ApplyAnimation. | [simonepri](https://github.com/simonepri/) |  |
-KEY_CROUCH | If you press KEY_CROUCH while you're passenger and if you are armed, the player start to aim; if you repress KEY_CROUCH the player don't return in vehicle. | [simonepri](https://github.com/simonepri/) |  |
+DriveBy | If you press KEY_CROUCH while you're passenger and if you are armed, the player start to aim; if you repress KEY_CROUCH the player don't return in vehicle. | [simonepri](https://github.com/simonepri/) |  |
 GangZoneCreate | Gang zones bug on the main map for players at certain angles relative to them. | [simonepri](https://github.com/simonepri/)/[Y_Less](https://github.com/Y-Less/) |  |
 SPECIAL_ACTION_PISSING | Define it. | [simonepri](https://github.com/simonepri/) |  |
 IsValidVehicle | "IsValidVehicle" isn't defined by default. | [simonepri](https://github.com/simonepri/) |  |
@@ -137,6 +137,26 @@ tolower | Not working on Linux for symbols with code 128 and above. | [ziggi](ht
 GetPlayerPoolSize | Returns "0" even if there are no players on the server. | [Bios-Marcel](https://github.com/Bios-Marcel) |  |
 SetPlayerPos | Using this function on skydiving players kills them. | [Freaksken](https://github.com/WoutProvost) |  |
 GetPlayerAmmo | Returns erroneous values over 32767 and under -32768 due to overflow. | [Freaksken](https://github.com/WoutProvost) |  |
+CreatePlayerTextDraw | Crashes on a blank string.  Intercept blank strings. | wups, [Y_Less](https://github.com/Y-Less/) | |
+PlayerTextDrawSetString | Crashes on a blank string and size greater than 1024.  Intercept blank strings and truncate long strings. | TomTrox, [Y_Less](https://github.com/Y-Less/) | |
+ApplyActorAnimation | Passing an invalid animation library in ApplyAnimation causes a client crash for streamed in players.  Block ApplyActorAnimation when an invalid library is passed. | [simonepri](https://github.com/simonepri/), [ziggi](https://github.com/ziggi/) | |
+ApplyActorAnimation_2 | First time a library is used, it does nothing.  Apply animations twice when first using a library. | [simonepri](https://github.com/simonepri/), [Lordzy](https://github.com/Lordzy/), [Y_Less](https://github.com/Y-Less/), [ziggi](https://github.com/ziggi/) | |
+ClearPlayerWorldBounds | There is no "ClearPlayerWorldBounds" function.  Put the world bounds back to the default. | [Y_Less](https://github.com/Y-Less/) | |
+GetPlayerWorldBounds | There is no "GetPlayerWorldBounds" function.  Store them and retrieve them. | [Y_Less](https://github.com/Y-Less/) | |
+WEAPONS | Some weapons are not defined by default.  Define them. | [ziggi](https://github.com/ziggi) | |
+PassengerSeating | Teleporting player to passenger seat after delay.  Call ClearAnimation after some delay. | [ziggi](https://github.com/ziggi) | |
+GogglesSync | Visual effects show for all players.  return 0 in OnPlayerUpdate after key pressed. | [ziggi](https://github.com/ziggi) | |
+JIT | Can't easily determine if the script is JIT compiled.  Provide `IS_JIT` to the script for tests. | [Y_Less](https://github.com/Y-Less/) | |
+OS | Can't easily determine what OS the script is running on.  Provide `IS_WINDOWS` and `IS_LINUX` to the script for tests. | [Y_Less](https://github.com/Y-Less/) | |
+const | Some SA-MP natives don't use `const` when they could.  Redefine the natives. | [Y_Less](https://github.com/Y-Less/) | [link](https://github.com/Open-GTO/sa-mp-fixes/issues/29) |
+ChangeVehicleColor | Random (-1) car colours are not synced.  Use `scriptfiles/fixes.inc/carcols.dat` to recreate random generation server-side. | [Y_Less](https://github.com/Y-Less/) | [link](https://github.com/Open-GTO/sa-mp-fixes/issues/36) |
+GetVehicleColor | Store it and return it. | [Y_Less](https://github.com/Y-Less/) | |
+ResetRandomModelColors | Reload the car colours from `scriptfiles/fixes.inc/carcols.dat`. | [Y_Less](https://github.com/Y-Less/) | |
+ClearRandomModelColors | Let people remove all the random vehicle colours for "-1". | [Y_Less](https://github.com/Y-Less/) | |
+AddRandomModelColor | Let people adjust the random vehicle colours for "-1". | [Y_Less](https://github.com/Y-Less/) | |
+GetVehicleModelRGB | Convert a vehicle colour index to its RGB value. | [Y_Less](https://github.com/Y-Less/) | |
+Extensions | This include does not create new functions generally, but a few become obvious and easy from the code.  This fix enables all of the extensions that are new features not just fixes. | [Y_Less](https://github.com/Y-Less/) | |
+
 
 # Options
 
