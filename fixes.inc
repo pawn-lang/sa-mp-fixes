@@ -2151,6 +2151,7 @@ enum e_FIXES_BOOLS (<<= 1)
 	e_FIXES_BOOLS_FIRST_SPAWN,
 	e_FIXES_BOOLS_FIRST_CLASS,
 	e_FIXES_BOOLS_SPECTATING,
+	e_FIXES_BOOLS_DIED_TO_SPAWN,
 	e_FIXES_BOOLS_CP_DELAYED,
 	e_FIXES_BOOLS_RACE_CP_DELAYED
 }
@@ -2298,12 +2299,12 @@ stock
 
 stock const
 	/*
-	 * FIXES_gcSpace[]
+	 * FIXES_gcNull[]
 	 *
-	 * A single re-usable space.  Const not static because it is used in macros
-	 * `HideGameTextForAll` and `HideGameTextForPlayer`.
+	 * A single re-usable null string.  Const not static because it is used in
+	 * macros `HideGameTextForAll` and `HideGameTextForPlayer`.
 	 */
-	FIXES_gcSpace[] = " ";
+	FIXES_gcNull[] = "\1";
 
 #if FIXES_Debug
 new
@@ -5899,11 +5900,21 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  *     OnPlayerSpawn
  */
 
-#if FIX_OnPlayerDeath || FIX_OnPlayerSpawn
+#if FIX_OnPlayerDeath || FIX_OnPlayerSpawn || FIX_GameText
 	public OnPlayerDeath(playerid, killerid, reason)
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
+			// =================
+			//  BEGIN: GameText
+			// =================
+			#if FIX_GameText
+				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DIED_TO_SPAWN;
+			#endif
+			// =================
+			//  END:   GameText
+			// =================
+
 			// ======================
 			//  BEGIN: OnPlayerDeath
 			// ======================
@@ -6053,9 +6064,19 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  *      OnPlayerRequestClass
  */
 
-#if FIX_OnPlayerRequestClass
+#if FIX_OnPlayerRequestClass || FIX_GameText
 	public OnPlayerRequestClass(playerid, classid)
 	{
+		// =================
+		//  BEGIN: GameText
+		// =================
+		#if FIX_GameText
+			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DIED_TO_SPAWN;
+		#endif
+		// =================
+		//  END:   GameText
+		// =================
+
 		// =============================
 		//  BEGIN: OnPlayerRequestClass
 		// =============================
@@ -6126,46 +6147,50 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			//  BEGIN: GameText
 			// =================
 			#if FIX_GameText
-				// Per-player GTs.
 
-				#define _FIXES_PER_PLAYER_GT(%0) if (FIXES_gsPlayerPGTShown[%0][playerid] > playerid) PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][%0]), _FIXES_RemoveInternal(FIXES_gsPlayerPGTShown[%0], playerid, MAX_PLAYERS)
+				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DIED_TO_SPAWN)
+				{
+					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DIED_TO_SPAWN;
+					#define _FIXES_PER_PLAYER_GT(%0) if (FIXES_gsPlayerPGTShown[%0][playerid] > playerid) PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][%0]), _FIXES_RemoveInternal(FIXES_gsPlayerPGTShown[%0], playerid, MAX_PLAYERS)
 
-				#if FIX_GameTextStyles
-					_FIXES_PER_PLAYER_GT(13);
-					_FIXES_PER_PLAYER_GT(12);
-					_FIXES_PER_PLAYER_GT(11);
-					_FIXES_PER_PLAYER_GT(10);
-					_FIXES_PER_PLAYER_GT(9);
-					_FIXES_PER_PLAYER_GT(8);
-					_FIXES_PER_PLAYER_GT(7);
-				#endif
-				_FIXES_PER_PLAYER_GT(6);
-				_FIXES_PER_PLAYER_GT(5);
-				_FIXES_PER_PLAYER_GT(4);
-				_FIXES_PER_PLAYER_GT(3);
-				_FIXES_PER_PLAYER_GT(2);
-				_FIXES_PER_PLAYER_GT(1);
-				_FIXES_PER_PLAYER_GT(0);
+					// Per-player GTs.
+					#if FIX_GameTextStyles
+						_FIXES_PER_PLAYER_GT(13);
+						_FIXES_PER_PLAYER_GT(12);
+						_FIXES_PER_PLAYER_GT(11);
+						_FIXES_PER_PLAYER_GT(10);
+						_FIXES_PER_PLAYER_GT(9);
+						_FIXES_PER_PLAYER_GT(8);
+						_FIXES_PER_PLAYER_GT(7);
+					#endif
+						_FIXES_PER_PLAYER_GT(6);
+						_FIXES_PER_PLAYER_GT(5);
+						_FIXES_PER_PLAYER_GT(4);
+						_FIXES_PER_PLAYER_GT(3);
+						_FIXES_PER_PLAYER_GT(2);
+						_FIXES_PER_PLAYER_GT(1);
+						_FIXES_PER_PLAYER_GT(0);
 
-				#undef _FIXES_PER_PLAYER_GT
+					#undef _FIXES_PER_PLAYER_GT
 
-				// Global GTs.
-				#if FIX_GameTextStyles
-					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[13]),
-					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[12]),
-					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[11]),
-					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[10]),
-					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[9]),
-					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[8]),
-					TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[7]);
-				#endif
-				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[6]),
-				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[5]),
-				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[4]),
-				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[3]),
-				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[2]),
-				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[1]),
-				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[0]);
+					// Global GTs.
+					#if FIX_GameTextStyles
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[13]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[12]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[11]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[10]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[9]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[8]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[7]);
+					#endif
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[6]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[5]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[4]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[3]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[2]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[1]),
+						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[0]);
+				}
 
 			#endif
 			// =================
@@ -8344,34 +8369,45 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
  */
 
 #if FIX_GameText
-	static stock _FIXES_HideGameTextForPlayer(playerid, style, parr[])
+	static stock _FIXES_HideGameTextForPlayer(playerid, style, parr[], timers[])
 	{
-		switch (playerid)
+		if (playerid == MAX_PLAYERS)
 		{
-			case MAX_PLAYERS:
+			// Remove the global GameText for everyone that can see it.
+			if (timers[MAX_PLAYERS] != 0)
+				KillTimer(timers[MAX_PLAYERS]);
+			timers[MAX_PLAYERS] = 0,
+			TextDrawHideForAll(FIXES_gsGTStyle[style]);
+		}
+		else if (playerid == INVALID_PLAYER_ID)
+		{
+			// Remove all GameTexts of this style for everyone.
+			if (timers[MAX_PLAYERS] != 0)
+				KillTimer(timers[MAX_PLAYERS]);
+			timers[MAX_PLAYERS] = 0,
+			TextDrawHideForAll(FIXES_gsGTStyle[style]),
+			playerid = parr[MAX_PLAYERS],
+			parr[MAX_PLAYERS] = MAX_PLAYERS;
+			for (new next; playerid != MAX_PLAYERS; playerid = next)
 			{
-				// Remove the global GameText for everyone that can see it.
-				TextDrawHideForAll(FIXES_gsGTStyle[style]);
-			}
-			case INVALID_PLAYER_ID:
-			{
-				// Hide any player-local ones.  This is similar to "foreach".
-				playerid = parr[MAX_PLAYERS],
-				parr[MAX_PLAYERS] = MAX_PLAYERS;
-				for (new next; playerid != MAX_PLAYERS; playerid = next)
-				{
-					PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][style]),
-					next = parr[playerid],
-					parr[playerid] = 0;
-				}
-			}
-			default:
-			{
-				// Remove.
+				if (timers[playerid] != 0)
+					KillTimer(timers[playerid]);
 				PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][style]),
-				_FIXES_RemoveInternal(parr, playerid, MAX_PLAYERS);
+				next = parr[playerid],
+				timers[playerid] = parr[playerid] = 0;
 			}
 		}
+		else //if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			// Remove.
+			if (timers[playerid] != 0)
+				KillTimer(timers[playerid]);
+			timers[playerid] = 0,
+			TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[style]),
+			PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][style]),
+			_FIXES_RemoveInternal(parr, playerid, MAX_PLAYERS);
+		}
+		return 1;
 	}
 #endif
 
@@ -8387,21 +8423,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 
 	public _FIXES_HideGameTextTimer(playerid, style)
 	{
-		if (playerid == MAX_PLAYERS)
-		{
-			_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
-			{
-				if (FIXES_gsGTTimer[style][i] == 0)
-				{
-					TextDrawHideForPlayer(i, FIXES_gsGTStyle[style]);
-				}
-			}
-		}
-		else
-		{
-			_FIXES_HideGameTextForPlayer(playerid, style, FIXES_gsPlayerPGTShown[style]);
-		}
-		FIXES_gsGTTimer[style][playerid] = 0;
+		return _FIXES_HideGameTextForPlayer(playerid, style, FIXES_gsPlayerPGTShown[style], FIXES_gsGTTimer[style]);
 	}
 #endif
 
@@ -8413,41 +8435,27 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
  */
 
 #if FIX_GameText
-	forward _FIXES_GameTextShow(playerid, string[], time, style);
+	forward _FIXES_GameTextShow(playerid, const string[], time, style);
 
-	public _FIXES_GameTextShow(playerid, string[], time, style)
+	public _FIXES_GameTextShow(playerid, const string[], time, style)
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
 			if (playerid == MAX_PLAYERS)
 			{
-				_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
-				{
-					if (FIXES_gsGTTimer[style][i] != 0)
-					{
-						KillTimer(FIXES_gsGTTimer[style][i]);
-						FIXES_gsGTTimer[style][i] = 0;
-					}
-				}
-				_FIXES_HideGameTextForPlayer(INVALID_PLAYER_ID, style, FIXES_gsPlayerPGTShown[style]),
+				_FIXES_HideGameTextForPlayer(INVALID_PLAYER_ID, style, FIXES_gsPlayerPGTShown[style], FIXES_gsGTTimer[style]),
 				TextDrawSetString(FIXES_gsGTStyle[style], string),
 				TextDrawShowForAll(FIXES_gsGTStyle[style]);
 			}
 			else
 			{
-				TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[style]),
+				_FIXES_HideGameTextForPlayer(playerid, style, FIXES_gsPlayerPGTShown[style], FIXES_gsGTTimer[style]),
 				PlayerTextDrawSetString(playerid, FIXES_gsPGTStyle[playerid][style], string),
 				PlayerTextDrawShow(playerid, FIXES_gsPGTStyle[playerid][style]),
 				_FIXES_AddInternal(FIXES_gsPlayerPGTShown[style], playerid, MAX_PLAYERS);
 			}
 			if (time)
-			{
-				if (FIXES_gsGTTimer[style][playerid] != 0)
-				{
-					KillTimer(FIXES_gsGTTimer[style][playerid]);
-				}
 				FIXES_gsGTTimer[style][playerid] = SetTimerEx(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, style);
-			}
 		}
 		return 1;
 	}
@@ -8466,16 +8474,17 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 
 #if FIX_GameText
-	stock FIXES_GameTextForAll(string[], time, style)
+	stock FIXES_GameTextForAll(const string[], time, style)
 	{
 		if (_FIXES_IN_RANGE(style, 0, FIXES_GT_STYLE_COUNT))
 		{
-			if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
+			// FINALLY come up with a better IsNull check!
+			if (string[string[0] == '\1'] == '\0')
 			{
 				#if FIXES_Single
-					return _FIXES_GameTextShow(MAX_PLAYERS, FIXES_gsSpace, time, style);
+					return _FIXES_HideGameTextTimer(INVALID_PLAYER_ID, style);
 				#else
-					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, FIXES_gsSpace, time, style);
+					return CallRemoteFunction(FIXES_gscHideGameTextTimer, FIXES_gscSpec@ii, INVALID_PLAYER_ID, style);
 				#endif
 			}
 			else
@@ -8508,16 +8517,16 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
 
 #if FIX_GameText
-	stock FIXES_GameTextForPlayer(playerid, string[], time, style)
+	stock FIXES_GameTextForPlayer(playerid, const string[], time, style)
 	{
 		if (_FIXES_IN_RANGE(style, 0, FIXES_GT_STYLE_COUNT) && _FIXES_IS_PLAYER_CONNECTED(playerid))
 		{
 			if ((string[0] <= '\0') || (string[0] == '\1' && string[1] == '\0'))
 			{
 				#if FIXES_Single
-					return _FIXES_GameTextShow(playerid, FIXES_gsSpace, time, style);
+					return _FIXES_HideGameTextTimer(playerid, style);
 				#else
-					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, FIXES_gsSpace, time, style);
+					return CallRemoteFunction(FIXES_gscHideGameTextTimer, FIXES_gscSpec@ii, playerid, style);
 				#endif
 			}
 			else
@@ -8549,18 +8558,8 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_HideGameText
-	stock FIXES_HideGameTextForAll(style)
-	{
-		if (FIXES_gsGTTimer[style][MAX_PLAYERS] != 0)
-		{
-			KillTimer(FIXES_gsGTTimer[style][MAX_PLAYERS]);
-			FIXES_gsGTTimer[style][MAX_PLAYERS] = 0;
-		}
-		return GameTextForAll(FIXES_gcSpace, 0, style);
-	}
-
 	#define _ALS_HideGameTextForAll
-	#define HideGameTextForAll( FIXES_HideGameTextForAll(
+	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gcNull, 0, (%0))
 #endif
 
 /*
@@ -8575,22 +8574,8 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_HideGameText
-	stock HideGameTextForPlayer(playerid, style)
-	{
-		if (_FIXES_IS_VALID_PLAYER(playerid))
-		{
-			if (FIXES_gsGTTimer[style][playerid] != 0)
-			{
-				KillTimer(FIXES_gsGTTimer[style][playerid]);
-				FIXES_gsGTTimer[style][playerid] = 0;
-			}
-			return GameTextForPlayer(playerid, FIXES_gcSpace, 0, style);
-		}
-		return 0;
-	}
-
 	#define _ALS_HideGameTextForPlayer
-	#define HideGameTextForPlayer( FIXES_HideGameTextForPlayer(
+	#define HideGameTextForPlayer(%0,%1) GameTextForPlayer((%0), FIXES_gcNull, 0, (%1))
 #endif
 
 /*
