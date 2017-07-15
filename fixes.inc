@@ -7427,7 +7427,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_HideGameText
-	stock HideGameTextForPlayer(playerid, style)
+	stock FIXES_HideGameTextForPlayer(playerid, style)
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
 		{
