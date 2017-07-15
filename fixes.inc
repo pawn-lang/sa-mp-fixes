@@ -3049,12 +3049,31 @@ static stock const
 	#define ApplyActorAnimation( CST_ApplyActorAnimation(
 
 	// a_http
-	#if defined _ALS_HTTP
-		#error _ALS_HTTP defined
+	// Try very hard to include it!  The first one should be enough.  Shame that
+	// include has no include guard in it, making it harder to use with Zeex's
+	// compiler.
+	#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+		#tryinclude <a_http>
 	#endif
-	native CST_HTTP(index, type, const url[], const data[], const callback[]) = HTTP;
-	#define _ALS_HTTP
-	#define HTTP( CST_HTTP(
+	#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+		#tryinclude "a_http"
+	#endif
+	#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+		#tryinclude "..\a_http"
+	#endif
+	#if defined HTTP_ERROR_MALFORMED_RESPONSE
+		#if defined _ALS_HTTP
+			#error _ALS_HTTP defined
+		#endif
+		native CST_HTTP(index, type, const url[], const data[], const callback[]) = HTTP;
+		#define _ALS_HTTP
+		#define HTTP( CST_HTTP(
+		// Because a_http can be included multiple times (on one compiler),
+		// ensure that multiple definitions don't break (too quickly - there's
+		// nothing we can do if it gets included a load of times, but that's an
+		// issue you would get with the new compiler anyway).
+		#define CST_HTTP(%0,%1,%2[],%3[],%4[]); a_http_included_too_many_times(%0,%1,%2[],%3[],%4[]) = HTTP;
+	#endif
 
 	// a_npc
 	//   
