@@ -7284,9 +7284,9 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
  */
 
 #if FIX_GameText
-	forward _FIXES_GameTextShow(playerid, string[], time, style);
+	forward _FIXES_GameTextShow(playerid, const string[], time, style);
 
-	public _FIXES_GameTextShow(playerid, string[], time, style)
+	public _FIXES_GameTextShow(playerid, const string[], time, style)
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
@@ -7337,7 +7337,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 
 #if FIX_GameText
-	stock FIXES_GameTextForAll(string[], time, style)
+	stock FIXES_GameTextForAll(const string[], time, style)
 	{
 		if (_FIXES_IN_RANGE(style, 0, FIXES_GT_STYLE_COUNT))
 		{
@@ -7379,7 +7379,7 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
 
 #if FIX_GameText
-	stock FIXES_GameTextForPlayer(playerid, string[], time, style)
+	stock FIXES_GameTextForPlayer(playerid, const string[], time, style)
 	{
 		if (_FIXES_IN_RANGE(style, 0, FIXES_GT_STYLE_COUNT) && _FIXES_IS_PLAYER_CONNECTED(playerid))
 		{
