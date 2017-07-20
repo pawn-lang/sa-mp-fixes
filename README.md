@@ -137,6 +137,7 @@ tolower | Not working on Linux for symbols with code 128 and above. | [ziggi](ht
 GetPlayerPoolSize | Returns "0" even if there are no players on the server. | [Bios-Marcel](https://github.com/Bios-Marcel) |  |
 SetPlayerPos | Using this function on skydiving players kills them. | [Freaksken](https://github.com/WoutProvost) |  |
 GetPlayerAmmo | Returns erroneous values over 32767 and under -32768 due to overflow. | [Freaksken](https://github.com/WoutProvost) |  |
+VEHICLES | The vehicle models IDs are not defined by default. | [stuntman](https://github.com/IstuntmanI) |  |
 
 # Options
 
