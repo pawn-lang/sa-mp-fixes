@@ -5658,7 +5658,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  END:   SetPlayerWorldBounds
 		// =============================
 
-		#if FIX_OnPlayerDeath || FIX_PassengerSeating
+		#if FIX_OnPlayerDeath
 			new
 				animation = GetPlayerAnimationIndex(playerid);
 		#endif
@@ -5711,6 +5711,11 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			{
 				if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE)
 				{
+					#if !FIX_OnPlayerDeath
+						new
+							animation = GetPlayerAnimationIndex(playerid);
+					#endif
+
 					if (!(1007 <= animation <= 1060) && !(225 <= animation <= 233))
 					{
 						ClearAnimations(playerid, 1);
