@@ -5658,16 +5658,12 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  END:   SetPlayerWorldBounds
 		// =============================
 
-		#if FIX_OnPlayerDeath || FIX_PassengerSeating
-			new
-				animation = GetPlayerAnimationIndex(playerid);
-		#endif
-
 		// ======================
 		//  BEGIN: OnPlayerDeath
 		// ======================
 		#if FIX_OnPlayerDeath
-			FIXES_gsLastAnimation[playerid] = animation;
+			new
+				animation = FIXES_gsLastAnimation[playerid] = GetPlayerAnimationIndex(playerid);
 		#endif
 		// ======================
 		//  END:   OnPlayerDeath
@@ -5711,7 +5707,12 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			{
 				if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE)
 				{
-					if (!(1007 <= animation <= 1060) && !(225 <= animation <= 233))
+					#if !FIX_OnPlayerDeath
+						new
+							animation = GetPlayerAnimationIndex(playerid);
+					#endif
+
+					if (_FIXES_NO_RANGE(animation, 1007, 1060 + 1) && _FIXES_NO_RANGE(animation, 225, 233 + 1))
 					{
 						ClearAnimations(playerid, 1);
 						FIXES_gsPSTimer[playerid] = 0;
@@ -9751,9 +9752,13 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 	{
 		new
-			ret = SetPlayerPos(playerid, x, y, z),
-			index = GetPlayerAnimationIndex(playerid);
-		switch (index)
+			ret = SetPlayerPos(playerid, x, y, z);
+
+		#if FIX_OnPlayerDeath
+		switch (FIXES_gsLastAnimation[playerid])
+		#else
+		switch (GetPlayerAnimationIndex(playerid))
+		#endif
 		{
 			case 958, 959, 960, 961, 962, 1134:
 			{
