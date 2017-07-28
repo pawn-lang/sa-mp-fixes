@@ -3857,7 +3857,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 10.0, 200.0);
 
 				// Global style 8 (location name).
-				t = FIXES_gsGTStyle[8] = TextDrawCreate(608.000000, 386.500000, FIXES_gsSpace),
+				t = FIXES_gsGTStyle[8] = TextDrawCreate(608.000000, 385.800000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 1.200000, 3.799998),
 				TextDrawAlignment(t, 3),
 				TextDrawColor(t, 0xACCBF1FF),
@@ -4062,7 +4062,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 
 				// Global style 8 (playerid, location name).
-				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw(playerid, 608.000000, 386.500000, FIXES_gsSpace),
+				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw(playerid, 608.000000, 385.800000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 1.200000, 3.799998),
 				PlayerTextDrawAlignment(playerid, t, 3),
 				PlayerTextDrawColor(playerid, t, 0xACCBF1FF),
