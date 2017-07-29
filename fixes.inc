@@ -740,6 +740,12 @@
  * AUTHOR:   IstuntmanI (https://github.com/IstuntmanI/)
  * AUTHOR:   ziggi (https://github.com/ziggi/)
  *
+ * FIX:      GetWorldTime
+ * PROBLEM:  This function doesn't exist.
+ * SOLUTION: Add it.  DEFAULTS TO FALSE!
+ * SEE:      "FIXES_GetWorldTime".
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1766,6 +1772,17 @@
 	#define FIX_GetWeather          (2)
 #endif
 
+#if !defined FIX_GetWorldTime
+	#if defined GetWorldTime
+		#define FIX_GetWorldTime      (FIXES_EnableDeprecated)
+	#else
+		#define FIX_GetWorldTime      (FIX_Natives)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetWorldTime)
+	#undef FIX_GetWorldTime
+	#define FIX_GetWorldTime          (2)
+#endif
+
 /*
  * CHAIN_ORDER
  *
@@ -2229,6 +2246,14 @@ static stock
 	 */
 #if FIX_GetWeather
 	FIXES_gsServerWeather = 10,
+#endif
+	/*
+	 * FIX_GetWorldTime[MAX_PLAYERS]
+	 *
+	 * Stores the ID of the server weather.
+	 */
+#if FIX_GetWorldTime
+	FIXES_gsWorldTime = 12,
 #endif
 	/*
 	 * FIXES_gsPlayerInterior[MAX_PLAYERS]
@@ -10027,6 +10052,56 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 		#define _ALS_SetWeather
 	#endif
 	#define SetWeather( FIXES_SetWeather(
+#endif
+
+/*
+ * FIXES_SetWorldTime(playerid)
+ *
+ * FIXES:
+ *     GetWorldTime
+ */
+
+#if !FIX_const
+	#if defined _ALS_SetWorldTime
+		#error _ALS_SetWorldTime defined
+	#endif
+	native BAD_SetWorldTime(hour) = SetWorldTime;
+#endif
+
+#if FIX_GetWorldTime
+	stock FIXES_SetWorldTime(hour)
+	{
+		FIXES_gsWorldTime = hour;
+		return SetWorldTime(hour);
+	}
+
+	#if defined _ALS_SetWorldTime
+		#undef SetWorldTime
+	#else
+		#define _ALS_SetWorldTime
+	#endif
+	#define SetWorldTime( FIXES_SetWorldTime(
+#endif
+
+/*
+ * FIXES_GetWorldTime(playerid)
+ *
+ * FIXES:
+ *     GetWorldTime
+ */
+
+#if defined _ALS_GetWorldTime
+	#error _ALS_GetWorldTime defined
+#endif
+
+#if FIX_GetWorldTime
+	stock FIXES_GetWorldTime()
+	{
+		return FIXES_gsWorldTime;
+	}
+
+	#define _ALS_GetWorldTime
+	#define GetWorldTime( FIXES_GetWorldTime(
 #endif
 
 /*
