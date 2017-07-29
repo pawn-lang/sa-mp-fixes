@@ -693,7 +693,7 @@
  * FIX:      SetPlayerPos
  * PROBLEM:  Using this function on skydiving players kills them.
  * SOLUTION: Remove the parachute when the player is skydiving.
- * SEE:      "FIXES_SetPlayerPos".
+ * SEE:      "FIXES_SetPlayerPos", "FIXES_SetPlayerPosFindZ".
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
  * FIX:      GetPlayerAmmo
@@ -9841,29 +9841,9 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 	{
 		new
 			ret = SetPlayerPos(playerid, x, y, z);
-
-		#if FIX_OnPlayerDeath
-		switch (FIXES_gsLastAnimation[playerid])
-		#else
-		switch (GetPlayerAnimationIndex(playerid))
-		#endif
+		if (ret)
 		{
-			case 958, 959, 960, 961, 962, 1134:
-			{
-				new
-					slot,
-					weapons[_FIXES_WEAPON_SLOTS][2];
-				for (slot = 0; slot < sizeof(weapons); slot++)
-				{
-					GetPlayerWeaponData(playerid, slot, weapons[slot][0], weapons[slot][1]);
-				}
-				weapons[11][0] = 0;
-				ResetPlayerWeapons(playerid);
-				for (slot = 0; slot < sizeof(weapons); slot++)
-				{
-					GivePlayerWeapon(playerid, weapons[slot][0], weapons[slot][1]);
-				}
-			}
+			_FIXES_RemoveFlyingParachute(playerid);
 		}
 		return ret;
 	}
@@ -9872,6 +9852,69 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 	#define SetPlayerPos( FIXES_SetPlayerPos(
 #endif
 
+/*
+ * FIXES_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z)
+ *
+ * FIXES:
+ *     SetPlayerPos
+ */
+
+#if defined _ALS_SetPlayerPosFindZ
+	#error _ALS_SetPlayerPosFindZ defined
+#endif
+native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
+
+#if FIX_SetPlayerPos
+	stock FIXES_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z)
+	{
+		new
+			ret = SetPlayerPosFindZ(playerid, x, y, z);
+		if (ret)
+		{
+			_FIXES_RemoveFlyingParachute(playerid);
+		}
+		return ret;
+	}
+
+	#define _ALS_SetPlayerPosFindZ
+	#define SetPlayerPosFindZ( FIXES_SetPlayerPosFindZ(
+#endif
+
+/*
+ * _FIXES_RemoveFlyingParachute(playerid)
+ *
+ * FIXES:
+ *     SetPlayerPos
+ */
+
+#if FIX_SetPlayerPos
+	static stock _FIXES_RemoveFlyingParachute(playerid)
+	{
+		#if FIX_OnPlayerDeath
+			switch (FIXES_gsLastAnimation[playerid])
+		#else
+			switch (GetPlayerAnimationIndex(playerid))
+		#endif
+			{
+				case 958, 959, 960, 961, 962, 1134:
+				{
+					new
+						slot,
+						weapons[_FIXES_WEAPON_SLOTS][2];
+					for (slot = 0; slot < sizeof(weapons); slot++)
+					{
+						GetPlayerWeaponData(playerid, slot, weapons[slot][0], weapons[slot][1]);
+					}
+					weapons[11][0] = 0;
+					ResetPlayerWeapons(playerid);
+					for (slot = 0; slot < sizeof(weapons); slot++)
+					{
+						GivePlayerWeapon(playerid, weapons[slot][0], weapons[slot][1]);
+					}
+				}
+			}
+	}
+#endif
 /*
  * FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
  *
