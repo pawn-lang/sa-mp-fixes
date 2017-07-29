@@ -135,11 +135,25 @@
  * SEE:      "FIXES_TextDrawCreate".
  * AUTHOR:   wups
  *
+ * FIX:      TextDrawCreate_2
+ * PROBLEM:  If the last character in the text is a space (" "), the text will all be blank.
+ * SOLUTION: Remove space characters from the end of the string.
+ * SEE:      "FIXES_TextDrawCreate".
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ * POST:     https://github.com/Open-GTO/sa-mp-fixes/issues/55
+ *
  * FIX:      TextDrawSetString
  * PROBLEM:  Crashes on a blank string and size greater than 1024.
  * SOLUTION: Intercept blank strings and truncate long strings.
  * SEE:      "FIXES_TextDrawSetString".
  * AUTHOR:   TomTrox
+ *
+ * FIX:      TextDrawSetString_2
+ * PROBLEM:  If the last character in the text is a space (" "), the text will all be blank.
+ * SOLUTION: Remove space characters from the end of the string.
+ * SEE:      "FIXES_TextDrawSetString".
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ * POST:     https://github.com/Open-GTO/sa-mp-fixes/issues/55
  *
  * FIX:      CreatePlayerTextDraw
  * PROBLEM:  Crashes on a blank string.
@@ -148,12 +162,26 @@
  * AUTHOR:   wups
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
+ * FIX:      CreatePlayerTextDraw_2
+ * PROBLEM:  If the last character in the text is a space (" "), the text will all be blank.
+ * SOLUTION: Remove space characters from the end of the string.
+ * SEE:      "FIXES_CreatePlayerTextDraw".
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ * POST:     https://github.com/Open-GTO/sa-mp-fixes/issues/55
+ *
  * FIX:      PlayerTextDrawSetString
  * PROBLEM:  Crashes on a blank string and size greater than 1024.
  * SOLUTION: Intercept blank strings and truncate long strings.
  * SEE:      "FIXES_PlayerTextDrawSetString".
  * AUTHOR:   TomTrox
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ *
+ * FIX:      PlayerTextDrawSetString_2
+ * PROBLEM:  If the last character in the text is a space (" "), the text will all be blank.
+ * SOLUTION: Remove space characters from the end of the string.
+ * SEE:      "FIXES_PlayerTextDrawSetString".
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ * POST:     https://github.com/Open-GTO/sa-mp-fixes/issues/55
  *
  * FIX:      AllowInteriorWeapons
  * PROBLEM:  Does nothing.
@@ -1139,11 +1167,25 @@
 	#define FIX_TextDrawCreate           (2)
 #endif
 
+#if !defined FIX_TextDrawCreate_2
+	#define FIX_TextDrawCreate_2           (1)
+#elseif _FIXES_IS_UNSET(FIX_TextDrawCreate_2)
+	#undef FIX_TextDrawCreate_2
+	#define FIX_TextDrawCreate_2           (2)
+#endif
+
 #if !defined FIX_TextDrawSetString
 	#define FIX_TextDrawSetString        (1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString)
 	#undef FIX_TextDrawSetString
 	#define FIX_TextDrawSetString        (2)
+#endif
+
+#if !defined FIX_TextDrawSetString_2
+	#define FIX_TextDrawSetString_2        (1)
+#elseif _FIXES_IS_UNSET(FIX_TextDrawSetString_2)
+	#undef FIX_TextDrawSetString_2
+	#define FIX_TextDrawSetString_2        (2)
 #endif
 
 #if !defined FIX_AllowInteriorWeapons
@@ -1591,11 +1633,25 @@
 	#define FIX_CreatePlayerTextDraw     (2)
 #endif
 
+#if !defined FIX_CreatePlayerTextDraw_2
+	#define FIX_CreatePlayerTextDraw_2     (1)
+#elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw_2)
+	#undef FIX_CreatePlayerTextDraw_2
+	#define FIX_CreatePlayerTextDraw_2     (2)
+#endif
+
 #if !defined FIX_PlayerTextDrawSetString
 	#define FIX_PlayerTextDrawSetString  (1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString)
 	#undef FIX_PlayerTextDrawSetString
 	#define FIX_PlayerTextDrawSetString  (2)
+#endif
+
+#if !defined FIX_PlayerTextDrawSetString_2
+	#define FIX_PlayerTextDrawSetString_2  (1)
+#elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString_2)
+	#undef FIX_PlayerTextDrawSetString_2
+	#define FIX_PlayerTextDrawSetString_2  (2)
 #endif
 
 #if !defined FIX_SetPlayerCamera
@@ -7807,6 +7863,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  *
  * FIXES:
  *     CreatePlayerTextDraw
+ *     CreatePlayerTextDraw_2
  */
 
 #if !FIX_const
@@ -7816,17 +7873,19 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
 #endif
 
-#if FIX_CreatePlayerTextDraw
-	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[])
+#if FIX_CreatePlayerTextDraw || FIX_CreatePlayerTextDraw_2
+	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
 	{
-		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
-		{
-			return CreatePlayerTextDraw(playerid, x, y, FIXES_gsSpace);
-		}
-		else
-		{
-			return CreatePlayerTextDraw(playerid, x, y, text);
-		}
+		#if FIX_CreatePlayerTextDraw
+			if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
+			{
+				return CreatePlayerTextDraw(playerid, x, y, FIXES_gsSpace);
+			}
+		#endif
+		#if FIX_CreatePlayerTextDraw_2
+			_FIXES_rtrim(text);
+		#endif
+		return CreatePlayerTextDraw(playerid, x, y, text);
 	}
 
 	#if defined _ALS_CreatePlayerTextDraw
@@ -7842,6 +7901,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  *
  * FIXES:
  *     PlayerTextDrawSetString
+ *     PlayerTextDrawSetString_2
  */
 
 #if !FIX_const
@@ -7851,17 +7911,19 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
 #endif
 
-#if FIX_PlayerTextDrawSetString
-	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[])
+#if FIX_PlayerTextDrawSetString || FIX_PlayerTextDrawSetString_2
+	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
 	{
-		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
-		{
-			return PlayerTextDrawSetString(playerid, text, FIXES_gsSpace);
-		}
-		else
-		{
-			return PlayerTextDrawSetString(playerid, text, string);
-		}
+		#if FIX_PlayerTextDrawSetString
+			if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
+			{
+				return PlayerTextDrawSetString(playerid, text, FIXES_gsSpace);
+			}
+		#endif
+		#if FIX_PlayerTextDrawSetString_2
+			_FIXES_rtrim(string);
+		#endif
+		return PlayerTextDrawSetString(playerid, text, string);
 	}
 
 	#if defined _ALS_PlayerTextDrawSetString
@@ -7877,6 +7939,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  *
  * FIXES:
  *     TextDrawCreate
+ *     TextDrawCreate_2
  */
 
 #if !FIX_const
@@ -7886,17 +7949,19 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 #endif
 
-#if FIX_TextDrawCreate
-	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[])
+#if FIX_TextDrawCreate || FIX_TextDrawCreate_2
+	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, text[])
 	{
-		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
-		{
-			return TextDrawCreate(x, y, FIXES_gsSpace);
-		}
-		else
-		{
-			return TextDrawCreate(x, y, text);
-		}
+		#if FIX_TextDrawCreate
+			if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
+			{
+				return TextDrawCreate(x, y, FIXES_gsSpace);
+			}
+		#endif
+		#if FIX_TextDrawCreate_2
+			_FIXES_rtrim(text);
+		#endif
+		return TextDrawCreate(x, y, text);
 	}
 
 	#if defined _ALS_TextDrawCreate
@@ -7912,6 +7977,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  *
  * FIXES:
  *     TextDrawSetString
+ *     TextDrawSetString_2
  */
 
 #if !FIX_const
@@ -7921,17 +7987,19 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 #endif
 
-#if FIX_TextDrawSetString
-	stock FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[])
+#if FIX_TextDrawSetString || FIX_TextDrawSetString_2
+	stock FIXES_TextDrawSetString(Text:text, string[])
 	{
-		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
-		{
-			return TextDrawSetString(text, FIXES_gsSpace);
-		}
-		else
-		{
-			return TextDrawSetString(text, string);
-		}
+		#if FIX_TextDrawSetString
+			if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
+			{
+				return TextDrawSetString(text, FIXES_gsSpace);
+			}
+		#endif
+		#if FIX_TextDrawSetString_2
+			_FIXES_rtrim(string);
+		#endif
+		return TextDrawSetString(text, string);
 	}
 
 	#if defined _ALS_TextDrawSetString
@@ -10148,6 +10216,27 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	#define _ALS_GetWorldTime
 	#define GetWorldTime( FIXES_GetWorldTime(
 #endif
+
+/*
+ * _FIXES_rtrim(string[])
+ *
+ * Removes whitespace from the right side of a string
+ */
+
+static stock _FIXES_rtrim(string[])
+{
+	new
+		length = strlen(string),
+		i = length;
+	do
+	{
+		i--;
+	} while (i >= 0 && string[i] == ' ');
+	if (i < length - 1)
+	{
+		string[i + 1] = '\0';
+	}
+}
 
 /*
  * _FIXES_AddInternal(array[], value, size)
