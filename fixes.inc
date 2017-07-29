@@ -726,6 +726,20 @@
  * SEE:      N/A.
  * AUTHOR:   stuntman (https://github.com/IstuntmanI)
  *
+ * FIX:      GetPlayerWeather
+ * PROBLEM:  This function doesn't exist.
+ * SOLUTION: Add it.  DEFAULTS TO FALSE!
+ * SEE:      "FIXES_GetPlayerWeather".
+ * AUTHOR:   IstuntmanI (https://github.com/IstuntmanI/)
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ *
+ * FIX:      GetWeather
+ * PROBLEM:  This function doesn't exist.
+ * SOLUTION: Add it.  DEFAULTS TO FALSE!
+ * SEE:      "FIXES_GetWeather".
+ * AUTHOR:   IstuntmanI (https://github.com/IstuntmanI/)
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1730,6 +1744,28 @@
 	#define FIX_VEHICLES                (2)
 #endif
 
+#if !defined FIX_GetPlayerWeather
+	#if defined GetPlayerWeather
+		#define FIX_GetPlayerWeather      (FIXES_EnableDeprecated)
+	#else
+		#define FIX_GetPlayerWeather      (FIX_Natives)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerWeather)
+	#undef FIX_GetPlayerWeather
+	#define FIX_GetPlayerWeather          (2)
+#endif
+
+#if !defined FIX_GetWeather
+	#if defined GetWeather
+		#define FIX_GetWeather      (FIXES_EnableDeprecated)
+	#else
+		#define FIX_GetWeather      (FIX_Natives)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetWeather)
+	#undef FIX_GetWeather
+	#define FIX_GetWeather          (2)
+#endif
+
 /*
  * CHAIN_ORDER
  *
@@ -1936,7 +1972,8 @@ enum e_FIXES_BOOLS (<<= 1)
 	e_FIXES_BOOLS_SPECTATING,
 	e_FIXES_BOOLS_DIED_TO_SPAWN,
 	e_FIXES_BOOLS_CP_DELAYED,
-	e_FIXES_BOOLS_RACE_CP_DELAYED
+	e_FIXES_BOOLS_RACE_CP_DELAYED,
+	e_FIXES_BOOLS_CLOCK_ENABLED,
 }
 
 /*
@@ -2176,6 +2213,22 @@ static stock
 	 */
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 	FIXES_gsPlayerDialog[MAX_PLAYERS] = {-1, ...},
+#endif
+	/*
+	 * FIXES_gsPlayerWeather[MAX_PLAYERS]
+	 *
+	 * Stores the ID of the player weather.
+	 */
+#if FIX_GetPlayerWeather
+	FIXES_gsPlayerWeather[MAX_PLAYERS] = {-1, ...},
+#endif
+	/*
+	 * FIX_GetWeather[MAX_PLAYERS]
+	 *
+	 * Stores the ID of the server weather.
+	 */
+#if FIX_GetWeather
+	FIXES_gsServerWeather = 10,
 #endif
 	/*
 	 * FIXES_gsPlayerInterior[MAX_PLAYERS]
@@ -4867,6 +4920,16 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				// ======================
 				//  END:   OnPlayerSpawn
 				// ======================
+
+				// =========================
+				//  BEGIN: GetPlayerWeather
+				// =========================
+				#if FIX_GetPlayerWeather
+					FIXES_SET(PlayerWeather, playerid, FIXES_gsServerWeather);
+				#endif
+				// =========================
+				//  END:   GetPlayerWeather
+				// =========================
 
 				#if !FIXES_Single
 					// No longer their first time.
@@ -9812,6 +9875,158 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 
 	#define _ALS_SetPlayerAmmo
 	#define SetPlayerAmmo( FIXES_SetPlayerAmmo(
+#endif
+
+/*
+ * FIXES_GetPlayerWeather(playerid)
+ *
+ * FIXES:
+ *     GetPlayerWeather
+ */
+
+#if defined _ALS_GetPlayerWeather
+	#error _ALS_GetPlayerWeather defined
+#endif
+
+#if FIX_GetPlayerWeather
+	stock FIXES_GetPlayerWeather(playerid)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS) && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CLOCK_ENABLED))
+		{
+			return FIXES_GET(PlayerWeather, playerid);
+		}
+		return -1;
+	}
+
+	#define _ALS_GetPlayerWeather
+	#define GetPlayerWeather( FIXES_GetPlayerWeather(
+#endif
+
+/*
+ * FIXES_SetPlayerWeather(playerid)
+ *
+ * FIXES:
+ *     GetPlayerWeather
+ */
+
+#if !FIX_const
+	#if defined _ALS_SetPlayerWeather
+		#error _ALS_SetPlayerWeather defined
+	#endif
+	native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
+#endif
+
+#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+	stock FIXES_SetPlayerWeather(playerid, weather)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			FIXES_SET(PlayerWeather, playerid, weather);
+			return SetPlayerWeather(playerid, weather);
+		}
+		return 0;
+	}
+
+	#if defined _ALS_SetPlayerWeather
+		#undef SetPlayerWeather
+	#else
+		#define _ALS_SetPlayerWeather
+	#endif
+	#define SetPlayerWeather( FIXES_SetPlayerWeather(
+#endif
+
+/*
+ * FIXES_TogglePlayerClock(playerid)
+ *
+ * FIXES:
+ *     GetPlayerWeather
+ */
+
+#if !FIX_const
+	#if defined _ALS_TogglePlayerClock
+		#error _ALS_TogglePlayerClock defined
+	#endif
+	native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
+#endif
+
+#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+	stock FIXES_TogglePlayerClock(playerid, toggle)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			if (toggle)
+			{
+				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_CLOCK_ENABLED;
+			}
+			else
+			{
+				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CLOCK_ENABLED;
+			}
+			return TogglePlayerClock(playerid, toggle);
+		}
+		return 0;
+	}
+
+	#if defined _ALS_TogglePlayerClock
+		#undef TogglePlayerClock
+	#else
+		#define _ALS_TogglePlayerClock
+	#endif
+	#define TogglePlayerClock( FIXES_TogglePlayerClock(
+#endif
+
+/*
+ * FIXES_GetWeather(playerid)
+ *
+ * FIXES:
+ *     GetWeather
+ */
+
+#if defined _ALS_GetWeather
+	#error _ALS_GetWeather defined
+#endif
+
+#if FIX_GetWeather
+	stock FIXES_GetWeather()
+	{
+		return FIXES_gsServerWeather;
+	}
+
+	#define _ALS_GetWeather
+	#define GetWeather( FIXES_GetWeather(
+#endif
+
+/*
+ * FIXES_SetWeather(playerid)
+ *
+ * FIXES:
+ *     GetPlayerWeather
+ */
+
+#if !FIX_const
+	#if defined _ALS_SetWeather
+		#error _ALS_SetWeather defined
+	#endif
+	native BAD_SetWeather(weather) = SetWeather;
+#endif
+
+#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+	stock FIXES_SetWeather(weather)
+	{
+		FIXES_gsServerWeather = weather;
+		_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
+		{
+			FIXES_SET(PlayerWeather, playerid, weather);
+		}
+		return SetWeather(weather);
+	}
+
+	#if defined _ALS_SetWeather
+		#undef SetWeather
+	#else
+		#define _ALS_SetWeather
+	#endif
+	#define SetWeather( FIXES_SetWeather(
 #endif
 
 /*
