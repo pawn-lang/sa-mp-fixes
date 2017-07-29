@@ -9941,7 +9941,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 #endif
 
-#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+#if FIX_GetPlayerWeather
 	stock FIXES_SetPlayerWeather(playerid, weather)
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
@@ -9974,7 +9974,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 #endif
 
-#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+#if FIX_GetPlayerWeather
 	stock FIXES_TogglePlayerClock(playerid, toggle)
 	{
 		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
@@ -10035,14 +10035,16 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	native BAD_SetWeather(weather) = SetWeather;
 #endif
 
-#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+#if FIX_GetWeather
 	stock FIXES_SetWeather(weather)
 	{
 		FIXES_gsServerWeather = weather;
-		_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
-		{
-			FIXES_SET(PlayerWeather, playerid, weather);
-		}
+		#if FIX_GetPlayerWeather
+			_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
+			{
+				FIXES_SET(PlayerWeather, playerid, weather);
+			}
+		#endif
 		return SetWeather(weather);
 	}
 
