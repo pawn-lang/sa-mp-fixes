@@ -2497,6 +2497,14 @@ static stock
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog",
 #endif
 	/*
+	 * FIXES_pvarPlayerWeather[]
+	 *
+	 * Name of the pvar in which to store the player's current weather.
+	 */
+#if !FIXES_Single && FIX_GetPlayerWeather
+	FIXES_pvarPlayerWeather[] = "FIXES_pvarPlayerWeather",
+#endif
+	/*
 	 * FIXES_pvarPlayerInterior[]
 	 *
 	 * A player's current interior.
@@ -3089,6 +3097,18 @@ static stock const
 	 * Name of the remote player toggle function.
 	 */
 	FIXES_gscTogglePlayerControl[] = "_FIXES_TogglePlayerControllable",
+	/*
+	 * FIXES_gscTogglePlayerClock[]
+	 *
+	 * Name of the remote player clock function.
+	 */
+	FIXES_gscTogglePlayerClock[] = "_FIXES_TogglePlayerClock",
+	/*
+	 * FIXES_gscGetWeather[]
+	 *
+	 * Name of the remote player clock function.
+	 */
+	FIXES_gscGetWeather[] = "_FIXES_GetWeather",
 	/*
 	 * FIXES_gscSetPlayerWorldBounds[]
 	 *
@@ -10086,22 +10106,53 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #endif
 
 #if FIX_GetPlayerWeather
-	stock FIXES_TogglePlayerClock(playerid, toggle)
-	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+	#if FIXES_Single
+		stock FIXES_TogglePlayerClock(playerid, toggle)
 		{
-			if (toggle)
+			if (TogglePlayerClock(playerid, toggle))
 			{
-				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_CLOCK_ENABLED;
+				if (toggle)
+				{
+					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CLOCK_ENABLED;
+				}
+				else
+				{
+					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_CLOCK_ENABLED;
+				}
+				return 1;
 			}
-			else
-			{
-				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CLOCK_ENABLED;
-			}
-			return TogglePlayerClock(playerid, toggle);
+			return 0;
 		}
-		return 0;
-	}
+	#else
+		forward _FIXES_TogglePlayerClock(playerid, toggle);
+
+		stock FIXES_TogglePlayerClock(playerid, toggle)
+		{
+			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			{
+				return
+					CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
+					getproperty(5, FIXES_gscReturnProperty);
+			}
+			return 0;
+		}
+
+		public _FIXES_TogglePlayerClock(playerid, toggle)
+		{
+			_FIXES_IS_IN_CHARGE()
+			{
+				if (toggle)
+				{
+					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CLOCK_ENABLED;
+				}
+				else
+				{
+					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_CLOCK_ENABLED;
+				}
+				setproperty(5, FIXES_gscReturnProperty, TogglePlayerClock(playerid, toggle));
+			}
+		}
+	#endif
 
 	#if defined _ALS_TogglePlayerClock
 		#undef TogglePlayerClock
@@ -10123,10 +10174,29 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #endif
 
 #if FIX_GetWeather
-	stock FIXES_GetWeather()
-	{
-		return FIXES_gsServerWeather;
-	}
+	#if FIXES_Single
+		stock FIXES_GetWeather()
+		{
+			return FIXES_gsServerWeather;
+		}
+	#else
+		forward _FIXES_GetWeather();
+
+		stock FIXES_GetWeather()
+		{
+			return
+				CallRemoteFunction(FIXES_gscGetWeather, FIXES_gscSpec@),
+				getproperty(5, FIXES_gscReturnProperty);
+		}
+
+		public _FIXES_GetWeather()
+		{
+			_FIXES_IS_IN_CHARGE()
+			{
+				setproperty(5, FIXES_gscReturnProperty, FIXES_gsServerWeather);
+			}
+		}
+	#endif
 
 	#define _ALS_GetWeather
 	#define GetWeather( FIXES_GetWeather(
