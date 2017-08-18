@@ -212,7 +212,7 @@
  * SEE:      "OnPlayerEnterVehicle".
  * AUTHOR:   ziggi (https://github.com/ziggi)
  * AUTHOR:   rt-2 (https://github.com/rt-2)
- * POST:     https://github.com/ziggi/samp-enterfix
+ * POST:     http://forum.sa-mp.com/showthread.php?t=560019
  *
  * FIX:      AllowTeleport
  * PROBLEM:  0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in
