@@ -2063,6 +2063,8 @@ enum e_FIXES_BOOLS (<<= 1)
 	e_FIXES_BOOLS_CP_DELAYED,
 	e_FIXES_BOOLS_RACE_CP_DELAYED,
 	e_FIXES_BOOLS_CLOCK_ENABLED,
+	e_FIXES_BOOLS_VEH_ENTER,
+	e_FIXES_BOOLS_VEH_ENTER_ANIM,
 }
 
 /*
@@ -2258,26 +2260,12 @@ static stock
 	FIXES_gsPlayerIP[MAX_PLAYERS] = {-1, ...},
 #endif
 	/*
-	 * FIXES_gsPlayerVehEntering[MAX_PLAYERS]
-	 *
-	 * Boolean: true if the player is between trying
-	 * to enter a locked vehicle and the animation
-	 */
-#if FIX_OnPlayerEnterVehicle_3
-	bool:FIXES_gsPlayerVehEntering[MAX_PLAYERS],
-	/*
-	 * FIXES_gsPlayerVehTrying[MAX_PLAYERS]
-	 *
-	 * Boolean: true if the player is currently doing
-	 * the animation
-	 */
-	bool:FIXES_gsPlayerVehTrying[MAX_PLAYERS],
-	/*
 	 * FIXES_gsPlayerVehicleID[MAX_PLAYERS]
 	 *
 	 * Stores the locked vehicle's id that the player
 	 * is currently trying to enter
 	 */
+#if FIX_OnPlayerEnterVehicle_3
 	FIXES_gsPlayerVehicleID[MAX_PLAYERS],
 	/*
 	 * FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS]
@@ -5815,13 +5803,13 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  BEGIN: OnPlayerEnterVehicle_3
 		// =============================
 		#if FIX_OnPlayerEnterVehicle_3
-			if (FIXES_gsPlayerVehEntering[playerid]) {
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER) {
 				if (GetTickCount() >= FIXES_gsPlayerVehicleTickCount[playerid] + 4000) {
 					_FIXES_StopPlayerEnterVehicle(playerid);
 				} else {
 					if (1020 <= GetPlayerAnimationIndex(playerid) <= 1021) {
-						FIXES_gsPlayerVehTrying[playerid] = true;
-					} else if (FIXES_gsPlayerVehTrying[e_IsTrying]) {
+						FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
+					} else if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER_ANIM) {
 						_FIXES_StopPlayerEnterVehicle(playerid);
 					}
 				}
@@ -6392,7 +6380,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 				SetVehicleParamsEx(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_ON, bonnet, boot, objective);
 
-				FIXES_gsPlayerVehEntering[playerid] = true;
+				FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER;
 				FIXES_gsPlayerVehicleID[playerid] = vehicleid;
 				FIXES_gsPlayerVehicleTickCount[playerid] = GetTickCount();
 			}
@@ -6511,8 +6499,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	static stock _FIXES_StopPlayerEnterVehicle(playerid)
 	{
 	
-		FIXES_gsPlayerVehTrying[playerid] = false;
-		FIXES_gsPlayerVehEntering[playerid] = false;
+		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER;
+		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
 
 		new vehicleid = FIXES_gsPlayerVehicleID[playerid],
 			engine, lights, alarm, doors, bonnet, boot, objective;
