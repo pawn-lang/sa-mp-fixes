@@ -9551,7 +9551,7 @@ native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, b
 native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective) = GetVehicleParamsEx;
 
 #if FIX_OnPlayerEnterVehicle_3
-	stock FIXES_GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective)
+	stock FIXES_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective)
 	{
 		return GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 		#if FIXES_Single
