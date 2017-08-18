@@ -6509,8 +6509,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if FIX_OnPlayerEnterVehicle_3
 	static stock FIXES_StopPlayerEnterVehicle(playerid)
 	{
-		player_data[playerid][e_IsTrying] = false;
-		player_data[playerid][e_IsOpening] = false;
+	
+		FIXES_gsPlayerVehTrying[playerid] = false;
+		FIXES_gsPlayerVehEntering[playerid] = false;
 
 		new vehicleid = FIXES_gsPlayerVehID[playerid],
 			engine, lights, alarm, doors, bonnet, boot, objective;
