@@ -6386,7 +6386,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: OnPlayerEnterVehicle_3
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_3
-			if (FIXES_gsVehicleIsLocked[vehicleid]) {
+			if (FIXES_gsVehicleIsLocked[vehicleid])
+			{
 				new engine, lights, alarm, doors, bonnet, boot, objective;
 				GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 				SetVehicleParamsEx(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_ON, bonnet, boot, objective);
@@ -10594,3 +10595,4 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_NameOfFixHere
 	#define NameOfFixHere( FIXES_NameOfFixHere(
 #endif
+
