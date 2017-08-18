@@ -9577,16 +9577,12 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
  * FIXES:
  *     OnPlayerEnterVehicle_3
  */
-#if !FIXES_Single
-	#if FIX_OnPlayerEnterVehicle_3
-		#if !defined FILTERSCRIPT
-			forward FIXES_GetVehicleDoorsEx(vehicleid);
-			public FIXES_GetVehicleDoorsEx(vehicleid)
-			{
-				return FIXES_gsVehicleIsLocked[vehicleid];
-			}
-		#endif
-	#endif
+#if FIX_OnPlayerEnterVehicle_3 && !FIXES_Single && !defined FILTERSCRIPT
+	forward FIXES_GetVehicleDoorsEx(vehicleid);
+	public FIXES_GetVehicleDoorsEx(vehicleid)
+	{
+		return FIXES_gsVehicleIsLocked[vehicleid];
+	}
 #endif
 
 /*
