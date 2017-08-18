@@ -9553,7 +9553,8 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
 #if FIX_OnPlayerEnterVehicle_3
 	stock FIXES_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective)
 	{
-		return GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+		new 
+			ret = GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 		#if FIXES_Single
 			doors = FIXES_gsVehicleIsLocked[vehicleid] ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
 		#else
@@ -9563,6 +9564,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
 				doors = CallRemoteFunction("FIXES_GetVehicleDoorsEx", "i", vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
 			#endif
 		#endif
+		return ret;
 	}
 
 	#define _ALS_GetVehicleParamsEx
