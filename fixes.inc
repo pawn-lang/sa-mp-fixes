@@ -211,7 +211,7 @@
  *           to enter a 'locked' vehicle.
  * SEE:      "OnPlayerEnterVehicle".
  * AUTHOR:   ziggi (https://github.com/ziggi)
- * AUTHOR:   rt-2 (https://github.com/Y-Less/)
+ * AUTHOR:   rt-2 (https://github.com/rt-2)
  * POST:     https://github.com/ziggi/samp-enterfix
  *
  * FIX:      AllowTeleport
