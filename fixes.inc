@@ -2249,12 +2249,12 @@ static stock
 	 * A record of which menus have and haven't been shown yet.
 	 */
 	FIXES_gsValidMenus[_FIXES_CEILDIV(MAX_MENUS, cellbits)],
-#if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
 	/*
 	 * FIXES_gsPlayerIP[MAX_PLAYERS]
 	 *
 	 * A player's IP as a 32-bit integer.
 	 */
+#if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
 	FIXES_gsPlayerIP[MAX_PLAYERS] = {-1, ...},
 #endif
 	/*
