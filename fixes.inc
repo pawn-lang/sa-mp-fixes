@@ -2273,19 +2273,19 @@ static stock
 	 */
 	bool:FIXES_gsPlayerVehTrying[MAX_PLAYERS],
 	/*
-	 * FIXES_gsPlayerVehID[MAX_PLAYERS]
+	 * FIXES_gsPlayerVehicleID[MAX_PLAYERS]
 	 *
 	 * Stores the locked vehicle's id that the player
 	 * is currently trying to enter
 	 */
-	FIXES_gsPlayerVehID[MAX_PLAYERS],
+	FIXES_gsPlayerVehicleID[MAX_PLAYERS],
 	/*
-	 * FIXES_gsPlayerVehTickCount[MAX_PLAYERS]
+	 * FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS]
 	 *
 	 * Stores the server tick when the player started
 	 * trying to enter the locked vehicle
 	 */
-	FIXES_gsPlayerVehTickCount[MAX_PLAYERS],
+	FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS],
 	/*
 	 * FIXES_gsVehicleIsLocked[MAX_VEHICLES]
 	 *
@@ -5816,7 +5816,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		// =============================
 		#if FIX_OnPlayerEnterVehicle_3
 			if (FIXES_gsPlayerVehEntering[playerid]) {
-				if (GetTickCount() >= FIXES_gsPlayerVehTickCount[playerid] + 4000) {
+				if (GetTickCount() >= FIXES_gsPlayerVehicleTickCount[playerid] + 4000) {
 					_FIXES_StopPlayerEnterVehicle(playerid);
 				} else {
 					if (1020 <= GetPlayerAnimationIndex(playerid) <= 1021) {
@@ -6393,8 +6393,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				SetVehicleParamsEx(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_ON, bonnet, boot, objective);
 
 				FIXES_gsPlayerVehEntering[playerid] = true;
-				FIXES_gsPlayerVehID[playerid] = vehicleid;
-				FIXES_gsPlayerVehTickCount[playerid] = GetTickCount();
+				FIXES_gsPlayerVehicleID[playerid] = vehicleid;
+				FIXES_gsPlayerVehicleTickCount[playerid] = GetTickCount();
 			}
 		#endif
 		// =============================
@@ -6514,7 +6514,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		FIXES_gsPlayerVehTrying[playerid] = false;
 		FIXES_gsPlayerVehEntering[playerid] = false;
 
-		new vehicleid = FIXES_gsPlayerVehID[playerid],
+		new vehicleid = FIXES_gsPlayerVehicleID[playerid],
 			engine, lights, alarm, doors, bonnet, boot, objective;
 
 		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
