@@ -5817,12 +5817,12 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if FIX_OnPlayerEnterVehicle_3
 			if (FIXES_gsPlayerVehEntering[playerid]) {
 				if (GetTickCount() >= FIXES_gsPlayerVehTickCount[playerid] + 4000) {
-					FIXES_StopPlayerEnterVehicle(playerid);
+					_FIXES_StopPlayerEnterVehicle(playerid);
 				} else {
 					if (1020 <= GetPlayerAnimationIndex(playerid) <= 1021) {
 						FIXES_gsPlayerVehTrying[playerid] = true;
 					} else if (FIXES_gsPlayerVehTrying[e_IsTrying]) {
-						FIXES_StopPlayerEnterVehicle(playerid);
+						_FIXES_StopPlayerEnterVehicle(playerid);
 					}
 				}
 			}
@@ -6498,7 +6498,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 
 /*
- * FIXES_StopPlayerEnterVehicle(playerid, bool:kick)
+ * _FIXES_StopPlayerEnterVehicle(playerid, bool:kick)
  *
  * Block a player from entering a vehicle after the animation for a locked driver door
  *
@@ -6507,7 +6507,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  */
 
 #if FIX_OnPlayerEnterVehicle_3
-	static stock FIXES_StopPlayerEnterVehicle(playerid)
+	static stock _FIXES_StopPlayerEnterVehicle(playerid)
 	{
 	
 		FIXES_gsPlayerVehTrying[playerid] = false;
@@ -10594,4 +10594,3 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_NameOfFixHere
 	#define NameOfFixHere( FIXES_NameOfFixHere(
 #endif
-
