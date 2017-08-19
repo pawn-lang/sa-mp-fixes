@@ -205,6 +205,15 @@
  * AUTHOR:   im
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
+ * FIX:      OnPlayerEnterVehicle_3
+ * PROBLEM:  No player animation when trying to enter the driver door of a locked vehicle
+ * SOLUTION: Leave the door unlocked and activate an animation when the player attemps
+ *           to enter a 'locked' vehicle.
+ * SEE:      "OnPlayerEnterVehicle".
+ * AUTHOR:   ziggi (https://github.com/ziggi)
+ * AUTHOR:   rt-2 (https://github.com/rt-2)
+ * POST:     http://forum.sa-mp.com/showthread.php?t=560019
+ *
  * FIX:      AllowTeleport
  * PROBLEM:  0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in
  *           favour of "OnPlayerClickMap".  Some scripts used the old code and.
@@ -1208,9 +1217,16 @@
 
 #if !defined FIX_OnPlayerEnterVehicle_2
 	#define FIX_OnPlayerEnterVehicle_2   (1)
-#elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle)
+#elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_2)
 	#undef FIX_OnPlayerEnterVehicle_2
 	#define FIX_OnPlayerEnterVehicle_2   (2)
+#endif
+
+#if !defined FIX_OnPlayerEnterVehicle_3
+	#define FIX_OnPlayerEnterVehicle_3   (1)
+#elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_3)
+	#undef FIX_OnPlayerEnterVehicle_3
+	#define FIX_OnPlayerEnterVehicle_3   (2)
 #endif
 
 #if !defined FIX_AllowTeleport
@@ -2047,6 +2063,8 @@ enum e_FIXES_BOOLS (<<= 1)
 	e_FIXES_BOOLS_CP_DELAYED,
 	e_FIXES_BOOLS_RACE_CP_DELAYED,
 	e_FIXES_BOOLS_CLOCK_ENABLED,
+	e_FIXES_BOOLS_VEH_ENTER,
+	e_FIXES_BOOLS_VEH_ENTER_ANIM,
 }
 
 /*
@@ -2240,6 +2258,28 @@ static stock
 	 */
 #if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
 	FIXES_gsPlayerIP[MAX_PLAYERS] = {-1, ...},
+#endif
+	/*
+	 * FIXES_gsPlayerVehicleID[MAX_PLAYERS]
+	 *
+	 * Stores the locked vehicle's id that the player
+	 * is currently trying to enter
+	 */
+#if FIX_OnPlayerEnterVehicle_3
+	FIXES_gsPlayerVehicleID[MAX_PLAYERS],
+	/*
+	 * FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS]
+	 *
+	 * Stores the server tick when the player started
+	 * trying to enter the locked vehicle
+	 */
+	FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS],
+	/*
+	 * FIXES_gsVehicleIsLocked[MAX_VEHICLES]
+	 *
+	 * Boolean: Stores if a certain vehicle is 'locked' or not
+	 */
+	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES],
 #endif
 	/*
 	 * FIXES_gsPlayerSkin[MAX_PLAYERS]
@@ -5738,11 +5778,12 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  *     OnVehicleMod
  *     OnPlayerEnterVehicle
  *     OnPlayerEnterVehicle_2
+ *     OnPlayerEnterVehicle_3
  *     PassengerSeating
  *     GogglesSync
  */
 
-#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GogglesSync
+#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerEnterVehicle_3 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GogglesSync
 	public OnPlayerUpdate(playerid)
 	{
 		// =============================
@@ -5756,6 +5797,33 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#endif
 		// =============================
 		//  END:   OnPlayerEnterVehicle
+		// =============================
+
+		// =============================
+		//  BEGIN: OnPlayerEnterVehicle_3
+		// =============================
+		#if FIX_OnPlayerEnterVehicle_3
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER)
+			{
+				if (GetTickCount() >= FIXES_gsPlayerVehicleTickCount[playerid] + 4000)
+				{
+					_FIXES_StopPlayerEnterVehicle(playerid);
+				}
+				else
+				{
+					if (1020 <= GetPlayerAnimationIndex(playerid) <= 1021)
+					{
+						FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
+					}
+					else if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER_ANIM)
+					{
+						_FIXES_StopPlayerEnterVehicle(playerid);
+					}
+				}
+			}
+		#endif
+		// =============================
+		//  END:   OnPlayerEnterVehicle_3
 		// =============================
 
 		#if !FIXES_Single
@@ -6288,10 +6356,11 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  *
  * FIXES:
  *     OnPlayerEnterVehicle_2
+ *     OnPlayerEnterVehicle_3
  *     PassengerSeating
  */
 
-#if FIX_OnPlayerEnterVehicle_2 || FIX_PassengerSeating
+#if FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerEnterVehicle_3 || FIX_PassengerSeating
 	public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	{
 		// ===============================
@@ -6306,6 +6375,25 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#endif
 		// =============================
 		//  END: OnPlayerEnterVehicle_2
+		// =============================
+
+		// ===============================
+		//  BEGIN: OnPlayerEnterVehicle_3
+		// ===============================
+		#if FIX_OnPlayerEnterVehicle_3
+			if (FIXES_gsVehicleIsLocked[vehicleid])
+			{
+				new engine, lights, alarm, doors, bonnet, boot, objective;
+				GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+				SetVehicleParamsEx(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_ON, bonnet, boot, objective);
+
+				FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER;
+				FIXES_gsPlayerVehicleID[playerid] = vehicleid;
+				FIXES_gsPlayerVehicleTickCount[playerid] = GetTickCount();
+			}
+		#endif
+		// =============================
+		//  END: OnPlayerEnterVehicle_3
 		// =============================
 
 		// =============================
@@ -6402,6 +6490,32 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		return
 			FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_BLOCK,
 			0;
+	}
+#endif
+
+/*
+ * _FIXES_StopPlayerEnterVehicle(playerid, bool:kick)
+ *
+ * Block a player from entering a vehicle after the animation for a locked driver door
+ *
+ * FIXES:
+ *     OnPlayerEnterVehicle_3
+ */
+
+#if FIX_OnPlayerEnterVehicle_3
+	static stock _FIXES_StopPlayerEnterVehicle(playerid)
+	{
+		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER;
+		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
+
+		new
+			vehicleid = FIXES_gsPlayerVehicleID[playerid],
+			engine, lights, alarm, doors, bonnet, boot, objective;
+
+		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+		SetVehicleParamsEx(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_OFF, bonnet, boot, objective);
+
+		ClearAnimations(playerid);
 	}
 #endif
 
@@ -9395,6 +9509,77 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 
 	#define _ALS_DestroyActor
 	#define DestroyActor( FIXES_DestroyActor(
+#endif
+
+/*
+ * FIXES_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective)
+ *
+ * FIXES:
+ *     OnPlayerEnterVehicle_3
+ */
+
+#if defined _ALS_SetVehicleParamsEx
+	#error _ALS_SetVehicleParamsEx defined
+#endif
+native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective) = SetVehicleParamsEx;
+
+#if FIX_OnPlayerEnterVehicle_3
+	stock FIXES_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective)
+	{
+		FIXES_gsVehicleIsLocked[vehicleid] = doors == VEHICLE_PARAMS_ON;
+		return SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+	}
+
+	#define _ALS_SetVehicleParamsEx
+	#define SetVehicleParamsEx( FIXES_SetVehicleParamsEx(
+#endif
+
+/*
+ * FIXES_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective)
+ *
+ * FIXES:
+ *     OnPlayerEnterVehicle_3
+ */
+
+#if defined _ALS_GetVehicleParamsEx
+	#error _ALS_GetVehicleParamsEx defined
+#endif
+native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective) = GetVehicleParamsEx;
+
+#if FIX_OnPlayerEnterVehicle_3
+	stock FIXES_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective)
+	{
+		new 
+			ret = GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+		#if FIXES_Single
+			doors = FIXES_gsVehicleIsLocked[vehicleid] ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
+		#else
+			#if !defined FILTERSCRIPT
+				doors = _FIXES_GetVehicleDoorsEx(vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
+			#else
+				doors = CallRemoteFunction("_FIXES_GetVehicleDoorsEx", "i", vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
+			#endif
+		#endif
+		return ret;
+	}
+
+	#define _ALS_GetVehicleParamsEx
+	#define GetVehicleParamsEx( FIXES_GetVehicleParamsEx(
+#endif
+
+/*
+ * _FIXES_GetVehicleDoorsEx(vehicleid)
+ *
+ * FIXES:
+ *     OnPlayerEnterVehicle_3
+ */
+#if FIX_OnPlayerEnterVehicle_3 && !FIXES_Single && !defined FILTERSCRIPT
+	forward _FIXES_GetVehicleDoorsEx(vehicleid);
+	
+	public _FIXES_GetVehicleDoorsEx(vehicleid)
+	{
+		return FIXES_gsVehicleIsLocked[vehicleid];
+	}
 #endif
 
 /*
