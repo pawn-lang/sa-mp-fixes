@@ -6502,7 +6502,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER;
 		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
 
-		new vehicleid = FIXES_gsPlayerVehicleID[playerid],
+		new
+			vehicleid = FIXES_gsPlayerVehicleID[playerid],
 			engine, lights, alarm, doors, bonnet, boot, objective;
 
 		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
