@@ -5805,7 +5805,8 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if FIX_OnPlayerEnterVehicle_3
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER)
 			{
-				if (GetTickCount() >= FIXES_gsPlayerVehicleTickCount[playerid] + 4000) {
+				if (GetTickCount() >= FIXES_gsPlayerVehicleTickCount[playerid] + 4000)
+				{
 					_FIXES_StopPlayerEnterVehicle(playerid);
 				}
 				else
