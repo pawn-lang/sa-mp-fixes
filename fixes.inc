@@ -6498,7 +6498,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if FIX_OnPlayerEnterVehicle_3
 	static stock _FIXES_StopPlayerEnterVehicle(playerid)
 	{
-	
 		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER;
 		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
 
