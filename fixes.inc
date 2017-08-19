@@ -5803,13 +5803,19 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  BEGIN: OnPlayerEnterVehicle_3
 		// =============================
 		#if FIX_OnPlayerEnterVehicle_3
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER) {
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER)
+			{
 				if (GetTickCount() >= FIXES_gsPlayerVehicleTickCount[playerid] + 4000) {
 					_FIXES_StopPlayerEnterVehicle(playerid);
-				} else {
-					if (1020 <= GetPlayerAnimationIndex(playerid) <= 1021) {
+				}
+				else
+				{
+					if (1020 <= GetPlayerAnimationIndex(playerid) <= 1021)
+					{
 						FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
-					} else if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER_ANIM) {
+					}
+					else if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER_ANIM)
+					{
 						_FIXES_StopPlayerEnterVehicle(playerid);
 					}
 				}
