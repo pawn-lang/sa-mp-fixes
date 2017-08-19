@@ -9548,9 +9548,9 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
 			doors = FIXES_gsVehicleIsLocked[vehicleid] ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
 		#else
 			#if !defined FILTERSCRIPT
-				doors = FIXES_GetVehicleDoorsEx(vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
+				doors = _FIXES_GetVehicleDoorsEx(vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
 			#else
-				doors = CallRemoteFunction("FIXES_GetVehicleDoorsEx", "i", vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
+				doors = CallRemoteFunction("_FIXES_GetVehicleDoorsEx", "i", vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
 			#endif
 		#endif
 		return ret;
@@ -9561,14 +9561,15 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
 #endif
 
 /*
- * FIXES_GetVehicleDoorsEx(vehicleid)
+ * _FIXES_GetVehicleDoorsEx(vehicleid)
  *
  * FIXES:
  *     OnPlayerEnterVehicle_3
  */
 #if FIX_OnPlayerEnterVehicle_3 && !FIXES_Single && !defined FILTERSCRIPT
-	forward FIXES_GetVehicleDoorsEx(vehicleid);
-	public FIXES_GetVehicleDoorsEx(vehicleid)
+	forward _FIXES_GetVehicleDoorsEx(vehicleid);
+	
+	public _FIXES_GetVehicleDoorsEx(vehicleid)
 	{
 		return FIXES_gsVehicleIsLocked[vehicleid];
 	}
