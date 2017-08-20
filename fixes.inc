@@ -5191,6 +5191,19 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		//  END:   Kick
 		// =============
 
+		// ===============================
+		//  BEGIN: OnPlayerEnterVehicle_3
+		// ===============================
+		#if FIX_OnPlayerEnterVehicle_3
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER_ANIM)
+			{
+				_FIXES_StopPlayerEnterVehicle(playerid);
+			}
+		#endif
+		// ===============================
+		//  END:   OnPlayerEnterVehicle_3
+		// ===============================
+
 		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 			_FIXES_RemoveInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
 		#endif
@@ -5799,9 +5812,9 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  END:   OnPlayerEnterVehicle
 		// =============================
 
-		// =============================
+		// ===============================
 		//  BEGIN: OnPlayerEnterVehicle_3
-		// =============================
+		// ===============================
 		#if FIX_OnPlayerEnterVehicle_3
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER)
 			{
@@ -5822,9 +5835,9 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 				}
 			}
 		#endif
-		// =============================
+		// ===============================
 		//  END:   OnPlayerEnterVehicle_3
-		// =============================
+		// ==============================
 
 		#if !FIXES_Single
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
@@ -6494,7 +6507,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 
 /*
- * _FIXES_StopPlayerEnterVehicle(playerid, bool:kick)
+ * _FIXES_StopPlayerEnterVehicle(playerid)
  *
  * Block a player from entering a vehicle after the animation for a locked driver door
  *
