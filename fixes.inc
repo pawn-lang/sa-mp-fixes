@@ -9906,11 +9906,18 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 #if FIX_strcmp
 	stock FIXES_strcmp(const string1[], const string2[], bool:ignorecase=false, length=cellmax)
 	{
+		if (length == 0)
+			return 0;
 		if (string1[0])
 		{
 			if (string2[0])
 			{
-				return strcmp(string1, string2, ignorecase, length);
+				static result;
+				if (_FIXES_IN_RANGE((result = strcmp(string1, string2, ignorecase, length)), -1, 1))
+					return result;
+				if (result > 0)
+					return 1;
+				return -1;
 			}
 			else
 			{
