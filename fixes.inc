@@ -9912,12 +9912,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 		{
 			if (string2[0])
 			{
-				static result;
-				if (_FIXES_IN_RANGE((result = strcmp(string1, string2, ignorecase, length)), -1, 1))
-					return result;
-				if (result > 0)
-					return 1;
-				return -1;
+				return clamp(strcmp(string1, string2, ignorecase, length), -1, 1);
 			}
 			else
 			{
