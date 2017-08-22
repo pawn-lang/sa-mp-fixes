@@ -5195,7 +5195,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		//  BEGIN: OnPlayerEnterVehicle_3
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_3
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER_ANIM)
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER)
 			{
 				_FIXES_StopPlayerEnterVehicle(playerid);
 			}
