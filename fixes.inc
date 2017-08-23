@@ -5112,7 +5112,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  *     GetPlayerMenu
  */
 
-#if FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
+#if FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_OnPlayerEnterVehicle_3 || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
 	public OnPlayerDisconnect(playerid, reason)
 	{
 		new
@@ -5195,7 +5195,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		//  BEGIN: OnPlayerEnterVehicle_3
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_3
-			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER_ANIM)
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER)
 			{
 				_FIXES_StopPlayerEnterVehicle(playerid);
 			}
