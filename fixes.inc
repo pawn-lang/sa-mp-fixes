@@ -4121,11 +4121,11 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 10.0, 200.0);
 
 				// Global style 13 (stunt).
-				t = FIXES_gsGTStyle[13] = TextDrawCreate(380.000000, 341.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.579999, 2.400000),
+				t = FIXES_gsGTStyle[13] = TextDrawCreate(380.000000, 341.150000, FIXES_gsSpace),
+				TextDrawLetterSize(t, 0.579999, 2.420000),
 				TextDrawTextSize(t, 40.000000, 460.000000),
 				TextDrawAlignment(t, 2),
-				TextDrawColor(t, 0xD7D3CCFF),
+				TextDrawColor(t, 0xDDDDDBFF),
 				TextDrawUseBox(t, true),
 				TextDrawBoxColor(t, 0),
 				TextDrawSetShadow(t, 2),
@@ -4326,11 +4326,11 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 
 				// Global style 13 (playerid, stunt).
-				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw(playerid, 380.000000, 341.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.579999, 2.400000),
+				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw(playerid, 380.000000, 341.150000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize(playerid, t, 0.579999, 2.420000),
 				PlayerTextDrawTextSize(playerid, t, 40.000000, 460.000000),
 				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, 0xD7D3CCFF),
+				PlayerTextDrawColor(playerid, t, 0xDDDDDBFF),
 				PlayerTextDrawUseBox(playerid, t, true),
 				PlayerTextDrawBoxColor(playerid, t, 0),
 				PlayerTextDrawSetShadow(playerid, t, 2),
