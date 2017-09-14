@@ -783,6 +783,13 @@
  * SEE:      "FIXES_GetWorldTime".
  * AUTHOR:   ziggi (https://github.com/ziggi/)
  *
+ * FIX:      tabsize
+ * PROBLEM:  Some people still use `tabsize 0`.
+ * SOLUTION: Break the pragma.
+ * SEE:      "_DUMMY_do_not_use_tabsize_0".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ * POST:     http://forum.sa-mp.com/showpost.php?p=3929000
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1853,6 +1860,74 @@
 #elseif _FIXES_IS_UNSET(FIX_GetWorldTime)
 	#undef FIX_GetWorldTime
 	#define FIX_GetWorldTime          (2)
+#endif
+
+#if !defined FIX_tabsize
+	#define FIX_tabsize                  (1)
+#elseif _FIXES_IS_UNSET(FIX_tabsize)
+	#undef FIX_tabsize
+	#define FIX_tabsize                  (2)
+#endif
+
+/*
+ * tabsize
+ *
+ * Breaks `#pragma tabsize 0` in such a way that the compiler gives the
+ * following error:
+ *
+ *     error 017: undefined symbol "do_not_use_tabsize_0"
+ *
+ * There is ZERO reason to use it.  There are ocassionally times when an
+ * indentation reset is required, usually because of macros containing code that
+ * would otherwise appear correct.  For example:
+ *
+ *     #define TEST_MACRO
+ *     
+ *     main()
+ *     {
+ *         new a = 42;
+ *         if (a)
+ *         {
+ *             printf("true");
+ *         }
+ *         #if defined TEST_MACRO
+ *             else
+ *             {
+ *                 printf("false");
+ *             }
+ *             a = 42;
+ *         #endif
+ *         printf("a = %d", a);
+ *     }
+ *
+ * Even that can be fixed without `tabsize 0`, simply by restating the correct
+ * indentation level, which resets the internal depth tracking:
+ *
+ *     #define TEST_MACRO
+ *     
+ *     main()
+ *     {
+ *         new a = 42;
+ *         if (a)
+ *         {
+ *             printf("true");
+ *         }
+ *         #if defined TEST_MACRO
+ *             else
+ *             {
+ *                 printf("false");
+ *             }
+ *             #pragma tabsize 4
+ *             a = 42;
+ *         #endif
+ *         printf("a = %d", a);
+ *     }
+ *
+ * There is just no excuse.
+ */
+
+#if FIX_tabsize
+	#define tabsize%00%0\10;%0 _DUMMY_do_not_use_tabsize_0
 #endif
 
 /*
