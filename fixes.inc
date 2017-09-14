@@ -135,11 +135,25 @@
  * SEE:      "FIXES_TextDrawCreate".
  * AUTHOR:   wups
  *
+ * FIX:      TextDrawCreate_2
+ * PROBLEM:  If the last character in the text is a space (" "), the text will all be blank.
+ * SOLUTION: Remove space characters from the end of the string.
+ * SEE:      "FIXES_TextDrawCreate".
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ * POST:     https://github.com/Open-GTO/sa-mp-fixes/issues/55
+ *
  * FIX:      TextDrawSetString
  * PROBLEM:  Crashes on a blank string and size greater than 1024.
  * SOLUTION: Intercept blank strings and truncate long strings.
  * SEE:      "FIXES_TextDrawSetString".
  * AUTHOR:   TomTrox
+ *
+ * FIX:      TextDrawSetString_2
+ * PROBLEM:  If the last character in the text is a space (" "), the text will all be blank.
+ * SOLUTION: Remove space characters from the end of the string.
+ * SEE:      "FIXES_TextDrawSetString".
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ * POST:     https://github.com/Open-GTO/sa-mp-fixes/issues/55
  *
  * FIX:      CreatePlayerTextDraw
  * PROBLEM:  Crashes on a blank string.
@@ -148,12 +162,26 @@
  * AUTHOR:   wups
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
  *
+ * FIX:      CreatePlayerTextDraw_2
+ * PROBLEM:  If the last character in the text is a space (" "), the text will all be blank.
+ * SOLUTION: Remove space characters from the end of the string.
+ * SEE:      "FIXES_CreatePlayerTextDraw".
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ * POST:     https://github.com/Open-GTO/sa-mp-fixes/issues/55
+ *
  * FIX:      PlayerTextDrawSetString
  * PROBLEM:  Crashes on a blank string and size greater than 1024.
  * SOLUTION: Intercept blank strings and truncate long strings.
  * SEE:      "FIXES_PlayerTextDrawSetString".
  * AUTHOR:   TomTrox
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ *
+ * FIX:      PlayerTextDrawSetString_2
+ * PROBLEM:  If the last character in the text is a space (" "), the text will all be blank.
+ * SOLUTION: Remove space characters from the end of the string.
+ * SEE:      "FIXES_PlayerTextDrawSetString".
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ * POST:     https://github.com/Open-GTO/sa-mp-fixes/issues/55
  *
  * FIX:      AllowInteriorWeapons
  * PROBLEM:  Does nothing.
@@ -176,6 +204,15 @@
  * SEE:      "OnPlayerEnterVehicle".
  * AUTHOR:   im
  * AUTHOR:   Y_Less (https://github.com/Y-Less/)
+ *
+ * FIX:      OnPlayerEnterVehicle_3
+ * PROBLEM:  No player animation when trying to enter the driver door of a locked vehicle
+ * SOLUTION: Leave the door unlocked and activate an animation when the player attemps
+ *           to enter a 'locked' vehicle.
+ * SEE:      "OnPlayerEnterVehicle".
+ * AUTHOR:   ziggi (https://github.com/ziggi)
+ * AUTHOR:   rt-2 (https://github.com/rt-2)
+ * POST:     http://forum.sa-mp.com/showthread.php?t=560019
  *
  * FIX:      AllowTeleport
  * PROBLEM:  0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in
@@ -693,7 +730,7 @@
  * FIX:      SetPlayerPos
  * PROBLEM:  Using this function on skydiving players kills them.
  * SOLUTION: Remove the parachute when the player is skydiving.
- * SEE:      "FIXES_SetPlayerPos".
+ * SEE:      "FIXES_SetPlayerPos", "FIXES_SetPlayerPosFindZ".
  * AUTHOR:   Freaksken (https://github.com/WoutProvost)
  *
  * FIX:      GetPlayerAmmo
@@ -719,6 +756,32 @@
  * SOLUTION: Redefine the natives.
  * SEE:      "FIX_const".
  * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ *
+ * FIX:      VEHICLES
+ * PROBLEM:  The vehicle models IDs are not defined by default.
+ * SOLUTION: Define them.
+ * SEE:      N/A.
+ * AUTHOR:   stuntman (https://github.com/IstuntmanI)
+ *
+ * FIX:      GetPlayerWeather
+ * PROBLEM:  This function doesn't exist.
+ * SOLUTION: Add it.  DEFAULTS TO FALSE!
+ * SEE:      "FIXES_GetPlayerWeather".
+ * AUTHOR:   IstuntmanI (https://github.com/IstuntmanI/)
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ *
+ * FIX:      GetWeather
+ * PROBLEM:  This function doesn't exist.
+ * SOLUTION: Add it.  DEFAULTS TO FALSE!
+ * SEE:      "FIXES_GetWeather".
+ * AUTHOR:   IstuntmanI (https://github.com/IstuntmanI/)
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
+ *
+ * FIX:      GetWorldTime
+ * PROBLEM:  This function doesn't exist.
+ * SOLUTION: Add it.  DEFAULTS TO FALSE!
+ * SEE:      "FIXES_GetWorldTime".
+ * AUTHOR:   ziggi (https://github.com/ziggi/)
  *
  * FIX:      tabsize
  * PROBLEM:  Some people still use `tabsize 0`.
@@ -1120,11 +1183,25 @@
 	#define FIX_TextDrawCreate           (2)
 #endif
 
+#if !defined FIX_TextDrawCreate_2
+	#define FIX_TextDrawCreate_2           (1)
+#elseif _FIXES_IS_UNSET(FIX_TextDrawCreate_2)
+	#undef FIX_TextDrawCreate_2
+	#define FIX_TextDrawCreate_2           (2)
+#endif
+
 #if !defined FIX_TextDrawSetString
 	#define FIX_TextDrawSetString        (1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString)
 	#undef FIX_TextDrawSetString
 	#define FIX_TextDrawSetString        (2)
+#endif
+
+#if !defined FIX_TextDrawSetString_2
+	#define FIX_TextDrawSetString_2        (1)
+#elseif _FIXES_IS_UNSET(FIX_TextDrawSetString_2)
+	#undef FIX_TextDrawSetString_2
+	#define FIX_TextDrawSetString_2        (2)
 #endif
 
 #if !defined FIX_AllowInteriorWeapons
@@ -1147,9 +1224,16 @@
 
 #if !defined FIX_OnPlayerEnterVehicle_2
 	#define FIX_OnPlayerEnterVehicle_2   (1)
-#elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle)
+#elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_2)
 	#undef FIX_OnPlayerEnterVehicle_2
 	#define FIX_OnPlayerEnterVehicle_2   (2)
+#endif
+
+#if !defined FIX_OnPlayerEnterVehicle_3
+	#define FIX_OnPlayerEnterVehicle_3   (1)
+#elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_3)
+	#undef FIX_OnPlayerEnterVehicle_3
+	#define FIX_OnPlayerEnterVehicle_3   (2)
 #endif
 
 #if !defined FIX_AllowTeleport
@@ -1572,11 +1656,25 @@
 	#define FIX_CreatePlayerTextDraw     (2)
 #endif
 
+#if !defined FIX_CreatePlayerTextDraw_2
+	#define FIX_CreatePlayerTextDraw_2     (1)
+#elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw_2)
+	#undef FIX_CreatePlayerTextDraw_2
+	#define FIX_CreatePlayerTextDraw_2     (2)
+#endif
+
 #if !defined FIX_PlayerTextDrawSetString
 	#define FIX_PlayerTextDrawSetString  (1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString)
 	#undef FIX_PlayerTextDrawSetString
 	#define FIX_PlayerTextDrawSetString  (2)
+#endif
+
+#if !defined FIX_PlayerTextDrawSetString_2
+	#define FIX_PlayerTextDrawSetString_2  (1)
+#elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString_2)
+	#undef FIX_PlayerTextDrawSetString_2
+	#define FIX_PlayerTextDrawSetString_2  (2)
 #endif
 
 #if !defined FIX_SetPlayerCamera
@@ -1718,6 +1816,50 @@
 #elseif _FIXES_IS_UNSET(FIX_const)
 	#undef FIX_const
 	#define FIX_const                    (2)
+#endif
+
+#if !defined FIX_VEHICLES
+	#if defined VEHICLE_INFERNUS
+		#define FIX_VEHICLES             (FIXES_EnableDeprecated)
+	#else
+		#define FIX_VEHICLES             (1)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_VEHICLES)
+	#undef FIX_VEHICLES
+	#define FIX_VEHICLES                 (2)
+#endif
+
+#if !defined FIX_GetPlayerWeather
+	#if defined GetPlayerWeather
+		#define FIX_GetPlayerWeather     (FIXES_EnableDeprecated)
+	#else
+		#define FIX_GetPlayerWeather     (FIX_Natives)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerWeather)
+	#undef FIX_GetPlayerWeather
+	#define FIX_GetPlayerWeather         (2)
+#endif
+
+#if !defined FIX_GetWeather
+	#if defined GetWeather
+		#define FIX_GetWeather           (FIXES_EnableDeprecated)
+	#else
+		#define FIX_GetWeather           (FIX_Natives)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetWeather)
+	#undef FIX_GetWeather
+	#define FIX_GetWeather               (2)
+#endif
+
+#if !defined FIX_GetWorldTime
+	#if defined GetWorldTime
+		#define FIX_GetWorldTime         (FIXES_EnableDeprecated)
+	#else
+		#define FIX_GetWorldTime         (FIX_Natives)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetWorldTime)
+	#undef FIX_GetWorldTime
+	#define FIX_GetWorldTime             (2)
 #endif
 
 #if !defined FIX_tabsize
@@ -1994,7 +2136,10 @@ enum e_FIXES_BOOLS (<<= 1)
 	e_FIXES_BOOLS_SPECTATING,
 	e_FIXES_BOOLS_DIED_TO_SPAWN,
 	e_FIXES_BOOLS_CP_DELAYED,
-	e_FIXES_BOOLS_RACE_CP_DELAYED
+	e_FIXES_BOOLS_RACE_CP_DELAYED,
+	e_FIXES_BOOLS_CLOCK_ENABLED,
+	e_FIXES_BOOLS_VEH_ENTER,
+	e_FIXES_BOOLS_VEH_ENTER_ANIM,
 }
 
 /*
@@ -2190,6 +2335,28 @@ static stock
 	FIXES_gsPlayerIP[MAX_PLAYERS] = {-1, ...},
 #endif
 	/*
+	 * FIXES_gsPlayerVehicleID[MAX_PLAYERS]
+	 *
+	 * Stores the locked vehicle's id that the player
+	 * is currently trying to enter
+	 */
+#if FIX_OnPlayerEnterVehicle_3
+	FIXES_gsPlayerVehicleID[MAX_PLAYERS],
+	/*
+	 * FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS]
+	 *
+	 * Stores the server tick when the player started
+	 * trying to enter the locked vehicle
+	 */
+	FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS],
+	/*
+	 * FIXES_gsVehicleIsLocked[MAX_VEHICLES]
+	 *
+	 * Boolean: Stores if a certain vehicle is 'locked' or not
+	 */
+	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES],
+#endif
+	/*
 	 * FIXES_gsPlayerSkin[MAX_PLAYERS]
 	 *
 	 * The skin the player is currently using.
@@ -2234,6 +2401,30 @@ static stock
 	 */
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 	FIXES_gsPlayerDialog[MAX_PLAYERS] = {-1, ...},
+#endif
+	/*
+	 * FIXES_gsPlayerWeather[MAX_PLAYERS]
+	 *
+	 * Stores the ID of the player weather.
+	 */
+#if FIX_GetPlayerWeather
+	FIXES_gsPlayerWeather[MAX_PLAYERS] = {-1, ...},
+#endif
+	/*
+	 * FIX_GetWeather[MAX_PLAYERS]
+	 *
+	 * Stores the ID of the server weather.
+	 */
+#if FIX_GetWeather
+	FIXES_gsServerWeather = 10,
+#endif
+	/*
+	 * FIX_GetWorldTime[MAX_PLAYERS]
+	 *
+	 * Stores the ID of the server weather.
+	 */
+#if FIX_GetWorldTime
+	FIXES_gsWorldTime = 12,
 #endif
 	/*
 	 * FIXES_gsPlayerInterior[MAX_PLAYERS]
@@ -2419,6 +2610,14 @@ static stock
 	 */
 #if !FIXES_Single && FIX_OnDialogResponse || FIX_GetPlayerDialog
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog",
+#endif
+	/*
+	 * FIXES_pvarPlayerWeather[]
+	 *
+	 * Name of the pvar in which to store the player's current weather.
+	 */
+#if !FIXES_Single && FIX_GetPlayerWeather
+	FIXES_pvarPlayerWeather[] = "FIXES_pvarPlayerWeather",
 #endif
 	/*
 	 * FIXES_pvarPlayerInterior[]
@@ -3014,6 +3213,18 @@ static stock const
 	 */
 	FIXES_gscTogglePlayerControl[] = "_FIXES_TogglePlayerControllable",
 	/*
+	 * FIXES_gscTogglePlayerClock[]
+	 *
+	 * Name of the remote player clock function.
+	 */
+	FIXES_gscTogglePlayerClock[] = "_FIXES_TogglePlayerClock",
+	/*
+	 * FIXES_gscGetWeather[]
+	 *
+	 * Name of the remote player clock function.
+	 */
+	FIXES_gscGetWeather[] = "_FIXES_GetWeather",
+	/*
 	 * FIXES_gscSetPlayerWorldBounds[]
 	 *
 	 * Name of the remote world bounds function.
@@ -3465,6 +3676,8 @@ static stock const
 
 #if FIX_WEAPONS
 	#define WEAPON_FIST               _FIXES_WEAPON_FIST
+	#define WEAPON_NIGHTSTICK         WEAPON_NITESTICK
+	#define WEAPON_MOLOTOV            WEAPON_MOLTOV
 	#define WEAPON_NIGHT_VIS_GOGGLES  _FIXES_WEAPON_NIGHT_VIS_GOGGLES
 	#define WEAPON_THERMAL_GOGGLES    _FIXES_WEAPON_THERMAL_GOGGLES
 #endif
@@ -3509,6 +3722,227 @@ static stock const
 	#define CAM_MODE_AIMWEAPON                  (53)
 	#define CAM_MODE_AIMWEAPON_FROMCAR          (55)
 	#define CAM_MODE_DW_HELI_CHASE              (56)
+#endif
+
+/*
+ * VEHICLES
+ *
+ * Because the default SA:MP includes missed these.
+ */
+
+#if FIX_VEHICLES
+	#define VEHICLE_LANDSTALKER                 (400)
+	#define VEHICLE_BRAVURA                     (401)
+	#define VEHICLE_BUFFALO                     (402)
+	#define VEHICLE_LINERUNNER                  (403)
+	#define VEHICLE_PERRENIAL                   (404)
+	#define VEHICLE_SENTINEL                    (405)
+	#define VEHICLE_DUMPER                      (406)
+	#define VEHICLE_FIRETRUCK                   (407)
+	#define VEHICLE_TRASHMASTER                 (408)
+	#define VEHICLE_STRETCH                     (409)
+	#define VEHICLE_MANANA                      (410)
+	#define VEHICLE_INFERNUS                    (411)
+	#define VEHICLE_VOODOO                      (412)
+	#define VEHICLE_PONY                        (413)
+	#define VEHICLE_MULE                        (414)
+	#define VEHICLE_CHEETAH                     (415)
+	#define VEHICLE_AMBULANCE                   (416)
+	#define VEHICLE_LEVIATHAN                   (417)
+	#define VEHICLE_MOONBEAM                    (418)
+	#define VEHICLE_ESPERANTO                   (419)
+	#define VEHICLE_TAXI                        (420)
+	#define VEHICLE_WASHINGTON                  (421)
+	#define VEHICLE_BOBCAT                      (422)
+	#define VEHICLE_MRWHOOPEE                   (423)
+	#define VEHICLE_BFINJECTION                 (424)
+	#define VEHICLE_HUNTER                      (425)
+	#define VEHICLE_PREMIER                     (426)
+	#define VEHICLE_ENFORCER                    (427)
+	#define VEHICLE_SECURICAR                   (428)
+	#define VEHICLE_BANSHEE                     (429)
+	#define VEHICLE_PREDATOR                    (430)
+	#define VEHICLE_BUS                         (431)
+	#define VEHICLE_RHINO                       (432)
+	#define VEHICLE_BARRACKS                    (433)
+	#define VEHICLE_HOTKNIFE                    (434)
+	#define VEHICLE_ARTICLETRAILER1             (435)
+	#define VEHICLE_PREVION                     (436)
+	#define VEHICLE_COACH                       (437)
+	#define VEHICLE_CABBIE                      (438)
+	#define VEHICLE_STALLION                    (439)
+	#define VEHICLE_RUMPO                       (440)
+	#define VEHICLE_RCBANDIT                    (441)
+	#define VEHICLE_ROMERO                      (442)
+	#define VEHICLE_PACKER                      (443)
+	#define VEHICLE_MONSTER                     (444)
+	#define VEHICLE_ADMIRAL                     (445)
+	#define VEHICLE_SQUALO                      (446)
+	#define VEHICLE_SEASPARROW                  (447)
+	#define VEHICLE_PIZZABOY                    (448)
+	#define VEHICLE_TRAM                        (449)
+	#define VEHICLE_ARTICLETRAILER2             (450)
+	#define VEHICLE_TURISMO                     (451)
+	#define VEHICLE_SPEEDER                     (452)
+	#define VEHICLE_REEFER                      (453)
+	#define VEHICLE_TROPIC                      (454)
+	#define VEHICLE_FLATBED                     (455)
+	#define VEHICLE_YANKEE                      (456)
+	#define VEHICLE_CADDY                       (457)
+	#define VEHICLE_SOLAIR                      (458)
+	#define VEHICLE_BERKLEYSRCVAN               (459)
+	#define VEHICLE_SKIMMER                     (460)
+	#define VEHICLE_PCJ600                      (461)
+	#define VEHICLE_FAGGIO                      (462)
+	#define VEHICLE_FREEWAY                     (463)
+	#define VEHICLE_RCBARON                     (464)
+	#define VEHICLE_RCRAIDER                    (465)
+	#define VEHICLE_GLENDALE                    (466)
+	#define VEHICLE_OCEANIC                     (467)
+	#define VEHICLE_SANCHEZ                     (468)
+	#define VEHICLE_SPARROW                     (469)
+	#define VEHICLE_PATRIOT                     (470)
+	#define VEHICLE_QUAD                        (471)
+	#define VEHICLE_COASTGUARD                  (472)
+	#define VEHICLE_DINGHY                      (473)
+	#define VEHICLE_HERMES                      (474)
+	#define VEHICLE_SABRE                       (475)
+	#define VEHICLE_RUSTLER                     (476)
+	#define VEHICLE_ZR350                       (477)
+	#define VEHICLE_WALTON                      (478)
+	#define VEHICLE_REGINA                      (479)
+	#define VEHICLE_COMET                       (480)
+	#define VEHICLE_BMX                         (481)
+	#define VEHICLE_BURRITO                     (482)
+	#define VEHICLE_CAMPER                      (483)
+	#define VEHICLE_MARQUIS                     (484)
+	#define VEHICLE_BAGGAGE                     (485)
+	#define VEHICLE_DOZER                       (486)
+	#define VEHICLE_MAVERICK                    (487)
+	#define VEHICLE_SANNEWSMAVERICK             (488)
+	#define VEHICLE_RANCHER                     (489)
+	#define VEHICLE_FBIRANCHER                  (490)
+	#define VEHICLE_VIRGO                       (491)
+	#define VEHICLE_GREENWOOD                   (492)
+	#define VEHICLE_JETMAX                      (493)
+	#define VEHICLE_HOTRINGRACER                (494)
+	#define VEHICLE_SANDKING                    (495)
+	#define VEHICLE_BLISTACOMPACT               (496)
+	#define VEHICLE_POLICEMAVERICK              (497)
+	#define VEHICLE_BOXVILLE                    (498)
+	#define VEHICLE_BENSON                      (499)
+	#define VEHICLE_MESA                        (500)
+	#define VEHICLE_RCGOBLIN                    (501)
+	#define VEHICLE_HOTRINGRACERA               (502)
+	#define VEHICLE_HOTRINGRACERB               (503)
+	#define VEHICLE_BLOODRINGBANGER             (504)
+	#define VEHICLE_RANCHERLURE                 (505)
+	#define VEHICLE_SUPERGT                     (506)
+	#define VEHICLE_ELEGANT                     (507)
+	#define VEHICLE_JOURNEY                     (508)
+	#define VEHICLE_BIKE                        (509)
+	#define VEHICLE_MOUNTAINBIKE                (510)
+	#define VEHICLE_BEAGLE                      (511)
+	#define VEHICLE_CROPDUST                    (512)
+	#define VEHICLE_STUNTPLANE                  (513)
+	#define VEHICLE_TANKER                      (514)
+	#define VEHICLE_ROADTRAIN                   (515)
+	#define VEHICLE_NEBULA                      (516)
+	#define VEHICLE_MAJESTIC                    (517)
+	#define VEHICLE_BUCCANEER                   (518)
+	#define VEHICLE_SHAMAL                      (519)
+	#define VEHICLE_HYDRA                       (520)
+	#define VEHICLE_FCR900                      (521)
+	#define VEHICLE_NRG500                      (522)
+	#define VEHICLE_HPV1000                     (523)
+	#define VEHICLE_CEMENTTRUCK                 (524)
+	#define VEHICLE_TOWTRUCK                    (525)
+	#define VEHICLE_FORTUNE                     (526)
+	#define VEHICLE_CADRONA                     (527)
+	#define VEHICLE_FBITRUCK                    (528)
+	#define VEHICLE_WILLARD                     (529)
+	#define VEHICLE_FORKLIFT                    (530)
+	#define VEHICLE_TRACTOR                     (531)
+	#define VEHICLE_COMBINE                     (532)
+	#define VEHICLE_FELTZER                     (533)
+	#define VEHICLE_REMINGTON                   (534)
+	#define VEHICLE_SLAMVAN                     (535)
+	#define VEHICLE_BLADE                       (536)
+	#define VEHICLE_FREIGHT                     (537)
+	#define VEHICLE_BROWNSTREAK                 (538)
+	#define VEHICLE_VORTEX                      (539)
+	#define VEHICLE_VINCENT                     (540)
+	#define VEHICLE_BULLET                      (541)
+	#define VEHICLE_CLOVER                      (542)
+	#define VEHICLE_SADLER                      (543)
+	#define VEHICLE_FIRETRUCKLA                 (544)
+	#define VEHICLE_HUSTLER                     (545)
+	#define VEHICLE_INTRUDER                    (546)
+	#define VEHICLE_PRIMO                       (547)
+	#define VEHICLE_CARGOBOB                    (548)
+	#define VEHICLE_TAMPA                       (549)
+	#define VEHICLE_SUNRISE                     (550)
+	#define VEHICLE_MERIT                       (551)
+	#define VEHICLE_UTILITYVAN                  (552)
+	#define VEHICLE_NEVADA                      (553)
+	#define VEHICLE_YOSEMITE                    (554)
+	#define VEHICLE_WINDSOR                     (555)
+	#define VEHICLE_MONSTERA                    (556)
+	#define VEHICLE_MONSTERB                    (557)
+	#define VEHICLE_URANUS                      (558)
+	#define VEHICLE_JESTER                      (559)
+	#define VEHICLE_SULTAN                      (560)
+	#define VEHICLE_STRATUM                     (561)
+	#define VEHICLE_ELEGY                       (562)
+	#define VEHICLE_RAINDANCE                   (563)
+	#define VEHICLE_RCTIGER                     (564)
+	#define VEHICLE_FLASH                       (565)
+	#define VEHICLE_TAHOMA                      (566)
+	#define VEHICLE_SAVANNA                     (567)
+	#define VEHICLE_BANDITO                     (568)
+	#define VEHICLE_FREIGHTFLATTRAILER          (569)
+	#define VEHICLE_STREAKTRAILER               (570)
+	#define VEHICLE_KART                        (571)
+	#define VEHICLE_MOWER                       (572)
+	#define VEHICLE_DUNERIDE                    (573)
+	#define VEHICLE_SWEEPER                     (574)
+	#define VEHICLE_BROADWAY                    (575)
+	#define VEHICLE_TORNADO                     (576)
+	#define VEHICLE_AT400                       (577)
+	#define VEHICLE_DFT30                       (578)
+	#define VEHICLE_HUNTLEY                     (579)
+	#define VEHICLE_STAFFORD                    (580)
+	#define VEHICLE_BF400                       (581)
+	#define VEHICLE_NEWSVAN                     (582)
+	#define VEHICLE_TUG                         (583)
+	#define VEHICLE_PETROLTRAILER               (584)
+	#define VEHICLE_EMPEROR                     (585)
+	#define VEHICLE_WAYFARER                    (586)
+	#define VEHICLE_EUROS                       (587)
+	#define VEHICLE_HOTDOG                      (588)
+	#define VEHICLE_CLUB                        (589)
+	#define VEHICLE_FREIGHTBOXTRAILER           (590)
+	#define VEHICLE_ARTICLETRAILER3             (591)
+	#define VEHICLE_ANDROMADA                   (592)
+	#define VEHICLE_DODO                        (593)
+	#define VEHICLE_RCCAM                       (594)
+	#define VEHICLE_LAUNCH                      (595)
+	#define VEHICLE_POLICECARLSPD               (596)
+	#define VEHICLE_POLICECARSFPD               (597)
+	#define VEHICLE_POLICECARLVPD               (598)
+	#define VEHICLE_POLICERANGER                (599)
+	#define VEHICLE_PICADOR                     (600)
+	#define VEHICLE_SWAT                        (601)
+	#define VEHICLE_ALPHA                       (602)
+	#define VEHICLE_PHOENIX                     (603)
+	#define VEHICLE_GLENDALESHIT                (604)
+	#define VEHICLE_SADLERSHIT                  (605)
+	#define VEHICLE_BAGGAGETRAILERA             (606)
+	#define VEHICLE_BAGGAGETRAILERB             (607)
+	#define VEHICLE_TUGSTAIRSTRAILER            (608)
+	#define VEHICLE_BOXBURG                     (609)
+	#define VEHICLE_FARMTRAILER                 (610)
+	#define VEHICLE_UTILITYTRAILER              (611)
 #endif
 
 /*
@@ -3692,7 +4126,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 10.0, 200.0);
 
 				// Global style 8 (location name).
-				t = FIXES_gsGTStyle[8] = TextDrawCreate(608.000000, 386.500000, FIXES_gsSpace),
+				t = FIXES_gsGTStyle[8] = TextDrawCreate(608.000000, 385.800000, FIXES_gsSpace),
 				TextDrawLetterSize(t, 1.200000, 3.799998),
 				TextDrawAlignment(t, 3),
 				TextDrawColor(t, 0xACCBF1FF),
@@ -3762,11 +4196,11 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 10.0, 200.0);
 
 				// Global style 13 (stunt).
-				t = FIXES_gsGTStyle[13] = TextDrawCreate(380.000000, 341.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.579999, 2.400000),
+				t = FIXES_gsGTStyle[13] = TextDrawCreate(380.000000, 341.150000, FIXES_gsSpace),
+				TextDrawLetterSize(t, 0.579999, 2.420000),
 				TextDrawTextSize(t, 40.000000, 460.000000),
 				TextDrawAlignment(t, 2),
-				TextDrawColor(t, 0xD7D3CCFF),
+				TextDrawColor(t, 0xDDDDDBFF),
 				TextDrawUseBox(t, true),
 				TextDrawBoxColor(t, 0),
 				TextDrawSetShadow(t, 2),
@@ -3897,7 +4331,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 
 				// Global style 8 (playerid, location name).
-				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw(playerid, 608.000000, 386.500000, FIXES_gsSpace),
+				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw(playerid, 608.000000, 385.800000, FIXES_gsSpace),
 				PlayerTextDrawLetterSize(playerid, t, 1.200000, 3.799998),
 				PlayerTextDrawAlignment(playerid, t, 3),
 				PlayerTextDrawColor(playerid, t, 0xACCBF1FF),
@@ -3967,11 +4401,11 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 
 				// Global style 13 (playerid, stunt).
-				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw(playerid, 380.000000, 341.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.579999, 2.400000),
+				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw(playerid, 380.000000, 341.150000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize(playerid, t, 0.579999, 2.420000),
 				PlayerTextDrawTextSize(playerid, t, 40.000000, 460.000000),
 				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, 0xD7D3CCFF),
+				PlayerTextDrawColor(playerid, t, 0xDDDDDBFF),
 				PlayerTextDrawUseBox(playerid, t, true),
 				PlayerTextDrawBoxColor(playerid, t, 0),
 				PlayerTextDrawSetShadow(playerid, t, 2),
@@ -4703,6 +5137,16 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  END:   OnPlayerSpawn
 				// ======================
 
+				// =========================
+				//  BEGIN: GetPlayerWeather
+				// =========================
+				#if FIX_GetPlayerWeather
+					FIXES_SET(PlayerWeather, playerid, FIXES_gsServerWeather);
+				#endif
+				// =========================
+				//  END:   GetPlayerWeather
+				// =========================
+
 				#if !FIXES_Single
 					// No longer their first time.
 					SetPVarInt(playerid, FIXES_pvarNotNewPlayer, 1);
@@ -4743,7 +5187,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  *     GetPlayerMenu
  */
 
-#if FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
+#if FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_OnPlayerEnterVehicle_3 || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
 	public OnPlayerDisconnect(playerid, reason)
 	{
 		new
@@ -4821,6 +5265,19 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		// =============
 		//  END:   Kick
 		// =============
+
+		// ===============================
+		//  BEGIN: OnPlayerEnterVehicle_3
+		// ===============================
+		#if FIX_OnPlayerEnterVehicle_3
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER)
+			{
+				_FIXES_StopPlayerEnterVehicle(playerid);
+			}
+		#endif
+		// ===============================
+		//  END:   OnPlayerEnterVehicle_3
+		// ===============================
 
 		#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 			_FIXES_RemoveInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
@@ -5409,11 +5866,12 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  *     OnVehicleMod
  *     OnPlayerEnterVehicle
  *     OnPlayerEnterVehicle_2
+ *     OnPlayerEnterVehicle_3
  *     PassengerSeating
  *     GogglesSync
  */
 
-#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GogglesSync
+#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerEnterVehicle_3 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GogglesSync
 	public OnPlayerUpdate(playerid)
 	{
 		// =============================
@@ -5428,6 +5886,33 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		// =============================
 		//  END:   OnPlayerEnterVehicle
 		// =============================
+
+		// ===============================
+		//  BEGIN: OnPlayerEnterVehicle_3
+		// ===============================
+		#if FIX_OnPlayerEnterVehicle_3
+			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER)
+			{
+				if (GetTickCount() >= FIXES_gsPlayerVehicleTickCount[playerid] + 4000)
+				{
+					_FIXES_StopPlayerEnterVehicle(playerid);
+				}
+				else
+				{
+					if (1020 <= GetPlayerAnimationIndex(playerid) <= 1021)
+					{
+						FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
+					}
+					else if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER_ANIM)
+					{
+						_FIXES_StopPlayerEnterVehicle(playerid);
+					}
+				}
+			}
+		#endif
+		// ===============================
+		//  END:   OnPlayerEnterVehicle_3
+		// ==============================
 
 		#if !FIXES_Single
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
@@ -5493,16 +5978,12 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  END:   SetPlayerWorldBounds
 		// =============================
 
-		#if FIX_OnPlayerDeath || FIX_PassengerSeating
-			new
-				animation = GetPlayerAnimationIndex(playerid);
-		#endif
-
 		// ======================
 		//  BEGIN: OnPlayerDeath
 		// ======================
 		#if FIX_OnPlayerDeath
-			FIXES_gsLastAnimation[playerid] = animation;
+			new
+				animation = FIXES_gsLastAnimation[playerid] = GetPlayerAnimationIndex(playerid);
 		#endif
 		// ======================
 		//  END:   OnPlayerDeath
@@ -5546,7 +6027,12 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			{
 				if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE)
 				{
-					if (!(1007 <= animation <= 1060) && !(225 <= animation <= 233))
+					#if !FIX_OnPlayerDeath
+						new
+							animation = GetPlayerAnimationIndex(playerid);
+					#endif
+
+					if (_FIXES_NO_RANGE(animation, 1007, 1060 + 1) && _FIXES_NO_RANGE(animation, 225, 233 + 1))
 					{
 						ClearAnimations(playerid, 1);
 						FIXES_gsPSTimer[playerid] = 0;
@@ -5958,10 +6444,11 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  *
  * FIXES:
  *     OnPlayerEnterVehicle_2
+ *     OnPlayerEnterVehicle_3
  *     PassengerSeating
  */
 
-#if FIX_OnPlayerEnterVehicle_2 || FIX_PassengerSeating
+#if FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerEnterVehicle_3 || FIX_PassengerSeating
 	public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	{
 		// ===============================
@@ -5976,6 +6463,25 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#endif
 		// =============================
 		//  END: OnPlayerEnterVehicle_2
+		// =============================
+
+		// ===============================
+		//  BEGIN: OnPlayerEnterVehicle_3
+		// ===============================
+		#if FIX_OnPlayerEnterVehicle_3
+			if (FIXES_gsVehicleIsLocked[vehicleid])
+			{
+				new engine, lights, alarm, doors, bonnet, boot, objective;
+				GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+				SetVehicleParamsEx(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_ON, bonnet, boot, objective);
+
+				FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER;
+				FIXES_gsPlayerVehicleID[playerid] = vehicleid;
+				FIXES_gsPlayerVehicleTickCount[playerid] = GetTickCount();
+			}
+		#endif
+		// =============================
+		//  END: OnPlayerEnterVehicle_3
 		// =============================
 
 		// =============================
@@ -6072,6 +6578,32 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		return
 			FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_BLOCK,
 			0;
+	}
+#endif
+
+/*
+ * _FIXES_StopPlayerEnterVehicle(playerid)
+ *
+ * Block a player from entering a vehicle after the animation for a locked driver door
+ *
+ * FIXES:
+ *     OnPlayerEnterVehicle_3
+ */
+
+#if FIX_OnPlayerEnterVehicle_3
+	static stock _FIXES_StopPlayerEnterVehicle(playerid)
+	{
+		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER;
+		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
+
+		new
+			vehicleid = FIXES_gsPlayerVehicleID[playerid],
+			engine, lights, alarm, doors, bonnet, boot, objective;
+
+		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+		SetVehicleParamsEx(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_OFF, bonnet, boot, objective);
+
+		ClearAnimations(playerid);
 	}
 #endif
 
@@ -7553,6 +8085,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  *
  * FIXES:
  *     CreatePlayerTextDraw
+ *     CreatePlayerTextDraw_2
  */
 
 #if !FIX_const
@@ -7562,18 +8095,20 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
 #endif
 
-#if FIX_CreatePlayerTextDraw
-	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[])
+#if FIX_CreatePlayerTextDraw || FIX_CreatePlayerTextDraw_2
+	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
 	{
+		#if FIX_CreatePlayerTextDraw
 		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
 		{
 			return CreatePlayerTextDraw(playerid, x, y, FIXES_gsSpace);
 		}
-		else
-		{
+		#endif
+		#if FIX_CreatePlayerTextDraw_2
+			_FIXES_rtrim(text);
+		#endif
 			return CreatePlayerTextDraw(playerid, x, y, text);
 		}
-	}
 
 	#if defined _ALS_CreatePlayerTextDraw
 		#undef CreatePlayerTextDraw
@@ -7588,6 +8123,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  *
  * FIXES:
  *     PlayerTextDrawSetString
+ *     PlayerTextDrawSetString_2
  */
 
 #if !FIX_const
@@ -7597,18 +8133,20 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
 #endif
 
-#if FIX_PlayerTextDrawSetString
-	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[])
+#if FIX_PlayerTextDrawSetString || FIX_PlayerTextDrawSetString_2
+	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
 	{
+		#if FIX_PlayerTextDrawSetString
 		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
 		{
 			return PlayerTextDrawSetString(playerid, text, FIXES_gsSpace);
 		}
-		else
-		{
+		#endif
+		#if FIX_PlayerTextDrawSetString_2
+			_FIXES_rtrim(string);
+		#endif
 			return PlayerTextDrawSetString(playerid, text, string);
 		}
-	}
 
 	#if defined _ALS_PlayerTextDrawSetString
 		#undef PlayerTextDrawSetString
@@ -7623,6 +8161,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  *
  * FIXES:
  *     TextDrawCreate
+ *     TextDrawCreate_2
  */
 
 #if !FIX_const
@@ -7632,18 +8171,20 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 #endif
 
-#if FIX_TextDrawCreate
-	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[])
+#if FIX_TextDrawCreate || FIX_TextDrawCreate_2
+	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, text[])
 	{
+		#if FIX_TextDrawCreate
 		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
 		{
 			return TextDrawCreate(x, y, FIXES_gsSpace);
 		}
-		else
-		{
+		#endif
+		#if FIX_TextDrawCreate_2
+			_FIXES_rtrim(text);
+		#endif
 			return TextDrawCreate(x, y, text);
 		}
-	}
 
 	#if defined _ALS_TextDrawCreate
 		#undef TextDrawCreate
@@ -7658,6 +8199,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  *
  * FIXES:
  *     TextDrawSetString
+ *     TextDrawSetString_2
  */
 
 #if !FIX_const
@@ -7667,18 +8209,20 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 #endif
 
-#if FIX_TextDrawSetString
-	stock FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[])
+#if FIX_TextDrawSetString || FIX_TextDrawSetString_2
+	stock FIXES_TextDrawSetString(Text:text, string[])
 	{
+		#if FIX_TextDrawSetString
 		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
 		{
 			return TextDrawSetString(text, FIXES_gsSpace);
 		}
-		else
-		{
+		#endif
+		#if FIX_TextDrawSetString_2
+			_FIXES_rtrim(string);
+		#endif
 			return TextDrawSetString(text, string);
 		}
-	}
 
 	#if defined _ALS_TextDrawSetString
 		#undef TextDrawSetString
@@ -9056,6 +9600,77 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 #endif
 
 /*
+ * FIXES_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective)
+ *
+ * FIXES:
+ *     OnPlayerEnterVehicle_3
+ */
+
+#if defined _ALS_SetVehicleParamsEx
+	#error _ALS_SetVehicleParamsEx defined
+#endif
+native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective) = SetVehicleParamsEx;
+
+#if FIX_OnPlayerEnterVehicle_3
+	stock FIXES_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective)
+	{
+		FIXES_gsVehicleIsLocked[vehicleid] = doors == VEHICLE_PARAMS_ON;
+		return SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+	}
+
+	#define _ALS_SetVehicleParamsEx
+	#define SetVehicleParamsEx( FIXES_SetVehicleParamsEx(
+#endif
+
+/*
+ * FIXES_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective)
+ *
+ * FIXES:
+ *     OnPlayerEnterVehicle_3
+ */
+
+#if defined _ALS_GetVehicleParamsEx
+	#error _ALS_GetVehicleParamsEx defined
+#endif
+native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective) = GetVehicleParamsEx;
+
+#if FIX_OnPlayerEnterVehicle_3
+	stock FIXES_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective)
+	{
+		new 
+			ret = GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+		#if FIXES_Single
+			doors = FIXES_gsVehicleIsLocked[vehicleid] ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
+		#else
+			#if !defined FILTERSCRIPT
+				doors = _FIXES_GetVehicleDoorsEx(vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
+			#else
+				doors = CallRemoteFunction("_FIXES_GetVehicleDoorsEx", "i", vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
+			#endif
+		#endif
+		return ret;
+	}
+
+	#define _ALS_GetVehicleParamsEx
+	#define GetVehicleParamsEx( FIXES_GetVehicleParamsEx(
+#endif
+
+/*
+ * _FIXES_GetVehicleDoorsEx(vehicleid)
+ *
+ * FIXES:
+ *     OnPlayerEnterVehicle_3
+ */
+#if FIX_OnPlayerEnterVehicle_3 && !FIXES_Single && !defined FILTERSCRIPT
+	forward _FIXES_GetVehicleDoorsEx(vehicleid);
+	
+	public _FIXES_GetVehicleDoorsEx(vehicleid)
+	{
+		return FIXES_gsVehicleIsLocked[vehicleid];
+	}
+#endif
+
+/*
  * FIXES_random(max)
  *
  * FIXES:
@@ -9379,11 +9994,13 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 #if FIX_strcmp
 	stock FIXES_strcmp(const string1[], const string2[], bool:ignorecase=false, length=cellmax)
 	{
+		if (length == 0)
+			return 0;
 		if (string1[0])
 		{
 			if (string2[0])
 			{
-				return strcmp(string1, string2, ignorecase, length);
+				return clamp(strcmp(string1, string2, ignorecase, length), -1, 1);
 			}
 			else
 			{
@@ -9586,10 +10203,62 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 	{
 		new
-			ret = SetPlayerPos(playerid, x, y, z),
-			index = GetPlayerAnimationIndex(playerid);
-		switch (index)
+			ret = SetPlayerPos(playerid, x, y, z);
+		if (ret)
 		{
+			_FIXES_RemoveFlyingParachute(playerid);
+		}
+		return ret;
+	}
+
+	#define _ALS_SetPlayerPos
+	#define SetPlayerPos( FIXES_SetPlayerPos(
+#endif
+
+/*
+ * FIXES_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z)
+ *
+ * FIXES:
+ *     SetPlayerPos
+ */
+
+#if defined _ALS_SetPlayerPosFindZ
+	#error _ALS_SetPlayerPosFindZ defined
+#endif
+native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
+
+#if FIX_SetPlayerPos
+	stock FIXES_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z)
+	{
+		new
+			ret = SetPlayerPosFindZ(playerid, x, y, z);
+		if (ret)
+		{
+			_FIXES_RemoveFlyingParachute(playerid);
+		}
+		return ret;
+	}
+
+	#define _ALS_SetPlayerPosFindZ
+	#define SetPlayerPosFindZ( FIXES_SetPlayerPosFindZ(
+#endif
+
+/*
+ * _FIXES_RemoveFlyingParachute(playerid)
+ *
+ * FIXES:
+ *     SetPlayerPos
+ */
+
+#if FIX_SetPlayerPos
+	static stock _FIXES_RemoveFlyingParachute(playerid)
+	{
+		#if FIX_OnPlayerDeath
+			switch (FIXES_gsLastAnimation[playerid])
+		#else
+			switch (GetPlayerAnimationIndex(playerid))
+		#endif
+			{
 			case 958, 959, 960, 961, 962, 1134:
 			{
 				new
@@ -9607,13 +10276,8 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 				}
 			}
 		}
-		return ret;
 	}
-
-	#define _ALS_SetPlayerPos
-	#define SetPlayerPos( FIXES_SetPlayerPos(
 #endif
-
 /*
  * FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
  *
@@ -9643,6 +10307,281 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	#define _ALS_SetPlayerAmmo
 	#define SetPlayerAmmo( FIXES_SetPlayerAmmo(
 #endif
+
+/*
+ * FIXES_GetPlayerWeather(playerid)
+ *
+ * FIXES:
+ *     GetPlayerWeather
+ */
+
+#if defined _ALS_GetPlayerWeather
+	#error _ALS_GetPlayerWeather defined
+#endif
+
+#if FIX_GetPlayerWeather
+	stock FIXES_GetPlayerWeather(playerid)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS) && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CLOCK_ENABLED))
+		{
+			return FIXES_GET(PlayerWeather, playerid);
+		}
+		return -1;
+	}
+
+	#define _ALS_GetPlayerWeather
+	#define GetPlayerWeather( FIXES_GetPlayerWeather(
+#endif
+
+/*
+ * FIXES_SetPlayerWeather(playerid)
+ *
+ * FIXES:
+ *     GetPlayerWeather
+ */
+
+#if !FIX_const
+	#if defined _ALS_SetPlayerWeather
+		#error _ALS_SetPlayerWeather defined
+	#endif
+	native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
+#endif
+
+#if FIX_GetPlayerWeather
+	stock FIXES_SetPlayerWeather(playerid, weather)
+	{
+		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		{
+			FIXES_SET(PlayerWeather, playerid, weather);
+			return SetPlayerWeather(playerid, weather);
+		}
+		return 0;
+	}
+
+	#if defined _ALS_SetPlayerWeather
+		#undef SetPlayerWeather
+	#else
+		#define _ALS_SetPlayerWeather
+	#endif
+	#define SetPlayerWeather( FIXES_SetPlayerWeather(
+#endif
+
+/*
+ * FIXES_TogglePlayerClock(playerid)
+ *
+ * FIXES:
+ *     GetPlayerWeather
+ */
+
+#if !FIX_const
+	#if defined _ALS_TogglePlayerClock
+		#error _ALS_TogglePlayerClock defined
+	#endif
+	native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
+#endif
+
+#if FIX_GetPlayerWeather
+	#if FIXES_Single
+		stock FIXES_TogglePlayerClock(playerid, toggle)
+		{
+			if (TogglePlayerClock(playerid, toggle))
+			{
+				if (toggle)
+				{
+					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CLOCK_ENABLED;
+				}
+				else
+				{
+					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_CLOCK_ENABLED;
+				}
+				return 1;
+			}
+			return 0;
+		}
+	#else
+		forward _FIXES_TogglePlayerClock(playerid, toggle);
+
+		stock FIXES_TogglePlayerClock(playerid, toggle)
+		{
+			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			{
+				return
+					CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
+					getproperty(5, FIXES_gscReturnProperty);
+			}
+			return 0;
+		}
+
+		public _FIXES_TogglePlayerClock(playerid, toggle)
+		{
+			_FIXES_IS_IN_CHARGE()
+			{
+				if (toggle)
+				{
+					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CLOCK_ENABLED;
+				}
+				else
+				{
+					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_CLOCK_ENABLED;
+				}
+				setproperty(5, FIXES_gscReturnProperty, TogglePlayerClock(playerid, toggle));
+			}
+		}
+	#endif
+
+	#if defined _ALS_TogglePlayerClock
+		#undef TogglePlayerClock
+	#else
+		#define _ALS_TogglePlayerClock
+	#endif
+	#define TogglePlayerClock( FIXES_TogglePlayerClock(
+#endif
+
+/*
+ * FIXES_GetWeather(playerid)
+ *
+ * FIXES:
+ *     GetWeather
+ */
+
+#if defined _ALS_GetWeather
+	#error _ALS_GetWeather defined
+#endif
+
+#if FIX_GetWeather
+	#if FIXES_Single
+		stock FIXES_GetWeather()
+		{
+			return FIXES_gsServerWeather;
+		}
+	#else
+		forward _FIXES_GetWeather();
+
+		stock FIXES_GetWeather()
+		{
+			return
+				CallRemoteFunction(FIXES_gscGetWeather, FIXES_gscSpec@),
+				getproperty(5, FIXES_gscReturnProperty);
+		}
+
+		public _FIXES_GetWeather()
+		{
+			_FIXES_IS_IN_CHARGE()
+			{
+				setproperty(5, FIXES_gscReturnProperty, FIXES_gsServerWeather);
+			}
+		}
+	#endif
+
+	#define _ALS_GetWeather
+	#define GetWeather( FIXES_GetWeather(
+#endif
+
+/*
+ * FIXES_SetWeather(playerid)
+ *
+ * FIXES:
+ *     GetPlayerWeather
+ */
+
+#if !FIX_const
+	#if defined _ALS_SetWeather
+		#error _ALS_SetWeather defined
+	#endif
+	native BAD_SetWeather(weather) = SetWeather;
+#endif
+
+#if FIX_GetWeather
+	stock FIXES_SetWeather(weather)
+	{
+		FIXES_gsServerWeather = weather;
+		#if FIX_GetPlayerWeather
+			_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
+			{
+				FIXES_SET(PlayerWeather, playerid, weather);
+			}
+		#endif
+		return SetWeather(weather);
+	}
+
+	#if defined _ALS_SetWeather
+		#undef SetWeather
+	#else
+		#define _ALS_SetWeather
+	#endif
+	#define SetWeather( FIXES_SetWeather(
+#endif
+
+/*
+ * FIXES_SetWorldTime(playerid)
+ *
+ * FIXES:
+ *     GetWorldTime
+ */
+
+#if !FIX_const
+	#if defined _ALS_SetWorldTime
+		#error _ALS_SetWorldTime defined
+	#endif
+	native BAD_SetWorldTime(hour) = SetWorldTime;
+#endif
+
+#if FIX_GetWorldTime
+	stock FIXES_SetWorldTime(hour)
+	{
+		FIXES_gsWorldTime = hour;
+		return SetWorldTime(hour);
+	}
+
+	#if defined _ALS_SetWorldTime
+		#undef SetWorldTime
+	#else
+		#define _ALS_SetWorldTime
+	#endif
+	#define SetWorldTime( FIXES_SetWorldTime(
+#endif
+
+/*
+ * FIXES_GetWorldTime(playerid)
+ *
+ * FIXES:
+ *     GetWorldTime
+ */
+
+#if defined _ALS_GetWorldTime
+	#error _ALS_GetWorldTime defined
+#endif
+
+#if FIX_GetWorldTime
+	stock FIXES_GetWorldTime()
+	{
+		return FIXES_gsWorldTime;
+	}
+
+	#define _ALS_GetWorldTime
+	#define GetWorldTime( FIXES_GetWorldTime(
+#endif
+
+/*
+ * _FIXES_rtrim(string[])
+ *
+ * Removes whitespace from the right side of a string
+ */
+
+static stock _FIXES_rtrim(string[])
+{
+	new
+		length = strlen(string),
+		i = length;
+	do
+	{
+		i--;
+	} while (i >= 0 && string[i] == ' ');
+	if (i < length - 1)
+	{
+		string[i + 1] = '\0';
+	}
+}
 
 /*
  * _FIXES_AddInternal(array[], value, size)
