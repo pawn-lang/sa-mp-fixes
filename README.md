@@ -65,6 +65,7 @@ TextDrawSetString | Crashes on a blank string and size greater than 1024. | TomT
 AllowInteriorWeapons | Does nothing. | KoczkaHUN |  |
 OnPlayerEnterVehicle | Crashes other players when people enter an invalid seat. | RyDeR`/[Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1410296) |
 OnPlayerEnterVehicle_2 | Crashes the server when hacks enter an invalid vehicle. | im/[Y_Less](https://github.com/Y-Less/) |  |
+OnPlayerEnterVehicle_3 | No player animation when trying to enter the driver door of a locked vehicle. | [ziggi](https://github.com/ziggi)/[rt-2](https://github.com/rt-2) | [Link](http://forum.sa-mp.com/showthread.php?t=560019) |
 AllowTeleport | 0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in favour of "OnPlayerClickMap". Some scripts used the old code and. | [Y_Less](https://github.com/Y-Less/) |  |
 SetPlayerSpecialAction | Removing jetpacks from players by setting their special action to 0 causes the sound to stay until death. | MP2 |  |
 OnDialogResponse | Cheaters can spoof the dialogid they are using to respond to ones they can't actually see. | [Y_Less](https://github.com/Y-Less/) |  | 0.3e RC6
@@ -137,6 +138,7 @@ tolower | Not working on Linux for symbols with code 128 and above. | [ziggi](ht
 GetPlayerPoolSize | Returns "0" even if there are no players on the server. | [Bios-Marcel](https://github.com/Bios-Marcel) |  |
 SetPlayerPos | Using this function on skydiving players kills them. | [Freaksken](https://github.com/WoutProvost) |  |
 GetPlayerAmmo | Returns erroneous values over 32767 and under -32768 due to overflow. | [Freaksken](https://github.com/WoutProvost) |  |
+VEHICLES | The vehicle models IDs are not defined by default. | [stuntman](https://github.com/IstuntmanI) |  |
 
 # Options
 
