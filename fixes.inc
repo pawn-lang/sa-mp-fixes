@@ -2017,6 +2017,15 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /*
+ * isnull
+ *
+ * Pretty standard.
+ */
+
+#define isnull(%1) \
+	((%1[0] == 0) || (%1[0] == 1 && %1[1] == 0))
+
+/*
  * E_FIXES_WORLDBOUND_DATA
  *
  * Store data for each player on their worldbound data.
@@ -2477,6 +2486,18 @@ static stock
 #if FIX_ApplyActorAnimation_2
 	FIXES_gsActorAnimLibs[MAX_ACTORS][_FIXES_CEILDIV(135, cellbits)],
 #endif
+	/*
+	 * FIXES_gsTrimPos
+	 *
+	 * The position of the character right-trimmed from a "const" string.
+	 */
+	FIXES_gsTrimPos,
+	/*
+	 * FIXES_gsTrimChr
+	 *
+	 * The character right-trimmed from a "const" string.
+	 */
+	FIXES_gsTrimChr,
 	/*
 	 * FIXES_pvarNotNewPlayer[]
 	 *
@@ -7882,7 +7903,7 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 		if (_FIXES_IN_RANGE(style, 0, FIXES_GT_STYLE_COUNT))
 		{
 			// FINALLY come up with a better IsNull check!
-			if (string[string[0] == '\1'] == '\0')
+			if (isnull(string))
 			{
 				#if FIXES_Single
 					return _FIXES_HideGameTextTimer(INVALID_PLAYER_ID, style);
@@ -7924,7 +7945,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	{
 		if (_FIXES_IN_RANGE(style, 0, FIXES_GT_STYLE_COUNT) && _FIXES_IS_PLAYER_CONNECTED(playerid))
 		{
-			if ((string[0] <= '\0') || (string[0] == '\1' && string[1] == '\0'))
+			if (isnull(string))
 			{
 				#if FIXES_Single
 					return _FIXES_HideGameTextTimer(playerid, style);
@@ -8021,19 +8042,32 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_CreatePlayerTextDraw || FIX_CreatePlayerTextDraw_2
-	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
+
+	#if FIX_CreatePlayerTextDraw
+		#define _FIXES_PASS_STRING (isnull(text) ? FIXES_gsSpace : text)
+	#else
+		#define _FIXES_PASS_STRING (text)
+	#endif
+	#if FIX_CreatePlayerTextDraw_2
+		#define _FIXES_RETURN_STRING new PlayerText:ret = 
+	#else
+		#define _FIXES_RETURN_STRING return
+	#endif
+
+	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[])
 	{
-		#if FIX_CreatePlayerTextDraw
-			if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
-			{
-				return CreatePlayerTextDraw(playerid, x, y, FIXES_gsSpace);
-			}
-		#endif
 		#if FIX_CreatePlayerTextDraw_2
 			_FIXES_rtrim(text);
 		#endif
-		return CreatePlayerTextDraw(playerid, x, y, text);
+			_FIXES_RETURN_STRING CreatePlayerTextDraw(playerid, x, y, _FIXES_PASS_STRING);
+		#if FIX_CreatePlayerTextDraw_2
+			_FIXES_untrim(text);
+			return ret;
+		#endif
 	}
+
+	#undef _FIXES_PASS_STRING
+	#undef _FIXES_RETURN_STRING
 
 	#if defined _ALS_CreatePlayerTextDraw
 		#undef CreatePlayerTextDraw
@@ -8059,19 +8093,32 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_PlayerTextDrawSetString || FIX_PlayerTextDrawSetString_2
-	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
+
+	#if FIX_PlayerTextDrawSetString
+		#define _FIXES_PASS_STRING (isnull(string) ? FIXES_gsSpace : string)
+	#else
+		#define _FIXES_PASS_STRING (string)
+	#endif
+	#if FIX_PlayerTextDrawSetString_2
+		#define _FIXES_RETURN_STRING new ret = 
+	#else
+		#define _FIXES_RETURN_STRING return
+	#endif
+
+	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[])
 	{
-		#if FIX_PlayerTextDrawSetString
-			if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
-			{
-				return PlayerTextDrawSetString(playerid, text, FIXES_gsSpace);
-			}
-		#endif
 		#if FIX_PlayerTextDrawSetString_2
 			_FIXES_rtrim(string);
 		#endif
-		return PlayerTextDrawSetString(playerid, text, string);
+			_FIXES_RETURN_STRING PlayerTextDrawSetString(playerid, text, _FIXES_PASS_STRING);
+		#if FIX_PlayerTextDrawSetString_2
+			_FIXES_untrim(string);
+			return ret;
+		#endif
 	}
+
+	#undef _FIXES_PASS_STRING
+	#undef _FIXES_RETURN_STRING
 
 	#if defined _ALS_PlayerTextDrawSetString
 		#undef PlayerTextDrawSetString
@@ -8097,19 +8144,32 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_TextDrawCreate || FIX_TextDrawCreate_2
-	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, text[])
+
+	#if FIX_TextDrawCreate
+		#define _FIXES_PASS_STRING (isnull(text) ? FIXES_gsSpace : text)
+	#else
+		#define _FIXES_PASS_STRING (text)
+	#endif
+	#if FIX_TextDrawCreate_2
+		#define _FIXES_RETURN_STRING new Text:ret = 
+	#else
+		#define _FIXES_RETURN_STRING return
+	#endif
+
+	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[])
 	{
-		#if FIX_TextDrawCreate
-			if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
-			{
-				return TextDrawCreate(x, y, FIXES_gsSpace);
-			}
-		#endif
 		#if FIX_TextDrawCreate_2
 			_FIXES_rtrim(text);
 		#endif
-		return TextDrawCreate(x, y, text);
+			_FIXES_RETURN_STRING TextDrawCreate(x, y, _FIXES_PASS_STRING);
+		#if FIX_TextDrawCreate_2
+			_FIXES_untrim(text);
+			return ret;
+		#endif
 	}
+
+	#undef _FIXES_PASS_STRING
+	#undef _FIXES_RETURN_STRING
 
 	#if defined _ALS_TextDrawCreate
 		#undef TextDrawCreate
@@ -8135,19 +8195,32 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_TextDrawSetString || FIX_TextDrawSetString_2
-	stock FIXES_TextDrawSetString(Text:text, string[])
+
+	#if FIX_TextDrawSetString
+		#define _FIXES_PASS_STRING (isnull(string) ? FIXES_gsSpace : string)
+	#else
+		#define _FIXES_PASS_STRING (string)
+	#endif
+	#if FIX_TextDrawSetString_2
+		#define _FIXES_RETURN_STRING new ret = 
+	#else
+		#define _FIXES_RETURN_STRING return
+	#endif
+
+	stock FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[])
 	{
-		#if FIX_TextDrawSetString
-			if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
-			{
-				return TextDrawSetString(text, FIXES_gsSpace);
-			}
-		#endif
 		#if FIX_TextDrawSetString_2
 			_FIXES_rtrim(string);
 		#endif
-		return TextDrawSetString(text, string);
+			_FIXES_RETURN_STRING TextDrawSetString(text, _FIXES_PASS_STRING);
+		#if FIX_TextDrawSetString_2
+			_FIXES_untrim(string);
+			return ret;
+		#endif
 	}
+
+	#undef _FIXES_PASS_STRING
+	#undef _FIXES_RETURN_STRING
 
 	#if defined _ALS_TextDrawSetString
 		#undef TextDrawSetString
@@ -10265,12 +10338,10 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
  *     GetPlayerWeather
  */
 
-#if !FIX_const
-	#if defined _ALS_SetPlayerWeather
-		#error _ALS_SetPlayerWeather defined
-	#endif
-	native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
+#if defined _ALS_SetPlayerWeather
+	#error _ALS_SetPlayerWeather defined
 #endif
+native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 
 #if FIX_GetPlayerWeather
 	stock FIXES_SetPlayerWeather(playerid, weather)
@@ -10298,12 +10369,10 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
  *     GetPlayerWeather
  */
 
-#if !FIX_const
-	#if defined _ALS_TogglePlayerClock
-		#error _ALS_TogglePlayerClock defined
-	#endif
-	native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
+#if defined _ALS_TogglePlayerClock
+	#error _ALS_TogglePlayerClock defined
 #endif
+native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 
 #if FIX_GetPlayerWeather
 	#if FIXES_Single
@@ -10409,12 +10478,10 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
  *     GetPlayerWeather
  */
 
-#if !FIX_const
-	#if defined _ALS_SetWeather
-		#error _ALS_SetWeather defined
-	#endif
-	native BAD_SetWeather(weather) = SetWeather;
+#if defined _ALS_SetWeather
+	#error _ALS_SetWeather defined
 #endif
+native BAD_SetWeather(weather) = SetWeather;
 
 #if FIX_GetWeather
 	stock FIXES_SetWeather(weather)
@@ -10444,12 +10511,10 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
  *     GetWorldTime
  */
 
-#if !FIX_const
-	#if defined _ALS_SetWorldTime
-		#error _ALS_SetWorldTime defined
-	#endif
-	native BAD_SetWorldTime(hour) = SetWorldTime;
+#if defined _ALS_SetWorldTime
+	#error _ALS_SetWorldTime defined
 #endif
+native BAD_SetWorldTime(hour) = SetWorldTime;
 
 #if FIX_GetWorldTime
 	stock FIXES_SetWorldTime(hour)
@@ -10488,24 +10553,50 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #endif
 
 /*
- * _FIXES_rtrim(string[])
+ * _FIXES_ConstMod(const &target, chr)
  *
- * Removes whitespace from the right side of a string
+ * Modify a constant reference.
  */
 
-static stock _FIXES_rtrim(string[])
+static stock _FIXES_ConstMod(const &target, chr)
+{
+	#pragma unused target, chr
+	#emit LOAD.S.pri chr
+	#emit SREF.S.pri target
+}
+
+/*
+ * _FIXES_rtrim(string[])
+ *
+ * Removes whitespace from the right side of a string.  Modifies `const` strings
+ * to make it appear that nothing changes, so needs some tricky playing to make
+ * it work.
+ */
+
+static stock _FIXES_rtrim(const string[])
 {
 	new
-		length = strlen(string),
-		i = length;
-	do
+		length = strlen(string);
+	while (length--)
 	{
-		i--;
-	} while (i >= 0 && string[i] == ' ');
-	if (i < length - 1)
-	{
-		string[i + 1] = '\0';
+		if (string[length] > ' ')
+			break;
 	}
+	FIXES_gsTrimPos = length + 1,
+	FIXES_gsTrimChr = string[FIXES_gsTrimPos],
+	_FIXES_ConstMod(string[FIXES_gsTrimPos], '\0');
+}
+
+/*
+ * _FIXES_untrim(string[])
+ *
+ * Puts whitespace back on the right side of a string.  Makes certain functions
+ * appear `const` because the string ends up the same as it started.
+ */
+
+static stock _FIXES_untrim(const string[])
+{
+	_FIXES_ConstMod(string[FIXES_gsTrimPos], FIXES_gsTrimChr);
 }
 
 /*
