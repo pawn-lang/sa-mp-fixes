@@ -783,6 +783,13 @@
  * SEE:      "FIXES_GetWorldTime".
  * AUTHOR:   ziggi (https://github.com/ziggi/)
  *
+ * FIX:      tabsize
+ * PROBLEM:  Some people still use `tabsize 0`.
+ * SOLUTION: Break the pragma.
+ * SEE:      "_DUMMY_do_not_use_tabsize_0".
+ * AUTHOR:   Y_Less (https://github.com/Y-Less)
+ * POST:     http://forum.sa-mp.com/showpost.php?p=3929000
+ *
  * ==============
  *  STYLE RULES:
  * ==============
@@ -1813,46 +1820,114 @@
 
 #if !defined FIX_VEHICLES
 	#if defined VEHICLE_INFERNUS
-		#define FIX_VEHICLES            (FIXES_EnableDeprecated)
+		#define FIX_VEHICLES             (FIXES_EnableDeprecated)
 	#else
-		#define FIX_VEHICLES            (1)
+		#define FIX_VEHICLES             (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_VEHICLES)
 	#undef FIX_VEHICLES
-	#define FIX_VEHICLES                (2)
+	#define FIX_VEHICLES                 (2)
 #endif
 
 #if !defined FIX_GetPlayerWeather
 	#if defined GetPlayerWeather
-		#define FIX_GetPlayerWeather      (FIXES_EnableDeprecated)
+		#define FIX_GetPlayerWeather     (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerWeather      (FIX_Natives)
+		#define FIX_GetPlayerWeather     (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeather)
 	#undef FIX_GetPlayerWeather
-	#define FIX_GetPlayerWeather          (2)
+	#define FIX_GetPlayerWeather         (2)
 #endif
 
 #if !defined FIX_GetWeather
 	#if defined GetWeather
-		#define FIX_GetWeather      (FIXES_EnableDeprecated)
+		#define FIX_GetWeather           (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWeather      (FIX_Natives)
+		#define FIX_GetWeather           (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeather)
 	#undef FIX_GetWeather
-	#define FIX_GetWeather          (2)
+	#define FIX_GetWeather               (2)
 #endif
 
 #if !defined FIX_GetWorldTime
 	#if defined GetWorldTime
-		#define FIX_GetWorldTime      (FIXES_EnableDeprecated)
+		#define FIX_GetWorldTime         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWorldTime      (FIX_Natives)
+		#define FIX_GetWorldTime         (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWorldTime)
 	#undef FIX_GetWorldTime
-	#define FIX_GetWorldTime          (2)
+	#define FIX_GetWorldTime             (2)
+#endif
+
+#if !defined FIX_tabsize
+	#define FIX_tabsize                  (1)
+#elseif _FIXES_IS_UNSET(FIX_tabsize)
+	#undef FIX_tabsize
+	#define FIX_tabsize                  (2)
+#endif
+
+/*
+ * tabsize
+ *
+ * Breaks `#pragma tabsize 0` in such a way that the compiler gives the
+ * following error:
+ *
+ *     error 017: undefined symbol "do_not_use_tabsize_0"
+ *
+ * There is ZERO reason to use it.  There are ocassionally times when an
+ * indentation reset is required, usually because of macros containing code that
+ * would otherwise appear correct.  For example:
+ *
+ *     #define TEST_MACRO
+ *     
+ *     main()
+ *     {
+ *         new a = 42;
+ *         if (a)
+ *         {
+ *             printf("true");
+ *         }
+ *         #if defined TEST_MACRO
+ *             else
+ *             {
+ *                 printf("false");
+ *             }
+ *             a = 42;
+ *         #endif
+ *         printf("a = %d", a);
+ *     }
+ *
+ * Even that can be fixed without `tabsize 0`, simply by restating the correct
+ * indentation level, which resets the internal depth tracking:
+ *
+ *     #define TEST_MACRO
+ *     
+ *     main()
+ *     {
+ *         new a = 42;
+ *         if (a)
+ *         {
+ *             printf("true");
+ *         }
+ *         #if defined TEST_MACRO
+ *             else
+ *             {
+ *                 printf("false");
+ *             }
+ *             #pragma tabsize 4
+ *             a = 42;
+ *         #endif
+ *         printf("a = %d", a);
+ *     }
+ *
+ * There is just no excuse.
+ */
+
+#if FIX_tabsize
+	#define tabsize%00%0\10;%0 _DUMMY_do_not_use_tabsize_0
 #endif
 
 /*
@@ -8024,16 +8099,16 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
 	{
 		#if FIX_CreatePlayerTextDraw
-			if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
-			{
-				return CreatePlayerTextDraw(playerid, x, y, FIXES_gsSpace);
-			}
+		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
+		{
+			return CreatePlayerTextDraw(playerid, x, y, FIXES_gsSpace);
+		}
 		#endif
 		#if FIX_CreatePlayerTextDraw_2
 			_FIXES_rtrim(text);
 		#endif
-		return CreatePlayerTextDraw(playerid, x, y, text);
-	}
+			return CreatePlayerTextDraw(playerid, x, y, text);
+		}
 
 	#if defined _ALS_CreatePlayerTextDraw
 		#undef CreatePlayerTextDraw
@@ -8062,16 +8137,16 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
 	{
 		#if FIX_PlayerTextDrawSetString
-			if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
-			{
-				return PlayerTextDrawSetString(playerid, text, FIXES_gsSpace);
-			}
+		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
+		{
+			return PlayerTextDrawSetString(playerid, text, FIXES_gsSpace);
+		}
 		#endif
 		#if FIX_PlayerTextDrawSetString_2
 			_FIXES_rtrim(string);
 		#endif
-		return PlayerTextDrawSetString(playerid, text, string);
-	}
+			return PlayerTextDrawSetString(playerid, text, string);
+		}
 
 	#if defined _ALS_PlayerTextDrawSetString
 		#undef PlayerTextDrawSetString
@@ -8100,16 +8175,16 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, text[])
 	{
 		#if FIX_TextDrawCreate
-			if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
-			{
-				return TextDrawCreate(x, y, FIXES_gsSpace);
-			}
+		if ((text[0] == '\0') || (text[0] == '\1' && text[1] == '\0'))
+		{
+			return TextDrawCreate(x, y, FIXES_gsSpace);
+		}
 		#endif
 		#if FIX_TextDrawCreate_2
 			_FIXES_rtrim(text);
 		#endif
-		return TextDrawCreate(x, y, text);
-	}
+			return TextDrawCreate(x, y, text);
+		}
 
 	#if defined _ALS_TextDrawCreate
 		#undef TextDrawCreate
@@ -8138,16 +8213,16 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	stock FIXES_TextDrawSetString(Text:text, string[])
 	{
 		#if FIX_TextDrawSetString
-			if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
-			{
-				return TextDrawSetString(text, FIXES_gsSpace);
-			}
+		if ((string[0] == '\0') || (string[0] == '\1' && string[1] == '\0'))
+		{
+			return TextDrawSetString(text, FIXES_gsSpace);
+		}
 		#endif
 		#if FIX_TextDrawSetString_2
 			_FIXES_rtrim(string);
 		#endif
-		return TextDrawSetString(text, string);
-	}
+			return TextDrawSetString(text, string);
+		}
 
 	#if defined _ALS_TextDrawSetString
 		#undef TextDrawSetString
@@ -10184,23 +10259,23 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 			switch (GetPlayerAnimationIndex(playerid))
 		#endif
 			{
-				case 958, 959, 960, 961, 962, 1134:
+			case 958, 959, 960, 961, 962, 1134:
+			{
+				new
+					slot,
+					weapons[_FIXES_WEAPON_SLOTS][2];
+				for (slot = 0; slot < sizeof(weapons); slot++)
 				{
-					new
-						slot,
-						weapons[_FIXES_WEAPON_SLOTS][2];
-					for (slot = 0; slot < sizeof(weapons); slot++)
-					{
-						GetPlayerWeaponData(playerid, slot, weapons[slot][0], weapons[slot][1]);
-					}
-					weapons[11][0] = 0;
-					ResetPlayerWeapons(playerid);
-					for (slot = 0; slot < sizeof(weapons); slot++)
-					{
-						GivePlayerWeapon(playerid, weapons[slot][0], weapons[slot][1]);
-					}
+					GetPlayerWeaponData(playerid, slot, weapons[slot][0], weapons[slot][1]);
+				}
+				weapons[11][0] = 0;
+				ResetPlayerWeapons(playerid);
+				for (slot = 0; slot < sizeof(weapons); slot++)
+				{
+					GivePlayerWeapon(playerid, weapons[slot][0], weapons[slot][1]);
 				}
 			}
+		}
 	}
 #endif
 /*
