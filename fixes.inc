@@ -2225,7 +2225,7 @@ enum e_FIXES_SETTINGS (<<= 1)
 /*
  * _FIXES_IN_RANGE
  *
- * Checks if the first parameter is between the other two: %1 &lt;= %0 &lt;%2 (but
+ * Checks if the first parameter is between the other two: %1 <= %0 <%2 (but
  * faster).
  */
 #define _FIXES_IN_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) < ((%2) - ((%1) + cellmin)))
@@ -2233,7 +2233,7 @@ enum e_FIXES_SETTINGS (<<= 1)
 /*
  * _FIXES_NO_RANGE
  *
- * Checks if the first parameter is not between the other two: !(%1 &lt;= %0 &lt; %2)
+ * Checks if the first parameter is not between the other two: !(%1 <= %0 < %2)
  * (but faster).
  */
 #define _FIXES_NO_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) >= ((%2) - ((%1) + cellmin)))
