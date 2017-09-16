@@ -101,7 +101,7 @@ in the output code.
  *         Call "SetPlayerColor" in "OnPlayerConnect".
  *     </solution>
  *     <see>OnPlayerConnect</see>
- *     <author    name="KoczkaHUN" />
+ *     <author    >KoczkaHUN</author>
  * </fix>
  *     
  * <fix name="FILTERSCRIPT">
@@ -113,7 +113,7 @@ in the output code.
  *         Provide an "IS_FILTERSCRIPT" variable (note the naming to
  *         match the original macro).
  *     </solution>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <see>OnFilterScriptInit</see>
  *     <see>OnGameModeInit</see>
  * </fix>
@@ -126,7 +126,7 @@ in the output code.
  *         Remove the from the vehicle.
  *     </solution>
  *     <see>FIXES_SpawnPlayer</see>     
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />  
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>  
  * </fix>
  *     
  * <fix name="SetPlayerName">
@@ -140,9 +140,9 @@ in the output code.
  *     </solution>
  *     <see>OnPlayerConnect</see>
  *     <see>FIXES_SetPlayerName</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *     
  * <fix name="GetPlayerSkin">
@@ -157,7 +157,7 @@ in the output code.
  *     <see>OnPlayerSpawn</see>
  *     <see>FIXES_GetPlayerSkin</see>
  *     <see>FIXES_SetPlayerSkin</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="GetWeaponName" fixed="0.3.7">
@@ -169,7 +169,7 @@ in the output code.
  *         Goggles</c>, and <c>Night vision Goggles</c>).
  *     </solution>
  *     <see>FIXES_GetWeaponName</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="SetPlayerWorldBounds">
@@ -182,7 +182,7 @@ in the output code.
  *     </solution>
  *     <see>OnPlayerUpdate</see>
  *     <see>FIXES_SetPlayerWorldBounds</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="TogglePlayerControllable">
@@ -194,7 +194,7 @@ in the output code.
  *     </solution>
  *     <see>FIXES_TogglePlayerControllable</see>
  *     <see>OnPlayerUpdate</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=876854" />
  * </fix>
  *     
@@ -208,7 +208,7 @@ in the output code.
  *     <see>OnPlayerStateChange</see>
  *     <see>FIXES_GivePlayerWeapon</see>
  *     <see>FIXES_SetPlayerArmedWeapon</see>
- *     <author    name="funky1234" />
+ *     <author    >funky1234</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=965644" />
  * </fix>
  *     
@@ -221,7 +221,7 @@ in the output code.
  *         Call "DisablePlayerCheckpoint" when they connect.
  *     </solution>
  *     <see>OnPlayerConnect</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="IsPlayerInRaceCheckpoint">
@@ -233,7 +233,7 @@ in the output code.
  *         Call "DisablePlayerRaceCheckpoint" when they connect.
  *     </solution>
  *     <see>OnPlayerConnect</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="GetPlayerWeapon">
@@ -249,8 +249,8 @@ in the output code.
  *     <see>FIXES_GetPlayerWeapon</see>
  *     <see>FIXES_GivePlayerWeapon</see>
  *     <see>FIXES_ResetPlayerWeapons</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
- *     <author    name="ronixtey" href="https://github.com/ronixtey/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/ronixtey/" >ronixtey</author>
  * </fix>
  *     
  * <fix name="PutPlayerInVehicle">
@@ -263,8 +263,8 @@ in the output code.
  *     </solution>
  *     <see>OnPlayerStateChange</see>
  *     <see>FIXES_PutPlayerInVehicle</see>
- *     <author    name="leong124" />
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    >leong124</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1265965" />
  * </fix>
  *     
@@ -275,7 +275,7 @@ in the output code.
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="SetPlayerCheckpoint">
@@ -287,7 +287,7 @@ in the output code.
  *         Call "DisablePlayerCheckpoint" before setting the checkpoint.
  *     </solution>
  *     <see>FIXES_SetPlayerCheckpoint</see>
- *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
  *     
  * <fix name="SetPlayerRaceCheckpoint">
@@ -299,7 +299,7 @@ in the output code.
  *         Call "DisablePlayerRaceCheckpoint" before setting the checkpoint.
  *     </solution>
  *     <see>FIXES_SetPlayerRaceCheckpoint</see>
- *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
  *     
  * <fix name="TextDrawCreate">
@@ -310,7 +310,7 @@ in the output code.
  *         Intercept blank strings.
  *     </solution>
  *     <see>FIXES_TextDrawCreate</see>
- *     <author    name="wups" />
+ *     <author    >wups</author>
  * </fix>
  *     
  * <fix name="TextDrawCreate_2">
@@ -322,7 +322,7 @@ in the output code.
  *         Remove space characters from the end of the string.
  *     </solution>
  *     <see>FIXES_TextDrawCreate</see>
- *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
  *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
  *     
@@ -334,7 +334,7 @@ in the output code.
  *         Intercept blank strings and truncate long strings.
  *     </solution>
  *     <see>FIXES_TextDrawSetString</see>
- *     <author    name="TomTrox" />
+ *     <author    >TomTrox</author>
  * </fix>
  *     
  * <fix name="TextDrawSetString_2">
@@ -346,7 +346,7 @@ in the output code.
  *         Remove space characters from the end of the string.
  *     </solution>
  *     <see>FIXES_TextDrawSetString</see>
- *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
  *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
  *     
@@ -358,8 +358,8 @@ in the output code.
  *         Intercept blank strings.
  *     </solution>
  *     <see>FIXES_CreatePlayerTextDraw</see>
- *     <author    name="wups" />
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    >wups</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="CreatePlayerTextDraw_2">
@@ -371,7 +371,7 @@ in the output code.
  *         Remove space characters from the end of the string.
  *     </solution>
  *     <see>FIXES_CreatePlayerTextDraw</see>
- *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
  *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
  *     
@@ -383,8 +383,8 @@ in the output code.
  *         Intercept blank strings and truncate long strings.
  *     </solution>
  *     <see>FIXES_PlayerTextDrawSetString</see>
- *     <author    name="TomTrox" />
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    >TomTrox</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="PlayerTextDrawSetString_2">
@@ -396,7 +396,7 @@ in the output code.
  *         Remove space characters from the end of the string.
  *     </solution>
  *     <see>FIXES_PlayerTextDrawSetString</see>
- *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
  *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
  *     
@@ -410,7 +410,7 @@ in the output code.
  *     <see>FIXES_AllowInteriorWeapons</see>
  *     <see>OnGameModeInit</see>
  *     <see>OnPlayerUpdate</see>
- *     <author    name="KoczkaHUN" />
+ *     <author    >KoczkaHUN</author>
  * </fix>
  *     
  * <fix name="OnPlayerEnterVehicle">
@@ -422,8 +422,8 @@ in the output code.
  *     </solution>
  *     <see>OnPlayerStateChange</see>
  *     <see>OnPlayerUpdate</see>
- *     <author    name="RyDeR`" />
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    >RyDeR`</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1410296" />
  * </fix>
  *     
@@ -435,8 +435,8 @@ in the output code.
  *         Desync the people with invalid vehicles.
  *     </solution>
  *     <see>OnPlayerEnterVehicle</see>
- *     <author    name="im" />
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    >im</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="OnPlayerEnterVehicle_3">
@@ -449,8 +449,8 @@ in the output code.
  *         attemps to enter a 'locked' vehicle.
  *     </solution>
  *     <see>OnPlayerEnterVehicle</see>
- *     <author    name="ziggi" href="https://github.com/ziggi" />
- *     <author    name="rt-2" href="https://github.com/rt-2" />
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
+ *     <author    href="https://github.com/rt-2" >rt-2</author>
  *     <post      href="http://forum.sa-mp.com/showthread.php?t=560019" />
  * </fix>
  *     
@@ -465,7 +465,7 @@ in the output code.
  *     <see>OnPlayerClickMap</see>
  *     <see>FIXES_AllowPlayerTeleport</see>
  *     <see>FIXES_AllowAdminTeleport</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="SetPlayerSpecialAction">
@@ -477,7 +477,7 @@ in the output code.
  *         Call "ClearAnimations" before "SetPlayerSpecialAction".
  *     </solution>
  *     <see>FIXES_SetPlayerSpecialAction</see>
- *     <author    name="MP2" />
+ *     <author    >MP2</author>
  * </fix>
  *     
  * <fix name="OnDialogResponse" fixed="0.3e RC6">
@@ -490,7 +490,7 @@ in the output code.
  *     </solution>
  *     <see>FIXES_OnDialogResponse</see>
  *     <see>FIXES_ShowPlayerDialog</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="GetPlayerDialog" default="false">
@@ -501,8 +501,8 @@ in the output code.
  *         Add it.
  *     </solution>
  *     <see>FIXES_GetPlayerDialog</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *     
  * <fix name="PlayerDialogResponse">
@@ -516,7 +516,7 @@ in the output code.
  *     </solution>
  *     <see>OnPlayerConnect</see>
  *     <see>OnGameModeExit</see>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *     
  * <fix name="SetSpawnInfo">
@@ -527,7 +527,7 @@ in the output code.
  *         Call "SetSpawnInfo" at least once.
  *     </solution>
  *     <see>OnPlayerConnect</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="SetPlayerSkin">
@@ -538,7 +538,7 @@ in the output code.
  *         Put them back in the vehicle after setting their skin.
  *     </solution>
  *     <see>FIXES_SetPlayerSkin</see>
- *     <author    name="CyNiC" />
+ *     <author    >CyNiC</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1756094" />
  * </fix>
  *     
@@ -550,7 +550,7 @@ in the output code.
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_HideMenuForPlayer</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
  * </fix>
  *     
@@ -562,7 +562,7 @@ in the output code.
  *         Use "format" instead.
  *     </solution>
  *     <see>FIXES_valstr</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
  * <fix name="fclose">
@@ -573,7 +573,7 @@ in the output code.
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fclose</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
  * <fix name="fwrite">
@@ -584,7 +584,7 @@ in the output code.
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fwrite</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
  * <fix name="fread">
@@ -595,7 +595,7 @@ in the output code.
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fread</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
  * <fix name="fputchar">
@@ -606,7 +606,7 @@ in the output code.
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fputchar</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
  * <fix name="fgetchar">
@@ -617,7 +617,7 @@ in the output code.
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fgetchar</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
  * <fix name="fblockwrite">
@@ -628,7 +628,7 @@ in the output code.
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fblockwrite</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
  * <fix name="fblockread">
@@ -639,7 +639,7 @@ in the output code.
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fblockread</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
  * <fix name="fseek">
@@ -650,7 +650,7 @@ in the output code.
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fseek</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
  * <fix name="flength">
@@ -661,7 +661,7 @@ in the output code.
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_flength</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
  * <fix name="file_inc" default="false">
@@ -673,7 +673,7 @@ in the output code.
  *         Optionally group them all under one define.
  *     </solution>
  *     <see>FIX_file_inc</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="SetPlayerAttachedObject">
@@ -684,7 +684,7 @@ in the output code.
  *         Remove them.
  *     </solution>
  *     <see>OnPlayerDisconnect</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="OnPlayerDeath">
@@ -696,7 +696,7 @@ in the output code.
  *     </solution>
  *     <see>OnPlayerDeath</see>
  *     <see>OnPlayerUpdate</see>
- *     <author    name="h02" />
+ *     <author    >h02</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1641144" />
  * </fix>
  *     
@@ -708,8 +708,8 @@ in the output code.
  *         Manually check the length.
  *     </solution>
  *     <see>FIXES_strins</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
- *     <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
  *     
  * <fix name="IsPlayerConnected">
@@ -720,7 +720,7 @@ in the output code.
  *         Mask the numbers.
  *     </solution>
  *     <see>FIXES_IsPlayerConnected</see>
- *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
  * <fix name="TrainExit">
@@ -733,8 +733,8 @@ in the output code.
  *     </solution>
  *     <see>FIXES_PutPlayerInVehicle</see>
  *     <see>FIXES_OnPlayerStateChange</see>
- *     <author    name="Terminator3" />
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    >Terminator3</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="Kick" fixed="0.3x">
@@ -746,7 +746,7 @@ in the output code.
  *     </solution>
  *     <see>OnPlayerConnect</see>
  *     <see>FIXES_Kick</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1989453" />
  * </fix>
  *     
@@ -758,8 +758,8 @@ in the output code.
  *         Desync the player.
  *     </solution>
  *     <see>OnVehicleMod</see>
- *     <author    name="JernejL" href="https://github.com/JernejL/" />
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/JernejL/" >JernejL</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1671500" />
  * </fix>
  *     
@@ -771,7 +771,7 @@ in the output code.
  *         Invert then reinvert.
  *     </solution>
  *     <see>FIXES_random</see>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *     
  * <fix name="sleep">
@@ -782,7 +782,7 @@ in the output code.
  *         Call a function to store the correct value.
  *     </solution>
  *     <see>FIXES_sleep</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="AddMenuItem">
@@ -793,7 +793,7 @@ in the output code.
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_AddMenuItem</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="SetMenuColumnHeader">
@@ -804,7 +804,7 @@ in the output code.
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_SetMenuColumnHeader</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="ShowMenuForPlayer">
@@ -815,7 +815,7 @@ in the output code.
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_ShowMenuForPlayer</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="HideMenuForPlayer">
@@ -826,7 +826,7 @@ in the output code.
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_HideMenuForPlayer</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
  * </fix>
  *     
@@ -838,7 +838,7 @@ in the output code.
  *         Only hide the correct menu.
  *     </solution>
  *     <see>FIXES_HideMenuForPlayer</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="DisableMenu">
@@ -849,7 +849,7 @@ in the output code.
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_DisableMenu</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="DisableMenuRow">
@@ -860,7 +860,7 @@ in the output code.
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_DisableMenuRow</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="Menus">
@@ -872,7 +872,7 @@ in the output code.
  *     </solution>
  *     <see>FIX_Menus</see>
  *     <see>_FIX_Menus</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="GetPlayerMenu">
@@ -884,7 +884,7 @@ in the output code.
  *     </solution>
  *     <see>FIXES_GetPlayerMenu</see>
  *     <see>OnPlayerSelectedMenuRow</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="GetPlayerInterior">
@@ -896,8 +896,8 @@ in the output code.
  *     </solution>
  *     <see>FIXES_GetPlayerInterior</see>
  *     <see>FIXES_SetPlayerInterior</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *     
  * <fix name="ClearAnimations">
@@ -909,7 +909,7 @@ in the output code.
  *         Apply an animation instead of clear animation.
  *     </solution>
  *     <see>FIXES_ClearAnimations</see>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *     
  * <fix name="ClearAnimations_2">
@@ -921,7 +921,7 @@ in the output code.
  *         Apply an idle animation for stop and then use ClearAnimation.
  *     </solution>
  *     <see>FIXES_ClearAnimations</see>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *     
  * <fix name="DriveBy">
@@ -934,7 +934,7 @@ in the output code.
  *         Apply the animation to return the player in the vehicle.
  *     </solution>
  *     <see>OnPlayerKeyStateChange</see>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *     
  * <fix name="GangZoneCreate">
@@ -946,8 +946,8 @@ in the output code.
  *         Set a non floating value for the gang zone co-ordinate.
  *     </solution>
  *     <see>FIXES_GangZoneCreate</see>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="SPECIAL_ACTION_PISSING">
@@ -957,7 +957,7 @@ in the output code.
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *     
  * <fix name="IsValidVehicle">
@@ -967,7 +967,7 @@ in the output code.
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *     
  * <fix name="ApplyAnimation">
@@ -979,7 +979,7 @@ in the output code.
  *         Block ApplyAnimation when an invalid library is passed.
  *     </solution>
  *     <see>FIXES_ApplyAnimation</see>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *     
  * <fix name="ApplyAnimation_2">
@@ -990,9 +990,9 @@ in the output code.
  *         Apply animations twice when first using a library.
  *     </solution>
  *     <see>FIXES_ApplyAnimation</see>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
- *     <author    name="Lordzy" href="https://github.com/Lordzy/" />
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author    href="https://github.com/Lordzy/" >Lordzy</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="ApplyActorAnimation">
@@ -1004,8 +1004,8 @@ in the output code.
  *         Block ApplyActorAnimation when an invalid library is passed.
  *     </solution>
  *     <see>FIXES_ApplyActorAnimation</see>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
- *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
  *     
  * <fix name="ApplyActorAnimation_2">
@@ -1016,10 +1016,10 @@ in the output code.
  *         Apply animations twice when first using a library.
  *     </solution>
  *     <see>FIXES_ApplyActorAnimation</see>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
- *     <author    name="Lordzy" href="https://github.com/Lordzy/" />
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
- *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author    href="https://github.com/Lordzy/" >Lordzy</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
  *     
  * <fix name="OnPlayerSpawn">
@@ -1030,7 +1030,7 @@ in the output code.
  *         Give them it back.
  *     </solution>
  *     <see>OnPlayerSpawn</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="GetGravity">
@@ -1040,7 +1040,7 @@ in the output code.
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    name="Whitetiger" href="https://github.com/Whitetigerswt" />
+ *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1706447" />
  * </fix>
  *     
@@ -1051,7 +1051,7 @@ in the output code.
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
  *     <post      href="http://pastebin.com/VQSGpbSm" />
  * </fix>
  *     
@@ -1066,7 +1066,7 @@ in the output code.
  *     <see>FIX_GetGravity</see>
  *     <see>FIX_gpci</see>
  *     <see>FIX_IsValidVehicle</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="OnPlayerConnect">
@@ -1077,7 +1077,7 @@ in the output code.
  *         Call it for all connected players.
  *     </solution>
  *     <see>FIXES_OnFilterScriptInit</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="OnPlayerDisconnect">
@@ -1088,7 +1088,7 @@ in the output code.
  *         Call it for all connected players.
  *     </solution>
  *     <see>FIXES_OnFilterScriptExit</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="GameText">
@@ -1100,7 +1100,7 @@ in the output code.
  *     </solution>
  *     <see>FIXES_GameTextForAll</see>
  *     <see>FIXES_GameTextForPlayer</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="GameTextStyles" default="false">
@@ -1113,7 +1113,7 @@ in the output code.
  *     </solution>
  *     <see>FIXES_GameTextForAll</see>
  *     <see>FIXES_GameTextForPlayer</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="HideGameText">
@@ -1125,7 +1125,7 @@ in the output code.
  *     </solution>
  *     <see>FIXES_HideGameTextForAll</see>
  *     <see>FIXES_HideGameTextForPlayer</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="ClearPlayerWorldBounds">
@@ -1136,7 +1136,7 @@ in the output code.
  *         Put the world bounds back to the default.
  *     </solution>
  *     <see>FIXES_ClearPlayerWorldBounds</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="GetPlayerWorldBounds">
@@ -1147,7 +1147,7 @@ in the output code.
  *         Store them and retrieve them.
  *     </solution>
  *     <see>FIXES_GetPlayerWorldBounds</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="WEAPONS">
@@ -1157,7 +1157,7 @@ in the output code.
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
  * </fix>
  *     
  * <fix name="BODYPARTS">
@@ -1168,7 +1168,7 @@ in the output code.
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    name="Whitetiger" href="https://github.com/Whitetigerswt" />
+ *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
  * </fix>
  *     
  * <fix name="CAMERAMODES">
@@ -1178,7 +1178,7 @@ in the output code.
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    name="Whitetiger" href="https://github.com/Whitetigerswt" />
+ *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1309730" />
  * </fix>
  *     
@@ -1193,7 +1193,7 @@ in the output code.
  *     <see>FIXES_SetPlayerCameraPos</see>
  *     <see>FIXES_SetPlayerCameraLookAt</see>
  *     <see>FIXES_TogglePlayerSpectating</see>
- *     <author    name="Emmet_" href="https://github.com/emmet-jones" />
+ *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
  * </fix>
  *     
  * <fix name="SetPlayerTime">
@@ -1204,7 +1204,7 @@ in the output code.
  *         Defer it.
  *     </solution>
  *     <see>FIXES_SetPlayerTime</see>
- *     <author    name="Emmet_" href="https://github.com/emmet-jones" />
+ *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
  * </fix>
  *     
  * <fix name="OnPlayerRequestClass">
@@ -1215,7 +1215,7 @@ in the output code.
  *         Call "RemoveBuildingForPlayer".
  *     </solution>
  *     <see>OnPlayerRequestClass</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="SetPlayerColor">
@@ -1227,7 +1227,7 @@ in the output code.
  *         Defer it.
  *     </solution>
  *     <see>FIXES_SetPlayerColor</see>
- *     <author    name="Emmet_" href="https://github.com/emmet-jones" />
+ *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
  *     <post      href="http://forum.sa-mp.com/showthread.php?t=452407" />
  * </fix>
  *     
@@ -1239,7 +1239,7 @@ in the output code.
  *         Remove the operators.
  *     </solution>
  *     <see>File:operator</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
  * <fix name="GetPlayerWeaponData">
@@ -1250,7 +1250,7 @@ in the output code.
  *         Set "weapons" to 0.
  *     </solution>
  *     <see>FIXES_GetPlayerWeaponData</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showthread.php?t=567400" />
  * </fix>
  *     
@@ -1262,7 +1262,7 @@ in the output code.
  *         Add a check for empty string.
  *     </solution>
  *     <see>FIXES_strcmp</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
  *     
  * <fix name="GetPVarString">
@@ -1273,9 +1273,9 @@ in the output code.
  *         Use logical conjunction on symbol and 0xFF.
  *     </solution>
  *     <see>FIXES_GetPVarString</see>
- *     <author    name="ziggi" href="https://github.com/ziggi" />
- *     <author    name="Mutha_X" />
- *     <author    name="Daniel_Cortez" href="https://github.com/Daniel-Cortez" />
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
+ *     <author    >Mutha_X</author>
+ *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
  *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
  *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
  * </fix>
@@ -1288,9 +1288,9 @@ in the output code.
  *         Use logical conjunction on symbol and 0xFF.
  *     </solution>
  *     <see>FIXES_GetSVarString</see>
- *     <author    name="ziggi" href="https://github.com/ziggi" />
- *     <author    name="Mutha_X" />
- *     <author    name="Daniel_Cortez" href="https://github.com/Daniel-Cortez" />
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
+ *     <author    >Mutha_X</author>
+ *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
  *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
  *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
  * </fix>
@@ -1303,7 +1303,7 @@ in the output code.
  *         Recreate the function.
  *     </solution>
  *     <see>FIXES_toupper</see>
- *     <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
  *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
  * </fix>
  *     
@@ -1315,7 +1315,7 @@ in the output code.
  *         Recreate the function.
  *     </solution>
  *     <see>FIXES_tolower</see>
- *     <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
  *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
  * </fix>
  *     
@@ -1328,7 +1328,7 @@ in the output code.
  *     </solution>
  *     <see>OnPlayerEnterVehicle</see>
  *     <see>OnPlayerStateChange</see>
- *     <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
  * </fix>
  *     
  * <fix name="GogglesSync">
@@ -1339,7 +1339,7 @@ in the output code.
  *         return 0 in OnPlayerUpdate after key pressed.
  *     </solution>
  *     <see>OnPlayerUpdate</see>
- *     <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
  * </fix>
  *     
  * <fix name="GetPlayerPoolSize">
@@ -1350,7 +1350,7 @@ in the output code.
  *         Return "-1" if PlayerPoolsize is 0 but Player 0 is not connected.
  *     </solution>
  *     <see>FIXES_GetPlayerPoolSize</see>
- *     <author    name="Bios-Marcel" href="https://github.com/Bios-Marcel" />
+ *     <author    href="https://github.com/Bios-Marcel" >Bios-Marcel</author>
  * </fix>
  *     
  * <fix name="SetPlayerPos">
@@ -1362,7 +1362,7 @@ in the output code.
  *     </solution>
  *     <see>FIXES_SetPlayerPos</see>
  *     <see>FIXES_SetPlayerPosFindZ</see>
- *     <author    name="Freaksken" href="https://github.com/WoutProvost" />
+ *     <author    href="https://github.com/WoutProvost" >Freaksken</author>
  * </fix>
  *     
  * <fix name="GetPlayerAmmo">
@@ -1375,7 +1375,7 @@ in the output code.
  *     </solution>
  *     <see>FIXES_SetPlayerAmmo</see>
  *     <see>FIXES_GivePlayerWeapon</see>
- *     <author    name="Freaksken" href="https://github.com/WoutProvost" />
+ *     <author    href="https://github.com/WoutProvost" >Freaksken</author>
  * </fix>
  *     
  * <fix name="JIT">
@@ -1386,7 +1386,7 @@ in the output code.
  *         Provide "IS_JIT" to the script for tests.
  *     </solution>
  *     <see>OnJITCompile</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
  *     
  * <fix name="OS">
@@ -1397,7 +1397,7 @@ in the output code.
  *         Provide "IS_WINDOWS" and "IS_LINUX" to the script for tests.
  *     </solution>
  *     <see>_FIXES_DetermineOS</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
  *     
  * <fix name="const">
@@ -1408,7 +1408,7 @@ in the output code.
  *         Redefine the natives.
  *     </solution>
  *     <see>FIX_const</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
  *     
  * <fix name="VEHICLES">
@@ -1418,7 +1418,7 @@ in the output code.
  *     <solution>
  *         Define them.
  *     </solution>
- *     <author    name="stuntman" href="https://github.com/IstuntmanI" />
+ *     <author    href="https://github.com/IstuntmanI" >stuntman</author>
  * </fix>
  *     
  * <fix name="GetPlayerWeather" default="false">
@@ -1429,8 +1429,8 @@ in the output code.
  *         Add it.
  *     </solution>
  *     <see>FIXES_GetPlayerWeather</see>
- *     <author    name="IstuntmanI" href="https://github.com/IstuntmanI/" />
- *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <author    href="https://github.com/IstuntmanI/" >IstuntmanI</author>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
  *     
  * <fix name="GetWeather" default="false">
@@ -1441,8 +1441,8 @@ in the output code.
  *         Add it.
  *     </solution>
  *     <see>FIXES_GetWeather</see>
- *     <author    name="IstuntmanI" href="https://github.com/IstuntmanI/" />
- *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <author    href="https://github.com/IstuntmanI/" >IstuntmanI</author>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
  *     
  * <fix name="GetWorldTime" default="false">
@@ -1453,7 +1453,7 @@ in the output code.
  *         Add it.
  *     </solution>
  *     <see>FIXES_GetWorldTime</see>
- *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
  *     
  * <fix name="tabsize">
@@ -1464,7 +1464,7 @@ in the output code.
  *         Break the pragma.
  *     </solution>
  *     <see>_DUMMY_do_not_use_tabsize_0</see>
- *     <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=3929000" />
  * </fix>
  * </fixeslist>
@@ -1694,7 +1694,7 @@ in the output code.
  *             Description of solution.                                                                                           <br /><indent />
  *         &lt;/solution&gt;                                                                                                      <br /><indent />
  *         &lt;see&gt;Relevant functions.&lt;/see&gt;                                                                             <br /><indent />
- *         &lt;author    name="Person who wrote the fix" href="Optional address of their profile" /&gt;                           <br /><indent />
+ *         &lt;author    href="Optional address of their profile"&gt;Person who wrote the fix&lt;/author&gt;                      <br /><indent />
  *         &lt;post      href="Optional link to the original post where applicable." /&gt;                                        <br />
  *     &lt;/fix&gt;
  * </code>
@@ -11555,7 +11555,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
  *         solution
  *     </solution>
  *     <see></see>
- *     <author    name="" href="" />
+ *     <author    href=""></author>
  *     <post      href="" />
  * </fix>
  */
