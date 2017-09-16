@@ -59,6 +59,7 @@ in the output code.
  *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  *     <see>OnFilterScriptInit</see>
  *     <see>OnGameModeInit</see>
+ * </fix>
  *     
  * <fix name="SpawnPlayer">    
  *     <problem>
@@ -69,7 +70,6 @@ in the output code.
  *     </solution>
  *     <see>FIXES_SpawnPlayer</see>     
  *     <author    name="Y_Less" href="https://github.com/Y-Less/" />  
- * </fix>
  * </fix>
  *     
  * <fix name="SetPlayerName">
