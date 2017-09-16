@@ -30,7 +30,7 @@ in the output code.
 -->
 *//**
  * <library name="fixes.inc"
- *   description="Community patch for buggy SA:MP functions.">
+ *   description="Community patches for buggy SA:MP functions.">
  * <section>
  *             Fixes
  * </section>
