@@ -11400,16 +11400,6 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 
 // Fix documentation template.
 
-// Fix inclusion template.
-
-#if !defined FIX_NameOfFixHere
-	#define FIX_NameOfFixHere            (1)
-#elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)
-	#undef FIX_NameOfFixHere
-	#define FIX_NameOfFixHere            (2)
-#endif
-
-// Fix function template.
 /**
  * <fix name="" default="" fixed="">
  *     <problem>
@@ -11423,6 +11413,17 @@ static stock _FIXES_RemoveInternal(array[], value, size)
  *     <post      href="" />
  * </fix>
  */
+
+// Fix inclusion template.
+
+#if !defined FIX_NameOfFixHere
+	#define FIX_NameOfFixHere            (1)
+#elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)
+	#undef FIX_NameOfFixHere
+	#define FIX_NameOfFixHere            (2)
+#endif
+
+// Fix function template.
 
 /**
  * <remarks>Information about fix here</remarks>
