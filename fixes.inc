@@ -2004,6 +2004,7 @@
 #endif
 
 /**
+ * <remarks>
  * tabsize
  *
  * Breaks `#pragma tabsize 0` in such a way that the compiler gives the
@@ -2058,6 +2059,7 @@
  *     }
  *
  * There is just no excuse.
+ * </remarks>
  */
 
 #if FIX_tabsize
@@ -2065,9 +2067,11 @@
 #endif
 
 /**
+ * <remarks>
  * CHAIN_ORDER
  *
  * Allows y_hooks to call things in the correct order when it exists.
+ * </remarks>
  */
 
 #if !defined CHAIN_ORDER
@@ -2075,10 +2079,12 @@
 #endif
 
 /**
+ * <remarks>
  * PRE_HOOK
  *
  * A method of pre-hooking callbacks to still have them called before any ones
  * re-written by y_hooks.
+ * </remarks>
  */
 
 #define PRE_HOOK(%0) forward @CO_%0();public @CO_%0(){return CHAIN_ORDER()+1;}
@@ -2088,9 +2094,11 @@ PRE_HOOK(FIXES)
 #define CHAIN_ORDER @CO_FIXES
 
 /**
+ * <remarks>
  * _FIXES_IncludeStates
  *
  * Define the "_ALS" states used by hooks.
+ * </remarks>
  */
 
 static stock _FIXES_IncludeStates() <_ALS : _ALS_x0, _ALS : _ALS_x1, _ALS : _ALS_x2, _ALS : _ALS_x3>
@@ -2102,8 +2110,10 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 }
 
 /**
+ * <remarks>
  * The number of GameText styles recreated using TextDraw functions.  This is 4
  * by default, but can be extended to 6 if you want location and vehicle styles.
+ * </remarks>
  */
 
 #if FIX_GameText
@@ -2115,9 +2125,11 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /**
+ * <remarks>
  * If this define is set to 1, then players will not be given a message when
  * they are kicked for cheats, instead they will just loose connection to the
  * server.
+ * </remarks>
  */
 
 #if !defined FIXES_SilentKick
@@ -2128,9 +2140,11 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /**
+ * <remarks>
  * If this define is set to 1, then debug printing is turned on for any
  * functions which may use it.  Otherwise, the compiler entirely removes the
  * code to print anything, leaving 0 run-time overhead.
+ * </remarks>
  */
 
 #if defined FIXES_Debug
@@ -2144,12 +2158,16 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /**
+ * <remarks>
  * A marker to indicate that this version of fixes.inc uses state-based hooks.
+ * </remarks>
  */
 #define FIXES_UseStateHooks
 
 /**
+ * <remarks>
  * A special "printf" function only compiled when "FIXES_Debug" is set.
+ * </remarks>
  */
 
 #if !defined FIXES_PRINTF
@@ -2158,9 +2176,11 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /**
+ * <remarks>
  * INVALID_DIALOG_ID
  *
  * Set when a player can't see a dialog.
+ * </remarks>
  */
 
 #if !defined INVALID_DIALOG_ID
@@ -2168,10 +2188,12 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /**
+ * <remarks>
  * If this define is set to 1, then the old style include is used, with no
  * support for multiple scripts running at the same time on the server (i.e. no
  * gamemodes and filter scripts at the same time).  You can only have one or the
  * other or bugs.
+ * </remarks>
  */
 
 #if !defined FIXES_Single
@@ -2182,9 +2204,11 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /**
+ * <remarks>
  * _FIXES_IS_IN_CHARGE
  *
  * Test to see if this script is in command or not (master).
+ * </remarks>
  */
 
 #if FIXES_Single
@@ -2212,18 +2236,22 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /**
+ * <remarks>
  * isnull
  *
  * Pretty standard.
+ * </remarks>
  */
 
 #define isnull(%1) \
 	((%1[0] == 0) || (%1[0] == 1 && %1[1] == 0))
 
 /**
+ * <remarks>
  * E_FIXES_WORLDBOUND_DATA
  *
  * Store data for each player on their worldbound data.
+ * </remarks>
  */
 enum E_FIXES_WORLDBOUND_DATA
 {
@@ -2240,10 +2268,12 @@ enum E_FIXES_WORLDBOUND_DATA
 }
 
 /**
+ * <remarks>
  * e_FIXES_BOOLS
  *
  * Collection of boolean values for players, designed to collect multiple checks
  * in to one variable to reduce memory consumption.
+ * </remarks>
  */
 enum e_FIXES_BOOLS (<<= 1)
 {
@@ -2272,10 +2302,12 @@ enum e_FIXES_BOOLS (<<= 1)
 }
 
 /**
+ * <remarks>
  * e_FIXES_SETTINGS
  *
  * Collection of boolean values for the script as a whole.  Stores a variety of
  * settings that are true/false.
+ * </remarks>
  */
 enum e_FIXES_SETTINGS (<<= 1)
 {
@@ -2293,75 +2325,95 @@ enum e_FIXES_SETTINGS (<<= 1)
 }
 
 /**
+ * <remarks>
  * _FIXES_CEILDIV
  *
  * Do a ceiling division of the first number by the second number.
+ * </remarks>
  */
 #define _FIXES_CEILDIV(%0,%1) (((%0) + (%1) - 1) / (%1))
 
 /**
+ * <remarks>
  * _FIXES_MIN_WORLDBOUNDS
  *
  * Default worldbound range.
+ * </remarks>
  */
 #define _FIXES_MIN_WORLDBOUNDS (-20000.0)
 
 /**
+ * <remarks>
  * _FIXES_MAX_WORLDBOUNDS
  *
  * Default worldbound range.
+ * </remarks>
  */
 #define _FIXES_MAX_WORLDBOUNDS (20000.0)
 
 /**
+ * <remarks>
  * _FIXES_INFINITY
  *
  * IEEE 754 definition of infinity.
+ * </remarks>
  */
 #define _FIXES_INFINITY (Float:0x7F800000)
 
 /**
+ * <remarks>
  * _FIXES_N_INFINITY
  *
  * IEEE 754 definition of negative infinity.
+ * </remarks>
  */
 #define _FIXES_N_INFINITY (Float:0xFF800000)
 
 /**
+ * <remarks>
  * _FIXES_ATTACHMENTS
  *
  * The number of players whose attachment data (10-bits) can be stored in one
  * cell.
+ * </remarks>
  */
 #define _FIXES_ATTACHMENTS (cellbits / MAX_PLAYER_ATTACHED_OBJECTS)
 
 /**
+ * <remarks>
  * _FIXES_FOREACH
  *
  * A new version of "foreach", but just for this library.
+ * </remarks>
  */
 #define _FIXES_FOREACH(%1,%0) for (new %0 = MAX_PLAYERS; (%0 = %1[%0]) != MAX_PLAYERS; )
 
 /**
+ * <remarks>
  * _FIXES_IN_RANGE
  *
  * Checks if the first parameter is between the other two: %1 &lt;= %0 &lt;%2 (but
  * faster).
+ * </remarks>
  */
 #define _FIXES_IN_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) < ((%2) - ((%1) + cellmin)))
 
 /**
+ * <remarks>
  * _FIXES_NO_RANGE
  *
- * Checks if the first parameter is not between the other two: !(%1 &lt;= %0 &lt; %2)
- * (but faster).
+ * Checks if the first parameter is not between the other two:
+ * <c>!(%1 &lt;= %0 &lt; %2)</c>(but faster).
+ * </remarks>
  */
 #define _FIXES_NO_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) >= ((%2) - ((%1) + cellmin)))
 
 /**
+ * <remarks>
  * _FIXES_FORWARD
  *
  * Forwards a hooked callbacks, and defines the default state implementations.
+ * </remarks>
  */
 #define _FIXES_FORWARD%0(%1); \
 	forward%0(%1); \
@@ -2369,9 +2421,11 @@ enum e_FIXES_SETTINGS (<<= 1)
 	public%0(%1) <> { return 1; }
 
 /**
+ * <remarks>
  * _FIXES_IS_PLAYER_CONNECTED
  *
  * Always valid "IsPlayerConnected" check.
+ * </remarks>
  */
 #define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IN_RANGE((%0), 0, MAX_PLAYERS) && IsPlayerConnected((%0)))
 
@@ -2384,7 +2438,9 @@ static
 #endif
 stock
 	/**
+	 * <remarks>
 	 * Runtime equivalent of "FILTERSCRIPT" for when it is not set by the user.
+	 * </remarks>
 	 */
 	bool:_FIXES_gIsFilterscript;
 
@@ -2393,7 +2449,9 @@ static
 #endif
 stock
 	/**
+	 * <remarks>
 	 * True when the JIT plugin is being used.
+	 * </remarks>
 	 */
 	bool:_FIXES_gIsJIT = false;
 
@@ -2402,14 +2460,18 @@ static
 #endif
 stock
 	/**
+	 * <remarks>
 	 * True on Windows, false on Linux.
+	 * </remarks>
 	 */
 	bool:_FIXES_gIsWindows;
 
 stock const
 	/**
+	 * <remarks>
 	 * A single re-usable null string.  Const not static because it is used in
 	 * macros `HideGameTextForAll` and `HideGameTextForPlayer`.
+	 * </remarks>
 	 */
 	FIXES_gcNull[] = "\1";
 
@@ -2419,335 +2481,455 @@ new
 static stock
 #endif
 	/**
+	 * <remarks>
 	 * A single re-usable space.  Static not const because it is used in this
 	 * file in functions that don't take `const` strings.
+	 * </remarks>
 	 */
 	FIXES_gsSpace[] = " ",
 	/**
+	 * <remarks>
 	 * Only determine the OS once.
+	 * </remarks>
 	 */
 	bool:FIXES_gsKnownOS = false,
 	/**
+	 * <remarks>
 	 * A record of which players are connected to the server.  We ensure that
 	 * this only exists when required, since it depends on add and remove
 	 * functions to be called at the right time.
+	 * </remarks>
 	 */
 #if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 	FIXES_gsPlayersIterator[MAX_PLAYERS + 1] = {0, 1, ...},
 #endif
 	/**
+	 * <remarks>
 	 * A record of which menus have and haven't been shown yet.
+	 * </remarks>
 	 */
 	FIXES_gsValidMenus[_FIXES_CEILDIV(MAX_MENUS, cellbits)],
 	/**
+	 * <remarks>
 	 * A player's IP as a 32-bit integer.
+	 * </remarks>
 	 */
 #if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
 	FIXES_gsPlayerIP[MAX_PLAYERS] = {-1, ...},
 #endif
 	/**
+	 * <remarks>
 	 * Stores the locked vehicle's id that the player
 	 * is currently trying to enter
+	 * </remarks>
 	 */
 #if FIX_OnPlayerEnterVehicle_3
 	FIXES_gsPlayerVehicleID[MAX_PLAYERS],
 	/**
+	 * <remarks>
 	 * Stores the server tick when the player started
 	 * trying to enter the locked vehicle
+	 * </remarks>
 	 */
 	FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS],
 	/**
+	 * <remarks>
 	 * Boolean: Stores if a certain vehicle is 'locked' or not
+	 * </remarks>
 	 */
 	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES],
 #endif
 	/**
+	 * <remarks>
 	 * The skin the player is currently using.
+	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetPlayerSkin
 	FIXES_gsPlayerSkin[MAX_PLAYERS],
 #endif
 	/**
+	 * <remarks>
 	 * Collection of boolean values for players.
+	 * </remarks>
 	 */
 	e_FIXES_BOOLS:FIXES_gsPlayerBools[MAX_PLAYERS],
 	/**
+	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
+	 * </remarks>
 	 */
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 	FIXES_gsWorldbounds[MAX_PLAYERS][E_FIXES_WORLDBOUND_DATA],
 #endif
 	/**
+	 * <remarks>
 	 * Stores the weapon set by "SetPlayerArmedWeapon" when in a vehicle.
+	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetPlayerWeapon
 	FIXES_gsPlayerWeapon[MAX_PLAYERS],
 #endif
 	/**
+	 * <remarks>
 	 * What vehicle the player is due to go in.
+	 * </remarks>
 	 */
 	FIXES_gsVehicleSeatData[MAX_PLAYERS],
 	/**
+	 * <remarks>
 	 * Stores the true ID of the dialog the player is looking at to prevent
 	 * spoofing.
+	 * </remarks>
 	 */
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 	FIXES_gsPlayerDialog[MAX_PLAYERS] = {-1, ...},
 #endif
 	/**
+	 * <remarks>
 	 * Stores the ID of the player weather.
+	 * </remarks>
 	 */
 #if FIX_GetPlayerWeather
 	FIXES_gsPlayerWeather[MAX_PLAYERS] = {-1, ...},
 #endif
 	/**
+	 * <remarks>
 	 * Stores the ID of the server weather.
+	 * </remarks>
 	 */
 #if FIX_GetWeather
 	FIXES_gsServerWeather = 10,
 #endif
 	/**
+	 * <remarks>
 	 * Stores the ID of the server weather.
+	 * </remarks>
 	 */
 #if FIX_GetWorldTime
 	FIXES_gsWorldTime = 12,
 #endif
 	/**
+	 * <remarks>
 	 * The player's current interior.
+	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetPlayerInterior
 	FIXES_gsPlayerInterior[MAX_PLAYERS],
 #endif
 	/**
+	 * <remarks>
 	 * A collection of 1-bit options, compressed together to save space.
+	 * </remarks>
 	 */
 	e_FIXES_SETTINGS:FIXES_gsSettings = e_FIXES_SETTINGS_SECOND_USE,
 	/**
+	 * <remarks>
 	 * The last animation a player used.
+	 * </remarks>
 	 */
 #if FIX_OnPlayerDeath
 	FIXES_gsLastAnimation[MAX_PLAYERS],
 #endif
 	/**
+	 * <remarks>
 	 * A player's cash before dying.
+	 * </remarks>
 	 */
 #if FIX_OnPlayerSpawn
 	FIXES_gsPlayerLastCash[MAX_PLAYERS],
 #endif
 	/**
+	 * <remarks>
 	 * The weapon to set after re-enter to vehicle.
+	 * </remarks>
 	 */
 	FIXES_gsDriveByWeapon[MAX_PLAYERS],
 	/**
+	 * <remarks>
 	 * The menu the player can currently see.
+	 * </remarks>
 	 */
 	Menu:FIXES_gsCurrentMenu[MAX_PLAYERS] = {Menu:INVALID_MENU, ...},
 	/**
+	 * <remarks>
 	 * The pre-defined TextDraw styles used to recreate the bugged GameText
 	 * styles for GameTextForAll.
+	 * </remarks>
 	 */
 #if FIX_GameText
 	Text:FIXES_gsGTStyle[FIXES_GT_STYLE_COUNT],
 #endif
 	/**
+	 * <remarks>
 	 * A linked list of which players can see a certain GameText style.
+	 * </remarks>
 	 */
 #if FIX_GameText
 	FIXES_gsPlayerPGTShown[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1],
 #endif
 	/**
+	 * <remarks>
 	 * The predefined TextDraw styles used to recreate the bugged GameText
 	 * styles for GameTextForPlayer.
+	 * </remarks>
 	 */
 #if FIX_GameText
 	PlayerText:FIXES_gsPGTStyle[MAX_PLAYERS][FIXES_GT_STYLE_COUNT],
 #endif
 	/**
+	 * <remarks>
 	 * The timers used to hide per-player GameText messages.
+	 * </remarks>
 	 */
 #if FIX_GameText
 	FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1],
 #endif
 	/**
+	 * <remarks>
 	 * Used for storing the timer ID for deferring class selection animation
 	 * application.
+	 * </remarks>
 	 */
 #if FIX_ApplyAnimation_2
 	FIXES_gsPlayerAnimTimer[MAX_PLAYERS],
 #endif
 	/**
+	 * <remarks>
 	 * Used for storing the animation name.
+	 * </remarks>
 	 */
 #if FIX_ApplyAnimation_2
 	FIXES_gsPlayerAnimName[MAX_PLAYERS][60],
 #endif
 	/**
+	 * <remarks>
 	 * Which animation libraries the player has synced.
+	 * </remarks>
 	 */
 #if FIX_ApplyAnimation_2
 	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)],
 #endif
 	/**
+	 * <remarks>
 	 * Used for storing the timer ID for deferring class selection animation
 	 * application.
+	 * </remarks>
 	 */
 #if FIX_ApplyActorAnimation_2
 	FIXES_gsActorAnimTimer[MAX_ACTORS],
 #endif
 	/**
+	 * <remarks>
 	 * Used for storing the animation name.
+	 * </remarks>
 	 */
 #if FIX_ApplyActorAnimation_2
 	FIXES_gsActorAnimName[MAX_ACTORS][60],
 #endif
 	/**
+	 * <remarks>
 	 * Which animation libraries the actor has synced.
+	 * </remarks>
 	 */
 #if FIX_ApplyActorAnimation_2
 	FIXES_gsActorAnimLibs[MAX_ACTORS][_FIXES_CEILDIV(135, cellbits)],
 #endif
 	/**
+	 * <remarks>
 	 * The position of the character right-trimmed from a "const" string.
+	 * </remarks>
 	 */
 	FIXES_gsTrimPos,
 	/**
+	 * <remarks>
 	 * The character right-trimmed from a "const" string.
+	 * </remarks>
 	 */
 	FIXES_gsTrimChr,
 	/**
+	 * <remarks>
 	 * This variable records wether or not this player is brand new to the
 	 * server, and not just having "OnPlayerConnect" called due to a script
 	 * load.  There are certain functions that need applying only the very first
 	 * time they connect, then this gets set.
+	 * </remarks>
 	 */
 #if !FIXES_Single
 	FIXES_pvarNotNewPlayer[] = "FIXES_pvarNotNewPlayer",
 #endif
 	/**
+	 * <remarks>
 	 * Name of the pvar in which to store the player's current weapon.
+	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetPlayerWeapon
 	FIXES_pvarPlayerWeapon[] = "FIXES_pvarPlayerWeapon",
 #endif
 	/**
+	 * <remarks>
 	 * Name of the pvar in which to store the player's current skin.
+	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetPlayerSkin
 	FIXES_pvarPlayerSkin[] = "FIXES_pvarPlayerSkin",
 #endif
 	/**
+	 * <remarks>
 	 * Name of the pvar in which to store the player's spectator mode.
+	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_SetPlayerCamera
 	FIXES_pvarPlayerSpectate[] = "FIXES_pvarPlayerSpectate",
 #endif
 	/**
+	 * <remarks>
 	 * Name of the kick timer function.
+	 * </remarks>
 	 */
 #if FIX_Kick
 	FIXES_gscKick[] = "_FIXES_Kick",
 #endif
 	/**
+	 * <remarks>
 	 * Name of the pvar in which to store a player's kick timer.
+	 * </remarks>
 	 */
 #if FIX_Kick
 	FIXES_pvarKick[] = "FIXES_pvarKick",
 #endif
 	/**
+	 * <remarks>
 	 * Name of the pvar in which to store the player's current dialogid.
+	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_OnDialogResponse || FIX_GetPlayerDialog
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog",
 #endif
 	/**
+	 * <remarks>
 	 * Name of the pvar in which to store the player's current weather.
+	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetPlayerWeather
 	FIXES_pvarPlayerWeather[] = "FIXES_pvarPlayerWeather",
 #endif
 	/**
+	 * <remarks>
 	 * A player's current interior.
+	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetPlayerInterior
 	FIXES_pvarPlayerInterior[] = "FIXES_pvarPlayerInterior",
 #endif
 	/**
+	 * <remarks>
 	 * Used in OnDialogResponse to be able to get the correct ID in multiple
 	 * scripts while still correctly resetting the ID for future use.
+	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_OnDialogResponse
 	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog",
 #endif
 	/**
+	 * <remarks>
 	 * Used in OnPlayerDeath to save a player's cash before death.
+	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_OnPlayerSpawn
 	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash",
 #endif
 	/**
+	 * <remarks>
 	 * The timers used to prevent players seating.
+	 * </remarks>
 	 */
 #if FIX_PassengerSeating
 	FIXES_gsPSTimer[MAX_PLAYERS],
 #endif
 	/**
+	 * <remarks>
 	 * Name of the GameText hide timer function.
+	 * </remarks>
 	 */
 	FIXES_gscHideGameTextTimer[] = "_FIXES_HideGameTextTimer",
 	/**
+	 * <remarks>
 	 * Name of the Drive-By timer function.
+	 * </remarks>
 	 */
 	FIXES_gscDriveBy[] = "_FIXES_DriveBy",
 	/**
+	 * <remarks>
 	 * Name of the SetCamera timer function.
+	 * </remarks>
 	 */
 	FIXES_gscSetCamera[] = "_FIXES_SetCamera",
 	/**
+	 * <remarks>
 	 * Name of the SetTime timer function.
+	 * </remarks>
 	 */
 	FIXES_gscSetTime[] = "_FIXES_SetTime",
 	/**
+	 * <remarks>
 	 * Name of the SetColor timer function.
+	 * </remarks>
 	 */
 	FIXES_gscSetColor[] = "_FIXES_SetColor",
 	/**
+	 * <remarks>
 	 * Name of the SetCheckpoint timer function.
+	 * </remarks>
 	 */
 	FIXES_gscSetCheckpoint[] = "_FIXES_SetCheckpoint",
 	/**
+	 * <remarks>
 	 * Name of the pvar in which to store the player's checkpoint state.
+	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_SetPlayerCheckpoint
 	FIXES_pvarPlayerCheckpoint[] = "FIXES_pvarPlayerCheckpoint",
 #endif
 	/**
+	 * <remarks>
 	 * Name of the SetRaceCheckpoint timer function.
+	 * </remarks>
 	 */
 	FIXES_gscSetRaceCheckpoint[] = "_FIXES_SetRaceCheckpoint",
 	/**
+	 * <remarks>
 	 * Name of the pvar in which to store the player's race checkpoint state.
+	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_SetPlayerRaceCheckpoint
 	FIXES_pvarPlayerRaceCheckpoint[] = "FIXES_pvarPlayerRaceCheckpoint",
 #endif
 	/**
+	 * <remarks>
 	 * NULL.  This is stored as a global string to reduce memory usage.
+	 * </remarks>
 	 */
 	FIXES_gscNULL[] = "\1";
 
 static stock const
 	/**
+	 * <remarks>
 	 * (null).  This is stored as a global string to reduce memory usage.
+	 * </remarks>
 	 */
 	FIXES_gscNull[] = "(null)",
 	/**
+	 * <remarks>
 	 * A single re-usable new line.
+	 * </remarks>
 	 */
 	FIXES_gscLF[] = "\n",
 	/**
+	 * <remarks>
 	 * There are only 100 colours used by default, with SA:MP looping through
 	 * them repeatedly.
+	 * </remarks>
 	 */
 #if FIX_GetPlayerColour
 	FIXES_gscPlayerColours[100] =
@@ -2775,9 +2957,11 @@ static stock const
 		},
 #endif
 	/**
+	 * <remarks>
 	 * This is a compressed (4-bit) list of the maximum number of passengers in
 	 * any vehicle, confirmed by a number of sources. "F" (15) means invalid
 	 * vehicle.
+	 * </remarks>
 	 */
 #if FIX_OnPlayerEnterVehicle
 	FIXES_gscMaxPassengers[] =
@@ -2788,6 +2972,7 @@ static stock const
 		},
 #endif
 	/**
+	 * <remarks>
 	 * This is a bit array of all the valid mods (-1000) for all vehicles (-400)
 	 * EXCEPT for vehicle 576 (Tornado), which has just TWO extra mods on it,
 	 * that should spill over in to an extra cell of data (requiring an extra
@@ -2799,6 +2984,7 @@ static stock const
 	 *
 	 * I don't know yet if this can be used to our advantage to improve the code
 	 * somehow - it seems like that would require more explicit model handling.
+	 * </remarks>
 	 */
 #if FIX_OnVehicleMod
 	FIXES_gscVehicleMods[] =
@@ -3018,7 +3204,9 @@ static stock const
 		},
 #endif
 	/**
+	 * <remarks>
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
+	 * </remarks>
 	 */
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
 	FIXES_gscAnimIndexes[24] =
@@ -3027,7 +3215,9 @@ static stock const
 		},
 #endif
 	/**
+	 * <remarks>
 	 * List of valid animation libraries.
+	 * </remarks>
 	 */
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
 	FIXES_gscAnimLib[135][] =
@@ -3062,139 +3252,207 @@ static stock const
 		},
 #endif
 	/**
+	 * <remarks>
 	 * ".".
+	 * </remarks>
 	 */
 	FIXES_gscDot[] = ".",
 	/**
-	 * Specifier "".
+	 * <remarks>
+	 * Specifier <c></c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@[] = "",
 	/**
-	 * Specifier "i".
+	 * <remarks>
+	 * Specifier <c>i</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@i[] = "i",
 	/**
-	 * Specifier "ii".
+	 * <remarks>
+	 * Specifier <c>ii</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@ii[] = "ii",
 	/**
-	 * Specifier "ai".
+	 * <remarks>
+	 * Specifier <c>ai</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@ai[] = "ai",
 	/**
-	 * Specifier "is".
+	 * <remarks>
+	 * Specifier <c>is</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@is[] = "is",
 	/**
-	 * Specifier "iii".
+	 * <remarks>
+	 * Specifier <c>iii</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@iii[] = "iii",
 	/**
-	 * Specifier "isii".
+	 * <remarks>
+	 * Specifier <c>isii</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@isii[] = "isii",
 	/**
-	 * Specifier "ifff".
+	 * <remarks>
+	 * Specifier <c>ifff</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@ifff[] = "ifff",
 	/**
-	 * Specifier "iifff".
+	 * <remarks>
+	 * Specifier <c>iifff</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@iifff[] = "iifff",
 	/**
-	 * Specifier "iifffi".
+	 * <remarks>
+	 * Specifier <c>iifffi</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@iifffi[] = "iifffi",
 	/**
-	 * Specifier "iifffffff".
+	 * <remarks>
+	 * Specifier <c>iifffffff</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@iifffffff[] = "iifffffff",
 	/**
-	 * Specifier "iffff".
+	 * <remarks>
+	 * Specifier <c>iffff</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@iffff[] = "iffff",
 	/**
-	 * Specifier "iiiis".
+	 * <remarks>
+	 * Specifier <c>iiiis</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@iiiis[] = "iiiis",
 	/**
-	 * Specifier "iiiii".
+	 * <remarks>
+	 * Specifier <c>iiiii</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@iiiii[] = "iiiii",
 	/**
-	 * Specifier "iiiiii".
+	 * <remarks>
+	 * Specifier <c>iiiiii</c>.
+	 * </remarks>
 	 */
 	FIXES_gscSpec@iiiiii[] = "iiiiii",
 	/**
+	 * <remarks>
 	 * The temporary name to give when renaming people.
+	 * </remarks>
 	 */
 	FIXES_gscTempName[] = "FIXES_TEMP_NAME",
 	/**
+	 * <remarks>
 	 * The property to check for script ordering.
+	 * </remarks>
 	 */
 	FIXES_gscOrderProperty[] = "FIXES_gscOrderProperty",
 	/**
-	 * Call "_FIXES_DetermineOrder" in the GM or not?
+	 * <remarks>
+	 * Call <symbolref name="_FIXES_DetermineOrder" /> in the GM or not?
+	 * </remarks>
 	 */
 	FIXES_gscNoGMProperty[] = "FIXES_gscNoGMProperty",
 	/**
+	 * <remarks>
 	 * Name of the ordering callback.
+	 * </remarks>
 	 */
 	FIXES_gscDetermineOrder[] = "_FIXES_DetermineOrder",
 	/**
+	 * <remarks>
 	 * Name of the remote set player menu function.
+	 * </remarks>
 	 */
 	FIXES_gscSetPlayerMenu[] = "_FIXES_SetPlayerMenu",
 	/**
+	 * <remarks>
 	 * Name of the remote function to clear a player's menu set.
+	 * </remarks>
 	 */
 	FIXES_gscClearPlayerMenu[] = "_FIXES_ClearPlayerMenu",
 	/**
+	 * <remarks>
 	 * Name of the remote allow teleport function.
+	 * </remarks>
 	 */
 	FIXES_gscAllowTeleport[] = "_FIXES_AllowTeleport",
 	/**
+	 * <remarks>
 	 * Name of the remote vehicle entry function.
+	 * </remarks>
 	 */
 	FIXES_gscPutPlayerInVehicle[] = "_FIXES_PutPlayerInVehicle",
 	/**
+	 * <remarks>
 	 * Name of the remote interior weapons function.
+	 * </remarks>
 	 */
 	FIXES_gscAllowInteriorWeapons[] = "_FIXES_AllowInteriorWeapons",
 	/**
+	 * <remarks>
 	 * Name of the remote player toggle function.
+	 * </remarks>
 	 */
 	FIXES_gscTogglePlayerControl[] = "_FIXES_TogglePlayerControllable",
 	/**
+	 * <remarks>
 	 * Name of the remote player clock function.
+	 * </remarks>
 	 */
 	FIXES_gscTogglePlayerClock[] = "_FIXES_TogglePlayerClock",
 	/**
+	 * <remarks>
 	 * Name of the remote player clock function.
+	 * </remarks>
 	 */
 	FIXES_gscGetWeather[] = "_FIXES_GetWeather",
 	/**
+	 * <remarks>
 	 * Name of the remote world bounds function.
+	 * </remarks>
 	 */
 	FIXES_gscSetPlayerWorldBounds[] = "_FIXES_SetPlayerWorldBounds",
 	/**
+	 * <remarks>
 	 * Name of the remote GameText show function.
+	 * </remarks>
 	 */
 	FIXES_gscGameTextShow[] = "_FIXES_GameTextShow",
 	/**
+	 * <remarks>
 	 * The property for accurate returns.
+	 * </remarks>
 	 */
 	FIXES_gscReturnProperty[] = "FIXES_gscReturnProperty",
 	/**
+	 * <remarks>
 	 * The property for checking this is the only running script with fixes in.
+	 * </remarks>
 	 */
 	FIXES_gscSingleProperty[] = "FIXES_gscSingleProperty",
 	/**
+	 * <remarks>
 	 * The property for a player's current menu.
+	 * </remarks>
 	 */
 	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
 	/**
-	 * Error shown when multiple scripts are detected with `FIXES_SINGLE`.
+	 * <remarks>
+	 * Error shown when multiple scripts are detected with <c>FIXES_SINGLE</c>.
+	 * </remarks>
 	 */
 	FIXES_gscMultiScriptError[] = "\7\7\7\7\7"                                               "\n"   \
 		"*** fixes.inc error: Running multiple scripts compiled with \"fixes.inc\"..."       "\n"   \
@@ -3202,10 +3460,12 @@ static stock const
 		"***     this setting is no longer the default (to improve the more common case)."          ;
 
 /**
- * _FIXES_KEY_AIM
- * KEY_AIM
+ * <remarks>
+ * <c>_FIXES_KEY_AIM</c>
+ * <c>KEY_AIM</c>
  *
  * Because the default SA:MP includes missed this one.
+ * </remarks>
  */
 
 #define _FIXES_KEY_AIM                   (128)
@@ -3214,10 +3474,12 @@ static stock const
 #endif
 
 /**
- * _FIXES_SPECIAL_ACTION_PISSING
- * SPECIAL_ACTION_PISSING
+ * <remarks>
+ * <c>_FIXES_SPECIAL_ACTION_PISSING</c>
+ * <c>SPECIAL_ACTION_PISSING</c>
  *
  * Because the default SA:MP includes missed this one.
+ * </remarks>
  */
 
 #define _FIXES_SPECIAL_ACTION_PISSING    (68)
@@ -3226,9 +3488,11 @@ static stock const
 #endif
 
 /**
- * IsValidVehicle
+ * <remarks>
+ * <c>IsValidVehicle</c>
  *
  * Because the default SA:MP includes missed this one.
+ * </remarks>
  */
 
 #if FIX_IsValidVehicle
@@ -3236,9 +3500,11 @@ static stock const
 #endif
 
 /**
- * GetGravity
+ * <remarks>
+ * <c>GetGravity</c>
  *
  * Because the default SA:MP includes missed this one.
+ * </remarks>
  */
 
 #if FIX_GetGravity
@@ -3246,9 +3512,11 @@ static stock const
 #endif
 
 /**
- * gpci
+ * <remarks>
+ * <c>gpci</c>
  *
  * Because the default SA:MP includes missed this one.
+ * </remarks>
  */
 
 #if FIX_gpci
@@ -3256,9 +3524,11 @@ static stock const
 #endif
 
 /**
- * const
+ * <remarks>
+ * <c>const</c>
  *
  * Better const-correctness on native functions.
+ * </remarks>
  */
 
 #if FIX_const
@@ -3602,9 +3872,11 @@ static stock const
 #endif
 
 /**
- * WEAPONS
+ * <remarks>
+ * <c>WEAPONS</c>
  *
  * Because the default SA:MP includes missed some of these.
+ * </remarks>
  */
 
 #define _FIXES_WEAPON_FIST                      (0)
@@ -3622,9 +3894,11 @@ static stock const
 #define _FIXES_WEAPON_SLOTS                     (13)
 
 /**
- * BODYPARTS
+ * <remarks>
+ * <c>BODYPARTS</c>
  *
  * Because the default SA:MP includes missed these.
+ * </remarks>
  */
 
 #if FIX_BODYPARTS
@@ -3638,9 +3912,11 @@ static stock const
 #endif
 
 /**
- * CAMERAMODES
+ * <remarks>
+ * <c>CAMERAMODES</c>
  *
  * Because the default SA:MP includes missed these.
+ * </remarks>
  */
 
 #if FIX_CAMERAMODES
@@ -3662,9 +3938,11 @@ static stock const
 #endif
 
 /**
- * VEHICLES
+ * <remarks>
+ * <c>VEHICLES</c>
  *
  * Because the default SA:MP includes missed these.
+ * </remarks>
  */
 
 #if FIX_VEHICLES
@@ -3883,9 +4161,11 @@ static stock const
 #endif
 
 /**
- * IS_JIT
+ * <remarks>
+ * <c>IS_JIT</c>
  *
  * True when the code is JIT compiled.
+ * </remarks>
  */
 
 #if FIX_JIT
@@ -3893,10 +4173,12 @@ static stock const
 #endif
 
 /**
- * IS_FILTERSCRIPT
+ * <remarks>
+ * <c>IS_FILTERSCRIPT</c>
  *
  * "FILTERSCRIPT" can't always be relied on to be set.  This is not a pre-
  * processor macro, but may be better than nothing (also used internally).
+ * </remarks>
  */
 
 #if FIX_FILTERSCRIPT
@@ -3904,15 +4186,17 @@ static stock const
 #endif
 
 /**
- * IS_WINDOWS
+ * <remarks>
+ * <c>IS_WINDOWS</c>
  *
  * True when the code is running on Windows.  NOT a pre-processor macro, since
  * the OS you are running the code on can't be determined at compile-time.
  *
- * IS_LINUX
+ * <c>IS_LINUX</c>
  *
  * True when the code is running on Linux.  NOT a pre-processor macro, since the
  * OS you are running the code on can't be determined at compile-time.
+ * </remarks>
  */
 
 #if FIX_OS
@@ -3921,8 +4205,9 @@ static stock const
 #endif
 
 /**
+ * <remarks>
  * Figure out what OS this is running on.
- *
+ * </remarks>
  * <fixes>IS_WINDOWS</fixes>
  * <fixes>IS_LINUX</fixes>
  */
@@ -3948,9 +4233,11 @@ static _FIXES_DetermineOS()
 }
 
 /**
+ * <remarks>
  * File operators
  *
  * Forwards for operators that shouldn't exist, so they won't exist.
+ * </remarks>
  */
 
 #if FIX_FileMaths
@@ -3985,7 +4272,9 @@ static _FIXES_DetermineOS()
 #endif
 
 /**
+ * <remarks>
  * Figure out which script is called first by callbacks.
+ * </remarks>
  */
 
 #if !FIXES_Single
@@ -4022,8 +4311,9 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 #endif
 
 /**
+ * <remarks>
  * Create the text draws used to replicate game texts.
- *
+ * </remarks>
  * <fixes>GameText</fixes>
  */
 
@@ -4444,8 +4734,9 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 #endif
 
 /**
+ * <remarks>
  * Set "IS_JIT" to true.
- *
+ * </remarks>
  * <fixes>IS_JIT</fixes>
  */
 
@@ -4469,9 +4760,10 @@ public OnJITCompile()
 _FIXES_FORWARD FIXES_OnJITCompile();
 
 /**
- * Set "IS_FILTERSCRIPT" to true as this callback is ONLY called if this script
- * is actually a FilterScript.  Then call "FIXES_OnScriptInit".
- *
+ * <remarks>
+ * Set <symbolref name="IS_FILTERSCRIPT" /> to true as this callback is ONLY called if this script
+ * is actually a FilterScript.  Then call <symbolref name="FIXES_OnScriptInit" />.
+ * </remarks>
  * <fixes>IS_FILTERSCRIPT</fixes>
  * <fixes>OnPlayerConnect</fixes>
  * <fixes>GameText</fixes>
@@ -4574,8 +4866,9 @@ public OnFilterScriptInit()
 _FIXES_FORWARD FIXES_OnFilterScriptInit();
 
 /**
- * Call "FIXES_OnScriptInit" if this is not a FilterScript.
- *
+ * <remarks>
+ * Call <symbolref name="FIXES_OnScriptInit" /> if this is not a FilterScript.
+ * </remarks>
  * <fixes>IS_FILTERSCRIPT</fixes>
  * <fixes>AllowInteriorWeapons</fixes>
  * <fixes>AllowTeleport</fixes>
@@ -4671,7 +4964,9 @@ public OnGameModeInit()
 _FIXES_FORWARD FIXES_OnGameModeInit();
 
 /**
+ * <remarks>
  * Fast way of detecting not to retain any data.
+ * </remarks>
  */
 
 #if !FIXES_Single || FIX_PlayerDialogResponse
@@ -4712,7 +5007,9 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 #endif
 
 /**
+ * <remarks>
  * Fast way of detecting not to retain any data.
+ * </remarks>
  */
 
 #if !FIXES_Single || FIX_GameText || FIX_OnPlayerDisconnect
@@ -4821,10 +5118,11 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 #endif
 
 /**
+ * <remarks>
  * Almost every fix uses this callback for initialisation.  It is only
  * explicitly referenced for those fixes where this is all the code.  The
  * inclusion code was approaching the 512 line length limit, so I shrank it.
- *
+ * </remarks>
  * <fixes>TogglePlayerControllable</fixes>
  * <fixes>SetPlayerWorldBounds</fixes>
  * <fixes>GetPlayerColor</fixes>
@@ -5957,8 +6255,9 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <remarks>
  * TODO: Modify this to remove aim animations when they get to the boundaries.
- *
+ * </remarks>
  * <fixes>SetPlayerWorldBounds</fixes>
  */
 
@@ -6404,7 +6703,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 
 /**
- * Block a player from using OnPlayerUpdate at all.
+ * <remarks>
+ * Block a player from using <symbolref name="OnPlayerUpdate" /> at all.
+ * </remarks>
  */
 
 #if FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_Kick || FIX_OnVehicleMod
@@ -6436,8 +6737,10 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 
 /**
- * Block a player from entering a vehicle after the animation for a locked driver door
- *
+ * <remarks>
+ * Block a player from entering a vehicle after the animation for a locked
+ * driver door
+ * </remarks>
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
 
@@ -7610,9 +7913,10 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 #endif
 
 /**
+ * <remarks>
  * Hides a GameText style for one or more players, and accounts for the fact
  * that they may have different messages being shown.
- *
+ * </remarks>
  * <fixes>GameText</fixes>
  */
 
@@ -8735,12 +9039,15 @@ native BAD_Kick(playerid) = Kick;
 #endif
 
 /**
+ * <remarks>
  * Figure out which the first filterscript to be called is so that it can do the
  * majority of the work.  More detail:  Several pieces of code for some fixes
- * rely on things like blocking "OnPlayerUpdate".  This should be done in the
- * first script in which "OnPlayerUpdate" is called only, so we need to find out
+ * rely on things like blocking <symbolref name="OnPlayerUpdate" />.  This
+ * should be done in the first script in which
+ * <symbolref name="OnPlayerUpdate" /> is called only, so we need to find out
  * in advance which script will be called first (at least out of all the fixed
  * scripts).
+ * </remarks>
  */
 
 #if !FIXES_Single
@@ -9412,8 +9719,9 @@ native BAD_random(max) = random;
 #endif
 
 /**
+ * <remarks>
  * _FIXES_SetCamera
- *
+ * </remarks>
  * <fixes>SetPlayerCamera</fixes>
  */
 
@@ -10157,7 +10465,9 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #endif
 
 /**
+ * <remarks>
  * Modify a constant reference.
+ * </remarks>
  */
 
 static stock _FIXES_ConstMod(const &target, chr)
@@ -10168,9 +10478,11 @@ static stock _FIXES_ConstMod(const &target, chr)
 }
 
 /**
- * Removes whitespace from the right side of a string.  Modifies `const` strings
- * to make it appear that nothing changes, so needs some tricky playing to make
- * it work.
+ * <remarks>
+ * Removes whitespace from the right side of a string.  Modifies <c>const</c>
+ * strings to make it appear that nothing changes, so needs some tricky playing
+ * to make it work.
+ * </remarks>
  */
 
 static stock _FIXES_rtrim(const string[])
@@ -10188,8 +10500,10 @@ static stock _FIXES_rtrim(const string[])
 }
 
 /**
+ * <remarks>
  * Puts whitespace back on the right side of a string.  Makes certain functions
- * appear `const` because the string ends up the same as it started.
+ * appear <c>const</c> because the string ends up the same as it started.
+ * </remarks>
  */
 
 static stock _FIXES_untrim(const string[])
@@ -10198,7 +10512,9 @@ static stock _FIXES_untrim(const string[])
 }
 
 /**
+ * <remarks>
  * Add something to an internal linked list.
+ * </remarks>
  */
 
 static stock _FIXES_AddInternal(array[], value, size)
@@ -10221,7 +10537,9 @@ static stock _FIXES_AddInternal(array[], value, size)
 }
 
 /**
+ * <remarks>
  * Remove something from an internal linked list.
+ * </remarks>
  */
 
 static stock _FIXES_RemoveInternal(array[], value, size)
@@ -10282,6 +10600,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
  */
 
 /**
+ * <remarks>Information about fix here</remarks>
  * <fixes>NameOfFixHere</fixes>
  */
 
