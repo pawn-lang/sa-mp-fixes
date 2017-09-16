@@ -2,11 +2,10 @@
  * <library>
  *             fixes.inc - Community patch for buggy SA:MP functions.
  * </library>
- *
  * <section>
  *             Fixes
  * </section>
- * <ul>
+ *
  * <fix name="GetPlayerColor">
  * <problem>  Returns "0" if "SetPlayerColor" has never been called.</problem>
  * <solution> Call "SetPlayerColor" in "OnPlayerConnect".</solution>
@@ -919,7 +918,7 @@
  * <author    name="Y_Less" href="https://github.com/Y-Less" />
  * <post      href="http://forum.sa-mp.com/showpost.php?p=3929000" />
  * </fix>
- * </ul>
+ *
  * <section>
  *             Style Rules
  * </section>
