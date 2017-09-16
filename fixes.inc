@@ -493,7 +493,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
- * <fix name="GetPlayerDialog" default="false">
+ * <fix name="GetPlayerDialog" disabled="true">
  *     <problem>
  *         This function doesn't exist.  Fixed for hidden dialogs.
  *     </problem>
@@ -664,7 +664,7 @@ in the output code.
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
  *     
- * <fix name="file_inc" default="false">
+ * <fix name="file_inc" disabled="true">
  *     <problem>
  *         Includes or excludes all the file function fixes together (can cause
  *         major overhead).
@@ -763,7 +763,7 @@ in the output code.
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1671500" />
  * </fix>
  *     
- * <fix name="random" default="false">
+ * <fix name="random" disabled="true">
  *     <problem>
  *         Doesn't work with negative numbers.
  *     </problem>
@@ -830,7 +830,7 @@ in the output code.
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
  * </fix>
  *     
- * <fix name="HideMenuForPlayer_2" default="false">
+ * <fix name="HideMenuForPlayer_2" disabled="true">
  *     <problem>
  *         Ignores the "menuid" parameter.
  *     </problem>
@@ -1103,7 +1103,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *     
- * <fix name="GameTextStyles" default="false">
+ * <fix name="GameTextStyles" disabled="true">
  *     <problem>
  *         San Andreas has fixed styles for area and vehicle names, but they are
  *         not included in the GameText styles list.
@@ -1421,7 +1421,7 @@ in the output code.
  *     <author    href="https://github.com/IstuntmanI" >stuntman</author>
  * </fix>
  *     
- * <fix name="GetPlayerWeather" default="false">
+ * <fix name="GetPlayerWeather" disabled="true">
  *     <problem>
  *         This function doesn't exist.
  *     </problem>
@@ -1433,7 +1433,7 @@ in the output code.
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
  *     
- * <fix name="GetWeather" default="false">
+ * <fix name="GetWeather" disabled="true">
  *     <problem>
  *         This function doesn't exist.
  *     </problem>
@@ -1445,7 +1445,7 @@ in the output code.
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
  *     
- * <fix name="GetWorldTime" default="false">
+ * <fix name="GetWorldTime" disabled="true">
  *     <problem>
  *         This function doesn't exist.
  *     </problem>
@@ -1686,7 +1686,7 @@ in the output code.
  * </section>
  *
  * <code>
- *     &lt;fix name="Short Name" default="false if disabled" fixed="Optional server version of official fix where applicable"&gt; <br /><indent />
+ *     &lt;fix name="Short Name" disabled="true" fixed="Optional server version of official fix where applicable"&gt; <br /><indent />
  *         &lt;problem&gt;                                                                                                        <br /><indent />
  *             Description of problem.                                                                                            <br /><indent /><indent />
  *         &lt;/problem&gt;                                                                                                       <br /><indent />
@@ -11547,7 +11547,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 // Fix documentation template.
 
 /**
- * <fix name="" default="" fixed="">
+ * <fix name="" disabled="true" fixed="">
  *     <problem>
  *         problem
  *     </problem>

@@ -367,8 +367,10 @@
 	<xsl:if test="@fixed">
 		<p><b>Fixed in <xsl:value-of select="@fixed"/></b></p>
 	</xsl:if>
-	<xsl:if test="@default">
-		<p><b>Disabled By Default</b></p>
+	<xsl:if test="@disabled">
+		<xsl:if test="@disabled='true'">
+			<p><b>Disabled By Default</b></p>
+		</xsl:if>
 	</xsl:if>
 
 	<h3>Problem</h3>
