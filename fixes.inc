@@ -1685,7 +1685,7 @@ in the output code.
  *             Documentation Explanation
  * </section>
  *
- * <code>
+ * <code lang="xml">
  *     &lt;fix name="Short Name" disabled="true" fixed="Optional server version of official fix where applicable"&gt; <br /><indent />
  *         &lt;problem&gt;                                                                                                        <br /><indent />
  *             Description of problem.                                                                                            <br /><indent /><indent />
