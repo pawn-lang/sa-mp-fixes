@@ -1685,6 +1685,18 @@ in the output code.
  *             Documentation Explanation
  * </section>
  *
+ * <p>The <em>fixes.inc</em> code itself now contains all of the documentation
+ * in its header, formatted using the compiler's natively supported pawn-doc,
+ * plus some custom XSL.  Previously <em>README.md</em> and the header had to be
+ * kept in sync manually.  Now you can just compile a script with <c>-r</c> and
+ * get a large amount of XML documentation, including all of this header in a
+ * <c>&lt;library&gt;&lt;/library&gt;</c> pair.  The repository comes with a
+ * file called <em>markdown.xsl</em> that, when saved as
+ * <em>pawno/xml/pawndoc.xsl</em>, will transform that XML to markdown to keep
+ * <em>README.md</em> fully up-to-data almost automatically.</p>
+ *
+ * <p>The descriptions of the fixes all look like:</p>
+ *
  * <code lang="xml">
  *     &lt;fix name="Short Name" disabled="true" fixed="Optional server version of official fix where applicable"&gt; <br /><indent />
  *         &lt;problem&gt;                                                                                                        <br /><indent />
@@ -1698,6 +1710,9 @@ in the output code.
  *         &lt;post      href="Optional link to the original post where applicable." /&gt;                                        <br />
  *     &lt;/fix&gt;
  * </code>
+ *
+ *
+ *
  * </library>
  *//** */
 
@@ -11595,4 +11610,5 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_NameOfFixHere
 	#define NameOfFixHere( FIXES_NameOfFixHere(
 #endif
+
 

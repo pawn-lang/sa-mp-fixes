@@ -331,6 +331,14 @@ This only includes this fix if that native doesn't exist. A copyable version of 
 ## Documentation Explanation 
 
 
+The **fixes.inc** code itself now contains all of the documentation in its header, formatted using the compiler's natively supported pawn-doc, plus some custom XSL. Previously **README.md** and the header had to be kept in sync manually. Now you can just compile a script with `-r` and get a large amount of XML documentation, including all of this header in a `<library></library>` pair. The repository comes with a file called **markdown.xsl** that, when saved as **pawno/xml/pawndoc.xsl**, will transform that XML to markdown to keep **README.md** fully up-to-data almost automatically.
+
+
+
+The descriptions of the fixes all look like:
+
+
+
 ```xml
 <fix name="Short Name" disabled="true" fixed="Optional server version of official fix where applicable"> 
      <problem> 
