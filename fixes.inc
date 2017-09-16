@@ -29,13 +29,13 @@ RegEx.  I also put the search at the top of this block so it is easier to find
 in the output code.
 -->
 *//**
- * <library>
- *             fixes.inc - Community patch for buggy SA:MP functions.
- * </library>
+ * <library name="fixes.inc"
+ *   description="Community patch for buggy SA:MP functions.">
  * <section>
  *             Fixes
  * </section>
  *
+ * <fixeslist>
  * <fix name="GetPlayerColor">
  *     <problem>
  *         Returns "0" if "SetPlayerColor" has never been called.
@@ -1410,6 +1410,7 @@ in the output code.
  *     <author    name="Y_Less" href="https://github.com/Y-Less" />
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=3929000" />
  * </fix>
+ * </fixeslist>
  *
  * <section>
  *             Style Rules
@@ -1553,6 +1554,7 @@ in the output code.
  *         &lt;post      href="Optional link to the original post where applicable." /&gt;                                        <br />
  *     &lt;/fix&gt;
  * </code>
+ * </library>
  *//** */
 
 #if defined _INC_SAMP_Community_fixes
