@@ -1,4 +1,34 @@
-/**
+/*
+            ========================================================
+             fixes.inc - Community patch for buggy SA:MP functions.
+            ========================================================
+*//**
+<!--
+<transition target[^/]+/>
+
+:::::::: README ::::::::
+
+To read the generated XML output, copy `pawndoc.xsl` to `pawno/xml/`.
+
+This information goes very close to the top of the generated XML documentation
+(because of include dependency orders), but doesn't appear in the visual output.
+
+There is a bug in the compiler related to outputting documentation on state
+transitions (<a href="https://github.com/Zeex/pawn/issues/184" />).  So after
+generation of the XML file, you should clean it up with the following RegEx
+replacement:
+
+Search: <transition target[^/]+/>
+Replace: (nothing)
+
+This works 99% of the time, though you may get one where the corrupted target
+includes the character `/`, in which case you should manually delete them.  Note
+that YSI now includes manual documentation for transitions, but these all
+include the parameter `keep="true"`, which exists simply to not match that
+RegEx.  I also put the search at the top of this block so it is easier to find
+in the output code.
+-->
+*//**
  * <library>
  *             fixes.inc - Community patch for buggy SA:MP functions.
  * </library>
@@ -7,916 +37,1378 @@
  * </section>
  *
  * <fix name="GetPlayerColor">
- * <problem>  Returns "0" if "SetPlayerColor" has never been called.</problem>
- * <solution> Call "SetPlayerColor" in "OnPlayerConnect".</solution>
- * <see>OnPlayerConnect</see>
- * <author    name="KoczkaHUN" />
+ *     <problem>
+ *         Returns "0" if "SetPlayerColor" has never been called.
+ *     </problem>
+ *     <solution>
+ *         Call "SetPlayerColor" in "OnPlayerConnect".
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <author    name="KoczkaHUN" />
  * </fix>
- *
+ *     
  * <fix name="FILTERSCRIPT">
- * <problem>  Despite the fact that is in every new script, many people don't
- *            define "FILTERSCRIPT" where appropriate.</problem>
- * <solution> Provide an "IS_FILTERSCRIPT" variable (note the naming to match
- *            the original macro).</solution>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <see>OnFilterScriptInit</see>
- * <see>OnGameModeInit</see>
- *
+ *     <problem>
+ *         Despite the fact that is in every new script, many people dont'
+ *         define "FILTERSCRIPT" where appropriate.
+ *     </problem>
+ *     <solution>
+ *         Provide an "IS_FILTERSCRIPT" variable (note the naming to
+ *         match the original macro).
+ *     </solution>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <see>OnFilterScriptInit</see>
+ *     <see>OnGameModeInit</see>
+ *     
  * <fix name="SpawnPlayer">    
- * <problem>  Kills the player if they are in a vehicle.                        </problem> 
- * <solution> Remove the from the vehicle.                                      </solution>
- * <see>FIXES_SpawnPlayer                           </see>     
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />  
+ *     <problem>
+ *         Kills the player if they are in a vehicle.
+ *     </problem> 
+ *     <solution>
+ *         Remove the from the vehicle.
+ *     </solution>
+ *     <see>FIXES_SpawnPlayer</see>     
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />  
  * </fix>
  * </fix>
- *
+ *     
  * <fix name="SetPlayerName">
- * <problem>  Using "SetPlayerName" when the new name only differs from the old
- *            name in case does not alter the name at all.</problem>
- * <solution> Change their name twice - once to "_FIXES TEMP NAME" and then to
- *            the actual required name.</solution>
- * <see>OnPlayerConnect</see>
- * <see>FIXES_SetPlayerName</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
- * <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <problem>
+ *         Using "SetPlayerName" when the new name only differs from the old
+ *         name in case does not alter the name at all.
+ *     </problem>
+ *     <solution>
+ *         Change their name twice - once to "_FIXES TEMP NAME" and then
+ *         to the actual required name.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <see>FIXES_SetPlayerName</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
  * </fix>
- *
+ *     
  * <fix name="GetPlayerSkin">
- * <problem>  Returns the new skin after "SetSpawnInfo" is called but before the
- *            player actually respawns to get the new skin.</problem>
- * <solution> Record the skin in "OnPlayerSpawn" and always return that one.</solution>
- * <see>OnPlayerSpawn</see>
- * <see>FIXES_GetPlayerSkin</see>
- * <see>FIXES_SetPlayerSkin</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Returns the new skin after "SetSpawnInfo" is called but before the
+ *         player actually respawns to get the new skin.
+ *     </problem>
+ *     <solution>
+ *         Record the skin in "OnPlayerSpawn" and always return that one.
+ *         
+ *     </solution>
+ *     <see>OnPlayerSpawn</see>
+ *     <see>FIXES_GetPlayerSkin</see>
+ *     <see>FIXES_SetPlayerSkin</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="GetWeaponName" fixed="0.3.7">
- * <problem>  Returns nothing for 18, 44, and 45.</problem>
- * <solution> Return the correct names ("Molotov Cocktail", "Thermal Goggles",
- *            and "Night vision Goggles").</solution>
- * <see>FIXES_GetWeaponName</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Returns nothing for 18, 44, and 45.
+ *     </problem>
+ *     <solution>
+ *         Return the correct names (<c>Molotov Cocktail</c>, <c>Thermal
+ *         Goggles</c>, and <c>Night vision Goggles</c>).
+ *     </solution>
+ *     <see>FIXES_GetWeaponName</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="SetPlayerWorldBounds">
- * <problem>  Aiming can bypass the edge.</problem>
- * <solution> Check for the player leaving the area and reset them to their last
- *            good position if they leave the area (aiming or not).</solution>
- * <see>OnPlayerUpdate</see>
- * <see>FIXES_SetPlayerWorldBounds</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Aiming can bypass the edge.
+ *     </problem>
+ *     <solution>
+ *         Check for the player leaving the area and reset them to their last
+ *         good position if they leave the area (aiming or not).
+ *     </solution>
+ *     <see>OnPlayerUpdate</see>
+ *     <see>FIXES_SetPlayerWorldBounds</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="TogglePlayerControllable">
- * <problem>  Other players see you moving on the spot.</problem>
- * <solution> Return 0 in OnPlayerUpdate.</solution>
- * <see>FIXES_TogglePlayerControllable</see>
- * <see>OnPlayerUpdate</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=876854" />
+ *     <problem>
+ *         Other players see you moving on the spot.
+ *     </problem>
+ *     <solution>
+ *         Return 0 in OnPlayerUpdate.
+ *     </solution>
+ *     <see>FIXES_TogglePlayerControllable</see>
+ *     <see>OnPlayerUpdate</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=876854" />
  * </fix>
- *
+ *     
  * <fix name="HydraSniper">
- * <problem>  Entering military aircraft with a sniper rifle messes up views.</problem>
- * <solution> Set their armed weapon to fists.</solution>
- * <see>OnPlayerStateChange</see>
- * <see>FIXES_GivePlayerWeapon</see>
- * <see>FIXES_SetPlayerArmedWeapon</see>
- * <author    name="funky1234" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=965644" />
+ *     <problem>
+ *         Entering military aircraft with a sniper rifle messes up views.
+ *     </problem>
+ *     <solution>
+ *         Set their armed weapon to fists.
+ *     </solution>
+ *     <see>OnPlayerStateChange</see>
+ *     <see>FIXES_GivePlayerWeapon</see>
+ *     <see>FIXES_SetPlayerArmedWeapon</see>
+ *     <author    name="funky1234" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=965644" />
  * </fix>
- *
+ *     
  * <fix name="IsPlayerInCheckpoint">
- * <problem>  Function returns an undefined value if it is called before any
- *            other checkpoint functions are called to initialise the value.</problem>
- * <solution> Call "DisablePlayerCheckpoint" when they connect.</solution>
- * <see>OnPlayerConnect</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Function returns an undefined value if it is called before any other
+ *         checkpoint functions are called to initialise the value.
+ *     </problem>
+ *     <solution>
+ *         Call "DisablePlayerCheckpoint" when they connect.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="IsPlayerInRaceCheckpoint">
- * <problem>  Function returns an undefined value if it is called before any
- *            other race checkpoint functions are called to initialise the value.</problem>
- * <solution> Call "DisablePlayerRaceCheckpoint" when they connect.</solution>
- * <see>OnPlayerConnect</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Function returns an undefined value if it is called before any other
+ *         race checkpoint functions are called to initialise the value.
+ *     </problem>
+ *     <solution>
+ *         Call "DisablePlayerRaceCheckpoint" when they connect.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="GetPlayerWeapon">
- * <problem>  Returns the old value after entering in a vehicle.</problem>
- * <solution> If "SetPlayerArmedWeapon" and other similar functions is called in
- *            a vehicle, store the new value and return that instead.</solution>
- * <see>OnPlayerStateChange</see>
- * <see>FIXES_SetPlayerArmedWeapon</see>
- * <see>FIXES_GetPlayerWeapon</see>
- * <see>FIXES_GivePlayerWeapon</see>
- * <see>FIXES_ResetPlayerWeapons</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <author    name="ronixtey" href="https://github.com/ronixtey/" />
+ *     <problem>
+ *         Returns the old value after entering in a vehicle.
+ *     </problem>
+ *     <solution>
+ *         If "SetPlayerArmedWeapon" and other similar functions is called in a
+ *         vehicle, store the new value and return that instead.
+ *     </solution>
+ *     <see>OnPlayerStateChange</see>
+ *     <see>FIXES_SetPlayerArmedWeapon</see>
+ *     <see>FIXES_GetPlayerWeapon</see>
+ *     <see>FIXES_GivePlayerWeapon</see>
+ *     <see>FIXES_ResetPlayerWeapons</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    name="ronixtey" href="https://github.com/ronixtey/" />
  * </fix>
- *
+ *     
  * <fix name="PutPlayerInVehicle">
- * <problem>  If this is used on a passenger the driver of their old vehicle
- *            doesn't see them in their new vehicle.</problem>
- * <solution> Remove them from the vehicle first.</solution>
- * <see>OnPlayerStateChange</see>
- * <see>FIXES_PutPlayerInVehicle</see>
- * <author    name="leong124" />
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=1265965" />
+ *     <problem>
+ *         If this is used on a passenger the driver of their old vehicle
+ *         doesn't see them in their new vehicle.
+ *     </problem>
+ *     <solution>
+ *         Remove them from the vehicle first.
+ *     </solution>
+ *     <see>OnPlayerStateChange</see>
+ *     <see>FIXES_PutPlayerInVehicle</see>
+ *     <author    name="leong124" />
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1265965" />
  * </fix>
- *
+ *     
  * <fix name="KEY_AIM">
- * <problem>  "KEY_AIM" isn't defined by default.</problem>
- * <solution> Define it.</solution>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         "KEY_AIM" isn't defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="SetPlayerCheckpoint">
- * <problem>  If a checkpoint is already set it will use the size of that
- *            checkpoint instead of the new one.</problem>
- * <solution> Call "DisablePlayerCheckpoint" before setting the checkpoint.</solution>
- * <see>FIXES_SetPlayerCheckpoint</see>
- * <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <problem>
+ *         If a checkpoint is already set it will use the size of that
+ *         checkpoint instead of the new one.
+ *     </problem>
+ *     <solution>
+ *         Call "DisablePlayerCheckpoint" before setting the checkpoint.
+ *     </solution>
+ *     <see>FIXES_SetPlayerCheckpoint</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi/" />
  * </fix>
- *
+ *     
  * <fix name="SetPlayerRaceCheckpoint">
- * <problem>  If a checkpoint is already set it will use the size of that
- *            checkpoint instead of the new one.</problem>
- * <solution> Call "DisablePlayerRaceCheckpoint" before setting the checkpoint.</solution>
- * <see>FIXES_SetPlayerRaceCheckpoint</see>
- * <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <problem>
+ *         If a checkpoint is already set it will use the size of that
+ *         checkpoint instead of the new one.
+ *     </problem>
+ *     <solution>
+ *         Call "DisablePlayerRaceCheckpoint" before setting the checkpoint.
+ *     </solution>
+ *     <see>FIXES_SetPlayerRaceCheckpoint</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi/" />
  * </fix>
- *
+ *     
  * <fix name="TextDrawCreate">
- * <problem>  Crashes on a blank string.</problem>
- * <solution> Intercept blank strings.</solution>
- * <see>FIXES_TextDrawCreate</see>
- * <author    name="wups" />
+ *     <problem>
+ *         Crashes on a blank string.
+ *     </problem>
+ *     <solution>
+ *         Intercept blank strings.
+ *     </solution>
+ *     <see>FIXES_TextDrawCreate</see>
+ *     <author    name="wups" />
  * </fix>
- *
+ *     
  * <fix name="TextDrawCreate_2">
- * <problem>  If the last character in the text is a space (" "), the text will all be blank.</problem>
- * <solution> Remove space characters from the end of the string.</solution>
- * <see>FIXES_TextDrawCreate</see>
- * <author    name="ziggi" href="https://github.com/ziggi/" />
- * <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ *     <problem>
+ *         If the last character in the text is a space (" "), the text will all
+ *         be blank.
+ *     </problem>
+ *     <solution>
+ *         Remove space characters from the end of the string.
+ *     </solution>
+ *     <see>FIXES_TextDrawCreate</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
- *
+ *     
  * <fix name="TextDrawSetString">
- * <problem>  Crashes on a blank string and size greater than 1024.</problem>
- * <solution> Intercept blank strings and truncate long strings.</solution>
- * <see>FIXES_TextDrawSetString</see>
- * <author    name="TomTrox" />
+ *     <problem>
+ *         Crashes on a blank string and size greater than 1024.
+ *     </problem>
+ *     <solution>
+ *         Intercept blank strings and truncate long strings.
+ *     </solution>
+ *     <see>FIXES_TextDrawSetString</see>
+ *     <author    name="TomTrox" />
  * </fix>
- *
+ *     
  * <fix name="TextDrawSetString_2">
- * <problem>  If the last character in the text is a space (" "), the text will all be blank.</problem>
- * <solution> Remove space characters from the end of the string.</solution>
- * <see>FIXES_TextDrawSetString</see>
- * <author    name="ziggi" href="https://github.com/ziggi/" />
- * <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ *     <problem>
+ *         If the last character in the text is a space (" "), the text will all
+ *         be blank.
+ *     </problem>
+ *     <solution>
+ *         Remove space characters from the end of the string.
+ *     </solution>
+ *     <see>FIXES_TextDrawSetString</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
- *
+ *     
  * <fix name="CreatePlayerTextDraw">
- * <problem>  Crashes on a blank string.</problem>
- * <solution> Intercept blank strings.</solution>
- * <see>FIXES_CreatePlayerTextDraw</see>
- * <author    name="wups" />
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Crashes on a blank string.
+ *     </problem>
+ *     <solution>
+ *         Intercept blank strings.
+ *     </solution>
+ *     <see>FIXES_CreatePlayerTextDraw</see>
+ *     <author    name="wups" />
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="CreatePlayerTextDraw_2">
- * <problem>  If the last character in the text is a space (" "), the text will all be blank.</problem>
- * <solution> Remove space characters from the end of the string.</solution>
- * <see>FIXES_CreatePlayerTextDraw</see>
- * <author    name="ziggi" href="https://github.com/ziggi/" />
- * <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ *     <problem>
+ *         If the last character in the text is a space (" "), the text will all
+ *         be blank.
+ *     </problem>
+ *     <solution>
+ *         Remove space characters from the end of the string.
+ *     </solution>
+ *     <see>FIXES_CreatePlayerTextDraw</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
- *
+ *     
  * <fix name="PlayerTextDrawSetString">
- * <problem>  Crashes on a blank string and size greater than 1024.</problem>
- * <solution> Intercept blank strings and truncate long strings.</solution>
- * <see>FIXES_PlayerTextDrawSetString</see>
- * <author    name="TomTrox" />
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Crashes on a blank string and size greater than 1024.
+ *     </problem>
+ *     <solution>
+ *         Intercept blank strings and truncate long strings.
+ *     </solution>
+ *     <see>FIXES_PlayerTextDrawSetString</see>
+ *     <author    name="TomTrox" />
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="PlayerTextDrawSetString_2">
- * <problem>  If the last character in the text is a space (" "), the text will all be blank.</problem>
- * <solution> Remove space characters from the end of the string.</solution>
- * <see>FIXES_PlayerTextDrawSetString</see>
- * <author    name="ziggi" href="https://github.com/ziggi/" />
- * <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ *     <problem>
+ *         If the last character in the text is a space (" "), the text will all
+ *         be blank.
+ *     </problem>
+ *     <solution>
+ *         Remove space characters from the end of the string.
+ *     </solution>
+ *     <see>FIXES_PlayerTextDrawSetString</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
- *
+ *     
  * <fix name="AllowInteriorWeapons">
- * <problem>  Does nothing.</problem>
- * <solution> Set the player's weapon to fists in an interior.</solution>
- * <see>FIXES_AllowInteriorWeapons</see>
- * <see>OnGameModeInit</see>
- * <see>OnPlayerUpdate</see>
- * <author    name="KoczkaHUN" />
+ *     <problem>
+ *         Does nothing.
+ *     </problem>
+ *     <solution>
+ *         Set the player's weapon to fists in an interior.
+ *     </solution>
+ *     <see>FIXES_AllowInteriorWeapons</see>
+ *     <see>OnGameModeInit</see>
+ *     <see>OnPlayerUpdate</see>
+ *     <author    name="KoczkaHUN" />
  * </fix>
- *
+ *     
  * <fix name="OnPlayerEnterVehicle">
- * <problem>  Crashes other players when people enter an invalid seat.</problem>
- * <solution> Desync the people with invalid seats.</solution>
- * <see>OnPlayerStateChange</see>
- * <see>OnPlayerUpdate</see>
- * <author    name="RyDeR`" />
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=1410296" />
+ *     <problem>
+ *         Crashes other players when people enter an invalid seat.
+ *     </problem>
+ *     <solution>
+ *         Desync the people with invalid seats.
+ *     </solution>
+ *     <see>OnPlayerStateChange</see>
+ *     <see>OnPlayerUpdate</see>
+ *     <author    name="RyDeR`" />
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1410296" />
  * </fix>
- *
+ *     
  * <fix name="OnPlayerEnterVehicle_2">
- * <problem>  Crashes the server when hacks enter an invalid vehicle.</problem>
- * <solution> Desync the people with invalid vehicles.</solution>
- * <see>OnPlayerEnterVehicle</see>
- * <author    name="im" />
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Crashes the server when hacks enter an invalid vehicle.
+ *     </problem>
+ *     <solution>
+ *         Desync the people with invalid vehicles.
+ *     </solution>
+ *     <see>OnPlayerEnterVehicle</see>
+ *     <author    name="im" />
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="OnPlayerEnterVehicle_3">
- * <problem>  No player animation when trying to enter the driver door of a locked vehicle</problem>
- * <solution> Leave the door unlocked and activate an animation when the player attemps
- *            to enter a 'locked' vehicle.</solution>
- * <see>OnPlayerEnterVehicle</see>
- * <author    name="ziggi" href="https://github.com/ziggi" />
- * <author    name="rt-2" href="https://github.com/rt-2" />
- * <post      href="http://forum.sa-mp.com/showthread.php?t=560019" />
+ *     <problem>
+ *         No player animation when trying to enter the driver door of a locked
+ *         vehicle
+ *     </problem>
+ *     <solution>
+ *         Leave the door unlocked and activate an animation when the player
+ *         attemps to enter a 'locked' vehicle.
+ *     </solution>
+ *     <see>OnPlayerEnterVehicle</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <author    name="rt-2" href="https://github.com/rt-2" />
+ *     <post      href="http://forum.sa-mp.com/showthread.php?t=560019" />
  * </fix>
- *
+ *     
  * <fix name="AllowTeleport">
- * <problem>  0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in
- *            favour of "OnPlayerClickMap".  Some scripts used the old code and.</problem>
- * <solution> Teleport the player in "OnPlayerClickMap".</solution>
- * <see>OnPlayerClickMap</see>
- * <see>FIXES_AllowPlayerTeleport</see>
- * <see>FIXES_AllowAdminTeleport</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in
+ *         favour of "OnPlayerClickMap".  Some scripts used the old code and.
+ *     </problem>
+ *     <solution>
+ *         Teleport the player in "OnPlayerClickMap".
+ *     </solution>
+ *     <see>OnPlayerClickMap</see>
+ *     <see>FIXES_AllowPlayerTeleport</see>
+ *     <see>FIXES_AllowAdminTeleport</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="SetPlayerSpecialAction">
- * <problem>  Removing jetpacks from players by setting their special action to 0
- *            causes the sound to stay until death.</problem>
- * <solution> Call "ClearAnimations" before "SetPlayerSpecialAction".</solution>
- * <see>FIXES_SetPlayerSpecialAction</see>
- * <author    name="MP2" />
+ *     <problem>
+ *         Removing jetpacks from players by setting their special action to 0
+ *         causes the sound to stay until death.
+ *     </problem>
+ *     <solution>
+ *         Call "ClearAnimations" before "SetPlayerSpecialAction".
+ *     </solution>
+ *     <see>FIXES_SetPlayerSpecialAction</see>
+ *     <author    name="MP2" />
  * </fix>
- *
+ *     
  * <fix name="OnDialogResponse" fixed="0.3e RC6">
- * <problem>  Cheaters can spoof the dialogid they are using to respond to ones
- *            they can't actually see.</problem>
- * <solution> Store the displayed dialogid and use that instead.</solution>
- * <see>FIXES_OnDialogResponse</see>
- * <see>FIXES_ShowPlayerDialog</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Cheaters can spoof the dialogid they are using to respond to ones
+ *         they can't actually see.
+ *     </problem>
+ *     <solution>
+ *         Store the displayed dialogid and use that instead.
+ *     </solution>
+ *     <see>FIXES_OnDialogResponse</see>
+ *     <see>FIXES_ShowPlayerDialog</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="GetPlayerDialog" default="false">
- * <problem>  This function doesn't exist.  Fixed for hidden dialogs.</problem>
- * <solution> Add it.</solution>
- * <see>FIXES_GetPlayerDialog</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <problem>
+ *         This function doesn't exist.  Fixed for hidden dialogs.
+ *     </problem>
+ *     <solution>
+ *         Add it.
+ *     </solution>
+ *     <see>FIXES_GetPlayerDialog</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
  * </fix>
- *
+ *     
  * <fix name="PlayerDialogResponse">
- * <problem>  A player's dialog doesn't hide when the gamemode restarts, causing
- *            the server to print "Warning: PlayerDialogResponse PlayerId: 0
- *            dialog ID doesn't match last sent dialog ID".</problem>
- * <solution> Hide it.</solution>
- * <see>OnPlayerConnect</see>
- * <see>OnGameModeExit</see>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <problem>
+ *         A player's dialog doesn't hide when the gamemode restarts, causing
+ *         the server to print "Warning: PlayerDialogResponse PlayerId: 0
+ *         dialog ID doesn't match last sent dialog ID".
+ *     </problem>
+ *     <solution>
+ *         Hide it.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <see>OnGameModeExit</see>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
  * </fix>
- *
+ *     
  * <fix name="SetSpawnInfo">
- * <problem>  Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo".</problem>
- * <solution> Call "SetSpawnInfo" at least once.</solution>
- * <see>OnPlayerConnect</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo".
+ *     </problem>
+ *     <solution>
+ *         Call "SetSpawnInfo" at least once.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="SetPlayerSkin">
- * <problem>  Breaks sitting on bikes.</problem>
- * <solution> Put them back in the vehicle after setting their skin.</solution>
- * <see>FIXES_SetPlayerSkin</see>
- * <author    name="CyNiC" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=1756094" />
+ *     <problem>
+ *         Breaks sitting on bikes.
+ *     </problem>
+ *     <solution>
+ *         Put them back in the vehicle after setting their skin.
+ *     </solution>
+ *     <see>FIXES_SetPlayerSkin</see>
+ *     <author    name="CyNiC" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1756094" />
  * </fix>
- *
+ *     
  * <fix name="HideMenuForPlayer">
- * <problem>  Crashes when passed an invalid menu ID.</problem>
- * <solution> Don't hide it when passed an invalid menu.</solution>
- * <see>FIXES_HideMenuForPlayer</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_HideMenuForPlayer</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
  * </fix>
- *
+ *     
  * <fix name="valstr">
- * <problem>  Crashes on large numbers.</problem>
- * <solution> Use "format" instead.</solution>
- * <see>FIXES_valstr</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <problem>
+ *         Crashes on large numbers.
+ *     </problem>
+ *     <solution>
+ *         Use "format" instead.
+ *     </solution>
+ *     <see>FIXES_valstr</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
  * </fix>
- *
+ *     
  * <fix name="fclose">
- * <problem>  Crashes on an invalid handle.</problem>
- * <solution> Check for an invalid handle.</solution>
- * <see>FIXES_fclose</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fclose</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
  * </fix>
- *
+ *     
  * <fix name="fwrite">
- * <problem>  Crashes on an invalid handle.</problem>
- * <solution> Check for an invalid handle.</solution>
- * <see>FIXES_fwrite</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fwrite</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
  * </fix>
- *
+ *     
  * <fix name="fread">
- * <problem>  Crashes on an invalid handle.</problem>
- * <solution> Check for an invalid handle.</solution>
- * <see>FIXES_fread</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fread</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
  * </fix>
- *
+ *     
  * <fix name="fputchar">
- * <problem>  Crashes on an invalid handle.</problem>
- * <solution> Check for an invalid handle.</solution>
- * <see>FIXES_fputchar</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fputchar</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
  * </fix>
- *
+ *     
  * <fix name="fgetchar">
- * <problem>  Crashes on an invalid handle.</problem>
- * <solution> Check for an invalid handle.</solution>
- * <see>FIXES_fgetchar</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fgetchar</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
  * </fix>
- *
+ *     
  * <fix name="fblockwrite">
- * <problem>  Crashes on an invalid handle.</problem>
- * <solution> Check for an invalid handle.</solution>
- * <see>FIXES_fblockwrite</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fblockwrite</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
  * </fix>
- *
+ *     
  * <fix name="fblockread">
- * <problem>  Crashes on an invalid handle.</problem>
- * <solution> Check for an invalid handle.</solution>
- * <see>FIXES_fblockread</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fblockread</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
  * </fix>
- *
+ *     
  * <fix name="fseek">
- * <problem>  Crashes on an invalid handle.</problem>
- * <solution> Check for an invalid handle.</solution>
- * <see>FIXES_fseek</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fseek</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
  * </fix>
- *
+ *     
  * <fix name="flength">
- * <problem>  Crashes on an invalid handle.</problem>
- * <solution> Check for an invalid handle.</solution>
- * <see>FIXES_flength</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_flength</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
  * </fix>
- *
+ *     
  * <fix name="file_inc" default="false">
- * <problem>  Includes or excludes all the file function fixes together (can
- *            cause major overhead).</problem>
- * <solution> Optionally group them all under one define.</solution>
- * <see>FIX_file_inc</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Includes or excludes all the file function fixes together (can cause
+ *         major overhead).
+ *     </problem>
+ *     <solution>
+ *         Optionally group them all under one define.
+ *     </solution>
+ *     <see>FIX_file_inc</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="SetPlayerAttachedObject">
- * <problem>  Doesn't remove objects when the mode ends.</problem>
- * <solution> Remove them.</solution>
- * <see>OnPlayerDisconnect</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Doesn't remove objects when the mode ends.
+ *     </problem>
+ *     <solution>
+ *         Remove them.
+ *     </solution>
+ *     <see>OnPlayerDisconnect</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="OnPlayerDeath">
- * <problem>  Clients get stuck when they die with an animation applied.</problem>
- * <solution> Clear their animations.</solution>
- * <see>OnPlayerDeath</see>
- * <see>OnPlayerUpdate</see>
- * <author    name="h02" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=1641144" />
+ *     <problem>
+ *         Clients get stuck when they die with an animation applied.
+ *     </problem>
+ *     <solution>
+ *         Clear their animations.
+ *     </solution>
+ *     <see>OnPlayerDeath</see>
+ *     <see>OnPlayerUpdate</see>
+ *     <author    name="h02" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1641144" />
  * </fix>
- *
+ *     
  * <fix name="strins">
- * <problem>  Ignores the "maxlength" parameter causing possible crashes.</problem>
- * <solution> Manually check the length.</solution>
- * <see>FIXES_strins</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
- * <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <problem>
+ *         Ignores the "maxlength" parameter causing possible crashes.
+ *     </problem>
+ *     <solution>
+ *         Manually check the length.
+ *     </solution>
+ *     <see>FIXES_strins</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <author    name="Y_Less" href="https://github.com/Y-Less" />
  * </fix>
- *
+ *     
  * <fix name="IsPlayerConnected">
- * <problem>  Only uses the lower two bytes of a passed ID.</problem>
- * <solution> Mask the numbers.</solution>
- * <see>FIXES_IsPlayerConnected</see>
- * <author    name="Slice" href="https://github.com/oscar-broman/" />
+ *     <problem>
+ *         Only uses the lower two bytes of a passed ID.
+ *     </problem>
+ *     <solution>
+ *         Mask the numbers.
+ *     </solution>
+ *     <see>FIXES_IsPlayerConnected</see>
+ *     <author    name="Slice" href="https://github.com/oscar-broman/" />
  * </fix>
- *
+ *     
  * <fix name="TrainExit">
- * <problem>  When getting out of a train entered by "PutPlayerInVehicle", the
- *            camera does not reset properly.</problem>
- * <solution> Reset the camera.</solution>
- * <see>FIXES_PutPlayerInVehicle</see>
- * <see>FIXES_OnPlayerStateChange</see>
- * <author    name="Terminator3" />
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         When getting out of a train entered by "PutPlayerInVehicle", the
+ *         camera does not reset properly.
+ *     </problem>
+ *     <solution>
+ *         Reset the camera.
+ *     </solution>
+ *     <see>FIXES_PutPlayerInVehicle</see>
+ *     <see>FIXES_OnPlayerStateChange</see>
+ *     <author    name="Terminator3" />
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="Kick" fixed="0.3x">
- * <problem>  Calling "Kick" in "OnPlayerConnect" doesn't work properly.</problem>
- * <solution> Defer it.</solution>
- * <see>OnPlayerConnect</see>
- * <see>FIXES_Kick</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=1989453" />
+ *     <problem>
+ *         Calling "Kick" in "OnPlayerConnect" doesn't work properly.
+ *     </problem>
+ *     <solution>
+ *         Defer it.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <see>FIXES_Kick</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1989453" />
  * </fix>
- *
+ *     
  * <fix name="OnVehicleMod">
- * <problem>  Crashes other players when invalid mods are applied.</problem>
- * <solution> Desync the player.</solution>
- * <see>OnVehicleMod</see>
- * <author    name="JernejL" href="https://github.com/JernejL/" />
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=1671500" />
+ *     <problem>
+ *         Crashes other players when invalid mods are applied.
+ *     </problem>
+ *     <solution>
+ *         Desync the player.
+ *     </solution>
+ *     <see>OnVehicleMod</see>
+ *     <author    name="JernejL" href="https://github.com/JernejL/" />
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1671500" />
  * </fix>
- *
+ *     
  * <fix name="random" default="false">
- * <problem>  Doesn't work with negative numbers.</problem>
- * <solution> Invert then reinvert.</solution>
- * <see>FIXES_random</see>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <problem>
+ *         Doesn't work with negative numbers.
+ *     </problem>
+ *     <solution>
+ *         Invert then reinvert.
+ *     </solution>
+ *     <see>FIXES_random</see>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
  * </fix>
- *
+ *     
  * <fix name="sleep">
- * <problem>  Leaks bytes from the stack.</problem>
- * <solution> Call a function to store the correct value.</solution>
- * <see>FIXES_sleep</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Leaks bytes from the stack.
+ *     </problem>
+ *     <solution>
+ *         Call a function to store the correct value.
+ *     </solution>
+ *     <see>FIXES_sleep</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="AddMenuItem">
- * <problem>  Crashes when passed an invalid menu ID.</problem>
- * <solution> Don't hide it when passed an invalid menu.</solution>
- * <see>FIXES_AddMenuItem</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_AddMenuItem</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="SetMenuColumnHeader">
- * <problem>  Crashes when passed an invalid menu ID.</problem>
- * <solution> Don't hide it when passed an invalid menu.</solution>
- * <see>FIXES_SetMenuColumnHeader</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_SetMenuColumnHeader</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="ShowMenuForPlayer">
- * <problem>  Crashes when passed an invalid menu ID.</problem>
- * <solution> Don't hide it when passed an invalid menu.</solution>
- * <see>FIXES_ShowMenuForPlayer</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_ShowMenuForPlayer</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="HideMenuForPlayer">
- * <problem>  Crashes when passed an invalid menu ID.</problem>
- * <solution> Don't hide it when passed an invalid menu.</solution>
- * <see>FIXES_HideMenuForPlayer</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_HideMenuForPlayer</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
  * </fix>
- *
+ *     
  * <fix name="HideMenuForPlayer_2" default="false">
- * <problem>  Ignores the "menuid" parameter.</problem>
- * <solution> Only hide the correct menu.</solution>
- * <see>FIXES_HideMenuForPlayer</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Ignores the "menuid" parameter.
+ *     </problem>
+ *     <solution>
+ *         Only hide the correct menu.
+ *     </solution>
+ *     <see>FIXES_HideMenuForPlayer</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="DisableMenu">
- * <problem>  Crashes when passed an invalid menu ID.</problem>
- * <solution> Don't hide it when passed an invalid menu.</solution>
- * <see>FIXES_DisableMenu</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_DisableMenu</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="DisableMenuRow">
- * <problem>  Crashes when passed an invalid menu ID.</problem>
- * <solution> Don't hide it when passed an invalid menu.</solution>
- * <see>FIXES_DisableMenuRow</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_DisableMenuRow</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="Menus">
- * <problem>  All menu function fixes are included separately for major overhead.</problem>
- * <solution> Optionally group them all under one define.</solution>
- * <see>FIX_Menus</see>
- * <see>_FIX_Menus</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         All menu function fixes are included separately for major overhead.
+ *     </problem>
+ *     <solution>
+ *         Optionally group them all under one define.
+ *     </solution>
+ *     <see>FIX_Menus</see>
+ *     <see>_FIX_Menus</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="GetPlayerMenu">
- * <problem>  Returns previous menu when none is displayed.</problem>
- * <solution> Return the correct value.</solution>
- * <see>FIXES_GetPlayerMenu</see>
- * <see>OnPlayerSelectedMenuRow</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Returns previous menu when none is displayed.
+ *     </problem>
+ *     <solution>
+ *         Return the correct value.
+ *     </solution>
+ *     <see>FIXES_GetPlayerMenu</see>
+ *     <see>OnPlayerSelectedMenuRow</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="GetPlayerInterior">
- * <problem>  Always returns 0 for NPCs.</problem>
- * <solution> Return the correct value.</solution>
- * <see>FIXES_GetPlayerInterior</see>
- * <see>FIXES_SetPlayerInterior</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <problem>
+ *         Always returns 0 for NPCs.
+ *     </problem>
+ *     <solution>
+ *         Return the correct value.
+ *     </solution>
+ *     <see>FIXES_GetPlayerInterior</see>
+ *     <see>FIXES_SetPlayerInterior</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
  * </fix>
- *
+ *     
  * <fix name="ClearAnimations">
- * <problem>  Use ClearAnimation while you are in a vehicle cause the player exit
- *            from it.</problem>
- * <solution> Apply an animation instead of clear animation.</solution>
- * <see>FIXES_ClearAnimations</see>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <problem>
+ *         Use ClearAnimation while you are in a vehicle cause the player exit
+ *         from it.
+ *     </problem>
+ *     <solution>
+ *         Apply an animation instead of clear animation.
+ *     </solution>
+ *     <see>FIXES_ClearAnimations</see>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
  * </fix>
- *
+ *     
  * <fix name="ClearAnimations_2">
- * <problem>  ClearAnimations doesn't do anything when the animation ends if we
- *            pass 1 for the freeze parameter in ApplyAnimation.</problem>
- * <solution> Apply an idle animation for stop and then use ClearAnimation.</solution>
- * <see>FIXES_ClearAnimations</see>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <problem>
+ *         ClearAnimations doesn't do anything when the animation ends if we
+ *         pass 1 for the freeze parameter in ApplyAnimation.
+ *     </problem>
+ *     <solution>
+ *         Apply an idle animation for stop and then use ClearAnimation.
+ *     </solution>
+ *     <see>FIXES_ClearAnimations</see>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
  * </fix>
- *
+ *     
  * <fix name="DriveBy">
- * <problem>  If you press KEY_CROUCH while you're passenger and if you are
- *            armed, the player start to aim; if you repress KEY_CROUCH the
- *            player don't return in vehicle.</problem>
- * <solution> Apply the animation to return the player in the vehicle.</solution>
- * <see>OnPlayerKeyStateChange</see>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <problem>
+ *         If you press KEY_CROUCH while you're passenger and if you are armed,
+ *         the player start to aim; if you repress KEY_CROUCH the player don't
+ *         return in vehicle.
+ *     </problem>
+ *     <solution>
+ *         Apply the animation to return the player in the vehicle.
+ *     </solution>
+ *     <see>OnPlayerKeyStateChange</see>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
  * </fix>
- *
+ *     
  * <fix name="GangZoneCreate">
- * <problem>  Gang zones bug on the main map for players at certain angles
- *            relative to them.</problem>
- * <solution> Set a non floating value for the gang zone co-ordinate.</solution>
- * <see>FIXES_GangZoneCreate</see>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Gang zones bug on the main map for players at certain angles relative
+ *         to them.
+ *     </problem>
+ *     <solution>
+ *         Set a non floating value for the gang zone co-ordinate.
+ *     </solution>
+ *     <see>FIXES_GangZoneCreate</see>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="SPECIAL_ACTION_PISSING">
- * <problem>  "SPECIAL_ACTION_PISSING" isn't defined by default.</problem>
- * <solution> Define it.</solution>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <problem>
+ *         "SPECIAL_ACTION_PISSING" isn't defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
  * </fix>
- *
+ *     
  * <fix name="IsValidVehicle">
- * <problem>  "IsValidVehicle" isn't defined by default.</problem>
- * <solution> Define it.</solution>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <problem>
+ *         "IsValidVehicle" isn't defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
  * </fix>
- *
+ *     
  * <fix name="ApplyAnimation">
- * <problem>  Passing an invalid animation library in ApplyAnimation causes a
- *            client crash for streamed in players.</problem>
- * <solution> Block ApplyAnimation when an invalid library is passed.</solution>
- * <see>FIXES_ApplyAnimation</see>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <problem>
+ *         Passing an invalid animation library in ApplyAnimation causes a
+ *         client crash for streamed in players.
+ *     </problem>
+ *     <solution>
+ *         Block ApplyAnimation when an invalid library is passed.
+ *     </solution>
+ *     <see>FIXES_ApplyAnimation</see>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
  * </fix>
- *
+ *     
  * <fix name="ApplyAnimation_2">
- * <problem>  First time a library is used, it does nothing.</problem>
- * <solution> Apply animations twice when first using a library.</solution>
- * <see>FIXES_ApplyAnimation</see>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
- * <author    name="Lordzy" href="https://github.com/Lordzy/" />
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         First time a library is used, it does nothing.
+ *     </problem>
+ *     <solution>
+ *         Apply animations twice when first using a library.
+ *     </solution>
+ *     <see>FIXES_ApplyAnimation</see>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    name="Lordzy" href="https://github.com/Lordzy/" />
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="ApplyActorAnimation">
- * <problem>  Passing an invalid animation library in ApplyAnimation causes a
- *            client crash for streamed in players.</problem>
- * <solution> Block ApplyActorAnimation when an invalid library is passed.</solution>
- * <see>FIXES_ApplyActorAnimation</see>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
- * <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <problem>
+ *         Passing an invalid animation library in ApplyAnimation causes a
+ *         client crash for streamed in players.
+ *     </problem>
+ *     <solution>
+ *         Block ApplyActorAnimation when an invalid library is passed.
+ *     </solution>
+ *     <see>FIXES_ApplyActorAnimation</see>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    name="ziggi" href="https://github.com/ziggi/" />
  * </fix>
- *
+ *     
  * <fix name="ApplyActorAnimation_2">
- * <problem>  First time a library is used, it does nothing.</problem>
- * <solution> Apply animations twice when first using a library.</solution>
- * <see>FIXES_ApplyActorAnimation</see>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
- * <author    name="Lordzy" href="https://github.com/Lordzy/" />
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <problem>
+ *         First time a library is used, it does nothing.
+ *     </problem>
+ *     <solution>
+ *         Apply animations twice when first using a library.
+ *     </solution>
+ *     <see>FIXES_ApplyActorAnimation</see>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <author    name="Lordzy" href="https://github.com/Lordzy/" />
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <author    name="ziggi" href="https://github.com/ziggi/" />
  * </fix>
- *
+ *     
  * <fix name="OnPlayerSpawn">
- * <problem>  San Andreas deducts $100 from players.</problem>
- * <solution> Give them it back.</solution>
- * <see>OnPlayerSpawn</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         San Andreas deducts $100 from players.
+ *     </problem>
+ *     <solution>
+ *         Give them it back.
+ *     </solution>
+ *     <see>OnPlayerSpawn</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="GetGravity">
- * <problem>  "GetGravity" isn't defined by default.</problem>
- * <solution> Define it.</solution>
- * <author    name="Whitetiger" href="https://github.com/Whitetigerswt" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=1706447" />
+ *     <problem>
+ *         "GetGravity" isn't defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    name="Whitetiger" href="https://github.com/Whitetigerswt" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1706447" />
  * </fix>
- *
+ *     
  * <fix name="gpci">
- * <problem>  "gpci" isn't defined by default.</problem>
- * <solution> Define it.</solution>
- * <author    name="simonepri" href="https://github.com/simonepri/" />
- * <post      href="http://pastebin.com/VQSGpbSm" />
+ *     <problem>
+ *         "gpci" isn't defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    name="simonepri" href="https://github.com/simonepri/" />
+ *     <post      href="http://pastebin.com/VQSGpbSm" />
  * </fix>
- *
+ *     
  * <fix name="Natives">
- * <problem>  Several natives are included by default, this enables or disables
- *            them all.  Therefore this is an umbrella fix for several fixes.</problem>
- * <solution> Define them.</solution>
- * <see>FIX_GetGravity</see>
- * <see>FIX_gpci</see>
- * <see>FIX_IsValidVehicle</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Several natives are included by default, this enables or disables
+ *         them all.  Therefore this is an umbrella fix for several fixes.
+ *     </problem>
+ *     <solution>
+ *         Define them.
+ *     </solution>
+ *     <see>FIX_GetGravity</see>
+ *     <see>FIX_gpci</see>
+ *     <see>FIX_IsValidVehicle</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="OnPlayerConnect">
- * <problem>  This function isn't called for players when a filterscript starts.</problem>
- * <solution> Call it for all connected players.</solution>
- * <see>FIXES_OnFilterScriptInit</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         This function isn't called for players when a filterscript starts.
+ *     </problem>
+ *     <solution>
+ *         Call it for all connected players.
+ *     </solution>
+ *     <see>FIXES_OnFilterScriptInit</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="OnPlayerDisconnect">
- * <problem>  This function isn't called for players when a filterscript ends.</problem>
- * <solution> Call it for all connected players.</solution>
- * <see>FIXES_OnFilterScriptExit</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         This function isn't called for players when a filterscript ends.
+ *     </problem>
+ *     <solution>
+ *         Call it for all connected players.
+ *     </solution>
+ *     <see>FIXES_OnFilterScriptExit</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="GameText">
- * <problem>  Several styles do not display for the time specified.</problem>
- * <solution> Recreate the styles in Text Draws and use those instead.</solution>
- * <see>FIXES_GameTextForAll</see>
- * <see>FIXES_GameTextForPlayer</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Several styles do not display for the time specified.
+ *     </problem>
+ *     <solution>
+ *         Recreate the styles in Text Draws and use those instead.
+ *     </solution>
+ *     <see>FIXES_GameTextForAll</see>
+ *     <see>FIXES_GameTextForPlayer</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="GameTextStyles" default="false">
- * <problem>  San Andreas has fixed styles for area and vehicle names, but they
- *            are not included in the GameText styles list.</problem>
- * <solution> Add them.</solution>
- * <see>FIXES_GameTextForAll</see>
- * <see>FIXES_GameTextForPlayer</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         San Andreas has fixed styles for area and vehicle names, but they are
+ *         not included in the GameText styles list.
+ *     </problem>
+ *     <solution>
+ *         Add them.
+ *     </solution>
+ *     <see>FIXES_GameTextForAll</see>
+ *     <see>FIXES_GameTextForPlayer</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="HideGameText">
- * <problem>  There is no "HideGameTextForXYZ" function.</problem>
- * <solution> Show a single space for a game text.</solution>
- * <see>FIXES_HideGameTextForAll</see>
- * <see>FIXES_HideGameTextForPlayer</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         There is no "HideGameTextForXYZ" function.
+ *     </problem>
+ *     <solution>
+ *         Show a single space for a game text.
+ *     </solution>
+ *     <see>FIXES_HideGameTextForAll</see>
+ *     <see>FIXES_HideGameTextForPlayer</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="ClearPlayerWorldBounds">
- * <problem>  There is no "ClearPlayerWorldBounds" function.</problem>
- * <solution> Put the world bounds back to the default.</solution>
- * <see>FIXES_ClearPlayerWorldBounds</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         There is no "ClearPlayerWorldBounds" function.
+ *     </problem>
+ *     <solution>
+ *         Put the world bounds back to the default.
+ *     </solution>
+ *     <see>FIXES_ClearPlayerWorldBounds</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="GetPlayerWorldBounds">
- * <problem>  There is no "GetPlayerWorldBounds" function.</problem>
- * <solution> Store them and retrieve them.</solution>
- * <see>FIXES_GetPlayerWorldBounds</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         There is no "GetPlayerWorldBounds" function.
+ *     </problem>
+ *     <solution>
+ *         Store them and retrieve them.
+ *     </solution>
+ *     <see>FIXES_GetPlayerWorldBounds</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="WEAPONS">
- * <problem>  Some weapons are not defined by default.</problem>
- * <solution> Define it.</solution>
- * <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <problem>
+ *         Some weapons are not defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    name="ziggi" href="https://github.com/ziggi" />
  * </fix>
- *
+ *     
  * <fix name="BODYPARTS">
- * <problem>  The bodyparts to be used in OnPlayer(Take/Give)Damage are not
- *            defined by default</problem>
- * <solution> Define it.</solution>
- * <author    name="Whitetiger" href="https://github.com/Whitetigerswt" />
+ *     <problem>
+ *         The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined
+ *         by default
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    name="Whitetiger" href="https://github.com/Whitetigerswt" />
  * </fix>
- *
+ *     
  * <fix name="CAMERAMODES">
- * <problem>  The camera modes for GetPlayerCameraMode are not defined by
- *            default.</problem>
- * <solution> Define it.</solution>
- * <author    name="Whitetiger" href="https://github.com/Whitetigerswt" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=1309730" />
+ *     <problem>
+ *         The camera modes for GetPlayerCameraMode are not defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    name="Whitetiger" href="https://github.com/Whitetigerswt" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1309730" />
  * </fix>
- *
+ *     
  * <fix name="SetPlayerCamera">
- * <problem>  Using the camera functions directly after enabling spectator mode
- *            doesn't work.</problem>
- * <solution> Defer them.</solution>
- * <see>FIXES_SetPlayerCameraPos</see>
- * <see>FIXES_SetPlayerCameraLookAt</see>
- * <see>FIXES_TogglePlayerSpectating</see>
- * <author    name="Emmet_" href="https://github.com/emmet-jones" />
+ *     <problem>
+ *         Using the camera functions directly after enabling spectator mode
+ *         doesn't work.
+ *     </problem>
+ *     <solution>
+ *         Defer them.
+ *     </solution>
+ *     <see>FIXES_SetPlayerCameraPos</see>
+ *     <see>FIXES_SetPlayerCameraLookAt</see>
+ *     <see>FIXES_TogglePlayerSpectating</see>
+ *     <author    name="Emmet_" href="https://github.com/emmet-jones" />
  * </fix>
- *
+ *     
  * <fix name="SetPlayerTime">
- * <problem>  Using this function under "OnPlayerConnect" doesn't work.</problem>
- * <solution> Defer it.</solution>
- * <see>FIXES_SetPlayerTime</see>
- * <author    name="Emmet_" href="https://github.com/emmet-jones" />
+ *     <problem>
+ *         Using this function under "OnPlayerConnect" doesn't work.
+ *     </problem>
+ *     <solution>
+ *         Defer it.
+ *     </solution>
+ *     <see>FIXES_SetPlayerTime</see>
+ *     <author    name="Emmet_" href="https://github.com/emmet-jones" />
  * </fix>
- *
+ *     
  * <fix name="OnPlayerRequestClass">
- * <problem>  Random blunts and bottles sometimes appear in class selection.</problem>
- * <solution> Call "RemoveBuildingForPlayer".</solution>
- * <see>OnPlayerRequestClass</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         Random blunts and bottles sometimes appear in class selection.
+ *     </problem>
+ *     <solution>
+ *         Call "RemoveBuildingForPlayer".
+ *     </solution>
+ *     <see>OnPlayerRequestClass</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="SetPlayerColor">
- * <problem>  If used under OnPlayerConnect, the affecting player will not
- *            see the color in the TAB menu.</problem>
- * <solution> Defer it.</solution>
- * <see>FIXES_SetPlayerColor</see>
- * <author    name="Emmet_" href="https://github.com/emmet-jones" />
- * <post      href="http://forum.sa-mp.com/showthread.php?t=452407" />
+ *     <problem>
+ *         If used under OnPlayerConnect, the affecting player will not see the
+ *         color in the TAB menu.
+ *     </problem>
+ *     <solution>
+ *         Defer it.
+ *     </solution>
+ *     <see>FIXES_SetPlayerColor</see>
+ *     <author    name="Emmet_" href="https://github.com/emmet-jones" />
+ *     <post      href="http://forum.sa-mp.com/showthread.php?t=452407" />
  * </fix>
- *
+ *     
  * <fix name="FileMaths">
- * <problem>  You can write gibberish like "File:a; ++a;".</problem>
- * <solution> Remove the operators.</solution>
- * <see>File:operator</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <problem>
+ *         You can write gibberish like "File:a; ++a;".
+ *     </problem>
+ *     <solution>
+ *         Remove the operators.
+ *     </solution>
+ *     <see>File:operator</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
  * </fix>
- *
+ *     
  * <fix name="GetPlayerWeaponData">
- * <problem>  Old weapons with no ammo left are still returned.</problem>
- * <solution> Set "weapons" to 0.</solution>
- * <see>FIXES_GetPlayerWeaponData</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less/" />
- * <post      href="http://forum.sa-mp.com/showthread.php?t=567400" />
+ *     <problem>
+ *         Old weapons with no ammo left are still returned.
+ *     </problem>
+ *     <solution>
+ *         Set "weapons" to 0.
+ *     </solution>
+ *     <see>FIXES_GetPlayerWeaponData</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less/" />
+ *     <post      href="http://forum.sa-mp.com/showthread.php?t=567400" />
  * </fix>
- *
+ *     
  * <fix name="strcmp">
- * <problem>  Return 0 if anyone of the string is empty.</problem>
- * <solution> Add a check for empty string.</solution>
- * <see>FIXES_strcmp</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <problem>
+ *         Return 0 if anyone of the string is empty.
+ *     </problem>
+ *     <solution>
+ *         Add a check for empty string.
+ *     </solution>
+ *     <see>FIXES_strcmp</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less" />
  * </fix>
- *
+ *     
  * <fix name="GetPVarString">
- * <problem>  Wrong symbol code for symbols with code 128 and above.</problem>
- * <solution> Use logical conjunction on symbol and 0xFF.</solution>
- * <see>FIXES_GetPVarString</see>
- * <author    name="ziggi" href="https://github.com/ziggi" />
- * <author    name="Mutha_X" />
- * <author    name="Daniel_Cortez" href="https://github.com/Daniel-Cortez" />
- * <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
- * <post      href="http://pro-pawn.ru/showthread.php?13007" />
+ *     <problem>
+ *         Wrong symbol code for symbols with code 128 and above.
+ *     </problem>
+ *     <solution>
+ *         Use logical conjunction on symbol and 0xFF.
+ *     </solution>
+ *     <see>FIXES_GetPVarString</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <author    name="Mutha_X" />
+ *     <author    name="Daniel_Cortez" href="https://github.com/Daniel-Cortez" />
+ *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
+ *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
  * </fix>
- *
+ *     
  * <fix name="GetSVarString">
- * <problem>  Wrong symbol code for symbols with code 128 and above.</problem>
- * <solution> Use logical conjunction on symbol and 0xFF.</solution>
- * <see>FIXES_GetSVarString</see>
- * <author    name="ziggi" href="https://github.com/ziggi" />
- * <author    name="Mutha_X" />
- * <author    name="Daniel_Cortez" href="https://github.com/Daniel-Cortez" />
- * <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
- * <post      href="http://pro-pawn.ru/showthread.php?13007" />
+ *     <problem>
+ *         Wrong symbol code for symbols with code 128 and above.
+ *     </problem>
+ *     <solution>
+ *         Use logical conjunction on symbol and 0xFF.
+ *     </solution>
+ *     <see>FIXES_GetSVarString</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <author    name="Mutha_X" />
+ *     <author    name="Daniel_Cortez" href="https://github.com/Daniel-Cortez" />
+ *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
+ *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
  * </fix>
- *
+ *     
  * <fix name="toupper">
- * <problem>  Not working on Linux for symbols with code 128 and above.</problem>
- * <solution> Recreate the function.</solution>
- * <see>FIXES_toupper</see>
- * <author    name="ziggi" href="https://github.com/ziggi" />
- * <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
+ *     <problem>
+ *         Not working on Linux for symbols with code 128 and above.
+ *     </problem>
+ *     <solution>
+ *         Recreate the function.
+ *     </solution>
+ *     <see>FIXES_toupper</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
  * </fix>
- *
+ *     
  * <fix name="tolower">
- * <problem>  Not working on Linux for symbols with code 128 and above.</problem>
- * <solution> Recreate the function.</solution>
- * <see>FIXES_tolower</see>
- * <author    name="ziggi" href="https://github.com/ziggi" />
- * <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
+ *     <problem>
+ *         Not working on Linux for symbols with code 128 and above.
+ *     </problem>
+ *     <solution>
+ *         Recreate the function.
+ *     </solution>
+ *     <see>FIXES_tolower</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
  * </fix>
- *
+ *     
  * <fix name="PassengerSeating">
- * <problem>  Teleporting player to passenger seat after delay.</problem>
- * <solution> Call ClearAnimation after some delay.</solution>
- * <see>OnPlayerEnterVehicle</see>
- * <see>OnPlayerStateChange</see>
- * <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <problem>
+ *         Teleporting player to passenger seat after delay.
+ *     </problem>
+ *     <solution>
+ *         Call ClearAnimation after some delay.
+ *     </solution>
+ *     <see>OnPlayerEnterVehicle</see>
+ *     <see>OnPlayerStateChange</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi" />
  * </fix>
- *
+ *     
  * <fix name="GogglesSync">
- * <problem>  Visual effects show for all players.</problem>
- * <solution> return 0 in OnPlayerUpdate after key pressed.</solution>
- * <see>OnPlayerUpdate</see>
- * <author    name="ziggi" href="https://github.com/ziggi" />
+ *     <problem>
+ *         Visual effects show for all players.
+ *     </problem>
+ *     <solution>
+ *         return 0 in OnPlayerUpdate after key pressed.
+ *     </solution>
+ *     <see>OnPlayerUpdate</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi" />
  * </fix>
- *
+ *     
  * <fix name="GetPlayerPoolSize">
- * <problem>  Returns "0" even if there are no players on the server.</problem>
- * <solution> Return "-1" if PlayerPoolsize is 0 but Player 0 is not connected.</solution>
- * <see>FIXES_GetPlayerPoolSize</see>
- * <author    name="Bios-Marcel" href="https://github.com/Bios-Marcel" />
+ *     <problem>
+ *         Returns "0" even if there are no players on the server.
+ *     </problem>
+ *     <solution>
+ *         Return "-1" if PlayerPoolsize is 0 but Player 0 is not connected.
+ *     </solution>
+ *     <see>FIXES_GetPlayerPoolSize</see>
+ *     <author    name="Bios-Marcel" href="https://github.com/Bios-Marcel" />
  * </fix>
- *
+ *     
  * <fix name="SetPlayerPos">
- * <problem>  Using this function on skydiving players kills them.</problem>
- * <solution> Remove the parachute when the player is skydiving.</solution>
- * <see>FIXES_SetPlayerPos</see>
- * <see>FIXES_SetPlayerPosFindZ</see>
- * <author    name="Freaksken" href="https://github.com/WoutProvost" />
+ *     <problem>
+ *         Using this function on skydiving players kills them.
+ *     </problem>
+ *     <solution>
+ *         Remove the parachute when the player is skydiving.
+ *     </solution>
+ *     <see>FIXES_SetPlayerPos</see>
+ *     <see>FIXES_SetPlayerPosFindZ</see>
+ *     <author    name="Freaksken" href="https://github.com/WoutProvost" />
  * </fix>
- *
+ *     
  * <fix name="GetPlayerAmmo">
- * <problem>  Returns erroneous values over 32767 and under -32768 due to overflow.</problem>
- * <solution> Prevent setting or adding ammo above 32767 and setting or removing ammo below 0.</solution>
- * <see>FIXES_SetPlayerAmmo</see>
- * <see>FIXES_GivePlayerWeapon</see>
- * <author    name="Freaksken" href="https://github.com/WoutProvost" />
+ *     <problem>
+ *         Returns erroneous values over 32767 and under -32768 due to overflow.
+ *     </problem>
+ *     <solution>
+ *         Prevent setting or adding ammo above 32767 and setting or removing
+ *         ammo below 0.
+ *     </solution>
+ *     <see>FIXES_SetPlayerAmmo</see>
+ *     <see>FIXES_GivePlayerWeapon</see>
+ *     <author    name="Freaksken" href="https://github.com/WoutProvost" />
  * </fix>
- *
+ *     
  * <fix name="JIT">
- * <problem>  Can't easily determine if the script is JIT compiled.</problem>
- * <solution> Provide "IS_JIT" to the script for tests.</solution>
- * <see>OnJITCompile</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <problem>
+ *         Can't easily determine if the script is JIT compiled.
+ *     </problem>
+ *     <solution>
+ *         Provide "IS_JIT" to the script for tests.
+ *     </solution>
+ *     <see>OnJITCompile</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less" />
  * </fix>
- *
+ *     
  * <fix name="OS">
- * <problem>  Can't easily determine what OS the script is running on.</problem>
- * <solution> Provide "IS_WINDOWS" and "IS_LINUX" to the script for tests.</solution>
- * <see>_FIXES_DetermineOS</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <problem>
+ *         Can't easily determine what OS the script is running on.
+ *     </problem>
+ *     <solution>
+ *         Provide "IS_WINDOWS" and "IS_LINUX" to the script for tests.
+ *     </solution>
+ *     <see>_FIXES_DetermineOS</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less" />
  * </fix>
- *
+ *     
  * <fix name="const">
- * <problem>  Some SA-MP natives don't use "const" when they could.</problem>
- * <solution> Redefine the natives.</solution>
- * <see>FIX_const</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <problem>
+ *         Some SA-MP natives don't use "const" when they could.
+ *     </problem>
+ *     <solution>
+ *         Redefine the natives.
+ *     </solution>
+ *     <see>FIX_const</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less" />
  * </fix>
- *
+ *     
  * <fix name="VEHICLES">
- * <problem>  The vehicle models IDs are not defined by default.</problem>
- * <solution> Define them.</solution>
- * <author    name="stuntman" href="https://github.com/IstuntmanI" />
+ *     <problem>
+ *         The vehicle models IDs are not defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define them.
+ *     </solution>
+ *     <author    name="stuntman" href="https://github.com/IstuntmanI" />
  * </fix>
- *
+ *     
  * <fix name="GetPlayerWeather" default="false">
- * <problem>  This function doesn't exist.</problem>
- * <solution> Add it.</solution>
- * <see>FIXES_GetPlayerWeather</see>
- * <author    name="IstuntmanI" href="https://github.com/IstuntmanI/" />
- * <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <problem>
+ *         This function doesn't exist.
+ *     </problem>
+ *     <solution>
+ *         Add it.
+ *     </solution>
+ *     <see>FIXES_GetPlayerWeather</see>
+ *     <author    name="IstuntmanI" href="https://github.com/IstuntmanI/" />
+ *     <author    name="ziggi" href="https://github.com/ziggi/" />
  * </fix>
- *
+ *     
  * <fix name="GetWeather" default="false">
- * <problem>  This function doesn't exist.</problem>
- * <solution> Add it.</solution>
- * <see>FIXES_GetWeather</see>
- * <author    name="IstuntmanI" href="https://github.com/IstuntmanI/" />
- * <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <problem>
+ *         This function doesn't exist.
+ *     </problem>
+ *     <solution>
+ *         Add it.
+ *     </solution>
+ *     <see>FIXES_GetWeather</see>
+ *     <author    name="IstuntmanI" href="https://github.com/IstuntmanI/" />
+ *     <author    name="ziggi" href="https://github.com/ziggi/" />
  * </fix>
- *
+ *     
  * <fix name="GetWorldTime" default="false">
- * <problem>  This function doesn't exist.</problem>
- * <solution> Add it.</solution>
- * <see>FIXES_GetWorldTime</see>
- * <author    name="ziggi" href="https://github.com/ziggi/" />
+ *     <problem>
+ *         This function doesn't exist.
+ *     </problem>
+ *     <solution>
+ *         Add it.
+ *     </solution>
+ *     <see>FIXES_GetWorldTime</see>
+ *     <author    name="ziggi" href="https://github.com/ziggi/" />
  * </fix>
- *
+ *     
  * <fix name="tabsize">
- * <problem>  Some people still use `tabsize 0`.</problem>
- * <solution> Break the pragma.</solution>
- * <see>_DUMMY_do_not_use_tabsize_0</see>
- * <author    name="Y_Less" href="https://github.com/Y-Less" />
- * <post      href="http://forum.sa-mp.com/showpost.php?p=3929000" />
+ *     <problem>
+ *         Some people still use `tabsize 0`.
+ *     </problem>
+ *     <solution>
+ *         Break the pragma.
+ *     </solution>
+ *     <see>_DUMMY_do_not_use_tabsize_0</see>
+ *     <author    name="Y_Less" href="https://github.com/Y-Less" />
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=3929000" />
  * </fix>
  *
  * <section>
@@ -1049,13 +1541,17 @@
  * </section>
  *
  * <code>
- *         &lt;fix name="Short Name" default="false if disabled" fixed="Optional server version of official fix where applicable"&gt;<br />
- *         &lt;problem&gt;  Description of problem.&lt;/problem&gt;                                                                  <br />
- *         &lt;solution&gt; Description of solution.&lt;/solution&gt;                                                                <br />
- *         &lt;see&gt;Relevant functions.&lt;/see&gt;                                                                          <br />
- *         &lt;author    name="Person who wrote the fix" href="Optional address of their profile" /&gt;                              <br />
- *         &lt;post      href="Optional link to the original post where applicable." /&gt;                                           <br />
- *         &lt;/fix&gt;
+ *     &lt;fix name="Short Name" default="false if disabled" fixed="Optional server version of official fix where applicable"&gt; <br /><indent />
+ *         &lt;problem&gt;                                                                                                        <br /><indent />
+ *             Description of problem.                                                                                            <br /><indent /><indent />
+ *         &lt;/problem&gt;                                                                                                       <br /><indent />
+ *         &lt;solution&gt;                                                                                                       <br /><indent /><indent />
+ *             Description of solution.                                                                                           <br /><indent />
+ *         &lt;/solution&gt;                                                                                                      <br /><indent />
+ *         &lt;see&gt;Relevant functions.&lt;/see&gt;                                                                             <br /><indent />
+ *         &lt;author    name="Person who wrote the fix" href="Optional address of their profile" /&gt;                           <br /><indent />
+ *         &lt;post      href="Optional link to the original post where applicable." /&gt;                                        <br />
+ *     &lt;/fix&gt;
  * </code>
  *//** */
 
@@ -1071,17 +1567,17 @@
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
 #if !defined FIXES_EnableAll
-	#define FIXES_EnableAll              (0)
+	#define FIXES_EnableAll                      (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableAll)
 	#undef FIXES_EnableAll
-	#define FIXES_EnableAll              (2)
+	#define FIXES_EnableAll                      (2)
 #endif
 
 #if !defined FIXES_EnableDeprecated
-	#define FIXES_EnableDeprecated       (0)
+	#define FIXES_EnableDeprecated               (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableDeprecated)
 	#undef FIXES_EnableDeprecated
-	#define FIXES_EnableDeprecated       (2)
+	#define FIXES_EnableDeprecated               (2)
 #endif
 
 // We can add server version compiler code here to only compile fixes that apply
@@ -1089,917 +1585,917 @@
 #if !defined FIX_GetPlayerColour
 	#if defined FIX_GetPlayerColor
 		#if _FIXES_IS_UNSET(FIX_GetPlayerColor)
-			#define FIX_GetPlayerColour  (2)
+			#define FIX_GetPlayerColour          (2)
 		#else
-			#define FIX_GetPlayerColour  (FIX_GetPlayerColor)
+			#define FIX_GetPlayerColour          (FIX_GetPlayerColor)
 		#endif
 	#else
-		#define FIX_GetPlayerColour      (1)
+		#define FIX_GetPlayerColour              (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerColour)
 	#undef FIX_GetPlayerColour
-	#define FIX_GetPlayerColour          (2)
+	#define FIX_GetPlayerColour                  (2)
 #endif
 
 #if !defined FIX_FILTERSCRIPT
-	#define FIX_FILTERSCRIPT             (1)
+	#define FIX_FILTERSCRIPT                     (1)
 #elseif _FIXES_IS_UNSET(FIX_FILTERSCRIPT)
 	#undef FIX_FILTERSCRIPT
-	#define FIX_FILTERSCRIPT             (2)
+	#define FIX_FILTERSCRIPT                     (2)
 #endif
 
 #if !defined FIX_SpawnPlayer
-	#define FIX_SpawnPlayer              (1)
+	#define FIX_SpawnPlayer                      (1)
 #elseif _FIXES_IS_UNSET(FIX_SpawnPlayer)
 	#undef FIX_SpawnPlayer
-	#define FIX_SpawnPlayer              (2)
+	#define FIX_SpawnPlayer                      (2)
 #endif
 
 #if !defined FIX_SetPlayerName
-	#define FIX_SetPlayerName            (1)
+	#define FIX_SetPlayerName                    (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerName)
 	#undef FIX_SetPlayerName
-	#define FIX_SetPlayerName            (2)
+	#define FIX_SetPlayerName                    (2)
 #endif
 
 #if !defined FIX_GetPlayerSkin
-	#define FIX_GetPlayerSkin            (1)
+	#define FIX_GetPlayerSkin                    (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerSkin)
 	#undef FIX_GetPlayerSkin
-	#define FIX_GetPlayerSkin            (2)
+	#define FIX_GetPlayerSkin                    (2)
 #endif
 
 #if !defined FIX_GetWeaponName
 	#if defined GetVehicleParamsSirenState
-		#define FIX_GetWeaponName (FIXES_EnableDeprecated)
+		#define FIX_GetWeaponName                (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWeaponName (1)
+		#define FIX_GetWeaponName                (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeaponName)
 	#undef FIX_GetWeaponName
-	#define FIX_GetWeaponName            (2)
+	#define FIX_GetWeaponName                    (2)
 #endif
 
 #if !defined FIX_SetPlayerWorldBounds
-	#define FIX_SetPlayerWorldBounds     (1)
+	#define FIX_SetPlayerWorldBounds             (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerWorldBounds)
 	#undef FIX_SetPlayerWorldBounds
-	#define FIX_SetPlayerWorldBounds     (2)
+	#define FIX_SetPlayerWorldBounds             (2)
 #endif
 
 #if !defined FIX_TogglePlayerControllable
 	#if defined SetObjectMaterial
-		#define FIX_TogglePlayerControllable (FIXES_EnableDeprecated)
+		#define FIX_TogglePlayerControllable     (FIXES_EnableDeprecated)
 	#else
-		#define FIX_TogglePlayerControllable (1)
+		#define FIX_TogglePlayerControllable     (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)
 	#undef FIX_TogglePlayerControllable
-	#define FIX_TogglePlayerControllable (2)
+	#define FIX_TogglePlayerControllable         (2)
 #endif
 
 #if !defined FIX_HydraSniper
-	#define FIX_HydraSniper              (1)
+	#define FIX_HydraSniper                      (1)
 #elseif _FIXES_IS_UNSET(FIX_HydraSniper)
 	#undef FIX_HydraSniper
-	#define FIX_HydraSniper              (2)
+	#define FIX_HydraSniper                      (2)
 #endif
 
 #if !defined FIX_IsPlayerInCheckpoint
-	#define FIX_IsPlayerInCheckpoint     (1)
+	#define FIX_IsPlayerInCheckpoint             (1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInCheckpoint)
 	#undef FIX_IsPlayerInCheckpoint
-	#define FIX_IsPlayerInCheckpoint     (2)
+	#define FIX_IsPlayerInCheckpoint             (2)
 #endif
 
 #if !defined FIX_IsPlayerInRaceCheckpoint
-	#define FIX_IsPlayerInRaceCheckpoint (1)
+	#define FIX_IsPlayerInRaceCheckpoint         (1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInRaceCheckpoint)
 	#undef FIX_IsPlayerInRaceCheckpoint
-	#define FIX_IsPlayerInRaceCheckpoint (2)
+	#define FIX_IsPlayerInRaceCheckpoint         (2)
 #endif
 
 #if !defined FIX_GetPlayerWeapon
-	#define FIX_GetPlayerWeapon          (1)
+	#define FIX_GetPlayerWeapon                  (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeapon)
 	#undef FIX_GetPlayerWeapon
-	#define FIX_GetPlayerWeapon          (2)
+	#define FIX_GetPlayerWeapon                  (2)
 #endif
 
 #if !defined FIX_PutPlayerInVehicle
-	#define FIX_PutPlayerInVehicle       (1)
+	#define FIX_PutPlayerInVehicle               (1)
 #elseif _FIXES_IS_UNSET(FIX_PutPlayerInVehicle)
 	#undef FIX_PutPlayerInVehicle
-	#define FIX_PutPlayerInVehicle       (2)
+	#define FIX_PutPlayerInVehicle               (2)
 #endif
 
 #if !defined FIX_KEY_AIM
 	#if defined KEY_AIM
-		#define FIX_KEY_AIM              (FIXES_EnableDeprecated)
+		#define FIX_KEY_AIM                      (FIXES_EnableDeprecated)
 	#else
-		#define FIX_KEY_AIM              (1)
+		#define FIX_KEY_AIM                      (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_KEY_AIM)
 	#undef FIX_KEY_AIM
-	#define FIX_KEY_AIM                  (2)
+	#define FIX_KEY_AIM                          (2)
 #endif
 
 #if !defined FIX_SPECIAL_ACTION_PISSING
 	#if defined SPECIAL_ACTION_PISSING
-		#define FIX_SPECIAL_ACTION_PISSING (FIXES_EnableDeprecated)
+		#define FIX_SPECIAL_ACTION_PISSING       (FIXES_EnableDeprecated)
 	#else
-		#define FIX_SPECIAL_ACTION_PISSING (1)
+		#define FIX_SPECIAL_ACTION_PISSING       (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SPECIAL_ACTION_PISSING)
 	#undef FIX_SPECIAL_ACTION_PISSING
-	#define FIX_SPECIAL_ACTION_PISSING   (2)
+	#define FIX_SPECIAL_ACTION_PISSING           (2)
 #endif
 
 #if !defined FIX_Natives
-	#define FIX_Natives                  (1)
+	#define FIX_Natives                          (1)
 #elseif _FIXES_IS_UNSET(FIX_Natives)
 	#undef FIX_Natives
-	#define FIX_Natives                  (2)
+	#define FIX_Natives                          (2)
 #endif
 
 #if !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
-		#define FIX_IsValidVehicle       (FIXES_EnableDeprecated)
+		#define FIX_IsValidVehicle               (FIXES_EnableDeprecated)
 	#else
-		#define FIX_IsValidVehicle       (FIX_Natives)
+		#define FIX_IsValidVehicle               (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
 	#undef FIX_IsValidVehicle
-	#define FIX_IsValidVehicle           (2)
+	#define FIX_IsValidVehicle                   (2)
 #endif
 
 #if !defined FIX_GetGravity
 	#if defined GetGravity
-		#define FIX_GetGravity           (FIXES_EnableDeprecated)
+		#define FIX_GetGravity                   (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetGravity           (FIX_Natives)
+		#define FIX_GetGravity                   (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetGravity)
 	#undef FIX_GetGravity
-	#define FIX_GetGravity               (2)
+	#define FIX_GetGravity                       (2)
 #endif
 
 #if !defined FIX_gpci
 	#if defined gpci
-		#define FIX_gpci                 (FIXES_EnableDeprecated)
+		#define FIX_gpci                         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_gpci                 (FIX_Natives)
+		#define FIX_gpci                         (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_gpci)
 	#undef FIX_gpci
-	#define FIX_gpci                     (2)
+	#define FIX_gpci                             (2)
 #endif
 
 #if !defined FIX_WEAPONS
 	#if defined WEAPON_FIST
-		#define FIX_WEAPONS              (FIXES_EnableDeprecated)
+		#define FIX_WEAPONS                      (FIXES_EnableDeprecated)
 	#else
-		#define FIX_WEAPONS              (1)
+		#define FIX_WEAPONS                      (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_WEAPONS)
 	#undef FIX_WEAPONS
-	#define FIX_WEAPONS                  (2)
+	#define FIX_WEAPONS                          (2)
 #endif
 
 #if !defined FIX_BODYPARTS
 	#if defined BODY_PART_LEFT_ARM
-		#define FIX_BODYPARTS            (FIXES_EnableDeprecated)
+		#define FIX_BODYPARTS                    (FIXES_EnableDeprecated)
 	#else
-		#define FIX_BODYPARTS            (1)
+		#define FIX_BODYPARTS                    (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_BODYPARTS)
 	#undef FIX_BODYPARTS
-	#define FIX_BODYPARTS                (2)
+	#define FIX_BODYPARTS                        (2)
 #endif
 
 #if !defined FIX_CAMERAMODES
 	#if defined CAM_MODE_NONE
-		#define FIX_CAMERAMODES          (FIXES_EnableDeprecated)
+		#define FIX_CAMERAMODES                  (FIXES_EnableDeprecated)
 	#else
-		#define FIX_CAMERAMODES          (1)
+		#define FIX_CAMERAMODES                  (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_CAMERAMODES)
 	#undef FIX_CAMERAMODES
-	#define FIX_CAMERAMODES              (2)
+	#define FIX_CAMERAMODES                      (2)
 #endif
 
 #if !defined FIX_DriveBy
-	#define FIX_DriveBy                  (1)
+	#define FIX_DriveBy                          (1)
 #elseif _FIXES_IS_UNSET(FIX_DriveBy)
 	#undef FIX_DriveBy
-	#define FIX_DriveBy                  (2)
+	#define FIX_DriveBy                          (2)
 #endif
 
 #if !defined FIX_SetPlayerCheckpoint
-	#define FIX_SetPlayerCheckpoint      (1)
+	#define FIX_SetPlayerCheckpoint              (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCheckpoint)
 	#undef FIX_SetPlayerCheckpoint
-	#define FIX_SetPlayerCheckpoint      (2)
+	#define FIX_SetPlayerCheckpoint              (2)
 #endif
 
 #if !defined FIX_SetPlayerRaceCheckpoint
-	#define FIX_SetPlayerRaceCheckpoint  (1)
+	#define FIX_SetPlayerRaceCheckpoint          (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerRaceCheckpoint)
 	#undef FIX_SetPlayerRaceCheckpoint
-	#define FIX_SetPlayerRaceCheckpoint  (2)
+	#define FIX_SetPlayerRaceCheckpoint          (2)
 #endif
 
 #if !defined FIX_TextDrawCreate
-	#define FIX_TextDrawCreate           (1)
+	#define FIX_TextDrawCreate                   (1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawCreate)
 	#undef FIX_TextDrawCreate
-	#define FIX_TextDrawCreate           (2)
+	#define FIX_TextDrawCreate                   (2)
 #endif
 
 #if !defined FIX_TextDrawCreate_2
-	#define FIX_TextDrawCreate_2           (1)
+	#define FIX_TextDrawCreate_2                 (1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawCreate_2)
 	#undef FIX_TextDrawCreate_2
-	#define FIX_TextDrawCreate_2           (2)
+	#define FIX_TextDrawCreate_2                 (2)
 #endif
 
 #if !defined FIX_TextDrawSetString
-	#define FIX_TextDrawSetString        (1)
+	#define FIX_TextDrawSetString                (1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString)
 	#undef FIX_TextDrawSetString
-	#define FIX_TextDrawSetString        (2)
+	#define FIX_TextDrawSetString                (2)
 #endif
 
 #if !defined FIX_TextDrawSetString_2
-	#define FIX_TextDrawSetString_2        (1)
+	#define FIX_TextDrawSetString_2              (1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString_2)
 	#undef FIX_TextDrawSetString_2
-	#define FIX_TextDrawSetString_2        (2)
+	#define FIX_TextDrawSetString_2              (2)
 #endif
 
 #if !defined FIX_AllowInteriorWeapons
-	#define FIX_AllowInteriorWeapons     (1)
+	#define FIX_AllowInteriorWeapons             (1)
 #elseif _FIXES_IS_UNSET(FIX_AllowInteriorWeapons)
 	#undef FIX_AllowInteriorWeapons
-	#define FIX_AllowInteriorWeapons     (2)
+	#define FIX_AllowInteriorWeapons             (2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle
 	#if defined OnPlayerClickMap
-		#define FIX_OnPlayerEnterVehicle (FIXES_EnableDeprecated)
+		#define FIX_OnPlayerEnterVehicle         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_OnPlayerEnterVehicle (1)
+		#define FIX_OnPlayerEnterVehicle         (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle)
 	#undef FIX_OnPlayerEnterVehicle
-	#define FIX_OnPlayerEnterVehicle     (2)
+	#define FIX_OnPlayerEnterVehicle             (2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle_2
-	#define FIX_OnPlayerEnterVehicle_2   (1)
+	#define FIX_OnPlayerEnterVehicle_2           (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_2)
 	#undef FIX_OnPlayerEnterVehicle_2
-	#define FIX_OnPlayerEnterVehicle_2   (2)
+	#define FIX_OnPlayerEnterVehicle_2           (2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle_3
-	#define FIX_OnPlayerEnterVehicle_3   (1)
+	#define FIX_OnPlayerEnterVehicle_3           (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_3)
 	#undef FIX_OnPlayerEnterVehicle_3
-	#define FIX_OnPlayerEnterVehicle_3   (2)
+	#define FIX_OnPlayerEnterVehicle_3           (2)
 #endif
 
 #if !defined FIX_AllowTeleport
 	#if defined OnPlayerClickMap
-		#define FIX_AllowTeleport        (1)
+		#define FIX_AllowTeleport                (1)
 	#else
-		#define FIX_AllowTeleport        (FIXES_EnableDeprecated)
+		#define FIX_AllowTeleport                (FIXES_EnableDeprecated)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_AllowTeleport)
 	#undef FIX_AllowTeleport
-	#define FIX_AllowTeleport            (2)
+	#define FIX_AllowTeleport                    (2)
 #endif
 
 #if !defined FIX_SetPlayerSpecialAction
-	#define FIX_SetPlayerSpecialAction   (1)
+	#define FIX_SetPlayerSpecialAction           (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSpecialAction)
 	#undef FIX_SetPlayerSpecialAction
-	#define FIX_SetPlayerSpecialAction   (2)
+	#define FIX_SetPlayerSpecialAction           (2)
 #endif
 
 #if !defined FIX_ClearAnimations
-	#define FIX_ClearAnimations          (1)
+	#define FIX_ClearAnimations                  (1)
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations)
 	#undef FIX_ClearAnimations
-	#define FIX_ClearAnimations          (2)
+	#define FIX_ClearAnimations                  (2)
 #endif
 
 #if !defined FIX_ClearAnimations_2
-	#define FIX_ClearAnimations_2        (1)
+	#define FIX_ClearAnimations_2                (1)
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations_2)
 	#undef FIX_ClearAnimations_2
-	#define FIX_ClearAnimations_2        (2)
+	#define FIX_ClearAnimations_2                (2)
 #endif
 
 #if !defined FIX_GangZoneCreate
-	#define FIX_GangZoneCreate           (1)
+	#define FIX_GangZoneCreate                   (1)
 #elseif _FIXES_IS_UNSET(FIX_GangZoneCreate)
 	#undef FIX_GangZoneCreate
-	#define FIX_GangZoneCreate           (2)
+	#define FIX_GangZoneCreate                   (2)
 #endif
 
 #if !defined FIX_OnDialogResponse
 	#if defined GetVehicleModelInfo
-		#define FIX_OnDialogResponse     (FIXES_EnableDeprecated)
+		#define FIX_OnDialogResponse             (FIXES_EnableDeprecated)
 	#else
-		#define FIX_OnDialogResponse     (1)
+		#define FIX_OnDialogResponse             (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnDialogResponse)
 	#undef FIX_OnDialogResponse
-	#define FIX_OnDialogResponse         (2)
+	#define FIX_OnDialogResponse                 (2)
 #endif
 
 #if !defined FIX_GetPlayerDialog
 	#if defined GetPlayerDialog
-		#define FIX_GetPlayerDialog      (FIXES_EnableDeprecated)
+		#define FIX_GetPlayerDialog              (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerDialog      (FIX_Natives)
+		#define FIX_GetPlayerDialog              (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
-	#define FIX_GetPlayerDialog          (2)
+	#define FIX_GetPlayerDialog                  (2)
 #endif
 
 #if !defined FIX_PlayerDialogResponse
-	#define FIX_PlayerDialogResponse     (1)
+	#define FIX_PlayerDialogResponse             (1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerDialogResponse)
 	#undef FIX_PlayerDialogResponse
-	#define FIX_PlayerDialogResponse     (2)
+	#define FIX_PlayerDialogResponse             (2)
 #endif
 
 #if !defined FIX_SetSpawnInfo
 	#if defined GetPlayerVersion
-		#define FIX_SetSpawnInfo         (FIXES_EnableDeprecated)
+		#define FIX_SetSpawnInfo                 (FIXES_EnableDeprecated)
 	#else
-		#define FIX_SetSpawnInfo         (1)
+		#define FIX_SetSpawnInfo                 (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetSpawnInfo)
 	#undef FIX_SetSpawnInfo
-	#define FIX_SetSpawnInfo             (2)
+	#define FIX_SetSpawnInfo                     (2)
 #endif
 
 #if !defined FIX_SetPlayerSkin
-	#define FIX_SetPlayerSkin            (1)
+	#define FIX_SetPlayerSkin                    (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSkin)
 	#undef FIX_SetPlayerSkin
-	#define FIX_SetPlayerSkin            (2)
+	#define FIX_SetPlayerSkin                    (2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (1)
+	#define FIX_HideMenuForPlayer                (1)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
 	#undef FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (2)
+	#define FIX_HideMenuForPlayer                (2)
 #endif
 
 #if !defined FIX_valstr
-	#define FIX_valstr                   (1)
+	#define FIX_valstr                           (1)
 #elseif _FIXES_IS_UNSET(FIX_valstr)
 	#undef FIX_valstr
-	#define FIX_valstr                   (2)
+	#define FIX_valstr                           (2)
 #endif
 
 #if !defined FIX_file_inc
-	#define FIX_file_inc                 (FIXES_EnableAll)
+	#define FIX_file_inc                         (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_file_inc)
 	#undef FIX_file_inc
-	#define FIX_file_inc                 (2)
+	#define FIX_file_inc                         (2)
 #endif
 
 #if !defined FIX_fclose
-	#define FIX_fclose                   (FIX_file_inc)
+	#define FIX_fclose                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fclose)
 	#undef FIX_fclose
-	#define FIX_fclose                   (2)
+	#define FIX_fclose                           (2)
 #endif
 
 #if !defined FIX_fwrite
-	#define FIX_fwrite                   (FIX_file_inc)
+	#define FIX_fwrite                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fwrite)
 	#undef FIX_fwrite
-	#define FIX_fwrite                   (2)
+	#define FIX_fwrite                           (2)
 #endif
 
 #if !defined FIX_fread
-	#define FIX_fread                    (FIX_file_inc)
+	#define FIX_fread                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fread)
 	#undef FIX_fread
-	#define FIX_fread                    (2)
+	#define FIX_fread                            (2)
 #endif
 
 #if !defined FIX_fputchar
-	#define FIX_fputchar                 (FIX_file_inc)
+	#define FIX_fputchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fputchar)
 	#undef FIX_fputchar
-	#define FIX_fputchar                 (2)
+	#define FIX_fputchar                         (2)
 #endif
 
 #if !defined FIX_fgetchar
-	#define FIX_fgetchar                 (FIX_file_inc)
+	#define FIX_fgetchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fgetchar)
 	#undef FIX_fgetchar
-	#define FIX_fgetchar                 (2)
+	#define FIX_fgetchar                         (2)
 #endif
 
 #if !defined FIX_fblockwrite
-	#define FIX_fblockwrite              (FIX_file_inc)
+	#define FIX_fblockwrite                      (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockwrite)
 	#undef FIX_fblockwrite
-	#define FIX_fblockwrite              (2)
+	#define FIX_fblockwrite                      (2)
 #endif
 
 #if !defined FIX_fblockread
-	#define FIX_fblockread               (FIX_file_inc)
+	#define FIX_fblockread                       (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockread)
 	#undef FIX_fblockread
-	#define FIX_fblockread               (2)
+	#define FIX_fblockread                       (2)
 #endif
 
 #if !defined FIX_fseek
-	#define FIX_fseek                    (FIX_file_inc)
+	#define FIX_fseek                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fseek)
 	#undef FIX_fseek
-	#define FIX_fseek                    (2)
+	#define FIX_fseek                            (2)
 #endif
 
 #if !defined FIX_flength
-	#define FIX_flength                  (FIX_file_inc)
+	#define FIX_flength                          (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_flength)
 	#undef FIX_flength
-	#define FIX_flength                  (2)
+	#define FIX_flength                          (2)
 #endif
 
 #if !defined FIX_SetPlayerAttachedObject
-	#define FIX_SetPlayerAttachedObject  (1)
+	#define FIX_SetPlayerAttachedObject          (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerAttachedObject)
 	#undef FIX_SetPlayerAttachedObject
-	#define FIX_SetPlayerAttachedObject  (2)
+	#define FIX_SetPlayerAttachedObject          (2)
 #endif
 
 #if !defined FIX_OnPlayerDeath
-	#define FIX_OnPlayerDeath            (1)
+	#define FIX_OnPlayerDeath                    (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDeath)
 	#undef FIX_OnPlayerDeath
-	#define FIX_OnPlayerDeath            (2)
+	#define FIX_OnPlayerDeath                    (2)
 #endif
 
 #if !defined FIX_strins
-	#define FIX_strins                   (1)
+	#define FIX_strins                           (1)
 #elseif _FIXES_IS_UNSET(FIX_strins)
 	#undef FIX_strins
-	#define FIX_strins                   (2)
+	#define FIX_strins                           (2)
 #endif
 
 #if !defined FIX_IsPlayerConnected
-	#define FIX_IsPlayerConnected        (1)
+	#define FIX_IsPlayerConnected                (1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerConnected)
 	#undef FIX_IsPlayerConnected
-	#define FIX_IsPlayerConnected        (2)
+	#define FIX_IsPlayerConnected                (2)
 #endif
 
 #if !defined FIX_TrainExit
-	#define FIX_TrainExit                (1)
+	#define FIX_TrainExit                        (1)
 #elseif _FIXES_IS_UNSET(FIX_TrainExit)
 	#undef FIX_TrainExit
-	#define FIX_TrainExit                (2)
+	#define FIX_TrainExit                        (2)
 #endif
 
 #if !defined FIX_Kick
 	#if defined EnableVehicleFriendlyFire
-		#define FIX_Kick                 (FIXES_EnableDeprecated)
+		#define FIX_Kick                         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_Kick                 (1)
+		#define FIX_Kick                         (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_Kick)
 	#undef FIX_Kick
-	#define FIX_Kick                     (2)
+	#define FIX_Kick                             (2)
 #endif
 
 #if !defined FIX_OnVehicleMod
-	#define FIX_OnVehicleMod             (1)
+	#define FIX_OnVehicleMod                     (1)
 #elseif _FIXES_IS_UNSET(FIX_OnVehicleMod)
 	#undef FIX_OnVehicleMod
-	#define FIX_OnVehicleMod             (2)
+	#define FIX_OnVehicleMod                     (2)
 #endif
 
 #if !defined FIX_random
-	#define FIX_random                   (FIXES_EnableAll)
+	#define FIX_random                           (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_random)
 	#undef FIX_random
-	#define FIX_random                   (2)
+	#define FIX_random                           (2)
 #endif
 
 #if !defined FIX_sleep
-	#define FIX_sleep                    (1)
+	#define FIX_sleep                            (1)
 #elseif _FIXES_IS_UNSET(FIX_sleep)
 	#undef FIX_sleep
-	#define FIX_sleep                    (2)
+	#define FIX_sleep                            (2)
 #endif
 
 #if !defined FIX_Menus
-	#define FIX_Menus                    (1)
+	#define FIX_Menus                            (1)
 #elseif _FIXES_IS_UNSET(FIX_Menus)
 	#undef FIX_Menus
-	#define FIX_Menus                    (2)
+	#define FIX_Menus                            (2)
 #endif
 
 #if !defined FIX_AddMenuItem
-	#define FIX_AddMenuItem              (FIX_Menus)
+	#define FIX_AddMenuItem                      (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_AddMenuItem)
 	#undef FIX_AddMenuItem
-	#define FIX_AddMenuItem              (2)
+	#define FIX_AddMenuItem                      (2)
 #endif
 
 #if !defined FIX_SetMenuColumnHeader
-	#define FIX_SetMenuColumnHeader      (FIX_Menus)
+	#define FIX_SetMenuColumnHeader              (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_SetMenuColumnHeader)
 	#undef FIX_SetMenuColumnHeader
-	#define FIX_SetMenuColumnHeader      (2)
+	#define FIX_SetMenuColumnHeader              (2)
 #endif
 
 #if !defined FIX_ShowMenuForPlayer
-	#define FIX_ShowMenuForPlayer        (FIX_Menus)
+	#define FIX_ShowMenuForPlayer                (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_ShowMenuForPlayer)
 	#undef FIX_ShowMenuForPlayer
-	#define FIX_ShowMenuForPlayer        (2)
+	#define FIX_ShowMenuForPlayer                (2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (FIX_Menus)
+	#define FIX_HideMenuForPlayer                (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
 	#undef FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer        (2)
+	#define FIX_HideMenuForPlayer                (2)
 #endif
 
 #if !defined FIX_GetPlayerMenu
-	#define FIX_GetPlayerMenu            (1)
+	#define FIX_GetPlayerMenu                    (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerMenu)
 	#undef FIX_GetPlayerMenu
-	#define FIX_GetPlayerMenu            (2)
+	#define FIX_GetPlayerMenu                    (2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer_2
-	#define FIX_HideMenuForPlayer_2      (FIXES_EnableAll)
+	#define FIX_HideMenuForPlayer_2              (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer_2)
 	#undef FIX_HideMenuForPlayer_2
-	#define FIX_HideMenuForPlayer_2      (2)
+	#define FIX_HideMenuForPlayer_2              (2)
 #elseif FIX_HideMenuForPlayer_2 && !FIX_GetPlayerMenu
 	#error FIX_HideMenuForPlayer_2 requires FIX_GetPlayerMenu
 #endif
 
 #if !defined FIX_DisableMenu
-	#define FIX_DisableMenu              (FIX_Menus)
+	#define FIX_DisableMenu                      (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_DisableMenu)
 	#undef FIX_DisableMenu
-	#define FIX_DisableMenu              (2)
+	#define FIX_DisableMenu                      (2)
 #endif
 
 #if !defined FIX_DisableMenuRow
-	#define FIX_DisableMenuRow           (FIX_Menus)
+	#define FIX_DisableMenuRow                   (FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_DisableMenuRow)
 	#undef FIX_DisableMenuRow
-	#define FIX_DisableMenuRow           (2)
+	#define FIX_DisableMenuRow                   (2)
 #endif
 
 #if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
-	#define _FIX_Menus                   (1)
+	#define _FIX_Menus                           (1)
 #else
-	#define _FIX_Menus                   (2)
+	#define _FIX_Menus                           (2)
 #endif
 
 #if !defined FIX_GetPlayerInterior
-	#define FIX_GetPlayerInterior        (1)
+	#define FIX_GetPlayerInterior                (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerInterior)
 	#undef FIX_GetPlayerInterior
-	#define FIX_GetPlayerInterior        (2)
+	#define FIX_GetPlayerInterior                (2)
 #endif
 
 #if !defined FIX_ApplyAnimation
-	#define FIX_ApplyAnimation           (1)
+	#define FIX_ApplyAnimation                   (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation)
 	#undef FIX_ApplyAnimation
-	#define FIX_ApplyAnimation           (2)
+	#define FIX_ApplyAnimation                   (2)
 #endif
 
 #if !defined FIX_ApplyAnimation_2
-	#define FIX_ApplyAnimation_2         (1)
+	#define FIX_ApplyAnimation_2                 (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation_2)
 	#undef FIX_ApplyAnimation_2
-	#define FIX_ApplyAnimation_2         (2)
+	#define FIX_ApplyAnimation_2                 (2)
 #endif
 
 #if !defined FIX_ApplyActorAnimation
-	#define FIX_ApplyActorAnimation      (1)
+	#define FIX_ApplyActorAnimation              (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation)
 	#undef FIX_ApplyActorAnimation
-	#define FIX_ApplyActorAnimation      (2)
+	#define FIX_ApplyActorAnimation              (2)
 #endif
 
 #if !defined FIX_ApplyActorAnimation_2
-	#define FIX_ApplyActorAnimation_2    (1)
+	#define FIX_ApplyActorAnimation_2            (1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation_2)
 	#undef FIX_ApplyActorAnimation_2
-	#define FIX_ApplyActorAnimation_2    (2)
+	#define FIX_ApplyActorAnimation_2            (2)
 #endif
 
 #if !defined FIX_OnPlayerSpawn
-	#define FIX_OnPlayerSpawn            (1)
+	#define FIX_OnPlayerSpawn                    (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerSpawn)
 	#undef FIX_OnPlayerSpawn
-	#define FIX_OnPlayerSpawn            (2)
+	#define FIX_OnPlayerSpawn                    (2)
 #endif
 
 #if !defined FIX_GameText
-	#define FIX_GameText                 (1)
+	#define FIX_GameText                         (1)
 #elseif _FIXES_IS_UNSET(FIX_GameText)
 	#undef FIX_GameText
-	#define FIX_GameText                 (2)
+	#define FIX_GameText                         (2)
 #endif
 
 #if !defined FIX_HideGameText
 	#if defined HideGameText
-		#define FIX_HideGameText         (FIXES_EnableDeprecated)
+		#define FIX_HideGameText                 (FIXES_EnableDeprecated)
 	#else
-		#define FIX_HideGameText         (FIX_Natives)
+		#define FIX_HideGameText                 (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_HideGameText)
 	#undef FIX_HideGameText
-	#define FIX_HideGameText             (2)
+	#define FIX_HideGameText                     (2)
 #endif
 
 #if !defined FIX_GetPlayerWorldBounds
 	#if defined GetPlayerWorldBounds
-		#define FIX_GetPlayerWorldBounds (FIXES_EnableDeprecated)
+		#define FIX_GetPlayerWorldBounds         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerWorldBounds (FIX_Natives)
+		#define FIX_GetPlayerWorldBounds         (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWorldBounds)
 	#undef FIX_GetPlayerWorldBounds
-	#define FIX_GetPlayerWorldBounds     (2)
+	#define FIX_GetPlayerWorldBounds             (2)
 #endif
 
 #if !defined FIX_ClearPlayerWorldBounds
 	#if defined ClearPlayerWorldBounds
-		#define FIX_ClearPlayerWorldBounds (FIXES_EnableDeprecated)
+		#define FIX_ClearPlayerWorldBounds       (FIXES_EnableDeprecated)
 	#else
-		#define FIX_ClearPlayerWorldBounds (FIX_Natives)
+		#define FIX_ClearPlayerWorldBounds       (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_ClearPlayerWorldBounds)
 	#undef FIX_ClearPlayerWorldBounds
-	#define FIX_ClearPlayerWorldBounds   (2)
+	#define FIX_ClearPlayerWorldBounds           (2)
 #endif
 
 #if !defined FIX_GameTextStyles
-	#define FIX_GameTextStyles           (FIXES_EnableAll)
+	#define FIX_GameTextStyles                   (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
 	#undef FIX_GameTextStyles
-	#define FIX_GameTextStyles           (2)
+	#define FIX_GameTextStyles                   (2)
 #elseif FIX_GameTextStyles && !FIX_GameText
 	#error FIX_GameTextStyles requires FIX_GameText
 #endif
 
 #if !defined FIX_OnPlayerConnect
-	#define FIX_OnPlayerConnect          (1)
+	#define FIX_OnPlayerConnect                  (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerConnect)
 	#undef FIX_OnPlayerConnect
-	#define FIX_OnPlayerConnect          (2)
+	#define FIX_OnPlayerConnect                  (2)
 #endif
 
 #if !defined FIX_OnPlayerDisconnect
-	#define FIX_OnPlayerDisconnect       (1)
+	#define FIX_OnPlayerDisconnect               (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDisconnect)
 	#undef FIX_OnPlayerDisconnect
-	#define FIX_OnPlayerDisconnect       (2)
+	#define FIX_OnPlayerDisconnect               (2)
 #endif
 
 #if !defined FIX_CreatePlayerTextDraw
-	#define FIX_CreatePlayerTextDraw     (1)
+	#define FIX_CreatePlayerTextDraw             (1)
 #elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw)
 	#undef FIX_CreatePlayerTextDraw
-	#define FIX_CreatePlayerTextDraw     (2)
+	#define FIX_CreatePlayerTextDraw             (2)
 #endif
 
 #if !defined FIX_CreatePlayerTextDraw_2
-	#define FIX_CreatePlayerTextDraw_2     (1)
+	#define FIX_CreatePlayerTextDraw_2           (1)
 #elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw_2)
 	#undef FIX_CreatePlayerTextDraw_2
-	#define FIX_CreatePlayerTextDraw_2     (2)
+	#define FIX_CreatePlayerTextDraw_2           (2)
 #endif
 
 #if !defined FIX_PlayerTextDrawSetString
-	#define FIX_PlayerTextDrawSetString  (1)
+	#define FIX_PlayerTextDrawSetString          (1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString)
 	#undef FIX_PlayerTextDrawSetString
-	#define FIX_PlayerTextDrawSetString  (2)
+	#define FIX_PlayerTextDrawSetString          (2)
 #endif
 
 #if !defined FIX_PlayerTextDrawSetString_2
-	#define FIX_PlayerTextDrawSetString_2  (1)
+	#define FIX_PlayerTextDrawSetString_2        (1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString_2)
 	#undef FIX_PlayerTextDrawSetString_2
-	#define FIX_PlayerTextDrawSetString_2  (2)
+	#define FIX_PlayerTextDrawSetString_2        (2)
 #endif
 
 #if !defined FIX_SetPlayerCamera
-	#define FIX_SetPlayerCamera          (1)
+	#define FIX_SetPlayerCamera                  (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCamera)
 	#undef FIX_SetPlayerCamera
-	#define FIX_SetPlayerCamera          (2)
+	#define FIX_SetPlayerCamera                  (2)
 #endif
 
 #if !defined FIX_SetPlayerTime
-	#define FIX_SetPlayerTime            (1)
+	#define FIX_SetPlayerTime                    (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerTime)
 	#undef FIX_SetPlayerTime
-	#define FIX_SetPlayerTime            (2)
+	#define FIX_SetPlayerTime                    (2)
 #endif
 
 #if !defined FIX_OnPlayerRequestClass
-	#define FIX_OnPlayerRequestClass     (1)
+	#define FIX_OnPlayerRequestClass             (1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerRequestClass)
 	#undef FIX_OnPlayerRequestClass
-	#define FIX_OnPlayerRequestClass     (2)
+	#define FIX_OnPlayerRequestClass             (2)
 #endif
 
 #if !defined FIX_SetPlayerColour
 	#if defined FIX_SetPlayerColor
 		#if _FIXES_IS_UNSET(FIX_SetPlayerColor)
-			#define FIX_SetPlayerColour  (2)
+			#define FIX_SetPlayerColour          (2)
 		#else
-			#define FIX_SetPlayerColour  (FIX_SetPlayerColor)
+			#define FIX_SetPlayerColour          (FIX_SetPlayerColor)
 		#endif
 	#else
-		#define FIX_SetPlayerColour      (1)
+		#define FIX_SetPlayerColour              (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerColour)
 	#undef FIX_SetPlayerColour
-	#define FIX_SetPlayerColour          (2)
+	#define FIX_SetPlayerColour                  (2)
 #endif
 
 #if !defined FIX_FileMaths
-	#define FIX_FileMaths                (1)
+	#define FIX_FileMaths                        (1)
 #elseif _FIXES_IS_UNSET(FIX_FileMaths)
 	#undef FIX_FileMaths
-	#define FIX_FileMaths                (2)
+	#define FIX_FileMaths                        (2)
 #endif
 
 #if !defined FIX_GetPlayerWeaponData
-	#define FIX_GetPlayerWeaponData      (1)
+	#define FIX_GetPlayerWeaponData              (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeaponData)
 	#undef FIX_GetPlayerWeaponData
-	#define FIX_GetPlayerWeaponData      (2)
+	#define FIX_GetPlayerWeaponData              (2)
 #endif
 
 #if !defined FIX_strcmp
-	#define FIX_strcmp                   (1)
+	#define FIX_strcmp                           (1)
 #elseif _FIXES_IS_UNSET(FIX_strcmp)
 	#undef FIX_strcmp
-	#define FIX_strcmp                   (2)
+	#define FIX_strcmp                           (2)
 #endif
 
 #if !defined FIX_GetPVarString
-	#define FIX_GetPVarString            (FIXES_EnableAll)
+	#define FIX_GetPVarString                    (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetPVarString)
 	#undef FIX_GetPVarString
-	#define FIX_GetPVarString            (2)
+	#define FIX_GetPVarString                    (2)
 #endif
 
 #if !defined FIX_GetSVarString
-	#define FIX_GetSVarString            (FIXES_EnableAll)
+	#define FIX_GetSVarString                    (FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetSVarString)
 	#undef FIX_GetSVarString
-	#define FIX_GetSVarString            (2)
+	#define FIX_GetSVarString                    (2)
 #endif
 
 #if !defined FIX_toupper
-	#define FIX_toupper                  (1)
+	#define FIX_toupper                          (1)
 #elseif _FIXES_IS_UNSET(FIX_toupper)
 	#undef FIX_toupper
-	#define FIX_toupper                  (2)
+	#define FIX_toupper                          (2)
 #endif
 
 #if !defined FIX_tolower
-	#define FIX_tolower                  (1)
+	#define FIX_tolower                          (1)
 #elseif _FIXES_IS_UNSET(FIX_tolower)
 	#undef FIX_tolower
-	#define FIX_tolower                  (2)
+	#define FIX_tolower                          (2)
 #endif
 
 #if !defined FIX_PassengerSeating
-	#define FIX_PassengerSeating         (1)
+	#define FIX_PassengerSeating                 (1)
 #elseif _FIXES_IS_UNSET(FIX_PassengerSeating)
 	#undef FIX_PassengerSeating
-	#define FIX_PassengerSeating         (2)
+	#define FIX_PassengerSeating                 (2)
 #endif
 
 #if !defined FIX_GogglesSync
-	#define FIX_GogglesSync              (1)
+	#define FIX_GogglesSync                      (1)
 #elseif _FIXES_IS_UNSET(FIX_GogglesSync)
 	#undef FIX_GogglesSync
-	#define FIX_GogglesSync              (2)
+	#define FIX_GogglesSync                      (2)
 #endif
 
 #if !defined FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize        (1)
+	#define FIX_GetPlayerPoolSize                (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize        (2)
+	#define FIX_GetPlayerPoolSize                (2)
 #endif
 
 #if !defined FIX_SetPlayerPos
-	#define FIX_SetPlayerPos             (1)
+	#define FIX_SetPlayerPos                     (1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerPos)
 	#undef FIX_SetPlayerPos
-	#define FIX_SetPlayerPos             (2)
+	#define FIX_SetPlayerPos                     (2)
 #endif
 
 #if !defined FIX_GetPlayerAmmo
-	#define FIX_GetPlayerAmmo            (1)
+	#define FIX_GetPlayerAmmo                    (1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerAmmo)
 	#undef FIX_GetPlayerAmmo
-	#define FIX_GetPlayerAmmo            (2)
+	#define FIX_GetPlayerAmmo                    (2)
 #endif
 
 #if !defined FIX_JIT
-	#define FIX_JIT                      (1)
+	#define FIX_JIT                              (1)
 #elseif _FIXES_IS_UNSET(FIX_JIT)
 	#undef FIX_JIT
-	#define FIX_JIT                      (2)
+	#define FIX_JIT                              (2)
 #endif
 
 #if !defined FIX_OS
-	#define FIX_OS                       (1)
+	#define FIX_OS                               (1)
 #elseif _FIXES_IS_UNSET(FIX_OS)
 	#undef FIX_OS
-	#define FIX_OS                       (2)
+	#define FIX_OS                               (2)
 #endif
 
 #if !defined FIX_const
-	#define FIX_const                    (1)
+	#define FIX_const                            (1)
 #elseif _FIXES_IS_UNSET(FIX_const)
 	#undef FIX_const
-	#define FIX_const                    (2)
+	#define FIX_const                            (2)
 #endif
 
 #if !defined FIX_VEHICLES
 	#if defined VEHICLE_INFERNUS
-		#define FIX_VEHICLES            (FIXES_EnableDeprecated)
+		#define FIX_VEHICLES                     (FIXES_EnableDeprecated)
 	#else
-		#define FIX_VEHICLES            (1)
+		#define FIX_VEHICLES                     (1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_VEHICLES)
 	#undef FIX_VEHICLES
-	#define FIX_VEHICLES                (2)
+	#define FIX_VEHICLES                         (2)
 #endif
 
 #if !defined FIX_GetPlayerWeather
 	#if defined GetPlayerWeather
-		#define FIX_GetPlayerWeather      (FIXES_EnableDeprecated)
+		#define FIX_GetPlayerWeather             (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerWeather      (FIX_Natives)
+		#define FIX_GetPlayerWeather             (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeather)
 	#undef FIX_GetPlayerWeather
-	#define FIX_GetPlayerWeather          (2)
+	#define FIX_GetPlayerWeather                 (2)
 #endif
 
 #if !defined FIX_GetWeather
 	#if defined GetWeather
-		#define FIX_GetWeather      (FIXES_EnableDeprecated)
+		#define FIX_GetWeather                   (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWeather      (FIX_Natives)
+		#define FIX_GetWeather                   (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeather)
 	#undef FIX_GetWeather
-	#define FIX_GetWeather          (2)
+	#define FIX_GetWeather                       (2)
 #endif
 
 #if !defined FIX_GetWorldTime
 	#if defined GetWorldTime
-		#define FIX_GetWorldTime      (FIXES_EnableDeprecated)
+		#define FIX_GetWorldTime                 (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWorldTime      (FIX_Natives)
+		#define FIX_GetWorldTime                 (FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWorldTime)
 	#undef FIX_GetWorldTime
-	#define FIX_GetWorldTime          (2)
+	#define FIX_GetWorldTime                     (2)
 #endif
 
 #if !defined FIX_tabsize
-	#define FIX_tabsize                  (1)
+	#define FIX_tabsize                          (1)
 #elseif _FIXES_IS_UNSET(FIX_tabsize)
 	#undef FIX_tabsize
-	#define FIX_tabsize                  (2)
+	#define FIX_tabsize                          (2)
 #endif
 
 /**
@@ -10590,11 +11086,15 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 // Fix function template.
 /**
  * <fix name="" default="" fixed="">
- * <problem>  </problem>
- * <solution> </solution>
- * <see></see>
- * <author    name="" href="" />
- * <post      href="" />
+ *     <problem>
+ *         problem
+ *     </problem>
+ *     <solution>
+ *         solution
+ *     </solution>
+ *     <see></see>
+ *     <author    name="" href="" />
+ *     <post      href="" />
  * </fix>
  */
 
