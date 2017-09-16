@@ -31,6 +31,63 @@ in the output code.
 *//**
  * <library name="fixes.inc"
  *   description="Community patches for buggy SA:MP functions.">
+ *
+ * <section>
+ *             Introduction
+ * </section>
+ *
+ * <p>SA:MP is beta software written by a small team in their spare time, thus
+ * it has bugs (as does all software).  Some of these have been known for a long
+ * time but are low priority due to their minor effects, others go undiscovered
+ * for a long time.  Many of these bugs have solutions which can be implemented
+ * in PAWN (and this may be simpler than implementing them in the SA:MP source
+ * code).  This include aims to collect fixes for as many of these bugs as
+ * possible from the community (i.e. anyone who has a fix) together in to one
+ * easy to use place for everyone's benefit.</p>
+ *
+ * <section>
+ *             Use
+ * </section>
+ *
+ * <p>To use this, simply include it after the default SA:MP functions, but
+ * before third party includes:</p>
+ *
+ * <code>
+ *     #include &lt;a_samp&gt;                                                  <br />
+ *     // Any default re-definitions should go here.                            <br />
+ *     //#undef MAX_PLAYERS                                                     <br />
+ *     //#define MAX_PLAYERS 10                                                 <br />
+ *     #include &lt;fixes&gt;                                                   <br />
+ *     #include &lt;other&gt;
+ * </code>
+ *
+ * <p>To disable any fix for whatever reason simply do:</p>
+ *
+ * <code>#define FIX_&lt;name&gt; 0</code>
+ *
+ * <p>For example, to disable all the file.inc fixes if you always correctly
+ * check the file handle, do:</p>
+ *
+ * <code>
+ *     #include &lt;a_samp&gt;                                                  <br />
+ *     #define FIX_file_inc 0                                                   <br />
+ *     #include &lt;fixes&gt;                                                   <br />
+ *     #include &lt;other&gt;
+ * </code>
+ *
+ * <p>All the names of the fixes are single words, and are all listed with their
+ * fix descriptions below.</p>
+ *
+ * <p>If you only have one script running on your server (i.e. no
+ * FilterScripts), you can use this define to improve the fixes.inc code:</p>
+ *
+ * <code>
+ *     #include &lt;a_samp&gt;                                                  <br />
+ *     #define FIXES_Single 1                                                   <br />
+ *     #include &lt;fixes&gt;                                                   <br />
+ *     #include &lt;other&gt;
+ * </code>
+ *
  * <section>
  *             Fixes
  * </section>
@@ -1413,8 +1470,95 @@ in the output code.
  * </fixeslist>
  *
  * <section>
+ *             Options
+ * </section>
+ *
+ * <p>There are a few options for improved execution of this script.  Define
+ * these symbols as <c>1</c> before you include fixes.inc (remove them or set
+ * them to <c>0</c> to disable them):</p>
+ *
+ * <ul>
+ *   <symbol name="FIXES_Single">You only have one script running (no
+ *       filterscripts), simplify the code.</symbol>
+ *   <symbol name="FIXES_SilentKick">When a player is kicked for illegal
+ *       mods/vehicles, don't send them a message.</symbol>
+ *   <symbol name="FIXES_Debug">Additional information in the server
+ *       console.</symbol>
+ * </ul>
+ *
+ * <p>A few fixes are disabled by default, to enable them all do:</p>
+ *
+ * <code>
+ * #define GetPlayerDialog     1                                                <br />
+ * #define file_inc            1                                                <br />
+ * #define random              1                                                <br />
+ * #define HideMenuForPlayer_2 1                                                <br />
+ * #define GameTextStyles      1                                                <br />
+ * #define GetPlayerWeather    1                                                <br />
+ * #define GetWeather          1                                                <br />
+ * #define GetWorldTime        1
+ * </code>
+ *
+ * <p>Or more simply (and future-proof-ly):</p>
+ *
+ * <code>
+ * #define FIXES_EnableAll                                                      <br />
+ * #define FIXES_EnableDeprecated
+ * </code>
+ *
+ * <section>
+ *             Expansion
+ * </section>
+ *
+ * <p>The file is fairly well documented, with a list of the currently
+ * (hopefully) fixed bugs at the top.  If you know of others, or have solutions
+ * for others, it would be greatly appreciated if you could post them as issues
+ * on this repository.  The fixes also need extensive testing to find bugs in
+ * the fixes themselves.</p>
+ *
+ * <p>Again, this is a community project, merely managed by Y_Less and others -
+ * if anyone has comments, contributions, criticisms etc. please again post them
+ * as issues on the repository.  This includes additions to source code,
+ * documentation, presentation, translations (mainly of this documentation -
+ * multiple versions of the include should be avoided to reduce fragmentation),
+ * or any other related area you can think of.</p>
+ *
+ * <section>
+ *             Other Fixes
+ * </section>
+ *
+ * <p>There are a few other includes which aim to fix issues too large to be
+ * included here:</p>
+ *
+ * <ul>
+ *   <li><a href="http://forum.sa-mp.com/showthread.php?t=435525">Timerfix</a> -
+ *       <a href="https://github.com/udan11">udan11 (Dan..)</a>'s fixes to make
+ *       "SetTimer" and "SetTimerEx" vastly more accurate in their delays.</li>
+ *   <li><a href="http://forum.sa-mp.com/showthread.php?t=303682">SQLitei</a> -
+ *       <a href="https://github.com/oscar-broman/">Slice</a>'s fixes and
+ *       improvements for many SQLite functions.</li>
+ * </ul>
+ *
+ * <section>
+ *             Bugs
+ * </section>
+ *
+ * <p>Originally Posted by <a href="https://github.com/Y-Less/">Y_Less</a>:</p>
+ * 
+ * <p><em>[This] is beta software written by a small team in their spare time,
+ * thus it has bugs (as does all software).  This software is explicitly
+ * designed to solve bugs, not cause them, but there may still be bugs.</em></p>
+ *
+ * <p>The most likely cause of bugs is certain combinations of disabled fixes.
+ * Some fixes are inter-mixed and while they SHOULD work when the fixes they are
+ * combined with are disabled, not every combination has been tested.  There are
+ * literally billions of possible combinations - if you find one that doesn't
+ * compile or work, please tell us.</p>
+ *
+ * <section>
  *             Style Rules
  * </section>
+ *
  * <ul>
  * <li>All globals should be <c>static stock</c> whenever possible (so they can only be
  *     accessed from this one file).
