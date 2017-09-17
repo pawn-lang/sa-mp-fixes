@@ -1715,7 +1715,6 @@ in the output code.
  *
  * </library>
  *//** */
-
 #if defined _INC_SAMP_Community_fixes
 	#endinput
 #endif
@@ -2755,7 +2754,6 @@ in the output code.
  * to be quickly detectable.
  * </remarks>
  */
-
 #if !defined CHAIN_ORDER
 	#define CHAIN_ORDER() 0
 #endif
@@ -2807,7 +2805,6 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
  * server.
  * </remarks>
  */
-
 #if !defined FIXES_SilentKick
 	#define FIXES_SilentKick 0
 #elseif _FIXES_IS_UNSET(FIXES_SilentKick)
@@ -2823,7 +2820,6 @@ _FIXES_DOCUMENT_CONST(FIXES_SilentKick);
  * code to print anything, leaving 0 run-time overhead.
  * </remarks>
  */
-
 #if defined FIXES_Debug
 	#if _FIXES_IS_UNSET(FIXES_Debug)
 		#undef FIXES_Debug
@@ -2856,7 +2852,6 @@ _FIXES_DOCUMENT_MACRO(FIXES_PRINTF(const fmat[], {Float, _}:...));
  * A marker to indicate that this version of fixes.inc uses state-based hooks.
  * </remarks>
  */
-
 #define FIXES_UseStateHooks 1
 _FIXES_DOCUMENT_CONST(FIXES_UseStateHooks);
 
@@ -2867,7 +2862,6 @@ _FIXES_DOCUMENT_CONST(FIXES_UseStateHooks);
  * Set when a player can't see a dialog.
  * </remarks>
  */
-
 #if !defined INVALID_DIALOG_ID
 	#define INVALID_DIALOG_ID (-1)
 #endif
@@ -2881,7 +2875,6 @@ FIXES_DOCUMENT_CONST(INVALID_DIALOG_ID);
  * other or bugs.
  * </remarks>
  */
-
 #if !defined FIXES_Single
 	#define FIXES_Single (1)
 #elseif _FIXES_IS_UNSET(FIXES_Single)
@@ -3163,7 +3156,6 @@ _FIXES_DOCUMENT_MACRO(bool:_FIXES_IS_PLAYER_CONNECTED(playerid));
  * There is just no excuse.
  * </remarks>
  */
-
 #define tabsize 0
 _FIXES_DOCUMENT_CONST(tabsize);
 #undef tabsize
@@ -4206,7 +4198,6 @@ static stock const
  * Because the default SA:MP includes missed this one.
  * </remarks>
  */
-
 #define _FIXES_KEY_AIM                   (128)
 #if FIX_KEY_AIM
 	#define KEY_AIM                      _FIXES_KEY_AIM
@@ -4229,7 +4220,6 @@ static stock const
  * Because the default SA:MP includes missed this one.
  * </remarks>
  */
-
 #define _FIXES_SPECIAL_ACTION_PISSING    (68)
 #if FIX_SPECIAL_ACTION_PISSING
 	#define SPECIAL_ACTION_PISSING       _FIXES_SPECIAL_ACTION_PISSING
@@ -4286,7 +4276,6 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 /*
  * Better const-correctness on native functions.
  */
-
 #if FIX_const
 
 	// a_actor
@@ -4939,7 +4928,6 @@ _FIXES_DOCUMENT_CONST(FIX_CAMERAMODES);
  * </ul>
  * </remarks>
  */
-
 #if FIX_VEHICLES
 	#define VEHICLE_LANDSTALKER                 (400)
 	#define VEHICLE_BRAVURA                     (401)
@@ -5161,7 +5149,6 @@ _FIXES_DOCUMENT_CONST(FIX_VEHICLES);
  * True when the code is JIT compiled.
  * </remarks>
  */
-
 #if FIX_JIT
 	#define IS_JIT (_FIXES_gIsJIT)
 	_FIXES_DOCUMENT_CONST(IS_JIT);
@@ -5182,7 +5169,6 @@ _FIXES_DOCUMENT_CONST(FIX_VEHICLES);
  * processor macro, but may be better than nothing (also used internally).
  * </remarks>
  */
-
 #if FIX_FILTERSCRIPT
 	#define IS_FILTERSCRIPT (_FIXES_gIsFilterscript)
 	_FIXES_DOCUMENT_CONST(IS_FILTERSCRIPT);
@@ -5271,7 +5257,6 @@ static _FIXES_DetermineOS()
  * Forwards for operators that shouldn't exist, so they won't exist.
  * </remarks>
  */
-
 #if FIX_FileMaths
 	forward File:operator++(File:a);
 	forward File:operator--(File:a);
@@ -5309,7 +5294,6 @@ _FIXES_DOCUMENT_CONST(FIX_FileMaths);
  * Figure out which script is called first by callbacks.
  * </remarks>
  */
-
 #if FIXES_Single
 	_FIXES_DOCUMENT_MACRO(_FIXES_DetermineOrder());
 #else
@@ -5329,7 +5313,6 @@ _FIXES_DOCUMENT_CONST(FIX_FileMaths);
 /**
  * <fixes>IsPlayerConnected</fixes>
  */
-
 #if defined _ALS_IsPlayerConnected
 	#error _ALS_IsPlayerConnected defined
 #endif
@@ -5338,7 +5321,6 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 /**
  * <fixes>IsPlayerConnected</fixes>
  */
-
 #if FIX_IsPlayerConnected
 	stock FIXES_IsPlayerConnected(playerid)
 	{
@@ -5355,7 +5337,6 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
  * </remarks>
  * <fixes>GameText</fixes>
  */
-
 #if FIX_GameText
 	static _FIXES_CreateGameTextDraws(const playerid)
 	{
@@ -6007,7 +5988,6 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  * Fast way of detecting not to retain any data.
  * </remarks>
  */
-
 #if !FIXES_Single || FIX_PlayerDialogResponse
 	public OnGameModeExit()
 	{
@@ -6050,7 +6030,6 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  * Fast way of detecting not to retain any data.
  * </remarks>
  */
-
 #if !FIXES_Single || FIX_GameText || FIX_OnPlayerDisconnect
 	public OnFilterScriptExit()
 	{
@@ -6183,7 +6162,6 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  * <fixes>OnPlayerSpawn</fixes>
  * <fixes>ApplyAnimation_2</fixes>
  */
-
 #if     FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_SetPlayerName            || FIX_GetPlayerColour
 	#define _FIXES_ON_PLAYER_CONNECT
 #elseif FIX_GetPlayerSkin        || FIX_IsPlayerInCheckpoint     || FIX_IsPlayerInRaceCheckpoint || FIX_GetPlayerWeapon
@@ -6430,7 +6408,6 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  * <fixes>Kick</fixes>
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_OnPlayerEnterVehicle_3 || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
 	public OnPlayerDisconnect(playerid, reason)
 	{
@@ -6543,7 +6520,6 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  * <fixes>OnPlayerDeath</fixes>
  * <fixes>OnPlayerSpawn</fixes>
  */
-
 #if FIX_OnPlayerDeath || FIX_OnPlayerSpawn || FIX_GameText
 	public OnPlayerDeath(playerid, killerid, reason)
 	{
@@ -6608,7 +6584,6 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  * <fixes>SpawnPlayer</fixes>
  * <fixes>OnPlayerSpawn</fixes>
  */
-
 #if defined _ALS_SpawnPlayer
 	#error _ALS_SpawnPlayer defined
 #endif
@@ -6618,7 +6593,6 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
  * <fixes>SpawnPlayer</fixes>
  * <fixes>OnPlayerSpawn</fixes>
  */
-
 #if FIX_SpawnPlayer || FIX_OnPlayerSpawn
 	stock FIXES_SpawnPlayer(playerid)
 	{
@@ -6664,7 +6638,6 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 /**
  * <fixes>SetPlayerName</fixes>
  */
-
 #if defined _ALS_SetPlayerName
 	#error _ALS_SetPlayerName defined
 #endif
@@ -6673,7 +6646,6 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 /**
  * <fixes>SetPlayerName</fixes>
  */
-
 #if FIX_SetPlayerName
 	stock FIXES_SetPlayerName(playerid, name[])
 	{
@@ -6707,7 +6679,6 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 /**
  * <fixes>OnPlayerRequestClass</fixes>
  */
-
 #if FIX_OnPlayerRequestClass || FIX_GameText
 	public OnPlayerRequestClass(playerid, classid)
 	{
@@ -6756,7 +6727,6 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  * <fixes>OnPlayerSpawn</fixes>
  * <fixes>GameText</fixes>
  */
-
 #if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_GameText
 	public OnPlayerSpawn(playerid)
 	{
@@ -6874,7 +6844,6 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 /**
  * <fixes>OnVehicleMod</fixes>
  */
-
 #if FIX_OnVehicleMod
 	public OnVehicleMod(playerid, vehicleid, componentid)
 	{
@@ -6935,7 +6904,6 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  * <fixes>GetPlayerSkin</fixes>
  * <fixes>SetPlayerSkin</fixes>
  */
-
 #if defined _ALS_SetPlayerSkin
 	#error _ALS_SetPlayerSkin defined
 #endif
@@ -6945,7 +6913,6 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
  * <fixes>GetPlayerSkin</fixes>
  * <fixes>SetPlayerSkin</fixes>
  */
-
 #if FIX_GetPlayerSkin || FIX_SetPlayerSkin
 	stock FIXES_SetPlayerSkin(playerid, skinid)
 	{
@@ -7022,7 +6989,6 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 /**
  * <fixes>GetPlayerSkin</fixes>
  */
-
 #if defined _ALS_GetPlayerSkin
 	#error _ALS_GetPlayerSkin defined
 #endif
@@ -7031,7 +6997,6 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 /**
  * <fixes>GetPlayerSkin</fixes>
  */
-
 #if FIX_GetPlayerSkin
 	stock FIXES_GetPlayerSkin(playerid)
 	{
@@ -7045,7 +7010,6 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 /**
  * <fixes>GetWeaponName</fixes>
  */
-
 #if defined _ALS_GetWeaponName
 	#error _ALS_GetWeaponName defined
 #endif
@@ -7054,7 +7018,6 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 /**
  * <fixes>GetWeaponName</fixes>
  */
-
 #if FIX_GetWeaponName
 	stock FIXES_GetWeaponName(weaponid, weapon[], len)
 	{
@@ -7106,7 +7069,6 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  * <fixes>PassengerSeating</fixes>
  * <fixes>GogglesSync</fixes>
  */
-
 #if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerEnterVehicle_3 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GogglesSync
 	public OnPlayerUpdate(playerid)
 	{
@@ -7321,7 +7283,6 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  * </remarks>
  * <fixes>SetPlayerWorldBounds</fixes>
  */
-
 #if defined _ALS_SetPlayerWorldBounds
 	#error _ALS_SetPlayerWorldBounds defined
 #endif
@@ -7333,7 +7294,6 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
  * </remarks>
  * <fixes>SetPlayerWorldBounds</fixes>
  */
-
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 	#if FIXES_Single
 		stock FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
@@ -7476,7 +7436,6 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 /**
  * <fixes>TogglePlayerControllable</fixes>
  */
-
 #if defined _ALS_TogglePlayerControllable
 	#error _ALS_TogglePlayerControllable defined
 #endif
@@ -7485,7 +7444,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 /**
  * <fixes>TogglePlayerControllable</fixes>
  */
-
 #if FIX_TogglePlayerControllable
 	#if FIXES_Single
 		stock FIXES_TogglePlayerControllable(playerid, toggle)
@@ -7543,7 +7501,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * <fixes>AllowInteriorWeapons</fixes>
  * <fixes>GetPlayerInterior</fixes>
  */
-
 #if FIX_AllowInteriorWeapons || FIX_GetPlayerInterior
 	public OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid)
 	{
@@ -7612,7 +7569,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 /**
  * <fixes>DriveBy</fixes>
  */
-
 #if FIX_DriveBy
 	forward _FIXES_DriveBy(playerid);
 
@@ -7638,7 +7594,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 /**
  * <fixes>DriveBy</fixes>
  */
-
 #if FIX_DriveBy
 	public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	{
@@ -7677,7 +7632,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  * <fixes>PassengerSeating</fixes>
  */
-
 #if FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerEnterVehicle_3 || FIX_PassengerSeating
 	public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	{
@@ -7745,7 +7699,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 /**
  * <fixes>OnPlayerEnterVehicle_2</fixes>
  */
-
 #if FIX_OnPlayerEnterVehicle_2
 	public OnPlayerExitVehicle(playerid, vehicleid)
 	{
@@ -7779,7 +7732,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * Block a player from using <symbolref name="OnPlayerUpdate" /> at all.
  * </remarks>
  */
-
 #if FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_Kick || FIX_OnVehicleMod
 	static stock FIXES_BlockUpdate(playerid, bool:kick = true)
 	{
@@ -7815,7 +7767,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * </remarks>
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
-
 #if FIX_OnPlayerEnterVehicle_3
 	static stock _FIXES_StopPlayerEnterVehicle(playerid)
 	{
@@ -7836,7 +7787,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 /**
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if FIX_GetPlayerMenu
 	public OnPlayerSelectedMenuRow(playerid, row)
 	{
@@ -7898,7 +7848,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 /**
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if FIX_GetPlayerMenu
 	public OnPlayerExitedMenu(playerid)
 	{
@@ -7960,7 +7909,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 /**
  * <fixes>Menus</fixes>
  */
-
 #if _FIX_Menus
 	#define FIXES_IS_VALID_MENU(%0) (_FIXES_IN_RANGE(_:(%0), 0, MAX_MENUS) && (FIXES_gsValidMenus[_:(%0) >>> 5] & (1 << (_:(%0) & 0x1F))))
 #endif
@@ -7968,7 +7916,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 /**
  * <fixes>Menus</fixes>
  */
-
 #if defined _ALS_CreateMenu
 	#error _ALS_CreateMenu defined
 #endif
@@ -8006,7 +7953,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 /**
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if FIX_GetPlayerMenu && !FIXES_Single
 	forward _FIXES_SetPlayerMenu(playerid, Menu:menuid);
 
@@ -8020,7 +7966,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 /**
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if FIX_GetPlayerMenu && !FIXES_Single
 	forward _FIXES_ClearPlayerMenu(playerid);
 
@@ -8034,7 +7979,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 /**
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if defined _ALS_DestroyMenu
 	#error _ALS_DestroyMenu defined
 #endif
@@ -8043,7 +7987,6 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 /**
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if _FIX_Menus || FIX_GetPlayerMenu
 	#if _FIX_Menus && !FIXES_Single
 		forward _FIXES_DestroyMenu(ret);
@@ -8097,7 +8040,6 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 /**
  * <fixes>AddMenuItem</fixes>
  */
-
 #if defined _ALS_AddMenuItem
 	#error _ALS_AddMenuItem defined
 #endif
@@ -8106,7 +8048,6 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 /**
  * <fixes>AddMenuItem</fixes>
  */
-
 #if FIX_AddMenuItem
 	stock FIXES_AddMenuItem(Menu:menuid, column, const menutext[])
 	{
@@ -8124,7 +8065,6 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 /**
  * <fixes>SetMenuColumnHeader</fixes>
  */
-
 #if defined _ALS_SetMenuColumnHeader
 	#error _ALS_SetMenuColumnHeader defined
 #endif
@@ -8133,7 +8073,6 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
 /**
  * <fixes>SetMenuColumnHeader</fixes>
  */
-
 #if FIX_SetMenuColumnHeader
 	stock FIXES_SetMenuColumnHeader(Menu:menuid, column, const columnheader[])
 	{
@@ -8152,7 +8091,6 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
  * <fixes>ShowMenuForPlayer</fixes>
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if defined _ALS_ShowMenuForPlayer
 	#error _ALS_ShowMenuForPlayer defined
 #endif
@@ -8162,7 +8100,6 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
  * <fixes>ShowMenuForPlayer</fixes>
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if FIX_ShowMenuForPlayer || FIX_GetPlayerMenu
 	stock FIXES_ShowMenuForPlayer(Menu:menuid, playerid)
 	{
@@ -8197,7 +8134,6 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
  * <fixes>HideMenuForPlayer_2</fixes>
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if defined _ALS_HideMenuForPlayer
 	#error _ALS_HideMenuForPlayer defined
 #endif
@@ -8208,7 +8144,6 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
  * <fixes>HideMenuForPlayer_2</fixes>
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if FIX_HideMenuForPlayer || FIX_GetPlayerMenu
 	stock FIXES_HideMenuForPlayer(Menu:menuid, playerid)
 	{
@@ -8249,7 +8184,6 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 /**
  * <fixes>DisableMenu</fixes>
  */
-
 #if defined _ALS_DisableMenu
 	#error _ALS_DisableMenu defined
 #endif
@@ -8258,7 +8192,6 @@ native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 /**
  * <fixes>DisableMenu</fixes>
  */
-
 #if FIX_DisableMenu
 	stock FIXES_DisableMenu(Menu:menuid)
 	{
@@ -8276,7 +8209,6 @@ native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 /**
  * <fixes>DisableMenuRow</fixes>
  */
-
 #if defined _ALS_DisableMenuRow
 	#error _ALS_DisableMenuRow defined
 #endif
@@ -8285,7 +8217,6 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 /**
  * <fixes>DisableMenuRow</fixes>
  */
-
 #if FIX_DisableMenuRow
 	stock FIXES_DisableMenuRow(Menu:menuid, row)
 	{
@@ -8303,7 +8234,6 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 /**
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if defined _ALS_GetPlayerMenu
 	#error _ALS_GetPlayerMenu defined
 #endif
@@ -8312,7 +8242,6 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 /**
  * <fixes>GetPlayerMenu</fixes>
  */
-
 #if FIX_GetPlayerMenu
 	stock Menu:FIXES_GetPlayerMenu(playerid)
 	{
@@ -8333,7 +8262,6 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
  * <fixes>PutPlayerInVehicle</fixes>
  * <fixes>TrainExit</fixes>
  */
-
 #if FIX_HydraSniper || FIX_GetPlayerWeapon || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_TrainExit
 	public OnPlayerStateChange(playerid, newstate, oldstate)
 	{
@@ -8563,7 +8491,6 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
  * <fixes>GetPlayerWeapon</fixes>
  * <fixes>GetPlayerAmmo</fixes>
  */
-
 #if defined _ALS_GivePlayerWeapon
 	#error _ALS_GivePlayerWeapon defined
 #endif
@@ -8574,7 +8501,6 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
  * <fixes>GetPlayerWeapon</fixes>
  * <fixes>GetPlayerAmmo</fixes>
  */
-
 #if FIX_HydraSniper || FIX_GetPlayerWeapon || FIX_GetPlayerAmmo
 	stock FIXES_GivePlayerWeapon(playerid, weaponid, ammo)
 	{
@@ -8623,7 +8549,6 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 /**
  * <fixes>GetPlayerWeapon</fixes>
  */
-
 #if defined _ALS_ResetPlayerWeapons
 	#error _ALS_ResetPlayerWeapons defined
 #endif
@@ -8633,7 +8558,6 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 /**
  * <fixes>GetPlayerWeapon</fixes>
  */
-
 #if FIX_GetPlayerWeapon
 	stock FIXES_ResetPlayerWeapons(playerid)
 	{
@@ -8651,7 +8575,6 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 /**
  * <fixes>GetPlayerWeapon</fixes>
  */
-
 #if defined _ALS_SetPlayerArmedWeapon
 	#error _ALS_SetPlayerArmedWeapon defined
 #endif
@@ -8660,7 +8583,6 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 /**
  * <fixes>GetPlayerWeapon</fixes>
  */
-
 #if FIX_GetPlayerWeapon || FIX_AllowInteriorWeapons || FIX_HydraSniper
 	stock FIXES_SetPlayerArmedWeapon(playerid, weaponid)
 	{
@@ -8697,7 +8619,6 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 /**
  * <fixes>GetPlayerWeapon</fixes>
  */
-
 #if defined _ALS_GetPlayerWeapon
 	#error _ALS_GetPlayerWeapon defined
 #endif
@@ -8706,7 +8627,6 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 /**
  * <fixes>GetPlayerWeapon</fixes>
  */
-
 #if FIX_GetPlayerWeapon
 	stock FIXES_GetPlayerWeapon(playerid)
 	{
@@ -8726,7 +8646,6 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 /**
  * <fixes>PutPlayerInVehicle</fixes>
  */
-
 #if defined _ALS_PutPlayerInVehicle
 	#error _ALS_PutPlayerInVehicle defined
 #endif
@@ -8735,7 +8654,6 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 /**
  * <fixes>PutPlayerInVehicle</fixes>
  */
-
 #if FIX_PutPlayerInVehicle || FIX_TrainExit
 	#if FIXES_Single
 		stock FIXES_PutPlayerInVehicle(playerid, vehicleid, seatid)
@@ -8887,7 +8805,6 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 /**
  * <fixes>SetPlayerCheckpoint</fixes>
  */
-
 #if FIX_SetPlayerCheckpoint
 	forward _FIXES_SetCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size);
 
@@ -8914,7 +8831,6 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 /**
  * <fixes>SetPlayerCheckpoint</fixes>
  */
-
 #if defined _ALS_SetPlayerCheckpoint
 	#error _ALS_SetPlayerCheckpoint defined
 #endif
@@ -8923,7 +8839,6 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 /**
  * <fixes>SetPlayerCheckpoint</fixes>
  */
-
 #if FIX_SetPlayerCheckpoint
 	stock FIXES_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
 	{
@@ -8945,7 +8860,6 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 /**
  * <fixes>SetPlayerCheckpoint</fixes>
  */
-
 #if defined _ALS_DisablePlayerCheckpoint
 	#error _ALS_DisablePlayerCheckpoint defined
 #endif
@@ -8954,7 +8868,6 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 /**
  * <fixes>SetPlayerCheckpoint</fixes>
  */
-
 #if FIX_SetPlayerCheckpoint
 	stock FIXES_DisablePlayerCheckpoint(playerid)
 	{
@@ -8974,7 +8887,6 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 /**
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
-
 #if FIX_SetPlayerRaceCheckpoint
 	forward _FIXES_SetRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size);
 
@@ -9001,7 +8913,6 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 /**
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
-
 #if defined _ALS_SetPlayerRaceCheckpoint
 	#error _ALS_SetPlayerRaceCheckpoint defined
 #endif
@@ -9010,7 +8921,6 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 /**
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
-
 #if FIX_SetPlayerRaceCheckpoint
 	stock FIXES_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
 	{
@@ -9032,7 +8942,6 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 /**
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
-
 #if defined _ALS_DisablePlayerRaceCP
 	#error _ALS_DisablePlayerRaceCP defined
 #endif
@@ -9041,7 +8950,6 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 /**
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
-
 #if FIX_SetPlayerRaceCheckpoint
 	stock FIXES_DisablePlayerRaceCP(playerid)
 	{
@@ -9065,7 +8973,6 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
  * </remarks>
  * <fixes>GameText</fixes>
  */
-
 #if FIX_GameText
 	static stock _FIXES_HideGameTextForPlayer(playerid, style, parr[], timers[])
 	{
@@ -9112,7 +9019,6 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 /**
  * <fixes>GameText</fixes>
  */
-
 #if FIX_GameText
 	forward _FIXES_HideGameTextTimer(playerid, style);
 
@@ -9125,7 +9031,6 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 /**
  * <fixes>GameText</fixes>
  */
-
 #if FIX_GameText
 	forward _FIXES_GameTextShow(playerid, const string[], time, style);
 
@@ -9156,7 +9061,6 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 /**
  * <fixes>GameText</fixes>
  */
-
 #if defined _ALS_GameTextForAll
 	#error _ALS_GameTextForAll defined
 #endif
@@ -9165,7 +9069,6 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 /**
  * <fixes>GameText</fixes>
  */
-
 #if FIX_GameText
 	stock FIXES_GameTextForAll(const string[], time, style)
 	{
@@ -9200,7 +9103,6 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 /**
  * <fixes>GameText</fixes>
  */
-
 #if defined _ALS_GameTextForPlayer
 	#error _ALS_GameTextForPlayer defined
 #endif
@@ -9209,7 +9111,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 /**
  * <fixes>GameText</fixes>
  */
-
 #if FIX_GameText
 	stock FIXES_GameTextForPlayer(playerid, const string[], time, style)
 	{
@@ -9243,7 +9144,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 /**
  * <fixes>HideGameText</fixes>
  */
-
 #if defined _ALS_HideGameTextForAll
 	#error _ALS_HideGameTextForAll defined
 #endif
@@ -9266,7 +9166,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 /**
  * <fixes>HideGameText</fixes>
  */
-
 #if defined _ALS_HideGameTextForPlayer
 	#error _ALS_HideGameTextForPlayer defined
 #endif
@@ -9294,7 +9193,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  * <fixes>CreatePlayerTextDraw</fixes>
  * <fixes>CreatePlayerTextDraw_2</fixes>
  */
-
 #if !FIX_const
 	#if defined _ALS_CreatePlayerTextDraw
 		#error _ALS_CreatePlayerTextDraw defined
@@ -9342,7 +9240,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  * <fixes>PlayerTextDrawSetString</fixes>
  * <fixes>PlayerTextDrawSetString_2</fixes>
  */
-
 #if !FIX_const
 	#if defined _ALS_PlayerTextDrawSetString
 		#error _ALS_PlayerTextDrawSetString defined
@@ -9354,7 +9251,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  * <fixes>PlayerTextDrawSetString</fixes>
  * <fixes>PlayerTextDrawSetString_2</fixes>
  */
-
 #if FIX_PlayerTextDrawSetString || FIX_PlayerTextDrawSetString_2
 
 	#if FIX_PlayerTextDrawSetString
@@ -9395,7 +9291,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  * <fixes>TextDrawCreate</fixes>
  * <fixes>TextDrawCreate_2</fixes>
  */
-
 #if !FIX_const
 	#if defined _ALS_TextDrawCreate
 		#error _ALS_TextDrawCreate defined
@@ -9443,7 +9338,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  * <fixes>TextDrawSetString</fixes>
  * <fixes>TextDrawSetString_2</fixes>
  */
-
 #if !FIX_const
 	#if defined _ALS_TextDrawSetString
 		#error _ALS_TextDrawSetString defined
@@ -9455,7 +9349,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  * <fixes>TextDrawSetString</fixes>
  * <fixes>TextDrawSetString_2</fixes>
  */
-
 #if FIX_TextDrawSetString || FIX_TextDrawSetString_2
 
 	#if FIX_TextDrawSetString
@@ -9495,7 +9388,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 /**
  * <fixes>AllowInteriorWeapons</fixes>
  */
-
 #if defined _ALS_AllowInteriorWeapons
 	#error _ALS_AllowInteriorWeapons defined
 #endif
@@ -9504,7 +9396,6 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 /**
  * <fixes>AllowInteriorWeapons</fixes>
  */
-
 #if FIX_AllowInteriorWeapons
 	#if FIXES_Single
 		stock FIXES_AllowInteriorWeapons(allow)
@@ -9571,7 +9462,6 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 /**
  * <fixes>GetPlayerInterior</fixes>
  */
-
 #if defined _ALS_GetPlayerInterior
 	#error _ALS_GetPlayerInterior defined
 #endif
@@ -9580,7 +9470,6 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 /**
  * <fixes>GetPlayerInterior</fixes>
  */
-
 #if FIX_GetPlayerInterior
 	stock FIXES_GetPlayerInterior(playerid)
 	{
@@ -9598,7 +9487,6 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 /**
  * <fixes>GetPlayerInterior</fixes>
  */
-
 #if defined _ALS_SetPlayerInterior
 	#error _ALS_SetPlayerInterior defined
 #endif
@@ -9607,7 +9495,6 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 /**
  * <fixes>GetPlayerInterior</fixes>
  */
-
 #if FIX_GetPlayerInterior
 	stock FIXES_SetPlayerInterior(playerid, interiorid)
 	{
@@ -9626,7 +9513,6 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 /**
  * <fixes>AllowTeleport</fixes>
  */
-
 #if FIX_AllowTeleport && !defined FILTERSCRIPT
 	forward _FIXES_AllowTeleport(playerid, allow);
 
@@ -9664,7 +9550,6 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 /**
  * <fixes>AllowTeleport</fixes>
  */
-
 #if defined _ALS_AllowPlayerTeleport
 	#error _ALS_AllowPlayerTeleport defined
 #endif
@@ -9673,7 +9558,6 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 /**
  * <fixes>AllowTeleport</fixes>
  */
-
 #if FIX_AllowTeleport
 	#if FIXES_Single
 		stock FIXES_AllowPlayerTeleport(playerid, allow)
@@ -9709,7 +9593,6 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 /**
  * <fixes>AllowTeleport</fixes>
  */
-
 #if defined _ALS_AllowAdminTeleport
 	#error _ALS_AllowAdminTeleport defined
 #endif
@@ -9718,7 +9601,6 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 /**
  * <fixes>AllowTeleport</fixes>
  */
-
 #if FIX_AllowTeleport
 	#if FIXES_Single
 		stock FIXES_AllowAdminTeleport(allow)
@@ -9749,7 +9631,6 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 /**
  * <fixes>AllowTeleport</fixes>
  */
-
 #if FIX_AllowTeleport && !defined FILTERSCRIPT && !FIXES_Single
 	public _FIXES_AllowTeleport(playerid, allow)
 	{
@@ -9784,7 +9665,6 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 /**
  * <fixes>SetPlayerSpecialAction</fixes>
  */
-
 #if defined _ALS_SetPlayerSpecialAction
 	#error _ALS_SetPlayerSpecialAction defined
 #endif
@@ -9793,7 +9673,6 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 /**
  * <fixes>SetPlayerSpecialAction</fixes>
  */
-
 #if FIX_SetPlayerSpecialAction
 	stock FIXES_SetPlayerSpecialAction(playerid, actionid)
 	{
@@ -9812,7 +9691,6 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 /**
  * <fixes>ClearAnimations</fixes>
  */
-
 #if defined _ALS_ClearAnimations
 	#error _ALS_ClearAnimations defined
 #endif
@@ -9821,7 +9699,6 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 /**
  * <fixes>ClearAnimations</fixes>
  */
-
 #if FIX_ClearAnimations || FIX_ClearAnimations_2
 	stock FIXES_ClearAnimations(playerid, forcesync = 0)
 	{
@@ -9855,7 +9732,6 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 /**
  * <fixes>GangZoneCreate</fixes>
  */
-
 #if defined _ALS_GangZoneCreate
 	#error _ALS_GangZoneCreate defined
 #endif
@@ -9864,7 +9740,6 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 /**
  * <fixes>GangZoneCreate</fixes>
  */
-
 #if FIX_GangZoneCreate
 	stock FIXES_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy)
 	{
@@ -9879,7 +9754,6 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  * <fixes>OnDialogResponse</fixes>
  * <fixes>GetPlayerDialog</fixes>
  */
-
 #if !FIX_const
 	#if defined _ALS_ShowPlayerDialog
 		#error _ALS_ShowPlayerDialog defined
@@ -9891,7 +9765,6 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  * <fixes>OnDialogResponse</fixes>
  * <fixes>GetPlayerDialog</fixes>
  */
-
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 	stock FIXES_ShowPlayerDialog(playerid, dialog, style, _FIXES_MAYBE_CONST title[], _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[])
 	{
@@ -9915,7 +9788,6 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  * <fixes>OnDialogResponse</fixes>
  * <fixes>GetPlayerDialog</fixes>
  */
-
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 	public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	{
@@ -9964,7 +9836,6 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 /**
  * <fixes>GetPlayerDialog</fixes>
  */
-
 #if defined _ALS_GetPlayerDialog
 	#error _ALS_GetPlayerDialog defined
 #endif
@@ -9986,7 +9857,6 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 /**
  * <fixes>valstr</fixes>
  */
-
 #if defined _ALS_valstr
 	#error _ALS_valstr defined
 #endif
@@ -9995,7 +9865,6 @@ native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 /**
  * <fixes>valstr</fixes>
  */
-
 #if FIX_valstr
 	stock FIXES_valstr(dest[], value, bool:pack = false)
 	{
@@ -10021,7 +9890,6 @@ native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 /**
  * <fixes>fclose</fixes>
  */
-
 #if defined _ALS_fclose
 	#error _ALS_fclose defined
 #endif
@@ -10030,7 +9898,6 @@ native BAD_fclose(File:handle) = fclose;
 /**
  * <fixes>fclose</fixes>
  */
-
 #if FIX_fclose
 	stock bool:FIXES_fclose(File:handle)
 	{
@@ -10044,7 +9911,6 @@ native BAD_fclose(File:handle) = fclose;
 /**
  * <fixes>fwrite</fixes>
  */
-
 #if defined _ALS_fwrite
 	#error _ALS_fwrite defined
 #endif
@@ -10053,7 +9919,6 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 /**
  * <fixes>fwrite</fixes>
  */
-
 #if FIX_fwrite
 	stock FIXES_fwrite(File:handle, const string[])
 	{
@@ -10067,7 +9932,6 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 /**
  * <fixes>fread</fixes>
  */
-
 #if defined _ALS_fread
 	#error _ALS_fread defined
 #endif
@@ -10076,7 +9940,6 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 /**
  * <fixes>fread</fixes>
  */
-
 #if FIX_fread
 	stock FIXES_fread(File:handle, string[], size = sizeof (string), bool:pack = false)
 	{
@@ -10090,7 +9953,6 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 /**
  * <fixes>fputchar</fixes>
  */
-
 #if defined _ALS_fputchar
 	#error _ALS_fputchar defined
 #endif
@@ -10099,7 +9961,6 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 /**
  * <fixes>fputchar</fixes>
  */
-
 #if FIX_fputchar
 	stock bool:FIXES_fputchar(File:handle, value, bool:utf8 = true)
 	{
@@ -10113,7 +9974,6 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 /**
  * <fixes>fgetchar</fixes>
  */
-
 #if defined _ALS_fgetchar
 	#error _ALS_fgetchar defined
 #endif
@@ -10122,7 +9982,6 @@ native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 /**
  * <fixes>fgetchar</fixes>
  */
-
 #if FIX_fgetchar
 	stock FIXES_fgetchar(File:handle, value, bool:utf8 = true)
 	{
@@ -10136,7 +9995,6 @@ native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 /**
  * <fixes>fblockwrite</fixes>
  */
-
 #if defined _ALS_fblockwrite
 	#error _ALS_fblockwrite defined
 #endif
@@ -10145,7 +10003,6 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
 /**
  * <fixes>fblockwrite</fixes>
  */
-
 #if FIX_fblockwrite
 	stock FIXES_fblockwrite(File:handle, const buffer[], size = sizeof (buffer))
 	{
@@ -10159,7 +10016,6 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
 /**
  * <fixes>fblockread</fixes>
  */
-
 #if defined _ALS_fblockread
 	#error _ALS_fblockread defined
 #endif
@@ -10168,7 +10024,6 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
 /**
  * <fixes>fblockread</fixes>
  */
-
 #if FIX_fblockread
 	stock FIXES_fblockread(File:handle, buffer[], size = sizeof (buffer))
 	{
@@ -10182,7 +10037,6 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
 /**
  * <fixes>fseek</fixes>
  */
-
 #if defined _ALS_fseek
 	#error _ALS_fseek defined
 #endif
@@ -10191,7 +10045,6 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
 /**
  * <fixes>fseek</fixes>
  */
-
 #if FIX_fseek
 	stock FIXES_fseek(File:handle, position = 0, seek_whence:whence = seek_start)
 	{
@@ -10205,7 +10058,6 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
 /**
  * <fixes>flength</fixes>
  */
-
 #if defined _ALS_flength
 	#error _ALS_flength defined
 #endif
@@ -10214,7 +10066,6 @@ native BAD_flength(File:handle) = flength;
 /**
  * <fixes>flength</fixes>
  */
-
 #if FIX_flength
 	stock FIXES_flength(File:handle)
 	{
@@ -10228,7 +10079,6 @@ native BAD_flength(File:handle) = flength;
 /**
  * <fixes>Kick</fixes>
  */
-
 #if defined _ALS_Kick
 	#error _ALS_Kick defined
 #endif
@@ -10237,7 +10087,6 @@ native BAD_Kick(playerid) = Kick;
 /**
  * <fixes>Kick</fixes>
  */
-
 #if FIX_Kick
 	forward _FIXES_Kick(playerid);
 
@@ -10294,7 +10143,6 @@ native BAD_Kick(playerid) = Kick;
  * scripts).
  * </remarks>
  */
-
 #if !FIXES_Single
 	public _FIXES_DetermineOrder()
 	{
@@ -10515,7 +10363,6 @@ native BAD_Kick(playerid) = Kick;
 /**
  * <fixes>strins</fixes>
  */
-
 #if defined _ALS_strins
 	#error _ALS_strins defined
 #endif
@@ -10524,7 +10371,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 /**
  * <fixes>strins</fixes>
  */
-
 #if FIX_strins
 	stock FIXES_strins(string[], const substr[], pos, maxlength = sizeof string)
 	{
@@ -10595,7 +10441,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  * <fixes>ApplyActorAnimation</fixes>
  * <fixes>ApplyActorAnimation_2</fixes>
  */
-
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
 	static stock _FIXES_GetAnimLibIndex(const animlib[])
 	{
@@ -10636,7 +10481,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 /**
  * <fixes>ApplyAnimation_2</fixes>
  */
-
 #if FIX_ApplyAnimation_2
 	static stock _FIXES_ApplyAnimationDelay(const animname[], playerid, idx, Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
 	{
@@ -10658,7 +10502,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 /**
  * <fixes>ApplyAnimation_2</fixes>
  */
-
 #if FIX_ApplyAnimation_2
 	forward _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync);
 
@@ -10673,7 +10516,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  * <fixes>ApplyAnimation</fixes>
  * <fixes>ApplyAnimation_2</fixes>
  */
-
 #if !FIX_const
 	#if defined _ALS_ApplyAnimation
 		#error _ALS_ApplyAnimation defined
@@ -10685,7 +10527,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  * <fixes>ApplyAnimation</fixes>
  * <fixes>ApplyAnimation_2</fixes>
  */
-
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
 	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animlib[], _FIXES_MAYBE_CONST animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
 	{
@@ -10716,7 +10557,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 /**
  * <fixes>ApplyActorAnimation_2</fixes>
  */
-
 #if FIX_ApplyActorAnimation_2
 	static stock _FIXES_ApplyActorAnimationDelay(const animname[], actorid, idx, Float:fDelta, loop, lockx, locky, freeze, time)
 	{
@@ -10738,7 +10578,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 /**
  * <fixes>ApplyActorAnimation_2</fixes>
  */
-
 #if FIX_ApplyActorAnimation_2
 	forward _FIXES_ApplyActorAnimation(actorid, animlib, Float:fDelta, loop, lockx, locky, freeze, time);
 
@@ -10753,7 +10592,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  * <fixes>ApplyActorAnimation</fixes>
  * <fixes>ApplyActorAnimation_2</fixes>
  */
-
 #if !FIX_const
 	#if defined _ALS_ApplyActorAnimation
 		#error _ALS_ApplyActorAnimation defined
@@ -10765,7 +10603,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  * <fixes>ApplyActorAnimation</fixes>
  * <fixes>ApplyActorAnimation_2</fixes>
  */
-
 #if FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
 	stock FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animlib[], _FIXES_MAYBE_CONST animname[], Float:fDelta, loop, lockx, locky, freeze, time)
 	{
@@ -10796,7 +10633,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 /**
  * <fixes>ApplyActorAnimation_2</fixes>
  */
-
 #if defined _ALS_CreateActor
 	#error _ALS_CreateActor defined
 #endif
@@ -10805,7 +10641,6 @@ native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = Cre
 /**
  * <fixes>ApplyActorAnimation_2</fixes>
  */
-
 #if FIX_ApplyActorAnimation_2
 	stock FIXES_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation)
 	{
@@ -10835,7 +10670,6 @@ native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = Cre
 /**
  * <fixes>ApplyActorAnimation_2</fixes>
  */
-
 #if defined _ALS_DestroyActor
 	#error _ALS_DestroyActor defined
 #endif
@@ -10844,7 +10678,6 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 /**
  * <fixes>ApplyActorAnimation_2</fixes>
  */
-
 #if FIX_ApplyActorAnimation_2
 	stock FIXES_DestroyActor(actorid)
 	{
@@ -10864,7 +10697,6 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
-
 #if defined _ALS_SetVehicleParamsEx
 	#error _ALS_SetVehicleParamsEx defined
 #endif
@@ -10873,7 +10705,6 @@ native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, b
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
-
 #if FIX_OnPlayerEnterVehicle_3
 	stock FIXES_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective)
 	{
@@ -10888,7 +10719,6 @@ native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, b
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
-
 #if defined _ALS_GetVehicleParamsEx
 	#error _ALS_GetVehicleParamsEx defined
 #endif
@@ -10897,7 +10727,6 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
-
 #if FIX_OnPlayerEnterVehicle_3
 	stock FIXES_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective)
 	{
@@ -10934,7 +10763,6 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
 /**
  * <fixes>random</fixes>
  */
-
 #if defined _ALS_random
 	#error _ALS_random defined
 #endif
@@ -10943,7 +10771,6 @@ native BAD_random(max) = random;
 /**
  * <fixes>random</fixes>
  */
-
 #if FIX_random
 	stock FIXES_random(max)
 	{
@@ -11003,7 +10830,6 @@ native BAD_random(max) = random;
  * </remarks>
  * <fixes>SetPlayerCamera</fixes>
  */
-
 #if FIX_SetPlayerCamera
 	forward _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z, cut);
 
@@ -11024,7 +10850,6 @@ native BAD_random(max) = random;
 /**
  * <fixes>SetPlayerCamera</fixes>
  */
-
 #if defined _ALS_SetPlayerCameraPos
 	#error _ALS_SetPlayerCameraPos defined
 #endif
@@ -11033,7 +10858,6 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 /**
  * <fixes>SetPlayerCamera</fixes>
  */
-
 #if FIX_SetPlayerCamera
 	stock FIXES_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z)
 	{
@@ -11062,7 +10886,6 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 /**
  * <fixes>SetPlayerCamera</fixes>
  */
-
 #if defined _ALS_SetPlayerCameraLookAt
 	#error _ALS_SetPlayerCameraLookAt defined
 #endif
@@ -11071,7 +10894,6 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 /**
  * <fixes>SetPlayerCamera</fixes>
  */
-
 #if FIX_SetPlayerCamera
 	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, cut = CAMERA_CUT)
 	{
@@ -11100,7 +10922,6 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 /**
  * <fixes>SetPlayerCamera</fixes>
  */
-
 #if defined _ALS_TogglePlayerSpectating
 	#error _ALS_TogglePlayerSpectating defined
 #endif
@@ -11109,7 +10930,6 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 /**
  * <fixes>SetPlayerCamera</fixes>
  */
-
 #if FIX_SetPlayerCamera
 	stock FIXES_TogglePlayerSpectating(playerid, toggle)
 	{
@@ -11143,7 +10963,6 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 /**
  * <fixes>SetPlayerTime</fixes>
  */
-
 #if defined _ALS_SetPlayerTime
 	#error _ALS_SetPlayerTime defined
 #endif
@@ -11152,7 +10971,6 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 /**
  * <fixes>SetPlayerTime</fixes>
  */
-
 #if FIX_SetPlayerTime
 	forward _FIXES_SetTime(playerid, hour, minute);
 
@@ -11181,7 +10999,6 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 /**
  * <fixes>SetPlayerColor</fixes>
  */
-
 #if defined _ALS_SetPlayerColor
 	#error _ALS_SetPlayerColor defined
 #endif
@@ -11190,7 +11007,6 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 /**
  * <fixes>SetPlayerColor</fixes>
  */
-
 #if FIX_SetPlayerColour
 	forward _FIXES_SetColor(playerid, color);
 
@@ -11219,7 +11035,6 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 /**
  * <fixes>GetPlayerWeaponData</fixes>
  */
-
 #if defined _ALS_GetPlayerWeaponData
 	#error _ALS_GetPlayerWeaponData defined
 #endif
@@ -11228,7 +11043,6 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapons, &ammo) = GetPlayerWeapo
 /**
  * <fixes>GetPlayerWeaponData</fixes>
  */
-
 #if FIX_GetPlayerWeaponData
 	stock FIXES_GetPlayerWeaponData(playerid, slot, &weapons, &ammo)
 	{
@@ -11247,7 +11061,6 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapons, &ammo) = GetPlayerWeapo
 /**
  * <fixes>strcmp</fixes>
  */
-
 #if defined _ALS_strcmp
 	#error _ALS_strcmp defined
 #endif
@@ -11256,7 +11069,6 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 /**
  * <fixes>strcmp</fixes>
  */
-
 #if FIX_strcmp
 	stock FIXES_strcmp(const string1[], const string2[], bool:ignorecase=false, length=cellmax)
 	{
@@ -11296,7 +11108,6 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 /**
  * <fixes>GetPVarString</fixes>
  */
-
 #if !FIX_const
 	#if defined _ALS_GetPVarString
 		#error _ALS_GetPVarString defined
@@ -11307,7 +11118,6 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 /**
  * <fixes>GetPVarString</fixes>
  */
-
 #if FIX_GetPVarString
 	stock FIXES_GetPVarString(playerid, _FIXES_MAYBE_CONST varname[], string_return[], len)
 	{
@@ -11328,7 +11138,6 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 /**
  * <fixes>GetSVarString</fixes>
  */
-
 #if !FIX_const
 	#if defined _ALS_GetSVarString
 		#error _ALS_GetSVarString defined
@@ -11339,7 +11148,6 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 /**
  * <fixes>GetSVarString</fixes>
  */
-
 #if FIX_GetSVarString
 	stock FIXES_GetSVarString(_FIXES_MAYBE_CONST varname[], string_return[], len)
 	{
@@ -11360,7 +11168,6 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 /**
  * <fixes>toupper</fixes>
  */
-
 #if defined _ALS_toupper
 	#error _ALS_toupper defined
 #endif
@@ -11369,7 +11176,6 @@ native BAD_toupper(c) = toupper;
 /**
  * <fixes>toupper</fixes>
  */
-
 #if FIX_toupper
 	stock FIXES_toupper(c)
 	{
@@ -11394,7 +11200,6 @@ native BAD_toupper(c) = toupper;
 /**
  * <fixes>tolower</fixes>
  */
-
 #if defined _ALS_tolower
 	#error _ALS_tolower defined
 #endif
@@ -11403,7 +11208,6 @@ native BAD_tolower(c) = tolower;
 /**
  * <fixes>tolower</fixes>
  */
-
 #if FIX_tolower
 	stock FIXES_tolower(c)
 	{
@@ -11428,7 +11232,6 @@ native BAD_tolower(c) = tolower;
 /**
  * <fixes>GetPlayerPoolSize</fixes>
  */
-
 #if defined _ALS_GetPlayerPoolSize
 	#error _ALS_GetPlayerPoolSize defined
 #endif
@@ -11437,7 +11240,6 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 /**
  * <fixes>GetPlayerPoolSize</fixes>
  */
-
 #if FIX_GetPlayerPoolSize
 	stock FIXES_GetPlayerPoolSize()
 	{
@@ -11460,7 +11262,6 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
  * <fixes>"PARACHUTE", "FALL_SkyDive_R", 962</fixes>
  * <fixes>"ped", "FALL_skyDive", 1134</fixes>
  */
-
 #if defined _ALS_SetPlayerPos
 	#error _ALS_SetPlayerPos defined
 #endif
@@ -11476,7 +11277,6 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
  * <fixes>"PARACHUTE", "FALL_SkyDive_R", 962</fixes>
  * <fixes>"ped", "FALL_skyDive", 1134</fixes>
  */
-
 #if FIX_SetPlayerPos
 	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 	{
@@ -11496,7 +11296,6 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 /**
  * <fixes>SetPlayerPos</fixes>
  */
-
 #if defined _ALS_SetPlayerPosFindZ
 	#error _ALS_SetPlayerPosFindZ defined
 #endif
@@ -11505,7 +11304,6 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 /**
  * <fixes>SetPlayerPos</fixes>
  */
-
 #if FIX_SetPlayerPos
 	stock FIXES_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z)
 	{
@@ -11525,7 +11323,6 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 /**
  * <fixes>SetPlayerPos</fixes>
  */
-
 #if FIX_SetPlayerPos
 	static stock _FIXES_RemoveFlyingParachute(playerid)
 	{
@@ -11557,7 +11354,6 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 /**
  * <fixes>GetPlayerAmmo</fixes>
  */
-
 #if defined _ALS_SetPlayerAmmo
 	#error _ALS_SetPlayerAmmo defined
 #endif
@@ -11565,7 +11361,6 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 /**
  * <fixes>GetPlayerAmmo</fixes>
  */
-
 #if FIX_GetPlayerAmmo
 	stock FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
 	{
@@ -11587,7 +11382,6 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
-
 #if defined _ALS_GetPlayerWeather
 	#error _ALS_GetPlayerWeather defined
 #endif
@@ -11609,7 +11403,6 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
-
 #if defined _ALS_SetPlayerWeather
 	#error _ALS_SetPlayerWeather defined
 #endif
@@ -11618,7 +11411,6 @@ native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
-
 #if FIX_GetPlayerWeather
 	stock FIXES_SetPlayerWeather(playerid, weather)
 	{
@@ -11641,7 +11433,6 @@ native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
-
 #if defined _ALS_TogglePlayerClock
 	#error _ALS_TogglePlayerClock defined
 #endif
@@ -11650,7 +11441,6 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
-
 #if FIX_GetPlayerWeather
 	#if FIXES_Single
 		stock FIXES_TogglePlayerClock(playerid, toggle)
@@ -11711,7 +11501,6 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 /**
  * <fixes>GetWeather</fixes>
  */
-
 #if defined _ALS_GetWeather
 	#error _ALS_GetWeather defined
 #endif
@@ -11748,7 +11537,6 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
-
 #if defined _ALS_SetWeather
 	#error _ALS_SetWeather defined
 #endif
@@ -11757,7 +11545,6 @@ native BAD_SetWeather(weather) = SetWeather;
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
-
 #if FIX_GetWeather
 	stock FIXES_SetWeather(weather)
 	{
@@ -11782,7 +11569,6 @@ native BAD_SetWeather(weather) = SetWeather;
 /**
  * <fixes>GetWorldTime</fixes>
  */
-
 #if defined _ALS_SetWorldTime
 	#error _ALS_SetWorldTime defined
 #endif
@@ -11791,7 +11577,6 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 /**
  * <fixes>GetWorldTime</fixes>
  */
-
 #if FIX_GetWorldTime
 	stock FIXES_SetWorldTime(hour)
 	{
@@ -11810,7 +11595,6 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 /**
  * <fixes>GetWorldTime</fixes>
  */
-
 #if defined _ALS_GetWorldTime
 	#error _ALS_GetWorldTime defined
 #endif
@@ -11973,7 +11757,6 @@ static stock _FIXES_RemoveInternal(array[], value, size)
  * <remarks>Information about fix here</remarks>
  * <fixes>NameOfFixHere</fixes>
  */
-
 #if defined _ALS_NameOfFixHere
 	#error _ALS_NameOfFixHere defined
 #endif
@@ -11983,7 +11766,6 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
  * <remarks>Information about fix here</remarks>
  * <fixes>NameOfFixHere</fixes>
  */
-
 #if FIX_NameOfFixHere
 	stock FIXES_NameOfFixHere(params)
 	{
