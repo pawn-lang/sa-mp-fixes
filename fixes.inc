@@ -2659,68 +2659,87 @@ in the output code.
 	#define FIX_tabsize                          (2)
 #endif
 
-/**
- * <remarks>
- * tabsize
- *
- * Breaks `#pragma tabsize 0` in such a way that the compiler gives the
- * following error:
- *
- *     error 017: undefined symbol "do_not_use_tabsize_0"
- *
- * There is ZERO reason to use it.  There are ocassionally times when an
- * indentation reset is required, usually because of macros containing code that
- * would otherwise appear correct.  For example:
- *
- *     #define TEST_MACRO
- *     
- *     main()
- *     {
- *         new a = 42;
- *         if (a)
- *         {
- *             printf("true");
- *         }
- *         #if defined TEST_MACRO
- *             else
- *             {
- *                 printf("false");
- *             }
- *             a = 42;
- *         #endif
- *         printf("a = %d", a);
- *     }
- *
- * Even that can be fixed without `tabsize 0`, simply by restating the correct
- * indentation level, which resets the internal depth tracking:
- *
- *     #define TEST_MACRO
- *     
- *     main()
- *     {
- *         new a = 42;
- *         if (a)
- *         {
- *             printf("true");
- *         }
- *         #if defined TEST_MACRO
- *             else
- *             {
- *                 printf("false");
- *             }
- *             #pragma tabsize 4
- *             a = 42;
- *         #endif
- *         printf("a = %d", a);
- *     }
- *
- * There is just no excuse.
- * </remarks>
- */
+#if defined _FIXES_IncludeStates
+	#define _FIXES_FIRST_PASS (0)
+	#define _FIXES_DOCUMENT_MACRO(%0(%1));
+	#define _FIXES_DOCUMENT_CONST(%0=%1);
+#else
+	#define _FIXES_FIRST_PASS (1)
+	/**
+	 * <param name="name">The name of the function macro.</param>
+	 * <param name="">The named parameters for the function macro.</param>
+	 * <remarks>
+	 * <p>Defines are ignored by the compiler for <c>-r</c>, but we might
+	 * actually want to document them.  All the information for output XML is
+	 * generated in the first compiler pass (when the compiler generally gathers
+	 * a lot of information about the script).  During this first pass, we can
+	 * declare a function or constant that looks like the macro we are
+	 * documenting, then instantly redefine it with <c>#define</c>.  The
+	 * documentation comments will be attached to the fake function with the
+	 * same name as the macro.<p>
+	 *
+	 * <p>This documents function-like defines, i.e. ones of the form:</p>
+	 *
+	 * <code>
+	 *     #define MACRO(%0,%1) ((%0) + (%1))
+	 * </code>
+	 *
+	 * <p>Use it before the define itself, along with a comment:</p>
+	 *
+	 * <code>
+	 *     \/**                                                                 <br />&#160;
+	 *      * &lt;remarks&gt;                                                   <br />&#160;
+	 *      *     Adds two numbers together.                                    <br />&#160;
+	 *      * &lt;/remarks&gt;                                                  <br />&#160;
+	 *      *\/                                                                 <br />
+	 *     _FIXES_DOCUMENT_MACRO(MACRO(number1, number2));                      <br />
+	 *     #define MACRO(%0,%1) ((%0) + (%1))
+	 * </code>
+	 *
+	 * </remarks>
+	 */
+	static stock _FIXES_DOCUMENT_MACRO(name[], ...) { return 0; }
+	#define _FIXES_DOCUMENT_MACRO(%0(%1)); static stock %0 _FIXES_OPEN_BRACKET %1 _FIXES_CLOSE_BRACKET { return 0; }
 
-#if FIX_tabsize
-	#define tabsize%00%0\10;%0 _DUMMY_do_not_use_tabsize_0
+	/**
+	 * <param name="name">The name of the value macro.</param>
+	 * <param name="value">The value.</param>
+	 * <remarks>
+	 *
+	 * <p>Defines are ignored by the compiler for <c>-r</c>, but we might
+	 * actually want to document them.  All the information for output XML is
+	 * generated in the first compiler pass (when the compiler generally gathers
+	 * a lot of information about the script).  During this first pass, we can
+	 * declare a function or constant that looks like the macro we are
+	 * documenting, then instantly redefine it with <c>#define</c>.  The
+	 * documentation comments will be attached to the fake function with the
+	 * same name as the macro.<p>
+	 *
+	 * <p>This documents value-like defines, i.e. ones of the form:</p>
+	 *
+	 * <code>
+	 *     #define CONST (42)
+	 * </code>
+	 *
+	 * <p>Use it before the define itself, along with a comment:</p>
+	 *
+	 * <code>
+	 *     \/**                                                                 <br />&#160;
+	 *      * &lt;remarks&gt;                                                   <br />&#160;
+	 *      *     Replaces &lt;c&gt;CONST&lt;/c&gt; with &lt;c&gt;42&lt;/c&gt;. <br />&#160;
+	 *      * &lt;/remarks&gt;                                                  <br />&#160;
+	 *      *\/                                                                 <br />
+	 *     _FIXES_DOCUMENT_CONST(CONST = 42);                                   <br />
+	 *     #define CONST 42
+	 * </code>
+	 *
+	 * </remarks>
+	 */
+	static stock _FIXES_DOCUMENT_CONST(name[], const value[]) { return 0; }
+	#define _FIXES_DOCUMENT_CONST(%0=%1); static stock const %0=%1;
 #endif
+#define _FIXES_OPEN_BRACKET (
+#define _FIXES_CLOSE_BRACKET )
 
 /**
  * <remarks>
@@ -3084,6 +3103,69 @@ enum e_FIXES_SETTINGS (<<= 1)
  * </remarks>
  */
 #define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IN_RANGE((%0), 0, MAX_PLAYERS) && IsPlayerConnected((%0)))
+
+/**
+ * <remarks>
+ * tabsize
+ *
+ * Breaks `#pragma tabsize 0` in such a way that the compiler gives the
+ * following error:
+ *
+ *     error 017: undefined symbol "do_not_use_tabsize_0"
+ *
+ * There is ZERO reason to use it.  There are ocassionally times when an
+ * indentation reset is required, usually because of macros containing code that
+ * would otherwise appear correct.  For example:
+ *
+ *     #define TEST_MACRO
+ *     
+ *     main()
+ *     {
+ *         new a = 42;
+ *         if (a)
+ *         {
+ *             printf("true");
+ *         }
+ *         #if defined TEST_MACRO
+ *             else
+ *             {
+ *                 printf("false");
+ *             }
+ *             a = 42;
+ *         #endif
+ *         printf("a = %d", a);
+ *     }
+ *
+ * Even that can be fixed without `tabsize 0`, simply by restating the correct
+ * indentation level, which resets the internal depth tracking:
+ *
+ *     #define TEST_MACRO
+ *     
+ *     main()
+ *     {
+ *         new a = 42;
+ *         if (a)
+ *         {
+ *             printf("true");
+ *         }
+ *         #if defined TEST_MACRO
+ *             else
+ *             {
+ *                 printf("false");
+ *             }
+ *             #pragma tabsize 4
+ *             a = 42;
+ *         #endif
+ *         printf("a = %d", a);
+ *     }
+ *
+ * There is just no excuse.
+ * </remarks>
+ */
+
+#if FIX_tabsize
+	#define tabsize%00%0\10;%0 _DUMMY_do_not_use_tabsize_0
+#endif
 
 // These varaibles are NOT pre-processor dependent as they are stock.  It's just
 // simpler than trying to figure out when or if a semi-colon is needed.  The
