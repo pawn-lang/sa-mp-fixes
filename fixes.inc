@@ -4206,7 +4206,7 @@ static stock const
 	#if defined KEY_AIM
 		_FIXES_DOCUMENT_CONST(KEY_AIM);
 	#else
-		#define KEY_AIM -1
+		#define KEY_AIM (cellmin)
 		_FIXES_DOCUMENT_CONST(KEY_AIM);
 		#undef KEY_AIM
 	#endif
@@ -4228,7 +4228,7 @@ static stock const
 	#if defined SPECIAL_ACTION_PISSING
 		_FIXES_DOCUMENT_CONST(SPECIAL_ACTION_PISSING);
 	#else
-		#define SPECIAL_ACTION_PISSING 0
+		#define SPECIAL_ACTION_PISSING (cellmin)
 		_FIXES_DOCUMENT_CONST(SPECIAL_ACTION_PISSING);
 		#undef SPECIAL_ACTION_PISSING
 	#endif
@@ -5156,11 +5156,10 @@ _FIXES_DOCUMENT_CONST(FIX_VEHICLES);
 	#if defined IS_JIT
 		_FIXES_DOCUMENT_CONST(IS_JIT);
 	#else
-		#define IS_JIT -1
+		#define IS_JIT (cellmin)
 		_FIXES_DOCUMENT_CONST(IS_JIT);
 		#undef IS_JIT
 	#endif
-	_FIXES_DOCUMENT_CONST(IS_JIT);
 #endif
 
 /**
@@ -5176,11 +5175,10 @@ _FIXES_DOCUMENT_CONST(FIX_VEHICLES);
 	#if defined IS_FILTERSCRIPT
 		_FIXES_DOCUMENT_CONST(IS_FILTERSCRIPT);
 	#else
-		#define IS_FILTERSCRIPT -1
+		#define IS_FILTERSCRIPT (cellmin)
 		_FIXES_DOCUMENT_CONST(IS_FILTERSCRIPT);
 		#undef IS_FILTERSCRIPT
 	#endif
-	_FIXES_DOCUMENT_CONST(IS_FILTERSCRIPT);
 #endif
 
 /**
@@ -5196,7 +5194,7 @@ _FIXES_DOCUMENT_CONST(FIX_VEHICLES);
 	#if defined IS_WINDOWS
 		_FIXES_DOCUMENT_CONST(IS_WINDOWS);
 	#else
-		#define IS_WINDOWS -1
+		#define IS_WINDOWS (cellmin)
 		_FIXES_DOCUMENT_CONST(IS_WINDOWS);
 		#undef IS_WINDOWS
 	#endif
@@ -5215,11 +5213,10 @@ _FIXES_DOCUMENT_CONST(FIX_VEHICLES);
 	#if defined IS_LINUX
 		_FIXES_DOCUMENT_CONST(IS_LINUX);
 	#else
-		#define IS_LINUX -1
+		#define IS_LINUX (cellmin)
 		_FIXES_DOCUMENT_CONST(IS_LINUX);
 		#undef IS_LINUX
 	#endif
-	_FIXES_DOCUMENT_CONST(IS_LINUX);
 #endif
 
 /**
