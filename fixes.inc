@@ -2660,11 +2660,11 @@ in the output code.
 #endif
 
 #if defined _FIXES_IncludeStates
-	#define _FIXES_FIRST_PASS (0)
+	#define _FIXES_COMPILER_PASS (1)
 	#define _FIXES_DOCUMENT_MACRO(%0(%1));
 	#define _FIXES_DOCUMENT_CONST(%0=%1);
 #else
-	#define _FIXES_FIRST_PASS (1)
+	#define _FIXES_COMPILER_PASS (0)
 	/**
 	 * <param name="name">The name of the function macro.</param>
 	 * <param name="">The named parameters for the function macro.</param>
@@ -2684,7 +2684,7 @@ in the output code.
 	 *     #define MACRO(%0,%1) ((%0) + (%1))
 	 * </code>
 	 *
-	 * <p>Use it before the define itself, along with a comment:</p>
+	 * <p>Use it by the define itself, along with a comment:</p>
 	 *
 	 * <code>
 	 *     \/**                                                                 <br />&#160;
@@ -2698,12 +2698,11 @@ in the output code.
 	 *
 	 * </remarks>
 	 */
-	static stock _FIXES_DOCUMENT_MACRO(name[], ...) { return 0; }
-	#define _FIXES_DOCUMENT_MACRO(%0(%1)); static stock %0 _FIXES_OPEN_BRACKET %1 _FIXES_CLOSE_BRACKET { return 0; }
+	static stock _FIXES_DOCUMENT_MACRO(const name[], ...) { return 0; }
+	#define _FIXES_DOCUMENT_MACRO(%0(%1)); static stock define_%0 _FIXES_OPEN_BRACKET %1 _FIXES_CLOSE_BRACKET { return 0; }
 
 	/**
 	 * <param name="name">The name of the value macro.</param>
-	 * <param name="value">The value.</param>
 	 * <remarks>
 	 *
 	 * <p>Defines are ignored by the compiler for <c>-r</c>, but we might
@@ -2721,7 +2720,7 @@ in the output code.
 	 *     #define CONST (42)
 	 * </code>
 	 *
-	 * <p>Use it before the define itself, along with a comment:</p>
+	 * <p>Use it after the define itself, along with a comment:</p>
 	 *
 	 * <code>
 	 *     \/**                                                                 <br />&#160;
@@ -2729,38 +2728,37 @@ in the output code.
 	 *      *     Replaces &lt;c&gt;CONST&lt;/c&gt; with &lt;c&gt;42&lt;/c&gt;. <br />&#160;
 	 *      * &lt;/remarks&gt;                                                  <br />&#160;
 	 *      *\/                                                                 <br />
-	 *     _FIXES_DOCUMENT_CONST(CONST = 42);                                   <br />
-	 *     #define CONST 42
+	 *     #define CONST 42                                                     <br />
+	 *     _FIXES_DOCUMENT_CONST(CONST);
 	 * </code>
 	 *
 	 * </remarks>
 	 */
-	static stock _FIXES_DOCUMENT_CONST(name[], const value[]) { return 0; }
-	#define _FIXES_DOCUMENT_CONST(%0=%1); static stock const %0=%1;
+	static stock _FIXES_DOCUMENT_CONST(const name[]) { return 0; }
+
+	#define _FIXES_DOCUMENT_CONST(%0); static stock const define_%0=%0;
 #endif
 #define _FIXES_OPEN_BRACKET (
 #define _FIXES_CLOSE_BRACKET )
 
+#define define_%0\32;%1; define_%0%1
+#define define_Float: Float:define_
+#define define_bool: bool:define_
+
 /**
  * <remarks>
- * CHAIN_ORDER
- *
- * Allows y_hooks to call things in the correct order when it exists.
+ * A method of pre-hooking callbacks to still have them called before any ones
+ * re-written by y_hooks.  The use of <c>CHAIN_ORDER()</c> allows for semi-
+ * automatic chaining so that libraries can determine which one came first.
+ * Each library returns <c>CHAIN_ORDER() + 1;</c>, until the first instance
+ * which is a macro for <c>0</c>.  The function always starts with <c>@CO_</c>
+ * to be quickly detectable.
  * </remarks>
  */
 
 #if !defined CHAIN_ORDER
 	#define CHAIN_ORDER() 0
 #endif
-
-/**
- * <remarks>
- * PRE_HOOK
- *
- * A method of pre-hooking callbacks to still have them called before any ones
- * re-written by y_hooks.
- * </remarks>
- */
 
 #define PRE_HOOK(%0) forward @CO_%0();public @CO_%0(){return CHAIN_ORDER()+1;}
 
@@ -2770,9 +2768,7 @@ PRE_HOOK(FIXES)
 
 /**
  * <remarks>
- * _FIXES_IncludeStates
- *
- * Define the "_ALS" states used by hooks.
+ * Declares all the possible <c>_ALS</c> states used by hooks.
  * </remarks>
  */
 
@@ -2784,19 +2780,24 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 {
 }
 
-/**
- * <remarks>
- * The number of GameText styles recreated using TextDraw functions.  This is 4
- * by default, but can be extended to 6 if you want location and vehicle styles.
- * </remarks>
- */
-
 #if FIX_GameText
+	/**
+	 * <remarks>
+	 * The number of GameText styles recreated using TextDraw functions.  This
+	 * is 4 by default, but can be extended to 6 if you want location and
+	 * vehicle styles.
+	 * </remarks>
+	 */
 	#if FIX_GameTextStyles
 		#define FIXES_GT_STYLE_COUNT (14)
 	#else
 		#define FIXES_GT_STYLE_COUNT (7)
 	#endif
+	_FIXES_DOCUMENT_CONST(FIXES_GT_STYLE_COUNT);
+#else
+	#define FIXES_GT_STYLE_COUNT (-1)
+	_FIXES_DOCUMENT_CONST(FIXES_GT_STYLE_COUNT);
+	#undef FIXES_GT_STYLE_COUNT
 #endif
 
 /**
@@ -2813,6 +2814,7 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 	#undef FIXES_SilentKick
 	#define FIXES_SilentKick 2
 #endif
+_FIXES_DOCUMENT_CONST(FIXES_SilentKick);
 
 /**
  * <remarks>
@@ -2826,18 +2828,17 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 	#if _FIXES_IS_UNSET(FIXES_Debug)
 		#undef FIXES_Debug
 	#elseif FIXES_Debug == 1
+		#undef FIXES_Debug
+		#define FIXES_Debug 1
 		#define FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):")),printf("*** " %0);
 	#else
 		#undef FIXES_Debug
+		#define FIXES_Debug 0
 	#endif
+#else
+	#define FIXES_Debug 0
 #endif
-
-/**
- * <remarks>
- * A marker to indicate that this version of fixes.inc uses state-based hooks.
- * </remarks>
- */
-#define FIXES_UseStateHooks
+_FIXES_DOCUMENT_CONST(FIXES_Debug);
 
 /**
  * <remarks>
@@ -2845,10 +2846,19 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
  * </remarks>
  */
 
+_FIXES_DOCUMENT_MACRO(FIXES_PRINTF(const fmat[], {Float, _}:...));
 #if !defined FIXES_PRINTF
-	#define FIXES_Debug 0
 	#define FIXES_PRINTF(%0);
 #endif
+
+/**
+ * <remarks>
+ * A marker to indicate that this version of fixes.inc uses state-based hooks.
+ * </remarks>
+ */
+
+#define FIXES_UseStateHooks 1
+_FIXES_DOCUMENT_CONST(FIXES_UseStateHooks);
 
 /**
  * <remarks>
@@ -2861,6 +2871,7 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #if !defined INVALID_DIALOG_ID
 	#define INVALID_DIALOG_ID (-1)
 #endif
+FIXES_DOCUMENT_CONST(INVALID_DIALOG_ID);
 
 /**
  * <remarks>
@@ -2877,15 +2888,16 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 	#undef FIXES_Single
 	#define FIXES_Single (2)
 #endif
+FIXES_DOCUMENT_CONST(FIXES_Single);
 
 /**
  * <remarks>
- * _FIXES_IS_IN_CHARGE
- *
- * Test to see if this script is in command or not (master).
+ * Test to see if this script is in charge or not (master).  Takes an optional
+ * module parameter (apparently).
  * </remarks>
  */
 
+_FIXES_DOCUMENT_MACRO(bool:_FIXES_IS_IN_CHARGE(module = 0));
 #if FIXES_Single
 	#define _FIXES_IS_IN_CHARGE(%0)
 #else
@@ -2893,8 +2905,13 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /**
+ * <remarks>
+ *     Sets a variable or property depending on the distribution of the code
+ *     between multiple scripts.
+ * </remarks>
  */
 
+_FIXES_DOCUMENT_MACRO(FIXES_SET(const varname[], playerid, value));
 #if FIXES_Single
 	#define FIXES_SET(%0,%1,%2) (FIXES_gs%0[%1] = %2)
 #else
@@ -2902,8 +2919,12 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /**
+ * <remarks>
+ *     Gets a variable or property depending on the distribution of the code
+ *     between multiple scripts.
+ * </remarks>
  */
-
+_FIXES_DOCUMENT_MACRO(FIXES_GET(const varname[], playerid));
 #if FIXES_Single
 	#define FIXES_GET(%0,%1) (FIXES_gs%0[%1])
 #else
@@ -2912,19 +2933,15 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 
 /**
  * <remarks>
- * isnull
- *
  * Pretty standard.
  * </remarks>
  */
-
+_FIXES_DOCUMENT_MACRO(isnull(const str[]));
 #define isnull(%1) \
 	((%1[0] == 0) || (%1[0] == 1 && %1[1] == 0))
 
 /**
  * <remarks>
- * E_FIXES_WORLDBOUND_DATA
- *
  * Store data for each player on their worldbound data.
  * </remarks>
  */
@@ -2944,8 +2961,6 @@ enum E_FIXES_WORLDBOUND_DATA
 
 /**
  * <remarks>
- * e_FIXES_BOOLS
- *
  * Collection of boolean values for players, designed to collect multiple checks
  * in to one variable to reduce memory consumption.
  * </remarks>
@@ -2978,8 +2993,6 @@ enum e_FIXES_BOOLS (<<= 1)
 
 /**
  * <remarks>
- * e_FIXES_SETTINGS
- *
  * Collection of boolean values for the script as a whole.  Stores a variety of
  * settings that are true/false.
  * </remarks>
@@ -3001,53 +3014,46 @@ enum e_FIXES_SETTINGS (<<= 1)
 
 /**
  * <remarks>
- * _FIXES_CEILDIV
- *
  * Do a ceiling division of the first number by the second number.
  * </remarks>
  */
+_FIXES_DOCUMENT_MACRO(_FIXES_CEILDIV(numerator, denominator));
 #define _FIXES_CEILDIV(%0,%1) (((%0) + (%1) - 1) / (%1))
 
 /**
  * <remarks>
- * _FIXES_MIN_WORLDBOUNDS
- *
  * Default worldbound range.
  * </remarks>
  */
 #define _FIXES_MIN_WORLDBOUNDS (-20000.0)
+_FIXES_DOCUMENT_CONST(Float:_FIXES_MIN_WORLDBOUNDS);
 
 /**
  * <remarks>
- * _FIXES_MAX_WORLDBOUNDS
- *
  * Default worldbound range.
  * </remarks>
  */
 #define _FIXES_MAX_WORLDBOUNDS (20000.0)
+_FIXES_DOCUMENT_CONST(Float:_FIXES_MAX_WORLDBOUNDS);
 
 /**
  * <remarks>
- * _FIXES_INFINITY
- *
  * IEEE 754 definition of infinity.
  * </remarks>
  */
 #define _FIXES_INFINITY (Float:0x7F800000)
+_FIXES_DOCUMENT_CONST(Float:_FIXES_INFINITY);
 
 /**
  * <remarks>
- * _FIXES_N_INFINITY
- *
  * IEEE 754 definition of negative infinity.
  * </remarks>
  */
 #define _FIXES_N_INFINITY (Float:0xFF800000)
+_FIXES_DOCUMENT_CONST(Float:_FIXES_N_INFINITY);
 
 /**
  * <remarks>
- * _FIXES_ATTACHMENTS
- *
  * The number of players whose attachment data (10-bits) can be stored in one
  * cell.
  * </remarks>
@@ -3056,37 +3062,32 @@ enum e_FIXES_SETTINGS (<<= 1)
 
 /**
  * <remarks>
- * _FIXES_FOREACH
- *
- * A new version of "foreach", but just for this library.
+ * A small version of <c>foreach</c>, just for this library.
  * </remarks>
  */
 #define _FIXES_FOREACH(%1,%0) for (new %0 = MAX_PLAYERS; (%0 = %1[%0]) != MAX_PLAYERS; )
+_FIXES_DOCUMENT_MACRO(_FIXES_FOREACH(players[MAX_PLAYERS], &playerid));
 
 /**
  * <remarks>
- * _FIXES_IN_RANGE
- *
- * Checks if the first parameter is between the other two: %1 &lt;= %0 &lt;%2 (but
- * faster).
+ * Checks if the first parameter is between the other two: %1 &lt;= %0 &lt;%2
+ * (but faster).
  * </remarks>
  */
 #define _FIXES_IN_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) < ((%2) - ((%1) + cellmin)))
+_FIXES_DOCUMENT_MACRO(bool:_FIXES_IN_RANGE(val, min, max));
 
 /**
  * <remarks>
- * _FIXES_NO_RANGE
- *
  * Checks if the first parameter is not between the other two:
  * <c>!(%1 &lt;= %0 &lt; %2)</c>(but faster).
  * </remarks>
  */
 #define _FIXES_NO_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) >= ((%2) - ((%1) + cellmin)))
+_FIXES_DOCUMENT_MACRO(bool:_FIXES_NO_RANGE(val, min, max));
 
 /**
  * <remarks>
- * _FIXES_FORWARD
- *
  * Forwards a hooked callbacks, and defines the default state implementations.
  * </remarks>
  */
@@ -3094,15 +3095,15 @@ enum e_FIXES_SETTINGS (<<= 1)
 	forward%0(%1); \
 	public%0(%1) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 1; } \
 	public%0(%1) <> { return 1; }
+_FIXES_DOCUMENT_MACRO(_FIXES_FORWARD(const func[], ...));
 
 /**
  * <remarks>
- * _FIXES_IS_PLAYER_CONNECTED
- *
  * Always valid "IsPlayerConnected" check.
  * </remarks>
  */
 #define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IN_RANGE((%0), 0, MAX_PLAYERS) && IsPlayerConnected((%0)))
+_FIXES_DOCUMENT_MACRO(bool:_FIXES_IS_PLAYER_CONNECTED(playerid));
 
 /**
  * <remarks>
@@ -3163,6 +3164,9 @@ enum e_FIXES_SETTINGS (<<= 1)
  * </remarks>
  */
 
+#define tabsize 0
+_FIXES_DOCUMENT_CONST(tabsize);
+#undef tabsize
 #if FIX_tabsize
 	#define tabsize%00%0\10;%0 _DUMMY_do_not_use_tabsize_0
 #endif
@@ -4199,9 +4203,6 @@ static stock const
 
 /**
  * <remarks>
- * <c>_FIXES_KEY_AIM</c>
- * <c>KEY_AIM</c>
- *
  * Because the default SA:MP includes missed this one.
  * </remarks>
  */
@@ -4209,6 +4210,15 @@ static stock const
 #define _FIXES_KEY_AIM                   (128)
 #if FIX_KEY_AIM
 	#define KEY_AIM                      _FIXES_KEY_AIM
+	_FIXES_DOCUMENT_CONST(KEY_AIM);
+#else
+	#if defined KEY_AIM
+		_FIXES_DOCUMENT_CONST(KEY_AIM);
+	#else
+		#define KEY_AIM -1
+		_FIXES_DOCUMENT_CONST(KEY_AIM);
+		#undef KEY_AIM
+	#endif
 #endif
 
 /**
@@ -4223,6 +4233,15 @@ static stock const
 #define _FIXES_SPECIAL_ACTION_PISSING    (68)
 #if FIX_SPECIAL_ACTION_PISSING
 	#define SPECIAL_ACTION_PISSING       _FIXES_SPECIAL_ACTION_PISSING
+	_FIXES_DOCUMENT_CONST(SPECIAL_ACTION_PISSING);
+#else
+	#if defined SPECIAL_ACTION_PISSING
+		_FIXES_DOCUMENT_CONST(SPECIAL_ACTION_PISSING);
+	#else
+		#define SPECIAL_ACTION_PISSING 0
+		_FIXES_DOCUMENT_CONST(SPECIAL_ACTION_PISSING);
+		#undef SPECIAL_ACTION_PISSING
+	#endif
 #endif
 
 /**
@@ -4233,6 +4252,7 @@ static stock const
  * </remarks>
  */
 
+native BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
 #if FIX_IsValidVehicle
 	native IsValidVehicle(vehicleid);
 #endif
@@ -4245,6 +4265,7 @@ static stock const
  * </remarks>
  */
 
+native Float:BAD_GetGravity() = GetGravity;
 #if FIX_GetGravity
 	native Float:GetGravity();
 #endif
@@ -4257,16 +4278,13 @@ static stock const
  * </remarks>
  */
 
+native BAD_gpci(playerid, serial[], maxlen) = gpci;
 #if FIX_gpci
 	native gpci(playerid, serial[], maxlen);
 #endif
 
-/**
- * <remarks>
- * <c>const</c>
- *
+/*
  * Better const-correctness on native functions.
- * </remarks>
  */
 
 #if FIX_const
@@ -4611,12 +4629,16 @@ static stock const
 
 /**
  * <remarks>
- * <c>WEAPONS</c>
- *
- * Because the default SA:MP includes missed some of these.
+ * <p>Because the default SA:MP includes missed some of these.</p>
+ * <ul>
+ *   <symbol name="WEAPON_FIST">                (0) </symbol>
+ *   <symbol name="WEAPON_NIGHTSTICK">          (3) </symbol>
+ *   <symbol name="WEAPON_MOLOTOV">             (19)</symbol>
+ *   <symbol name="WEAPON_NIGHT_VIS_GOGGLES">   (44)</symbol>
+ *   <symbol name="WEAPON_THERMAL_GOGGLES">     (45)</symbol>
+ * </ul>
  * </remarks>
  */
-
 #define _FIXES_WEAPON_FIST                      (0)
 #define _FIXES_WEAPON_NIGHT_VIS_GOGGLES         (44)
 #define _FIXES_WEAPON_THERMAL_GOGGLES           (45)
@@ -4628,17 +4650,24 @@ static stock const
 	#define WEAPON_NIGHT_VIS_GOGGLES  _FIXES_WEAPON_NIGHT_VIS_GOGGLES
 	#define WEAPON_THERMAL_GOGGLES    _FIXES_WEAPON_THERMAL_GOGGLES
 #endif
+_FIXES_DOCUMENT_CONST(FIX_WEAPONS);
 
 #define _FIXES_WEAPON_SLOTS                     (13)
 
 /**
  * <remarks>
- * <c>BODYPARTS</c>
- *
- * Because the default SA:MP includes missed these.
+ * <p>Because the default SA:MP includes missed some of these.</p>
+ * <ul>
+ *   <symbol name="BODY_PART_TORSO">            (3) </symbol>
+ *   <symbol name="BODY_PART_GROIN">            (4) </symbol>
+ *   <symbol name="BODY_PART_LEFT_ARM">         (5) </symbol>
+ *   <symbol name="BODY_PART_RIGHT_ARM">        (6) </symbol>
+ *   <symbol name="BODY_PART_LEFT_LEG">         (7) </symbol>
+ *   <symbol name="BODY_PART_RIGHT_LEG">        (8) </symbol>
+ *   <symbol name="BODY_PART_HEAD">             (9) </symbol>
+ * </ul>
  * </remarks>
  */
-
 #if FIX_BODYPARTS
 	#define BODY_PART_TORSO                     (3)
 	#define BODY_PART_GROIN                     (4)
@@ -4648,15 +4677,30 @@ static stock const
 	#define BODY_PART_RIGHT_LEG                 (8)
 	#define BODY_PART_HEAD                      (9)
 #endif
+_FIXES_DOCUMENT_CONST(FIX_BODYPARTS);
 
 /**
  * <remarks>
- * <c>CAMERAMODES</c>
- *
- * Because the default SA:MP includes missed these.
+ * <p>Because the default SA:MP includes missed some of these.</p>
+ * <ul>
+ *   <symbol name="CAM_MODE_DISCONNECTED">      (-1)</symbol>
+ *   <symbol name="CAM_MODE_NONE">              (0) </symbol>
+ *   <symbol name="CAM_MODE_BEHINDCAR">         (3) </symbol>
+ *   <symbol name="CAM_MODE_FOLLOWPED">         (4) </symbol>
+ *   <symbol name="CAM_MODE_SNIPER">            (7) </symbol>
+ *   <symbol name="CAM_MODE_ROCKETLAUNCHER">    (8) </symbol>
+ *   <symbol name="CAM_MODE_FIXED">             (15)</symbol>
+ *   <symbol name="CAM_MODE_1STPERSON">         (16)</symbol>
+ *   <symbol name="CAM_MODE_CAM_ON_A_STRING">   (18)</symbol>
+ *   <symbol name="CAM_MODE_BEHINDBOAT">        (22)</symbol>
+ *   <symbol name="CAM_MODE_CAMERA">            (46)</symbol>
+ *   <symbol name="CAM_MODE_ROCKETLAUNCHER_HS"> (51)</symbol>
+ *   <symbol name="CAM_MODE_AIMWEAPON">         (53)</symbol>
+ *   <symbol name="CAM_MODE_AIMWEAPON_FROMCAR"> (55)</symbol>
+ *   <symbol name="CAM_MODE_DW_HELI_CHASE">     (56)</symbol>
+ * </ul>
  * </remarks>
  */
-
 #if FIX_CAMERAMODES
 	#define CAM_MODE_DISCONNECTED               (-1)
 	#define CAM_MODE_NONE                       (0)
@@ -4674,12 +4718,225 @@ static stock const
 	#define CAM_MODE_AIMWEAPON_FROMCAR          (55)
 	#define CAM_MODE_DW_HELI_CHASE              (56)
 #endif
+_FIXES_DOCUMENT_CONST(FIX_CAMERAMODES);
 
 /**
  * <remarks>
- * <c>VEHICLES</c>
- *
- * Because the default SA:MP includes missed these.
+ * Because the default SA:MP includes missed some of these.
+ * <ul>
+ *   <symbol name="VEHICLE_LANDSTALKER">        (400)</symbol>
+ *   <symbol name="VEHICLE_BRAVURA">            (401)</symbol>
+ *   <symbol name="VEHICLE_BUFFALO">            (402)</symbol>
+ *   <symbol name="VEHICLE_LINERUNNER">         (403)</symbol>
+ *   <symbol name="VEHICLE_PERRENIAL">          (404)</symbol>
+ *   <symbol name="VEHICLE_SENTINEL">           (405)</symbol>
+ *   <symbol name="VEHICLE_DUMPER">             (406)</symbol>
+ *   <symbol name="VEHICLE_FIRETRUCK">          (407)</symbol>
+ *   <symbol name="VEHICLE_TRASHMASTER">        (408)</symbol>
+ *   <symbol name="VEHICLE_STRETCH">            (409)</symbol>
+ *   <symbol name="VEHICLE_MANANA">             (410)</symbol>
+ *   <symbol name="VEHICLE_INFERNUS">           (411)</symbol>
+ *   <symbol name="VEHICLE_VOODOO">             (412)</symbol>
+ *   <symbol name="VEHICLE_PONY">               (413)</symbol>
+ *   <symbol name="VEHICLE_MULE">               (414)</symbol>
+ *   <symbol name="VEHICLE_CHEETAH">            (415)</symbol>
+ *   <symbol name="VEHICLE_AMBULANCE">          (416)</symbol>
+ *   <symbol name="VEHICLE_LEVIATHAN">          (417)</symbol>
+ *   <symbol name="VEHICLE_MOONBEAM">           (418)</symbol>
+ *   <symbol name="VEHICLE_ESPERANTO">          (419)</symbol>
+ *   <symbol name="VEHICLE_TAXI">               (420)</symbol>
+ *   <symbol name="VEHICLE_WASHINGTON">         (421)</symbol>
+ *   <symbol name="VEHICLE_BOBCAT">             (422)</symbol>
+ *   <symbol name="VEHICLE_MRWHOOPEE">          (423)</symbol>
+ *   <symbol name="VEHICLE_BFINJECTION">        (424)</symbol>
+ *   <symbol name="VEHICLE_HUNTER">             (425)</symbol>
+ *   <symbol name="VEHICLE_PREMIER">            (426)</symbol>
+ *   <symbol name="VEHICLE_ENFORCER">           (427)</symbol>
+ *   <symbol name="VEHICLE_SECURICAR">          (428)</symbol>
+ *   <symbol name="VEHICLE_BANSHEE">            (429)</symbol>
+ *   <symbol name="VEHICLE_PREDATOR">           (430)</symbol>
+ *   <symbol name="VEHICLE_BUS">                (431)</symbol>
+ *   <symbol name="VEHICLE_RHINO">              (432)</symbol>
+ *   <symbol name="VEHICLE_BARRACKS">           (433)</symbol>
+ *   <symbol name="VEHICLE_HOTKNIFE">           (434)</symbol>
+ *   <symbol name="VEHICLE_ARTICLETRAILER1">    (435)</symbol>
+ *   <symbol name="VEHICLE_PREVION">            (436)</symbol>
+ *   <symbol name="VEHICLE_COACH">              (437)</symbol>
+ *   <symbol name="VEHICLE_CABBIE">             (438)</symbol>
+ *   <symbol name="VEHICLE_STALLION">           (439)</symbol>
+ *   <symbol name="VEHICLE_RUMPO">              (440)</symbol>
+ *   <symbol name="VEHICLE_RCBANDIT">           (441)</symbol>
+ *   <symbol name="VEHICLE_ROMERO">             (442)</symbol>
+ *   <symbol name="VEHICLE_PACKER">             (443)</symbol>
+ *   <symbol name="VEHICLE_MONSTER">            (444)</symbol>
+ *   <symbol name="VEHICLE_ADMIRAL">            (445)</symbol>
+ *   <symbol name="VEHICLE_SQUALO">             (446)</symbol>
+ *   <symbol name="VEHICLE_SEASPARROW">         (447)</symbol>
+ *   <symbol name="VEHICLE_PIZZABOY">           (448)</symbol>
+ *   <symbol name="VEHICLE_TRAM">               (449)</symbol>
+ *   <symbol name="VEHICLE_ARTICLETRAILER2">    (450)</symbol>
+ *   <symbol name="VEHICLE_TURISMO">            (451)</symbol>
+ *   <symbol name="VEHICLE_SPEEDER">            (452)</symbol>
+ *   <symbol name="VEHICLE_REEFER">             (453)</symbol>
+ *   <symbol name="VEHICLE_TROPIC">             (454)</symbol>
+ *   <symbol name="VEHICLE_FLATBED">            (455)</symbol>
+ *   <symbol name="VEHICLE_YANKEE">             (456)</symbol>
+ *   <symbol name="VEHICLE_CADDY">              (457)</symbol>
+ *   <symbol name="VEHICLE_SOLAIR">             (458)</symbol>
+ *   <symbol name="VEHICLE_BERKLEYSRCVAN">      (459)</symbol>
+ *   <symbol name="VEHICLE_SKIMMER">            (460)</symbol>
+ *   <symbol name="VEHICLE_PCJ600">             (461)</symbol>
+ *   <symbol name="VEHICLE_FAGGIO">             (462)</symbol>
+ *   <symbol name="VEHICLE_FREEWAY">            (463)</symbol>
+ *   <symbol name="VEHICLE_RCBARON">            (464)</symbol>
+ *   <symbol name="VEHICLE_RCRAIDER">           (465)</symbol>
+ *   <symbol name="VEHICLE_GLENDALE">           (466)</symbol>
+ *   <symbol name="VEHICLE_OCEANIC">            (467)</symbol>
+ *   <symbol name="VEHICLE_SANCHEZ">            (468)</symbol>
+ *   <symbol name="VEHICLE_SPARROW">            (469)</symbol>
+ *   <symbol name="VEHICLE_PATRIOT">            (470)</symbol>
+ *   <symbol name="VEHICLE_QUAD">               (471)</symbol>
+ *   <symbol name="VEHICLE_COASTGUARD">         (472)</symbol>
+ *   <symbol name="VEHICLE_DINGHY">             (473)</symbol>
+ *   <symbol name="VEHICLE_HERMES">             (474)</symbol>
+ *   <symbol name="VEHICLE_SABRE">              (475)</symbol>
+ *   <symbol name="VEHICLE_RUSTLER">            (476)</symbol>
+ *   <symbol name="VEHICLE_ZR350">              (477)</symbol>
+ *   <symbol name="VEHICLE_WALTON">             (478)</symbol>
+ *   <symbol name="VEHICLE_REGINA">             (479)</symbol>
+ *   <symbol name="VEHICLE_COMET">              (480)</symbol>
+ *   <symbol name="VEHICLE_BMX">                (481)</symbol>
+ *   <symbol name="VEHICLE_BURRITO">            (482)</symbol>
+ *   <symbol name="VEHICLE_CAMPER">             (483)</symbol>
+ *   <symbol name="VEHICLE_MARQUIS">            (484)</symbol>
+ *   <symbol name="VEHICLE_BAGGAGE">            (485)</symbol>
+ *   <symbol name="VEHICLE_DOZER">              (486)</symbol>
+ *   <symbol name="VEHICLE_MAVERICK">           (487)</symbol>
+ *   <symbol name="VEHICLE_SANNEWSMAVERICK">    (488)</symbol>
+ *   <symbol name="VEHICLE_RANCHER">            (489)</symbol>
+ *   <symbol name="VEHICLE_FBIRANCHER">         (490)</symbol>
+ *   <symbol name="VEHICLE_VIRGO">              (491)</symbol>
+ *   <symbol name="VEHICLE_GREENWOOD">          (492)</symbol>
+ *   <symbol name="VEHICLE_JETMAX">             (493)</symbol>
+ *   <symbol name="VEHICLE_HOTRINGRACER">       (494)</symbol>
+ *   <symbol name="VEHICLE_SANDKING">           (495)</symbol>
+ *   <symbol name="VEHICLE_BLISTACOMPACT">      (496)</symbol>
+ *   <symbol name="VEHICLE_POLICEMAVERICK">     (497)</symbol>
+ *   <symbol name="VEHICLE_BOXVILLE">           (498)</symbol>
+ *   <symbol name="VEHICLE_BENSON">             (499)</symbol>
+ *   <symbol name="VEHICLE_MESA">               (500)</symbol>
+ *   <symbol name="VEHICLE_RCGOBLIN">           (501)</symbol>
+ *   <symbol name="VEHICLE_HOTRINGRACERA">      (502)</symbol>
+ *   <symbol name="VEHICLE_HOTRINGRACERB">      (503)</symbol>
+ *   <symbol name="VEHICLE_BLOODRINGBANGER">    (504)</symbol>
+ *   <symbol name="VEHICLE_RANCHERLURE">        (505)</symbol>
+ *   <symbol name="VEHICLE_SUPERGT">            (506)</symbol>
+ *   <symbol name="VEHICLE_ELEGANT">            (507)</symbol>
+ *   <symbol name="VEHICLE_JOURNEY">            (508)</symbol>
+ *   <symbol name="VEHICLE_BIKE">               (509)</symbol>
+ *   <symbol name="VEHICLE_MOUNTAINBIKE">       (510)</symbol>
+ *   <symbol name="VEHICLE_BEAGLE">             (511)</symbol>
+ *   <symbol name="VEHICLE_CROPDUST">           (512)</symbol>
+ *   <symbol name="VEHICLE_STUNTPLANE">         (513)</symbol>
+ *   <symbol name="VEHICLE_TANKER">             (514)</symbol>
+ *   <symbol name="VEHICLE_ROADTRAIN">          (515)</symbol>
+ *   <symbol name="VEHICLE_NEBULA">             (516)</symbol>
+ *   <symbol name="VEHICLE_MAJESTIC">           (517)</symbol>
+ *   <symbol name="VEHICLE_BUCCANEER">          (518)</symbol>
+ *   <symbol name="VEHICLE_SHAMAL">             (519)</symbol>
+ *   <symbol name="VEHICLE_HYDRA">              (520)</symbol>
+ *   <symbol name="VEHICLE_FCR900">             (521)</symbol>
+ *   <symbol name="VEHICLE_NRG500">             (522)</symbol>
+ *   <symbol name="VEHICLE_HPV1000">            (523)</symbol>
+ *   <symbol name="VEHICLE_CEMENTTRUCK">        (524)</symbol>
+ *   <symbol name="VEHICLE_TOWTRUCK">           (525)</symbol>
+ *   <symbol name="VEHICLE_FORTUNE">            (526)</symbol>
+ *   <symbol name="VEHICLE_CADRONA">            (527)</symbol>
+ *   <symbol name="VEHICLE_FBITRUCK">           (528)</symbol>
+ *   <symbol name="VEHICLE_WILLARD">            (529)</symbol>
+ *   <symbol name="VEHICLE_FORKLIFT">           (530)</symbol>
+ *   <symbol name="VEHICLE_TRACTOR">            (531)</symbol>
+ *   <symbol name="VEHICLE_COMBINE">            (532)</symbol>
+ *   <symbol name="VEHICLE_FELTZER">            (533)</symbol>
+ *   <symbol name="VEHICLE_REMINGTON">          (534)</symbol>
+ *   <symbol name="VEHICLE_SLAMVAN">            (535)</symbol>
+ *   <symbol name="VEHICLE_BLADE">              (536)</symbol>
+ *   <symbol name="VEHICLE_FREIGHT">            (537)</symbol>
+ *   <symbol name="VEHICLE_BROWNSTREAK">        (538)</symbol>
+ *   <symbol name="VEHICLE_VORTEX">             (539)</symbol>
+ *   <symbol name="VEHICLE_VINCENT">            (540)</symbol>
+ *   <symbol name="VEHICLE_BULLET">             (541)</symbol>
+ *   <symbol name="VEHICLE_CLOVER">             (542)</symbol>
+ *   <symbol name="VEHICLE_SADLER">             (543)</symbol>
+ *   <symbol name="VEHICLE_FIRETRUCKLA">        (544)</symbol>
+ *   <symbol name="VEHICLE_HUSTLER">            (545)</symbol>
+ *   <symbol name="VEHICLE_INTRUDER">           (546)</symbol>
+ *   <symbol name="VEHICLE_PRIMO">              (547)</symbol>
+ *   <symbol name="VEHICLE_CARGOBOB">           (548)</symbol>
+ *   <symbol name="VEHICLE_TAMPA">              (549)</symbol>
+ *   <symbol name="VEHICLE_SUNRISE">            (550)</symbol>
+ *   <symbol name="VEHICLE_MERIT">              (551)</symbol>
+ *   <symbol name="VEHICLE_UTILITYVAN">         (552)</symbol>
+ *   <symbol name="VEHICLE_NEVADA">             (553)</symbol>
+ *   <symbol name="VEHICLE_YOSEMITE">           (554)</symbol>
+ *   <symbol name="VEHICLE_WINDSOR">            (555)</symbol>
+ *   <symbol name="VEHICLE_MONSTERA">           (556)</symbol>
+ *   <symbol name="VEHICLE_MONSTERB">           (557)</symbol>
+ *   <symbol name="VEHICLE_URANUS">             (558)</symbol>
+ *   <symbol name="VEHICLE_JESTER">             (559)</symbol>
+ *   <symbol name="VEHICLE_SULTAN">             (560)</symbol>
+ *   <symbol name="VEHICLE_STRATUM">            (561)</symbol>
+ *   <symbol name="VEHICLE_ELEGY">              (562)</symbol>
+ *   <symbol name="VEHICLE_RAINDANCE">          (563)</symbol>
+ *   <symbol name="VEHICLE_RCTIGER">            (564)</symbol>
+ *   <symbol name="VEHICLE_FLASH">              (565)</symbol>
+ *   <symbol name="VEHICLE_TAHOMA">             (566)</symbol>
+ *   <symbol name="VEHICLE_SAVANNA">            (567)</symbol>
+ *   <symbol name="VEHICLE_BANDITO">            (568)</symbol>
+ *   <symbol name="VEHICLE_FREIGHTFLATTRAILER"> (569)</symbol>
+ *   <symbol name="VEHICLE_STREAKTRAILER">      (570)</symbol>
+ *   <symbol name="VEHICLE_KART">               (571)</symbol>
+ *   <symbol name="VEHICLE_MOWER">              (572)</symbol>
+ *   <symbol name="VEHICLE_DUNERIDE">           (573)</symbol>
+ *   <symbol name="VEHICLE_SWEEPER">            (574)</symbol>
+ *   <symbol name="VEHICLE_BROADWAY">           (575)</symbol>
+ *   <symbol name="VEHICLE_TORNADO">            (576)</symbol>
+ *   <symbol name="VEHICLE_AT400">              (577)</symbol>
+ *   <symbol name="VEHICLE_DFT30">              (578)</symbol>
+ *   <symbol name="VEHICLE_HUNTLEY">            (579)</symbol>
+ *   <symbol name="VEHICLE_STAFFORD">           (580)</symbol>
+ *   <symbol name="VEHICLE_BF400">              (581)</symbol>
+ *   <symbol name="VEHICLE_NEWSVAN">            (582)</symbol>
+ *   <symbol name="VEHICLE_TUG">                (583)</symbol>
+ *   <symbol name="VEHICLE_PETROLTRAILER">      (584)</symbol>
+ *   <symbol name="VEHICLE_EMPEROR">            (585)</symbol>
+ *   <symbol name="VEHICLE_WAYFARER">           (586)</symbol>
+ *   <symbol name="VEHICLE_EUROS">              (587)</symbol>
+ *   <symbol name="VEHICLE_HOTDOG">             (588)</symbol>
+ *   <symbol name="VEHICLE_CLUB">               (589)</symbol>
+ *   <symbol name="VEHICLE_FREIGHTBOXTRAILER">  (590)</symbol>
+ *   <symbol name="VEHICLE_ARTICLETRAILER3">    (591)</symbol>
+ *   <symbol name="VEHICLE_ANDROMADA">          (592)</symbol>
+ *   <symbol name="VEHICLE_DODO">               (593)</symbol>
+ *   <symbol name="VEHICLE_RCCAM">              (594)</symbol>
+ *   <symbol name="VEHICLE_LAUNCH">             (595)</symbol>
+ *   <symbol name="VEHICLE_POLICECARLSPD">      (596)</symbol>
+ *   <symbol name="VEHICLE_POLICECARSFPD">      (597)</symbol>
+ *   <symbol name="VEHICLE_POLICECARLVPD">      (598)</symbol>
+ *   <symbol name="VEHICLE_POLICERANGER">       (599)</symbol>
+ *   <symbol name="VEHICLE_PICADOR">            (600)</symbol>
+ *   <symbol name="VEHICLE_SWAT">               (601)</symbol>
+ *   <symbol name="VEHICLE_ALPHA">              (602)</symbol>
+ *   <symbol name="VEHICLE_PHOENIX">            (603)</symbol>
+ *   <symbol name="VEHICLE_GLENDALESHIT">       (604)</symbol>
+ *   <symbol name="VEHICLE_SADLERSHIT">         (605)</symbol>
+ *   <symbol name="VEHICLE_BAGGAGETRAILERA">    (606)</symbol>
+ *   <symbol name="VEHICLE_BAGGAGETRAILERB">    (607)</symbol>
+ *   <symbol name="VEHICLE_TUGSTAIRSTRAILER">   (608)</symbol>
+ *   <symbol name="VEHICLE_BOXBURG">            (609)</symbol>
+ *   <symbol name="VEHICLE_FARMTRAILER">        (610)</symbol>
+ *   <symbol name="VEHICLE_UTILITYTRAILER">     (611)</symbol>
+ * </ul>
  * </remarks>
  */
 
@@ -4897,23 +5154,30 @@ static stock const
 	#define VEHICLE_FARMTRAILER                 (610)
 	#define VEHICLE_UTILITYTRAILER              (611)
 #endif
+_FIXES_DOCUMENT_CONST(FIX_VEHICLES);
 
 /**
  * <remarks>
- * <c>IS_JIT</c>
- *
  * True when the code is JIT compiled.
  * </remarks>
  */
 
 #if FIX_JIT
 	#define IS_JIT (_FIXES_gIsJIT)
+	_FIXES_DOCUMENT_CONST(IS_JIT);
+#else
+	#if defined IS_JIT
+		_FIXES_DOCUMENT_CONST(IS_JIT);
+	#else
+		#define IS_JIT -1
+		_FIXES_DOCUMENT_CONST(IS_JIT);
+		#undef IS_JIT
+	#endif
+	_FIXES_DOCUMENT_CONST(IS_JIT);
 #endif
 
 /**
  * <remarks>
- * <c>IS_FILTERSCRIPT</c>
- *
  * "FILTERSCRIPT" can't always be relied on to be set.  This is not a pre-
  * processor macro, but may be better than nothing (also used internally).
  * </remarks>
@@ -4921,25 +5185,55 @@ static stock const
 
 #if FIX_FILTERSCRIPT
 	#define IS_FILTERSCRIPT (_FIXES_gIsFilterscript)
+	_FIXES_DOCUMENT_CONST(IS_FILTERSCRIPT);
+#else
+	#if defined IS_FILTERSCRIPT
+		_FIXES_DOCUMENT_CONST(IS_FILTERSCRIPT);
+	#else
+		#define IS_FILTERSCRIPT -1
+		_FIXES_DOCUMENT_CONST(IS_FILTERSCRIPT);
+		#undef IS_FILTERSCRIPT
+	#endif
+	_FIXES_DOCUMENT_CONST(IS_FILTERSCRIPT);
 #endif
 
 /**
  * <remarks>
- * <c>IS_WINDOWS</c>
- *
  * True when the code is running on Windows.  NOT a pre-processor macro, since
  * the OS you are running the code on can't be determined at compile-time.
- *
- * <c>IS_LINUX</c>
- *
+ * </remarks>
+ */
+#if FIX_OS
+	#define IS_WINDOWS (_FIXES_gIsWindows)
+	_FIXES_DOCUMENT_CONST(IS_WINDOWS);
+#else
+	#if defined IS_WINDOWS
+		_FIXES_DOCUMENT_CONST(IS_WINDOWS);
+	#else
+		#define IS_WINDOWS -1
+		_FIXES_DOCUMENT_CONST(IS_WINDOWS);
+		#undef IS_WINDOWS
+	#endif
+#endif
+
+/**
+ * <remarks>
  * True when the code is running on Linux.  NOT a pre-processor macro, since the
  * OS you are running the code on can't be determined at compile-time.
  * </remarks>
  */
-
 #if FIX_OS
-	#define IS_WINDOWS (_FIXES_gIsWindows)
 	#define IS_LINUX (!_FIXES_gIsWindows)
+	_FIXES_DOCUMENT_CONST(IS_LINUX);
+#else
+	#if defined IS_LINUX
+		_FIXES_DOCUMENT_CONST(IS_LINUX);
+	#else
+		#define IS_LINUX -1
+		_FIXES_DOCUMENT_CONST(IS_LINUX);
+		#undef IS_LINUX
+	#endif
+	_FIXES_DOCUMENT_CONST(IS_LINUX);
 #endif
 
 /**
@@ -5008,6 +5302,7 @@ static _FIXES_DetermineOS()
 	forward bool:operator>=(_:a, File:b);
 	forward bool:operator>=(File:a, _:b);
 #endif
+_FIXES_DOCUMENT_CONST(FIX_FileMaths);
 
 /**
  * <remarks>
@@ -5015,7 +5310,9 @@ static _FIXES_DetermineOS()
  * </remarks>
  */
 
-#if !FIXES_Single
+#if FIXES_Single
+	_FIXES_DOCUMENT_MACRO(_FIXES_DetermineOrder());
+#else
 	forward _FIXES_DetermineOrder();
 
 	static FIXES_DetermineOrder()
@@ -11639,6 +11936,10 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_IS_PLAYER_CONNECTED
 #undef FIXES_PRINTF
 
+#undef define_
+#undef define_Float
+#undef define_bool
+
 #endinput
 
 // Fix documentation template.
@@ -11692,5 +11993,4 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_NameOfFixHere
 	#define NameOfFixHere( FIXES_NameOfFixHere(
 #endif
-
 
