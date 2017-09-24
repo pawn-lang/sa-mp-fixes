@@ -1455,10 +1455,58 @@ in the output code.
  *     <see>FIXES_GetWorldTime</see>
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
- *     
+ *
+ * <fix name="GetServerVarAsString">
+ *     <problem>
+ *         Crashes on unknown string variables.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetServerVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
+ * </fix>
+ *
+ * <fix name="GetServerVarAsInt">
+ *     <problem>
+ *         Crashes on unknown int variables.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetServerVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
+ * </fix>
+ *
+ * <fix name="GetServerVarAsBool">
+ *     <problem>
+ *         Crashes on unknown boolean variables.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetServerVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
+ * </fix>
+ *
+ * <fix name="GetServerVarAsFloat">
+ *     <problem>
+ *         Doesn't even exist.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetServerVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
+ * </fix>
+ *
  * <fix name="tabsize">
  *     <problem>
- *         Some people still use `tabsize 0`.
+ *         Some people still use <c>tabsize 0</c>.
  *     </problem>
  *     <solution>
  *         Break the pragma.
@@ -2650,6 +2698,42 @@ in the output code.
 #elseif _FIXES_IS_UNSET(FIX_GetWorldTime)
 	#undef FIX_GetWorldTime
 	#define FIX_GetWorldTime                     (2)
+#endif
+
+#if !defined FIX_GetServerVarAsString
+	#define FIX_GetServerVarAsString             (1)
+#elseif _FIXES_IS_UNSET(FIX_GetServerVarAsString)
+	#undef FIX_GetServerVarAsString
+	#define FIX_GetServerVarAsString             (2)
+#endif
+
+#if !defined FIX_GetServerVarAsInt
+	#define FIX_GetServerVarAsInt                (1)
+#elseif _FIXES_IS_UNSET(FIX_GetServerVarAsInt)
+	#undef FIX_GetServerVarAsInt
+	#define FIX_GetServerVarAsInt                (2)
+#endif
+
+#if !defined FIX_GetServerVarAsBool
+	#define FIX_GetServerVarAsBool               (1)
+#elseif _FIXES_IS_UNSET(FIX_GetServerVarAsBool)
+	#undef FIX_GetServerVarAsBool
+	#define FIX_GetServerVarAsBool               (2)
+#endif
+
+#if !defined FIX_GetServerVarAsFloat
+	#if defined GetServerVarAsFloat
+		#if FIX_GetServerVarAsString
+			#define FIX_GetServerVarAsFloat      (1)
+		#else
+			#define FIX_GetServerVarAsFloat      (FIXES_EnableDeprecated)
+		#endif
+	#else
+		#define FIX_GetServerVarAsFloat          (FIX_Natives)
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetServerVarAsFloat)
+	#undef FIX_GetServerVarAsFloat
+	#define FIX_GetServerVarAsFloat              (2)
 #endif
 
 #if !defined FIX_tabsize
@@ -11444,6 +11528,177 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 
 	#define _ALS_GetWorldTime
 	#define GetWorldTime( FIXES_GetWorldTime(
+#endif
+
+/**
+ * <fixes>GetServerVarAsString</fixes>
+ */
+#if defined _ALS_GetServerVarAsString
+	#error _ALS_GetServerVarAsString defined
+#endif
+native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAsString;
+
+/**
+ * <fixes>GetServerVarAsString</fixes>
+ */
+#if FIX_GetServerVarAsString || FIX_GetServerVarAsFloat || FIX_GetServerVarAsInt || FIX_GetServerVarAsBool
+	stock bool:FIXES_GetServerVarAsString(const varname[], buffer[], len = sizeof (buffer))
+	{
+		buffer[0] = '\0';
+		// Open the file.
+		new
+			File:fhnd = fopen("DANGEROUS_SERVER_ROOT/server.cfg", io_read);
+		if (!fhnd)
+		{
+			print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):"));
+			print(" ");
+			print("********************************************************************************");
+			print("* Could not open \"DANGEROUS_SERVER_ROOT/server.cfg\".  Make sure your server is *");
+			print("* configured to allow server root access.  Either via:                         *");
+			print("*                                                                              *");
+			print("*     https://github.com/Misiur/YSI/raw/master/links.rar                       *");
+			print("*                                                                              *");
+			print("* Or (Windows):                                                                *");
+			print("*                                                                              *");
+			print("*     mklink /J DANGEROUS_SERVER_ROOT ..                                       *");
+			print("*                                                                              *");
+			print("* Or (Linux):                                                                  *");
+			print("*                                                                              *");
+			print("*     ln -s .. DANGEROUS_SERVER_ROOT                                           *");
+			print("********************************************************************************");
+			print(" ");
+			return false;
+		}
+		// Read the file line-by-line.  Take care of very long lines.
+		new
+			cmpLen = strlen(varname),
+			readOffset,
+			line[128],
+			lineLen,
+			lineState = 0;
+		while ((lineLen = fread(fhnd, line)))
+		{
+			// Start of line, do a normal check.
+			if (lineState == 0)
+			{
+				// There is no explicit comments (#) check, since a commented
+				// line simply won't match the parameter varname.
+				if (lineLen < cmpLen || strcmp(line, varname, true, cmpLen) || line[cmpLen] > ' ')
+					lineState = 2; // The varname didn't match exactly.
+				else
+				{
+					readOffset = cmpLen;
+					// Skip whitespace.
+					while ('\0' < line[readOffset] <= ' ')
+						++readOffset;
+					lineState = 1;
+				}
+			}
+			else if (lineState == 1)
+				readOffset = 0;
+			if (lineState == 1)
+			{
+				while (lineLen && (line[lineLen - 1] == '\r' || line[lineLen - 1] == '\n'))
+				{
+					line[--lineLen] = '\0';
+					lineState = 3;
+				}
+				// The read offset start is found be skipping all whitespace.
+				// Then the new lines are removed.  If there was only
+				// whitespace, the read offset will actually be beyond the new
+				// end of the string, but we know that it will also point to a
+				// NULL, so that's fine.
+				strcat(buffer, line[readOffset], len);
+				if (lineState == 3)
+					return true;
+			}
+			else if (line[lineLen - 1] == '\r' || line[lineLen - 1] == '\n')
+				lineState = 0; // Ignored line ended with a line feed.
+		}
+		return true;
+	}
+#endif
+
+#if FIX_GetServerVarAsString
+	#define _ALS_GetServerVarAsString
+	#define GetServerVarAsString( FIXES_GetServerVarAsString(
+#endif
+
+/**
+ * <fixes>GetServerVarAsInt</fixes>
+ */
+#if defined _ALS_GetServerVarAsInt
+	#error _ALS_GetServerVarAsInt defined
+#endif
+native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
+
+/**
+ * <fixes>GetServerVarAsInt</fixes>
+ */
+#if FIX_GetServerVarAsInt
+	stock FIXES_GetServerVarAsInt(const varname[])
+	{
+		new
+			buffer[16];
+		if (FIXES_GetServerVarAsString(varname, buffer, sizeof (buffer)))
+			return strval(buffer);
+		return 0;
+	}
+
+	#define _ALS_GetServerVarAsInt
+	#define GetServerVarAsInt( FIXES_GetServerVarAsInt(
+#endif
+
+/**
+ * <fixes>GetServerVarAsBool</fixes>
+ */
+#if defined _ALS_GetServerVarAsBool
+	#error _ALS_GetServerVarAsBool defined
+#endif
+native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
+
+/**
+ * <fixes>GetServerVarAsBool</fixes>
+ */
+#if FIX_GetServerVarAsBool
+	stock bool:FIXES_GetServerVarAsBool(const varname[])
+	{
+		new
+			buffer[16];
+		if (FIXES_GetServerVarAsString(varname, buffer, sizeof (buffer)))
+			return strval(buffer) != 0;
+		return false;
+	}
+
+	#define _ALS_GetServerVarAsBool
+	#define GetServerVarAsBool( FIXES_GetServerVarAsBool(
+#endif
+
+/**
+ * <fixes>GetServerVarAsFloat</fixes>
+ */
+#if defined _ALS_GetServerVarAsFloat
+	#error _ALS_GetServerVarAsFloat defined
+#endif
+#if defined GetServerVarAsFloat
+	native BAD_GetServerVarAsFloat(const varname[]) = GetServerVarAsFloat;
+#endif
+
+/**
+ * <fixes>GetServerVarAsFloat</fixes>
+ */
+#if FIX_GetServerVarAsFloat
+	stock Float:FIXES_GetServerVarAsFloat(const varname[])
+	{
+		new
+			buffer[16];
+		if (FIXES_GetServerVarAsString(varname, buffer, sizeof (buffer)))
+			return floatstr(buffer);
+		return 0.0;
+	}
+
+	#define _ALS_GetServerVarAsFloat
+	#define GetServerVarAsFloat( FIXES_GetServerVarAsFloat(
 #endif
 
 /**

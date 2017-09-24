@@ -189,6 +189,10 @@ VEHICLES | The vehicle models IDs are not defined by default. | Define them. | [
 GetPlayerWeather | This function doesn't exist. | Add it. | [IstuntmanI](https://github.com/IstuntmanI/) [ziggi](https://github.com/ziggi/) | | **Disabled By Default** 
 GetWeather | This function doesn't exist. | Add it. | [IstuntmanI](https://github.com/IstuntmanI/) [ziggi](https://github.com/ziggi/) | | **Disabled By Default** 
 GetWorldTime | This function doesn't exist. | Add it. | [ziggi](https://github.com/ziggi/) | | **Disabled By Default** 
+GetServerVarAsString | Crashes on unknown string variables. | Read the file manually. | [Y_Less](https://github.com/Y-Less) | [Link](https://github.com/Open-GTO/sa-mp-fixes/issues/73) | 
+GetServerVarAsInt | Crashes on unknown int variables. | Read the file manually. | [Y_Less](https://github.com/Y-Less) | [Link](https://github.com/Open-GTO/sa-mp-fixes/issues/73) | 
+GetServerVarAsBool | Crashes on unknown boolean variables. | Read the file manually. | [Y_Less](https://github.com/Y-Less) | [Link](https://github.com/Open-GTO/sa-mp-fixes/issues/73) | 
+GetServerVarAsFloat | Doesn't even exist. | Read the file manually. | [Y_Less](https://github.com/Y-Less) | [Link](https://github.com/Open-GTO/sa-mp-fixes/issues/73) | 
 tabsize | Some people still use `tabsize 0`. | Break the pragma. | [Y_Less](https://github.com/Y-Less) | [Link](http://forum.sa-mp.com/showpost.php?p=3929000) | 
 
 ## Options 
@@ -352,3 +356,4 @@ The descriptions of the fixes all look like:
      <post href="Optional link to the original post where applicable." /> 
 </fix> 
 ```
+
