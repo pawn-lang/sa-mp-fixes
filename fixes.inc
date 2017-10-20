@@ -8923,18 +8923,19 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
 #endif
 
-#if FIX_CreatePlayerTextDraw
-	#define _FIXES_PASS_STRING(%0(%1??%2)) (isnull(%2) ? %0(%1FIXES_gsSpace) : %0(%1%2))
-#else
-	#define _FIXES_PASS_STRING(%0(%1??%2)) %0(%1%2)
-#endif
-#if FIX_CreatePlayerTextDraw_2
-	#define _FIXES_RETURN_STRING(%0:%1) new %0:ret = _FIXES_PASS_STRING(%1)
-#else
-	#define _FIXES_RETURN_STRING(%0:%1) return _FIXES_PASS_STRING(%1)
-#endif
-
 #if FIX_CreatePlayerTextDraw || FIX_CreatePlayerTextDraw_2
+
+	#if FIX_CreatePlayerTextDraw
+		#define _FIXES_PASS_STRING(%0(%1??%2)) (isnull(%2) ? %0(%1FIXES_gsSpace) : %0(%1%2))
+	#else
+		#define _FIXES_PASS_STRING(%0(%1??%2)) %0(%1%2)
+	#endif
+	#if FIX_CreatePlayerTextDraw_2
+		#define _FIXES_RETURN_STRING(%0:%1) new %0:ret = _FIXES_PASS_STRING(%1)
+	#else
+		#define _FIXES_RETURN_STRING(%0:%1) return _FIXES_PASS_STRING(%1)
+	#endif
+
 	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[])
 	{
 		#if FIX_CreatePlayerTextDraw_2
@@ -8946,6 +8947,9 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			return ret;
 		#endif
 	}
+
+	#undef _FIXES_PASS_STRING
+	#undef _FIXES_RETURN_STRING
 
 	#if defined _ALS_CreatePlayerTextDraw
 		#undef CreatePlayerTextDraw
@@ -8973,6 +8977,18 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  */
 
 #if FIX_PlayerTextDrawSetString || FIX_PlayerTextDrawSetString_2
+
+	#if FIX_PlayerTextDrawSetString
+		#define _FIXES_PASS_STRING(%0(%1??%2)) (isnull(%2) ? %0(%1FIXES_gsSpace) : %0(%1%2))
+	#else
+		#define _FIXES_PASS_STRING(%0(%1??%2)) %0(%1%2)
+	#endif
+	#if FIX_PlayerTextDrawSetString_2
+		#define _FIXES_RETURN_STRING(%0:%1) new %0:ret = _FIXES_PASS_STRING(%1)
+	#else
+		#define _FIXES_RETURN_STRING(%0:%1) return _FIXES_PASS_STRING(%1)
+	#endif
+
 	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[])
 	{
 		#if FIX_PlayerTextDrawSetString_2
@@ -8984,6 +9000,9 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			return ret;
 		#endif
 	}
+
+	#undef _FIXES_PASS_STRING
+	#undef _FIXES_RETURN_STRING
 
 	#if defined _ALS_PlayerTextDrawSetString
 		#undef PlayerTextDrawSetString
@@ -9006,6 +9025,18 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_TextDrawCreate || FIX_TextDrawCreate_2
+
+	#if FIX_TextDrawCreate
+		#define _FIXES_PASS_STRING(%0(%1??%2)) (isnull(%2) ? %0(%1FIXES_gsSpace) : %0(%1%2))
+	#else
+		#define _FIXES_PASS_STRING(%0(%1??%2)) %0(%1%2)
+	#endif
+	#if FIX_TextDrawCreate_2
+		#define _FIXES_RETURN_STRING(%0:%1) new %0:ret = _FIXES_PASS_STRING(%1)
+	#else
+		#define _FIXES_RETURN_STRING(%0:%1) return _FIXES_PASS_STRING(%1)
+	#endif
+
 	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[])
 	{
 		#if FIX_TextDrawCreate_2
@@ -9017,6 +9048,9 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			return ret;
 		#endif
 	}
+
+	#undef _FIXES_PASS_STRING
+	#undef _FIXES_RETURN_STRING
 
 	#if defined _ALS_TextDrawCreate
 		#undef TextDrawCreate
@@ -9044,6 +9078,18 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  */
 
 #if FIX_TextDrawSetString || FIX_TextDrawSetString_2
+
+	#if FIX_TextDrawSetString
+		#define _FIXES_PASS_STRING(%0(%1??%2)) (isnull(%2) ? %0(%1FIXES_gsSpace) : %0(%1%2))
+	#else
+		#define _FIXES_PASS_STRING(%0(%1??%2)) %0(%1%2)
+	#endif
+	#if FIX_TextDrawSetString_2
+		#define _FIXES_RETURN_STRING(%0:%1) new %0:ret = _FIXES_PASS_STRING(%1)
+	#else
+		#define _FIXES_RETURN_STRING(%0:%1) return _FIXES_PASS_STRING(%1)
+	#endif
+
 	stock FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[])
 	{
 		#if FIX_TextDrawSetString_2
@@ -9056,6 +9102,9 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#endif
 	}
 
+	#undef _FIXES_PASS_STRING
+	#undef _FIXES_RETURN_STRING
+
 	#if defined _ALS_TextDrawSetString
 		#undef TextDrawSetString
 	#else
@@ -9063,9 +9112,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#endif
 	#define TextDrawSetString( FIXES_TextDrawSetString(
 #endif
-
-#undef _FIXES_PASS_STRING
-#undef _FIXES_RETURN_STRING
 
 /**
  * <fixes>AllowInteriorWeapons</fixes>
