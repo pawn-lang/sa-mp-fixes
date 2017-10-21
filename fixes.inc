@@ -3331,6 +3331,12 @@ static stock
 	e_FIXES_BOOLS:FIXES_gsPlayerBools[MAX_PLAYERS],
 	/**
 	 * <remarks>
+	 * Handle to read from server.cfg.
+	 * </remarks>
+	 */
+	File:FIXES_gsServerCFG,
+	/**
+	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
 	 * </remarks>
@@ -5545,6 +5551,33 @@ public OnJITCompile()
 
 _FIXES_FORWARD FIXES_OnJITCompile();
 
+static stock _FIXES_CheckServerRoot()
+{
+	#if FIX_GetServerVarAsString || FIX_GetServerVarAsFloat || FIX_GetServerVarAsInt || FIX_GetServerVarAsBool
+		FIXES_gsServerCFG = fopen("DANGEROUS_SERVER_ROOT/server.cfg", io_read);
+		if (!FIXES_gsServerCFG)
+		{
+			print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):"));
+			print(" ");
+			print("********************************************************************************");
+			print("* Could not open \"DANGEROUS_SERVER_ROOT/server.cfg\".  Make sure your server is *");
+			print("* configured to allow server root access.  Either via:                         *");
+			print("*                                                                              *");
+			print("*     https://github.com/Misiur/YSI/raw/master/links.rar                       *");
+			print("*                                                                              *");
+			print("* Or (Windows):                                                                *");
+			print("*                                                                              *");
+			print("*     mklink /J DANGEROUS_SERVER_ROOT ..                                       *");
+			print("*                                                                              *");
+			print("* Or (Linux):                                                                  *");
+			print("*                                                                              *");
+			print("*     ln -s .. DANGEROUS_SERVER_ROOT                                           *");
+			print("********************************************************************************");
+			print(" ");
+		}
+	#endif
+}
+
 /**
  * <remarks>
  * Set <symbolref name="IS_FILTERSCRIPT" /> to true as this callback is ONLY called if this script
@@ -5561,7 +5594,7 @@ public OnFilterScriptInit()
 	state _ALS : _ALS_go;
 	_FIXES_gIsFilterscript = true;
 	_FIXES_DetermineOS();
-
+	_FIXES_CheckServerRoot();
 	#if FIXES_Single
 		// Check this really IS the only script running.
 		if (existproperty(5, FIXES_gscSingleProperty))
@@ -5710,89 +5743,86 @@ public OnGameModeInit()
 	// ===========================
 	//  END: AllowInteriorWeapons
 	// ===========================
+	if (!_FIXES_gIsFilterscript)
+	{
+		_FIXES_CheckServerRoot();
+		// =================
+		//  BEGIN: GameText
+		// =================
+		#if FIX_GameText
+				for (new i = 0; i != sizeof (FIXES_gsPlayerPGTShown); ++i)
+				{
+					FIXES_gsPlayerPGTShown[i][MAX_PLAYERS] = MAX_PLAYERS;
+				}
+			#if FIXES_Single
+				_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
+			#endif
+		#endif
+		// =================
+		//  END:   GameText
+		// =================
+		#if !FIXES_Single
+			FIXES_DetermineOrder();
+		#endif
+		// ======================
+		//  BEGIN: OnRconCommand
+		// ======================
+		#if FIX_OnRconCommand || FIX_OnClientCheckResponse
+			// It is.  Create the file.
+			if (!fexist(FIXES_gscRconFixFS))
+			{
+				/*
+					native CallRemoteFunction(const function[], const format[], {Float,_}:...);
 
-	#if FIX_GameText || !FIXES_Single || FIX_OnRconCommand || FIX_OnClientCheckResponse
-		if (!_FIXES_gIsFilterscript)
-		{
-			// =================
-			//  BEGIN: GameText
-			// =================
-			#if FIX_GameText
-					for (new i = 0; i != sizeof (FIXES_gsPlayerPGTShown); ++i)
-					{
-						FIXES_gsPlayerPGTShown[i][MAX_PLAYERS] = MAX_PLAYERS;
-					}
-				#if FIXES_Single
-					_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
+					forward OnRconCommand(const cmd[]);
+					public OnRconCommand(const cmd[]) return 0;
+
+					forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
+					public OnClientCheckResponse(playerid, actionid, memaddr, retndata) return CallRemoteFunction("FIXES_OnClientCheckResponse\0\0\0", "iiii", playerid, actionid, memaddr, retndata);
+				*/
+				static
+					lRCFixCode[] = {
+						0x000000F0, 0x0808F1E0, 0x00080014, 0x0000008C,
+						0x000000F0, 0x00000180, 0x00004180, 0xFFFFFFFF,
+						0x00000038, 0x00000048, 0x00000050, 0x00000050,
+						0x00000050, 0x00000050, 0x00000014, 0x00000052,
+						0x00000008, 0x00000068, 0x00000000, 0x00000076,
+						0x6E4F001F, 0x65696C43, 0x6843746E, 0x526B6365,
+						0x6F707365, 0x0065736E, 0x63526E4F, 0x6F436E6F,
+						0x6E616D6D, 0x61430064, 0x65526C6C, 0x65746F6D,
+						0x636E7546, 0x6E6F6974, 0x00000000, 0x2E007880,
+						0x2E305980, 0x81180581, 0x05811405, 0x0C058110,
+						0x277C8027, 0x80182700, 0x1C2C007B, 0x80468030,
+						0x80588049, 0x80538045, 0x804F805F, 0x8043806E,
+						0x8069806C, 0x806E8065, 0x80438074, 0x80658068,
+						0x806B8063, 0x80658052, 0x80708073, 0x806E806F,
+						0x00658073, 0x80000000, 0x80698069, 0x00698069
+					};
+				new
+					File:fs = fopen(FIXES_gscRconFixFS, io_write);
+				if (fs)
+				{
+					fblockwrite(fs, lRCFixCode);
+					fclose(fs);
+				}
+			}
+			if (fexist(FIXES_gscRconFixFS))
+			{
+					SendRconCommand("loadfs ../scriptfiles/callbackfix");
+				#if FIX_OnClientCheckResponse
+					state OnClientCheckResponse : OnClientCheckResponse_GM;
 				#endif
-			#endif
-			// =================
-			//  END:   GameText
-			// =================
-			#if !FIXES_Single
-				FIXES_DetermineOrder();
-			#endif
-			// ======================
-			//  BEGIN: OnRconCommand
-			// ======================
-			#if FIX_OnRconCommand || FIX_OnClientCheckResponse
-				// It is.  Create the file.
-				if (!fexist(FIXES_gscRconFixFS))
-				{
-					/*
-						native CallRemoteFunction(const function[], const format[], {Float,_}:...);
-
-						forward OnRconCommand(const cmd[]);
-						public OnRconCommand(const cmd[]) return 0;
-
-						forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
-						public OnClientCheckResponse(playerid, actionid, memaddr, retndata) return CallRemoteFunction("FIXES_OnClientCheckResponse\0\0\0", "iiii", playerid, actionid, memaddr, retndata);
-					*/
-					static
-						lRCFixCode[] = {
-							0x000000F0, 0x0808F1E0, 0x00080014, 0x0000008C,
-							0x000000F0, 0x00000180, 0x00004180, 0xFFFFFFFF,
-							0x00000038, 0x00000048, 0x00000050, 0x00000050,
-							0x00000050, 0x00000050, 0x00000014, 0x00000052,
-							0x00000008, 0x00000068, 0x00000000, 0x00000076,
-							0x6E4F001F, 0x65696C43, 0x6843746E, 0x526B6365,
-							0x6F707365, 0x0065736E, 0x63526E4F, 0x6F436E6F,
-							0x6E616D6D, 0x61430064, 0x65526C6C, 0x65746F6D,
-							0x636E7546, 0x6E6F6974, 0x00000000, 0x2E007880,
-							0x2E305980, 0x81180581, 0x05811405, 0x0C058110,
-							0x277C8027, 0x80182700, 0x1C2C007B, 0x80468030,
-							0x80588049, 0x80538045, 0x804F805F, 0x8043806E,
-							0x8069806C, 0x806E8065, 0x80438074, 0x80658068,
-							0x806B8063, 0x80658052, 0x80708073, 0x806E806F,
-							0x00658073, 0x80000000, 0x80698069, 0x00698069
-						};
-					new
-						File:fs = fopen(FIXES_gscRconFixFS, io_write);
-					if (fs)
-					{
-						fblockwrite(fs, lRCFixCode);
-						fclose(fs);
-					}
-				}
-				if (fexist(FIXES_gscRconFixFS))
-				{
-						SendRconCommand("loadfs ../scriptfiles/callbackfix");
-					#if FIX_OnClientCheckResponse
-						state OnClientCheckResponse : OnClientCheckResponse_GM;
-					#endif
-				}
-				else
-					print("\7\7\7\7\7*** fixes.inc error: Could not load RconCommand/ClientCheckResponse fix FS.");
-			#endif
-			// ======================
-			//  END:   OnRconCommand
-			// ======================
-		}
-	#endif
+			}
+			else
+				print("\7\7\7\7\7*** fixes.inc error: Could not load RconCommand/ClientCheckResponse fix FS.");
+		#endif
+		// ======================
+		//  END:   OnRconCommand
+		// ======================
+	}
 	#if !FIXES_Single
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
 	#endif
-
 	return FIXES_OnGameModeInit();
 }
 
@@ -11428,6 +11458,34 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	#define SetPlayerAmmo( FIXES_SetPlayerAmmo(
 #endif
 
+/*
+ * _FIXES_Bernstein()
+ *
+ * Convert a string to a number (hash it).
+ *
+ * FIXES:
+ *    ChangeVehicleColor
+ *    GetServerVarAsString
+ *    GetServerVarAsBool
+ *    GetServerVarAsInt
+ */
+
+static stock _FIXES_Bernstein(const name[])
+{
+	new
+		i = -1,
+		ch,
+		hash = -1;
+	// In carcols.dat the vehicle names end at ",".  That makes this code
+	// very specific to a few use-cases.  It also works for hashing server vars,
+	// since they don't have commas.  Now case-insensitive.
+	while ((ch = name[++i]) >= '0')
+	{
+		hash = (hash * 33) + (ch | 0x20);
+	}
+	return hash;
+}
+
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
@@ -11684,30 +11742,46 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 	stock bool:FIXES_GetServerVarAsString(const varname[], buffer[], len = sizeof (buffer))
 	{
 		buffer[0] = '\0';
-		// Open the file.
-		new
-			File:fhnd = fopen("DANGEROUS_SERVER_ROOT/server.cfg", io_read);
-		if (!fhnd)
+		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
 		{
-			print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):"));
-			print(" ");
-			print("********************************************************************************");
-			print("* Could not open \"DANGEROUS_SERVER_ROOT/server.cfg\".  Make sure your server is *");
-			print("* configured to allow server root access.  Either via:                         *");
-			print("*                                                                              *");
-			print("*     https://github.com/Misiur/YSI/raw/master/links.rar                       *");
-			print("*                                                                              *");
-			print("* Or (Windows):                                                                *");
-			print("*                                                                              *");
-			print("*     mklink /J DANGEROUS_SERVER_ROOT ..                                       *");
-			print("*                                                                              *");
-			print("* Or (Linux):                                                                  *");
-			print("*                                                                              *");
-			print("*     ln -s .. DANGEROUS_SERVER_ROOT                                           *");
-			print("********************************************************************************");
-			print(" ");
+		case 0x191078CE, // gamemode0
+		     0x191078CF, // gamemode1
+		     0x191078D0, // gamemode2
+		     0x191078D1, // gamemode3
+		     0x191078D2, // gamemode4
+		     0x191078D3, // gamemode5
+		     0x191078D4, // gamemode6
+		     0x191078D5, // gamemode7
+		     0x191078D6, // gamemode8
+		     0x191078D7, // gamemode9
+		     0x3B1F92DF, // gamemode10
+		     0x3B1F92E0, // gamemode11
+		     0x3B1F92E1, // gamemode12
+		     0x3B1F92E2, // gamemode13
+		     0x3B1F92E3, // gamemode14
+		     0x3B1F92E4, // gamemode15
+		     0xDD087136, // worldtime
+		     0x82FEFA05, // version
+		     0x77143DA2, // lagcomp
+		     0xAB471B39, // logtimeformat
+		     0xBBB6B44D, // nosign
+		     0xC5A55EC1, // plugins
+		     0x3E60E28D, // filterscripts
+		     0x81757563, // gamemodetext
+		     0xCEC61D0F, // weather
+		     0x1D768025, // gravity
+		     0x715D9343, // rcon_password
+		     0xCFF70EF0, // weburl
+		     0xC4B7237E, // mapname
+		     0x6A3B86C3, // language
+		     0xFB74B99E, // hostname
+		     0x27C72132, // password
+		     0x002571DC: // bind
+			return bool:GetServerVarAsString(varname, buffer, len);
+		default:
 			return false;
 		}
+		fseek(FIXES_gsServerCFG, 0, seek_start);
 		// Read the file line-by-line.  Take care of very long lines.
 		new
 			cmpLen = strlen(varname),
@@ -11715,7 +11789,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 			line[128],
 			lineLen,
 			lineState = 0;
-		while ((lineLen = fread(fhnd, line)))
+		while ((lineLen = fread(FIXES_gsServerCFG, line)))
 		{
 			// Start of line, do a normal check.
 			if (lineState == 0)
@@ -11777,6 +11851,31 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 #if FIX_GetServerVarAsInt
 	stock FIXES_GetServerVarAsInt(const varname[])
 	{
+		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
+		{
+		case 0x2CAD71B6, // cookielogging
+		     0x779863BF, // concookies
+		     0x05E98D75, // db_log_queries
+		     0x002E1E91, // db_logging
+		     0xD24E879F, // conseedtime
+		     0x65E02253, // lagcompmode
+		     0xBA15F385, // minconnectiontime
+		     0xB4A6E9E0, // playertimeout
+		     0xE0BF17AC, // ackslimit
+		     0xAF759823, // messageslimit
+		     0xD6D5A0EB, // messageholelimit
+		     0xA32CD2AF, // chatlogging
+		     0x3C9BE967, // weapon_rate
+		     0xBD571922, // incar_rate
+		     0x9EC6E5F3, // onfoot_rate
+		     0xBD480020, // maxnpc
+		     0x3E1BBFD6, // sleep
+		     0x4D50EBEB, // stream_rate
+		     0xBB2D5AE6: // maxplayers
+			return GetServerVarAsInt(varname);
+		default:
+			return 0;
+		}
 		new
 			buffer[16];
 		if (FIXES_GetServerVarAsString(varname, buffer, sizeof (buffer)))
@@ -11802,6 +11901,19 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #if FIX_GetServerVarAsBool
 	stock bool:FIXES_GetServerVarAsBool(const varname[])
 	{
+		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
+		{
+		case 0x4D532D94, // announce
+		     0xC99B1697, // lanmode
+		     0xAEF7F19F, // query
+		     0xB86708E6, // rcon
+		     0x0608CD58, // logqueries
+		     0xD1E9B9B6, // timestamp
+		     0x0C5ACC88: // myriad
+			return bool:GetServerVarAsBool(varname);
+		default:
+			return false;
+		}
 		new
 			buffer[16];
 		if (FIXES_GetServerVarAsString(varname, buffer, sizeof (buffer)))
@@ -11829,6 +11941,8 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #if FIX_GetServerVarAsFloat
 	stock Float:FIXES_GetServerVarAsFloat(const varname[])
 	{
+		if (!FIXES_gsServerCFG) // 0x03A253F3 = stream_distance.
+			return 0.0;
 		new
 			buffer[16];
 		if (FIXES_GetServerVarAsString(varname, buffer, sizeof (buffer)))
