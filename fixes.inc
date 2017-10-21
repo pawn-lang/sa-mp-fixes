@@ -103,7 +103,7 @@ in the output code.
  *     <see>OnPlayerConnect</see>
  *     <author    >KoczkaHUN</author>
  * </fix>
- *     
+ *
  * <fix name="FILTERSCRIPT">
  *     <problem>
  *         Despite the fact that is in every new script, many people dont'
@@ -117,7 +117,7 @@ in the output code.
  *     <see>OnFilterScriptInit</see>
  *     <see>OnGameModeInit</see>
  * </fix>
- *     
+ *
  * <fix name="SpawnPlayer">    
  *     <problem>
  *         Kills the player if they are in a vehicle.
@@ -128,7 +128,7 @@ in the output code.
  *     <see>FIXES_SpawnPlayer</see>     
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>  
  * </fix>
- *     
+ *
  * <fix name="SetPlayerName">
  *     <problem>
  *         Using "SetPlayerName" when the new name only differs from the old
@@ -144,7 +144,7 @@ in the output code.
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
- *     
+ *
  * <fix name="GetPlayerSkin">
  *     <problem>
  *         Returns the new skin after "SetSpawnInfo" is called but before the
@@ -159,7 +159,7 @@ in the output code.
  *     <see>FIXES_SetPlayerSkin</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="GetWeaponName" fixed="0.3.7">
  *     <problem>
  *         Returns nothing for 18, 44, and 45.
@@ -171,7 +171,7 @@ in the output code.
  *     <see>FIXES_GetWeaponName</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="SetPlayerWorldBounds">
  *     <problem>
  *         Aiming can bypass the edge.
@@ -184,7 +184,7 @@ in the output code.
  *     <see>FIXES_SetPlayerWorldBounds</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="TogglePlayerControllable">
  *     <problem>
  *         Other players see you moving on the spot.
@@ -197,7 +197,7 @@ in the output code.
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=876854" />
  * </fix>
- *     
+ *
  * <fix name="HydraSniper">
  *     <problem>
  *         Entering military aircraft with a sniper rifle messes up views.
@@ -211,7 +211,7 @@ in the output code.
  *     <author    >funky1234</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=965644" />
  * </fix>
- *     
+ *
  * <fix name="IsPlayerInCheckpoint">
  *     <problem>
  *         Function returns an undefined value if it is called before any other
@@ -223,7 +223,7 @@ in the output code.
  *     <see>OnPlayerConnect</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="IsPlayerInRaceCheckpoint">
  *     <problem>
  *         Function returns an undefined value if it is called before any other
@@ -235,7 +235,7 @@ in the output code.
  *     <see>OnPlayerConnect</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="GetPlayerWeapon">
  *     <problem>
  *         Returns the old value after entering in a vehicle.
@@ -252,7 +252,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <author    href="https://github.com/ronixtey/" >ronixtey</author>
  * </fix>
- *     
+ *
  * <fix name="PutPlayerInVehicle">
  *     <problem>
  *         If this is used on a passenger the driver of their old vehicle
@@ -267,7 +267,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1265965" />
  * </fix>
- *     
+ *
  * <fix name="KEY_AIM">
  *     <problem>
  *         "KEY_AIM" isn't defined by default.
@@ -277,7 +277,7 @@ in the output code.
  *     </solution>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="SetPlayerCheckpoint">
  *     <problem>
  *         If a checkpoint is already set it will use the size of that
@@ -289,7 +289,7 @@ in the output code.
  *     <see>FIXES_SetPlayerCheckpoint</see>
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
- *     
+ *
  * <fix name="SetPlayerRaceCheckpoint">
  *     <problem>
  *         If a checkpoint is already set it will use the size of that
@@ -301,7 +301,7 @@ in the output code.
  *     <see>FIXES_SetPlayerRaceCheckpoint</see>
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
- *     
+ *
  * <fix name="TextDrawCreate">
  *     <problem>
  *         Crashes on a blank string.
@@ -312,7 +312,7 @@ in the output code.
  *     <see>FIXES_TextDrawCreate</see>
  *     <author    >wups</author>
  * </fix>
- *     
+ *
  * <fix name="TextDrawCreate_2">
  *     <problem>
  *         If the last character in the text is a space (" "), the text will all
@@ -325,7 +325,7 @@ in the output code.
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
- *     
+ *
  * <fix name="TextDrawSetString">
  *     <problem>
  *         Crashes on a blank string and size greater than 1024.
@@ -336,7 +336,7 @@ in the output code.
  *     <see>FIXES_TextDrawSetString</see>
  *     <author    >TomTrox</author>
  * </fix>
- *     
+ *
  * <fix name="TextDrawSetString_2">
  *     <problem>
  *         If the last character in the text is a space (" "), the text will all
@@ -349,7 +349,7 @@ in the output code.
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
- *     
+ *
  * <fix name="CreatePlayerTextDraw">
  *     <problem>
  *         Crashes on a blank string.
@@ -361,7 +361,7 @@ in the output code.
  *     <author    >wups</author>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="CreatePlayerTextDraw_2">
  *     <problem>
  *         If the last character in the text is a space (" "), the text will all
@@ -374,7 +374,7 @@ in the output code.
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
- *     
+ *
  * <fix name="PlayerTextDrawSetString">
  *     <problem>
  *         Crashes on a blank string and size greater than 1024.
@@ -386,7 +386,7 @@ in the output code.
  *     <author    >TomTrox</author>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="PlayerTextDrawSetString_2">
  *     <problem>
  *         If the last character in the text is a space (" "), the text will all
@@ -399,7 +399,7 @@ in the output code.
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
- *     
+ *
  * <fix name="AllowInteriorWeapons">
  *     <problem>
  *         Does nothing.
@@ -412,7 +412,7 @@ in the output code.
  *     <see>OnPlayerUpdate</see>
  *     <author    >KoczkaHUN</author>
  * </fix>
- *     
+ *
  * <fix name="OnPlayerEnterVehicle">
  *     <problem>
  *         Crashes other players when people enter an invalid seat.
@@ -426,7 +426,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1410296" />
  * </fix>
- *     
+ *
  * <fix name="OnPlayerEnterVehicle_2">
  *     <problem>
  *         Crashes the server when hacks enter an invalid vehicle.
@@ -438,7 +438,7 @@ in the output code.
  *     <author    >im</author>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="OnPlayerEnterVehicle_3">
  *     <problem>
  *         No player animation when trying to enter the driver door of a locked
@@ -453,7 +453,7 @@ in the output code.
  *     <author    href="https://github.com/rt-2" >rt-2</author>
  *     <post      href="http://forum.sa-mp.com/showthread.php?t=560019" />
  * </fix>
- *     
+ *
  * <fix name="AllowTeleport">
  *     <problem>
  *         0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in
@@ -467,7 +467,7 @@ in the output code.
  *     <see>FIXES_AllowAdminTeleport</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="SetPlayerSpecialAction">
  *     <problem>
  *         Removing jetpacks from players by setting their special action to 0
@@ -479,7 +479,7 @@ in the output code.
  *     <see>FIXES_SetPlayerSpecialAction</see>
  *     <author    >MP2</author>
  * </fix>
- *     
+ *
  * <fix name="OnDialogResponse" fixed="0.3e RC6">
  *     <problem>
  *         Cheaters can spoof the dialogid they are using to respond to ones
@@ -492,7 +492,7 @@ in the output code.
  *     <see>FIXES_ShowPlayerDialog</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="GetPlayerDialog" disabled="true">
  *     <problem>
  *         This function doesn't exist.  Fixed for hidden dialogs.
@@ -504,7 +504,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
- *     
+ *
  * <fix name="PlayerDialogResponse">
  *     <problem>
  *         A player's dialog doesn't hide when the gamemode restarts, causing
@@ -518,7 +518,7 @@ in the output code.
  *     <see>OnGameModeExit</see>
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
- *     
+ *
  * <fix name="SetSpawnInfo">
  *     <problem>
  *         Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo".
@@ -529,7 +529,7 @@ in the output code.
  *     <see>OnPlayerConnect</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="SetPlayerSkin">
  *     <problem>
  *         Breaks sitting on bikes.
@@ -541,7 +541,7 @@ in the output code.
  *     <author    >CyNiC</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1756094" />
  * </fix>
- *     
+ *
  * <fix name="HideMenuForPlayer">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -553,7 +553,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
  * </fix>
- *     
+ *
  * <fix name="valstr">
  *     <problem>
  *         Crashes on large numbers.
@@ -564,7 +564,7 @@ in the output code.
  *     <see>FIXES_valstr</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
- *     
+ *
  * <fix name="fclose">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -575,7 +575,7 @@ in the output code.
  *     <see>FIXES_fclose</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
- *     
+ *
  * <fix name="fwrite">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -586,7 +586,7 @@ in the output code.
  *     <see>FIXES_fwrite</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
- *     
+ *
  * <fix name="fread">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -597,7 +597,7 @@ in the output code.
  *     <see>FIXES_fread</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
- *     
+ *
  * <fix name="fputchar">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -608,7 +608,7 @@ in the output code.
  *     <see>FIXES_fputchar</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
- *     
+ *
  * <fix name="fgetchar">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -619,7 +619,7 @@ in the output code.
  *     <see>FIXES_fgetchar</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
- *     
+ *
  * <fix name="fblockwrite">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -630,7 +630,7 @@ in the output code.
  *     <see>FIXES_fblockwrite</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
- *     
+ *
  * <fix name="fblockread">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -641,7 +641,7 @@ in the output code.
  *     <see>FIXES_fblockread</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
- *     
+ *
  * <fix name="fseek">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -652,7 +652,7 @@ in the output code.
  *     <see>FIXES_fseek</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
- *     
+ *
  * <fix name="flength">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -663,7 +663,7 @@ in the output code.
  *     <see>FIXES_flength</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
- *     
+ *
  * <fix name="file_inc" disabled="true">
  *     <problem>
  *         Includes or excludes all the file function fixes together (can cause
@@ -675,7 +675,7 @@ in the output code.
  *     <see>FIX_file_inc</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="SetPlayerAttachedObject">
  *     <problem>
  *         Doesn't remove objects when the mode ends.
@@ -686,7 +686,7 @@ in the output code.
  *     <see>OnPlayerDisconnect</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="OnPlayerDeath">
  *     <problem>
  *         Clients get stuck when they die with an animation applied.
@@ -699,7 +699,7 @@ in the output code.
  *     <author    >h02</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1641144" />
  * </fix>
- *     
+ *
  * <fix name="strins">
  *     <problem>
  *         Ignores the "maxlength" parameter causing possible crashes.
@@ -711,7 +711,7 @@ in the output code.
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="IsPlayerConnected">
  *     <problem>
  *         Only uses the lower two bytes of a passed ID.
@@ -722,7 +722,7 @@ in the output code.
  *     <see>FIXES_IsPlayerConnected</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
  * </fix>
- *     
+ *
  * <fix name="TrainExit">
  *     <problem>
  *         When getting out of a train entered by "PutPlayerInVehicle", the
@@ -736,7 +736,7 @@ in the output code.
  *     <author    >Terminator3</author>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="Kick" fixed="0.3x">
  *     <problem>
  *         Calling "Kick" in "OnPlayerConnect" doesn't work properly.
@@ -749,7 +749,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1989453" />
  * </fix>
- *     
+ *
  * <fix name="OnVehicleMod">
  *     <problem>
  *         Crashes other players when invalid mods are applied.
@@ -762,7 +762,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1671500" />
  * </fix>
- *     
+ *
  * <fix name="random" disabled="true">
  *     <problem>
  *         Doesn't work with negative numbers.
@@ -773,7 +773,7 @@ in the output code.
  *     <see>FIXES_random</see>
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
- *     
+ *
  * <fix name="sleep">
  *     <problem>
  *         Leaks bytes from the stack.
@@ -784,7 +784,7 @@ in the output code.
  *     <see>FIXES_sleep</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="AddMenuItem">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -795,7 +795,7 @@ in the output code.
  *     <see>FIXES_AddMenuItem</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="SetMenuColumnHeader">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -806,7 +806,7 @@ in the output code.
  *     <see>FIXES_SetMenuColumnHeader</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="ShowMenuForPlayer">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -817,7 +817,7 @@ in the output code.
  *     <see>FIXES_ShowMenuForPlayer</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="HideMenuForPlayer">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -829,7 +829,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
  * </fix>
- *     
+ *
  * <fix name="HideMenuForPlayer_2" disabled="true">
  *     <problem>
  *         Ignores the "menuid" parameter.
@@ -840,7 +840,7 @@ in the output code.
  *     <see>FIXES_HideMenuForPlayer</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="DisableMenu">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -851,7 +851,7 @@ in the output code.
  *     <see>FIXES_DisableMenu</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="DisableMenuRow">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -862,7 +862,7 @@ in the output code.
  *     <see>FIXES_DisableMenuRow</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="Menus">
  *     <problem>
  *         All menu function fixes are included separately for major overhead.
@@ -874,7 +874,7 @@ in the output code.
  *     <see>_FIX_Menus</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="GetPlayerMenu">
  *     <problem>
  *         Returns previous menu when none is displayed.
@@ -886,7 +886,7 @@ in the output code.
  *     <see>OnPlayerSelectedMenuRow</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="GetPlayerInterior">
  *     <problem>
  *         Always returns 0 for NPCs.
@@ -899,7 +899,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
- *     
+ *
  * <fix name="ClearAnimations">
  *     <problem>
  *         Use ClearAnimation while you are in a vehicle cause the player exit
@@ -911,7 +911,7 @@ in the output code.
  *     <see>FIXES_ClearAnimations</see>
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
- *     
+ *
  * <fix name="ClearAnimations_2">
  *     <problem>
  *         ClearAnimations doesn't do anything when the animation ends if we
@@ -923,7 +923,7 @@ in the output code.
  *     <see>FIXES_ClearAnimations</see>
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
- *     
+ *
  * <fix name="DriveBy">
  *     <problem>
  *         If you press KEY_CROUCH while you're passenger and if you are armed,
@@ -936,7 +936,7 @@ in the output code.
  *     <see>OnPlayerKeyStateChange</see>
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
- *     
+ *
  * <fix name="GangZoneCreate">
  *     <problem>
  *         Gang zones bug on the main map for players at certain angles relative
@@ -949,7 +949,7 @@ in the output code.
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="SPECIAL_ACTION_PISSING">
  *     <problem>
  *         "SPECIAL_ACTION_PISSING" isn't defined by default.
@@ -959,7 +959,7 @@ in the output code.
  *     </solution>
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
- *     
+ *
  * <fix name="IsValidVehicle">
  *     <problem>
  *         "IsValidVehicle" isn't defined by default.
@@ -969,7 +969,7 @@ in the output code.
  *     </solution>
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
- *     
+ *
  * <fix name="ApplyAnimation">
  *     <problem>
  *         Passing an invalid animation library in ApplyAnimation causes a
@@ -981,7 +981,7 @@ in the output code.
  *     <see>FIXES_ApplyAnimation</see>
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
- *     
+ *
  * <fix name="ApplyAnimation_2">
  *     <problem>
  *         First time a library is used, it does nothing.
@@ -994,7 +994,7 @@ in the output code.
  *     <author    href="https://github.com/Lordzy/" >Lordzy</author>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="ApplyActorAnimation">
  *     <problem>
  *         Passing an invalid animation library in ApplyAnimation causes a
@@ -1007,7 +1007,7 @@ in the output code.
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
- *     
+ *
  * <fix name="ApplyActorAnimation_2">
  *     <problem>
  *         First time a library is used, it does nothing.
@@ -1021,7 +1021,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
- *     
+ *
  * <fix name="OnPlayerSpawn">
  *     <problem>
  *         San Andreas deducts $100 from players.
@@ -1032,7 +1032,7 @@ in the output code.
  *     <see>OnPlayerSpawn</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="GetGravity">
  *     <problem>
  *         "GetGravity" isn't defined by default.
@@ -1043,7 +1043,7 @@ in the output code.
  *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1706447" />
  * </fix>
- *     
+ *
  * <fix name="gpci">
  *     <problem>
  *         "gpci" isn't defined by default.
@@ -1054,7 +1054,7 @@ in the output code.
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  *     <post      href="http://pastebin.com/VQSGpbSm" />
  * </fix>
- *     
+ *
  * <fix name="Natives">
  *     <problem>
  *         Several natives are included by default, this enables or disables
@@ -1068,7 +1068,7 @@ in the output code.
  *     <see>FIX_IsValidVehicle</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="OnPlayerConnect">
  *     <problem>
  *         This function isn't called for players when a filterscript starts.
@@ -1079,7 +1079,7 @@ in the output code.
  *     <see>FIXES_OnFilterScriptInit</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="OnPlayerDisconnect">
  *     <problem>
  *         This function isn't called for players when a filterscript ends.
@@ -1090,7 +1090,7 @@ in the output code.
  *     <see>FIXES_OnFilterScriptExit</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="GameText">
  *     <problem>
  *         Several styles do not display for the time specified.
@@ -1102,7 +1102,7 @@ in the output code.
  *     <see>FIXES_GameTextForPlayer</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="GameTextStyles" disabled="true">
  *     <problem>
  *         San Andreas has fixed styles for area and vehicle names, but they are
@@ -1115,7 +1115,7 @@ in the output code.
  *     <see>FIXES_GameTextForPlayer</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="HideGameText">
  *     <problem>
  *         There is no "HideGameTextForXYZ" function.
@@ -1127,7 +1127,7 @@ in the output code.
  *     <see>FIXES_HideGameTextForPlayer</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="ClearPlayerWorldBounds">
  *     <problem>
  *         There is no "ClearPlayerWorldBounds" function.
@@ -1138,7 +1138,7 @@ in the output code.
  *     <see>FIXES_ClearPlayerWorldBounds</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="GetPlayerWorldBounds">
  *     <problem>
  *         There is no "GetPlayerWorldBounds" function.
@@ -1149,7 +1149,7 @@ in the output code.
  *     <see>FIXES_GetPlayerWorldBounds</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="WEAPONS">
  *     <problem>
  *         Some weapons are not defined by default.
@@ -1159,7 +1159,7 @@ in the output code.
  *     </solution>
  *     <author    href="https://github.com/ziggi" >ziggi</author>
  * </fix>
- *     
+ *
  * <fix name="BODYPARTS">
  *     <problem>
  *         The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined
@@ -1170,7 +1170,7 @@ in the output code.
  *     </solution>
  *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
  * </fix>
- *     
+ *
  * <fix name="CAMERAMODES">
  *     <problem>
  *         The camera modes for GetPlayerCameraMode are not defined by default.
@@ -1181,7 +1181,7 @@ in the output code.
  *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1309730" />
  * </fix>
- *     
+ *
  * <fix name="SetPlayerCamera">
  *     <problem>
  *         Using the camera functions directly after enabling spectator mode
@@ -1195,7 +1195,7 @@ in the output code.
  *     <see>FIXES_TogglePlayerSpectating</see>
  *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
  * </fix>
- *     
+ *
  * <fix name="SetPlayerTime">
  *     <problem>
  *         Using this function under "OnPlayerConnect" doesn't work.
@@ -1206,7 +1206,7 @@ in the output code.
  *     <see>FIXES_SetPlayerTime</see>
  *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
  * </fix>
- *     
+ *
  * <fix name="OnPlayerRequestClass">
  *     <problem>
  *         Random blunts and bottles sometimes appear in class selection.
@@ -1217,7 +1217,7 @@ in the output code.
  *     <see>OnPlayerRequestClass</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="SetPlayerColor">
  *     <problem>
  *         If used under OnPlayerConnect, the affecting player will not see the
@@ -1230,7 +1230,7 @@ in the output code.
  *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
  *     <post      href="http://forum.sa-mp.com/showthread.php?t=452407" />
  * </fix>
- *     
+ *
  * <fix name="FileMaths">
  *     <problem>
  *         You can write gibberish like "File:a; ++a;".
@@ -1241,7 +1241,7 @@ in the output code.
  *     <see>File:operator</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="GetPlayerWeaponData">
  *     <problem>
  *         Old weapons with no ammo left are still returned.
@@ -1253,7 +1253,7 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showthread.php?t=567400" />
  * </fix>
- *     
+ *
  * <fix name="strcmp">
  *     <problem>
  *         Return 0 if anyone of the string is empty.
@@ -1264,7 +1264,7 @@ in the output code.
  *     <see>FIXES_strcmp</see>
  *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="GetPVarString">
  *     <problem>
  *         Wrong symbol code for symbols with code 128 and above.
@@ -1279,7 +1279,7 @@ in the output code.
  *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
  *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
  * </fix>
- *     
+ *
  * <fix name="GetSVarString">
  *     <problem>
  *         Wrong symbol code for symbols with code 128 and above.
@@ -1294,7 +1294,7 @@ in the output code.
  *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
  *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
  * </fix>
- *     
+ *
  * <fix name="toupper">
  *     <problem>
  *         Not working on Linux for symbols with code 128 and above.
@@ -1306,7 +1306,7 @@ in the output code.
  *     <author    href="https://github.com/ziggi" >ziggi</author>
  *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
  * </fix>
- *     
+ *
  * <fix name="tolower">
  *     <problem>
  *         Not working on Linux for symbols with code 128 and above.
@@ -1318,7 +1318,7 @@ in the output code.
  *     <author    href="https://github.com/ziggi" >ziggi</author>
  *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
  * </fix>
- *     
+ *
  * <fix name="PassengerSeating">
  *     <problem>
  *         Teleporting player to passenger seat after delay.
@@ -1330,7 +1330,7 @@ in the output code.
  *     <see>OnPlayerStateChange</see>
  *     <author    href="https://github.com/ziggi" >ziggi</author>
  * </fix>
- *     
+ *
  * <fix name="GogglesSync">
  *     <problem>
  *         Visual effects show for all players.
@@ -1341,7 +1341,7 @@ in the output code.
  *     <see>OnPlayerUpdate</see>
  *     <author    href="https://github.com/ziggi" >ziggi</author>
  * </fix>
- *     
+ *
  * <fix name="GetPlayerPoolSize">
  *     <problem>
  *         Returns "0" even if there are no players on the server.
@@ -1352,7 +1352,7 @@ in the output code.
  *     <see>FIXES_GetPlayerPoolSize</see>
  *     <author    href="https://github.com/Bios-Marcel" >Bios-Marcel</author>
  * </fix>
- *     
+ *
  * <fix name="SetPlayerPos">
  *     <problem>
  *         Using this function on skydiving players kills them.
@@ -1364,7 +1364,7 @@ in the output code.
  *     <see>FIXES_SetPlayerPosFindZ</see>
  *     <author    href="https://github.com/WoutProvost" >Freaksken</author>
  * </fix>
- *     
+ *
  * <fix name="GetPlayerAmmo">
  *     <problem>
  *         Returns erroneous values over 32767 and under -32768 due to overflow.
@@ -1377,7 +1377,7 @@ in the output code.
  *     <see>FIXES_GivePlayerWeapon</see>
  *     <author    href="https://github.com/WoutProvost" >Freaksken</author>
  * </fix>
- *     
+ *
  * <fix name="JIT">
  *     <problem>
  *         Can't easily determine if the script is JIT compiled.
@@ -1388,7 +1388,7 @@ in the output code.
  *     <see>OnJITCompile</see>
  *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="OS">
  *     <problem>
  *         Can't easily determine what OS the script is running on.
@@ -1399,7 +1399,7 @@ in the output code.
  *     <see>_FIXES_DetermineOS</see>
  *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="const">
  *     <problem>
  *         Some SA-MP natives don't use "const" when they could.
@@ -1410,7 +1410,7 @@ in the output code.
  *     <see>FIX_const</see>
  *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
- *     
+ *
  * <fix name="VEHICLES">
  *     <problem>
  *         The vehicle models IDs are not defined by default.
@@ -1420,7 +1420,7 @@ in the output code.
  *     </solution>
  *     <author    href="https://github.com/IstuntmanI" >stuntman</author>
  * </fix>
- *     
+ *
  * <fix name="GetPlayerWeather" disabled="true">
  *     <problem>
  *         This function doesn't exist.
@@ -1432,7 +1432,7 @@ in the output code.
  *     <author    href="https://github.com/IstuntmanI/" >IstuntmanI</author>
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
- *     
+ *
  * <fix name="GetWeather" disabled="true">
  *     <problem>
  *         This function doesn't exist.
@@ -1444,7 +1444,7 @@ in the output code.
  *     <author    href="https://github.com/IstuntmanI/" >IstuntmanI</author>
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
- *     
+ *
  * <fix name="GetWorldTime" disabled="true">
  *     <problem>
  *         This function doesn't exist.
@@ -1455,7 +1455,7 @@ in the output code.
  *     <see>FIXES_GetWorldTime</see>
  *     <author    href="https://github.com/ziggi/" >ziggi</author>
  * </fix>
- *     
+ *
  * <fix name="tabsize">
  *     <problem>
  *         Some people still use `tabsize 0`.
@@ -1466,6 +1466,18 @@ in the output code.
  *     <see>_DUMMY_do_not_use_tabsize_0</see>
  *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=3929000" />
+ * </fix>
+ * </fixeslist>
+ *
+ * <fix name="OnClientCheckResponse">
+ *     <problem>
+ *         Is not called in the gamemode ever.
+ *     </problem>
+ *     <solution>
+ *         Load a minimal (embedded) FS to bootstrap it.
+ *     </solution>
+ *     <see>OnGameModeInit</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
  * </fixeslist>
  *
@@ -2659,6 +2671,20 @@ in the output code.
 	#define FIX_tabsize                          (2)
 #endif
 
+#if !defined FIX_OnRconCommand
+	#define FIX_OnRconCommand                    (1)
+#elseif _FIXES_IS_UNSET(FIX_OnRconCommand)
+	#undef FIX_OnRconCommand
+	#define FIX_OnRconCommand                    (2)
+#endif
+
+#if !defined FIX_OnClientCheckResponse
+	#define FIX_OnClientCheckResponse            (1)
+#elseif _FIXES_IS_UNSET(FIX_OnClientCheckResponse)
+	#undef FIX_OnClientCheckResponse
+	#define FIX_OnClientCheckResponse            (2)
+#endif
+
 /**
  * <remarks>
  * tabsize
@@ -2673,7 +2699,7 @@ in the output code.
  * would otherwise appear correct.  For example:
  *
  *     #define TEST_MACRO
- *     
+ *
  *     main()
  *     {
  *         new a = 42;
@@ -2695,7 +2721,7 @@ in the output code.
  * indentation level, which resets the internal depth tracking:
  *
  *     #define TEST_MACRO
- *     
+ *
  *     main()
  *     {
  *         new a = 42;
@@ -4105,6 +4131,12 @@ static stock const
 	 * </remarks>
 	 */
 	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
+	/**
+	 * <remarks>
+	 * The property for a player's current menu.
+	 * </remarks>
+	 */
+	FIXES_gscRconFixFS[] = "rconfix.amx",
 	/**
 	 * <remarks>
 	 * Error shown when multiple scripts are detected with <c>FIXES_SINGLE</c>.
@@ -5585,7 +5617,7 @@ public OnGameModeInit()
 	//  END: AllowInteriorWeapons
 	// ===========================
 
-	#if FIX_GameText || !FIXES_Single
+	#if FIX_GameText || !FIXES_Single || FIX_OnRconCommand || FIX_OnClientCheckResponse
 		if (!_FIXES_gIsFilterscript)
 		{
 			// =================
@@ -5606,6 +5638,49 @@ public OnGameModeInit()
 			#if !FIXES_Single
 				FIXES_DetermineOrder();
 			#endif
+			// ======================
+			//  BEGIN: OnRconCommand
+			// ======================
+			#if FIX_OnRconCommand || FIX_OnClientCheckResponse
+				// It is.  Create the file.
+				if (!fexist(FIXES_gscRconFixFS))
+				{
+					static
+						lRCFixCode[] = {
+							0x000000ED, 0x0808F1E0, 0x00080014, 0x0000008C, 0x000000F0,
+							0x00000174, 0x00004174, 0xFFFFFFFF, 0x00000038, 0x00000048,
+							0x00000050, 0x00000050, 0x00000050, 0x00000050, 0x00000014,
+							0x00000052, 0x00000008, 0x00000068, 0x00000000, 0x00000076,
+							0x6E4F001F, 0x65696C43, 0x6843746E, 0x526B6365, 0x6F707365,
+							0x0065736E, 0x63526E4F, 0x6F436E6F, 0x6E616D6D, 0x61430064,
+							0x65526C6C, 0x65746F6D, 0x636E7546, 0x6E6F6974, 0x00000000,
+							0x2E007880, 0x2E305980, 0x81180581, 0x05811405, 0x0C058110,
+							0x27708027, 0x80182700, 0x1C2C007B, 0x80468030, 0x80588049,
+							0x80538045, 0x804F805F, 0x8043806E, 0x8069806C, 0x806E8065,
+							0x80438074, 0x80658068, 0x806B8063, 0x80658052, 0x80708073,
+							0x806E806F, 0x00658073, 0x69806980, 0x69806980, 0x00000000
+						};
+					new
+						File:fs = fopen(FIXES_gscRconFixFS, io_write);
+					if (fs)
+					{
+						fblockwrite(fs, lRCFixCode);
+						fclose(fs);
+					}
+				}
+				if (fexist(FIXES_gscRconFixFS))
+				{
+						SendRconCommand("loadfs ../scriptfiles/rconfix");
+					#if FIX_OnClientCheckResponse
+						state OnClientCheckResponse : OnClientCheckResponse_GM;
+					#endif
+				}
+				else
+					print("\7\7\7\7\7*** fixes.inc error: Could not load RconCommand/ClientCheckResponse fix FS.");
+			#endif
+			// ======================
+			//  END:   OnRconCommand
+			// ======================
 		}
 	#endif
 	#if !FIXES_Single
@@ -5622,6 +5697,48 @@ public OnGameModeInit()
 #define OnGameModeInit(%0) FIXES_OnGameModeInit(%0) <_ALS : _ALS_go>
 
 _FIXES_FORWARD FIXES_OnGameModeInit();
+
+/**
+ * <remarks>
+ * Allow <c>OnClientCheckResponse<c/> to be called in gamemodes.
+ * </remarks>
+ * <fixes>OnClientCheckResponse</fixes>
+ */
+
+#if FIX_OnClientCheckResponse
+	forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
+	public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
+	{
+		// Enable, then disable, the call in to the real version (if it exists).
+		state OnClientCheckResponse : OnClientCheckResponse_GM;
+		new
+			ret = FIXES_OnClientCheckResponse(playerid, actionid, memaddr, retndata);
+		state OnClientCheckResponse : OnClientCheckResponse_FS;
+		return ret;
+	}
+
+	forward FIXES_OnClientCheckResponse(playerid, actionid, memaddr, retndata);
+	public FIXES_OnClientCheckResponse(playerid, actionid, memaddr, retndata) <OnClientCheckResponse : OnClientCheckResponse_FS>
+	{
+		return 0;
+	}
+
+	public FIXES_OnClientCheckResponse(playerid, actionid, memaddr, retndata) <>
+	{
+		return 0;
+	}
+
+	static stock _FIXES_OnClientCheckResponse() <OnClientCheckResponse : OnClientCheckResponse_GM, OnClientCheckResponse : OnClientCheckResponse_FS>
+	{
+		// Define states only.
+	}
+
+	#if defined _ALS_OnClientCheckResponse
+		#error _ALS_OnClientCheckResponse defined
+	#endif
+	#define _ALS_OnClientCheckResponse
+	#define OnClientCheckResponse(%0) FIXES_OnClientCheckResponse(%0) <OnClientCheckResponse : OnClientCheckResponse_GM>
+#endif
 
 /**
  * <remarks>
