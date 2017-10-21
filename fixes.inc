@@ -118,15 +118,15 @@ in the output code.
  *     <see>OnGameModeInit</see>
  * </fix>
  *
- * <fix name="SpawnPlayer">    
+ * <fix name="SpawnPlayer">
  *     <problem>
  *         Kills the player if they are in a vehicle.
- *     </problem> 
+ *     </problem>
  *     <solution>
  *         Remove the from the vehicle.
  *     </solution>
- *     <see>FIXES_SpawnPlayer</see>     
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>  
+ *     <see>FIXES_SpawnPlayer</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *
  * <fix name="SetPlayerName">
@@ -152,7 +152,7 @@ in the output code.
  *     </problem>
  *     <solution>
  *         Record the skin in "OnPlayerSpawn" and always return that one.
- *         
+ *
  *     </solution>
  *     <see>OnPlayerSpawn</see>
  *     <see>FIXES_GetPlayerSkin</see>
@@ -1614,7 +1614,7 @@ in the output code.
  * </section>
  *
  * <p>Originally Posted by <a href="https://github.com/Y-Less/">Y_Less</a>:</p>
- * 
+ *
  * <p><em>[This] is beta software written by a small team in their spare time,
  * thus it has bugs (as does all software).  This software is explicitly
  * designed to solve bugs, not cause them, but there may still be bugs.</em></p>
@@ -4358,12 +4358,12 @@ static stock const
 	#endif
 
 	// a_npc
-	//   
+	//
 	//   native CONST_SetTimer(const funcname[], interval, repeating) = SetTimer;
 	//   native CONST_SendChat(const msg[]) = SendChat;
 	//   native CONST_SendCommand(const commandtext[]) = SendCommand;
 	//   native CONST_StartRecordingPlayback(playbacktype, const recordname[]) = StartRecordingPlayback;
-	//   
+	//
 
 	// a_objects
 	#if defined _ALS_SetObjectMaterial
@@ -6517,7 +6517,7 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 		// ======================
 		//  END:   SpawnPlayer
 		// ======================
-		
+
 		// ======================
 		//  BEGIN: OnPlayerSpawn
 		// ======================
@@ -6527,7 +6527,7 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 		// ======================
 		//  END:   OnPlayerSpawn
 		// ======================
-		
+
 		return SpawnPlayer(playerid);
 	}
 
@@ -7301,7 +7301,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 
 			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] = y_min,
 			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] = y_max;
-			
+
 			new
 				Float:tmp;
 			GetPlayerPos(playerid, tmp, tmp, tmp),
@@ -9237,9 +9237,9 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#define _FIXES_PASS_STRING(%0) %0
 	#endif
 	#if FIX_PlayerTextDrawSetString_2
-		#define _FIXES_RETURN_STRING(%0) new ret =  _FIXES_PASS_STRING(%0)
+		#define _FIXES_RETURN_STRING(%0) new ret = _FIXES_PASS_STRING(%0)
 	#else
-		#define _FIXES_RETURN_STRING(%0) return  _FIXES_PASS_STRING(%0)
+		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
 
 	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[])
@@ -9285,9 +9285,9 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#define _FIXES_PASS_STRING(%0) %0
 	#endif
 	#if FIX_TextDrawCreate_2
-		#define _FIXES_RETURN_STRING(%0) new Text:ret =  _FIXES_PASS_STRING(%0)
+		#define _FIXES_RETURN_STRING(%0) new Text:ret = _FIXES_PASS_STRING(%0)
 	#else
-		#define _FIXES_RETURN_STRING(%0) return  _FIXES_PASS_STRING(%0)
+		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
 
 	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[])
@@ -9338,9 +9338,9 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#define _FIXES_PASS_STRING(%0) %0
 	#endif
 	#if FIX_TextDrawSetString_2
-		#define _FIXES_RETURN_STRING(%0) new ret =  _FIXES_PASS_STRING(%0)
+		#define _FIXES_RETURN_STRING(%0) new ret = _FIXES_PASS_STRING(%0)
 	#else
-		#define _FIXES_RETURN_STRING(%0) return  _FIXES_PASS_STRING(%0)
+		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
 
 	stock FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[])
@@ -10775,7 +10775,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
 #if FIX_OnPlayerEnterVehicle_3
 	stock FIXES_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective)
 	{
-		new 
+		new
 			ret = GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 		#if FIXES_Single
 			doors = FIXES_gsVehicleIsLocked[vehicleid] ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
@@ -10798,7 +10798,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
  */
 #if FIX_OnPlayerEnterVehicle_3 && !FIXES_Single && !defined FILTERSCRIPT
 	forward _FIXES_GetVehicleDoorsEx(vehicleid);
-	
+
 	public _FIXES_GetVehicleDoorsEx(vehicleid)
 	{
 		return FIXES_gsVehicleIsLocked[vehicleid];
