@@ -190,6 +190,8 @@ GetPlayerWeather | This function doesn't exist. | Add it. | [IstuntmanI](https:/
 GetWeather | This function doesn't exist. | Add it. | [IstuntmanI](https://github.com/IstuntmanI/) [ziggi](https://github.com/ziggi/) | | **Disabled By Default** 
 GetWorldTime | This function doesn't exist. | Add it. | [ziggi](https://github.com/ziggi/) | | **Disabled By Default** 
 tabsize | Some people still use `tabsize 0`. | Break the pragma. | [Y_Less](https://github.com/Y-Less) | [Link](http://forum.sa-mp.com/showpost.php?p=3929000) | 
+OnRconCommand | Is not called in the gamemode unless first called in a filterscript. | Load a minimal (embedded) FS to bootstrap it. | [Y_Less](https://github.com/Y-Less) | | 
+OnClientCheckResponse | Is not called in the gamemode ever. | Load a minimal (embedded) FS to bootstrap it. | [Y_Less](https://github.com/Y-Less) | | 
 
 ## Options 
 
@@ -352,3 +354,4 @@ The descriptions of the fixes all look like:
      <post href="Optional link to the original post where applicable." /> 
 </fix> 
 ```
+
