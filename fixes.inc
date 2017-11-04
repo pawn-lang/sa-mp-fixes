@@ -1795,6 +1795,31 @@ in the output code.
 	#define _inc_fixes
 #endif
 
+#pragma tabsize 4
+#pragma semicolon 1
+#pragma ctrlchar '\\'
+#pragma rational Float
+#if ((__Pawn & 0x0F) >= 0x0A) || ((__Pawn & 0xF0) >= 0xA0)
+	#pragma warning push
+	#pragma warning disable 207
+	#pragma option -(+
+	#pragma disablerecursion
+	#pragma warning pop
+	#pragma warning disable 238
+#endif
+
+#if !defined _samp_included
+	#tryinclude <a_samp>
+	#tryinclude "a_samp"
+#endif
+#if !defined _samp_included
+	#tryinclude <a_npc>
+	#tryinclude "a_npc"
+#endif
+#if !defined _samp_included
+	#error Could not find a_samp.inc
+#endif
+
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
 #if !defined FIXES_EnableAll
