@@ -2783,6 +2783,13 @@ in the output code.
 	#define FIX_GetServerVarAsFloat              (2)
 #endif
 
+#if !defined FIX_GetServerVarMessage
+	#define FIX_GetServerVarMessage              (1)
+#elseif _FIXES_IS_UNSET(FIX_GetServerVarMessage)
+	#undef FIX_GetServerVarMessage
+	#define FIX_GetServerVarMessage              (2)
+#endif
+
 #if !defined FIX_tabsize
 	#define FIX_tabsize                          (1)
 #elseif _FIXES_IS_UNSET(FIX_tabsize)
@@ -5580,26 +5587,35 @@ static stock _FIXES_CheckServerRoot()
 {
 	#if FIX_GetServerVarAsString || FIX_GetServerVarAsFloat || FIX_GetServerVarAsInt || FIX_GetServerVarAsBool
 		FIXES_gsServerCFG = fopen("DANGEROUS_SERVER_ROOT/server.cfg", io_read);
-		if (!FIXES_gsServerCFG)
-		{
-			print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):"));
-			print(" ");
-			print("********************************************************************************");
-			print("* Could not open \"DANGEROUS_SERVER_ROOT/server.cfg\".  Make sure your server is *");
-			print("* configured to allow server root access.  Either via:                         *");
-			print("*                                                                              *");
-			print("*     https://github.com/Misiur/YSI/raw/master/links.rar                       *");
-			print("*                                                                              *");
-			print("* Or (Windows):                                                                *");
-			print("*                                                                              *");
-			print("*     mklink /J DANGEROUS_SERVER_ROOT ..                                       *");
-			print("*                                                                              *");
-			print("* Or (Linux):                                                                  *");
-			print("*                                                                              *");
-			print("*     ln -s .. DANGEROUS_SERVER_ROOT                                           *");
-			print("********************************************************************************");
-			print(" ");
-		}
+		#if FIX_GetServerVarMessage
+			if (!FIXES_gsServerCFG)
+			{
+				print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):"));
+				print(" ");
+				print("********************************************************************************");
+				print("* Could not open \"DANGEROUS_SERVER_ROOT/server.cfg\".  Make sure your server is *");
+				print("* configured to allow server root access.  Either via:                         *");
+				print("*                                                                              *");
+				print("*     https://github.com/Misiur/YSI/raw/master/links.rar                       *");
+				print("*                                                                              *");
+				print("* Or (Windows - CMD):                                                          *");
+				print("*                                                                              *");
+				print("*     mklink /J DANGEROUS_SERVER_ROOT ..                                       *");
+				print("*                                                                              *");
+				print("* Or (Windows - PowerShell):                                                   *");
+				print("*                                                                              *");
+				print("*     cmd /c mklink /J DANGEROUS_SERVER_ROOT ..                                *");
+				print("*                                                                              *");
+				print("* Or (Linux):                                                                  *");
+				print("*                                                                              *");
+				print("*     ln -s .. DANGEROUS_SERVER_ROOT                                           *");
+				print("*                                                                              *");
+				print("* If you not able or just doesn't want to make these changes then add this     *");
+				print("* \"#define FIX_GetServerVarMessage 0\" before \"#include <fixes>\"                *");
+				print("********************************************************************************");
+				print(" ");
+			}
+		#endif
 	#endif
 }
 
