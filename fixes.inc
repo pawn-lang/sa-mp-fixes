@@ -2797,15 +2797,22 @@ in the output code.
 	#define FIX_tabsize                          (2)
 #endif
 
+#if !defined FIX_Callbacks
+	#define FIX_Callbacks                        (1)
+#elseif _FIXES_IS_UNSET(FIX_Callbacks)
+	#undef FIX_Callbacks
+	#define FIX_Callbacks                        (2)
+#endif
+
 #if !defined FIX_OnRconCommand
-	#define FIX_OnRconCommand                    (1)
+	#define FIX_OnRconCommand                    (FIX_Callbacks)
 #elseif _FIXES_IS_UNSET(FIX_OnRconCommand)
 	#undef FIX_OnRconCommand
 	#define FIX_OnRconCommand                    (2)
 #endif
 
 #if !defined FIX_OnClientCheckResponse
-	#define FIX_OnClientCheckResponse            (1)
+	#define FIX_OnClientCheckResponse            (FIX_Callbacks)
 #elseif _FIXES_IS_UNSET(FIX_OnClientCheckResponse)
 	#undef FIX_OnClientCheckResponse
 	#define FIX_OnClientCheckResponse            (2)
