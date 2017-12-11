@@ -2783,13 +2783,6 @@ in the output code.
 	#define FIX_GetServerVarAsFloat              (2)
 #endif
 
-#if !defined FIX_GetServerVarMessage
-	#define FIX_GetServerVarMessage              (1)
-#elseif _FIXES_IS_UNSET(FIX_GetServerVarMessage)
-	#undef FIX_GetServerVarMessage
-	#define FIX_GetServerVarMessage              (2)
-#endif
-
 #if !defined FIX_tabsize
 	#define FIX_tabsize                          (1)
 #elseif _FIXES_IS_UNSET(FIX_tabsize)
@@ -2970,6 +2963,21 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 	#else
 		#undef FIXES_Debug
 	#endif
+#endif
+
+/**
+ * <remarks>
+ * If this define is set to 1, then the server will not give a message when
+ * <see>GetServerVarAsString</see> and related functions are used without a
+ * valid directory redirect.
+ * </remarks>
+ */
+
+#if !defined FIXES_ServerVarMsg
+	#define FIXES_ServerVarMsg 1
+#elseif _FIXES_IS_UNSET(FIXES_ServerVarMsg)
+	#undef FIXES_ServerVarMsg
+	#define FIXES_ServerVarMsg 2
 #endif
 
 /**
@@ -5594,7 +5602,7 @@ static stock _FIXES_CheckServerRoot()
 {
 	#if FIX_GetServerVarAsString || FIX_GetServerVarAsFloat || FIX_GetServerVarAsInt || FIX_GetServerVarAsBool
 		FIXES_gsServerCFG = fopen("DANGEROUS_SERVER_ROOT/server.cfg", io_read);
-		#if FIX_GetServerVarMessage
+		#if FIXES_ServerVarMsg
 			if (!FIXES_gsServerCFG)
 			{
 				print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):"));
@@ -5618,7 +5626,7 @@ static stock _FIXES_CheckServerRoot()
 				print("*     ln -s .. DANGEROUS_SERVER_ROOT                                           *");
 				print("*                                                                              *");
 				print("* If you not able or just doesn't want to make these changes then add this     *");
-				print("* \"#define FIX_GetServerVarMessage 0\" before \"#include <fixes>\"                *");
+				print("* \"#define FIXES_ServerVarMsg 0\" before \"#include <fixes>\"                     *");
 				print("********************************************************************************");
 				print(" ");
 			}
