@@ -5198,7 +5198,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 
 				// Global style 9 (radio name).
 				t = FIXES_gsGTStyle[9] = TextDrawCreate(320.000000, 22.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.600000, 1.899999),
+				TextDrawLetterSize(t, 0.600000, 1.799999),
 				TextDrawAlignment(t, 2),
 				TextDrawColor(t, 0x906210FF),
 				TextDrawSetShadow(t, 0),
@@ -5212,7 +5212,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 
 				// Global style 10 (radio switch).
 				t = FIXES_gsGTStyle[10] = TextDrawCreate(320.000000, 22.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.600000, 1.899999),
+				TextDrawLetterSize(t, 0.600000, 1.799999),
 				TextDrawAlignment(t, 2),
 				TextDrawColor(t, 0x969696FF),
 				TextDrawSetShadow(t, 0),
@@ -5403,7 +5403,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 
 				// Global style 9 (playerid, radio name).
 				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.600000, 1.899999),
+				PlayerTextDrawLetterSize(playerid, t, 0.600000, 1.799999),
 				PlayerTextDrawAlignment(playerid, t, 2),
 				PlayerTextDrawColor(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
@@ -5417,7 +5417,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 
 				// Global style 10 (playerid, radio switch).
 				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.600000, 1.899999),
+				PlayerTextDrawLetterSize(playerid, t, 0.600000, 1.799999),
 				PlayerTextDrawAlignment(playerid, t, 2),
 				PlayerTextDrawColor(playerid, t, 0x969696FF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
