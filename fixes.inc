@@ -1802,8 +1802,10 @@ in the output code.
 #if ((__Pawn & 0x0F) >= 0x0A) || ((__Pawn & 0xF0) >= 0xA0)
 	#pragma warning push
 	#pragma warning disable 207
-	#if defined __PawnBuild && __PawnBuild >= 4
-		#pragma option -(+
+	#if defined __PawnBuild
+		#if __PawnBuild >= 4
+			#pragma option -(+
+		#endif
 	#endif
 	#pragma disablerecursion
 	#pragma warning pop
