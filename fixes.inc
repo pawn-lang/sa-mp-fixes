@@ -9991,7 +9991,7 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 #if FIX_fwrite
 	stock FIXES_fwrite(File:handle, const string[])
 	{
-		return handle && fwrite(handle, string);
+		return handle ? fwrite(handle, string) : 0;
 	}
 
 	#define _ALS_fwrite
@@ -10014,7 +10014,7 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 #if FIX_fread
 	stock FIXES_fread(File:handle, string[], size = sizeof (string), bool:pack = false)
 	{
-		return handle && fread(handle, string, size, pack);
+		return handle ? fread(handle, string, size, pack) : 0;
 	}
 
 	#define _ALS_fread
@@ -10060,7 +10060,7 @@ native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 #if FIX_fgetchar
 	stock FIXES_fgetchar(File:handle, value, bool:utf8 = true)
 	{
-		return handle && fgetchar(handle, value, utf8);
+		return handle ? fgetchar(handle, value, utf8) : '\0';
 	}
 
 	#define _ALS_fgetchar
@@ -10083,7 +10083,7 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
 #if FIX_fblockwrite
 	stock FIXES_fblockwrite(File:handle, const buffer[], size = sizeof (buffer))
 	{
-		return handle && fblockwrite(handle, buffer, size);
+		return handle ? fblockwrite(handle, buffer, size) : 0;
 	}
 
 	#define _ALS_fblockwrite
@@ -10106,7 +10106,7 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
 #if FIX_fblockread
 	stock FIXES_fblockread(File:handle, buffer[], size = sizeof (buffer))
 	{
-		return handle && fblockread(handle, buffer, size);
+		return handle ? fblockread(handle, buffer, size) : 0;
 	}
 
 	#define _ALS_fblockread
@@ -10129,7 +10129,7 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
 #if FIX_fseek
 	stock FIXES_fseek(File:handle, position = 0, seek_whence:whence = seek_start)
 	{
-		return handle && fseek(handle, position, whence);
+		return handle ? fseek(handle, position, whence) : 0;
 	}
 
 	#define _ALS_fseek
@@ -10152,7 +10152,7 @@ native BAD_flength(File:handle) = flength;
 #if FIX_flength
 	stock FIXES_flength(File:handle)
 	{
-		return handle && flength(handle);
+		return handle ? flength(handle) : 0;
 	}
 
 	#define _ALS_flength
