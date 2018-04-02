@@ -424,6 +424,7 @@ in the output code.
  *     <see>OnPlayerUpdate</see>
  *     <author    >RyDeR`</author>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/NexiusTailer">NexiusTailer</author>
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1410296" />
  * </fix>
  *
@@ -1114,6 +1115,7 @@ in the output code.
  *     <see>FIXES_GameTextForAll</see>
  *     <see>FIXES_GameTextForPlayer</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/NexiusTailer">NexiusTailer</author>
  * </fix>
  *
  * <fix name="HideGameText">
