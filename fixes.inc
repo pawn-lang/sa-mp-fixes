@@ -3072,8 +3072,7 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
  * </remarks>
  */
 
-#define isnull(%1) \
-	((%1[0] == 0) || (%1[0] == 1 && %1[1] == 0))
+#define isnull(%0) ((%0)[(%0)[0]=='\1']=='\0')
 
 /**
  * <remarks>
