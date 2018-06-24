@@ -531,6 +531,18 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *
+ * <fix name="SetSpawnInfo_2">
+ *     <problem>
+ *         Does not set the correct team after spawn.
+ *     </problem>
+ *     <solution>
+ *         Call "SetPlayerTeam" when they spawn.
+ *     </solution>
+ *     <see>OnPlayerSpawn</see>
+ *     <author    href="http://forum.sa-mp.com/member.php?u=24012" >NaS</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=3994248" />
+ * </fix>
+ *
  * <fix name="SetPlayerSkin">
  *     <problem>
  *         Breaks sitting on bikes.
@@ -2207,6 +2219,13 @@ in the output code.
 #elseif _FIXES_IS_UNSET(FIX_SetSpawnInfo)
 	#undef FIX_SetSpawnInfo
 	#define FIX_SetSpawnInfo                     (2)
+#endif
+
+#if !defined FIX_SetSpawnInfo_2
+	#define FIX_SetSpawnInfo_2                   (1)
+#elseif _FIXES_IS_UNSET(FIX_SetSpawnInfo_2)
+	#undef FIX_SetSpawnInfo_2
+	#define FIX_SetSpawnInfo_2                   (2)
 #endif
 
 #if !defined FIX_SetPlayerSkin
@@ -6693,9 +6712,10 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  * <fixes>GetPlayerInterior</fixes>
  * <fixes>OnPlayerSpawn</fixes>
  * <fixes>GameText</fixes>
+ * <fixes>SetSpawnInfo_2</fixes>
  */
 
-#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_GameText
+#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_GameText || FIX_SetSpawnInfo_2
 	public OnPlayerSpawn(playerid)
 	{
 		_FIXES_IS_IN_CHARGE()
@@ -6785,6 +6805,16 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			// ======================
 			//  END:   GetPlayerSkin
 			// ======================
+
+			// =======================
+			//  BEGIN: SetSpawnInfo_2
+			// =======================
+			#if FIX_SetSpawnInfo_2
+				SetPlayerTeam(playerid, GetPlayerTeam(playerid));
+			#endif
+			// =======================
+			//  END:   SetSpawnInfo_2
+			// =======================
 		}
 
 		// =================================
