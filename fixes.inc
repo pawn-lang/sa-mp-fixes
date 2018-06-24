@@ -1812,6 +1812,9 @@ in the output code.
 	#pragma disablerecursion
 	#pragma warning pop
 	#pragma warning disable 238
+	#define _FIXES_ENUM static enum
+#else
+	#define _FIXES_ENUM enum
 #endif
 
 #if !defined _samp_included
@@ -3081,7 +3084,7 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
  * Store data for each player on their worldbound data.
  * </remarks>
  */
-enum E_FIXES_WORLDBOUND_DATA
+_FIXES_ENUM E_FIXES_WORLDBOUND_DATA
 {
 	// "Previous".
 	Float:E_FIXES_WORLDBOUND_DATA_PX,
@@ -3103,7 +3106,7 @@ enum E_FIXES_WORLDBOUND_DATA
  * in to one variable to reduce memory consumption.
  * </remarks>
  */
-enum e_FIXES_BOOLS (<<= 1)
+_FIXES_ENUM e_FIXES_BOOLS:(<<= 1)
 {
 	// Handy definition for nothing set.
 	e_FIXES_BOOLS_NONE = 0,
@@ -3137,7 +3140,7 @@ enum e_FIXES_BOOLS (<<= 1)
  * settings that are true/false.
  * </remarks>
  */
-enum e_FIXES_SETTINGS (<<= 1)
+_FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 {
 	// Handy definition for nothing set.
 	e_FIXES_SETTINGS_NONE = 0,
@@ -12124,6 +12127,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_NO_RANGE
 #undef _FIXES_FORWARD
 #undef _FIXES_IS_PLAYER_CONNECTED
+#undef _FIXES_ENUM
 #undef FIXES_PRINTF
 
 #endinput
