@@ -1813,20 +1813,29 @@ in the output code.
 #pragma semicolon 1
 #pragma ctrlchar '\\'
 #pragma rational Float
+
+#define _FIXES_ENUM enum
+
 #if ((__Pawn & 0x0F) >= 0x0A) || ((__Pawn & 0xF0) >= 0xA0)
-	#pragma warning push
-	#pragma warning disable 207
 	#if defined __PawnBuild
+		// Extra flags.
 		#if __PawnBuild >= 4
 			#pragma option -(+
 		#endif
+		
+		// Use `static enum` if it is available.
+		#if __PawnBuild >= 2
+			#undef _FIXES_ENUM
+			#define _FIXES_ENUM static enum
+		#endif
 	#endif
+	
+	// Stupid "warning" that should not exist ever.
+	#pragma warning push
+	#pragma warning disable 207
 	#pragma disablerecursion
 	#pragma warning pop
 	#pragma warning disable 238
-	#define _FIXES_ENUM static enum
-#else
-	#define _FIXES_ENUM enum
 #endif
 
 #if !defined _samp_included
