@@ -5197,9 +5197,9 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
     {	 
 		_FIXES_FOREACH(FIXES_gsJackedId, i)
 		{
-			if(GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID(i) == vehicleid)
+			if (GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID(i) == vehicleid)
 			{
-				if(FIXES_gsJackedId[i] != INVALID_PLAYER_ID)
+				if (FIXES_gsJackedId[i] != INVALID_PLAYER_ID)
 				{
 					ClearAnimations(FIXES_gsJackedId[i]);
 					break;
@@ -6729,10 +6729,10 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		GetPlayerName(playerid, sOldName, sizeof (sOldName));
 		if (!strcmp(name, sOldName, true))
 		{
-			if(strcmp(name, sOldName, false))
+			if (strcmp(name, sOldName, false))
 			{
 				SetPlayerName(playerid, FIXES_gscTempName);
-				if(SetPlayerName(playerid, name) == -1)
+				if (SetPlayerName(playerid, name) == -1)
 				{
 					SetPlayerName(playerid, sOldName);
 					return -1;
@@ -7620,7 +7620,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: SilentTeleport
 		// =============================
 		#if FIX_SilentTeleport
-			if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && FIXES_gsJackedId[playerid] != INVALID_PLAYER_ID)
+			if (GetPlayerState(playerid) == PLAYER_STATE_DRIVER && FIXES_gsJackedId[playerid] != INVALID_PLAYER_ID)
 			{
 				ClearAnimations(FIXES_gsJackedId[playerid]);
 			}
@@ -7820,7 +7820,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			{
 				_FIXES_FOREACH(FIXES_gsJackedId, i)
 				{
-					if(GetPlayerVehicleID(i) == vehicleid && GetPlayerState(i) == PLAYER_STATE_DRIVER)
+					if (GetPlayerVehicleID(i) == vehicleid && GetPlayerState(i) == PLAYER_STATE_DRIVER)
 					{
 						FIXES_gsJackedId[i] = playerid;
 						SetTimerEx("FIXES_RemoveJackedId", 5000, false, "d", i);
