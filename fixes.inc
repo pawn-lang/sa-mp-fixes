@@ -5193,23 +5193,21 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
  */
 
 #if FIX_SilentTeleport
-     stock FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
-     { 
-		 for(new i; i < MAX_PLAYERS; i++)
-		 {
-			 if(!IsPlayerConnected(i)) continue;
-			 if(GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID(i) == vehicleid)
-			 {
-				 if(FIXES_gsJackedId(i) != INVALID_PLAYER_ID)
-				 {
-					 ClearAnimations(FIXES_gsJackedId[i]);
-					 break;
-				 }
-			 }
-		 }
-		 SetVehiclePos(vehicleid, x, y, z);
-         return 0; 
-     } 
+	stock FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
+    {	 
+		_FIXES_FOREACH(FIXES_gsJackedId, i)
+		{
+			if(GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID(i) == vehicleid)
+			{
+				if(FIXES_gsJackedId[i] != INVALID_PLAYER_ID)
+				{
+					ClearAnimations(FIXES_gsJackedId[i]);
+					break;
+				}
+			}
+		}
+		return SetVehiclePos(vehicleid, x, y, z);  
+    } 
 
      #define _ALS_SetVehiclePos
      #define SetVehiclePos( FIXES_SetVehiclePos( 
@@ -7622,7 +7620,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: SilentTeleport
 		// =============================
 		#if FIX_SilentTeleport
-			if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && FIXES_gsJackedId(playerid) != INVALID_PLAYER_ID)
+			if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && FIXES_gsJackedId[playerid] != INVALID_PLAYER_ID)
 			{
 				ClearAnimations(FIXES_gsJackedId[playerid]);
 			}
@@ -7820,9 +7818,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#if FIX_SilentTeleport
 			if (!ispassenger)
 			{
-				for(new i; i < MAX_PLAYERS; i++)
+				_FIXES_FOREACH(FIXES_gsJackedId, i)
 				{
-					if(!IsPlayerConnected(i)) continue;
 					if(GetPlayerVehicleID(i) == vehicleid && GetPlayerState(i) == PLAYER_STATE_DRIVER)
 					{
 						FIXES_gsJackedId[i] = playerid;
