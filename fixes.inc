@@ -950,6 +950,18 @@ in the output code.
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *
+ * <fix name="SilentTeleport">
+ *     <problem>
+ *         Player teleports silently while trying to enter a vehicle as that vehicle teleports/changes original interior.
+ *     </problem>
+ *     <solution>
+ *         Stop the player from teleporting by using 'ClearAnimations' before the teleport happens.
+ *     </solution>
+ *	   <see>OnPlayerEnterVehicle</see>
+ *	   <see>OnPlayerInteriorChange</see>
+ *     <author    href="https://github.com/RogueDrifter/" >RogueDrifter</author>
+ * </fix>
+ *
  * <fix name="GangZoneCreate">
  *     <problem>
  *         Gang zones bug on the main map for players at certain angles relative
@@ -2075,6 +2087,13 @@ in the output code.
 #elseif _FIXES_IS_UNSET(FIX_DriveBy)
 	#undef FIX_DriveBy
 	#define FIX_DriveBy                          (2)
+#endif
+
+#if !defined FIX_SilentTeleport
+    #define FIX_SilentTeleport                          (1)
+#elseif _FIXES_IS_UNSET(FIX_SilentTeleport)
+    #undef FIX_SilentTeleport
+    #define FIX_SilentTeleport                          (2)
 #endif
 
 #if !defined FIX_SetPlayerCheckpoint
@@ -3714,6 +3733,14 @@ static stock
 #endif
 	/**
 	 * <remarks>
+	 * The player id who is getting carjacked before the car teleports.
+	 * </remarks>
+	 */
+#if FIX_SilentTeleport
+	FIXES_gsJackedId[MAX_PLAYERS] = {INVALID_PLAYER_ID, ...},
+#endif
+	/**
+	 * <remarks>
 	 * Name of the GameText hide timer function.
 	 * </remarks>
 	 */
@@ -5144,6 +5171,52 @@ static _FIXES_DetermineOS()
 
 /**
  * <remarks>
+ * Declare the function to reset the car-jacked player id to invalid id.
+ * </remarks>
+ */
+ 
+#if FIX_SilentTeleport
+	forward FIXES_RemoveJackedId(playerid);
+	public FIXES_RemoveJackedId(playerid) return FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
+#endif
+
+/**
+ * <fixes>SilentTeleport</fixes>
+ */
+#if defined _ALS_SetVehiclePos
+     #error _ALS_SetVehiclePos defined 
+#endif 
+native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos; 
+
+/**
+ * <fixes>SilentTeleport</fixes>
+ */
+
+#if FIX_SilentTeleport
+     stock FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
+     { 
+		 for(new i; i < MAX_PLAYERS; i++)
+		 {
+			 if(!IsPlayerConnected(i)) continue;
+			 if(GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID(i) == vehicleid)
+			 {
+				 if(FIXES_gsJackedId(i) != INVALID_PLAYER_ID)
+				 {
+					 ClearAnimations(FIXES_gsJackedId[i]);
+					 break;
+				 }
+			 }
+		 }
+		 SetVehiclePos(vehicleid, x, y, z);
+         return 0; 
+     } 
+
+     #define _ALS_SetVehiclePos
+     #define SetVehiclePos( FIXES_SetVehiclePos( 
+#endif 
+
+/**
+ * <remarks>
  * Figure out which script is called first by callbacks.
  * </remarks>
  */
@@ -6397,11 +6470,21 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  * <fixes>GetPlayerMenu</fixes>
  */
 
-#if FIX_Kick || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_OnPlayerEnterVehicle_3 || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
+#if FIX_Kick || FIX_SilentTeleport || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_OnPlayerEnterVehicle_3 || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
 	public OnPlayerDisconnect(playerid, reason)
 	{
 		new
 			ret = FIXES_OnPlayerDisconnect(playerid, reason);
+
+		// =========================
+		// BEGIND: SilentTeleport
+		// =========================
+		#if FIX_SilentTeleport
+			FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
+		#endif
+		// =========================
+		// END: SilentTeleport
+		// =========================
 
 		// =========================
 		//  BEGIN: ApplyAnimation_2
@@ -6835,6 +6918,16 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		// =================================
 		//  END:   TogglePlayerControllable
 		// =================================
+
+	  	// =========================
+		// BEGIND: SilentTeleport
+		// =========================
+		#if FIX_SilentTeleport
+			FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
+		#endif
+		// =========================
+		// END: SilentTeleport
+		// =========================
 
 		return FIXES_OnPlayerSpawn(playerid);
 	}
@@ -7521,9 +7614,23 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * <fixes>GetPlayerInterior</fixes>
  */
 
-#if FIX_AllowInteriorWeapons || FIX_GetPlayerInterior
+#if FIX_AllowInteriorWeapons || FIX_GetPlayerInterior || FIX_SilentTeleport
 	public OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid)
 	{
+
+		// =============================
+		//  BEGIN: SilentTeleport
+		// =============================
+		#if FIX_SilentTeleport
+			if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER && FIXES_gsJackedId(playerid) != INVALID_PLAYER_ID)
+			{
+				ClearAnimations(FIXES_gsJackedId[playerid]);
+			}
+		#endif
+		// =============================
+		//  END: SilentTeleport
+		// =============================
+		
 		// ==========================
 		//  BEGIN: GetPlayerInterior
 		// ==========================
@@ -7705,6 +7812,28 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#endif
 		// =============================
 		//  END: PassengerSeating
+		// =============================
+
+		// =============================
+		//  BEGIN: SilentTeleport
+		// =============================
+		#if FIX_SilentTeleport
+			if (!ispassenger)
+			{
+				for(new i; i < MAX_PLAYERS; i++)
+				{
+					if(!IsPlayerConnected(i)) continue;
+					if(GetPlayerVehicleID(i) == vehicleid && GetPlayerState(i) == PLAYER_STATE_DRIVER)
+					{
+						FIXES_gsJackedId[i] = playerid;
+						SetTimerEx("FIXES_RemoveJackedId", 5000, false, "d", i);
+						break;
+					}
+				}
+			}
+		#endif
+		// =============================
+		//  END: SilentTeleport
 		// =============================
 
 		return FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
