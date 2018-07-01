@@ -5195,7 +5195,7 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 #if FIX_SilentTeleport
 	stock FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
     {	 
-		_FIXES_FOREACH(FIXES_gsJackedId, i)
+		_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 		{
 			if (GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID(i) == vehicleid)
 			{
@@ -6805,7 +6805,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  * <fixes>SetSpawnInfo_2</fixes>
  */
 
-#if FIX_GetPlayerSkin || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_GameText || FIX_SetSpawnInfo_2
+#if FIX_GetPlayerSkin || FIX_SilentTeleport || FIX_TogglePlayerControllable || FIX_GetPlayerInterior || FIX_OnPlayerSpawn || FIX_GameText || FIX_SetSpawnInfo_2
 	public OnPlayerSpawn(playerid)
 	{
 		_FIXES_IS_IN_CHARGE()
@@ -7760,7 +7760,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * <fixes>PassengerSeating</fixes>
  */
 
-#if FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerEnterVehicle_3 || FIX_PassengerSeating
+#if FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerEnterVehicle_3 || FIX_PassengerSeating || FIX_SilentTeleport
 	public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	{
 		// ===============================
@@ -7818,7 +7818,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#if FIX_SilentTeleport
 			if (!ispassenger)
 			{
-				_FIXES_FOREACH(FIXES_gsJackedId, i)
+				_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 				{
 					if (GetPlayerVehicleID(i) == vehicleid && GetPlayerState(i) == PLAYER_STATE_DRIVER)
 					{
