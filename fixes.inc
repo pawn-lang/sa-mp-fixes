@@ -5198,9 +5198,9 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 
 		//Validity check to prevent array ot of bounds.
 		#if defined IsValidVehicle
-		if(!IsValidVehicle(vehicleid)) return 0;
+		if (!IsValidVehicle(vehicleid)) return 0;
 		#else
-		if(vehicleid > MAX_VEHICLES || vehicleid < 0) return 0;
+		if (vehicleid > MAX_VEHICLES || vehicleid < 0) return 0;
 		#endif
 		//End of validity check.
 
