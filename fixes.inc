@@ -5195,6 +5195,15 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 #if FIX_SilentTeleport
 	stock FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
     {	 
+
+		//Validity check to prevent array ot of bounds.
+		#if defined IsValidVehicle
+		if(!IsValidVehicle(vehicleid)) return 0;
+		#else
+		if(vehicleid > MAX_VEHICLES || vehicleid < 0) return 0;
+		#endif
+		//End of validity check.
+
 		_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 		{
 			if (GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID(i) == vehicleid)
