@@ -5194,16 +5194,14 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 
 #if FIX_SilentTeleport
 	stock FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
-    {	 
+	{	 
 
-		//Validity check to prevent array ot of bounds.
-		#if defined IsValidVehicle
-		if (!IsValidVehicle(vehicleid)) return 0;
-		#else
-		if (vehicleid > MAX_VEHICLES || vehicleid < 0) return 0;
-		#endif
-		//End of validity check.
-
+		// Validity check to prevent array ot of bounds.
+		if (!SetVehiclePos(vehicleid, x, y, z))
+		{
+			return 0;
+		}
+		
 		_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 		{
 			if (GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID(i) == vehicleid)
@@ -5215,11 +5213,11 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 				}
 			}
 		}
-		return SetVehiclePos(vehicleid, x, y, z);  
-    } 
+		return 1;
+	}
 
-     #define _ALS_SetVehiclePos
-     #define SetVehiclePos( FIXES_SetVehiclePos( 
+	#define _ALS_SetVehiclePos
+	#define SetVehiclePos( FIXES_SetVehiclePos( 
 #endif 
 
 /**
@@ -6484,7 +6482,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 			ret = FIXES_OnPlayerDisconnect(playerid, reason);
 
 		// =========================
-		// BEGIND: SilentTeleport
+		// BEGIN: SilentTeleport
 		// =========================
 		#if FIX_SilentTeleport
 			FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
@@ -6927,7 +6925,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		// =================================
 
 	  	// =========================
-		// BEGIND: SilentTeleport
+		// BEGIN: SilentTeleport
 		// =========================
 		#if FIX_SilentTeleport
 			FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
