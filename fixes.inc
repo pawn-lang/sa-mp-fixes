@@ -7293,8 +7293,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  BEGIN: OnPlayerDeath
 		// ======================
 		#if FIX_OnPlayerDeath
-			new
-				animation = FIXES_gsLastAnimation[playerid] = GetPlayerAnimationIndex(playerid);
+			FIXES_gsLastAnimation[playerid] = GetPlayerAnimationIndex(playerid);
 		#endif
 		// ======================
 		//  END:   OnPlayerDeath
@@ -7341,6 +7340,9 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 					#if !FIX_OnPlayerDeath
 						new
 							animation = GetPlayerAnimationIndex(playerid);
+					#else
+						new
+							animation = FIXES_gsLastAnimation[playerid];
 					#endif
 
 					if (_FIXES_NO_RANGE(animation, 1007, 1060 + 1) && _FIXES_NO_RANGE(animation, 225, 233 + 1))
