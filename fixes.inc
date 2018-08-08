@@ -5196,7 +5196,7 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 	stock FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
 	{	 
 
-		// Validity check to prevent array ot of bounds.
+		// Validity check to prevent array out of bounds.
 		if (!SetVehiclePos(vehicleid, x, y, z))
 		{
 			return 0;
