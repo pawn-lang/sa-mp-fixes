@@ -6729,7 +6729,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  */
 
 #if FIX_SetPlayerName
-	stock FIXES_SetPlayerName(playerid, name[])
+	stock FIXES_SetPlayerName(playerid, const name[])
 	{
 		static
 			sOldName[MAX_PLAYER_NAME];
@@ -12357,5 +12357,3 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_NameOfFixHere
 	#define NameOfFixHere( FIXES_NameOfFixHere(
 #endif
-
-
