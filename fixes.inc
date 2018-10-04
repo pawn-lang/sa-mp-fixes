@@ -1345,6 +1345,18 @@ in the output code.
  *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
  * </fix>
  *
+ * <fix name="ispacked">
+ *     <problem>
+ *         Returns false when the string is packed and starts with a symbol with code 128 and above.
+ *     </problem>
+ *     <solution>
+ *         Check the string manually.
+ *     </solution>
+ *     <see>FIXES_ispacked</see>
+ *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
+ *     <author    href="https://github.com/VVWVV" >VVWVV</author>
+ * </fix>
+ *
  * <fix name="PassengerSeating">
  *     <problem>
  *         Teleporting player to passenger seat after delay.
@@ -2701,6 +2713,13 @@ in the output code.
 #elseif _FIXES_IS_UNSET(FIX_tolower)
 	#undef FIX_tolower
 	#define FIX_tolower                          (2)
+#endif
+
+#if !defined FIX_ispacked
+	#define FIX_ispacked                         (1)
+#elseif _FIXES_IS_UNSET(FIX_ispacked)
+	#undef FIX_ispacked
+	#define FIX_ispacked                         (2)
 #endif
 
 #if !defined FIX_PassengerSeating
@@ -11535,6 +11554,29 @@ native BAD_tolower(c) = tolower;
 
 	#define _ALS_tolower
 	#define tolower( FIXES_tolower(
+#endif
+
+/**
+ * <fixes>ispacked</fixes>
+ */
+
+#if defined _ALS_ispacked
+	#error _ALS_ispacked defined
+#endif
+native bool:BAD_ispacked(const string[]) = ispacked;
+
+/**
+ * <fixes>ispacked</fixes>
+ */
+
+#if FIX_ispacked
+	stock bool:FIXES_ispacked(const string[])
+	{
+		return (string[0] & ~0xFF) != 0;
+	}
+
+	#define _ALS_ispacked
+	#define ispacked( FIXES_ispacked(
 #endif
 
 /**
