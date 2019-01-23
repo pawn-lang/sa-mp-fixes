@@ -5356,29 +5356,29 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				TextDrawTextSize(t, 200.0, 620.0);
 
 				// Global style 11 (positive money).
-				t = FIXES_gsGTStyle[11] = TextDrawCreate(607.000000, 78.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.550000, 2.150000),
+				t = FIXES_gsGTStyle[11] = TextDrawCreate(608.000000, 77.000000, FIXES_gsSpace),
+				TextDrawLetterSize(t, 0.550000, 2.200000),
 				TextDrawAlignment(t, 3),
 				TextDrawColor(t, 0x36682CFF),
 				TextDrawSetShadow(t, 0),
 				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000FF),
+				TextDrawBackgroundColor(t, 0x000000AA),
 				TextDrawFont(t, 3),
-				TextDrawSetProportional(t, 1),
+				TextDrawSetProportional(t, 0),
 				TextDrawUseBox(t, true),
 				TextDrawBoxColor(t, 0x00000000),
 				TextDrawTextSize(t, 10.0, 200.0);
 
 				// Global style 12 (negative money).
-				t = FIXES_gsGTStyle[12] = TextDrawCreate(607.000000, 78.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.550000, 2.150000),
+				t = FIXES_gsGTStyle[12] = TextDrawCreate(608.000000, 77.000000, FIXES_gsSpace),
+				TextDrawLetterSize(t, 0.550000, 2.200000),
 				TextDrawAlignment(t, 3),
 				TextDrawColor(t, 0xB4191DFF),
 				TextDrawSetShadow(t, 0),
 				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000FF),
+				TextDrawBackgroundColor(t, 0x000000AA),
 				TextDrawFont(t, 3),
-				TextDrawSetProportional(t, 1),
+				TextDrawSetProportional(t, 0),
 				TextDrawUseBox(t, true),
 				TextDrawBoxColor(t, 0x00000000),
 				TextDrawTextSize(t, 10.0, 200.0);
@@ -5561,29 +5561,29 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
 
 				// Global style 11 (playerid, positive money).
-				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw(playerid, 607.000000, 78.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.550000, 2.150000),
+				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw(playerid, 608.000000, 77.000000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize(playerid, t, 0.550000, 2.200000),
 				PlayerTextDrawAlignment(playerid, t, 3),
 				PlayerTextDrawColor(playerid, t, 0x36682CFF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
 				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
 				PlayerTextDrawFont(playerid, t, 3),
-				PlayerTextDrawSetProportional(playerid, t, 1),
+				PlayerTextDrawSetProportional(playerid, t, 0),
 				PlayerTextDrawUseBox(playerid, t, true),
 				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
 
 				// Global style 12 (playerid, negative money).
-				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw(playerid, 607.000000, 78.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.550000, 2.150000),
+				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw(playerid, 608.000000, 77.000000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize(playerid, t, 0.550000, 2.200000),
 				PlayerTextDrawAlignment(playerid, t, 3),
 				PlayerTextDrawColor(playerid, t, 0xB4191DFF),
 				PlayerTextDrawSetShadow(playerid, t, 0),
 				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000FF),
+				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
 				PlayerTextDrawFont(playerid, t, 3),
-				PlayerTextDrawSetProportional(playerid, t, 1),
+				PlayerTextDrawSetProportional(playerid, t, 0),
 				PlayerTextDrawUseBox(playerid, t, true),
 				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
