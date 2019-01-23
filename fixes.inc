@@ -11075,6 +11075,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
+
 #if FIX_OnPlayerEnterVehicle_3 && !FIXES_Single && !defined FILTERSCRIPT
 	forward _FIXES_GetVehicleDoorsEx(vehicleid);
 
@@ -11730,6 +11731,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 			}
 	}
 #endif
+
 /**
  * <fixes>GetPlayerAmmo</fixes>
  */
@@ -11738,6 +11740,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 	#error _ALS_SetPlayerAmmo defined
 #endif
 native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
+
 /**
  * <fixes>GetPlayerAmmo</fixes>
  */
@@ -11745,15 +11748,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #if FIX_GetPlayerAmmo
 	stock FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
 	{
-		if (ammo > 32767)
-		{
-			ammo = 32767;
-		}
-		else if (ammo < 0)
-		{
-			ammo = 0;
-		}
-		return SetPlayerAmmo(playerid, weaponid, ammo);
+		return SetPlayerAmmo(playerid, weaponid, clamp(ammo, 0, 32767));
 	}
 
 	#define _ALS_SetPlayerAmmo
@@ -11766,7 +11761,6 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
  * Convert a string to a number (hash it).
  *
  * FIXES:
- *    ChangeVehicleColor
  *    GetServerVarAsString
  *    GetServerVarAsBool
  *    GetServerVarAsInt
