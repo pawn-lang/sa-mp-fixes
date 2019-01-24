@@ -8229,7 +8229,7 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 							if (HideMenuForPlayer(menuid, playerid))
 							{
 								#if FIXES_Single
-									FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
+									FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET,
 									FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 								#else
 									CallRemoteFunction(FIXES_gscSetPlayerMenu, FIXES_gscSpec@ii, playerid, INVALID_MENU);
@@ -8327,7 +8327,7 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 					if (ShowMenuForPlayer(menuid, playerid))
 					{
 						#if FIXES_Single
-							FIXES_gsSettings |= e_FIXES_SETTINGS_MENU_SET;
+							FIXES_gsSettings |= e_FIXES_SETTINGS_MENU_SET,
 							FIXES_gsCurrentMenu[playerid] = menuid;
 						#else
 							CallRemoteFunction(FIXES_gscSetPlayerMenu, FIXES_gscSpec@ii, playerid, _:menuid);
@@ -8377,7 +8377,7 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 					#endif
 						{
 							#if FIXES_Single
-								FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
+								FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET,
 								FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 							#else
 								CallRemoteFunction(FIXES_gscSetPlayerMenu, FIXES_gscSpec@ii, playerid, INVALID_MENU);
