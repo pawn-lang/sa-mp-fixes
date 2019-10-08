@@ -11768,13 +11768,13 @@ static stock _FIXES_Bernstein(const name[])
 	new
 		i = -1,
 		ch,
-		hash = -1;
+		hash = 5381;
 	// In carcols.dat the vehicle names end at ",".  That makes this code
 	// very specific to a few use-cases.  It also works for hashing server vars,
 	// since they don't have commas.  Now case-insensitive.
 	while ((ch = name[++i]) >= '0')
 	{
-		hash = (hash * 33) + (ch | 0x20);
+		hash = (hash * 33) ^ (ch | 0x20);
 	}
 	return hash;
 }
@@ -12037,39 +12037,39 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		buffer[0] = '\0';
 		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
 		{
-		case 0x191078CE, // gamemode0
-		     0x191078CF, // gamemode1
-		     0x191078D0, // gamemode2
-		     0x191078D1, // gamemode3
-		     0x191078D2, // gamemode4
-		     0x191078D3, // gamemode5
-		     0x191078D4, // gamemode6
-		     0x191078D5, // gamemode7
-		     0x191078D6, // gamemode8
-		     0x191078D7, // gamemode9
-		     0x3B1F92DF, // gamemode10
-		     0x3B1F92E0, // gamemode11
-		     0x3B1F92E1, // gamemode12
-		     0x3B1F92E2, // gamemode13
-		     0x3B1F92E3, // gamemode14
-		     0x3B1F92E4, // gamemode15
-		     0xDD087136, // worldtime
-		     0x82FEFA05, // version
-		     0x77143DA2, // lagcomp
-		     0xAB471B39, // logtimeformat
-		     0xBBB6B44D, // nosign
-		     0xC5A55EC1, // plugins
-		     0x3E60E28D, // filterscripts
-		     0x81757563, // gamemodetext
-		     0xCEC61D0F, // weather
-		     0x1D768025, // gravity
-		     0x715D9343, // rcon_password
-		     0xCFF70EF0, // weburl
-		     0xC4B7237E, // mapname
-		     0x6A3B86C3, // language
-		     0xFB74B99E, // hostname
-		     0x27C72132, // password
-		     0x002571DC: // bind
+		case 0x6A7D4118, // gamemode0
+		     0x6A7D4119, // gamemode1
+		     0x6A7D411A, // gamemode2
+		     0x6A7D411B, // gamemode3
+		     0x6A7D411C, // gamemode4
+		     0x6A7D411D, // gamemode5
+		     0x6A7D411E, // gamemode6
+		     0x6A7D411F, // gamemode7
+		     0x6A7D4110, // gamemode8
+		     0x6A7D4111, // gamemode9
+		     0xBA256409, // gamemode10
+		     0xBA256408, // gamemode11
+		     0xBA25640B, // gamemode12
+		     0xBA25640A, // gamemode13
+		     0xBA25640D, // gamemode14
+		     0xBA25640C, // gamemode15
+		     0x740D30D2, // worldtime
+		     0x2FB2D3BF, // version
+		     0xFBE0D5FE, // lagcomp
+		     0x19BECDF7, // logtimeformat
+		     0x62420997, // nosign
+		     0x9D57983F, // plugins
+		     0x3AFFC879, // filterscripts
+		     0xD93377B5, // gamemodetext
+		     0x74C01C1D, // weather
+		     0xB605A0C3, // gravity
+		     0x8FED0775, // rcon_password
+		     0x77E7547E, // weburl
+		     0x40736C5E, // mapname
+		     0x672924D7, // language
+		     0x0E9495C2, // hostname
+		     0x5D876F9A, // password
+		     0x7C706484: // bind
 			return bool:GetServerVarAsString(varname, buffer, len);
 		default:
 			return false;
@@ -12146,25 +12146,25 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 	{
 		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
 		{
-		case 0x2CAD71B6, // cookielogging
-		     0x779863BF, // concookies
-		     0x05E98D75, // db_log_queries
-		     0x002E1E91, // db_logging
-		     0xD24E879F, // conseedtime
-		     0x65E02253, // lagcompmode
-		     0xBA15F385, // minconnectiontime
-		     0xB4A6E9E0, // playertimeout
-		     0xE0BF17AC, // ackslimit
-		     0xAF759823, // messageslimit
-		     0xD6D5A0EB, // messageholelimit
-		     0xA32CD2AF, // chatlogging
-		     0x3C9BE967, // weapon_rate
-		     0xBD571922, // incar_rate
-		     0x9EC6E5F3, // onfoot_rate
-		     0xBD480020, // maxnpc
-		     0x3E1BBFD6, // sleep
-		     0x4D50EBEB, // stream_rate
-		     0xBB2D5AE6: // maxplayers
+		case 0xF59D7562, // cookielogging
+		     0x5DD3AB50, // concookies
+		     0x24DF3EEB, // db_log_queries
+		     0xD8FC2F7F, // db_logging
+		     0xCEF27485, // conseedtime
+		     0x0C43D2DD, // lagcompmode
+		     0xB3AAF0EC, // minconnectiontime
+		     0x2E17DD8D, // playertimeout
+		     0xED02304A, // ackslimit
+		     0x55A5C0C8, // messageslimit
+		     0xBD012555, // messageholelimit
+		     0x16C6DD58, // chatlogging
+		     0x9420F5BA, // weapon_rate
+		     0x5C8B384F, // incar_rate
+		     0x01F89DEB, // onfoot_rate
+		     0x57452FAC, // maxnpc
+		     0x0BAD27EA, // sleep
+		     0x0A9910C4, // stream_rate
+		     0xE20F31D1: // maxplayers
 			return GetServerVarAsInt(varname);
 		default:
 			return 0;
@@ -12196,13 +12196,13 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	{
 		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
 		{
-		case 0x4D532D94, // announce
-		     0xC99B1697, // lanmode
-		     0xAEF7F19F, // query
-		     0xB86708E6, // rcon
-		     0x0608CD58, // logqueries
-		     0xD1E9B9B6, // timestamp
-		     0x0C5ACC88: // myriad
+		case 0x5F92A936, // announce
+		     0xFB6572C5, // lanmode
+		     0x0B3513EF, // query
+		     0x7C78F2F5, // rcon
+		     0xA300A7ED, // logqueries
+		     0x97EABC6B, // timestamp
+		     0x57CBE04F: // myriad
 			return bool:GetServerVarAsBool(varname);
 		default:
 			return false;
