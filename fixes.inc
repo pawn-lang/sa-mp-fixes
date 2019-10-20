@@ -3319,12 +3319,21 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 
 /**
  * <remarks>
+ * _FIXES_IS_VALID_PLAYER
+ *
+ * Check if the ID is in range of player IDs.
+ * </remarks>
+ */
+#define _FIXES_IS_VALID_PLAYER(%0) _FIXES_IN_RANGE((%0), 0, MAX_PLAYERS)
+
+/**
+ * <remarks>
  * _FIXES_IS_PLAYER_CONNECTED
  *
  * Always valid "IsPlayerConnected" check.
  * </remarks>
  */
-#define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IN_RANGE((%0), 0, MAX_PLAYERS) && IsPlayerConnected((%0)))
+#define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IS_VALID_PLAYER(%0) && IsPlayerConnected(%0))
 
 // These varaibles are NOT pre-processor dependent as they are stock.  It's just
 // simpler than trying to figure out when or if a semi-colon is needed.  The
@@ -7447,7 +7456,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 	#if FIXES_Single
 		stock FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				FIXES_PRINTF("Call SetPlayerWorldBounds");
 				if (x_max == x_min || y_max == y_min)
@@ -7499,7 +7508,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 
 		stock FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				FIXES_PRINTF("Call SetPlayerWorldBounds");
 				// Impossibly small area, disable checks entirely.
@@ -7559,7 +7568,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 #if FIX_GetPlayerWorldBounds
 	stock FIXES_GetPlayerWorldBounds(playerid, &Float:x_max, &Float:x_min, &Float:y_max, &Float:y_min)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			x_min = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX],
 			x_max = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX],
@@ -7618,7 +7627,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 		stock FIXES_TogglePlayerControllable(playerid, toggle)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
 					CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
@@ -8362,7 +8371,7 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 			{
 				#if FIX_GetPlayerMenu
 					#if FIX_HideMenuForPlayer_2
-						if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS) && FIXES_gsCurrentMenu[playerid] == menuid)
+						if (_FIXES_IS_VALID_PLAYER(playerid) && FIXES_gsCurrentMenu[playerid] == menuid)
 					#else
 						if (FIXES_gsCurrentMenu[playerid] == menuid && HideMenuForPlayer(menuid, playerid))
 					#endif
@@ -8460,7 +8469,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 #if FIX_GetPlayerMenu
 	stock Menu:FIXES_GetPlayerMenu(playerid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			return FIXES_gsCurrentMenu[playerid];
 		}
@@ -9239,7 +9248,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 				timers[playerid] = parr[playerid] = 0;
 			}
 		}
-		else //if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		else //if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			// Remove.
 			if (timers[playerid] != 0)
@@ -9418,7 +9427,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #if FIX_HideGameText
 	//stock FIXES_HideGameTextForPlayer(playerid, style)
 	//{
-	//	if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+	//	if (_FIXES_IS_VALID_PLAYER(playerid))
 	//	{
 	//		if (FIXES_gsGTTimer[style][playerid] != 0)
 	//		{
@@ -9728,7 +9737,7 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 #if FIX_GetPlayerInterior
 	stock FIXES_GetPlayerInterior(playerid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			return FIXES_GET(PlayerInterior, playerid);
 		}
@@ -9755,7 +9764,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 #if FIX_GetPlayerInterior
 	stock FIXES_SetPlayerInterior(playerid, interiorid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			FIXES_SET(PlayerInterior, playerid, interiorid);
 			return SetPlayerInterior(playerid, interiorid);
@@ -9822,7 +9831,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 	#if FIXES_Single
 		stock FIXES_AllowPlayerTeleport(playerid, allow)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				if (allow)
 				{
@@ -9838,7 +9847,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 	#else
 		stock FIXES_AllowPlayerTeleport(playerid, allow)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				CallRemoteFunction(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, playerid, allow);
 			}
@@ -10039,7 +10048,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 	stock FIXES_ShowPlayerDialog(playerid, dialog, style, _FIXES_MAYBE_CONST title[], _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[])
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			FIXES_SET(PlayerDialog, playerid, dialog);
 			return ShowPlayerDialog(playerid, dialog, style, title, caption, button1, button2);
@@ -10116,7 +10125,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #if FIX_GetPlayerDialog
 	stock FIXES_GetPlayerDialog(playerid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			return FIXES_GET(PlayerDialog, playerid);
 		}
@@ -11181,7 +11190,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 #if FIX_SetPlayerCamera
 	stock FIXES_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			#if FIXES_Single
 				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
@@ -11219,7 +11228,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 #if FIX_SetPlayerCamera
 	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, cut = CAMERA_CUT)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			#if FIXES_Single
 				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
@@ -11257,7 +11266,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 #if FIX_SetPlayerCamera
 	stock FIXES_TogglePlayerSpectating(playerid, toggle)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			if (toggle)
 			{
@@ -11307,7 +11316,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 
 	stock FIXES_SetPlayerTime(playerid, hour, minute)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
 			{
@@ -11345,7 +11354,7 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 
 	stock FIXES_SetPlayerColor(playerid, color)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
 			{
@@ -11790,7 +11799,7 @@ static stock _FIXES_Bernstein(const name[])
 #if FIX_GetPlayerWeather
 	stock FIXES_GetPlayerWeather(playerid)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS) && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CLOCK_ENABLED))
+		if (_FIXES_IS_VALID_PLAYER(playerid) && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CLOCK_ENABLED))
 		{
 			return FIXES_GET(PlayerWeather, playerid);
 		}
@@ -11817,7 +11826,7 @@ native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 #if FIX_GetPlayerWeather
 	stock FIXES_SetPlayerWeather(playerid, weather)
 	{
-		if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			FIXES_SET(PlayerWeather, playerid, weather);
 			return SetPlayerWeather(playerid, weather);
@@ -11869,7 +11878,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 
 		stock FIXES_TogglePlayerClock(playerid, toggle)
 		{
-			if (_FIXES_IN_RANGE(playerid, 0, MAX_PLAYERS))
+			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
 					CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
@@ -12352,6 +12361,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_FOREACH
 #undef _FIXES_IS_UNSET
 #undef _FIXES_IS_IN_CHARGE
+#undef _FIXES_IS_VALID_PLAYER
 #undef _FIXES_IN_RANGE
 #undef _FIXES_NO_RANGE
 #undef _FIXES_FORWARD
