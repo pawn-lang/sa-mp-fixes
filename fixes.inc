@@ -3405,7 +3405,7 @@ static stock
 	 * A record of which menus have and haven't been shown yet.
 	 * </remarks>
 	 */
-	FIXES_gsValidMenus[_FIXES_CEILDIV(MAX_MENUS, cellbits)],
+	FIXES_gsValidMenus[_FIXES_CEILDIV(_:MAX_MENUS, cellbits)],
 	/**
 	 * <remarks>
 	 * A player's IP as a 32-bit integer.
