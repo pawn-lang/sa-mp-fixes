@@ -3293,7 +3293,7 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
  * faster).
  * </remarks>
  */
-#define _FIXES_IN_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) < ((%2) - ((%1) + cellmin)))
+#define _FIXES_IN_RANGE(%0,%1,%2) ((_:(%0) - (_:(%1) + cellmin)) < (_:(%2) - (_:(%1) + cellmin)))
 
 /**
  * <remarks>
