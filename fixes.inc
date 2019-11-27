@@ -5222,31 +5222,29 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 
 #if FIX_SilentTeleport
 	stock FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
-	{	 
-
+	{
 		// Validity check to prevent array out of bounds.
-		if (!SetVehiclePos(vehicleid, x, y, z))
+		if (SetVehiclePos(vehicleid, x, y, z))
 		{
-			return 0;
-		}
-		
-		_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
-		{
-			if (GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID(i) == vehicleid)
+			_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 			{
-				if (FIXES_gsJackedId[i] != INVALID_PLAYER_ID)
+				if (GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID(i) == vehicleid)
 				{
-					ClearAnimations(FIXES_gsJackedId[i]);
-					break;
+					if (FIXES_gsJackedId[i] != INVALID_PLAYER_ID)
+					{
+						ClearAnimations(FIXES_gsJackedId[i]);
+						break;
+					}
 				}
 			}
+			return 1;
 		}
-		return 1;
+		return 0;
 	}
 
 	#define _ALS_SetVehiclePos
-	#define SetVehiclePos( FIXES_SetVehiclePos( 
-#endif 
+	#define SetVehiclePos( FIXES_SetVehiclePos(
+#endif
 
 /**
  * <remarks>
