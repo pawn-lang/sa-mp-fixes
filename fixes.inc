@@ -1877,17 +1877,17 @@ in the output code.
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
 #if !defined FIXES_EnableAll
-	#define FIXES_EnableAll                      (0)
+	#define FIXES_EnableAll						(0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableAll)
 	#undef FIXES_EnableAll
-	#define FIXES_EnableAll                      (2)
+	#define FIXES_EnableAll						(2)
 #endif
 
 #if !defined FIXES_EnableDeprecated
-	#define FIXES_EnableDeprecated               (0)
+	#define FIXES_EnableDeprecated				(0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableDeprecated)
 	#undef FIXES_EnableDeprecated
-	#define FIXES_EnableDeprecated               (2)
+	#define FIXES_EnableDeprecated				(2)
 #endif
 
 // We can add server version compiler code here to only compile fixes that apply
@@ -1895,995 +1895,995 @@ in the output code.
 #if !defined FIX_GetPlayerColour
 	#if defined FIX_GetPlayerColor
 		#if _FIXES_IS_UNSET(FIX_GetPlayerColor)
-			#define FIX_GetPlayerColour          (2)
+			#define FIX_GetPlayerColour			(2)
 		#else
-			#define FIX_GetPlayerColour          (FIX_GetPlayerColor)
+			#define FIX_GetPlayerColour			(FIX_GetPlayerColor)
 		#endif
 	#else
-		#define FIX_GetPlayerColour              (1)
+		#define FIX_GetPlayerColour				(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerColour)
 	#undef FIX_GetPlayerColour
-	#define FIX_GetPlayerColour                  (2)
+	#define FIX_GetPlayerColour					(2)
 #endif
 
 #if !defined FIX_FILTERSCRIPT
-	#define FIX_FILTERSCRIPT                     (1)
+	#define FIX_FILTERSCRIPT					(1)
 #elseif _FIXES_IS_UNSET(FIX_FILTERSCRIPT)
 	#undef FIX_FILTERSCRIPT
-	#define FIX_FILTERSCRIPT                     (2)
+	#define FIX_FILTERSCRIPT					(2)
 #endif
 
 #if !defined FIX_SpawnPlayer
-	#define FIX_SpawnPlayer                      (1)
+	#define FIX_SpawnPlayer						(1)
 #elseif _FIXES_IS_UNSET(FIX_SpawnPlayer)
 	#undef FIX_SpawnPlayer
-	#define FIX_SpawnPlayer                      (2)
+	#define FIX_SpawnPlayer						(2)
 #endif
 
 #if !defined FIX_SetPlayerName
-	#define FIX_SetPlayerName                    (1)
+	#define FIX_SetPlayerName					(1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerName)
 	#undef FIX_SetPlayerName
-	#define FIX_SetPlayerName                    (2)
+	#define FIX_SetPlayerName					(2)
 #endif
 
 #if !defined FIX_GetPlayerSkin
-	#define FIX_GetPlayerSkin                    (1)
+	#define FIX_GetPlayerSkin					(1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerSkin)
 	#undef FIX_GetPlayerSkin
-	#define FIX_GetPlayerSkin                    (2)
+	#define FIX_GetPlayerSkin					(2)
 #endif
 
 #if !defined FIX_GetWeaponName
 	#if defined GetVehicleParamsSirenState
-		#define FIX_GetWeaponName                (FIXES_EnableDeprecated)
+		#define FIX_GetWeaponName				(FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWeaponName                (1)
+		#define FIX_GetWeaponName				(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeaponName)
 	#undef FIX_GetWeaponName
-	#define FIX_GetWeaponName                    (2)
+	#define FIX_GetWeaponName					(2)
 #endif
 
 #if !defined FIX_SetPlayerWorldBounds
-	#define FIX_SetPlayerWorldBounds             (1)
+	#define FIX_SetPlayerWorldBounds			(1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerWorldBounds)
 	#undef FIX_SetPlayerWorldBounds
-	#define FIX_SetPlayerWorldBounds             (2)
+	#define FIX_SetPlayerWorldBounds			(2)
 #endif
 
 #if !defined FIX_TogglePlayerControllable
 	#if defined SetObjectMaterial
-		#define FIX_TogglePlayerControllable     (FIXES_EnableDeprecated)
+		#define FIX_TogglePlayerControllable	(FIXES_EnableDeprecated)
 	#else
-		#define FIX_TogglePlayerControllable     (1)
+		#define FIX_TogglePlayerControllable	(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)
 	#undef FIX_TogglePlayerControllable
-	#define FIX_TogglePlayerControllable         (2)
+	#define FIX_TogglePlayerControllable		(2)
 #endif
 
 #if !defined FIX_HydraSniper
-	#define FIX_HydraSniper                      (1)
+	#define FIX_HydraSniper						(1)
 #elseif _FIXES_IS_UNSET(FIX_HydraSniper)
 	#undef FIX_HydraSniper
-	#define FIX_HydraSniper                      (2)
+	#define FIX_HydraSniper						(2)
 #endif
 
 #if !defined FIX_IsPlayerInCheckpoint
-	#define FIX_IsPlayerInCheckpoint             (1)
+	#define FIX_IsPlayerInCheckpoint			(1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInCheckpoint)
 	#undef FIX_IsPlayerInCheckpoint
-	#define FIX_IsPlayerInCheckpoint             (2)
+	#define FIX_IsPlayerInCheckpoint			(2)
 #endif
 
 #if !defined FIX_IsPlayerInRaceCheckpoint
-	#define FIX_IsPlayerInRaceCheckpoint         (1)
+	#define FIX_IsPlayerInRaceCheckpoint		(1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInRaceCheckpoint)
 	#undef FIX_IsPlayerInRaceCheckpoint
-	#define FIX_IsPlayerInRaceCheckpoint         (2)
+	#define FIX_IsPlayerInRaceCheckpoint		(2)
 #endif
 
 #if !defined FIX_GetPlayerWeapon
-	#define FIX_GetPlayerWeapon                  (1)
+	#define FIX_GetPlayerWeapon					(1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeapon)
 	#undef FIX_GetPlayerWeapon
-	#define FIX_GetPlayerWeapon                  (2)
+	#define FIX_GetPlayerWeapon					(2)
 #endif
 
 #if !defined FIX_PutPlayerInVehicle
-	#define FIX_PutPlayerInVehicle               (1)
+	#define FIX_PutPlayerInVehicle				(1)
 #elseif _FIXES_IS_UNSET(FIX_PutPlayerInVehicle)
 	#undef FIX_PutPlayerInVehicle
-	#define FIX_PutPlayerInVehicle               (2)
+	#define FIX_PutPlayerInVehicle				(2)
 #endif
 
 #if !defined FIX_KEY_AIM
 	#if defined KEY_AIM
-		#define FIX_KEY_AIM                      (FIXES_EnableDeprecated)
+		#define FIX_KEY_AIM						(FIXES_EnableDeprecated)
 	#else
-		#define FIX_KEY_AIM                      (1)
+		#define FIX_KEY_AIM						(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_KEY_AIM)
 	#undef FIX_KEY_AIM
-	#define FIX_KEY_AIM                          (2)
+	#define FIX_KEY_AIM							(2)
 #endif
 
 #if !defined FIX_SPECIAL_ACTION_PISSING
 	#if defined SPECIAL_ACTION_PISSING
-		#define FIX_SPECIAL_ACTION_PISSING       (FIXES_EnableDeprecated)
+		#define FIX_SPECIAL_ACTION_PISSING		(FIXES_EnableDeprecated)
 	#else
-		#define FIX_SPECIAL_ACTION_PISSING       (1)
+		#define FIX_SPECIAL_ACTION_PISSING		(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SPECIAL_ACTION_PISSING)
 	#undef FIX_SPECIAL_ACTION_PISSING
-	#define FIX_SPECIAL_ACTION_PISSING           (2)
+	#define FIX_SPECIAL_ACTION_PISSING			(2)
 #endif
 
 #if !defined FIX_Natives
-	#define FIX_Natives                          (1)
+	#define FIX_Natives							(1)
 #elseif _FIXES_IS_UNSET(FIX_Natives)
 	#undef FIX_Natives
-	#define FIX_Natives                          (2)
+	#define FIX_Natives							(2)
 #endif
 
 #if !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
-		#define FIX_IsValidVehicle               (FIXES_EnableDeprecated)
+		#define FIX_IsValidVehicle				(FIXES_EnableDeprecated)
 	#else
-		#define FIX_IsValidVehicle               (FIX_Natives)
+		#define FIX_IsValidVehicle				(FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
 	#undef FIX_IsValidVehicle
-	#define FIX_IsValidVehicle                   (2)
+	#define FIX_IsValidVehicle					(2)
 #endif
 
 #if !defined FIX_GetGravity
 	#if defined GetGravity
-		#define FIX_GetGravity                   (FIXES_EnableDeprecated)
+		#define FIX_GetGravity					(FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetGravity                   (FIX_Natives)
+		#define FIX_GetGravity					(FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetGravity)
 	#undef FIX_GetGravity
-	#define FIX_GetGravity                       (2)
+	#define FIX_GetGravity						(2)
 #endif
 
 #if !defined FIX_gpci
 	#if defined gpci
-		#define FIX_gpci                         (FIXES_EnableDeprecated)
+		#define FIX_gpci						(FIXES_EnableDeprecated)
 	#else
-		#define FIX_gpci                         (FIX_Natives)
+		#define FIX_gpci						(FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_gpci)
 	#undef FIX_gpci
-	#define FIX_gpci                             (2)
+	#define FIX_gpci							(2)
 #endif
 
 #if !defined FIX_WEAPONS
 	#if defined WEAPON_FIST
-		#define FIX_WEAPONS                      (FIXES_EnableDeprecated)
+		#define FIX_WEAPONS						(FIXES_EnableDeprecated)
 	#else
-		#define FIX_WEAPONS                      (1)
+		#define FIX_WEAPONS						(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_WEAPONS)
 	#undef FIX_WEAPONS
-	#define FIX_WEAPONS                          (2)
+	#define FIX_WEAPONS							(2)
 #endif
 
 #if !defined FIX_BODYPARTS
 	#if defined BODY_PART_LEFT_ARM
-		#define FIX_BODYPARTS                    (FIXES_EnableDeprecated)
+		#define FIX_BODYPARTS					(FIXES_EnableDeprecated)
 	#else
-		#define FIX_BODYPARTS                    (1)
+		#define FIX_BODYPARTS					(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_BODYPARTS)
 	#undef FIX_BODYPARTS
-	#define FIX_BODYPARTS                        (2)
+	#define FIX_BODYPARTS						(2)
 #endif
 
 #if !defined FIX_CAMERAMODES
 	#if defined CAM_MODE_NONE
-		#define FIX_CAMERAMODES                  (FIXES_EnableDeprecated)
+		#define FIX_CAMERAMODES					(FIXES_EnableDeprecated)
 	#else
-		#define FIX_CAMERAMODES                  (1)
+		#define FIX_CAMERAMODES					(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_CAMERAMODES)
 	#undef FIX_CAMERAMODES
-	#define FIX_CAMERAMODES                      (2)
+	#define FIX_CAMERAMODES						(2)
 #endif
 
 #if !defined FIX_DriveBy
-	#define FIX_DriveBy                          (1)
+	#define FIX_DriveBy							(1)
 #elseif _FIXES_IS_UNSET(FIX_DriveBy)
 	#undef FIX_DriveBy
-	#define FIX_DriveBy                          (2)
+	#define FIX_DriveBy							(2)
 #endif
 
 #if !defined FIX_SilentTeleport
-    #define FIX_SilentTeleport                          (1)
+	#define FIX_SilentTeleport					(1)
 #elseif _FIXES_IS_UNSET(FIX_SilentTeleport)
-    #undef FIX_SilentTeleport
-    #define FIX_SilentTeleport                          (2)
+	#undef FIX_SilentTeleport
+	#define FIX_SilentTeleport					(2)
 #endif
 
 #if !defined FIX_SetPlayerCheckpoint
-	#define FIX_SetPlayerCheckpoint              (1)
+	#define FIX_SetPlayerCheckpoint				(1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCheckpoint)
 	#undef FIX_SetPlayerCheckpoint
-	#define FIX_SetPlayerCheckpoint              (2)
+	#define FIX_SetPlayerCheckpoint				(2)
 #endif
 
 #if !defined FIX_SetPlayerRaceCheckpoint
-	#define FIX_SetPlayerRaceCheckpoint          (1)
+	#define FIX_SetPlayerRaceCheckpoint			(1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerRaceCheckpoint)
 	#undef FIX_SetPlayerRaceCheckpoint
-	#define FIX_SetPlayerRaceCheckpoint          (2)
+	#define FIX_SetPlayerRaceCheckpoint			(2)
 #endif
 
 #if !defined FIX_TextDrawCreate
-	#define FIX_TextDrawCreate                   (1)
+	#define FIX_TextDrawCreate					(1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawCreate)
 	#undef FIX_TextDrawCreate
-	#define FIX_TextDrawCreate                   (2)
+	#define FIX_TextDrawCreate					(2)
 #endif
 
 #if !defined FIX_TextDrawCreate_2
-	#define FIX_TextDrawCreate_2                 (1)
+	#define FIX_TextDrawCreate_2				(1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawCreate_2)
 	#undef FIX_TextDrawCreate_2
-	#define FIX_TextDrawCreate_2                 (2)
+	#define FIX_TextDrawCreate_2				(2)
 #endif
 
 #if !defined FIX_TextDrawSetString
-	#define FIX_TextDrawSetString                (1)
+	#define FIX_TextDrawSetString				(1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString)
 	#undef FIX_TextDrawSetString
-	#define FIX_TextDrawSetString                (2)
+	#define FIX_TextDrawSetString				(2)
 #endif
 
 #if !defined FIX_TextDrawSetString_2
-	#define FIX_TextDrawSetString_2              (1)
+	#define FIX_TextDrawSetString_2				(1)
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString_2)
 	#undef FIX_TextDrawSetString_2
-	#define FIX_TextDrawSetString_2              (2)
+	#define FIX_TextDrawSetString_2				(2)
 #endif
 
 #if !defined FIX_AllowInteriorWeapons
-	#define FIX_AllowInteriorWeapons             (1)
+	#define FIX_AllowInteriorWeapons			(1)
 #elseif _FIXES_IS_UNSET(FIX_AllowInteriorWeapons)
 	#undef FIX_AllowInteriorWeapons
-	#define FIX_AllowInteriorWeapons             (2)
+	#define FIX_AllowInteriorWeapons			(2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle
 	#if defined OnPlayerClickMap
-		#define FIX_OnPlayerEnterVehicle         (FIXES_EnableDeprecated)
+		#define FIX_OnPlayerEnterVehicle		(FIXES_EnableDeprecated)
 	#else
-		#define FIX_OnPlayerEnterVehicle         (1)
+		#define FIX_OnPlayerEnterVehicle		(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle)
 	#undef FIX_OnPlayerEnterVehicle
-	#define FIX_OnPlayerEnterVehicle             (2)
+	#define FIX_OnPlayerEnterVehicle			(2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle_2
-	#define FIX_OnPlayerEnterVehicle_2           (1)
+	#define FIX_OnPlayerEnterVehicle_2			(1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_2)
 	#undef FIX_OnPlayerEnterVehicle_2
-	#define FIX_OnPlayerEnterVehicle_2           (2)
+	#define FIX_OnPlayerEnterVehicle_2			(2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle_3
-	#define FIX_OnPlayerEnterVehicle_3           (1)
+	#define FIX_OnPlayerEnterVehicle_3			(1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_3)
 	#undef FIX_OnPlayerEnterVehicle_3
-	#define FIX_OnPlayerEnterVehicle_3           (2)
+	#define FIX_OnPlayerEnterVehicle_3			(2)
 #endif
 
 #if !defined FIX_AllowTeleport
 	#if defined OnPlayerClickMap
-		#define FIX_AllowTeleport                (1)
+		#define FIX_AllowTeleport				(1)
 	#else
-		#define FIX_AllowTeleport                (FIXES_EnableDeprecated)
+		#define FIX_AllowTeleport				(FIXES_EnableDeprecated)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_AllowTeleport)
 	#undef FIX_AllowTeleport
-	#define FIX_AllowTeleport                    (2)
+	#define FIX_AllowTeleport					(2)
 #endif
 
 #if !defined FIX_SetPlayerSpecialAction
-	#define FIX_SetPlayerSpecialAction           (1)
+	#define FIX_SetPlayerSpecialAction			(1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSpecialAction)
 	#undef FIX_SetPlayerSpecialAction
-	#define FIX_SetPlayerSpecialAction           (2)
+	#define FIX_SetPlayerSpecialAction			(2)
 #endif
 
 #if !defined FIX_ClearAnimations
-	#define FIX_ClearAnimations                  (1)
+	#define FIX_ClearAnimations					(1)
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations)
 	#undef FIX_ClearAnimations
-	#define FIX_ClearAnimations                  (2)
+	#define FIX_ClearAnimations					(2)
 #endif
 
 #if !defined FIX_ClearAnimations_2
-	#define FIX_ClearAnimations_2                (1)
+	#define FIX_ClearAnimations_2				(1)
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations_2)
 	#undef FIX_ClearAnimations_2
-	#define FIX_ClearAnimations_2                (2)
+	#define FIX_ClearAnimations_2				(2)
 #endif
 
 #if !defined FIX_GangZoneCreate
-	#define FIX_GangZoneCreate                   (1)
+	#define FIX_GangZoneCreate					(1)
 #elseif _FIXES_IS_UNSET(FIX_GangZoneCreate)
 	#undef FIX_GangZoneCreate
-	#define FIX_GangZoneCreate                   (2)
+	#define FIX_GangZoneCreate					(2)
 #endif
 
 #if !defined FIX_OnDialogResponse
 	#if defined GetVehicleModelInfo
-		#define FIX_OnDialogResponse             (FIXES_EnableDeprecated)
+		#define FIX_OnDialogResponse			(FIXES_EnableDeprecated)
 	#else
-		#define FIX_OnDialogResponse             (1)
+		#define FIX_OnDialogResponse			(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnDialogResponse)
 	#undef FIX_OnDialogResponse
-	#define FIX_OnDialogResponse                 (2)
+	#define FIX_OnDialogResponse				(2)
 #endif
 
 #if !defined FIX_GetPlayerDialog
 	#if defined GetPlayerDialog
-		#define FIX_GetPlayerDialog              (FIXES_EnableDeprecated)
+		#define FIX_GetPlayerDialog				(FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerDialog              (FIX_Natives)
+		#define FIX_GetPlayerDialog				(FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
-	#define FIX_GetPlayerDialog                  (2)
+	#define FIX_GetPlayerDialog					(2)
 #endif
 
 #if !defined FIX_PlayerDialogResponse
-	#define FIX_PlayerDialogResponse             (1)
+	#define FIX_PlayerDialogResponse			(1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerDialogResponse)
 	#undef FIX_PlayerDialogResponse
-	#define FIX_PlayerDialogResponse             (2)
+	#define FIX_PlayerDialogResponse			(2)
 #endif
 
 #if !defined FIX_SetSpawnInfo
 	#if defined GetPlayerVersion
-		#define FIX_SetSpawnInfo                 (FIXES_EnableDeprecated)
+		#define FIX_SetSpawnInfo				(FIXES_EnableDeprecated)
 	#else
-		#define FIX_SetSpawnInfo                 (1)
+		#define FIX_SetSpawnInfo				(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetSpawnInfo)
 	#undef FIX_SetSpawnInfo
-	#define FIX_SetSpawnInfo                     (2)
+	#define FIX_SetSpawnInfo					(2)
 #endif
 
 #if !defined FIX_SetSpawnInfo_2
-	#define FIX_SetSpawnInfo_2                   (1)
+	#define FIX_SetSpawnInfo_2					(1)
 #elseif _FIXES_IS_UNSET(FIX_SetSpawnInfo_2)
 	#undef FIX_SetSpawnInfo_2
-	#define FIX_SetSpawnInfo_2                   (2)
+	#define FIX_SetSpawnInfo_2					(2)
 #endif
 
 #if !defined FIX_SetPlayerSkin
-	#define FIX_SetPlayerSkin                    (1)
+	#define FIX_SetPlayerSkin					(1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSkin)
 	#undef FIX_SetPlayerSkin
-	#define FIX_SetPlayerSkin                    (2)
+	#define FIX_SetPlayerSkin					(2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer                (1)
+	#define FIX_HideMenuForPlayer				(1)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
 	#undef FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer                (2)
+	#define FIX_HideMenuForPlayer				(2)
 #endif
 
 #if !defined FIX_valstr
-	#define FIX_valstr                           (1)
+	#define FIX_valstr							(1)
 #elseif _FIXES_IS_UNSET(FIX_valstr)
 	#undef FIX_valstr
-	#define FIX_valstr                           (2)
+	#define FIX_valstr							(2)
 #endif
 
 #if !defined FIX_file_inc
-	#define FIX_file_inc                         (FIXES_EnableAll)
+	#define FIX_file_inc						(FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_file_inc)
 	#undef FIX_file_inc
-	#define FIX_file_inc                         (2)
+	#define FIX_file_inc						(2)
 #endif
 
 #if !defined FIX_fclose
-	#define FIX_fclose                           (FIX_file_inc)
+	#define FIX_fclose							(FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fclose)
 	#undef FIX_fclose
-	#define FIX_fclose                           (2)
+	#define FIX_fclose							(2)
 #endif
 
 #if !defined FIX_fwrite
-	#define FIX_fwrite                           (FIX_file_inc)
+	#define FIX_fwrite							(FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fwrite)
 	#undef FIX_fwrite
-	#define FIX_fwrite                           (2)
+	#define FIX_fwrite							(2)
 #endif
 
 #if !defined FIX_fread
-	#define FIX_fread                            (FIX_file_inc)
+	#define FIX_fread							(FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fread)
 	#undef FIX_fread
-	#define FIX_fread                            (2)
+	#define FIX_fread							(2)
 #endif
 
 #if !defined FIX_fputchar
-	#define FIX_fputchar                         (FIX_file_inc)
+	#define FIX_fputchar						(FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fputchar)
 	#undef FIX_fputchar
-	#define FIX_fputchar                         (2)
+	#define FIX_fputchar						(2)
 #endif
 
 #if !defined FIX_fgetchar
-	#define FIX_fgetchar                         (FIX_file_inc)
+	#define FIX_fgetchar						(FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fgetchar)
 	#undef FIX_fgetchar
-	#define FIX_fgetchar                         (2)
+	#define FIX_fgetchar						(2)
 #endif
 
 #if !defined FIX_fblockwrite
-	#define FIX_fblockwrite                      (FIX_file_inc)
+	#define FIX_fblockwrite						(FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockwrite)
 	#undef FIX_fblockwrite
-	#define FIX_fblockwrite                      (2)
+	#define FIX_fblockwrite						(2)
 #endif
 
 #if !defined FIX_fblockread
-	#define FIX_fblockread                       (FIX_file_inc)
+	#define FIX_fblockread						(FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockread)
 	#undef FIX_fblockread
-	#define FIX_fblockread                       (2)
+	#define FIX_fblockread						(2)
 #endif
 
 #if !defined FIX_fseek
-	#define FIX_fseek                            (FIX_file_inc)
+	#define FIX_fseek							(FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fseek)
 	#undef FIX_fseek
-	#define FIX_fseek                            (2)
+	#define FIX_fseek							(2)
 #endif
 
 #if !defined FIX_flength
-	#define FIX_flength                          (FIX_file_inc)
+	#define FIX_flength							(FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_flength)
 	#undef FIX_flength
-	#define FIX_flength                          (2)
+	#define FIX_flength							(2)
 #endif
 
 #if !defined FIX_SetPlayerAttachedObject
-	#define FIX_SetPlayerAttachedObject          (1)
+	#define FIX_SetPlayerAttachedObject			(1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerAttachedObject)
 	#undef FIX_SetPlayerAttachedObject
-	#define FIX_SetPlayerAttachedObject          (2)
+	#define FIX_SetPlayerAttachedObject			(2)
 #endif
 
 #if !defined FIX_OnPlayerDeath
-	#define FIX_OnPlayerDeath                    (1)
+	#define FIX_OnPlayerDeath					(1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDeath)
 	#undef FIX_OnPlayerDeath
-	#define FIX_OnPlayerDeath                    (2)
+	#define FIX_OnPlayerDeath					(2)
 #endif
 
 #if !defined FIX_strins
-	#define FIX_strins                           (1)
+	#define FIX_strins							(1)
 #elseif _FIXES_IS_UNSET(FIX_strins)
 	#undef FIX_strins
-	#define FIX_strins                           (2)
+	#define FIX_strins							(2)
 #endif
 
 #if !defined FIX_IsPlayerConnected
-	#define FIX_IsPlayerConnected                (1)
+	#define FIX_IsPlayerConnected				(1)
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerConnected)
 	#undef FIX_IsPlayerConnected
-	#define FIX_IsPlayerConnected                (2)
+	#define FIX_IsPlayerConnected				(2)
 #endif
 
 #if !defined FIX_TrainExit
-	#define FIX_TrainExit                        (1)
+	#define FIX_TrainExit						(1)
 #elseif _FIXES_IS_UNSET(FIX_TrainExit)
 	#undef FIX_TrainExit
-	#define FIX_TrainExit                        (2)
+	#define FIX_TrainExit						(2)
 #endif
 
 #if !defined FIX_Kick
 	#if defined EnableVehicleFriendlyFire
-		#define FIX_Kick                         (FIXES_EnableDeprecated)
+		#define FIX_Kick						(FIXES_EnableDeprecated)
 	#else
-		#define FIX_Kick                         (1)
+		#define FIX_Kick						(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_Kick)
 	#undef FIX_Kick
-	#define FIX_Kick                             (2)
+	#define FIX_Kick							(2)
 #endif
 
 #if !defined FIX_OnVehicleMod
-	#define FIX_OnVehicleMod                     (1)
+	#define FIX_OnVehicleMod					(1)
 #elseif _FIXES_IS_UNSET(FIX_OnVehicleMod)
 	#undef FIX_OnVehicleMod
-	#define FIX_OnVehicleMod                     (2)
+	#define FIX_OnVehicleMod					(2)
 #endif
 
 #if !defined FIX_random
-	#define FIX_random                           (FIXES_EnableAll)
+	#define FIX_random							(FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_random)
 	#undef FIX_random
-	#define FIX_random                           (2)
+	#define FIX_random							(2)
 #endif
 
 #if !defined FIX_sleep
-	#define FIX_sleep                            (1)
+	#define FIX_sleep							(1)
 #elseif _FIXES_IS_UNSET(FIX_sleep)
 	#undef FIX_sleep
-	#define FIX_sleep                            (2)
+	#define FIX_sleep							(2)
 #endif
 
 #if !defined FIX_Menus
-	#define FIX_Menus                            (1)
+	#define FIX_Menus							(1)
 #elseif _FIXES_IS_UNSET(FIX_Menus)
 	#undef FIX_Menus
-	#define FIX_Menus                            (2)
+	#define FIX_Menus							(2)
 #endif
 
 #if !defined FIX_AddMenuItem
-	#define FIX_AddMenuItem                      (FIX_Menus)
+	#define FIX_AddMenuItem						(FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_AddMenuItem)
 	#undef FIX_AddMenuItem
-	#define FIX_AddMenuItem                      (2)
+	#define FIX_AddMenuItem						(2)
 #endif
 
 #if !defined FIX_SetMenuColumnHeader
-	#define FIX_SetMenuColumnHeader              (FIX_Menus)
+	#define FIX_SetMenuColumnHeader				(FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_SetMenuColumnHeader)
 	#undef FIX_SetMenuColumnHeader
-	#define FIX_SetMenuColumnHeader              (2)
+	#define FIX_SetMenuColumnHeader				(2)
 #endif
 
 #if !defined FIX_ShowMenuForPlayer
-	#define FIX_ShowMenuForPlayer                (FIX_Menus)
+	#define FIX_ShowMenuForPlayer				(FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_ShowMenuForPlayer)
 	#undef FIX_ShowMenuForPlayer
-	#define FIX_ShowMenuForPlayer                (2)
+	#define FIX_ShowMenuForPlayer				(2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer                (FIX_Menus)
+	#define FIX_HideMenuForPlayer				(FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
 	#undef FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer                (2)
+	#define FIX_HideMenuForPlayer				(2)
 #endif
 
 #if !defined FIX_GetPlayerMenu
-	#define FIX_GetPlayerMenu                    (1)
+	#define FIX_GetPlayerMenu					(1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerMenu)
 	#undef FIX_GetPlayerMenu
-	#define FIX_GetPlayerMenu                    (2)
+	#define FIX_GetPlayerMenu					(2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer_2
-	#define FIX_HideMenuForPlayer_2              (FIXES_EnableAll)
+	#define FIX_HideMenuForPlayer_2				(FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer_2)
 	#undef FIX_HideMenuForPlayer_2
-	#define FIX_HideMenuForPlayer_2              (2)
+	#define FIX_HideMenuForPlayer_2				(2)
 #elseif FIX_HideMenuForPlayer_2 && !FIX_GetPlayerMenu
 	#error FIX_HideMenuForPlayer_2 requires FIX_GetPlayerMenu
 #endif
 
 #if !defined FIX_DisableMenu
-	#define FIX_DisableMenu                      (FIX_Menus)
+	#define FIX_DisableMenu						(FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_DisableMenu)
 	#undef FIX_DisableMenu
-	#define FIX_DisableMenu                      (2)
+	#define FIX_DisableMenu						(2)
 #endif
 
 #if !defined FIX_DisableMenuRow
-	#define FIX_DisableMenuRow                   (FIX_Menus)
+	#define FIX_DisableMenuRow					(FIX_Menus)
 #elseif _FIXES_IS_UNSET(FIX_DisableMenuRow)
 	#undef FIX_DisableMenuRow
-	#define FIX_DisableMenuRow                   (2)
+	#define FIX_DisableMenuRow					(2)
 #endif
 
 #if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
-	#define _FIX_Menus                           (1)
+	#define _FIX_Menus							(1)
 #else
-	#define _FIX_Menus                           (2)
+	#define _FIX_Menus							(2)
 #endif
 
 #if !defined FIX_GetPlayerInterior
-	#define FIX_GetPlayerInterior                (1)
+	#define FIX_GetPlayerInterior				(1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerInterior)
 	#undef FIX_GetPlayerInterior
-	#define FIX_GetPlayerInterior                (2)
+	#define FIX_GetPlayerInterior				(2)
 #endif
 
 #if !defined FIX_ApplyAnimation
-	#define FIX_ApplyAnimation                   (1)
+	#define FIX_ApplyAnimation					(1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation)
 	#undef FIX_ApplyAnimation
-	#define FIX_ApplyAnimation                   (2)
+	#define FIX_ApplyAnimation					(2)
 #endif
 
 #if !defined FIX_ApplyAnimation_2
-	#define FIX_ApplyAnimation_2                 (1)
+	#define FIX_ApplyAnimation_2				(1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation_2)
 	#undef FIX_ApplyAnimation_2
-	#define FIX_ApplyAnimation_2                 (2)
+	#define FIX_ApplyAnimation_2				(2)
 #endif
 
 #if !defined FIX_ApplyActorAnimation
-	#define FIX_ApplyActorAnimation              (1)
+	#define FIX_ApplyActorAnimation				(1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation)
 	#undef FIX_ApplyActorAnimation
-	#define FIX_ApplyActorAnimation              (2)
+	#define FIX_ApplyActorAnimation				(2)
 #endif
 
 #if !defined FIX_ApplyActorAnimation_2
-	#define FIX_ApplyActorAnimation_2            (1)
+	#define FIX_ApplyActorAnimation_2			(1)
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation_2)
 	#undef FIX_ApplyActorAnimation_2
-	#define FIX_ApplyActorAnimation_2            (2)
+	#define FIX_ApplyActorAnimation_2			(2)
 #endif
 
 #if !defined FIX_OnPlayerSpawn
-	#define FIX_OnPlayerSpawn                    (1)
+	#define FIX_OnPlayerSpawn					(1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerSpawn)
 	#undef FIX_OnPlayerSpawn
-	#define FIX_OnPlayerSpawn                    (2)
+	#define FIX_OnPlayerSpawn					(2)
 #endif
 
 #if !defined FIX_GameText
-	#define FIX_GameText                         (1)
+	#define FIX_GameText						(1)
 #elseif _FIXES_IS_UNSET(FIX_GameText)
 	#undef FIX_GameText
-	#define FIX_GameText                         (2)
+	#define FIX_GameText						(2)
 #endif
 
 #if !defined FIX_HideGameText
 	#if defined HideGameText
-		#define FIX_HideGameText                 (FIXES_EnableDeprecated)
+		#define FIX_HideGameText				(FIXES_EnableDeprecated)
 	#else
-		#define FIX_HideGameText                 (FIX_Natives)
+		#define FIX_HideGameText				(FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_HideGameText)
 	#undef FIX_HideGameText
-	#define FIX_HideGameText                     (2)
+	#define FIX_HideGameText					(2)
 #endif
 
 #if !defined FIX_GetPlayerWorldBounds
 	#if defined GetPlayerWorldBounds
-		#define FIX_GetPlayerWorldBounds         (FIXES_EnableDeprecated)
+		#define FIX_GetPlayerWorldBounds		(FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerWorldBounds         (FIX_Natives)
+		#define FIX_GetPlayerWorldBounds		(FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWorldBounds)
 	#undef FIX_GetPlayerWorldBounds
-	#define FIX_GetPlayerWorldBounds             (2)
+	#define FIX_GetPlayerWorldBounds			(2)
 #endif
 
 #if !defined FIX_ClearPlayerWorldBounds
 	#if defined ClearPlayerWorldBounds
-		#define FIX_ClearPlayerWorldBounds       (FIXES_EnableDeprecated)
+		#define FIX_ClearPlayerWorldBounds		(FIXES_EnableDeprecated)
 	#else
-		#define FIX_ClearPlayerWorldBounds       (FIX_Natives)
+		#define FIX_ClearPlayerWorldBounds		(FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_ClearPlayerWorldBounds)
 	#undef FIX_ClearPlayerWorldBounds
-	#define FIX_ClearPlayerWorldBounds           (2)
+	#define FIX_ClearPlayerWorldBounds			(2)
 #endif
 
 #if !defined FIX_GameTextStyles
-	#define FIX_GameTextStyles                   (FIXES_EnableAll)
+	#define FIX_GameTextStyles					(FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
 	#undef FIX_GameTextStyles
-	#define FIX_GameTextStyles                   (2)
+	#define FIX_GameTextStyles					(2)
 #elseif FIX_GameTextStyles && !FIX_GameText
 	#error FIX_GameTextStyles requires FIX_GameText
 #endif
 
 #if !defined FIX_OnPlayerConnect
-	#define FIX_OnPlayerConnect                  (1)
+	#define FIX_OnPlayerConnect					(1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerConnect)
 	#undef FIX_OnPlayerConnect
-	#define FIX_OnPlayerConnect                  (2)
+	#define FIX_OnPlayerConnect					(2)
 #endif
 
 #if !defined FIX_OnPlayerDisconnect
-	#define FIX_OnPlayerDisconnect               (1)
+	#define FIX_OnPlayerDisconnect				(1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDisconnect)
 	#undef FIX_OnPlayerDisconnect
-	#define FIX_OnPlayerDisconnect               (2)
+	#define FIX_OnPlayerDisconnect				(2)
 #endif
 
 #if !defined FIX_CreatePlayerTextDraw
-	#define FIX_CreatePlayerTextDraw             (1)
+	#define FIX_CreatePlayerTextDraw			(1)
 #elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw)
 	#undef FIX_CreatePlayerTextDraw
-	#define FIX_CreatePlayerTextDraw             (2)
+	#define FIX_CreatePlayerTextDraw			(2)
 #endif
 
 #if !defined FIX_CreatePlayerTextDraw_2
-	#define FIX_CreatePlayerTextDraw_2           (1)
+	#define FIX_CreatePlayerTextDraw_2			(1)
 #elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw_2)
 	#undef FIX_CreatePlayerTextDraw_2
-	#define FIX_CreatePlayerTextDraw_2           (2)
+	#define FIX_CreatePlayerTextDraw_2			(2)
 #endif
 
 #if !defined FIX_PlayerTextDrawSetString
-	#define FIX_PlayerTextDrawSetString          (1)
+	#define FIX_PlayerTextDrawSetString			(1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString)
 	#undef FIX_PlayerTextDrawSetString
-	#define FIX_PlayerTextDrawSetString          (2)
+	#define FIX_PlayerTextDrawSetString			(2)
 #endif
 
 #if !defined FIX_PlayerTextDrawSetString_2
-	#define FIX_PlayerTextDrawSetString_2        (1)
+	#define FIX_PlayerTextDrawSetString_2		(1)
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString_2)
 	#undef FIX_PlayerTextDrawSetString_2
-	#define FIX_PlayerTextDrawSetString_2        (2)
+	#define FIX_PlayerTextDrawSetString_2		(2)
 #endif
 
 #if !defined FIX_SetPlayerCamera
-	#define FIX_SetPlayerCamera                  (1)
+	#define FIX_SetPlayerCamera					(1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCamera)
 	#undef FIX_SetPlayerCamera
-	#define FIX_SetPlayerCamera                  (2)
+	#define FIX_SetPlayerCamera					(2)
 #endif
 
 #if !defined FIX_SetPlayerTime
-	#define FIX_SetPlayerTime                    (1)
+	#define FIX_SetPlayerTime					(1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerTime)
 	#undef FIX_SetPlayerTime
-	#define FIX_SetPlayerTime                    (2)
+	#define FIX_SetPlayerTime					(2)
 #endif
 
 #if !defined FIX_OnPlayerRequestClass
-	#define FIX_OnPlayerRequestClass             (1)
+	#define FIX_OnPlayerRequestClass			(1)
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerRequestClass)
 	#undef FIX_OnPlayerRequestClass
-	#define FIX_OnPlayerRequestClass             (2)
+	#define FIX_OnPlayerRequestClass			(2)
 #endif
 
 #if !defined FIX_SetPlayerColour
 	#if defined FIX_SetPlayerColor
 		#if _FIXES_IS_UNSET(FIX_SetPlayerColor)
-			#define FIX_SetPlayerColour          (2)
+			#define FIX_SetPlayerColour			(2)
 		#else
-			#define FIX_SetPlayerColour          (FIX_SetPlayerColor)
+			#define FIX_SetPlayerColour			(FIX_SetPlayerColor)
 		#endif
 	#else
-		#define FIX_SetPlayerColour              (1)
+		#define FIX_SetPlayerColour				(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerColour)
 	#undef FIX_SetPlayerColour
-	#define FIX_SetPlayerColour                  (2)
+	#define FIX_SetPlayerColour					(2)
 #endif
 
 #if !defined FIX_FileMaths
-	#define FIX_FileMaths                        (1)
+	#define FIX_FileMaths						(1)
 #elseif _FIXES_IS_UNSET(FIX_FileMaths)
 	#undef FIX_FileMaths
-	#define FIX_FileMaths                        (2)
+	#define FIX_FileMaths						(2)
 #endif
 
 #if !defined FIX_GetPlayerWeaponData
-	#define FIX_GetPlayerWeaponData              (1)
+	#define FIX_GetPlayerWeaponData				(1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeaponData)
 	#undef FIX_GetPlayerWeaponData
-	#define FIX_GetPlayerWeaponData              (2)
+	#define FIX_GetPlayerWeaponData				(2)
 #endif
 
 #if !defined FIX_strcmp
-	#define FIX_strcmp                           (1)
+	#define FIX_strcmp							(1)
 #elseif _FIXES_IS_UNSET(FIX_strcmp)
 	#undef FIX_strcmp
-	#define FIX_strcmp                           (2)
+	#define FIX_strcmp							(2)
 #endif
 
 #if !defined FIX_GetPVarString
-	#define FIX_GetPVarString                    (FIXES_EnableAll)
+	#define FIX_GetPVarString					(FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetPVarString)
 	#undef FIX_GetPVarString
-	#define FIX_GetPVarString                    (2)
+	#define FIX_GetPVarString					(2)
 #endif
 
 #if !defined FIX_GetSVarString
-	#define FIX_GetSVarString                    (FIXES_EnableAll)
+	#define FIX_GetSVarString					(FIXES_EnableAll)
 #elseif _FIXES_IS_UNSET(FIX_GetSVarString)
 	#undef FIX_GetSVarString
-	#define FIX_GetSVarString                    (2)
+	#define FIX_GetSVarString					(2)
 #endif
 
 #if !defined FIX_toupper
-	#define FIX_toupper                          (1)
+	#define FIX_toupper							(1)
 #elseif _FIXES_IS_UNSET(FIX_toupper)
 	#undef FIX_toupper
-	#define FIX_toupper                          (2)
+	#define FIX_toupper							(2)
 #endif
 
 #if !defined FIX_tolower
-	#define FIX_tolower                          (1)
+	#define FIX_tolower							(1)
 #elseif _FIXES_IS_UNSET(FIX_tolower)
 	#undef FIX_tolower
-	#define FIX_tolower                          (2)
+	#define FIX_tolower							(2)
 #endif
 
 #if !defined FIX_ispacked
-	#define FIX_ispacked                         (1)
+	#define FIX_ispacked						(1)
 #elseif _FIXES_IS_UNSET(FIX_ispacked)
 	#undef FIX_ispacked
-	#define FIX_ispacked                         (2)
+	#define FIX_ispacked						(2)
 #endif
 
 #if !defined FIX_PassengerSeating
-	#define FIX_PassengerSeating                 (1)
+	#define FIX_PassengerSeating				(1)
 #elseif _FIXES_IS_UNSET(FIX_PassengerSeating)
 	#undef FIX_PassengerSeating
-	#define FIX_PassengerSeating                 (2)
+	#define FIX_PassengerSeating				(2)
 #endif
 
 #if !defined FIX_GogglesSync
-	#define FIX_GogglesSync                      (1)
+	#define FIX_GogglesSync						(1)
 #elseif _FIXES_IS_UNSET(FIX_GogglesSync)
 	#undef FIX_GogglesSync
-	#define FIX_GogglesSync                      (2)
+	#define FIX_GogglesSync						(2)
 #endif
 
 #if !defined FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize                (1)
+	#define FIX_GetPlayerPoolSize				(1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize                (2)
+	#define FIX_GetPlayerPoolSize				(2)
 #endif
 
 #if !defined FIX_SetPlayerPos
-	#define FIX_SetPlayerPos                     (1)
+	#define FIX_SetPlayerPos					(1)
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerPos)
 	#undef FIX_SetPlayerPos
-	#define FIX_SetPlayerPos                     (2)
+	#define FIX_SetPlayerPos					(2)
 #endif
 
 #if !defined FIX_GetPlayerAmmo
-	#define FIX_GetPlayerAmmo                    (1)
+	#define FIX_GetPlayerAmmo					(1)
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerAmmo)
 	#undef FIX_GetPlayerAmmo
-	#define FIX_GetPlayerAmmo                    (2)
+	#define FIX_GetPlayerAmmo					(2)
 #endif
 
 #if !defined FIX_JIT
-	#define FIX_JIT                              (1)
+	#define FIX_JIT								(1)
 #elseif _FIXES_IS_UNSET(FIX_JIT)
 	#undef FIX_JIT
-	#define FIX_JIT                              (2)
+	#define FIX_JIT								(2)
 #endif
 
 #if !defined FIX_OS
-	#define FIX_OS                               (1)
+	#define FIX_OS								(1)
 #elseif _FIXES_IS_UNSET(FIX_OS)
 	#undef FIX_OS
-	#define FIX_OS                               (2)
+	#define FIX_OS								(2)
 #endif
 
 #if !defined FIX_const
-	#define FIX_const                            (1)
+	#define FIX_const							(1)
 #elseif _FIXES_IS_UNSET(FIX_const)
 	#undef FIX_const
-	#define FIX_const                            (2)
+	#define FIX_const							(2)
 #endif
 
 #if !defined FIX_VEHICLES
 	#if defined VEHICLE_INFERNUS
-		#define FIX_VEHICLES                     (FIXES_EnableDeprecated)
+		#define FIX_VEHICLES					(FIXES_EnableDeprecated)
 	#else
-		#define FIX_VEHICLES                     (1)
+		#define FIX_VEHICLES					(1)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_VEHICLES)
 	#undef FIX_VEHICLES
-	#define FIX_VEHICLES                         (2)
+	#define FIX_VEHICLES						(2)
 #endif
 
 #if !defined FIX_GetPlayerWeather
 	#if defined GetPlayerWeather
-		#define FIX_GetPlayerWeather             (FIXES_EnableDeprecated)
+		#define FIX_GetPlayerWeather			(FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerWeather             (FIX_Natives)
+		#define FIX_GetPlayerWeather			(FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeather)
 	#undef FIX_GetPlayerWeather
-	#define FIX_GetPlayerWeather                 (2)
+	#define FIX_GetPlayerWeather				(2)
 #endif
 
 #if !defined FIX_GetWeather
 	#if defined GetWeather
-		#define FIX_GetWeather                   (FIXES_EnableDeprecated)
+		#define FIX_GetWeather					(FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWeather                   (FIX_Natives)
+		#define FIX_GetWeather					(FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeather)
 	#undef FIX_GetWeather
-	#define FIX_GetWeather                       (2)
+	#define FIX_GetWeather						(2)
 #endif
 
 #if !defined FIX_GetWorldTime
 	#if defined GetWorldTime
-		#define FIX_GetWorldTime                 (FIXES_EnableDeprecated)
+		#define FIX_GetWorldTime				(FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWorldTime                 (FIX_Natives)
+		#define FIX_GetWorldTime				(FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWorldTime)
 	#undef FIX_GetWorldTime
-	#define FIX_GetWorldTime                     (2)
+	#define FIX_GetWorldTime					(2)
 #endif
 
 #if !defined FIX_GetServerVarAsString
-	#define FIX_GetServerVarAsString             (1)
+	#define FIX_GetServerVarAsString			(1)
 #elseif _FIXES_IS_UNSET(FIX_GetServerVarAsString)
 	#undef FIX_GetServerVarAsString
-	#define FIX_GetServerVarAsString             (2)
+	#define FIX_GetServerVarAsString			(2)
 #endif
 
 #if !defined FIX_GetServerVarAsInt
-	#define FIX_GetServerVarAsInt                (1)
+	#define FIX_GetServerVarAsInt				(1)
 #elseif _FIXES_IS_UNSET(FIX_GetServerVarAsInt)
 	#undef FIX_GetServerVarAsInt
-	#define FIX_GetServerVarAsInt                (2)
+	#define FIX_GetServerVarAsInt				(2)
 #endif
 
 #if !defined FIX_GetServerVarAsBool
-	#define FIX_GetServerVarAsBool               (1)
+	#define FIX_GetServerVarAsBool				(1)
 #elseif _FIXES_IS_UNSET(FIX_GetServerVarAsBool)
 	#undef FIX_GetServerVarAsBool
-	#define FIX_GetServerVarAsBool               (2)
+	#define FIX_GetServerVarAsBool				(2)
 #endif
 
 #if !defined FIX_GetServerVarAsFloat
 	#if defined GetServerVarAsFloat
 		#if FIX_GetServerVarAsString
-			#define FIX_GetServerVarAsFloat      (1)
+			#define FIX_GetServerVarAsFloat		(1)
 		#else
-			#define FIX_GetServerVarAsFloat      (FIXES_EnableDeprecated)
+			#define FIX_GetServerVarAsFloat		(FIXES_EnableDeprecated)
 		#endif
 	#else
-		#define FIX_GetServerVarAsFloat          (FIX_Natives)
+		#define FIX_GetServerVarAsFloat			(FIX_Natives)
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetServerVarAsFloat)
 	#undef FIX_GetServerVarAsFloat
-	#define FIX_GetServerVarAsFloat              (2)
+	#define FIX_GetServerVarAsFloat				(2)
 #endif
 
 #if !defined FIX_tabsize
-	#define FIX_tabsize                          (1)
+	#define FIX_tabsize							(1)
 #elseif _FIXES_IS_UNSET(FIX_tabsize)
 	#undef FIX_tabsize
-	#define FIX_tabsize                          (2)
+	#define FIX_tabsize							(2)
 #endif
 
 #if !defined FIX_Callbacks
-	#define FIX_Callbacks                        (1)
+	#define FIX_Callbacks						(1)
 #elseif _FIXES_IS_UNSET(FIX_Callbacks)
 	#undef FIX_Callbacks
-	#define FIX_Callbacks                        (2)
+	#define FIX_Callbacks						(2)
 #endif
 
 #if !defined FIX_OnRconCommand
-	#define FIX_OnRconCommand                    (FIX_Callbacks)
+	#define FIX_OnRconCommand					(FIX_Callbacks)
 #elseif _FIXES_IS_UNSET(FIX_OnRconCommand)
 	#undef FIX_OnRconCommand
-	#define FIX_OnRconCommand                    (2)
+	#define FIX_OnRconCommand					(2)
 #endif
 
 #if !defined FIX_OnClientCheckResponse
-	#define FIX_OnClientCheckResponse            (FIX_Callbacks)
+	#define FIX_OnClientCheckResponse			(FIX_Callbacks)
 #elseif _FIXES_IS_UNSET(FIX_OnClientCheckResponse)
 	#undef FIX_OnClientCheckResponse
-	#define FIX_OnClientCheckResponse            (2)
+	#define FIX_OnClientCheckResponse			(2)
 #endif
 
 /**
@@ -4142,33 +4142,33 @@ static stock const
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
 	FIXES_gscAnimLib[135][] =
 		{
-			"AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
-			"BEACH",        "BENCHPRESS",   "BF_INJECTION", "BIKE_DBZ",     "BIKED",
-			"BIKEH",        "BIKELEAP",     "BIKES",        "BIKEV",        "BLOWJOBZ",
-			"BMX",          "BOMBER",       "BOX",          "BSKTBALL",     "BUDDY",
-			"BUS",          "CAMERA",       "CAR",          "CAR_CHAT",     "CARRY",
-			"CASINO",       "CHAINSAW",     "CHOPPA",       "CLOTHES",      "COACH",
-			"COLT45",       "COP_AMBIENT",  "COP_DVBYZ",    "CRACK",        "CRIB",
-			"DAM_JUMP",     "DANCING",      "DEALER",       "DILDO",        "DODGE",
-			"DOZER",        "DRIVEBYS",     "FAT",          "FIGHT_B",      "FIGHT_C",
-			"FIGHT_D",      "FIGHT_E",      "FINALE",       "FINALE2",      "FLAME",
-			"FLOWERS",      "FOOD",         "FREEWEIGHTS",  "GANGS",        "GFUNK",
-			"GHANDS",       "GHETTO_DB",    "GOGGLES",      "GRAFFITI",     "GRAVEYARD",
-			"GRENADE",      "GYMNASIUM",    "HAIRCUTS",     "HEIST9",       "INT_HOUSE",
-			"INT_OFFICE",   "INT_SHOP",     "JST_BUISNESS", "KART",         "KISSING",
-			"KNIFE",        "LAPDAN1",      "LAPDAN2",      "LAPDAN3",      "LOWRIDER",
-			"MD_CHASE",     "MD_END",       "MEDIC",        "MISC",         "MTB",
-			"MUSCULAR",     "NEVADA",       "ON_LOOKERS",   "OTB",          "PARACHUTE",
-			"PARK",         "PAULNMAC",     "PED",          "PLAYER_DVBYS", "PLAYIDLES",
-			"POLICE",       "POOL",         "POOR",         "PYTHON",       "QUAD",
-			"QUAD_DBZ",     "RAPPING",      "RIFLE",        "RIOT",         "ROB_BANK",
-			"ROCKET",       "RUNNINGMAN",   "RUSTLER",      "RYDER",        "SAMP",
-			"SCRATCHING",   "SEX",          "SHAMAL",       "SHOP",         "SHOTGUN",
-			"SILENCED",     "SKATE",        "SMOKING",      "SNIPER",       "SNM",
-			"SPRAYCAN",     "STRIP",        "SUNBATHE",     "SWAT",         "SWEET",
-			"SWIM",         "SWORD",        "TANK",         "TATTOOS",      "TEC",
-			"TRAIN",        "TRUCK",        "UZI",          "VAN",          "VENDING",
-			"VORTEX",       "WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
+			"AIRPORT",		"ATTRACTORS",	"BAR",			"BASEBALL",		"BD_FIRE",
+			"BEACH",		"BENCHPRESS",	"BF_INJECTION",	"BIKE_DBZ",		"BIKED",
+			"BIKEH",		"BIKELEAP",		"BIKES",		"BIKEV",		"BLOWJOBZ",
+			"BMX",			"BOMBER",		"BOX",			"BSKTBALL",		"BUDDY",
+			"BUS",			"CAMERA",		"CAR",			"CAR_CHAT",		"CARRY",
+			"CASINO",		"CHAINSAW",		"CHOPPA",		"CLOTHES",		"COACH",
+			"COLT45",		"COP_AMBIENT",	"COP_DVBYZ",	"CRACK",		"CRIB",
+			"DAM_JUMP",		"DANCING",		"DEALER",		"DILDO",		"DODGE",
+			"DOZER",		"DRIVEBYS",		"FAT",			"FIGHT_B",		"FIGHT_C",
+			"FIGHT_D",		"FIGHT_E",		"FINALE",		"FINALE2",		"FLAME",
+			"FLOWERS",		"FOOD",			"FREEWEIGHTS",	"GANGS",		"GFUNK",
+			"GHANDS",		"GHETTO_DB",	"GOGGLES",		"GRAFFITI",		"GRAVEYARD",
+			"GRENADE",		"GYMNASIUM",	"HAIRCUTS",		"HEIST9",		"INT_HOUSE",
+			"INT_OFFICE",	"INT_SHOP",		"JST_BUISNESS",	"KART",			"KISSING",
+			"KNIFE",		"LAPDAN1",		"LAPDAN2",		"LAPDAN3",		"LOWRIDER",
+			"MD_CHASE",		"MD_END",		"MEDIC",		"MISC",			"MTB",
+			"MUSCULAR",		"NEVADA",		"ON_LOOKERS",	"OTB",			"PARACHUTE",
+			"PARK",			"PAULNMAC",		"PED",			"PLAYER_DVBYS",	"PLAYIDLES",
+			"POLICE",		"POOL",			"POOR",			"PYTHON",		"QUAD",
+			"QUAD_DBZ",		"RAPPING",		"RIFLE",		"RIOT",			"ROB_BANK",
+			"ROCKET",		"RUNNINGMAN",	"RUSTLER",		"RYDER",		"SAMP",
+			"SCRATCHING",	"SEX",			"SHAMAL",		"SHOP",			"SHOTGUN",
+			"SILENCED",		"SKATE",		"SMOKING",		"SNIPER",		"SNM",
+			"SPRAYCAN",		"STRIP",		"SUNBATHE",		"SWAT",			"SWEET",
+			"SWIM",			"SWORD",		"TANK",			"TATTOOS",		"TEC",
+			"TRAIN",		"TRUCK",		"UZI",			"VAN",			"VENDING",
+			"VORTEX",		"WAYFARER",		"WEAPONS",		"WOP",			"WUZI"
 		},
 #endif
 	/**
@@ -4380,10 +4380,10 @@ static stock const
 	 * Error shown when multiple scripts are detected with <c>FIXES_SINGLE</c>.
 	 * </remarks>
 	 */
-	FIXES_gscMultiScriptError[] = "\7\7\7\7\7"                                               "\n"   \
-		"*** fixes.inc error: Running multiple scripts compiled with \"fixes.inc\"..."       "\n"   \
-		"***     Please compile your modes with \"#define FIXES_Single 0\" at the top, as"   "\n"   \
-		"***     this setting is no longer the default (to improve the more common case)."          ;
+	FIXES_gscMultiScriptError[] = "\7\7\7\7\7"												"\n"	\
+		"*** fixes.inc error: Running multiple scripts compiled with \"fixes.inc\"..."		"\n"	\
+		"***     Please compile your modes with \"#define FIXES_Single 0\" at the top, as"	"\n"	\
+		"***     this setting is no longer the default (to improve the more common case)."			;
 
 /**
  * <remarks>
@@ -4394,9 +4394,9 @@ static stock const
  * </remarks>
  */
 
-#define _FIXES_KEY_AIM                   (128)
+#define _FIXES_KEY_AIM					(128)
 #if FIX_KEY_AIM
-	#define KEY_AIM                      _FIXES_KEY_AIM
+	#define KEY_AIM						_FIXES_KEY_AIM
 #endif
 
 /**
@@ -4408,9 +4408,9 @@ static stock const
  * </remarks>
  */
 
-#define _FIXES_SPECIAL_ACTION_PISSING    (68)
+#define _FIXES_SPECIAL_ACTION_PISSING	(68)
 #if FIX_SPECIAL_ACTION_PISSING
-	#define SPECIAL_ACTION_PISSING       _FIXES_SPECIAL_ACTION_PISSING
+	#define SPECIAL_ACTION_PISSING		_FIXES_SPECIAL_ACTION_PISSING
 #endif
 
 /**
@@ -4805,19 +4805,19 @@ static stock const
  * </remarks>
  */
 
-#define _FIXES_WEAPON_FIST                      (0)
-#define _FIXES_WEAPON_NIGHT_VIS_GOGGLES         (44)
-#define _FIXES_WEAPON_THERMAL_GOGGLES           (45)
+#define _FIXES_WEAPON_FIST						(0)
+#define _FIXES_WEAPON_NIGHT_VIS_GOGGLES			(44)
+#define _FIXES_WEAPON_THERMAL_GOGGLES			(45)
 
 #if FIX_WEAPONS
-	#define WEAPON_FIST               _FIXES_WEAPON_FIST
-	#define WEAPON_NIGHTSTICK         WEAPON_NITESTICK
-	#define WEAPON_MOLOTOV            WEAPON_MOLTOV
-	#define WEAPON_NIGHT_VIS_GOGGLES  _FIXES_WEAPON_NIGHT_VIS_GOGGLES
-	#define WEAPON_THERMAL_GOGGLES    _FIXES_WEAPON_THERMAL_GOGGLES
+	#define WEAPON_FIST					_FIXES_WEAPON_FIST
+	#define WEAPON_NIGHTSTICK			WEAPON_NITESTICK
+	#define WEAPON_MOLOTOV				WEAPON_MOLTOV
+	#define WEAPON_NIGHT_VIS_GOGGLES	_FIXES_WEAPON_NIGHT_VIS_GOGGLES
+	#define WEAPON_THERMAL_GOGGLES		_FIXES_WEAPON_THERMAL_GOGGLES
 #endif
 
-#define _FIXES_WEAPON_SLOTS                     (13)
+#define _FIXES_WEAPON_SLOTS						(13)
 
 /**
  * <remarks>
@@ -4828,13 +4828,13 @@ static stock const
  */
 
 #if FIX_BODYPARTS
-	#define BODY_PART_TORSO                     (3)
-	#define BODY_PART_GROIN                     (4)
-	#define BODY_PART_LEFT_ARM                  (5)
-	#define BODY_PART_RIGHT_ARM                 (6)
-	#define BODY_PART_LEFT_LEG                  (7)
-	#define BODY_PART_RIGHT_LEG                 (8)
-	#define BODY_PART_HEAD                      (9)
+	#define BODY_PART_TORSO						(3)
+	#define BODY_PART_GROIN						(4)
+	#define BODY_PART_LEFT_ARM					(5)
+	#define BODY_PART_RIGHT_ARM					(6)
+	#define BODY_PART_LEFT_LEG					(7)
+	#define BODY_PART_RIGHT_LEG					(8)
+	#define BODY_PART_HEAD						(9)
 #endif
 
 /**
@@ -4846,21 +4846,21 @@ static stock const
  */
 
 #if FIX_CAMERAMODES
-	#define CAM_MODE_DISCONNECTED               (-1)
-	#define CAM_MODE_NONE                       (0)
-	#define CAM_MODE_BEHINDCAR                  (3)
-	#define CAM_MODE_FOLLOWPED                  (4)
-	#define CAM_MODE_SNIPER                     (7)
-	#define CAM_MODE_ROCKETLAUNCHER             (8)
-	#define CAM_MODE_FIXED                      (15)
-	#define CAM_MODE_1STPERSON                  (16)
-	#define CAM_MODE_CAM_ON_A_STRING            (18)
-	#define CAM_MODE_BEHINDBOAT                 (22)
-	#define CAM_MODE_CAMERA                     (46)
-	#define CAM_MODE_ROCKETLAUNCHER_HS          (51)
-	#define CAM_MODE_AIMWEAPON                  (53)
-	#define CAM_MODE_AIMWEAPON_FROMCAR          (55)
-	#define CAM_MODE_DW_HELI_CHASE              (56)
+	#define CAM_MODE_DISCONNECTED				(-1)
+	#define CAM_MODE_NONE						(0)
+	#define CAM_MODE_BEHINDCAR					(3)
+	#define CAM_MODE_FOLLOWPED					(4)
+	#define CAM_MODE_SNIPER						(7)
+	#define CAM_MODE_ROCKETLAUNCHER				(8)
+	#define CAM_MODE_FIXED						(15)
+	#define CAM_MODE_1STPERSON					(16)
+	#define CAM_MODE_CAM_ON_A_STRING			(18)
+	#define CAM_MODE_BEHINDBOAT					(22)
+	#define CAM_MODE_CAMERA						(46)
+	#define CAM_MODE_ROCKETLAUNCHER_HS			(51)
+	#define CAM_MODE_AIMWEAPON					(53)
+	#define CAM_MODE_AIMWEAPON_FROMCAR			(55)
+	#define CAM_MODE_DW_HELI_CHASE				(56)
 #endif
 
 /**
@@ -4872,218 +4872,218 @@ static stock const
  */
 
 #if FIX_VEHICLES
-	#define VEHICLE_LANDSTALKER                 (400)
-	#define VEHICLE_BRAVURA                     (401)
-	#define VEHICLE_BUFFALO                     (402)
-	#define VEHICLE_LINERUNNER                  (403)
-	#define VEHICLE_PERRENIAL                   (404)
-	#define VEHICLE_SENTINEL                    (405)
-	#define VEHICLE_DUMPER                      (406)
-	#define VEHICLE_FIRETRUCK                   (407)
-	#define VEHICLE_TRASHMASTER                 (408)
-	#define VEHICLE_STRETCH                     (409)
-	#define VEHICLE_MANANA                      (410)
-	#define VEHICLE_INFERNUS                    (411)
-	#define VEHICLE_VOODOO                      (412)
-	#define VEHICLE_PONY                        (413)
-	#define VEHICLE_MULE                        (414)
-	#define VEHICLE_CHEETAH                     (415)
-	#define VEHICLE_AMBULANCE                   (416)
-	#define VEHICLE_LEVIATHAN                   (417)
-	#define VEHICLE_MOONBEAM                    (418)
-	#define VEHICLE_ESPERANTO                   (419)
-	#define VEHICLE_TAXI                        (420)
-	#define VEHICLE_WASHINGTON                  (421)
-	#define VEHICLE_BOBCAT                      (422)
-	#define VEHICLE_MRWHOOPEE                   (423)
-	#define VEHICLE_BFINJECTION                 (424)
-	#define VEHICLE_HUNTER                      (425)
-	#define VEHICLE_PREMIER                     (426)
-	#define VEHICLE_ENFORCER                    (427)
-	#define VEHICLE_SECURICAR                   (428)
-	#define VEHICLE_BANSHEE                     (429)
-	#define VEHICLE_PREDATOR                    (430)
-	#define VEHICLE_BUS                         (431)
-	#define VEHICLE_RHINO                       (432)
-	#define VEHICLE_BARRACKS                    (433)
-	#define VEHICLE_HOTKNIFE                    (434)
-	#define VEHICLE_ARTICLETRAILER1             (435)
-	#define VEHICLE_PREVION                     (436)
-	#define VEHICLE_COACH                       (437)
-	#define VEHICLE_CABBIE                      (438)
-	#define VEHICLE_STALLION                    (439)
-	#define VEHICLE_RUMPO                       (440)
-	#define VEHICLE_RCBANDIT                    (441)
-	#define VEHICLE_ROMERO                      (442)
-	#define VEHICLE_PACKER                      (443)
-	#define VEHICLE_MONSTER                     (444)
-	#define VEHICLE_ADMIRAL                     (445)
-	#define VEHICLE_SQUALO                      (446)
-	#define VEHICLE_SEASPARROW                  (447)
-	#define VEHICLE_PIZZABOY                    (448)
-	#define VEHICLE_TRAM                        (449)
-	#define VEHICLE_ARTICLETRAILER2             (450)
-	#define VEHICLE_TURISMO                     (451)
-	#define VEHICLE_SPEEDER                     (452)
-	#define VEHICLE_REEFER                      (453)
-	#define VEHICLE_TROPIC                      (454)
-	#define VEHICLE_FLATBED                     (455)
-	#define VEHICLE_YANKEE                      (456)
-	#define VEHICLE_CADDY                       (457)
-	#define VEHICLE_SOLAIR                      (458)
-	#define VEHICLE_BERKLEYSRCVAN               (459)
-	#define VEHICLE_SKIMMER                     (460)
-	#define VEHICLE_PCJ600                      (461)
-	#define VEHICLE_FAGGIO                      (462)
-	#define VEHICLE_FREEWAY                     (463)
-	#define VEHICLE_RCBARON                     (464)
-	#define VEHICLE_RCRAIDER                    (465)
-	#define VEHICLE_GLENDALE                    (466)
-	#define VEHICLE_OCEANIC                     (467)
-	#define VEHICLE_SANCHEZ                     (468)
-	#define VEHICLE_SPARROW                     (469)
-	#define VEHICLE_PATRIOT                     (470)
-	#define VEHICLE_QUAD                        (471)
-	#define VEHICLE_COASTGUARD                  (472)
-	#define VEHICLE_DINGHY                      (473)
-	#define VEHICLE_HERMES                      (474)
-	#define VEHICLE_SABRE                       (475)
-	#define VEHICLE_RUSTLER                     (476)
-	#define VEHICLE_ZR350                       (477)
-	#define VEHICLE_WALTON                      (478)
-	#define VEHICLE_REGINA                      (479)
-	#define VEHICLE_COMET                       (480)
-	#define VEHICLE_BMX                         (481)
-	#define VEHICLE_BURRITO                     (482)
-	#define VEHICLE_CAMPER                      (483)
-	#define VEHICLE_MARQUIS                     (484)
-	#define VEHICLE_BAGGAGE                     (485)
-	#define VEHICLE_DOZER                       (486)
-	#define VEHICLE_MAVERICK                    (487)
-	#define VEHICLE_SANNEWSMAVERICK             (488)
-	#define VEHICLE_RANCHER                     (489)
-	#define VEHICLE_FBIRANCHER                  (490)
-	#define VEHICLE_VIRGO                       (491)
-	#define VEHICLE_GREENWOOD                   (492)
-	#define VEHICLE_JETMAX                      (493)
-	#define VEHICLE_HOTRINGRACER                (494)
-	#define VEHICLE_SANDKING                    (495)
-	#define VEHICLE_BLISTACOMPACT               (496)
-	#define VEHICLE_POLICEMAVERICK              (497)
-	#define VEHICLE_BOXVILLE                    (498)
-	#define VEHICLE_BENSON                      (499)
-	#define VEHICLE_MESA                        (500)
-	#define VEHICLE_RCGOBLIN                    (501)
-	#define VEHICLE_HOTRINGRACERA               (502)
-	#define VEHICLE_HOTRINGRACERB               (503)
-	#define VEHICLE_BLOODRINGBANGER             (504)
-	#define VEHICLE_RANCHERLURE                 (505)
-	#define VEHICLE_SUPERGT                     (506)
-	#define VEHICLE_ELEGANT                     (507)
-	#define VEHICLE_JOURNEY                     (508)
-	#define VEHICLE_BIKE                        (509)
-	#define VEHICLE_MOUNTAINBIKE                (510)
-	#define VEHICLE_BEAGLE                      (511)
-	#define VEHICLE_CROPDUST                    (512)
-	#define VEHICLE_STUNTPLANE                  (513)
-	#define VEHICLE_TANKER                      (514)
-	#define VEHICLE_ROADTRAIN                   (515)
-	#define VEHICLE_NEBULA                      (516)
-	#define VEHICLE_MAJESTIC                    (517)
-	#define VEHICLE_BUCCANEER                   (518)
-	#define VEHICLE_SHAMAL                      (519)
-	#define VEHICLE_HYDRA                       (520)
-	#define VEHICLE_FCR900                      (521)
-	#define VEHICLE_NRG500                      (522)
-	#define VEHICLE_HPV1000                     (523)
-	#define VEHICLE_CEMENTTRUCK                 (524)
-	#define VEHICLE_TOWTRUCK                    (525)
-	#define VEHICLE_FORTUNE                     (526)
-	#define VEHICLE_CADRONA                     (527)
-	#define VEHICLE_FBITRUCK                    (528)
-	#define VEHICLE_WILLARD                     (529)
-	#define VEHICLE_FORKLIFT                    (530)
-	#define VEHICLE_TRACTOR                     (531)
-	#define VEHICLE_COMBINE                     (532)
-	#define VEHICLE_FELTZER                     (533)
-	#define VEHICLE_REMINGTON                   (534)
-	#define VEHICLE_SLAMVAN                     (535)
-	#define VEHICLE_BLADE                       (536)
-	#define VEHICLE_FREIGHT                     (537)
-	#define VEHICLE_BROWNSTREAK                 (538)
-	#define VEHICLE_VORTEX                      (539)
-	#define VEHICLE_VINCENT                     (540)
-	#define VEHICLE_BULLET                      (541)
-	#define VEHICLE_CLOVER                      (542)
-	#define VEHICLE_SADLER                      (543)
-	#define VEHICLE_FIRETRUCKLA                 (544)
-	#define VEHICLE_HUSTLER                     (545)
-	#define VEHICLE_INTRUDER                    (546)
-	#define VEHICLE_PRIMO                       (547)
-	#define VEHICLE_CARGOBOB                    (548)
-	#define VEHICLE_TAMPA                       (549)
-	#define VEHICLE_SUNRISE                     (550)
-	#define VEHICLE_MERIT                       (551)
-	#define VEHICLE_UTILITYVAN                  (552)
-	#define VEHICLE_NEVADA                      (553)
-	#define VEHICLE_YOSEMITE                    (554)
-	#define VEHICLE_WINDSOR                     (555)
-	#define VEHICLE_MONSTERA                    (556)
-	#define VEHICLE_MONSTERB                    (557)
-	#define VEHICLE_URANUS                      (558)
-	#define VEHICLE_JESTER                      (559)
-	#define VEHICLE_SULTAN                      (560)
-	#define VEHICLE_STRATUM                     (561)
-	#define VEHICLE_ELEGY                       (562)
-	#define VEHICLE_RAINDANCE                   (563)
-	#define VEHICLE_RCTIGER                     (564)
-	#define VEHICLE_FLASH                       (565)
-	#define VEHICLE_TAHOMA                      (566)
-	#define VEHICLE_SAVANNA                     (567)
-	#define VEHICLE_BANDITO                     (568)
-	#define VEHICLE_FREIGHTFLATTRAILER          (569)
-	#define VEHICLE_STREAKTRAILER               (570)
-	#define VEHICLE_KART                        (571)
-	#define VEHICLE_MOWER                       (572)
-	#define VEHICLE_DUNERIDE                    (573)
-	#define VEHICLE_SWEEPER                     (574)
-	#define VEHICLE_BROADWAY                    (575)
-	#define VEHICLE_TORNADO                     (576)
-	#define VEHICLE_AT400                       (577)
-	#define VEHICLE_DFT30                       (578)
-	#define VEHICLE_HUNTLEY                     (579)
-	#define VEHICLE_STAFFORD                    (580)
-	#define VEHICLE_BF400                       (581)
-	#define VEHICLE_NEWSVAN                     (582)
-	#define VEHICLE_TUG                         (583)
-	#define VEHICLE_PETROLTRAILER               (584)
-	#define VEHICLE_EMPEROR                     (585)
-	#define VEHICLE_WAYFARER                    (586)
-	#define VEHICLE_EUROS                       (587)
-	#define VEHICLE_HOTDOG                      (588)
-	#define VEHICLE_CLUB                        (589)
-	#define VEHICLE_FREIGHTBOXTRAILER           (590)
-	#define VEHICLE_ARTICLETRAILER3             (591)
-	#define VEHICLE_ANDROMADA                   (592)
-	#define VEHICLE_DODO                        (593)
-	#define VEHICLE_RCCAM                       (594)
-	#define VEHICLE_LAUNCH                      (595)
-	#define VEHICLE_POLICECARLSPD               (596)
-	#define VEHICLE_POLICECARSFPD               (597)
-	#define VEHICLE_POLICECARLVPD               (598)
-	#define VEHICLE_POLICERANGER                (599)
-	#define VEHICLE_PICADOR                     (600)
-	#define VEHICLE_SWAT                        (601)
-	#define VEHICLE_ALPHA                       (602)
-	#define VEHICLE_PHOENIX                     (603)
-	#define VEHICLE_GLENDALESHIT                (604)
-	#define VEHICLE_SADLERSHIT                  (605)
-	#define VEHICLE_BAGGAGETRAILERA             (606)
-	#define VEHICLE_BAGGAGETRAILERB             (607)
-	#define VEHICLE_TUGSTAIRSTRAILER            (608)
-	#define VEHICLE_BOXBURG                     (609)
-	#define VEHICLE_FARMTRAILER                 (610)
-	#define VEHICLE_UTILITYTRAILER              (611)
+	#define VEHICLE_LANDSTALKER					(400)
+	#define VEHICLE_BRAVURA						(401)
+	#define VEHICLE_BUFFALO						(402)
+	#define VEHICLE_LINERUNNER					(403)
+	#define VEHICLE_PERRENIAL					(404)
+	#define VEHICLE_SENTINEL					(405)
+	#define VEHICLE_DUMPER						(406)
+	#define VEHICLE_FIRETRUCK					(407)
+	#define VEHICLE_TRASHMASTER					(408)
+	#define VEHICLE_STRETCH						(409)
+	#define VEHICLE_MANANA						(410)
+	#define VEHICLE_INFERNUS					(411)
+	#define VEHICLE_VOODOO						(412)
+	#define VEHICLE_PONY						(413)
+	#define VEHICLE_MULE						(414)
+	#define VEHICLE_CHEETAH						(415)
+	#define VEHICLE_AMBULANCE					(416)
+	#define VEHICLE_LEVIATHAN					(417)
+	#define VEHICLE_MOONBEAM					(418)
+	#define VEHICLE_ESPERANTO					(419)
+	#define VEHICLE_TAXI						(420)
+	#define VEHICLE_WASHINGTON					(421)
+	#define VEHICLE_BOBCAT						(422)
+	#define VEHICLE_MRWHOOPEE					(423)
+	#define VEHICLE_BFINJECTION					(424)
+	#define VEHICLE_HUNTER						(425)
+	#define VEHICLE_PREMIER						(426)
+	#define VEHICLE_ENFORCER					(427)
+	#define VEHICLE_SECURICAR					(428)
+	#define VEHICLE_BANSHEE						(429)
+	#define VEHICLE_PREDATOR					(430)
+	#define VEHICLE_BUS							(431)
+	#define VEHICLE_RHINO						(432)
+	#define VEHICLE_BARRACKS					(433)
+	#define VEHICLE_HOTKNIFE					(434)
+	#define VEHICLE_ARTICLETRAILER1				(435)
+	#define VEHICLE_PREVION						(436)
+	#define VEHICLE_COACH						(437)
+	#define VEHICLE_CABBIE						(438)
+	#define VEHICLE_STALLION					(439)
+	#define VEHICLE_RUMPO						(440)
+	#define VEHICLE_RCBANDIT					(441)
+	#define VEHICLE_ROMERO						(442)
+	#define VEHICLE_PACKER						(443)
+	#define VEHICLE_MONSTER						(444)
+	#define VEHICLE_ADMIRAL						(445)
+	#define VEHICLE_SQUALO						(446)
+	#define VEHICLE_SEASPARROW					(447)
+	#define VEHICLE_PIZZABOY					(448)
+	#define VEHICLE_TRAM						(449)
+	#define VEHICLE_ARTICLETRAILER2				(450)
+	#define VEHICLE_TURISMO						(451)
+	#define VEHICLE_SPEEDER						(452)
+	#define VEHICLE_REEFER						(453)
+	#define VEHICLE_TROPIC						(454)
+	#define VEHICLE_FLATBED						(455)
+	#define VEHICLE_YANKEE						(456)
+	#define VEHICLE_CADDY						(457)
+	#define VEHICLE_SOLAIR						(458)
+	#define VEHICLE_BERKLEYSRCVAN				(459)
+	#define VEHICLE_SKIMMER						(460)
+	#define VEHICLE_PCJ600						(461)
+	#define VEHICLE_FAGGIO						(462)
+	#define VEHICLE_FREEWAY						(463)
+	#define VEHICLE_RCBARON						(464)
+	#define VEHICLE_RCRAIDER					(465)
+	#define VEHICLE_GLENDALE					(466)
+	#define VEHICLE_OCEANIC						(467)
+	#define VEHICLE_SANCHEZ						(468)
+	#define VEHICLE_SPARROW						(469)
+	#define VEHICLE_PATRIOT						(470)
+	#define VEHICLE_QUAD						(471)
+	#define VEHICLE_COASTGUARD					(472)
+	#define VEHICLE_DINGHY						(473)
+	#define VEHICLE_HERMES						(474)
+	#define VEHICLE_SABRE						(475)
+	#define VEHICLE_RUSTLER						(476)
+	#define VEHICLE_ZR350						(477)
+	#define VEHICLE_WALTON						(478)
+	#define VEHICLE_REGINA						(479)
+	#define VEHICLE_COMET						(480)
+	#define VEHICLE_BMX							(481)
+	#define VEHICLE_BURRITO						(482)
+	#define VEHICLE_CAMPER						(483)
+	#define VEHICLE_MARQUIS						(484)
+	#define VEHICLE_BAGGAGE						(485)
+	#define VEHICLE_DOZER						(486)
+	#define VEHICLE_MAVERICK					(487)
+	#define VEHICLE_SANNEWSMAVERICK				(488)
+	#define VEHICLE_RANCHER						(489)
+	#define VEHICLE_FBIRANCHER					(490)
+	#define VEHICLE_VIRGO						(491)
+	#define VEHICLE_GREENWOOD					(492)
+	#define VEHICLE_JETMAX						(493)
+	#define VEHICLE_HOTRINGRACER				(494)
+	#define VEHICLE_SANDKING					(495)
+	#define VEHICLE_BLISTACOMPACT				(496)
+	#define VEHICLE_POLICEMAVERICK				(497)
+	#define VEHICLE_BOXVILLE					(498)
+	#define VEHICLE_BENSON						(499)
+	#define VEHICLE_MESA						(500)
+	#define VEHICLE_RCGOBLIN					(501)
+	#define VEHICLE_HOTRINGRACERA				(502)
+	#define VEHICLE_HOTRINGRACERB				(503)
+	#define VEHICLE_BLOODRINGBANGER				(504)
+	#define VEHICLE_RANCHERLURE					(505)
+	#define VEHICLE_SUPERGT						(506)
+	#define VEHICLE_ELEGANT						(507)
+	#define VEHICLE_JOURNEY						(508)
+	#define VEHICLE_BIKE						(509)
+	#define VEHICLE_MOUNTAINBIKE				(510)
+	#define VEHICLE_BEAGLE						(511)
+	#define VEHICLE_CROPDUST					(512)
+	#define VEHICLE_STUNTPLANE					(513)
+	#define VEHICLE_TANKER						(514)
+	#define VEHICLE_ROADTRAIN					(515)
+	#define VEHICLE_NEBULA						(516)
+	#define VEHICLE_MAJESTIC					(517)
+	#define VEHICLE_BUCCANEER					(518)
+	#define VEHICLE_SHAMAL						(519)
+	#define VEHICLE_HYDRA						(520)
+	#define VEHICLE_FCR900						(521)
+	#define VEHICLE_NRG500						(522)
+	#define VEHICLE_HPV1000						(523)
+	#define VEHICLE_CEMENTTRUCK					(524)
+	#define VEHICLE_TOWTRUCK					(525)
+	#define VEHICLE_FORTUNE						(526)
+	#define VEHICLE_CADRONA						(527)
+	#define VEHICLE_FBITRUCK					(528)
+	#define VEHICLE_WILLARD						(529)
+	#define VEHICLE_FORKLIFT					(530)
+	#define VEHICLE_TRACTOR						(531)
+	#define VEHICLE_COMBINE						(532)
+	#define VEHICLE_FELTZER						(533)
+	#define VEHICLE_REMINGTON					(534)
+	#define VEHICLE_SLAMVAN						(535)
+	#define VEHICLE_BLADE						(536)
+	#define VEHICLE_FREIGHT						(537)
+	#define VEHICLE_BROWNSTREAK					(538)
+	#define VEHICLE_VORTEX						(539)
+	#define VEHICLE_VINCENT						(540)
+	#define VEHICLE_BULLET						(541)
+	#define VEHICLE_CLOVER						(542)
+	#define VEHICLE_SADLER						(543)
+	#define VEHICLE_FIRETRUCKLA					(544)
+	#define VEHICLE_HUSTLER						(545)
+	#define VEHICLE_INTRUDER					(546)
+	#define VEHICLE_PRIMO						(547)
+	#define VEHICLE_CARGOBOB					(548)
+	#define VEHICLE_TAMPA						(549)
+	#define VEHICLE_SUNRISE						(550)
+	#define VEHICLE_MERIT						(551)
+	#define VEHICLE_UTILITYVAN					(552)
+	#define VEHICLE_NEVADA						(553)
+	#define VEHICLE_YOSEMITE					(554)
+	#define VEHICLE_WINDSOR						(555)
+	#define VEHICLE_MONSTERA					(556)
+	#define VEHICLE_MONSTERB					(557)
+	#define VEHICLE_URANUS						(558)
+	#define VEHICLE_JESTER						(559)
+	#define VEHICLE_SULTAN						(560)
+	#define VEHICLE_STRATUM						(561)
+	#define VEHICLE_ELEGY						(562)
+	#define VEHICLE_RAINDANCE					(563)
+	#define VEHICLE_RCTIGER						(564)
+	#define VEHICLE_FLASH						(565)
+	#define VEHICLE_TAHOMA						(566)
+	#define VEHICLE_SAVANNA						(567)
+	#define VEHICLE_BANDITO						(568)
+	#define VEHICLE_FREIGHTFLATTRAILER			(569)
+	#define VEHICLE_STREAKTRAILER				(570)
+	#define VEHICLE_KART						(571)
+	#define VEHICLE_MOWER						(572)
+	#define VEHICLE_DUNERIDE					(573)
+	#define VEHICLE_SWEEPER						(574)
+	#define VEHICLE_BROADWAY					(575)
+	#define VEHICLE_TORNADO						(576)
+	#define VEHICLE_AT400						(577)
+	#define VEHICLE_DFT30						(578)
+	#define VEHICLE_HUNTLEY						(579)
+	#define VEHICLE_STAFFORD					(580)
+	#define VEHICLE_BF400						(581)
+	#define VEHICLE_NEWSVAN						(582)
+	#define VEHICLE_TUG							(583)
+	#define VEHICLE_PETROLTRAILER				(584)
+	#define VEHICLE_EMPEROR						(585)
+	#define VEHICLE_WAYFARER					(586)
+	#define VEHICLE_EUROS						(587)
+	#define VEHICLE_HOTDOG						(588)
+	#define VEHICLE_CLUB						(589)
+	#define VEHICLE_FREIGHTBOXTRAILER			(590)
+	#define VEHICLE_ARTICLETRAILER3				(591)
+	#define VEHICLE_ANDROMADA					(592)
+	#define VEHICLE_DODO						(593)
+	#define VEHICLE_RCCAM						(594)
+	#define VEHICLE_LAUNCH						(595)
+	#define VEHICLE_POLICECARLSPD				(596)
+	#define VEHICLE_POLICECARSFPD				(597)
+	#define VEHICLE_POLICECARLVPD				(598)
+	#define VEHICLE_POLICERANGER				(599)
+	#define VEHICLE_PICADOR						(600)
+	#define VEHICLE_SWAT						(601)
+	#define VEHICLE_ALPHA						(602)
+	#define VEHICLE_PHOENIX						(603)
+	#define VEHICLE_GLENDALESHIT				(604)
+	#define VEHICLE_SADLERSHIT					(605)
+	#define VEHICLE_BAGGAGETRAILERA				(606)
+	#define VEHICLE_BAGGAGETRAILERB				(607)
+	#define VEHICLE_TUGSTAIRSTRAILER			(608)
+	#define VEHICLE_BOXBURG						(609)
+	#define VEHICLE_FARMTRAILER					(610)
+	#define VEHICLE_UTILITYTRAILER				(611)
 #endif
 
 /**
@@ -5148,13 +5148,13 @@ static _FIXES_DetermineOS()
 	new
 		val;
 	// The code at address 0 is always `HALT`.
-	#emit LCTRL                0
+	#emit LCTRL				0
 	#emit MOVE.alt
-	#emit LCTRL                1
+	#emit LCTRL				1
 	#emit SUB.alt
-	#emit STOR.S.pri           val
-	#emit LREF.S.alt           val
-	#emit STOR.S.alt           val
+	#emit STOR.S.pri		val
+	#emit LREF.S.alt		val
+	#emit STOR.S.alt		val
 	_FIXES_gIsWindows = (val == 120);
 }
 
@@ -5212,7 +5212,7 @@ static _FIXES_DetermineOS()
  * <fixes>SilentTeleport</fixes>
  */
 #if defined _ALS_SetVehiclePos
-     #error _ALS_SetVehiclePos defined 
+	#error _ALS_SetVehiclePos defined 
 #endif 
 native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos; 
 
@@ -6965,7 +6965,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		//  END:   TogglePlayerControllable
 		// =================================
 
-	  	// =========================
+		// =========================
 		// BEGIN: SilentTeleport
 		// =========================
 		#if FIX_SilentTeleport
@@ -12047,38 +12047,38 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
 		{
 		case 0x6A7D4118, // gamemode0
-		     0x6A7D4119, // gamemode1
-		     0x6A7D411A, // gamemode2
-		     0x6A7D411B, // gamemode3
-		     0x6A7D411C, // gamemode4
-		     0x6A7D411D, // gamemode5
-		     0x6A7D411E, // gamemode6
-		     0x6A7D411F, // gamemode7
-		     0x6A7D4110, // gamemode8
-		     0x6A7D4111, // gamemode9
-		     0xBA256409, // gamemode10
-		     0xBA256408, // gamemode11
-		     0xBA25640B, // gamemode12
-		     0xBA25640A, // gamemode13
-		     0xBA25640D, // gamemode14
-		     0xBA25640C, // gamemode15
-		     0x740D30D2, // worldtime
-		     0x2FB2D3BF, // version
-		     0xFBE0D5FE, // lagcomp
-		     0x19BECDF7, // logtimeformat
-		     0x62420997, // nosign
-		     0x9D57983F, // plugins
-		     0x3AFFC879, // filterscripts
-		     0xD93377B5, // gamemodetext
-		     0x74C01C1D, // weather
-		     0xB605A0C3, // gravity
-		     0x8FED0775, // rcon_password
-		     0x77E7547E, // weburl
-		     0x40736C5E, // mapname
-		     0x672924D7, // language
-		     0x0E9495C2, // hostname
-		     0x5D876F9A, // password
-		     0x7C706484: // bind
+			 0x6A7D4119, // gamemode1
+			 0x6A7D411A, // gamemode2
+			 0x6A7D411B, // gamemode3
+			 0x6A7D411C, // gamemode4
+			 0x6A7D411D, // gamemode5
+			 0x6A7D411E, // gamemode6
+			 0x6A7D411F, // gamemode7
+			 0x6A7D4110, // gamemode8
+			 0x6A7D4111, // gamemode9
+			 0xBA256409, // gamemode10
+			 0xBA256408, // gamemode11
+			 0xBA25640B, // gamemode12
+			 0xBA25640A, // gamemode13
+			 0xBA25640D, // gamemode14
+			 0xBA25640C, // gamemode15
+			 0x740D30D2, // worldtime
+			 0x2FB2D3BF, // version
+			 0xFBE0D5FE, // lagcomp
+			 0x19BECDF7, // logtimeformat
+			 0x62420997, // nosign
+			 0x9D57983F, // plugins
+			 0x3AFFC879, // filterscripts
+			 0xD93377B5, // gamemodetext
+			 0x74C01C1D, // weather
+			 0xB605A0C3, // gravity
+			 0x8FED0775, // rcon_password
+			 0x77E7547E, // weburl
+			 0x40736C5E, // mapname
+			 0x672924D7, // language
+			 0x0E9495C2, // hostname
+			 0x5D876F9A, // password
+			 0x7C706484: // bind
 			return bool:GetServerVarAsString(varname, buffer, len);
 		default:
 			return false;
@@ -12156,24 +12156,24 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
 		{
 		case 0xF59D7562, // cookielogging
-		     0x5DD3AB50, // concookies
-		     0x24DF3EEB, // db_log_queries
-		     0xD8FC2F7F, // db_logging
-		     0xCEF27485, // conseedtime
-		     0x0C43D2DD, // lagcompmode
-		     0xB3AAF0EC, // minconnectiontime
-		     0x2E17DD8D, // playertimeout
-		     0xED02304A, // ackslimit
-		     0x55A5C0C8, // messageslimit
-		     0xBD012555, // messageholelimit
-		     0x16C6DD58, // chatlogging
-		     0x9420F5BA, // weapon_rate
-		     0x5C8B384F, // incar_rate
-		     0x01F89DEB, // onfoot_rate
-		     0x57452FAC, // maxnpc
-		     0x0BAD27EA, // sleep
-		     0x0A9910C4, // stream_rate
-		     0xE20F31D1: // maxplayers
+			 0x5DD3AB50, // concookies
+			 0x24DF3EEB, // db_log_queries
+			 0xD8FC2F7F, // db_logging
+			 0xCEF27485, // conseedtime
+			 0x0C43D2DD, // lagcompmode
+			 0xB3AAF0EC, // minconnectiontime
+			 0x2E17DD8D, // playertimeout
+			 0xED02304A, // ackslimit
+			 0x55A5C0C8, // messageslimit
+			 0xBD012555, // messageholelimit
+			 0x16C6DD58, // chatlogging
+			 0x9420F5BA, // weapon_rate
+			 0x5C8B384F, // incar_rate
+			 0x01F89DEB, // onfoot_rate
+			 0x57452FAC, // maxnpc
+			 0x0BAD27EA, // sleep
+			 0x0A9910C4, // stream_rate
+			 0xE20F31D1: // maxplayers
 			return GetServerVarAsInt(varname);
 		default:
 			return 0;
@@ -12206,12 +12206,12 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
 		{
 		case 0x5F92A936, // announce
-		     0xFB6572C5, // lanmode
-		     0x0B3513EF, // query
-		     0x7C78F2F5, // rcon
-		     0xA300A7ED, // logqueries
-		     0x97EABC6B, // timestamp
-		     0x57CBE04F: // myriad
+			 0xFB6572C5, // lanmode
+			 0x0B3513EF, // query
+			 0x7C78F2F5, // rcon
+			 0xA300A7ED, // logqueries
+			 0x97EABC6B, // timestamp
+			 0x57CBE04F: // myriad
 			return bool:GetServerVarAsBool(varname);
 		default:
 			return false;
@@ -12390,10 +12390,10 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 // Fix inclusion template.
 
 #if !defined FIX_NameOfFixHere
-	#define FIX_NameOfFixHere            (1)
+	#define FIX_NameOfFixHere			(1)
 #elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)
 	#undef FIX_NameOfFixHere
-	#define FIX_NameOfFixHere            (2)
+	#define FIX_NameOfFixHere			(2)
 #endif
 
 // Fix function template.
