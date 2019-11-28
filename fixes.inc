@@ -8505,17 +8505,17 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 						model = GetVehicleModel(GetPlayerVehicleID(playerid)) - 400;
 					if (_FIXES_IN_RANGE(model, 0, 211 + 1))
 					{
-						new
-							seat = GetPlayerVehicleSeat(playerid);
-						if (seat != 128)
+						model = (FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2)) & 0xF;
+						if (model == 0 || model == 15)
 						{
-							model = (FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2)) & 0xF;
-							if (model == 0 || model == 15)
-							{
-								// Shouldn't be in this vehicle at all.
-								FIXES_BlockUpdate(playerid);
-							}
-							else if (!(0 < seat <= model)) // Slower with "_FIXES_NO_RANGE".
+							// Shouldn't be in this vehicle at all.
+							FIXES_BlockUpdate(playerid);
+						}
+						else
+						{
+							new
+								seat = GetPlayerVehicleSeat(playerid);
+							if (!(0 < seat <= model)) // Slower with "_FIXES_NO_RANGE".
 							{
 								// In an out of range seat.
 								FIXES_BlockUpdate(playerid);
@@ -8531,28 +8531,22 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 				{
 						new
 							model = GetPlayerVehicleSeat(playerid);
-						if (model != 128)
+						if (model == 0)
 						{
-							if (model == 0)
+							model = GetVehicleModel(GetPlayerVehicleID(playerid)) - 400;
+							if (_FIXES_NO_RANGE(model, 0, 211 + 1) || FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2) & 0xF == 15)
 							{
-								model = GetVehicleModel(GetPlayerVehicleID(playerid)) - 400;
-								if (_FIXES_NO_RANGE(model, 0, 211 + 1) || FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2) & 0xF == 15)
-								{
-									// In an invalid vehicle (one you can't drive).
-									FIXES_BlockUpdate(playerid);
-								}
-							}
-							else
-							{
-								// They are a driver, but not in the driver's seat.
+								// In an invalid vehicle (one you can't drive).
 								FIXES_BlockUpdate(playerid);
 							}
 						}
-					#if FIX_HydraSniper
 						else
 						{
-							model = GetVehicleModel(GetPlayerVehicleID(playerid));
+							// They are a driver, but not in the driver's seat.
+							FIXES_BlockUpdate(playerid);
 						}
+					#if FIX_HydraSniper
+						model = GetVehicleModel(GetPlayerVehicleID(playerid));
 					#endif
 			#if !FIX_HydraSniper && !FIX_GetPlayerWeapon
 				}
