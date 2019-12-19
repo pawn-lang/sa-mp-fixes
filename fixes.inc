@@ -7245,7 +7245,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if FIX_OnPlayerEnterVehicle_3
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER)
 			{
-				if (GetTickCount() >= FIXES_gsPlayerVehicleTickCount[playerid] + 4000)
+				if (gettime() >= FIXES_gsPlayerVehicleTickCount[playerid] + 4)
 				{
 					_FIXES_StopPlayerEnterVehicle(playerid);
 				}
@@ -7374,7 +7374,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  BEGIN: PassengerSeating
 		// =================================
 		#if FIX_PassengerSeating
-			if (FIXES_gsPSTimer[playerid] != 0 && GetTickCount() > FIXES_gsPSTimer[playerid])
+			if (FIXES_gsPSTimer[playerid] != 0 && gettime() > FIXES_gsPSTimer[playerid])
 			{
 				if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE)
 				{
@@ -7839,7 +7839,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 				FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER;
 				FIXES_gsPlayerVehicleID[playerid] = vehicleid;
-				FIXES_gsPlayerVehicleTickCount[playerid] = GetTickCount();
+				FIXES_gsPlayerVehicleTickCount[playerid] = gettime();
 			}
 		#endif
 		// =============================
@@ -7855,7 +7855,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				new
 					model = GetVehicleModel(vehicleid);
 
-				FIXES_gsPSTimer[playerid] = GetTickCount() + ((model == 431 || model == 437) ? 8000 : 2800);
+				FIXES_gsPSTimer[playerid] = gettime() + ((model == 431 || model == 437) ? 8 : 3);
 			}
 		#endif
 		// =============================
