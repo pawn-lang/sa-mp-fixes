@@ -78,7 +78,7 @@ Name | Problem | Solution | Author(s) | Post(s) | Notes
 ---- | ---- | ---- | ---- | ---- | ---- 
 GetPlayerColor | Returns "0" if "SetPlayerColor" has never been called. | Call "SetPlayerColor" in "OnPlayerConnect". | KoczkaHUN | | 
 FILTERSCRIPT | Despite the fact that is in every new script, many people dont' define "FILTERSCRIPT" where appropriate. | Provide an "IS_FILTERSCRIPT" variable (note the naming to match the original macro). | [Y_Less](https://github.com/Y-Less/) | | 
-SpawnPlayer | Kills the player if they are in a vehicle. | Remove the from the vehicle. | [Y_Less](https://github.com/Y-Less/) | | 
+SpawnPlayer | Kills the player if they are in a vehicle. | Remove player from the vehicle. | [Y_Less](https://github.com/Y-Less/) | | 
 SetPlayerName | Using "SetPlayerName" when the new name only differs from the old name in case does not alter the name at all. | Change their name twice - once to "_FIXES TEMP NAME" and then to the actual required name. | [Y_Less](https://github.com/Y-Less/) [Slice](https://github.com/oscar-broman/) [simonepri](https://github.com/simonepri/) | | 
 GetPlayerSkin | Returns the new skin after "SetSpawnInfo" is called but before the player actually respawns to get the new skin. | Record the skin in "OnPlayerSpawn" and always return that one. | [Y_Less](https://github.com/Y-Less/) | | 
 GetWeaponName | Returns nothing for 18, 44, and 45. | Return the correct names (`Molotov Cocktail`, `Thermal Goggles`, and `Night vision Goggles`). | [Y_Less](https://github.com/Y-Less/) | | **Fixed in 0.3.7** 
