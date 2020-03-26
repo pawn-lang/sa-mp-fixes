@@ -360,3 +360,7 @@ The descriptions of the fixes all look like:
 </fix> 
 ```
 
+## Thanks
+
+A huge thanks to all the community members that have reported and fixed bugs, this include would not be anywhere near the level of quality it is right now without all of you.  Fix writers are all listed above by their contributions.  Fix reporters can be seen by browsing the github issues.  A special thanks also to [@ziggi](https://github.com/ziggi) for hosting this repo for a long time.
+
