@@ -3426,7 +3426,7 @@ static stock
 	/**
 	 * <remarks>
 	 * Stores the locked vehicle's id that the player
-	 * is currently trying to enter
+	 * is currently trying to enter.
 	 * </remarks>
 	 */
 #if FIX_OnPlayerEnterVehicle_3
@@ -3434,13 +3434,13 @@ static stock
 	/**
 	 * <remarks>
 	 * Stores the server tick when the player started
-	 * trying to enter the locked vehicle
+	 * trying to enter the locked vehicle.
 	 * </remarks>
 	 */
 	FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS],
 	/**
 	 * <remarks>
-	 * Boolean: Stores if a certain vehicle is 'locked' or not
+	 * Boolean: Stores if a certain vehicle is 'locked' or not.
 	 * </remarks>
 	 */
 	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES],
@@ -4421,6 +4421,7 @@ static stock const
  * </remarks>
  */
 
+native BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
 #if FIX_IsValidVehicle
 	native IsValidVehicle(vehicleid);
 #endif
@@ -4433,6 +4434,7 @@ static stock const
  * </remarks>
  */
 
+native Float:BAD_GetGravity() = GetGravity;
 #if FIX_GetGravity
 	native Float:GetGravity();
 #endif
@@ -4445,6 +4447,7 @@ static stock const
  * </remarks>
  */
 
+native BAD_gpci(playerid, serial[], maxlen) = gpci;
 #if FIX_gpci
 	native gpci(playerid, serial[], maxlen);
 #endif
@@ -4458,7 +4461,6 @@ static stock const
  */
 
 #if FIX_const
-
 	// a_actor
 	#if defined _ALS_ApplyActorAnimation
 		#error _ALS_ApplyActorAnimation defined
