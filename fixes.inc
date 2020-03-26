@@ -8513,9 +8513,8 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 						}
 						else
 						{
-							new
-								seat = GetPlayerVehicleSeat(playerid);
-							if (!(0 < seat <= model)) // Slower with "_FIXES_NO_RANGE".
+							// Slower with "_FIXES_NO_RANGE".
+							if (!(0 < GetPlayerVehicleSeat(playerid) <= model))
 							{
 								// In an out of range seat.
 								FIXES_BlockUpdate(playerid);
@@ -8529,25 +8528,21 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 				}
 				else if (newstate == PLAYER_STATE_DRIVER)
 				{
-						new
-							model = GetPlayerVehicleSeat(playerid);
-						if (model == 0)
+					new
+						model = GetVehicleModel(GetPlayerVehicleID(playerid)) - 400;
+					if (GetPlayerVehicleSeat(playerid) == 0)
+					{
+						if (_FIXES_NO_RANGE(model, 0, 211 + 1) || FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2) & 0xF == 15)
 						{
-							model = GetVehicleModel(GetPlayerVehicleID(playerid)) - 400;
-							if (_FIXES_NO_RANGE(model, 0, 211 + 1) || FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2) & 0xF == 15)
-							{
-								// In an invalid vehicle (one you can't drive).
-								FIXES_BlockUpdate(playerid);
-							}
-						}
-						else
-						{
-							// They are a driver, but not in the driver's seat.
+							// In an invalid vehicle (one you can't drive).
 							FIXES_BlockUpdate(playerid);
 						}
-					#if FIX_HydraSniper
-						model = GetVehicleModel(GetPlayerVehicleID(playerid));
-					#endif
+					}
+					else
+					{
+						// They are a driver, but not in the driver's seat.
+						FIXES_BlockUpdate(playerid);
+					}
 			#if !FIX_HydraSniper && !FIX_GetPlayerWeapon
 				}
 			#endif
@@ -8565,9 +8560,9 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 				if (newstate == PLAYER_STATE_DRIVER)
 				{
 					new
-						model = GetVehicleModel(GetPlayerVehicleID(playerid));
+						model = GetVehicleModel(GetPlayerVehicleID(playerid)) - 400;
 			#endif
-					if (GetPlayerWeapon(playerid) == 34 && (model == 520 || model == 425))
+					if (GetPlayerWeapon(playerid) == 34 && (model == 120 || model == 25))
 					{
 						SetPlayerArmedWeapon(playerid, 0);
 						#if FIX_GetPlayerWeapon
@@ -8591,15 +8586,25 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 				// Only called if the same check above isn't called.
 				if (newstate == PLAYER_STATE_DRIVER)
 				{
-			#endif
 					new
-						weapon,
+						model,
 						ammo;
-					GetPlayerWeaponData(playerid, 4, weapon, ammo);
-					if (weapon)
+			#else
+					new
+						ammo;
+			#endif
+					// It's a shame `weaponid` is set before `ammo` since we don't actually read
+					// ammo.  Were they done the other way around we could do:
+					//
+					//   GetPlayerWeaponData(playerid, 4, model, model);
+					//
+					// And have the weapon data clobber the ammo data, thus avoiding a variable
+					// allocation (wow, a whole ONE instruction...).
+					GetPlayerWeaponData(playerid, 4, model, ammo);
+					if (model)
 					{
-						SetPlayerArmedWeapon(playerid, weapon);
-						FIXES_SET(PlayerWeapon, playerid, weapon);
+						SetPlayerArmedWeapon(playerid, model);
+						FIXES_SET(PlayerWeapon, playerid, model);
 					}
 				}
 		#endif
