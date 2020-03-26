@@ -7243,7 +7243,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if FIX_OnPlayerEnterVehicle_3
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER)
 			{
-				if (GetTickCount() >= FIXES_gsPlayerVehicleTickCount[playerid] + 4000)
+				if (GetTickCount() - FIXES_gsPlayerVehicleTickCount[playerid] >= 4000)
 				{
 					_FIXES_StopPlayerEnterVehicle(playerid);
 				}
@@ -7372,7 +7372,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  BEGIN: PassengerSeating
 		// =================================
 		#if FIX_PassengerSeating
-			if (FIXES_gsPSTimer[playerid] != 0 && GetTickCount() > FIXES_gsPSTimer[playerid])
+			if (FIXES_gsPSTimer[playerid] != 0 && GetTickCount() - FIXES_gsPSTimer[playerid] > 0)
 			{
 				if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE)
 				{
