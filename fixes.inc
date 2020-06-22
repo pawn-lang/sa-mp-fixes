@@ -1208,7 +1208,7 @@ in the output code.
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1309730" />
  * </fix>
  *
- * <fix name="SetPlayerCamera">
+ * <fix name="SetPlayerCameraPos">
  *     <problem>
  *         Using the camera functions directly after enabling spectator mode
  *         doesn't work.
