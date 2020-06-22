@@ -167,7 +167,7 @@ GetPlayerWorldBounds | There is no "GetPlayerWorldBounds" function. | Store them
 WEAPONS | Some weapons are not defined by default. | Define it. | [ziggi](https://github.com/ziggi) | | 
 BODYPARTS | The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined by default | Define it. | [Whitetiger](https://github.com/Whitetigerswt) | | 
 CAMERAMODES | The camera modes for GetPlayerCameraMode are not defined by default. | Define it. | [Whitetiger](https://github.com/Whitetigerswt) | [Link](http://forum.sa-mp.com/showpost.php?p=1309730) | 
-SetPlayerCamera | Using the camera functions directly after enabling spectator mode doesn't work. | Defer them. | [Emmet_](https://github.com/emmet-jones) | | 
+SetPlayerCameraPos | Using the camera functions directly after enabling spectator mode doesn't work. | Defer them. | [Emmet_](https://github.com/emmet-jones) | | 
 SetPlayerTime | Using this function under "OnPlayerConnect" doesn't work. | Defer it. | [Emmet_](https://github.com/emmet-jones) | | 
 OnPlayerRequestClass | Random blunts and bottles sometimes appear in class selection. | Call "RemoveBuildingForPlayer". | [Y_Less](https://github.com/Y-Less/) | | 
 SetPlayerColor | If used under OnPlayerConnect, the affecting player will not see the color in the TAB menu. | Defer it. | [Emmet_](https://github.com/emmet-jones) | [Link](http://forum.sa-mp.com/showthread.php?t=452407) | 
