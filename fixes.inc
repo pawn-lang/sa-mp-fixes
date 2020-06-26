@@ -7979,9 +7979,12 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			vehicleid = FIXES_gsPlayerVehicleID[playerid],
 			engine, lights, alarm, doors, bonnet, boot, objective;
 
-		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
-		SetVehicleParamsEx(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_OFF, bonnet, boot, objective);
-
+		if (FIXES_gsVehicleIsLocked[vehicleid])
+		{
+			GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+			SetVehicleParamsEx(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_OFF, bonnet, boot, objective);
+		}
+		
 		ClearAnimations(playerid);
 	}
 #endif
