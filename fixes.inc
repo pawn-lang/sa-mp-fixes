@@ -4490,7 +4490,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 
 #if FIX_const
 	// a_actor
-	#if defined _ALS_ApplyActorAnimation
+	#if _FIXES_SAMP && defined _ALS_ApplyActorAnimation
 		#error _ALS_ApplyActorAnimation defined
 	#endif
 	native CST_ApplyActorAnimation(actorid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
@@ -4512,7 +4512,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#tryinclude "..\a_http"
 	#endif
 	#if defined HTTP_ERROR_MALFORMED_RESPONSE
-		#if defined _ALS_HTTP
+		#if _FIXES_SAMP && defined _ALS_HTTP
 			#error _ALS_HTTP defined
 		#endif
 		native CST_HTTP(index, type, const url[], const data[], const callback[]) = HTTP;
@@ -4534,25 +4534,25 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	//
 
 	// a_objects
-	#if defined _ALS_SetObjectMaterial
+	#if _FIXES_SAMP && defined _ALS_SetObjectMaterial
 		#error _ALS_SetObjectMaterial defined
 	#endif
 	native CST_SetObjectMaterial(objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor=0) = SetObjectMaterial;
 	#define _ALS_SetObjectMaterial
 	#define SetObjectMaterial( CST_SetObjectMaterial(
-	#if defined _ALS_SetPlayerObjectMaterial
+	#if _FIXES_SAMP && defined _ALS_SetPlayerObjectMaterial
 		#error _ALS_SetPlayerObjectMaterial defined
 	#endif
 	native CST_SetPlayerObjectMaterial(playerid, objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor=0) = SetPlayerObjectMaterial;
 	#define _ALS_SetPlayerObjectMaterial
 	#define SetPlayerObjectMaterial( CST_SetPlayerObjectMaterial(
-	#if defined _ALS_SetObjectMaterialText
+	#if _FIXES_SAMP && defined _ALS_SetObjectMaterialText
 		#error _ALS_SetObjectMaterialText defined
 	#endif
 	native CST_SetObjectMaterialText(objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetObjectMaterialText;
 	#define _ALS_SetObjectMaterialText
 	#define SetObjectMaterialText( CST_SetObjectMaterialText(
-	#if defined _ALS_SetPlayerObjMaterialText
+	#if _FIXES_SAMP && defined _ALS_SetPlayerObjMaterialText
 		#error _ALS_SetPlayerObjMaterialText defined
 	#endif
 	native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetPlayerObjectMaterialText;
@@ -4560,95 +4560,95 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	#define SetPlayerObjectMaterialText( CST_SetPlayerObjectMaterialText(
 
 	// a_players
-	#if defined _ALS_PlayAudioStreamForPlayer
+	#if _FIXES_SAMP && defined _ALS_PlayAudioStreamForPlayer
 		#error _ALS_PlayAudioStreamForPlayer defined
 	#endif
 	native CST_PlayAudioStreamForPlayer(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0) = PlayAudioStreamForPlayer;
 	#define _ALS_PlayAudioStreamForPlayer
 	#define PlayAudioStreamForPlayer( CST_PlayAudioStreamForPlayer(
-	#if defined _ALS_SetPlayerShopName
+	#if _FIXES_SAMP && defined _ALS_SetPlayerShopName
 		#error _ALS_SetPlayerShopName defined
 	#endif
 	native CST_SetPlayerShopName(playerid, const shopname[]) = SetPlayerShopName;
 	#define _ALS_SetPlayerShopName
 	#define SetPlayerShopName( CST_SetPlayerShopName(
-	#if defined _ALS_CreatePlayerTextDraw
+	#if _FIXES_SAMP && defined _ALS_CreatePlayerTextDraw
 		#error _ALS_CreatePlayerTextDraw defined
 	#endif
 	native PlayerText:CST_CreatePlayerTextDraw(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
 	native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
 	#define _ALS_CreatePlayerTextDraw
 	#define CreatePlayerTextDraw( CST_CreatePlayerTextDraw(
-	#if defined _ALS_PlayerTextDrawSetString
+	#if _FIXES_SAMP && defined _ALS_PlayerTextDrawSetString
 		#error _ALS_PlayerTextDrawSetString defined
 	#endif
 	native CST_PlayerTextDrawSetString(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
 	native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
 	#define _ALS_PlayerTextDrawSetString
 	#define PlayerTextDrawSetString( CST_PlayerTextDrawSetString(
-	#if defined _ALS_SetPVarInt
+	#if _FIXES_SAMP && defined _ALS_SetPVarInt
 		#error _ALS_SetPVarInt defined
 	#endif
 	native CST_SetPVarInt(playerid, const varname[], int_value) = SetPVarInt;
 	#define _ALS_SetPVarInt
 	#define SetPVarInt( CST_SetPVarInt(
-	#if defined _ALS_GetPVarInt
+	#if _FIXES_SAMP && defined _ALS_GetPVarInt
 		#error _ALS_GetPVarInt defined
 	#endif
 	native CST_GetPVarInt(playerid, const varname[]) = GetPVarInt;
 	#define _ALS_GetPVarInt
 	#define GetPVarInt( CST_GetPVarInt(
-	#if defined _ALS_SetPVarString
+	#if _FIXES_SAMP && defined _ALS_SetPVarString
 		#error _ALS_SetPVarString defined
 	#endif
 	native CST_SetPVarString(playerid, const varname[], const string_value[]) = SetPVarString;
 	#define _ALS_SetPVarString
 	#define SetPVarString( CST_SetPVarString(
-	#if defined _ALS_GetPVarString
+	#if _FIXES_SAMP && defined _ALS_GetPVarString
 		#error _ALS_GetPVarString defined
 	#endif
 	native CST_GetPVarString(playerid, const varname[], string_return[], len) = GetPVarString;
 	native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
 	#define _ALS_GetPVarString
 	#define GetPVarString( CST_GetPVarString(
-	#if defined _ALS_SetPVarFloat
+	#if _FIXES_SAMP && defined _ALS_SetPVarFloat
 		#error _ALS_SetPVarFloat defined
 	#endif
 	native CST_SetPVarFloat(playerid, const varname[], Float:float_value) = SetPVarFloat;
 	#define _ALS_SetPVarFloat
 	#define SetPVarFloat( CST_SetPVarFloat(
-	#if defined _ALS_GetPVarFloat
+	#if _FIXES_SAMP && defined _ALS_GetPVarFloat
 		#error _ALS_GetPVarFloat defined
 	#endif
 	native Float:CST_GetPVarFloat(playerid, const varname[]) = GetPVarFloat;
 	#define _ALS_GetPVarFloat
 	#define GetPVarFloat( CST_GetPVarFloat(
-	#if defined _ALS_DeletePVar
+	#if _FIXES_SAMP && defined _ALS_DeletePVar
 		#error _ALS_DeletePVar defined
 	#endif
 	native CST_DeletePVar(playerid, const varname[]) = DeletePVar;
 	#define _ALS_DeletePVar
 	#define DeletePVar( CST_DeletePVar(
-	#if defined _ALS_GetPVarType
+	#if _FIXES_SAMP && defined _ALS_GetPVarType
 		#error _ALS_GetPVarType defined
 	#endif
 	native CST_GetPVarType(playerid, const varname[]) = GetPVarType;
 	#define _ALS_GetPVarType
 	#define GetPVarType( CST_GetPVarType(
-	#if defined _ALS_SetPlayerChatBubble
+	#if _FIXES_SAMP && defined _ALS_SetPlayerChatBubble
 		#error _ALS_SetPlayerChatBubble defined
 	#endif
 	native CST_SetPlayerChatBubble(playerid, const text[], color, Float:drawdistance, expiretime) = SetPlayerChatBubble;
 	#define _ALS_SetPlayerChatBubble
 	#define SetPlayerChatBubble( CST_SetPlayerChatBubble(
-	#if defined _ALS_ApplyAnimation
+	#if _FIXES_SAMP && defined _ALS_ApplyAnimation
 		#error _ALS_ApplyAnimation defined
 	#endif
 	native CST_ApplyAnimation(playerid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
 	native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
 	#define _ALS_ApplyAnimation
 	#define ApplyAnimation( CST_ApplyAnimation(
-	#if defined _ALS_StartRecordingPlayerData
+	#if _FIXES_SAMP && defined _ALS_StartRecordingPlayerData
 		#error _ALS_StartRecordingPlayerData defined
 	#endif
 	native CST_StartRecordingPlayerData(playerid, recordtype, const recordname[]) = StartRecordingPlayerData;
@@ -4656,143 +4656,143 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	#define StartRecordingPlayerData( CST_StartRecordingPlayerData(
 
 	// a_samp
-	#if defined _ALS_SetTimer
+	#if _FIXES_SAMP && defined _ALS_SetTimer
 		#error _ALS_SetTimer defined
 	#endif
 	native CST_SetTimer(const funcname[], interval, repeating) = SetTimer;
 	#define _ALS_SetTimer
 	#define SetTimer( CST_SetTimer(
-	#if defined _ALS_SetTimerEx
+	#if _FIXES_SAMP && defined _ALS_SetTimerEx
 		#error _ALS_SetTimerEx defined
 	#endif
 	native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
 	#define _ALS_SetTimerEx
 	#define SetTimerEx( CST_SetTimerEx(
-	#if defined _ALS_SHA256_PassHash
+	#if _FIXES_SAMP && defined _ALS_SHA256_PassHash
 		#error _ALS_SHA256_PassHash defined
 	#endif
 	native CST_SHA256_PassHash(const password[], const salt[], ret_hash[], ret_hash_len) = SHA256_PassHash;
 	#define _ALS_SHA256_PassHash // SHA256 for password hashing
 	#define SHA256_PassHash( CST_SHA256_PassHash(
-	#if defined _ALS_SetSVarInt
+	#if _FIXES_SAMP && defined _ALS_SetSVarInt
 		#error _ALS_SetSVarInt defined
 	#endif
 	native CST_SetSVarInt(const varname[], int_value) = SetSVarInt;
 	#define _ALS_SetSVarInt
 	#define SetSVarInt( CST_SetSVarInt(
-	#if defined _ALS_GetSVarInt
+	#if _FIXES_SAMP && defined _ALS_GetSVarInt
 		#error _ALS_GetSVarInt defined
 	#endif
 	native CST_GetSVarInt(const varname[]) = GetSVarInt;
 	#define _ALS_GetSVarInt
 	#define GetSVarInt( CST_GetSVarInt(
-	#if defined _ALS_SetSVarString
+	#if _FIXES_SAMP && defined _ALS_SetSVarString
 		#error _ALS_SetSVarString defined
 	#endif
 	native CST_SetSVarString(const varname[], const string_value[]) = SetSVarString;
 	#define _ALS_SetSVarString
 	#define SetSVarString( CST_SetSVarString(
-	#if defined _ALS_GetSVarString
+	#if _FIXES_SAMP && defined _ALS_GetSVarString
 		#error _ALS_GetSVarString defined
 	#endif
 	native CST_GetSVarString(const varname[], string_return[], len) = GetSVarString;
 	native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
 	#define _ALS_GetSVarString
 	#define GetSVarString( CST_GetSVarString(
-	#if defined _ALS_SetSVarFloat
+	#if _FIXES_SAMP && defined _ALS_SetSVarFloat
 		#error _ALS_SetSVarFloat defined
 	#endif
 	native CST_SetSVarFloat(const varname[], Float:float_value) = SetSVarFloat;
 	#define _ALS_SetSVarFloat
 	#define SetSVarFloat( CST_SetSVarFloat(
-	#if defined _ALS_GetSVarFloat
+	#if _FIXES_SAMP && defined _ALS_GetSVarFloat
 		#error _ALS_GetSVarFloat defined
 	#endif
 	native Float:CST_GetSVarFloat(const varname[]) = GetSVarFloat;
 	#define _ALS_GetSVarFloat
 	#define GetSVarFloat( CST_GetSVarFloat(
-	#if defined _ALS_DeleteSVar
+	#if _FIXES_SAMP && defined _ALS_DeleteSVar
 		#error _ALS_DeleteSVar defined
 	#endif
 	native CST_DeleteSVar(const varname[]) = DeleteSVar;
 	#define _ALS_DeleteSVar
 	#define DeleteSVar( CST_DeleteSVar(
-	#if defined _ALS_GetSVarType
+	#if _FIXES_SAMP && defined _ALS_GetSVarType
 		#error _ALS_GetSVarType defined
 	#endif
 	native CST_GetSVarType(const varname[]) = GetSVarType;
 	#define _ALS_GetSVarType
 	#define GetSVarType( CST_GetSVarType(
-	#if defined _ALS_ConnectNPC
+	#if _FIXES_SAMP && defined _ALS_ConnectNPC
 		#error _ALS_ConnectNPC defined
 	#endif
 	native CST_ConnectNPC(const name[], const script[]) = ConnectNPC;
 	#define _ALS_ConnectNPC
 	#define ConnectNPC( CST_ConnectNPC(
-	#if defined _ALS_SendRconCommand
+	#if _FIXES_SAMP && defined _ALS_SendRconCommand
 		#error _ALS_SendRconCommand defined
 	#endif
 	native CST_SendRconCommand(const command[]) = SendRconCommand;
 	#define _ALS_SendRconCommand
 	#define SendRconCommand( CST_SendRconCommand(
 	// This is the only case where a variable is "const" but shouldn't be.
-	#if defined _ALS_GetPlayerVersion
+	#if _FIXES_SAMP && defined _ALS_GetPlayerVersion
 		#error _ALS_GetPlayerVersion defined
 	#endif
 	native CST_GetPlayerVersion(playerid, version[], len) = GetPlayerVersion;
 	#define _ALS_GetPlayerVersion
 	#define GetPlayerVersion( CST_GetPlayerVersion(
-	#if defined _ALS_BlockIpAddress
+	#if _FIXES_SAMP && defined _ALS_BlockIpAddress
 		#error _ALS_BlockIpAddress defined
 	#endif
 	native CST_BlockIpAddress(const ip_address[], timems) = BlockIpAddress;
 	#define _ALS_BlockIpAddress
 	#define BlockIpAddress( CST_BlockIpAddress(
-	#if defined _ALS_UnBlockIpAddress
+	#if _FIXES_SAMP && defined _ALS_UnBlockIpAddress
 		#error _ALS_UnBlockIpAddress defined
 	#endif
 	native CST_UnBlockIpAddress(const ip_address[]) = UnBlockIpAddress;
 	#define _ALS_UnBlockIpAddress
 	#define UnBlockIpAddress( CST_UnBlockIpAddress(
-	#if defined _ALS_TextDrawCreate
+	#if _FIXES_SAMP && defined _ALS_TextDrawCreate
 		#error _ALS_TextDrawCreate defined
 	#endif
 	native Text:CST_TextDrawCreate(Float:x, Float:y, const text[]) = TextDrawCreate;
 	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 	#define _ALS_TextDrawCreate
 	#define TextDrawCreate( CST_TextDrawCreate(
-	#if defined _ALS_TextDrawSetString
+	#if _FIXES_SAMP && defined _ALS_TextDrawSetString
 		#error _ALS_TextDrawSetString defined
 	#endif
 	native CST_TextDrawSetString(Text:text, const string[]) = TextDrawSetString;
 	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 	#define _ALS_TextDrawSetString
 	#define TextDrawSetString( CST_TextDrawSetString(
-	#if defined _ALS_Create3DTextLabel
+	#if _FIXES_SAMP && defined _ALS_Create3DTextLabel
 		#error _ALS_Create3DTextLabel defined
 	#endif
 	native Text3D:CST_Create3DTextLabel(const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, virtualworld, testLOS=0) = Create3DTextLabel;
 	#define _ALS_Create3DTextLabel
 	#define Create3DTextLabel( CST_Create3DTextLabel(
-	#if defined _ALS_Update3DTextLabelText
+	#if _FIXES_SAMP && defined _ALS_Update3DTextLabelText
 		#error _ALS_Update3DTextLabelText defined
 	#endif
 	native CST_Update3DTextLabelText(Text3D:id, color, const text[]) = Update3DTextLabelText;
 	#define _ALS_Update3DTextLabelText
 	#define Update3DTextLabelText( CST_Update3DTextLabelText(
-	#if defined _ALS_CreatePlayer3DTextLabel
+	#if _FIXES_SAMP && defined _ALS_CreatePlayer3DTextLabel
 		#error _ALS_CreatePlayer3DTextLabel defined
 	#endif
 	native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, attachedplayer=INVALID_PLAYER_ID, attachedvehicle=INVALID_VEHICLE_ID, testLOS=0) = CreatePlayer3DTextLabel;
 	#define _ALS_CreatePlayer3DTextLabel
 	#define CreatePlayer3DTextLabel( CST_CreatePlayer3DTextLabel(
-	#if defined _ALS_UpdPlayer3DTextLabelText
+	#if _FIXES_SAMP && defined _ALS_UpdPlayer3DTextLabelText
 		#error _ALS_UpdPlayer3DTextLabelText defined
 	#endif
 	native CST_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:id, color, const text[]) = UpdatePlayer3DTextLabelText;
 	#define _ALS_UpdPlayer3DTextLabelText
 	#define UpdatePlayer3DTextLabelText( CST_UpdatePlayer3DTextLabelText(
-	#if defined _ALS_ShowPlayerDialog
+	#if _FIXES_SAMP && defined _ALS_ShowPlayerDialog
 		#error _ALS_ShowPlayerDialog defined
 	#endif
 	native CST_ShowPlayerDialog(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
@@ -4801,13 +4801,13 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	#define ShowPlayerDialog( CST_ShowPlayerDialog(
 
 	// a_sampdb
-	#if defined _ALS_db_open
+	#if _FIXES_SAMP && defined _ALS_db_open
 		#error _ALS_db_open defined
 	#endif
 	native DB:CST_db_open(const name[]) = db_open;
 	#define _ALS_db_open
 	#define db_open( CST_db_open(
-	#if defined _ALS_db_query
+	#if _FIXES_SAMP && defined _ALS_db_query
 		#error _ALS_db_query defined
 	#endif
 	native DBResult:CST_db_query(DB:db, const query[]) = db_query;
@@ -4815,7 +4815,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	#define db_query( CST_db_query(
 
 	// a_vehicles
-	#if defined _ALS_SetVehicleNumberPlate
+	#if _FIXES_SAMP && defined _ALS_SetVehicleNumberPlate
 		#error _ALS_SetVehicleNumberPlate defined
 	#endif
 	native CST_SetVehicleNumberPlate(vehicleid, const numberplate[]) = SetVehicleNumberPlate;
@@ -5704,7 +5704,7 @@ static _FIXES_DetermineOS()
 /**
  * <fixes>SilentTeleport</fixes>
  */
-#if defined _ALS_SetVehiclePos
+#if _FIXES_SAMP && defined _ALS_SetVehiclePos
 	#error _ALS_SetVehiclePos defined 
 #endif 
 native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos; 
@@ -5735,13 +5735,12 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 		return 0;
 	}
 
-	#define _ALS_SetVehiclePos
 	#if _FIXES_SAMP
+		#define _ALS_SetVehiclePos
 		#define SetVehiclePos( FIXES_SetVehiclePos(
 	#endif
-	#if _FIXES_OMP
-		#define SetVehiclePos__( FIXES_SetVehiclePos(
-	#endif
+	#define _ALS_SetVehiclePos__
+	#define SetVehiclePos__( FIXES_SetVehiclePos(
 #endif
 
 /**
@@ -5768,7 +5767,7 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
  * <fixes>IsPlayerConnected</fixes>
  */
 
-#if defined _ALS_IsPlayerConnected
+#if _FIXES_SAMP && defined _ALS_IsPlayerConnected
 	#error _ALS_IsPlayerConnected defined
 #endif
 native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
@@ -5783,13 +5782,12 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 		return _FIXES_IS_PLAYER_CONNECTED(playerid);
 	}
 
-	#define _ALS_IsPlayerConnected
 	#if _FIXES_SAMP
+		#define _ALS_IsPlayerConnected
 		#define IsPlayerConnected( FIXES_IsPlayerConnected(
 	#endif
-	#if _FIXES_OMP
-		#define IsPlayerConnected__( FIXES_IsPlayerConnected(
-	#endif
+	#define _ALS_IsPlayerConnected__
+	#define IsPlayerConnected__( FIXES_IsPlayerConnected(
 #endif
 
 /**
@@ -7205,7 +7203,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  * <fixes>OnPlayerSpawn</fixes>
  */
 
-#if defined _ALS_SpawnPlayer
+#if _FIXES_SAMP && defined _ALS_SpawnPlayer
 	#error _ALS_SpawnPlayer defined
 #endif
 native BAD_SpawnPlayer(playerid) = SpawnPlayer;
@@ -7253,20 +7251,19 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 		return SpawnPlayer__(playerid);
 	}
 
-	#define _ALS_SpawnPlayer
 	#if _FIXES_SAMP
+		#define _ALS_SpawnPlayer
 		#define SpawnPlayer( FIXES_SpawnPlayer(
 	#endif
-	#if _FIXES_OMP
-		#define SpawnPlayer__( FIXES_SpawnPlayer(
-	#endif
+	#define _ALS_SpawnPlayer__
+	#define SpawnPlayer__( FIXES_SpawnPlayer(
 #endif
 
 /**
  * <fixes>SetPlayerName</fixes>
  */
 
-#if defined _ALS_SetPlayerName
+#if _FIXES_SAMP && defined _ALS_SetPlayerName
 	#error _ALS_SetPlayerName defined
 #endif
 native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
@@ -7301,13 +7298,12 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		return SetPlayerName__(playerid, name);
 	}
 
-	#define _ALS_SetPlayerName
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerName
 		#define SetPlayerName( FIXES_SetPlayerName(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerName__( FIXES_SetPlayerName(
-	#endif
+	#define _ALS_SetPlayerName__
+	#define SetPlayerName__( FIXES_SetPlayerName(
 #endif
 
 /**
@@ -7563,7 +7559,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  * <fixes>SetPlayerSkin</fixes>
  */
 
-#if defined _ALS_SetPlayerSkin
+#if _FIXES_SAMP && defined _ALS_SetPlayerSkin
 	#error _ALS_SetPlayerSkin defined
 #endif
 native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
@@ -7642,20 +7638,19 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 		return SetPlayerSkin__(playerid, skinid);
 	}
 
-	#define _ALS_SetPlayerSkin
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerSkin
 		#define SetPlayerSkin( FIXES_SetPlayerSkin(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerSkin__( FIXES_SetPlayerSkin(
-	#endif
+	#define _ALS_SetPlayerSkin__
+	#define SetPlayerSkin__( FIXES_SetPlayerSkin(
 #endif
 
 /**
  * <fixes>GetPlayerSkin</fixes>
  */
 
-#if defined _ALS_GetPlayerSkin
+#if _FIXES_SAMP && defined _ALS_GetPlayerSkin
 	#error _ALS_GetPlayerSkin defined
 #endif
 native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
@@ -7670,20 +7665,19 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 		return FIXES_GET(PlayerSkin, playerid);
 	}
 
-	#define _ALS_GetPlayerSkin
 	#if _FIXES_SAMP
+		#define _ALS_GetPlayerSkin
 		#define GetPlayerSkin( FIXES_GetPlayerSkin(
 	#endif
-	#if _FIXES_OMP
-		#define GetPlayerSkin__( FIXES_GetPlayerSkin(
-	#endif
+	#define _ALS_GetPlayerSkin__
+	#define GetPlayerSkin__( FIXES_GetPlayerSkin(
 #endif
 
 /**
  * <fixes>GetWeaponName</fixes>
  */
 
-#if defined _ALS_GetWeaponName
+#if _FIXES_SAMP && defined _ALS_GetWeaponName
 	#error _ALS_GetWeaponName defined
 #endif
 native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
@@ -7726,13 +7720,12 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		return 0;
 	}
 
-	#define _ALS_GetWeaponName
 	#if _FIXES_SAMP
+		#define _ALS_GetWeaponName
 		#define GetWeaponName( FIXES_GetWeaponName(
 	#endif
-	#if _FIXES_OMP
-		#define GetWeaponName__( FIXES_GetWeaponName(
-	#endif
+	#define _ALS_GetWeaponName__
+	#define GetWeaponName__( FIXES_GetWeaponName(
 #endif
 
 /**
@@ -7966,7 +7959,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  * <fixes>SetPlayerWorldBounds</fixes>
  */
 
-#if defined _ALS_SetPlayerWorldBounds
+#if _FIXES_SAMP && defined _ALS_SetPlayerWorldBounds
 	#error _ALS_SetPlayerWorldBounds defined
 #endif
 native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min) = SetPlayerWorldBounds;
@@ -8087,13 +8080,12 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 		}
 	#endif
 
-	#define _ALS_SetPlayerWorldBounds
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerWorldBounds
 		#define SetPlayerWorldBounds( FIXES_SetPlayerWorldBounds(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerWorldBounds__( FIXES_SetPlayerWorldBounds(
-	#endif
+	#define _ALS_SetPlayerWorldBounds__
+	#define SetPlayerWorldBounds__( FIXES_SetPlayerWorldBounds(
 #endif
 
 #if FIX_GetPlayerWorldBounds
@@ -8108,13 +8100,12 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 		}
 	}
 
-	#define _ALS_GetPlayerWorldBounds
 	#if _FIXES_SAMP
+		#define _ALS_GetPlayerWorldBounds
 		#define GetPlayerWorldBounds( FIXES_GetPlayerWorldBounds(
 	#endif
-	#if _FIXES_OMP
-		#define GetPlayerWorldBounds__( FIXES_GetPlayerWorldBounds(
-	#endif
+	#define _ALS_GetPlayerWorldBounds__
+	#define GetPlayerWorldBounds__( FIXES_GetPlayerWorldBounds(
 #endif
 
 #if FIX_ClearPlayerWorldBounds
@@ -8123,20 +8114,19 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 		SetPlayerWorldBounds__(playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS);
 	}
 
-	#define _ALS_ClearPlayerWorldBounds
 	#if _FIXES_SAMP
+		#define _ALS_ClearPlayerWorldBounds
 		#define ClearPlayerWorldBounds( FIXES_ClearPlayerWorldBounds(
 	#endif
-	#if _FIXES_OMP
-		#define ClearPlayerWorldBounds__( FIXES_ClearPlayerWorldBounds(
-	#endif
+	#define _ALS_ClearPlayerWorldBounds__
+	#define ClearPlayerWorldBounds__( FIXES_ClearPlayerWorldBounds(
 #endif
 
 /**
  * <fixes>TogglePlayerControllable</fixes>
  */
 
-#if defined _ALS_TogglePlayerControllable
+#if _FIXES_SAMP && defined _ALS_TogglePlayerControllable
 	#error _ALS_TogglePlayerControllable defined
 #endif
 native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable;
@@ -8194,13 +8184,12 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		}
 	#endif
 
-	#define _ALS_TogglePlayerControllable
 	#if _FIXES_SAMP
+		#define _ALS_TogglePlayerControllable
 		#define TogglePlayerControllable( FIXES_TogglePlayerControllable(
 	#endif
-	#if _FIXES_OMP
-		#define TogglePlayerControllable__( FIXES_TogglePlayerControllable(
-	#endif
+	#define _ALS_TogglePlayerControllable__
+	#define TogglePlayerControllable__( FIXES_TogglePlayerControllable(
 #endif
 
 /**
@@ -8668,7 +8657,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * <fixes>Menus</fixes>
  */
 
-#if defined _ALS_CreateMenu
+#if _FIXES_SAMP && defined _ALS_CreateMenu
 	#error _ALS_CreateMenu defined
 #endif
 native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
@@ -8698,13 +8687,12 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 		return ret;
 	}
 
-	#define _ALS_CreateMenu
 	#if _FIXES_SAMP
+		#define _ALS_CreateMenu
 		#define CreateMenu( FIXES_CreateMenu(
 	#endif
-	#if _FIXES_OMP
-		#define CreateMenu__( FIXES_CreateMenu(
-	#endif
+	#define _ALS_CreateMenu__
+	#define CreateMenu__( FIXES_CreateMenu(
 #endif
 
 /**
@@ -8739,7 +8727,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
  * <fixes>GetPlayerMenu</fixes>
  */
 
-#if defined _ALS_DestroyMenu
+#if _FIXES_SAMP && defined _ALS_DestroyMenu
 	#error _ALS_DestroyMenu defined
 #endif
 native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
@@ -8794,20 +8782,19 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 			return 0;
 	}
 
-	#define _ALS_DestroyMenu
 	#if _FIXES_SAMP
+		#define _ALS_DestroyMenu
 		#define DestroyMenu( FIXES_DestroyMenu(
 	#endif
-	#if _FIXES_OMP
-		#define DestroyMenu__( FIXES_DestroyMenu(
-	#endif
+	#define _ALS_DestroyMenu__
+	#define DestroyMenu__( FIXES_DestroyMenu(
 #endif
 
 /**
  * <fixes>AddMenuItem</fixes>
  */
 
-#if defined _ALS_AddMenuItem
+#if _FIXES_SAMP && defined _ALS_AddMenuItem
 	#error _ALS_AddMenuItem defined
 #endif
 native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
@@ -8826,20 +8813,19 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 		return 0;
 	}
 
-	#define _ALS_AddMenuItem
 	#if _FIXES_SAMP
+		#define _ALS_AddMenuItem
 		#define AddMenuItem( FIXES_AddMenuItem(
 	#endif
-	#if _FIXES_OMP
-		#define AddMenuItem__( FIXES_AddMenuItem(
-	#endif
+	#define _ALS_AddMenuItem__
+	#define AddMenuItem__( FIXES_AddMenuItem(
 #endif
 
 /**
  * <fixes>SetMenuColumnHeader</fixes>
  */
 
-#if defined _ALS_SetMenuColumnHeader
+#if _FIXES_SAMP && defined _ALS_SetMenuColumnHeader
 	#error _ALS_SetMenuColumnHeader defined
 #endif
 native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetMenuColumnHeader;
@@ -8858,13 +8844,12 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
 		return 0;
 	}
 
-	#define _ALS_SetMenuColumnHeader
 	#if _FIXES_SAMP
+		#define _ALS_SetMenuColumnHeader
 		#define SetMenuColumnHeader( FIXES_SetMenuColumnHeader(
 	#endif
-	#if _FIXES_OMP
-		#define SetMenuColumnHeader__( FIXES_SetMenuColumnHeader(
-	#endif
+	#define _ALS_SetMenuColumnHeader__
+	#define SetMenuColumnHeader__( FIXES_SetMenuColumnHeader(
 #endif
 
 /**
@@ -8872,7 +8857,7 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
  * <fixes>GetPlayerMenu</fixes>
  */
 
-#if defined _ALS_ShowMenuForPlayer
+#if _FIXES_SAMP && defined _ALS_ShowMenuForPlayer
 	#error _ALS_ShowMenuForPlayer defined
 #endif
 native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
@@ -8907,13 +8892,12 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 		return 0;
 	}
 
-	#define _ALS_ShowMenuForPlayer
 	#if _FIXES_SAMP
+		#define _ALS_ShowMenuForPlayer
 		#define ShowMenuForPlayer( FIXES_ShowMenuForPlayer(
 	#endif
-	#if _FIXES_OMP
-		#define ShowMenuForPlayer__( FIXES_ShowMenuForPlayer(
-	#endif
+	#define _ALS_ShowMenuForPlayer__
+	#define ShowMenuForPlayer__( FIXES_ShowMenuForPlayer(
 #endif
 
 /**
@@ -8922,7 +8906,7 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
  * <fixes>GetPlayerMenu</fixes>
  */
 
-#if defined _ALS_HideMenuForPlayer
+#if _FIXES_SAMP && defined _ALS_HideMenuForPlayer
 	#error _ALS_HideMenuForPlayer defined
 #endif
 native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
@@ -8966,20 +8950,19 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 		return 0;
 	}
 
-	#define _ALS_HideMenuForPlayer
 	#if _FIXES_SAMP
+		#define _ALS_HideMenuForPlayer
 		#define HideMenuForPlayer( FIXES_HideMenuForPlayer(
 	#endif
-	#if _FIXES_OMP
-		#define HideMenuForPlayer__( FIXES_HideMenuForPlayer(
-	#endif
+	#define _ALS_HideMenuForPlayer__
+	#define HideMenuForPlayer__( FIXES_HideMenuForPlayer(
 #endif
 
 /**
  * <fixes>DisableMenu</fixes>
  */
 
-#if defined _ALS_DisableMenu
+#if _FIXES_SAMP && defined _ALS_DisableMenu
 	#error _ALS_DisableMenu defined
 #endif
 native BAD_DisableMenu(Menu:menuid) = DisableMenu;
@@ -8998,20 +8981,19 @@ native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 		return 0;
 	}
 
-	#define _ALS_DisableMenu
 	#if _FIXES_SAMP
+		#define _ALS_DisableMenu
 		#define DisableMenu( FIXES_DisableMenu(
 	#endif
-	#if _FIXES_OMP
-		#define DisableMenu__( FIXES_DisableMenu(
-	#endif
+	#define _ALS_DisableMenu__
+	#define DisableMenu__( FIXES_DisableMenu(
 #endif
 
 /**
  * <fixes>DisableMenuRow</fixes>
  */
 
-#if defined _ALS_DisableMenuRow
+#if _FIXES_SAMP && defined _ALS_DisableMenuRow
 	#error _ALS_DisableMenuRow defined
 #endif
 native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
@@ -9030,20 +9012,19 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 		return 0;
 	}
 
-	#define _ALS_DisableMenuRow
 	#if _FIXES_SAMP
+		#define _ALS_DisableMenuRow
 		#define DisableMenuRow( FIXES_DisableMenuRow(
 	#endif
-	#if _FIXES_OMP
-		#define DisableMenuRow__( FIXES_DisableMenuRow(
-	#endif
+	#define _ALS_DisableMenuRow__
+	#define DisableMenuRow__( FIXES_DisableMenuRow(
 #endif
 
 /**
  * <fixes>GetPlayerMenu</fixes>
  */
 
-#if defined _ALS_GetPlayerMenu
+#if _FIXES_SAMP && defined _ALS_GetPlayerMenu
 	#error _ALS_GetPlayerMenu defined
 #endif
 native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
@@ -9062,13 +9043,12 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 		return Menu:INVALID_MENU;
 	}
 
-	#define _ALS_GetPlayerMenu
 	#if _FIXES_SAMP
+		#define _ALS_GetPlayerMenu
 		#define GetPlayerMenu( FIXES_GetPlayerMenu(
 	#endif
-	#if _FIXES_OMP
-		#define GetPlayerMenu__( FIXES_GetPlayerMenu(
-	#endif
+	#define _ALS_GetPlayerMenu__
+	#define GetPlayerMenu__( FIXES_GetPlayerMenu(
 #endif
 
 /**
@@ -9307,7 +9287,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
  * <fixes>GetPlayerAmmo</fixes>
  */
 
-#if defined _ALS_GivePlayerWeapon
+#if _FIXES_SAMP && defined _ALS_GivePlayerWeapon
 	#error _ALS_GivePlayerWeapon defined
 #endif
 native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
@@ -9358,13 +9338,12 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 		return GivePlayerWeapon__(playerid, weaponid, ammo);
 	}
 
-	#define _ALS_GivePlayerWeapon
 	#if _FIXES_SAMP
+		#define _ALS_GivePlayerWeapon
 		#define GivePlayerWeapon( FIXES_GivePlayerWeapon(
 	#endif
-	#if _FIXES_OMP
-		#define GivePlayerWeapon__( FIXES_GivePlayerWeapon(
-	#endif
+	#define _ALS_GivePlayerWeapon__
+	#define GivePlayerWeapon__( FIXES_GivePlayerWeapon(
 #endif
 
 
@@ -9372,7 +9351,7 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
  * <fixes>GetPlayerWeapon</fixes>
  */
 
-#if defined _ALS_ResetPlayerWeapons
+#if _FIXES_SAMP && defined _ALS_ResetPlayerWeapons
 	#error _ALS_ResetPlayerWeapons defined
 #endif
 native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
@@ -9392,20 +9371,19 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 		return ResetPlayerWeapons__(playerid);
 	}
 
-	#define _ALS_ResetPlayerWeapons
 	#if _FIXES_SAMP
+		#define _ALS_ResetPlayerWeapons
 		#define ResetPlayerWeapons( FIXES_ResetPlayerWeapons(
 	#endif
-	#if _FIXES_OMP
-		#define ResetPlayerWeapons__( FIXES_ResetPlayerWeapons(
-	#endif
+	#define _ALS_ResetPlayerWeapons__
+	#define ResetPlayerWeapons__( FIXES_ResetPlayerWeapons(
 #endif
 
 /**
  * <fixes>GetPlayerWeapon</fixes>
  */
 
-#if defined _ALS_SetPlayerArmedWeapon
+#if _FIXES_SAMP && defined _ALS_SetPlayerArmedWeapon
 	#error _ALS_SetPlayerArmedWeapon defined
 #endif
 native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
@@ -9443,20 +9421,19 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 		return SetPlayerArmedWeapon__(playerid, weaponid);
 	}
 
-	#define _ALS_SetPlayerArmedWeapon
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerArmedWeapon
 		#define SetPlayerArmedWeapon( FIXES_SetPlayerArmedWeapon(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerArmedWeapon__( FIXES_SetPlayerArmedWeapon(
-	#endif
+	#define _ALS_SetPlayerArmedWeapon__
+	#define SetPlayerArmedWeapon__( FIXES_SetPlayerArmedWeapon(
 #endif
 
 /**
  * <fixes>GetPlayerWeapon</fixes>
  */
 
-#if defined _ALS_GetPlayerWeapon
+#if _FIXES_SAMP && defined _ALS_GetPlayerWeapon
 	#error _ALS_GetPlayerWeapon defined
 #endif
 native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
@@ -9477,20 +9454,19 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 		return ret;
 	}
 
-	#define _ALS_GetPlayerWeapon
 	#if _FIXES_SAMP
+		#define _ALS_GetPlayerWeapon
 		#define GetPlayerWeapon( FIXES_GetPlayerWeapon(
 	#endif
-	#if _FIXES_OMP
-		#define GetPlayerWeapon__( FIXES_GetPlayerWeapon(
-	#endif
+	#define _ALS_GetPlayerWeapon__
+	#define GetPlayerWeapon__( FIXES_GetPlayerWeapon(
 #endif
 
 /**
  * <fixes>PutPlayerInVehicle</fixes>
  */
 
-#if defined _ALS_PutPlayerInVehicle
+#if _FIXES_SAMP && defined _ALS_PutPlayerInVehicle
 	#error _ALS_PutPlayerInVehicle defined
 #endif
 native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
@@ -9643,13 +9619,12 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 		}
 	#endif
 
-	#define _ALS_PutPlayerInVehicle
 	#if _FIXES_SAMP
+		#define _ALS_PutPlayerInVehicle
 		#define PutPlayerInVehicle( FIXES_PutPlayerInVehicle(
 	#endif
-	#if _FIXES_OMP
-		#define PutPlayerInVehicle__( FIXES_PutPlayerInVehicle(
-	#endif
+	#define _ALS_PutPlayerInVehicle__
+	#define PutPlayerInVehicle__( FIXES_PutPlayerInVehicle(
 #endif
 
 /**
@@ -9683,7 +9658,7 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
  * <fixes>SetPlayerCheckpoint</fixes>
  */
 
-#if defined _ALS_SetPlayerCheckpoint
+#if _FIXES_SAMP && defined _ALS_SetPlayerCheckpoint
 	#error _ALS_SetPlayerCheckpoint defined
 #endif
 native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
@@ -9706,20 +9681,19 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 				1;
 	}
 
-	#define _ALS_SetPlayerCheckpoint
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerCheckpoint
 		#define SetPlayerCheckpoint( FIXES_SetPlayerCheckpoint(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerCheckpoint__( FIXES_SetPlayerCheckpoint(
-	#endif
+	#define _ALS_SetPlayerCheckpoint__
+	#define SetPlayerCheckpoint__( FIXES_SetPlayerCheckpoint(
 #endif
 
 /**
  * <fixes>SetPlayerCheckpoint</fixes>
  */
 
-#if defined _ALS_DisablePlayerCheckpoint
+#if _FIXES_SAMP && defined _ALS_DisablePlayerCheckpoint
 	#error _ALS_DisablePlayerCheckpoint defined
 #endif
 native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
@@ -9740,13 +9714,12 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 				DisablePlayerCheckpoint__(playerid);
 	}
 
-	#define _ALS_DisablePlayerCheckpoint
 	#if _FIXES_SAMP
+		#define _ALS_DisablePlayerCheckpoint
 		#define DisablePlayerCheckpoint( FIXES_DisablePlayerCheckpoint(
 	#endif
-	#if _FIXES_OMP
-		#define DisablePlayerCheckpoint__( FIXES_DisablePlayerCheckpoint(
-	#endif
+	#define _ALS_DisablePlayerCheckpoint__
+	#define DisablePlayerCheckpoint__( FIXES_DisablePlayerCheckpoint(
 #endif
 
 /**
@@ -9780,7 +9753,7 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
 
-#if defined _ALS_SetPlayerRaceCheckpoint
+#if _FIXES_SAMP && defined _ALS_SetPlayerRaceCheckpoint
 	#error _ALS_SetPlayerRaceCheckpoint defined
 #endif
 native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size) = SetPlayerRaceCheckpoint;
@@ -9803,20 +9776,19 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 				1;
 	}
 
-	#define _ALS_SetPlayerRaceCheckpoint
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerRaceCheckpoint
 		#define SetPlayerRaceCheckpoint( FIXES_SetPlayerRaceCheckpoint(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerRaceCheckpoint__( FIXES_SetPlayerRaceCheckpoint(
-	#endif
+	#define _ALS_SetPlayerRaceCheckpoint__
+	#define SetPlayerRaceCheckpoint__( FIXES_SetPlayerRaceCheckpoint(
 #endif
 
 /**
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
 
-#if defined _ALS_DisablePlayerRaceCP
+#if _FIXES_SAMP && defined _ALS_DisablePlayerRaceCP
 	#error _ALS_DisablePlayerRaceCP defined
 #endif
 native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
@@ -9940,7 +9912,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
  * <fixes>GameText</fixes>
  */
 
-#if defined _ALS_GameTextForAll
+#if _FIXES_SAMP && defined _ALS_GameTextForAll
 	#error _ALS_GameTextForAll defined
 #endif
 native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
@@ -9975,20 +9947,19 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 		return 0;
 	}
 
-	#define _ALS_GameTextForAll
 	#if _FIXES_SAMP
+		#define _ALS_GameTextForAll
 		#define GameTextForAll( FIXES_GameTextForAll(
 	#endif
-	#if _FIXES_OMP
-		#define GameTextForAll__( FIXES_GameTextForAll(
-	#endif
+	#define _ALS_GameTextForAll__
+	#define GameTextForAll__( FIXES_GameTextForAll(
 #endif
 
 /**
  * <fixes>GameText</fixes>
  */
 
-#if defined _ALS_GameTextForPlayer
+#if _FIXES_SAMP && defined _ALS_GameTextForPlayer
 	#error _ALS_GameTextForPlayer defined
 #endif
 native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
@@ -10022,20 +9993,19 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		return 0;
 	}
 
-	#define _ALS_GameTextForPlayer
 	#if _FIXES_SAMP
+		#define _ALS_GameTextForPlayer
 		#define GameTextForPlayer( FIXES_GameTextForPlayer(
 	#endif
-	#if _FIXES_OMP
-		#define GameTextForPlayer__( FIXES_GameTextForPlayer(
-	#endif
+	#define _ALS_GameTextForPlayer__
+	#define GameTextForPlayer__( FIXES_GameTextForPlayer(
 #endif
 
 /**
  * <fixes>HideGameText</fixes>
  */
 
-#if defined _ALS_HideGameTextForAll
+#if _FIXES_SAMP && defined _ALS_HideGameTextForAll
 	#error _ALS_HideGameTextForAll defined
 #endif
 
@@ -10058,7 +10028,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  * <fixes>HideGameText</fixes>
  */
 
-#if defined _ALS_HideGameTextForPlayer
+#if _FIXES_SAMP && defined _ALS_HideGameTextForPlayer
 	#error _ALS_HideGameTextForPlayer defined
 #endif
 
@@ -10087,7 +10057,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  */
 
 #if !FIX_const
-	#if defined _ALS_CreatePlayerTextDraw
+	#if _FIXES_SAMP && defined _ALS_CreatePlayerTextDraw
 		#error _ALS_CreatePlayerTextDraw defined
 	#endif
 	native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
@@ -10129,9 +10099,8 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#endif
 		#define CreatePlayerTextDraw( FIXES_CreatePlayerTextDraw(
 	#endif
-	#if _FIXES_OMP
-		#define CreatePlayerTextDraw__( FIXES_CreatePlayerTextDraw(
-	#endif
+	#define _ALS_CreatePlayerTextDraw__
+	#define CreatePlayerTextDraw__( FIXES_CreatePlayerTextDraw(
 #endif
 
 /**
@@ -10140,7 +10109,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  */
 
 #if !FIX_const
-	#if defined _ALS_PlayerTextDrawSetString
+	#if _FIXES_SAMP && defined _ALS_PlayerTextDrawSetString
 		#error _ALS_PlayerTextDrawSetString defined
 	#endif
 	native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
@@ -10187,9 +10156,8 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#endif
 		#define PlayerTextDrawSetString( FIXES_PlayerTextDrawSetString(
 	#endif
-	#if _FIXES_OMP
-		#define PlayerTextDrawSetString__( FIXES_PlayerTextDrawSetString(
-	#endif
+	#define _ALS_PlayerTextDrawSetString__
+	#define PlayerTextDrawSetString__( FIXES_PlayerTextDrawSetString(
 #endif
 
 /**
@@ -10198,7 +10166,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  */
 
 #if !FIX_const
-	#if defined _ALS_TextDrawCreate
+	#if _FIXES_SAMP && defined _ALS_TextDrawCreate
 		#error _ALS_TextDrawCreate defined
 	#endif
 	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
@@ -10240,9 +10208,8 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#endif
 		#define TextDrawCreate( FIXES_TextDrawCreate(
 	#endif
-	#if _FIXES_OMP
-		#define TextDrawCreate__( FIXES_TextDrawCreate(
-	#endif
+	#define _ALS_TextDrawCreate__
+	#define TextDrawCreate__( FIXES_TextDrawCreate(
 #endif
 
 /**
@@ -10251,7 +10218,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  */
 
 #if !FIX_const
-	#if defined _ALS_TextDrawSetString
+	#if _FIXES_SAMP && defined _ALS_TextDrawSetString
 		#error _ALS_TextDrawSetString defined
 	#endif
 	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
@@ -10298,16 +10265,15 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#endif
 		#define TextDrawSetString( FIXES_TextDrawSetString(
 	#endif
-	#if _FIXES_OMP
-		#define TextDrawSetString__( FIXES_TextDrawSetString(
-	#endif
+	#define _ALS_TextDrawSetString__
+	#define TextDrawSetString__( FIXES_TextDrawSetString(
 #endif
 
 /**
  * <fixes>AllowInteriorWeapons</fixes>
  */
 
-#if defined _ALS_AllowInteriorWeapons
+#if _FIXES_SAMP && defined _ALS_AllowInteriorWeapons
 	#error _ALS_AllowInteriorWeapons defined
 #endif
 native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
@@ -10375,20 +10341,19 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 		}
 	#endif
 
-	#define _ALS_AllowInteriorWeapons
 	#if _FIXES_SAMP
+		#define _ALS_AllowInteriorWeapons
 		#define AllowInteriorWeapons( FIXES_AllowInteriorWeapons(
 	#endif
-	#if _FIXES_OMP
-		#define AllowInteriorWeapons__( FIXES_AllowInteriorWeapons(
-	#endif
+	#define _ALS_AllowInteriorWeapons__
+	#define AllowInteriorWeapons__( FIXES_AllowInteriorWeapons(
 #endif
 
 /**
  * <fixes>GetPlayerInterior</fixes>
  */
 
-#if defined _ALS_GetPlayerInterior
+#if _FIXES_SAMP && defined _ALS_GetPlayerInterior
 	#error _ALS_GetPlayerInterior defined
 #endif
 native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
@@ -10407,20 +10372,19 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 		return 0;
 	}
 
-	#define _ALS_GetPlayerInterior
 	#if _FIXES_SAMP
+		#define _ALS_GetPlayerInterior
 		#define GetPlayerInterior( FIXES_GetPlayerInterior(
 	#endif
-	#if _FIXES_OMP
-		#define GetPlayerInterior__( FIXES_GetPlayerInterior(
-	#endif
+	#define _ALS_GetPlayerInterior__
+	#define GetPlayerInterior__( FIXES_GetPlayerInterior(
 #endif
 
 /**
  * <fixes>GetPlayerInterior</fixes>
  */
 
-#if defined _ALS_SetPlayerInterior
+#if _FIXES_SAMP && defined _ALS_SetPlayerInterior
 	#error _ALS_SetPlayerInterior defined
 #endif
 native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
@@ -10440,13 +10404,12 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 		return 0;
 	}
 
-	#define _ALS_SetPlayerInterior
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerInterior
 		#define SetPlayerInterior( FIXES_SetPlayerInterior(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerInterior__( FIXES_SetPlayerInterior(
-	#endif
+	#define _ALS_SetPlayerInterior__
+	#define SetPlayerInterior__( FIXES_SetPlayerInterior(
 #endif
 
 /**
@@ -10491,7 +10454,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
  * <fixes>AllowTeleport</fixes>
  */
 
-#if defined _ALS_AllowPlayerTeleport
+#if _FIXES_SAMP && defined _ALS_AllowPlayerTeleport
 	#error _ALS_AllowPlayerTeleport defined
 #endif
 native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
@@ -10528,20 +10491,19 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 		}
 	#endif
 
-	#define _ALS_AllowPlayerTeleport
 	#if _FIXES_SAMP
+		#define _ALS_AllowPlayerTeleport
 		#define AllowPlayerTeleport( FIXES_AllowPlayerTeleport(
 	#endif
-	#if _FIXES_OMP
-		#define AllowPlayerTeleport__( FIXES_AllowPlayerTeleport(
-	#endif
+	#define _ALS_AllowPlayerTeleport__
+	#define AllowPlayerTeleport__( FIXES_AllowPlayerTeleport(
 #endif
 
 /**
  * <fixes>AllowTeleport</fixes>
  */
 
-#if defined _ALS_AllowAdminTeleport
+#if _FIXES_SAMP && defined _ALS_AllowAdminTeleport
 	#error _ALS_AllowAdminTeleport defined
 #endif
 native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
@@ -10573,13 +10535,12 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 		}
 	#endif
 
-	#define _ALS_AllowAdminTeleport
 	#if _FIXES_SAMP
+		#define _ALS_AllowAdminTeleport
 		#define AllowAdminTeleport( FIXES_AllowAdminTeleport(
 	#endif
-	#if _FIXES_OMP
-		#define AllowAdminTeleport__( FIXES_AllowAdminTeleport(
-	#endif
+	#define _ALS_AllowAdminTeleport__
+	#define AllowAdminTeleport__( FIXES_AllowAdminTeleport(
 #endif
 
 /**
@@ -10621,7 +10582,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
  * <fixes>SetPlayerSpecialAction</fixes>
  */
 
-#if defined _ALS_SetPlayerSpecialAction
+#if _FIXES_SAMP && defined _ALS_SetPlayerSpecialAction
 	#error _ALS_SetPlayerSpecialAction defined
 #endif
 native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
@@ -10641,20 +10602,19 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 		return 1;
 	}
 
-	#define _ALS_SetPlayerSpecialAction
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerSpecialAction
 		#define SetPlayerSpecialAction( FIXES_SetPlayerSpecialAction(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerSpecialAction__( FIXES_SetPlayerSpecialAction(
-	#endif
+	#define _ALS_SetPlayerSpecialAction__
+	#define SetPlayerSpecialAction__( FIXES_SetPlayerSpecialAction(
 #endif
 
 /**
  * <fixes>ClearAnimations</fixes>
  */
 
-#if defined _ALS_ClearAnimations
+#if _FIXES_SAMP && defined _ALS_ClearAnimations
 	#error _ALS_ClearAnimations defined
 #endif
 native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
@@ -10689,20 +10649,19 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 		#endif
 	}
 
-	#define _ALS_ClearAnimations
 	#if _FIXES_SAMP
+		#define _ALS_ClearAnimations
 		#define ClearAnimations( FIXES_ClearAnimations(
 	#endif
-	#if _FIXES_OMP
-		#define ClearAnimations__( FIXES_ClearAnimations(
-	#endif
+	#define _ALS_ClearAnimations__
+	#define ClearAnimations__( FIXES_ClearAnimations(
 #endif
 
 /**
  * <fixes>GangZoneCreate</fixes>
  */
 
-#if defined _ALS_GangZoneCreate
+#if _FIXES_SAMP && defined _ALS_GangZoneCreate
 	#error _ALS_GangZoneCreate defined
 #endif
 native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = GangZoneCreate;
@@ -10717,13 +10676,12 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		return GangZoneCreate__(floatsub(minx, floatfract(minx)), floatsub(miny, floatfract(miny)), floatsub(maxx, floatfract(maxx)), floatsub(maxy, floatfract(maxy)));
 	}
 
-	#define _ALS_GangZoneCreate
 	#if _FIXES_SAMP
+		#define _ALS_GangZoneCreate
 		#define GangZoneCreate( FIXES_GangZoneCreate(
 	#endif
-	#if _FIXES_OMP
-		#define GangZoneCreate__( FIXES_GangZoneCreate(
-	#endif
+	#define _ALS_GangZoneCreate__
+	#define GangZoneCreate__( FIXES_GangZoneCreate(
 #endif
 
 /**
@@ -10732,7 +10690,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  */
 
 #if !FIX_const
-	#if defined _ALS_ShowPlayerDialog
+	#if _FIXES_SAMP && defined _ALS_ShowPlayerDialog
 		#error _ALS_ShowPlayerDialog defined
 	#endif
 	native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
@@ -10762,9 +10720,8 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		#endif
 		#define ShowPlayerDialog( FIXES_ShowPlayerDialog(
 	#endif
-	#if _FIXES_OMP
-		#define ShowPlayerDialog__( FIXES_ShowPlayerDialog(
-	#endif
+	#define _ALS_ShowPlayerDialog__
+	#define ShowPlayerDialog__( FIXES_ShowPlayerDialog(
 #endif
 
 /**
@@ -10821,7 +10778,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  * <fixes>GetPlayerDialog</fixes>
  */
 
-#if defined _ALS_GetPlayerDialog
+#if _FIXES_SAMP && defined _ALS_GetPlayerDialog
 	#error _ALS_GetPlayerDialog defined
 #endif
 
@@ -10835,20 +10792,19 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		return -1;
 	}
 
-	#define _ALS_GetPlayerDialog
 	#if _FIXES_SAMP
+		#define _ALS_GetPlayerDialog
 		#define GetPlayerDialog( FIXES_GetPlayerDialog(
 	#endif
-	#if _FIXES_OMP
-		#define GetPlayerDialog__( FIXES_GetPlayerDialog(
-	#endif
+	#define _ALS_GetPlayerDialog__
+	#define GetPlayerDialog__( FIXES_GetPlayerDialog(
 #endif
 
 /**
  * <fixes>valstr</fixes>
  */
 
-#if defined _ALS_valstr
+#if _FIXES_SAMP && defined _ALS_valstr
 	#error _ALS_valstr defined
 #endif
 native BAD_valstr(dest[], value, bool:pack = false) = valstr;
@@ -10875,20 +10831,19 @@ native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 		return 0;
 	}
 
-	#define _ALS_valstr
 	#if _FIXES_SAMP
+		#define _ALS_valstr
 		#define valstr( FIXES_valstr(
 	#endif
-	#if _FIXES_OMP
-		#define valstr__( FIXES_valstr(
-	#endif
+	#define _ALS_valstr__
+	#define valstr__( FIXES_valstr(
 #endif
 
 /**
  * <fixes>fclose</fixes>
  */
 
-#if defined _ALS_fclose
+#if _FIXES_SAMP && defined _ALS_fclose
 	#error _ALS_fclose defined
 #endif
 native BAD_fclose(File:handle) = fclose;
@@ -10903,20 +10858,19 @@ native BAD_fclose(File:handle) = fclose;
 		return handle && fclose(handle);
 	}
 
-	#define _ALS_fclose
 	#if _FIXES_SAMP
+		#define _ALS_fclose
 		#define fclose( FIXES_fclose(
 	#endif
-	#if _FIXES_OMP
-		#define fclose__( FIXES_fclose(
-	#endif
+	#define _ALS_fclose__
+	#define fclose__( FIXES_fclose(
 #endif
 
 /**
  * <fixes>fwrite</fixes>
  */
 
-#if defined _ALS_fwrite
+#if _FIXES_SAMP && defined _ALS_fwrite
 	#error _ALS_fwrite defined
 #endif
 native BAD_fwrite(File:handle, const string[]) = fwrite;
@@ -10931,20 +10885,19 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 		return handle ? fwrite(handle, string) : 0;
 	}
 
-	#define _ALS_fwrite
 	#if _FIXES_SAMP
+		#define _ALS_fwrite
 		#define fwrite( FIXES_fwrite(
 	#endif
-	#if _FIXES_OMP
-		#define fwrite__( FIXES_fwrite(
-	#endif
+	#define _ALS_fwrite__
+	#define fwrite__( FIXES_fwrite(
 #endif
 
 /**
  * <fixes>fread</fixes>
  */
 
-#if defined _ALS_fread
+#if _FIXES_SAMP && defined _ALS_fread
 	#error _ALS_fread defined
 #endif
 native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = false) = fread;
@@ -10959,20 +10912,19 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 		return handle ? fread(handle, string, size, pack) : 0;
 	}
 
-	#define _ALS_fread
 	#if _FIXES_SAMP
+		#define _ALS_fread
 		#define fread( FIXES_fread(
 	#endif
-	#if _FIXES_OMP
-		#define fread__( FIXES_fread(
-	#endif
+	#define _ALS_fread__
+	#define fread__( FIXES_fread(
 #endif
 
 /**
  * <fixes>fputchar</fixes>
  */
 
-#if defined _ALS_fputchar
+#if _FIXES_SAMP && defined _ALS_fputchar
 	#error _ALS_fputchar defined
 #endif
 native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
@@ -10987,20 +10939,19 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 		return handle && fputchar(handle, value, utf8);
 	}
 
-	#define _ALS_fputchar
 	#if _FIXES_SAMP
+		#define _ALS_fputchar
 		#define fputchar( FIXES_fputchar(
 	#endif
-	#if _FIXES_OMP
-		#define fputchar__( FIXES_fputchar(
-	#endif
+	#define _ALS_fputchar__
+	#define fputchar__( FIXES_fputchar(
 #endif
 
 /**
  * <fixes>fgetchar</fixes>
  */
 
-#if defined _ALS_fgetchar
+#if _FIXES_SAMP && defined _ALS_fgetchar
 	#error _ALS_fgetchar defined
 #endif
 native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
@@ -11015,20 +10966,19 @@ native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 		return handle ? fgetchar(handle, value, utf8) : '\0';
 	}
 
-	#define _ALS_fgetchar
 	#if _FIXES_SAMP
+		#define _ALS_fgetchar
 		#define fgetchar( FIXES_fgetchar(
 	#endif
-	#if _FIXES_OMP
-		#define fgetchar__( FIXES_fgetchar(
-	#endif
+	#define _ALS_fgetchar__
+	#define fgetchar__( FIXES_fgetchar(
 #endif
 
 /**
  * <fixes>fblockwrite</fixes>
  */
 
-#if defined _ALS_fblockwrite
+#if _FIXES_SAMP && defined _ALS_fblockwrite
 	#error _ALS_fblockwrite defined
 #endif
 native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fblockwrite;
@@ -11043,20 +10993,19 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
 		return handle ? fblockwrite(handle, buffer, size) : 0;
 	}
 
-	#define _ALS_fblockwrite
 	#if _FIXES_SAMP
+		#define _ALS_fblockwrite
 		#define fblockwrite( FIXES_fblockwrite(
 	#endif
-	#if _FIXES_OMP
-		#define fblockwrite__( FIXES_fblockwrite(
-	#endif
+	#define _ALS_fblockwrite__
+	#define fblockwrite__( FIXES_fblockwrite(
 #endif
 
 /**
  * <fixes>fblockread</fixes>
  */
 
-#if defined _ALS_fblockread
+#if _FIXES_SAMP && defined _ALS_fblockread
 	#error _ALS_fblockread defined
 #endif
 native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockread;
@@ -11071,20 +11020,19 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
 		return handle ? fblockread(handle, buffer, size) : 0;
 	}
 
-	#define _ALS_fblockread
 	#if _FIXES_SAMP
+		#define _ALS_fblockread
 		#define fblockread( FIXES_fblockread(
 	#endif
-	#if _FIXES_OMP
-		#define fblockread__( FIXES_fblockread(
-	#endif
+	#define _ALS_fblockread__
+	#define fblockread__( FIXES_fblockread(
 #endif
 
 /**
  * <fixes>fseek</fixes>
  */
 
-#if defined _ALS_fseek
+#if _FIXES_SAMP && defined _ALS_fseek
 	#error _ALS_fseek defined
 #endif
 native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = fseek;
@@ -11099,20 +11047,19 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
 		return handle ? fseek(handle, position, whence) : 0;
 	}
 
-	#define _ALS_fseek
 	#if _FIXES_SAMP
+		#define _ALS_fseek
 		#define fseek( FIXES_fseek(
 	#endif
-	#if _FIXES_OMP
-		#define fseek__( FIXES_fseek(
-	#endif
+	#define _ALS_fseek__
+	#define fseek__( FIXES_fseek(
 #endif
 
 /**
  * <fixes>flength</fixes>
  */
 
-#if defined _ALS_flength
+#if _FIXES_SAMP && defined _ALS_flength
 	#error _ALS_flength defined
 #endif
 native BAD_flength(File:handle) = flength;
@@ -11127,20 +11074,19 @@ native BAD_flength(File:handle) = flength;
 		return handle ? flength(handle) : 0;
 	}
 
-	#define _ALS_flength
 	#if _FIXES_SAMP
+		#define _ALS_flength
 		#define flength( FIXES_flength(
 	#endif
-	#if _FIXES_OMP
-		#define flength__( FIXES_flength(
-	#endif
+	#define _ALS_flength__
+	#define flength__( FIXES_flength(
 #endif
 
 /**
  * <fixes>Kick</fixes>
  */
 
-#if defined _ALS_Kick
+#if _FIXES_SAMP && defined _ALS_Kick
 	#error _ALS_Kick defined
 #endif
 native BAD_Kick(playerid) = Kick;
@@ -11190,13 +11136,12 @@ native BAD_Kick(playerid) = Kick;
 		}
 	}
 
-	#define _ALS_Kick
 	#if _FIXES_SAMP
+		#define _ALS_Kick
 		#define Kick( FIXES_Kick(
 	#endif
-	#if _FIXES_OMP
-		#define Kick__( FIXES_Kick(
-	#endif
+	#define _ALS_Kick__
+	#define Kick__( FIXES_Kick(
 #endif
 
 /**
@@ -11432,7 +11377,7 @@ native BAD_Kick(playerid) = Kick;
  * <fixes>strins</fixes>
  */
 
-#if defined _ALS_strins
+#if _FIXES_SAMP && defined _ALS_strins
 	#error _ALS_strins defined
 #endif
 native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = strins;
@@ -11501,13 +11446,12 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		}
 	}
 
-	#define _ALS_strins
 	#if _FIXES_SAMP
+		#define _ALS_strins
 		#define strins( FIXES_strins(
 	#endif
-	#if _FIXES_OMP
-		#define strins__( FIXES_strins(
-	#endif
+	#define _ALS_strins__
+	#define strins__( FIXES_strins(
 #endif
 
 /**
@@ -11596,7 +11540,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  */
 
 #if !FIX_const
-	#if defined _ALS_ApplyAnimation
+	#if _FIXES_SAMP && defined _ALS_ApplyAnimation
 		#error _ALS_ApplyAnimation defined
 	#endif
 	native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
@@ -11634,9 +11578,8 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		#endif
 		#define ApplyAnimation( FIXES_ApplyAnimation(
 	#endif
-	#if _FIXES_OMP
-		#define ApplyAnimation__( FIXES_ApplyAnimation(
-	#endif
+	#define _ALS_ApplyAnimation__
+	#define ApplyAnimation__( FIXES_ApplyAnimation(
 #endif
 
 /**
@@ -11681,7 +11624,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  */
 
 #if !FIX_const
-	#if defined _ALS_ApplyActorAnimation
+	#if _FIXES_SAMP && defined _ALS_ApplyActorAnimation
 		#error _ALS_ApplyActorAnimation defined
 	#endif
 	native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
@@ -11719,16 +11662,15 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		#endif
 		#define ApplyActorAnimation( FIXES_ApplyActorAnimation(
 	#endif
-	#if _FIXES_OMP
-		#define ApplyActorAnimation__( FIXES_ApplyActorAnimation(
-	#endif
+	#define _ALS_ApplyActorAnimation__
+	#define ApplyActorAnimation__( FIXES_ApplyActorAnimation(
 #endif
 
 /**
  * <fixes>ApplyActorAnimation_2</fixes>
  */
 
-#if defined _ALS_CreateActor
+#if _FIXES_SAMP && defined _ALS_CreateActor
 	#error _ALS_CreateActor defined
 #endif
 native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = CreateActor;
@@ -11759,20 +11701,19 @@ native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = Cre
 		return actorid;
 	}
 
-	#define _ALS_CreateActor
 	#if _FIXES_SAMP
+		#define _ALS_CreateActor
 		#define CreateActor( FIXES_CreateActor(
 	#endif
-	#if _FIXES_OMP
-		#define CreateActor__( FIXES_CreateActor(
-	#endif
+	#define _ALS_CreateActor__
+	#define CreateActor__( FIXES_CreateActor(
 #endif
 
 /**
  * <fixes>ApplyActorAnimation_2</fixes>
  */
 
-#if defined _ALS_DestroyActor
+#if _FIXES_SAMP && defined _ALS_DestroyActor
 	#error _ALS_DestroyActor defined
 #endif
 native BAD_DestroyActor(actorid) = DestroyActor;
@@ -11793,20 +11734,19 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 		return DestroyActor__(actorid);
 	}
 
-	#define _ALS_DestroyActor
 	#if _FIXES_SAMP
+		#define _ALS_DestroyActor
 		#define DestroyActor( FIXES_DestroyActor(
 	#endif
-	#if _FIXES_OMP
-		#define DestroyActor__( FIXES_DestroyActor(
-	#endif
+	#define _ALS_DestroyActor__
+	#define DestroyActor__( FIXES_DestroyActor(
 #endif
 
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
 
-#if defined _ALS_SetVehicleParamsEx
+#if _FIXES_SAMP && defined _ALS_SetVehicleParamsEx
 	#error _ALS_SetVehicleParamsEx defined
 #endif
 native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective) = SetVehicleParamsEx;
@@ -11822,20 +11762,19 @@ native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, b
 		return SetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 	}
 
-	#define _ALS_SetVehicleParamsEx
 	#if _FIXES_SAMP
+		#define _ALS_SetVehicleParamsEx
 		#define SetVehicleParamsEx( FIXES_SetVehicleParamsEx(
 	#endif
-	#if _FIXES_OMP
-		#define SetVehicleParamsEx__( FIXES_SetVehicleParamsEx(
-	#endif
+	#define _ALS_SetVehicleParamsEx__
+	#define SetVehicleParamsEx__( FIXES_SetVehicleParamsEx(
 #endif
 
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
 
-#if defined _ALS_GetVehicleParamsEx
+#if _FIXES_SAMP && defined _ALS_GetVehicleParamsEx
 	#error _ALS_GetVehicleParamsEx defined
 #endif
 native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective) = GetVehicleParamsEx;
@@ -11861,13 +11800,12 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
 		return ret;
 	}
 
-	#define _ALS_GetVehicleParamsEx
 	#if _FIXES_SAMP
+		#define _ALS_GetVehicleParamsEx
 		#define GetVehicleParamsEx( FIXES_GetVehicleParamsEx(
 	#endif
-	#if _FIXES_OMP
-		#define GetVehicleParamsEx__( FIXES_GetVehicleParamsEx(
-	#endif
+	#define _ALS_GetVehicleParamsEx__
+	#define GetVehicleParamsEx__( FIXES_GetVehicleParamsEx(
 #endif
 
 /**
@@ -11887,7 +11825,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
  * <fixes>random</fixes>
  */
 
-#if defined _ALS_random
+#if _FIXES_SAMP && defined _ALS_random
 	#error _ALS_random defined
 #endif
 native BAD_random(max) = random;
@@ -11909,13 +11847,12 @@ native BAD_random(max) = random;
 		}
 	}
 
-	#define _ALS_random
 	#if _FIXES_SAMP
+		#define _ALS_random
 		#define random( FIXES_random(
 	#endif
-	#if _FIXES_OMP
-		#define random__( FIXES_random(
-	#endif
+	#define _ALS_random__
+	#define random__( FIXES_random(
 #endif
 
 /**
@@ -11924,7 +11861,7 @@ native BAD_random(max) = random;
 
 // Uses a little trick to consume part of the line and thus not match
 // our hooked version.
-#if defined _ALS_sleep
+#if _FIXES_SAMP && defined _ALS_sleep
 	#error _ALS_sleep defined
 #endif
 #define BAD_sleep%0\n%9 sleep%0
@@ -11982,7 +11919,7 @@ native BAD_random(max) = random;
  * <fixes>SetPlayerCamera</fixes>
  */
 
-#if defined _ALS_SetPlayerCameraPos
+#if _FIXES_SAMP && defined _ALS_SetPlayerCameraPos
 	#error _ALS_SetPlayerCameraPos defined
 #endif
 native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
@@ -12012,20 +11949,19 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 		return 0;
 	}
 
-	#define _ALS_SetPlayerCameraPos
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerCameraPos
 		#define SetPlayerCameraPos( FIXES_SetPlayerCameraPos(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerCameraPos__( FIXES_SetPlayerCameraPos(
-	#endif
+	#define _ALS_SetPlayerCameraPos__
+	#define SetPlayerCameraPos__( FIXES_SetPlayerCameraPos(
 #endif
 
 /**
  * <fixes>SetPlayerCamera</fixes>
  */
 
-#if defined _ALS_SetPlayerCameraLookAt
+#if _FIXES_SAMP && defined _ALS_SetPlayerCameraLookAt
 	#error _ALS_SetPlayerCameraLookAt defined
 #endif
 native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraLookAt;
@@ -12055,20 +11991,19 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 		return 0;
 	}
 
-	#define _ALS_SetPlayerCameraLookAt
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerCameraLookAt
 		#define SetPlayerCameraLookAt( FIXES_SetPlayerCameraLookAt(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerCameraLookAt__( FIXES_SetPlayerCameraLookAt(
-	#endif
+	#define _ALS_SetPlayerCameraLookAt__
+	#define SetPlayerCameraLookAt__( FIXES_SetPlayerCameraLookAt(
 #endif
 
 /**
  * <fixes>SetPlayerCamera</fixes>
  */
 
-#if defined _ALS_TogglePlayerSpectating
+#if _FIXES_SAMP && defined _ALS_TogglePlayerSpectating
 	#error _ALS_TogglePlayerSpectating defined
 #endif
 native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
@@ -12103,20 +12038,19 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 		return 0;
 	}
 
-	#define _ALS_TogglePlayerSpectating
 	#if _FIXES_SAMP
+		#define _ALS_TogglePlayerSpectating
 		#define TogglePlayerSpectating( FIXES_TogglePlayerSpectating(
 	#endif
-	#if _FIXES_OMP
-		#define TogglePlayerSpectating__( FIXES_TogglePlayerSpectating(
-	#endif
+	#define _ALS_TogglePlayerSpectating__
+	#define TogglePlayerSpectating__( FIXES_TogglePlayerSpectating(
 #endif
 
 /**
  * <fixes>SetPlayerTime</fixes>
  */
 
-#if defined _ALS_SetPlayerTime
+#if _FIXES_SAMP && defined _ALS_SetPlayerTime
 	#error _ALS_SetPlayerTime defined
 #endif
 native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
@@ -12146,20 +12080,19 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 		return 0;
 	}
 
-	#define _ALS_SetPlayerTime
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerTime
 		#define SetPlayerTime( FIXES_SetPlayerTime(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerTime__( FIXES_SetPlayerTime(
-	#endif
+	#define _ALS_SetPlayerTime__
+	#define SetPlayerTime__( FIXES_SetPlayerTime(
 #endif
 
 /**
  * <fixes>SetPlayerColor</fixes>
  */
 
-#if defined _ALS_SetPlayerColor
+#if _FIXES_SAMP && defined _ALS_SetPlayerColor
 	#error _ALS_SetPlayerColor defined
 #endif
 native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
@@ -12189,20 +12122,19 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 		return 0;
 	}
 
-	#define _ALS_SetPlayerColor
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerColor
 		#define SetPlayerColor( FIXES_SetPlayerColor(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerColor__( FIXES_SetPlayerColor(
-	#endif
+	#define _ALS_SetPlayerColor__
+	#define SetPlayerColor__( FIXES_SetPlayerColor(
 #endif
 
 /**
  * <fixes>GetPlayerWeaponData</fixes>
  */
 
-#if defined _ALS_GetPlayerWeaponData
+#if _FIXES_SAMP && defined _ALS_GetPlayerWeaponData
 	#error _ALS_GetPlayerWeaponData defined
 #endif
 native BAD_GetPlayerWeaponData(playerid, slot, &weapons, &ammo) = GetPlayerWeaponData;
@@ -12222,20 +12154,19 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapons, &ammo) = GetPlayerWeapo
 			slot;
 	}
 
-	#define _ALS_GetPlayerWeaponData
 	#if _FIXES_SAMP
+		#define _ALS_GetPlayerWeaponData
 		#define GetPlayerWeaponData( FIXES_GetPlayerWeaponData(
 	#endif
-	#if _FIXES_OMP
-		#define GetPlayerWeaponData__( FIXES_GetPlayerWeaponData(
-	#endif
+	#define _ALS_GetPlayerWeaponData__
+	#define GetPlayerWeaponData__( FIXES_GetPlayerWeaponData(
 #endif
 
 /**
  * <fixes>strcmp</fixes>
  */
 
-#if defined _ALS_strcmp
+#if _FIXES_SAMP && defined _ALS_strcmp
 	#error _ALS_strcmp defined
 #endif
 native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, length=cellmax) = strcmp;
@@ -12276,13 +12207,12 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 		}
 	}
 
-	#define _ALS_strcmp
 	#if _FIXES_SAMP
+		#define _ALS_strcmp
 		#define strcmp( FIXES_strcmp(
 	#endif
-	#if _FIXES_OMP
-		#define strcmp__( FIXES_strcmp(
-	#endif
+	#define _ALS_strcmp__
+	#define strcmp__( FIXES_strcmp(
 #endif
 
 /**
@@ -12290,7 +12220,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
  */
 
 #if !FIX_const
-	#if defined _ALS_GetPVarString
+	#if _FIXES_SAMP && defined _ALS_GetPVarString
 		#error _ALS_GetPVarString defined
 	#endif
 	native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
@@ -12317,9 +12247,8 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 		#endif
 		#define GetPVarString( FIXES_GetPVarString(
 	#endif
-	#if _FIXES_OMP
-		#define GetPVarString__( FIXES_GetPVarString(
-	#endif
+	#define _ALS_GetPVarString__
+	#define GetPVarString__( FIXES_GetPVarString(
 #endif
 
 /**
@@ -12327,7 +12256,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
  */
 
 #if !FIX_const
-	#if defined _ALS_GetSVarString
+	#if _FIXES_SAMP && defined _ALS_GetSVarString
 		#error _ALS_GetSVarString defined
 	#endif
 	native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
@@ -12354,16 +12283,15 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 		#endif
 		#define GetSVarString( FIXES_GetSVarString(
 	#endif
-	#if _FIXES_OMP
-		#define GetSVarString__( FIXES_GetSVarString(
-	#endif
+	#define _ALS_GetSVarString__
+	#define GetSVarString__( FIXES_GetSVarString(
 #endif
 
 /**
  * <fixes>toupper</fixes>
  */
 
-#if defined _ALS_toupper
+#if _FIXES_SAMP && defined _ALS_toupper
 	#error _ALS_toupper defined
 #endif
 native BAD_toupper(c) = toupper;
@@ -12389,20 +12317,19 @@ native BAD_toupper(c) = toupper;
 		return c;
 	}
 
-	#define _ALS_toupper
 	#if _FIXES_SAMP
+		#define _ALS_toupper
 		#define toupper( FIXES_toupper(
 	#endif
-	#if _FIXES_OMP
-		#define toupper__( FIXES_toupper(
-	#endif
+	#define _ALS_toupper__
+	#define toupper__( FIXES_toupper(
 #endif
 
 /**
  * <fixes>tolower</fixes>
  */
 
-#if defined _ALS_tolower
+#if _FIXES_SAMP && defined _ALS_tolower
 	#error _ALS_tolower defined
 #endif
 native BAD_tolower(c) = tolower;
@@ -12428,20 +12355,19 @@ native BAD_tolower(c) = tolower;
 		return c;
 	}
 
-	#define _ALS_tolower
 	#if _FIXES_SAMP
+		#define _ALS_tolower
 		#define tolower( FIXES_tolower(
 	#endif
-	#if _FIXES_OMP
-		#define tolower__( FIXES_tolower(
-	#endif
+	#define _ALS_tolower__
+	#define tolower__( FIXES_tolower(
 #endif
 
 /**
  * <fixes>ispacked</fixes>
  */
 
-#if defined _ALS_ispacked
+#if _FIXES_SAMP && defined _ALS_ispacked
 	#error _ALS_ispacked defined
 #endif
 native bool:BAD_ispacked(const string[]) = ispacked;
@@ -12456,20 +12382,19 @@ native bool:BAD_ispacked(const string[]) = ispacked;
 		return (string[0] & ~0xFF) != 0;
 	}
 
-	#define _ALS_ispacked
 	#if _FIXES_SAMP
+		#define _ALS_ispacked
 		#define ispacked( FIXES_ispacked(
 	#endif
-	#if _FIXES_OMP
-		#define ispacked__( FIXES_ispacked(
-	#endif
+	#define _ALS_ispacked__
+	#define ispacked__( FIXES_ispacked(
 #endif
 
 /**
  * <fixes>GetPlayerPoolSize</fixes>
  */
 
-#if defined _ALS_GetPlayerPoolSize
+#if _FIXES_SAMP && defined _ALS_GetPlayerPoolSize
 	#error _ALS_GetPlayerPoolSize defined
 #endif
 native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
@@ -12486,13 +12411,12 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 		return size == 0 && !IsPlayerConnected__(0) ? -1 : size;
 	}
 
-	#define _ALS_GetPlayerPoolSize
 	#if _FIXES_SAMP
+		#define _ALS_GetPlayerPoolSize
 		#define GetPlayerPoolSize( FIXES_GetPlayerPoolSize(
 	#endif
-	#if _FIXES_OMP
-		#define GetPlayerPoolSize__( FIXES_GetPlayerPoolSize(
-	#endif
+	#define _ALS_GetPlayerPoolSize__
+	#define GetPlayerPoolSize__( FIXES_GetPlayerPoolSize(
 #endif
 
 /**
@@ -12506,7 +12430,7 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
  * <fixes>"ped", "FALL_skyDive", 1134</fixes>
  */
 
-#if defined _ALS_SetPlayerPos
+#if _FIXES_SAMP && defined _ALS_SetPlayerPos
 	#error _ALS_SetPlayerPos defined
 #endif
 native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
@@ -12534,20 +12458,19 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 		return ret;
 	}
 
-	#define _ALS_SetPlayerPos
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerPos
 		#define SetPlayerPos( FIXES_SetPlayerPos(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerPos__( FIXES_SetPlayerPos(
-	#endif
+	#define _ALS_SetPlayerPos__
+	#define SetPlayerPos__( FIXES_SetPlayerPos(
 #endif
 
 /**
  * <fixes>SetPlayerPos</fixes>
  */
 
-#if defined _ALS_SetPlayerPosFindZ
+#if _FIXES_SAMP && defined _ALS_SetPlayerPosFindZ
 	#error _ALS_SetPlayerPosFindZ defined
 #endif
 native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
@@ -12568,13 +12491,12 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 		return ret;
 	}
 
-	#define _ALS_SetPlayerPosFindZ
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerPosFindZ
 		#define SetPlayerPosFindZ( FIXES_SetPlayerPosFindZ(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerPosFindZ__( FIXES_SetPlayerPosFindZ(
-	#endif
+	#define _ALS_SetPlayerPosFindZ__
+	#define SetPlayerPosFindZ__( FIXES_SetPlayerPosFindZ(
 #endif
 
 /**
@@ -12614,7 +12536,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
  * <fixes>GetPlayerAmmo</fixes>
  */
 
-#if defined _ALS_SetPlayerAmmo
+#if _FIXES_SAMP && defined _ALS_SetPlayerAmmo
 	#error _ALS_SetPlayerAmmo defined
 #endif
 native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
@@ -12629,13 +12551,12 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 		return SetPlayerAmmo__(playerid, weaponid, clamp(ammo, 0, 32767));
 	}
 
-	#define _ALS_SetPlayerAmmo
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerAmmo
 		#define SetPlayerAmmo( FIXES_SetPlayerAmmo(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerAmmo__( FIXES_SetPlayerAmmo(
-	#endif
+	#define _ALS_SetPlayerAmmo__
+	#define SetPlayerAmmo__( FIXES_SetPlayerAmmo(
 #endif
 
 /*
@@ -12669,7 +12590,7 @@ static stock _FIXES_Bernstein(const name[])
  * <fixes>GetPlayerWeather</fixes>
  */
 
-#if defined _ALS_GetPlayerWeather
+#if _FIXES_SAMP && defined _ALS_GetPlayerWeather
 	#error _ALS_GetPlayerWeather defined
 #endif
 
@@ -12683,20 +12604,19 @@ static stock _FIXES_Bernstein(const name[])
 		return -1;
 	}
 
-	#define _ALS_GetPlayerWeather
 	#if _FIXES_SAMP
+		#define _ALS_GetPlayerWeather
 		#define GetPlayerWeather( FIXES_GetPlayerWeather(
 	#endif
-	#if _FIXES_OMP
-		#define GetPlayerWeather__( FIXES_GetPlayerWeather(
-	#endif
+	#define _ALS_GetPlayerWeather__
+	#define GetPlayerWeather__( FIXES_GetPlayerWeather(
 #endif
 
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
 
-#if defined _ALS_SetPlayerWeather
+#if _FIXES_SAMP && defined _ALS_SetPlayerWeather
 	#error _ALS_SetPlayerWeather defined
 #endif
 native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
@@ -12716,20 +12636,19 @@ native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 		return 0;
 	}
 
-	#define _ALS_SetPlayerWeather
 	#if _FIXES_SAMP
+		#define _ALS_SetPlayerWeather
 		#define SetPlayerWeather( FIXES_SetPlayerWeather(
 	#endif
-	#if _FIXES_OMP
-		#define SetPlayerWeather__( FIXES_SetPlayerWeather(
-	#endif
+	#define _ALS_SetPlayerWeather__
+	#define SetPlayerWeather__( FIXES_SetPlayerWeather(
 #endif
 
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
 
-#if defined _ALS_TogglePlayerClock
+#if _FIXES_SAMP && defined _ALS_TogglePlayerClock
 	#error _ALS_TogglePlayerClock defined
 #endif
 native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
@@ -12787,20 +12706,19 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 		}
 	#endif
 
-	#define _ALS_TogglePlayerClock
 	#if _FIXES_SAMP
+		#define _ALS_TogglePlayerClock
 		#define TogglePlayerClock( FIXES_TogglePlayerClock(
 	#endif
-	#if _FIXES_OMP
-		#define TogglePlayerClock__( FIXES_TogglePlayerClock(
-	#endif
+	#define _ALS_TogglePlayerClock__
+	#define TogglePlayerClock__( FIXES_TogglePlayerClock(
 #endif
 
 /**
  * <fixes>GetWeather</fixes>
  */
 
-#if defined _ALS_GetWeather
+#if _FIXES_SAMP && defined _ALS_GetWeather
 	#error _ALS_GetWeather defined
 #endif
 
@@ -12829,20 +12747,19 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 		}
 	#endif
 
-	#define _ALS_GetWeather
 	#if _FIXES_SAMP
+		#define _ALS_GetWeather
 		#define GetWeather( FIXES_GetWeather(
 	#endif
-	#if _FIXES_OMP
-		#define GetWeather__( FIXES_GetWeather(
-	#endif
+	#define _ALS_GetWeather__
+	#define GetWeather__( FIXES_GetWeather(
 #endif
 
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
 
-#if defined _ALS_SetWeather
+#if _FIXES_SAMP && defined _ALS_SetWeather
 	#error _ALS_SetWeather defined
 #endif
 native BAD_SetWeather(weather) = SetWeather;
@@ -12864,20 +12781,19 @@ native BAD_SetWeather(weather) = SetWeather;
 		return SetWeather__(weather);
 	}
 
-	#define _ALS_SetWeather
 	#if _FIXES_SAMP
+		#define _ALS_SetWeather
 		#define SetWeather( FIXES_SetWeather(
 	#endif
-	#if _FIXES_OMP
-		#define SetWeather__( FIXES_SetWeather(
-	#endif
+	#define _ALS_SetWeather__
+	#define SetWeather__( FIXES_SetWeather(
 #endif
 
 /**
  * <fixes>GetWorldTime</fixes>
  */
 
-#if defined _ALS_SetWorldTime
+#if _FIXES_SAMP && defined _ALS_SetWorldTime
 	#error _ALS_SetWorldTime defined
 #endif
 native BAD_SetWorldTime(hour) = SetWorldTime;
@@ -12893,20 +12809,19 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 		return SetWorldTime__(hour);
 	}
 
-	#define _ALS_SetWorldTime
 	#if _FIXES_SAMP
+		#define _ALS_SetWorldTime
 		#define SetWorldTime( FIXES_SetWorldTime(
 	#endif
-	#if _FIXES_OMP
-		#define SetWorldTime__( FIXES_SetWorldTime(
-	#endif
+	#define _ALS_SetWorldTime__
+	#define SetWorldTime__( FIXES_SetWorldTime(
 #endif
 
 /**
  * <fixes>GetWorldTime</fixes>
  */
 
-#if defined _ALS_GetWorldTime
+#if _FIXES_SAMP && defined _ALS_GetWorldTime
 	#error _ALS_GetWorldTime defined
 #endif
 
@@ -12916,19 +12831,18 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 		return FIXES_gsWorldTime;
 	}
 
-	#define _ALS_GetWorldTime
 	#if _FIXES_SAMP
+		#define _ALS_GetWorldTime
 		#define GetWorldTime( FIXES_GetWorldTime(
 	#endif
-	#if _FIXES_OMP
-		#define GetWorldTime__( FIXES_GetWorldTime(
-	#endif
+	#define _ALS_GetWorldTime__
+	#define GetWorldTime__( FIXES_GetWorldTime(
 #endif
 
 /**
  * <fixes>GetServerVarAsString</fixes>
  */
-#if defined _ALS_GetServerVarAsString
+#if _FIXES_SAMP && defined _ALS_GetServerVarAsString
 	#error _ALS_GetServerVarAsString defined
 #endif
 native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAsString;
@@ -13031,19 +12945,18 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 #if FIX_GetServerVarAsString
-	#define _ALS_GetServerVarAsString
 	#if _FIXES_SAMP
+		#define _ALS_GetServerVarAsString
 		#define GetServerVarAsString( FIXES_GetServerVarAsString(
 	#endif
-	#if _FIXES_OMP
-		#define GetServerVarAsString__( FIXES_GetServerVarAsString(
-	#endif
+	#define _ALS_GetServerVarAsString__
+	#define GetServerVarAsString__( FIXES_GetServerVarAsString(
 #endif
 
 /**
  * <fixes>GetServerVarAsInt</fixes>
  */
-#if defined _ALS_GetServerVarAsInt
+#if _FIXES_SAMP && defined _ALS_GetServerVarAsInt
 	#error _ALS_GetServerVarAsInt defined
 #endif
 native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
@@ -13086,19 +12999,18 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 		return 0;
 	}
 
-	#define _ALS_GetServerVarAsInt
 	#if _FIXES_SAMP
+		#define _ALS_GetServerVarAsInt
 		#define GetServerVarAsInt( FIXES_GetServerVarAsInt(
 	#endif
-	#if _FIXES_OMP
-		#define GetServerVarAsInt__( FIXES_GetServerVarAsInt(
-	#endif
+	#define _ALS_GetServerVarAsInt__
+	#define GetServerVarAsInt__( FIXES_GetServerVarAsInt(
 #endif
 
 /**
  * <fixes>GetServerVarAsBool</fixes>
  */
-#if defined _ALS_GetServerVarAsBool
+#if _FIXES_SAMP && defined _ALS_GetServerVarAsBool
 	#error _ALS_GetServerVarAsBool defined
 #endif
 native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
@@ -13129,19 +13041,18 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 		return false;
 	}
 
-	#define _ALS_GetServerVarAsBool
 	#if _FIXES_SAMP
+		#define _ALS_GetServerVarAsBool
 		#define GetServerVarAsBool( FIXES_GetServerVarAsBool(
 	#endif
-	#if _FIXES_OMP
-		#define GetServerVarAsBool__( FIXES_GetServerVarAsBool(
-	#endif
+	#define _ALS_GetServerVarAsBool__
+	#define GetServerVarAsBool__( FIXES_GetServerVarAsBool(
 #endif
 
 /**
  * <fixes>GetServerVarAsFloat</fixes>
  */
-#if defined _ALS_GetServerVarAsFloat
+#if _FIXES_SAMP && defined _ALS_GetServerVarAsFloat
 	#error _ALS_GetServerVarAsFloat defined
 #endif
 #if defined GetServerVarAsFloat
@@ -13163,13 +13074,12 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 		return 0.0;
 	}
 
-	#define _ALS_GetServerVarAsFloat
 	#if _FIXES_SAMP
+		#define _ALS_GetServerVarAsFloat
 		#define GetServerVarAsFloat( FIXES_GetServerVarAsFloat(
 	#endif
-	#if _FIXES_OMP
-		#define GetServerVarAsFloat__( FIXES_GetServerVarAsFloat(
-	#endif
+	#define _ALS_GetServerVarAsFloat__
+	#define GetServerVarAsFloat__( FIXES_GetServerVarAsFloat(
 #endif
 
 /**
@@ -13319,7 +13229,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
  * <fixes>NameOfFixHere</fixes>
  */
 
-#if defined _ALS_NameOfFixHere
+#if _FIXES_SAMP && defined _ALS_NameOfFixHere
 	#error _ALS_NameOfFixHere defined
 #endif
 native BAD_NameOfFixHere(params) = NameOfFixHere;
@@ -13340,8 +13250,7 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#if _FIXES_SAMP
 		#define NameOfFixHere( FIXES_NameOfFixHere(
 	#endif
-	#if _FIXES_OMP
-		#define NameOfFixHere__( FIXES_NameOfFixHere(
-	#endif
+	#define _ALS_NameOfFixHere__
+	#define NameOfFixHere__( FIXES_NameOfFixHere(
 #endif
 
