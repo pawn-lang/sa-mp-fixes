@@ -3333,7 +3333,7 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
  * Always valid "IsPlayerConnected" check.
  * </remarks>
  */
-#define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IS_VALID_PLAYER(%0) && IsPlayerConnected(%0))
+#define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IS_VALID_PLAYER(%0) && IsPlayerConnected__(%0))
 
 // These varaibles are NOT pre-processor dependent as they are stock.  It's just
 // simpler than trying to figure out when or if a semi-colon is needed.  The
@@ -5226,15 +5226,15 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 	stock FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z)
 	{
 		// Validity check to prevent array out of bounds.
-		if (SetVehiclePos(vehicleid, x, y, z))
+		if (SetVehiclePos__(vehicleid, x, y, z))
 		{
 			_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 			{
-				if (GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID(i) == vehicleid)
+				if (GetPlayerState__(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID__(i) == vehicleid)
 				{
 					if (FIXES_gsJackedId[i] != INVALID_PLAYER_ID)
 					{
-						ClearAnimations(FIXES_gsJackedId[i]);
+						ClearAnimations__(FIXES_gsJackedId[i]);
 						break;
 					}
 				}
@@ -5262,9 +5262,9 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 		deleteproperty(5, FIXES_gscOrderProperty),
 		// Called in the Game Mode first (thus needs correcting).
 		setproperty(5, FIXES_gscNoGMProperty, 1),
-		CallRemoteFunction(FIXES_gscDetermineOrder, FIXES_gscSpec@),
+		CallRemoteFunction__(FIXES_gscDetermineOrder, FIXES_gscSpec@),
 		deleteproperty(5, FIXES_gscNoGMProperty),
-		CallRemoteFunction(FIXES_gscDetermineOrder, FIXES_gscSpec@);
+		CallRemoteFunction__(FIXES_gscDetermineOrder, FIXES_gscSpec@);
 	}
 #endif
 
@@ -5309,202 +5309,202 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 			#if FIX_GameTextStyles
 
 				// Global style 7 (vehicle name).
-				t = FIXES_gsGTStyle[7] = TextDrawCreate(608.000000, 344.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 1.000000, 3.000000),
-				TextDrawAlignment(t, 3),
-				TextDrawColor(t, 0x36682CFF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 2),
-				TextDrawSetProportional(t, 1),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 10.0, 200.0);
+				t = FIXES_gsGTStyle[7] = TextDrawCreate__(608.000000, 344.000000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 1.000000, 3.000000),
+				TextDrawAlignment__(t, 3),
+				TextDrawColor__(t, 0x36682CFF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 2),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 2),
+				TextDrawSetProportional__(t, 1),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 8 (location name).
-				t = FIXES_gsGTStyle[8] = TextDrawCreate(608.000000, 385.800000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 1.200000, 3.799998),
-				TextDrawAlignment(t, 3),
-				TextDrawColor(t, 0xACCBF1FF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 0),
-				TextDrawSetProportional(t, 1),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 10.0, 200.0);
+				t = FIXES_gsGTStyle[8] = TextDrawCreate__(608.000000, 385.800000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 1.200000, 3.799998),
+				TextDrawAlignment__(t, 3),
+				TextDrawColor__(t, 0xACCBF1FF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 2),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 0),
+				TextDrawSetProportional__(t, 1),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 9 (radio name).
-				t = FIXES_gsGTStyle[9] = TextDrawCreate(320.000000, 22.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.600000, 1.799999),
-				TextDrawAlignment(t, 2),
-				TextDrawColor(t, 0x906210FF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 1),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 2),
-				TextDrawSetProportional(t, 1),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 200.0, 620.0);
+				t = FIXES_gsGTStyle[9] = TextDrawCreate__(320.000000, 22.000000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.600000, 1.799999),
+				TextDrawAlignment__(t, 2),
+				TextDrawColor__(t, 0x906210FF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 1),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 2),
+				TextDrawSetProportional__(t, 1),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 10 (radio switch).
-				t = FIXES_gsGTStyle[10] = TextDrawCreate(320.000000, 22.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.600000, 1.799999),
-				TextDrawAlignment(t, 2),
-				TextDrawColor(t, 0x969696FF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 1),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 2),
-				TextDrawSetProportional(t, 1),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 200.0, 620.0);
+				t = FIXES_gsGTStyle[10] = TextDrawCreate__(320.000000, 22.000000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.600000, 1.799999),
+				TextDrawAlignment__(t, 2),
+				TextDrawColor__(t, 0x969696FF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 1),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 2),
+				TextDrawSetProportional__(t, 1),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 11 (positive money).
-				t = FIXES_gsGTStyle[11] = TextDrawCreate(608.000000, 77.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.550000, 2.200000),
-				TextDrawAlignment(t, 3),
-				TextDrawColor(t, 0x36682CFF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 3),
-				TextDrawSetProportional(t, 0),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 10.0, 200.0);
+				t = FIXES_gsGTStyle[11] = TextDrawCreate__(608.000000, 77.000000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.550000, 2.200000),
+				TextDrawAlignment__(t, 3),
+				TextDrawColor__(t, 0x36682CFF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 2),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 3),
+				TextDrawSetProportional__(t, 0),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 12 (negative money).
-				t = FIXES_gsGTStyle[12] = TextDrawCreate(608.000000, 77.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.550000, 2.200000),
-				TextDrawAlignment(t, 3),
-				TextDrawColor(t, 0xB4191DFF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 3),
-				TextDrawSetProportional(t, 0),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 10.0, 200.0);
+				t = FIXES_gsGTStyle[12] = TextDrawCreate__(608.000000, 77.000000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.550000, 2.200000),
+				TextDrawAlignment__(t, 3),
+				TextDrawColor__(t, 0xB4191DFF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 2),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 3),
+				TextDrawSetProportional__(t, 0),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 13 (stunt).
-				t = FIXES_gsGTStyle[13] = TextDrawCreate(380.000000, 341.150000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.579999, 2.420000),
-				TextDrawTextSize(t, 40.000000, 460.000000),
-				TextDrawAlignment(t, 2),
-				TextDrawColor(t, 0xDDDDDBFF),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0),
-				TextDrawSetShadow(t, 2),
-				TextDrawSetOutline(t, 0),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 1),
-				TextDrawSetProportional(t, 1),
+				t = FIXES_gsGTStyle[13] = TextDrawCreate__(380.000000, 341.150000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.579999, 2.420000),
+				TextDrawTextSize__(t, 40.000000, 460.000000),
+				TextDrawAlignment__(t, 2),
+				TextDrawColor__(t, 0xDDDDDBFF),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0),
+				TextDrawSetShadow__(t, 2),
+				TextDrawSetOutline__(t, 0),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 1),
+				TextDrawSetProportional__(t, 1),
 
 			#endif
 
 				// Global style 0.
-				t = FIXES_gsGTStyle[0] = TextDrawCreate(320.0, 214.0, FIXES_gsSpace),
-				TextDrawLetterSize(t, 1.3, 3.6),
-				TextDrawAlignment(t, 2),
-				TextDrawColor(t, 0x906210FF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 3),
-				TextDrawSetProportional(t, 1),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 200.0, 620.0);
+				t = FIXES_gsGTStyle[0] = TextDrawCreate__(320.0, 214.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 1.3, 3.6),
+				TextDrawAlignment__(t, 2),
+				TextDrawColor__(t, 0x906210FF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 2),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 3),
+				TextDrawSetProportional__(t, 1),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 1.
-				t = FIXES_gsGTStyle[1] = TextDrawCreate(620.0, 310.0, FIXES_gsSpace),
-				TextDrawLetterSize(t, 1.0, 2.6),
-				TextDrawAlignment(t, 3),
-				TextDrawColor(t, 0x906210FF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 3),
-				TextDrawSetProportional(t, 1),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 10.0, 200.0);
+				t = FIXES_gsGTStyle[1] = TextDrawCreate__(620.0, 310.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 1.0, 2.6),
+				TextDrawAlignment__(t, 3),
+				TextDrawColor__(t, 0x906210FF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 2),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 3),
+				TextDrawSetProportional__(t, 1),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 2.
-				t = FIXES_gsGTStyle[2] = TextDrawCreate(320.0, 156.0, FIXES_gsSpace),
-				TextDrawLetterSize(t, 2.1, 4.2),
-				TextDrawAlignment(t, 2),
-				TextDrawColor(t, 0xE1E1E1FF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 3),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 0),
-				TextDrawSetProportional(t, 1),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 200.0, 620.0);
+				t = FIXES_gsGTStyle[2] = TextDrawCreate__(320.0, 156.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 2.1, 4.2),
+				TextDrawAlignment__(t, 2),
+				TextDrawColor__(t, 0xE1E1E1FF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 3),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 0),
+				TextDrawSetProportional__(t, 1),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 3.
-				t = FIXES_gsGTStyle[3] = TextDrawCreate(320.000000, 154.500000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.600000, 2.750000),
-				TextDrawAlignment(t, 2),
-				TextDrawColor(t, 0x906210FF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 2),
-				TextDrawSetProportional(t, 1),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 200.0, 620.0);
+				t = FIXES_gsGTStyle[3] = TextDrawCreate__(320.000000, 154.500000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.600000, 2.750000),
+				TextDrawAlignment__(t, 2),
+				TextDrawColor__(t, 0x906210FF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 2),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 2),
+				TextDrawSetProportional__(t, 1),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 4.
-				t = FIXES_gsGTStyle[4] = TextDrawCreate(320.000000, 115.500000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.600000, 2.750000),
-				TextDrawAlignment(t, 2),
-				TextDrawColor(t, 0x906210FF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 2),
-				TextDrawSetProportional(t, 1),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 200.0, 620.0);
+				t = FIXES_gsGTStyle[4] = TextDrawCreate__(320.000000, 115.500000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.600000, 2.750000),
+				TextDrawAlignment__(t, 2),
+				TextDrawColor__(t, 0x906210FF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 2),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 2),
+				TextDrawSetProportional__(t, 1),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 5.
-				t = FIXES_gsGTStyle[5] = TextDrawCreate(320.0, 217.0, FIXES_gsSpace),
-				TextDrawLetterSize(t, 0.6, 2.75),
-				TextDrawAlignment(t, 2),
-				TextDrawColor(t, 0xE1E1E1FF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 2),
-				TextDrawSetProportional(t, 1),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 200.0, 620.0);
+				t = FIXES_gsGTStyle[5] = TextDrawCreate__(320.0, 217.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.6, 2.75),
+				TextDrawAlignment__(t, 2),
+				TextDrawColor__(t, 0xE1E1E1FF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 2),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 2),
+				TextDrawSetProportional__(t, 1),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 6.
-				t = FIXES_gsGTStyle[6] = TextDrawCreate(320.000000, 60.000000, FIXES_gsSpace),
-				TextDrawLetterSize(t, 1.000000, 3.599998),
-				TextDrawAlignment(t, 2),
-				TextDrawColor(t, 0xACCBF1FF),
-				TextDrawSetShadow(t, 0),
-				TextDrawSetOutline(t, 2),
-				TextDrawBackgroundColor(t, 0x000000AA),
-				TextDrawFont(t, 3),
-				TextDrawSetProportional(t, 1),
-				TextDrawUseBox(t, true),
-				TextDrawBoxColor(t, 0x00000000),
-				TextDrawTextSize(t, 200.0, 620.0);
+				t = FIXES_gsGTStyle[6] = TextDrawCreate__(320.000000, 60.000000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 1.000000, 3.599998),
+				TextDrawAlignment__(t, 2),
+				TextDrawColor__(t, 0xACCBF1FF),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 2),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 3),
+				TextDrawSetProportional__(t, 1),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 200.0, 620.0);
 		}
 		else
 		{
@@ -5514,202 +5514,202 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 			#if FIX_GameTextStyles
 
 				// Global style 7 (playerid, vehicle name).
-				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw(playerid, 608.000000, 344.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 1.000000, 3.000000),
-				PlayerTextDrawAlignment(playerid, t, 3),
-				PlayerTextDrawColor(playerid, t, 0x36682CFF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
-				PlayerTextDrawFont(playerid, t, 2),
-				PlayerTextDrawSetProportional(playerid, t, 1),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
+				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw__(playerid, 608.000000, 344.000000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 1.000000, 3.000000),
+				PlayerTextDrawAlignment__(playerid, t, 3),
+				PlayerTextDrawColor__(playerid, t, 0x36682CFF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 2),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 2),
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 8 (playerid, location name).
-				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw(playerid, 608.000000, 385.800000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 1.200000, 3.799998),
-				PlayerTextDrawAlignment(playerid, t, 3),
-				PlayerTextDrawColor(playerid, t, 0xACCBF1FF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
-				PlayerTextDrawFont(playerid, t, 0),
-				PlayerTextDrawSetProportional(playerid, t, 1),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
+				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw__(playerid, 608.000000, 385.800000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 1.200000, 3.799998),
+				PlayerTextDrawAlignment__(playerid, t, 3),
+				PlayerTextDrawColor__(playerid, t, 0xACCBF1FF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 2),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 0),
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 9 (playerid, radio name).
-				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.600000, 1.799999),
-				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, 0x906210FF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 1),
-				PlayerTextDrawBackgroundColor(playerid, t, 170),
-				PlayerTextDrawFont(playerid, t, 2),
-				PlayerTextDrawSetProportional(playerid, t, 1),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
+				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw__(playerid, 320.000000, 22.000000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 1.799999),
+				PlayerTextDrawAlignment__(playerid, t, 2),
+				PlayerTextDrawColor__(playerid, t, 0x906210FF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 1),
+				PlayerTextDrawBackgroundColor__(playerid, t, 170),
+				PlayerTextDrawFont__(playerid, t, 2),
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 10 (playerid, radio switch).
-				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw(playerid, 320.000000, 22.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.600000, 1.799999),
-				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, 0x969696FF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 1),
-				PlayerTextDrawBackgroundColor(playerid, t, 170),
-				PlayerTextDrawFont(playerid, t, 2),
-				PlayerTextDrawSetProportional(playerid, t, 1),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
+				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw__(playerid, 320.000000, 22.000000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 1.799999),
+				PlayerTextDrawAlignment__(playerid, t, 2),
+				PlayerTextDrawColor__(playerid, t, 0x969696FF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 1),
+				PlayerTextDrawBackgroundColor__(playerid, t, 170),
+				PlayerTextDrawFont__(playerid, t, 2),
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 11 (playerid, positive money).
-				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw(playerid, 608.000000, 77.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.550000, 2.200000),
-				PlayerTextDrawAlignment(playerid, t, 3),
-				PlayerTextDrawColor(playerid, t, 0x36682CFF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
-				PlayerTextDrawFont(playerid, t, 3),
-				PlayerTextDrawSetProportional(playerid, t, 0),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
+				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw__(playerid, 608.000000, 77.000000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.550000, 2.200000),
+				PlayerTextDrawAlignment__(playerid, t, 3),
+				PlayerTextDrawColor__(playerid, t, 0x36682CFF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 2),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 3),
+				PlayerTextDrawSetProportional__(playerid, t, 0),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 12 (playerid, negative money).
-				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw(playerid, 608.000000, 77.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.550000, 2.200000),
-				PlayerTextDrawAlignment(playerid, t, 3),
-				PlayerTextDrawColor(playerid, t, 0xB4191DFF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
-				PlayerTextDrawFont(playerid, t, 3),
-				PlayerTextDrawSetProportional(playerid, t, 0),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
+				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw__(playerid, 608.000000, 77.000000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.550000, 2.200000),
+				PlayerTextDrawAlignment__(playerid, t, 3),
+				PlayerTextDrawColor__(playerid, t, 0xB4191DFF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 2),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 3),
+				PlayerTextDrawSetProportional__(playerid, t, 0),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 13 (playerid, stunt).
-				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw(playerid, 380.000000, 341.150000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.579999, 2.420000),
-				PlayerTextDrawTextSize(playerid, t, 40.000000, 460.000000),
-				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, 0xDDDDDBFF),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0),
-				PlayerTextDrawSetShadow(playerid, t, 2),
-				PlayerTextDrawSetOutline(playerid, t, 0),
-				PlayerTextDrawBackgroundColor(playerid, t, 170),
-				PlayerTextDrawFont(playerid, t, 1),
-				PlayerTextDrawSetProportional(playerid, t, 1);
+				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw__(playerid, 380.000000, 341.150000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.579999, 2.420000),
+				PlayerTextDrawTextSize__(playerid, t, 40.000000, 460.000000),
+				PlayerTextDrawAlignment__(playerid, t, 2),
+				PlayerTextDrawColor__(playerid, t, 0xDDDDDBFF),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0),
+				PlayerTextDrawSetShadow__(playerid, t, 2),
+				PlayerTextDrawSetOutline__(playerid, t, 0),
+				PlayerTextDrawBackgroundColor__(playerid, t, 170),
+				PlayerTextDrawFont__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, 1);
 
 			#endif
 
 				// Global style 0.
-				t = FIXES_gsPGTStyle[playerid][0] = CreatePlayerTextDraw(playerid, 320.0, 214.0, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 1.3, 3.6),
-				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, 0x906210FF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
-				PlayerTextDrawFont(playerid, t, 3),
-				PlayerTextDrawSetProportional(playerid, t, 1),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
+				t = FIXES_gsPGTStyle[playerid][0] = CreatePlayerTextDraw__(playerid, 320.0, 214.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 1.3, 3.6),
+				PlayerTextDrawAlignment__(playerid, t, 2),
+				PlayerTextDrawColor__(playerid, t, 0x906210FF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 2),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 3),
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 1.
-				t = FIXES_gsPGTStyle[playerid][1] = CreatePlayerTextDraw(playerid, 620.0, 310.0, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 1.0, 2.6),
-				PlayerTextDrawAlignment(playerid, t, 3),
-				PlayerTextDrawColor(playerid, t, 0x906210FF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
-				PlayerTextDrawFont(playerid, t, 3),
-				PlayerTextDrawSetProportional(playerid, t, 1),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 10.0, 200.0);
+				t = FIXES_gsPGTStyle[playerid][1] = CreatePlayerTextDraw__(playerid, 620.0, 310.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 1.0, 2.6),
+				PlayerTextDrawAlignment__(playerid, t, 3),
+				PlayerTextDrawColor__(playerid, t, 0x906210FF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 2),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 3),
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 2.
-				t = FIXES_gsPGTStyle[playerid][2] = CreatePlayerTextDraw(playerid, 320.0, 156.0, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 2.1, 4.2),
-				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, 0xE1E1E1FF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 3),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
-				PlayerTextDrawFont(playerid, t, 0),
-				PlayerTextDrawSetProportional(playerid, t, 1),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
+				t = FIXES_gsPGTStyle[playerid][2] = CreatePlayerTextDraw__(playerid, 320.0, 156.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 2.1, 4.2),
+				PlayerTextDrawAlignment__(playerid, t, 2),
+				PlayerTextDrawColor__(playerid, t, 0xE1E1E1FF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 3),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 0),
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 3.
-				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw(playerid, 320.000000, 154.500000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.600000, 2.750000),
-				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, 0x906210FF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
-				PlayerTextDrawFont(playerid, t, 2),
-				PlayerTextDrawSetProportional(playerid, t, 1),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
+				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw__(playerid, 320.000000, 154.500000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 2.750000),
+				PlayerTextDrawAlignment__(playerid, t, 2),
+				PlayerTextDrawColor__(playerid, t, 0x906210FF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 2),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 2),
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 4.
-				t = FIXES_gsPGTStyle[playerid][4] = CreatePlayerTextDraw(playerid, 320.000000, 115.500000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.600000, 2.750000),
-				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, 0x906210FF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
-				PlayerTextDrawFont(playerid, t, 2),
-				PlayerTextDrawSetProportional(playerid, t, 1),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
+				t = FIXES_gsPGTStyle[playerid][4] = CreatePlayerTextDraw__(playerid, 320.000000, 115.500000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 2.750000),
+				PlayerTextDrawAlignment__(playerid, t, 2),
+				PlayerTextDrawColor__(playerid, t, 0x906210FF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 2),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 2),
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 5.
-				t = FIXES_gsPGTStyle[playerid][5] = CreatePlayerTextDraw(playerid, 320.0, 217.0, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 0.6, 2.75),
-				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, 0xE1E1E1FF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
-				PlayerTextDrawFont(playerid, t, 2),
-				PlayerTextDrawSetProportional(playerid, t, 1),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
+				t = FIXES_gsPGTStyle[playerid][5] = CreatePlayerTextDraw__(playerid, 320.0, 217.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.6, 2.75),
+				PlayerTextDrawAlignment__(playerid, t, 2),
+				PlayerTextDrawColor__(playerid, t, 0xE1E1E1FF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 2),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 2),
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 6.
-				t = FIXES_gsPGTStyle[playerid][6] = CreatePlayerTextDraw(playerid, 320.000000, 60.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize(playerid, t, 1.000000, 3.599998),
-				PlayerTextDrawAlignment(playerid, t, 2),
-				PlayerTextDrawColor(playerid, t, 0xACCBF1FF),
-				PlayerTextDrawSetShadow(playerid, t, 0),
-				PlayerTextDrawSetOutline(playerid, t, 2),
-				PlayerTextDrawBackgroundColor(playerid, t, 0x000000AA),
-				PlayerTextDrawFont(playerid, t, 3),
-				PlayerTextDrawSetProportional(playerid, t, 1),
-				PlayerTextDrawUseBox(playerid, t, true),
-				PlayerTextDrawBoxColor(playerid, t, 0x00000000),
-				PlayerTextDrawTextSize(playerid, t, 200.0, 620.0);
+				t = FIXES_gsPGTStyle[playerid][6] = CreatePlayerTextDraw__(playerid, 320.000000, 60.000000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 1.000000, 3.599998),
+				PlayerTextDrawAlignment__(playerid, t, 2),
+				PlayerTextDrawColor__(playerid, t, 0xACCBF1FF),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 2),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 3),
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 		}
 	}
 #endif
@@ -5989,7 +5989,7 @@ public OnGameModeInit()
 					public OnRconCommand(const cmd[]) return 0;
 
 					forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
-					public OnClientCheckResponse(playerid, actionid, memaddr, retndata) return CallRemoteFunction("FIXES_OnClientCheckResponse\0\0\0", "iiii", playerid, actionid, memaddr, retndata);
+					public OnClientCheckResponse(playerid, actionid, memaddr, retndata) return CallRemoteFunction__("FIXES_OnClientCheckResponse\0\0\0", "iiii", playerid, actionid, memaddr, retndata);
 				*/
 				static
 					lRCFixCode[] = {
@@ -6019,7 +6019,7 @@ public OnGameModeInit()
 			}
 			if (fexist(FIXES_gscRconFixFS))
 			{
-					SendRconCommand("loadfs ../scriptfiles/callbackfix");
+					SendRconCommand__("loadfs ../scriptfiles/callbackfix");
 				#if FIX_OnClientCheckResponse
 					state OnClientCheckResponse : OnClientCheckResponse_GM;
 				#endif
@@ -6111,7 +6111,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#if FIX_PlayerDialogResponse
 			for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 			{
-				ShowPlayerDialog(playerid, -1, 0, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace);
+				ShowPlayerDialog__(playerid, -1, 0, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace);
 			}
 		#endif
 		// =============================
@@ -6151,21 +6151,21 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 					// =================
 					#if FIX_GameText
 						#if FIX_GameTextStyles
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][13]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][12]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][11]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][10]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][9]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][8]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][7]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][13]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][12]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][11]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][10]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][9]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][8]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][7]),
 						#endif
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][6]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][5]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][4]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][3]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][2]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][1]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][0]);
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][6]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][5]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][4]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][3]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][2]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][1]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][0]);
 					#endif
 				#endif
 			}
@@ -6182,40 +6182,40 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 					_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
 					{
 						#if FIX_GameTextStyles
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][13]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][12]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][11]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][10]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][9]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][8]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][7]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][13]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][12]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][11]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][10]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][9]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][8]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][7]),
 						#endif
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][6]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][5]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][4]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][3]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][2]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][1]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][0]);
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][6]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][5]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][4]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][3]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][2]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][1]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][0]);
 					}
 				#endif
 					return
 						#if FIX_GameTextStyles
-							TextDrawDestroy(FIXES_gsGTStyle[13]),
-							TextDrawDestroy(FIXES_gsGTStyle[12]),
-							TextDrawDestroy(FIXES_gsGTStyle[11]),
-							TextDrawDestroy(FIXES_gsGTStyle[10]),
-							TextDrawDestroy(FIXES_gsGTStyle[9]),
-							TextDrawDestroy(FIXES_gsGTStyle[8]),
-							TextDrawDestroy(FIXES_gsGTStyle[7]),
+							TextDrawDestroy__(FIXES_gsGTStyle[13]),
+							TextDrawDestroy__(FIXES_gsGTStyle[12]),
+							TextDrawDestroy__(FIXES_gsGTStyle[11]),
+							TextDrawDestroy__(FIXES_gsGTStyle[10]),
+							TextDrawDestroy__(FIXES_gsGTStyle[9]),
+							TextDrawDestroy__(FIXES_gsGTStyle[8]),
+							TextDrawDestroy__(FIXES_gsGTStyle[7]),
 						#endif
-							TextDrawDestroy(FIXES_gsGTStyle[6]),
-							TextDrawDestroy(FIXES_gsGTStyle[5]),
-							TextDrawDestroy(FIXES_gsGTStyle[4]),
-							TextDrawDestroy(FIXES_gsGTStyle[3]),
-							TextDrawDestroy(FIXES_gsGTStyle[2]),
-							TextDrawDestroy(FIXES_gsGTStyle[1]),
-							TextDrawDestroy(FIXES_gsGTStyle[0]);
+							TextDrawDestroy__(FIXES_gsGTStyle[6]),
+							TextDrawDestroy__(FIXES_gsGTStyle[5]),
+							TextDrawDestroy__(FIXES_gsGTStyle[4]),
+							TextDrawDestroy__(FIXES_gsGTStyle[3]),
+							TextDrawDestroy__(FIXES_gsGTStyle[2]),
+							TextDrawDestroy__(FIXES_gsGTStyle[1]),
+							TextDrawDestroy__(FIXES_gsGTStyle[0]);
 			#else
 					return FIXES_OnFilterScriptExit();
 			#endif
@@ -6338,7 +6338,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		// =================
 
 		#if !FIXES_Single
-			if (!GetPVarInt(playerid, FIXES_pvarNotNewPlayer))
+			if (!GetPVarInt__(playerid, FIXES_pvarNotNewPlayer))
 		#endif
 			{
 				FIXES_PRINTF("FIXES_OnPlayerConnect: First (%d)", FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE);
@@ -6348,10 +6348,10 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				#if FIX_SetPlayerName
 					new
 						name[MAX_PLAYER_NAME];
-					GetPlayerName(playerid, name, MAX_PLAYER_NAME);
+					GetPlayerName__(playerid, name, MAX_PLAYER_NAME);
 					if (strcmp(name, FIXES_gscTempName) == 0)
 					{
-						Kick(playerid);
+						Kick__(playerid);
 					}
 				#endif
 				// ======================
@@ -6373,7 +6373,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: GetPlayerColor
 				// =======================
 				#if FIX_GetPlayerColour
-					SetPlayerColor(playerid, FIXES_gscPlayerColours[playerid % 100]);
+					SetPlayerColor__(playerid, FIXES_gscPlayerColours[playerid % 100]);
 				#endif
 				// =======================
 				//  END:   GetPlayerColor
@@ -6393,7 +6393,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: IsPlayerInCheckpoint
 				// =============================
 				#if FIX_IsPlayerInCheckpoint
-					DisablePlayerCheckpoint(playerid);
+					DisablePlayerCheckpoint__(playerid);
 				#endif
 				// =============================
 				//  END:   IsPlayerInCheckpoint
@@ -6403,7 +6403,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: IsPlayerInRaceCheckpoint
 				// =================================
 				#if FIX_IsPlayerInRaceCheckpoint
-					DisablePlayerRaceCheckpoint(playerid);
+					DisablePlayerRaceCheckpoint__(playerid);
 				#endif
 				// =================================
 				//  END:   IsPlayerInRaceCheckpoint
@@ -6443,7 +6443,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: PlayerDialogResponse
 				// =============================
 				#if FIX_PlayerDialogResponse
-					ShowPlayerDialog(playerid, -1, 0, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace);
+					ShowPlayerDialog__(playerid, -1, 0, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace);
 				#endif
 				// =============================
 				//  END:   PlayerDialogResponse
@@ -6453,7 +6453,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: SetSpawnInfo
 				// =====================
 				#if FIX_SetSpawnInfo
-					SetSpawnInfo(playerid, NO_TEAM, 0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0, 0);
+					SetSpawnInfo__(playerid, NO_TEAM, 0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0, 0);
 				#endif
 				// =====================
 				//  END:   SetSpawnInfo
@@ -6481,7 +6481,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 
 				#if !FIXES_Single
 					// No longer their first time.
-					SetPVarInt(playerid, FIXES_pvarNotNewPlayer, 1);
+					SetPVarInt__(playerid, FIXES_pvarNotNewPlayer, 1);
 				#endif
 			}
 		// =============
@@ -6538,7 +6538,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#if FIX_ApplyAnimation_2
 			if (FIXES_gsPlayerAnimTimer[playerid])
 			{
-				KillTimer(FIXES_gsPlayerAnimTimer[playerid]),
+				KillTimer__(FIXES_gsPlayerAnimTimer[playerid]),
 				FIXES_gsPlayerAnimTimer[playerid] = 0;
 			}
 		#endif
@@ -6581,9 +6581,9 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#if FIX_SetPlayerAttachedObject
 			for (new i = 0; i != MAX_PLAYER_ATTACHED_OBJECTS; ++i)
 			{
-				if (IsPlayerAttachedObjectSlotUsed(playerid, i))
+				if (IsPlayerAttachedObjectSlotUsed__(playerid, i))
 				{
-					RemovePlayerAttachedObject(playerid, i);
+					RemovePlayerAttachedObject__(playerid, i);
 				}
 			}
 		#endif
@@ -6598,7 +6598,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_KICKED)
 			{
 				// Stop the timer if it is still running.
-				KillTimer(GetPVarInt(playerid, FIXES_pvarKick));
+				KillTimer__(GetPVarInt__(playerid, FIXES_pvarKick));
 			}
 		#endif
 		// =============
@@ -6661,10 +6661,10 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				static
 					sAnimlib[32],
 					sAnimname[32];
-				GetAnimationName(FIXES_gsLastAnimation[playerid], sAnimlib, sizeof (sAnimlib), sAnimname, sizeof (sAnimname));
+				GetAnimationName__(FIXES_gsLastAnimation[playerid], sAnimlib, sizeof (sAnimlib), sAnimname, sizeof (sAnimname));
 				if (strcmp(sAnimlib, "PED", true))
 				{
-					ClearAnimations(playerid);
+					ClearAnimations__(playerid);
 				}
 			#endif
 			// ======================
@@ -6679,7 +6679,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 			new
 				ret = FIXES_OnPlayerDeath(playerid, killerid, reason);
 
-			FIXES_SET(PlayerLastCash, playerid, GetPlayerMoney(playerid));
+			FIXES_SET(PlayerLastCash, playerid, GetPlayerMoney__(playerid));
 
 			return ret;
 		#else
@@ -6723,7 +6723,7 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 		#if FIX_SpawnPlayer
 			// Valid "playerid" check inside "GetPlayerVehicleID".
 			new
-				vid = GetPlayerVehicleID(playerid);
+				vid = GetPlayerVehicleID__(playerid);
 			if (vid)
 			{
 				new
@@ -6731,8 +6731,8 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 					Float:y,
 					Float:z;
 				// Remove them without the animation.
-				GetVehiclePos(vid, x, y, z),
-				SetPlayerPos(playerid, x, y, z);
+				GetVehiclePos__(vid, x, y, z),
+				SetPlayerPos__(playerid, x, y, z);
 			}
 		#endif
 		// ======================
@@ -6743,13 +6743,13 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 		//  BEGIN: OnPlayerSpawn
 		// ======================
 		#if FIX_OnPlayerSpawn
-			FIXES_SET(PlayerLastCash, playerid, GetPlayerMoney(playerid));
+			FIXES_SET(PlayerLastCash, playerid, GetPlayerMoney__(playerid));
 		#endif
 		// ======================
 		//  END:   OnPlayerSpawn
 		// ======================
 
-		return SpawnPlayer(playerid);
+		return SpawnPlayer__(playerid);
 	}
 
 	#define _ALS_SpawnPlayer
@@ -6774,15 +6774,15 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 	{
 		static
 			sOldName[MAX_PLAYER_NAME];
-		GetPlayerName(playerid, sOldName, sizeof (sOldName));
+		GetPlayerName__(playerid, sOldName, sizeof (sOldName));
 		if (!strcmp(name, sOldName, true))
 		{
 			if (strcmp(name, sOldName, false))
 			{
-				SetPlayerName(playerid, FIXES_gscTempName);
-				if (SetPlayerName(playerid, name) == -1)
+				SetPlayerName__(playerid, FIXES_gscTempName);
+				if (SetPlayerName__(playerid, name) == -1)
 				{
-					SetPlayerName(playerid, sOldName);
+					SetPlayerName__(playerid, sOldName);
 					return -1;
 				}
 				return 1;
@@ -6792,7 +6792,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 				return 0;
 			}
 		}
-		return SetPlayerName(playerid, name);
+		return SetPlayerName__(playerid, name);
 	}
 
 	#define _ALS_SetPlayerName
@@ -6824,10 +6824,10 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 				Float:x,
 				Float:y,
 				Float:z;
-			GetPlayerPos(playerid, x, y, z),
-			RemoveBuildingForPlayer(playerid, 1484, x, y, z, 10.0),
-			RemoveBuildingForPlayer(playerid, 1485, x, y, z, 10.0),
-			RemoveBuildingForPlayer(playerid, 1486, x, y, z, 10.0);
+			GetPlayerPos__(playerid, x, y, z),
+			RemoveBuildingForPlayer__(playerid, 1484, x, y, z, 10.0),
+			RemoveBuildingForPlayer__(playerid, 1485, x, y, z, 10.0),
+			RemoveBuildingForPlayer__(playerid, 1486, x, y, z, 10.0);
 		#endif
 		// ===========================
 		//  END: OnPlayerRequestClass
@@ -6862,8 +6862,8 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			//  BEGIN: OnPlayerSpawn
 			// ======================
 			#if FIX_OnPlayerSpawn
-				ResetPlayerMoney(playerid);
-				GivePlayerMoney(playerid, FIXES_GET(PlayerLastCash, playerid));
+				ResetPlayerMoney__(playerid);
+				GivePlayerMoney__(playerid, FIXES_GET(PlayerLastCash, playerid));
 				FIXES_SET(PlayerLastCash, playerid, 0);
 			#endif
 			// ======================
@@ -6888,7 +6888,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DIED_TO_SPAWN)
 				{
 					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DIED_TO_SPAWN;
-					#define _FIXES_PER_PLAYER_GT(%0) if (FIXES_gsPlayerPGTShown[%0][playerid] > playerid) PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][%0]), _FIXES_RemoveInternal(FIXES_gsPlayerPGTShown[%0], playerid, MAX_PLAYERS)
+					#define _FIXES_PER_PLAYER_GT(%0) if (FIXES_gsPlayerPGTShown[%0][playerid] > playerid) PlayerTextDrawHide__(playerid, FIXES_gsPGTStyle[playerid][%0]), _FIXES_RemoveInternal(FIXES_gsPlayerPGTShown[%0], playerid, MAX_PLAYERS)
 
 					// Per-player GTs.
 					#if FIX_GameTextStyles
@@ -6912,21 +6912,21 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 
 					// Global GTs.
 					#if FIX_GameTextStyles
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[13]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[12]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[11]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[10]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[9]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[8]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[7]);
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[13]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[12]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[11]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[10]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[9]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[8]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[7]);
 					#endif
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[6]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[5]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[4]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[3]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[2]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[1]),
-						TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[0]);
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[6]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[5]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[4]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[3]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[2]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[1]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[0]);
 				}
 
 			#endif
@@ -6938,7 +6938,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			//  BEGIN: GetPlayerSkin
 			// ======================
 			#if FIX_GetPlayerSkin
-				FIXES_SET(PlayerSkin, playerid, GetPlayerSkin(playerid));
+				FIXES_SET(PlayerSkin, playerid, GetPlayerSkin__(playerid));
 			#endif
 			// ======================
 			//  END:   GetPlayerSkin
@@ -6948,7 +6948,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			//  BEGIN: SetSpawnInfo_2
 			// =======================
 			#if FIX_SetSpawnInfo_2
-				SetPlayerTeam(playerid, GetPlayerTeam(playerid));
+				SetPlayerTeam__(playerid, GetPlayerTeam__(playerid));
 			#endif
 			// =======================
 			//  END:   SetSpawnInfo_2
@@ -7005,7 +7005,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		//  BEGIN: OnVehicleMod
 		// =====================
 		new
-			modelid = GetVehicleModel(vehicleid);
+			modelid = GetVehicleModel__(vehicleid);
 		if (_FIXES_IN_RANGE(modelid, 400, 611 + 1))
 		{
 			switch (componentid)
@@ -7070,15 +7070,15 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 		// ======================
 		#if FIX_SetPlayerSkin
 			new
-				vehicleid = GetPlayerVehicleID(playerid);
+				vehicleid = GetPlayerVehicleID__(playerid);
 			if (vehicleid)
 			{
 				new
-					seat = GetPlayerVehicleSeat(playerid);
-				ClearAnimations(playerid, 1);
+					seat = GetPlayerVehicleSeat__(playerid);
+				ClearAnimations__(playerid, 1);
 				new
-					ret = SetPlayerSkin(playerid, skinid);
-				PutPlayerInVehicle(playerid, vehicleid, seat);
+					ret = SetPlayerSkin__(playerid, skinid);
+				PutPlayerInVehicle__(playerid, vehicleid, seat);
 
 				// ===============================
 				//  BEGIN: DriveBy
@@ -7128,7 +7128,7 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 		//  END:   GetPlayerSkin
 		// ======================
 
-		return SetPlayerSkin(playerid, skinid);
+		return SetPlayerSkin__(playerid, skinid);
 	}
 
 	#define _ALS_SetPlayerSkin
@@ -7199,7 +7199,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			}
 			default:
 			{
-				return GetWeaponName(weaponid, weapon, len);
+				return GetWeaponName__(weaponid, weapon, len);
 			}
 		}
 		return 0;
@@ -7245,13 +7245,13 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if FIX_OnPlayerEnterVehicle_3
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_VEH_ENTER)
 			{
-				if (GetTickCount() - FIXES_gsPlayerVehicleTickCount[playerid] >= 4000)
+				if (GetTickCount__() - FIXES_gsPlayerVehicleTickCount[playerid] >= 4000)
 				{
 					_FIXES_StopPlayerEnterVehicle(playerid);
 				}
 				else
 				{
-					if (1020 <= GetPlayerAnimationIndex(playerid) <= 1021)
+					if (1020 <= GetPlayerAnimationIndex__(playerid) <= 1021)
 					{
 						FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
 					}
@@ -7284,7 +7284,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if FIX_AllowInteriorWeapons
 			if (pbools & e_FIXES_BOOLS_INTERIOR)
 			{
-				SetPlayerArmedWeapon(playerid, 0);
+				SetPlayerArmedWeapon__(playerid, 0);
 			}
 		#endif
 		// ============================
@@ -7296,7 +7296,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 				ud,
 				lr,
 				keys;
-			GetPlayerKeys(playerid, keys, ud, lr);
+			GetPlayerKeys__(playerid, keys, ud, lr);
 		#endif
 
 		#if (FIX_SetPlayerWorldBounds || FIX_GogglesSync) && !FIX_TogglePlayerControllable
@@ -7313,7 +7313,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 					Float:x,
 					Float:y,
 					Float:z;
-				GetPlayerPos(playerid, x, y, z);
+				GetPlayerPos__(playerid, x, y, z);
 				if (FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] < x < FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] && FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] < y < FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY])
 				{
 					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PX] = x,
@@ -7322,7 +7322,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 				}
 				else
 				{
-					SetPlayerPos(playerid, FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PX], FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PY], FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PZ]);
+					SetPlayerPos__(playerid, FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PX], FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PY], FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PZ]);
 				}
 			}
 		#endif
@@ -7334,7 +7334,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  BEGIN: OnPlayerDeath
 		// ======================
 		#if FIX_OnPlayerDeath
-			FIXES_gsLastAnimation[playerid] = GetPlayerAnimationIndex(playerid);
+			FIXES_gsLastAnimation[playerid] = GetPlayerAnimationIndex__(playerid);
 		#endif
 		// ======================
 		//  END:   OnPlayerDeath
@@ -7374,13 +7374,13 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  BEGIN: PassengerSeating
 		// =================================
 		#if FIX_PassengerSeating
-			if (FIXES_gsPSTimer[playerid] != 0 && GetTickCount() - FIXES_gsPSTimer[playerid] > 0)
+			if (FIXES_gsPSTimer[playerid] != 0 && GetTickCount__() - FIXES_gsPSTimer[playerid] > 0)
 			{
-				if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_ENTER_VEHICLE)
+				if (GetPlayerSpecialAction__(playerid) == SPECIAL_ACTION_ENTER_VEHICLE)
 				{
 					#if !FIX_OnPlayerDeath
 						new
-							animation = GetPlayerAnimationIndex(playerid);
+							animation = GetPlayerAnimationIndex__(playerid);
 					#else
 						new
 							animation = FIXES_gsLastAnimation[playerid];
@@ -7388,7 +7388,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 
 					if (_FIXES_NO_RANGE(animation, 1007, 1060 + 1) && _FIXES_NO_RANGE(animation, 225, 233 + 1))
 					{
-						ClearAnimations(playerid, 1);
+						ClearAnimations__(playerid, 1);
 						FIXES_gsPSTimer[playerid] = 0;
 					}
 				}
@@ -7406,11 +7406,11 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  BEGIN: GogglesSync
 		// =================================
 		#if FIX_GogglesSync
-			switch (GetPlayerWeapon(playerid))
+			switch (GetPlayerWeapon__(playerid))
 			{
 				case _FIXES_WEAPON_NIGHT_VIS_GOGGLES, _FIXES_WEAPON_THERMAL_GOGGLES:
 				{
-					if ((keys & KEY_FIRE) && GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
+					if ((keys & KEY_FIRE) && GetPlayerState__(playerid) == PLAYER_STATE_ONFOOT)
 					{
 						return 0;
 					}
@@ -7465,7 +7465,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 					return
 						FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] = _FIXES_MAX_WORLDBOUNDS,
 						FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] = _FIXES_MIN_WORLDBOUNDS,
-						SetPlayerWorldBounds(playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS);
+						SetPlayerWorldBounds__(playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS);
 				}
 				// This code could do with a way to mostly remove the checks.  Maybe
 				// when setting everything to FIXES_INFINITY (with default
@@ -7494,12 +7494,12 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] = y_min,
 					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] = y_max,
 
-					GetPlayerPos(playerid, tmp, tmp, tmp),
+					GetPlayerPos__(playerid, tmp, tmp, tmp),
 					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PX] = (x_max - x_min) / 2 + x_min,
 					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PY] = (y_max - y_min) / 2 + y_min,
 					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PZ] = tmp,
 
-					SetPlayerWorldBounds(playerid, x_max, x_min, y_max, y_min);
+					SetPlayerWorldBounds__(playerid, x_max, x_min, y_max, y_min);
 			}
 			return 0;
 		}
@@ -7514,7 +7514,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 				// Impossibly small area, disable checks entirely.
 				if (x_max == x_min || y_max == y_min)
 					return
-						CallRemoteFunction(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS),
+						CallRemoteFunction__(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS),
 						getproperty(5, FIXES_gscReturnProperty);
 				new
 					Float:tmp;
@@ -7531,7 +7531,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 					y_max = tmp;
 				}
 				return
-					CallRemoteFunction(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, playerid, x_max, x_min, y_max, y_min),
+					CallRemoteFunction__(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, playerid, x_max, x_min, y_max, y_min),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			return 0;
@@ -7548,14 +7548,14 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 
 			new
 				Float:tmp;
-			GetPlayerPos(playerid, tmp, tmp, tmp),
+			GetPlayerPos__(playerid, tmp, tmp, tmp),
 			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PX] = (x_max - x_min) / 2 + x_min,
 			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PY] = (y_max - y_min) / 2 + y_min,
 			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PZ] = tmp;
 
 			_FIXES_IS_IN_CHARGE()
 			{
-				setproperty(5, FIXES_gscReturnProperty, SetPlayerWorldBounds(playerid, x_max, x_min, y_max, y_min));
+				setproperty(5, FIXES_gscReturnProperty, SetPlayerWorldBounds__(playerid, x_max, x_min, y_max, y_min));
 			}
 			return 0;
 		}
@@ -7584,7 +7584,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 #if FIX_ClearPlayerWorldBounds
 	stock FIXES_ClearPlayerWorldBounds(playerid)
 	{
-		SetPlayerWorldBounds(playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS);
+		SetPlayerWorldBounds__(playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS);
 	}
 
 	#define _ALS_ClearPlayerWorldBounds
@@ -7608,7 +7608,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#if FIXES_Single
 		stock FIXES_TogglePlayerControllable(playerid, toggle)
 		{
-			if (TogglePlayerControllable(playerid, toggle))
+			if (TogglePlayerControllable__(playerid, toggle))
 			{
 				if (toggle)
 				{
@@ -7630,7 +7630,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
-					CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
+					CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			return 0;
@@ -7648,7 +7648,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				{
 					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_UNCONTROLLABLE;
 				}
-				setproperty(5, FIXES_gscReturnProperty, TogglePlayerControllable(playerid, toggle));
+				setproperty(5, FIXES_gscReturnProperty, TogglePlayerControllable__(playerid, toggle));
 			}
 		}
 	#endif
@@ -7670,9 +7670,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: SilentTeleport
 		// =============================
 		#if FIX_SilentTeleport
-			if (GetPlayerState(playerid) == PLAYER_STATE_DRIVER && FIXES_gsJackedId[playerid] != INVALID_PLAYER_ID)
+			if (GetPlayerState__(playerid) == PLAYER_STATE_DRIVER && FIXES_gsJackedId[playerid] != INVALID_PLAYER_ID)
 			{
-				ClearAnimations(FIXES_gsJackedId[playerid]);
+				ClearAnimations__(FIXES_gsJackedId[playerid]);
 			}
 		#endif
 		// =============================
@@ -7711,9 +7711,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_INTERIOR;
 					_FIXES_IS_IN_CHARGE()
 					{
-						SetPlayerArmedWeapon(playerid, 0);
+						SetPlayerArmedWeapon__(playerid, 0);
 						#if FIX_GetPlayerWeapon
-							if (IsPlayerInAnyVehicle(playerid))
+							if (IsPlayerInAnyVehicle__(playerid))
 							{
 								FIXES_SET(PlayerWeapon, playerid, 0);
 							}
@@ -7750,20 +7750,20 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 	public  _FIXES_DriveBy(playerid)
 	{
-		if (GetPlayerState(playerid) == PLAYER_STATE_PASSENGER)
+		if (GetPlayerState__(playerid) == PLAYER_STATE_PASSENGER)
 		{
-			SetPlayerArmedWeapon(playerid, FIXES_gsDriveByWeapon[playerid]);
+			SetPlayerArmedWeapon__(playerid, FIXES_gsDriveByWeapon[playerid]);
 		}
 		return FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DRIVE_BY;
 	}
 
 	static stock _FIXES_HideDriveByWeapon(playerid)
 	{
-		FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon(playerid),
+		FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon__(playerid),
 		FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
-		SetPlayerArmedWeapon(playerid, 0),
-		ApplyAnimation(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1),
-		SetTimerEx(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
+		SetPlayerArmedWeapon__(playerid, 0),
+		ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1),
+		SetTimerEx__(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
 	}
 #endif
 
@@ -7782,7 +7782,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
 			#endif
 				{
-					if ((newkeys & KEY_CROUCH) && !(oldkeys & KEY_CROUCH) && GetPlayerState(playerid) == PLAYER_STATE_PASSENGER && GetPlayerCameraMode(playerid) == 55 && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DRIVE_BY))
+					if ((newkeys & KEY_CROUCH) && !(oldkeys & KEY_CROUCH) && GetPlayerState__(playerid) == PLAYER_STATE_PASSENGER && GetPlayerCameraMode__(playerid) == 55 && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DRIVE_BY))
 					{
 						_FIXES_HideDriveByWeapon(playerid);
 					}
@@ -7834,12 +7834,12 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			if (FIXES_gsVehicleIsLocked[vehicleid])
 			{
 				new engine, lights, alarm, doors, bonnet, boot, objective;
-				GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
-				SetVehicleParamsEx(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_ON, bonnet, boot, objective);
+				GetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+				SetVehicleParamsEx__(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_ON, bonnet, boot, objective);
 
 				FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER;
 				FIXES_gsPlayerVehicleID[playerid] = vehicleid;
-				FIXES_gsPlayerVehicleTickCount[playerid] = GetTickCount();
+				FIXES_gsPlayerVehicleTickCount[playerid] = GetTickCount__();
 			}
 		#endif
 		// =============================
@@ -7853,9 +7853,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			if (ispassenger)
 			{
 				new
-					model = GetVehicleModel(vehicleid);
+					model = GetVehicleModel__(vehicleid);
 
-				FIXES_gsPSTimer[playerid] = GetTickCount() + ((model == 431 || model == 437) ? 8000 : 2800);
+				FIXES_gsPSTimer[playerid] = GetTickCount__() + ((model == 431 || model == 437) ? 8000 : 2800);
 			}
 		#endif
 		// =============================
@@ -7870,10 +7870,10 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			{
 				_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 				{
-					if (GetPlayerVehicleID(i) == vehicleid && GetPlayerState(i) == PLAYER_STATE_DRIVER)
+					if (GetPlayerVehicleID__(i) == vehicleid && GetPlayerState__(i) == PLAYER_STATE_DRIVER)
 					{
 						FIXES_gsJackedId[i] = playerid;
-						SetTimerEx("FIXES_RemoveJackedId", 5000, false, "d", i);
+						SetTimerEx__("FIXES_RemoveJackedId", 5000, false, "d", i);
 						break;
 					}
 				}
@@ -7941,9 +7941,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			#if FIXES_SilentKick
 				new
 					ip[22];
-				GetPlayerIp(playerid, ip, sizeof (ip)),
+				GetPlayerIp__(playerid, ip, sizeof (ip)),
 				format(ip, sizeof (ip), "banip %s", ip),
-				SendRconCommand(ip),
+				SendRconCommand__(ip),
 				FIXES_gsPlayerIP[playerid] = strval(ip[kick]) << 24,
 				kick = strfind(ip, FIXES_gscDot, false, kick) + 1,
 				FIXES_gsPlayerIP[playerid] |= strval(ip[kick]) << 16,
@@ -7952,7 +7952,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				kick = strfind(ip, FIXES_gscDot, false, kick) + 1,
 				FIXES_gsPlayerIP[playerid] |= strval(ip[kick]);
 			#else
-				Kick(playerid);
+				Kick__(playerid);
 			#endif
 		}
 		return
@@ -7979,10 +7979,10 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			vehicleid = FIXES_gsPlayerVehicleID[playerid],
 			engine, lights, alarm, doors, bonnet, boot, objective;
 
-		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
-		SetVehicleParamsEx(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_OFF, bonnet, boot, objective);
+		GetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+		SetVehicleParamsEx__(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_OFF, bonnet, boot, objective);
 
-		ClearAnimations(playerid);
+		ClearAnimations__(playerid);
 	}
 #endif
 
@@ -8011,7 +8011,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			_FIXES_IS_IN_CHARGE()
 			{
 				setproperty(5, FIXES_gscMenuProperty, _:cur);
-				CallRemoteFunction(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
+				CallRemoteFunction__(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
 				FIXES_gsCurrentMenu[playerid] = cur;
 				new
 					ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
@@ -8073,7 +8073,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			_FIXES_IS_IN_CHARGE()
 			{
 				setproperty(5, FIXES_gscMenuProperty, _:cur);
-				CallRemoteFunction(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
+				CallRemoteFunction__(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
 				FIXES_gsCurrentMenu[playerid] = cur;
 				new
 					ret = FIXES_OnPlayerExitedMenu(playerid);
@@ -8140,13 +8140,13 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 	stock Menu:FIXES_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0)
 	{
 		new
-			Menu:ret = CreateMenu(title, columns, x, y, col1width, col2width);
+			Menu:ret = CreateMenu__(title, columns, x, y, col1width, col2width);
 		if (_FIXES_IN_RANGE(_:ret, 0, MAX_MENUS))
 		{
 			#if FIXES_Single
 				FIXES_gsValidMenus[_:ret >>> 5] |= 1 << (_:ret & 0x1F);
 			#else
-				CallRemoteFunction("_FIXES_CreateMenu", FIXES_gscSpec@i, _:ret);
+				CallRemoteFunction__("_FIXES_CreateMenu", FIXES_gscSpec@i, _:ret);
 			#endif
 		}
 		return ret;
@@ -8213,26 +8213,26 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 			if (FIXES_IS_VALID_MENU(menuid))
 		#endif
 			{
-				if (DestroyMenu(Menu:menuid))
+				if (DestroyMenu__(Menu:menuid))
 				{
 					#if _FIX_Menus
 						#if FIXES_Single
 							FIXES_gsValidMenus[_:menuid >>> 5] &= ~(1 << (_:menuid & 0x1F));
 						#else
-							CallRemoteFunction("_FIXES_DestroyMenu", FIXES_gscSpec@i, _:menuid);
+							CallRemoteFunction__("_FIXES_DestroyMenu", FIXES_gscSpec@i, _:menuid);
 						#endif
 					#endif
 					_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
 					{
 						if (FIXES_gsCurrentMenu[playerid] == menuid)
 						{
-							if (HideMenuForPlayer(menuid, playerid))
+							if (HideMenuForPlayer__(menuid, playerid))
 							{
 								#if FIXES_Single
 									FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET,
 									FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 								#else
-									CallRemoteFunction(FIXES_gscSetPlayerMenu, FIXES_gscSpec@ii, playerid, INVALID_MENU);
+									CallRemoteFunction__(FIXES_gscSetPlayerMenu, FIXES_gscSpec@ii, playerid, INVALID_MENU);
 								#endif
 							}
 						}
@@ -8265,7 +8265,7 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 	{
 		if (FIXES_IS_VALID_MENU(menuid))
 		{
-			return AddMenuItem(menuid, column, menutext);
+			return AddMenuItem__(menuid, column, menutext);
 		}
 		return 0;
 	}
@@ -8292,7 +8292,7 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
 	{
 		if (FIXES_IS_VALID_MENU(menuid))
 		{
-			return SetMenuColumnHeader(menuid, column, columnheader);
+			return SetMenuColumnHeader__(menuid, column, columnheader);
 		}
 		return 0;
 	}
@@ -8324,18 +8324,18 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 		#endif
 			{
 				#if FIX_GetPlayerMenu
-					if (ShowMenuForPlayer(menuid, playerid))
+					if (ShowMenuForPlayer__(menuid, playerid))
 					{
 						#if FIXES_Single
 							FIXES_gsSettings |= e_FIXES_SETTINGS_MENU_SET,
 							FIXES_gsCurrentMenu[playerid] = menuid;
 						#else
-							CallRemoteFunction(FIXES_gscSetPlayerMenu, FIXES_gscSpec@ii, playerid, _:menuid);
+							CallRemoteFunction__(FIXES_gscSetPlayerMenu, FIXES_gscSpec@ii, playerid, _:menuid);
 						#endif
 						return 1;
 					}
 				#else
-					return ShowMenuForPlayer(menuid, playerid);
+					return ShowMenuForPlayer__(menuid, playerid);
 				#endif
 			}
 		return 0;
@@ -8373,23 +8373,23 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 					#if FIX_HideMenuForPlayer_2
 						if (_FIXES_IS_VALID_PLAYER(playerid) && FIXES_gsCurrentMenu[playerid] == menuid)
 					#else
-						if (FIXES_gsCurrentMenu[playerid] == menuid && HideMenuForPlayer(menuid, playerid))
+						if (FIXES_gsCurrentMenu[playerid] == menuid && HideMenuForPlayer__(menuid, playerid))
 					#endif
 						{
 							#if FIXES_Single
 								FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET,
 								FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 							#else
-								CallRemoteFunction(FIXES_gscSetPlayerMenu, FIXES_gscSpec@ii, playerid, INVALID_MENU);
+								CallRemoteFunction__(FIXES_gscSetPlayerMenu, FIXES_gscSpec@ii, playerid, INVALID_MENU);
 							#endif
 							#if FIX_HideMenuForPlayer_2
-								return HideMenuForPlayer(menuid, playerid);
+								return HideMenuForPlayer__(menuid, playerid);
 							#else
 								return 1;
 							#endif
 						}
 				#else
-					return HideMenuForPlayer(menuid, playerid);
+					return HideMenuForPlayer__(menuid, playerid);
 				#endif
 			}
 		return 0;
@@ -8417,7 +8417,7 @@ native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 	{
 		if (FIXES_IS_VALID_MENU(menuid))
 		{
-			return DisableMenu(menuid);
+			return DisableMenu__(menuid);
 		}
 		return 0;
 	}
@@ -8444,7 +8444,7 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 	{
 		if (FIXES_IS_VALID_MENU(menuid))
 		{
-			return DisableMenuRow(menuid, row);
+			return DisableMenuRow__(menuid, row);
 		}
 		return 0;
 	}
@@ -8504,7 +8504,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 				if (newstate == PLAYER_STATE_PASSENGER)
 				{
 					new
-						model = GetVehicleModel(GetPlayerVehicleID(playerid)) - 400;
+						model = GetVehicleModel__(GetPlayerVehicleID__(playerid)) - 400;
 					if (_FIXES_IN_RANGE(model, 0, 211 + 1))
 					{
 						model = (FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2)) & 0xF;
@@ -8516,7 +8516,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 						else
 						{
 							// Slower with "_FIXES_NO_RANGE".
-							if (!(0 < GetPlayerVehicleSeat(playerid) <= model))
+							if (!(0 < GetPlayerVehicleSeat__(playerid) <= model))
 							{
 								// In an out of range seat.
 								FIXES_BlockUpdate(playerid);
@@ -8531,8 +8531,8 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 				else if (newstate == PLAYER_STATE_DRIVER)
 				{
 					new
-						model = GetVehicleModel(GetPlayerVehicleID(playerid)) - 400;
-					if (GetPlayerVehicleSeat(playerid) == 0)
+						model = GetVehicleModel__(GetPlayerVehicleID__(playerid)) - 400;
+					if (GetPlayerVehicleSeat__(playerid) == 0)
 					{
 						if (_FIXES_NO_RANGE(model, 0, 211 + 1) || FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2) & 0xF == 15)
 						{
@@ -8562,11 +8562,11 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 				if (newstate == PLAYER_STATE_DRIVER)
 				{
 					new
-						model = GetVehicleModel(GetPlayerVehicleID(playerid)) - 400;
+						model = GetVehicleModel__(GetPlayerVehicleID__(playerid)) - 400;
 			#endif
-					if (GetPlayerWeapon(playerid) == 34 && (model == 120 || model == 25))
+					if (GetPlayerWeapon__(playerid) == 34 && (model == 120 || model == 25))
 					{
-						SetPlayerArmedWeapon(playerid, 0);
+						SetPlayerArmedWeapon__(playerid, 0);
 						#if FIX_GetPlayerWeapon
 							// This is the first cross-dependednt fix.
 							FIXES_SET(PlayerWeapon, playerid, 0);
@@ -8598,14 +8598,14 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 					// It's a shame `weaponid` is set before `ammo` since we don't actually read
 					// ammo.  Were they done the other way around we could do:
 					//
-					//   GetPlayerWeaponData(playerid, 4, model, model);
+					//   GetPlayerWeaponData__(playerid, 4, model, model);
 					//
 					// And have the weapon data clobber the ammo data, thus avoiding a variable
 					// allocation (wow, a whole ONE instruction...).
-					GetPlayerWeaponData(playerid, 4, model, ammo);
+					GetPlayerWeaponData__(playerid, 4, model, ammo);
 					if (model)
 					{
-						SetPlayerArmedWeapon(playerid, model);
+						SetPlayerArmedWeapon__(playerid, model);
 						FIXES_SET(PlayerWeapon, playerid, model);
 					}
 				}
@@ -8643,7 +8643,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 					if (bools & e_FIXES_BOOLS_PUT_IN_TRAIN)
 					{
 						FIXES_PRINTF("OK");
-						SetCameraBehindPlayer(playerid),
+						SetCameraBehindPlayer__(playerid),
 						bools &= ~e_FIXES_BOOLS_PUT_IN_TRAIN;
 					}
 				#endif
@@ -8662,10 +8662,10 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 						new
 							vid = FIXES_gsVehicleSeatData[playerid] & 0x00FFFFFF;
 						// Limited to "only" 16777216 vehicles and 256 seats.
-						PutPlayerInVehicle(playerid, vid, FIXES_gsVehicleSeatData[playerid] >>> 24),
+						PutPlayerInVehicle__(playerid, vid, FIXES_gsVehicleSeatData[playerid] >>> 24),
 						bools &= ~e_FIXES_BOOLS_PUT_IN_VEHICLE;
 						#if FIX_TrainExit
-							switch (GetVehicleModel(vid))
+							switch (GetVehicleModel__(vid))
 							{
 								case 449, 537, 538:
 								{
@@ -8732,7 +8732,7 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 	{
 		#if FIX_GetPlayerAmmo
 			new
-				currentAmmo = GetPlayerAmmo(playerid);
+				currentAmmo = GetPlayerAmmo__(playerid);
 			if (currentAmmo + ammo > 32767)
 			{
 				ammo = 32767 - currentAmmo;
@@ -8744,15 +8744,15 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 		#endif
 
 		new
-			vid = GetPlayerVehicleID(playerid);
+			vid = GetPlayerVehicleID__(playerid);
 		if (vid)
 		{
 			#if FIX_HydraSniper
-				vid = GetVehicleModel(vid);
+				vid = GetVehicleModel__(vid);
 				if (weaponid == 34 && (vid == 520 || vid == 425))
 				{
-					vid = GivePlayerWeapon(playerid, weaponid, ammo),
-					SetPlayerArmedWeapon(playerid, 0);
+					vid = GivePlayerWeapon__(playerid, weaponid, ammo),
+					SetPlayerArmedWeapon__(playerid, 0);
 					#if FIX_GetPlayerWeapon
 						FIXES_SET(PlayerWeapon, playerid, 0);
 					#endif
@@ -8764,7 +8764,7 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 				FIXES_SET(PlayerWeapon, playerid, weaponid);
 			#endif
 		}
-		return GivePlayerWeapon(playerid, weaponid, ammo);
+		return GivePlayerWeapon__(playerid, weaponid, ammo);
 	}
 
 	#define _ALS_GivePlayerWeapon
@@ -8789,11 +8789,11 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 #if FIX_GetPlayerWeapon
 	stock FIXES_ResetPlayerWeapons(playerid)
 	{
-		if (IsPlayerInAnyVehicle(playerid))
+		if (IsPlayerInAnyVehicle__(playerid))
 		{
 			FIXES_SET(PlayerWeapon, playerid, 0);
 		}
-		return ResetPlayerWeapons(playerid);
+		return ResetPlayerWeapons__(playerid);
 	}
 
 	#define _ALS_ResetPlayerWeapons
@@ -8817,18 +8817,18 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 	stock FIXES_SetPlayerArmedWeapon(playerid, weaponid)
 	{
 		#if FIX_AllowInteriorWeapons
-			if (FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR && GetPlayerInterior(playerid))
+			if (FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR && GetPlayerInterior__(playerid))
 			{
 				// Not allowed weapons.
 				return 0;
 			}
 		#endif
 		new
-			vid = GetPlayerVehicleID(playerid);
+			vid = GetPlayerVehicleID__(playerid);
 		if (vid)
 		{
 			#if FIX_HydraSniper
-				vid = GetVehicleModel(vid);
+				vid = GetVehicleModel__(vid);
 				if (weaponid == 34 && (vid == 520 || vid == 425))
 				{
 					return 0;
@@ -8839,7 +8839,7 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 				FIXES_SET(PlayerWeapon, playerid, weaponid);
 			#endif
 		}
-		return SetPlayerArmedWeapon(playerid, weaponid);
+		return SetPlayerArmedWeapon__(playerid, weaponid);
 	}
 
 	#define _ALS_SetPlayerArmedWeapon
@@ -8866,7 +8866,7 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 			ret = FIXES_GET(PlayerWeapon, playerid);
 		if (ret == -1)
 		{
-			return GetPlayerWeapon(playerid);
+			return GetPlayerWeapon__(playerid);
 		}
 		return ret;
 	}
@@ -8896,8 +8896,8 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 			//  BEGIN: TrainExit
 			// ==================
 			#if FIX_TrainExit
-				FIXES_PRINTF("TrainExit %d", GetVehicleModel(vehicleid));
-				switch (GetVehicleModel(vehicleid))
+				FIXES_PRINTF("TrainExit %d", GetVehicleModel__(vehicleid));
+				switch (GetVehicleModel__(vehicleid))
 				{
 					case 449, 537, 538:
 					{
@@ -8914,7 +8914,7 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 			// ===========================
 			#if FIX_PutPlayerInVehicle
 				new
-					vid = GetPlayerVehicleID(playerid);
+					vid = GetPlayerVehicleID__(playerid);
 				if (vid)
 				{
 					new
@@ -8923,8 +8923,8 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 						Float:z;
 					// Remove them without the animation.
 					return
-						GetVehiclePos(vid, x, y, z),
-						SetPlayerPos(playerid, x, y, z),
+						GetVehiclePos__(vid, x, y, z),
+						SetPlayerPos__(playerid, x, y, z),
 						FIXES_gsVehicleSeatData[playerid] = seatid << 24 | vehicleid,
 						FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_PUT_IN_VEHICLE,
 						1;
@@ -8933,7 +8933,7 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 			// ===========================
 			//  END:   PutPlayerInVehicle
 			// ===========================
-			return PutPlayerInVehicle(playerid, vehicleid, seatid);
+			return PutPlayerInVehicle__(playerid, vehicleid, seatid);
 		}
 	#else
 		forward _FIXES_PutPlayerInVehicle(playerid, vehicleid, seatid, from, data);
@@ -8946,7 +8946,7 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 			// ===========================
 			#if FIX_PutPlayerInVehicle
 				new
-					vid = GetPlayerVehicleID(playerid);
+					vid = GetPlayerVehicleID__(playerid);
 				if (vid)
 				{
 					new
@@ -8955,9 +8955,9 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 						Float:z;
 					// Remove them without the animation.
 					return
-						GetVehiclePos(vid, x, y, z),
-						SetPlayerPos(playerid, x, y, z),
-						CallRemoteFunction(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iiiii, playerid, vehicleid, seatid, 1, vid),
+						GetVehiclePos__(vid, x, y, z),
+						SetPlayerPos__(playerid, x, y, z),
+						CallRemoteFunction__(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iiiii, playerid, vehicleid, seatid, 1, vid),
 						1;
 				}
 			#endif
@@ -8970,12 +8970,12 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 			// ==================
 			#if FIX_TrainExit
 				new
-					model = GetVehicleModel(vehicleid);
+					model = GetVehicleModel__(vehicleid);
 				switch (model)
 				{
 					case 449, 537, 538:
 					{
-						CallRemoteFunction(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iiiii, playerid, vehicleid, seatid, 0, model);
+						CallRemoteFunction__(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iiiii, playerid, vehicleid, seatid, 0, model);
 						//FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_PUT_IN_TRAIN;
 					}
 				}
@@ -8983,7 +8983,7 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 			// ==================
 			//  END:   TrainExit
 			// ==================
-			return PutPlayerInVehicle(playerid, vehicleid, seatid);
+			return PutPlayerInVehicle__(playerid, vehicleid, seatid);
 		}
 
 		public _FIXES_PutPlayerInVehicle(playerid, vehicleid, seatid, from, data)
@@ -9048,16 +9048,16 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 		#if FIXES_Single
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CP_DELAYED)
 		#else
-			if (GetPVarInt(playerid, FIXES_pvarPlayerCheckpoint))
+			if (GetPVarInt__(playerid, FIXES_pvarPlayerCheckpoint))
 		#endif
 			{
 				return
 					#if FIXES_Single
 						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CP_DELAYED,
 					#else
-						DeletePVar(playerid, FIXES_pvarPlayerCheckpoint),
+						DeletePVar__(playerid, FIXES_pvarPlayerCheckpoint),
 					#endif
-						SetPlayerCheckpoint(playerid, x, y, z, size);
+						SetPlayerCheckpoint__(playerid, x, y, z, size);
 			}
 			return 0;
 	}
@@ -9083,10 +9083,10 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 			#if FIXES_Single
 				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_CP_DELAYED,
 			#else
-				SetPVarInt(playerid, FIXES_pvarPlayerCheckpoint, 1),
+				SetPVarInt__(playerid, FIXES_pvarPlayerCheckpoint, 1),
 			#endif
-				DisablePlayerCheckpoint(playerid),
-				SetTimerEx(FIXES_gscSetCheckpoint, 50, 0, FIXES_gscSpec@iffff, playerid, x, y, z, size),
+				DisablePlayerCheckpoint__(playerid),
+				SetTimerEx__(FIXES_gscSetCheckpoint, 50, 0, FIXES_gscSpec@iffff, playerid, x, y, z, size),
 				1;
 	}
 
@@ -9114,9 +9114,9 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 			#if FIXES_Single
 				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CP_DELAYED,
 			#else
-				DeletePVar(playerid, FIXES_pvarPlayerCheckpoint),
+				DeletePVar__(playerid, FIXES_pvarPlayerCheckpoint),
 			#endif
-				DisablePlayerCheckpoint(playerid);
+				DisablePlayerCheckpoint__(playerid);
 	}
 
 	#define _ALS_DisablePlayerCheckpoint
@@ -9135,16 +9135,16 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 		#if FIXES_Single
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_RACE_CP_DELAYED)
 		#else
-			if (GetPVarInt(playerid, FIXES_pvarPlayerRaceCheckpoint))
+			if (GetPVarInt__(playerid, FIXES_pvarPlayerRaceCheckpoint))
 		#endif
 			{
 				return
 					#if FIXES_Single
 						FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_RACE_CP_DELAYED,
 					#else
-						DeletePVar(playerid, FIXES_pvarPlayerRaceCheckpoint),
+						DeletePVar__(playerid, FIXES_pvarPlayerRaceCheckpoint),
 					#endif
-						SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, size);
+						SetPlayerRaceCheckpoint__(playerid, type, x, y, z, nextx, nexty, nextz, size);
 			}
 			return 0;
 	}
@@ -9170,10 +9170,10 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 			#if FIXES_Single
 				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_RACE_CP_DELAYED,
 			#else
-				SetPVarInt(playerid, FIXES_pvarPlayerRaceCheckpoint, 1),
+				SetPVarInt__(playerid, FIXES_pvarPlayerRaceCheckpoint, 1),
 			#endif
-				DisablePlayerRaceCheckpoint(playerid),
-				SetTimerEx(FIXES_gscSetRaceCheckpoint, 50, 0, FIXES_gscSpec@iifffffff, playerid, type, x, y, z, nextx, nexty, nextz, size),
+				DisablePlayerRaceCheckpoint__(playerid),
+				SetTimerEx__(FIXES_gscSetRaceCheckpoint, 50, 0, FIXES_gscSpec@iifffffff, playerid, type, x, y, z, nextx, nexty, nextz, size),
 				1;
 	}
 
@@ -9201,9 +9201,9 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 			#if FIXES_Single
 				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_RACE_CP_DELAYED,
 			#else
-				DeletePVar(playerid, FIXES_pvarPlayerRaceCheckpoint),
+				DeletePVar__(playerid, FIXES_pvarPlayerRaceCheckpoint),
 			#endif
-				DisablePlayerRaceCheckpoint(playerid);
+				DisablePlayerRaceCheckpoint__(playerid);
 	}
 
 	#define _ALS_DisablePlayerRaceCP
@@ -9225,24 +9225,24 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 		{
 			// Remove the global GameText for everyone that can see it.
 			if (timers[MAX_PLAYERS] != 0)
-				KillTimer(timers[MAX_PLAYERS]);
+				KillTimer__(timers[MAX_PLAYERS]);
 			timers[MAX_PLAYERS] = 0,
-			TextDrawHideForAll(FIXES_gsGTStyle[style]);
+			TextDrawHideForAll__(FIXES_gsGTStyle[style]);
 		}
 		else if (playerid == INVALID_PLAYER_ID)
 		{
 			// Remove all GameTexts of this style for everyone.
 			if (timers[MAX_PLAYERS] != 0)
-				KillTimer(timers[MAX_PLAYERS]);
+				KillTimer__(timers[MAX_PLAYERS]);
 			timers[MAX_PLAYERS] = 0,
-			TextDrawHideForAll(FIXES_gsGTStyle[style]),
+			TextDrawHideForAll__(FIXES_gsGTStyle[style]),
 			playerid = parr[MAX_PLAYERS],
 			parr[MAX_PLAYERS] = MAX_PLAYERS;
 			for (new next; playerid != MAX_PLAYERS; playerid = next)
 			{
 				if (timers[playerid] != 0)
-					KillTimer(timers[playerid]);
-				PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][style]),
+					KillTimer__(timers[playerid]);
+				PlayerTextDrawHide__(playerid, FIXES_gsPGTStyle[playerid][style]),
 				next = parr[playerid],
 				timers[playerid] = parr[playerid] = 0;
 			}
@@ -9251,10 +9251,10 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 		{
 			// Remove.
 			if (timers[playerid] != 0)
-				KillTimer(timers[playerid]);
+				KillTimer__(timers[playerid]);
 			timers[playerid] = 0,
-			TextDrawHideForPlayer(playerid, FIXES_gsGTStyle[style]),
-			PlayerTextDrawHide(playerid, FIXES_gsPGTStyle[playerid][style]),
+			TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[style]),
+			PlayerTextDrawHide__(playerid, FIXES_gsPGTStyle[playerid][style]),
 			_FIXES_RemoveInternal(parr, playerid, MAX_PLAYERS);
 		}
 		return 1;
@@ -9288,18 +9288,18 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 			if (playerid == MAX_PLAYERS)
 			{
 				_FIXES_HideGameTextForPlayer(INVALID_PLAYER_ID, style, FIXES_gsPlayerPGTShown[style], FIXES_gsGTTimer[style]),
-				TextDrawSetString(FIXES_gsGTStyle[style], string),
-				TextDrawShowForAll(FIXES_gsGTStyle[style]);
+				TextDrawSetString__(FIXES_gsGTStyle[style], string),
+				TextDrawShowForAll__(FIXES_gsGTStyle[style]);
 			}
 			else
 			{
 				_FIXES_HideGameTextForPlayer(playerid, style, FIXES_gsPlayerPGTShown[style], FIXES_gsGTTimer[style]),
-				PlayerTextDrawSetString(playerid, FIXES_gsPGTStyle[playerid][style], string),
-				PlayerTextDrawShow(playerid, FIXES_gsPGTStyle[playerid][style]),
+				PlayerTextDrawSetString__(playerid, FIXES_gsPGTStyle[playerid][style], string),
+				PlayerTextDrawShow__(playerid, FIXES_gsPGTStyle[playerid][style]),
 				_FIXES_AddInternal(FIXES_gsPlayerPGTShown[style], playerid, MAX_PLAYERS);
 			}
 			if (time)
-				FIXES_gsGTTimer[style][playerid] = SetTimerEx(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, style);
+				FIXES_gsGTTimer[style][playerid] = SetTimerEx__(FIXES_gscHideGameTextTimer, time, false, FIXES_gscSpec@ii, playerid, style);
 		}
 		return 1;
 	}
@@ -9329,7 +9329,7 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 				#if FIXES_Single
 					return _FIXES_HideGameTextTimer(INVALID_PLAYER_ID, style);
 				#else
-					return CallRemoteFunction(FIXES_gscHideGameTextTimer, FIXES_gscSpec@ii, INVALID_PLAYER_ID, style);
+					return CallRemoteFunction__(FIXES_gscHideGameTextTimer, FIXES_gscSpec@ii, INVALID_PLAYER_ID, style);
 				#endif
 			}
 			else
@@ -9337,7 +9337,7 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 				#if FIXES_Single
 					return _FIXES_GameTextShow(MAX_PLAYERS, string, time, style);
 				#else
-					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, string, time, style);
+					return CallRemoteFunction__(FIXES_gscGameTextShow, FIXES_gscSpec@isii, MAX_PLAYERS, string, time, style);
 				#endif
 			}
 		}
@@ -9372,7 +9372,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 				#if FIXES_Single
 					return _FIXES_HideGameTextTimer(playerid, style);
 				#else
-					return CallRemoteFunction(FIXES_gscHideGameTextTimer, FIXES_gscSpec@ii, playerid, style);
+					return CallRemoteFunction__(FIXES_gscHideGameTextTimer, FIXES_gscSpec@ii, playerid, style);
 				#endif
 			}
 			else
@@ -9380,7 +9380,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 				#if FIXES_Single
 					return _FIXES_GameTextShow(playerid, string, time, style);
 				#else
-					return CallRemoteFunction(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, string, time, style);
+					return CallRemoteFunction__(FIXES_gscGameTextShow, FIXES_gscSpec@isii, playerid, string, time, style);
 				#endif
 			}
 		}
@@ -9405,10 +9405,10 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	//{
 	//	if (FIXES_gsGTTimer[style][MAX_PLAYERS] != 0)
 	//	{
-	//		KillTimer(FIXES_gsGTTimer[style][MAX_PLAYERS]);
+	//		KillTimer__(FIXES_gsGTTimer[style][MAX_PLAYERS]);
 	//		FIXES_gsGTTimer[style][MAX_PLAYERS] = 0;
 	//	}
-	//	return GameTextForAll(FIXES_gcSpace, 0, style);
+	//	return GameTextForAll__(FIXES_gcSpace, 0, style);
 	//}
 
 	#define _ALS_HideGameTextForAll
@@ -9430,10 +9430,10 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	//	{
 	//		if (FIXES_gsGTTimer[style][playerid] != 0)
 	//		{
-	//			KillTimer(FIXES_gsGTTimer[style][playerid]);
+	//			KillTimer__(FIXES_gsGTTimer[style][playerid]);
 	//			FIXES_gsGTTimer[style][playerid] = 0;
 	//		}
-	//		return GameTextForPlayer(playerid, FIXES_gcSpace, 0, style);
+	//		return GameTextForPlayer__(playerid, FIXES_gcSpace, 0, style);
 	//	}
 	//	return 0;
 	//}
@@ -9472,7 +9472,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#if FIX_CreatePlayerTextDraw_2
 			_FIXES_rtrim(text);
 		#endif
-			_FIXES_RETURN_STRING(CreatePlayerTextDraw(playerid, x, y, text));
+			_FIXES_RETURN_STRING(CreatePlayerTextDraw__(playerid, x, y, text));
 		#if FIX_CreatePlayerTextDraw_2
 			_FIXES_untrim(text);
 			return ret;
@@ -9525,7 +9525,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#if FIX_PlayerTextDrawSetString_2
 			_FIXES_rtrim(string);
 		#endif
-			_FIXES_RETURN_STRING(PlayerTextDrawSetString(playerid, text, string));
+			_FIXES_RETURN_STRING(PlayerTextDrawSetString__(playerid, text, string));
 		#if FIX_PlayerTextDrawSetString_2
 			_FIXES_untrim(string);
 			return ret;
@@ -9573,7 +9573,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#if FIX_TextDrawCreate_2
 			_FIXES_rtrim(text);
 		#endif
-			_FIXES_RETURN_STRING(TextDrawCreate(x, y, text));
+			_FIXES_RETURN_STRING(TextDrawCreate__(x, y, text));
 		#if FIX_TextDrawCreate_2
 			_FIXES_untrim(text);
 			return ret;
@@ -9626,7 +9626,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#if FIX_TextDrawSetString_2
 			_FIXES_rtrim(string);
 		#endif
-			_FIXES_RETURN_STRING(TextDrawSetString(text, string));
+			_FIXES_RETURN_STRING(TextDrawSetString__(text, string));
 		#if FIX_TextDrawSetString_2
 			_FIXES_untrim(string);
 			return ret;
@@ -9674,7 +9674,7 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 				FIXES_gsSettings |= e_FIXES_SETTINGS_INTERIOR;
 				_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 				{
-					if (GetPlayerInterior(i))
+					if (GetPlayerInterior__(i))
 					{
 						FIXES_gsPlayerBools[i] |= e_FIXES_BOOLS_INTERIOR;
 					}
@@ -9687,7 +9687,7 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 
 		stock FIXES_AllowInteriorWeapons(allow)
 		{
-			CallRemoteFunction(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, allow);
+			CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, allow);
 			return allow;
 		}
 
@@ -9706,7 +9706,7 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 				FIXES_gsSettings |= e_FIXES_SETTINGS_INTERIOR;
 				_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 				{
-					if (GetPlayerInterior(i))
+					if (GetPlayerInterior__(i))
 					{
 						FIXES_gsPlayerBools[i] |= e_FIXES_BOOLS_INTERIOR;
 					}
@@ -9766,7 +9766,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			FIXES_SET(PlayerInterior, playerid, interiorid);
-			return SetPlayerInterior(playerid, interiorid);
+			return SetPlayerInterior__(playerid, interiorid);
 		}
 		return 0;
 	}
@@ -9782,7 +9782,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 #if FIX_AllowTeleport && !defined FILTERSCRIPT
 	forward _FIXES_AllowTeleport(playerid, allow);
 
-	public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
+	public OnPlayerClickMap__(playerid, Float:fX, Float:fY, Float:fZ)
 	{
 		// ======================
 		//  BEGIN: AllowTeleport
@@ -9792,9 +9792,9 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 			{
 				// Unusually, the call order here is always Game Mode first -
 				// most callbacks are Filter Script first.
-				if ((FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_TELEPORT) || ((FIXES_gsSettings & e_FIXES_SETTINGS_ADMIN_TELEPORT) && (IsPlayerAdmin(playerid))))
+				if ((FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_TELEPORT) || ((FIXES_gsSettings & e_FIXES_SETTINGS_ADMIN_TELEPORT) && (IsPlayerAdmin__(playerid))))
 				{
-					SetPlayerPosFindZ(playerid, fX, fY, fZ);
+					SetPlayerPosFindZ__(playerid, fX, fY, fZ);
 				}
 			}
 		#endif
@@ -9848,7 +9848,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
-				CallRemoteFunction(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, playerid, allow);
+				CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, playerid, allow);
 			}
 			return 0;
 		}
@@ -9889,7 +9889,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 		stock FIXES_AllowAdminTeleport(allow)
 		{
 			return
-				CallRemoteFunction(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, INVALID_PLAYER_ID, allow),
+				CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, INVALID_PLAYER_ID, allow),
 				allow;
 		}
 	#endif
@@ -9949,11 +9949,11 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 #if FIX_SetPlayerSpecialAction
 	stock FIXES_SetPlayerSpecialAction(playerid, actionid)
 	{
-		if (GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_USEJETPACK)
+		if (GetPlayerSpecialAction__(playerid) == SPECIAL_ACTION_USEJETPACK)
 		{
-			ClearAnimations(playerid);
+			ClearAnimations__(playerid);
 		}
-		SetPlayerSpecialAction(playerid, actionid);
+		SetPlayerSpecialAction__(playerid, actionid);
 		return 1;
 	}
 
@@ -9978,24 +9978,24 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 	stock FIXES_ClearAnimations(playerid, forcesync = 0)
 	{
 		#if FIX_ClearAnimations || FIX_ClearAnimations_2
-			if (IsPlayerInAnyVehicle(playerid))
+			if (IsPlayerInAnyVehicle__(playerid))
 		#endif
 		#if FIX_ClearAnimations
 			{
-				return ApplyAnimation(playerid, "PED", "CAR_SIT", 4.0, 0, 0, 0, 0, 1, forcesync);
+				return ApplyAnimation__(playerid, "PED", "CAR_SIT", 4.0, 0, 0, 0, 0, 1, forcesync);
 			}
 		#endif
 		#if FIX_ClearAnimations + FIX_ClearAnimations_2 == 1 // XOR
 			{
-				return ClearAnimations(playerid, forcesync);
+				return ClearAnimations__(playerid, forcesync);
 			}
 		#endif
 		#if FIX_ClearAnimations_2
 			new
-				ret = ClearAnimations(playerid, forcesync);
-			ApplyAnimation(playerid, "PED", "IDLE_STANCE", 4.0, 0, 0, 0, 0, 1, forcesync);
-			ApplyAnimation(playerid, "PED", "IDLE_CHAT", 4.0, 0, 0, 0, 0, 1, forcesync);
-			ApplyAnimation(playerid, "PED", "WALK_PLAYER", 4.0, 0, 0, 0, 0, 1, forcesync);
+				ret = ClearAnimations__(playerid, forcesync);
+			ApplyAnimation__(playerid, "PED", "IDLE_STANCE", 4.0, 0, 0, 0, 0, 1, forcesync);
+			ApplyAnimation__(playerid, "PED", "IDLE_CHAT", 4.0, 0, 0, 0, 0, 1, forcesync);
+			ApplyAnimation__(playerid, "PED", "WALK_PLAYER", 4.0, 0, 0, 0, 0, 1, forcesync);
 			return ret;
 		#endif
 	}
@@ -10020,7 +10020,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #if FIX_GangZoneCreate
 	stock FIXES_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy)
 	{
-		return GangZoneCreate(floatsub(minx, floatfract(minx)), floatsub(miny, floatfract(miny)), floatsub(maxx, floatfract(maxx)), floatsub(maxy, floatfract(maxy)));
+		return GangZoneCreate__(floatsub(minx, floatfract(minx)), floatsub(miny, floatfract(miny)), floatsub(maxx, floatfract(maxx)), floatsub(maxy, floatfract(maxy)));
 	}
 
 	#define _ALS_GangZoneCreate
@@ -10050,7 +10050,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			FIXES_SET(PlayerDialog, playerid, dialog);
-			return ShowPlayerDialog(playerid, dialog, style, title, caption, button1, button2);
+			return ShowPlayerDialog__(playerid, dialog, style, title, caption, button1, button2);
 		}
 		return 0;
 	}
@@ -10069,7 +10069,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  */
 
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
-	public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
+	public OnDialogResponse__(playerid, dialogid, response, listitem, inputtext[])
 	{
 		// =========================
 		//  BEGIN: OnDialogResponse
@@ -10086,16 +10086,16 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 					// If there are multiple scripts, we can't just wipe the
 					// current dialog data or subsequent scripts will display
 					// the wrong value.
-					dialogid = GetPVarInt(playerid, FIXES_pvarPlayerDialog),
-					SetPVarInt(playerid, FIXES_pvarCurrentDialog, dialogid),
-					SetPVarInt(playerid, FIXES_pvarPlayerDialog, INVALID_DIALOG_ID);
+					dialogid = GetPVarInt__(playerid, FIXES_pvarPlayerDialog),
+					SetPVarInt__(playerid, FIXES_pvarCurrentDialog, dialogid),
+					SetPVarInt__(playerid, FIXES_pvarPlayerDialog, INVALID_DIALOG_ID);
 				}
 				else
 				{
-					dialogid = GetPVarInt(playerid, FIXES_pvarCurrentDialog);
+					dialogid = GetPVarInt__(playerid, FIXES_pvarCurrentDialog);
 				}
 			#else
-				SetPVarInt(playerid, FIXES_pvarPlayerDialog, INVALID_DIALOG_ID);
+				SetPVarInt__(playerid, FIXES_pvarPlayerDialog, INVALID_DIALOG_ID);
 			#endif
 			return FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext);
 		#endif
@@ -10396,7 +10396,7 @@ native BAD_Kick(playerid) = Kick;
 	public _FIXES_Kick(playerid)
 	{
 		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_KICKED,
-		Kick(playerid);
+		Kick__(playerid);
 	}
 
 	#if !FIXES_Single
@@ -10417,17 +10417,17 @@ native BAD_Kick(playerid) = Kick;
 				#if FIXES_Single
 					FIXES_BlockUpdate(playerid, false),
 				#else
-					CallRemoteFunction("@FIXES_Kick", "i", playerid),
+					CallRemoteFunction__("@FIXES_Kick", "i", playerid),
 				#endif
-					TogglePlayerSpectating(playerid, true),
-					TogglePlayerControllable(playerid, false),
-					SetPVarInt(playerid, FIXES_pvarKick, SetTimerEx(FIXES_gscKick, 1000, 0, FIXES_gscSpec@i, playerid)),
+					TogglePlayerSpectating__(playerid, true),
+					TogglePlayerControllable__(playerid, false),
+					SetPVarInt__(playerid, FIXES_pvarKick, SetTimerEx__(FIXES_gscKick, 1000, 0, FIXES_gscSpec@i, playerid)),
 					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_KICKED,
 					1;
 		}
 		else
 		{
-			return Kick(playerid);
+			return Kick__(playerid);
 		}
 	}
 
@@ -10462,7 +10462,7 @@ native BAD_Kick(playerid) = Kick;
 			//  BEGIN: AllowInteriorWeapons
 			// =============================
 			#if FIX_AllowInteriorWeapons
-				CallRemoteFunction(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, !(FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR));
+				CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, !(FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR));
 			#endif
 			// =============================
 			//  END: AllowInteriorWeapons
@@ -10507,7 +10507,7 @@ native BAD_Kick(playerid) = Kick;
 						#if FIX_GameText
 							for (new j = 0; j != FIXES_GT_STYLE_COUNT; ++j)
 							{
-								PlayerTextDrawDestroy(i, FIXES_gsPGTStyle[i][j]);
+								PlayerTextDrawDestroy__(i, FIXES_gsPGTStyle[i][j]);
 							}
 						#endif
 						// =================
@@ -10518,7 +10518,7 @@ native BAD_Kick(playerid) = Kick;
 						//  BEGIN: TogglePlayerControllable
 						// =================================
 						#if FIX_TogglePlayerControllable
-							CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, i, !(FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_UNCONTROLLABLE));
+							CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, i, !(FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_UNCONTROLLABLE));
 						#endif
 						// =================================
 						//  END:   TogglePlayerControllable
@@ -10530,7 +10530,7 @@ native BAD_Kick(playerid) = Kick;
 						#if FIX_PutPlayerInVehicle
 							if (FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_PUT_IN_VEHICLE)
 							{
-								CallRemoteFunction(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iii, i, FIXES_gsVehicleSeatData[i] & 0x00FFFFFF, FIXES_gsVehicleSeatData[i] >>> 24);
+								CallRemoteFunction__(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iii, i, FIXES_gsVehicleSeatData[i] & 0x00FFFFFF, FIXES_gsVehicleSeatData[i] >>> 24);
 							}
 						#endif
 						// ===========================
@@ -10544,21 +10544,21 @@ native BAD_Kick(playerid) = Kick;
 				// =================
 				#if FIX_GameText
 					#if FIX_GameTextStyles
-						TextDrawDestroy(FIXES_gsGTStyle[13]),
-						TextDrawDestroy(FIXES_gsGTStyle[12]),
-						TextDrawDestroy(FIXES_gsGTStyle[11]),
-						TextDrawDestroy(FIXES_gsGTStyle[10]),
-						TextDrawDestroy(FIXES_gsGTStyle[9]),
-						TextDrawDestroy(FIXES_gsGTStyle[8]),
-						TextDrawDestroy(FIXES_gsGTStyle[7]),
+						TextDrawDestroy__(FIXES_gsGTStyle[13]),
+						TextDrawDestroy__(FIXES_gsGTStyle[12]),
+						TextDrawDestroy__(FIXES_gsGTStyle[11]),
+						TextDrawDestroy__(FIXES_gsGTStyle[10]),
+						TextDrawDestroy__(FIXES_gsGTStyle[9]),
+						TextDrawDestroy__(FIXES_gsGTStyle[8]),
+						TextDrawDestroy__(FIXES_gsGTStyle[7]),
 					#endif
-						TextDrawDestroy(FIXES_gsGTStyle[6]),
-						TextDrawDestroy(FIXES_gsGTStyle[5]),
-						TextDrawDestroy(FIXES_gsGTStyle[4]),
-						TextDrawDestroy(FIXES_gsGTStyle[3]),
-						TextDrawDestroy(FIXES_gsGTStyle[2]),
-						TextDrawDestroy(FIXES_gsGTStyle[1]),
-						TextDrawDestroy(FIXES_gsGTStyle[0]);
+						TextDrawDestroy__(FIXES_gsGTStyle[6]),
+						TextDrawDestroy__(FIXES_gsGTStyle[5]),
+						TextDrawDestroy__(FIXES_gsGTStyle[4]),
+						TextDrawDestroy__(FIXES_gsGTStyle[3]),
+						TextDrawDestroy__(FIXES_gsGTStyle[2]),
+						TextDrawDestroy__(FIXES_gsGTStyle[1]),
+						TextDrawDestroy__(FIXES_gsGTStyle[0]);
 				#endif
 				// =================
 				//  END:   GameText
@@ -10617,38 +10617,38 @@ native BAD_Kick(playerid) = Kick;
 					_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
 					{
 						#if FIX_GameTextStyles
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][13]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][12]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][11]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][10]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][9]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][8]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][7]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][13]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][12]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][11]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][10]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][9]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][8]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][7]),
 						#endif
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][6]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][5]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][4]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][3]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][2]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][1]),
-							PlayerTextDrawDestroy(playerid, FIXES_gsPGTStyle[playerid][0]);
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][6]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][5]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][4]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][3]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][2]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][1]),
+							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][0]);
 					}
 				#if FIX_GameTextStyles
-					TextDrawDestroy(FIXES_gsGTStyle[13]),
-					TextDrawDestroy(FIXES_gsGTStyle[12]),
-					TextDrawDestroy(FIXES_gsGTStyle[11]),
-					TextDrawDestroy(FIXES_gsGTStyle[10]),
-					TextDrawDestroy(FIXES_gsGTStyle[9]),
-					TextDrawDestroy(FIXES_gsGTStyle[8]),
-					TextDrawDestroy(FIXES_gsGTStyle[7]),
+					TextDrawDestroy__(FIXES_gsGTStyle[13]),
+					TextDrawDestroy__(FIXES_gsGTStyle[12]),
+					TextDrawDestroy__(FIXES_gsGTStyle[11]),
+					TextDrawDestroy__(FIXES_gsGTStyle[10]),
+					TextDrawDestroy__(FIXES_gsGTStyle[9]),
+					TextDrawDestroy__(FIXES_gsGTStyle[8]),
+					TextDrawDestroy__(FIXES_gsGTStyle[7]),
 				#endif
-					TextDrawDestroy(FIXES_gsGTStyle[6]),
-					TextDrawDestroy(FIXES_gsGTStyle[5]),
-					TextDrawDestroy(FIXES_gsGTStyle[4]),
-					TextDrawDestroy(FIXES_gsGTStyle[3]),
-					TextDrawDestroy(FIXES_gsGTStyle[2]),
-					TextDrawDestroy(FIXES_gsGTStyle[1]),
-					TextDrawDestroy(FIXES_gsGTStyle[0]);
+					TextDrawDestroy__(FIXES_gsGTStyle[6]),
+					TextDrawDestroy__(FIXES_gsGTStyle[5]),
+					TextDrawDestroy__(FIXES_gsGTStyle[4]),
+					TextDrawDestroy__(FIXES_gsGTStyle[3]),
+					TextDrawDestroy__(FIXES_gsGTStyle[2]),
+					TextDrawDestroy__(FIXES_gsGTStyle[1]),
+					TextDrawDestroy__(FIXES_gsGTStyle[0]);
 			#endif
 			// =================
 			//  END:   GameText
@@ -10794,7 +10794,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 	{
 		if (FIXES_gsPlayerAnimTimer[playerid])
 		{
-			KillTimer(FIXES_gsPlayerAnimTimer[playerid]),
+			KillTimer__(FIXES_gsPlayerAnimTimer[playerid]),
 			FIXES_gsPlayerAnimTimer[playerid] = 0;
 		}
 		if (FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] & (1 << (idx & 0x1F)))
@@ -10802,7 +10802,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 			FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
 			FIXES_gsPlayerAnimName[playerid][0] = '\0',
 			strcat(FIXES_gsPlayerAnimName[playerid], animname),
-			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
+			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx__("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
 		}
 	}
 #endif
@@ -10816,7 +10816,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 
 	public _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
 	{
-		ApplyAnimation(playerid, FIXES_gscAnimLib[animlib], FIXES_gsPlayerAnimName[playerid], fDelta, loop, lockx, locky, freeze, time, forcesync),
+		ApplyAnimation__(playerid, FIXES_gscAnimLib[animlib], FIXES_gsPlayerAnimName[playerid], fDelta, loop, lockx, locky, freeze, time, forcesync),
 		FIXES_gsPlayerAnimTimer[playerid] = 0;
 	}
 #endif
@@ -10851,7 +10851,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 			#if FIX_ApplyAnimation_2
 				_FIXES_ApplyAnimationDelay(animname, playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
 			#endif
-				return ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
+				return ApplyAnimation__(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
 		}
 
 		return 0;
@@ -10874,7 +10874,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 	{
 		if (FIXES_gsActorAnimTimer[actorid])
 		{
-			KillTimer(FIXES_gsActorAnimTimer[actorid]),
+			KillTimer__(FIXES_gsActorAnimTimer[actorid]),
 			FIXES_gsActorAnimTimer[actorid] = 0;
 		}
 		if (FIXES_gsActorAnimLibs[actorid][idx >>> 5] & (1 << (idx & 0x1F)))
@@ -10882,7 +10882,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 			FIXES_gsActorAnimLibs[actorid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
 			FIXES_gsActorAnimName[actorid][0] = '\0',
 			strcat(FIXES_gsActorAnimName[actorid], animname),
-			FIXES_gsActorAnimTimer[actorid] = SetTimerEx("_FIXES_ApplyActorAnimation", 350, false, "ddfdddddd", actorid, idx, fDelta, loop, lockx, locky, freeze, time);
+			FIXES_gsActorAnimTimer[actorid] = SetTimerEx__("_FIXES_ApplyActorAnimation", 350, false, "ddfdddddd", actorid, idx, fDelta, loop, lockx, locky, freeze, time);
 		}
 	}
 #endif
@@ -10896,7 +10896,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 
 	public _FIXES_ApplyActorAnimation(actorid, animlib, Float:fDelta, loop, lockx, locky, freeze, time)
 	{
-		ApplyActorAnimation(actorid, FIXES_gscAnimLib[animlib], FIXES_gsActorAnimName[actorid], fDelta, loop, lockx, locky, freeze, time),
+		ApplyActorAnimation__(actorid, FIXES_gscAnimLib[animlib], FIXES_gsActorAnimName[actorid], fDelta, loop, lockx, locky, freeze, time),
 		FIXES_gsActorAnimTimer[actorid] = 0;
 	}
 #endif
@@ -10931,7 +10931,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 			#if FIX_ApplyActorAnimation_2
 				_FIXES_ApplyActorAnimationDelay(animname, actorid, idx, fDelta, loop, lockx, locky, freeze, time);
 			#endif
-				return ApplyActorAnimation(actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time);
+				return ApplyActorAnimation__(actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time);
 		}
 
 		return 0;
@@ -10964,7 +10964,7 @@ native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = Cre
 		new
 			actorid;
 
-		actorid = CreateActor(modelid, X, Y, Z, Rotation);
+		actorid = CreateActor__(modelid, X, Y, Z, Rotation);
 
 		if (actorid == INVALID_ACTOR_ID)
 		{
@@ -11002,11 +11002,11 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 	{
 		if (FIXES_gsActorAnimTimer[actorid])
 		{
-			KillTimer(FIXES_gsActorAnimTimer[actorid]),
+			KillTimer__(FIXES_gsActorAnimTimer[actorid]),
 			FIXES_gsActorAnimTimer[actorid] = 0;
 		}
 
-		return DestroyActor(actorid);
+		return DestroyActor__(actorid);
 	}
 
 	#define _ALS_DestroyActor
@@ -11030,7 +11030,7 @@ native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, b
 	stock FIXES_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective)
 	{
 		FIXES_gsVehicleIsLocked[vehicleid] = doors == VEHICLE_PARAMS_ON;
-		return SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+		return SetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 	}
 
 	#define _ALS_SetVehicleParamsEx
@@ -11054,14 +11054,14 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
 	stock FIXES_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective)
 	{
 		new
-			ret = GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+			ret = GetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 		#if FIXES_Single
 			doors = FIXES_gsVehicleIsLocked[vehicleid] ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
 		#else
 			#if !defined FILTERSCRIPT
 				doors = _FIXES_GetVehicleDoorsEx(vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
 			#else
-				doors = CallRemoteFunction("_FIXES_GetVehicleDoorsEx", "i", vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
+				doors = CallRemoteFunction__("_FIXES_GetVehicleDoorsEx", "i", vehicleid) ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
 			#endif
 		#endif
 		return ret;
@@ -11164,11 +11164,11 @@ native BAD_random(max) = random;
 	{
 		if (type)
 		{
-			SetPlayerCameraPos(playerid, x, y, z);
+			SetPlayerCameraPos__(playerid, x, y, z);
 		}
 		else
 		{
-			SetPlayerCameraLookAt(playerid, x, y, z, cut);
+			SetPlayerCameraLookAt__(playerid, x, y, z, cut);
 		}
 		return 0;
 	}
@@ -11193,16 +11193,16 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			#if FIXES_Single
-				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState__(playerid) == PLAYER_STATE_SPECTATING)
 			#else
-				if (GetPVarInt(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+				if (GetPVarInt__(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState__(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
-					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 1, x, y, z);
+					SetTimerEx__(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 1, x, y, z);
 				}
 				else
 				{
-					SetPlayerCameraPos(playerid, x, y, z);
+					SetPlayerCameraPos__(playerid, x, y, z);
 				}
 		}
 		return 0;
@@ -11231,16 +11231,16 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			#if FIXES_Single
-				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+				if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_SPECTATING || GetPlayerState__(playerid) == PLAYER_STATE_SPECTATING)
 			#else
-				if (GetPVarInt(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState(playerid) == PLAYER_STATE_SPECTATING)
+				if (GetPVarInt__(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState__(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
-					SetTimerEx(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifffi, playerid, 0, x, y, z, cut);
+					SetTimerEx__(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifffi, playerid, 0, x, y, z, cut);
 				}
 				else
 				{
-					SetPlayerCameraLookAt(playerid, x, y, z, cut);
+					SetPlayerCameraLookAt__(playerid, x, y, z, cut);
 				}
 		}
 		return 0;
@@ -11273,7 +11273,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 				#if FIXES_Single
 					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_SPECTATING;
 				#else
-					SetPVarInt(playerid, FIXES_pvarPlayerSpectate, 1);
+					SetPVarInt__(playerid, FIXES_pvarPlayerSpectate, 1);
 				#endif
 			}
 			else
@@ -11281,10 +11281,10 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 				#if FIXES_Single
 					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_SPECTATING;
 				#else
-					DeletePVar(playerid, FIXES_pvarPlayerSpectate);
+					DeletePVar__(playerid, FIXES_pvarPlayerSpectate);
 				#endif
 			}
-			return TogglePlayerSpectating(playerid, toggle);
+			return TogglePlayerSpectating__(playerid, toggle);
 		}
 		return 0;
 	}
@@ -11311,7 +11311,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 
 	public _FIXES_SetTime(playerid, hour, minute)
 	{
-		return SetPlayerTime(playerid, hour, minute);
+		return SetPlayerTime__(playerid, hour, minute);
 	}
 
 	stock FIXES_SetPlayerTime(playerid, hour, minute)
@@ -11320,9 +11320,9 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 		{
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
 			{
-				return SetTimerEx(FIXES_gscSetTime, 250, 0, FIXES_gscSpec@iii, playerid, hour, minute);
+				return SetTimerEx__(FIXES_gscSetTime, 250, 0, FIXES_gscSpec@iii, playerid, hour, minute);
 			}
-			return SetPlayerTime(playerid, hour, minute);
+			return SetPlayerTime__(playerid, hour, minute);
 		}
 		return 0;
 	}
@@ -11349,7 +11349,7 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 
 	public _FIXES_SetColor(playerid, color)
 	{
-		return SetPlayerColor(playerid, color);
+		return SetPlayerColor__(playerid, color);
 	}
 
 	stock FIXES_SetPlayerColor(playerid, color)
@@ -11358,9 +11358,9 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 		{
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
 			{
-				return SetTimerEx(FIXES_gscSetColor, 300, 0, FIXES_gscSpec@ii, playerid, color);
+				return SetTimerEx__(FIXES_gscSetColor, 300, 0, FIXES_gscSpec@ii, playerid, color);
 			}
-			return SetPlayerColor(playerid, color);
+			return SetPlayerColor__(playerid, color);
 		}
 		return 0;
 	}
@@ -11388,7 +11388,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapons, &ammo) = GetPlayerWeapo
 		// This reuses the "slot" variable so we don't have to declare a new one
 		// and can put all the code in a single statement.
 		return
-			slot = GetPlayerWeaponData(playerid, slot, weapons, ammo),
+			slot = GetPlayerWeaponData__(playerid, slot, weapons, ammo),
 			weapons = ammo ? weapons : 0,
 			slot;
 	}
@@ -11464,7 +11464,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 #if FIX_GetPVarString
 	stock FIXES_GetPVarString(playerid, _FIXES_MAYBE_CONST varname[], string_return[], len)
 	{
-		len = GetPVarString(playerid, varname, string_return, len);
+		len = GetPVarString__(playerid, varname, string_return, len);
 		static i; i = -1;
 		do {} while ((string_return[++i] &= 0xFF) != '\0');
 		return len;
@@ -11496,7 +11496,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 #if FIX_GetSVarString
 	stock FIXES_GetSVarString(_FIXES_MAYBE_CONST varname[], string_return[], len)
 	{
-		len = GetSVarString(varname, string_return, len);
+		len = GetSVarString__(varname, string_return, len);
 		static i; i = -1;
 		do {} while ((string_return[++i] &= 0xFF) != '\0');
 		return len;
@@ -11618,8 +11618,8 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 	stock FIXES_GetPlayerPoolSize()
 	{
 		new
-			size = GetPlayerPoolSize();
-		return size == 0 && !IsPlayerConnected(0) ? -1 : size;
+			size = GetPlayerPoolSize__();
+		return size == 0 && !IsPlayerConnected__(0) ? -1 : size;
 	}
 
 	#define _ALS_GetPlayerPoolSize
@@ -11657,7 +11657,7 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 	{
 		new
-			ret = SetPlayerPos(playerid, x, y, z);
+			ret = SetPlayerPos__(playerid, x, y, z);
 		if (ret)
 		{
 			_FIXES_RemoveFlyingParachute(playerid);
@@ -11686,7 +11686,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 	stock FIXES_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z)
 	{
 		new
-			ret = SetPlayerPosFindZ(playerid, x, y, z);
+			ret = SetPlayerPosFindZ__(playerid, x, y, z);
 		if (ret)
 		{
 			_FIXES_RemoveFlyingParachute(playerid);
@@ -11708,7 +11708,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 		#if FIX_OnPlayerDeath
 			switch (FIXES_gsLastAnimation[playerid])
 		#else
-			switch (GetPlayerAnimationIndex(playerid))
+			switch (GetPlayerAnimationIndex__(playerid))
 		#endif
 			{
 				case 958, 959, 960, 961, 962, 1134:
@@ -11718,13 +11718,13 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 						weapons[_FIXES_WEAPON_SLOTS][2];
 					for (slot = 0; slot < sizeof(weapons); slot++)
 					{
-						GetPlayerWeaponData(playerid, slot, weapons[slot][0], weapons[slot][1]);
+						GetPlayerWeaponData__(playerid, slot, weapons[slot][0], weapons[slot][1]);
 					}
 					weapons[11][0] = 0;
-					ResetPlayerWeapons(playerid);
+					ResetPlayerWeapons__(playerid);
 					for (slot = 0; slot < sizeof(weapons); slot++)
 					{
-						GivePlayerWeapon(playerid, weapons[slot][0], weapons[slot][1]);
+						GivePlayerWeapon__(playerid, weapons[slot][0], weapons[slot][1]);
 					}
 				}
 			}
@@ -11747,7 +11747,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #if FIX_GetPlayerAmmo
 	stock FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
 	{
-		return SetPlayerAmmo(playerid, weaponid, clamp(ammo, 0, 32767));
+		return SetPlayerAmmo__(playerid, weaponid, clamp(ammo, 0, 32767));
 	}
 
 	#define _ALS_SetPlayerAmmo
@@ -11822,7 +11822,7 @@ native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			FIXES_SET(PlayerWeather, playerid, weather);
-			return SetPlayerWeather(playerid, weather);
+			return SetPlayerWeather__(playerid, weather);
 		}
 		return 0;
 	}
@@ -11852,7 +11852,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 	#if FIXES_Single
 		stock FIXES_TogglePlayerClock(playerid, toggle)
 		{
-			if (TogglePlayerClock(playerid, toggle))
+			if (TogglePlayerClock__(playerid, toggle))
 			{
 				if (toggle)
 				{
@@ -11874,7 +11874,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
-					CallRemoteFunction(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
+					CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			return 0;
@@ -11892,7 +11892,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 				{
 					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_CLOCK_ENABLED;
 				}
-				setproperty(5, FIXES_gscReturnProperty, TogglePlayerClock(playerid, toggle));
+				setproperty(5, FIXES_gscReturnProperty, TogglePlayerClock__(playerid, toggle));
 			}
 		}
 	#endif
@@ -11925,7 +11925,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 		stock FIXES_GetWeather()
 		{
 			return
-				CallRemoteFunction(FIXES_gscGetWeather, FIXES_gscSpec@),
+				CallRemoteFunction__(FIXES_gscGetWeather, FIXES_gscSpec@),
 				getproperty(5, FIXES_gscReturnProperty);
 		}
 
@@ -11965,7 +11965,7 @@ native BAD_SetWeather(weather) = SetWeather;
 				FIXES_SET(PlayerWeather, playerid, weather);
 			}
 		#endif
-		return SetWeather(weather);
+		return SetWeather__(weather);
 	}
 
 	#if defined _ALS_SetWeather
@@ -11993,7 +11993,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 	stock FIXES_SetWorldTime(hour)
 	{
 		FIXES_gsWorldTime = hour;
-		return SetWorldTime(hour);
+		return SetWorldTime__(hour);
 	}
 
 	#if defined _ALS_SetWorldTime
@@ -12072,7 +12072,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		     0x0E9495C2, // hostname
 		     0x5D876F9A, // password
 		     0x7C706484: // bind
-			return bool:GetServerVarAsString(varname, buffer, len);
+			return bool:GetServerVarAsString__(varname, buffer, len);
 		default:
 			return false;
 		}
@@ -12167,7 +12167,7 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 		     0x0BAD27EA, // sleep
 		     0x0A9910C4, // stream_rate
 		     0xE20F31D1: // maxplayers
-			return GetServerVarAsInt(varname);
+			return GetServerVarAsInt__(varname);
 		default:
 			return 0;
 		}
@@ -12205,7 +12205,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 		     0xA300A7ED, // logqueries
 		     0x97EABC6B, // timestamp
 		     0x57CBE04F: // myriad
-			return bool:GetServerVarAsBool(varname);
+			return bool:GetServerVarAsBool__(varname);
 		default:
 			return false;
 		}
