@@ -1700,19 +1700,35 @@ in the output code.
  * <li>The ALS hook defines used here are a little different to the normal ones as
  *     this file assumes that it is always first.  The pattern is:
  * <code>
- *         #if defined _ALS_NameOfFixHere                                       <br /><indent />
- *             #error _ALS_NameOfFixHere defined                                <br />
- *         #endif                                                               <br />
- *         native BAD_NameOfFixHere(params) = NameOfFixHere;                    <br />
- *                                                                              <br />
- *         #if FIX_NameOfFixHere                                                <br /><indent />
- *             stock FIXES_NameOfFixHere(params)                                <br /><indent />
- *             {                                                                <br /><indent /><indent />
- *                 return 0;                                                    <br /><indent />
- *             }                                                                <br />
- *                                                                              <br /><indent />
- *             #define _ALS_NameOfFixHere                                       <br /><indent />
- *             #define NameOfFixHere( FIXES_NameOfFixHere(                      <br />
+ *         ///
+ *         /// <remarks>Information about fix here</remarks>
+ *         /// <fixes>NameOfFixHere</fixes>
+ *         ///
+ *         
+ *         #if _FIXES_SAMP && defined _ALS_NameOfFixHere
+ *         	#error _ALS_NameOfFixHere defined
+ *         #endif
+ *         native BAD_NameOfFixHere(params) = NameOfFixHere;
+ *         
+ *         ///
+ *         /// <remarks>Information about fix here</remarks>
+ *         /// <fixes>NameOfFixHere</fixes>
+ *         ///
+ *         
+ *         #if FIX_NameOfFixHere
+ *             stock FIXES_NameOfFixHere(params)
+ *             {
+ *                 return 0;
+ *             }
+ *         
+ *             // The trailing `(` is VERY important to keep future `native X() = Y;`s working.
+ *             #if _FIXES_SAMP
+ *                 #define _ALS_NameOfFixHere
+ *                 #define NameOfFixHere( FIXES_NameOfFixHere(
+ *             #endif
+ *             // `__` suffix version for hidden calls to the originals.
+ *             #define _ALS_NameOfFixHere__
+ *             #define NameOfFixHere__( FIXES_NameOfFixHere(
  *         #endif
  * </code>
  *    A copyable version of this pattern is at the end of the file.
@@ -13245,9 +13261,9 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 		return 0;
 	}
 
-	#define _ALS_NameOfFixHere
 	// The trailing `(` is VERY important to keep future `native X() = Y;`s working.
 	#if _FIXES_SAMP
+		#define _ALS_NameOfFixHere
 		#define NameOfFixHere( FIXES_NameOfFixHere(
 	#endif
 	#define _ALS_NameOfFixHere__
