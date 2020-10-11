@@ -1703,7 +1703,7 @@ in the output code.
  *         #if defined _ALS_NameOfFixHere                                       <br /><indent />
  *             #error _ALS_NameOfFixHere defined                                <br />
  *         #endif                                                               <br />
- *         native BAD_NameOfFixHere(params) = NameOfFixHere;                    <br />
+ *         native NameOfFixHere__(params) = NameOfFixHere;                    <br />
  *                                                                              <br />
  *         #if FIX_NameOfFixHere                                                <br /><indent />
  *             stock FIXES_NameOfFixHere(params)                                <br /><indent />
@@ -4421,7 +4421,7 @@ static stock const
  * </remarks>
  */
 
-native BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
+native IsValidVehicle__(vehicleid) = IsValidVehicle;
 #if FIX_IsValidVehicle
 	native IsValidVehicle(vehicleid);
 #endif
@@ -4434,7 +4434,7 @@ native BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
  * </remarks>
  */
 
-native Float:BAD_GetGravity() = GetGravity;
+native Float:GetGravity__() = GetGravity;
 #if FIX_GetGravity
 	native Float:GetGravity();
 #endif
@@ -4447,7 +4447,7 @@ native Float:BAD_GetGravity() = GetGravity;
  * </remarks>
  */
 
-native BAD_gpci(playerid, serial[], maxlen) = gpci;
+native gpci__(playerid, serial[], maxlen) = gpci;
 #if FIX_gpci
 	native gpci(playerid, serial[], maxlen);
 #endif
@@ -4466,7 +4466,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#error _ALS_ApplyActorAnimation defined
 	#endif
 	native CST_ApplyActorAnimation(actorid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
-	native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
+	native ApplyActorAnimation__(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
 	#define _ALS_ApplyActorAnimation
 	#define ApplyActorAnimation( CST_ApplyActorAnimation(
 
@@ -4548,14 +4548,14 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#error _ALS_CreatePlayerTextDraw defined
 	#endif
 	native PlayerText:CST_CreatePlayerTextDraw(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
-	native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
+	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
 	#define _ALS_CreatePlayerTextDraw
 	#define CreatePlayerTextDraw( CST_CreatePlayerTextDraw(
 	#if defined _ALS_PlayerTextDrawSetString
 		#error _ALS_PlayerTextDrawSetString defined
 	#endif
 	native CST_PlayerTextDrawSetString(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
-	native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
+	native PlayerTextDrawSetString__(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
 	#define _ALS_PlayerTextDrawSetString
 	#define PlayerTextDrawSetString( CST_PlayerTextDrawSetString(
 	#if defined _ALS_SetPVarInt
@@ -4580,7 +4580,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#error _ALS_GetPVarString defined
 	#endif
 	native CST_GetPVarString(playerid, const varname[], string_return[], len) = GetPVarString;
-	native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
+	native GetPVarString__(playerid, varname[], string_return[], len) = GetPVarString;
 	#define _ALS_GetPVarString
 	#define GetPVarString( CST_GetPVarString(
 	#if defined _ALS_SetPVarFloat
@@ -4617,7 +4617,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#error _ALS_ApplyAnimation defined
 	#endif
 	native CST_ApplyAnimation(playerid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
-	native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+	native ApplyAnimation__(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
 	#define _ALS_ApplyAnimation
 	#define ApplyAnimation( CST_ApplyAnimation(
 	#if defined _ALS_StartRecordingPlayerData
@@ -4668,7 +4668,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#error _ALS_GetSVarString defined
 	#endif
 	native CST_GetSVarString(const varname[], string_return[], len) = GetSVarString;
-	native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
+	native GetSVarString__(varname[], string_return[], len) = GetSVarString;
 	#define _ALS_GetSVarString
 	#define GetSVarString( CST_GetSVarString(
 	#if defined _ALS_SetSVarFloat
@@ -4730,14 +4730,14 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#error _ALS_TextDrawCreate defined
 	#endif
 	native Text:CST_TextDrawCreate(Float:x, Float:y, const text[]) = TextDrawCreate;
-	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
+	native Text:TextDrawCreate__(Float:x, Float:y, text[]) = TextDrawCreate;
 	#define _ALS_TextDrawCreate
 	#define TextDrawCreate( CST_TextDrawCreate(
 	#if defined _ALS_TextDrawSetString
 		#error _ALS_TextDrawSetString defined
 	#endif
 	native CST_TextDrawSetString(Text:text, const string[]) = TextDrawSetString;
-	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
+	native TextDrawSetString__(Text:text, string[]) = TextDrawSetString;
 	#define _ALS_TextDrawSetString
 	#define TextDrawSetString( CST_TextDrawSetString(
 	#if defined _ALS_Create3DTextLabel
@@ -4768,7 +4768,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#error _ALS_ShowPlayerDialog defined
 	#endif
 	native CST_ShowPlayerDialog(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
-	native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
+	native ShowPlayerDialog__(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
 	#define _ALS_ShowPlayerDialog
 	#define ShowPlayerDialog( CST_ShowPlayerDialog(
 
@@ -5216,7 +5216,7 @@ static _FIXES_DetermineOS()
 #if defined _ALS_SetVehiclePos
 	#error _ALS_SetVehiclePos defined 
 #endif 
-native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos; 
+native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos; 
 
 /**
  * <fixes>SilentTeleport</fixes>
@@ -5275,7 +5275,7 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 #if defined _ALS_IsPlayerConnected
 	#error _ALS_IsPlayerConnected defined
 #endif
-native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
+native IsPlayerConnected__(playerid) = IsPlayerConnected;
 
 /**
  * <fixes>IsPlayerConnected</fixes>
@@ -5847,7 +5847,7 @@ public OnFilterScriptInit()
 	#if FIX_OnPlayerConnect || _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 		for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 		{
-			if (BAD_IsPlayerConnected(playerid))
+			if (IsPlayerConnected__(playerid))
 			{
 				// No "defined" checks - if you don't want this fix because
 				// you don't have an "OnPlayerConnect", just don't use it!
@@ -6707,7 +6707,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 #if defined _ALS_SpawnPlayer
 	#error _ALS_SpawnPlayer defined
 #endif
-native BAD_SpawnPlayer(playerid) = SpawnPlayer;
+native SpawnPlayer__(playerid) = SpawnPlayer;
 
 /**
  * <fixes>SpawnPlayer</fixes>
@@ -6763,7 +6763,7 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 #if defined _ALS_SetPlayerName
 	#error _ALS_SetPlayerName defined
 #endif
-native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
+native SetPlayerName__(playerid, const name[]) = SetPlayerName;
 
 /**
  * <fixes>SetPlayerName</fixes>
@@ -7055,7 +7055,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 #if defined _ALS_SetPlayerSkin
 	#error _ALS_SetPlayerSkin defined
 #endif
-native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
+native SetPlayerSkin__(playerid, skinid) = SetPlayerSkin;
 
 /**
  * <fixes>GetPlayerSkin</fixes>
@@ -7142,7 +7142,7 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 #if defined _ALS_GetPlayerSkin
 	#error _ALS_GetPlayerSkin defined
 #endif
-native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
+native GetPlayerSkin__(playerid) = GetPlayerSkin;
 
 /**
  * <fixes>GetPlayerSkin</fixes>
@@ -7165,7 +7165,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 #if defined _ALS_GetWeaponName
 	#error _ALS_GetWeaponName defined
 #endif
-native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
+native GetWeaponName__(weaponid, weapon[], len) = GetWeaponName;
 
 /**
  * <fixes>GetWeaponName</fixes>
@@ -7443,7 +7443,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 #if defined _ALS_SetPlayerWorldBounds
 	#error _ALS_SetPlayerWorldBounds defined
 #endif
-native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min) = SetPlayerWorldBounds;
+native SetPlayerWorldBounds__(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min) = SetPlayerWorldBounds;
 
 /**
  * <remarks>
@@ -7598,7 +7598,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 #if defined _ALS_TogglePlayerControllable
 	#error _ALS_TogglePlayerControllable defined
 #endif
-native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable;
+native TogglePlayerControllable__(playerid, toggle) = TogglePlayerControllable;
 
 /**
  * <fixes>TogglePlayerControllable</fixes>
@@ -8125,7 +8125,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if defined _ALS_CreateMenu
 	#error _ALS_CreateMenu defined
 #endif
-native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
+native Menu:CreateMenu__(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
 
 #if _FIX_Menus
 	#if !FIXES_Single
@@ -8191,7 +8191,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 #if defined _ALS_DestroyMenu
 	#error _ALS_DestroyMenu defined
 #endif
-native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
+native DestroyMenu__(Menu:menuid) = DestroyMenu;
 
 /**
  * <fixes>GetPlayerMenu</fixes>
@@ -8254,7 +8254,7 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 #if defined _ALS_AddMenuItem
 	#error _ALS_AddMenuItem defined
 #endif
-native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
+native AddMenuItem__(Menu:menuid, column, const menutext[]) = AddMenuItem;
 
 /**
  * <fixes>AddMenuItem</fixes>
@@ -8281,7 +8281,7 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 #if defined _ALS_SetMenuColumnHeader
 	#error _ALS_SetMenuColumnHeader defined
 #endif
-native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetMenuColumnHeader;
+native SetMenuColumnHeader__(Menu:menuid, column, const columnheader[]) = SetMenuColumnHeader;
 
 /**
  * <fixes>SetMenuColumnHeader</fixes>
@@ -8309,7 +8309,7 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
 #if defined _ALS_ShowMenuForPlayer
 	#error _ALS_ShowMenuForPlayer defined
 #endif
-native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
+native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer;
 
 /**
  * <fixes>ShowMenuForPlayer</fixes>
@@ -8354,7 +8354,7 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 #if defined _ALS_HideMenuForPlayer
 	#error _ALS_HideMenuForPlayer defined
 #endif
-native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
+native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer;
 
 /**
  * <fixes>HideMenuForPlayer</fixes>
@@ -8406,7 +8406,7 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 #if defined _ALS_DisableMenu
 	#error _ALS_DisableMenu defined
 #endif
-native BAD_DisableMenu(Menu:menuid) = DisableMenu;
+native DisableMenu__(Menu:menuid) = DisableMenu;
 
 /**
  * <fixes>DisableMenu</fixes>
@@ -8433,7 +8433,7 @@ native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 #if defined _ALS_DisableMenuRow
 	#error _ALS_DisableMenuRow defined
 #endif
-native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
+native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow;
 
 /**
  * <fixes>DisableMenuRow</fixes>
@@ -8460,7 +8460,7 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 #if defined _ALS_GetPlayerMenu
 	#error _ALS_GetPlayerMenu defined
 #endif
-native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
+native GetPlayerMenu__(playerid) = GetPlayerMenu;
 
 /**
  * <fixes>GetPlayerMenu</fixes>
@@ -8719,7 +8719,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 #if defined _ALS_GivePlayerWeapon
 	#error _ALS_GivePlayerWeapon defined
 #endif
-native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
+native GivePlayerWeapon__(playerid, weaponid, ammo) = GivePlayerWeapon;
 
 /**
  * <fixes>HydraSniper</fixes>
@@ -8779,7 +8779,7 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 #if defined _ALS_ResetPlayerWeapons
 	#error _ALS_ResetPlayerWeapons defined
 #endif
-native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
+native ResetPlayerWeapons__(playerid) = ResetPlayerWeapons;
 
 
 /**
@@ -8807,7 +8807,7 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 #if defined _ALS_SetPlayerArmedWeapon
 	#error _ALS_SetPlayerArmedWeapon defined
 #endif
-native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
+native SetPlayerArmedWeapon__(playerid, weaponid) = SetPlayerArmedWeapon;
 
 /**
  * <fixes>GetPlayerWeapon</fixes>
@@ -8853,7 +8853,7 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 #if defined _ALS_GetPlayerWeapon
 	#error _ALS_GetPlayerWeapon defined
 #endif
-native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
+native GetPlayerWeapon__(playerid) = GetPlayerWeapon;
 
 /**
  * <fixes>GetPlayerWeapon</fixes>
@@ -8882,7 +8882,7 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 #if defined _ALS_PutPlayerInVehicle
 	#error _ALS_PutPlayerInVehicle defined
 #endif
-native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
+native PutPlayerInVehicle__(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 
 /**
  * <fixes>PutPlayerInVehicle</fixes>
@@ -9070,7 +9070,7 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 #if defined _ALS_SetPlayerCheckpoint
 	#error _ALS_SetPlayerCheckpoint defined
 #endif
-native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
+native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
 
 /**
  * <fixes>SetPlayerCheckpoint</fixes>
@@ -9101,7 +9101,7 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 #if defined _ALS_DisablePlayerCheckpoint
 	#error _ALS_DisablePlayerCheckpoint defined
 #endif
-native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
+native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint;
 
 /**
  * <fixes>SetPlayerCheckpoint</fixes>
@@ -9157,7 +9157,7 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 #if defined _ALS_SetPlayerRaceCheckpoint
 	#error _ALS_SetPlayerRaceCheckpoint defined
 #endif
-native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size) = SetPlayerRaceCheckpoint;
+native SetPlayerRaceCheckpoint__(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size) = SetPlayerRaceCheckpoint;
 
 /**
  * <fixes>SetPlayerRaceCheckpoint</fixes>
@@ -9188,7 +9188,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 #if defined _ALS_DisablePlayerRaceCP
 	#error _ALS_DisablePlayerRaceCP defined
 #endif
-native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
+native DisablePlayerRaceCheckpoint__(playerid) = DisablePlayerRaceCheckpoint;
 
 /**
  * <fixes>SetPlayerRaceCheckpoint</fixes>
@@ -9312,7 +9312,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 #if defined _ALS_GameTextForAll
 	#error _ALS_GameTextForAll defined
 #endif
-native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
+native GameTextForAll__(const string[], time, style) = GameTextForAll;
 
 /**
  * <fixes>GameText</fixes>
@@ -9356,7 +9356,7 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 #if defined _ALS_GameTextForPlayer
 	#error _ALS_GameTextForPlayer defined
 #endif
-native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
+native GameTextForPlayer__(playerid, const string[], time, style) = GameTextForPlayer;
 
 /**
  * <fixes>GameText</fixes>
@@ -9451,7 +9451,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#if defined _ALS_CreatePlayerTextDraw
 		#error _ALS_CreatePlayerTextDraw defined
 	#endif
-	native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
+	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
 #endif
 
 #if FIX_CreatePlayerTextDraw || FIX_CreatePlayerTextDraw_2
@@ -9499,7 +9499,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#if defined _ALS_PlayerTextDrawSetString
 		#error _ALS_PlayerTextDrawSetString defined
 	#endif
-	native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
+	native PlayerTextDrawSetString__(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
 #endif
 
 /**
@@ -9552,7 +9552,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#if defined _ALS_TextDrawCreate
 		#error _ALS_TextDrawCreate defined
 	#endif
-	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
+	native Text:TextDrawCreate__(Float:x, Float:y, text[]) = TextDrawCreate;
 #endif
 
 #if FIX_TextDrawCreate || FIX_TextDrawCreate_2
@@ -9600,7 +9600,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#if defined _ALS_TextDrawSetString
 		#error _ALS_TextDrawSetString defined
 	#endif
-	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
+	native TextDrawSetString__(Text:text, string[]) = TextDrawSetString;
 #endif
 
 /**
@@ -9651,7 +9651,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #if defined _ALS_AllowInteriorWeapons
 	#error _ALS_AllowInteriorWeapons defined
 #endif
-native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
+native AllowInteriorWeapons__(allow) = AllowInteriorWeapons;
 
 /**
  * <fixes>AllowInteriorWeapons</fixes>
@@ -9727,7 +9727,7 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 #if defined _ALS_GetPlayerInterior
 	#error _ALS_GetPlayerInterior defined
 #endif
-native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
+native GetPlayerInterior__(playerid) = GetPlayerInterior;
 
 /**
  * <fixes>GetPlayerInterior</fixes>
@@ -9754,7 +9754,7 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 #if defined _ALS_SetPlayerInterior
 	#error _ALS_SetPlayerInterior defined
 #endif
-native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
+native SetPlayerInterior__(playerid, interiorid) = SetPlayerInterior;
 
 /**
  * <fixes>GetPlayerInterior</fixes>
@@ -9820,7 +9820,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 #if defined _ALS_AllowPlayerTeleport
 	#error _ALS_AllowPlayerTeleport defined
 #endif
-native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
+native AllowPlayerTeleport__(playerid, allow) = AllowPlayerTeleport;
 
 /**
  * <fixes>AllowTeleport</fixes>
@@ -9865,7 +9865,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 #if defined _ALS_AllowAdminTeleport
 	#error _ALS_AllowAdminTeleport defined
 #endif
-native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
+native AllowAdminTeleport__(allow) = AllowAdminTeleport;
 
 /**
  * <fixes>AllowTeleport</fixes>
@@ -9940,7 +9940,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 #if defined _ALS_SetPlayerSpecialAction
 	#error _ALS_SetPlayerSpecialAction defined
 #endif
-native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
+native SetPlayerSpecialAction__(playerid, actionid) = SetPlayerSpecialAction;
 
 /**
  * <fixes>SetPlayerSpecialAction</fixes>
@@ -9968,7 +9968,7 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 #if defined _ALS_ClearAnimations
 	#error _ALS_ClearAnimations defined
 #endif
-native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
+native ClearAnimations__(playerid, forcesync = 0) = ClearAnimations;
 
 /**
  * <fixes>ClearAnimations</fixes>
@@ -10011,7 +10011,7 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 #if defined _ALS_GangZoneCreate
 	#error _ALS_GangZoneCreate defined
 #endif
-native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = GangZoneCreate;
+native GangZoneCreate__(Float:minx, Float:miny, Float:maxx, Float:maxy) = GangZoneCreate;
 
 /**
  * <fixes>GangZoneCreate</fixes>
@@ -10036,7 +10036,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 	#if defined _ALS_ShowPlayerDialog
 		#error _ALS_ShowPlayerDialog defined
 	#endif
-	native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
+	native ShowPlayerDialog__(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
 #endif
 
 /**
@@ -10142,7 +10142,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #if defined _ALS_valstr
 	#error _ALS_valstr defined
 #endif
-native BAD_valstr(dest[], value, bool:pack = false) = valstr;
+native valstr__(dest[], value, bool:pack = false) = valstr;
 
 /**
  * <fixes>valstr</fixes>
@@ -10177,7 +10177,7 @@ native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 #if defined _ALS_fclose
 	#error _ALS_fclose defined
 #endif
-native BAD_fclose(File:handle) = fclose;
+native fclose__(File:handle) = fclose;
 
 /**
  * <fixes>fclose</fixes>
@@ -10200,7 +10200,7 @@ native BAD_fclose(File:handle) = fclose;
 #if defined _ALS_fwrite
 	#error _ALS_fwrite defined
 #endif
-native BAD_fwrite(File:handle, const string[]) = fwrite;
+native fwrite__(File:handle, const string[]) = fwrite;
 
 /**
  * <fixes>fwrite</fixes>
@@ -10223,7 +10223,7 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 #if defined _ALS_fread
 	#error _ALS_fread defined
 #endif
-native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = false) = fread;
+native fread__(File:handle, string[], size = sizeof (string), bool:pack = false) = fread;
 
 /**
  * <fixes>fread</fixes>
@@ -10246,7 +10246,7 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 #if defined _ALS_fputchar
 	#error _ALS_fputchar defined
 #endif
-native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
+native fputchar__(File:handle, value, bool:utf8 = true) = fputchar;
 
 /**
  * <fixes>fputchar</fixes>
@@ -10269,7 +10269,7 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 #if defined _ALS_fgetchar
 	#error _ALS_fgetchar defined
 #endif
-native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
+native fgetchar__(File:handle, value, bool:utf8 = true) = fgetchar;
 
 /**
  * <fixes>fgetchar</fixes>
@@ -10292,7 +10292,7 @@ native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 #if defined _ALS_fblockwrite
 	#error _ALS_fblockwrite defined
 #endif
-native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fblockwrite;
+native fblockwrite__(File:handle, const buffer[], size = sizeof (buffer)) = fblockwrite;
 
 /**
  * <fixes>fblockwrite</fixes>
@@ -10315,7 +10315,7 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
 #if defined _ALS_fblockread
 	#error _ALS_fblockread defined
 #endif
-native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockread;
+native fblockread__(File:handle, buffer[], size = sizeof (buffer)) = fblockread;
 
 /**
  * <fixes>fblockread</fixes>
@@ -10338,7 +10338,7 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
 #if defined _ALS_fseek
 	#error _ALS_fseek defined
 #endif
-native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = fseek;
+native fseek__(File:handle, position = 0, seek_whence:whence = seek_start) = fseek;
 
 /**
  * <fixes>fseek</fixes>
@@ -10361,7 +10361,7 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
 #if defined _ALS_flength
 	#error _ALS_flength defined
 #endif
-native BAD_flength(File:handle) = flength;
+native flength__(File:handle) = flength;
 
 /**
  * <fixes>flength</fixes>
@@ -10384,7 +10384,7 @@ native BAD_flength(File:handle) = flength;
 #if defined _ALS_Kick
 	#error _ALS_Kick defined
 #endif
-native BAD_Kick(playerid) = Kick;
+native Kick__(playerid) = Kick;
 
 /**
  * <fixes>Kick</fixes>
@@ -10671,7 +10671,7 @@ native BAD_Kick(playerid) = Kick;
 #if defined _ALS_strins
 	#error _ALS_strins defined
 #endif
-native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = strins;
+native strins__(string[], const substr[], pos, maxlength = sizeof string) = strins;
 
 /**
  * <fixes>strins</fixes>
@@ -10830,7 +10830,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 	#if defined _ALS_ApplyAnimation
 		#error _ALS_ApplyAnimation defined
 	#endif
-	native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+	native ApplyAnimation__(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
 #endif
 
 /**
@@ -10910,7 +10910,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 	#if defined _ALS_ApplyActorAnimation
 		#error _ALS_ApplyActorAnimation defined
 	#endif
-	native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
+	native ApplyActorAnimation__(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
 #endif
 
 /**
@@ -10952,7 +10952,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 #if defined _ALS_CreateActor
 	#error _ALS_CreateActor defined
 #endif
-native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = CreateActor;
+native CreateActor__(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = CreateActor;
 
 /**
  * <fixes>ApplyActorAnimation_2</fixes>
@@ -10991,7 +10991,7 @@ native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = Cre
 #if defined _ALS_DestroyActor
 	#error _ALS_DestroyActor defined
 #endif
-native BAD_DestroyActor(actorid) = DestroyActor;
+native DestroyActor__(actorid) = DestroyActor;
 
 /**
  * <fixes>ApplyActorAnimation_2</fixes>
@@ -11020,7 +11020,7 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 #if defined _ALS_SetVehicleParamsEx
 	#error _ALS_SetVehicleParamsEx defined
 #endif
-native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective) = SetVehicleParamsEx;
+native SetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective) = SetVehicleParamsEx;
 
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
@@ -11044,7 +11044,7 @@ native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, b
 #if defined _ALS_GetVehicleParamsEx
 	#error _ALS_GetVehicleParamsEx defined
 #endif
-native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective) = GetVehicleParamsEx;
+native GetVehicleParamsEx__(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective) = GetVehicleParamsEx;
 
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
@@ -11091,7 +11091,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonn
 #if defined _ALS_random
 	#error _ALS_random defined
 #endif
-native BAD_random(max) = random;
+native random__(max) = random;
 
 /**
  * <fixes>random</fixes>
@@ -11123,7 +11123,7 @@ native BAD_random(max) = random;
 #if defined _ALS_sleep
 	#error _ALS_sleep defined
 #endif
-#define BAD_sleep%0\n%9 sleep%0
+#define sleep__%0\n%9 sleep%0
 
 #if FIX_sleep
 	stock FIXES_sleep(ms)
@@ -11181,7 +11181,7 @@ native BAD_random(max) = random;
 #if defined _ALS_SetPlayerCameraPos
 	#error _ALS_SetPlayerCameraPos defined
 #endif
-native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
+native SetPlayerCameraPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
 
 /**
  * <fixes>SetPlayerCamera</fixes>
@@ -11219,7 +11219,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 #if defined _ALS_SetPlayerCameraLookAt
 	#error _ALS_SetPlayerCameraLookAt defined
 #endif
-native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraLookAt;
+native SetPlayerCameraLookAt__(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraLookAt;
 
 /**
  * <fixes>SetPlayerCamera</fixes>
@@ -11257,7 +11257,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 #if defined _ALS_TogglePlayerSpectating
 	#error _ALS_TogglePlayerSpectating defined
 #endif
-native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
+native TogglePlayerSpectating__(playerid, toggle) = TogglePlayerSpectating;
 
 /**
  * <fixes>SetPlayerCamera</fixes>
@@ -11300,7 +11300,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 #if defined _ALS_SetPlayerTime
 	#error _ALS_SetPlayerTime defined
 #endif
-native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
+native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime;
 
 /**
  * <fixes>SetPlayerTime</fixes>
@@ -11338,7 +11338,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 #if defined _ALS_SetPlayerColor
 	#error _ALS_SetPlayerColor defined
 #endif
-native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
+native SetPlayerColor__(playerid, color) = SetPlayerColor;
 
 /**
  * <fixes>SetPlayerColor</fixes>
@@ -11376,7 +11376,7 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 #if defined _ALS_GetPlayerWeaponData
 	#error _ALS_GetPlayerWeaponData defined
 #endif
-native BAD_GetPlayerWeaponData(playerid, slot, &weapons, &ammo) = GetPlayerWeaponData;
+native GetPlayerWeaponData__(playerid, slot, &weapons, &ammo) = GetPlayerWeaponData;
 
 /**
  * <fixes>GetPlayerWeaponData</fixes>
@@ -11404,7 +11404,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapons, &ammo) = GetPlayerWeapo
 #if defined _ALS_strcmp
 	#error _ALS_strcmp defined
 #endif
-native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, length=cellmax) = strcmp;
+native strcmp__(const string1[], const string2[], bool:ignorecase=false, length=cellmax) = strcmp;
 
 /**
  * <fixes>strcmp</fixes>
@@ -11454,7 +11454,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 	#if defined _ALS_GetPVarString
 		#error _ALS_GetPVarString defined
 	#endif
-	native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
+	native GetPVarString__(playerid, varname[], string_return[], len) = GetPVarString;
 #endif
 
 /**
@@ -11486,7 +11486,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 	#if defined _ALS_GetSVarString
 		#error _ALS_GetSVarString defined
 	#endif
-	native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
+	native GetSVarString__(varname[], string_return[], len) = GetSVarString;
 #endif
 
 /**
@@ -11517,7 +11517,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 #if defined _ALS_toupper
 	#error _ALS_toupper defined
 #endif
-native BAD_toupper(c) = toupper;
+native toupper__(c) = toupper;
 
 /**
  * <fixes>toupper</fixes>
@@ -11551,7 +11551,7 @@ native BAD_toupper(c) = toupper;
 #if defined _ALS_tolower
 	#error _ALS_tolower defined
 #endif
-native BAD_tolower(c) = tolower;
+native tolower__(c) = tolower;
 
 /**
  * <fixes>tolower</fixes>
@@ -11585,7 +11585,7 @@ native BAD_tolower(c) = tolower;
 #if defined _ALS_ispacked
 	#error _ALS_ispacked defined
 #endif
-native bool:BAD_ispacked(const string[]) = ispacked;
+native bool:ispacked__(const string[]) = ispacked;
 
 /**
  * <fixes>ispacked</fixes>
@@ -11608,7 +11608,7 @@ native bool:BAD_ispacked(const string[]) = ispacked;
 #if defined _ALS_GetPlayerPoolSize
 	#error _ALS_GetPlayerPoolSize defined
 #endif
-native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
+native GetPlayerPoolSize__() = GetPlayerPoolSize;
 
 /**
  * <fixes>GetPlayerPoolSize</fixes>
@@ -11640,7 +11640,7 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 #if defined _ALS_SetPlayerPos
 	#error _ALS_SetPlayerPos defined
 #endif
-native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
+native SetPlayerPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 
 /**
  * <fixes>SetPlayerPos</fixes>
@@ -11676,7 +11676,7 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 #if defined _ALS_SetPlayerPosFindZ
 	#error _ALS_SetPlayerPosFindZ defined
 #endif
-native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
+native SetPlayerPosFindZ__(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
 
 /**
  * <fixes>SetPlayerPos</fixes>
@@ -11738,7 +11738,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 #if defined _ALS_SetPlayerAmmo
 	#error _ALS_SetPlayerAmmo defined
 #endif
-native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
+native SetPlayerAmmo__(playerid, weaponid, ammo) = SetPlayerAmmo;
 
 /**
  * <fixes>GetPlayerAmmo</fixes>
@@ -11810,7 +11810,7 @@ static stock _FIXES_Bernstein(const name[])
 #if defined _ALS_SetPlayerWeather
 	#error _ALS_SetPlayerWeather defined
 #endif
-native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
+native SetPlayerWeather__(playerid, weather) = SetPlayerWeather;
 
 /**
  * <fixes>GetPlayerWeather</fixes>
@@ -11842,7 +11842,7 @@ native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 #if defined _ALS_TogglePlayerClock
 	#error _ALS_TogglePlayerClock defined
 #endif
-native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
+native TogglePlayerClock__(playerid, toggle) = TogglePlayerClock;
 
 /**
  * <fixes>GetPlayerWeather</fixes>
@@ -11949,7 +11949,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 #if defined _ALS_SetWeather
 	#error _ALS_SetWeather defined
 #endif
-native BAD_SetWeather(weather) = SetWeather;
+native SetWeather__(weather) = SetWeather;
 
 /**
  * <fixes>GetPlayerWeather</fixes>
@@ -11983,7 +11983,7 @@ native BAD_SetWeather(weather) = SetWeather;
 #if defined _ALS_SetWorldTime
 	#error _ALS_SetWorldTime defined
 #endif
-native BAD_SetWorldTime(hour) = SetWorldTime;
+native SetWorldTime__(hour) = SetWorldTime;
 
 /**
  * <fixes>GetWorldTime</fixes>
@@ -12028,7 +12028,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #if defined _ALS_GetServerVarAsString
 	#error _ALS_GetServerVarAsString defined
 #endif
-native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAsString;
+native GetServerVarAsString__(const varname[], buffer[], len) = GetServerVarAsString;
 
 /**
  * <fixes>GetServerVarAsString</fixes>
@@ -12138,7 +12138,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #if defined _ALS_GetServerVarAsInt
 	#error _ALS_GetServerVarAsInt defined
 #endif
-native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
+native GetServerVarAsInt__(const varname[]) = GetServerVarAsInt;
 
 /**
  * <fixes>GetServerVarAsInt</fixes>
@@ -12188,7 +12188,7 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 #if defined _ALS_GetServerVarAsBool
 	#error _ALS_GetServerVarAsBool defined
 #endif
-native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
+native GetServerVarAsBool__(const varname[]) = GetServerVarAsBool;
 
 /**
  * <fixes>GetServerVarAsBool</fixes>
@@ -12227,7 +12227,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#error _ALS_GetServerVarAsFloat defined
 #endif
 #if defined GetServerVarAsFloat
-	native BAD_GetServerVarAsFloat(const varname[]) = GetServerVarAsFloat;
+	native GetServerVarAsFloat__(const varname[]) = GetServerVarAsFloat;
 #endif
 
 /**
@@ -12399,7 +12399,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #if defined _ALS_NameOfFixHere
 	#error _ALS_NameOfFixHere defined
 #endif
-native BAD_NameOfFixHere(params) = NameOfFixHere;
+native NameOfFixHere__(params) = NameOfFixHere;
 
 /**
  * <remarks>Information about fix here</remarks>
