@@ -1871,24 +1871,33 @@ in the output code.
 		#endif
 		#define _FIXES_OMP
 	#else
-		#error <fixes> not required for open.mp.
-		#endinput
+		#error fixes.inc is not required for open.mp
 	#endif
 #else
+	// Try them all until one sticks.  If we already included one these
+	// repeat includes are internally short-circuited, so no harm done.
+	#if !defined _samp_included
+		#tryinclude <a_samp>
+		#tryinclude "a_samp"
+	#endif
+	#if !defined _samp_included
+		#tryinclude <a_npc>
+		#tryinclude "a_npc"
+	#endif
+	#if !defined _samp_included
+		#error Could not find a_samp.inc
+	#endif
+	#if defined SendClientMessage
+		// Do nothing.
+	#elseif defined GetDistanceFromMeToPoint
+		#define _FIXES_NPC
+	#elseif defined GetDistanceFromMeToPoint__
+		#define _FIXES_NPC
+	#else
+		#error Could not determine script include type - <a_samp> or <a_npc>
+	#endif
 	#define _FIXES_SAMP
 #endif
-
-//#if !defined _samp_included
-//	#tryinclude <a_samp>
-//	#tryinclude "a_samp"
-//#endif
-//#if !defined _samp_included
-//	#tryinclude <a_npc>
-//	#tryinclude "a_npc"
-//#endif
-//#if !defined _samp_included
-//	#error Could not find a_samp.inc
-//#endif
 
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
@@ -5146,6 +5155,469 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 #if FIX_OS
 	#define IS_WINDOWS (_FIXES_gIsWindows)
 	#define IS_LINUX (!_FIXES_gIsWindows)
+#endif
+
+// All SA:MP natives, copied here for posterity?  No, because then we can
+// control the names and keep them fairly well hidden.  Basically we're
+// bypassing all the assurances of fixes.inc to get direct access to the
+// underlying implementations.
+
+#if defined SAMP_BYPASS_NATIVES
+	// Do nothing
+#elseif defined _FIXES_NPC
+	// Declare variants of all NPC natives.
+	native SetTimer__(const funcname[], interval, repeating) = SetTimer;
+	native KillTimer__(timerid) = KillTimer;
+	native GetTickCount__() = GetTickCount;
+	native Float:asin__(Float:value) = asin;
+	native Float:acos__(Float:value) = acos;
+	native Float:atan__(Float:value) = atan;
+	native Float:atan2__(Float:x, Float:y) = atan2;
+	native SendChat__(const msg[]) = SendChat;
+	native SendCommand__(const commandtext[]) = SendCommand;
+	native GetPlayerState__(playerid) = GetPlayerState;
+	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
+	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
+	native GetPlayerArmedWeapon__(playerid) = GetPlayerArmedWeapon;
+	native GetPlayerHealth__(playerid) = GetPlayerHealth;
+	native GetPlayerArmour__(playerid) = GetPlayerArmour;
+	native GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
+	native IsPlayerStreamedIn__(playerid) = IsPlayerStreamedIn;
+	native IsVehicleStreamedIn__(vehicleid) = IsVehicleStreamedIn;
+	native GetPlayerKeys__(playerid, &keys, &updown, &leftright) = GetPlayerKeys;
+	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
+	native GetMyPos__(&Float:x, &Float:y, &Float:z) = GetMyPos;
+	native SetMyPos__(Float:x, Float:y, Float:z) = SetMyPos;
+	native GetMyFacingAngle__(&Float:ang) = GetMyFacingAngle;
+	native SetMyFacingAngle__(Float:ang) = SetMyFacingAngle;
+	native GetDistanceFromMeToPoint__(Float:X, Float:Y, Float:Z, &Float:Distance) = GetDistanceFromMeToPoint;
+	native IsPlayerInRangeOfPoint__(playerid, Float:range, Float:X, Float:Y, Float:Z) = IsPlayerInRangeOfPoint;
+	native GetPlayerName__(playerid, name[], len) = GetPlayerName;
+	native IsPlayerConnected__(playerid) = IsPlayerConnected;
+#else
+	native SendClientMessage__(playerid, color, const message[]) = SendClientMessage;
+	native SendClientMessageToAll__(color, const message[]) = SendClientMessageToAll;
+	native SendPlayerMessageToPlayer__(playerid, senderid, const message[]) = SendPlayerMessageToPlayer;
+	native SendPlayerMessageToAll__(senderid, const message[]) = SendPlayerMessageToAll;
+	native SendDeathMessage__(killer, killee, weapon) = SendDeathMessage;
+	native SendDeathMessageToPlayer__(playerid, killer, killee, weapon) = SendDeathMessageToPlayer;
+	native GameTextForAll__(const string[], time, style) = GameTextForAll;
+	native GameTextForPlayer__(playerid, const string[], time, style) = GameTextForPlayer;
+	native SetTimer__(const funcname[], interval, repeating) = SetTimer;
+	native SetTimerEx__(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+	native KillTimer__(timerid) = KillTimer;
+	native GetTickCount__() = GetTickCount;
+	native GetMaxPlayers__() = GetMaxPlayers;
+	native CallRemoteFunction__(const function[], const format[], {Float,_}:...) = CallRemoteFunction;
+	native CallLocalFunction__(const function[], const format[], {Float,_}:...) = CallLocalFunction;
+	native Float:VectorSize__(Float:x, Float:y, Float:z) = VectorSize;
+	native Float:asin__(Float:value) = asin;
+	native Float:acos__(Float:value) = acos;
+	native Float:atan__(Float:value) = atan;
+	native Float:atan2__(Float:y, Float:x) = atan2;
+	native GetPlayerPoolSize__() = GetPlayerPoolSize;
+	native GetVehiclePoolSize__() = GetVehiclePoolSize;
+	native GetActorPoolSize__() = GetActorPoolSize;
+	native SHA256_PassHash__(const password[], const salt[], ret_hash[], ret_hash_len = sizeof ret_hash) = SHA256_PassHash;
+	native SetSVarInt__(const varname[], int_value) = SetSVarInt;
+	native GetSVarInt__(const varname[]) = GetSVarInt;
+	native SetSVarString__(const varname[], const string_value[]) = SetSVarString;
+	native GetSVarString__(const varname[], string_return[], len = sizeof string_return) = GetSVarString;
+	native SetSVarFloat__(const varname[], Float:float_value) = SetSVarFloat;
+	native Float:GetSVarFloat__(const varname[]) = GetSVarFloat;
+	native DeleteSVar__(const varname[]) = DeleteSVar;
+	native GetSVarsUpperIndex__() = GetSVarsUpperIndex;
+	native GetSVarNameAtIndex__(index, ret_varname[], ret_len = sizeof ret_varname) = GetSVarNameAtIndex;
+	native GetSVarType__(const varname[]) = GetSVarType;
+	native SetGameModeText__(const string[]) = SetGameModeText;
+	native SetTeamCount__(count) = SetTeamCount;
+	native AddPlayerClass__(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo) = AddPlayerClass;
+	native AddPlayerClassEx__(teamid, modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo) = AddPlayerClassEx;
+	native AddStaticVehicle__(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2) = AddStaticVehicle;
+	native AddStaticVehicleEx__(modelid, Float:spawn_x, Float:spawn_y, Float:spawn_z, Float:z_angle, color1, color2, respawn_delay, addsiren = 0) = AddStaticVehicleEx;
+	native AddStaticPickup__(model, type, Float:X, Float:Y, Float:Z, virtualworld = 0) = AddStaticPickup;
+	native CreatePickup__(model, type, Float:X, Float:Y, Float:Z, virtualworld = 0) = CreatePickup;
+	native DestroyPickup__(pickup) = DestroyPickup;
+	native ShowNameTags__(show) = ShowNameTags;
+	native ShowPlayerMarkers__(mode) = ShowPlayerMarkers;
+	native GameModeExit__() = GameModeExit;
+	native SetWorldTime__(hour) = SetWorldTime;
+	native GetWeaponName__(weaponid, weapon[], len = sizeof weapon) = GetWeaponName;
+	native EnableTirePopping__(enable) = EnableTirePopping;
+	native EnableVehicleFriendlyFire__() = EnableVehicleFriendlyFire;
+	native AllowInteriorWeapons__(allow) = AllowInteriorWeapons;
+	native SetWeather__(weatherid) = SetWeather;
+	native Float:GetGravity__() = GetGravity;
+	native SetGravity__(Float:gravity) = SetGravity;
+	native AllowAdminTeleport__(allow) = AllowAdminTeleport;
+	native SetDeathDropAmount__(amount) = SetDeathDropAmount;
+	native CreateExplosion__(Float:X, Float:Y, Float:Z, type, Float:Radius) = CreateExplosion;
+	native EnableZoneNames__(enable) = EnableZoneNames;
+	native UsePlayerPedAnims__() = UsePlayerPedAnims;
+	native DisableInteriorEnterExits__() = DisableInteriorEnterExits; 
+	native SetNameTagDrawDistance__(Float:distance) = SetNameTagDrawDistance;
+	native DisableNameTagLOS__() = DisableNameTagLOS;
+	native LimitGlobalChatRadius__(Float:chat_radius) = LimitGlobalChatRadius;
+	native LimitPlayerMarkerRadius__(Float:marker_radius) = LimitPlayerMarkerRadius;
+	native ConnectNPC__(const name[], const script[]) = ConnectNPC;
+	native IsPlayerNPC__(playerid) = IsPlayerNPC;
+	native AddSimpleModel__(virtualworld, baseid, newid, const dffname[], const txdname[]) = AddSimpleModel;
+	native AddSimpleModelTimed__(virtualworld, baseid, newid, const dffname[], const txdname[], timeon, timeoff) = AddSimpleModelTimed;
+	native FindModelFileNameFromCRC__(crc, retstr[], retstr_size = sizeof retstr) = FindModelFileNameFromCRC;
+	native FindTextureFileNameFromCRC__(crc, retstr[], retstr_size = sizeof retstr) = FindTextureFileNameFromCRC;
+	native RedirectDownload__(playerid, const url[]) = RedirectDownload;
+	native IsPlayerAdmin__(playerid) = IsPlayerAdmin;
+	native Kick__(playerid) = Kick;
+	native Ban__(playerid) = Ban;
+	native BanEx__(playerid, const reason[]) = BanEx;
+	native SendRconCommand__(const command[]) = SendRconCommand;
+	native GetPlayerNetworkStats__(playerid, retstr[], retstr_size = sizeof retstr) = GetPlayerNetworkStats;
+	native GetNetworkStats__(retstr[], retstr_size = sizeof retstr) = GetNetworkStats;
+	native GetPlayerVersion__(playerid, version[], len = sizeof version) = GetPlayerVersion;
+	native BlockIpAddress__(const ip_address[], timems) = BlockIpAddress;
+	native UnBlockIpAddress__(const ip_address[]) = UnBlockIpAddress;
+	native GetServerVarAsString__(const varname[], buffer[], len = sizeof buffer) = GetServerVarAsString;
+	native GetServerVarAsInt__(const varname[]) = GetServerVarAsInt;
+	native GetServerVarAsBool__(const varname[]) = GetServerVarAsBool;
+	native GetConsoleVarAsString__(const varname[], buffer[], len = sizeof buffer) = GetConsoleVarAsString;
+	native GetConsoleVarAsInt__(const varname[]) = GetConsoleVarAsInt;
+	native GetConsoleVarAsBool__(const varname[]) = GetConsoleVarAsBool;
+	native GetServerTickRate__() = GetServerTickRate;
+	native NetStats_GetConnectedTime__(playerid) = NetStats_GetConnectedTime;
+	native NetStats_MessagesReceived__(playerid) = NetStats_MessagesReceived;
+	native NetStats_BytesReceived__(playerid) = NetStats_BytesReceived;
+	native NetStats_MessagesSent__(playerid) = NetStats_MessagesSent;
+	native NetStats_BytesSent__(playerid) = NetStats_BytesSent;
+	native NetStats_MsgsRecvPerSecond__(playerid) = NetStats_MessagesRecvPerSecond;
+	native Float:NetStats_PacketLossPercent__(playerid) = NetStats_PacketLossPercent;
+	native NetStats_ConnectionStatus__(playerid) = NetStats_ConnectionStatus;
+	native NetStats_GetIpPort__(playerid, ip_port[], ip_port_len = sizeof ip_port) = NetStats_GetIpPort;
+	native Menu:CreateMenu__(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
+	native DestroyMenu__(Menu:menuid) = DestroyMenu;
+	native AddMenuItem__(Menu:menuid, column, const menutext[]) = AddMenuItem;
+	native SetMenuColumnHeader__(Menu:menuid, column, const columnheader[]) = SetMenuColumnHeader;
+	native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer;
+	native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer;
+	native IsValidMenu__(Menu:menuid) = IsValidMenu;
+	native DisableMenu__(Menu:menuid) = DisableMenu;
+	native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow;
+	native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu;
+	native Text:TextDrawCreate__(Float:x, Float:y, const text[]) = TextDrawCreate;
+	native TextDrawDestroy__(Text:text) = TextDrawDestroy;
+	native TextDrawLetterSize__(Text:text, Float:x, Float:y) = TextDrawLetterSize;
+	native TextDrawTextSize__(Text:text, Float:x, Float:y) = TextDrawTextSize;
+	native TextDrawAlignment__(Text:text, alignment) = TextDrawAlignment;
+	native TextDrawColor__(Text:text, color) = TextDrawColor;
+	native TextDrawUseBox__(Text:text, use) = TextDrawUseBox;
+	native TextDrawBoxColor__(Text:text, color) = TextDrawBoxColor;
+	native TextDrawSetShadow__(Text:text, size) = TextDrawSetShadow;
+	native TextDrawSetOutline__(Text:text, size) = TextDrawSetOutline;
+	native TextDrawBackgroundColor__(Text:text, color) = TextDrawBackgroundColor;
+	native TextDrawFont__(Text:text, font) = TextDrawFont;
+	native TextDrawSetProportional__(Text:text, set) = TextDrawSetProportional;
+	native TextDrawSetSelectable__(Text:text, set) = TextDrawSetSelectable;
+	native TextDrawShowForPlayer__(playerid, Text:text) = TextDrawShowForPlayer;
+	native TextDrawHideForPlayer__(playerid, Text:text) = TextDrawHideForPlayer;
+	native TextDrawShowForAll__(Text:text) = TextDrawShowForAll;
+	native TextDrawHideForAll__(Text:text) = TextDrawHideForAll;
+	native TextDrawSetString__(Text:text, const string[]) = TextDrawSetString;
+	native TextDrawSetPreviewModel__(Text:text, modelindex) = TextDrawSetPreviewModel;
+	native TextDrawSetPreviewRot__(Text:text, Float:fRotX, Float:fRotY, Float:fRotZ, Float:fZoom = 1.0) = TextDrawSetPreviewRot;
+	native TextDrawSetPreviewVehCol__(Text:text, color1, color2) = TextDrawSetPreviewVehCol;
+	native GangZoneCreate__(Float:minx, Float:miny, Float:maxx, Float:maxy) = GangZoneCreate;
+	native GangZoneDestroy__(zone) = GangZoneDestroy;
+	native GangZoneShowForPlayer__(playerid, zone, color) = GangZoneShowForPlayer;
+	native GangZoneShowForAll__(zone, color) = GangZoneShowForAll;
+	native GangZoneHideForPlayer__(playerid, zone) = GangZoneHideForPlayer;
+	native GangZoneHideForAll__(zone) = GangZoneHideForAll;
+	native GangZoneFlashForPlayer__(playerid, zone, flashcolor) = GangZoneFlashForPlayer;
+	native GangZoneFlashForAll__(zone, flashcolor) = GangZoneFlashForAll;
+	native GangZoneStopFlashForPlayer__(playerid, zone) = GangZoneStopFlashForPlayer;
+	native GangZoneStopFlashForAll__(zone) = GangZoneStopFlashForAll;
+	native Text3D:Create3DTextLabel__(const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, virtualworld, testLOS = 0) = Create3DTextLabel;
+	native Delete3DTextLabel__(Text3D:id) = Delete3DTextLabel;
+	native Attach3DTextLabelToPlayer__(Text3D:id, playerid, Float:OffsetX, Float:OffsetY, Float:OffsetZ) = Attach3DTextLabelToPlayer;
+	native Attach3DTextLabelToVehicle__(Text3D:id, vehicleid, Float:OffsetX, Float:OffsetY, Float:OffsetZ) = Attach3DTextLabelToVehicle;
+	native Update3DTextLabelText__(Text3D:id, color, const text[]) = Update3DTextLabelText;
+	native PlayerText3D:CreatePlayer3DTextLabel__(playerid, const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, attachedplayer = INVALID_PLAYER_ID, attachedvehicle = INVALID_VEHICLE_ID, testLOS = 0) = CreatePlayer3DTextLabel;
+	native DeletePlayer3DTextLabel__(playerid, PlayerText3D:id) = DeletePlayer3DTextLabel;
+	native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:id, color, const text[]) = UpdatePlayer3DTextLabelText;
+	native ShowPlayerDialog__(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
+	native gpci__(playerid, serial[], maxlen) = gpci;
+	native CreateVehicle__(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, addsiren = 0) = CreateVehicle;
+	native DestroyVehicle__(vehicleid) = DestroyVehicle;
+	native IsVehicleStreamedIn__(vehicleid, forplayerid) = IsVehicleStreamedIn;
+	native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
+	native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
+	native GetVehicleZAngle__(vehicleid, &Float:z_angle) = GetVehicleZAngle;
+	native GetVehicleRotationQuat__(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat;
+	native Float:GetVehicleDistanceFromPoint__(vehicleid, Float:X, Float:Y, Float:Z) = GetVehicleDistanceFromPoint;
+	native SetVehicleZAngle__(vehicleid, Float:z_angle) = SetVehicleZAngle;
+	native SetVehicleParamsForPlayer__(vehicleid, playerid, objective, doorslocked) = SetVehicleParamsForPlayer;
+	native ManualVehicleEngineAndLights__() = ManualVehicleEngineAndLights;
+	native SetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective) = SetVehicleParamsEx;
+	native GetVehicleParamsEx__(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective) = GetVehicleParamsEx;
+	native GetVehicleParamsSirenState__(vehicleid) = GetVehicleParamsSirenState;
+	native SetVehicleParamsCarDoors__(vehicleid, driver, passenger, backleft, backright) = SetVehicleParamsCarDoors;
+	native GetVehicleParamsCarDoors__(vehicleid, &driver, &passenger, &backleft, &backright) = GetVehicleParamsCarDoors;
+	native SetVehicleParamsCarWindows__(vehicleid, driver, passenger, backleft, backright) = SetVehicleParamsCarWindows;
+	native GetVehicleParamsCarWindows__(vehicleid, &driver, &passenger, &backleft, &backright) = GetVehicleParamsCarWindows;
+	native SetVehicleToRespawn__(vehicleid) = SetVehicleToRespawn;
+	native LinkVehicleToInterior__(vehicleid, interiorid) = LinkVehicleToInterior;
+	native AddVehicleComponent__(vehicleid, componentid) = AddVehicleComponent;
+	native RemoveVehicleComponent__(vehicleid, componentid) = RemoveVehicleComponent;
+	native ChangeVehicleColor__(vehicleid, color1, color2) = ChangeVehicleColor;
+	native ChangeVehiclePaintjob__(vehicleid, paintjobid) = ChangeVehiclePaintjob;
+	native SetVehicleHealth__(vehicleid, Float:health) = SetVehicleHealth;
+	native GetVehicleHealth__(vehicleid, &Float:health) = GetVehicleHealth;
+	native AttachTrailerToVehicle__(trailerid, vehicleid) = AttachTrailerToVehicle;
+	native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle;
+	native IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
+	native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer;
+	native SetVehicleNumberPlate__(vehicleid, const numberplate[]) = SetVehicleNumberPlate;
+	native GetVehicleModel__(vehicleid) = GetVehicleModel;
+	native GetVehicleComponentInSlot__(vehicleid, slot) = GetVehicleComponentInSlot;
+	native GetVehicleComponentType__(component) = GetVehicleComponentType;
+	native RepairVehicle__(vehicleid) = RepairVehicle;
+	native GetVehicleVelocity__(vehicleid, &Float:X, &Float:Y, &Float:Z) = GetVehicleVelocity;
+	native SetVehicleVelocity__(vehicleid, Float:X, Float:Y, Float:Z) = SetVehicleVelocity;
+	native SetVehicleAngularVelocity__(vehicleid, Float:X, Float:Y, Float:Z) = SetVehicleAngularVelocity;
+	native GetVehicleDamageStatus__(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus;
+	native UpdateVehicleDamageStatus__(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus;
+	native GetVehicleModelInfo__(vehiclemodel, infotype, &Float:X, &Float:Y, &Float:Z) = GetVehicleModelInfo;
+	native SetVehicleVirtualWorld__(vehicleid, worldid) = SetVehicleVirtualWorld;
+	native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld;
+	native bool:IsValidVehicle__(vehicleid) = IsValidVehicle;
+	native DB:db_open__(const name[]) = db_open;
+	native db_close__(DB:db) = db_close;
+	native DBResult:db_query__(DB:db, const query[]) = db_query;
+	native db_free_result__(DBResult:dbresult) = db_free_result;
+	native db_num_rows__(DBResult:dbresult) = db_num_rows;
+	native db_next_row__(DBResult:dbresult) = db_next_row;
+	native db_num_fields__(DBResult:dbresult) = db_num_fields;
+	native db_field_name__(DBResult:dbresult, field, result[], maxlength = sizeof result) = db_field_name;
+	native db_get_field__(DBResult:dbresult, field, result[], maxlength = sizeof result) = db_get_field;
+	native db_get_field_int__(DBResult:result, field = 0) = db_get_field_int;
+	native Float:db_get_field_float__(DBResult:result, field = 0) = db_get_field_float;
+	native db_get_field_assoc__(DBResult:dbresult, const field[], result[], maxlength = sizeof result) = db_get_field_assoc;
+	native db_get_field_assoc_int__(DBResult:result, const field[]) = db_get_field_assoc_int;
+	native Float:db_get_field_assoc_float__(DBResult:result, const field[]) = db_get_field_assoc_float;
+	native db_get_mem_handle__(DB:db) = db_get_mem_handle;
+	native db_get_result_mem_handle__(DBResult:result) = db_get_result_mem_handle;
+	native db_debug_openresults__() = db_debug_openresults;
+	native CreateActor__(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = CreateActor;
+	native DestroyActor__(actorid) = DestroyActor;
+	native IsActorStreamedIn__(actorid, forplayerid) = IsActorStreamedIn;
+	native SetActorVirtualWorld__(actorid, vworld) = SetActorVirtualWorld;
+	native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld;
+	native ApplyActorAnimation__(actorid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
+	native ClearActorAnimations__(actorid) = ClearActorAnimations;
+	native SetActorPos__(actorid, Float:X, Float:Y, Float:Z) = SetActorPos;
+	native GetActorPos__(actorid, &Float:X, &Float:Y, &Float:Z) = GetActorPos;
+	native SetActorFacingAngle__(actorid, Float:ang) = SetActorFacingAngle;
+	native GetActorFacingAngle__(actorid, &Float:ang) = GetActorFacingAngle;
+	native SetActorHealth__(actorid, Float:health) = SetActorHealth;
+	native GetActorHealth__(actorid, &Float:health) = GetActorHealth;
+	native SetActorInvulnerable__(actorid, invulnerable = true) = SetActorInvulnerable;
+	native IsActorInvulnerable__(actorid) = IsActorInvulnerable;
+	native IsValidActor__(actorid) = IsValidActor;
+	native HTTP__(index, type, const url[], const data[], const callback[]) = HTTP;
+	native CreateObject__(modelid, Float:X, Float:Y, Float:Z, Float:rX, Float:rY, Float:rZ, Float:DrawDistance = 0.0) = CreateObject;
+	native AttachObjectToVehicle__(objectid, vehicleid, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:RotX, Float:RotY, Float:RotZ) = AttachObjectToVehicle;
+	native AttachObjectToObject__(objectid, attachtoid, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:RotX, Float:RotY, Float:RotZ, SyncRotation = 1) = AttachObjectToObject;
+	native AttachObjectToPlayer__(objectid, playerid, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:RotX, Float:RotY, Float:RotZ) = AttachObjectToPlayer;
+	native SetObjectPos__(objectid, Float:X, Float:Y, Float:Z) = SetObjectPos;
+	native GetObjectPos__(objectid, &Float:X, &Float:Y, &Float:Z) = GetObjectPos;
+	native SetObjectRot__(objectid, Float:RotX, Float:RotY, Float:RotZ) = SetObjectRot;
+	native GetObjectRot__(objectid, &Float:RotX, &Float:RotY, &Float:RotZ) = GetObjectRot;
+	native GetObjectModel__(objectid) = GetObjectModel;
+	native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol;
+	native IsValidObject__(objectid) = IsValidObject;
+	native DestroyObject__(objectid) = DestroyObject;
+	native MoveObject__(objectid, Float:X, Float:Y, Float:Z, Float:Speed, Float:RotX = -1000.0, Float:RotY = -1000.0, Float:RotZ = -1000.0) = MoveObject;
+	native StopObject__(objectid) = StopObject;
+	native IsObjectMoving__(objectid) = IsObjectMoving;
+	native EditObject__(playerid, objectid) = EditObject;
+	native EditPlayerObject__(playerid, objectid) = EditPlayerObject;
+	native SelectObject__(playerid) = SelectObject;
+	native CancelEdit__(playerid) = CancelEdit;
+	native CreatePlayerObject__(playerid, modelid, Float:X, Float:Y, Float:Z, Float:rX, Float:rY, Float:rZ, Float:DrawDistance = 0.0) = CreatePlayerObject;
+	native AttachPlayerObjectToVehicle__(playerid, objectid, vehicleid, Float:fOffsetX, Float:fOffsetY, Float:fOffsetZ, Float:fRotX, Float:fRotY, Float:RotZ) = AttachPlayerObjectToVehicle;
+	native SetPlayerObjectPos__(playerid, objectid, Float:X, Float:Y, Float:Z) = SetPlayerObjectPos;
+	native GetPlayerObjectPos__(playerid, objectid, &Float:X, &Float:Y, &Float:Z) = GetPlayerObjectPos;
+	native SetPlayerObjectRot__(playerid, objectid, Float:RotX, Float:RotY, Float:RotZ) = SetPlayerObjectRot;
+	native GetPlayerObjectRot__(playerid, objectid, &Float:RotX, &Float:RotY, &Float:RotZ) = GetPlayerObjectRot;
+	native GetPlayerObjectModel__(playerid, objectid) = GetPlayerObjectModel;
+	native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCameraCol;
+	native IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
+	native DestroyPlayerObject__(playerid, objectid) = DestroyPlayerObject;
+	native MovePlayerObject__(playerid, objectid, Float:X, Float:Y, Float:Z, Float:Speed, Float:RotX = -1000.0, Float:RotY = -1000.0, Float:RotZ = -1000.0) = MovePlayerObject;
+	native StopPlayerObject__(playerid, objectid) = StopPlayerObject;
+	native IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
+	native AttachPlayerObjectToPlayer__(objectplayer, objectid, attachplayer, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:rX, Float:rY, Float:rZ) = AttachPlayerObjectToPlayer;
+	native SetObjectMaterial__(objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor = 0) = SetObjectMaterial;
+	native SetPlayerObjectMaterial__(playerid, objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor = 0) = SetPlayerObjectMaterial;
+	native SetObjectMaterialText__(objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetObjectMaterialText;
+	native SetPlayerObjectMaterialText__(playerid, objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetPlayerObjectMaterialText;
+	native SetObjectsDefaultCameraCol__(disable) = SetObjectsDefaultCameraCol;
+	native SetSpawnInfo__(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo) = SetSpawnInfo;
+	native SpawnPlayer__(playerid) = SpawnPlayer;
+	native SetPlayerPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
+	native SetPlayerPosFindZ__(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
+	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
+	native SetPlayerFacingAngle__(playerid, Float:ang) = SetPlayerFacingAngle;
+	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
+	native IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
+	native Float:GetPlayerDistanceFromPoint__(playerid, Float:X, Float:Y, Float:Z) = GetPlayerDistanceFromPoint;
+	native IsPlayerStreamedIn__(playerid, forplayerid) = IsPlayerStreamedIn;
+	native SetPlayerInterior__(playerid, interiorid) = SetPlayerInterior;
+	native GetPlayerInterior__(playerid) = GetPlayerInterior;
+	native SetPlayerHealth__(playerid, Float:health) = SetPlayerHealth;
+	native GetPlayerHealth__(playerid, &Float:health) = GetPlayerHealth;
+	native SetPlayerArmour__(playerid, Float:armour) = SetPlayerArmour;
+	native GetPlayerArmour__(playerid, &Float:armour) = GetPlayerArmour;
+	native SetPlayerAmmo__(playerid, weaponslot, ammo) = SetPlayerAmmo;
+	native GetPlayerAmmo__(playerid) = GetPlayerAmmo;
+	native GetPlayerWeaponState__(playerid) = GetPlayerWeaponState;
+	native GetPlayerTargetPlayer__(playerid) = GetPlayerTargetPlayer;
+	native GetPlayerTargetActor__(playerid) = GetPlayerTargetActor;
+	native SetPlayerTeam__(playerid, teamid) = SetPlayerTeam;
+	native GetPlayerTeam__(playerid) = GetPlayerTeam;
+	native SetPlayerScore__(playerid, score) = SetPlayerScore;
+	native GetPlayerScore__(playerid) = GetPlayerScore;
+	native GetPlayerDrunkLevel__(playerid) = GetPlayerDrunkLevel;
+	native SetPlayerDrunkLevel__(playerid, level) = SetPlayerDrunkLevel;
+	native SetPlayerColor__(playerid, color) = SetPlayerColor;
+	native GetPlayerColor__(playerid) = GetPlayerColor;
+	native SetPlayerSkin__(playerid, skinid) = SetPlayerSkin;
+	native GetPlayerSkin__(playerid) = GetPlayerSkin;
+	native GivePlayerWeapon__(playerid, weaponid, ammo) = GivePlayerWeapon;
+	native ResetPlayerWeapons__(playerid) = ResetPlayerWeapons;
+	native SetPlayerArmedWeapon__(playerid, weaponid) = SetPlayerArmedWeapon;
+	native GetPlayerWeaponData__(playerid, slot, &weapons, &ammo) = GetPlayerWeaponData;
+	native GivePlayerMoney__(playerid, money) = GivePlayerMoney;
+	native ResetPlayerMoney__(playerid) = ResetPlayerMoney;
+	native SetPlayerName__(playerid, const name[]) = SetPlayerName;
+	native GetPlayerMoney__(playerid) = GetPlayerMoney;
+	native GetPlayerState__(playerid) = GetPlayerState;
+	native GetPlayerIp__(playerid, ip[], len = sizeof ip) = GetPlayerIp;
+	native GetPlayerPing__(playerid) = GetPlayerPing;
+	native GetPlayerWeapon__(playerid) = GetPlayerWeapon;
+	native GetPlayerKeys__(playerid, &keys, &updown, &leftright) = GetPlayerKeys;
+	native GetPlayerName__(playerid, name[], len = sizeof name) = GetPlayerName;
+	native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime;
+	native GetPlayerTime__(playerid, &hour, &minute) = GetPlayerTime;
+	native TogglePlayerClock__(playerid, toggle) = TogglePlayerClock;
+	native SetPlayerWeather__(playerid, weather) = SetPlayerWeather;
+	native ForceClassSelection__(playerid) = ForceClassSelection;
+	native SetPlayerWantedLevel__(playerid, level) = SetPlayerWantedLevel;
+	native GetPlayerWantedLevel__(playerid) = GetPlayerWantedLevel;
+	native SetPlayerFightingStyle__(playerid, style) = SetPlayerFightingStyle;
+	native GetPlayerFightingStyle__(playerid) = GetPlayerFightingStyle;
+	native SetPlayerVelocity__(playerid, Float:X, Float:Y, Float:Z) = SetPlayerVelocity;
+	native GetPlayerVelocity__( playerid, &Float:X, &Float:Y, &Float:Z ) = GetPlayerVelocity;
+	native PlayCrimeReportForPlayer__(playerid, suspectid, crime) = PlayCrimeReportForPlayer;
+	native PlayAudioStreamForPlayer__(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0) = PlayAudioStreamForPlayer;
+	native StopAudioStreamForPlayer__(playerid) = StopAudioStreamForPlayer;
+	native SetPlayerShopName__(playerid, const shopname[]) = SetPlayerShopName;
+	native SetPlayerSkillLevel__(playerid, skill, level) = SetPlayerSkillLevel;
+	native GetPlayerSurfingVehicleID__(playerid) = GetPlayerSurfingVehicleID;
+	native GetPlayerSurfingObjectID__(playerid) = GetPlayerSurfingObjectID;
+	native RemoveBuildingForPlayer__(playerid, modelid, Float:fX, Float:fY, Float:fZ, Float:fRadius) = RemoveBuildingForPlayer;
+	native GetPlayerLastShotVectors__(playerid, &Float:fOriginX, &Float:fOriginY, &Float:fOriginZ, &Float:fHitPosX, &Float:fHitPosY, &Float:fHitPosZ) = GetPlayerLastShotVectors;
+	native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0, materialcolor1 = 0, materialcolor2 = 0) = SetPlayerAttachedObject;
+	native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject;
+	native IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+	native EditAttachedObject__(playerid, index) = EditAttachedObject;
+	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
+	native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy;
+	native PlayerTextDrawLetterSize__(playerid, PlayerText:text, Float:x, Float:y) = PlayerTextDrawLetterSize;
+	native PlayerTextDrawTextSize__(playerid, PlayerText:text, Float:x, Float:y) = PlayerTextDrawTextSize;
+	native PlayerTextDrawAlignment__(playerid, PlayerText:text, alignment) = PlayerTextDrawAlignment;
+	native PlayerTextDrawColor__(playerid, PlayerText:text, color) = PlayerTextDrawColor;
+	native PlayerTextDrawUseBox__(playerid, PlayerText:text, use) = PlayerTextDrawUseBox;
+	native PlayerTextDrawBoxColor__(playerid, PlayerText:text, color) = PlayerTextDrawBoxColor;
+	native PlayerTextDrawSetShadow__(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
+	native PlayerTextDrawSetOutline__(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
+	native PlayerTextDrawBackgroundColor__(playerid, PlayerText:text, color) = PlayerTextDrawBackgroundColor;
+	native PlayerTextDrawFont__(playerid, PlayerText:text, font) = PlayerTextDrawFont;
+	native PlayerTextDrawSetProportional__(playerid, PlayerText:text, set) = PlayerTextDrawSetProportional;
+	native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, set) = PlayerTextDrawSetSelectable;
+	native PlayerTextDrawShow__(playerid, PlayerText:text) = PlayerTextDrawShow;
+	native PlayerTextDrawHide__(playerid, PlayerText:text) = PlayerTextDrawHide;
+	native PlayerTextDrawSetString__(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
+	native PlayerTextDrawSetPreviewModel__(playerid, PlayerText:text, modelindex) = PlayerTextDrawSetPreviewModel;
+	native PlayerTextDrawSetPreviewRot__(playerid, PlayerText:text, Float:fRotX, Float:fRotY, Float:fRotZ, Float:fZoom = 1.0) = PlayerTextDrawSetPreviewRot;
+	native PlayerTDSetPreviewVehCol__(playerid, PlayerText:text, color1, color2) = PlayerTextDrawSetPreviewVehCol;
+	native SetPVarInt__(playerid, const varname[], int_value) = SetPVarInt;
+	native GetPVarInt__(playerid, const varname[]) = GetPVarInt;
+	native SetPVarString__(playerid, const varname[], const string_value[]) = SetPVarString;
+	native GetPVarString__(playerid, const varname[], string_return[], len = sizeof string_return) = GetPVarString;
+	native SetPVarFloat__(playerid, const varname[], Float:float_value) = SetPVarFloat;
+	native Float:GetPVarFloat__(playerid, const varname[]) = GetPVarFloat;
+	native DeletePVar__(playerid, const varname[]) = DeletePVar;
+	native GetPVarsUpperIndex__(playerid) = GetPVarsUpperIndex;
+	native GetPVarNameAtIndex__(playerid, index, ret_varname[], ret_len = sizeof ret_varname) = GetPVarNameAtIndex;
+	native GetPVarType__(playerid, const varname[]) = GetPVarType;
+	native SetPlayerChatBubble__(playerid, const text[], color, Float:drawdistance, expiretime) = SetPlayerChatBubble;
+	native PutPlayerInVehicle__(playerid, vehicleid, seatid) = PutPlayerInVehicle;
+	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
+	native GetPlayerVehicleSeat__(playerid) = GetPlayerVehicleSeat;
+	native RemovePlayerFromVehicle__(playerid) = RemovePlayerFromVehicle;
+	native TogglePlayerControllable__(playerid, toggle) = TogglePlayerControllable;
+	native PlayerPlaySound__(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
+	native ApplyAnimation__(playerid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+	native ClearAnimations__(playerid, forcesync = 0) = ClearAnimations;
+	native GetPlayerAnimationIndex__(playerid) = GetPlayerAnimationIndex;
+	native GetAnimationName__(index, animlib[], len1 = sizeof animlib, animname[], len2 = sizeof animname) = GetAnimationName;
+	native GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
+	native SetPlayerSpecialAction__(playerid, actionid) = SetPlayerSpecialAction;
+	native DisableRemoteVehicleCols__(playerid, disable) = DisableRemoteVehicleCollisions;
+	native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
+	native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint;
+	native SetPlayerRaceCheckpoint__(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size) = SetPlayerRaceCheckpoint;
+	native DisablePlayerRaceCheckpoint__(playerid) = DisablePlayerRaceCheckpoint;
+	native SetPlayerWorldBounds__(playerid, Float:x_max,Float:x_min,Float:y_max,Float:y_min) = SetPlayerWorldBounds;
+	native SetPlayerMarkerForPlayer__(playerid, showplayerid, color) = SetPlayerMarkerForPlayer;
+	native ShowPlayerNameTagForPlayer__(playerid, showplayerid, show) = ShowPlayerNameTagForPlayer;
+	native SetPlayerMapIcon__(playerid, iconid, Float:x, Float:y, Float:z, markertype, color, style = MAPICON_LOCAL) = SetPlayerMapIcon;
+	native RemovePlayerMapIcon__(playerid, iconid) = RemovePlayerMapIcon;
+	native AllowPlayerTeleport__(playerid, allow) = AllowPlayerTeleport;
+	native SetPlayerCameraPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
+	native SetPlayerCameraLookAt__(playerid, Float:x, Float:y, Float:z, cut = CAMERA_CUT) = SetPlayerCameraLookAt;
+	native SetCameraBehindPlayer__(playerid) = SetCameraBehindPlayer;
+	native GetPlayerCameraPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
+	native GetPlayerCameraFrontVector__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
+	native GetPlayerCameraMode__(playerid) = GetPlayerCameraMode;
+	native EnablePlayerCameraTarget__(playerid, enable) = EnablePlayerCameraTarget;
+	native GetPlayerCameraTargetObject__(playerid) = GetPlayerCameraTargetObject;
+	native GetPlayerCameraTargetVehicle__(playerid) = GetPlayerCameraTargetVehicle;
+	native GetPlayerCameraTargetPlayer__(playerid) = GetPlayerCameraTargetPlayer;
+	native GetPlayerCameraTargetActor__(playerid) = GetPlayerCameraTargetActor;
+	native Float:GetPlayerCameraAspectRatio__(playerid) = GetPlayerCameraAspectRatio;
+	native Float:GetPlayerCameraZoom__(playerid) = GetPlayerCameraZoom;
+	native AttachCameraToObject__(playerid, objectid) = AttachCameraToObject;
+	native AttachCameraToPlayerObject__(playerid, playerobjectid) = AttachCameraToPlayerObject;
+	native InterpolateCameraPos__(playerid, Float:FromX, Float:FromY, Float:FromZ, Float:ToX, Float:ToY, Float:ToZ, time, cut = CAMERA_CUT) = InterpolateCameraPos;
+	native InterpolateCameraLookAt__(playerid, Float:FromX, Float:FromY, Float:FromZ, Float:ToX, Float:ToY, Float:ToZ, time, cut = CAMERA_CUT) = InterpolateCameraLookAt;
+	native IsPlayerConnected__(playerid) = IsPlayerConnected;
+	native IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
+	native IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
+	native IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
+	native IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
+	native SetPlayerVirtualWorld__(playerid, worldid) = SetPlayerVirtualWorld;
+	native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld;
+	native EnableStuntBonusForPlayer__(playerid, enable) = EnableStuntBonusForPlayer;
+	native EnableStuntBonusForAll__(enable) = EnableStuntBonusForAll;
+	native TogglePlayerSpectating__(playerid, toggle) = TogglePlayerSpectating;
+	native PlayerSpectatePlayer__(playerid, targetplayerid, mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer;
+	native PlayerSpectateVehicle__(playerid, targetvehicleid, mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle;
+	native StartRecordingPlayerData__(playerid, recordtype, const recordname[]) = StartRecordingPlayerData;
+	native StopRecordingPlayerData__(playerid) = StopRecordingPlayerData;
+	native SelectTextDraw__(playerid, hovercolor) = SelectTextDraw;
+	native CancelSelectTextDraw__(playerid) = CancelSelectTextDraw;	// cancel textdraw selection with the mouse
+	native CreateExplosionForPlayer__(playerid, Float:X, Float:Y, Float:Z, type, Float:Radius) = CreateExplosionForPlayer;
+	native SendClientCheck__(playerid, type, memAddr, memOffset, byteCount) = SendClientCheck;
 #endif
 
 /**
