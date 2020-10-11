@@ -1862,18 +1862,8 @@ in the output code.
 	#pragma warning disable 238
 #endif
 
-#if defined OPEN_MP
-	// Detect compiling on open.mp.
-	#if defined OPENMP_SAMP
-		// Backwards-compatible development mode.
-		#if defined OPENMP_COMPAT
-			#define _FIXES_SAMP
-		#endif
-		#define _FIXES_OMP
-	#else
-		#error fixes.inc is not required for open.mp
-	#endif
-#else
+// Detect compiling on open.mp.
+#if !defined OPEN_MP
 	// Try them all until one sticks.  If we already included one these
 	// repeat includes are internally short-circuited, so no harm done.
 	#if !defined _samp_included
@@ -1888,15 +1878,28 @@ in the output code.
 		#error Could not find a_samp.inc
 	#endif
 	#if defined SendClientMessage
+		#define _FIXES_NPC 0
 		// Do nothing.
 	#elseif defined GetDistanceFromMeToPoint
-		#define _FIXES_NPC
+		#define _FIXES_NPC 1
 	#elseif defined GetDistanceFromMeToPoint__
-		#define _FIXES_NPC
+		#define _FIXES_NPC 1
 	#else
 		#error Could not determine script include type - <a_samp> or <a_npc>
 	#endif
-	#define _FIXES_SAMP
+	#define _FIXES_SAMP 1
+	#define _FIXES_OMP 0
+#elseif defined OPENMP_SAMP
+	// Backwards-compatible development mode.
+	#if defined OPENMP_COMPAT
+		#define _FIXES_SAMP 1
+	#else
+		#define _FIXES_SAMP 0
+	#endif
+	#define _FIXES_OMP 1
+	#define _FIXES_NPC 0
+#else
+	#error fixes.inc is not required for open.mp
 #endif
 
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
@@ -5164,7 +5167,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 
 #if defined SAMP_BYPASS_NATIVES
 	// Do nothing
-#elseif defined _FIXES_NPC
+#elseif _FIXES_NPC
 	// Declare variants of all NPC natives.
 	native SetTimer__(const funcname[], interval, repeating) = SetTimer;
 	native KillTimer__(timerid) = KillTimer;
@@ -7079,7 +7082,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#if FIX_SetPlayerAttachedObject
 			for (new i = 0; i != MAX_PLAYER_ATTACHED_OBJECTS; ++i)
 			{
-				if (IsPlayerAttachedObjectSlotUsed__(playerid, i))
+				if (IsPlayerAttachedSlotUsed__(playerid, i))
 				{
 					RemovePlayerAttachedObject__(playerid, i);
 				}
@@ -10118,8 +10121,12 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
 
-	#define _ALS_CreatePlayerTextDraw
 	#if _FIXES_SAMP
+		#if defined _ALS_CreatePlayerTextDraw
+			#undef CreatePlayerTextDraw
+		#else
+			#define _ALS_CreatePlayerTextDraw
+		#endif
 		#define CreatePlayerTextDraw( FIXES_CreatePlayerTextDraw(
 	#endif
 	#if _FIXES_OMP
@@ -10172,8 +10179,12 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
 
-	#define _ALS_PlayerTextDrawSetString
 	#if _FIXES_SAMP
+		#if defined _ALS_PlayerTextDrawSetString
+			#undef PlayerTextDrawSetString
+		#else
+			#define _ALS_PlayerTextDrawSetString
+		#endif
 		#define PlayerTextDrawSetString( FIXES_PlayerTextDrawSetString(
 	#endif
 	#if _FIXES_OMP
@@ -10221,8 +10232,12 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
 
-	#define _ALS_TextDrawCreate
 	#if _FIXES_SAMP
+		#if defined _ALS_TextDrawCreate
+			#undef TextDrawCreate
+		#else
+			#define _ALS_TextDrawCreate
+		#endif
 		#define TextDrawCreate( FIXES_TextDrawCreate(
 	#endif
 	#if _FIXES_OMP
@@ -10275,8 +10290,12 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
 
-	#define _ALS_TextDrawSetString
 	#if _FIXES_SAMP
+		#if defined _ALS_TextDrawSetString
+			#undef TextDrawSetString
+		#else
+			#define _ALS_TextDrawSetString
+		#endif
 		#define TextDrawSetString( FIXES_TextDrawSetString(
 	#endif
 	#if _FIXES_OMP
@@ -10437,7 +10456,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 #if FIX_AllowTeleport && !defined FILTERSCRIPT
 	forward _FIXES_AllowTeleport(playerid, allow);
 
-	public OnPlayerClickMap__(playerid, Float:fX, Float:fY, Float:fZ)
+	public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 	{
 		// ======================
 		//  BEGIN: AllowTeleport
@@ -10735,8 +10754,12 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		return 0;
 	}
 
-	#define _ALS_ShowPlayerDialog
 	#if _FIXES_SAMP
+		#if defined _ALS_ShowPlayerDialog
+			#undef ShowPlayerDialog
+		#else
+			#define _ALS_ShowPlayerDialog
+		#endif
 		#define ShowPlayerDialog( FIXES_ShowPlayerDialog(
 	#endif
 	#if _FIXES_OMP
@@ -10750,7 +10773,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  */
 
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
-	public OnDialogResponse__(playerid, dialogid, response, listitem, inputtext[])
+	public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	{
 		// =========================
 		//  BEGIN: OnDialogResponse
@@ -11603,8 +11626,12 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		return 0;
 	}
 
-	#define _ALS_ApplyAnimation
 	#if _FIXES_SAMP
+		#if defined _ALS_ApplyAnimation
+			#undef ApplyAnimation
+		#else
+			#define _ALS_ApplyAnimation
+		#endif
 		#define ApplyAnimation( FIXES_ApplyAnimation(
 	#endif
 	#if _FIXES_OMP
@@ -11684,8 +11711,12 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		return 0;
 	}
 
-	#define _ALS_ApplyActorAnimation
 	#if _FIXES_SAMP
+		#if defined _ALS_ApplyActorAnimation
+			#undef ApplyActorAnimation
+		#else
+			#define _ALS_ApplyActorAnimation
+		#endif
 		#define ApplyActorAnimation( FIXES_ApplyActorAnimation(
 	#endif
 	#if _FIXES_OMP
@@ -12278,8 +12309,12 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 		return len;
 	}
 
-	#define _ALS_GetPVarString
 	#if _FIXES_SAMP
+		#if defined _ALS_GetPVarString
+			#undef GetPVarString
+		#else
+			#define _ALS_GetPVarString
+		#endif
 		#define GetPVarString( FIXES_GetPVarString(
 	#endif
 	#if _FIXES_OMP
@@ -12311,8 +12346,12 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 		return len;
 	}
 
-	#define _ALS_GetSVarString
 	#if _FIXES_SAMP
+		#if defined _ALS_GetSVarString
+			#undef GetSVarString
+		#else
+			#define _ALS_GetSVarString
+		#endif
 		#define GetSVarString( FIXES_GetSVarString(
 	#endif
 	#if _FIXES_OMP
