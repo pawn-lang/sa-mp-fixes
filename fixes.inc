@@ -1886,7 +1886,6 @@ in the output code.
 	#pragma warning disable 207
 	#pragma disablerecursion
 	#pragma warning pop
-	#pragma warning disable 238
 #endif
 
 // Detect compiling on open.mp.
@@ -13201,12 +13200,21 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  * </remarks>
  */
 
+#if ((__Pawn & 0x0F) >= 0x0A) || ((__Pawn & 0xF0) >= 0xA0)
+	#pragma warning push
+	#pragma warning disable 238
+#endif
+
 static stock _FIXES_ConstMod(const &target, chr)
 {
 	#pragma unused target, chr
 	#emit LOAD.S.pri chr
 	#emit SREF.S.pri target
 }
+
+#if ((__Pawn & 0x0F) >= 0x0A) || ((__Pawn & 0xF0) >= 0xA0)
+	#pragma warning pop
+#endif
 
 /**
  * <remarks>
