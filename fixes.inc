@@ -1867,7 +1867,7 @@ in the output code.
 
 #define _FIXES_ENUM enum
 
-#if ((__Pawn & 0x0F) >= 0x0A) || ((__Pawn & 0xF0) >= 0xA0)
+#if (__Pawn & 0x0F) >= 0x0A
 	#if defined __PawnBuild
 		// Extra flags.
 		#if __PawnBuild >= 4
@@ -13200,7 +13200,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  * </remarks>
  */
 
-#if ((__Pawn & 0x0F) >= 0x0A) || ((__Pawn & 0xF0) >= 0xA0)
+#if (__Pawn & 0x0F) >= 0x0A
 	#pragma warning push
 	#pragma warning disable 238
 #endif
@@ -13212,7 +13212,7 @@ static stock _FIXES_ConstMod(const &target, chr)
 	#emit SREF.S.pri target
 }
 
-#if ((__Pawn & 0x0F) >= 0x0A) || ((__Pawn & 0xF0) >= 0xA0)
+#if (__Pawn & 0x0F) >= 0x0A
 	#pragma warning pop
 #endif
 
