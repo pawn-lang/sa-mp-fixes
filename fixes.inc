@@ -3448,9 +3448,7 @@ stock
 	 */
 	bool:_FIXES_gIsWindows;
 
-#if !FIX_GetMaxPlayers
-static
-#endif
+#if FIX_GetMaxPlayers
 stock
 	/**
 	 * <remarks>
@@ -3458,10 +3456,9 @@ stock
 	 * </remarks>
 	 */
 	_FIXES_gsMaxPlayers = MAX_PLAYERS;
+#endif
 
 #if FIX_GetWorldTime
-static
-#endif
 stock
 	/**
 	 * <remarks>
@@ -3469,6 +3466,7 @@ stock
 	 * </remarks>
 	 */
 	_FIXES_gsWorldTime = 12;
+#endif
 
 stock const
 	/**
