@@ -3448,6 +3448,28 @@ stock
 	 */
 	bool:_FIXES_gIsWindows;
 
+#if !FIX_GetMaxPlayers
+static
+#endif
+stock
+	/**
+	 * <remarks>
+	 * `maxplayers` server var value.
+	 * </remarks>
+	 */
+	_FIXES_gsMaxPlayers = MAX_PLAYERS;
+
+#if FIX_GetWorldTime
+static
+#endif
+stock
+	/**
+	 * <remarks>
+	 * Stores the ID of the server weather.
+	 * </remarks>
+	 */
+	_FIXES_gsWorldTime = 12;
+
 stock const
 	/**
 	 * <remarks>
@@ -3462,12 +3484,6 @@ new
 #else
 static stock
 #endif
-	/**
-	 * <remarks>
-	 * `maxplayers` server var value.
-	 * </remarks>
-	 */
-	FIXES_gsMaxPlayers = MAX_PLAYERS,
 	/**
 	 * <remarks>
 	 * A single re-usable space.  Static not const because it is used in this
@@ -3594,14 +3610,6 @@ static stock
 	 */
 #if FIX_GetWeather
 	FIXES_gsServerWeather = 10,
-#endif
-	/**
-	 * <remarks>
-	 * Stores the ID of the server weather.
-	 * </remarks>
-	 */
-#if FIX_GetWorldTime
-	FIXES_gsWorldTime = 12,
 #endif
 	/**
 	 * <remarks>
@@ -6356,7 +6364,7 @@ static stock _FIXES_CheckServerRoot()
 
 static stock _FIXES_CheckMaxPlayers()
 {
-		FIXES_gsMaxPlayers = GetMaxPlayers__();
+		_FIXES_gsMaxPlayers = GetMaxPlayers__();
 		// Check max players match.
 		if (YSI_g_sMaxPlayers > MAX_PLAYERS)
 		{
@@ -12485,17 +12493,12 @@ native bool:BAD_ispacked(const string[]) = ispacked;
  */
 
 #if FIX_ispacked
-	stock bool:FIXES_ispacked(const string[])
-	{
-		return (string[0] & ~0xFF) != 0;
-	}
-
 	#if _FIXES_SAMP
 		#define _ALS_ispacked
-		#define ispacked( FIXES_ispacked(
+		#define ispacked(%0) (((%0)[0] & ~0xFF) != 0)
 	#endif
 	#define _ALS_ispacked__
-	#define ispacked__( FIXES_ispacked(
+	#define ispacked__(%0) (((%0)[0] & ~0xFF) != 0)
 #endif
 
 /**
@@ -12516,7 +12519,10 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 	{
 		new
 			size = GetPlayerPoolSize__();
-		return size == 0 && !IsPlayerConnected__(0) ? -1 : size;
+		return
+			size == 0 && !IsPlayerConnected__(0) ? -1 :
+			size > MAX_PLAYERS ? MAX_PLAYERS :
+			size;
 	}
 
 	#if _FIXES_SAMP
@@ -12654,17 +12660,12 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
  */
 
 #if FIX_GetPlayerAmmo
-	stock FIXES_SetPlayerAmmo(playerid, weaponid, ammo)
-	{
-		return SetPlayerAmmo__(playerid, weaponid, clamp(ammo, 0, 32767));
-	}
-
 	#if _FIXES_SAMP
 		#define _ALS_SetPlayerAmmo
-		#define SetPlayerAmmo( FIXES_SetPlayerAmmo(
+		#define SetPlayerAmmo(%0,%1,%2) BAD_SetPlayerAmmo((%1), (%1), clamp((%2), 0, 32767))
 	#endif
 	#define _ALS_SetPlayerAmmo__
-	#define SetPlayerAmmo__( FIXES_SetPlayerAmmo(
+	#define SetPlayerAmmo__(%0,%1,%2) BAD_SetPlayerAmmo((%1), (%1), clamp((%2), 0, 32767))
 #endif
 
 /*
@@ -12913,7 +12914,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #if FIX_GetWorldTime
 	stock FIXES_SetWorldTime(hour)
 	{
-		FIXES_gsWorldTime = hour;
+		_FIXES_gsWorldTime = hour;
 		return SetWorldTime__(hour);
 	}
 
@@ -12934,17 +12935,12 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #endif
 
 #if FIX_GetWorldTime
-	stock FIXES_GetWorldTime()
-	{
-		return FIXES_gsWorldTime;
-	}
-
 	#if _FIXES_SAMP
 		#define _ALS_GetWorldTime
-		#define GetWorldTime( FIXES_GetWorldTime(
+		#define GetWorldTime() (_FIXES_gsWorldTime)
 	#endif
 	#define _ALS_GetWorldTime__
-	#define GetWorldTime__( FIXES_GetWorldTime(
+	#define GetWorldTime__() (_FIXES_gsWorldTime)
 #endif
 
 /**
@@ -12956,17 +12952,12 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #endif
 
 #if FIX_GetMaxPlayers
-	stock FIXES_GetMaxPlayers()
-	{
-		return FIXES_gsMaxPlayers;
-	}
-
 	#if _FIXES_SAMP
 		#define _ALS_GetMaxPlayers
-		#define GetMaxPlayers( FIXES_GetMaxPlayers(
+		#define GetMaxPlayers() (_FIXES_gsMaxPlayers)
 	#endif
 	#define _ALS_GetMaxPlayers__
-	#define GetMaxPlayers__( FIXES_GetMaxPlayers(
+	#define GetMaxPlayers__() (_FIXES_gsMaxPlayers)
 #endif
 
 /**
