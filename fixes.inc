@@ -3462,7 +3462,7 @@ stock
 stock
 	/**
 	 * <remarks>
-	 * Stores the ID of the server weather.
+	 * Stores the current server world time (hours).
 	 * </remarks>
 	 */
 	_FIXES_gsWorldTime = 12;
