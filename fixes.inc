@@ -12660,10 +12660,10 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #if FIX_GetPlayerAmmo
 	#if _FIXES_SAMP
 		#define _ALS_SetPlayerAmmo
-		#define SetPlayerAmmo(%0,%1,%2) BAD_SetPlayerAmmo((%1), (%1), clamp((%2), 0, 32767))
+		#define SetPlayerAmmo(%0,%1,%2) BAD_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
 	#endif
 	#define _ALS_SetPlayerAmmo__
-	#define SetPlayerAmmo__(%0,%1,%2) BAD_SetPlayerAmmo((%1), (%1), clamp((%2), 0, 32767))
+	#define SetPlayerAmmo__(%0,%1,%2) BAD_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
 #endif
 
 /*
@@ -12910,18 +12910,12 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
  */
 
 #if FIX_GetWorldTime
-	stock FIXES_SetWorldTime(hour)
-	{
-		_FIXES_gsWorldTime = hour;
-		return SetWorldTime__(hour);
-	}
-
 	#if _FIXES_SAMP
 		#define _ALS_SetWorldTime
-		#define SetWorldTime( FIXES_SetWorldTime(
+		#define SetWorldTime(%0) BAD_SetWorldTime((_FIXES_gsWorldTime=(%0)))
 	#endif
 	#define _ALS_SetWorldTime__
-	#define SetWorldTime__( FIXES_SetWorldTime(
+	#define SetWorldTime__(%0) BAD_SetWorldTime((_FIXES_gsWorldTime=(%0)))
 #endif
 
 /**
