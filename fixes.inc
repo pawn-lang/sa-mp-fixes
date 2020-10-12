@@ -3901,7 +3901,12 @@ static stock
 	 * Name of the SetCheckpoint timer function.
 	 * </remarks>
 	 */
-	FIXES_gscPrintFGM[] = "* FIXES_PRINTF (GM):",
+	FIXES_gscPrintFGM[] = "* FIXES_PRINTF (GM):",	/**
+	 * <remarks>
+	 * <c>***</c>, for debug prints.
+	 * </remarks>
+	 */
+	FIXES_gscThreeStars[] = "***",
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's checkpoint state.
@@ -4479,10 +4484,12 @@ static stock const
 	 * Error shown when multiple scripts are detected with <c>FIXES_SINGLE</c>.
 	 * </remarks>
 	 */
-	FIXES_gscMultiScriptError[] = "\7\7\7\7\7"                                               "\n"   \
-		"*** fixes.inc error: Running multiple scripts compiled with \"fixes.inc\"..."       "\n"   \
-		"***     Please compile your modes with \"#define FIXES_Single 0\" at the top, as"   "\n"   \
-		"***     this setting is no longer the default (to improve the more common case)."          ;
+	FIXES_gscMultiScriptError[] = "\7\7\7\7\7"                                             \
+		"*** fixes.inc error: Running multiple scripts compiled with \"fixes.inc\"...\n"   \
+		"***                  Please compile your modes with \"#define FIXES_Single 0\"\n" \
+		"***                  at the top, as this setting is no longer the default (to\n"  \
+		"***                  improve the more common case).\n"                            \
+		"***";
 
 /**
  * <remarks>
@@ -6366,16 +6373,34 @@ static stock _FIXES_CheckMaxPlayers()
 		if (_FIXES_gsMaxPlayers > MAX_PLAYERS)
 		{
 			#if FIXES_GetMaxPlayersMsg
-				printf("\7\7\7\7\7*** fixes.inc error: Server var `maxplayers` (%d) > `MAX_PLAYERS` (%d), may", _FIXES_gsMaxPlayers, MAX_PLAYERS);
-				print(           "***                  cause OOBs with many players.  Recompile your mode with a");
-				print(           "***                  higher `MAX_PLAYERS` to ensure sufficient array space.");
+				printf("\7\7\7\7\7*** fixes.inc error: Server var `maxplayers` (%d) > `MAX_PLAYERS` (%d), may", _FIXES_gsMaxPlayers, MAX_PLAYERS),
+				print(           "***                  cause OOBs with many players.  Recompile your mode with a"),
+				print(           "***                  higher `MAX_PLAYERS` to ensure sufficient array space."),
+				print(FIXES_gscThreeStars),
+				print(           "***                  Disable this message with:"),
+				print(FIXES_gscThreeStars),
+				print(           "***                      #define FIXES_GetMaxPlayersMsg 0"),
+				print(FIXES_gscThreeStars),
+				print(           "***                  Disable this check with:"),
+				print(FIXES_gscThreeStars),
+				print(           "***                      #define FIX_GetMaxPlayers 0"),
+				print(FIXES_gscThreeStars);
 			#endif
 			_FIXES_gsMaxPlayers = MAX_PLAYERS;
 		}
 	#if FIXES_GetMaxPlayersMsg
 		else if (_FIXES_gsMaxPlayers < MAX_PLAYERS)
 		{
-			printf("\7\7\7*** fixes.inc warning: Server var `maxplayers` (%d) < `MAX_PLAYERS` (%d), wasting memory.", _FIXES_gsMaxPlayers, MAX_PLAYERS);
+			printf("\7\7\7*** fixes.inc warning: Server var `maxplayers` (%d) < `MAX_PLAYERS` (%d), wasting memory.", _FIXES_gsMaxPlayers, MAX_PLAYERS),
+			print(FIXES_gscThreeStars),
+			print(       "***                    Disable this message with:"),
+			print(FIXES_gscThreeStars),
+			print(       "***                        #define FIXES_GetMaxPlayersMsg 0"),
+			print(FIXES_gscThreeStars),
+			print(       "***                    Disable this check with:"),
+			print(FIXES_gscThreeStars),
+			print(       "***                        #define FIX_GetMaxPlayers 0"),
+			print(FIXES_gscThreeStars);
 		}
 	#endif
 }
@@ -6637,7 +6662,16 @@ public OnGameModeInit()
 				#endif
 			}
 			else
-				print("\7\7\7\7\7*** fixes.inc error: Could not load RconCommand/ClientCheckResponse fix FS.");
+			{
+				print("\7\7\7\7\7*** fixes.inc warning: Could not load RconCommand/ClientCheckResponse fix FS."),
+				print(          "***                    Ignore this error if the FS already loaded."),
+				print(FIXES_gscThreeStars),
+				print(          "***                    Disable this check with:"),
+				print(FIXES_gscThreeStars),
+				print(          "***                        #define FIX_OnRconCommand 0"),
+				print(          "***                        #define FIX_OnClientCheckResponse 0"),
+				print(FIXES_gscThreeStars);
+			}
 		#endif
 		// ======================
 		//  END:   OnRconCommand
