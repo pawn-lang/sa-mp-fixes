@@ -12521,7 +12521,7 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 			size = GetPlayerPoolSize__();
 		return
 			size == 0 && !IsPlayerConnected__(0) ? -1 :
-			size > MAX_PLAYERS ? MAX_PLAYERS :
+			size >= MAX_PLAYERS ? MAX_PLAYERS - 1 :
 			size;
 	}
 
