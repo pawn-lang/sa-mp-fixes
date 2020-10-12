@@ -6380,10 +6380,6 @@ static stock _FIXES_CheckMaxPlayers()
 				print(           "***                  Disable this message with:"),
 				print(FIXES_gscThreeStars),
 				print(           "***                      #define FIXES_GetMaxPlayersMsg 0"),
-				print(FIXES_gscThreeStars),
-				print(           "***                  Disable this check with:"),
-				print(FIXES_gscThreeStars),
-				print(           "***                      #define FIX_GetMaxPlayers 0"),
 				print(FIXES_gscThreeStars);
 			#endif
 			_FIXES_gsMaxPlayers = MAX_PLAYERS;
@@ -6396,10 +6392,6 @@ static stock _FIXES_CheckMaxPlayers()
 			print(       "***                    Disable this message with:"),
 			print(FIXES_gscThreeStars),
 			print(       "***                        #define FIXES_GetMaxPlayersMsg 0"),
-			print(FIXES_gscThreeStars),
-			print(       "***                    Disable this check with:"),
-			print(FIXES_gscThreeStars),
-			print(       "***                        #define FIX_GetMaxPlayers 0"),
 			print(FIXES_gscThreeStars);
 		}
 	#endif
@@ -6664,13 +6656,7 @@ public OnGameModeInit()
 			else
 			{
 				print("\7\7\7\7\7*** fixes.inc warning: Could not load RconCommand/ClientCheckResponse fix FS."),
-				print(          "***                    Ignore this error if the FS already loaded."),
-				print(FIXES_gscThreeStars),
-				print(          "***                    Disable this check with:"),
-				print(FIXES_gscThreeStars),
-				print(          "***                        #define FIX_OnRconCommand 0"),
-				print(          "***                        #define FIX_OnClientCheckResponse 0"),
-				print(FIXES_gscThreeStars);
+				print(          "***                    Ignore this error if the FS already loaded.");
 			}
 		#endif
 		// ======================
