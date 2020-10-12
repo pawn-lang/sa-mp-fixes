@@ -1575,6 +1575,17 @@ in the output code.
  *     <see>OnGameModeInit</see>
  *     <author    href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
+ *
+ * <fix name="GetMaxPlayers">
+ *     <problem>
+ *         If this is > MAX_PLAYERS, can cause OOBs in code.
+ *     </problem>
+ *     <solution>
+ *         Constrain it; but also warn because that doesn't really help.
+ *     </solution>
+ *     <see>GetMaxPlayers</see>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
  * </fixeslist>
  *
  * <section>
@@ -2930,6 +2941,13 @@ in the output code.
 	#define FIX_OnClientCheckResponse            (2)
 #endif
 
+#if !defined FIX_GetMaxPlayers
+	#define FIX_GetMaxPlayers                    (1)
+#elseif _FIXES_IS_UNSET(FIX_GetMaxPlayers)
+	#undef FIX_GetMaxPlayers
+	#define FIX_GetMaxPlayers                    (2)
+#endif
+
 /**
  * <remarks>
  * tabsize
@@ -3078,7 +3096,7 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 	#if _FIXES_IS_UNSET(FIXES_Debug)
 		#undef FIXES_Debug
 	#elseif FIXES_Debug == 1
-		#define FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):")),printf("*** " %0);
+		#define FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM),printf("*** " %0);
 	#else
 		#undef FIXES_Debug
 	#endif
@@ -3097,6 +3115,20 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #elseif _FIXES_IS_UNSET(FIXES_ServerVarMsg)
 	#undef FIXES_ServerVarMsg
 	#define FIXES_ServerVarMsg 2
+#endif
+
+/**
+ * <remarks>
+ * If this define is set to 1, then the server will not give a message when
+ * <see>GetMaxPlayer</see> doesn't match <c>MAX_PLAYERS</c>.
+ * </remarks>
+ */
+
+#if !defined FIXES_GetMaxPlayersMsg
+	#define FIXES_GetMaxPlayersMsg 1
+#elseif _FIXES_IS_UNSET(FIXES_GetMaxPlayersMsg)
+	#undef FIXES_GetMaxPlayersMsg
+	#define FIXES_GetMaxPlayersMsg 2
 #endif
 
 /**
@@ -3430,6 +3462,12 @@ new
 #else
 static stock
 #endif
+	/**
+	 * <remarks>
+	 * `maxplayers` server var value.
+	 * </remarks>
+	 */
+	FIXES_gsMaxPlayers = MAX_PLAYERS,
 	/**
 	 * <remarks>
 	 * A single re-usable space.  Static not const because it is used in this
@@ -3847,6 +3885,18 @@ static stock
 	 * </remarks>
 	 */
 	FIXES_gscSetCheckpoint[] = "_FIXES_SetCheckpoint",
+	/**
+	 * <remarks>
+	 * Name of the SetCheckpoint timer function.
+	 * </remarks>
+	 */
+	FIXES_gscPrintFFS[] = "* FIXES_PRINTF (FS):",
+	/**
+	 * <remarks>
+	 * Name of the SetCheckpoint timer function.
+	 * </remarks>
+	 */
+	FIXES_gscPrintFGM[] = "* FIXES_PRINTF (GM):",
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's checkpoint state.
@@ -6262,7 +6312,7 @@ static stock _FIXES_CheckServerRoot()
 		#if FIXES_ServerVarMsg
 			if (!FIXES_gsServerCFG)
 			{
-				print(_FIXES_gIsFilterscript ? ("* FIXES_PRINTF (FS):") : ("* FIXES_PRINTF (GM):"));
+				print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM);
 				print(" ");
 				print("********************************************************************************");
 				print("* Could not open \"DANGEROUS_SERVER_ROOT/server.cfg\".  Make sure your server is *");
@@ -6304,6 +6354,27 @@ static stock _FIXES_CheckServerRoot()
 	#endif
 }
 
+static stock _FIXES_CheckMaxPlayers()
+{
+		FIXES_gsMaxPlayers = GetMaxPlayers__();
+		// Check max players match.
+		if (YSI_g_sMaxPlayers > MAX_PLAYERS)
+		{
+			#if FIXES_GetMaxPlayersMsg
+				printf("\7\7\7\7\7*** fixes.inc error: Server var `maxplayers` (%d) > `MAX_PLAYERS` (%d), may", YSI_g_sMaxPlayers, MAX_PLAYERS);
+				print(           "***                  cause OOBs with many players.  Recompile your mode with a");
+				print(           "***                  higher `MAX_PLAYERS` to ensure sufficient array space.");
+			#endif
+			YSI_g_sMaxPlayers = MAX_PLAYERS;
+		}
+	#if FIXES_GetMaxPlayersMsg
+		else if (YSI_g_sMaxPlayers < MAX_PLAYERS)
+		{
+			printf("\7\7\7*** fixes.inc warning: Server var `maxplayers` (%d) < `MAX_PLAYERS` (%d), wasting memory.", YSI_g_sMaxPlayers, MAX_PLAYERS);
+		}
+	#endif
+}
+
 /**
  * <remarks>
  * Set <symbolref name="IS_FILTERSCRIPT" /> to true as this callback is ONLY called if this script
@@ -6333,6 +6404,16 @@ public OnFilterScriptInit()
 			setproperty(5, FIXES_gscSingleProperty, 1);
 		}
 	#endif
+
+	// ======================
+	//  BEGIN: GetMaxPlayers
+	// ======================
+	#if FIX_GetMaxPlayers
+		_FIXES_CheckMaxPlayers();
+	#endif
+	// ======================
+	//  END:   GetMaxPlayers
+	// ======================
 
 	// =================
 	//  BEGIN: GameText
@@ -6472,6 +6553,17 @@ public OnGameModeInit()
 	if (!_FIXES_gIsFilterscript)
 	{
 		_FIXES_CheckServerRoot();
+
+		// ======================
+		//  BEGIN: GetMaxPlayers
+		// ======================
+		#if FIX_GetMaxPlayers
+			_FIXES_CheckMaxPlayers();
+		#endif
+		// ======================
+		//  END:   GetMaxPlayers
+		// ======================
+
 		// =================
 		//  BEGIN: GameText
 		// =================
