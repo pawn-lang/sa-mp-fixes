@@ -6366,19 +6366,19 @@ static stock _FIXES_CheckMaxPlayers()
 {
 		_FIXES_gsMaxPlayers = GetMaxPlayers__();
 		// Check max players match.
-		if (YSI_g_sMaxPlayers > MAX_PLAYERS)
+		if (_FIXES_gsMaxPlayers > MAX_PLAYERS)
 		{
 			#if FIXES_GetMaxPlayersMsg
-				printf("\7\7\7\7\7*** fixes.inc error: Server var `maxplayers` (%d) > `MAX_PLAYERS` (%d), may", YSI_g_sMaxPlayers, MAX_PLAYERS);
+				printf("\7\7\7\7\7*** fixes.inc error: Server var `maxplayers` (%d) > `MAX_PLAYERS` (%d), may", _FIXES_gsMaxPlayers, MAX_PLAYERS);
 				print(           "***                  cause OOBs with many players.  Recompile your mode with a");
 				print(           "***                  higher `MAX_PLAYERS` to ensure sufficient array space.");
 			#endif
-			YSI_g_sMaxPlayers = MAX_PLAYERS;
+			_FIXES_gsMaxPlayers = MAX_PLAYERS;
 		}
 	#if FIXES_GetMaxPlayersMsg
-		else if (YSI_g_sMaxPlayers < MAX_PLAYERS)
+		else if (_FIXES_gsMaxPlayers < MAX_PLAYERS)
 		{
-			printf("\7\7\7*** fixes.inc warning: Server var `maxplayers` (%d) < `MAX_PLAYERS` (%d), wasting memory.", YSI_g_sMaxPlayers, MAX_PLAYERS);
+			printf("\7\7\7*** fixes.inc warning: Server var `maxplayers` (%d) < `MAX_PLAYERS` (%d), wasting memory.", _FIXES_gsMaxPlayers, MAX_PLAYERS);
 		}
 	#endif
 }
