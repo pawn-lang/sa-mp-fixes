@@ -12948,6 +12948,28 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #endif
 
 /**
+ * <fixes>GetMaxPlayers</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_GetMaxPlayers
+	#error _ALS_GetMaxPlayers defined
+#endif
+
+#if FIX_GetMaxPlayers
+	stock FIXES_GetMaxPlayers()
+	{
+		return FIXES_gsMaxPlayers;
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_GetMaxPlayers
+		#define GetMaxPlayers( FIXES_GetMaxPlayers(
+	#endif
+	#define _ALS_GetMaxPlayers__
+	#define GetMaxPlayers__( FIXES_GetMaxPlayers(
+#endif
+
+/**
  * <fixes>GetServerVarAsString</fixes>
  */
 #if _FIXES_SAMP && defined _ALS_GetServerVarAsString
