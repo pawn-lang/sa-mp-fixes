@@ -1586,6 +1586,20 @@ in the output code.
  *     <see>GetMaxPlayers</see>
  *     <author href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
+ *
+ * <fix name="BypassDialog">
+ *     <problem>
+ *         You can type commands and move while in dialogs.
+ *     </problem>
+ *     <solution>
+ *         Return 0.
+ *     </solution>
+ *     <see>OnPlayerCommandText</see>
+ *     <see>OnPlayerText</see>
+ *     <see>OnPlayerUpdate</see>
+ *     <see>OnDialogResponse</see>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
  * </fixeslist>
  *
  * <section>
@@ -2947,6 +2961,13 @@ in the output code.
 	#define FIX_GetMaxPlayers                    (2)
 #endif
 
+#if !defined FIX_BypassDialog
+	#define FIX_BypassDialog                     (1)
+#elseif _FIXES_IS_UNSET(FIX_BypassDialog)
+	#undef FIX_BypassDialog
+	#define FIX_BypassDialog                     (2)
+#endif
+
 /**
  * <remarks>
  * tabsize
@@ -3271,6 +3292,8 @@ _FIXES_ENUM e_FIXES_BOOLS:(<<= 1)
 	e_FIXES_BOOLS_CLOCK_ENABLED,
 	e_FIXES_BOOLS_VEH_ENTER,
 	e_FIXES_BOOLS_VEH_ENTER_ANIM,
+	e_FIXES_BOOLS_DIALOG_BLOCK,
+	e_FIXES_BOOLS_FORCE_BLOCK,
 }
 
 /**
@@ -4455,6 +4478,12 @@ static stock const
 	 * </remarks>
 	 */
 	FIXES_gscGameTextShow[] = "_FIXES_GameTextShow",
+	/**
+	 * <remarks>
+	 * Name of the remote block update function.
+	 * </remarks>
+	 */
+	FIXES_gscBlockUpdate[] = "@FIXES_BlockUpdate",
 	/**
 	 * <remarks>
 	 * The property for accurate returns.
@@ -7671,8 +7700,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			}
 		}
 		// Desync the player entirely.
-		FIXES_BlockUpdate(playerid);
-		return 0;
+		return FIXES_BlockUpdate(playerid);
 		// =====================
 		//  END:   OnVehicleMod
 		// =====================
@@ -7862,6 +7890,55 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <fixes>BypassDialog</fixes>
+ */
+
+#if FIX_BypassDialog
+	public OnPlayerCommandText(playerid, cmdtext[])
+	{
+		// Just return 1, don't acknowldege anything!
+		return
+			_FIXES_IS_VALID_PLAYER(playerid) && (
+				(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_BLOCK)
+				|| FIXES_OnPlayerCommandText(playerid, cmdtext)
+			);
+	}
+
+	#if defined _ALS_OnPlayerCommandText
+		#error _ALS_OnPlayerCommandText defined
+	#endif
+	#define _ALS_OnPlayerCommandText
+	#define OnPlayerCommandText(%0) FIXES_OnPlayerCommandText(%0) <_ALS : _ALS_go>
+
+	forward FIXES_OnPlayerCommandText(playerid, cmdtext[]);
+	public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 0; }
+	public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <> { return 0; }
+#endif
+
+/**
+ * <fixes>BypassDialog</fixes>
+ */
+
+#if FIX_BypassDialog
+	public OnPlayerText(playerid, text[])
+	{
+		// Just return 1, don't acknowldege anything!
+		return
+			_FIXES_IS_VALID_PLAYER(playerid) &&
+			!(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_BLOCK) &&
+			FIXES_OnPlayerText(playerid, text);
+	}
+
+	#if defined _ALS_OnPlayerText
+		#error _ALS_OnPlayerText defined
+	#endif
+	#define _ALS_OnPlayerText
+	#define OnPlayerText(%0) FIXES_OnPlayerText(%0) <_ALS : _ALS_go>
+
+	_FIXES_FORWARD FIXES_OnPlayerText(playerid, text[]);
+#endif
+
+/**
  * <fixes>SetPlayerWorldBounds</fixes>
  * <fixes>TogglePlayerControllable</fixes>
  * <fixes>AllowInteriorWeapons</fixes>
@@ -7873,15 +7950,16 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  * <fixes>PassengerSeating</fixes>
  * <fixes>GogglesSync</fixes>
+ * <fixes>BypassDialog</fixes>
  */
 
-#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerEnterVehicle_3 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GogglesSync
+#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_AllowInteriorWeapons || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_OnPlayerEnterVehicle_3 || FIX_OnPlayerDeath || FIX_Kick || FIX_OnVehicleMod || FIX_PassengerSeating || FIX_GogglesSync || FIX_BypassDialog
 	public OnPlayerUpdate(playerid)
 	{
 		// =============================
 		//  BEGIN: OnPlayerEnterVehicle
 		// =============================
-		#if FIX_OnPlayerEnterVehicle || FIX_Kick || FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle_2
+		#if FIX_OnPlayerEnterVehicle || FIX_Kick || FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle_2 || FIX_BypassDialog
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_BLOCK)
 			{
 				return 0;
@@ -8487,8 +8565,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#if FIX_OnPlayerEnterVehicle_2
 			if (!(0 < vehicleid < MAX_VEHICLES))
 			{
-				FIXES_BlockUpdate(playerid);
-				return 0;
+				return FIXES_BlockUpdate(playerid);
 			}
 		#endif
 		// =============================
@@ -8578,8 +8655,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			{
 				return FIXES_OnPlayerExitVehicle(playerid, vehicleid);
 			}
-			FIXES_BlockUpdate(playerid);
-			return 0;
+			return FIXES_BlockUpdate(playerid);
 		#endif
 		// =============================
 		//  END: OnPlayerEnterVehicle_2
@@ -8601,9 +8677,14 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * </remarks>
  */
 
-#if FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_Kick || FIX_OnVehicleMod
-	static stock FIXES_BlockUpdate(playerid, bool:kick = true)
+#if FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_Kick || FIX_OnVehicleMod || FIX_BypassDialog
+	static stock FIXES_BlockUpdate(playerid, bool:kick = true, e_FIXES_BOOLS:type = e_FIXES_BOOLS_FORCE_BLOCK)
 	{
+		if (type == e_FIXES_BOOLS_FORCE_BLOCK)
+		{
+			// Replace temporary dialog blocks with permanant blocks.
+			FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DIALOG_BLOCK;
+		}
 		if (kick)
 		{
 			#if FIXES_SilentKick
@@ -8623,10 +8704,39 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				Kick__(playerid);
 			#endif
 		}
+		// Always return `0`.
+		if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_FORCE_BLOCK)
+		{
+			return 0;
+		}
 		return
-			FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_BLOCK,
+			FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_BLOCK | type,
 			0;
 	}
+#endif
+
+/**
+ * <remarks>
+ * Unblock a player's updates after they close a dialog.
+ * </remarks>
+ */
+
+#if FIX_BypassDialog
+	#if !FIXES_Single
+		forward @FIXES_BlockUpdate(playerid, bool:block);
+		
+		public @FIXES_BlockUpdate(playerid, bool:block)
+		{
+			if (block)
+			{
+				FIXES_BlockUpdate(playerid, false, e_FIXES_BOOLS_DIALOG_BLOCK);
+			}
+			else if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DIALOG_BLOCK)
+			{
+				FIXES_gsPlayerBools[playerid] &= ~(e_FIXES_BOOLS_BLOCK | e_FIXES_BOOLS_DIALOG_BLOCK);
+			}
+		}
+	#endif
 #endif
 
 /**
@@ -10834,15 +10944,26 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  * <fixes>GetPlayerDialog</fixes>
  */
 
-#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+#if FIX_OnDialogResponse || FIX_GetPlayerDialog || FIX_BypassDialog
 	stock FIXES_ShowPlayerDialog(playerid, dialog, style, _FIXES_MAYBE_CONST title[], _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[])
 	{
-		if (_FIXES_IS_VALID_PLAYER(playerid))
-		{
-			FIXES_SET(PlayerDialog, playerid, dialog);
-			return ShowPlayerDialog__(playerid, dialog, style, title, caption, button1, button2);
-		}
-		return 0;
+		#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+			if (_FIXES_IS_VALID_PLAYER(playerid))
+			{
+				FIXES_SET(PlayerDialog, playerid, dialog);
+		#endif
+		#if FIX_BypassDialog
+			#if FIXES_Single
+				FIXES_BlockUpdate(playerid, false, e_FIXES_BOOLS_DIALOG_BLOCK);
+			#else
+				CallRemoteFunction__(FIXES_gscBlockUpdate, FIXES_gscSpec@ii, playerid, true);
+			#endif
+		#endif
+				return ShowPlayerDialog__(playerid, dialog, style, title, caption, button1, button2);
+		#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+			}
+			return 0;
+		#endif
 	}
 
 	#if _FIXES_SAMP
@@ -10862,36 +10983,63 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  * <fixes>GetPlayerDialog</fixes>
  */
 
-#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+#if FIX_OnDialogResponse || FIX_GetPlayerDialog || FIX_BypassDialog
 	public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	{
 		// =========================
 		//  BEGIN: OnDialogResponse
 		// =========================
-		#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+		#if FIX_OnDialogResponse || FIX_GetPlayerDialog || FIX_BypassDialog
 			#if FIXES_Single
 				#if FIX_OnDialogResponse
 					dialogid = FIXES_gsPlayerDialog[playerid];
 				#endif
-				FIXES_gsPlayerDialog[playerid] = INVALID_DIALOG_ID;
-			#elseif FIX_OnDialogResponse
-				_FIXES_IS_IN_CHARGE()
-				{
-					// If there are multiple scripts, we can't just wipe the
-					// current dialog data or subsequent scripts will display
-					// the wrong value.
-					dialogid = GetPVarInt__(playerid, FIXES_pvarPlayerDialog),
-					SetPVarInt__(playerid, FIXES_pvarCurrentDialog, dialogid),
-					SetPVarInt__(playerid, FIXES_pvarPlayerDialog, INVALID_DIALOG_ID);
-				}
-				else
-				{
-					dialogid = GetPVarInt__(playerid, FIXES_pvarCurrentDialog);
-				}
+				#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+					FIXES_gsPlayerDialog[playerid] = INVALID_DIALOG_ID;
+				#endif
+				#if FIX_BypassDialog
+					if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DIALOG_BLOCK)
+					{
+						FIXES_gsPlayerBools[playerid] &= ~(e_FIXES_BOOLS_BLOCK | e_FIXES_BOOLS_DIALOG_BLOCK);
+					}
+					else
+					{
+						return 0;
+					}
+				#endif
 			#else
-				SetPVarInt__(playerid, FIXES_pvarPlayerDialog, INVALID_DIALOG_ID);
+				#if FIX_OnDialogResponse || FIX_BypassDialog
+					_FIXES_IS_IN_CHARGE()
+					{
+						#if FIX_BypassDialog
+							if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DIALOG_BLOCK)
+							{
+								CallRemoteFunction__(FIXES_gscBlockUpdate, FIXES_gscSpec@ii, playerid, false);
+							}
+							else
+							{
+								return 0;
+							}
+						#endif
+						#if FIX_OnDialogResponse
+							// If there are multiple scripts, we can't just wipe the
+							// current dialog data or subsequent scripts will display
+							// the wrong value.
+							dialogid = GetPVarInt__(playerid, FIXES_pvarPlayerDialog),
+							SetPVarInt__(playerid, FIXES_pvarCurrentDialog, dialogid),
+							SetPVarInt__(playerid, FIXES_pvarPlayerDialog, INVALID_DIALOG_ID);
+					}
+					else
+					{
+							dialogid = GetPVarInt__(playerid, FIXES_pvarCurrentDialog);
+						#endif
+					}
+				#endif
+				#if !FIX_OnDialogResponse && FIX_GetPlayerDialog
+					SetPVarInt__(playerid, FIXES_pvarPlayerDialog, INVALID_DIALOG_ID);
+				#endif
 			#endif
-			return FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext);
+					return FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext);
 		#endif
 		// =========================
 		//  END:   OnDialogResponse
@@ -10922,7 +11070,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		{
 			return FIXES_GET(PlayerDialog, playerid);
 		}
-		return -1;
+		return INVALID_DIALOG_ID;
 	}
 
 	#if _FIXES_SAMP

@@ -197,6 +197,8 @@ GetServerVarAsFloat | Doesn't even exist. | Read the file manually. | [Y_Less](h
 tabsize | Some people still use `tabsize 0`. | Break the pragma. | [Y_Less](https://github.com/Y-Less) | [Link](http://forum.sa-mp.com/showpost.php?p=3929000) | 
 OnRconCommand | Is not called in the gamemode unless first called in a filterscript. | Load a minimal (embedded) FS to bootstrap it. | [Y_Less](https://github.com/Y-Less) | | 
 OnClientCheckResponse | Is not called in the gamemode ever. | Load a minimal (embedded) FS to bootstrap it. | [Y_Less](https://github.com/Y-Less) | | 
+GetMaxPlayers | If this is > MAX_PLAYERS, can cause OOBs in code. | Constrain it; but also warn because that doesn't really help. | [Y_Less](https://github.com/Y-Less) | | 
+BypassDialog | You can type commands and move while in dialogs. | Return 0. | [Y_Less](https://github.com/Y-Less) | | 
 
 ## Options 
 
