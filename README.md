@@ -199,6 +199,7 @@ OnRconCommand | Is not called in the gamemode unless first called in a filterscr
 OnClientCheckResponse | Is not called in the gamemode ever. | Load a minimal (embedded) FS to bootstrap it. | [Y_Less](https://github.com/Y-Less) | | 
 GetMaxPlayers | If this is > MAX_PLAYERS, can cause OOBs in code. | Constrain it; but also warn because that doesn't really help. | [Y_Less](https://github.com/Y-Less) | | 
 BypassDialog | You can type commands and move while in dialogs. | Return 0. | [Y_Less](https://github.com/Y-Less) | | 
+SetTimer | Valid timers can return ID 0. | Recreate them and kill the original. | [Y_Less](https://github.com/Y-Less) | | 
 
 ## Options 
 

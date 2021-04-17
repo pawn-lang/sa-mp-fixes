@@ -1600,6 +1600,18 @@ in the output code.
  *     <see>OnDialogResponse</see>
  *     <author href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
+ *
+ * <fix name="SetTimer">
+ *     <problem>
+ *         Valid timers can return ID 0.
+ *     </problem>
+ *     <solution>
+ *         Recreate them and kill the original.
+ *     </solution>
+ *     <see>FIXES_SetTimer</see>
+ *     <see>FIXES_SetTimerEx</see>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
  * </fixeslist>
  *
  * <section>
@@ -2966,6 +2978,13 @@ in the output code.
 #elseif _FIXES_IS_UNSET(FIX_BypassDialog)
 	#undef FIX_BypassDialog
 	#define FIX_BypassDialog                     (2)
+#endif
+
+#if !defined FIX_SetTimer
+	#define FIX_SetTimer                         (1)
+#elseif _FIXES_IS_UNSET(FIX_SetTimer)
+	#undef FIX_SetTimer
+	#define FIX_SetTimer                         (2)
 #endif
 
 /**
@@ -4767,12 +4786,14 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#error _ALS_SetTimer defined
 	#endif
 	native CST_SetTimer(const funcname[], interval, repeating) = SetTimer;
+	native BAD_SetTimer(const funcname[], interval, repeating) = SetTimer;
 	#define _ALS_SetTimer
 	#define SetTimer( CST_SetTimer(
 	#if _FIXES_SAMP && defined _ALS_SetTimerEx
 		#error _ALS_SetTimerEx defined
 	#endif
 	native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+	native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
 	#define _ALS_SetTimerEx
 	#define SetTimerEx( CST_SetTimerEx(
 	#if _FIXES_SAMP && defined _ALS_SHA256_PassHash
@@ -8485,6 +8506,113 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define OnPlayerInteriorChange(%0) FIXES_OnPlayerInteriorChange(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
+#endif
+
+/**
+ * <fixes>SetTimer</fixes>
+ */
+
+#if !FIX_const
+	#if _FIXES_SAMP && defined _ALS_SetTimer
+		#error _ALS_SetTimer defined
+	#endif
+	native BAD_SetTimer(const funcname[], interval, repeating) = SetTimer;
+	native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+#endif
+
+#if FIX_SetTimer
+	#if (__Pawn & 0x0F) < 0x0A
+		forward _FIXES_SetTimer();
+
+		public _FIXES_SetTimer()
+		{
+			// `SYSREQ.C` fix.
+			SetTimerEx__("", 0, 0, "");
+			KillTimer__(0);
+		}
+	#endif
+
+	stock FIXES_SetTimer(const funcname[], interval, repeating)
+	{
+		new
+			ret = SetTimer__(funcname, interval, repeating);
+		if (ret == 0)
+		{
+			// Got a timer ID of 0, which is actually valid.
+			// Make a new version.
+			ret = SetTimer__(funcname, interval, repeating);
+			// Kill the old version.
+			KillTimer__(0);
+			// If this is still 0 there was probably a problem, so go with it.
+		}
+		return ret;
+	}
+
+	#if _FIXES_SAMP
+		#if defined _ALS_SetTimer
+			#undef SetTimer
+		#else
+			#define _ALS_SetTimer
+		#endif
+		#define SetTimer( FIXES_SetTimer(
+	#endif
+	#define _ALS_SetTimer__
+	#define SetTimer__( FIXES_SetTimer(
+
+	stock FIXES_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...)
+	{
+		#pragma unused funcname, interval, repeating, format
+
+		static
+			sAddress, // Return address.
+			sFrame,   // Caller frame.
+			sTimer;   // Timer return value.
+
+		// Get the function preamble off the stack.
+		#emit POP.pri
+		#emit POP.alt
+		#emit STOR.pri     sFrame
+		#emit STOR.alt     sAddress
+
+		// We can now just call `SetTimerEx` directly - the stack is correct for this call.
+		#emit SYSREQ.C     SetTimerEx
+		#emit STOR.pri     sTimer
+
+		// At this point we have NOT restored the function header to the stack, but it's unneeded.
+		if (sTimer == 0)
+		{
+			// Call it again.
+			#emit SYSREQ.C     SetTimerEx
+			#emit STOR.pri     sTimer
+
+			// Kill the original.
+			#emit PUSH.C       0
+			#emit PUSH.C       4
+			#emit SYSREQ.C     KillTimer
+			#emit STACK        8
+		}
+
+		// Compiler bug fix.
+		{}
+
+		// Now we can put the stack back, after one or two calls.
+		#emit PUSH         sAddress
+		#emit PUSH         sFrame
+
+		// And return the stored timer ID.
+		return sTimer;
+	}
+
+	#if _FIXES_SAMP
+		#if defined _ALS_SetTimerEx
+			#undef SetTimerEx
+		#else
+			#define _ALS_SetTimerEx
+		#endif
+		#define SetTimerEx( FIXES_SetTimerEx(
+	#endif
+	#define _ALS_SetTimerEx__
+	#define SetTimerEx__( FIXES_SetTimerEx(
 #endif
 
 /**
