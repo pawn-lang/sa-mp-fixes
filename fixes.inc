@@ -3525,6 +3525,12 @@ static stock
 #endif
 	/**
 	 * <remarks>
+	 * A non-const empty string for `SYSREQ.C` fix calls.
+	 * </remarks>
+	 */
+	FIXES_gsEmpty[] = "",
+	/**
+	 * <remarks>
 	 * A single re-usable space.  Static not const because it is used in this
 	 * file in functions that don't take `const` strings.
 	 * </remarks>
@@ -4541,6 +4547,24 @@ static stock const
 
 /**
  * <remarks>
+ * Future-compatible tag definitions.
+ * </remarks>
+ */
+
+#if !defined KEY
+	#define KEY: _:
+#endif
+
+#if !defined PLAYER_STATE
+	#define PLAYER_STATE: _:
+#endif
+
+#if !defined SPECIAL_ACTION
+	#define SPECIAL_ACTION: _:
+#endif
+
+/**
+ * <remarks>
  * <c>_FIXES_KEY_AIM</c>
  * <c>KEY_AIM</c>
  *
@@ -4548,7 +4572,7 @@ static stock const
  * </remarks>
  */
 
-#define _FIXES_KEY_AIM                   (128)
+#define _FIXES_KEY_AIM                   (KEY:128)
 #if FIX_KEY_AIM
 	#define KEY_AIM                      _FIXES_KEY_AIM
 #endif
@@ -5306,16 +5330,16 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native Float:atan2__(Float:x, Float:y) = atan2;
 	native SendChat__(const msg[]) = SendChat;
 	native SendCommand__(const commandtext[]) = SendCommand;
-	native GetPlayerState__(playerid) = GetPlayerState;
+	native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState;
 	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
 	native GetPlayerArmedWeapon__(playerid) = GetPlayerArmedWeapon;
 	native GetPlayerHealth__(playerid) = GetPlayerHealth;
 	native GetPlayerArmour__(playerid) = GetPlayerArmour;
-	native GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
+	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
 	native IsPlayerStreamedIn__(playerid) = IsPlayerStreamedIn;
 	native IsVehicleStreamedIn__(vehicleid) = IsVehicleStreamedIn;
-	native GetPlayerKeys__(playerid, &keys, &updown, &leftright) = GetPlayerKeys;
+	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
 	native GetMyPos__(&Float:x, &Float:y, &Float:z) = GetMyPos;
 	native SetMyPos__(Float:x, Float:y, Float:z) = SetMyPos;
@@ -5630,11 +5654,11 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native ResetPlayerMoney__(playerid) = ResetPlayerMoney;
 	native SetPlayerName__(playerid, const name[]) = SetPlayerName;
 	native GetPlayerMoney__(playerid) = GetPlayerMoney;
-	native GetPlayerState__(playerid) = GetPlayerState;
+	native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState;
 	native GetPlayerIp__(playerid, ip[], len = sizeof ip) = GetPlayerIp;
 	native GetPlayerPing__(playerid) = GetPlayerPing;
 	native GetPlayerWeapon__(playerid) = GetPlayerWeapon;
-	native GetPlayerKeys__(playerid, &keys, &updown, &leftright) = GetPlayerKeys;
+	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 	native GetPlayerName__(playerid, name[], len = sizeof name) = GetPlayerName;
 	native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime;
 	native GetPlayerTime__(playerid, &hour, &minute) = GetPlayerTime;
@@ -5701,7 +5725,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native ClearAnimations__(playerid, forcesync = 0) = ClearAnimations;
 	native GetPlayerAnimationIndex__(playerid) = GetPlayerAnimationIndex;
 	native GetAnimationName__(index, animlib[], len1 = sizeof animlib, animname[], len2 = sizeof animname) = GetAnimationName;
-	native GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
+	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
 	native SetPlayerSpecialAction__(playerid, actionid) = SetPlayerSpecialAction;
 	native DisableRemoteVehicleCols__(playerid, disable) = DisableRemoteVehicleCollisions;
 	native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
@@ -5849,7 +5873,7 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 		{
 			_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 			{
-				if (GetPlayerState__(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID__(i) == vehicleid)
+				if (GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID__(i) == vehicleid)
 				{
 					if (FIXES_gsJackedId[i] != INVALID_PLAYER_ID)
 					{
@@ -8044,9 +8068,9 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 
 		#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_GogglesSync
 			new
-				ud,
-				lr,
-				keys;
+				KEY:ud,
+				KEY:lr,
+				KEY:keys;
 			GetPlayerKeys__(playerid, keys, ud, lr);
 		#endif
 
@@ -8527,8 +8551,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		public _FIXES_SetTimer()
 		{
 			// `SYSREQ.C` fix.
-			SetTimerEx__("", 0, 0, "");
-			KillTimer__(0);
+			SetTimerEx(FIXES_gsEmpty, 0, false, FIXES_gsEmpty);
+			KillTimer(0);
 		}
 	#endif
 
@@ -8646,7 +8670,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  */
 
 #if FIX_DriveBy
-	public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
+	public OnPlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys)
 	{
 		// ===============================
 		//  BEGIN: DriveBy
@@ -8675,7 +8699,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define _ALS_OnPlayerKeyStateChange
 	#define OnPlayerKeyStateChange(%0) FIXES_OnPlayerKeyStateChange(%0) <_ALS : _ALS_go>
 
-	_FIXES_FORWARD FIXES_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
+	_FIXES_FORWARD FIXES_OnPlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
 #endif
 
 /**
@@ -8821,13 +8845,14 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				GetPlayerIp__(playerid, ip, sizeof (ip)),
 				format(ip, sizeof (ip), "banip %s", ip),
 				SendRconCommand__(ip),
-				FIXES_gsPlayerIP[playerid] = strval(ip[kick]) << 24,
-				kick = strfind(ip, FIXES_gscDot, false, kick) + 1,
-				FIXES_gsPlayerIP[playerid] |= strval(ip[kick]) << 16,
-				kick = strfind(ip, FIXES_gscDot, false, kick) + 1,
-				FIXES_gsPlayerIP[playerid] |= strval(ip[kick]) << 8,
-				kick = strfind(ip, FIXES_gscDot, false, kick) + 1,
-				FIXES_gsPlayerIP[playerid] |= strval(ip[kick]);
+				// Just re-using an existing variable.  Need to override the tags.
+				FIXES_gsPlayerIP[playerid] = strval(ip[_:kick]) << 24,
+				kick = bool:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
+				FIXES_gsPlayerIP[playerid] |= strval(ip[_:kick]) << 16,
+				kick = bool:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
+				FIXES_gsPlayerIP[playerid] |= strval(ip[_:kick]) << 8,
+				kick = bool:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
+				FIXES_gsPlayerIP[playerid] |= strval(ip[_:kick]);
 			#else
 				Kick__(playerid);
 			#endif
@@ -9430,7 +9455,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
  */
 
 #if FIX_HydraSniper || FIX_GetPlayerWeapon || FIX_PutPlayerInVehicle || FIX_OnPlayerEnterVehicle || FIX_TrainExit
-	public OnPlayerStateChange(playerid, newstate, oldstate)
+	public OnPlayerStateChange(playerid, PLAYER_STATE:newstate, PLAYER_STATE:oldstate)
 	{
 		#if !FIXES_Single
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
@@ -9557,10 +9582,10 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 		// ========================
 
 		#if FIX_GetPlayerWeapon || FIX_PutPlayerInVehicle || FIX_TrainExit
-			#if PLAYER_STATE_PASSENGER != PLAYER_STATE_DRIVER + 1
+			#if PLAYER_STATE_PASSENGER != PLAYER_STATE_DRIVER + PLAYER_STATE:1
 				#error FIX_GetPlayerWeapon/FIX_PutPlayerInVehicle/FIX_TrainExit state assertation failed.
 			#endif
-			if (_FIXES_IN_RANGE(oldstate, PLAYER_STATE_DRIVER, PLAYER_STATE_PASSENGER + 1))
+			if (_FIXES_IN_RANGE(oldstate, PLAYER_STATE_DRIVER, PLAYER_STATE_PASSENGER + PLAYER_STATE:1))
 			{
 				#if FIX_PutPlayerInVehicle || FIX_TrainExit
 					new
@@ -9649,7 +9674,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 	#define _ALS_OnPlayerStateChange
 	#define OnPlayerStateChange(%0) FIXES_OnPlayerStateChange(%0) <_ALS : _ALS_go>
 
-	_FIXES_FORWARD FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
+	_FIXES_FORWARD FIXES_OnPlayerStateChange(playerid, PLAYER_STATE:newstate, PLAYER_STATE:oldstate);
 #endif
 
 /**
