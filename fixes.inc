@@ -3079,6 +3079,27 @@ PRE_HOOK(FIXES)
 
 /**
  * <remarks>
+ * _FIXES_IncludeNatives
+ *
+ * Include functions used be various fixes.
+ * </remarks>
+ */
+
+#if (__Pawn & 0x0F) < 0x0A
+	forward _FIXES_IncludeNatives();
+
+	public _FIXES_IncludeNatives()
+	{
+		static FIXES_glEmpty[] = "";
+		// `SYSREQ.C` fix.  Do this before anything else, so the original native names are used,
+		// before any hook replacements.
+		SetTimerEx(FIXES_glEmpty, 0, false, FIXES_glEmpty);
+		KillTimer(0);
+	}
+#endif
+
+/**
+ * <remarks>
  * _FIXES_IncludeStates
  *
  * Define the "_ALS" states used by hooks.
@@ -3257,38 +3278,6 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
  */
 
 #define isnull(%0) ((%0[(%0[0])=='\1'])=='\0')
-
-#if FIXES_Debug
-new
-#else
-static stock
-#endif
-	/**
-	 * <remarks>
-	 * A non-const empty string for `SYSREQ.C` fix calls.
-	 * </remarks>
-	 */
-	FIXES_gsEmpty[] = "";
-
-/**
- * <remarks>
- * _FIXES_IncludeNatives
- *
- * Include functions used be various fixes.
- * </remarks>
- */
-
-#if (__Pawn & 0x0F) < 0x0A
-	forward _FIXES_IncludeNatives();
-
-	public _FIXES_IncludeNatives()
-	{
-		// `SYSREQ.C` fix.  Do this before anything else, so the original native names are used,
-		// before any hook replacements.
-		SetTimerEx(FIXES_gsEmpty, 0, false, FIXES_gsEmpty);
-		KillTimer(0);
-	}
-#endif
 
 /**
  * <remarks>
@@ -4839,14 +4828,13 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native BAD_SetTimer(const funcname[], interval, repeating) = SetTimer;
 	#define _ALS_SetTimer
 	#define SetTimer( CST_SetTimer(
-	// Done last to avoid assembly issues
-	//#if _FIXES_SAMP && defined _ALS_SetTimerEx
-	//	#error _ALS_SetTimerEx defined
-	//#endif
-	//native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
-	//native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
-	//#define _ALS_SetTimerEx
-	//#define SetTimerEx( CST_SetTimerEx(
+	#if _FIXES_SAMP && defined _ALS_SetTimerEx
+		#error _ALS_SetTimerEx defined
+	#endif
+	native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+	native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+	#define _ALS_SetTimerEx
+	#define SetTimerEx( CST_SetTimerEx(
 	#if _FIXES_SAMP && defined _ALS_SHA256_PassHash
 		#error _ALS_SHA256_PassHash defined
 	#endif
@@ -5900,7 +5888,7 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 		{
 			_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 			{
-				if (GetPlayerState(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID__(i) == vehicleid)
+				if (GetPlayerState__(i) == PLAYER_STATE_DRIVER && GetPlayerVehicleID__(i) == vehicleid)
 				{
 					if (FIXES_gsJackedId[i] != INVALID_PLAYER_ID)
 					{
@@ -8563,20 +8551,13 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * <fixes>SetTimer</fixes>
  */
 
-// This code is complicated to compile because `#emit` can't be inside `#if`.  So instead this
-// always declares the function, but doesn't always hook it.  There are also some complex
-// interactions with `FIX_const` because `SetTimerEx` can't be redefined before this point, to
-// make the `SYSREQ` work properly.
-
-#if FIX_const
-	native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
-#else
+#if !FIX_const
 	#if _FIXES_SAMP && defined _ALS_SetTimer
 		#error _ALS_SetTimer defined
 	#endif
 	native BAD_SetTimer(const funcname[], interval, repeating) = SetTimer;
+	native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
 #endif
-native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
 
 #if !FIX_SetTimer
 	static
@@ -8596,6 +8577,23 @@ native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Fl
 		}
 		return ret;
 	}
+
+#if FIX_SetTimer
+	#if _FIXES_SAMP
+		#if defined _ALS_SetTimer
+			#if FIX_const
+				#undef SetTimer
+			#else
+				#error _ALS_SetTimer defined
+			#endif
+		#else
+			#define _ALS_SetTimer
+		#endif
+		#define SetTimer( FIXES_SetTimer(
+	#endif
+	#define _ALS_SetTimer__
+	#define SetTimer__( FIXES_SetTimer(
+#endif
 
 #if !FIX_SetTimer
 	static
@@ -8646,35 +8644,17 @@ native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Fl
 
 #if FIX_SetTimer
 	#if _FIXES_SAMP
-		#if defined _ALS_SetTimer
-			#if FIX_const
-				#undef SetTimer
-			#else
-				#error _ALS_SetTimer defined
-			#endif
-		#else
-			#define _ALS_SetTimer
-		#endif
-		#define SetTimer( FIXES_SetTimer(
-	#endif
-	#define _ALS_SetTimer__
-	#define SetTimer__( FIXES_SetTimer(
-
-	#if _FIXES_SAMP
 		#if defined _ALS_SetTimerEx
-			#error _ALS_SetTimerEx defined
+			#if FIX_const
+				#undef SetTimerEx
+			#else
+				#error _ALS_SetTimerEx defined
+			#endif
 		#endif
 		#define SetTimerEx( FIXES_SetTimerEx(
 	#endif
 	#define _ALS_SetTimerEx__
 	#define SetTimerEx__( FIXES_SetTimerEx(
-#elseif FIX_const
-	// Done last to avoid assembly issues
-	#if _FIXES_SAMP && defined _ALS_SetTimerEx
-		#error _ALS_SetTimerEx defined
-	#endif
-	#define _ALS_SetTimerEx
-	#define SetTimerEx( CST_SetTimerEx(
 #endif
 
 /**
