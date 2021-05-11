@@ -204,39 +204,32 @@ SetTimer | Valid timers can return ID 0. | Recreate them and kill the original. 
 ## Options 
 
 
-There are a few options for improved execution of this script. Define these symbols as `1` before you include fixes.inc (remove them or set them to `0` to disable them):
-
-
-* [FIXES_Single](#FIXES_Single): You only have one script running (no filterscripts), simplify the code. 
-* [FIXES_SilentKick](#FIXES_SilentKick): When a player is kicked for illegal mods/vehicles, don't send them a message. 
-* [FIXES_Debug](#FIXES_Debug): Additional information in the server console. 
-
 A few fixes are disabled by default, to enable them all do:
 
-
-
 ```pawn
-#define GetPlayerDialog 1 
-#define file_inc 1 
-#define random 1 
-#define HideMenuForPlayer_2 1 
-#define GameTextStyles 1 
-#define GetPlayerWeather 1 
-#define GetWeather 1 
-#define GetWorldTime 1 
+#define FIX_GetPlayerDialog 1 
+#define FIX_file_inc 1 
+#define FIX_random 1 
+#define FIX_HideMenuForPlayer_2 1 
+#define FIX_GameTextStyles 1 
+#define FIX_GetPlayerWeather 1 
+#define FIX_GetWeather 1 
+#define FIX_GetWorldTime 1 
 ```
 
 
 
-Or more simply (and future-proof-ly):
+There are a few options for improved execution of this script. Define these symbols as `1` before you include fixes.inc to explicitly enable them, `0` to explicitly disable them
 
 
-
-```pawn
-#define FIXES_EnableAll 
-#define FIXES_EnableDeprecated 
-```
-
+* `FIXES_Single`: You only have one script running (no filterscripts), simplify the code.  Default `1`.
+* `FIXES_SilentKick`: When a player is kicked for illegal mods/vehicles, don't send them a message.  Default `0`.
+* `FIXES_Debug`: Additional information in the server console.  Default `0`.
+* `FIXES_ServerVarMsg`: Show a message at mode start about server var fixes.  Default `1`.
+* `FIXES_GetMaxPlayersMsg`: Show a message at mode start about max player fixes.  Default `1`.
+* `FIXES_Debug`: Additional information in the server console.  Default `0`.
+* `FIXES_EnableAll`: Enable all current and future default disabled fixes.  Default `0`.
+* `FIXES_EnableDeprecated`: Enable all past (deprecated) fixes.  Might causes errors and conflicts with newer SA:MP includes.  Default `0`.
 
 
 ## Expansion 
