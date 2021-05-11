@@ -8557,6 +8557,10 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#if _FIXES_SAMP && defined _ALS_SetTimer
 		#error _ALS_SetTimer defined
 	#endif
+
+	#if _FIXES_SAMP && defined _ALS_SetTimerEx
+		#error _ALS_SetTimerEx defined
+	#endif
 	native BAD_SetTimer(const funcname[], interval, repeating) = SetTimer;
 	native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
 #endif
@@ -8583,11 +8587,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if FIX_SetTimer
 	#if _FIXES_SAMP
 		#if defined _ALS_SetTimer
-			#if FIX_const
-				#undef SetTimer
-			#else
-				#error _ALS_SetTimer defined
-			#endif
+			#undef SetTimer
 		#else
 			#define _ALS_SetTimer
 		#endif
@@ -8649,11 +8649,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if FIX_SetTimer
 	#if _FIXES_SAMP
 		#if defined _ALS_SetTimerEx
-			#if FIX_const
-				#undef SetTimerEx
-			#else
-				#error _ALS_SetTimerEx defined
-			#endif
+			#undef SetTimerEx
+		#else
+			#define _ALS_SetTimerEx
 		#endif
 		#define SetTimerEx( FIXES_SetTimerEx(
 	#endif
