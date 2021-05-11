@@ -13579,8 +13579,18 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
 
 #if !FIX_SetTimer
-	static
+	#if FIX_const
+		// Done last to avoid assembly issues
+		#if _FIXES_SAMP && defined _ALS_SetTimerEx
+			#error _ALS_SetTimerEx defined
+		#endif
+		#define _ALS_SetTimerEx
+		#define SetTimerEx( CST_SetTimerEx(
+	#endif
+
+	#endinput
 #endif
+//#else
 	stock FIXES_SetTimer(const funcname[], interval, repeating)
 	{
 		new
@@ -13597,9 +13607,6 @@ native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Fl
 		return ret;
 	}
 
-#if !FIX_SetTimer
-	static
-#endif
 	stock FIXES_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...)
 	{
 		#pragma unused funcname, interval, repeating, format
@@ -13644,10 +13651,13 @@ native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Fl
 		return sTimer;
 	}
 
-#if FIX_SetTimer
 	#if _FIXES_SAMP
 		#if defined _ALS_SetTimer
-			#undef SetTimer
+			#if FIX_const
+				#undef SetTimer
+			#else
+				#error _ALS_SetTimer defined
+			#endif
 		#else
 			#define _ALS_SetTimer
 		#endif
@@ -13661,20 +13671,11 @@ native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Fl
 			#error _ALS_SetTimerEx defined
 		#endif
 		#define SetTimerEx( FIXES_SetTimerEx(
+	#else
 	#endif
 	#define _ALS_SetTimerEx__
 	#define SetTimerEx__( FIXES_SetTimerEx(
-#else
-	#if FIX_const
-		// Done last to avoid assembly issues
-		#if _FIXES_SAMP && defined _ALS_SetTimerEx
-			#error _ALS_SetTimerEx defined
-		#endif
-		#define _ALS_SetTimerEx
-		#define SetTimerEx( CST_SetTimerEx(
-	#endif
-#endif
-
+//#endif
 #endinput
 
 // Fix documentation template.
