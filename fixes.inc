@@ -3258,40 +3258,6 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 
 #define isnull(%0) ((%0[(%0[0])=='\1'])=='\0')
 
-#if FIXES_Debug
-new
-#else
-static stock
-#endif
-	/**
-	 * <remarks>
-	 * A non-const empty string for `SYSREQ.C` fix calls.
-	 * </remarks>
-	 */
-	FIXES_gsEmpty[] = "";
-
-/**
- * <remarks>
- * _FIXES_IncludeNatives
- *
- * Include functions used be various fixes.
- * </remarks>
- */
-
-#if (__Pawn & 0x0F) < 0x0A
-	forward _FIXES_IncludeNatives();
-
-	public _FIXES_IncludeNatives()
-	{
-		// `SYSREQ.C` fix.  Do this before anything else, so the original native
-		// names are used, before any hook replacements.
-		#if FIX_SetTimer
-			SetTimerEx(FIXES_gsEmpty, 0, false, FIXES_gsEmpty);
-			KillTimer(0);
-		#endif
-	}
-#endif
-
 /**
  * <remarks>
  * E_FIXES_WORLDBOUND_DATA
@@ -3557,6 +3523,12 @@ new
 #else
 static stock
 #endif
+	/**
+	 * <remarks>
+	 * A non-const empty string for `SYSREQ.C` fix calls.
+	 * </remarks>
+	 */
+	FIXES_gsEmpty[] = "",
 	/**
 	 * <remarks>
 	 * A single re-usable space.  Static not const because it is used in this
@@ -4841,13 +4813,14 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native BAD_SetTimer(const funcname[], interval, repeating) = SetTimer;
 	#define _ALS_SetTimer
 	#define SetTimer( CST_SetTimer(
-	#if _FIXES_SAMP && defined _ALS_SetTimerEx
-		#error _ALS_SetTimerEx defined
-	#endif
-	native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
-	native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
-	#define _ALS_SetTimerEx
-	#define SetTimerEx( CST_SetTimerEx(
+	// Done last to avoid assembly issues
+	//#if _FIXES_SAMP && defined _ALS_SetTimerEx
+	//	#error _ALS_SetTimerEx defined
+	//#endif
+	//native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+	//native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+	//#define _ALS_SetTimerEx
+	//#define SetTimerEx( CST_SetTimerEx(
 	#if _FIXES_SAMP && defined _ALS_SHA256_PassHash
 		#error _ALS_SHA256_PassHash defined
 	#endif
@@ -8558,109 +8531,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define OnPlayerInteriorChange(%0) FIXES_OnPlayerInteriorChange(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
-#endif
-
-/**
- * <fixes>SetTimer</fixes>
- */
-
-#if !FIX_const
-	#if _FIXES_SAMP && defined _ALS_SetTimer
-		#error _ALS_SetTimer defined
-	#endif
-	native BAD_SetTimer(const funcname[], interval, repeating) = SetTimer;
-	native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
-#endif
-
-#if FIX_SetTimer
-	stock FIXES_SetTimer(const funcname[], interval, repeating)
-	{
-		new
-			ret = SetTimer__(funcname, interval, repeating);
-		if (ret == 0)
-		{
-			// Got a timer ID of 0, which is actually valid.
-			// Make a new version.
-			ret = SetTimer__(funcname, interval, repeating);
-			// Kill the old version.
-			KillTimer__(0);
-			// If this is still 0 there was probably a problem, so go with it.
-		}
-		return ret;
-	}
-
-	#if _FIXES_SAMP
-		#if defined _ALS_SetTimer
-			#undef SetTimer
-		#else
-			#define _ALS_SetTimer
-		#endif
-		#define SetTimer( FIXES_SetTimer(
-	#endif
-	#define _ALS_SetTimer__
-	#define SetTimer__( FIXES_SetTimer(
-#endif
-
-#if !FIX_SetTimer
-	static
-#endif
-	stock FIXES_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...)
-	{
-		// This function is not inside a conditional block because `#emit` can't be.
-		#pragma unused funcname, interval, repeating, format
-
-		static
-			sAddress, // Return address.
-			sFrame,   // Caller frame.
-			sTimer;   // Timer return value.
-
-		// Get the function preamble off the stack.
-		#emit POP.pri
-		#emit POP.alt
-		#emit STOR.pri     sFrame
-		#emit STOR.alt     sAddress
-
-		// We can now just call `SetTimerEx` directly - the stack is correct for this call.
-		#emit SYSREQ.C     SetTimerEx
-		#emit STOR.pri     sTimer
-
-		// At this point we have NOT restored the function header to the stack, but it's unneeded.
-		if (sTimer == 0)
-		{
-			// Call it again.
-			#emit SYSREQ.C     SetTimerEx
-			#emit STOR.pri     sTimer
-
-			// Kill the original.
-			#emit PUSH.C       0
-			#emit PUSH.C       4
-			#emit SYSREQ.C     KillTimer
-			#emit STACK        8
-		}
-
-		// Compiler bug fix.
-		{}
-
-		// Now we can put the stack back, after one or two calls.
-		#emit PUSH         sAddress
-		#emit PUSH         sFrame
-
-		// And return the stored timer ID.
-		return sTimer;
-	}
-
-#if FIX_SetTimer
-	// Only define the hook conditionally.
-	#if _FIXES_SAMP
-		#if defined _ALS_SetTimerEx
-			#undef SetTimerEx
-		#else
-			#define _ALS_SetTimerEx
-		#endif
-		#define SetTimerEx( FIXES_SetTimerEx(
-	#endif
-	#define _ALS_SetTimerEx__
-	#define SetTimerEx__( FIXES_SetTimerEx(
 #endif
 
 /**
@@ -13660,6 +13530,130 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #undef _FIXES_IS_PLAYER_CONNECTED
 #undef _FIXES_ENUM
 #undef FIXES_PRINTF
+
+/**
+ * <fixes>SetTimer</fixes>
+ */
+
+// This fix MUST come last because it has conditionally compiled assembly.  That
+// doesn't work on the old compiler.  There are also some complex interactions
+// between this and `FIX_const`, because we need the real original native name
+// defined at this point in order to correctly include it for `SYSREQ.C`.
+
+#if FIX_const
+	native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+#else
+	#if _FIXES_SAMP && defined _ALS_SetTimer
+		#error _ALS_SetTimer defined
+	#endif
+	native BAD_SetTimer(const funcname[], interval, repeating) = SetTimer;
+#endif
+native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+
+#if !FIX_SetTimer
+	#if FIX_const
+		// Done last to avoid assembly issues
+		#if _FIXES_SAMP && defined _ALS_SetTimerEx
+			#error _ALS_SetTimerEx defined
+		#endif
+		#define _ALS_SetTimerEx
+		#define SetTimerEx( CST_SetTimerEx(
+	#endif
+
+	#endinput
+#endif
+
+#if (__Pawn & 0x0F) < 0x0A
+	forward _FIXES_SetTimer();
+
+	public _FIXES_SetTimer()
+	{
+		// `SYSREQ.C` fix.
+		SetTimerEx(FIXES_gsEmpty, 0, false, FIXES_gsEmpty);
+		KillTimer(0);
+	}
+#endif
+
+stock FIXES_SetTimer(const funcname[], interval, repeating)
+{
+	new
+		ret = SetTimer__(funcname, interval, repeating);
+	if (ret == 0)
+	{
+		// Got a timer ID of 0, which is actually valid.
+		// Make a new version.
+		ret = SetTimer__(funcname, interval, repeating);
+		// Kill the old version.
+		KillTimer__(0);
+		// If this is still 0 there was probably a problem, so go with it.
+	}
+	return ret;
+}
+
+#if _FIXES_SAMP
+	#if defined _ALS_SetTimer
+		#undef SetTimer
+	#else
+		#define _ALS_SetTimer
+	#endif
+	#define SetTimer( FIXES_SetTimer(
+#endif
+#define _ALS_SetTimer__
+#define SetTimer__( FIXES_SetTimer(
+
+stock FIXES_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...)
+{
+	#pragma unused funcname, interval, repeating, format
+
+	static
+		sAddress, // Return address.
+		sFrame,   // Caller frame.
+		sTimer;   // Timer return value.
+
+	// Get the function preamble off the stack.
+	#emit POP.pri
+	#emit POP.alt
+	#emit STOR.pri     sFrame
+	#emit STOR.alt     sAddress
+
+	// We can now just call `SetTimerEx` directly - the stack is correct for this call.
+	#emit SYSREQ.C     SetTimerEx
+	#emit STOR.pri     sTimer
+
+	// At this point we have NOT restored the function header to the stack, but it's unneeded.
+	if (sTimer == 0)
+	{
+		// Call it again.
+		#emit SYSREQ.C     SetTimerEx
+		#emit STOR.pri     sTimer
+
+		// Kill the original.
+		#emit PUSH.C       0
+		#emit PUSH.C       4
+		#emit SYSREQ.C     KillTimer
+		#emit STACK        8
+	}
+
+	// Compiler bug fix.
+	{}
+
+	// Now we can put the stack back, after one or two calls.
+	#emit PUSH         sAddress
+	#emit PUSH         sFrame
+
+	// And return the stored timer ID.
+	return sTimer;
+}
+
+#if _FIXES_SAMP
+	#if defined _ALS_SetTimerEx
+		#error _ALS_SetTimerEx defined
+	#endif
+	#define SetTimerEx( FIXES_SetTimerEx(
+#else
+#endif
+#define _ALS_SetTimerEx__
+#define SetTimerEx__( FIXES_SetTimerEx(
 
 #endinput
 
