@@ -3258,6 +3258,40 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 
 #define isnull(%0) ((%0[(%0[0])=='\1'])=='\0')
 
+#if FIXES_Debug
+new
+#else
+static stock
+#endif
+	/**
+	 * <remarks>
+	 * A non-const empty string for `SYSREQ.C` fix calls.
+	 * </remarks>
+	 */
+	FIXES_gsEmpty[] = "";
+
+/**
+ * <remarks>
+ * _FIXES_IncludeNatives
+ *
+ * Include functions used be various fixes.
+ * </remarks>
+ */
+
+#if (__Pawn & 0x0F) < 0x0A
+	forward _FIXES_IncludeNatives();
+
+	public _FIXES_IncludeNatives()
+	{
+		// `SYSREQ.C` fix.  Do this before anything else, so the original native
+		// names are used, before any hook replacements.
+		#if FIX_SetTimer
+			SetTimerEx(FIXES_gsEmpty, 0, false, FIXES_gsEmpty);
+			KillTimer(0);
+		#endif
+	}
+#endif
+
 /**
  * <remarks>
  * E_FIXES_WORLDBOUND_DATA
@@ -3523,12 +3557,6 @@ new
 #else
 static stock
 #endif
-	/**
-	 * <remarks>
-	 * A non-const empty string for `SYSREQ.C` fix calls.
-	 * </remarks>
-	 */
-	FIXES_gsEmpty[] = "",
 	/**
 	 * <remarks>
 	 * A single re-usable space.  Static not const because it is used in this
@@ -8545,17 +8573,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 
 #if FIX_SetTimer
-	#if (__Pawn & 0x0F) < 0x0A
-		forward _FIXES_SetTimer();
-
-		public _FIXES_SetTimer()
-		{
-			// `SYSREQ.C` fix.
-			SetTimerEx(FIXES_gsEmpty, 0, false, FIXES_gsEmpty);
-			KillTimer(0);
-		}
-	#endif
-
 	stock FIXES_SetTimer(const funcname[], interval, repeating)
 	{
 		new
@@ -8582,9 +8599,14 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#endif
 	#define _ALS_SetTimer__
 	#define SetTimer__( FIXES_SetTimer(
+#endif
 
+#if !FIX_SetTimer
+	static
+#endif
 	stock FIXES_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...)
 	{
+		// This function is not inside a conditional block because `#emit` can't be.
 		#pragma unused funcname, interval, repeating, format
 
 		static
@@ -8627,6 +8649,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		return sTimer;
 	}
 
+#if FIX_SetTimer
+	// Only define the hook conditionally.
 	#if _FIXES_SAMP
 		#if defined _ALS_SetTimerEx
 			#undef SetTimerEx
