@@ -3081,7 +3081,9 @@ PRE_HOOK(FIXES)
  * <remarks>
  * _FIXES_IncludeNatives
  *
- * Include functions used be various fixes.
+ * Ensure natives used be various fixes are included in the AMX.  Done before
+ * anything else, and using multiple lines, to try and mitigate the effects of
+ * ALS (these MUST include the original natives, not hooks).
  * </remarks>
  */
 
@@ -3091,10 +3093,10 @@ PRE_HOOK(FIXES)
 	public _FIXES_IncludeNatives()
 	{
 		static FIXES_glEmpty[] = "";
-		// `SYSREQ.C` fix.  Do this before anything else, so the original native names are used,
-		// before any hook replacements.
-		SetTimerEx(FIXES_glEmpty, 0, false, FIXES_glEmpty);
-		KillTimer(0);
+		SetTimerEx
+			(FIXES_glEmpty, 0, false, FIXES_glEmpty);
+		KillTimer
+			(0);
 	}
 #endif
 
@@ -8613,11 +8615,13 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#emit STOR.pri     sFrame
 		#emit STOR.alt     sAddress
 
-		// We can now just call `SetTimerEx` directly - the stack is correct for this call.
+		// We can now just call `SetTimerEx` directly - the stack is correct for
+		// this call.
 		#emit SYSREQ.C     SetTimerEx
 		#emit STOR.pri     sTimer
 
-		// At this point we have NOT restored the function header to the stack, but it's unneeded.
+		// At this point we have NOT restored the function header to the stack,
+		// but it's unneeded.
 		if (sTimer == 0)
 		{
 			// Call it again.
@@ -8863,7 +8867,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				GetPlayerIp__(playerid, ip, sizeof (ip)),
 				format(ip, sizeof (ip), "banip %s", ip),
 				SendRconCommand__(ip),
-				// Just re-using an existing variable.  Need to override the tags.
+				// Just re-using an existing variable, so override the tags.
 				FIXES_gsPlayerIP[playerid] = strval(ip[_:kick]) << 24,
 				kick = bool:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
 				FIXES_gsPlayerIP[playerid] |= strval(ip[_:kick]) << 16,
@@ -9580,13 +9584,15 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 					new
 						ammo;
 			#endif
-					// It's a shame `weaponid` is set before `ammo` since we don't actually read
-					// ammo.  Were they done the other way around we could do:
+					// It's a shame `weaponid` is set before `ammo` since we
+					// don't actually read ammo.  Were they done the other way
+					// around we could do:
 					//
 					//   GetPlayerWeaponData__(playerid, 4, model, model);
 					//
-					// And have the weapon data clobber the ammo data, thus avoiding a variable
-					// allocation (wow, a whole ONE instruction...).
+					// And have the weapon data clobber the ammo data, thus
+					// avoiding a variable allocation (wow, a whole ONE
+					// instruction...).
 					GetPlayerWeaponData__(playerid, 4, model, ammo);
 					if (model)
 					{
@@ -13023,7 +13029,9 @@ static stock _FIXES_Bernstein(const name[])
 		hash = 5381;
 	// In carcols.dat the vehicle names end at ",".  That makes this code
 	// very specific to a few use-cases.  It also works for hashing server vars,
-	// since they don't have commas.  Now case-insensitive.
+	// since they don't have commas.  Now case-insensitive.  Why does this
+	// mention `carcols.dat` in the comments?  Were we planning a vehicle colour
+	// fix that never got implemented?
 	while ((ch = name[++i]) >= '0')
 	{
 		hash = (hash * 33) ^ (ch | 0x20);
