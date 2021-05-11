@@ -3283,8 +3283,8 @@ static stock
 
 	public _FIXES_IncludeNatives()
 	{
-		// `SYSREQ.C` fix.  Do this before anything else, so the original native
-		// names are used, before any hook replacements.
+		// `SYSREQ.C` fix.  Do this before anything else, so the original native names are used,
+		// before any hook replacements.
 		#if FIX_SetTimer
 			SetTimerEx(FIXES_gsEmpty, 0, false, FIXES_gsEmpty);
 			KillTimer(0);
@@ -13579,17 +13579,6 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
 
 #if !FIX_SetTimer
-	#if FIX_const
-		// Done last to avoid assembly issues
-		#if _FIXES_SAMP && defined _ALS_SetTimerEx
-			#error _ALS_SetTimerEx defined
-		#endif
-		#define _ALS_SetTimerEx
-		#define SetTimerEx( CST_SetTimerEx(
-	#endif
-#endif
-
-#if !FIX_SetTimer
 	static
 #endif
 	stock FIXES_SetTimer(const funcname[], interval, repeating)
@@ -13607,19 +13596,6 @@ native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Fl
 		}
 		return ret;
 	}
-
-#if FIX_SetTimer
-	#if _FIXES_SAMP
-		#if defined _ALS_SetTimer
-			#undef SetTimer
-		#else
-			#define _ALS_SetTimer
-		#endif
-		#define SetTimer( FIXES_SetTimer(
-	#endif
-	#define _ALS_SetTimer__
-	#define SetTimer__( FIXES_SetTimer(
-#endif
 
 #if !FIX_SetTimer
 	static
@@ -13670,6 +13646,17 @@ native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Fl
 
 #if FIX_SetTimer
 	#if _FIXES_SAMP
+		#if defined _ALS_SetTimer
+			#undef SetTimer
+		#else
+			#define _ALS_SetTimer
+		#endif
+		#define SetTimer( FIXES_SetTimer(
+	#endif
+	#define _ALS_SetTimer__
+	#define SetTimer__( FIXES_SetTimer(
+
+	#if _FIXES_SAMP
 		#if defined _ALS_SetTimerEx
 			#error _ALS_SetTimerEx defined
 		#endif
@@ -13677,6 +13664,15 @@ native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Fl
 	#endif
 	#define _ALS_SetTimerEx__
 	#define SetTimerEx__( FIXES_SetTimerEx(
+#else
+	#if FIX_const
+		// Done last to avoid assembly issues
+		#if _FIXES_SAMP && defined _ALS_SetTimerEx
+			#error _ALS_SetTimerEx defined
+		#endif
+		#define _ALS_SetTimerEx
+		#define SetTimerEx( CST_SetTimerEx(
+	#endif
 #endif
 
 #endinput
