@@ -2152,7 +2152,8 @@ in the output code.
 	#if defined IsValidVehicle
 		#define FIX_IsValidVehicle               (FIXES_EnableDeprecated)
 	#else
-		#define FIX_IsValidVehicle               (FIX_Natives)
+		_FIXES_STOCK FIX_IsValidVehicle = FIX_Natives;
+		#define FIX_IsValidVehicle               FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
 	#undef FIX_IsValidVehicle
@@ -2163,7 +2164,8 @@ in the output code.
 	#if defined GetGravity
 		#define FIX_GetGravity                   (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetGravity                   (FIX_Natives)
+		_FIXES_STOCK FIX_GetGravity = FIX_Natives;
+		#define FIX_GetGravity                   FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetGravity)
 	#undef FIX_GetGravity
@@ -2174,7 +2176,8 @@ in the output code.
 	#if defined gpci
 		#define FIX_gpci                         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_gpci                         (FIX_Natives)
+		_FIXES_STOCK FIX_gpci = FIX_Natives;
+		#define FIX_gpci                         FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_gpci)
 	#undef FIX_gpci
@@ -2377,7 +2380,8 @@ in the output code.
 	#if defined GetPlayerDialog
 		#define FIX_GetPlayerDialog              (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerDialog              (FIX_Natives)
+		_FIXES_STOCK FIX_GetPlayerDialog = FIX_Natives;
+		#define FIX_GetPlayerDialog              FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
@@ -2715,7 +2719,8 @@ in the output code.
 	#if defined HideGameText
 		#define FIX_HideGameText                 (FIXES_EnableDeprecated)
 	#else
-		#define FIX_HideGameText                 (FIX_Natives)
+		_FIXES_STOCK FIX_HideGameText = FIX_Natives;
+		#define FIX_HideGameText                 FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_HideGameText)
 	#undef FIX_HideGameText
@@ -2726,7 +2731,8 @@ in the output code.
 	#if defined GetPlayerWorldBounds
 		#define FIX_GetPlayerWorldBounds         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerWorldBounds         (FIX_Natives)
+		_FIXES_STOCK FIX_GetPlayerWorldBounds = FIX_Natives;
+		#define FIX_GetPlayerWorldBounds         FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWorldBounds)
 	#undef FIX_GetPlayerWorldBounds
@@ -2737,7 +2743,8 @@ in the output code.
 	#if defined ClearPlayerWorldBounds
 		#define FIX_ClearPlayerWorldBounds       (FIXES_EnableDeprecated)
 	#else
-		#define FIX_ClearPlayerWorldBounds       (FIX_Natives)
+		_FIXES_STOCK FIX_ClearPlayerWorldBounds = FIX_Natives;
+		#define FIX_ClearPlayerWorldBounds       FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_ClearPlayerWorldBounds)
 	#undef FIX_ClearPlayerWorldBounds
@@ -2983,7 +2990,8 @@ in the output code.
 	#if defined GetPlayerWeather
 		#define FIX_GetPlayerWeather             (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetPlayerWeather             (FIX_Natives)
+		_FIXES_STOCK FIX_GetPlayerWeather = FIX_Natives;
+		#define FIX_GetPlayerWeather             FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeather)
 	#undef FIX_GetPlayerWeather
@@ -2994,7 +3002,8 @@ in the output code.
 	#if defined GetWeather
 		#define FIX_GetWeather                   (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWeather                   (FIX_Natives)
+		_FIXES_STOCK FIX_GetWeather = FIX_Natives;
+		#define FIX_GetWeather                   FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeather)
 	#undef FIX_GetWeather
@@ -3005,7 +3014,8 @@ in the output code.
 	#if defined GetWorldTime
 		#define FIX_GetWorldTime                 (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWorldTime                 (FIX_Natives)
+		_FIXES_STOCK FIX_GetWorldTime = FIX_Natives;
+		#define FIX_GetWorldTime                 FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWorldTime)
 	#undef FIX_GetWorldTime
@@ -3045,7 +3055,8 @@ in the output code.
 			#define FIX_GetServerVarAsFloat      (FIXES_EnableDeprecated)
 		#endif
 	#else
-		#define FIX_GetServerVarAsFloat          (FIX_Natives)
+		_FIXES_STOCK FIX_GetServerVarAsFloat = FIX_Natives;
+		#define FIX_GetServerVarAsFloat          FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetServerVarAsFloat)
 	#undef FIX_GetServerVarAsFloat
