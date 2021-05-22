@@ -1956,6 +1956,7 @@ in the output code.
 
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
+// Enable everything, even things that probably shouldn't be enabled.
 #if !defined FIXES_EnableAll
 	#define FIXES_EnableAll                      (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableAll)
@@ -1963,11 +1964,34 @@ in the output code.
 	#define FIXES_EnableAll                      (2)
 #endif
 
+// Enable deprecated fixes - those that are no longer needed.
 #if !defined FIXES_EnableDeprecated
 	#define FIXES_EnableDeprecated               (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableDeprecated)
 	#undef FIXES_EnableDeprecated
 	#define FIXES_EnableDeprecated               (2)
+#endif
+
+// Disable all fixes by default and explicitly enable them.
+#if !defined FIXES_DefaultDisabled
+	#define FIXES_DefaultDisabled                (1)
+#elseif _FIXES_IS_UNSET(FIXES_DefaultDisabled)
+	#undef FIXES_DefaultDisabled
+	#define FIXES_DefaultDisabled                (0)
+#endif
+
+// Explicitly enable or disable all fixes, with warnings for the rest.
+#if !defined FIXES_ExplicitDisabled
+	#define FIXES_ExplicitDisabled               (0)
+	#define _FIXES_STOCK static
+#elseif _FIXES_IS_UNSET(FIXES_ExplicitDisabled)
+	#undef FIXES_ExplicitDisabled
+	#define FIXES_ExplicitDisabled               (2)
+	#define _FIXES_STOCK static stock
+#elseif FIXES_ExplicitDisabled
+	#define _FIXES_STOCK static stock
+#else
+	#define _FIXES_STOCK static
 #endif
 
 // We can add server version compiler code here to only compile fixes that apply
@@ -1980,7 +2004,8 @@ in the output code.
 			#define FIX_GetPlayerColour          (FIX_GetPlayerColor)
 		#endif
 	#else
-		#define FIX_GetPlayerColour              (1)
+		_FIXES_STOCK FIX_GetPlayerColour = FIXES_DefaultDisabled;
+		#define FIX_GetPlayerColour              FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerColour)
 	#undef FIX_GetPlayerColour
@@ -1988,28 +2013,32 @@ in the output code.
 #endif
 
 #if !defined FIX_FILTERSCRIPT
-	#define FIX_FILTERSCRIPT                     (1)
+	_FIXES_STOCK FIX_FILTERSCRIPT = FIXES_DefaultDisabled;
+	#define FIX_FILTERSCRIPT                     FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_FILTERSCRIPT)
 	#undef FIX_FILTERSCRIPT
 	#define FIX_FILTERSCRIPT                     (2)
 #endif
 
 #if !defined FIX_SpawnPlayer
-	#define FIX_SpawnPlayer                      (1)
+	_FIXES_STOCK FIX_SpawnPlayer = FIXES_DefaultDisabled;
+	#define FIX_SpawnPlayer                      FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SpawnPlayer)
 	#undef FIX_SpawnPlayer
 	#define FIX_SpawnPlayer                      (2)
 #endif
 
 #if !defined FIX_SetPlayerName
-	#define FIX_SetPlayerName                    (1)
+	_FIXES_STOCK FIX_SetPlayerName = FIXES_DefaultDisabled;
+	#define FIX_SetPlayerName                    FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerName)
 	#undef FIX_SetPlayerName
 	#define FIX_SetPlayerName                    (2)
 #endif
 
 #if !defined FIX_GetPlayerSkin
-	#define FIX_GetPlayerSkin                    (1)
+	_FIXES_STOCK FIX_GetPlayerSkin = FIXES_DefaultDisabled;
+	#define FIX_GetPlayerSkin                    FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerSkin)
 	#undef FIX_GetPlayerSkin
 	#define FIX_GetPlayerSkin                    (2)
@@ -2019,7 +2048,8 @@ in the output code.
 	#if defined GetVehicleParamsSirenState
 		#define FIX_GetWeaponName                (FIXES_EnableDeprecated)
 	#else
-		#define FIX_GetWeaponName                (1)
+		_FIXES_STOCK FIX_GetWeaponName = FIXES_DefaultDisabled;
+		#define FIX_GetWeaponName                FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeaponName)
 	#undef FIX_GetWeaponName
@@ -2027,7 +2057,8 @@ in the output code.
 #endif
 
 #if !defined FIX_SetPlayerWorldBounds
-	#define FIX_SetPlayerWorldBounds             (1)
+	_FIXES_STOCK FIX_SetPlayerWorldBounds = FIXES_DefaultDisabled;
+	#define FIX_SetPlayerWorldBounds             FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerWorldBounds)
 	#undef FIX_SetPlayerWorldBounds
 	#define FIX_SetPlayerWorldBounds             (2)
@@ -2037,7 +2068,8 @@ in the output code.
 	#if defined SetObjectMaterial
 		#define FIX_TogglePlayerControllable     (FIXES_EnableDeprecated)
 	#else
-		#define FIX_TogglePlayerControllable     (1)
+		_FIXES_STOCK FIX_TogglePlayerControllable = FIXES_DefaultDisabled;
+		#define FIX_TogglePlayerControllable     FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)
 	#undef FIX_TogglePlayerControllable
@@ -2045,35 +2077,40 @@ in the output code.
 #endif
 
 #if !defined FIX_HydraSniper
-	#define FIX_HydraSniper                      (1)
+	_FIXES_STOCK FIX_HydraSniper = FIXES_DefaultDisabled;
+	#define FIX_HydraSniper                      FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_HydraSniper)
 	#undef FIX_HydraSniper
 	#define FIX_HydraSniper                      (2)
 #endif
 
 #if !defined FIX_IsPlayerInCheckpoint
-	#define FIX_IsPlayerInCheckpoint             (1)
+	_FIXES_STOCK FIX_IsPlayerInCheckpoint = FIXES_DefaultDisabled;
+	#define FIX_IsPlayerInCheckpoint             FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInCheckpoint)
 	#undef FIX_IsPlayerInCheckpoint
 	#define FIX_IsPlayerInCheckpoint             (2)
 #endif
 
 #if !defined FIX_IsPlayerInRaceCheckpoint
-	#define FIX_IsPlayerInRaceCheckpoint         (1)
+	_FIXES_STOCK FIX_IsPlayerInRaceCheckpoint = FIXES_DefaultDisabled;
+	#define FIX_IsPlayerInRaceCheckpoint         FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInRaceCheckpoint)
 	#undef FIX_IsPlayerInRaceCheckpoint
 	#define FIX_IsPlayerInRaceCheckpoint         (2)
 #endif
 
 #if !defined FIX_GetPlayerWeapon
-	#define FIX_GetPlayerWeapon                  (1)
+	_FIXES_STOCK FIX_GetPlayerWeapon = FIXES_DefaultDisabled;
+	#define FIX_GetPlayerWeapon                  FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeapon)
 	#undef FIX_GetPlayerWeapon
 	#define FIX_GetPlayerWeapon                  (2)
 #endif
 
 #if !defined FIX_PutPlayerInVehicle
-	#define FIX_PutPlayerInVehicle               (1)
+	_FIXES_STOCK FIX_PutPlayerInVehicle = FIXES_DefaultDisabled;
+	#define FIX_PutPlayerInVehicle               FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_PutPlayerInVehicle)
 	#undef FIX_PutPlayerInVehicle
 	#define FIX_PutPlayerInVehicle               (2)
@@ -2083,7 +2120,8 @@ in the output code.
 	#if defined KEY_AIM
 		#define FIX_KEY_AIM                      (FIXES_EnableDeprecated)
 	#else
-		#define FIX_KEY_AIM                      (1)
+		_FIXES_STOCK FIX_KEY_AIM = FIXES_DefaultDisabled;
+		#define FIX_KEY_AIM                      FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_KEY_AIM)
 	#undef FIX_KEY_AIM
@@ -2094,7 +2132,8 @@ in the output code.
 	#if defined SPECIAL_ACTION_PISSING
 		#define FIX_SPECIAL_ACTION_PISSING       (FIXES_EnableDeprecated)
 	#else
-		#define FIX_SPECIAL_ACTION_PISSING       (1)
+		_FIXES_STOCK FIX_SPECIAL_ACTION_PISSING = FIXES_DefaultDisabled;
+		#define FIX_SPECIAL_ACTION_PISSING       FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SPECIAL_ACTION_PISSING)
 	#undef FIX_SPECIAL_ACTION_PISSING
@@ -2102,7 +2141,8 @@ in the output code.
 #endif
 
 #if !defined FIX_Natives
-	#define FIX_Natives                          (1)
+	_FIXES_STOCK FIX_Natives = FIXES_DefaultDisabled;
+	#define FIX_Natives                          FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_Natives)
 	#undef FIX_Natives
 	#define FIX_Natives                          (2)
@@ -2145,7 +2185,8 @@ in the output code.
 	#if defined WEAPON_FIST
 		#define FIX_WEAPONS                      (FIXES_EnableDeprecated)
 	#else
-		#define FIX_WEAPONS                      (1)
+		_FIXES_STOCK FIX_WEAPONS = FIXES_DefaultDisabled;
+		#define FIX_WEAPONS                      FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_WEAPONS)
 	#undef FIX_WEAPONS
@@ -2156,7 +2197,8 @@ in the output code.
 	#if defined BODY_PART_LEFT_ARM
 		#define FIX_BODYPARTS                    (FIXES_EnableDeprecated)
 	#else
-		#define FIX_BODYPARTS                    (1)
+		_FIXES_STOCK FIX_BODYPARTS = FIXES_DefaultDisabled;
+		#define FIX_BODYPARTS                    FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_BODYPARTS)
 	#undef FIX_BODYPARTS
@@ -2167,7 +2209,8 @@ in the output code.
 	#if defined CAM_MODE_NONE
 		#define FIX_CAMERAMODES                  (FIXES_EnableDeprecated)
 	#else
-		#define FIX_CAMERAMODES                  (1)
+		_FIXES_STOCK FIX_CAMERAMODES = FIXES_DefaultDisabled;
+		#define FIX_CAMERAMODES                  FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_CAMERAMODES)
 	#undef FIX_CAMERAMODES
@@ -2175,63 +2218,72 @@ in the output code.
 #endif
 
 #if !defined FIX_DriveBy
-	#define FIX_DriveBy                          (1)
+	_FIXES_STOCK FIX_DriveBy = FIXES_DefaultDisabled;
+	#define FIX_DriveBy                          FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_DriveBy)
 	#undef FIX_DriveBy
 	#define FIX_DriveBy                          (2)
 #endif
 
 #if !defined FIX_SilentTeleport
-	#define FIX_SilentTeleport                   (1)
+	_FIXES_STOCK FIX_SilentTeleport = FIXES_DefaultDisabled;
+	#define FIX_SilentTeleport                   FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SilentTeleport)
 	#undef FIX_SilentTeleport
 	#define FIX_SilentTeleport                   (2)
 #endif
 
 #if !defined FIX_SetPlayerCheckpoint
-	#define FIX_SetPlayerCheckpoint              (1)
+	_FIXES_STOCK FIX_SetPlayerCheckpoint = FIXES_DefaultDisabled;
+	#define FIX_SetPlayerCheckpoint              FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCheckpoint)
 	#undef FIX_SetPlayerCheckpoint
 	#define FIX_SetPlayerCheckpoint              (2)
 #endif
 
 #if !defined FIX_SetPlayerRaceCheckpoint
-	#define FIX_SetPlayerRaceCheckpoint          (1)
+	_FIXES_STOCK FIX_SetPlayerRaceCheckpoint = FIXES_DefaultDisabled;
+	#define FIX_SetPlayerRaceCheckpoint          FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerRaceCheckpoint)
 	#undef FIX_SetPlayerRaceCheckpoint
 	#define FIX_SetPlayerRaceCheckpoint          (2)
 #endif
 
 #if !defined FIX_TextDrawCreate
-	#define FIX_TextDrawCreate                   (1)
+	_FIXES_STOCK FIX_TextDrawCreate = FIXES_DefaultDisabled;
+	#define FIX_TextDrawCreate                   FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_TextDrawCreate)
 	#undef FIX_TextDrawCreate
 	#define FIX_TextDrawCreate                   (2)
 #endif
 
 #if !defined FIX_TextDrawCreate_2
-	#define FIX_TextDrawCreate_2                 (1)
+	_FIXES_STOCK FIX_TextDrawCreate_2 = FIXES_DefaultDisabled;
+	#define FIX_TextDrawCreate_2                 FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_TextDrawCreate_2)
 	#undef FIX_TextDrawCreate_2
 	#define FIX_TextDrawCreate_2                 (2)
 #endif
 
 #if !defined FIX_TextDrawSetString
-	#define FIX_TextDrawSetString                (1)
+	_FIXES_STOCK FIX_TextDrawSetString = FIXES_DefaultDisabled;
+	#define FIX_TextDrawSetString                FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString)
 	#undef FIX_TextDrawSetString
 	#define FIX_TextDrawSetString                (2)
 #endif
 
 #if !defined FIX_TextDrawSetString_2
-	#define FIX_TextDrawSetString_2              (1)
+	_FIXES_STOCK FIX_TextDrawSetString_2 = FIXES_DefaultDisabled;
+	#define FIX_TextDrawSetString_2              FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString_2)
 	#undef FIX_TextDrawSetString_2
 	#define FIX_TextDrawSetString_2              (2)
 #endif
 
 #if !defined FIX_AllowInteriorWeapons
-	#define FIX_AllowInteriorWeapons             (1)
+	_FIXES_STOCK FIX_AllowInteriorWeapons = FIXES_DefaultDisabled;
+	#define FIX_AllowInteriorWeapons             FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_AllowInteriorWeapons)
 	#undef FIX_AllowInteriorWeapons
 	#define FIX_AllowInteriorWeapons             (2)
@@ -2241,7 +2293,8 @@ in the output code.
 	#if defined OnPlayerClickMap
 		#define FIX_OnPlayerEnterVehicle         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_OnPlayerEnterVehicle         (1)
+		_FIXES_STOCK FIX_OnPlayerEnterVehicle = FIXES_DefaultDisabled;
+		#define FIX_OnPlayerEnterVehicle         FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle)
 	#undef FIX_OnPlayerEnterVehicle
@@ -2249,14 +2302,16 @@ in the output code.
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle_2
-	#define FIX_OnPlayerEnterVehicle_2           (1)
+	_FIXES_STOCK FIX_OnPlayerEnterVehicle_2 = FIXES_DefaultDisabled;
+	#define FIX_OnPlayerEnterVehicle_2           FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_2)
 	#undef FIX_OnPlayerEnterVehicle_2
 	#define FIX_OnPlayerEnterVehicle_2           (2)
 #endif
 
 #if !defined FIX_OnPlayerEnterVehicle_3
-	#define FIX_OnPlayerEnterVehicle_3           (1)
+	_FIXES_STOCK FIX_OnPlayerEnterVehicle_3 = FIXES_DefaultDisabled;
+	#define FIX_OnPlayerEnterVehicle_3           FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_3)
 	#undef FIX_OnPlayerEnterVehicle_3
 	#define FIX_OnPlayerEnterVehicle_3           (2)
@@ -2264,7 +2319,8 @@ in the output code.
 
 #if !defined FIX_AllowTeleport
 	#if defined OnPlayerClickMap
-		#define FIX_AllowTeleport                (1)
+		_FIXES_STOCK FIX_AllowTeleport = FIXES_DefaultDisabled;
+		#define FIX_AllowTeleport                FIXES_DefaultDisabled
 	#else
 		#define FIX_AllowTeleport                (FIXES_EnableDeprecated)
 	#endif
@@ -2274,28 +2330,32 @@ in the output code.
 #endif
 
 #if !defined FIX_SetPlayerSpecialAction
-	#define FIX_SetPlayerSpecialAction           (1)
+	_FIXES_STOCK FIX_SetPlayerSpecialAction = FIXES_DefaultDisabled;
+	#define FIX_SetPlayerSpecialAction           FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSpecialAction)
 	#undef FIX_SetPlayerSpecialAction
 	#define FIX_SetPlayerSpecialAction           (2)
 #endif
 
 #if !defined FIX_ClearAnimations
-	#define FIX_ClearAnimations                  (1)
+	_FIXES_STOCK FIX_ClearAnimations = FIXES_DefaultDisabled;
+	#define FIX_ClearAnimations                  FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations)
 	#undef FIX_ClearAnimations
 	#define FIX_ClearAnimations                  (2)
 #endif
 
 #if !defined FIX_ClearAnimations_2
-	#define FIX_ClearAnimations_2                (1)
+	_FIXES_STOCK FIX_ClearAnimations_2 = FIXES_DefaultDisabled;
+	#define FIX_ClearAnimations_2                FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations_2)
 	#undef FIX_ClearAnimations_2
 	#define FIX_ClearAnimations_2                (2)
 #endif
 
 #if !defined FIX_GangZoneCreate
-	#define FIX_GangZoneCreate                   (1)
+	_FIXES_STOCK FIX_GangZoneCreate = FIXES_DefaultDisabled;
+	#define FIX_GangZoneCreate                   FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GangZoneCreate)
 	#undef FIX_GangZoneCreate
 	#define FIX_GangZoneCreate                   (2)
@@ -2305,7 +2365,8 @@ in the output code.
 	#if defined GetVehicleModelInfo
 		#define FIX_OnDialogResponse             (FIXES_EnableDeprecated)
 	#else
-		#define FIX_OnDialogResponse             (1)
+		_FIXES_STOCK FIX_OnDialogResponse = FIXES_DefaultDisabled;
+		#define FIX_OnDialogResponse             FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnDialogResponse)
 	#undef FIX_OnDialogResponse
@@ -2324,7 +2385,8 @@ in the output code.
 #endif
 
 #if !defined FIX_PlayerDialogResponse
-	#define FIX_PlayerDialogResponse             (1)
+	_FIXES_STOCK FIX_PlayerDialogResponse = FIXES_DefaultDisabled;
+	#define FIX_PlayerDialogResponse             FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_PlayerDialogResponse)
 	#undef FIX_PlayerDialogResponse
 	#define FIX_PlayerDialogResponse             (2)
@@ -2334,7 +2396,8 @@ in the output code.
 	#if defined GetPlayerVersion
 		#define FIX_SetSpawnInfo                 (FIXES_EnableDeprecated)
 	#else
-		#define FIX_SetSpawnInfo                 (1)
+		_FIXES_STOCK FIX_SetSpawnInfo = FIXES_DefaultDisabled;
+		#define FIX_SetSpawnInfo                 FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetSpawnInfo)
 	#undef FIX_SetSpawnInfo
@@ -2342,28 +2405,32 @@ in the output code.
 #endif
 
 #if !defined FIX_SetSpawnInfo_2
-	#define FIX_SetSpawnInfo_2                   (1)
+	_FIXES_STOCK FIX_SetSpawnInfo_2 = FIXES_DefaultDisabled;
+	#define FIX_SetSpawnInfo_2                   FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetSpawnInfo_2)
 	#undef FIX_SetSpawnInfo_2
 	#define FIX_SetSpawnInfo_2                   (2)
 #endif
 
 #if !defined FIX_SetPlayerSkin
-	#define FIX_SetPlayerSkin                    (1)
+	_FIXES_STOCK FIX_SetPlayerSkin = FIXES_DefaultDisabled;
+	#define FIX_SetPlayerSkin                    FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSkin)
 	#undef FIX_SetPlayerSkin
 	#define FIX_SetPlayerSkin                    (2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer                (1)
+	_FIXES_STOCK FIX_HideMenuForPlayer = FIXES_DefaultDisabled;
+	#define FIX_HideMenuForPlayer                FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
 	#undef FIX_HideMenuForPlayer
 	#define FIX_HideMenuForPlayer                (2)
 #endif
 
 #if !defined FIX_valstr
-	#define FIX_valstr                           (1)
+	_FIXES_STOCK FIX_valstr = FIXES_DefaultDisabled;
+	#define FIX_valstr                           FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_valstr)
 	#undef FIX_valstr
 	#define FIX_valstr                           (2)
@@ -2440,35 +2507,40 @@ in the output code.
 #endif
 
 #if !defined FIX_SetPlayerAttachedObject
-	#define FIX_SetPlayerAttachedObject          (1)
+	_FIXES_STOCK FIX_SetPlayerAttachedObject = FIXES_DefaultDisabled;
+	#define FIX_SetPlayerAttachedObject          FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerAttachedObject)
 	#undef FIX_SetPlayerAttachedObject
 	#define FIX_SetPlayerAttachedObject          (2)
 #endif
 
 #if !defined FIX_OnPlayerDeath
-	#define FIX_OnPlayerDeath                    (1)
+	_FIXES_STOCK FIX_OnPlayerDeath = FIXES_DefaultDisabled;
+	#define FIX_OnPlayerDeath                    FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDeath)
 	#undef FIX_OnPlayerDeath
 	#define FIX_OnPlayerDeath                    (2)
 #endif
 
 #if !defined FIX_strins
-	#define FIX_strins                           (1)
+	_FIXES_STOCK FIX_strins = FIXES_DefaultDisabled;
+	#define FIX_strins                           FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_strins)
 	#undef FIX_strins
 	#define FIX_strins                           (2)
 #endif
 
 #if !defined FIX_IsPlayerConnected
-	#define FIX_IsPlayerConnected                (1)
+	_FIXES_STOCK FIX_IsPlayerConnected = FIXES_DefaultDisabled;
+	#define FIX_IsPlayerConnected                FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerConnected)
 	#undef FIX_IsPlayerConnected
 	#define FIX_IsPlayerConnected                (2)
 #endif
 
 #if !defined FIX_TrainExit
-	#define FIX_TrainExit                        (1)
+	_FIXES_STOCK FIX_TrainExit = FIXES_DefaultDisabled;
+	#define FIX_TrainExit                        FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_TrainExit)
 	#undef FIX_TrainExit
 	#define FIX_TrainExit                        (2)
@@ -2478,7 +2550,8 @@ in the output code.
 	#if defined EnableVehicleFriendlyFire
 		#define FIX_Kick                         (FIXES_EnableDeprecated)
 	#else
-		#define FIX_Kick                         (1)
+		_FIXES_STOCK FIX_Kick = FIXES_DefaultDisabled;
+		#define FIX_Kick                         FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_Kick)
 	#undef FIX_Kick
@@ -2486,7 +2559,8 @@ in the output code.
 #endif
 
 #if !defined FIX_OnVehicleMod
-	#define FIX_OnVehicleMod                     (1)
+	_FIXES_STOCK FIX_OnVehicleMod = FIXES_DefaultDisabled;
+	#define FIX_OnVehicleMod                     FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_OnVehicleMod)
 	#undef FIX_OnVehicleMod
 	#define FIX_OnVehicleMod                     (2)
@@ -2500,14 +2574,16 @@ in the output code.
 #endif
 
 #if !defined FIX_sleep
-	#define FIX_sleep                            (1)
+	_FIXES_STOCK FIX_sleep = FIXES_DefaultDisabled;
+	#define FIX_sleep                            FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_sleep)
 	#undef FIX_sleep
 	#define FIX_sleep                            (2)
 #endif
 
 #if !defined FIX_Menus
-	#define FIX_Menus                            (1)
+	_FIXES_STOCK FIX_Menus = FIXES_DefaultDisabled;
+	#define FIX_Menus                            FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_Menus)
 	#undef FIX_Menus
 	#define FIX_Menus                            (2)
@@ -2542,7 +2618,8 @@ in the output code.
 #endif
 
 #if !defined FIX_GetPlayerMenu
-	#define FIX_GetPlayerMenu                    (1)
+	_FIXES_STOCK FIX_GetPlayerMenu = FIXES_DefaultDisabled;
+	#define FIX_GetPlayerMenu                    FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerMenu)
 	#undef FIX_GetPlayerMenu
 	#define FIX_GetPlayerMenu                    (2)
@@ -2572,55 +2649,63 @@ in the output code.
 #endif
 
 #if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
-	#define _FIX_Menus                           (1)
+	_FIXES_STOCK _FIX_Menus = FIXES_DefaultDisabled;
+	#define _FIX_Menus                           FIXES_DefaultDisabled
 #else
 	#define _FIX_Menus                           (2)
 #endif
 
 #if !defined FIX_GetPlayerInterior
-	#define FIX_GetPlayerInterior                (1)
+	_FIXES_STOCK FIX_GetPlayerInterior = FIXES_DefaultDisabled;
+	#define FIX_GetPlayerInterior                FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerInterior)
 	#undef FIX_GetPlayerInterior
 	#define FIX_GetPlayerInterior                (2)
 #endif
 
 #if !defined FIX_ApplyAnimation
-	#define FIX_ApplyAnimation                   (1)
+	_FIXES_STOCK FIX_ApplyAnimation = FIXES_DefaultDisabled;
+	#define FIX_ApplyAnimation                   FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation)
 	#undef FIX_ApplyAnimation
 	#define FIX_ApplyAnimation                   (2)
 #endif
 
 #if !defined FIX_ApplyAnimation_2
-	#define FIX_ApplyAnimation_2                 (1)
+	_FIXES_STOCK FIX_ApplyAnimation_2 = FIXES_DefaultDisabled;
+	#define FIX_ApplyAnimation_2                 FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation_2)
 	#undef FIX_ApplyAnimation_2
 	#define FIX_ApplyAnimation_2                 (2)
 #endif
 
 #if !defined FIX_ApplyActorAnimation
-	#define FIX_ApplyActorAnimation              (1)
+	_FIXES_STOCK FIX_ApplyActorAnimation = FIXES_DefaultDisabled;
+	#define FIX_ApplyActorAnimation              FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation)
 	#undef FIX_ApplyActorAnimation
 	#define FIX_ApplyActorAnimation              (2)
 #endif
 
 #if !defined FIX_ApplyActorAnimation_2
-	#define FIX_ApplyActorAnimation_2            (1)
+	_FIXES_STOCK FIX_ApplyActorAnimation_2 = FIXES_DefaultDisabled;
+	#define FIX_ApplyActorAnimation_2            FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation_2)
 	#undef FIX_ApplyActorAnimation_2
 	#define FIX_ApplyActorAnimation_2            (2)
 #endif
 
 #if !defined FIX_OnPlayerSpawn
-	#define FIX_OnPlayerSpawn                    (1)
+	_FIXES_STOCK FIX_OnPlayerSpawn = FIXES_DefaultDisabled;
+	#define FIX_OnPlayerSpawn                    FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerSpawn)
 	#undef FIX_OnPlayerSpawn
 	#define FIX_OnPlayerSpawn                    (2)
 #endif
 
 #if !defined FIX_GameText
-	#define FIX_GameText                         (1)
+	_FIXES_STOCK FIX_GameText = FIXES_DefaultDisabled;
+	#define FIX_GameText                         FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GameText)
 	#undef FIX_GameText
 	#define FIX_GameText                         (2)
@@ -2669,63 +2754,72 @@ in the output code.
 #endif
 
 #if !defined FIX_OnPlayerConnect
-	#define FIX_OnPlayerConnect                  (1)
+	_FIXES_STOCK FIX_OnPlayerConnect = FIXES_DefaultDisabled;
+	#define FIX_OnPlayerConnect                  FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerConnect)
 	#undef FIX_OnPlayerConnect
 	#define FIX_OnPlayerConnect                  (2)
 #endif
 
 #if !defined FIX_OnPlayerDisconnect
-	#define FIX_OnPlayerDisconnect               (1)
+	_FIXES_STOCK FIX_OnPlayerDisconnect = FIXES_DefaultDisabled;
+	#define FIX_OnPlayerDisconnect               FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDisconnect)
 	#undef FIX_OnPlayerDisconnect
 	#define FIX_OnPlayerDisconnect               (2)
 #endif
 
 #if !defined FIX_CreatePlayerTextDraw
-	#define FIX_CreatePlayerTextDraw             (1)
+	_FIXES_STOCK FIX_CreatePlayerTextDraw = FIXES_DefaultDisabled;
+	#define FIX_CreatePlayerTextDraw             FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw)
 	#undef FIX_CreatePlayerTextDraw
 	#define FIX_CreatePlayerTextDraw             (2)
 #endif
 
 #if !defined FIX_CreatePlayerTextDraw_2
-	#define FIX_CreatePlayerTextDraw_2           (1)
+	_FIXES_STOCK FIX_CreatePlayerTextDraw_2 = FIXES_DefaultDisabled;
+	#define FIX_CreatePlayerTextDraw_2           FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw_2)
 	#undef FIX_CreatePlayerTextDraw_2
 	#define FIX_CreatePlayerTextDraw_2           (2)
 #endif
 
 #if !defined FIX_PlayerTextDrawSetString
-	#define FIX_PlayerTextDrawSetString          (1)
+	_FIXES_STOCK FIX_PlayerTextDrawSetString = FIXES_DefaultDisabled;
+	#define FIX_PlayerTextDrawSetString          FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString)
 	#undef FIX_PlayerTextDrawSetString
 	#define FIX_PlayerTextDrawSetString          (2)
 #endif
 
 #if !defined FIX_PlayerTextDrawSetString_2
-	#define FIX_PlayerTextDrawSetString_2        (1)
+	_FIXES_STOCK FIX_PlayerTextDrawSetString_2 = FIXES_DefaultDisabled;
+	#define FIX_PlayerTextDrawSetString_2        FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString_2)
 	#undef FIX_PlayerTextDrawSetString_2
 	#define FIX_PlayerTextDrawSetString_2        (2)
 #endif
 
 #if !defined FIX_SetPlayerCamera
-	#define FIX_SetPlayerCamera                  (1)
+	_FIXES_STOCK FIX_SetPlayerCamera = FIXES_DefaultDisabled;
+	#define FIX_SetPlayerCamera                  FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCamera)
 	#undef FIX_SetPlayerCamera
 	#define FIX_SetPlayerCamera                  (2)
 #endif
 
 #if !defined FIX_SetPlayerTime
-	#define FIX_SetPlayerTime                    (1)
+	_FIXES_STOCK FIX_SetPlayerTime = FIXES_DefaultDisabled;
+	#define FIX_SetPlayerTime                    FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerTime)
 	#undef FIX_SetPlayerTime
 	#define FIX_SetPlayerTime                    (2)
 #endif
 
 #if !defined FIX_OnPlayerRequestClass
-	#define FIX_OnPlayerRequestClass             (1)
+	_FIXES_STOCK FIX_OnPlayerRequestClass = FIXES_DefaultDisabled;
+	#define FIX_OnPlayerRequestClass             FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerRequestClass)
 	#undef FIX_OnPlayerRequestClass
 	#define FIX_OnPlayerRequestClass             (2)
@@ -2739,7 +2833,8 @@ in the output code.
 			#define FIX_SetPlayerColour          (FIX_SetPlayerColor)
 		#endif
 	#else
-		#define FIX_SetPlayerColour              (1)
+		_FIXES_STOCK FIX_SetPlayerColour = FIXES_DefaultDisabled;
+		#define FIX_SetPlayerColour              FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerColour)
 	#undef FIX_SetPlayerColour
@@ -2747,21 +2842,24 @@ in the output code.
 #endif
 
 #if !defined FIX_FileMaths
-	#define FIX_FileMaths                        (1)
+	_FIXES_STOCK FIX_FileMaths = FIXES_DefaultDisabled;
+	#define FIX_FileMaths                        FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_FileMaths)
 	#undef FIX_FileMaths
 	#define FIX_FileMaths                        (2)
 #endif
 
 #if !defined FIX_GetPlayerWeaponData
-	#define FIX_GetPlayerWeaponData              (1)
+	_FIXES_STOCK FIX_GetPlayerWeaponData = FIXES_DefaultDisabled;
+	#define FIX_GetPlayerWeaponData              FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeaponData)
 	#undef FIX_GetPlayerWeaponData
 	#define FIX_GetPlayerWeaponData              (2)
 #endif
 
 #if !defined FIX_strcmp
-	#define FIX_strcmp                           (1)
+	_FIXES_STOCK FIX_strcmp = FIXES_DefaultDisabled;
+	#define FIX_strcmp                           FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_strcmp)
 	#undef FIX_strcmp
 	#define FIX_strcmp                           (2)
@@ -2782,77 +2880,88 @@ in the output code.
 #endif
 
 #if !defined FIX_toupper
-	#define FIX_toupper                          (1)
+	_FIXES_STOCK FIX_toupper = FIXES_DefaultDisabled;
+	#define FIX_toupper                          FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_toupper)
 	#undef FIX_toupper
 	#define FIX_toupper                          (2)
 #endif
 
 #if !defined FIX_tolower
-	#define FIX_tolower                          (1)
+	_FIXES_STOCK FIX_tolower = FIXES_DefaultDisabled;
+	#define FIX_tolower                          FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_tolower)
 	#undef FIX_tolower
 	#define FIX_tolower                          (2)
 #endif
 
 #if !defined FIX_ispacked
-	#define FIX_ispacked                         (1)
+	_FIXES_STOCK FIX_ispacked = FIXES_DefaultDisabled;
+	#define FIX_ispacked                         FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_ispacked)
 	#undef FIX_ispacked
 	#define FIX_ispacked                         (2)
 #endif
 
 #if !defined FIX_PassengerSeating
-	#define FIX_PassengerSeating                 (1)
+	_FIXES_STOCK FIX_PassengerSeating = FIXES_DefaultDisabled;
+	#define FIX_PassengerSeating                 FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_PassengerSeating)
 	#undef FIX_PassengerSeating
 	#define FIX_PassengerSeating                 (2)
 #endif
 
 #if !defined FIX_GogglesSync
-	#define FIX_GogglesSync                      (1)
+	_FIXES_STOCK FIX_GogglesSync = FIXES_DefaultDisabled;
+	#define FIX_GogglesSync                      FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GogglesSync)
 	#undef FIX_GogglesSync
 	#define FIX_GogglesSync                      (2)
 #endif
 
 #if !defined FIX_GetPlayerPoolSize
-	#define FIX_GetPlayerPoolSize                (1)
+	_FIXES_STOCK FIX_GetPlayerPoolSize = FIXES_DefaultDisabled;
+	#define FIX_GetPlayerPoolSize                FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
 	#define FIX_GetPlayerPoolSize                (2)
 #endif
 
 #if !defined FIX_SetPlayerPos
-	#define FIX_SetPlayerPos                     (1)
+	_FIXES_STOCK FIX_SetPlayerPos = FIXES_DefaultDisabled;
+	#define FIX_SetPlayerPos                     FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerPos)
 	#undef FIX_SetPlayerPos
 	#define FIX_SetPlayerPos                     (2)
 #endif
 
 #if !defined FIX_GetPlayerAmmo
-	#define FIX_GetPlayerAmmo                    (1)
+	_FIXES_STOCK FIX_GetPlayerAmmo = FIXES_DefaultDisabled;
+	#define FIX_GetPlayerAmmo                    FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerAmmo)
 	#undef FIX_GetPlayerAmmo
 	#define FIX_GetPlayerAmmo                    (2)
 #endif
 
 #if !defined FIX_JIT
-	#define FIX_JIT                              (1)
+	_FIXES_STOCK FIX_JIT = FIXES_DefaultDisabled;
+	#define FIX_JIT                              FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_JIT)
 	#undef FIX_JIT
 	#define FIX_JIT                              (2)
 #endif
 
 #if !defined FIX_OS
-	#define FIX_OS                               (1)
+	_FIXES_STOCK FIX_OS = FIXES_DefaultDisabled;
+	#define FIX_OS                               FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_OS)
 	#undef FIX_OS
 	#define FIX_OS                               (2)
 #endif
 
 #if !defined FIX_const
-	#define FIX_const                            (1)
+	_FIXES_STOCK FIX_const = FIXES_DefaultDisabled;
+	#define FIX_const                            FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_const)
 	#undef FIX_const
 	#define FIX_const                            (2)
@@ -2862,7 +2971,8 @@ in the output code.
 	#if defined VEHICLE_INFERNUS
 		#define FIX_VEHICLES                     (FIXES_EnableDeprecated)
 	#else
-		#define FIX_VEHICLES                     (1)
+		_FIXES_STOCK FIX_VEHICLES = FIXES_DefaultDisabled;
+		#define FIX_VEHICLES                     FIXES_DefaultDisabled
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_VEHICLES)
 	#undef FIX_VEHICLES
@@ -2903,21 +3013,24 @@ in the output code.
 #endif
 
 #if !defined FIX_GetServerVarAsString
-	#define FIX_GetServerVarAsString             (1)
+	_FIXES_STOCK FIX_GetServerVarAsString = FIXES_DefaultDisabled;
+	#define FIX_GetServerVarAsString             FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GetServerVarAsString)
 	#undef FIX_GetServerVarAsString
 	#define FIX_GetServerVarAsString             (2)
 #endif
 
 #if !defined FIX_GetServerVarAsInt
-	#define FIX_GetServerVarAsInt                (1)
+	_FIXES_STOCK FIX_GetServerVarAsInt = FIXES_DefaultDisabled;
+	#define FIX_GetServerVarAsInt                FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GetServerVarAsInt)
 	#undef FIX_GetServerVarAsInt
 	#define FIX_GetServerVarAsInt                (2)
 #endif
 
 #if !defined FIX_GetServerVarAsBool
-	#define FIX_GetServerVarAsBool               (1)
+	_FIXES_STOCK FIX_GetServerVarAsBool = FIXES_DefaultDisabled;
+	#define FIX_GetServerVarAsBool               FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GetServerVarAsBool)
 	#undef FIX_GetServerVarAsBool
 	#define FIX_GetServerVarAsBool               (2)
@@ -2926,7 +3039,8 @@ in the output code.
 #if !defined FIX_GetServerVarAsFloat
 	#if defined GetServerVarAsFloat
 		#if FIX_GetServerVarAsString
-			#define FIX_GetServerVarAsFloat      (1)
+			_FIXES_STOCK FIX_GetServerVarAsFloat = FIXES_DefaultDisabled;
+			#define FIX_GetServerVarAsFloat      FIXES_DefaultDisabled
 		#else
 			#define FIX_GetServerVarAsFloat      (FIXES_EnableDeprecated)
 		#endif
@@ -2939,14 +3053,16 @@ in the output code.
 #endif
 
 #if !defined FIX_tabsize
-	#define FIX_tabsize                          (1)
+	_FIXES_STOCK FIX_tabsize = FIXES_DefaultDisabled;
+	#define FIX_tabsize                          FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_tabsize)
 	#undef FIX_tabsize
 	#define FIX_tabsize                          (2)
 #endif
 
 #if !defined FIX_Callbacks
-	#define FIX_Callbacks                        (1)
+	_FIXES_STOCK FIX_Callbacks = FIXES_DefaultDisabled;
+	#define FIX_Callbacks                        FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_Callbacks)
 	#undef FIX_Callbacks
 	#define FIX_Callbacks                        (2)
@@ -2967,21 +3083,24 @@ in the output code.
 #endif
 
 #if !defined FIX_GetMaxPlayers
-	#define FIX_GetMaxPlayers                    (1)
+	_FIXES_STOCK FIX_GetMaxPlayers = FIXES_DefaultDisabled;
+	#define FIX_GetMaxPlayers                    FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_GetMaxPlayers)
 	#undef FIX_GetMaxPlayers
 	#define FIX_GetMaxPlayers                    (2)
 #endif
 
 #if !defined FIX_BypassDialog
-	#define FIX_BypassDialog                     (1)
+	_FIXES_STOCK FIX_BypassDialog = FIXES_DefaultDisabled;
+	#define FIX_BypassDialog                     FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_BypassDialog)
 	#undef FIX_BypassDialog
 	#define FIX_BypassDialog                     (2)
 #endif
 
 #if !defined FIX_SetTimer
-	#define FIX_SetTimer                         (1)
+	_FIXES_STOCK FIX_SetTimer = FIXES_DefaultDisabled;
+	#define FIX_SetTimer                         FIXES_DefaultDisabled
 #elseif _FIXES_IS_UNSET(FIX_SetTimer)
 	#undef FIX_SetTimer
 	#define FIX_SetTimer                         (2)
