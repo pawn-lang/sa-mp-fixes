@@ -1612,6 +1612,17 @@ in the output code.
  *     <see>FIXES_SetTimerEx</see>
  *     <author href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
+ *
+ * <fix name="main">
+ *     <problem>
+ *         Gamemodes without this function give a console error.
+ *     </problem>
+ *     <solution>
+ *         Make a stub version.
+ *     </solution>
+ *     <see>main</see>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
  * </fixeslist>
  *
  * <section>
@@ -3210,6 +3221,14 @@ in the output code.
 #elseif _FIXES_IS_UNSET(FIX_SetTimer)
 	#undef FIX_SetTimer
 	#define FIX_SetTimer                         (2)
+#endif
+
+#if !defined FIX_main
+	_FIXES_STOCK FIX_main = _FIXES_DEFAULT;
+	#define FIX_main                             _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_main)
+	#undef FIX_main
+	#define FIX_main                             (2)
 #endif
 
 // Generic check to see if ANY menu fix is enabled.
@@ -7640,6 +7659,38 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define OnPlayerDisconnect(%0) FIXES_OnPlayerDisconnect(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerDisconnect(playerid, reason);
+#endif
+
+/**
+ * <fixes>main</fixes>
+ */
+
+#if FIX_main
+	main()
+#else
+	static stock _FIXES_main()
+#endif
+	{
+		// Set the default return value.
+		#emit ZERO.pri
+		#if defined FIXES_main
+			FIXES_main();
+		#endif
+		// Implicitly return the value of the previous call.  This means we can
+		// call `main` and return it's return value, without requiring it to
+		// have a `return` statement.  It might, but the most common uses don't.
+		#emit RETN
+		// Return 0, just in case.
+		return 0;
+	}
+
+#if FIX_main
+	#if defined _ALS_main
+		#undef main
+	#else
+		#define _ALS_main
+	#endif
+	#define main( FIXES_main(
 #endif
 
 /**
