@@ -3399,6 +3399,20 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 /**
  * <remarks>
  * If this define is set to 1, then the server will not give a message when
+ * <see>FIXES_Single</see> is set, but the script isn't REALLY the only one.
+ * </remarks>
+ */
+
+#if !defined FIXES_SingleMsg
+	#define FIXES_SingleMsg 1
+#elseif _FIXES_IS_UNSET(FIXES_SingleMsg)
+	#undef FIXES_SingleMsg
+	#define FIXES_SingleMsg 2
+#endif
+
+/**
+ * <remarks>
+ * If this define is set to 1, then the server will not give a message when
  * <see>GetServerVarAsString</see> and related functions are used without a
  * valid directory redirect.
  * </remarks>
@@ -6037,8 +6051,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
  * <fixes>IS_WINDOWS</fixes>
  * <fixes>IS_LINUX</fixes>
  */
-
-static _FIXES_DetermineOS()
+static stock _FIXES_DetermineOS()
 {
 	if (FIXES_gsKnownOS)
 	{
@@ -6057,6 +6070,12 @@ static _FIXES_DetermineOS()
 	#emit STOR.S.alt           val
 	_FIXES_gIsWindows = (val == 120);
 }
+
+#if !FIX_OS
+	// Disable this call when not using the fix, but without putting the
+	// assembly in a conditional block.
+	#define _FIXES_DetermineOS();
+#endif
 
 /**
  * <remarks>
@@ -6745,7 +6764,7 @@ public OnFilterScriptInit()
 	_FIXES_gIsFilterscript = true;
 	_FIXES_DetermineOS();
 	_FIXES_CheckServerRoot();
-	#if FIXES_Single
+	#if FIXES_Single && FIXES_SingleMsg
 		// Check this really IS the only script running.
 		if (existproperty(5, FIXES_gscSingleProperty))
 		{
@@ -6858,7 +6877,7 @@ public OnGameModeInit()
 	state _ALS : _ALS_go;
 	_FIXES_DetermineOS();
 
-	#if FIXES_Single
+	#if FIXES_Single && FIXES_SingleMsg
 		// Check this really IS the only script running.  Properties reset when
 		// a gamemode restarts, so we don't have to worry about filterscipts
 		// detecting themselves.
