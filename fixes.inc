@@ -2612,28 +2612,32 @@ in the output code.
 #endif
 
 #if !defined FIX_AddMenuItem
-	#define FIX_AddMenuItem                      (FIX_Menus)
+	_FIXES_STOCK FIX_AddMenuItem = FIX_Menus;
+	#define FIX_AddMenuItem                      FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_AddMenuItem)
 	#undef FIX_AddMenuItem
 	#define FIX_AddMenuItem                      (2)
 #endif
 
 #if !defined FIX_SetMenuColumnHeader
-	#define FIX_SetMenuColumnHeader              (FIX_Menus)
+	_FIXES_STOCK FIX_SetMenuColumnHeader = FIX_Menus;
+	#define FIX_SetMenuColumnHeader              FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_SetMenuColumnHeader)
 	#undef FIX_SetMenuColumnHeader
 	#define FIX_SetMenuColumnHeader              (2)
 #endif
 
 #if !defined FIX_ShowMenuForPlayer
-	#define FIX_ShowMenuForPlayer                (FIX_Menus)
+	_FIXES_STOCK FIX_ShowMenuForPlayer = FIX_Menus;
+	#define FIX_ShowMenuForPlayer                FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_ShowMenuForPlayer)
 	#undef FIX_ShowMenuForPlayer
 	#define FIX_ShowMenuForPlayer                (2)
 #endif
 
 #if !defined FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer                (FIX_Menus)
+	_FIXES_STOCK FIX_HideMenuForPlayer = FIX_Menus;
+	#define FIX_HideMenuForPlayer                FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
 	#undef FIX_HideMenuForPlayer
 	#define FIX_HideMenuForPlayer                (2)
@@ -2658,14 +2662,16 @@ in the output code.
 #endif
 
 #if !defined FIX_DisableMenu
-	#define FIX_DisableMenu                      (FIX_Menus)
+	_FIXES_STOCK FIX_DisableMenu = FIX_Menus;
+	#define FIX_DisableMenu                      FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_DisableMenu)
 	#undef FIX_DisableMenu
 	#define FIX_DisableMenu                      (2)
 #endif
 
 #if !defined FIX_DisableMenuRow
-	#define FIX_DisableMenuRow                   (FIX_Menus)
+	_FIXES_STOCK FIX_DisableMenuRow = FIX_Menus;
+	#define FIX_DisableMenuRow                   FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_DisableMenuRow)
 	#undef FIX_DisableMenuRow
 	#define FIX_DisableMenuRow                   (2)
