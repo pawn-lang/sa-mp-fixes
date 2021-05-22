@@ -2456,7 +2456,8 @@ in the output code.
 #endif
 
 #if !defined FIX_file_inc
-	#define FIX_file_inc                         (FIXES_EnableAll)
+	_FIXES_STOCK FIX_file_inc = FIXES_EnableAll;
+	#define FIX_file_inc                         FIXES_EnableAll
 #elseif _FIXES_IS_UNSET(FIX_file_inc)
 	#undef FIX_file_inc
 	#define FIX_file_inc                         (2)
@@ -2587,7 +2588,8 @@ in the output code.
 #endif
 
 #if !defined FIX_random
-	#define FIX_random                           (FIXES_EnableAll)
+	_FIXES_STOCK FIX_random = FIXES_EnableAll;
+	#define FIX_random                           FIXES_EnableAll
 #elseif _FIXES_IS_UNSET(FIX_random)
 	#undef FIX_random
 	#define FIX_random                           (2)
@@ -2646,7 +2648,8 @@ in the output code.
 #endif
 
 #if !defined FIX_HideMenuForPlayer_2
-	#define FIX_HideMenuForPlayer_2              (FIXES_EnableAll)
+	_FIXES_STOCK FIX_HideMenuForPlayer_2 = FIXES_EnableAll;
+	#define FIX_HideMenuForPlayer_2              FIXES_EnableAll
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer_2)
 	#undef FIX_HideMenuForPlayer_2
 	#define FIX_HideMenuForPlayer_2              (2)
@@ -2771,7 +2774,8 @@ in the output code.
 #endif
 
 #if !defined FIX_GameTextStyles
-	#define FIX_GameTextStyles                   (FIXES_EnableAll)
+	_FIXES_STOCK FIX_GameTextStyles = FIXES_EnableAll;
+	#define FIX_GameTextStyles                   FIXES_EnableAll
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
 	#undef FIX_GameTextStyles
 	#define FIX_GameTextStyles                   (2)
@@ -2892,14 +2896,16 @@ in the output code.
 #endif
 
 #if !defined FIX_GetPVarString
-	#define FIX_GetPVarString                    (FIXES_EnableAll)
+	_FIXES_STOCK FIX_GetPVarString = FIXES_EnableAll;
+	#define FIX_GetPVarString                    FIXES_EnableAll
 #elseif _FIXES_IS_UNSET(FIX_GetPVarString)
 	#undef FIX_GetPVarString
 	#define FIX_GetPVarString                    (2)
 #endif
 
 #if !defined FIX_GetSVarString
-	#define FIX_GetSVarString                    (FIXES_EnableAll)
+	_FIXES_STOCK FIX_GetSVarString = FIXES_EnableAll;
+	#define FIX_GetSVarString                    FIXES_EnableAll
 #elseif _FIXES_IS_UNSET(FIX_GetSVarString)
 	#undef FIX_GetSVarString
 	#define FIX_GetSVarString                    (2)
