@@ -2001,20 +2001,20 @@ in the output code.
 #endif
 
 // Explicitly enable or disable all fixes, with warnings for the rest.
-#if !defined FIXES_ExplicitDisabled
+#if !defined FIXES_ExplicitOptions
 	#if FIXES_DefaultDisabled
-		#define FIXES_ExplicitDisabled           (1)
+		#define FIXES_ExplicitOptions           (1)
 		#define _FIXES_STOCK static
 	#else
-		#define FIXES_ExplicitDisabled           (0)
+		#define FIXES_ExplicitOptions           (0)
 		#define _FIXES_STOCK static stock
 	#endif
-#elseif _FIXES_IS_UNSET(FIXES_ExplicitDisabled)
-	#undef FIXES_ExplicitDisabled
-	#define FIXES_ExplicitDisabled               (2)
+#elseif _FIXES_IS_UNSET(FIXES_ExplicitOptions)
+	#undef FIXES_ExplicitOptions
+	#define FIXES_ExplicitOptions               (2)
 	#define _FIXES_STOCK static
 #else
-	#if FIXES_ExplicitDisabled
+	#if FIXES_ExplicitOptions
 		#define _FIXES_STOCK static
 	#else
 		#define _FIXES_STOCK static stock

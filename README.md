@@ -222,14 +222,17 @@ A few fixes are disabled by default, to enable them all do:
 There are a few options for improved execution of this script. Define these symbols as `1` before you include fixes.inc to explicitly enable them, `0` to explicitly disable them
 
 
-* `FIXES_Single`: You only have one script running (no filterscripts), simplify the code.  Default `1`.
+* `FIXES_Single`: You only have one script that uses *fixes.inc* running (no other gamemodes or filterscripts).  Using this define will vastly simplify the code in that case, as no cross-script communication is required.  Default `1`.
 * `FIXES_SilentKick`: When a player is kicked for illegal mods/vehicles, don't send them a message.  Default `0`.
 * `FIXES_Debug`: Additional information in the server console.  Default `0`.
+* `FIXES_SingleMsg`: Show a message at mode start if `FIXES_Single` is set, but this is NOT the only script running *fixes.inc*.  This will entirely disable the check, so should only be used if you are absolutely certain that no other scripts are running at the same time (gamemodes or filterscripts).  Default `1`.
 * `FIXES_ServerVarMsg`: Show a message at mode start about server var fixes.  Default `1`.
 * `FIXES_GetMaxPlayersMsg`: Show a message at mode start about max player fixes.  Default `1`.
 * `FIXES_Debug`: Additional information in the server console.  Default `0`.
 * `FIXES_EnableAll`: Enable all current and future default disabled fixes.  Default `0`.
 * `FIXES_EnableDeprecated`: Enable all past (deprecated) fixes.  Might causes errors and conflicts with newer SA:MP includes.  Default `0`.
+* `FIXES_DefaultDisabled`: Disable all fixes by default, and require them to be individually enabled with `FIX_<name> 1`  Default `0`.
+* `FIXES_ExplicitOptions`: Require fixes to be explicitly enabled or disabled, and show a warning for every fix not mentioned.  Useful in combination with `FIXES_DefaultDisabled`, so default `1` with that, `0` otherwise.
 
 
 ## Expansion 
