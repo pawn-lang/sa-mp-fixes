@@ -3069,14 +3069,16 @@ in the output code.
 #endif
 
 #if !defined FIX_OnRconCommand
-	#define FIX_OnRconCommand                    (FIX_Callbacks)
+	_FIXES_STOCK FIX_OnRconCommand = FIX_Callbacks;
+	#define FIX_OnRconCommand                    FIX_Callbacks
 #elseif _FIXES_IS_UNSET(FIX_OnRconCommand)
 	#undef FIX_OnRconCommand
 	#define FIX_OnRconCommand                    (2)
 #endif
 
 #if !defined FIX_OnClientCheckResponse
-	#define FIX_OnClientCheckResponse            (FIX_Callbacks)
+	_FIXES_STOCK FIX_OnClientCheckResponse = FIX_Callbacks;
+	#define FIX_OnClientCheckResponse            FIX_Callbacks
 #elseif _FIXES_IS_UNSET(FIX_OnClientCheckResponse)
 	#undef FIX_OnClientCheckResponse
 	#define FIX_OnClientCheckResponse            (2)
