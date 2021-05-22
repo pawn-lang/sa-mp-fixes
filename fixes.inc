@@ -1961,7 +1961,7 @@ in the output code.
 	#define FIXES_EnableAll                      (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableAll)
 	#undef FIXES_EnableAll
-	#define FIXES_EnableAll                      (2)
+	#define FIXES_EnableAll                      (3)
 #endif
 
 // Enable deprecated fixes - those that are no longer needed.
@@ -1977,7 +1977,8 @@ in the output code.
 	#define FIXES_DefaultDisabled                (1)
 #elseif _FIXES_IS_UNSET(FIXES_DefaultDisabled)
 	#undef FIXES_DefaultDisabled
-	#define FIXES_DefaultDisabled                (0)
+	// If we want things disabled by default and everything enabled, do it.
+	#define FIXES_DefaultDisabled                FIXES_EnableAll
 #endif
 
 // Explicitly enable or disable all fixes, with warnings for the rest.
@@ -2046,7 +2047,9 @@ in the output code.
 
 #if !defined FIX_GetWeaponName
 	#if defined GetVehicleParamsSirenState
-		_FIXES_STOCK FIX_GetWeaponName = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_GetWeaponName = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_GetWeaponName                FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_GetWeaponName = FIXES_DefaultDisabled;
@@ -2067,7 +2070,9 @@ in the output code.
 
 #if !defined FIX_TogglePlayerControllable
 	#if defined SetObjectMaterial
-		_FIXES_STOCK FIX_TogglePlayerControllable = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_TogglePlayerControllable = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_TogglePlayerControllable     FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_TogglePlayerControllable = FIXES_DefaultDisabled;
@@ -2120,7 +2125,9 @@ in the output code.
 
 #if !defined FIX_KEY_AIM
 	#if defined KEY_AIM
-		_FIXES_STOCK FIX_KEY_AIM = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_KEY_AIM = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_KEY_AIM                      FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_KEY_AIM = FIXES_DefaultDisabled;
@@ -2133,7 +2140,9 @@ in the output code.
 
 #if !defined FIX_SPECIAL_ACTION_PISSING
 	#if defined SPECIAL_ACTION_PISSING
-		_FIXES_STOCK FIX_SPECIAL_ACTION_PISSING = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_SPECIAL_ACTION_PISSING = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_SPECIAL_ACTION_PISSING       FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_SPECIAL_ACTION_PISSING = FIXES_DefaultDisabled;
@@ -2154,7 +2163,9 @@ in the output code.
 
 #if !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
-		_FIXES_STOCK FIX_IsValidVehicle = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_IsValidVehicle = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_IsValidVehicle               FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_IsValidVehicle = FIX_Natives;
@@ -2167,7 +2178,9 @@ in the output code.
 
 #if !defined FIX_GetGravity
 	#if defined GetGravity
-		_FIXES_STOCK FIX_GetGravity = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_GetGravity = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_GetGravity                   FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_GetGravity = FIX_Natives;
@@ -2180,7 +2193,9 @@ in the output code.
 
 #if !defined FIX_gpci
 	#if defined gpci
-		_FIXES_STOCK FIX_gpci = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_gpci = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_gpci                         FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_gpci = FIX_Natives;
@@ -2193,7 +2208,9 @@ in the output code.
 
 #if !defined FIX_WEAPONS
 	#if defined WEAPON_FIST
-		_FIXES_STOCK FIX_WEAPONS = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_WEAPONS = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_WEAPONS                      FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_WEAPONS = FIXES_DefaultDisabled;
@@ -2206,7 +2223,9 @@ in the output code.
 
 #if !defined FIX_BODYPARTS
 	#if defined BODY_PART_LEFT_ARM
-		_FIXES_STOCK FIX_BODYPARTS = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_BODYPARTS = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_BODYPARTS                    FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_BODYPARTS = FIXES_DefaultDisabled;
@@ -2219,7 +2238,9 @@ in the output code.
 
 #if !defined FIX_CAMERAMODES
 	#if defined CAM_MODE_NONE
-		_FIXES_STOCK FIX_CAMERAMODES = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_CAMERAMODES = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_CAMERAMODES                  FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_CAMERAMODES = FIXES_DefaultDisabled;
@@ -2304,7 +2325,9 @@ in the output code.
 
 #if !defined FIX_OnPlayerEnterVehicle
 	#if defined OnPlayerClickMap
-		_FIXES_STOCK FIX_OnPlayerEnterVehicle = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_OnPlayerEnterVehicle = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_OnPlayerEnterVehicle         FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_OnPlayerEnterVehicle = FIXES_DefaultDisabled;
@@ -2336,7 +2359,9 @@ in the output code.
 		_FIXES_STOCK FIX_AllowTeleport = FIXES_DefaultDisabled;
 		#define FIX_AllowTeleport                FIXES_DefaultDisabled
 	#else
-		_FIXES_STOCK FIX_AllowTeleport = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_AllowTeleport = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_AllowTeleport                FIXES_EnableDeprecated
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_AllowTeleport)
@@ -2378,7 +2403,9 @@ in the output code.
 
 #if !defined FIX_OnDialogResponse
 	#if defined GetVehicleModelInfo
-		_FIXES_STOCK FIX_OnDialogResponse = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_OnDialogResponse = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_OnDialogResponse             FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_OnDialogResponse = FIXES_DefaultDisabled;
@@ -2391,7 +2418,9 @@ in the output code.
 
 #if !defined FIX_GetPlayerDialog
 	#if defined GetPlayerDialog
-		_FIXES_STOCK FIX_GetPlayerDialog = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_GetPlayerDialog = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_GetPlayerDialog              FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_GetPlayerDialog = FIX_Natives;
@@ -2412,7 +2441,9 @@ in the output code.
 
 #if !defined FIX_SetSpawnInfo
 	#if defined GetPlayerVersion
-		_FIXES_STOCK FIX_SetSpawnInfo = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_SetSpawnInfo = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_SetSpawnInfo                 FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_SetSpawnInfo = FIXES_DefaultDisabled;
@@ -2568,7 +2599,9 @@ in the output code.
 
 #if !defined FIX_Kick
 	#if defined EnableVehicleFriendlyFire
-		_FIXES_STOCK FIX_Kick = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_Kick = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_Kick                         FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_Kick = FIXES_DefaultDisabled;
@@ -2742,7 +2775,9 @@ in the output code.
 
 #if !defined FIX_HideGameText
 	#if defined HideGameText
-		_FIXES_STOCK FIX_HideGameText = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_HideGameText = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_HideGameText                 FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_HideGameText = FIX_Natives;
@@ -2755,7 +2790,9 @@ in the output code.
 
 #if !defined FIX_GetPlayerWorldBounds
 	#if defined GetPlayerWorldBounds
-		_FIXES_STOCK FIX_GetPlayerWorldBounds = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_GetPlayerWorldBounds = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_GetPlayerWorldBounds         FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_GetPlayerWorldBounds = FIX_Natives;
@@ -2768,7 +2805,9 @@ in the output code.
 
 #if !defined FIX_ClearPlayerWorldBounds
 	#if defined ClearPlayerWorldBounds
-		_FIXES_STOCK FIX_ClearPlayerWorldBounds = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_ClearPlayerWorldBounds = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_ClearPlayerWorldBounds       FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_ClearPlayerWorldBounds = FIX_Natives;
@@ -3007,7 +3046,9 @@ in the output code.
 
 #if !defined FIX_VEHICLES
 	#if defined VEHICLE_INFERNUS
-		_FIXES_STOCK FIX_VEHICLES = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_VEHICLES = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_VEHICLES                     FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_VEHICLES = FIXES_DefaultDisabled;
@@ -3020,7 +3061,9 @@ in the output code.
 
 #if !defined FIX_GetPlayerWeather
 	#if defined GetPlayerWeather
-		_FIXES_STOCK FIX_GetPlayerWeather = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_GetPlayerWeather = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_GetPlayerWeather             FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_GetPlayerWeather = FIX_Natives;
@@ -3033,7 +3076,9 @@ in the output code.
 
 #if !defined FIX_GetWeather
 	#if defined GetWeather
-		_FIXES_STOCK FIX_GetWeather = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_GetWeather = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_GetWeather                   FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_GetWeather = FIX_Natives;
@@ -3046,7 +3091,9 @@ in the output code.
 
 #if !defined FIX_GetWorldTime
 	#if defined GetWorldTime
-		_FIXES_STOCK FIX_GetWorldTime = FIXES_EnableDeprecated;
+		#if FIXES_EnableDeprecated
+			_FIXES_STOCK FIX_GetWorldTime = FIXES_EnableDeprecated;
+		#endif
 		#define FIX_GetWorldTime                 FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_GetWorldTime = FIX_Natives;
@@ -3087,7 +3134,9 @@ in the output code.
 			_FIXES_STOCK FIX_GetServerVarAsFloat = FIXES_DefaultDisabled;
 			#define FIX_GetServerVarAsFloat      FIXES_DefaultDisabled
 		#else
-			_FIXES_STOCK FIX_GetServerVarAsFloat = FIXES_EnableDeprecated;
+			#if FIXES_EnableDeprecated
+				_FIXES_STOCK FIX_GetServerVarAsFloat = FIXES_EnableDeprecated;
+			#endif
 			#define FIX_GetServerVarAsFloat      FIXES_EnableDeprecated
 		#endif
 	#else
