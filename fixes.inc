@@ -1623,6 +1623,17 @@ in the output code.
  *     <see>main</see>
  *     <author href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
+ *
+ * <fix name="CreateVehicle">
+ *     <problem>
+ *         Colour `-1` isn't synced.
+ *     </problem>
+ *     <solution>
+ *         Manually control the colours.
+ *     </solution>
+ *     <see>FIXES_CreateVehicle</see>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
  * </fixeslist>
  *
  * <section>
@@ -3231,6 +3242,14 @@ in the output code.
 	#define FIX_main                             (2)
 #endif
 
+#if !defined FIX_CreateVehicle
+	_FIXES_STOCK FIX_CreateVehicle = _FIXES_DEFAULT;
+	#define FIX_CreateVehicle                    _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_CreateVehicle)
+	#undef FIX_CreateVehicle
+	#define FIX_CreateVehicle                    (2)
+#endif
+
 // Generic check to see if ANY menu fix is enabled.
 #if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
 	#define _FIX_Menus                           (1)
@@ -4256,7 +4275,7 @@ static stock
 	 * All vehicle primary colours from carcols.dat.
 	 * </remarks>
 	 */
-#if FIX_GetVehicleColour
+#if FIX_CreateVehicle
 	FIXES_gscVehiclePrimary[] =
 		{
 			4, 123, 113, 101, 75, 62, 40, 36,      // 400 - landstal
@@ -4478,7 +4497,7 @@ static stock
 	 * All vehicle secondary colours from carcols.dat.
 	 * </remarks>
 	 */
-#if FIX_GetVehicleColour
+#if FIX_CreateVehicle
 	FIXES_gscVehicleSecondary[] =
 		{
 			1, 1, 1, 1, 1, 1, 1, 1,                // 400 - landstal
@@ -4701,7 +4720,7 @@ static stock
 	 * model type.  N+1 so there's a final end-point.
 	 * </remarks>
 	 */
-#if FIX_GetVehicleColour
+#if FIX_CreateVehicle
 	FIXES_gscVehicleIndexes[] =
 		{
 			   0,                                  // 400 - landstal
