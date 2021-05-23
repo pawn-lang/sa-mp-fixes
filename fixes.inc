@@ -3242,13 +3242,18 @@ in the output code.
 	#define FIX_main                             (2)
 #endif
 
-#if !defined FIX_CreateVehicle
-	_FIXES_STOCK FIX_CreateVehicle = _FIXES_DEFAULT;
-	#define FIX_CreateVehicle                    _FIXES_DEFAULT
-#elseif _FIXES_IS_UNSET(FIX_CreateVehicle)
+//#if !defined FIX_CreateVehicle
+//	_FIXES_STOCK FIX_CreateVehicle = _FIXES_DEFAULT;
+//	#define FIX_CreateVehicle                    _FIXES_DEFAULT
+//#elseif _FIXES_IS_UNSET(FIX_CreateVehicle)
+//	#undef FIX_CreateVehicle
+//	#define FIX_CreateVehicle                    (2)
+//#endif
+// Disable it for now.
+#if defined FIX_CreateVehicle
 	#undef FIX_CreateVehicle
-	#define FIX_CreateVehicle                    (2)
 #endif
+#define FIX_CreateVehicle (0)
 
 // Generic check to see if ANY menu fix is enabled.
 #if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
@@ -4943,12 +4948,14 @@ static stock
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.
 	 * </remarks>
 	 */
-	FIXES_gscColour3Camper[] = {1, 1, 3, 0, 3, 3, 8, 120},
-	FIXES_gscColour3Cement[] = {23, 123, 31, 30, 23, 62, 64, 64},
-	FIXES_gscColour3Squalo[] = {0, 1, 0, 1, 1, 1, 1, 1},
-	FIXES_gscColour4Camper[] = {0, 0, 0, 0, 0, 0, 0, 0},
-	FIXES_gscColour4Cement[] = {0, 0, 0, 0, 0, 0, 0, 0},
-	FIXES_gscColour4Squalo[] = {1, 1, 1, 1, 1, 1, 1, 1},
+#if FIX_CreateVehicle
+	FIXES_gscColour3Camper[8 char] = {0x01010300, 0x03030878},
+	FIXES_gscColour3Cement[8 char] = {0x177B1F1E, 0x173E4040},
+	FIXES_gscColour3Squalo[8 char] = {0x00010001, 0x01010101},
+	FIXES_gscColour4Camper[8 char] = {0x00000000, 0x00000000},
+	FIXES_gscColour4Cement[8 char] = {0x00000000, 0x00000000},
+	FIXES_gscColour4Squalo[8 char] = {0x01010101, 0x01010101},
+#endif
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's race checkpoint state.
