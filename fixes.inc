@@ -7374,8 +7374,8 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				// ======================
 				#if FIX_SetPlayerName
 					new
-						name[MAX_PLAYER_NAME];
-					GetPlayerName__(playerid, name, MAX_PLAYER_NAME);
+						name[MAX_PLAYER_NAME + 1];
+					GetPlayerName__(playerid, name, MAX_PLAYER_NAME + 1);
 					if (strcmp(name, FIXES_gscTempName) == 0)
 					{
 						Kick__(playerid);
@@ -7835,8 +7835,12 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 #if FIX_SetPlayerName
 	stock FIXES_SetPlayerName(playerid, const name[])
 	{
+		if (_FIXES_NO_RANGE(strlen(name), 3, MAX_PLAYER_NAME + 1))
+		{
+			return 0;
+		}
 		static
-			sOldName[MAX_PLAYER_NAME];
+			sOldName[MAX_PLAYER_NAME + 1];
 		GetPlayerName__(playerid, sOldName, sizeof (sOldName));
 		if (!strcmp(name, sOldName, true))
 		{
