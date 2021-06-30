@@ -4281,7 +4281,7 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_CreateVehicle
-	FIXES_gscVehiclePrimary[] =
+	FIXES_gscVehiclePrimary[1158] =
 		{
 			4, 123, 113, 101, 75, 62, 40, 36,      // 400 - landstal
 			41, 47, 52, 66, 74, 87, 91, 113,       // 401 - bravura
@@ -4503,7 +4503,7 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_CreateVehicle
-	FIXES_gscVehicleSecondary[] =
+	FIXES_gscVehicleSecondary[1158] =
 		{
 			1, 1, 1, 1, 1, 1, 1, 1,                // 400 - landstal
 			41, 47, 52, 66, 74, 87, 91, 113,       // 401 - bravura
@@ -4726,7 +4726,7 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_CreateVehicle
-	FIXES_gscVehicleIndexes[] =
+	FIXES_gscVehicleIndexes[212 + 1] =
 		{
 			   0,                                  // 400 - landstal
 			   8,                                  // 401 - bravura
@@ -8694,7 +8694,10 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#else
 		#define _ALS_main
 	#endif
-	#define main( FIXES_main(
+	#if defined FIXES_main
+		forward FIXES_main();
+	#endif
+	#define main( public FIXES_main(
 #endif
 
 /**
