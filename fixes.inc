@@ -1634,6 +1634,18 @@ in the output code.
  *     <see>FIXES_CreateVehicle</see>
  *     <author href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
+ *
+ * <fix name="API">
+ *     <problem>
+ *         fixes.inc isn't intended to extend the SA:MP API, but has a lot of information internally
+ *         that can be useful to other scripts.  By not exposing this data, we complicate and bloat
+ *         scripts by requiring them to re-implement said functionality.
+ *     </problem>
+ *     <solution>
+ *         Expose the data, behind a tightly controlled API.
+ *     </solution>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
  * </fixeslist>
  *
  * <section>
@@ -3255,6 +3267,14 @@ in the output code.
 #endif
 #define FIX_CreateVehicle (0)
 
+#if !defined FIX_API
+	_FIXES_STOCK FIX_API = _FIXES_DEFAULT;
+	#define FIX_API                              _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_API)
+	#undef FIX_API
+	#define FIX_API                              (2)
+#endif
+
 // Generic check to see if ANY menu fix is enabled.
 #if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
 	#define _FIX_Menus                           (1)
@@ -3480,6 +3500,16 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #elseif _FIXES_IS_UNSET(FIXES_GetMaxPlayersMsg)
 	#undef FIXES_GetMaxPlayersMsg
 	#define FIXES_GetMaxPlayersMsg 2
+#endif
+
+/**
+ * <remarks>
+ * Is the extended API defined for use?  Better for testing (<c>#if defined FIXES_API</c>).
+ * </remarks>
+ */
+
+#if FIX_API
+	#define FIXES_API
 #endif
 
 /**
