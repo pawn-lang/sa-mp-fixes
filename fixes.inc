@@ -2029,18 +2029,19 @@ in the output code.
 
 /*
 
-      ,ad8888ba,                         88                                       
-     d8"'    `"8b                 ,d     ""                                       
-    d8'        `8b                88                                              
-    88          88  8b,dPPYba,  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,  
-    88          88  88P'    "8a   88     88  a8"     "8a  88P'   `"8a  I8[    ""  
-    Y8,        ,8P  88       d8   88     88  8b       d8  88       88   `"Y8ba,   
-     Y8a.    .a8P   88b,   ,a8"   88,    88  "8a,   ,a8"  88       88  aa    ]8I  
-      `"Y8888Y"'    88`YbbdP"'    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'  
-                    88                                                            
-                    88                                                            
+     ad88888ba                                 88                                       
+    d8"     "8b                ,d       ,d     ""                                       
+    Y8,                        88       88                                              
+    `Y8aaaaa,     ,adPPYba,  MM88MMM  MM88MMM  88  8b,dPPYba,    ,adPPYb,d8  ,adPPYba,  
+      `"""""8b,  a8P_____88    88       88     88  88P'   `"8a  a8"    `Y88  I8[    ""  
+            `8b  8PP"""""""    88       88     88  88       88  8b       88   `"Y8ba,   
+    Y8a     a8P  "8b,   ,aa    88,      88,    88  88       88  "8a,   ,d88  aa    ]8I  
+     "Y88888P"    `"Ybbd8"'    "Y888    "Y888  88  88       88   `"YbbdP"Y8  `"YbbdP"'  
+                                                                 aa,    ,88             
+                                                                  "Y8bbdP"              
 
-*/
+
+/*
 
 /**
  * <remarks>
@@ -2207,16 +2208,16 @@ in the output code.
 
 /*
 
-    88888888888  88                                     
-    88           ""                                     
-    88                                                  
-    88aaaaa      88  8b,     ,d8  ,adPPYba,  ,adPPYba,  
-    88"""""      88   `Y8, ,8P'  a8P_____88  I8[    ""  
-    88           88     )888(    8PP"""""""   `"Y8ba,   
-    88           88   ,d8" "8b,  "8b,   ,aa  aa    ]8I  
-    88           88  8P'     `Y8  `"Ybbd8"'  `"YbbdP"'  
-
-
+      ,ad8888ba,                         88                                       
+     d8"'    `"8b                 ,d     ""                                       
+    d8'        `8b                88                                              
+    88          88  8b,dPPYba,  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,  
+    88          88  88P'    "8a   88     88  a8"     "8a  88P'   `"8a  I8[    ""  
+    Y8,        ,8P  88       d8   88     88  8b       d8  88       88   `"Y8ba,   
+     Y8a.    .a8P   88b,   ,a8"   88,    88  "8a,   ,a8"  88       88  aa    ]8I  
+      `"Y8888Y"'    88`YbbdP"'    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'  
+                    88                                                            
+                    88                                                            
 
 */
 
@@ -7422,16 +7423,139 @@ static stock _FIXES_DetermineOS()
 	#define _FIXES_DetermineOS();
 #endif
 
+/*
+ * _FIXES_Bernstein()
+ *
+ * Convert a string to a number (hash it).
+ *
+ * FIXES:
+ *    GetServerVarAsString
+ *    GetServerVarAsBool
+ *    GetServerVarAsInt
+ */
+
+static stock _FIXES_Bernstein(const name[])
+{
+	new
+		i = -1,
+		ch,
+		hash = 5381;
+	// In carcols.dat the vehicle names end at ",".  That makes this code
+	// very specific to a few use-cases.  It also works for hashing server vars,
+	// since they don't have commas.  Now case-insensitive.  Why does this
+	// mention `carcols.dat` in the comments?  Were we planning a vehicle colour
+	// fix that never got implemented?
+	while ((ch = name[++i]) >= '0')
+	{
+		hash = (hash * 33) ^ (ch | 0x20);
+	}
+	return hash;
+}
+
 /**
  * <remarks>
- * Declare the function to reset the car-jacked player id to invalid id.
+ * Modify a constant reference.
  * </remarks>
  */
- 
-#if FIX_SilentTeleport
-	forward FIXES_RemoveJackedId(playerid);
-	public FIXES_RemoveJackedId(playerid) return FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
+
+#if (__Pawn & 0x0F) >= 0x0A
+	#pragma warning push
+	#pragma warning disable 238
 #endif
+
+static stock _FIXES_ConstMod(const &target, chr)
+{
+	#pragma unused target, chr
+	#emit LOAD.S.pri chr
+	#emit SREF.S.pri target
+}
+
+#if (__Pawn & 0x0F) >= 0x0A
+	#pragma warning pop
+#endif
+
+/**
+ * <remarks>
+ * Removes whitespace from the right side of a string.  Modifies <c>const</c>
+ * strings to make it appear that nothing changes, so needs some tricky playing
+ * to make it work.
+ * </remarks>
+ */
+
+static stock _FIXES_rtrim(const string[])
+{
+	new
+		length = strlen(string);
+	while (length--)
+	{
+		if (string[length] > ' ')
+			break;
+	}
+	FIXES_gsTrimPos = length + 1,
+	FIXES_gsTrimChr = string[FIXES_gsTrimPos],
+	_FIXES_ConstMod(string[FIXES_gsTrimPos], '\0');
+}
+
+/**
+ * <remarks>
+ * Puts whitespace back on the right side of a string.  Makes certain functions
+ * appear <c>const</c> because the string ends up the same as it started.
+ * </remarks>
+ */
+
+static stock _FIXES_untrim(const string[])
+{
+	_FIXES_ConstMod(string[FIXES_gsTrimPos], FIXES_gsTrimChr);
+}
+
+/**
+ * <remarks>
+ * Add something to an internal linked list.
+ * </remarks>
+ */
+
+static stock _FIXES_AddInternal(array[], value, size)
+{
+	if (array[value] <= value)
+	{
+		new
+			last = size,
+			next = array[last];
+		while (next < value)
+		{
+			last = next,
+			next = array[last];
+		}
+		array[next - 1] = value + 1,
+		array[(value - 1) % (size + 1)] = (last + 1) % (size + 1),
+		array[last] = value,
+		array[value] = next;
+	}
+}
+
+/**
+ * <remarks>
+ * Remove something from an internal linked list.
+ * </remarks>
+ */
+
+static stock _FIXES_RemoveInternal(array[], value, size)
+{
+	if (array[value] > value)
+	{
+		static
+			last;
+		// Adjustment for easier "mod"ing.
+		++size,
+		last = (array[(value - 1) % size] - 1) % size,
+		// Store the reverse value here as well as in the previous slot.
+		array[value] =
+			// Copy the next value to the last value.
+			array[(array[last] = array[value]) - 1] =
+				// Set the reverse iterator value.
+				(last + 1) % size;
+	}
+}
 
 /**
  * <remarks>
@@ -7454,32 +7578,99 @@ static stock _FIXES_DetermineOS()
 #endif
 
 /**
- * <fixes>IsPlayerConnected</fixes>
+ * <remarks>
+ * Check if files outside <c>scriptfiles</c> can be accessed via
+ * <a>DANGEROUS_SERVER_ROOT</c>.
+ * </remarks>
  */
 
-#if _FIXES_SAMP && defined _ALS_IsPlayerConnected
-	#error _ALS_IsPlayerConnected defined
+#if FIX_GetServerVarAsString || FIX_GetServerVarAsFloat || FIX_GetServerVarAsInt || FIX_GetServerVarAsBool
+	static stock _FIXES_CheckServerRoot()
+	{
+		FIXES_gsServerCFG = fopen("DANGEROUS_SERVER_ROOT/server.cfg", io_read);
+		#if FIXES_ServerVarMsg
+			if (!FIXES_gsServerCFG)
+			{
+				print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM);
+				print(" ");
+				print("********************************************************************************");
+				print("* Could not open \"DANGEROUS_SERVER_ROOT/server.cfg\".  Make sure your server is *");
+				print("* configured to allow server root access.  Either via:                         *");
+				print("*                                                                              *");
+				print("*     https://github.com/Misiur/YSI/raw/master/links.rar                       *");
+				print("*                                                                              *");
+				print("* Or (Windows - CMD):                                                          *");
+				print("*                                                                              *");
+				print("*     cd scriptfiles                                                           *");
+				print("*     mklink /J DANGEROUS_SERVER_ROOT ..                                       *");
+				print("*                                                                              *");
+				print("* Or (Windows - PowerShell):                                                   *");
+				print("*                                                                              *");
+				print("*     cd scriptfiles                                                           *");
+				print("*     cmd /c mklink /J DANGEROUS_SERVER_ROOT ..                                *");
+				print("*                                                                              *");
+				print("* Or (Linux):                                                                  *");
+				print("*                                                                              *");
+				print("*     cd scriptfiles                                                           *");
+				print("*     ln -s .. DANGEROUS_SERVER_ROOT                                           *");
+				print("*                                                                              *");
+				print("* If you're not able to, or just don't want to make these changes you can      *");
+				print("* suppress the warning by defining this at the top of your mode:               *");
+				print("*                                                                              *");
+				print("*     #define FIXES_ServerVarMsg 0                                             *");
+				print("*                                                                              *");
+				print("* Or (preferably) disable the relevant fixes with:                             *");
+				print("*                                                                              *");
+				print("*     #define FIX_GetServerVarAsString 0                                       *");
+				print("*     #define FIX_GetServerVarAsFloat  0                                       *");
+				print("*     #define FIX_GetServerVarAsInt    0                                       *");
+				print("*     #define FIX_GetServerVarAsBool   0                                       *");
+				print("*                                                                              *");
+				print("********************************************************************************");
+				print(" ");
+			}
+		#endif
+	}
+#else
+	#define _FIXES_CheckServerRoot();
 #endif
-native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 
 /**
- * <fixes>IsPlayerConnected</fixes>
+ * <remarks>
+ * Check if <c>MAX_PLAYERS</c> equals <c>GetMaxPlayers</c>, for efficiency. 
+ * </remarks>
  */
 
-#if FIX_IsPlayerConnected
-	stock FIXES_IsPlayerConnected(playerid)
-	{
-		return _FIXES_IS_PLAYER_CONNECTED(playerid);
-	}
-
-	#if _FIXES_SAMP
-		#define _ALS_IsPlayerConnected
-		#define IsPlayerConnected( FIXES_IsPlayerConnected(
+static stock _FIXES_CheckMaxPlayers()
+{
+		_FIXES_gsMaxPlayers = GetMaxPlayers__();
+		// Check max players match.
+		if (_FIXES_gsMaxPlayers > MAX_PLAYERS)
+		{
+			#if FIXES_GetMaxPlayersMsg
+				printf("\7\7\7\7\7*** fixes.inc error: Server var `maxplayers` (%d) > `MAX_PLAYERS` (%d), may", _FIXES_gsMaxPlayers, MAX_PLAYERS),
+				print(           "***                  cause OOBs with many players.  Recompile your mode with a"),
+				print(           "***                  higher `MAX_PLAYERS` to ensure sufficient array space."),
+				print(FIXES_gscThreeStars),
+				print(           "***                  Disable this message with:"),
+				print(FIXES_gscThreeStars),
+				print(           "***                      #define FIXES_GetMaxPlayersMsg 0"),
+				print(FIXES_gscThreeStars);
+			#endif
+			_FIXES_gsMaxPlayers = MAX_PLAYERS;
+		}
+	#if FIXES_GetMaxPlayersMsg
+		else if (_FIXES_gsMaxPlayers < MAX_PLAYERS)
+		{
+			printf("\7\7\7*** fixes.inc warning: Server var `maxplayers` (%d) < `MAX_PLAYERS` (%d), wasting memory.", _FIXES_gsMaxPlayers, MAX_PLAYERS),
+			print(FIXES_gscThreeStars),
+			print(       "***                    Disable this message with:"),
+			print(FIXES_gscThreeStars),
+			print(       "***                        #define FIXES_GetMaxPlayersMsg 0"),
+			print(FIXES_gscThreeStars);
+		}
 	#endif
-
-	#define _ALS_IsPlayerConnected__
-	#define IsPlayerConnected__( FIXES_IsPlayerConnected(
-#endif
+}
 
 /**
  * <remarks>
@@ -7904,6 +8095,49 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 	}
 #endif
 
+/*
+
+    88888888888  88                                     
+    88           ""                                     
+    88                                                  
+    88aaaaa      88  8b,     ,d8  ,adPPYba,  ,adPPYba,  
+    88"""""      88   `Y8, ,8P'  a8P_____88  I8[    ""  
+    88           88     )888(    8PP"""""""   `"Y8ba,   
+    88           88   ,d8" "8b,  "8b,   ,aa  aa    ]8I  
+    88           88  8P'     `Y8  `"Ybbd8"'  `"YbbdP"'  
+
+
+
+*/
+
+/**
+ * <fixes>IsPlayerConnected</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_IsPlayerConnected
+	#error _ALS_IsPlayerConnected defined
+#endif
+native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
+
+/**
+ * <fixes>IsPlayerConnected</fixes>
+ */
+
+#if FIX_IsPlayerConnected
+	stock FIXES_IsPlayerConnected(playerid)
+	{
+		return _FIXES_IS_PLAYER_CONNECTED(playerid);
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_IsPlayerConnected
+		#define IsPlayerConnected( FIXES_IsPlayerConnected(
+	#endif
+
+	#define _ALS_IsPlayerConnected__
+	#define IsPlayerConnected__( FIXES_IsPlayerConnected(
+#endif
+
 /**
  * <remarks>
  * Set "IS_JIT" to true.
@@ -7929,88 +8163,6 @@ public OnJITCompile()
 #define OnJITCompile(%0) FIXES_OnJITCompile(%0) <_ALS : _ALS_go>
 
 _FIXES_FORWARD FIXES_OnJITCompile();
-
-#if FIX_GetServerVarAsString || FIX_GetServerVarAsFloat || FIX_GetServerVarAsInt || FIX_GetServerVarAsBool
-	static stock _FIXES_CheckServerRoot()
-	{
-		FIXES_gsServerCFG = fopen("DANGEROUS_SERVER_ROOT/server.cfg", io_read);
-		#if FIXES_ServerVarMsg
-			if (!FIXES_gsServerCFG)
-			{
-				print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM);
-				print(" ");
-				print("********************************************************************************");
-				print("* Could not open \"DANGEROUS_SERVER_ROOT/server.cfg\".  Make sure your server is *");
-				print("* configured to allow server root access.  Either via:                         *");
-				print("*                                                                              *");
-				print("*     https://github.com/Misiur/YSI/raw/master/links.rar                       *");
-				print("*                                                                              *");
-				print("* Or (Windows - CMD):                                                          *");
-				print("*                                                                              *");
-				print("*     cd scriptfiles                                                           *");
-				print("*     mklink /J DANGEROUS_SERVER_ROOT ..                                       *");
-				print("*                                                                              *");
-				print("* Or (Windows - PowerShell):                                                   *");
-				print("*                                                                              *");
-				print("*     cd scriptfiles                                                           *");
-				print("*     cmd /c mklink /J DANGEROUS_SERVER_ROOT ..                                *");
-				print("*                                                                              *");
-				print("* Or (Linux):                                                                  *");
-				print("*                                                                              *");
-				print("*     cd scriptfiles                                                           *");
-				print("*     ln -s .. DANGEROUS_SERVER_ROOT                                           *");
-				print("*                                                                              *");
-				print("* If you're not able to, or just don't want to make these changes you can      *");
-				print("* suppress the warning by defining this at the top of your mode:               *");
-				print("*                                                                              *");
-				print("*     #define FIXES_ServerVarMsg 0                                             *");
-				print("*                                                                              *");
-				print("* Or (preferably) disable the relevant fixes with:                             *");
-				print("*                                                                              *");
-				print("*     #define FIX_GetServerVarAsString 0                                       *");
-				print("*     #define FIX_GetServerVarAsFloat  0                                       *");
-				print("*     #define FIX_GetServerVarAsInt    0                                       *");
-				print("*     #define FIX_GetServerVarAsBool   0                                       *");
-				print("*                                                                              *");
-				print("********************************************************************************");
-				print(" ");
-			}
-		#endif
-	}
-#else
-	#define _FIXES_CheckServerRoot();
-#endif
-
-static stock _FIXES_CheckMaxPlayers()
-{
-		_FIXES_gsMaxPlayers = GetMaxPlayers__();
-		// Check max players match.
-		if (_FIXES_gsMaxPlayers > MAX_PLAYERS)
-		{
-			#if FIXES_GetMaxPlayersMsg
-				printf("\7\7\7\7\7*** fixes.inc error: Server var `maxplayers` (%d) > `MAX_PLAYERS` (%d), may", _FIXES_gsMaxPlayers, MAX_PLAYERS),
-				print(           "***                  cause OOBs with many players.  Recompile your mode with a"),
-				print(           "***                  higher `MAX_PLAYERS` to ensure sufficient array space."),
-				print(FIXES_gscThreeStars),
-				print(           "***                  Disable this message with:"),
-				print(FIXES_gscThreeStars),
-				print(           "***                      #define FIXES_GetMaxPlayersMsg 0"),
-				print(FIXES_gscThreeStars);
-			#endif
-			_FIXES_gsMaxPlayers = MAX_PLAYERS;
-		}
-	#if FIXES_GetMaxPlayersMsg
-		else if (_FIXES_gsMaxPlayers < MAX_PLAYERS)
-		{
-			printf("\7\7\7*** fixes.inc warning: Server var `maxplayers` (%d) < `MAX_PLAYERS` (%d), wasting memory.", _FIXES_gsMaxPlayers, MAX_PLAYERS),
-			print(FIXES_gscThreeStars),
-			print(       "***                    Disable this message with:"),
-			print(FIXES_gscThreeStars),
-			print(       "***                        #define FIXES_GetMaxPlayersMsg 0"),
-			print(FIXES_gscThreeStars);
-		}
-	#endif
-}
 
 /**
  * <remarks>
@@ -10361,6 +10513,17 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define OnPlayerKeyStateChange(%0) FIXES_OnPlayerKeyStateChange(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
+#endif
+
+/**
+ * <remarks>
+ * Declare the function to reset the car-jacked player id to invalid id.
+ * </remarks>
+ */
+ 
+#if FIX_SilentTeleport
+	forward FIXES_RemoveJackedId(playerid);
+	public FIXES_RemoveJackedId(playerid) return FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
 #endif
 
 /**
@@ -14706,35 +14869,6 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	#define SetPlayerAmmo__(%0,%1,%2) BAD_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
 #endif
 
-/*
- * _FIXES_Bernstein()
- *
- * Convert a string to a number (hash it).
- *
- * FIXES:
- *    GetServerVarAsString
- *    GetServerVarAsBool
- *    GetServerVarAsInt
- */
-
-static stock _FIXES_Bernstein(const name[])
-{
-	new
-		i = -1,
-		ch,
-		hash = 5381;
-	// In carcols.dat the vehicle names end at ",".  That makes this code
-	// very specific to a few use-cases.  It also works for hashing server vars,
-	// since they don't have commas.  Now case-insensitive.  Why does this
-	// mention `carcols.dat` in the comments?  Were we planning a vehicle colour
-	// fix that never got implemented?
-	while ((ch = name[++i]) >= '0')
-	{
-		hash = (hash * 33) ^ (ch | 0x20);
-	}
-	return hash;
-}
-
 /**
  * <fixes>GetPlayerWeather</fixes>
  */
@@ -15243,110 +15377,20 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define GetServerVarAsFloat__( FIXES_GetServerVarAsFloat(
 #endif
 
-/**
- * <remarks>
- * Modify a constant reference.
- * </remarks>
- */
+/*
 
-#if (__Pawn & 0x0F) >= 0x0A
-	#pragma warning push
-	#pragma warning disable 238
-#endif
+    88888888888                                                       
+    88                                  ,d                            
+    88                                  88                            
+    88aaaaa   ,adPPYba,    ,adPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,  
+    88"""""  a8"     "8a  a8"     "8a   88    a8P_____88  88P'   "Y8  
+    88       8b       d8  8b       d8   88    8PP"""""""  88          
+    88       "8a,   ,a8"  "8a,   ,a8"   88,   "8b,   ,aa  88          
+    88        `"YbbdP"'    `"YbbdP"'    "Y888  `"Ybbd8"'  88          
 
-static stock _FIXES_ConstMod(const &target, chr)
-{
-	#pragma unused target, chr
-	#emit LOAD.S.pri chr
-	#emit SREF.S.pri target
-}
 
-#if (__Pawn & 0x0F) >= 0x0A
-	#pragma warning pop
-#endif
 
-/**
- * <remarks>
- * Removes whitespace from the right side of a string.  Modifies <c>const</c>
- * strings to make it appear that nothing changes, so needs some tricky playing
- * to make it work.
- * </remarks>
- */
-
-static stock _FIXES_rtrim(const string[])
-{
-	new
-		length = strlen(string);
-	while (length--)
-	{
-		if (string[length] > ' ')
-			break;
-	}
-	FIXES_gsTrimPos = length + 1,
-	FIXES_gsTrimChr = string[FIXES_gsTrimPos],
-	_FIXES_ConstMod(string[FIXES_gsTrimPos], '\0');
-}
-
-/**
- * <remarks>
- * Puts whitespace back on the right side of a string.  Makes certain functions
- * appear <c>const</c> because the string ends up the same as it started.
- * </remarks>
- */
-
-static stock _FIXES_untrim(const string[])
-{
-	_FIXES_ConstMod(string[FIXES_gsTrimPos], FIXES_gsTrimChr);
-}
-
-/**
- * <remarks>
- * Add something to an internal linked list.
- * </remarks>
- */
-
-static stock _FIXES_AddInternal(array[], value, size)
-{
-	if (array[value] <= value)
-	{
-		new
-			last = size,
-			next = array[last];
-		while (next < value)
-		{
-			last = next,
-			next = array[last];
-		}
-		array[next - 1] = value + 1,
-		array[(value - 1) % (size + 1)] = (last + 1) % (size + 1),
-		array[last] = value,
-		array[value] = next;
-	}
-}
-
-/**
- * <remarks>
- * Remove something from an internal linked list.
- * </remarks>
- */
-
-static stock _FIXES_RemoveInternal(array[], value, size)
-{
-	if (array[value] > value)
-	{
-		static
-			last;
-		// Adjustment for easier "mod"ing.
-		++size,
-		last = (array[(value - 1) % size] - 1) % size,
-		// Store the reverse value here as well as in the previous slot.
-		array[value] =
-			// Copy the next value to the last value.
-			array[(array[last] = array[value]) - 1] =
-				// Set the reverse iterator value.
-				(last + 1) % size;
-	}
-}
+*/
 
 // Clean up all internal defines.
 #undef _FIXES_CEILDIV
