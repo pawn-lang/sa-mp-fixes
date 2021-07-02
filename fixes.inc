@@ -15412,6 +15412,8 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef _FIXES_DEFAULT
 #undef _FIXES_STOCK
 #undef _FIXES_IS_NULL
+#undef FIXES_SET
+#undef FIXES_GET
 
 #endinput
 
