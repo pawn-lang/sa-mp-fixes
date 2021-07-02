@@ -3599,13 +3599,13 @@ in the output code.
 
 /**
  * <remarks>
- * isnull
+ * _FIXES_IS_NULL
  *
  * Pretty standard.
  * </remarks>
  */
 
-#define isnull(%0) ((%0[(%0[0])=='\1'])=='\0')
+#define _FIXES_IS_NULL(%0) ((%0[(%0[0])=='\1'])=='\0')
 
 /**
  * <remarks>
@@ -12165,8 +12165,8 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 	{
 		if (_FIXES_IN_RANGE(style, 0, FIXES_GT_STYLE_COUNT))
 		{
-			// FINALLY come up with a better IsNull check!
-			if (isnull(string))
+			// FINALLY come up with a better _FIXES_IS_NULL check!
+			if (_FIXES_IS_NULL(string))
 			{
 				#if FIXES_Single
 					return _FIXES_HideGameTextTimer(INVALID_PLAYER_ID, style);
@@ -12213,7 +12213,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	{
 		if (_FIXES_IN_RANGE(style, 0, FIXES_GT_STYLE_COUNT) && _FIXES_IS_PLAYER_CONNECTED(playerid))
 		{
-			if (isnull(string))
+			if (_FIXES_IS_NULL(string))
 			{
 				#if FIXES_Single
 					return _FIXES_HideGameTextTimer(playerid, style);
@@ -12307,7 +12307,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #if FIX_CreatePlayerTextDraw || FIX_CreatePlayerTextDraw_2
 
 	#if FIX_CreatePlayerTextDraw
-		#define _FIXES_PASS_STRING(%0(%1,%2,%3,%4)) (isnull(%4) ? %0(%1,%2,%3,FIXES_gsSpace) : %0(%1,%2,%3,%4))
+		#define _FIXES_PASS_STRING(%0(%1,%2,%3,%4)) (_FIXES_IS_NULL(%4) ? %0(%1,%2,%3,FIXES_gsSpace) : %0(%1,%2,%3,%4))
 	#else
 		#define _FIXES_PASS_STRING(%0) %0
 	#endif
@@ -12364,7 +12364,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #if FIX_PlayerTextDrawSetString || FIX_PlayerTextDrawSetString_2
 
 	#if FIX_PlayerTextDrawSetString
-		#define _FIXES_PASS_STRING(%0(%2,%3,%4)) (isnull(%4) ? %0(%2,%3,FIXES_gsSpace) : %0(%2,%3,%4))
+		#define _FIXES_PASS_STRING(%0(%2,%3,%4)) (_FIXES_IS_NULL(%4) ? %0(%2,%3,FIXES_gsSpace) : %0(%2,%3,%4))
 	#else
 		#define _FIXES_PASS_STRING(%0) %0
 	#endif
@@ -12416,7 +12416,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #if FIX_TextDrawCreate || FIX_TextDrawCreate_2
 
 	#if FIX_TextDrawCreate
-		#define _FIXES_PASS_STRING(%0(%2,%3,%4)) (isnull(%4) ? %0(%2,%3,FIXES_gsSpace) : %0(%2,%3,%4))
+		#define _FIXES_PASS_STRING(%0(%2,%3,%4)) (_FIXES_IS_NULL(%4) ? %0(%2,%3,FIXES_gsSpace) : %0(%2,%3,%4))
 	#else
 		#define _FIXES_PASS_STRING(%0) %0
 	#endif
@@ -12473,7 +12473,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #if FIX_TextDrawSetString || FIX_TextDrawSetString_2
 
 	#if FIX_TextDrawSetString
-		#define _FIXES_PASS_STRING(%0(%3,%4)) (isnull(%4) ? %0(%3,FIXES_gsSpace) : %0(%3,%4))
+		#define _FIXES_PASS_STRING(%0(%3,%4)) (_FIXES_IS_NULL(%4) ? %0(%3,FIXES_gsSpace) : %0(%3,%4))
 	#else
 		#define _FIXES_PASS_STRING(%0) %0
 	#endif
@@ -15411,6 +15411,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef FIXES_PRINTF
 #undef _FIXES_DEFAULT
 #undef _FIXES_STOCK
+#undef _FIXES_IS_NULL
 
 #endinput
 
