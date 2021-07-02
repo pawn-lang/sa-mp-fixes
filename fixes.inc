@@ -7482,7 +7482,7 @@ static stock _FIXES_ConstMod(const &target, chr)
  * </remarks>
  */
 
-static stock _FIXES_rtrim(const string[])
+static stock _FIXES_RTrim(const string[])
 {
 	new
 		length = strlen(string);
@@ -7503,7 +7503,7 @@ static stock _FIXES_rtrim(const string[])
  * </remarks>
  */
 
-static stock _FIXES_untrim(const string[])
+static stock _FIXES_UnTrim(const string[])
 {
 	_FIXES_ConstMod(string[FIXES_gsTrimPos], FIXES_gsTrimChr);
 }
@@ -12320,11 +12320,11 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[])
 	{
 		#if FIX_CreatePlayerTextDraw_2
-			_FIXES_rtrim(text);
+			_FIXES_RTrim(text);
 		#endif
 			_FIXES_RETURN_STRING(CreatePlayerTextDraw__(playerid, x, y, text));
 		#if FIX_CreatePlayerTextDraw_2
-			_FIXES_untrim(text);
+			_FIXES_UnTrim(text);
 			return ret;
 		#endif
 	}
@@ -12377,11 +12377,11 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[])
 	{
 		#if FIX_PlayerTextDrawSetString_2
-			_FIXES_rtrim(string);
+			_FIXES_RTrim(string);
 		#endif
 			_FIXES_RETURN_STRING(PlayerTextDrawSetString__(playerid, text, string));
 		#if FIX_PlayerTextDrawSetString_2
-			_FIXES_untrim(string);
+			_FIXES_UnTrim(string);
 			return ret;
 		#endif
 	}
@@ -12429,11 +12429,11 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[])
 	{
 		#if FIX_TextDrawCreate_2
-			_FIXES_rtrim(text);
+			_FIXES_RTrim(text);
 		#endif
 			_FIXES_RETURN_STRING(TextDrawCreate__(x, y, text));
 		#if FIX_TextDrawCreate_2
-			_FIXES_untrim(text);
+			_FIXES_UnTrim(text);
 			return ret;
 		#endif
 	}
@@ -12486,11 +12486,11 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	stock FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[])
 	{
 		#if FIX_TextDrawSetString_2
-			_FIXES_rtrim(string);
+			_FIXES_RTrim(string);
 		#endif
 			_FIXES_RETURN_STRING(TextDrawSetString__(text, string));
 		#if FIX_TextDrawSetString_2
-			_FIXES_untrim(string);
+			_FIXES_UnTrim(string);
 			return ret;
 		#endif
 	}
