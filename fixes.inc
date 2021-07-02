@@ -1911,6 +1911,21 @@ in the output code.
  * </library>
  *//** */
 
+/*
+
+    88        88                                   88                          
+    88        88                                   88                          
+    88        88                                   88                          
+    88aaaaaaaa88   ,adPPYba,  ,adPPYYba,   ,adPPYb,88   ,adPPYba,  8b,dPPYba,  
+    88""""""""88  a8P_____88  ""     `Y8  a8"    `Y88  a8P_____88  88P'   "Y8  
+    88        88  8PP"""""""  ,adPPPPP88  8b       88  8PP"""""""  88          
+    88        88  "8b,   ,aa  88,    ,88  "8a,   ,d88  "8b,   ,aa  88          
+    88        88   `"Ybbd8"'  `"8bbdP"Y8   `"8bbdP"Y8   `"Ybbd8"'  88          
+
+
+
+*/
+
 #if defined _INC_SAMP_Community_fixes
 	#endinput
 #endif
@@ -1990,7 +2005,26 @@ in the output code.
 
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
-// Enable everything, even things that probably shouldn't be enabled.
+/*
+
+      ,ad8888ba,                         88                                       
+     d8"'    `"8b                 ,d     ""                                       
+    d8'        `8b                88                                              
+    88          88  8b,dPPYba,  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,  
+    88          88  88P'    "8a   88     88  a8"     "8a  88P'   `"8a  I8[    ""  
+    Y8,        ,8P  88       d8   88     88  8b       d8  88       88   `"Y8ba,   
+     Y8a.    .a8P   88b,   ,a8"   88,    88  "8a,   ,a8"  88       88  aa    ]8I  
+      `"Y8888Y"'    88`YbbdP"'    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'  
+                    88                                                            
+                    88                                                            
+
+*/
+
+/**
+ * <remarks>
+ * Enable everything, even things that probably shouldn't be enabled.
+ * </remarks>
+ */
 #if !defined FIXES_EnableAll
 	#define FIXES_EnableAll                      (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableAll)
@@ -1998,7 +2032,11 @@ in the output code.
 	#define FIXES_EnableAll                      (3)
 #endif
 
-// Enable deprecated fixes - those that are no longer needed.
+/**
+ * <remarks>
+ * Enable deprecated fixes - those that are no longer needed.
+ * </remarks>
+ */
 #if !defined FIXES_EnableDeprecated
 	#define FIXES_EnableDeprecated               (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableDeprecated)
@@ -2006,7 +2044,11 @@ in the output code.
 	#define FIXES_EnableDeprecated               (2)
 #endif
 
-// Disable all fixes by default and explicitly enable them.
+/**
+ * <remarks>
+ * Disable all fixes by default and explicitly enable them.
+ * </remarks>
+ */
 #if !defined FIXES_DefaultDisabled
 	#define FIXES_DefaultDisabled                (0)
 	#define _FIXES_DEFAULT                       (1)
@@ -2023,7 +2065,12 @@ in the output code.
 	#endif
 #endif
 
-// Explicitly enable or disable all fixes, with warnings for the rest.
+/**
+ * <remarks>
+ * Explicitly enable or disable all fixes, with warnings for the rest.
+ * </remarks>
+ */
+
 #if !defined FIXES_ExplicitOptions
 	#if FIXES_DefaultDisabled
 		#define FIXES_ExplicitOptions           (1)
@@ -2043,6 +2090,113 @@ in the output code.
 		#define _FIXES_STOCK static stock
 	#endif
 #endif
+
+/**
+ * <remarks>
+ * If this define is set to 1, then players will not be given a message when
+ * they are kicked for cheats, instead they will just loose connection to the
+ * server.
+ * </remarks>
+ */
+
+#if !defined FIXES_SilentKick
+	#define FIXES_SilentKick 0
+#elseif _FIXES_IS_UNSET(FIXES_SilentKick)
+	#undef FIXES_SilentKick
+	#define FIXES_SilentKick 2
+#endif
+
+/**
+ * <remarks>
+ * If this define is set to 1, then debug printing is turned on for any
+ * functions which may use it.  Otherwise, the compiler entirely removes the
+ * code to print anything, leaving 0 run-time overhead.
+ * </remarks>
+ */
+
+#if defined FIXES_Debug
+	#if _FIXES_IS_UNSET(FIXES_Debug)
+		#undef FIXES_Debug
+	#elseif FIXES_Debug == 1
+		#define FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM),printf("*** " %0);
+	#else
+		#undef FIXES_Debug
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * If this define is set to 1, then the old style include is used, with no
+ * support for multiple scripts running at the same time on the server (i.e. no
+ * gamemodes and filter scripts at the same time).  You can only have one or the
+ * other or bugs.
+ * </remarks>
+ */
+
+#if !defined FIXES_Single
+	#define FIXES_Single (1)
+#elseif _FIXES_IS_UNSET(FIXES_Single)
+	#undef FIXES_Single
+	#define FIXES_Single (2)
+#endif
+
+/**
+ * <remarks>
+ * If this define is set to 1, then the server will not give a message when
+ * <see>FIXES_Single</see> is set, but the script isn't REALLY the only one.
+ * </remarks>
+ */
+
+#if !defined FIXES_SingleMsg
+	#define FIXES_SingleMsg 1
+#elseif _FIXES_IS_UNSET(FIXES_SingleMsg)
+	#undef FIXES_SingleMsg
+	#define FIXES_SingleMsg 2
+#endif
+
+/**
+ * <remarks>
+ * If this define is set to 1, then the server will not give a message when
+ * <see>GetServerVarAsString</see> and related functions are used without a
+ * valid directory redirect.
+ * </remarks>
+ */
+
+#if !defined FIXES_ServerVarMsg
+	#define FIXES_ServerVarMsg 1
+#elseif _FIXES_IS_UNSET(FIXES_ServerVarMsg)
+	#undef FIXES_ServerVarMsg
+	#define FIXES_ServerVarMsg 2
+#endif
+
+/**
+ * <remarks>
+ * If this define is set to 1, then the server will not give a message when
+ * <see>GetMaxPlayer</see> doesn't match <c>MAX_PLAYERS</c>.
+ * </remarks>
+ */
+
+#if !defined FIXES_GetMaxPlayersMsg
+	#define FIXES_GetMaxPlayersMsg 1
+#elseif _FIXES_IS_UNSET(FIXES_GetMaxPlayersMsg)
+	#undef FIXES_GetMaxPlayersMsg
+	#define FIXES_GetMaxPlayersMsg 2
+#endif
+
+/*
+
+    88888888888  88                                     
+    88           ""                                     
+    88                                                  
+    88aaaaa      88  8b,     ,d8  ,adPPYba,  ,adPPYba,  
+    88"""""      88   `Y8, ,8P'  a8P_____88  I8[    ""  
+    88           88     )888(    8PP"""""""   `"Y8ba,   
+    88           88   ,d8" "8b,  "8b,   ,aa  aa    ]8I  
+    88           88  8P'     `Y8  `"Ybbd8"'  `"YbbdP"'  
+
+
+
+*/
 
 // We can add server version compiler code here to only compile fixes that apply
 // to the version of the includes for which the user is compiling.
@@ -3282,6 +3436,21 @@ in the output code.
 	#define _FIX_Menus                           (0)
 #endif
 
+/*
+
+    88b           d88                                                              
+    888b         d888                                                              
+    88`8b       d8'88                                                              
+    88 `8b     d8' 88  ,adPPYYba,   ,adPPYba,  8b,dPPYba,   ,adPPYba,   ,adPPYba,  
+    88  `8b   d8'  88  ""     `Y8  a8"     ""  88P'   "Y8  a8"     "8a  I8[    ""  
+    88   `8b d8'   88  ,adPPPPP88  8b          88          8b       d8   `"Y8ba,   
+    88    `888'    88  88,    ,88  "8a,   ,aa  88          "8a,   ,a8"  aa    ]8I  
+    88     `8'     88  `"8bbdP"Y8   `"Ybbd8"'  88           `"YbbdP"'   `"YbbdP"'  
+
+
+
+*/
+
 /**
  * <remarks>
  * tabsize
@@ -3344,6 +3513,925 @@ in the output code.
 #if FIX_tabsize
 	#define tabsize%00%0\10;%0 _DUMMY_do_not_use_tabsize_0
 #endif
+
+/**
+ * <remarks>
+ * Is the extended API defined for use?  Better for testing (<c>#if defined FIXES_API</c>).
+ * </remarks>
+ */
+
+#if FIX_API
+	#define FIXES_API
+#endif
+
+/**
+ * <remarks>
+ * A marker to indicate that this version of fixes.inc uses state-based hooks.
+ * </remarks>
+ */
+#define FIXES_UseStateHooks
+
+/**
+ * <remarks>
+ * A special "printf" function only compiled when "FIXES_Debug" is set.
+ * </remarks>
+ */
+
+#if !defined FIXES_PRINTF
+	#define FIXES_Debug 0
+	#define FIXES_PRINTF(%0);
+#endif
+
+/**
+ * <remarks>
+ * _FIXES_IS_IN_CHARGE
+ *
+ * Test to see if this script is in command or not (master).
+ * </remarks>
+ */
+
+#if FIXES_Single
+	#define _FIXES_IS_IN_CHARGE(%0)
+#else
+	#define _FIXES_IS_IN_CHARGE(%0) if (%0(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
+#endif
+
+/**
+ */
+
+#if FIXES_Single
+	#define FIXES_SET(%0,%1,%2) (FIXES_gs%0[%1] = %2)
+#else
+	#define FIXES_SET(%0,%1,%2) SetPVarInt(%1, FIXES_pvar%0, %2)
+#endif
+
+/**
+ */
+
+#if FIXES_Single
+	#define FIXES_GET(%0,%1) (FIXES_gs%0[%1])
+#else
+	#define FIXES_GET(%0,%1) GetPVarInt(%1, FIXES_pvar%0)
+#endif
+
+/**
+ * <remarks>
+ * isnull
+ *
+ * Pretty standard.
+ * </remarks>
+ */
+
+#define isnull(%0) ((%0[(%0[0])=='\1'])=='\0')
+
+/**
+ * <remarks>
+ * _FIXES_CEILDIV
+ *
+ * Do a ceiling division of the first number by the second number.
+ * </remarks>
+ */
+#define _FIXES_CEILDIV(%0,%1) (((%0) + (%1) - 1) / (%1))
+
+/**
+ * <remarks>
+ * _FIXES_FOREACH
+ *
+ * A new version of "foreach", but just for this library.
+ * </remarks>
+ */
+#define _FIXES_FOREACH(%1,%0) for (new %0 = MAX_PLAYERS; (%0 = %1[%0]) != MAX_PLAYERS; )
+
+/**
+ * <remarks>
+ * _FIXES_IN_RANGE
+ *
+ * Checks if the first parameter is between the other two: %1 &lt;= %0 &lt;%2 (but
+ * faster).
+ * </remarks>
+ */
+#define _FIXES_IN_RANGE(%0,%1,%2) ((_:(%0) - (_:(%1) + cellmin)) < (_:(%2) - (_:(%1) + cellmin)))
+
+/**
+ * <remarks>
+ * _FIXES_NO_RANGE
+ *
+ * Checks if the first parameter is not between the other two:
+ * <c>!(%1 &lt;= %0 &lt; %2)</c>(but faster).
+ * </remarks>
+ */
+#define _FIXES_NO_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) >= ((%2) - ((%1) + cellmin)))
+
+/**
+ * <remarks>
+ * _FIXES_FORWARD
+ *
+ * Forwards a hooked callbacks, and defines the default state implementations.
+ * </remarks>
+ */
+#define _FIXES_FORWARD%0(%1); \
+	forward%0(%1); \
+	public%0(%1) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 1; } \
+	public%0(%1) <> { return 1; }
+
+/**
+ * <remarks>
+ * _FIXES_IS_VALID_PLAYER
+ *
+ * Check if the ID is in range of player IDs.
+ * </remarks>
+ */
+#define _FIXES_IS_VALID_PLAYER(%0) _FIXES_IN_RANGE((%0), 0, MAX_PLAYERS)
+
+/**
+ * <remarks>
+ * _FIXES_IS_PLAYER_CONNECTED
+ *
+ * Always valid "IsPlayerConnected" check.
+ * </remarks>
+ */
+#define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IS_VALID_PLAYER(%0) && IsPlayerConnected__(%0))
+
+/*
+
+    88888888ba,                   ad88  88               88           88                                       
+    88      `"8b                 d8"    ""               ""    ,d     ""                                       
+    88        `8b                88                            88                                              
+    88         88   ,adPPYba,  MM88MMM  88  8b,dPPYba,   88  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,  
+    88         88  a8P_____88    88     88  88P'   `"8a  88    88     88  a8"     "8a  88P'   `"8a  I8[    ""  
+    88         8P  8PP"""""""    88     88  88       88  88    88     88  8b       d8  88       88   `"Y8ba,   
+    88      .a8P   "8b,   ,aa    88     88  88       88  88    88,    88  "8a,   ,a8"  88       88  aa    ]8I  
+    88888888Y"'     `"Ybbd8"'    88     88  88       88  88    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'  
+
+
+
+*/
+
+/**
+ * <remarks>
+ * The number of GameText styles recreated using TextDraw functions.  This is 4
+ * by default, but can be extended to 6 if you want location and vehicle styles.
+ * </remarks>
+ */
+
+#if FIX_GameText
+	#if FIX_GameTextStyles
+		#define FIXES_GT_STYLE_COUNT (14)
+	#else
+		#define FIXES_GT_STYLE_COUNT (7)
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * INVALID_DIALOG_ID
+ *
+ * Set when a player can't see a dialog.
+ * </remarks>
+ */
+
+#if !defined INVALID_DIALOG_ID
+	#define INVALID_DIALOG_ID (-1)
+#endif
+
+/**
+ * <remarks>
+ * _FIXES_MIN_WORLDBOUNDS
+ *
+ * Default worldbound range.
+ * </remarks>
+ */
+#define _FIXES_MIN_WORLDBOUNDS (-20000.0)
+
+/**
+ * <remarks>
+ * _FIXES_MAX_WORLDBOUNDS
+ *
+ * Default worldbound range.
+ * </remarks>
+ */
+#define _FIXES_MAX_WORLDBOUNDS (20000.0)
+
+/**
+ * <remarks>
+ * _FIXES_INFINITY
+ *
+ * IEEE 754 definition of infinity.
+ * </remarks>
+ */
+#define _FIXES_INFINITY (Float:0x7F800000)
+
+/**
+ * <remarks>
+ * _FIXES_N_INFINITY
+ *
+ * IEEE 754 definition of negative infinity.
+ * </remarks>
+ */
+#define _FIXES_N_INFINITY (Float:0xFF800000)
+
+/**
+ * <remarks>
+ * _FIXES_ATTACHMENTS
+ *
+ * The number of players whose attachment data (10-bits) can be stored in one
+ * cell.
+ * </remarks>
+ */
+#define _FIXES_ATTACHMENTS (cellbits / MAX_PLAYER_ATTACHED_OBJECTS)
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.
+ * </remarks>
+ */
+
+#if !defined KEY
+	#define KEY: _:
+#endif
+
+#if !defined PLAYER_STATE
+	#define PLAYER_STATE: _:
+#endif
+
+#if !defined SPECIAL_ACTION
+	#define SPECIAL_ACTION: _:
+#endif
+
+/**
+ * <remarks>
+ * <c>_FIXES_KEY_AIM</c>
+ * <c>KEY_AIM</c>
+ *
+ * Because the default SA:MP includes missed this one.
+ * </remarks>
+ */
+
+#define _FIXES_KEY_AIM                   (KEY:128)
+#if FIX_KEY_AIM
+	#define KEY_AIM                      _FIXES_KEY_AIM
+#endif
+
+/**
+ * <remarks>
+ * <c>_FIXES_SPECIAL_ACTION_PISSING</c>
+ * <c>SPECIAL_ACTION_PISSING</c>
+ *
+ * Because the default SA:MP includes missed this one.
+ * </remarks>
+ */
+
+#define _FIXES_SPECIAL_ACTION_PISSING    (68)
+#if FIX_SPECIAL_ACTION_PISSING
+	#define SPECIAL_ACTION_PISSING       _FIXES_SPECIAL_ACTION_PISSING
+#endif
+
+/**
+ * <remarks>
+ * <c>WEAPONS</c>
+ *
+ * Because the default SA:MP includes missed some of these.
+ * </remarks>
+ */
+
+#define _FIXES_WEAPON_FIST                      (0)
+#define _FIXES_WEAPON_NIGHT_VIS_GOGGLES         (44)
+#define _FIXES_WEAPON_THERMAL_GOGGLES           (45)
+
+#if FIX_WEAPONS
+	#define WEAPON_FIST               _FIXES_WEAPON_FIST
+	#define WEAPON_NIGHTSTICK         WEAPON_NITESTICK
+	#define WEAPON_MOLOTOV            WEAPON_MOLTOV
+	#define WEAPON_NIGHT_VIS_GOGGLES  _FIXES_WEAPON_NIGHT_VIS_GOGGLES
+	#define WEAPON_THERMAL_GOGGLES    _FIXES_WEAPON_THERMAL_GOGGLES
+#endif
+
+#define _FIXES_WEAPON_SLOTS                     (13)
+
+/**
+ * <remarks>
+ * <c>BODYPARTS</c>
+ *
+ * Because the default SA:MP includes missed these.
+ * </remarks>
+ */
+
+#if FIX_BODYPARTS
+	#define BODY_PART_TORSO                     (3)
+	#define BODY_PART_GROIN                     (4)
+	#define BODY_PART_LEFT_ARM                  (5)
+	#define BODY_PART_RIGHT_ARM                 (6)
+	#define BODY_PART_LEFT_LEG                  (7)
+	#define BODY_PART_RIGHT_LEG                 (8)
+	#define BODY_PART_HEAD                      (9)
+#endif
+
+/**
+ * <remarks>
+ * <c>CAMERAMODES</c>
+ *
+ * Because the default SA:MP includes missed these.
+ * </remarks>
+ */
+
+#if FIX_CAMERAMODES
+	#define CAM_MODE_DISCONNECTED               (-1)
+	#define CAM_MODE_NONE                       (0)
+	#define CAM_MODE_BEHINDCAR                  (3)
+	#define CAM_MODE_FOLLOWPED                  (4)
+	#define CAM_MODE_SNIPER                     (7)
+	#define CAM_MODE_ROCKETLAUNCHER             (8)
+	#define CAM_MODE_FIXED                      (15)
+	#define CAM_MODE_1STPERSON                  (16)
+	#define CAM_MODE_CAM_ON_A_STRING            (18)
+	#define CAM_MODE_BEHINDBOAT                 (22)
+	#define CAM_MODE_CAMERA                     (46)
+	#define CAM_MODE_ROCKETLAUNCHER_HS          (51)
+	#define CAM_MODE_AIMWEAPON                  (53)
+	#define CAM_MODE_AIMWEAPON_FROMCAR          (55)
+	#define CAM_MODE_DW_HELI_CHASE              (56)
+#endif
+
+/**
+ * <remarks>
+ * <c>VEHICLES</c>
+ *
+ * Because the default SA:MP includes missed these.
+ * </remarks>
+ */
+
+#if FIX_VEHICLES
+	// In alphabetical order.
+	#define VEHICLE_ADMIRAL                     (445)
+	#define VEHICLE_ALPHA                       (602)
+	#define VEHICLE_AMBULAN                     (416)
+	#define VEHICLE_AMBULANCE                   (416)
+	#define VEHICLE_ANDROM                      (592)
+	#define VEHICLE_ANDROMADA                   (592)
+	#define VEHICLE_ARTICT1                     (435)
+	#define VEHICLE_ARTICT2                     (450)
+	#define VEHICLE_ARTICT3                     (591)
+	#define VEHICLE_ARTICLETRAILER1             (435)
+	#define VEHICLE_ARTICLETRAILER2             (450)
+	#define VEHICLE_ARTICLETRAILER3             (591)
+	#define VEHICLE_AT400                       (577)
+	#define VEHICLE_BAGGAGE                     (485)
+	#define VEHICLE_BANDITO                     (568)
+	#define VEHICLE_BANSHEE                     (429)
+	#define VEHICLE_BARRACKS                    (433)
+	#define VEHICLE_BEAGLE                      (511)
+	#define VEHICLE_BENSON                      (499)
+	#define VEHICLE_BERKLEYSRCVAN               (459)
+	#define VEHICLE_BF400                       (581)
+	#define VEHICLE_BFINJECT                    (424)
+	#define VEHICLE_BFINJECTION                 (424)
+	#define VEHICLE_BIKE                        (509)
+	#define VEHICLE_BLADE                       (536)
+	#define VEHICLE_BLISTAC                     (496)
+	#define VEHICLE_BLISTACOMPACT               (496)
+	#define VEHICLE_BLOODRA                     (504)
+	#define VEHICLE_BLOODRINGBANGER             (504)
+	#define VEHICLE_BMX                         (481)
+	#define VEHICLE_BOBCAT                      (422)
+	#define VEHICLE_BOXBURG                     (609)
+	#define VEHICLE_BOXVILLE                    (498)
+	#define VEHICLE_BRAVURA                     (401)
+	#define VEHICLE_BROADWAY                    (575)
+	#define VEHICLE_BROWNSTREAK                 (538)
+	#define VEHICLE_BUCCANEE                    (518)
+	#define VEHICLE_BUCCANEER                   (518)
+	#define VEHICLE_BUFFALO                     (402)
+	#define VEHICLE_BULLET                      (541)
+	#define VEHICLE_BURRITO                     (482)
+	#define VEHICLE_BUS                         (431)
+	#define VEHICLE_CABBIE                      (438)
+	#define VEHICLE_CADDY                       (457)
+	#define VEHICLE_CADRONA                     (527)
+	#define VEHICLE_CAMPER                      (483)
+	#define VEHICLE_CARGOBOB                    (548)
+	#define VEHICLE_CEMENT                      (524)
+	#define VEHICLE_CEMENTTRUCK                 (524)
+	#define VEHICLE_CHEETAH                     (415)
+	#define VEHICLE_CLOVER                      (542)
+	#define VEHICLE_CLUB                        (589)
+	#define VEHICLE_COACH                       (437)
+	#define VEHICLE_COASTG                      (472)
+	#define VEHICLE_COASTGUARD                  (472)
+	#define VEHICLE_COMET                       (480)
+	#define VEHICLE_COPCARLA                    (596)
+	#define VEHICLE_COPCARSF                    (597)
+	#define VEHICLE_COPCARVG                    (598)
+	#define VEHICLE_COPCARRU                    (599)
+	#define VEHICLE_CROPDUST                    (512)
+	#define VEHICLE_DFT30                       (578)
+	#define VEHICLE_DINGHY                      (473)
+	#define VEHICLE_DODO                        (593)
+	#define VEHICLE_DOZER                       (486)
+	#define VEHICLE_DUMPER                      (406)
+	#define VEHICLE_DUNERIDE                    (573)
+	#define VEHICLE_ELEGANT                     (507)
+	#define VEHICLE_ELEGY                       (562)
+	#define VEHICLE_EMPEROR                     (585)
+	#define VEHICLE_ENFORCER                    (427)
+	#define VEHICLE_ESPERANT                    (419)
+	#define VEHICLE_ESPERANTO                   (419)
+	#define VEHICLE_EUROS                       (587)
+	#define VEHICLE_FAGGIO                      (462)
+	#define VEHICLE_FBIRANCH                    (490)
+	#define VEHICLE_FBIRANCHER                  (490)
+	#define VEHICLE_FCR900                      (521)
+	#define VEHICLE_FELTZER                     (533)
+	#define VEHICLE_FIRELA                      (544)
+	#define VEHICLE_FIRETRUK                    (407)
+	#define VEHICLE_FIRETRUCK                   (407)
+	#define VEHICLE_FIRETRUCKLA                 (544)
+	#define VEHICLE_FLASH                       (565)
+	#define VEHICLE_FLATBED                     (455)
+	#define VEHICLE_FORKLIFT                    (530)
+	#define VEHICLE_FORTUNE                     (526)
+	#define VEHICLE_FREEWAY                     (463)
+	#define VEHICLE_FREIGHT                     (537)
+	#define VEHICLE_GLENDALE                    (466)
+	#define VEHICLE_GLENDALESHIT                (604)
+	#define VEHICLE_GLENSHIT                    (604)
+	#define VEHICLE_GREENWOO                    (492)
+	#define VEHICLE_GREENWOOD                   (492)
+	#define VEHICLE_HERMES                      (474)
+	#define VEHICLE_HOTDOG                      (588)
+	#define VEHICLE_HOTKNIFE                    (434)
+	#define VEHICLE_HOTRINA                     (502)
+	#define VEHICLE_HOTRINB                     (503)
+	#define VEHICLE_HOTRING                     (494)
+	#define VEHICLE_HOTRINGRACER                (494)
+	#define VEHICLE_HOTRINGRACERA               (502)
+	#define VEHICLE_HOTRINGRACERB               (503)
+	#define VEHICLE_HUNTER                      (425)
+	#define VEHICLE_HUNTLEY                     (579)
+	#define VEHICLE_HUSTLER                     (545)
+	#define VEHICLE_INFERNUS                    (411)
+	#define VEHICLE_INTRUDER                    (546)
+	#define VEHICLE_JESTER                      (559)
+	#define VEHICLE_JETMAX                      (493)
+	#define VEHICLE_JOURNEY                     (508)
+	#define VEHICLE_KART                        (571)
+	#define VEHICLE_LANDSTAL                    (400)
+	#define VEHICLE_LANDSTALKER                 (400)
+	#define VEHICLE_LAUNCH                      (595)
+	#define VEHICLE_LINERUN                     (403)
+	#define VEHICLE_LINERUNNER                  (403)
+	#define VEHICLE_QUAD                        (471)
+	#define VEHICLE_MAJESTIC                    (517)
+	#define VEHICLE_MTBIKE                      (510)
+	#define VEHICLE_MOUNTAINBIKE                (510)
+	#define VEHICLE_MANANA                      (410)
+	#define VEHICLE_MARQUIS                     (484)
+	#define VEHICLE_MAVERICK                    (487)
+	#define VEHICLE_MERIT                       (551)
+	#define VEHICLE_MESA                        (500)
+	#define VEHICLE_MONSTER                     (444)
+	#define VEHICLE_MONSTERA                    (556)
+	#define VEHICLE_MONSTERB                    (557)
+	#define VEHICLE_MOONBEAM                    (418)
+	#define VEHICLE_MOWER                       (572)
+	#define VEHICLE_MRWHOOP                     (423)
+	#define VEHICLE_MRWHOOPEE                   (423)
+	#define VEHICLE_MULE                        (414)
+	#define VEHICLE_NEBULA                      (516)
+	#define VEHICLE_NEVADA                      (553)
+	#define VEHICLE_NEWSVAN                     (582)
+	#define VEHICLE_NRG500                      (522)
+	#define VEHICLE_OCEANIC                     (467)
+	#define VEHICLE_PACKER                      (443)
+	#define VEHICLE_PATRIOT                     (470)
+	#define VEHICLE_PCJ600                      (461)
+	#define VEHICLE_PEREN                       (404)
+	#define VEHICLE_PERRENIAL                   (404)
+	#define VEHICLE_PETRO                       (514)
+	#define VEHICLE_PETROLTRAILER               (584)
+	#define VEHICLE_PETROTR                     (584)
+	#define VEHICLE_PHOENIX                     (603)
+	#define VEHICLE_PICADOR                     (600)
+	#define VEHICLE_PIZZABOY                    (448)
+	#define VEHICLE_POLICECARLSPD               (596)
+	#define VEHICLE_POLICECARSFPD               (597)
+	#define VEHICLE_POLICECARLVPD               (598)
+	#define VEHICLE_POLICERANGER                (599)
+	#define VEHICLE_POLMAV                      (497)
+	#define VEHICLE_POLICEMAVERICK              (497)
+	#define VEHICLE_PONY                        (413)
+	#define VEHICLE_PREDATOR                    (430)
+	#define VEHICLE_PREMIER                     (426)
+	#define VEHICLE_PREVION                     (436)
+	#define VEHICLE_PRIMO                       (547)
+	#define VEHICLE_RAINDANC                    (563)
+	#define VEHICLE_RAINDANCE                   (563)
+	#define VEHICLE_RANCHER                     (489)
+	#define VEHICLE_RANCHERLURE                 (505)
+	#define VEHICLE_RCBANDIT                    (441)
+	#define VEHICLE_RCBARON                     (464)
+	#define VEHICLE_RCRAIDER                    (465)
+	#define VEHICLE_RCGOBLIN                    (501)
+	#define VEHICLE_RDTRAIN                     (515)
+	#define VEHICLE_REEFER                      (453)
+	#define VEHICLE_REGINA                      (479)
+	#define VEHICLE_REMINGTN                    (534)
+	#define VEHICLE_REMINGTON                   (534)
+	#define VEHICLE_RHINO                       (432)
+	#define VEHICLE_RNCHLURE                    (505)
+	#define VEHICLE_ROADTRAIN                   (515)
+	#define VEHICLE_ROMERO                      (442)
+	#define VEHICLE_RUMPO                       (440)
+	#define VEHICLE_RUSTLER                     (476)
+	#define VEHICLE_SABRE                       (475)
+	#define VEHICLE_SADLER                      (543)
+	#define VEHICLE_SADLERSHIT                  (605)
+	#define VEHICLE_SADLSHIT                    (605)
+	#define VEHICLE_SANCHEZ                     (468)
+	#define VEHICLE_SANDKING                    (495)
+	#define VEHICLE_SAVANNA                     (567)
+	#define VEHICLE_SEASPAR                     (447)
+	#define VEHICLE_SEASPARROW                  (447)
+	#define VEHICLE_SECURICA                    (428)
+	#define VEHICLE_SECURICAR                   (428)
+	#define VEHICLE_SENTINEL                    (405)
+	#define VEHICLE_SHAMAL                      (519)
+	#define VEHICLE_STREAK                      (538)
+	#define VEHICLE_STREAKC                     (570)
+	#define VEHICLE_STREAKTRAILER               (570)
+	#define VEHICLE_SKIMMER                     (460)
+	#define VEHICLE_SLAMVAN                     (535)
+	#define VEHICLE_SOLAIR                      (458)
+	#define VEHICLE_SPARROW                     (469)
+	#define VEHICLE_SPEEDER                     (452)
+	#define VEHICLE_SQUALO                      (446)
+	#define VEHICLE_STAFFORD                    (580)
+	#define VEHICLE_STALLION                    (439)
+	#define VEHICLE_STRATUM                     (561)
+	#define VEHICLE_STRETCH                     (409)
+	#define VEHICLE_STUNT                       (513)
+	#define VEHICLE_STUNTPLANE                  (513)
+	#define VEHICLE_SULTAN                      (560)
+	#define VEHICLE_SUNRISE                     (550)
+	#define VEHICLE_SUPERGT                     (506)
+	#define VEHICLE_SWAT                        (601)
+	#define VEHICLE_SWATVAN                     (601)
+	#define VEHICLE_SWEEPER                     (574)
+	#define VEHICLE_TAHOMA                      (566)
+	#define VEHICLE_TAMPA                       (549)
+	#define VEHICLE_TANKER                      (514)
+	#define VEHICLE_TAXI                        (420)
+	#define VEHICLE_TOPFUN                      (459)
+	#define VEHICLE_TORNADO                     (576)
+	#define VEHICLE_TOWTRUCK                    (525)
+	#define VEHICLE_TRACTOR                     (531)
+	#define VEHICLE_TRAM                        (449)
+	#define VEHICLE_TRASH                       (408)
+	#define VEHICLE_TRASHMASTER                 (408)
+	#define VEHICLE_TROPIC                      (454)
+	#define VEHICLE_TUG                         (583)
+	#define VEHICLE_TUGSTAIR                    (608)
+	#define VEHICLE_TUGSTAIRSTRAILER            (608)
+	#define VEHICLE_TURISMO                     (451)
+	#define VEHICLE_URANUS                      (558)
+	#define VEHICLE_UTILITY                     (552)
+	#define VEHICLE_UTILITYVAN                  (552)
+	#define VEHICLE_VCNMAV                      (488)
+	#define VEHICLE_SANNEWSMAVERICK             (488)
+	#define VEHICLE_VINCENT                     (540)
+	#define VEHICLE_VIRGO                       (491)
+	#define VEHICLE_VOODOO                      (412)
+	#define VEHICLE_VORTEX                      (539)
+	#define VEHICLE_WALTON                      (478)
+	#define VEHICLE_WASHING                     (421)
+	#define VEHICLE_WASHINGTON                  (421)
+	#define VEHICLE_WAYFARER                    (586)
+	#define VEHICLE_WILLARD                     (529)
+	#define VEHICLE_WINDSOR                     (555)
+	#define VEHICLE_YANKEE                      (456)
+	#define VEHICLE_YOSEMITE                    (554)
+	#define VEHICLE_ZR350                       (477)
+
+	// In numerical order.
+	#define VEHICLE_LANDSTAL                    (400)
+	#define VEHICLE_LANDSTALKER                 (400)
+	#define VEHICLE_BRAVURA                     (401)
+	#define VEHICLE_BUFFALO                     (402)
+	#define VEHICLE_LINERUN                     (403)
+	#define VEHICLE_LINERUNNER                  (403)
+	#define VEHICLE_PEREN                       (404)
+	#define VEHICLE_PERRENIAL                   (404)
+	#define VEHICLE_SENTINEL                    (405)
+	#define VEHICLE_DUMPER                      (406)
+	#define VEHICLE_FIRETRUK                    (407)
+	#define VEHICLE_FIRETRUCK                   (407)
+	#define VEHICLE_TRASH                       (408)
+	#define VEHICLE_TRASHMASTER                 (408)
+	#define VEHICLE_STRETCH                     (409)
+	#define VEHICLE_MANANA                      (410)
+	#define VEHICLE_INFERNUS                    (411)
+	#define VEHICLE_VOODOO                      (412)
+	#define VEHICLE_PONY                        (413)
+	#define VEHICLE_MULE                        (414)
+	#define VEHICLE_CHEETAH                     (415)
+	#define VEHICLE_AMBULAN                     (416)
+	#define VEHICLE_AMBULANCE                   (416)
+	#define VEHICLE_LEVIATHAN                   (417)
+	#define VEHICLE_MOONBEAM                    (418)
+	#define VEHICLE_ESPERANT                    (419)
+	#define VEHICLE_ESPERANTO                   (419)
+	#define VEHICLE_TAXI                        (420)
+	#define VEHICLE_WASHING                     (421)
+	#define VEHICLE_WASHINGTON                  (421)
+	#define VEHICLE_BOBCAT                      (422)
+	#define VEHICLE_MRWHOOP                     (423)
+	#define VEHICLE_MRWHOOPEE                   (423)
+	#define VEHICLE_BFINJECT                    (424)
+	#define VEHICLE_BFINJECTION                 (424)
+	#define VEHICLE_HUNTER                      (425)
+	#define VEHICLE_PREMIER                     (426)
+	#define VEHICLE_ENFORCER                    (427)
+	#define VEHICLE_SECURICA                    (428)
+	#define VEHICLE_SECURICAR                   (428)
+	#define VEHICLE_BANSHEE                     (429)
+	#define VEHICLE_PREDATOR                    (430)
+	#define VEHICLE_BUS                         (431)
+	#define VEHICLE_RHINO                       (432)
+	#define VEHICLE_BARRACKS                    (433)
+	#define VEHICLE_HOTKNIFE                    (434)
+	#define VEHICLE_ARTICT1                     (435)
+	#define VEHICLE_ARTICLETRAILER1             (435)
+	#define VEHICLE_PREVION                     (436)
+	#define VEHICLE_COACH                       (437)
+	#define VEHICLE_CABBIE                      (438)
+	#define VEHICLE_STALLION                    (439)
+	#define VEHICLE_RUMPO                       (440)
+	#define VEHICLE_RCBANDIT                    (441)
+	#define VEHICLE_ROMERO                      (442)
+	#define VEHICLE_PACKER                      (443)
+	#define VEHICLE_MONSTER                     (444)
+	#define VEHICLE_ADMIRAL                     (445)
+	#define VEHICLE_SQUALO                      (446)
+	#define VEHICLE_SEASPAR                     (447)
+	#define VEHICLE_SEASPARROW                  (447)
+	#define VEHICLE_PIZZABOY                    (448)
+	#define VEHICLE_TRAM                        (449)
+	#define VEHICLE_ARTICT2                     (450)
+	#define VEHICLE_ARTICLETRAILER2             (450)
+	#define VEHICLE_TURISMO                     (451)
+	#define VEHICLE_SPEEDER                     (452)
+	#define VEHICLE_REEFER                      (453)
+	#define VEHICLE_TROPIC                      (454)
+	#define VEHICLE_FLATBED                     (455)
+	#define VEHICLE_YANKEE                      (456)
+	#define VEHICLE_CADDY                       (457)
+	#define VEHICLE_SOLAIR                      (458)
+	#define VEHICLE_TOPFUN                      (459)
+	#define VEHICLE_BERKLEYSRCVAN               (459)
+	#define VEHICLE_SKIMMER                     (460)
+	#define VEHICLE_PCJ600                      (461)
+	#define VEHICLE_FAGGIO                      (462)
+	#define VEHICLE_FREEWAY                     (463)
+	#define VEHICLE_RCBARON                     (464)
+	#define VEHICLE_RCRAIDER                    (465)
+	#define VEHICLE_GLENDALE                    (466)
+	#define VEHICLE_OCEANIC                     (467)
+	#define VEHICLE_SANCHEZ                     (468)
+	#define VEHICLE_SPARROW                     (469)
+	#define VEHICLE_PATRIOT                     (470)
+	#define VEHICLE_QUAD                        (471)
+	#define VEHICLE_COASTG                      (472)
+	#define VEHICLE_COASTGUARD                  (472)
+	#define VEHICLE_DINGHY                      (473)
+	#define VEHICLE_HERMES                      (474)
+	#define VEHICLE_SABRE                       (475)
+	#define VEHICLE_RUSTLER                     (476)
+	#define VEHICLE_ZR350                       (477)
+	#define VEHICLE_WALTON                      (478)
+	#define VEHICLE_REGINA                      (479)
+	#define VEHICLE_COMET                       (480)
+	#define VEHICLE_BMX                         (481)
+	#define VEHICLE_BURRITO                     (482)
+	#define VEHICLE_CAMPER                      (483)
+	#define VEHICLE_MARQUIS                     (484)
+	#define VEHICLE_BAGGAGE                     (485)
+	#define VEHICLE_DOZER                       (486)
+	#define VEHICLE_MAVERICK                    (487)
+	#define VEHICLE_VCNMAV                      (488)
+	#define VEHICLE_SANNEWSMAVERICK             (488)
+	#define VEHICLE_RANCHER                     (489)
+	#define VEHICLE_FBIRANCHER                  (490)
+	#define VEHICLE_VIRGO                       (491)
+	#define VEHICLE_GREENWOO                    (492)
+	#define VEHICLE_GREENWOOD                   (492)
+	#define VEHICLE_JETMAX                      (493)
+	#define VEHICLE_HOTRING                     (494)
+	#define VEHICLE_HOTRINGRACER                (494)
+	#define VEHICLE_SANDKING                    (495)
+	#define VEHICLE_BLISTAC                     (496)
+	#define VEHICLE_BLISTACOMPACT               (496)
+	#define VEHICLE_POLMAV                      (497)
+	#define VEHICLE_POLICEMAVERICK              (497)
+	#define VEHICLE_BOXVILLE                    (498)
+	#define VEHICLE_BENSON                      (499)
+	#define VEHICLE_MESA                        (500)
+	#define VEHICLE_RCGOBLIN                    (501)
+	#define VEHICLE_HOTRINA                     (502)
+	#define VEHICLE_HOTRINGRACERA               (502)
+	#define VEHICLE_HOTRINB                     (503)
+	#define VEHICLE_HOTRINGRACERB               (503)
+	#define VEHICLE_BLOODRA                     (504)
+	#define VEHICLE_BLOODRINGBANGER             (504)
+	#define VEHICLE_RNCHLURE                    (505)
+	#define VEHICLE_RANCHERLURE                 (505)
+	#define VEHICLE_SUPERGT                     (506)
+	#define VEHICLE_ELEGANT                     (507)
+	#define VEHICLE_JOURNEY                     (508)
+	#define VEHICLE_BIKE                        (509)
+	#define VEHICLE_MTBIKE                      (510)
+	#define VEHICLE_MOUNTAINBIKE                (510)
+	#define VEHICLE_BEAGLE                      (511)
+	#define VEHICLE_CROPDUST                    (512)
+	#define VEHICLE_STUNT                       (513)
+	#define VEHICLE_STUNTPLANE                  (513)
+	#define VEHICLE_PETRO                       (514)
+	#define VEHICLE_TANKER                      (514)
+	#define VEHICLE_RDTRAIN                     (515)
+	#define VEHICLE_ROADTRAIN                   (515)
+	#define VEHICLE_NEBULA                      (516)
+	#define VEHICLE_MAJESTIC                    (517)
+	#define VEHICLE_BUCCANEE                    (518)
+	#define VEHICLE_BUCCANEER                   (518)
+	#define VEHICLE_SHAMAL                      (519)
+	#define VEHICLE_HYDRA                       (520)
+	#define VEHICLE_FCR900                      (521)
+	#define VEHICLE_NRG500                      (522)
+	#define VEHICLE_HPV1000                     (523)
+	#define VEHICLE_CEMENT                      (524)
+	#define VEHICLE_CEMENTTRUCK                 (524)
+	#define VEHICLE_TOWTRUCK                    (525)
+	#define VEHICLE_FORTUNE                     (526)
+	#define VEHICLE_CADRONA                     (527)
+	#define VEHICLE_FBITRUCK                    (528)
+	#define VEHICLE_WILLARD                     (529)
+	#define VEHICLE_FORKLIFT                    (530)
+	#define VEHICLE_TRACTOR                     (531)
+	#define VEHICLE_COMBINE                     (532)
+	#define VEHICLE_FELTZER                     (533)
+	#define VEHICLE_REMINGTN                    (534)
+	#define VEHICLE_REMINGTON                   (534)
+	#define VEHICLE_SLAMVAN                     (535)
+	#define VEHICLE_BLADE                       (536)
+	#define VEHICLE_FREIGHT                     (537)
+	#define VEHICLE_STREAK                      (538)
+	#define VEHICLE_BROWNSTREAK                 (538)
+	#define VEHICLE_VORTEX                      (539)
+	#define VEHICLE_VINCENT                     (540)
+	#define VEHICLE_BULLET                      (541)
+	#define VEHICLE_CLOVER                      (542)
+	#define VEHICLE_SADLER                      (543)
+	#define VEHICLE_FIRELA                      (544)
+	#define VEHICLE_FIRETRUCKLA                 (544)
+	#define VEHICLE_HUSTLER                     (545)
+	#define VEHICLE_INTRUDER                    (546)
+	#define VEHICLE_PRIMO                       (547)
+	#define VEHICLE_CARGOBOB                    (548)
+	#define VEHICLE_TAMPA                       (549)
+	#define VEHICLE_SUNRISE                     (550)
+	#define VEHICLE_MERIT                       (551)
+	#define VEHICLE_UTILITY                     (552)
+	#define VEHICLE_UTILITYVAN                  (552)
+	#define VEHICLE_NEVADA                      (553)
+	#define VEHICLE_YOSEMITE                    (554)
+	#define VEHICLE_WINDSOR                     (555)
+	#define VEHICLE_MONSTERA                    (556)
+	#define VEHICLE_MONSTERB                    (557)
+	#define VEHICLE_URANUS                      (558)
+	#define VEHICLE_JESTER                      (559)
+	#define VEHICLE_SULTAN                      (560)
+	#define VEHICLE_STRATUM                     (561)
+	#define VEHICLE_ELEGY                       (562)
+	#define VEHICLE_RAINDANC                    (563)
+	#define VEHICLE_RAINDANCE                   (563)
+	#define VEHICLE_RCTIGER                     (564)
+	#define VEHICLE_FLASH                       (565)
+	#define VEHICLE_TAHOMA                      (566)
+	#define VEHICLE_SAVANNA                     (567)
+	#define VEHICLE_BANDITO                     (568)
+	#define VEHICLE_FREIGHTFLATTRAILER          (569)
+	#define VEHICLE_STREAKC                     (570)
+	#define VEHICLE_STREAKTRAILER               (570)
+	#define VEHICLE_KART                        (571)
+	#define VEHICLE_MOWER                       (572)
+	#define VEHICLE_DUNERIDE                    (573)
+	#define VEHICLE_SWEEPER                     (574)
+	#define VEHICLE_BROADWAY                    (575)
+	#define VEHICLE_TORNADO                     (576)
+	#define VEHICLE_AT400                       (577)
+	#define VEHICLE_DFT30                       (578)
+	#define VEHICLE_HUNTLEY                     (579)
+	#define VEHICLE_STAFFORD                    (580)
+	#define VEHICLE_BF400                       (581)
+	#define VEHICLE_NEWSVAN                     (582)
+	#define VEHICLE_TUG                         (583)
+	#define VEHICLE_PETROTR                     (584)
+	#define VEHICLE_PETROLTRAILER               (584)
+	#define VEHICLE_EMPEROR                     (585)
+	#define VEHICLE_WAYFARER                    (586)
+	#define VEHICLE_EUROS                       (587)
+	#define VEHICLE_HOTDOG                      (588)
+	#define VEHICLE_CLUB                        (589)
+	#define VEHICLE_FREIGHTBOXTRAILER           (590)
+	#define VEHICLE_ARTICT3                     (591)
+	#define VEHICLE_ARTICLETRAILER3             (591)
+	#define VEHICLE_ANDROM                      (592)
+	#define VEHICLE_ANDROMADA                   (592)
+	#define VEHICLE_DODO                        (593)
+	#define VEHICLE_RCCAM                       (594)
+	#define VEHICLE_LAUNCH                      (595)
+	#define VEHICLE_COPCARLA                    (596)
+	#define VEHICLE_POLICECARLSPD               (596)
+	#define VEHICLE_COPCARSF                    (597)
+	#define VEHICLE_POLICECARSFPD               (597)
+	#define VEHICLE_COPCARVG                    (598)
+	#define VEHICLE_POLICECARLVPD               (598)
+	#define VEHICLE_COPCARRU                    (599)
+	#define VEHICLE_POLICERANGER                (599)
+	#define VEHICLE_PICADOR                     (600)
+	#define VEHICLE_SWATVAN                     (601)
+	#define VEHICLE_SWAT                        (601)
+	#define VEHICLE_ALPHA                       (602)
+	#define VEHICLE_PHOENIX                     (603)
+	#define VEHICLE_GLENSHIT                    (604)
+	#define VEHICLE_GLENDALESHIT                (604)
+	#define VEHICLE_SADLSHIT                    (605)
+	#define VEHICLE_SADLERSHIT                  (605)
+	#define VEHICLE_BAGGAGETRAILERA             (606)
+	#define VEHICLE_BAGGAGETRAILERB             (607)
+	#define VEHICLE_TUGSTAIR                    (608)
+	#define VEHICLE_TUGSTAIRSTRAILER            (608)
+	#define VEHICLE_BOXBURG                     (609)
+	#define VEHICLE_FARMTRAILER                 (610)
+	#define VEHICLE_UTILITYTRAILER              (611)
+#endif
+
+/**
+ * <remarks>
+ * <c>IS_JIT</c>
+ *
+ * True when the code is JIT compiled.
+ * </remarks>
+ */
+
+#if FIX_JIT
+	#define IS_JIT (_FIXES_gIsJIT)
+#endif
+
+/**
+ * <remarks>
+ * <c>IS_FILTERSCRIPT</c>
+ *
+ * "FILTERSCRIPT" can't always be relied on to be set.  This is not a pre-
+ * processor macro, but may be better than nothing (also used internally).
+ * </remarks>
+ */
+
+#if FIX_FILTERSCRIPT
+	#define IS_FILTERSCRIPT (_FIXES_gIsFilterscript)
+#endif
+
+/**
+ * <remarks>
+ * <c>IS_WINDOWS</c>
+ *
+ * True when the code is running on Windows.  NOT a pre-processor macro, since
+ * the OS you are running the code on can't be determined at compile-time.
+ *
+ * <c>IS_LINUX</c>
+ *
+ * True when the code is running on Linux.  NOT a pre-processor macro, since the
+ * OS you are running the code on can't be determined at compile-time.
+ * </remarks>
+ */
+
+#if FIX_OS
+	#define IS_WINDOWS (_FIXES_gIsWindows)
+	#define IS_LINUX (!_FIXES_gIsWindows)
+#endif
+
+/*
+
+           db         88           ad88888ba   
+          d88b        88          d8"     "8b  
+         d8'`8b       88          Y8,          
+        d8'  `8b      88          `Y8aaaaa,    
+       d8YaaaaY8b     88            `"""""8b,  
+      d8""""""""8b    88                  `8b  
+     d8'        `8b   88          Y8a     a8P  
+    d8'          `8b  88888888888  "Y88888P"   
+
+
+
+*/
 
 /**
  * <remarks>
@@ -3411,194 +4499,20 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 {
 }
 
-/**
- * <remarks>
- * The number of GameText styles recreated using TextDraw functions.  This is 4
- * by default, but can be extended to 6 if you want location and vehicle styles.
- * </remarks>
- */
+/*
 
-#if FIX_GameText
-	#if FIX_GameTextStyles
-		#define FIXES_GT_STYLE_COUNT (14)
-	#else
-		#define FIXES_GT_STYLE_COUNT (7)
-	#endif
-#endif
+    88888888888                                                           
+    88                                                                    
+    88                                                                    
+    88aaaaa      8b,dPPYba,   88       88  88,dPYba,,adPYba,   ,adPPYba,  
+    88"""""      88P'   `"8a  88       88  88P'   "88"    "8a  I8[    ""  
+    88           88       88  88       88  88      88      88   `"Y8ba,   
+    88           88       88  "8a,   ,a88  88      88      88  aa    ]8I  
+    88888888888  88       88   `"YbbdP'Y8  88      88      88  `"YbbdP"'  
 
-/**
- * <remarks>
- * If this define is set to 1, then players will not be given a message when
- * they are kicked for cheats, instead they will just loose connection to the
- * server.
- * </remarks>
- */
 
-#if !defined FIXES_SilentKick
-	#define FIXES_SilentKick 0
-#elseif _FIXES_IS_UNSET(FIXES_SilentKick)
-	#undef FIXES_SilentKick
-	#define FIXES_SilentKick 2
-#endif
 
-/**
- * <remarks>
- * If this define is set to 1, then debug printing is turned on for any
- * functions which may use it.  Otherwise, the compiler entirely removes the
- * code to print anything, leaving 0 run-time overhead.
- * </remarks>
- */
-
-#if defined FIXES_Debug
-	#if _FIXES_IS_UNSET(FIXES_Debug)
-		#undef FIXES_Debug
-	#elseif FIXES_Debug == 1
-		#define FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM),printf("*** " %0);
-	#else
-		#undef FIXES_Debug
-	#endif
-#endif
-
-/**
- * <remarks>
- * If this define is set to 1, then the server will not give a message when
- * <see>FIXES_Single</see> is set, but the script isn't REALLY the only one.
- * </remarks>
- */
-
-#if !defined FIXES_SingleMsg
-	#define FIXES_SingleMsg 1
-#elseif _FIXES_IS_UNSET(FIXES_SingleMsg)
-	#undef FIXES_SingleMsg
-	#define FIXES_SingleMsg 2
-#endif
-
-/**
- * <remarks>
- * If this define is set to 1, then the server will not give a message when
- * <see>GetServerVarAsString</see> and related functions are used without a
- * valid directory redirect.
- * </remarks>
- */
-
-#if !defined FIXES_ServerVarMsg
-	#define FIXES_ServerVarMsg 1
-#elseif _FIXES_IS_UNSET(FIXES_ServerVarMsg)
-	#undef FIXES_ServerVarMsg
-	#define FIXES_ServerVarMsg 2
-#endif
-
-/**
- * <remarks>
- * If this define is set to 1, then the server will not give a message when
- * <see>GetMaxPlayer</see> doesn't match <c>MAX_PLAYERS</c>.
- * </remarks>
- */
-
-#if !defined FIXES_GetMaxPlayersMsg
-	#define FIXES_GetMaxPlayersMsg 1
-#elseif _FIXES_IS_UNSET(FIXES_GetMaxPlayersMsg)
-	#undef FIXES_GetMaxPlayersMsg
-	#define FIXES_GetMaxPlayersMsg 2
-#endif
-
-/**
- * <remarks>
- * Is the extended API defined for use?  Better for testing (<c>#if defined FIXES_API</c>).
- * </remarks>
- */
-
-#if FIX_API
-	#define FIXES_API
-#endif
-
-/**
- * <remarks>
- * A marker to indicate that this version of fixes.inc uses state-based hooks.
- * </remarks>
- */
-#define FIXES_UseStateHooks
-
-/**
- * <remarks>
- * A special "printf" function only compiled when "FIXES_Debug" is set.
- * </remarks>
- */
-
-#if !defined FIXES_PRINTF
-	#define FIXES_Debug 0
-	#define FIXES_PRINTF(%0);
-#endif
-
-/**
- * <remarks>
- * INVALID_DIALOG_ID
- *
- * Set when a player can't see a dialog.
- * </remarks>
- */
-
-#if !defined INVALID_DIALOG_ID
-	#define INVALID_DIALOG_ID (-1)
-#endif
-
-/**
- * <remarks>
- * If this define is set to 1, then the old style include is used, with no
- * support for multiple scripts running at the same time on the server (i.e. no
- * gamemodes and filter scripts at the same time).  You can only have one or the
- * other or bugs.
- * </remarks>
- */
-
-#if !defined FIXES_Single
-	#define FIXES_Single (1)
-#elseif _FIXES_IS_UNSET(FIXES_Single)
-	#undef FIXES_Single
-	#define FIXES_Single (2)
-#endif
-
-/**
- * <remarks>
- * _FIXES_IS_IN_CHARGE
- *
- * Test to see if this script is in command or not (master).
- * </remarks>
- */
-
-#if FIXES_Single
-	#define _FIXES_IS_IN_CHARGE(%0)
-#else
-	#define _FIXES_IS_IN_CHARGE(%0) if (%0(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
-#endif
-
-/**
- */
-
-#if FIXES_Single
-	#define FIXES_SET(%0,%1,%2) (FIXES_gs%0[%1] = %2)
-#else
-	#define FIXES_SET(%0,%1,%2) SetPVarInt(%1, FIXES_pvar%0, %2)
-#endif
-
-/**
- */
-
-#if FIXES_Single
-	#define FIXES_GET(%0,%1) (FIXES_gs%0[%1])
-#else
-	#define FIXES_GET(%0,%1) GetPVarInt(%1, FIXES_pvar%0)
-#endif
-
-/**
- * <remarks>
- * isnull
- *
- * Pretty standard.
- * </remarks>
- */
-
-#define isnull(%0) ((%0[(%0[0])=='\1'])=='\0')
+*/
 
 /**
  * <remarks>
@@ -3680,119 +4594,20 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 	e_FIXES_SETTINGS_SECOND_USE
 }
 
-/**
- * <remarks>
- * _FIXES_CEILDIV
- *
- * Do a ceiling division of the first number by the second number.
- * </remarks>
- */
-#define _FIXES_CEILDIV(%0,%1) (((%0) + (%1) - 1) / (%1))
+/*
 
-/**
- * <remarks>
- * _FIXES_MIN_WORLDBOUNDS
- *
- * Default worldbound range.
- * </remarks>
- */
-#define _FIXES_MIN_WORLDBOUNDS (-20000.0)
+                                                88         
+                 ,d                             88         
+                 88                             88         
+    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8   
+    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"    
+     `"Y8ba,     88    8b       d8  8b          8888[      
+    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,   
+    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a  
 
-/**
- * <remarks>
- * _FIXES_MAX_WORLDBOUNDS
- *
- * Default worldbound range.
- * </remarks>
- */
-#define _FIXES_MAX_WORLDBOUNDS (20000.0)
 
-/**
- * <remarks>
- * _FIXES_INFINITY
- *
- * IEEE 754 definition of infinity.
- * </remarks>
- */
-#define _FIXES_INFINITY (Float:0x7F800000)
 
-/**
- * <remarks>
- * _FIXES_N_INFINITY
- *
- * IEEE 754 definition of negative infinity.
- * </remarks>
- */
-#define _FIXES_N_INFINITY (Float:0xFF800000)
-
-/**
- * <remarks>
- * _FIXES_ATTACHMENTS
- *
- * The number of players whose attachment data (10-bits) can be stored in one
- * cell.
- * </remarks>
- */
-#define _FIXES_ATTACHMENTS (cellbits / MAX_PLAYER_ATTACHED_OBJECTS)
-
-/**
- * <remarks>
- * _FIXES_FOREACH
- *
- * A new version of "foreach", but just for this library.
- * </remarks>
- */
-#define _FIXES_FOREACH(%1,%0) for (new %0 = MAX_PLAYERS; (%0 = %1[%0]) != MAX_PLAYERS; )
-
-/**
- * <remarks>
- * _FIXES_IN_RANGE
- *
- * Checks if the first parameter is between the other two: %1 &lt;= %0 &lt;%2 (but
- * faster).
- * </remarks>
- */
-#define _FIXES_IN_RANGE(%0,%1,%2) ((_:(%0) - (_:(%1) + cellmin)) < (_:(%2) - (_:(%1) + cellmin)))
-
-/**
- * <remarks>
- * _FIXES_NO_RANGE
- *
- * Checks if the first parameter is not between the other two:
- * <c>!(%1 &lt;= %0 &lt; %2)</c>(but faster).
- * </remarks>
- */
-#define _FIXES_NO_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) >= ((%2) - ((%1) + cellmin)))
-
-/**
- * <remarks>
- * _FIXES_FORWARD
- *
- * Forwards a hooked callbacks, and defines the default state implementations.
- * </remarks>
- */
-#define _FIXES_FORWARD%0(%1); \
-	forward%0(%1); \
-	public%0(%1) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 1; } \
-	public%0(%1) <> { return 1; }
-
-/**
- * <remarks>
- * _FIXES_IS_VALID_PLAYER
- *
- * Check if the ID is in range of player IDs.
- * </remarks>
- */
-#define _FIXES_IS_VALID_PLAYER(%0) _FIXES_IN_RANGE((%0), 0, MAX_PLAYERS)
-
-/**
- * <remarks>
- * _FIXES_IS_PLAYER_CONNECTED
- *
- * Always valid "IsPlayerConnected" check.
- * </remarks>
- */
-#define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IS_VALID_PLAYER(%0) && IsPlayerConnected__(%0))
+*/
 
 // These varaibles are NOT pre-processor dependent as they are stock.  It's just
 // simpler than trying to figure out when or if a semi-colon is needed.  The
@@ -3851,6 +4666,21 @@ stock
 	_FIXES_gsWorldTime = 12;
 #endif
 
+/*
+
+                                                88                                                                      
+                 ,d                             88                                                               ,d     
+                 88                             88                                                               88     
+    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM  
+    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88     
+     `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88     
+    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,    
+    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888  
+
+
+
+*/
+
 stock const
 	/**
 	 * <remarks>
@@ -3859,6 +4689,21 @@ stock const
 	 * </remarks>
 	 */
 	FIXES_gcNull[] = "\1";
+
+/*
+
+                                             88                                                             88         
+                 ,d                   ,d     ""                              ,d                             88         
+                 88                   88                                     88                             88         
+    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8   
+    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"    
+     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[      
+    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,   
+    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a  
+
+
+
+*/
 
 #if FIXES_Debug
 new
@@ -4120,6 +4965,22 @@ static stock
 #endif
 	/**
 	 * <remarks>
+	 * The timers used to prevent players seating.
+	 * </remarks>
+	 */
+#if FIX_PassengerSeating
+	FIXES_gsPSTimer[MAX_PLAYERS],
+#endif
+	/**
+	 * <remarks>
+	 * The player id who is getting carjacked before the car teleports.
+	 * </remarks>
+	 */
+#if FIX_SilentTeleport
+	FIXES_gsJackedId[MAX_PLAYERS] = {INVALID_PLAYER_ID, ...},
+#endif
+	/**
+	 * <remarks>
 	 * The position of the character right-trimmed from a "const" string.
 	 * </remarks>
 	 */
@@ -4129,7 +4990,28 @@ static stock
 	 * The character right-trimmed from a "const" string.
 	 * </remarks>
 	 */
-	FIXES_gsTrimChr,
+	FIXES_gsTrimChr;
+
+/*
+
+                                             88                                                             88                                                                      
+                 ,d                   ,d     ""                              ,d                             88                                                               ,d     
+                 88                   88                                     88                             88                                                               88     
+    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM  
+    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88     
+     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88     
+    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,    
+    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888  
+
+
+
+*/
+
+#if FIXES_Debug
+new
+#else
+static stock const
+#endif
 	/**
 	 * <remarks>
 	 * This variable records wether or not this player is brand new to the
@@ -4221,22 +5103,6 @@ static stock
 	 */
 #if !FIXES_Single && FIX_OnPlayerSpawn
 	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash",
-#endif
-	/**
-	 * <remarks>
-	 * The timers used to prevent players seating.
-	 * </remarks>
-	 */
-#if FIX_PassengerSeating
-	FIXES_gsPSTimer[MAX_PLAYERS],
-#endif
-	/**
-	 * <remarks>
-	 * The player id who is getting carjacked before the car teleports.
-	 * </remarks>
-	 */
-#if FIX_SilentTeleport
-	FIXES_gsJackedId[MAX_PLAYERS] = {INVALID_PLAYER_ID, ...},
 #endif
 	/**
 	 * <remarks>
@@ -4999,9 +5865,7 @@ static stock
 	 * NULL.  This is stored as a global string to reduce memory usage.
 	 * </remarks>
 	 */
-	FIXES_gscNULL[] = "\1";
-
-static stock const
+	FIXES_gscNULL[] = "\1",
 	/**
 	 * <remarks>
 	 * (null).  This is stored as a global string to reduce memory usage.
@@ -5568,51 +6432,20 @@ static stock const
 		"***                  improve the more common case).\n"                            \
 		"***";
 
-/**
- * <remarks>
- * Future-compatible tag definitions.
- * </remarks>
- */
+/*
 
-#if !defined KEY
-	#define KEY: _:
-#endif
+    888b      88                       88                                      
+    8888b     88                ,d     ""                                      
+    88 `8b    88                88                                             
+    88  `8b   88  ,adPPYYba,  MM88MMM  88  8b       d8   ,adPPYba,  ,adPPYba,  
+    88   `8b  88  ""     `Y8    88     88  `8b     d8'  a8P_____88  I8[    ""  
+    88    `8b 88  ,adPPPPP88    88     88   `8b   d8'   8PP"""""""   `"Y8ba,   
+    88     `8888  88,    ,88    88,    88    `8b,d8'    "8b,   ,aa  aa    ]8I  
+    88      `888  `"8bbdP"Y8    "Y888  88      "8"       `"Ybbd8"'  `"YbbdP"'  
 
-#if !defined PLAYER_STATE
-	#define PLAYER_STATE: _:
-#endif
 
-#if !defined SPECIAL_ACTION
-	#define SPECIAL_ACTION: _:
-#endif
 
-/**
- * <remarks>
- * <c>_FIXES_KEY_AIM</c>
- * <c>KEY_AIM</c>
- *
- * Because the default SA:MP includes missed this one.
- * </remarks>
- */
-
-#define _FIXES_KEY_AIM                   (KEY:128)
-#if FIX_KEY_AIM
-	#define KEY_AIM                      _FIXES_KEY_AIM
-#endif
-
-/**
- * <remarks>
- * <c>_FIXES_SPECIAL_ACTION_PISSING</c>
- * <c>SPECIAL_ACTION_PISSING</c>
- *
- * Because the default SA:MP includes missed this one.
- * </remarks>
- */
-
-#define _FIXES_SPECIAL_ACTION_PISSING    (68)
-#if FIX_SPECIAL_ACTION_PISSING
-	#define SPECIAL_ACTION_PISSING       _FIXES_SPECIAL_ACTION_PISSING
-#endif
+*/
 
 /**
  * <remarks>
@@ -6000,638 +6833,6 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	#define _FIXES_MAYBE_CONST const
 #else
 	#define _FIXES_MAYBE_CONST
-#endif
-
-/**
- * <remarks>
- * <c>WEAPONS</c>
- *
- * Because the default SA:MP includes missed some of these.
- * </remarks>
- */
-
-#define _FIXES_WEAPON_FIST                      (0)
-#define _FIXES_WEAPON_NIGHT_VIS_GOGGLES         (44)
-#define _FIXES_WEAPON_THERMAL_GOGGLES           (45)
-
-#if FIX_WEAPONS
-	#define WEAPON_FIST               _FIXES_WEAPON_FIST
-	#define WEAPON_NIGHTSTICK         WEAPON_NITESTICK
-	#define WEAPON_MOLOTOV            WEAPON_MOLTOV
-	#define WEAPON_NIGHT_VIS_GOGGLES  _FIXES_WEAPON_NIGHT_VIS_GOGGLES
-	#define WEAPON_THERMAL_GOGGLES    _FIXES_WEAPON_THERMAL_GOGGLES
-#endif
-
-#define _FIXES_WEAPON_SLOTS                     (13)
-
-/**
- * <remarks>
- * <c>BODYPARTS</c>
- *
- * Because the default SA:MP includes missed these.
- * </remarks>
- */
-
-#if FIX_BODYPARTS
-	#define BODY_PART_TORSO                     (3)
-	#define BODY_PART_GROIN                     (4)
-	#define BODY_PART_LEFT_ARM                  (5)
-	#define BODY_PART_RIGHT_ARM                 (6)
-	#define BODY_PART_LEFT_LEG                  (7)
-	#define BODY_PART_RIGHT_LEG                 (8)
-	#define BODY_PART_HEAD                      (9)
-#endif
-
-/**
- * <remarks>
- * <c>CAMERAMODES</c>
- *
- * Because the default SA:MP includes missed these.
- * </remarks>
- */
-
-#if FIX_CAMERAMODES
-	#define CAM_MODE_DISCONNECTED               (-1)
-	#define CAM_MODE_NONE                       (0)
-	#define CAM_MODE_BEHINDCAR                  (3)
-	#define CAM_MODE_FOLLOWPED                  (4)
-	#define CAM_MODE_SNIPER                     (7)
-	#define CAM_MODE_ROCKETLAUNCHER             (8)
-	#define CAM_MODE_FIXED                      (15)
-	#define CAM_MODE_1STPERSON                  (16)
-	#define CAM_MODE_CAM_ON_A_STRING            (18)
-	#define CAM_MODE_BEHINDBOAT                 (22)
-	#define CAM_MODE_CAMERA                     (46)
-	#define CAM_MODE_ROCKETLAUNCHER_HS          (51)
-	#define CAM_MODE_AIMWEAPON                  (53)
-	#define CAM_MODE_AIMWEAPON_FROMCAR          (55)
-	#define CAM_MODE_DW_HELI_CHASE              (56)
-#endif
-
-/**
- * <remarks>
- * <c>VEHICLES</c>
- *
- * Because the default SA:MP includes missed these.
- * </remarks>
- */
-
-#if FIX_VEHICLES
-	// In alphabetical order.
-	#define VEHICLE_ADMIRAL                     (445)
-	#define VEHICLE_ALPHA                       (602)
-	#define VEHICLE_AMBULAN                     (416)
-	#define VEHICLE_AMBULANCE                   (416)
-	#define VEHICLE_ANDROM                      (592)
-	#define VEHICLE_ANDROMADA                   (592)
-	#define VEHICLE_ARTICT1                     (435)
-	#define VEHICLE_ARTICT2                     (450)
-	#define VEHICLE_ARTICT3                     (591)
-	#define VEHICLE_ARTICLETRAILER1             (435)
-	#define VEHICLE_ARTICLETRAILER2             (450)
-	#define VEHICLE_ARTICLETRAILER3             (591)
-	#define VEHICLE_AT400                       (577)
-	#define VEHICLE_BAGGAGE                     (485)
-	#define VEHICLE_BANDITO                     (568)
-	#define VEHICLE_BANSHEE                     (429)
-	#define VEHICLE_BARRACKS                    (433)
-	#define VEHICLE_BEAGLE                      (511)
-	#define VEHICLE_BENSON                      (499)
-	#define VEHICLE_BERKLEYSRCVAN               (459)
-	#define VEHICLE_BF400                       (581)
-	#define VEHICLE_BFINJECT                    (424)
-	#define VEHICLE_BFINJECTION                 (424)
-	#define VEHICLE_BIKE                        (509)
-	#define VEHICLE_BLADE                       (536)
-	#define VEHICLE_BLISTAC                     (496)
-	#define VEHICLE_BLISTACOMPACT               (496)
-	#define VEHICLE_BLOODRA                     (504)
-	#define VEHICLE_BLOODRINGBANGER             (504)
-	#define VEHICLE_BMX                         (481)
-	#define VEHICLE_BOBCAT                      (422)
-	#define VEHICLE_BOXBURG                     (609)
-	#define VEHICLE_BOXVILLE                    (498)
-	#define VEHICLE_BRAVURA                     (401)
-	#define VEHICLE_BROADWAY                    (575)
-	#define VEHICLE_BROWNSTREAK                 (538)
-	#define VEHICLE_BUCCANEE                    (518)
-	#define VEHICLE_BUCCANEER                   (518)
-	#define VEHICLE_BUFFALO                     (402)
-	#define VEHICLE_BULLET                      (541)
-	#define VEHICLE_BURRITO                     (482)
-	#define VEHICLE_BUS                         (431)
-	#define VEHICLE_CABBIE                      (438)
-	#define VEHICLE_CADDY                       (457)
-	#define VEHICLE_CADRONA                     (527)
-	#define VEHICLE_CAMPER                      (483)
-	#define VEHICLE_CARGOBOB                    (548)
-	#define VEHICLE_CEMENT                      (524)
-	#define VEHICLE_CEMENTTRUCK                 (524)
-	#define VEHICLE_CHEETAH                     (415)
-	#define VEHICLE_CLOVER                      (542)
-	#define VEHICLE_CLUB                        (589)
-	#define VEHICLE_COACH                       (437)
-	#define VEHICLE_COASTG                      (472)
-	#define VEHICLE_COASTGUARD                  (472)
-	#define VEHICLE_COMET                       (480)
-	#define VEHICLE_COPCARLA                    (596)
-	#define VEHICLE_COPCARSF                    (597)
-	#define VEHICLE_COPCARVG                    (598)
-	#define VEHICLE_COPCARRU                    (599)
-	#define VEHICLE_CROPDUST                    (512)
-	#define VEHICLE_DFT30                       (578)
-	#define VEHICLE_DINGHY                      (473)
-	#define VEHICLE_DODO                        (593)
-	#define VEHICLE_DOZER                       (486)
-	#define VEHICLE_DUMPER                      (406)
-	#define VEHICLE_DUNERIDE                    (573)
-	#define VEHICLE_ELEGANT                     (507)
-	#define VEHICLE_ELEGY                       (562)
-	#define VEHICLE_EMPEROR                     (585)
-	#define VEHICLE_ENFORCER                    (427)
-	#define VEHICLE_ESPERANT                    (419)
-	#define VEHICLE_ESPERANTO                   (419)
-	#define VEHICLE_EUROS                       (587)
-	#define VEHICLE_FAGGIO                      (462)
-	#define VEHICLE_FBIRANCH                    (490)
-	#define VEHICLE_FBIRANCHER                  (490)
-	#define VEHICLE_FCR900                      (521)
-	#define VEHICLE_FELTZER                     (533)
-	#define VEHICLE_FIRELA                      (544)
-	#define VEHICLE_FIRETRUK                    (407)
-	#define VEHICLE_FIRETRUCK                   (407)
-	#define VEHICLE_FIRETRUCKLA                 (544)
-	#define VEHICLE_FLASH                       (565)
-	#define VEHICLE_FLATBED                     (455)
-	#define VEHICLE_FORKLIFT                    (530)
-	#define VEHICLE_FORTUNE                     (526)
-	#define VEHICLE_FREEWAY                     (463)
-	#define VEHICLE_FREIGHT                     (537)
-	#define VEHICLE_GLENDALE                    (466)
-	#define VEHICLE_GLENDALESHIT                (604)
-	#define VEHICLE_GLENSHIT                    (604)
-	#define VEHICLE_GREENWOO                    (492)
-	#define VEHICLE_GREENWOOD                   (492)
-	#define VEHICLE_HERMES                      (474)
-	#define VEHICLE_HOTDOG                      (588)
-	#define VEHICLE_HOTKNIFE                    (434)
-	#define VEHICLE_HOTRINA                     (502)
-	#define VEHICLE_HOTRINB                     (503)
-	#define VEHICLE_HOTRING                     (494)
-	#define VEHICLE_HOTRINGRACER                (494)
-	#define VEHICLE_HOTRINGRACERA               (502)
-	#define VEHICLE_HOTRINGRACERB               (503)
-	#define VEHICLE_HUNTER                      (425)
-	#define VEHICLE_HUNTLEY                     (579)
-	#define VEHICLE_HUSTLER                     (545)
-	#define VEHICLE_INFERNUS                    (411)
-	#define VEHICLE_INTRUDER                    (546)
-	#define VEHICLE_JESTER                      (559)
-	#define VEHICLE_JETMAX                      (493)
-	#define VEHICLE_JOURNEY                     (508)
-	#define VEHICLE_KART                        (571)
-	#define VEHICLE_LANDSTAL                    (400)
-	#define VEHICLE_LANDSTALKER                 (400)
-	#define VEHICLE_LAUNCH                      (595)
-	#define VEHICLE_LINERUN                     (403)
-	#define VEHICLE_LINERUNNER                  (403)
-	#define VEHICLE_QUAD                        (471)
-	#define VEHICLE_MAJESTIC                    (517)
-	#define VEHICLE_MTBIKE                      (510)
-	#define VEHICLE_MOUNTAINBIKE                (510)
-	#define VEHICLE_MANANA                      (410)
-	#define VEHICLE_MARQUIS                     (484)
-	#define VEHICLE_MAVERICK                    (487)
-	#define VEHICLE_MERIT                       (551)
-	#define VEHICLE_MESA                        (500)
-	#define VEHICLE_MONSTER                     (444)
-	#define VEHICLE_MONSTERA                    (556)
-	#define VEHICLE_MONSTERB                    (557)
-	#define VEHICLE_MOONBEAM                    (418)
-	#define VEHICLE_MOWER                       (572)
-	#define VEHICLE_MRWHOOP                     (423)
-	#define VEHICLE_MRWHOOPEE                   (423)
-	#define VEHICLE_MULE                        (414)
-	#define VEHICLE_NEBULA                      (516)
-	#define VEHICLE_NEVADA                      (553)
-	#define VEHICLE_NEWSVAN                     (582)
-	#define VEHICLE_NRG500                      (522)
-	#define VEHICLE_OCEANIC                     (467)
-	#define VEHICLE_PACKER                      (443)
-	#define VEHICLE_PATRIOT                     (470)
-	#define VEHICLE_PCJ600                      (461)
-	#define VEHICLE_PEREN                       (404)
-	#define VEHICLE_PERRENIAL                   (404)
-	#define VEHICLE_PETRO                       (514)
-	#define VEHICLE_PETROLTRAILER               (584)
-	#define VEHICLE_PETROTR                     (584)
-	#define VEHICLE_PHOENIX                     (603)
-	#define VEHICLE_PICADOR                     (600)
-	#define VEHICLE_PIZZABOY                    (448)
-	#define VEHICLE_POLICECARLSPD               (596)
-	#define VEHICLE_POLICECARSFPD               (597)
-	#define VEHICLE_POLICECARLVPD               (598)
-	#define VEHICLE_POLICERANGER                (599)
-	#define VEHICLE_POLMAV                      (497)
-	#define VEHICLE_POLICEMAVERICK              (497)
-	#define VEHICLE_PONY                        (413)
-	#define VEHICLE_PREDATOR                    (430)
-	#define VEHICLE_PREMIER                     (426)
-	#define VEHICLE_PREVION                     (436)
-	#define VEHICLE_PRIMO                       (547)
-	#define VEHICLE_RAINDANC                    (563)
-	#define VEHICLE_RAINDANCE                   (563)
-	#define VEHICLE_RANCHER                     (489)
-	#define VEHICLE_RANCHERLURE                 (505)
-	#define VEHICLE_RCBANDIT                    (441)
-	#define VEHICLE_RCBARON                     (464)
-	#define VEHICLE_RCRAIDER                    (465)
-	#define VEHICLE_RCGOBLIN                    (501)
-	#define VEHICLE_RDTRAIN                     (515)
-	#define VEHICLE_REEFER                      (453)
-	#define VEHICLE_REGINA                      (479)
-	#define VEHICLE_REMINGTN                    (534)
-	#define VEHICLE_REMINGTON                   (534)
-	#define VEHICLE_RHINO                       (432)
-	#define VEHICLE_RNCHLURE                    (505)
-	#define VEHICLE_ROADTRAIN                   (515)
-	#define VEHICLE_ROMERO                      (442)
-	#define VEHICLE_RUMPO                       (440)
-	#define VEHICLE_RUSTLER                     (476)
-	#define VEHICLE_SABRE                       (475)
-	#define VEHICLE_SADLER                      (543)
-	#define VEHICLE_SADLERSHIT                  (605)
-	#define VEHICLE_SADLSHIT                    (605)
-	#define VEHICLE_SANCHEZ                     (468)
-	#define VEHICLE_SANDKING                    (495)
-	#define VEHICLE_SAVANNA                     (567)
-	#define VEHICLE_SEASPAR                     (447)
-	#define VEHICLE_SEASPARROW                  (447)
-	#define VEHICLE_SECURICA                    (428)
-	#define VEHICLE_SECURICAR                   (428)
-	#define VEHICLE_SENTINEL                    (405)
-	#define VEHICLE_SHAMAL                      (519)
-	#define VEHICLE_STREAK                      (538)
-	#define VEHICLE_STREAKC                     (570)
-	#define VEHICLE_STREAKTRAILER               (570)
-	#define VEHICLE_SKIMMER                     (460)
-	#define VEHICLE_SLAMVAN                     (535)
-	#define VEHICLE_SOLAIR                      (458)
-	#define VEHICLE_SPARROW                     (469)
-	#define VEHICLE_SPEEDER                     (452)
-	#define VEHICLE_SQUALO                      (446)
-	#define VEHICLE_STAFFORD                    (580)
-	#define VEHICLE_STALLION                    (439)
-	#define VEHICLE_STRATUM                     (561)
-	#define VEHICLE_STRETCH                     (409)
-	#define VEHICLE_STUNT                       (513)
-	#define VEHICLE_STUNTPLANE                  (513)
-	#define VEHICLE_SULTAN                      (560)
-	#define VEHICLE_SUNRISE                     (550)
-	#define VEHICLE_SUPERGT                     (506)
-	#define VEHICLE_SWAT                        (601)
-	#define VEHICLE_SWATVAN                     (601)
-	#define VEHICLE_SWEEPER                     (574)
-	#define VEHICLE_TAHOMA                      (566)
-	#define VEHICLE_TAMPA                       (549)
-	#define VEHICLE_TANKER                      (514)
-	#define VEHICLE_TAXI                        (420)
-	#define VEHICLE_TOPFUN                      (459)
-	#define VEHICLE_TORNADO                     (576)
-	#define VEHICLE_TOWTRUCK                    (525)
-	#define VEHICLE_TRACTOR                     (531)
-	#define VEHICLE_TRAM                        (449)
-	#define VEHICLE_TRASH                       (408)
-	#define VEHICLE_TRASHMASTER                 (408)
-	#define VEHICLE_TROPIC                      (454)
-	#define VEHICLE_TUG                         (583)
-	#define VEHICLE_TUGSTAIR                    (608)
-	#define VEHICLE_TUGSTAIRSTRAILER            (608)
-	#define VEHICLE_TURISMO                     (451)
-	#define VEHICLE_URANUS                      (558)
-	#define VEHICLE_UTILITY                     (552)
-	#define VEHICLE_UTILITYVAN                  (552)
-	#define VEHICLE_VCNMAV                      (488)
-	#define VEHICLE_SANNEWSMAVERICK             (488)
-	#define VEHICLE_VINCENT                     (540)
-	#define VEHICLE_VIRGO                       (491)
-	#define VEHICLE_VOODOO                      (412)
-	#define VEHICLE_VORTEX                      (539)
-	#define VEHICLE_WALTON                      (478)
-	#define VEHICLE_WASHING                     (421)
-	#define VEHICLE_WASHINGTON                  (421)
-	#define VEHICLE_WAYFARER                    (586)
-	#define VEHICLE_WILLARD                     (529)
-	#define VEHICLE_WINDSOR                     (555)
-	#define VEHICLE_YANKEE                      (456)
-	#define VEHICLE_YOSEMITE                    (554)
-	#define VEHICLE_ZR350                       (477)
-
-	// In numerical order.
-	#define VEHICLE_LANDSTAL                    (400)
-	#define VEHICLE_LANDSTALKER                 (400)
-	#define VEHICLE_BRAVURA                     (401)
-	#define VEHICLE_BUFFALO                     (402)
-	#define VEHICLE_LINERUN                     (403)
-	#define VEHICLE_LINERUNNER                  (403)
-	#define VEHICLE_PEREN                       (404)
-	#define VEHICLE_PERRENIAL                   (404)
-	#define VEHICLE_SENTINEL                    (405)
-	#define VEHICLE_DUMPER                      (406)
-	#define VEHICLE_FIRETRUK                    (407)
-	#define VEHICLE_FIRETRUCK                   (407)
-	#define VEHICLE_TRASH                       (408)
-	#define VEHICLE_TRASHMASTER                 (408)
-	#define VEHICLE_STRETCH                     (409)
-	#define VEHICLE_MANANA                      (410)
-	#define VEHICLE_INFERNUS                    (411)
-	#define VEHICLE_VOODOO                      (412)
-	#define VEHICLE_PONY                        (413)
-	#define VEHICLE_MULE                        (414)
-	#define VEHICLE_CHEETAH                     (415)
-	#define VEHICLE_AMBULAN                     (416)
-	#define VEHICLE_AMBULANCE                   (416)
-	#define VEHICLE_LEVIATHAN                   (417)
-	#define VEHICLE_MOONBEAM                    (418)
-	#define VEHICLE_ESPERANT                    (419)
-	#define VEHICLE_ESPERANTO                   (419)
-	#define VEHICLE_TAXI                        (420)
-	#define VEHICLE_WASHING                     (421)
-	#define VEHICLE_WASHINGTON                  (421)
-	#define VEHICLE_BOBCAT                      (422)
-	#define VEHICLE_MRWHOOP                     (423)
-	#define VEHICLE_MRWHOOPEE                   (423)
-	#define VEHICLE_BFINJECT                    (424)
-	#define VEHICLE_BFINJECTION                 (424)
-	#define VEHICLE_HUNTER                      (425)
-	#define VEHICLE_PREMIER                     (426)
-	#define VEHICLE_ENFORCER                    (427)
-	#define VEHICLE_SECURICA                    (428)
-	#define VEHICLE_SECURICAR                   (428)
-	#define VEHICLE_BANSHEE                     (429)
-	#define VEHICLE_PREDATOR                    (430)
-	#define VEHICLE_BUS                         (431)
-	#define VEHICLE_RHINO                       (432)
-	#define VEHICLE_BARRACKS                    (433)
-	#define VEHICLE_HOTKNIFE                    (434)
-	#define VEHICLE_ARTICT1                     (435)
-	#define VEHICLE_ARTICLETRAILER1             (435)
-	#define VEHICLE_PREVION                     (436)
-	#define VEHICLE_COACH                       (437)
-	#define VEHICLE_CABBIE                      (438)
-	#define VEHICLE_STALLION                    (439)
-	#define VEHICLE_RUMPO                       (440)
-	#define VEHICLE_RCBANDIT                    (441)
-	#define VEHICLE_ROMERO                      (442)
-	#define VEHICLE_PACKER                      (443)
-	#define VEHICLE_MONSTER                     (444)
-	#define VEHICLE_ADMIRAL                     (445)
-	#define VEHICLE_SQUALO                      (446)
-	#define VEHICLE_SEASPAR                     (447)
-	#define VEHICLE_SEASPARROW                  (447)
-	#define VEHICLE_PIZZABOY                    (448)
-	#define VEHICLE_TRAM                        (449)
-	#define VEHICLE_ARTICT2                     (450)
-	#define VEHICLE_ARTICLETRAILER2             (450)
-	#define VEHICLE_TURISMO                     (451)
-	#define VEHICLE_SPEEDER                     (452)
-	#define VEHICLE_REEFER                      (453)
-	#define VEHICLE_TROPIC                      (454)
-	#define VEHICLE_FLATBED                     (455)
-	#define VEHICLE_YANKEE                      (456)
-	#define VEHICLE_CADDY                       (457)
-	#define VEHICLE_SOLAIR                      (458)
-	#define VEHICLE_TOPFUN                      (459)
-	#define VEHICLE_BERKLEYSRCVAN               (459)
-	#define VEHICLE_SKIMMER                     (460)
-	#define VEHICLE_PCJ600                      (461)
-	#define VEHICLE_FAGGIO                      (462)
-	#define VEHICLE_FREEWAY                     (463)
-	#define VEHICLE_RCBARON                     (464)
-	#define VEHICLE_RCRAIDER                    (465)
-	#define VEHICLE_GLENDALE                    (466)
-	#define VEHICLE_OCEANIC                     (467)
-	#define VEHICLE_SANCHEZ                     (468)
-	#define VEHICLE_SPARROW                     (469)
-	#define VEHICLE_PATRIOT                     (470)
-	#define VEHICLE_QUAD                        (471)
-	#define VEHICLE_COASTG                      (472)
-	#define VEHICLE_COASTGUARD                  (472)
-	#define VEHICLE_DINGHY                      (473)
-	#define VEHICLE_HERMES                      (474)
-	#define VEHICLE_SABRE                       (475)
-	#define VEHICLE_RUSTLER                     (476)
-	#define VEHICLE_ZR350                       (477)
-	#define VEHICLE_WALTON                      (478)
-	#define VEHICLE_REGINA                      (479)
-	#define VEHICLE_COMET                       (480)
-	#define VEHICLE_BMX                         (481)
-	#define VEHICLE_BURRITO                     (482)
-	#define VEHICLE_CAMPER                      (483)
-	#define VEHICLE_MARQUIS                     (484)
-	#define VEHICLE_BAGGAGE                     (485)
-	#define VEHICLE_DOZER                       (486)
-	#define VEHICLE_MAVERICK                    (487)
-	#define VEHICLE_VCNMAV                      (488)
-	#define VEHICLE_SANNEWSMAVERICK             (488)
-	#define VEHICLE_RANCHER                     (489)
-	#define VEHICLE_FBIRANCHER                  (490)
-	#define VEHICLE_VIRGO                       (491)
-	#define VEHICLE_GREENWOO                    (492)
-	#define VEHICLE_GREENWOOD                   (492)
-	#define VEHICLE_JETMAX                      (493)
-	#define VEHICLE_HOTRING                     (494)
-	#define VEHICLE_HOTRINGRACER                (494)
-	#define VEHICLE_SANDKING                    (495)
-	#define VEHICLE_BLISTAC                     (496)
-	#define VEHICLE_BLISTACOMPACT               (496)
-	#define VEHICLE_POLMAV                      (497)
-	#define VEHICLE_POLICEMAVERICK              (497)
-	#define VEHICLE_BOXVILLE                    (498)
-	#define VEHICLE_BENSON                      (499)
-	#define VEHICLE_MESA                        (500)
-	#define VEHICLE_RCGOBLIN                    (501)
-	#define VEHICLE_HOTRINA                     (502)
-	#define VEHICLE_HOTRINGRACERA               (502)
-	#define VEHICLE_HOTRINB                     (503)
-	#define VEHICLE_HOTRINGRACERB               (503)
-	#define VEHICLE_BLOODRA                     (504)
-	#define VEHICLE_BLOODRINGBANGER             (504)
-	#define VEHICLE_RNCHLURE                    (505)
-	#define VEHICLE_RANCHERLURE                 (505)
-	#define VEHICLE_SUPERGT                     (506)
-	#define VEHICLE_ELEGANT                     (507)
-	#define VEHICLE_JOURNEY                     (508)
-	#define VEHICLE_BIKE                        (509)
-	#define VEHICLE_MTBIKE                      (510)
-	#define VEHICLE_MOUNTAINBIKE                (510)
-	#define VEHICLE_BEAGLE                      (511)
-	#define VEHICLE_CROPDUST                    (512)
-	#define VEHICLE_STUNT                       (513)
-	#define VEHICLE_STUNTPLANE                  (513)
-	#define VEHICLE_PETRO                       (514)
-	#define VEHICLE_TANKER                      (514)
-	#define VEHICLE_RDTRAIN                     (515)
-	#define VEHICLE_ROADTRAIN                   (515)
-	#define VEHICLE_NEBULA                      (516)
-	#define VEHICLE_MAJESTIC                    (517)
-	#define VEHICLE_BUCCANEE                    (518)
-	#define VEHICLE_BUCCANEER                   (518)
-	#define VEHICLE_SHAMAL                      (519)
-	#define VEHICLE_HYDRA                       (520)
-	#define VEHICLE_FCR900                      (521)
-	#define VEHICLE_NRG500                      (522)
-	#define VEHICLE_HPV1000                     (523)
-	#define VEHICLE_CEMENT                      (524)
-	#define VEHICLE_CEMENTTRUCK                 (524)
-	#define VEHICLE_TOWTRUCK                    (525)
-	#define VEHICLE_FORTUNE                     (526)
-	#define VEHICLE_CADRONA                     (527)
-	#define VEHICLE_FBITRUCK                    (528)
-	#define VEHICLE_WILLARD                     (529)
-	#define VEHICLE_FORKLIFT                    (530)
-	#define VEHICLE_TRACTOR                     (531)
-	#define VEHICLE_COMBINE                     (532)
-	#define VEHICLE_FELTZER                     (533)
-	#define VEHICLE_REMINGTN                    (534)
-	#define VEHICLE_REMINGTON                   (534)
-	#define VEHICLE_SLAMVAN                     (535)
-	#define VEHICLE_BLADE                       (536)
-	#define VEHICLE_FREIGHT                     (537)
-	#define VEHICLE_STREAK                      (538)
-	#define VEHICLE_BROWNSTREAK                 (538)
-	#define VEHICLE_VORTEX                      (539)
-	#define VEHICLE_VINCENT                     (540)
-	#define VEHICLE_BULLET                      (541)
-	#define VEHICLE_CLOVER                      (542)
-	#define VEHICLE_SADLER                      (543)
-	#define VEHICLE_FIRELA                      (544)
-	#define VEHICLE_FIRETRUCKLA                 (544)
-	#define VEHICLE_HUSTLER                     (545)
-	#define VEHICLE_INTRUDER                    (546)
-	#define VEHICLE_PRIMO                       (547)
-	#define VEHICLE_CARGOBOB                    (548)
-	#define VEHICLE_TAMPA                       (549)
-	#define VEHICLE_SUNRISE                     (550)
-	#define VEHICLE_MERIT                       (551)
-	#define VEHICLE_UTILITY                     (552)
-	#define VEHICLE_UTILITYVAN                  (552)
-	#define VEHICLE_NEVADA                      (553)
-	#define VEHICLE_YOSEMITE                    (554)
-	#define VEHICLE_WINDSOR                     (555)
-	#define VEHICLE_MONSTERA                    (556)
-	#define VEHICLE_MONSTERB                    (557)
-	#define VEHICLE_URANUS                      (558)
-	#define VEHICLE_JESTER                      (559)
-	#define VEHICLE_SULTAN                      (560)
-	#define VEHICLE_STRATUM                     (561)
-	#define VEHICLE_ELEGY                       (562)
-	#define VEHICLE_RAINDANC                    (563)
-	#define VEHICLE_RAINDANCE                   (563)
-	#define VEHICLE_RCTIGER                     (564)
-	#define VEHICLE_FLASH                       (565)
-	#define VEHICLE_TAHOMA                      (566)
-	#define VEHICLE_SAVANNA                     (567)
-	#define VEHICLE_BANDITO                     (568)
-	#define VEHICLE_FREIGHTFLATTRAILER          (569)
-	#define VEHICLE_STREAKC                     (570)
-	#define VEHICLE_STREAKTRAILER               (570)
-	#define VEHICLE_KART                        (571)
-	#define VEHICLE_MOWER                       (572)
-	#define VEHICLE_DUNERIDE                    (573)
-	#define VEHICLE_SWEEPER                     (574)
-	#define VEHICLE_BROADWAY                    (575)
-	#define VEHICLE_TORNADO                     (576)
-	#define VEHICLE_AT400                       (577)
-	#define VEHICLE_DFT30                       (578)
-	#define VEHICLE_HUNTLEY                     (579)
-	#define VEHICLE_STAFFORD                    (580)
-	#define VEHICLE_BF400                       (581)
-	#define VEHICLE_NEWSVAN                     (582)
-	#define VEHICLE_TUG                         (583)
-	#define VEHICLE_PETROTR                     (584)
-	#define VEHICLE_PETROLTRAILER               (584)
-	#define VEHICLE_EMPEROR                     (585)
-	#define VEHICLE_WAYFARER                    (586)
-	#define VEHICLE_EUROS                       (587)
-	#define VEHICLE_HOTDOG                      (588)
-	#define VEHICLE_CLUB                        (589)
-	#define VEHICLE_FREIGHTBOXTRAILER           (590)
-	#define VEHICLE_ARTICT3                     (591)
-	#define VEHICLE_ARTICLETRAILER3             (591)
-	#define VEHICLE_ANDROM                      (592)
-	#define VEHICLE_ANDROMADA                   (592)
-	#define VEHICLE_DODO                        (593)
-	#define VEHICLE_RCCAM                       (594)
-	#define VEHICLE_LAUNCH                      (595)
-	#define VEHICLE_COPCARLA                    (596)
-	#define VEHICLE_POLICECARLSPD               (596)
-	#define VEHICLE_COPCARSF                    (597)
-	#define VEHICLE_POLICECARSFPD               (597)
-	#define VEHICLE_COPCARVG                    (598)
-	#define VEHICLE_POLICECARLVPD               (598)
-	#define VEHICLE_COPCARRU                    (599)
-	#define VEHICLE_POLICERANGER                (599)
-	#define VEHICLE_PICADOR                     (600)
-	#define VEHICLE_SWATVAN                     (601)
-	#define VEHICLE_SWAT                        (601)
-	#define VEHICLE_ALPHA                       (602)
-	#define VEHICLE_PHOENIX                     (603)
-	#define VEHICLE_GLENSHIT                    (604)
-	#define VEHICLE_GLENDALESHIT                (604)
-	#define VEHICLE_SADLSHIT                    (605)
-	#define VEHICLE_SADLERSHIT                  (605)
-	#define VEHICLE_BAGGAGETRAILERA             (606)
-	#define VEHICLE_BAGGAGETRAILERB             (607)
-	#define VEHICLE_TUGSTAIR                    (608)
-	#define VEHICLE_TUGSTAIRSTRAILER            (608)
-	#define VEHICLE_BOXBURG                     (609)
-	#define VEHICLE_FARMTRAILER                 (610)
-	#define VEHICLE_UTILITYTRAILER              (611)
-#endif
-
-/**
- * <remarks>
- * <c>IS_JIT</c>
- *
- * True when the code is JIT compiled.
- * </remarks>
- */
-
-#if FIX_JIT
-	#define IS_JIT (_FIXES_gIsJIT)
-#endif
-
-/**
- * <remarks>
- * <c>IS_FILTERSCRIPT</c>
- *
- * "FILTERSCRIPT" can't always be relied on to be set.  This is not a pre-
- * processor macro, but may be better than nothing (also used internally).
- * </remarks>
- */
-
-#if FIX_FILTERSCRIPT
-	#define IS_FILTERSCRIPT (_FIXES_gIsFilterscript)
-#endif
-
-/**
- * <remarks>
- * <c>IS_WINDOWS</c>
- *
- * True when the code is running on Windows.  NOT a pre-processor macro, since
- * the OS you are running the code on can't be determined at compile-time.
- *
- * <c>IS_LINUX</c>
- *
- * True when the code is running on Linux.  NOT a pre-processor macro, since the
- * OS you are running the code on can't be determined at compile-time.
- * </remarks>
- */
-
-#if FIX_OS
-	#define IS_WINDOWS (_FIXES_gIsWindows)
-	#define IS_LINUX (!_FIXES_gIsWindows)
 #endif
 
 // All SA:MP natives, copied here for posterity?  No, because then we can
@@ -7097,38 +7298,21 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native SendClientCheck__(playerid, type, memAddr, memOffset, byteCount) = SendClientCheck;
 #endif
 
-/**
- * <remarks>
- * Figure out what OS this is running on.
- * </remarks>
- * <fixes>IS_WINDOWS</fixes>
- * <fixes>IS_LINUX</fixes>
- */
-static stock _FIXES_DetermineOS()
-{
-	if (FIXES_gsKnownOS)
-	{
-		return;
-	}
-	FIXES_gsKnownOS = true;
-	new
-		val;
-	// The code at address 0 is always `HALT`.
-	#emit LCTRL                0
-	#emit MOVE.alt
-	#emit LCTRL                1
-	#emit SUB.alt
-	#emit STOR.S.pri           val
-	#emit LREF.S.alt           val
-	#emit STOR.S.alt           val
-	_FIXES_gIsWindows = (val == 120);
-}
+/*
 
-#if !FIX_OS
-	// Disable this call when not using the fix, but without putting the
-	// assembly in a conditional block.
-	#define _FIXES_DetermineOS();
-#endif
+
+  ,ad8888ba,                                                                                                 
+ d8"'    `"8b                                                      ,d                                        
+d8'        `8b                                                     88                                        
+88          88  8b,dPPYba,    ,adPPYba,  8b,dPPYba,  ,adPPYYba,  MM88MMM  ,adPPYba,   8b,dPPYba,  ,adPPYba,  
+88          88  88P'    "8a  a8P_____88  88P'   "Y8  ""     `Y8    88    a8"     "8a  88P'   "Y8  I8[    ""  
+Y8,        ,8P  88       d8  8PP"""""""  88          ,adPPPPP88    88    8b       d8  88           `"Y8ba,   
+ Y8a.    .a8P   88b,   ,a8"  "8b,   ,aa  88          88,    ,88    88,   "8a,   ,a8"  88          aa    ]8I  
+  `"Y8888Y"'    88`YbbdP"'    `"Ybbd8"'  88          `"8bbdP"Y8    "Y888  `"YbbdP"'   88          `"YbbdP"'  
+                88                                                                                           
+                88                                                                                           
+
+*/
 
 /**
  * <remarks>
@@ -7167,6 +7351,54 @@ static stock _FIXES_DetermineOS()
 	forward bool:operator>=(File:a, File:b);
 	forward bool:operator>=(_:a, File:b);
 	forward bool:operator>=(File:a, _:b);
+#endif
+
+/*
+
+88                                                                       88  
+88                ,d                                                     88  
+88                88                                                     88  
+88  8b,dPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,  8b,dPPYba,   ,adPPYYba,  88  
+88  88P'   `"8a   88    a8P_____88  88P'   "Y8  88P'   `"8a  ""     `Y8  88  
+88  88       88   88    8PP"""""""  88          88       88  ,adPPPPP88  88  
+88  88       88   88,   "8b,   ,aa  88          88       88  88,    ,88  88  
+88  88       88   "Y888  `"Ybbd8"'  88          88       88  `"8bbdP"Y8  88  
+
+
+
+*/
+
+/**
+ * <remarks>
+ * Figure out what OS this is running on.
+ * </remarks>
+ * <fixes>IS_WINDOWS</fixes>
+ * <fixes>IS_LINUX</fixes>
+ */
+static stock _FIXES_DetermineOS()
+{
+	if (FIXES_gsKnownOS)
+	{
+		return;
+	}
+	FIXES_gsKnownOS = true;
+	new
+		val;
+	// The code at address 0 is always `HALT`.
+	#emit LCTRL                0
+	#emit MOVE.alt
+	#emit LCTRL                1
+	#emit SUB.alt
+	#emit STOR.S.pri           val
+	#emit LREF.S.alt           val
+	#emit STOR.S.alt           val
+	_FIXES_gIsWindows = (val == 120);
+}
+
+#if !FIX_OS
+	// Disable this call when not using the fix, but without putting the
+	// assembly in a conditional block.
+	#define _FIXES_DetermineOS();
 #endif
 
 /**
