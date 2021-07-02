@@ -2003,6 +2003,28 @@ in the output code.
 	#error fixes.inc is not required for open.mp
 #endif
 
+/**
+ * <remarks>
+ * <p>Test if something is defined, but without a value.  For example:</p>
+ *
+ * <code>
+ *     #define FIX_AddMenuItem
+ * </code>
+ *
+ * <p>Instead of:</p>
+ *
+ * <code>
+ *     #define FIX_AddMenuItem 1
+ * </code>
+ *
+ * <p>Exploits the fact that <c>FIX_AddMenuItem - 1</c> is valid in both cases.
+ * When a value is set this becomes (say) <c>0 - 1</c>, i.e. a sum.  When it
+ * isn't set this becomes <c>-1</c>, i.e. just the unary value <c>-1</c>.  Plus
+ * some extra minor bits to ensure there are no defined values the result in the
+ * same outcome as no value: <c>2 * n - 1 + 1</c> can never be odd, while
+ * <c>2 * -1 + 1</c> is always odd (assuming integers, of course).</p>
+ * </remarks>
+ */
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
 /*
