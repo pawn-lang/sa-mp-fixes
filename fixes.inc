@@ -2025,6 +2025,7 @@ in the output code.
  * <c>2 * -1 + 1</c> is always odd (assuming integers, of course).</p>
  * </remarks>
  */
+
 #define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
 
 /*
@@ -2048,6 +2049,7 @@ in the output code.
  * Enable everything, even things that probably shouldn't be enabled.
  * </remarks>
  */
+
 #if !defined FIXES_EnableAll
 	#define FIXES_EnableAll                      (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableAll)
@@ -2060,6 +2062,7 @@ in the output code.
  * Enable deprecated fixes - those that are no longer needed.
  * </remarks>
  */
+
 #if !defined FIXES_EnableDeprecated
 	#define FIXES_EnableDeprecated               (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableDeprecated)
@@ -2072,6 +2075,7 @@ in the output code.
  * Disable all fixes by default and explicitly enable them.
  * </remarks>
  */
+
 #if !defined FIXES_DefaultDisabled
 	#define FIXES_DefaultDisabled                (0)
 	#define _FIXES_DEFAULT                       (1)
@@ -3552,6 +3556,7 @@ in the output code.
  * A marker to indicate that this version of fixes.inc uses state-based hooks.
  * </remarks>
  */
+
 #define FIXES_UseStateHooks
 
 /**
@@ -3614,6 +3619,7 @@ in the output code.
  * Do a ceiling division of the first number by the second number.
  * </remarks>
  */
+
 #define _FIXES_CEILDIV(%0,%1) (((%0) + (%1) - 1) / (%1))
 
 /**
@@ -3623,6 +3629,7 @@ in the output code.
  * A new version of "foreach", but just for this library.
  * </remarks>
  */
+
 #define _FIXES_FOREACH(%1,%0) for (new %0 = MAX_PLAYERS; (%0 = %1[%0]) != MAX_PLAYERS; )
 
 /**
@@ -3633,6 +3640,7 @@ in the output code.
  * faster).
  * </remarks>
  */
+
 #define _FIXES_IN_RANGE(%0,%1,%2) ((_:(%0) - (_:(%1) + cellmin)) < (_:(%2) - (_:(%1) + cellmin)))
 
 /**
@@ -3643,6 +3651,7 @@ in the output code.
  * <c>!(%1 &lt;= %0 &lt; %2)</c>(but faster).
  * </remarks>
  */
+
 #define _FIXES_NO_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) >= ((%2) - ((%1) + cellmin)))
 
 /**
@@ -3652,6 +3661,7 @@ in the output code.
  * Forwards a hooked callbacks, and defines the default state implementations.
  * </remarks>
  */
+
 #define _FIXES_FORWARD%0(%1); \
 	forward%0(%1); \
 	public%0(%1) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 1; } \
@@ -3664,6 +3674,7 @@ in the output code.
  * Check if the ID is in range of player IDs.
  * </remarks>
  */
+
 #define _FIXES_IS_VALID_PLAYER(%0) _FIXES_IN_RANGE((%0), 0, MAX_PLAYERS)
 
 /**
@@ -3673,6 +3684,7 @@ in the output code.
  * Always valid "IsPlayerConnected" check.
  * </remarks>
  */
+
 #define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IS_VALID_PLAYER(%0) && IsPlayerConnected__(%0))
 
 /*
@@ -3724,6 +3736,7 @@ in the output code.
  * Default worldbound range.
  * </remarks>
  */
+
 #define _FIXES_MIN_WORLDBOUNDS (-20000.0)
 
 /**
@@ -3733,6 +3746,7 @@ in the output code.
  * Default worldbound range.
  * </remarks>
  */
+
 #define _FIXES_MAX_WORLDBOUNDS (20000.0)
 
 /**
@@ -3742,6 +3756,7 @@ in the output code.
  * IEEE 754 definition of infinity.
  * </remarks>
  */
+
 #define _FIXES_INFINITY (Float:0x7F800000)
 
 /**
@@ -3751,6 +3766,7 @@ in the output code.
  * IEEE 754 definition of negative infinity.
  * </remarks>
  */
+
 #define _FIXES_N_INFINITY (Float:0xFF800000)
 
 /**
@@ -3761,6 +3777,7 @@ in the output code.
  * cell.
  * </remarks>
  */
+
 #define _FIXES_ATTACHMENTS (cellbits / MAX_PLAYER_ATTACHED_OBJECTS)
 
 /**
@@ -9162,6 +9179,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 /**
  * <fixes>SilentTeleport</fixes>
  */
+
 #if _FIXES_SAMP && defined _ALS_SetVehiclePos
 	#error _ALS_SetVehiclePos defined 
 #endif 
@@ -15133,6 +15151,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 /**
  * <fixes>GetServerVarAsString</fixes>
  */
+
 #if _FIXES_SAMP && defined _ALS_GetServerVarAsString
 	#error _ALS_GetServerVarAsString defined
 #endif
@@ -15141,6 +15160,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 /**
  * <fixes>GetServerVarAsString</fixes>
  */
+
 #if FIX_GetServerVarAsString || FIX_GetServerVarAsFloat || FIX_GetServerVarAsInt || FIX_GetServerVarAsBool
 	stock bool:FIXES_GetServerVarAsString(const varname[], buffer[], len = sizeof (buffer))
 	{
@@ -15248,6 +15268,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 /**
  * <fixes>GetServerVarAsInt</fixes>
  */
+
 #if _FIXES_SAMP && defined _ALS_GetServerVarAsInt
 	#error _ALS_GetServerVarAsInt defined
 #endif
@@ -15256,6 +15277,7 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 /**
  * <fixes>GetServerVarAsInt</fixes>
  */
+
 #if FIX_GetServerVarAsInt
 	stock FIXES_GetServerVarAsInt(const varname[])
 	{
@@ -15303,6 +15325,7 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 /**
  * <fixes>GetServerVarAsBool</fixes>
  */
+
 #if _FIXES_SAMP && defined _ALS_GetServerVarAsBool
 	#error _ALS_GetServerVarAsBool defined
 #endif
@@ -15311,6 +15334,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 /**
  * <fixes>GetServerVarAsBool</fixes>
  */
+
 #if FIX_GetServerVarAsBool
 	stock bool:FIXES_GetServerVarAsBool(const varname[])
 	{
@@ -15346,6 +15370,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 /**
  * <fixes>GetServerVarAsFloat</fixes>
  */
+
 #if _FIXES_SAMP && defined _ALS_GetServerVarAsFloat
 	#error _ALS_GetServerVarAsFloat defined
 #endif
@@ -15356,6 +15381,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 /**
  * <fixes>GetServerVarAsFloat</fixes>
  */
+
 #if FIX_GetServerVarAsFloat
 	stock Float:FIXES_GetServerVarAsFloat(const varname[])
 	{
