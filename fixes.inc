@@ -15422,24 +15422,25 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 /**
  * <fix name="" disabled="true" fixed="">
  *     <problem>
- *         problem
+ *         A description of the problem.
  *     </problem>
  *     <solution>
- *         solution
+ *         A description of the solution.
  *     </solution>
- *     <see></see>
- *     <author    href=""></author>
- *     <post      href="" />
+ *     <see>FIXES_FunctionWithFixIn</see>
+ *     <author    href="github.com/account">Name</author>
+ *     <post      href="burgershot.gg/post" />
  * </fix>
  */
 
 // Fix inclusion template.
 
 #if !defined FIX_NameOfFixHere
-	#define FIX_NameOfFixHere            (1)
+	_FIXES_STOCK FIX_NameOfFixHere = _FIXES_DEFAULT;
+	#define FIX_NameOfFixHere                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)
 	#undef FIX_NameOfFixHere
-	#define FIX_NameOfFixHere            (2)
+	#define FIX_NameOfFixHere                    (2)
 #endif
 
 // Fix function template.
