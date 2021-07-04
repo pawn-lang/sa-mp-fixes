@@ -5920,7 +5920,6 @@ static stock const
 	 * them repeatedly.
 	 * </remarks>
 	 */
-#if FIX_GetPlayerColour
 	FIXES_gscPlayerColours[100] =
 		{
 			0xFF8C13FF, 0xC715FFFF, 0x20B2AAFF, 0xDC143CFF, 0x6495EDFF,
@@ -5944,7 +5943,6 @@ static stock const
 			0x10C9C5FF, 0x70524DFF, 0x0BE472FF, 0x8A2CD7FF, 0x6152C2FF,
 			0xCF72A9FF, 0xE59338FF, 0xEEDC2DFF, 0xD8C762FF, 0xD8C762FF
 		},
-#endif
 	/**
 	 * <remarks>
 	 * This is a compressed (4-bit) list of the maximum number of passengers in
@@ -8811,7 +8809,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: GetPlayerColor
 				// =======================
 				#if FIX_GetPlayerColour
-					SetPlayerColor__(playerid, FIXES_gscPlayerColours[playerid % 100]);
+					SetPlayerColor__(playerid, FIXES_gscPlayerColours[playerid % sizeof (FIXES_gscPlayerColours)]);
 				#endif
 				// =======================
 				//  END:   GetPlayerColor
@@ -15414,8 +15412,37 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 */
 
-#if FIX_API
+/**
+ * <remarks>
+ * Get the default colour for a given playerid.  They don't need to be
+ * connected.  Relies on <c>FIX_GetPlayerColour</c>.  Provides an alias for
+ * those people that can't spell <c>colour</c> correctly.
+ * </remarks>
+ */
 
+#if FIX_API
+	stock FIXES_GetDefaultPlayerColour(playerid)
+	{
+		if (_FIXES_IS_VALID_PLAYER(playerid))
+			return FIXES_gscPlayerColours[playerid % sizeof (FIXES_gscPlayerColours)];
+		return 0;
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_GetDefaultPlayerColour
+		#define GetDefaultPlayerColour( FIXES_GetDefaultPlayerColour(
+	#endif
+
+	#define _ALS_GetDefaultPlayerColour__
+	#define GetDefaultPlayerColour__( FIXES_GetDefaultPlayerColour(
+
+	#if _FIXES_SAMP
+		#define _ALS_GetDefaultPlayerColor
+		#define GetDefaultPlayerColor( FIXES_GetDefaultPlayerColour(
+	#endif
+
+	#define _ALS_GetDefaultPlayerColor__
+	#define GetDefaultPlayerColor__( FIXES_GetDefaultPlayerColour(
 #endif
 
 /*
