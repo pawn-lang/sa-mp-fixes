@@ -1,3 +1,5 @@
+#define FIXES_Single 0
+
 #include "fixes.inc"
 
 forward TestCompiles();
