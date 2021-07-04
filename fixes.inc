@@ -3459,13 +3459,6 @@ in the output code.
 #endif
 #define FIX_CreateVehicle (0)
 
-// Generic check to see if ANY menu fix is enabled.
-#if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
-	#define _FIX_Menus                           (1)
-#else
-	#define _FIX_Menus                           (0)
-#endif
-
 /*
 
     88b           d88                                                              
@@ -3480,6 +3473,13 @@ in the output code.
 
 
 */
+
+// Generic check to see if ANY menu fix is enabled.  Used to simplify tests.
+#if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
+	#define _FIX_Menus                           (1)
+#else
+	#define _FIX_Menus                           (0)
+#endif
 
 /**
  * <remarks>
@@ -3546,6 +3546,30 @@ in the output code.
 
 /**
  * <remarks>
+ * fixes.inc exists
+ * </remarks>
+ */
+
+#define FIXES_EXISTS
+
+/**
+ * <remarks>
+ * The include is fully const-correct.
+ * </remarks>
+ */
+
+#define FIXES_CONST_CORRECT
+
+/**
+ * <remarks>
+ * The include is fully tag-correct.
+ * </remarks>
+ */
+
+#define FIXES_TAG_CORRECT
+
+/**
+ * <remarks>
  * Is the extended API defined for use?  Better for testing (<c>#if defined FIXES_API</c>).
  * </remarks>
  */
@@ -3561,6 +3585,7 @@ in the output code.
  */
 
 #define FIXES_UseStateHooks
+#define FIXES_USES_STATE_HOOKS
 
 /**
  * <remarks>
@@ -3588,6 +3613,10 @@ in the output code.
 #endif
 
 /**
+ * <remarks>
+ * Set a variable, which may be a property or an array, depending on compile-
+ * time options.
+ * </remarks>
  */
 
 #if FIXES_Single
@@ -3597,6 +3626,10 @@ in the output code.
 #endif
 
 /**
+ * <remarks>
+ * Get a variable, which may be a property or an array, depending on compile-
+ * time options.
+ * </remarks>
  */
 
 #if FIXES_Single

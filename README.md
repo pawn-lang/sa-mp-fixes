@@ -201,6 +201,17 @@ GetMaxPlayers | If this is > MAX_PLAYERS, can cause OOBs in code. | Constrain it
 BypassDialog | You can type commands and move while in dialogs. | Return 0. | [Y_Less](https://github.com/Y-Less) | | 
 SetTimer | Valid timers can return ID 0. | Recreate them and kill the original. | [Y_Less](https://github.com/Y-Less) | | 
 
+## API
+
+fixes.inc includes a lot of data and processing that is required for it to function, but could be
+useful for other scripts - things like vehicle meta-data, current status of players, and more.
+While new functions are not the primary goal of this include, it seems silly to keep this
+information hidden when it can be used, forcing people to duplicate functionality just to do things
+like get a player's current dialog ID for example.  The general rule is still not to add new
+functions, there are many other libraries for that, but if the data already exists thanks to the
+code required for a fix, then it might as well be exposed.
+
+
 ## Options 
 
 
@@ -217,9 +228,10 @@ A few fixes are disabled by default, to enable them all do:
 #define FIX_GetWorldTime 1 
 ```
 
+## Settings
 
 
-There are a few options for improved execution of this script. Define these symbols as `1` before you include fixes.inc to explicitly enable them, `0` to explicitly disable them
+There are a few settings for improved execution of this script. Define these symbols as `1` before you include fixes.inc to explicitly enable them, `0` to explicitly disable them.
 
 
 * `FIXES_Single`: You only have one script that uses *fixes.inc* running (no other gamemodes or filterscripts).  Using this define will vastly simplify the code in that case, as no cross-script communication is required.  Default `1`.
@@ -233,6 +245,22 @@ There are a few options for improved execution of this script. Define these symb
 * `FIXES_EnableDeprecated`: Enable all past (deprecated) fixes.  Might causes errors and conflicts with newer SA:MP includes.  Default `0`.
 * `FIXES_DefaultDisabled`: Disable all fixes by default, and require them to be individually enabled with `FIX_<name> 1`  Default `0`.
 * `FIXES_ExplicitOptions`: Require fixes to be explicitly enabled or disabled, and show a warning for every fix not mentioned.  Useful in combination with `FIXES_DefaultDisabled`, so default `1` with that, `0` otherwise.
+
+
+Note that `options` are which fixes to include, and `settings` are more over-arching customisations.
+
+
+## Tests
+
+
+Other code and includes can test for certain fixes.inc symbols, to see what is defined and what isn't.  These all use basic `#if defined` checks, with no need to test the value:
+
+
+* `FIXES_EXISTS`:  The include is used.
+* `FIXES_API`:  The additional API functions (see above) were defined and can be used.
+* `FIXES_USES_STATE_HOOKS`:  fixes.inc uses advanced state-based ALS hooks, not just regular ones.
+* `FIXES_CONST_CORRECT`:  The include is fully const-correct (and backwards-compatible).
+* `FIXES_TAG_CORRECT`:  The include is fully tag-correct (and backwards-compatible), i.e. optionally uses additional tags in callbacks such as `OnPlayerStateChange`.
 
 
 ## Expansion 
@@ -289,6 +317,7 @@ The most likely cause of bugs is certain combinations of disabled fixes. Some fi
  * <fixes>NameOfFixHere</fixes>
  */
 
+// No other ALS hook of this function much exist before here.
 #if _FIXES_SAMP && defined _ALS_NameOfFixHere
     #error _ALS_NameOfFixHere defined
 #endif
@@ -310,6 +339,8 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
         #define _ALS_NameOfFixHere
         #define NameOfFixHere( FIXES_NameOfFixHere(
     #endif
+
+	// This is not normal ALS, because fixes.inc must come first.
     #define _ALS_NameOfFixHere__
     #define NameOfFixHere__( FIXES_NameOfFixHere(
 #endif
@@ -333,15 +364,28 @@ A copyable version of this pattern is at the end of the file.
 * If a bug is fixed in some version of the server it can be conditionally included here. This is done by checking for the existance of a native function introduced in the same server version. For example `TogglePlayerControllable` was fixed in 0.3eRC6, the same time as the `SetObjectMaterial` native was introduced, thus the inclusion becomes: 
 
 ```pawn
-#if !defined FIX_TogglePlayerControllable 
-     #if defined SetObjectMaterial 
-         #define FIX_TogglePlayerControllable (0) 
-     #else 
-         #define FIX_TogglePlayerControllable (1) 
-     #endif 
-#elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable) 
-     #undef FIX_TogglePlayerControllable 
-     #define FIX_TogglePlayerControllable (2) 
+#if !defined FIX_TogglePlayerControllable
+	// This fix isn't specified.
+
+	// Check for some native introduced in the same version as this was fixed.
+	#if defined SetObjectMaterial
+		// Is fixed, only include this fix if we want deprecated fixes.
+		#define FIX_TogglePlayerControllable FIXES_EnableDeprecated
+	#else 
+		// Not fixed yet (use only this branch if there's no native fix).
+
+		// Define a symbol of this name, to give warnings with `FIXES_ExplicitOptions`.
+		_FIXES_STOCK FIX_TogglePlayerControllable = _FIXES_DEFAULT;
+
+		// Enable or disable the fix according to `FIXES_DefaultDisabled`.
+		#define FIX_TogglePlayerControllable _FIXES_DEFAULT
+	#endif 
+#elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)
+	// The fix is specified, but with no `0` or `1`.
+	#undef FIX_TogglePlayerControllable 
+
+	// Default to `2` (`1`, but special).
+	#define FIX_TogglePlayerControllable (2) 
 #endif 
 ```
 
@@ -362,15 +406,15 @@ The descriptions of the fixes all look like:
 
 ```xml
 <fix name="Short Name" disabled="true" fixed="Optional server version of official fix where applicable"> 
-     <problem> 
-     Description of problem. 
-         </problem> 
-     <solution> 
-         Description of solution. 
-     </solution> 
-     <see>Relevant functions.</see> 
-     <author href="Optional address of their profile">Person who wrote the fix</author> 
-     <post href="Optional link to the original post where applicable." /> 
+	<problem> 
+	Description of problem. 
+		</problem> 
+	<solution> 
+		Description of solution. 
+	</solution> 
+	<see>Relevant functions.</see> 
+	<author href="Optional address of their profile">Person who wrote the fix</author> 
+	<post href="Optional link to the original post where applicable." /> 
 </fix> 
 ```
 
