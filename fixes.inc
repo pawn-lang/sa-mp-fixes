@@ -4556,27 +4556,6 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 
 /**
  * <remarks>
- * E_FIXES_WORLDBOUND_DATA
- *
- * Store data for each player on their worldbound data.
- * </remarks>
- */
-_FIXES_ENUM E_FIXES_WORLDBOUND_DATA
-{
-	// "Previous".
-	Float:E_FIXES_WORLDBOUND_DATA_PX,
-	Float:E_FIXES_WORLDBOUND_DATA_PY,
-	Float:E_FIXES_WORLDBOUND_DATA_PZ,
-	// "Lower".
-	Float:E_FIXES_WORLDBOUND_DATA_LX,
-	Float:E_FIXES_WORLDBOUND_DATA_LY,
-	// "Upper".
-	Float:E_FIXES_WORLDBOUND_DATA_UX,
-	Float:E_FIXES_WORLDBOUND_DATA_UY
-}
-
-/**
- * <remarks>
  * e_FIXES_BOOLS
  *
  * Collection of boolean values for players, designed to collect multiple checks
@@ -4833,10 +4812,24 @@ static stock
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
+	 *
+	 * P = Previous.
+	 * L = Lower.
+	 * U = Upper.
+	 *
 	 * </remarks>
 	 */
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-	FIXES_gsWorldbounds[MAX_PLAYERS][E_FIXES_WORLDBOUND_DATA],
+	// Previous.
+	Float:FIXES_gsWorldbounds_PX[MAX_PLAYERS],
+	Float:FIXES_gsWorldbounds_PY[MAX_PLAYERS],
+	Float:FIXES_gsWorldbounds_PZ[MAX_PLAYERS],
+	// Lower.
+	Float:FIXES_gsWorldbounds_LX[MAX_PLAYERS],
+	Float:FIXES_gsWorldbounds_LY[MAX_PLAYERS],
+	// Upper.
+	Float:FIXES_gsWorldbounds_UX[MAX_PLAYERS],
+	Float:FIXES_gsWorldbounds_UY[MAX_PLAYERS],
 #endif
 	/**
 	 * <remarks>
@@ -8804,8 +8797,8 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 				//  BEGIN: SetPlayerWorldBounds
 				// =============================
 				#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] = _FIXES_MAX_WORLDBOUNDS,
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] = _FIXES_MIN_WORLDBOUNDS;
+					FIXES_gsWorldbounds_UX[playerid] = FIXES_gsWorldbounds_UY[playerid] = _FIXES_MAX_WORLDBOUNDS,
+					FIXES_gsWorldbounds_LX[playerid] = FIXES_gsWorldbounds_LY[playerid] = _FIXES_MIN_WORLDBOUNDS;
 				#endif
 				// =============================
 				//  END:   SetPlayerWorldBounds
@@ -9913,15 +9906,15 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 					Float:y,
 					Float:z;
 				GetPlayerPos__(playerid, x, y, z);
-				if (FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] < x < FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] && FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] < y < FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY])
+				if (FIXES_gsWorldbounds_LX[playerid] < x < FIXES_gsWorldbounds_UX[playerid] && FIXES_gsWorldbounds_LY[playerid] < y < FIXES_gsWorldbounds_UY[playerid])
 				{
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PX] = x,
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PY] = y,
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PZ] = z;
+					FIXES_gsWorldbounds_PX[playerid] = x,
+					FIXES_gsWorldbounds_PY[playerid] = y,
+					FIXES_gsWorldbounds_PZ[playerid] = z;
 				}
 				else
 				{
-					SetPlayerPos__(playerid, FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PX], FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PY], FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PZ]);
+					SetPlayerPos__(playerid, FIXES_gsWorldbounds_PX[playerid], FIXES_gsWorldbounds_PY[playerid], FIXES_gsWorldbounds_PZ[playerid]);
 				}
 			}
 		#endif
@@ -10062,8 +10055,8 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 				{
 					// Impossibly small area, disable checks entirely.
 					return
-						FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] = _FIXES_MAX_WORLDBOUNDS,
-						FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] = _FIXES_MIN_WORLDBOUNDS,
+						FIXES_gsWorldbounds_UX[playerid] = FIXES_gsWorldbounds_UY[playerid] = _FIXES_MAX_WORLDBOUNDS,
+						FIXES_gsWorldbounds_LX[playerid] = FIXES_gsWorldbounds_LY[playerid] = _FIXES_MIN_WORLDBOUNDS,
 						SetPlayerWorldBounds__(playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS);
 				}
 				// This code could do with a way to mostly remove the checks.  Maybe
@@ -10087,16 +10080,16 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 				// trying to break through the world bounds.  Leway removed in
 				// favour of keys.
 				return
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] = x_min,
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] = x_max,
+					FIXES_gsWorldbounds_LX[playerid] = x_min,
+					FIXES_gsWorldbounds_UX[playerid] = x_max,
 
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] = y_min,
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] = y_max,
+					FIXES_gsWorldbounds_LY[playerid] = y_min,
+					FIXES_gsWorldbounds_UY[playerid] = y_max,
 
 					GetPlayerPos__(playerid, tmp, tmp, tmp),
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PX] = (x_max - x_min) / 2 + x_min,
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PY] = (y_max - y_min) / 2 + y_min,
-					FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PZ] = tmp,
+					FIXES_gsWorldbounds_PX[playerid] = (x_max - x_min) / 2 + x_min,
+					FIXES_gsWorldbounds_PY[playerid] = (y_max - y_min) / 2 + y_min,
+					FIXES_gsWorldbounds_PZ[playerid] = tmp,
 
 					SetPlayerWorldBounds__(playerid, x_max, x_min, y_max, y_min);
 			}
@@ -10139,18 +10132,18 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 		public _FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
 		{
 			FIXES_PRINTF("_FIXES_SetPlayerWorldBounds: %d %.2f %.2f %.2f %.2f", playerid, x_max, x_min, y_max, y_min);
-			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX] = x_min,
-			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX] = x_max,
+			FIXES_gsWorldbounds_LX[playerid] = x_min,
+			FIXES_gsWorldbounds_UX[playerid] = x_max,
 
-			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY] = y_min,
-			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY] = y_max;
+			FIXES_gsWorldbounds_LY[playerid] = y_min,
+			FIXES_gsWorldbounds_UY[playerid] = y_max;
 
 			new
 				Float:tmp;
 			GetPlayerPos__(playerid, tmp, tmp, tmp),
-			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PX] = (x_max - x_min) / 2 + x_min,
-			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PY] = (y_max - y_min) / 2 + y_min,
-			FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_PZ] = tmp;
+			FIXES_gsWorldbounds_PX[playerid] = (x_max - x_min) / 2 + x_min,
+			FIXES_gsWorldbounds_PY[playerid] = (y_max - y_min) / 2 + y_min,
+			FIXES_gsWorldbounds_PZ[playerid] = tmp;
 
 			_FIXES_IS_IN_CHARGE()
 			{
@@ -10174,10 +10167,10 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 	{
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
-			x_min = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LX],
-			x_max = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UX],
-			y_min = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_LY],
-			y_max = FIXES_gsWorldbounds[playerid][E_FIXES_WORLDBOUND_DATA_UY];
+			x_min = FIXES_gsWorldbounds_LX[playerid],
+			x_max = FIXES_gsWorldbounds_UX[playerid],
+			y_min = FIXES_gsWorldbounds_LY[playerid],
+			y_max = FIXES_gsWorldbounds_UY[playerid];
 		}
 	}
 
