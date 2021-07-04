@@ -5212,7 +5212,7 @@ static stock const
 	 * All vehicle primary colours from carcols.dat.
 	 * </remarks>
 	 */
-#if FIX_CreateVehicle
+#if FIX_CreateVehicle || FIX_API
 	FIXES_gscVehiclePrimary[1158] =
 		{
 			4, 123, 113, 101, 75, 62, 40, 36,      // 400 - landstal
@@ -5434,7 +5434,7 @@ static stock const
 	 * All vehicle secondary colours from carcols.dat.
 	 * </remarks>
 	 */
-#if FIX_CreateVehicle
+#if FIX_CreateVehicle || FIX_API
 	FIXES_gscVehicleSecondary[1158] =
 		{
 			1, 1, 1, 1, 1, 1, 1, 1,                // 400 - landstal
@@ -5657,7 +5657,7 @@ static stock const
 	 * model type.  N+1 so there's a final end-point.
 	 * </remarks>
 	 */
-#if FIX_CreateVehicle
+#if FIX_CreateVehicle || FIX_API
 	FIXES_gscVehicleIndexes[212 + 1] =
 		{
 			   0,                                  // 400 - landstal
@@ -5880,13 +5880,13 @@ static stock const
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.
 	 * </remarks>
 	 */
-#if FIX_CreateVehicle
-	FIXES_gscColour3Camper[8 char] = {0x01010300, 0x03030878},
-	FIXES_gscColour3Cement[8 char] = {0x177B1F1E, 0x173E4040},
-	FIXES_gscColour3Squalo[8 char] = {0x00010001, 0x01010101},
-	FIXES_gscColour4Camper[8 char] = {0x00000000, 0x00000000},
-	FIXES_gscColour4Cement[8 char] = {0x00000000, 0x00000000},
-	FIXES_gscColour4Squalo[8 char] = {0x01010101, 0x01010101},
+#if FIX_CreateVehicle || FIX_API
+	FIXES_gscColour3Camper[8 char] = {0x01010300, 0x03030878}, // 483
+	FIXES_gscColour3Cement[8 char] = {0x177B1F1E, 0x173E4040}, // 524
+	FIXES_gscColour3Squalo[8 char] = {0x00010001, 0x01010101}, // 446
+	FIXES_gscColour4Camper[8 char] = {0x00000000, 0x00000000}, // 483
+	FIXES_gscColour4Cement[8 char] = {0x00000000, 0x00000000}, // 524
+	FIXES_gscColour4Squalo[8 char] = {0x01010101, 0x01010101}, // 446
 #endif
 	/**
 	 * <remarks>
@@ -15530,6 +15530,74 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 	#define _ALS_IsValidAnimationLibrary__
 	#define IsValidAnimationLibrary__( FIXES_IsValidAnimationLibrary(
+#endif
+
+/**
+ * <remarks>
+ * Get random colours that are valid for the given vehicle model.
+ * </remarks>
+ */
+
+#if FIX_API
+	stock bool:FIXES_GetRandomCarColPair(modelid, &colour1, &colour2, &colour3 = 0, &colour4 = 0)
+	{
+		modelid -= 400;
+		if (_FIXES_IN_RANGE(modelid, 0, 211 + 1))
+		{
+			new
+				start = FIXES_gscVehicleIndexes[modelid],
+				end = FIXES_gscVehicleIndexes[modelid + 1];
+
+			if (start == end)
+			{
+				// Has no paint options.
+				return
+					colour1 = 0,
+					colour2 = 0,
+					colour3 = 0,
+					colour4 = 0,
+					true;
+			}
+			// Get a random number in the given range.
+			end = random(end - start) + start,
+			colour1 = FIXES_gscVehiclePrimary[end],
+			colour2 = FIXES_gscVehicleSecondary[end];
+			switch (modelid)
+			{
+			case 83:
+			{
+				colour3 = FIXES_gscColour3Camper{end},
+				colour4 = FIXES_gscColour4Camper{end};
+			}
+			case 124:
+			{
+				colour3 = FIXES_gscColour3Cement{end},
+				colour4 = FIXES_gscColour4Cement{end};
+			}
+			case 46:
+			{
+				colour3 = FIXES_gscColour3Squalo{end},
+				colour4 = FIXES_gscColour4Squalo{end};
+			}
+			default:
+			{
+				colour3 = 0,
+				colour4 = 0;
+			}
+			}
+
+			return true;
+		}
+		return false;
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_GetRandomCarColPair
+		#define GetRandomCarColPair( FIXES_GetRandomCarColPair(
+	#endif
+
+	#define _ALS_GetRandomCarColPair__
+	#define GetRandomCarColPair__( FIXES_GetRandomCarColPair(
 #endif
 
 /*
