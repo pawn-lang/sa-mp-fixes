@@ -5950,14 +5950,12 @@ static stock const
 	 * vehicle.
 	 * </remarks>
 	 */
-#if FIX_OnPlayerEnterVehicle
 	FIXES_gscMaxPassengers[] =
 		{
 			0x10331113, 0x11311131, 0x11331313, 0x80133301, 0x1381F110, 0x10311103, 0x10001F10, 0x11113311, 0x13113311,
 			0x31101100, 0x30002301, 0x11031311, 0x11111331, 0x10013111, 0x01131100, 0x11111110, 0x11100031, 0x11130111,
 			0x33113311, 0x11111101, 0x33101133, 0x10100510, 0x03133111, 0xFF11113F, 0x13330111, 0xFF131111, 0x0000FF3F
 		},
-#endif
 	/**
 	 * <remarks>
 	 * This is a bit array of all the valid mods (-1000) for all vehicles (-400)
@@ -5973,7 +5971,6 @@ static stock const
 	 * somehow - it seems like that would require more explicit model handling.
 	 * </remarks>
 	 */
-#if FIX_OnVehicleMod
 	FIXES_gscVehicleMods[] =
 		{
 			0x033C2700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000,
@@ -6189,7 +6186,6 @@ static stock const
 			0x02000700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000,
 			0x02000700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000
 		},
-#endif
 	/**
 	 * <remarks>
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
@@ -15445,6 +15441,51 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define GetDefaultPlayerColor__( FIXES_GetDefaultPlayerColour(
 #endif
 
+/**
+ * <remarks>
+ * Get the number of seats in a given vehicle.
+ * </remarks>
+ */
+
+#if FIX_API
+	stock FIXES_GetVehicleSeats(model)
+	{
+		model -= 400;
+		if (_FIXES_IN_RANGE(model, 0, 211 + 1))
+			return (FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2)) & 0xF;
+		return 0;
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_GetVehicleSeats
+		#define GetVehicleSeats( FIXES_GetVehicleSeats(
+	#endif
+
+	#define _ALS_GetVehicleSeats__
+	#define GetVehicleSeats__( FIXES_GetVehicleSeats(
+#endif
+
+/**
+ * <remarks>
+ * 
+ * </remarks>
+ */
+
+#if FIX_API
+	stock FIXES_XXX(playerid)
+	{
+		return 0;
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_XXX
+		#define XXX( FIXES_XXX(
+	#endif
+
+	#define _ALS_XXX__
+	#define XXX__( FIXES_XXX(
+#endif
+
 /*
 
     88888888888                                                       
@@ -15544,3 +15585,25 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define NameOfFixHere__( FIXES_NameOfFixHere(
 #endif
 
+// Added API function template.
+
+/**
+ * <remarks>
+ * 
+ * </remarks>
+ */
+
+#if FIX_API
+	stock FIXES_XXX(playerid)
+	{
+		return 0;
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_XXX
+		#define XXX( FIXES_XXX(
+	#endif
+
+	#define _ALS_XXX__
+	#define XXX__( FIXES_XXX(
+#endif
