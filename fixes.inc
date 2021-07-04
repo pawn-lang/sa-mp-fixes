@@ -8155,6 +8155,66 @@ static stock _FIXES_CheckMaxPlayers()
 	}
 #endif
 
+#if FIX_CreateVehicle || FIX_API
+	#if !FIX_API
+	static
+	#endif
+	stock bool:_FIXES_GetRandomCarColPair(modelid, &colour1, &colour2, &colour3 = 0, &colour4 = 0)
+	{
+		modelid -= 400;
+		if (_FIXES_IN_RANGE(modelid, 0, 211 + 1))
+		{
+			new
+				start = FIXES_gscVehicleIndexes[modelid],
+				end = FIXES_gscVehicleIndexes[modelid + 1];
+
+			if (start == end)
+			{
+				// Has no paint options.
+				return
+					colour1 = 0,
+					colour2 = 0,
+					colour3 = 0,
+					colour4 = 0,
+					true;
+			}
+			// Get a random number in the given range.
+			end = random(end - start) + start,
+			colour1 = FIXES_gscVehiclePrimary[end],
+			colour2 = FIXES_gscVehicleSecondary[end];
+
+			// Three vehicles have four colours, not two.
+			switch (modelid)
+			{
+			case 83:
+			{
+				colour3 = FIXES_gscColour3Camper{end},
+				colour4 = FIXES_gscColour4Camper{end};
+			}
+			case 124:
+			{
+				colour3 = FIXES_gscColour3Cement{end},
+				colour4 = FIXES_gscColour4Cement{end};
+			}
+			case 46:
+			{
+				colour3 = FIXES_gscColour3Squalo{end},
+				colour4 = FIXES_gscColour4Squalo{end};
+			}
+			default:
+			{
+				colour3 = 0,
+				colour4 = 0;
+			}
+			}
+
+			// This vehicle was valid.
+			return true;
+		}
+		return false;
+	}
+#endif
+
 /*
 
     88888888888  88                                     
@@ -9047,7 +9107,7 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 		#if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
 			new
 				shift = FIXES_gsPlayerIP[playerid];
-			if (shift != -1)
+			if (~shift) // != -1
 			{
 				// Unban the IP (timed out).
 				new
@@ -13869,11 +13929,9 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animlib[], _FIXES_MAYBE_CONST animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
 	{
 		new
-			idx;
+			idx = _FIXES_GetAnimLibIndex(animlib);
 
-		idx = _FIXES_GetAnimLibIndex(animlib);
-
-		if (idx != -1)
+		if (~idx) // != -1
 		{
 			#if FIX_ApplyAnimation_2
 				_FIXES_ApplyAnimationDelay(animname, playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
@@ -13953,11 +14011,9 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 	stock FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animlib[], _FIXES_MAYBE_CONST animname[], Float:fDelta, loop, lockx, locky, freeze, time)
 	{
 		new
-			idx;
+			idx = _FIXES_GetAnimLibIndex(animlib);
 
-		idx = _FIXES_GetAnimLibIndex(animlib);
-
-		if (idx != -1)
+		if (~idx) // != -1
 		{
 			#if FIX_ApplyActorAnimation_2
 				_FIXES_ApplyActorAnimationDelay(animname, actorid, idx, fDelta, loop, lockx, locky, freeze, time);
@@ -15521,7 +15577,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_API
-	#define FIXES_IsValidAnimationLibrary(%0) (_FIXES_GetAnimLibIndex(animlib) != -1)
+	#define FIXES_IsValidAnimationLibrary(%0) (_FIXES_GetAnimLibIndex(%0) != -1)
 
 	#if _FIXES_SAMP
 		#define _ALS_IsValidAnimationLibrary
@@ -15539,68 +15595,15 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_API
-	stock bool:FIXES_GetRandomCarColPair(modelid, &colour1, &colour2, &colour3 = 0, &colour4 = 0)
-	{
-		modelid -= 400;
-		if (_FIXES_IN_RANGE(modelid, 0, 211 + 1))
-		{
-			new
-				start = FIXES_gscVehicleIndexes[modelid],
-				end = FIXES_gscVehicleIndexes[modelid + 1];
-
-			if (start == end)
-			{
-				// Has no paint options.
-				return
-					colour1 = 0,
-					colour2 = 0,
-					colour3 = 0,
-					colour4 = 0,
-					true;
-			}
-			// Get a random number in the given range.
-			end = random(end - start) + start,
-			colour1 = FIXES_gscVehiclePrimary[end],
-			colour2 = FIXES_gscVehicleSecondary[end];
-
-			// Three vehicles have four colours, not two.
-			switch (modelid)
-			{
-			case 83:
-			{
-				colour3 = FIXES_gscColour3Camper{end},
-				colour4 = FIXES_gscColour4Camper{end};
-			}
-			case 124:
-			{
-				colour3 = FIXES_gscColour3Cement{end},
-				colour4 = FIXES_gscColour4Cement{end};
-			}
-			case 46:
-			{
-				colour3 = FIXES_gscColour3Squalo{end},
-				colour4 = FIXES_gscColour4Squalo{end};
-			}
-			default:
-			{
-				colour3 = 0,
-				colour4 = 0;
-			}
-			}
-
-			// This vehicle was valid.
-			return true;
-		}
-		return false;
-	}
+	#define FIXES_GetRandomCarColPair( _FIXES_GetRandomCarColPair(
 
 	#if _FIXES_SAMP
 		#define _ALS_GetRandomCarColPair
-		#define GetRandomCarColPair( FIXES_GetRandomCarColPair(
+		#define GetRandomCarColPair( _FIXES_GetRandomCarColPair(
 	#endif
 
 	#define _ALS_GetRandomCarColPair__
-	#define GetRandomCarColPair__( FIXES_GetRandomCarColPair(
+	#define GetRandomCarColPair__( _FIXES_GetRandomCarColPair(
 #endif
 
 /*
