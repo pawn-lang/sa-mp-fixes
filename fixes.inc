@@ -5001,7 +5001,7 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_ApplyAnimation_2
-	FIXES_gsPlayerAnimName[MAX_PLAYERS][60],
+	FIXES_gsPlayerAnimName[MAX_PLAYERS * 64],
 #endif
 	/**
 	 * <remarks>
@@ -5026,7 +5026,7 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_ApplyActorAnimation_2
-	FIXES_gsActorAnimName[MAX_ACTORS][60],
+	FIXES_gsActorAnimName[MAX_ACTORS * 64],
 #endif
 	/**
 	 * <remarks>
@@ -13937,8 +13937,8 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		if (FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] & (1 << (idx & 0x1F)))
 		{
 			FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
-			FIXES_gsPlayerAnimName[playerid][0] = '\0',
-			strcat(FIXES_gsPlayerAnimName[playerid], animname),
+			FIXES_gsPlayerAnimName[playerid << 6] = '\0',
+			strcat(FIXES_gsPlayerAnimName[playerid << 6], animname, 64),
 			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx__("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
 		}
 	}
@@ -13953,7 +13953,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 
 	public _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
 	{
-		ApplyAnimation__(playerid, FIXES_gscAnimLib[animlib], FIXES_gsPlayerAnimName[playerid], fDelta, loop, lockx, locky, freeze, time, forcesync),
+		ApplyAnimation__(playerid, FIXES_gscAnimLib[animlib], FIXES_gsPlayerAnimName[playerid << 6], fDelta, loop, lockx, locky, freeze, time, forcesync),
 		FIXES_gsPlayerAnimTimer[playerid] = 0;
 	}
 #endif
@@ -14019,8 +14019,8 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		if (FIXES_gsActorAnimLibs[actorid][idx >>> 5] & (1 << (idx & 0x1F)))
 		{
 			FIXES_gsActorAnimLibs[actorid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
-			FIXES_gsActorAnimName[actorid][0] = '\0',
-			strcat(FIXES_gsActorAnimName[actorid], animname),
+			FIXES_gsActorAnimName[actorid << 6] = '\0',
+			strcat(FIXES_gsActorAnimName[actorid << 6], animname, 64),
 			FIXES_gsActorAnimTimer[actorid] = SetTimerEx__("_FIXES_ApplyActorAnimation", 350, false, "ddfdddddd", actorid, idx, fDelta, loop, lockx, locky, freeze, time);
 		}
 	}
@@ -14035,7 +14035,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 
 	public _FIXES_ApplyActorAnimation(actorid, animlib, Float:fDelta, loop, lockx, locky, freeze, time)
 	{
-		ApplyActorAnimation__(actorid, FIXES_gscAnimLib[animlib], FIXES_gsActorAnimName[actorid], fDelta, loop, lockx, locky, freeze, time),
+		ApplyActorAnimation__(actorid, FIXES_gscAnimLib[animlib], FIXES_gsActorAnimName[actorid << 6], fDelta, loop, lockx, locky, freeze, time),
 		FIXES_gsActorAnimTimer[actorid] = 0;
 	}
 #endif
