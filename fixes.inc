@@ -15562,6 +15562,8 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 			end = random(end - start) + start,
 			colour1 = FIXES_gscVehiclePrimary[end],
 			colour2 = FIXES_gscVehicleSecondary[end];
+
+			// Three vehicles have four colours, not two.
 			switch (modelid)
 			{
 			case 83:
@@ -15586,6 +15588,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 			}
 			}
 
+			// This vehicle was valid.
 			return true;
 		}
 		return false;
