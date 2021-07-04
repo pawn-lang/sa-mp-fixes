@@ -11037,7 +11037,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * <fixes>Menus</fixes>
  */
 
-#if _FIX_Menus
+#if _FIX_Menus || FIX_API
 	#define FIXES_IS_VALID_MENU(%0) (_FIXES_IN_RANGE(_:(%0), 0, MAX_MENUS) && (FIXES_gsValidMenus[_:(%0) >>> 5] & (1 << (_:(%0) & 0x1F))))
 #endif
 
@@ -11050,7 +11050,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
 
-#if _FIX_Menus
+#if _FIX_Menus || FIX_API
 	#if !FIXES_Single
 		forward _FIXES_CreateMenu(ret);
 
@@ -11125,8 +11125,8 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
  * <fixes>GetPlayerMenu</fixes>
  */
 
-#if _FIX_Menus || FIX_GetPlayerMenu
-	#if _FIX_Menus && !FIXES_Single
+#if _FIX_Menus || FIX_GetPlayerMenu || FIX_API
+	#if (_FIX_Menus || FIX_API) && !FIXES_Single
 		forward _FIXES_DestroyMenu(ret);
 
 		public _FIXES_DestroyMenu(ret)
@@ -11143,7 +11143,7 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 			{
 				if (DestroyMenu__(Menu:menuid))
 				{
-					#if _FIX_Menus
+					#if _FIX_Menus || FIX_API
 						#if FIXES_Single
 							FIXES_gsValidMenus[_:menuid >>> 5] &= ~(1 << (_:menuid & 0x1F));
 						#else
@@ -15061,7 +15061,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
  * <fixes>GetPlayerWeather</fixes>
  */
 
-#if FIX_GetPlayerWeather
+#if FIX_GetPlayerWeather || FIX_API
 	#if FIXES_Single
 		stock FIXES_TogglePlayerClock(playerid, toggle)
 		{
@@ -15095,16 +15095,16 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 
 		public _FIXES_TogglePlayerClock(playerid, toggle)
 		{
+			if (toggle)
+			{
+				FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CLOCK_ENABLED;
+			}
+			else
+			{
+				FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_CLOCK_ENABLED;
+			}
 			_FIXES_IS_IN_CHARGE()
 			{
-				if (toggle)
-				{
-					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_CLOCK_ENABLED;
-				}
-				else
-				{
-					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_CLOCK_ENABLED;
-				}
 				setproperty(5, FIXES_gscReturnProperty, TogglePlayerClock__(playerid, toggle));
 			}
 		}
@@ -15654,6 +15654,48 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 	#define _ALS_GetRandomCarColPair__
 	#define GetRandomCarColPair__( _FIXES_GetRandomCarColPair(
+#endif
+
+/**
+ * <remarks>
+ * Does this player have the global clock enabled?
+ * </remarks>
+ */
+
+#if FIX_API
+	stock bool:FIXES_PlayerHasClockEnabled(playerid)
+	{
+		return (_FIXES_IS_VALID_PLAYER(playerid) && (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CLOCK_ENABLED));
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_PlayerHasClockEnabled
+		#define PlayerHasClockEnabled( FIXES_PlayerHasClockEnabled(
+	#endif
+
+	#define _ALS_PlayerHasClockEnabled__
+	#define PlayerHasClockEnabled__( FIXES_PlayerHasClockEnabled(
+#endif
+
+/**
+ * <remarks>
+ * Is this menu valid?
+ * </remarks>
+ */
+
+#if FIX_API
+	stock bool:FIXES_IsMenuValid(Menu:menuid)
+	{
+		return FIXES_IS_VALID_MENU(menuid);
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_IsMenuValid
+		#define IsMenuValid( FIXES_IsMenuValid(
+	#endif
+
+	#define _ALS_IsMenuValid__
+	#define IsMenuValid__( FIXES_IsMenuValid(
 #endif
 
 /*

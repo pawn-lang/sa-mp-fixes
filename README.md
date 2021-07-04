@@ -367,6 +367,28 @@ Hide this type of gametext for one player.
 HideGameTextForPlayer(playerid, 3);
 ```
 
+### `bool:PlayerHasClockEnabled(playerid)`
+
+Does this player have auto-incrementing time enabled?
+
+```pawn
+if (PlayerHasClockEnabled(playerid))
+{
+	printf("Time might have changed.");
+}
+```
+
+### `bool:IsMenuValid(Menu:menuid)`
+
+Is the given menu ID valid?
+
+```pawn
+if (IsMenuValid(menuid))
+{
+	printf("The menu was created at some point.");
+}
+```
+
 ## Options 
 
 
