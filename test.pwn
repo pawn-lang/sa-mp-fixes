@@ -109,6 +109,13 @@ public TestCompiles()
 	if (ispacked(str))
 	{
 	}
+	if (PlayerHasClockEnabled(0))
+	{
+	}
+	if (IsMenuValid(Menu:0))
+	{
+	}
+	CarColIndexToColour(55);
 }
 
 main()

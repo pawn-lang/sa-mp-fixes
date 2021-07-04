@@ -389,6 +389,18 @@ if (IsMenuValid(menuid))
 }
 ```
 
+### `CarColIndexToColour(index, alpha = 0xFF)`
+
+Convert from a vehicle colour index to an RGBA colour (with the specified alpha).
+
+```pawn
+new c1, c2;
+GetRandomCarColPair(495, c1, c2);
+printf("Colours chosen for the Sandking: %08x, %08x", CarColIndexToColour(c1), CarColIndexToColour(c2));
+```
+
+Note that you can also use the alias `CarColIndexToColor`.
+
 ## Options 
 
 
