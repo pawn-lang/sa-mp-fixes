@@ -5646,7 +5646,7 @@ static stock const
 			                                       // 606 - bagboxa
 			                                       // 607 - bagboxb
 			1,                                     // 608 - tugstair
-			36,                                    // 609 - boxburg
+			36                                     // 609 - boxburg
 			                                       // 610 - farmtr1
 			                                       // 611 - utiltr1
 		},
