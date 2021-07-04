@@ -200,6 +200,9 @@ OnClientCheckResponse | Is not called in the gamemode ever. | Load a minimal (em
 GetMaxPlayers | If this is > MAX_PLAYERS, can cause OOBs in code. | Constrain it; but also warn because that doesn't really help. | [Y_Less](https://github.com/Y-Less) | | 
 BypassDialog | You can type commands and move while in dialogs. | Return 0. | [Y_Less](https://github.com/Y-Less) | | 
 SetTimer | Valid timers can return ID 0. | Recreate them and kill the original. | [Y_Less](https://github.com/Y-Less) | | 
+main | Gamemodes without this function give a console error. | Make a stub version. | [Y_Less](https://github.com/Y-Less) | | 
+CreateVehicle | Colour `-1` isn't synced. | Manually control the colours. | [Y_Less](https://github.com/Y-Less) | | 
+API | fixes.inc isn't intended to extend the SA:MP API, but has a lot of information internally that can be useful to other scripts.  By not exposing this data, we complicate and bloat scripts by requiring them to re-implement said functionality. | Expose the data, behind a tightly controlled API. | [Y_Less](https://github.com/Y-Less) | | 
 
 ## API
 
