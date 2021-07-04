@@ -5920,6 +5920,7 @@ static stock const
 	 * them repeatedly.
 	 * </remarks>
 	 */
+#if FIX_GetPlayerColour || FIX_API
 	FIXES_gscPlayerColours[100] =
 		{
 			0xFF8C13FF, 0xC715FFFF, 0x20B2AAFF, 0xDC143CFF, 0x6495EDFF,
@@ -5943,6 +5944,7 @@ static stock const
 			0x10C9C5FF, 0x70524DFF, 0x0BE472FF, 0x8A2CD7FF, 0x6152C2FF,
 			0xCF72A9FF, 0xE59338FF, 0xEEDC2DFF, 0xD8C762FF, 0xD8C762FF
 		},
+#endif
 	/**
 	 * <remarks>
 	 * This is a compressed (4-bit) list of the maximum number of passengers in
@@ -5950,12 +5952,14 @@ static stock const
 	 * vehicle.
 	 * </remarks>
 	 */
+#if FIX_OnPlayerEnterVehicle || FIX_API
 	FIXES_gscMaxPassengers[] =
 		{
 			0x10331113, 0x11311131, 0x11331313, 0x80133301, 0x1381F110, 0x10311103, 0x10001F10, 0x11113311, 0x13113311,
 			0x31101100, 0x30002301, 0x11031311, 0x11111331, 0x10013111, 0x01131100, 0x11111110, 0x11100031, 0x11130111,
 			0x33113311, 0x11111101, 0x33101133, 0x10100510, 0x03133111, 0xFF11113F, 0x13330111, 0xFF131111, 0x0000FF3F
 		},
+#endif
 	/**
 	 * <remarks>
 	 * This is a bit array of all the valid mods (-1000) for all vehicles (-400)
@@ -5971,6 +5975,7 @@ static stock const
 	 * somehow - it seems like that would require more explicit model handling.
 	 * </remarks>
 	 */
+#if FIX_OnVehicleMod || FIX_API
 	FIXES_gscVehicleMods[] =
 		{
 			0x033C2700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000,
@@ -6186,12 +6191,13 @@ static stock const
 			0x02000700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000,
 			0x02000700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000
 		},
+#endif
 	/**
 	 * <remarks>
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
 	 * </remarks>
 	 */
-#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
 	FIXES_gscAnimIndexes[24] =
 		{
 			0, 2, 21, 35, 42, 42, 53, 62, 64, 67, 68, 71, 75, 81, 82, 84, 94, 96, 104, 122, 127, 128, 131, 135
@@ -6202,7 +6208,7 @@ static stock const
 	 * List of valid animation libraries.
 	 * </remarks>
 	 */
-#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
 	FIXES_gscAnimLib[135][] =
 		{
 			"AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
@@ -8102,6 +8108,53 @@ static stock _FIXES_CheckMaxPlayers()
 	}
 #endif
 
+/**
+ * <fixes>ApplyAnimation</fixes>
+ * <fixes>ApplyAnimation_2</fixes>
+ * <fixes>ApplyActorAnimation</fixes>
+ * <fixes>ApplyActorAnimation_2</fixes>
+ */
+
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
+	#if !FIX_API
+	static
+	#endif
+	stock _FIXES_GetAnimLibIndex(const animlib[])
+	{
+		new
+			diff,
+			idx = animlib[0] & ~0x20;
+		// Uses a sort of optimised binary search.  The code first identifies the area in the array
+		// in which libraries with this first letter are, then does a binary search using only that
+		// subset of the array.  This used to use an N-ary search that just went linearly through
+		// the identified subset of the array, and that was 5x faster than a simple linear loop over
+		// the whole array.  This new version is 50% faster than even that was.  "E" has no
+		// libraries, but we don't check for that explicitly as it would slow down the more common
+		// code path - and it ends fairly quickly anyway as "upper == lower".
+		if (_FIXES_IN_RANGE(idx, 'A', 'W' + 1))
+		{
+			new
+				upper = FIXES_gscAnimIndexes[idx - ('A' - 1)],
+				lower = FIXES_gscAnimIndexes[idx - 'A'];
+			while (upper != lower)
+			{
+				idx = (upper - lower) / 2 + lower;
+				if ((diff = strcmp(FIXES_gscAnimLib[idx], animlib, true)))
+				{
+					if (diff > 0) upper = idx;
+					else lower = idx + 1;
+				}
+				else
+				{
+					return idx;
+				}
+			}
+		}
+
+		return -1;
+	}
+#endif
+
 /*
 
     88888888888  88                                     
@@ -9533,25 +9586,22 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			modelid = GetVehicleModel__(vehicleid);
 		if (_FIXES_IN_RANGE(modelid, 400, 611 + 1))
 		{
-			switch (componentid)
+			if (_FIXES_IN_RANGE(componentid, 1000, 1191 + 1))
 			{
-				case 1000 .. 1191:
+				if (FIXES_gscVehicleMods[(modelid - 400) * 6 + (componentid - 1000 >>> 5)] & 1 << (componentid - 1000 & 0b00011111))
 				{
-					if (FIXES_gscVehicleMods[(modelid - 400) * 6 + (componentid - 1000 >>> 5)] & 1 << (componentid - 1000 & 0b00011111))
-					{
-						return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-					}
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 				}
-				case 1192, 1193:
+			}
+			else if (componentid == 1192 || componentid == 1193)
+			{
+				if (modelid == 576)
 				{
-					if (modelid == 576)
-					{
-						// This save a whole cell off EVERY other vehicle!  This
-						// is the ONLY vehicle with any mods over "6 * 32 + 999"
-						// (1191), the highest value you can fit in 6 cells of a
-						// bit array (minus 1000).
-						return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-					}
+					// This save a whole cell off EVERY other vehicle!  This
+					// is the ONLY vehicle with any mods over "6 * 32 + 999"
+					// (1191), the highest value you can fit in 6 cells of a
+					// bit array (minus 1000).
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 				}
 			}
 		}
@@ -13763,50 +13813,6 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 #endif
 
 /**
- * <fixes>ApplyAnimation</fixes>
- * <fixes>ApplyAnimation_2</fixes>
- * <fixes>ApplyActorAnimation</fixes>
- * <fixes>ApplyActorAnimation_2</fixes>
- */
-
-#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
-	static stock _FIXES_GetAnimLibIndex(const animlib[])
-	{
-		new
-			diff,
-			idx = animlib[0] & ~0x20;
-		// Uses a sort of optimised binary search.  The code first identifies the area in the array
-		// in which libraries with this first letter are, then does a binary search using only that
-		// subset of the array.  This used to use an N-ary search that just went linearly through
-		// the identified subset of the array, and that was 5x faster than a simple linear loop over
-		// the whole array.  This new version is 50% faster than even that was.  "E" has no
-		// libraries, but we don't check for that explicitly as it would slow down the more common
-		// code path - and it ends fairly quickly anyway as "upper == lower".
-		if (_FIXES_IN_RANGE(idx, 'A', 'W' + 1))
-		{
-			new
-				upper = FIXES_gscAnimIndexes[idx - ('A' - 1)],
-				lower = FIXES_gscAnimIndexes[idx - 'A'];
-			while (upper != lower)
-			{
-				idx = (upper - lower) / 2 + lower;
-				if ((diff = strcmp(FIXES_gscAnimLib[idx], animlib, true)))
-				{
-					if (diff > 0) upper = idx;
-					else lower = idx + 1;
-				}
-				else
-				{
-					return idx;
-				}
-			}
-		}
-
-		return -1;
-	}
-#endif
-
-/**
  * <fixes>ApplyAnimation_2</fixes>
  */
 
@@ -15448,11 +15454,11 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_API
-	stock FIXES_GetVehicleSeats(model)
+	stock FIXES_GetVehicleSeats(modelid)
 	{
-		model -= 400;
-		if (_FIXES_IN_RANGE(model, 0, 211 + 1))
-			return (FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2)) & 0xF;
+		modelid -= 400;
+		if (_FIXES_IN_RANGE(modelid, 0, 211 + 1))
+			return (FIXES_gscMaxPassengers[modelid >>> 3] >>> ((modelid & 7) << 2)) & 0xF;
 		return 0;
 	}
 
@@ -15467,23 +15473,63 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 /**
  * <remarks>
- * 
+ * Check if a given vehicle can use a given mod component.
  * </remarks>
  */
 
 #if FIX_API
-	stock FIXES_XXX(playerid)
+	stock bool:FIXES_VehicleCanHaveComponent(modelid, componentid)
 	{
-		return 0;
+		if (_FIXES_IN_RANGE(modelid, 400, 611 + 1))
+		{
+			componentid -= 1000;
+			if (_FIXES_IN_RANGE(componentid, 0, 191 + 1))
+			{
+				if (FIXES_gscVehicleMods[(modelid - 400) * 6 + (componentid >>> 5)] & 1 << (componentid & 0b00011111))
+				{
+					return true;
+				}
+			}
+			else if (componentid == 192 || componentid == 193)
+			{
+				if (modelid == 576)
+				{
+					// This save a whole cell off EVERY other vehicle!  This
+					// is the ONLY vehicle with any mods over "6 * 32 + 999"
+					// (1191), the highest value you can fit in 6 cells of a
+					// bit array (minus 1000).
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	#if _FIXES_SAMP
-		#define _ALS_XXX
-		#define XXX( FIXES_XXX(
+		#define _ALS_VehicleCanHaveComponent
+		#define VehicleCanHaveComponent( FIXES_VehicleCanHaveComponent(
 	#endif
 
-	#define _ALS_XXX__
-	#define XXX__( FIXES_XXX(
+	#define _ALS_VehicleCanHaveComponent__
+	#define VehicleCanHaveComponent__( FIXES_VehicleCanHaveComponent(
+#endif
+
+/**
+ * <remarks>
+ * Check if a given animation library name is actually valid and in SA:MP.
+ * </remarks>
+ */
+
+#if FIX_API
+	#define FIXES_IsValidAnimationLibrary(%0) (_FIXES_GetAnimLibIndex(animlib) != -1)
+
+	#if _FIXES_SAMP
+		#define _ALS_IsValidAnimationLibrary
+		#define IsValidAnimationLibrary( FIXES_IsValidAnimationLibrary(
+	#endif
+
+	#define _ALS_IsValidAnimationLibrary__
+	#define IsValidAnimationLibrary__( FIXES_IsValidAnimationLibrary(
 #endif
 
 /*
@@ -15607,3 +15653,4 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_XXX__
 	#define XXX__( FIXES_XXX(
 #endif
+
