@@ -2227,6 +2227,25 @@ in the output code.
 
 // We can add server version compiler code here to only compile fixes that apply
 // to the version of the includes for which the user is compiling.
+
+// Controls multiple other fixes.
+#if !defined FIX_API
+	_FIXES_STOCK FIX_API = _FIXES_DEFAULT;
+	#define FIX_API                              _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_API)
+	#undef FIX_API
+	#define FIX_API                              (2)
+#endif
+
+// Controls multiple other fixes.
+#if !defined FIX_Natives
+	_FIXES_STOCK FIX_Natives = _FIXES_DEFAULT;
+	#define FIX_Natives                          _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_Natives)
+	#undef FIX_Natives
+	#define FIX_Natives                          (2)
+#endif
+
 #if !defined FIX_GetPlayerColour
 	#if defined FIX_GetPlayerColor
 		#if _FIXES_IS_UNSET(FIX_GetPlayerColor)
@@ -2383,14 +2402,6 @@ in the output code.
 	#define FIX_SPECIAL_ACTION_PISSING           (2)
 #endif
 
-#if !defined FIX_Natives
-	_FIXES_STOCK FIX_Natives = _FIXES_DEFAULT;
-	#define FIX_Natives                          _FIXES_DEFAULT
-#elseif _FIXES_IS_UNSET(FIX_Natives)
-	#undef FIX_Natives
-	#define FIX_Natives                          (2)
-#endif
-
 #if !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
 		#if FIXES_EnableDeprecated
@@ -2399,7 +2410,7 @@ in the output code.
 		#define FIX_IsValidVehicle               FIXES_EnableDeprecated
 	#else
 		_FIXES_STOCK FIX_IsValidVehicle = FIX_Natives;
-		#define FIX_IsValidVehicle               FIX_Natives
+	#define FIX_IsValidVehicle               FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
 	#undef FIX_IsValidVehicle
@@ -2653,8 +2664,8 @@ in the output code.
 		#endif
 		#define FIX_GetPlayerDialog              FIXES_EnableDeprecated
 	#else
-		_FIXES_STOCK FIX_GetPlayerDialog = FIX_Natives;
-		#define FIX_GetPlayerDialog              FIX_Natives
+		_FIXES_STOCK FIX_GetPlayerDialog = FIX_API;
+		#define FIX_GetPlayerDialog              FIX_API
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
@@ -3003,8 +3014,8 @@ in the output code.
 		#endif
 		#define FIX_HideGameText                 FIXES_EnableDeprecated
 	#else
-		_FIXES_STOCK FIX_HideGameText = FIX_Natives;
-		#define FIX_HideGameText                 FIX_Natives
+		_FIXES_STOCK FIX_HideGameText = FIX_API;
+		#define FIX_HideGameText                 FIX_API
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_HideGameText)
 	#undef FIX_HideGameText
@@ -3018,8 +3029,8 @@ in the output code.
 		#endif
 		#define FIX_GetPlayerWorldBounds         FIXES_EnableDeprecated
 	#else
-		_FIXES_STOCK FIX_GetPlayerWorldBounds = FIX_Natives;
-		#define FIX_GetPlayerWorldBounds         FIX_Natives
+		_FIXES_STOCK FIX_GetPlayerWorldBounds = FIX_API;
+		#define FIX_GetPlayerWorldBounds         FIX_API
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWorldBounds)
 	#undef FIX_GetPlayerWorldBounds
@@ -3033,8 +3044,8 @@ in the output code.
 		#endif
 		#define FIX_ClearPlayerWorldBounds       FIXES_EnableDeprecated
 	#else
-		_FIXES_STOCK FIX_ClearPlayerWorldBounds = FIX_Natives;
-		#define FIX_ClearPlayerWorldBounds       FIX_Natives
+		_FIXES_STOCK FIX_ClearPlayerWorldBounds = FIX_API;
+		#define FIX_ClearPlayerWorldBounds       FIX_API
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_ClearPlayerWorldBounds)
 	#undef FIX_ClearPlayerWorldBounds
@@ -3289,8 +3300,8 @@ in the output code.
 		#endif
 		#define FIX_GetPlayerWeather             FIXES_EnableDeprecated
 	#else
-		_FIXES_STOCK FIX_GetPlayerWeather = FIX_Natives;
-		#define FIX_GetPlayerWeather             FIX_Natives
+		_FIXES_STOCK FIX_GetPlayerWeather = FIX_API;
+		#define FIX_GetPlayerWeather             FIX_API
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeather)
 	#undef FIX_GetPlayerWeather
@@ -3304,8 +3315,8 @@ in the output code.
 		#endif
 		#define FIX_GetWeather                   FIXES_EnableDeprecated
 	#else
-		_FIXES_STOCK FIX_GetWeather = FIX_Natives;
-		#define FIX_GetWeather                   FIX_Natives
+		_FIXES_STOCK FIX_GetWeather = FIX_API;
+		#define FIX_GetWeather                   FIX_API
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeather)
 	#undef FIX_GetWeather
@@ -3319,8 +3330,8 @@ in the output code.
 		#endif
 		#define FIX_GetWorldTime                 FIXES_EnableDeprecated
 	#else
-		_FIXES_STOCK FIX_GetWorldTime = FIX_Natives;
-		#define FIX_GetWorldTime                 FIX_Natives
+		_FIXES_STOCK FIX_GetWorldTime = FIX_API;
+		#define FIX_GetWorldTime                 FIX_API
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWorldTime)
 	#undef FIX_GetWorldTime
@@ -3447,14 +3458,6 @@ in the output code.
 	#undef FIX_CreateVehicle
 #endif
 #define FIX_CreateVehicle (0)
-
-#if !defined FIX_API
-	_FIXES_STOCK FIX_API = _FIXES_DEFAULT;
-	#define FIX_API                              _FIXES_DEFAULT
-#elseif _FIXES_IS_UNSET(FIX_API)
-	#undef FIX_API
-	#define FIX_API                              (2)
-#endif
 
 // Generic check to see if ANY menu fix is enabled.
 #if FIX_Menus || FIX_AddMenuItem || FIX_SetMenuColumnHeader || FIX_ShowMenuForPlayer || FIX_HideMenuForPlayer || FIX_DisableMenu || FIX_DisableMenuRow
@@ -15394,6 +15397,25 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 	#define _ALS_GetServerVarAsFloat__
 	#define GetServerVarAsFloat__( FIXES_GetServerVarAsFloat(
+#endif
+
+/*
+
+           db         88888888ba   88  
+          d88b        88      "8b  88  
+         d8'`8b       88      ,8P  88  
+        d8'  `8b      88aaaaaa8P'  88  
+       d8YaaaaY8b     88""""""'    88  
+      d8""""""""8b    88           88  
+     d8'        `8b   88           88  
+    d8'          `8b  88           88  
+
+
+
+*/
+
+#if FIX_API
+
 #endif
 
 /*
