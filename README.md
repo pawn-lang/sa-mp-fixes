@@ -211,6 +211,158 @@ like get a player's current dialog ID for example.  The general rule is still no
 functions, there are many other libraries for that, but if the data already exists thanks to the
 code required for a fix, then it might as well be exposed.
 
+Most of these additional functions are controlled by `FIX_API`, and can be tested for with
+`FIXES_API`, but some older ones have their own `FIX_` definition (which now defaults to `FIX_API`).
+
+
+### `GetDefaultPlayerColour(playerid)`
+
+Gets the default colour assigned to a player when they first connect.  There are only 100 unique
+colours, which are repeated:
+
+```pawn
+new colour = GetDefaultPlayerColour(playerid);
+printf("The player's colour is %x", colour);
+```
+
+Note that you can also use the alias `GetDefaultPlayerColor`.
+
+### `GetVehicleSeats(modelid)`
+
+Get the number of seats in the given vehicle type (model).
+
+```pawn
+new seats = GetVehicleSeats(400);
+printf("The landstalker has %d seats", seats);
+```
+
+### `bool:VehicleCanHaveComponent(modelid, componentid)`
+
+Returns true if the given vehicle type (model) can use the given component (mod) type.
+
+```pawn
+if (VehicleCanHaveComponent(536, 1005))
+{
+	printf("The Blade can have the fury scoop");
+}
+else
+{
+	printf("The Blade can not have the fury scoop");
+}
+```
+
+### `bool:IsValidAnimationLibrary(const snimlib[])`
+
+Returns true if the named animation library exists.
+
+```pawn
+if (IsValidAnimationLibrary("parkour")
+{
+	printf("`parkour` is a valid animation library");
+}
+else
+{
+	printf("`parkour` is not a valid animation library");
+}
+```
+
+### `bool:GetRandomCarColPair(modelid, &colour1, &colour2, &colour3 = 0, &colour4 = 0)`
+
+Gets a random pair of colours for a vehicle (three vehicles have four colours), according to the
+predefined colour options in carcols.dat.  These are the colours selected from when `-1` is used as
+the colour of a vehicle (but the colours chosen are not synced by default).
+
+```pawn
+new c1, c2;
+GetRandomCarColPair(495, c1, c2);
+printf("Colours chosen for the Sandking: %d, %d", c1, c2);
+```
+
+Note that the values returned are the COLOUR INDEXES, those passed to say `CreateVehicle`, they are
+not the HEX codes for the given colours.
+
+### `GetPlayerDialog(playerid)`
+
+Get's the currently displayed dialog ID for a player.
+
+```pawn
+new dialogid = GetPlayerDialog(playerid);
+printf("Player %d is viewing dialog %d", playerid, dialogid);
+```
+
+### `GetPlayerWeather(playerid)`
+
+Get's the current weather ID for a player.
+
+```pawn
+new weatherid = GetPlayerWeather(playerid);
+printf("Player %d currently has weather %d", playerid, weatherid);
+```
+
+### `GetWeather()`
+
+Get's the current server global weather.
+
+```pawn
+new weatherid = GetWeather();
+printf("The server currently has weather %d", weatherid);
+```
+
+### `GetWorldTime()`
+
+Get's the current server global weather.
+
+```pawn
+new time = GetWorldTime();
+printf("The time on the server is currently %02d:00", time);
+```
+
+### `GetWeather()`
+
+Get's the current server global weather.
+
+```pawn
+new weatherid = GetWeather();
+printf("The server currently has weather %d", weatherid);
+```
+
+### `ClearPlayerWorldBounds(playerid)`
+
+Resets the world boundaries to their maximum, after using `SetPlayerWorldBounds`.
+
+```pawn
+ClearPlayerWorldBounds(playerid);
+```
+
+### `GetPlayerWorldBounds(playerid, &Float:x_max, &Float:x_min, &Float:y_max, &Float:y_min)`
+
+Gets the world boundaries for a player, set by `SetPlayerWorldBounds`.
+
+```pawn
+new
+	Float:x_max,
+	Float:x_min,
+	Float:y_max,
+	Float:y_min;
+GetPlayerWorldBounds(playerid, x_max, x_min, y_max, y_min);
+printf("Player %d's world boundaries are at (%.2f, %.2f) - (%.2f, %.2f)", x_min, y_min, x_max, y_max);
+```
+
+### `HideGameTextForAll(style)`
+
+Hide this type of gametext for all players.
+
+```pawn
+HideGameTextForAll(3);
+```
+
+### `HideGameTextForPlayer(playerid, style)`
+
+Hide this type of gametext for one player.
+
+```pawn
+HideGameTextForPlayer(playerid, 3);
+```
 
 ## Options 
 
