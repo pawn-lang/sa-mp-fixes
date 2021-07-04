@@ -3826,6 +3826,10 @@ in the output code.
 	#define KEY: _:
 #endif
 
+#if !defined VEHICLE_PARAMS
+	#define VEHICLE_PARAMS: _:
+#endif
+
 #if !defined PLAYER_STATE
 	#define PLAYER_STATE: _:
 #endif
@@ -7102,8 +7106,8 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native SetVehicleZAngle__(vehicleid, Float:z_angle) = SetVehicleZAngle;
 	native SetVehicleParamsForPlayer__(vehicleid, playerid, objective, doorslocked) = SetVehicleParamsForPlayer;
 	native ManualVehicleEngineAndLights__() = ManualVehicleEngineAndLights;
-	native SetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective) = SetVehicleParamsEx;
-	native GetVehicleParamsEx__(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective) = GetVehicleParamsEx;
+	native SetVehicleParamsEx__(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
+	native GetVehicleParamsEx__(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
 	native GetVehicleParamsSirenState__(vehicleid) = GetVehicleParamsSirenState;
 	native SetVehicleParamsCarDoors__(vehicleid, driver, passenger, backleft, backright) = SetVehicleParamsCarDoors;
 	native GetVehicleParamsCarDoors__(vehicleid, &driver, &passenger, &backleft, &backright) = GetVehicleParamsCarDoors;
@@ -10705,7 +10709,14 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#if FIX_OnPlayerEnterVehicle_3
 			if (FIXES_gsVehicleIsLocked[vehicleid])
 			{
-				new engine, lights, alarm, doors, bonnet, boot, objective;
+				new
+					VEHICLE_PARAMS:engine,
+					VEHICLE_PARAMS:lights,
+					VEHICLE_PARAMS:alarm,
+					VEHICLE_PARAMS:doors,
+					VEHICLE_PARAMS:bonnet,
+					VEHICLE_PARAMS:boot,
+					VEHICLE_PARAMS:objective;
 				GetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 				SetVehicleParamsEx__(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_ON, bonnet, boot, objective);
 
@@ -10883,7 +10894,13 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 		new
 			vehicleid = FIXES_gsPlayerVehicleID[playerid],
-			engine, lights, alarm, doors, bonnet, boot, objective;
+			VEHICLE_PARAMS:engine,
+			VEHICLE_PARAMS:lights,
+			VEHICLE_PARAMS:alarm,
+			VEHICLE_PARAMS:doors,
+			VEHICLE_PARAMS:bonnet,
+			VEHICLE_PARAMS:boot,
+			VEHICLE_PARAMS:objective;
 
 		GetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
 		SetVehicleParamsEx__(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_OFF, bonnet, boot, objective);
@@ -14154,14 +14171,14 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 #if _FIXES_SAMP && defined _ALS_SetVehicleParamsEx
 	#error _ALS_SetVehicleParamsEx defined
 #endif
-native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective) = SetVehicleParamsEx;
+native BAD_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
 
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
 
 #if FIX_OnPlayerEnterVehicle_3
-	stock FIXES_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective)
+	stock FIXES_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective)
 	{
 		FIXES_gsVehicleIsLocked[vehicleid] = doors == VEHICLE_PARAMS_ON;
 		return SetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
@@ -14183,17 +14200,17 @@ native BAD_SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, b
 #if _FIXES_SAMP && defined _ALS_GetVehicleParamsEx
 	#error _ALS_GetVehicleParamsEx defined
 #endif
-native BAD_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective) = GetVehicleParamsEx;
+native BAD_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
 
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
 
 #if FIX_OnPlayerEnterVehicle_3
-	stock FIXES_GetVehicleParamsEx(vehicleid, &engine, &lights, &alarm, &doors, &bonnet, &boot, &objective)
+	stock FIXES_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective)
 	{
 		new
-			ret = GetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+			ret = GetVehicleParamsEx__(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective);
 		#if FIXES_Single
 			doors = FIXES_gsVehicleIsLocked[vehicleid] ? VEHICLE_PARAMS_ON : VEHICLE_PARAMS_OFF;
 		#else
