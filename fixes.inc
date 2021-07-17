@@ -700,6 +700,17 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *
+ * <fix name="AttachTrailerToVehicle">
+ *     <problem>
+ *         When trailerid is equal to vehicleid and passenger is in vehicleid, it starts spinning.
+ *     </problem>
+ *     <solution>
+ *         Check if trailerid and vehicleid are equal.
+ *     </solution>
+ *     <see>FIX_AttachTrailerToVehicle</see>
+ *     <author    href="https://github.com/Mergevos/" >Mergevos</author>
+ * </fix>
+ *
  * <fix name="OnPlayerDeath">
  *     <problem>
  *         Clients get stuck when they die with an animation applied.
@@ -2530,6 +2541,14 @@ in the output code.
 #elseif _FIXES_IS_UNSET(FIX_TextDrawCreate)
 	#undef FIX_TextDrawCreate
 	#define FIX_TextDrawCreate                   (2)
+#endif
+
+#if !defined FIX_AttachTrailerToVehicle
+	_FIXES_STOCK FIX_AttachTrailerToVehicle = _FIXES_DEFAULT;
+	#define FIX_AttachTrailerToVehicle                  _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_AttachTrailerToVehicle)
+	#undef FIX_AttachTrailerToVehicle
+	#define FIX_AttachTrailerToVehicle                   (2)
 #endif
 
 #if !defined FIX_TextDrawCreate_2
@@ -14205,6 +14224,35 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 	#define _ALS_DestroyActor__
 	#define DestroyActor__( FIXES_DestroyActor(
 #endif
+
+/**
+ * <fixes> Spinning if there's passenger in vehicleid, when trailerid is equal with vehicleid.</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_AttachTrailerToVehicle
+	#error _ALS_AttachTrailerToVehicle defined
+#endif
+native BAD_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle;
+
+#if FIX_AttachTrailerToVehicle
+	stock FIXES_AttachTrailerToVehicle(trailerid, vehicleid)
+	{
+		if(trailerid == vehicleid)
+		{
+			return 0;
+		}
+		return AttachTrailerToVehicle__(trailerid, vehicleid);
+	}
+	#if _FIXES_SAMP
+		#define _ALS_AttachTrailerToVehicle
+		#define AttachTrailerToVehicle( FIXES_AttachTrailerToVehicle(
+	#endif
+
+	#define _ALS_AttachTrailerToVehicle__
+	#define AttachTrailerToVehicle__( FIXES_AttachTrailerToVehicle(
+#endif
+
+
 
 /**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
