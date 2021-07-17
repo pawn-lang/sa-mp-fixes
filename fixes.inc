@@ -14207,6 +14207,34 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 #endif
 
 /**
+ * <fixes> Spinning if there's passenger in vehicleid, when trailerid is equal with vehicleid.</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_AttachTrailerToVehicle
+	#error _ALS_AttachTrailerToVehicle defined
+#endif
+native BAD_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle(trailerid, vehicleid);
+
+#if FIX_AttachTrailerToVehicle
+	stock FIXES_AttachTrailerToVehicle(trailerid, vehicleid)
+	{
+		if(trailerid != vehicleid)
+		{
+			return AttachTrailerToVehicle__(trailerid, vehicleid);
+		}
+	}
+	#if _FIXES_SAMP
+		#define _ALS_AttachTrailerToVehicle
+		#define AttachTrailerToVehicle( FIXES_AttachTrailerToVehicle(
+	#endif
+
+	#define _ALS_AttachTrailerToVehicle__
+	#define AttachTrailerToVehicle__( FIXES_AttachTrailerToVehicle(
+#endif
+
+
+
+/**
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
 
