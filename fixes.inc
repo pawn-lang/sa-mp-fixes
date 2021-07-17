@@ -2747,8 +2747,8 @@ in the output code.
 #endif
 
 #if !defined FIX_file_inc
-	_FIXES_STOCK FIX_file_inc = FIXES_EnableAll;
-	#define FIX_file_inc                         FIXES_EnableAll
+	_FIXES_STOCK FIX_file_inc = _FIXES_DEFAULT;
+	#define FIX_file_inc                         _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_file_inc)
 	#undef FIX_file_inc
 	#define FIX_file_inc                         (2)
@@ -2881,8 +2881,8 @@ in the output code.
 #endif
 
 #if !defined FIX_random
-	_FIXES_STOCK FIX_random = FIXES_EnableAll;
-	#define FIX_random                           FIXES_EnableAll
+	_FIXES_STOCK FIX_random = _FIXES_DEFAULT;
+	#define FIX_random                           _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_random)
 	#undef FIX_random
 	#define FIX_random                           (2)
@@ -3072,8 +3072,8 @@ in the output code.
 #endif
 
 #if !defined FIX_GameTextStyles
-	_FIXES_STOCK FIX_GameTextStyles = FIXES_EnableAll;
-	#define FIX_GameTextStyles                   FIXES_EnableAll
+	_FIXES_STOCK FIX_GameTextStyles = _FIXES_DEFAULT;
+	#define FIX_GameTextStyles                   _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
 	#undef FIX_GameTextStyles
 	#define FIX_GameTextStyles                   (2)
@@ -3194,16 +3194,16 @@ in the output code.
 #endif
 
 #if !defined FIX_GetPVarString
-	_FIXES_STOCK FIX_GetPVarString = FIXES_EnableAll;
-	#define FIX_GetPVarString                    FIXES_EnableAll
+	_FIXES_STOCK FIX_GetPVarString = _FIXES_DEFAULT;
+	#define FIX_GetPVarString                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetPVarString)
 	#undef FIX_GetPVarString
 	#define FIX_GetPVarString                    (2)
 #endif
 
 #if !defined FIX_GetSVarString
-	_FIXES_STOCK FIX_GetSVarString = FIXES_EnableAll;
-	#define FIX_GetSVarString                    FIXES_EnableAll
+	_FIXES_STOCK FIX_GetSVarString = _FIXES_DEFAULT;
+	#define FIX_GetSVarString                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetSVarString)
 	#undef FIX_GetSVarString
 	#define FIX_GetSVarString                    (2)
@@ -3766,7 +3766,7 @@ in the output code.
 
 #if FIX_GameText
 	#if FIX_GameTextStyles
-		#define FIXES_GT_STYLE_COUNT (14)
+		#define FIXES_GT_STYLE_COUNT (16)
 	#else
 		#define FIXES_GT_STYLE_COUNT (7)
 	#endif
@@ -7809,7 +7809,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 2),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 10.0, 200.0);
@@ -7823,7 +7823,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 0),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 10.0, 200.0);
@@ -7837,7 +7837,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 1),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 2),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 200.0, 620.0);
@@ -7851,7 +7851,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 1),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 2),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 200.0, 620.0);
@@ -7865,7 +7865,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 3),
-				TextDrawSetProportional__(t, 0),
+				TextDrawSetProportional__(t, false),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 10.0, 200.0);
@@ -7879,7 +7879,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 3),
-				TextDrawSetProportional__(t, 0),
+				TextDrawSetProportional__(t, false),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 10.0, 200.0);
@@ -7896,7 +7896,35 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 0),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 1),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
+
+				// Global style 14 (clock).
+				t = FIXES_gsGTStyle[14] = TextDrawCreate__(577.750000, 22.125000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.550000, 2.170000),
+				TextDrawTextSize__(t, 400.000000, 17.000000),
+				TextDrawAlignment__(t, 2),
+				TextDrawColor__(t, 0xE1E1E1FF),
+				TextDrawUseBox__(t, false),
+				TextDrawBoxColor__(t, 0),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 0),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 3),
+				TextDrawSetProportional__(t, false),
+
+				// Global style 15 (popup).
+				t = FIXES_gsGTStyle[15] = TextDrawCreate__(33.500000, 27.500000, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.520500, 2.230000),
+				TextDrawTextSize__(t, 230.250000, 175.000000),
+				TextDrawAlignment__(t, 1),
+				TextDrawColor__(t, 0xD0D0D0DD),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x000000C8),
+				TextDrawSetShadow__(t, 0),
+				TextDrawSetOutline__(t, 0),
+				TextDrawBackgroundColor__(t, 0x000000AA),
+				TextDrawFont__(t, 1),
+				TextDrawSetProportional__(t, true),
 
 			#endif
 
@@ -7909,7 +7937,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 3),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 200.0, 620.0);
@@ -7923,7 +7951,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 3),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 10.0, 200.0);
@@ -7937,7 +7965,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 3),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 0),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 200.0, 620.0);
@@ -7951,7 +7979,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 2),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 200.0, 620.0);
@@ -7965,7 +7993,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 2),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 200.0, 620.0);
@@ -7979,7 +8007,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 2),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 200.0, 620.0);
@@ -7993,7 +8021,7 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 3),
-				TextDrawSetProportional__(t, 1),
+				TextDrawSetProportional__(t, true),
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000000),
 				TextDrawTextSize__(t, 200.0, 620.0);
@@ -8102,6 +8130,34 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawBackgroundColor__(playerid, t, 170),
 				PlayerTextDrawFont__(playerid, t, 1),
 				PlayerTextDrawSetProportional__(playerid, t, 1);
+
+				// Global style 14 (clock).
+				t = FIXES_gsPGTStyle[playerid][14] = CreatePlayerTextDraw__(playerid, 577.750000, 22.125000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.550000, 2.170000),
+				PlayerTextDrawTextSize__(playerid, t, 400.000000, 17.000000),
+				PlayerTextDrawAlignment__(playerid, t, 2),
+				PlayerTextDrawColor__(playerid, t, 0xE1E1E1FF),
+				PlayerTextDrawUseBox__(playerid, t, false),
+				PlayerTextDrawBoxColor__(playerid, t, 0),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 0),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 3),
+				PlayerTextDrawSetProportional__(playerid, t, false),
+
+				// Global style 15 (playerid, popup).
+				t = FIXES_gsPGTStyle[playerid][15] = CreatePlayerTextDraw__(playerid, 33.500000, 27.500000, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.520500, 2.230000),
+				PlayerTextDrawTextSize__(playerid, t, 230.250000, 175.000000),
+				PlayerTextDrawAlignment__(playerid, t, 1),
+				PlayerTextDrawColor__(playerid, t, 0xD0D0D0DD),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x000000C8),
+				PlayerTextDrawSetShadow__(playerid, t, 0),
+				PlayerTextDrawSetOutline__(playerid, t, 0),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
+				PlayerTextDrawFont__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 
 			#endif
 
