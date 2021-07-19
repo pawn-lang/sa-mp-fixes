@@ -7801,8 +7801,8 @@ static stock _FIXES_CheckMaxPlayers()
 			#if FIX_GameTextStyles
 
 				// Global style 7 (vehicle name).
-				t = FIXES_gsGTStyle[7] = TextDrawCreate__(608.000000, 344.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 1.000000, 3.000000),
+				t = FIXES_gsGTStyle[7] = TextDrawCreate__(608.0, 344.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 1.0, 3.0),
 				TextDrawAlignment__(t, 3),
 				TextDrawColor__(t, 0x36682CFF),
 				TextDrawSetShadow__(t, 0),
@@ -7815,8 +7815,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 8 (location name).
-				t = FIXES_gsGTStyle[8] = TextDrawCreate__(608.000000, 385.800000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 1.200000, 3.799998),
+				t = FIXES_gsGTStyle[8] = TextDrawCreate__(608.0, 385.8, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 1.2, 3.8),
 				TextDrawAlignment__(t, 3),
 				TextDrawColor__(t, 0xACCBF1FF),
 				TextDrawSetShadow__(t, 0),
@@ -7829,8 +7829,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 9 (radio name).
-				t = FIXES_gsGTStyle[9] = TextDrawCreate__(320.000000, 22.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.600000, 1.799999),
+				t = FIXES_gsGTStyle[9] = TextDrawCreate__(320.0, 22.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.6, 1.8),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0x906210FF),
 				TextDrawSetShadow__(t, 0),
@@ -7843,8 +7843,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 10 (radio switch).
-				t = FIXES_gsGTStyle[10] = TextDrawCreate__(320.000000, 22.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.600000, 1.799999),
+				t = FIXES_gsGTStyle[10] = TextDrawCreate__(320.0, 22.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.6, 1.8),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0x969696FF),
 				TextDrawSetShadow__(t, 0),
@@ -7857,8 +7857,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 11 (positive money).
-				t = FIXES_gsGTStyle[11] = TextDrawCreate__(608.000000, 77.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.550000, 2.200000),
+				t = FIXES_gsGTStyle[11] = TextDrawCreate__(608.0, 77.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.55, 2.2),
 				TextDrawAlignment__(t, 3),
 				TextDrawColor__(t, 0x36682CFF),
 				TextDrawSetShadow__(t, 0),
@@ -7871,8 +7871,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 12 (negative money).
-				t = FIXES_gsGTStyle[12] = TextDrawCreate__(608.000000, 77.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.550000, 2.200000),
+				t = FIXES_gsGTStyle[12] = TextDrawCreate__(608.0, 77.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.55, 2.2),
 				TextDrawAlignment__(t, 3),
 				TextDrawColor__(t, 0xB4191DFF),
 				TextDrawSetShadow__(t, 0),
@@ -7885,46 +7885,46 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 13 (stunt).
-				t = FIXES_gsGTStyle[13] = TextDrawCreate__(380.000000, 341.150000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.579999, 2.420000),
-				TextDrawTextSize__(t, 40.000000, 460.000000),
+				t = FIXES_gsGTStyle[13] = TextDrawCreate__(380.0, 341.15, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.58, 2.42),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0xDDDDDBFF),
-				TextDrawUseBox__(t, true),
-				TextDrawBoxColor__(t, 0),
 				TextDrawSetShadow__(t, 2),
 				TextDrawSetOutline__(t, 0),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 1),
 				TextDrawSetProportional__(t, true),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 40.0, 460.0);
 
 				// Global style 14 (clock).
-				t = FIXES_gsGTStyle[14] = TextDrawCreate__(577.750000, 22.125000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.550000, 2.170000),
-				TextDrawTextSize__(t, 400.000000, 17.000000),
-				TextDrawAlignment__(t, 2),
+				t = FIXES_gsGTStyle[14] = TextDrawCreate__(608.0, 22.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.55, 2.2),
+				TextDrawAlignment__(t, 3),
 				TextDrawColor__(t, 0xE1E1E1FF),
-				TextDrawUseBox__(t, false),
-				TextDrawBoxColor__(t, 0),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 3),
 				TextDrawSetProportional__(t, false),
+				TextDrawUseBox__(t, false),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 400.0, 20.0);
 
 				// Global style 15 (popup).
-				t = FIXES_gsGTStyle[15] = TextDrawCreate__(33.500000, 27.500000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.520500, 2.230000),
-				TextDrawTextSize__(t, 230.250000, 175.000000),
+				t = FIXES_gsGTStyle[15] = TextDrawCreate__(34.0, 28.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.52, 2.2),
 				TextDrawAlignment__(t, 1),
-				TextDrawColor__(t, 0xD0D0D0DD),
-				TextDrawUseBox__(t, true),
-				TextDrawBoxColor__(t, 0x000000C8),
+				TextDrawColor__(t, 0xFFFFFF96),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 0),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 1),
 				TextDrawSetProportional__(t, true),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000080),
+				TextDrawTextSize__(t, 230.5, 200.0);
 
 			#endif
 
@@ -7971,8 +7971,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 3.
-				t = FIXES_gsGTStyle[3] = TextDrawCreate__(320.000000, 154.500000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.600000, 2.750000),
+				t = FIXES_gsGTStyle[3] = TextDrawCreate__(320.0, 154.5, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.6, 2.75),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0x906210FF),
 				TextDrawSetShadow__(t, 0),
@@ -7985,8 +7985,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 4.
-				t = FIXES_gsGTStyle[4] = TextDrawCreate__(320.000000, 115.500000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.600000, 2.750000),
+				t = FIXES_gsGTStyle[4] = TextDrawCreate__(320.0, 115.5, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.6, 2.75),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0x906210FF),
 				TextDrawSetShadow__(t, 0),
@@ -8013,8 +8013,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 6.
-				t = FIXES_gsGTStyle[6] = TextDrawCreate__(320.000000, 60.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 1.000000, 3.599998),
+				t = FIXES_gsGTStyle[6] = TextDrawCreate__(320.0, 60.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 1.0, 3.6),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0xACCBF1FF),
 				TextDrawSetShadow__(t, 0),
@@ -8034,8 +8034,8 @@ static stock _FIXES_CheckMaxPlayers()
 			#if FIX_GameTextStyles
 
 				// Global style 7 (playerid, vehicle name).
-				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw__(playerid, 608.000000, 344.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 1.000000, 3.000000),
+				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw__(playerid, 608.0, 344.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 1.0, 3.0),
 				PlayerTextDrawAlignment__(playerid, t, 3),
 				PlayerTextDrawColor__(playerid, t, 0x36682CFF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
@@ -8048,8 +8048,8 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 8 (playerid, location name).
-				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw__(playerid, 608.000000, 385.800000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 1.200000, 3.799998),
+				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw__(playerid, 608.0, 385.8, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 1.2, 3.8),
 				PlayerTextDrawAlignment__(playerid, t, 3),
 				PlayerTextDrawColor__(playerid, t, 0xACCBF1FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
@@ -8062,8 +8062,8 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 9 (playerid, radio name).
-				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw__(playerid, 320.000000, 22.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 1.799999),
+				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw__(playerid, 320.0, 22.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.6, 1.8),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
@@ -8076,8 +8076,8 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 10 (playerid, radio switch).
-				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw__(playerid, 320.000000, 22.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 1.799999),
+				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw__(playerid, 320.0, 22.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.6, 1.8),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0x969696FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
@@ -8090,8 +8090,8 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 11 (playerid, positive money).
-				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw__(playerid, 608.000000, 77.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.550000, 2.200000),
+				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw__(playerid, 608.0, 77.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.55, 2.2),
 				PlayerTextDrawAlignment__(playerid, t, 3),
 				PlayerTextDrawColor__(playerid, t, 0x36682CFF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
@@ -8104,8 +8104,8 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 12 (playerid, negative money).
-				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw__(playerid, 608.000000, 77.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.550000, 2.200000),
+				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw__(playerid, 608.0, 77.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.55, 2.2),
 				PlayerTextDrawAlignment__(playerid, t, 3),
 				PlayerTextDrawColor__(playerid, t, 0xB4191DFF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
@@ -8118,46 +8118,46 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 13 (playerid, stunt).
-				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw__(playerid, 380.000000, 341.150000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.579999, 2.420000),
-				PlayerTextDrawTextSize__(playerid, t, 40.000000, 460.000000),
+				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw__(playerid, 380.0, 341.15, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.58, 2.42),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0xDDDDDBFF),
-				PlayerTextDrawUseBox__(playerid, t, true),
-				PlayerTextDrawBoxColor__(playerid, t, 0),
 				PlayerTextDrawSetShadow__(playerid, t, 2),
 				PlayerTextDrawSetOutline__(playerid, t, 0),
 				PlayerTextDrawBackgroundColor__(playerid, t, 170),
 				PlayerTextDrawFont__(playerid, t, 1),
-				PlayerTextDrawSetProportional__(playerid, t, 1);
+				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 40.0, 460.0);
 
 				// Global style 14 (clock).
-				t = FIXES_gsPGTStyle[playerid][14] = CreatePlayerTextDraw__(playerid, 577.750000, 22.125000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.550000, 2.170000),
-				PlayerTextDrawTextSize__(playerid, t, 400.000000, 17.000000),
-				PlayerTextDrawAlignment__(playerid, t, 2),
+				t = FIXES_gsPGTStyle[playerid][14] = CreatePlayerTextDraw__(playerid, 608.0, 22.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.55, 2.2),
+				PlayerTextDrawAlignment__(playerid, t, 3),
 				PlayerTextDrawColor__(playerid, t, 0xE1E1E1FF),
-				PlayerTextDrawUseBox__(playerid, t, false),
-				PlayerTextDrawBoxColor__(playerid, t, 0),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 3),
 				PlayerTextDrawSetProportional__(playerid, t, false),
+				PlayerTextDrawUseBox__(playerid, t, false),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 400.0, 20.0);
 
 				// Global style 15 (playerid, popup).
-				t = FIXES_gsPGTStyle[playerid][15] = CreatePlayerTextDraw__(playerid, 33.500000, 27.500000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.520500, 2.230000),
-				PlayerTextDrawTextSize__(playerid, t, 230.250000, 175.000000),
+				t = FIXES_gsPGTStyle[playerid][15] = CreatePlayerTextDraw__(playerid, 34.0, 28.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.52, 2.2),
 				PlayerTextDrawAlignment__(playerid, t, 1),
-				PlayerTextDrawColor__(playerid, t, 0xD0D0D0DD),
-				PlayerTextDrawUseBox__(playerid, t, true),
-				PlayerTextDrawBoxColor__(playerid, t, 0x000000C8),
+				PlayerTextDrawColor__(playerid, t, 0xFFFFFF96),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 0),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 1),
 				PlayerTextDrawSetProportional__(playerid, t, true),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000080),
+				PlayerTextDrawTextSize__(playerid, t, 230.5, 200.0);
 
 			#endif
 
@@ -8204,8 +8204,8 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 3.
-				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw__(playerid, 320.000000, 154.500000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 2.750000),
+				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw__(playerid, 320.0, 154.5, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.6, 2.75),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
@@ -8218,8 +8218,8 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 4.
-				t = FIXES_gsPGTStyle[playerid][4] = CreatePlayerTextDraw__(playerid, 320.000000, 115.500000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 2.750000),
+				t = FIXES_gsPGTStyle[playerid][4] = CreatePlayerTextDraw__(playerid, 320.0, 115.5, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.6, 2.75),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
@@ -8246,8 +8246,8 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 6.
-				t = FIXES_gsPGTStyle[playerid][6] = CreatePlayerTextDraw__(playerid, 320.000000, 60.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 1.000000, 3.599998),
+				t = FIXES_gsPGTStyle[playerid][6] = CreatePlayerTextDraw__(playerid, 320.0, 60.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 1.0, 3.6),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0xACCBF1FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
