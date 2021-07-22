@@ -202,6 +202,9 @@ BypassDialog | You can type commands and move while in dialogs. | Return 0. | [Y
 SetTimer | Valid timers can return ID 0. | Recreate them and kill the original. | [Y_Less](https://github.com/Y-Less) | | 
 main | Gamemodes without this function give a console error. | Make a stub version. | [Y_Less](https://github.com/Y-Less) | | 
 CreateVehicle | Colour `-1` isn't synced. | Manually control the colours. | [Y_Less](https://github.com/Y-Less) | | 
+AttachTrailerToVehicle | When trailerid is equal to vehicleid and passenger is in vehicleid, it starts spinning. | Check if trailerid and vehicleid are equal. | [Mergevos](https://github.com/Mergevos) ||
+GetVehicleComponentInSlot | The function doesn't work for CARMODTYPE_STEREO. Both front bull bars and front bumper components are saved in the CARMODTYPE_FRONT_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last.
+Both rear bull bars and rear bumper components are saved in the CARMODTYPE_REAR_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last. | Hook functions and store components. This uses some code from vSync library. | [Mergevos](https://github.com/Mergevos) || 
 API | fixes.inc isn't intended to extend the SA:MP API, but has a lot of information internally that can be useful to other scripts.  By not exposing this data, we complicate and bloat scripts by requiring them to re-implement said functionality. | Expose the data, behind a tightly controlled API. | [Y_Less](https://github.com/Y-Less) | | 
 
 ## API
@@ -397,6 +400,14 @@ Convert from a vehicle colour index to an RGBA colour (with the specified alpha)
 new c1, c2;
 GetRandomCarColPair(495, c1, c2);
 printf("Colours chosen for the Sandking: %08x, %08x", CarColIndexToColour(c1), CarColIndexToColour(c2));
+```
+
+### `IsComponentFrontBullbar(componentid) / IsComponentRearBullbar(componentid)`
+
+Checks whether the components are either rear or front bullbars.
+
+```pawn
+printf("Component %d is front bullbar and %d is rear", 1109, 1115);
 ```
 
 Note that you can also use the alias `CarColIndexToColor`.

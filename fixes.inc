@@ -3830,7 +3830,7 @@ in the output code.
  * Defines additional component slots
  * </remarks>
  */
-#define CARMODTYPE_FRONT_BULLBAR 15
+#define CARMODTYPE_REAR_BULLBAR 15
 
 /**
  * <remarks>
@@ -5109,7 +5109,7 @@ static stock
 #if FIX_GetVehicleComponentInSlot
 	FIXES_gsStereo[MAX_VEHICLES],
 	FIXES_gsBumpers[MAX_VEHICLES][2],
-	FIXES_gsBullBars[MAX_VEHICLES][2];
+	FIXES_gsBullBars[MAX_VEHICLES][2],
 #endif
 	/**
 	 * <remarks>
@@ -9845,27 +9845,32 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		//  BEGIN: OnVehicleMod
 		// =====================
 
-		switch(componentid)
+		switch(FIXES_GetVehicleComponentType(componentid))
 		{
 			case CARMODTYPE_STEREO:
 			{
 				FIXES_gsStereo[vehicleid] = componentid;
+				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			}
 			case CARMODTYPE_FRONT_BUMPER:
 			{
 				FIXES_gsBumpers[vehicleid][0] = componentid;
+				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			}
 			case CARMODTYPE_REAR_BUMPER:
 			{
 				FIXES_gsBumpers[vehicleid][1] = componentid;
+				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			}
 			case CARMODTYPE_FRONT_BULLBAR:
 			{
 				FIXES_gsBullBars[vehicleid][0] = componentid;
+				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			}
 			case CARMODTYPE_REAR_BULLBAR:
 			{
 				FIXES_gsBullBars[vehicleid][1] = componentid;
+				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			}
 		}
 
@@ -14368,11 +14373,11 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 
 	stock FIXES_GetVehicleComponentType(componentid)
 	{
-		if(IsComponentFrontBullbar(componentid))
+		if(FIXES_IsComponentFrontBullbar(componentid))
 		{
 			return CARMODTYPE_FRONT_BULLBAR;
 		}
-		else if(IsComponentRearBullbar(componentid))
+		else if(FIXES_IsComponentRearBullbar(componentid))
 		{
 			return CARMODTYPE_REAR_BULLBAR;
 		}
@@ -14381,7 +14386,7 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 
 	stock FIXES_AddVehicleComponent(vehicleid, componentid)
 	{
-		switch(GetVehicleComponentType(componentid))
+		switch(FIXES_GetVehicleComponentType(componentid))
 		{
 			case CARMODTYPE_STEREO:
 			{
@@ -14409,7 +14414,7 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 
 	stock FIXES_RemoveVehicleComponent(vehicleid, componentid)
 	{
-		switch(GetVehicleComponentType(componentid))
+		switch(FIXES_GetVehicleComponentType(componentid))
 		{
 			case CARMODTYPE_STEREO:
 			{
@@ -15930,7 +15935,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_API
-	stock bool:FIXES_IsComponentRearBullbar(componentid)
+	stock FIXES_IsComponentRearBullbar(componentid)
 	{
 		if(componentid == 1109 || componentid == 1110)
 		{
@@ -15955,7 +15960,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_API
-	stock bool:FIXES_IsComponentFrontBullbar(componentid)
+	stock FIXES_IsComponentFrontBullbar(componentid)
 	{
 		if(componentid == 1100 || componentid == 1115 || componentid == 1116 || componentid == 1123 || componentid == 1125)
 		{
