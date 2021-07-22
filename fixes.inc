@@ -700,6 +700,20 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *
+ * <fix name="GetVehicleComponentSlot">
+ *     <problem>
+ *         	The function GetVehicleComponentInSlot doesn't work for CARMODTYPE_STEREO.
+ *			Both front bull bars and front bumper components are saved in the CARMODTYPE_FRONT_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last.
+ *			Both rear bull bars and rear bumper components are saved in the CARMODTYPE_REAR_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last.
+ *			Both left side skirt and right side skirt are saved in the CARMODTYPE_SIDESKIRT slot. If a vehicle has both of them installed, this function will only return the one which was installed last..
+ *     </problem>
+ *     <solution>
+ *         Hook functions and store components. This uses some code from vSync library.
+ *     </solution>
+ *     <see>FIX_RemoveVehicleComponents</see>
+ *     <author    href="https://github.com/Mergevos/" >Mergevos</author>
+ * </fix>
+ *
  * <fix name="AttachTrailerToVehicle">
  *     <problem>
  *         When trailerid is equal to vehicleid and passenger is in vehicleid, it starts spinning.
@@ -2551,6 +2565,14 @@ in the output code.
 	#define FIX_AttachTrailerToVehicle                   (2)
 #endif
 
+#if !defined FIX_GetVehicleComponentInSlot
+	_FIXES_STOCK FIX_GetVehicleComponentInSlot = _FIXES_DEFAULT;
+	#define FIX_GetVehicleComponentInSlot                  _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_GetVehicleComponentInSlot)
+	#undef FIX_GetVehicleComponentInSlot
+	#define FIX_GetVehicleComponentInSlot                   (2)
+#endif
+
 #if !defined FIX_TextDrawCreate_2
 	_FIXES_STOCK FIX_TextDrawCreate_2 = _FIXES_DEFAULT;
 	#define FIX_TextDrawCreate_2                 _FIXES_DEFAULT
@@ -3793,6 +3815,22 @@ in the output code.
  */
 
 #define _FIXES_MIN_WORLDBOUNDS (-20000.0)
+
+/**
+ * <remarks>
+ * CARMODTYPE_FRONT_BULLBAR
+ * Defines additional component slots
+ * </remarks>
+ */
+#define CARMODTYPE_FRONT_BULLBAR 14
+
+/**
+ * <remarks>
+ * CARMODTYPE_REAR_BULLBAR
+ * Defines additional component slots
+ * </remarks>
+ */
+#define CARMODTYPE_FRONT_BULLBAR 15
 
 /**
  * <remarks>
@@ -5062,6 +5100,16 @@ static stock
 	 */
 #if FIX_PassengerSeating
 	FIXES_gsPSTimer[MAX_PLAYERS],
+#endif
+	/**
+	 * <remarks>
+	 * The vehicle's stereo used in GetVehicleComponent.
+	 * </remarks>
+	 */
+#if FIX_GetVehicleComponentInSlot
+	FIXES_gsStereo[MAX_VEHICLES],
+	FIXES_gsBumpers[MAX_VEHICLES][2],
+	FIXES_gsBullBars[MAX_VEHICLES][2];
 #endif
 	/**
 	 * <remarks>
@@ -9783,7 +9831,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
  * <fixes>OnVehicleMod</fixes>
  */
 
-#if FIX_OnVehicleMod
+#if FIX_OnVehicleMod || FIX_GetVehicleComponentInSlot
 	public OnVehicleMod(playerid, vehicleid, componentid)
 	{
 		#if !FIXES_Single
@@ -9796,6 +9844,31 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		// =====================
 		//  BEGIN: OnVehicleMod
 		// =====================
+
+		switch(componentid)
+		{
+			case CARMODTYPE_STEREO:
+			{
+				FIXES_gsStereo[vehicleid] = componentid;
+			}
+			case CARMODTYPE_FRONT_BUMPER:
+			{
+				FIXES_gsBumpers[vehicleid][0] = componentid;
+			}
+			case CARMODTYPE_REAR_BUMPER:
+			{
+				FIXES_gsBumpers[vehicleid][1] = componentid;
+			}
+			case CARMODTYPE_FRONT_BULLBAR:
+			{
+				FIXES_gsBullBars[vehicleid][0] = componentid;
+			}
+			case CARMODTYPE_REAR_BULLBAR:
+			{
+				FIXES_gsBullBars[vehicleid][1] = componentid;
+			}
+		}
+
 		new
 			modelid = GetVehicleModel__(vehicleid);
 		if (_FIXES_IN_RANGE(modelid, 400, 611 + 1))
@@ -14282,6 +14355,133 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 #endif
 
 /**
+ * <fixes> Various bugs in GetVehicleComponentInSlot function.</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_GetVehicleComponentInSlot
+	#error _ALS_GetVehicleComponentInSlot defined
+#endif
+
+native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlot;
+
+#if FIX_GetVehicleComponentInSlot
+
+	stock FIXES_GetVehicleComponentType(componentid)
+	{
+		if(IsComponentFrontBullbar(componentid))
+		{
+			return CARMODTYPE_FRONT_BULLBAR;
+		}
+		else if(IsComponentRearBullbar(componentid))
+		{
+			return CARMODTYPE_REAR_BULLBAR;
+		}
+		return GetVehicleComponentType__(componentid);
+	}
+
+	stock FIXES_AddVehicleComponent(vehicleid, componentid)
+	{
+		switch(GetVehicleComponentType(componentid))
+		{
+			case CARMODTYPE_STEREO:
+			{
+				FIXES_gsStereo[vehicleid] = componentid;
+			}
+			case CARMODTYPE_FRONT_BUMPER:
+			{
+				FIXES_gsBumpers[vehicleid][0] = componentid;
+			}
+			case CARMODTYPE_REAR_BUMPER:
+			{
+				FIXES_gsBumpers[vehicleid][1] = componentid;
+			}
+			case CARMODTYPE_FRONT_BULLBAR:
+			{
+				FIXES_gsBullBars[vehicleid][0] = componentid;
+			}
+			case CARMODTYPE_REAR_BULLBAR:
+			{
+				FIXES_gsBullBars[vehicleid][1] = componentid;
+			}
+		}
+		return AddVehicleComponent__(vehicleid, componentid);
+	}
+
+	stock FIXES_RemoveVehicleComponent(vehicleid, componentid)
+	{
+		switch(GetVehicleComponentType(componentid))
+		{
+			case CARMODTYPE_STEREO:
+			{
+				FIXES_gsStereo[vehicleid] = 0;
+			}
+			case CARMODTYPE_FRONT_BUMPER:
+			{
+				FIXES_gsBumpers[vehicleid][0] = 0;
+			}
+			case CARMODTYPE_REAR_BUMPER:
+			{
+				FIXES_gsBumpers[vehicleid][1] = 0;
+			}
+			case CARMODTYPE_FRONT_BULLBAR:
+			{
+				FIXES_gsBullBars[vehicleid][0] = 0;
+			}
+			case CARMODTYPE_REAR_BULLBAR:
+			{
+				FIXES_gsBullBars[vehicleid][1] = 0;
+			}
+		}
+		return RemoveVehicleComponent__(vehicleid, componentid);
+	}
+
+	stock FIXES_GetVehicleComponentInSlot(vehicleid, slot)
+	{
+		switch(slot)
+		{
+			case CARMODTYPE_STEREO:
+			{
+				return FIXES_gsStereo[vehicleid];
+			}
+			case CARMODTYPE_FRONT_BUMPER:
+			{
+				return FIXES_gsBumpers[vehicleid][0];
+			}
+			case CARMODTYPE_REAR_BUMPER:
+			{
+				return FIXES_gsBumpers[vehicleid][1];
+			}
+			case CARMODTYPE_FRONT_BULLBAR:
+			{
+				return FIXES_gsBullBars[vehicleid][0];
+			}
+			case CARMODTYPE_REAR_BULLBAR:
+			{
+				return FIXES_gsBullBars[vehicleid][1];
+			}
+		}
+		return GetVehicleComponentInSlot__(vehicleid, slot);
+	}
+	#if _FIXES_SAMP
+		#define _ALS_GetVehicleComponentInSlot
+		#define GetVehicleComponentInSlot( FIXES_GetVehicleComponentInSlot(
+		#define _ALS_AddVehicleComponent
+		#define AddVehicleComponent( FIXES_AddVehicleComponent(
+		#define _ALS_RemoveVehicleComponent
+		#define RemoveVehicleComponent( FIXES_RemoveVehicleComponent(
+	#endif
+
+	#define _ALS_GetVehicleComponentInSlot__
+	#define GetVehicleComponentInSlot__( FIXES_GetVehicleComponentInSlot(
+	#define _ALS_AddVehicleComponent__
+	#define AddVehicleComponent__( FIXES_AddVehicleComponent(
+	#define _ALS_RemoveVehicleComponent__
+	#define RemoveVehicleComponent__( FIXES_RemoveVehicleComponent(
+
+#endif
+
+
+/**
  * <fixes> Spinning if there's passenger in vehicleid, when trailerid is equal with vehicleid.</fixes>
  */
 
@@ -15722,6 +15922,57 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define _ALS_GetVehicleSeats__
 	#define GetVehicleSeats__( FIXES_GetVehicleSeats(
 #endif
+
+/**
+ * <remarks>
+ * Checks if component is rear bullbar.
+ * </remarks>
+ */
+
+#if FIX_API
+	stock bool:FIXES_IsComponentRearBullbar(componentid)
+	{
+		if(componentid == 1109 || componentid == 1110)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_IsComponentRearBullbar
+		#define IsComponentRearBullbar( FIXES_IsComponentRearBullbar(
+	#endif
+
+	#define _ALS_IsComponentRearBullbar__
+	#define IsComponentRearBullbar__( FIXES_IsComponentRearBullbar(
+#endif
+
+/**
+ * <remarks>
+ * Checks if component is front bullbar.
+ * </remarks>
+ */
+
+#if FIX_API
+	stock bool:FIXES_IsComponentFrontBullbar(componentid)
+	{
+		if(componentid == 1100 || componentid == 1115 || componentid == 1116 || componentid == 1123 || componentid == 1125)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_IsComponentFrontBullbar
+		#define IsComponentFrontBullbar( FIXES_IsComponentFrontBullbar(
+	#endif
+
+	#define _ALS_IsComponentFrontBullbar__
+	#define IsComponentFrontBullbar__( FIXES_IsComponentFrontBullbar(
+#endif
+
 
 /**
  * <remarks>
