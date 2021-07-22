@@ -705,7 +705,6 @@ in the output code.
  *         	The function GetVehicleComponentInSlot doesn't work for CARMODTYPE_STEREO.
  *			Both front bull bars and front bumper components are saved in the CARMODTYPE_FRONT_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last.
  *			Both rear bull bars and rear bumper components are saved in the CARMODTYPE_REAR_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last.
- *			Both left side skirt and right side skirt are saved in the CARMODTYPE_SIDESKIRT slot. If a vehicle has both of them installed, this function will only return the one which was installed last..
  *     </problem>
  *     <solution>
  *         Hook functions and store components. This uses some code from vSync library.
