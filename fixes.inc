@@ -700,17 +700,21 @@ in the output code.
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *
- * <fix name="GetVehicleComponentSlot">
+ * <fix name="GetVehicleComponentInSlot">
  *     <problem>
  *         	The function GetVehicleComponentInSlot doesn't work for CARMODTYPE_STEREO.
- *			Both front bull bars and front bumper components are saved in the CARMODTYPE_FRONT_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last.
- *			Both rear bull bars and rear bumper components are saved in the CARMODTYPE_REAR_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last.
- *			Both left side skirt and right side skirt are saved in the CARMODTYPE_SIDESKIRT slot. If a vehicle has both of them installed, this function will only return the one which was installed last..
+ *			Both front bull bars and front 
+ * 				bumper components are saved in the CARMODTYPE_FRONT_BUMPER slot. 
+ *				If a vehicle has both of them installed, 
+ *				this function will only return the one which was installed last.
+ *			Both rear bull bars and rear bumper components are saved in the 
+ * 				CARMODTYPE_REAR_BUMPER slot. If a vehicle has both of them installed, 
+ * 				this function will only return the one which was installed last.
  *     </problem>
  *     <solution>
  *         Hook functions and store components. This uses some code from vSync library.
  *     </solution>
- *     <see>FIX_RemoveVehicleComponents</see>
+ *     <see>FIXES_GetVehicleComponentInSlot</see>
  *     <author    href="https://github.com/Mergevos/" >Mergevos</author>
  * </fix>
  *
@@ -14373,11 +14377,11 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 
 	stock FIXES_GetVehicleComponentType(componentid)
 	{
-		if(FIXES_IsComponentFrontBullbar(componentid))
+		if(componentid == 1100 || componentid == 1115 || componentid == 1116 || componentid == 1123 || componentid == 1125)
 		{
 			return CARMODTYPE_FRONT_BULLBAR;
 		}
-		else if(FIXES_IsComponentRearBullbar(componentid))
+		else if(componentid == 1109 || componentid == 1110)
 		{
 			return CARMODTYPE_REAR_BULLBAR;
 		}
@@ -15937,57 +15941,6 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define _ALS_GetVehicleSeats__
 	#define GetVehicleSeats__( FIXES_GetVehicleSeats(
 #endif
-
-/**
- * <remarks>
- * Checks if component is rear bullbar.
- * </remarks>
- */
-
-#if FIX_API
-	stock FIXES_IsComponentRearBullbar(componentid)
-	{
-		if(componentid == 1109 || componentid == 1110)
-		{
-			return true;
-		}
-		return false;
-	}
-
-	#if _FIXES_SAMP
-		#define _ALS_IsComponentRearBullbar
-		#define IsComponentRearBullbar( FIXES_IsComponentRearBullbar(
-	#endif
-
-	#define _ALS_IsComponentRearBullbar__
-	#define IsComponentRearBullbar__( FIXES_IsComponentRearBullbar(
-#endif
-
-/**
- * <remarks>
- * Checks if component is front bullbar.
- * </remarks>
- */
-
-#if FIX_API
-	stock FIXES_IsComponentFrontBullbar(componentid)
-	{
-		if(componentid == 1100 || componentid == 1115 || componentid == 1116 || componentid == 1123 || componentid == 1125)
-		{
-			return true;
-		}
-		return false;
-	}
-
-	#if _FIXES_SAMP
-		#define _ALS_IsComponentFrontBullbar
-		#define IsComponentFrontBullbar( FIXES_IsComponentFrontBullbar(
-	#endif
-
-	#define _ALS_IsComponentFrontBullbar__
-	#define IsComponentFrontBullbar__( FIXES_IsComponentFrontBullbar(
-#endif
-
 
 /**
  * <remarks>
