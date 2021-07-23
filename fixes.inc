@@ -5111,9 +5111,11 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_GetVehicleComponentInSlot
-	FIXES_gsStereo[MAX_VEHICLES],
-	FIXES_gsBumpers[MAX_VEHICLES][2],
-	FIXES_gsBullBars[MAX_VEHICLES][2],
+	FIXES_gsStereo[] = "FIXES_gsStereo",
+	FIXES_gsFrontBumper[] = "FIXES_FrontBumper",
+	FIXES_gsRearBumper[] = "FIXES_RearBumper",
+	FIXES_gsFrontBullBar[] = "FIXES_FrontBullBar",
+	FIXES_gsRearBullbar[] = "FIXES_RearBullbar",
 #endif
 	/**
 	 * <remarks>
@@ -9853,27 +9855,27 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		{
 			case CARMODTYPE_STEREO:
 			{
-				FIXES_gsStereo[vehicleid] = componentid;
+				setproperty(.name = FIXES_gsStereo, .value = componentid);
 				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			}
 			case CARMODTYPE_FRONT_BUMPER:
 			{
-				FIXES_gsBumpers[vehicleid][0] = componentid;
+				setproperty(.name = FIXES_gsFrontBumper, .value = componentid);
 				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			}
 			case CARMODTYPE_REAR_BUMPER:
 			{
-				FIXES_gsBumpers[vehicleid][1] = componentid;
+				setproperty(.name = FIXES_gsRearBumper, .value = componentid);
 				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			}
 			case CARMODTYPE_FRONT_BULLBAR:
 			{
-				FIXES_gsBullBars[vehicleid][0] = componentid;
+				setproperty(.name = FIXES_gsFrontBullBar, .value = componentid);
 				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			}
 			case CARMODTYPE_REAR_BULLBAR:
 			{
-				FIXES_gsBullBars[vehicleid][1] = componentid;
+				setproperty(.name = FIXES_gsRearBullbar, .value = componentid);
 				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			}
 		}
@@ -14399,23 +14401,23 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 		{
 			case CARMODTYPE_STEREO:
 			{
-				FIXES_gsStereo[vehicleid] = componentid;
+				setproperty(.name = FIXES_gsStereo, .value = componentid);
 			}
 			case CARMODTYPE_FRONT_BUMPER:
 			{
-				FIXES_gsBumpers[vehicleid][0] = componentid;
+				setproperty(.name = FIXES_gsFrontBumper, .value = componentid);
 			}
 			case CARMODTYPE_REAR_BUMPER:
 			{
-				FIXES_gsBumpers[vehicleid][1] = componentid;
+				setproperty(.name = FIXES_gsRearBumper, .value = componentid);
 			}
 			case CARMODTYPE_FRONT_BULLBAR:
 			{
-				FIXES_gsBullBars[vehicleid][0] = componentid;
+				setproperty(.name = FIXES_gsFrontBullBar, .value = componentid);
 			}
 			case CARMODTYPE_REAR_BULLBAR:
 			{
-				FIXES_gsBullBars[vehicleid][1] = componentid;
+				setproperty(.name = FIXES_gsRearBullbar, .value = componentid);
 			}
 		}
 		return ret;
@@ -14432,23 +14434,23 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 		{
 			case CARMODTYPE_STEREO:
 			{
-				FIXES_gsStereo[vehicleid] = 0;
+				setproperty(.name = FIXES_gsStereo, .value = 0);
 			}
 			case CARMODTYPE_FRONT_BUMPER:
 			{
-				FIXES_gsBumpers[vehicleid][0] = 0;
+				setproperty(.name = FIXES_gsFrontBumper, .value = 0);
 			}
 			case CARMODTYPE_REAR_BUMPER:
 			{
-				FIXES_gsBumpers[vehicleid][1] = 0;
+				setproperty(.name = FIXES_gsRearBumper, .value = 0);
 			}
 			case CARMODTYPE_FRONT_BULLBAR:
 			{
-				FIXES_gsBullBars[vehicleid][0] = 0;
+				setproperty(.name = FIXES_gsFrontBullBar, .value = 0);
 			}
 			case CARMODTYPE_REAR_BULLBAR:
 			{
-				FIXES_gsBullBars[vehicleid][1] = 0;
+				setproperty(.name = FIXES_gsRearBullbar, .value = 0);
 			}
 		}
 		return ret;
@@ -14460,23 +14462,23 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 		{
 			case CARMODTYPE_STEREO:
 			{
-				return FIXES_gsStereo[vehicleid];
+				return getproperty(.name = FIXES_gsStereo);
 			}
 			case CARMODTYPE_FRONT_BUMPER:
 			{
-				return FIXES_gsBumpers[vehicleid][0];
+				return getproperty(.name = FIXES_gsFrontBumper);
 			}
 			case CARMODTYPE_REAR_BUMPER:
 			{
-				return FIXES_gsBumpers[vehicleid][1];
+				return getproperty(.name = FIXES_gsRearBumper);
 			}
 			case CARMODTYPE_FRONT_BULLBAR:
 			{
-				return FIXES_gsBullBars[vehicleid][0];
+				return getproperty(.name = FIXES_gsFrontBullBar);
 			}
 			case CARMODTYPE_REAR_BULLBAR:
 			{
-				return FIXES_gsBullBars[vehicleid][1];
+				return getproperty(.name = FIXES_gsRearBullbar);
 			}
 		}
 		return GetVehicleComponentInSlot__(vehicleid, slot);
