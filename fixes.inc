@@ -5110,12 +5110,18 @@ static stock
 	 * The vehicle's stereo used in GetVehicleComponent.
 	 * </remarks>
 	 */
-#if FIX_GetVehicleComponentInSlot
+#if FIX_GetVehicleComponentInSlot && !FIXES_Single
 	FIXES_gsStereo[] = "FIXES_gsStereo",
 	FIXES_gsFrontBumper[] = "FIXES_FrontBumper",
 	FIXES_gsRearBumper[] = "FIXES_RearBumper",
 	FIXES_gsFrontBullBar[] = "FIXES_FrontBullBar",
 	FIXES_gsRearBullbar[] = "FIXES_RearBullbar",
+#elseif FIX_GetVehicleComponentInSlot && FIXES_Single
+	FIXES_gsStereo[MAX_VEHICLES],
+	FIXES_gsFrontBumper[MAX_VEHICLES],
+	FIXES_gsRearBumper[MAX_VEHICLES],
+	FIXES_gsFrontBullBar[MAX_VEHICLES],
+	FIXES_gsRearBullbar[MAX_VEHICLES],
 #endif
 	/**
 	 * <remarks>
@@ -9851,33 +9857,64 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		//  BEGIN: OnVehicleMod
 		// =====================
 
+
 		switch(FIXES_GetVehicleComponentType(componentid))
 		{
-			case CARMODTYPE_STEREO:
-			{
-				setproperty(.name = FIXES_gsStereo, .value = componentid);
-				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+			#if !FIXES_Single
+				case CARMODTYPE_STEREO:
+				{
+					setproperty(.name = FIXES_gsStereo, .value = componentid);
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+				}
+				case CARMODTYPE_FRONT_BUMPER:
+				{
+					setproperty(.name = FIXES_gsFrontBumper, .value = componentid);
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+				}
+				case CARMODTYPE_REAR_BUMPER:
+				{
+					setproperty(.name = FIXES_gsRearBumper, .value = componentid);
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+				}
+				case CARMODTYPE_FRONT_BULLBAR:
+				{
+					setproperty(.name = FIXES_gsFrontBullBar, .value = componentid);
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+				}
+				case CARMODTYPE_REAR_BULLBAR:
+				{
+					setproperty(.name = FIXES_gsRearBullbar, .value = componentid);
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+				}
+			#else 
+				case CARMODTYPE_STEREO:
+				{
+					FIXES_gsStereo[vehicleid] = componentid;
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+				}
+				case CARMODTYPE_FRONT_BUMPER:
+				{
+					FIXES_gsFrontBumper[vehicleid] = componentid;
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+				}
+				case CARMODTYPE_REAR_BUMPER:
+				{
+					FIXES_gsRearBumper[vehicleid] = componentid;
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+				}
+				case CARMODTYPE_FRONT_BULLBAR:
+				{
+					FIXES_gsFrontBullBar[vehicleid] = componentid;
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+				}
+				case CARMODTYPE_REAR_BULLBAR:
+				{
+					FIXES_gsRearBullbar[vehicleid] = componentid;
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+				}
 			}
-			case CARMODTYPE_FRONT_BUMPER:
-			{
-				setproperty(.name = FIXES_gsFrontBumper, .value = componentid);
-				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-			}
-			case CARMODTYPE_REAR_BUMPER:
-			{
-				setproperty(.name = FIXES_gsRearBumper, .value = componentid);
-				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-			}
-			case CARMODTYPE_FRONT_BULLBAR:
-			{
-				setproperty(.name = FIXES_gsFrontBullBar, .value = componentid);
-				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-			}
-			case CARMODTYPE_REAR_BULLBAR:
-			{
-				setproperty(.name = FIXES_gsRearBullbar, .value = componentid);
-				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-			}
+			#endif
+
 		}
 
 		new
@@ -14399,26 +14436,50 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 		}
 		switch(FIXES_GetVehicleComponentType(componentid))
 		{
-			case CARMODTYPE_STEREO:
-			{
-				setproperty(.name = FIXES_gsStereo, .value = componentid);
+			#if !FIXES_Single
+				case CARMODTYPE_STEREO:
+				{
+					setproperty(.name = FIXES_gsStereo, .value = componentid);
+				}
+				case CARMODTYPE_FRONT_BUMPER:
+				{
+					setproperty(.name = FIXES_gsFrontBumper, .value = componentid);
+				}
+				case CARMODTYPE_REAR_BUMPER:
+				{
+					setproperty(.name = FIXES_gsRearBumper, .value = componentid);
+				}
+				case CARMODTYPE_FRONT_BULLBAR:
+				{
+					setproperty(.name = FIXES_gsFrontBullBar, .value = componentid);
+				}
+				case CARMODTYPE_REAR_BULLBAR:
+				{
+					setproperty(.name = FIXES_gsRearBullbar, .value = componentid);
+				}
+			#else 
+				case CARMODTYPE_STEREO:
+				{
+					FIXES_gsStereo[vehicleid] = componentid;
+				}
+				case CARMODTYPE_FRONT_BUMPER:
+				{
+					FIXES_gsFrontBumper[vehicleid] = componentid;
+				}
+				case CARMODTYPE_REAR_BUMPER:
+				{
+					FIXES_gsRearBumper[vehicleid] = componentid;
+				}
+				case CARMODTYPE_FRONT_BULLBAR:
+				{
+					FIXES_gsFrontBullBar[vehicleid] = componentid;
+				}
+				case CARMODTYPE_REAR_BULLBAR:
+				{
+					FIXES_gsRearBullbar[vehicleid] = componentid;
+				}
 			}
-			case CARMODTYPE_FRONT_BUMPER:
-			{
-				setproperty(.name = FIXES_gsFrontBumper, .value = componentid);
-			}
-			case CARMODTYPE_REAR_BUMPER:
-			{
-				setproperty(.name = FIXES_gsRearBumper, .value = componentid);
-			}
-			case CARMODTYPE_FRONT_BULLBAR:
-			{
-				setproperty(.name = FIXES_gsFrontBullBar, .value = componentid);
-			}
-			case CARMODTYPE_REAR_BULLBAR:
-			{
-				setproperty(.name = FIXES_gsRearBullbar, .value = componentid);
-			}
+			#endif
 		}
 		return ret;
 	}
@@ -14432,26 +14493,50 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 		}
 		switch(FIXES_GetVehicleComponentType(componentid))
 		{
-			case CARMODTYPE_STEREO:
-			{
-				setproperty(.name = FIXES_gsStereo, .value = 0);
+			#if !FIXES_Single
+				case CARMODTYPE_STEREO:
+				{
+					setproperty(.name = FIXES_gsStereo, .value = 0);
+				}
+				case CARMODTYPE_FRONT_BUMPER:
+				{
+					setproperty(.name = FIXES_gsFrontBumper, .value = 0);
+				}
+				case CARMODTYPE_REAR_BUMPER:
+				{
+					setproperty(.name = FIXES_gsRearBumper, .value = 0);
+				}
+				case CARMODTYPE_FRONT_BULLBAR:
+				{
+					setproperty(.name = FIXES_gsFrontBullBar, .value = 0);
+				}
+				case CARMODTYPE_REAR_BULLBAR:
+				{
+					setproperty(.name = FIXES_gsRearBullbar, .value = 0);
+				}
+			#else 
+				case CARMODTYPE_STEREO:
+				{
+					FIXES_gsStereo[vehicleid] = 0;
+				}
+				case CARMODTYPE_FRONT_BUMPER:
+				{
+					FIXES_gsFrontBumper[vehicleid] = 0;
+				}
+				case CARMODTYPE_REAR_BUMPER:
+				{
+					FIXES_gsRearBumper[vehicleid] = 0;
+				}
+				case CARMODTYPE_FRONT_BULLBAR:
+				{
+					FIXES_gsFrontBullBar[vehicleid] = 0;
+				}
+				case CARMODTYPE_REAR_BULLBAR:
+				{
+					FIXES_gsRearBullbar[vehicleid] = 0;
+				}
 			}
-			case CARMODTYPE_FRONT_BUMPER:
-			{
-				setproperty(.name = FIXES_gsFrontBumper, .value = 0);
-			}
-			case CARMODTYPE_REAR_BUMPER:
-			{
-				setproperty(.name = FIXES_gsRearBumper, .value = 0);
-			}
-			case CARMODTYPE_FRONT_BULLBAR:
-			{
-				setproperty(.name = FIXES_gsFrontBullBar, .value = 0);
-			}
-			case CARMODTYPE_REAR_BULLBAR:
-			{
-				setproperty(.name = FIXES_gsRearBullbar, .value = 0);
-			}
+			#endif
 		}
 		return ret;
 	}
@@ -14460,26 +14545,49 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 	{
 		switch(slot)
 		{
-			case CARMODTYPE_STEREO:
-			{
-				return getproperty(.name = FIXES_gsStereo);
-			}
-			case CARMODTYPE_FRONT_BUMPER:
-			{
-				return getproperty(.name = FIXES_gsFrontBumper);
-			}
-			case CARMODTYPE_REAR_BUMPER:
-			{
-				return getproperty(.name = FIXES_gsRearBumper);
-			}
-			case CARMODTYPE_FRONT_BULLBAR:
-			{
-				return getproperty(.name = FIXES_gsFrontBullBar);
-			}
-			case CARMODTYPE_REAR_BULLBAR:
-			{
-				return getproperty(.name = FIXES_gsRearBullbar);
-			}
+			#if !FIXES_Single
+				case CARMODTYPE_STEREO:
+				{
+					return getproperty(.name = FIXES_gsStereo);
+				}
+				case CARMODTYPE_FRONT_BUMPER:
+				{
+					return getproperty(.name = FIXES_gsFrontBumper);
+				}
+				case CARMODTYPE_REAR_BUMPER:
+				{
+					return getproperty(.name = FIXES_gsRearBumper);
+				}
+				case CARMODTYPE_FRONT_BULLBAR:
+				{
+					return getproperty(.name = FIXES_gsFrontBullBar);
+				}
+				case CARMODTYPE_REAR_BULLBAR:
+				{
+					return getproperty(.name = FIXES_gsRearBullbar);
+				}
+			#else 
+				case CARMODTYPE_STEREO:
+				{
+					return FIXES_gsStereo[MAX_VEHICLES];
+				}
+				case CARMODTYPE_FRONT_BUMPER:
+				{
+					return FIXES_gsFrontBumper[MAX_VEHICLES];
+				}
+				case CARMODTYPE_REAR_BUMPER:
+				{
+					return FIXES_gsRearBumper[MAX_VEHICLES];
+				}
+				case CARMODTYPE_FRONT_BULLBAR:
+				{
+					return FIXES_gsFrontBullBar[MAX_VEHICLES];
+				}
+				case CARMODTYPE_REAR_BULLBAR:
+				{
+					return FIXES_gsRearBullbar[MAX_VEHICLES];
+				}
+			#endif 
 		}
 		return GetVehicleComponentInSlot__(vehicleid, slot);
 	}
