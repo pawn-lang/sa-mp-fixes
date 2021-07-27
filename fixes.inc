@@ -14436,6 +14436,30 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 		return GetVehicleComponentType__(componentid);
 	}
 
+	stock FIXES_DestroyVehicle(vehicleid)
+	{
+		new const ret = DestroyVehicle__(vehicleid);
+		if(ret == 0) 
+		{
+			return ret;
+		}
+		#if !FIXES_Single		
+			setproperty(.name = FIXES_gscStereo, .value = componentid);
+			setproperty(.name = FIXES_gscFrontBumper, .value = componentid);
+			setproperty(.name = FIXES_gscRearBumper, .value = componentid);
+			setproperty(.name = FIXES_gscFrontBullBar, .value = componentid);
+			setproperty(.name = FIXES_gscRearBullbar, .value = componentid);
+		#else
+			FIXES_gsStereo[vehicleid] = componentid;
+			FIXES_gsFrontBumper[vehicleid] = componentid;
+			FIXES_gsRearBumper[vehicleid] = componentid;
+			FIXES_gsFrontBullBar[vehicleid] = componentid;
+			FIXES_gsRearBullbar[vehicleid] = componentid;
+		#endif
+		return ret;
+
+	}
+
 	stock FIXES_AddVehicleComponent(vehicleid, componentid)
 	{
 		new const ret = AddVehicleComponent__(vehicleid, componentid);
@@ -14607,6 +14631,8 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 		#define AddVehicleComponent( FIXES_AddVehicleComponent(
 		#define _ALS_RemoveVehicleComponent
 		#define RemoveVehicleComponent( FIXES_RemoveVehicleComponent(
+		#define _ALS_DestroyVehicle
+		#define DestroyVehicle( FIXES_DestroyVehicle(
 	#endif
 
 	#define _ALS_GetVehicleComponentInSlot__
@@ -14615,6 +14641,8 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 	#define AddVehicleComponent__( FIXES_AddVehicleComponent(
 	#define _ALS_RemoveVehicleComponent__
 	#define RemoveVehicleComponent__( FIXES_RemoveVehicleComponent(
+	#define _ALS_DestroyVehicle__
+	#define DestroyVehicle__( FIXES_DestroyVehicle(
 
 #endif
 
