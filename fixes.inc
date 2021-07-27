@@ -14444,17 +14444,17 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 			return ret;
 		}
 		#if !FIXES_Single		
-			setproperty(.name = FIXES_gscStereo, .value = componentid);
-			setproperty(.name = FIXES_gscFrontBumper, .value = componentid);
-			setproperty(.name = FIXES_gscRearBumper, .value = componentid);
-			setproperty(.name = FIXES_gscFrontBullBar, .value = componentid);
-			setproperty(.name = FIXES_gscRearBullbar, .value = componentid);
+			setproperty(.name = FIXES_gscStereo, .value = 0);
+			setproperty(.name = FIXES_gscFrontBumper, .value = 0);
+			setproperty(.name = FIXES_gscRearBumper, .value = 0);
+			setproperty(.name = FIXES_gscFrontBullBar, .value = 0);
+			setproperty(.name = FIXES_gscRearBullbar, .value = 0);
 		#else
-			FIXES_gsStereo[vehicleid] = componentid;
-			FIXES_gsFrontBumper[vehicleid] = componentid;
-			FIXES_gsRearBumper[vehicleid] = componentid;
-			FIXES_gsFrontBullBar[vehicleid] = componentid;
-			FIXES_gsRearBullbar[vehicleid] = componentid;
+			FIXES_gsStereo[vehicleid] = 0;
+			FIXES_gsFrontBumper[vehicleid] = 0;
+			FIXES_gsRearBumper[vehicleid] = 0;
+			FIXES_gsFrontBullBar[vehicleid] = 0;
+			FIXES_gsRearBullbar[vehicleid] = 0;
 		#endif
 		return ret;
 
