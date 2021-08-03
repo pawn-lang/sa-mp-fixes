@@ -2030,14 +2030,17 @@ in the output code.
  *
  * <p>Exploits the fact that <c>FIX_AddMenuItem - 1</c> is valid in both cases.
  * When a value is set this becomes (say) <c>0 - 1</c>, i.e. a sum.  When it
- * isn't set this becomes <c>-1</c>, i.e. just the unary value <c>-1</c>.  Plus
- * some extra minor bits to ensure there are no defined values the result in the
- * same outcome as no value: <c>2 * n - 1 + 1</c> can never be odd, while
- * <c>2 * -1 + 1</c> is always odd (assuming integers, of course).</p>
+ * isn't set this becomes <c>-1</c>, i.e. just the unary value <c>-1</c>.  Also
+ * exploits operator precedence - <c>2 * 0 - 1</c> is not the same as
+ * <c>2 * (0 - 1)</c>.  The former is <c>-1</c>, the latter is <c>-2</c>.  The
+ * expression is never true for any real number (it might be for complex
+ * expressions that change the evaluation order).  This can be seen be trying to
+ * solve <c>(2 * n) - 1 = 2 * (n - 1)</c> for <c>n</c> - you end up trying to
+ * prove that <c>n = n - 0.5</c>, a contradiction.  Q.E.D.</p>
  * </remarks>
  */
 
-#define _FIXES_IS_UNSET(%0) ((2*%0-1+1)==-1)
+#define _FIXES_IS_UNSET(%0) ((2*%0-1)==2*(%0-1))
 
 /*
 
