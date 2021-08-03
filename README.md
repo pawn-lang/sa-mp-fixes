@@ -401,14 +401,6 @@ GetRandomCarColPair(495, c1, c2);
 printf("Colours chosen for the Sandking: %08x, %08x", CarColIndexToColour(c1), CarColIndexToColour(c2));
 ```
 
-### `IsComponentFrontBullbar(componentid) / IsComponentRearBullbar(componentid)`
-
-Checks whether the components are either rear or front bullbars.
-
-```pawn
-printf("Component %d is front bullbar and %d is rear", 1109, 1115);
-```
-
 Note that you can also use the alias `CarColIndexToColor`.
 
 ## Options 
