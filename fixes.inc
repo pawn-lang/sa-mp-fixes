@@ -5239,7 +5239,7 @@ static stock const
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetVehicleComponentInSlot 
-	FIXES_gscStereo[] = "FIXES_gsStereo",
+	FIXES_gscStereo[] = "FIXES_gscStereo",
 #endif
 	/**
 	 * <remarks>
@@ -5247,7 +5247,7 @@ static stock const
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetVehicleComponentInSlot 
-	FIXES_gscFrontBumper[] = "FIXES_FrontBumper",
+	FIXES_gscFrontBumper[] = "FIXES_gscFrontBumper",
 #endif
 	/**
 	 * <remarks>
@@ -5255,7 +5255,7 @@ static stock const
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetVehicleComponentInSlot 
-	FIXES_gscRearBumper[] = "FIXES_RearBumper",
+	FIXES_gscRearBumper[] = "FIXES_gscRearBumper",
 #endif
 	/**
 	 * <remarks>
@@ -5263,7 +5263,7 @@ static stock const
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetVehicleComponentInSlot 
-	FIXES_gscFrontBullbar[] = "FIXES_FrontBullbar",
+	FIXES_gscFrontBullbar[] = "FIXES_gscFrontBullbar",
 #endif
 	/**
 	 * <remarks>
@@ -5271,7 +5271,7 @@ static stock const
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetVehicleComponentInSlot 
-	FIXES_gscRearBullbar[] = "FIXES_RearBullbar",
+	FIXES_gscRearBullbar[] = "FIXES_gscRearBullbar",
 #endif
 	/**
 	 * <remarks>
