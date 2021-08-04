@@ -9910,27 +9910,27 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 				#else 
 					case CARMODTYPE_STEREO:
 					{
-						valstr__(componentstring, componentid);
+						FIXES_valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_STEREO, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_FRONT_BUMPER:
 					{
-						valstr__(componentstring, componentid);
+						FIXES_valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_FRONT_BUMPER, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_REAR_BUMPER:
 					{
-						valstr__(componentstring, componentid);
+						FIXES_valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_REAR_BUMPER, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_FRONT_BULLBAR:
 					{
-						valstr__(componentstring, componentid);
+						FIXES_valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_FRONT_BULLBAR, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_REAR_BULLBAR:
 					{
-						valstr__(componentstring, componentid);
+						FIXES_valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_REAR_BULLBAR, "", vehicleid, componentstring);
 					}
 				#endif
@@ -14560,27 +14560,27 @@ native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 				#else
 					case CARMODTYPE_STEREO:
 					{
-						valstr__(componentstring, componentid);
+						FIXES_valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_STEREO, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_FRONT_BUMPER:
 					{
-						valstr__(componentstring, componentid);
+						FIXES_valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_FRONT_BUMPER, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_REAR_BUMPER:
 					{
-						valstr__(componentstring, componentid);
+						FIXES_valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_REAR_BUMPER, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_FRONT_BULLBAR:
 					{
-						valstr__(componentstring, componentid);
+						FIXES_valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_FRONT_BULLBAR, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_REAR_BULLBAR:
 					{
-						valstr__(componentstring, componentid);
+						FIXES_valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_REAR_BULLBAR, "", vehicleid, componentstring);
 					}
 				#endif
