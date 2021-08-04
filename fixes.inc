@@ -16384,6 +16384,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef _FIXES_N_INFINITY
 #undef _FIXES_MIN_WORLDBOUNDS
 #undef _FIXES_MAX_WORLDBOUNDS
+#undef _FIXES_PROPERTY_OFFSET
 #undef _FIXES_ATTACHMENTS
 #undef _FIXES_FOREACH
 #undef _FIXES_IS_UNSET
