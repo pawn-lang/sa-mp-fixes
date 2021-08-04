@@ -9920,28 +9920,27 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 				#else 
 					case CARMODTYPE_STEREO:
 					{
-						valstr__(componentstring, componentid);
+						valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_FRONT_BUMPER:
 					{
-						valstr__(componentstring, componentid);
+						valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_REAR_BUMPER:
 					{
-						valstr__(componentstring, componentid);
-						printf("%d, %s", componentid, componentstring);
+						valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_FRONT_BULLBAR:
 					{
-						valstr__(componentstring, componentid);
+						valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_REAR_BULLBAR:
 					{
-						valstr__(componentstring, componentid);
+						valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
 					}
 				#endif
@@ -14571,27 +14570,27 @@ native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 				#else
 					case CARMODTYPE_STEREO:
 					{
-						valstr__(componentstring, componentid);
+						valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_FRONT_BUMPER:
 					{
-						valstr__(componentstring, componentid);
+						valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_REAR_BUMPER:
 					{
-						valstr__(componentstring, componentid);
+						valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_FRONT_BULLBAR:
 					{
-						valstr__(componentstring, componentid);
+						valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
 					}
 					case CARMODTYPE_REAR_BULLBAR:
 					{
-						valstr__(componentstring, componentid);
+						valstr(componentstring, componentid);
 						setproperty(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
 					}
 				#endif
@@ -14735,7 +14734,6 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 				{
 					getproperty(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
 					strunpack(componentstring, componentstring);
-					printf("%d id %s str", strval(componentstring), componentstring);
 					return strval(componentstring);
 				}
 				case CARMODTYPE_FRONT_BULLBAR:
