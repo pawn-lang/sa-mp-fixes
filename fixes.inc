@@ -2034,9 +2034,12 @@ in the output code.
  * exploits operator precedence - <c>2 * 0 - 1</c> is not the same as
  * <c>2 * (0 - 1)</c>.  The former is <c>-1</c>, the latter is <c>-2</c>.  The
  * expression is never true for any real number (it might be for complex
- * expressions that change the evaluation order).  This can be seen be trying to
- * solve <c>(2 * n) - 1 = 2 * (n - 1)</c> for <c>n</c> - you end up trying to
- * prove that <c>n = n - 0.5</c>, a contradiction.  Q.E.D.</p>
+ * expressions that change the evaluation order).  This can be shown be trying
+ * to solve <c>2n - 1 = 2(n - 1)</c> - you end up trying to prove that
+ * <c>n = n - 0.5</c>, a contradiction.  Q.E.D.</p>
+ *
+ * <p>Conversely, when no value is given this becomes `2 * -1 = 2 * (-1)`, which
+ * is trivially correct.</c>
  * </remarks>
  */
 
