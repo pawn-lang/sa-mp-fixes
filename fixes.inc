@@ -1786,23 +1786,23 @@ in the output code.
  *         /// <remarks>Information about fix here</remarks>
  *         /// <fixes>NameOfFixHere</fixes>
  *         ///
- *         
+ *
  *         #if _FIXES_SAMP && defined _ALS_NameOfFixHere
  *         	#error _ALS_NameOfFixHere defined
  *         #endif
  *         native BAD_NameOfFixHere(params) = NameOfFixHere;
- *         
+ *
  *         ///
  *         /// <remarks>Information about fix here</remarks>
  *         /// <fixes>NameOfFixHere</fixes>
  *         ///
- *         
+ *
  *         #if FIX_NameOfFixHere
  *             stock FIXES_NameOfFixHere(params)
  *             {
  *                 return 0;
  *             }
- *         
+ *
  *             // The trailing `(` is VERY important to keep future `native X() = Y;`s working.
  *             #if _FIXES_SAMP
  *                 #define _ALS_NameOfFixHere
@@ -1924,14 +1924,14 @@ in the output code.
 
 /*
 
-    88        88                                   88                          
-    88        88                                   88                          
-    88        88                                   88                          
-    88aaaaaaaa88   ,adPPYba,  ,adPPYYba,   ,adPPYb,88   ,adPPYba,  8b,dPPYba,  
-    88""""""""88  a8P_____88  ""     `Y8  a8"    `Y88  a8P_____88  88P'   "Y8  
-    88        88  8PP"""""""  ,adPPPPP88  8b       88  8PP"""""""  88          
-    88        88  "8b,   ,aa  88,    ,88  "8a,   ,d88  "8b,   ,aa  88          
-    88        88   `"Ybbd8"'  `"8bbdP"Y8   `"8bbdP"Y8   `"Ybbd8"'  88          
+    88        88                                   88
+    88        88                                   88
+    88        88                                   88
+    88aaaaaaaa88   ,adPPYba,  ,adPPYYba,   ,adPPYb,88   ,adPPYba,  8b,dPPYba,
+    88""""""""88  a8P_____88  ""     `Y8  a8"    `Y88  a8P_____88  88P'   "Y8
+    88        88  8PP"""""""  ,adPPPPP88  8b       88  8PP"""""""  88
+    88        88  "8b,   ,aa  88,    ,88  "8a,   ,d88  "8b,   ,aa  88
+    88        88   `"Ybbd8"'  `"8bbdP"Y8   `"8bbdP"Y8   `"Ybbd8"'  88
 
 
 
@@ -1959,14 +1959,14 @@ in the output code.
 		#if __PawnBuild >= 4
 			#pragma option -(+
 		#endif
-		
+
 		// Use `static enum` if it is available.
 		#if __PawnBuild >= 2
 			#undef _FIXES_ENUM
 			#define _FIXES_ENUM static enum
 		#endif
 	#endif
-	
+
 	// Stupid "warning" that should not exist ever.
 	#pragma warning push
 	#pragma warning disable 207
@@ -2047,16 +2047,16 @@ in the output code.
 
 /*
 
-     ad88888ba                                 88                                       
-    d8"     "8b                ,d       ,d     ""                                       
-    Y8,                        88       88                                              
-    `Y8aaaaa,     ,adPPYba,  MM88MMM  MM88MMM  88  8b,dPPYba,    ,adPPYb,d8  ,adPPYba,  
-      `"""""8b,  a8P_____88    88       88     88  88P'   `"8a  a8"    `Y88  I8[    ""  
-            `8b  8PP"""""""    88       88     88  88       88  8b       88   `"Y8ba,   
-    Y8a     a8P  "8b,   ,aa    88,      88,    88  88       88  "8a,   ,d88  aa    ]8I  
-     "Y88888P"    `"Ybbd8"'    "Y888    "Y888  88  88       88   `"YbbdP"Y8  `"YbbdP"'  
-                                                                 aa,    ,88             
-                                                                  "Y8bbdP"              
+     ad88888ba                                 88
+    d8"     "8b                ,d       ,d     ""
+    Y8,                        88       88
+    `Y8aaaaa,     ,adPPYba,  MM88MMM  MM88MMM  88  8b,dPPYba,    ,adPPYb,d8  ,adPPYba,
+      `"""""8b,  a8P_____88    88       88     88  88P'   `"8a  a8"    `Y88  I8[    ""
+            `8b  8PP"""""""    88       88     88  88       88  8b       88   `"Y8ba,
+    Y8a     a8P  "8b,   ,aa    88,      88,    88  88       88  "8a,   ,d88  aa    ]8I
+     "Y88888P"    `"Ybbd8"'    "Y888    "Y888  88  88       88   `"YbbdP"Y8  `"YbbdP"'
+                                                                 aa,    ,88
+                                                                  "Y8bbdP"
 
 
 */
@@ -2229,16 +2229,16 @@ in the output code.
 
 /*
 
-      ,ad8888ba,                         88                                       
-     d8"'    `"8b                 ,d     ""                                       
-    d8'        `8b                88                                              
-    88          88  8b,dPPYba,  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,  
-    88          88  88P'    "8a   88     88  a8"     "8a  88P'   `"8a  I8[    ""  
-    Y8,        ,8P  88       d8   88     88  8b       d8  88       88   `"Y8ba,   
-     Y8a.    .a8P   88b,   ,a8"   88,    88  "8a,   ,a8"  88       88  aa    ]8I  
-      `"Y8888Y"'    88`YbbdP"'    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'  
-                    88                                                            
-                    88                                                            
+      ,ad8888ba,                         88
+     d8"'    `"8b                 ,d     ""
+    d8'        `8b                88
+    88          88  8b,dPPYba,  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,
+    88          88  88P'    "8a   88     88  a8"     "8a  88P'   `"8a  I8[    ""
+    Y8,        ,8P  88       d8   88     88  8b       d8  88       88   `"Y8ba,
+     Y8a.    .a8P   88b,   ,a8"   88,    88  "8a,   ,a8"  88       88  aa    ]8I
+      `"Y8888Y"'    88`YbbdP"'    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'
+                    88
+                    88
 
 */
 
@@ -3486,14 +3486,14 @@ in the output code.
 
 /*
 
-    88b           d88                                                              
-    888b         d888                                                              
-    88`8b       d8'88                                                              
-    88 `8b     d8' 88  ,adPPYYba,   ,adPPYba,  8b,dPPYba,   ,adPPYba,   ,adPPYba,  
-    88  `8b   d8'  88  ""     `Y8  a8"     ""  88P'   "Y8  a8"     "8a  I8[    ""  
-    88   `8b d8'   88  ,adPPPPP88  8b          88          8b       d8   `"Y8ba,   
-    88    `888'    88  88,    ,88  "8a,   ,aa  88          "8a,   ,a8"  aa    ]8I  
-    88     `8'     88  `"8bbdP"Y8   `"Ybbd8"'  88           `"YbbdP"'   `"YbbdP"'  
+    88b           d88
+    888b         d888
+    88`8b       d8'88
+    88 `8b     d8' 88  ,adPPYYba,   ,adPPYba,  8b,dPPYba,   ,adPPYba,   ,adPPYba,
+    88  `8b   d8'  88  ""     `Y8  a8"     ""  88P'   "Y8  a8"     "8a  I8[    ""
+    88   `8b d8'   88  ,adPPPPP88  8b          88          8b       d8   `"Y8ba,
+    88    `888'    88  88,    ,88  "8a,   ,aa  88          "8a,   ,a8"  aa    ]8I
+    88     `8'     88  `"8bbdP"Y8   `"Ybbd8"'  88           `"YbbdP"'   `"YbbdP"'
 
 
 
@@ -3750,14 +3750,14 @@ in the output code.
 
 /*
 
-    88888888ba,                   ad88  88               88           88                                       
-    88      `"8b                 d8"    ""               ""    ,d     ""                                       
-    88        `8b                88                            88                                              
-    88         88   ,adPPYba,  MM88MMM  88  8b,dPPYba,   88  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,  
-    88         88  a8P_____88    88     88  88P'   `"8a  88    88     88  a8"     "8a  88P'   `"8a  I8[    ""  
-    88         8P  8PP"""""""    88     88  88       88  88    88     88  8b       d8  88       88   `"Y8ba,   
-    88      .a8P   "8b,   ,aa    88     88  88       88  88    88,    88  "8a,   ,a8"  88       88  aa    ]8I  
-    88888888Y"'     `"Ybbd8"'    88     88  88       88  88    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'  
+    88888888ba,                   ad88  88               88           88
+    88      `"8b                 d8"    ""               ""    ,d     ""
+    88        `8b                88                            88
+    88         88   ,adPPYba,  MM88MMM  88  8b,dPPYba,   88  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,
+    88         88  a8P_____88    88     88  88P'   `"8a  88    88     88  a8"     "8a  88P'   `"8a  I8[    ""
+    88         8P  8PP"""""""    88     88  88       88  88    88     88  8b       d8  88       88   `"Y8ba,
+    88      .a8P   "8b,   ,aa    88     88  88       88  88    88,    88  "8a,   ,a8"  88       88  aa    ]8I
+    88888888Y"'     `"Ybbd8"'    88     88  88       88  88    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'
 
 
 
@@ -4525,14 +4525,14 @@ in the output code.
 
 /*
 
-           db         88           ad88888ba   
-          d88b        88          d8"     "8b  
-         d8'`8b       88          Y8,          
-        d8'  `8b      88          `Y8aaaaa,    
-       d8YaaaaY8b     88            `"""""8b,  
-      d8""""""""8b    88                  `8b  
-     d8'        `8b   88          Y8a     a8P  
-    d8'          `8b  88888888888  "Y88888P"   
+           db         88           ad88888ba
+          d88b        88          d8"     "8b
+         d8'`8b       88          Y8,
+        d8'  `8b      88          `Y8aaaaa,
+       d8YaaaaY8b     88            `"""""8b,
+      d8""""""""8b    88                  `8b
+     d8'        `8b   88          Y8a     a8P
+    d8'          `8b  88888888888  "Y88888P"
 
 
 
@@ -4606,14 +4606,14 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 
 /*
 
-    88888888888                                                           
-    88                                                                    
-    88                                                                    
-    88aaaaa      8b,dPPYba,   88       88  88,dPYba,,adPYba,   ,adPPYba,  
-    88"""""      88P'   `"8a  88       88  88P'   "88"    "8a  I8[    ""  
-    88           88       88  88       88  88      88      88   `"Y8ba,   
-    88           88       88  "8a,   ,a88  88      88      88  aa    ]8I  
-    88888888888  88       88   `"YbbdP'Y8  88      88      88  `"YbbdP"'  
+    88888888888
+    88
+    88
+    88aaaaa      8b,dPPYba,   88       88  88,dPYba,,adPYba,   ,adPPYba,
+    88"""""      88P'   `"8a  88       88  88P'   "88"    "8a  I8[    ""
+    88           88       88  88       88  88      88      88   `"Y8ba,
+    88           88       88  "8a,   ,a88  88      88      88  aa    ]8I
+    88888888888  88       88   `"YbbdP'Y8  88      88      88  `"YbbdP"'
 
 
 
@@ -4680,14 +4680,14 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 
 /*
 
-                                                88         
-                 ,d                             88         
-                 88                             88         
-    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8   
-    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"    
-     `"Y8ba,     88    8b       d8  8b          8888[      
-    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,   
-    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a  
+                                                88
+                 ,d                             88
+                 88                             88
+    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8
+    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"
+     `"Y8ba,     88    8b       d8  8b          8888[
+    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,
+    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a
 
 
 
@@ -4752,14 +4752,14 @@ stock
 
 /*
 
-                                                88                                                                      
-                 ,d                             88                                                               ,d     
-                 88                             88                                                               88     
-    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM  
-    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88     
-     `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88     
-    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,    
-    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888  
+                                                88
+                 ,d                             88                                                               ,d
+                 88                             88                                                               88
+    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM
+    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88
+     `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88
+    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,
+    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888
 
 
 
@@ -4776,14 +4776,14 @@ stock const
 
 /*
 
-                                             88                                                             88         
-                 ,d                   ,d     ""                              ,d                             88         
-                 88                   88                                     88                             88         
-    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8   
-    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"    
-     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[      
-    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,   
-    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a  
+                                             88                                                             88
+                 ,d                   ,d     ""                              ,d                             88
+                 88                   88                                     88                             88
+    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8
+    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"
+     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[
+    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,
+    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a
 
 
 
@@ -5092,14 +5092,14 @@ static stock
 
 /*
 
-                                             88                                                             88                                                                      
-                 ,d                   ,d     ""                              ,d                             88                                                               ,d     
-                 88                   88                                     88                             88                                                               88     
-    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM  
-    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88     
-     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88     
-    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,    
-    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888  
+                                             88                                                             88
+                 ,d                   ,d     ""                              ,d                             88                                                               ,d
+                 88                   88                                     88                             88                                                               88
+    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM
+    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88
+     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88
+    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,
+    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888
 
 
 
@@ -6574,14 +6574,14 @@ static stock const
 
 /*
 
-    888b      88                       88                                      
-    8888b     88                ,d     ""                                      
-    88 `8b    88                88                                             
-    88  `8b   88  ,adPPYYba,  MM88MMM  88  8b       d8   ,adPPYba,  ,adPPYba,  
-    88   `8b  88  ""     `Y8    88     88  `8b     d8'  a8P_____88  I8[    ""  
-    88    `8b 88  ,adPPPPP88    88     88   `8b   d8'   8PP"""""""   `"Y8ba,   
-    88     `8888  88,    ,88    88,    88    `8b,d8'    "8b,   ,aa  aa    ]8I  
-    88      `888  `"8bbdP"Y8    "Y888  88      "8"       `"Ybbd8"'  `"YbbdP"'  
+    888b      88                       88
+    8888b     88                ,d     ""
+    88 `8b    88                88
+    88  `8b   88  ,adPPYYba,  MM88MMM  88  8b       d8   ,adPPYba,  ,adPPYba,
+    88   `8b  88  ""     `Y8    88     88  `8b     d8'  a8P_____88  I8[    ""
+    88    `8b 88  ,adPPPPP88    88     88   `8b   d8'   8PP"""""""   `"Y8ba,
+    88     `8888  88,    ,88    88,    88    `8b,d8'    "8b,   ,aa  aa    ]8I
+    88      `888  `"8bbdP"Y8    "Y888  88      "8"       `"Ybbd8"'  `"YbbdP"'
 
 
 
@@ -7072,7 +7072,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native CreateExplosion__(Float:X, Float:Y, Float:Z, type, Float:Radius) = CreateExplosion;
 	native EnableZoneNames__(enable) = EnableZoneNames;
 	native UsePlayerPedAnims__() = UsePlayerPedAnims;
-	native DisableInteriorEnterExits__() = DisableInteriorEnterExits; 
+	native DisableInteriorEnterExits__() = DisableInteriorEnterExits;
 	native SetNameTagDrawDistance__(Float:distance) = SetNameTagDrawDistance;
 	native DisableNameTagLOS__() = DisableNameTagLOS;
 	native LimitGlobalChatRadius__(Float:chat_radius) = LimitGlobalChatRadius;
@@ -7440,16 +7440,16 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 
 /*
 
-      ,ad8888ba,                                                                                                 
-     d8"'    `"8b                                                      ,d                                        
-    d8'        `8b                                                     88                                        
-    88          88  8b,dPPYba,    ,adPPYba,  8b,dPPYba,  ,adPPYYba,  MM88MMM  ,adPPYba,   8b,dPPYba,  ,adPPYba,  
-    88          88  88P'    "8a  a8P_____88  88P'   "Y8  ""     `Y8    88    a8"     "8a  88P'   "Y8  I8[    ""  
-    Y8,        ,8P  88       d8  8PP"""""""  88          ,adPPPPP88    88    8b       d8  88           `"Y8ba,   
-     Y8a.    .a8P   88b,   ,a8"  "8b,   ,aa  88          88,    ,88    88,   "8a,   ,a8"  88          aa    ]8I  
-      `"Y8888Y"'    88`YbbdP"'    `"Ybbd8"'  88          `"8bbdP"Y8    "Y888  `"YbbdP"'   88          `"YbbdP"'  
-                    88                                                                                           
-                    88                                                                                           
+      ,ad8888ba,
+     d8"'    `"8b                                                      ,d
+    d8'        `8b                                                     88
+    88          88  8b,dPPYba,    ,adPPYba,  8b,dPPYba,  ,adPPYYba,  MM88MMM  ,adPPYba,   8b,dPPYba,  ,adPPYba,
+    88          88  88P'    "8a  a8P_____88  88P'   "Y8  ""     `Y8    88    a8"     "8a  88P'   "Y8  I8[    ""
+    Y8,        ,8P  88       d8  8PP"""""""  88          ,adPPPPP88    88    8b       d8  88           `"Y8ba,
+     Y8a.    .a8P   88b,   ,a8"  "8b,   ,aa  88          88,    ,88    88,   "8a,   ,a8"  88          aa    ]8I
+      `"Y8888Y"'    88`YbbdP"'    `"Ybbd8"'  88          `"8bbdP"Y8    "Y888  `"YbbdP"'   88          `"YbbdP"'
+                    88
+                    88
 
 */
 
@@ -7494,14 +7494,14 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 
 /*
 
-    88                                                                       88  
-    88                ,d                                                     88  
-    88                88                                                     88  
-    88  8b,dPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,  8b,dPPYba,   ,adPPYYba,  88  
-    88  88P'   `"8a   88    a8P_____88  88P'   "Y8  88P'   `"8a  ""     `Y8  88  
-    88  88       88   88    8PP"""""""  88          88       88  ,adPPPPP88  88  
-    88  88       88   88,   "8b,   ,aa  88          88       88  88,    ,88  88  
-    88  88       88   "Y888  `"Ybbd8"'  88          88       88  `"8bbdP"Y8  88  
+    88                                                                       88
+    88                ,d                                                     88
+    88                88                                                     88
+    88  8b,dPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,  8b,dPPYba,   ,adPPYYba,  88
+    88  88P'   `"8a   88    a8P_____88  88P'   "Y8  88P'   `"8a  ""     `Y8  88
+    88  88       88   88    8PP"""""""  88          88       88  ,adPPPPP88  88
+    88  88       88   88,   "8b,   ,aa  88          88       88  88,    ,88  88
+    88  88       88   "Y888  `"Ybbd8"'  88          88       88  `"8bbdP"Y8  88
 
 
 
@@ -7754,7 +7754,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 
 /**
  * <remarks>
- * Check if <c>MAX_PLAYERS</c> equals <c>GetMaxPlayers</c>, for efficiency. 
+ * Check if <c>MAX_PLAYERS</c> equals <c>GetMaxPlayers</c>, for efficiency.
  * </remarks>
  */
 
@@ -7807,8 +7807,8 @@ static stock _FIXES_CheckMaxPlayers()
 			#if FIX_GameTextStyles
 
 				// Global style 7 (vehicle name).
-				t = FIXES_gsGTStyle[7] = TextDrawCreate__(608.000000, 344.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 1.000000, 3.000000),
+				t = FIXES_gsGTStyle[7] = TextDrawCreate__(608.0, 344.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 1.0, 3.0),
 				TextDrawAlignment__(t, 3),
 				TextDrawColor__(t, 0x36682CFF),
 				TextDrawSetShadow__(t, 0),
@@ -7821,8 +7821,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 8 (location name).
-				t = FIXES_gsGTStyle[8] = TextDrawCreate__(608.000000, 385.800000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 1.200000, 3.799998),
+				t = FIXES_gsGTStyle[8] = TextDrawCreate__(608.0, 385.8, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 1.2, 3.8),
 				TextDrawAlignment__(t, 3),
 				TextDrawColor__(t, 0xACCBF1FF),
 				TextDrawSetShadow__(t, 0),
@@ -7835,8 +7835,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 9 (radio name).
-				t = FIXES_gsGTStyle[9] = TextDrawCreate__(320.000000, 22.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.600000, 1.799999),
+				t = FIXES_gsGTStyle[9] = TextDrawCreate__(320.0, 22.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.6, 1.8),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0x906210FF),
 				TextDrawSetShadow__(t, 0),
@@ -7849,8 +7849,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 10 (radio switch).
-				t = FIXES_gsGTStyle[10] = TextDrawCreate__(320.000000, 22.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.600000, 1.799999),
+				t = FIXES_gsGTStyle[10] = TextDrawCreate__(320.0, 22.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.6, 1.8),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0x969696FF),
 				TextDrawSetShadow__(t, 0),
@@ -7863,8 +7863,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 11 (positive money).
-				t = FIXES_gsGTStyle[11] = TextDrawCreate__(608.000000, 77.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.550000, 2.200000),
+				t = FIXES_gsGTStyle[11] = TextDrawCreate__(608.0, 77.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.55, 2.2),
 				TextDrawAlignment__(t, 3),
 				TextDrawColor__(t, 0x36682CFF),
 				TextDrawSetShadow__(t, 0),
@@ -7877,8 +7877,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 12 (negative money).
-				t = FIXES_gsGTStyle[12] = TextDrawCreate__(608.000000, 77.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.550000, 2.200000),
+				t = FIXES_gsGTStyle[12] = TextDrawCreate__(608.0, 77.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.55, 2.2),
 				TextDrawAlignment__(t, 3),
 				TextDrawColor__(t, 0xB4191DFF),
 				TextDrawSetShadow__(t, 0),
@@ -7891,46 +7891,46 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 10.0, 200.0);
 
 				// Global style 13 (stunt).
-				t = FIXES_gsGTStyle[13] = TextDrawCreate__(380.000000, 341.150000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.579999, 2.420000),
-				TextDrawTextSize__(t, 40.000000, 460.000000),
+				t = FIXES_gsGTStyle[13] = TextDrawCreate__(380.0, 341.15, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.58, 2.42),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0xDDDDDBFF),
-				TextDrawUseBox__(t, true),
-				TextDrawBoxColor__(t, 0),
 				TextDrawSetShadow__(t, 2),
 				TextDrawSetOutline__(t, 0),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 1),
 				TextDrawSetProportional__(t, true),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 40.0, 460.0);
 
 				// Global style 14 (clock).
-				t = FIXES_gsGTStyle[14] = TextDrawCreate__(577.750000, 22.125000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.550000, 2.170000),
-				TextDrawTextSize__(t, 400.000000, 17.000000),
-				TextDrawAlignment__(t, 2),
+				t = FIXES_gsGTStyle[14] = TextDrawCreate__(608.0, 22.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.55, 2.2),
+				TextDrawAlignment__(t, 3),
 				TextDrawColor__(t, 0xE1E1E1FF),
-				TextDrawUseBox__(t, false),
-				TextDrawBoxColor__(t, 0),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 2),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 3),
 				TextDrawSetProportional__(t, false),
+				TextDrawUseBox__(t, false),
+				TextDrawBoxColor__(t, 0x00000000),
+				TextDrawTextSize__(t, 400.0, 20.0);
 
 				// Global style 15 (popup).
-				t = FIXES_gsGTStyle[15] = TextDrawCreate__(33.500000, 27.500000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.520500, 2.230000),
-				TextDrawTextSize__(t, 230.250000, 175.000000),
+				t = FIXES_gsGTStyle[15] = TextDrawCreate__(34.0, 28.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.52, 2.2),
 				TextDrawAlignment__(t, 1),
-				TextDrawColor__(t, 0xD0D0D0DD),
-				TextDrawUseBox__(t, true),
-				TextDrawBoxColor__(t, 0x000000C8),
+				TextDrawColor__(t, 0xFFFFFF96),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 0),
 				TextDrawBackgroundColor__(t, 0x000000AA),
 				TextDrawFont__(t, 1),
 				TextDrawSetProportional__(t, true),
+				TextDrawUseBox__(t, true),
+				TextDrawBoxColor__(t, 0x00000080),
+				TextDrawTextSize__(t, 230.5, 200.0);
 
 			#endif
 
@@ -7977,8 +7977,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 3.
-				t = FIXES_gsGTStyle[3] = TextDrawCreate__(320.000000, 154.500000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.600000, 2.750000),
+				t = FIXES_gsGTStyle[3] = TextDrawCreate__(320.0, 154.5, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.6, 2.75),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0x906210FF),
 				TextDrawSetShadow__(t, 0),
@@ -7991,8 +7991,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 4.
-				t = FIXES_gsGTStyle[4] = TextDrawCreate__(320.000000, 115.500000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 0.600000, 2.750000),
+				t = FIXES_gsGTStyle[4] = TextDrawCreate__(320.0, 115.5, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 0.6, 2.75),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0x906210FF),
 				TextDrawSetShadow__(t, 0),
@@ -8019,8 +8019,8 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawTextSize__(t, 200.0, 620.0);
 
 				// Global style 6.
-				t = FIXES_gsGTStyle[6] = TextDrawCreate__(320.000000, 60.000000, FIXES_gsSpace),
-				TextDrawLetterSize__(t, 1.000000, 3.599998),
+				t = FIXES_gsGTStyle[6] = TextDrawCreate__(320.0, 60.0, FIXES_gsSpace),
+				TextDrawLetterSize__(t, 1.0, 3.6),
 				TextDrawAlignment__(t, 2),
 				TextDrawColor__(t, 0xACCBF1FF),
 				TextDrawSetShadow__(t, 0),
@@ -8040,130 +8040,130 @@ static stock _FIXES_CheckMaxPlayers()
 			#if FIX_GameTextStyles
 
 				// Global style 7 (playerid, vehicle name).
-				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw__(playerid, 608.000000, 344.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 1.000000, 3.000000),
+				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw__(playerid, 608.0, 344.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 1.0, 3.0),
 				PlayerTextDrawAlignment__(playerid, t, 3),
 				PlayerTextDrawColor__(playerid, t, 0x36682CFF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 2),
-				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 8 (playerid, location name).
-				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw__(playerid, 608.000000, 385.800000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 1.200000, 3.799998),
+				t = FIXES_gsPGTStyle[playerid][8] = CreatePlayerTextDraw__(playerid, 608.0, 385.8, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 1.2, 3.8),
 				PlayerTextDrawAlignment__(playerid, t, 3),
 				PlayerTextDrawColor__(playerid, t, 0xACCBF1FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 0),
-				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 9 (playerid, radio name).
-				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw__(playerid, 320.000000, 22.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 1.799999),
+				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw__(playerid, 320.0, 22.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.6, 1.8),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 1),
-				PlayerTextDrawBackgroundColor__(playerid, t, 170),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 2),
-				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 10 (playerid, radio switch).
-				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw__(playerid, 320.000000, 22.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 1.799999),
+				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw__(playerid, 320.0, 22.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.6, 1.8),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0x969696FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 1),
-				PlayerTextDrawBackgroundColor__(playerid, t, 170),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 2),
-				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 11 (playerid, positive money).
-				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw__(playerid, 608.000000, 77.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.550000, 2.200000),
+				t = FIXES_gsPGTStyle[playerid][11] = CreatePlayerTextDraw__(playerid, 608.0, 77.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.55, 2.2),
 				PlayerTextDrawAlignment__(playerid, t, 3),
 				PlayerTextDrawColor__(playerid, t, 0x36682CFF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 3),
-				PlayerTextDrawSetProportional__(playerid, t, 0),
+				PlayerTextDrawSetProportional__(playerid, t, false),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 12 (playerid, negative money).
-				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw__(playerid, 608.000000, 77.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.550000, 2.200000),
+				t = FIXES_gsPGTStyle[playerid][12] = CreatePlayerTextDraw__(playerid, 608.0, 77.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.55, 2.2),
 				PlayerTextDrawAlignment__(playerid, t, 3),
 				PlayerTextDrawColor__(playerid, t, 0xB4191DFF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 3),
-				PlayerTextDrawSetProportional__(playerid, t, 0),
+				PlayerTextDrawSetProportional__(playerid, t, false),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
 
 				// Global style 13 (playerid, stunt).
-				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw__(playerid, 380.000000, 341.150000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.579999, 2.420000),
-				PlayerTextDrawTextSize__(playerid, t, 40.000000, 460.000000),
+				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw__(playerid, 380.0, 341.15, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.58, 2.42),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0xDDDDDBFF),
-				PlayerTextDrawUseBox__(playerid, t, true),
-				PlayerTextDrawBoxColor__(playerid, t, 0),
 				PlayerTextDrawSetShadow__(playerid, t, 2),
 				PlayerTextDrawSetOutline__(playerid, t, 0),
-				PlayerTextDrawBackgroundColor__(playerid, t, 170),
+				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 1),
-				PlayerTextDrawSetProportional__(playerid, t, 1);
+				PlayerTextDrawSetProportional__(playerid, t, true),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 40.0, 460.0);
 
 				// Global style 14 (clock).
-				t = FIXES_gsPGTStyle[playerid][14] = CreatePlayerTextDraw__(playerid, 577.750000, 22.125000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.550000, 2.170000),
-				PlayerTextDrawTextSize__(playerid, t, 400.000000, 17.000000),
-				PlayerTextDrawAlignment__(playerid, t, 2),
+				t = FIXES_gsPGTStyle[playerid][14] = CreatePlayerTextDraw__(playerid, 608.0, 22.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.55, 2.2),
+				PlayerTextDrawAlignment__(playerid, t, 3),
 				PlayerTextDrawColor__(playerid, t, 0xE1E1E1FF),
-				PlayerTextDrawUseBox__(playerid, t, false),
-				PlayerTextDrawBoxColor__(playerid, t, 0),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 3),
 				PlayerTextDrawSetProportional__(playerid, t, false),
+				PlayerTextDrawUseBox__(playerid, t, false),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
+				PlayerTextDrawTextSize__(playerid, t, 400.0, 20.0);
 
 				// Global style 15 (playerid, popup).
-				t = FIXES_gsPGTStyle[playerid][15] = CreatePlayerTextDraw__(playerid, 33.500000, 27.500000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.520500, 2.230000),
-				PlayerTextDrawTextSize__(playerid, t, 230.250000, 175.000000),
+				t = FIXES_gsPGTStyle[playerid][15] = CreatePlayerTextDraw__(playerid, 34.0, 28.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.52, 2.2),
 				PlayerTextDrawAlignment__(playerid, t, 1),
-				PlayerTextDrawColor__(playerid, t, 0xD0D0D0DD),
-				PlayerTextDrawUseBox__(playerid, t, true),
-				PlayerTextDrawBoxColor__(playerid, t, 0x000000C8),
+				PlayerTextDrawColor__(playerid, t, 0xFFFFFF96),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 0),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 1),
 				PlayerTextDrawSetProportional__(playerid, t, true),
+				PlayerTextDrawUseBox__(playerid, t, true),
+				PlayerTextDrawBoxColor__(playerid, t, 0x00000080),
+				PlayerTextDrawTextSize__(playerid, t, 230.5, 200.0);
 
 			#endif
 
@@ -8176,7 +8176,7 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 3),
-				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
@@ -8190,7 +8190,7 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 3),
-				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 10.0, 200.0);
@@ -8204,35 +8204,35 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawSetOutline__(playerid, t, 3),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 0),
-				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 3.
-				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw__(playerid, 320.000000, 154.500000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 2.750000),
+				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw__(playerid, 320.0, 154.5, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.6, 2.75),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 2),
-				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 4.
-				t = FIXES_gsPGTStyle[playerid][4] = CreatePlayerTextDraw__(playerid, 320.000000, 115.500000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 0.600000, 2.750000),
+				t = FIXES_gsPGTStyle[playerid][4] = CreatePlayerTextDraw__(playerid, 320.0, 115.5, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 0.6, 2.75),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 2),
-				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
@@ -8246,21 +8246,21 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 2),
-				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 
 				// Global style 6.
-				t = FIXES_gsPGTStyle[playerid][6] = CreatePlayerTextDraw__(playerid, 320.000000, 60.000000, FIXES_gsSpace),
-				PlayerTextDrawLetterSize__(playerid, t, 1.000000, 3.599998),
+				t = FIXES_gsPGTStyle[playerid][6] = CreatePlayerTextDraw__(playerid, 320.0, 60.0, FIXES_gsSpace),
+				PlayerTextDrawLetterSize__(playerid, t, 1.0, 3.6),
 				PlayerTextDrawAlignment__(playerid, t, 2),
 				PlayerTextDrawColor__(playerid, t, 0xACCBF1FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
 				PlayerTextDrawBackgroundColor__(playerid, t, 0x000000AA),
 				PlayerTextDrawFont__(playerid, t, 3),
-				PlayerTextDrawSetProportional__(playerid, t, 1),
+				PlayerTextDrawSetProportional__(playerid, t, true),
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000000),
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
@@ -8377,14 +8377,14 @@ static stock _FIXES_CheckMaxPlayers()
 
 /*
 
-    88888888888  88                                     
-    88           ""                                     
-    88                                                  
-    88aaaaa      88  8b,     ,d8  ,adPPYba,  ,adPPYba,  
-    88"""""      88   `Y8, ,8P'  a8P_____88  I8[    ""  
-    88           88     )888(    8PP"""""""   `"Y8ba,   
-    88           88   ,d8" "8b,  "8b,   ,aa  aa    ]8I  
-    88           88  8P'     `Y8  `"Ybbd8"'  `"YbbdP"'  
+    88888888888  88
+    88           ""
+    88
+    88aaaaa      88  8b,     ,d8  ,adPPYba,  ,adPPYba,
+    88"""""      88   `Y8, ,8P'  a8P_____88  I8[    ""
+    88           88     )888(    8PP"""""""   `"Y8ba,
+    88           88   ,d8" "8b,  "8b,   ,aa  aa    ]8I
+    88           88  8P'     `Y8  `"Ybbd8"'  `"YbbdP"'
 
 
 
@@ -9444,9 +9444,9 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  */
 
 #if _FIXES_SAMP && defined _ALS_SetVehiclePos
-	#error _ALS_SetVehiclePos defined 
-#endif 
-native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos; 
+	#error _ALS_SetVehiclePos defined
+#endif
+native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 
 /**
  * <fixes>SilentTeleport</fixes>
@@ -10557,7 +10557,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		// =============================
 		//  END: SilentTeleport
 		// =============================
-		
+
 		// ==========================
 		//  BEGIN: GetPlayerInterior
 		// ==========================
@@ -10798,7 +10798,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * Declare the function to reset the car-jacked player id to invalid id.
  * </remarks>
  */
- 
+
 #if FIX_SilentTeleport
 	forward FIXES_RemoveJackedId(playerid);
 	public FIXES_RemoveJackedId(playerid) return FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
@@ -10986,7 +10986,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if FIX_BypassDialog
 	#if !FIXES_Single
 		forward @FIXES_BlockUpdate(playerid, bool:block);
-		
+
 		public @FIXES_BlockUpdate(playerid, bool:block)
 		{
 			if (block)
@@ -15659,14 +15659,14 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 /*
 
-           db         88888888ba   88  
-          d88b        88      "8b  88  
-         d8'`8b       88      ,8P  88  
-        d8'  `8b      88aaaaaa8P'  88  
-       d8YaaaaY8b     88""""""'    88  
-      d8""""""""8b    88           88  
-     d8'        `8b   88           88  
-    d8'          `8b  88           88  
+           db         88888888ba   88
+          d88b        88      "8b  88
+         d8'`8b       88      ,8P  88
+        d8'  `8b      88aaaaaa8P'  88
+       d8YaaaaY8b     88""""""'    88
+      d8""""""""8b    88           88
+     d8'        `8b   88           88
+    d8'          `8b  88           88
 
 
 
@@ -15885,14 +15885,14 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 /*
 
-    88888888888                                                       
-    88                                  ,d                            
-    88                                  88                            
-    88aaaaa   ,adPPYba,    ,adPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,  
-    88"""""  a8"     "8a  a8"     "8a   88    a8P_____88  88P'   "Y8  
-    88       8b       d8  8b       d8   88    8PP"""""""  88          
-    88       "8a,   ,a8"  "8a,   ,a8"   88,   "8b,   ,aa  88          
-    88        `"YbbdP"'    `"YbbdP"'    "Y888  `"Ybbd8"'  88          
+    88888888888
+    88                                  ,d
+    88                                  88
+    88aaaaa   ,adPPYba,    ,adPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,
+    88"""""  a8"     "8a  a8"     "8a   88    a8P_____88  88P'   "Y8
+    88       8b       d8  8b       d8   88    8PP"""""""  88
+    88       "8a,   ,a8"  "8a,   ,a8"   88,   "8b,   ,aa  88
+    88        `"YbbdP"'    `"YbbdP"'    "Y888  `"Ybbd8"'  88
 
 
 
@@ -15986,7 +15986,7 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 
 /**
  * <remarks>
- * 
+ *
  * </remarks>
  */
 
@@ -16004,4 +16004,3 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_XXX__
 	#define XXX__( FIXES_XXX(
 #endif
-
