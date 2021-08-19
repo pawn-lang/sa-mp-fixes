@@ -1569,6 +1569,50 @@ in the output code.
  *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
  * </fix>
  *
+ * <fix name="GetConsoleVarAsString">
+ *     <problem>
+ *         Crashes on unknown string variables.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ *
+ * <fix name="GetConsoleVarAsInt">
+ *     <problem>
+ *         Crashes on unknown int variables.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ *
+ * <fix name="GetConsoleVarAsBool">
+ *     <problem>
+ *         Crashes on unknown boolean variables.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ *
+ * <fix name="GetConsoleVarAsFloat">
+ *     <problem>
+ *         Doesn't even exist.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ *
  * <fix name="tabsize">
  *     <problem>
  *         Some people still use <c>tabsize 0</c>.
@@ -3387,48 +3431,80 @@ in the output code.
 	#define FIX_GetWorldTime                     (2)
 #endif
 
-#if !defined FIX_GetServerVarAsString
-	_FIXES_STOCK FIX_GetServerVarAsString = _FIXES_DEFAULT;
-	#define FIX_GetServerVarAsString             _FIXES_DEFAULT
-#elseif _FIXES_IS_UNSET(FIX_GetServerVarAsString)
-	#undef FIX_GetServerVarAsString
-	#define FIX_GetServerVarAsString             (2)
-#endif
-
-#if !defined FIX_GetServerVarAsInt
-	_FIXES_STOCK FIX_GetServerVarAsInt = _FIXES_DEFAULT;
-	#define FIX_GetServerVarAsInt                _FIXES_DEFAULT
-#elseif _FIXES_IS_UNSET(FIX_GetServerVarAsInt)
-	#undef FIX_GetServerVarAsInt
-	#define FIX_GetServerVarAsInt                (2)
-#endif
-
-#if !defined FIX_GetServerVarAsBool
-	_FIXES_STOCK FIX_GetServerVarAsBool = _FIXES_DEFAULT;
-	#define FIX_GetServerVarAsBool               _FIXES_DEFAULT
-#elseif _FIXES_IS_UNSET(FIX_GetServerVarAsBool)
-	#undef FIX_GetServerVarAsBool
-	#define FIX_GetServerVarAsBool               (2)
-#endif
-
-#if !defined FIX_GetServerVarAsFloat
-	#if defined GetServerVarAsFloat
-		#if FIX_GetServerVarAsString
-			_FIXES_STOCK FIX_GetServerVarAsFloat = _FIXES_DEFAULT;
-			#define FIX_GetServerVarAsFloat      _FIXES_DEFAULT
+#if !defined FIX_GetConsoleVarAsString
+	#if defined FIX_GetServerVarAsString
+		#if _FIXES_IS_UNSET(FIX_GetServerVarAsString)
+			#define FIX_GetConsoleVarAsString    (2)
 		#else
-			#if FIXES_EnableDeprecated
-				_FIXES_STOCK FIX_GetServerVarAsFloat = FIXES_EnableDeprecated;
-			#endif
-			#define FIX_GetServerVarAsFloat      FIXES_EnableDeprecated
+			#define FIX_GetConsoleVarAsString    (FIX_GetServerVarAsString)
 		#endif
 	#else
-		_FIXES_STOCK FIX_GetServerVarAsFloat = FIX_Natives;
-		#define FIX_GetServerVarAsFloat          FIX_Natives
+		_FIXES_STOCK FIX_GetConsoleVarAsString = _FIXES_DEFAULT;
+		#define FIX_GetConsoleVarAsString        _FIXES_DEFAULT
 	#endif
-#elseif _FIXES_IS_UNSET(FIX_GetServerVarAsFloat)
-	#undef FIX_GetServerVarAsFloat
-	#define FIX_GetServerVarAsFloat              (2)
+#elseif _FIXES_IS_UNSET(FIX_GetConsoleVarAsString)
+	#undef FIX_GetConsoleVarAsString
+	#define FIX_GetConsoleVarAsString            (2)
+#endif
+
+#if !defined FIX_GetConsoleVarAsInt
+	#if defined FIX_GetServerVarAsInt   
+		#if _FIXES_IS_UNSET(FIX_GetServerVarAsInt)
+			#define FIX_GetConsoleVarAsInt       (2)
+		#else
+			#define FIX_GetConsoleVarAsInt       (FIX_GetServerVarAsInt)
+		#endif
+	#else
+		_FIXES_STOCK FIX_GetConsoleVarAsInt    = _FIXES_DEFAULT;
+		#define FIX_GetConsoleVarAsInt           _FIXES_DEFAULT
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetConsoleVarAsInt)
+	#undef FIX_GetConsoleVarAsInt
+	#define FIX_GetConsoleVarAsInt               (2)
+#endif
+
+#if !defined FIX_GetConsoleVarAsBool
+	#if defined FIX_GetServerVarAsBool  
+		#if _FIXES_IS_UNSET(FIX_GetServerVarAsBool)
+			#define FIX_GetConsoleVarAsBool      (2)
+		#else
+			#define FIX_GetConsoleVarAsBool      (FIX_GetServerVarAsBool)
+		#endif
+	#else
+		_FIXES_STOCK FIX_GetConsoleVarAsBool   = _FIXES_DEFAULT;
+		#define FIX_GetConsoleVarAsBool          _FIXES_DEFAULT
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetConsoleVarAsBool)
+	#undef FIX_GetConsoleVarAsBool
+	#define FIX_GetConsoleVarAsBool              (2)
+#endif
+
+#if !defined FIX_GetConsoleVarAsFloat
+	#if defined GetConsoleVarAsFloat
+		#if FIX_GetConsoleVarAsString
+			_FIXES_STOCK FIX_GetConsoleVarAsFloat = _FIXES_DEFAULT;
+			#define FIX_GetConsoleVarAsFloat     _FIXES_DEFAULT
+		#else
+			#if FIXES_EnableDeprecated
+				_FIXES_STOCK FIX_GetConsoleVarAsFloat = FIXES_EnableDeprecated;
+			#endif
+			#define FIX_GetConsoleVarAsFloat     FIXES_EnableDeprecated
+		#endif
+	#else
+		#if defined FIX_GetServerVarAsFloat
+			#if _FIXES_IS_UNSET(FIX_GetServerVarAsFloat)
+				#define FIX_GetConsoleVarAsFloat (2)
+			#else
+				#define FIX_GetConsoleVarAsFloat (FIX_GetServerVarAsFloat)
+			#endif
+		#else
+			_FIXES_STOCK FIX_GetConsoleVarAsFloat = FIX_Natives;
+			#define FIX_GetConsoleVarAsFloat     FIX_Natives
+		#endif
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_GetConsoleVarAsFloat)
+	#undef FIX_GetConsoleVarAsFloat
+	#define FIX_GetConsoleVarAsFloat             (2)
 #endif
 
 #if !defined FIX_tabsize
@@ -7797,7 +7873,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
  * </remarks>
  */
 
-#if FIX_GetServerVarAsString || FIX_GetServerVarAsFloat || FIX_GetServerVarAsInt || FIX_GetServerVarAsBool
+#if FIX_GetConsoleVarAsString || FIX_GetConsoleVarAsFloat || FIX_GetConsoleVarAsInt || FIX_GetConsoleVarAsBool
 	static stock _FIXES_CheckServerRoot()
 	{
 		FIXES_gsServerCFG = fopen("DANGEROUS_SERVER_ROOT/server.cfg", io_read);
@@ -7834,10 +7910,10 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 				print("*                                                                              *");
 				print("* Or (preferably) disable the relevant fixes with:                             *");
 				print("*                                                                              *");
-				print("*     #define FIX_GetServerVarAsString 0                                       *");
-				print("*     #define FIX_GetServerVarAsFloat  0                                       *");
-				print("*     #define FIX_GetServerVarAsInt    0                                       *");
-				print("*     #define FIX_GetServerVarAsBool   0                                       *");
+				print("*     #define FIX_GetConsoleVarAsString 0                                      *");
+				print("*     #define FIX_GetConsoleVarAsFloat  0                                      *");
+				print("*     #define FIX_GetConsoleVarAsInt    0                                      *");
+				print("*     #define FIX_GetConsoleVarAsBool   0                                      *");
 				print("*                                                                              *");
 				print("********************************************************************************");
 				print(" ");
@@ -9900,7 +9976,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		// ==================================
 		#if FIX_GetVehicleComponentInSlot
 			#if !FIXES_Single
-				new componentstring[8];
+				new componentstring[10];
 			#endif
 			switch (FIXES_GetVehicleComponentType(componentid))
 			{
@@ -14548,7 +14624,7 @@ native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 	stock FIXES_AddVehicleComponent(vehicleid, componentid)
 	{
 		new 
-			componentstring[10],
+			componentstring[8],
 			ret = AddVehicleComponent__(vehicleid, componentid);
 		if (ret) 
 		{
@@ -15896,6 +15972,11 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
  * <fixes>GetServerVarAsString</fixes>
  */
 
+#if _FIXES_SAMP && defined _ALS_GetConsoleVarAsString
+	#error _ALS_GetConsoleVarAsString defined
+#endif
+native BAD_GetConsoleVarAsString(const varname[], buffer[], len) = GetConsoleVarAsString;
+
 #if _FIXES_SAMP && defined _ALS_GetServerVarAsString
 	#error _ALS_GetServerVarAsString defined
 #endif
@@ -15905,8 +15986,8 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>GetServerVarAsString</fixes>
  */
 
-#if FIX_GetServerVarAsString || FIX_GetServerVarAsFloat || FIX_GetServerVarAsInt || FIX_GetServerVarAsBool
-	stock bool:FIXES_GetServerVarAsString(const varname[], buffer[], len = sizeof (buffer))
+#if FIX_GetConsoleVarAsString || FIX_GetConsoleVarAsFloat || FIX_GetConsoleVarAsInt || FIX_GetConsoleVarAsBool
+	stock bool:FIXES_GetConsoleVarAsString(const varname[], buffer[], len = sizeof (buffer))
 	{
 		buffer[0] = '\0';
 		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
@@ -15944,7 +16025,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		     0x0E9495C2, // hostname
 		     0x5D876F9A, // password
 		     0x7C706484: // bind
-			return bool:GetServerVarAsString__(varname, buffer, len);
+			return bool:GetConsoleVarAsString__(varname, buffer, len);
 		default:
 			return false;
 		}
@@ -15999,7 +16080,21 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 	}
 #endif
 
-#if FIX_GetServerVarAsString
+#if FIX_GetConsoleVarAsString
+	#if _FIXES_SAMP
+		#define _ALS_GetConsoleVarAsString
+		#define GetConsoleVarAsString( FIXES_GetConsoleVarAsString(
+	#endif
+
+	#define _ALS_GetConsoleVarAsString__
+	#define GetConsoleVarAsString__( FIXES_GetConsoleVarAsString(
+	
+	#pragma deprecated Use `GetConsoleVarAsString`
+	stock bool:FIXES_GetServerVarAsString(const varname[], buffer[], len = sizeof (buffer))
+	{
+		return FIXES_GetConsoleVarAsString(varname, buffer, len);
+	}
+
 	#if _FIXES_SAMP
 		#define _ALS_GetServerVarAsString
 		#define GetServerVarAsString( FIXES_GetServerVarAsString(
@@ -16010,8 +16105,13 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
- * <fixes>GetServerVarAsInt</fixes>
+ * <fixes>GetConsoleVarAsInt</fixes>
  */
+
+#if _FIXES_SAMP && defined _ALS_GetConsoleVarAsInt
+	#error _ALS_GetConsoleVarAsInt defined
+#endif
+native BAD_GetConsoleVarAsInt(const varname[]) = GetConsoleVarAsInt;
 
 #if _FIXES_SAMP && defined _ALS_GetServerVarAsInt
 	#error _ALS_GetServerVarAsInt defined
@@ -16019,11 +16119,11 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 
 /**
- * <fixes>GetServerVarAsInt</fixes>
+ * <fixes>GetConsoleVarAsInt</fixes>
  */
 
-#if FIX_GetServerVarAsInt
-	stock FIXES_GetServerVarAsInt(const varname[])
+#if FIX_GetConsoleVarAsInt
+	stock FIXES_GetConsoleVarAsInt(const varname[])
 	{
 		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
 		{
@@ -16046,15 +16146,29 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 		     0x0BAD27EA, // sleep
 		     0x0A9910C4, // stream_rate
 		     0xE20F31D1: // maxplayers
-			return GetServerVarAsInt__(varname);
+			return GetConsoleVarAsInt__(varname);
 		default:
 			return 0;
 		}
 		new
 			buffer[16];
-		if (FIXES_GetServerVarAsString(varname, buffer, sizeof (buffer)))
+		if (FIXES_GetConsoleVarAsString(varname, buffer, sizeof (buffer)))
 			return strval(buffer);
 		return 0;
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_GetConsoleVarAsInt
+		#define GetConsoleVarAsInt( FIXES_GetConsoleVarAsInt(
+	#endif
+
+	#define _ALS_GetConsoleVarAsInt__
+	#define GetConsoleVarAsInt__( FIXES_GetConsoleVarAsInt(
+	
+	#pragma deprecated Use `GetConsoleVarAsInt`
+	stock FIXES_GetServerVarAsInt(const varname[])
+	{
+		return FIXES_GetConsoleVarAsInt(varname);
 	}
 
 	#if _FIXES_SAMP
@@ -16067,8 +16181,13 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 #endif
 
 /**
- * <fixes>GetServerVarAsBool</fixes>
+ * <fixes>GetConsoleVarAsBool</fixes>
  */
+
+#if _FIXES_SAMP && defined _ALS_GetConsoleVarAsBool
+	#error _ALS_GetConsoleVarAsBool defined
+#endif
+native BAD_GetConsoleVarAsBool(const varname[]) = GetConsoleVarAsBool;
 
 #if _FIXES_SAMP && defined _ALS_GetServerVarAsBool
 	#error _ALS_GetServerVarAsBool defined
@@ -16076,11 +16195,11 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 /**
- * <fixes>GetServerVarAsBool</fixes>
+ * <fixes>GetConsoleVarAsBool</fixes>
  */
 
-#if FIX_GetServerVarAsBool
-	stock bool:FIXES_GetServerVarAsBool(const varname[])
+#if FIX_GetConsoleVarAsBool
+	stock bool:FIXES_GetConsoleVarAsBool(const varname[])
 	{
 		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
 		{
@@ -16091,15 +16210,29 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 		     0xA300A7ED, // logqueries
 		     0x97EABC6B, // timestamp
 		     0x57CBE04F: // myriad
-			return bool:GetServerVarAsBool__(varname);
+			return bool:GetConsoleVarAsBool__(varname);
 		default:
 			return false;
 		}
 		new
 			buffer[16];
-		if (FIXES_GetServerVarAsString(varname, buffer, sizeof (buffer)))
+		if (FIXES_GetConsoleVarAsString(varname, buffer, sizeof (buffer)))
 			return strval(buffer) != 0;
 		return false;
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_GetConsoleVarAsBool
+		#define GetConsoleVarAsBool( FIXES_GetConsoleVarAsBool(
+	#endif
+
+	#define _ALS_GetConsoleVarAsBool__
+	#define GetConsoleVarAsBool__( FIXES_GetConsoleVarAsBool(
+	
+	#pragma deprecated Use `GetConsoleVarAsBool`
+	stock bool:FIXES_GetServerVarAsBool(const varname[])
+	{
+		return FIXES_GetConsoleVarAsBool(varname);
 	}
 
 	#if _FIXES_SAMP
@@ -16112,8 +16245,15 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #endif
 
 /**
- * <fixes>GetServerVarAsFloat</fixes>
+ * <fixes>GetConsoleVarAsFloat</fixes>
  */
+
+#if _FIXES_SAMP && defined _ALS_GetConsoleVarAsFloat
+	#error _ALS_GetConsoleVarAsFloat defined
+#endif
+#if defined GetConsoleVarAsFloat
+	native BAD_GetConsoleVarAsFloat(const varname[]) = GetConsoleVarAsFloat;
+#endif
 
 #if _FIXES_SAMP && defined _ALS_GetServerVarAsFloat
 	#error _ALS_GetServerVarAsFloat defined
@@ -16123,19 +16263,33 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #endif
 
 /**
- * <fixes>GetServerVarAsFloat</fixes>
+ * <fixes>GetConsoleVarAsFloat</fixes>
  */
 
-#if FIX_GetServerVarAsFloat
-	stock Float:FIXES_GetServerVarAsFloat(const varname[])
+#if FIX_GetConsoleVarAsFloat
+	stock Float:FIXES_GetConsoleVarAsFloat(const varname[])
 	{
 		if (!FIXES_gsServerCFG) // 0x03A253F3 = stream_distance.
 			return 0.0;
 		new
 			buffer[16];
-		if (FIXES_GetServerVarAsString(varname, buffer, sizeof (buffer)))
+		if (FIXES_GetConsoleVarAsString(varname, buffer, sizeof (buffer)))
 			return floatstr(buffer);
 		return 0.0;
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_GetConsoleVarAsFloat
+		#define GetConsoleVarAsFloat( FIXES_GetConsoleVarAsFloat(
+	#endif
+
+	#define _ALS_GetConsoleVarAsFloat__
+	#define GetConsoleVarAsFloat__( FIXES_GetConsoleVarAsFloat(
+	
+	#pragma deprecated Use `GetConsoleVarAsFloat`
+	stock Float:FIXES_GetServerVarAsFloat(const varname[])
+	{
+		return FIXES_GetConsoleVarAsFloat(varname);
 	}
 
 	#if _FIXES_SAMP
