@@ -9900,7 +9900,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		// ==================================
 		#if FIX_GetVehicleComponentInSlot
 			#if !FIXES_Single
-				new componentstring[100];
+				new componentstring[8];
 			#endif
 			switch (FIXES_GetVehicleComponentType(componentid))
 			{
@@ -14701,7 +14701,9 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 #if FIX_GetVehicleComponentInSlot
 	stock FIXES_GetVehicleComponentInSlot(vehicleid, slot)
 	{
-		new componentstring[100];
+		#if !FIXES_Single
+			new componentstring[8];
+		#endif
 		switch (slot)
 		{
 			#if FIXES_Single
