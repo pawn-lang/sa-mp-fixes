@@ -14624,7 +14624,7 @@ native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 	stock FIXES_AddVehicleComponent(vehicleid, componentid)
 	{
 		new
-			#if FIXES_Single
+			#if !FIXES_Single
 				componentstring[8],
 			#endif
 				ret = AddVehicleComponent__(vehicleid, componentid);
@@ -16651,3 +16651,4 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_XXX__
 	#define XXX__( FIXES_XXX(
 #endif
+
