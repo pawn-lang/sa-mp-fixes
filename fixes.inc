@@ -16362,7 +16362,11 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	{
 		modelid -= 400;
 		if (_FIXES_IN_RANGE(modelid, 0, 211 + 1))
-			return (FIXES_gscMaxPassengers[modelid >>> 3] >>> ((modelid & 7) << 2)) & 0xF;
+		{
+			modelid = (FIXES_gscMaxPassengers[modelid >>> 3] >>> ((modelid & 7) << 2)) & 0xF;
+			if (modelid != 15)
+				return modelid + 1;
+		}
 		return 0;
 	}
 
