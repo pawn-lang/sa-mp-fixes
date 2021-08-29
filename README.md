@@ -1,5 +1,4 @@
 
-
 # fixes.inc
 
 ### Community patches for buggy SA:MP functions.
@@ -213,8 +212,8 @@ useful for other scripts - things like vehicle meta-data, current status of play
 While new functions are not the primary goal of this include, it seems silly to keep this
 information hidden when it can be used, forcing people to duplicate functionality just to do things
 like get a player's current dialog ID for example.  The general rule is still not to add new
-functions, there are many other libraries for that, but if the data already exists thanks to the
-code required for a fix, then it might as well be exposed.
+functions, there are many other libraries for that; but if the data already exists thanks to the
+code being required for a fix, then it might as well be exposed.
 
 Most of these additional functions are controlled by `FIX_API`, and can be tested for with
 `FIXES_API`, but some older ones have their own `FIX_` definition (which now defaults to `FIX_API`).
@@ -252,7 +251,7 @@ if (VehicleCanHaveComponent(536, 1005))
 }
 else
 {
-	printf("The Blade can not have the fury scoop");
+	printf("The Blade cannot have the fury scoop");
 }
 ```
 
@@ -320,15 +319,6 @@ Get's the current server global weather.
 ```pawn
 new time = GetWorldTime();
 printf("The time on the server is currently %02d:00", time);
-```
-
-### `GetWeather()`
-
-Get's the current server global weather.
-
-```pawn
-new weatherid = GetWeather();
-printf("The server currently has weather %d", weatherid);
 ```
 
 ### `ClearPlayerWorldBounds(playerid)`
