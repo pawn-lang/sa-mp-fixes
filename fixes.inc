@@ -2672,29 +2672,45 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerWorldBounds             (0)
 #endif
 
-#if _FIXES_IS_UNDEFINED(FIX_TogglePlayerControllable)
+#if !(defined FIX_TogglePlayerControllable) || (defined _PD@TogglePlayerControllable)
 	#if defined SetObjectMaterial
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_TogglePlayerControllable = FIXES_EnableDeprecated;
-		#else
-			_FIXES_SHOW_PAWNDOC(FIX_TogglePlayerControllable);
+		#elseif !defined _FIXES_DetermineOS
+			static stock FIX_TogglePlayerControllable;
+			const _PD@TogglePlayerControllable = 1;
 		#endif
 		#define FIX_TogglePlayerControllable     FIXES_EnableDeprecated
 	#else
-		_FIXES_STOCK FIX_TogglePlayerControllable = _FIXES_DEFAULT;
+		#if FIXES_ExplicitOptions
+			static FIX_TogglePlayerControllable = _FIXES_DEFAULT;
+		#endif
+		#if !defined _FIXES_DetermineOS
+			static stock FIX_TogglePlayerControllable;
+			const _PD@TogglePlayerControllable = 1;
+		#endif
 		#define FIX_TogglePlayerControllable     _FIXES_DEFAULT
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)
 	#undef FIX_TogglePlayerControllable
-	_FIXES_SHOW_PAWNDOC(FIX_TogglePlayerControllable);
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_TogglePlayerControllable;
+		const _PD@TogglePlayerControllable = 1;
+	#endif
 	#define FIX_TogglePlayerControllable         (2)
 #elseif FIX_TogglePlayerControllable
 	#undef FIX_TogglePlayerControllable
-	_FIXES_SHOW_PAWNDOC(FIX_TogglePlayerControllable);
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_TogglePlayerControllable;
+		const _PD@TogglePlayerControllable = 1;
+	#endif
 	#define FIX_TogglePlayerControllable         (1)
 #else
 	#undef FIX_TogglePlayerControllable
-	_FIXES_SHOW_PAWNDOC(FIX_TogglePlayerControllable);
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_TogglePlayerControllable;
+		const _PD@TogglePlayerControllable = 1;
+	#endif
 	#define FIX_TogglePlayerControllable         (0)
 #endif
 
@@ -2732,20 +2748,35 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_IsPlayerInCheckpoint             (0)
 #endif
 
-#if _FIXES_IS_UNDEFINED(FIX_IsPlayerInRaceCheckpoint)
-	_FIXES_STOCK FIX_IsPlayerInRaceCheckpoint = _FIXES_DEFAULT;
+#if !(defined FIX_IsPlayerInRaceCheckpoint) || (defined _PD@IsPlayerInRaceCheckpoint)
+	#if FIXES_ExplicitOptions
+		static FIX_IsPlayerInRaceCheckpoint = _FIXES_DEFAULT;
+	#endif
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_IsPlayerInRaceCheckpoint;
+		const _PD@IsPlayerInRaceCheckpoint = 1;
+	#endif
 	#define FIX_IsPlayerInRaceCheckpoint         _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInRaceCheckpoint)
 	#undef FIX_IsPlayerInRaceCheckpoint
-	_FIXES_SHOW_PAWNDOC(FIX_IsPlayerInRaceCheckpoint);
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_IsPlayerInRaceCheckpoint;
+		const _PD@IsPlayerInRaceCheckpoint = 1;
+	#endif
 	#define FIX_IsPlayerInRaceCheckpoint         (2)
 #elseif FIX_IsPlayerInRaceCheckpoint
 	#undef FIX_IsPlayerInRaceCheckpoint
-	_FIXES_SHOW_PAWNDOC(FIX_IsPlayerInRaceCheckpoint);
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_IsPlayerInRaceCheckpoint;
+		const _PD@IsPlayerInRaceCheckpoint = 1;
+	#endif
 	#define FIX_IsPlayerInRaceCheckpoint         (1)
 #else
 	#undef FIX_IsPlayerInRaceCheckpoint
-	_FIXES_SHOW_PAWNDOC(FIX_IsPlayerInRaceCheckpoint);
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_IsPlayerInRaceCheckpoint;
+		const _PD@IsPlayerInRaceCheckpoint = 1;
+	#endif
 	#define FIX_IsPlayerInRaceCheckpoint         (0)
 #endif
 
@@ -3093,20 +3124,35 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_AttachTrailerToVehicle           (0)
 #endif
 
-#if _FIXES_IS_UNDEFINED(FIX_GetVehicleComponentInSlot)
-	_FIXES_STOCK FIX_GetVehicleComponentInSlot = _FIXES_DEFAULT;
+#if !(defined FIX_GetVehicleComponentInSlot) || (defined _PD@GetVehicleComponentInSlot)
+	#if FIXES_ExplicitOptions
+		static FIX_GetVehicleComponentInSlot = _FIXES_DEFAULT;
+	#endif
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_GetVehicleComponentInSlot;
+		const _PD@GetVehicleComponentInSlot = 1;
+	#endif
 	#define FIX_GetVehicleComponentInSlot        _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetVehicleComponentInSlot)
 	#undef FIX_GetVehicleComponentInSlot
-	_FIXES_SHOW_PAWNDOC(FIX_GetVehicleComponentInSlot);
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_GetVehicleComponentInSlot;
+		const _PD@GetVehicleComponentInSlot = 1;
+	#endif
 	#define FIX_GetVehicleComponentInSlot        (2)
 #elseif FIX_GetVehicleComponentInSlot
 	#undef FIX_GetVehicleComponentInSlot
-	_FIXES_SHOW_PAWNDOC(FIX_GetVehicleComponentInSlot);
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_GetVehicleComponentInSlot;
+		const _PD@GetVehicleComponentInSlot = 1;
+	#endif
 	#define FIX_GetVehicleComponentInSlot        (1)
 #else
 	#undef FIX_GetVehicleComponentInSlot
-	_FIXES_SHOW_PAWNDOC(FIX_GetVehicleComponentInSlot);
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_GetVehicleComponentInSlot;
+		const _PD@GetVehicleComponentInSlot = 1;
+	#endif
 	#define FIX_GetVehicleComponentInSlot        (0)
 #endif
 
@@ -4242,36 +4288,51 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 
 #if _FIXES_IS_UNDEFINED(FIX_PlayerTextDrawSetString)
 	_FIXES_STOCK FIX_PlayerTextDrawSetString = _FIXES_DEFAULT;
-	#define FIX_PlayerTextDrawSetString          _FIXES_DEFAULT
+	#define FIX_PlayerTextDrawSetString        _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString)
 	#undef FIX_PlayerTextDrawSetString
 	_FIXES_SHOW_PAWNDOC(FIX_PlayerTextDrawSetString);
-	#define FIX_PlayerTextDrawSetString          (2)
+	#define FIX_PlayerTextDrawSetString        (2)
 #elseif FIX_PlayerTextDrawSetString
 	#undef FIX_PlayerTextDrawSetString
 	_FIXES_SHOW_PAWNDOC(FIX_PlayerTextDrawSetString);
-	#define FIX_PlayerTextDrawSetString          (1)
+	#define FIX_PlayerTextDrawSetString        (1)
 #else
 	#undef FIX_PlayerTextDrawSetString
 	_FIXES_SHOW_PAWNDOC(FIX_PlayerTextDrawSetString);
-	#define FIX_PlayerTextDrawSetString          (0)
+	#define FIX_PlayerTextDrawSetString        (0)
 #endif
 
-#if _FIXES_IS_UNDEFINED(FIX_PlayerTextDrawSetString_2)
-	_FIXES_STOCK FIX_PlayerTextDrawSetString_2 = _FIXES_DEFAULT;
-	#define FIX_PlayerTextDrawSetString_2        _FIXES_DEFAULT
+#if !(defined FIX_PlayerTextDrawSetString_2) || (defined _PD@PlayerTextDrawSetString_2)
+	#if FIXES_ExplicitOptions
+		static FIX_PlayerTextDrawSetString_2 = _FIXES_DEFAULT;
+	#endif
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_PlayerTextDrawSetString_2;
+		const _PD@PlayerTextDrawSetString_2 = 1;
+	#endif
+	#define FIX_PlayerTextDrawSetString_2          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString_2)
 	#undef FIX_PlayerTextDrawSetString_2
-	_FIXES_SHOW_PAWNDOC(FIX_PlayerTextDrawSetString_2);
-	#define FIX_PlayerTextDrawSetString_2        (2)
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_PlayerTextDrawSetString_2;
+		const _PD@PlayerTextDrawSetString_2 = 1;
+	#endif
+	#define FIX_PlayerTextDrawSetString_2          (2)
 #elseif FIX_PlayerTextDrawSetString_2
 	#undef FIX_PlayerTextDrawSetString_2
-	_FIXES_SHOW_PAWNDOC(FIX_PlayerTextDrawSetString_2);
-	#define FIX_PlayerTextDrawSetString_2        (1)
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_PlayerTextDrawSetString_2;
+		const _PD@PlayerTextDrawSetString_2 = 1;
+	#endif
+	#define FIX_PlayerTextDrawSetString_2          (1)
 #else
 	#undef FIX_PlayerTextDrawSetString_2
-	_FIXES_SHOW_PAWNDOC(FIX_PlayerTextDrawSetString_2);
-	#define FIX_PlayerTextDrawSetString_2        (0)
+	#if !defined _FIXES_DetermineOS
+		static stock FIX_PlayerTextDrawSetString_2;
+		const _PD@PlayerTextDrawSetString_2 = 1;
+	#endif
+	#define FIX_PlayerTextDrawSetString_2          (0)
 #endif
 
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerCamera)
