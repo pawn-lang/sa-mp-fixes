@@ -3622,7 +3622,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 			#define FIX_GetConsoleVarAsString    (2)
 		#else
 			#define FIX_GetConsoleVarAsString    (FIX_GetServerVarAsString)
-#endif
+		#endif
 	#else
 		_FIXES_STOCK FIX_GetConsoleVarAsString = _FIXES_DEFAULT;
 		#define FIX_GetConsoleVarAsString        _FIXES_DEFAULT
@@ -3638,7 +3638,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 			#define FIX_GetConsoleVarAsInt       (2)
 		#else
 			#define FIX_GetConsoleVarAsInt       (FIX_GetServerVarAsInt)
-#endif
+		#endif
 	#else
 		_FIXES_STOCK FIX_GetConsoleVarAsInt    = _FIXES_DEFAULT;
 		#define FIX_GetConsoleVarAsInt           _FIXES_DEFAULT
@@ -3654,7 +3654,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 			#define FIX_GetConsoleVarAsBool      (2)
 		#else
 			#define FIX_GetConsoleVarAsBool      (FIX_GetServerVarAsBool)
-#endif
+		#endif
 	#else
 		_FIXES_STOCK FIX_GetConsoleVarAsBool   = _FIXES_DEFAULT;
 		#define FIX_GetConsoleVarAsBool          _FIXES_DEFAULT
@@ -3685,7 +3685,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 		#else
 			_FIXES_STOCK FIX_GetConsoleVarAsFloat = FIX_Natives;
 			#define FIX_GetConsoleVarAsFloat     FIX_Natives
-#endif
+		#endif
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetConsoleVarAsFloat)
 	#undef FIX_GetConsoleVarAsFloat
