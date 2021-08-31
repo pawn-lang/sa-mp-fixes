@@ -476,11 +476,9 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  */
 #if defined _FIXES_DetermineOS
 	#define _FIXES_SHOW_PAWNDOC(%0)%1\10;
-	#define _FIXES_JUST_PAWNDOC(%0)%1\10;
 #else
 	// First compiler pass only.
 	#define _FIXES_SHOW_PAWNDOC(%0)%1\10; static stock %0 %1 const __PAWNDOC:_PD@%0 = __PAWNDOC:1;
-	#define _FIXES_JUST_PAWNDOC(%0)%1\10; static stock %0 %1
 #endif
 
 // Convert functions to constants.
@@ -589,15 +587,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIXES_EnableAll                      (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableAll)
 	#undef FIXES_EnableAll
-	_FIXES_JUST_PAWNDOC(FIXES_EnableAll);
+	static stock FIXES_EnableAll = 2;
 	#define FIXES_EnableAll                      (2)
 #elseif FIXES_EnableAll
 	#undef FIXES_EnableAll
-	_FIXES_JUST_PAWNDOC(FIXES_EnableAll);
+	static stock FIXES_EnableAll = 1;
 	#define FIXES_EnableAll                      (1)
 #else
 	#undef FIXES_EnableAll
-	_FIXES_JUST_PAWNDOC(FIXES_EnableAll);
+	static stock FIXES_EnableAll = 0;
 	#define FIXES_EnableAll                      (0)
 #endif
 
@@ -612,15 +610,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIXES_EnableDeprecated               (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableDeprecated)
 	#undef FIXES_EnableDeprecated
-	_FIXES_JUST_PAWNDOC(FIXES_EnableDeprecated);
+	static stock FIXES_EnableDeprecated = 2;
 	#define FIXES_EnableDeprecated               (2)
 #elseif FIXES_EnableDeprecated
 	#undef FIXES_EnableDeprecated
-	_FIXES_JUST_PAWNDOC(FIXES_EnableDeprecated);
+	static stock FIXES_EnableDeprecated = 1;
 	#define FIXES_EnableDeprecated               (1)
 #else
 	#undef FIXES_EnableDeprecated
-	_FIXES_JUST_PAWNDOC(FIXES_EnableDeprecated);
+	static stock FIXES_EnableDeprecated = 0;
 	#define FIXES_EnableDeprecated               (0)
 #endif
 
@@ -636,18 +634,18 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define _FIXES_DEFAULT                       (1)
 #elseif _FIXES_IS_UNSET(FIXES_DefaultDisabled)
 	#undef FIXES_DefaultDisabled
-	_FIXES_JUST_PAWNDOC(FIXES_DefaultDisabled);
+	static stock FIXES_DefaultDisabled = 2;
 	#define FIXES_DefaultDisabled                (2)
 	// If we want things disabled by default and everything enabled, do it.
 	#define _FIXES_DEFAULT                       FIXES_EnableAll
 #elseif FIXES_DefaultDisabled
 	#undef FIXES_DefaultDisabled
-	_FIXES_JUST_PAWNDOC(FIXES_DefaultDisabled);
+	static stock FIXES_DefaultDisabled = 1;
 	#define FIXES_DefaultDisabled                (1)
 	#define _FIXES_DEFAULT                       (0)
 #else
 	#undef FIXES_DefaultDisabled
-	_FIXES_JUST_PAWNDOC(FIXES_DefaultDisabled);
+	static stock FIXES_DefaultDisabled = 0;
 	#define FIXES_DefaultDisabled                (0)
 	#define _FIXES_DEFAULT                       (1)
 #endif
@@ -669,17 +667,17 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIXES_ExplicitOptions)
 	#undef FIXES_ExplicitOptions
-	_FIXES_JUST_PAWNDOC(FIXES_ExplicitOptions);
+	static stock FIXES_ExplicitOptions = 2;
 	#define FIXES_ExplicitOptions                (2)
 	#define _FIXES_STOCK%0=%1;                   static%0=%1;const __PAWNDOC:_PD@%0 = __PAWNDOC:1;
 #elseif FIXES_ExplicitOptions
 	#undef FIXES_ExplicitOptions
-	_FIXES_JUST_PAWNDOC(FIXES_ExplicitOptions);
+	static stock FIXES_ExplicitOptions = 1;
 	#define FIXES_ExplicitOptions                (1)
 	#define _FIXES_STOCK%0=%1;                   static%0=%1;const __PAWNDOC:_PD@%0 = __PAWNDOC:1;
 #else
 	#undef FIXES_ExplicitOptions
-	_FIXES_JUST_PAWNDOC(FIXES_ExplicitOptions);
+	static stock FIXES_ExplicitOptions = 0;
 	#define FIXES_ExplicitOptions                (0)
 	#define _FIXES_STOCK%0=%1;                   static stock%0=%1;const __PAWNDOC:_PD@%0 = __PAWNDOC:1;
 #endif
@@ -697,15 +695,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIXES_SilentKick                     (0)
 #elseif _FIXES_IS_UNSET(FIXES_SilentKick)
 	#undef FIXES_SilentKick
-	_FIXES_JUST_PAWNDOC(FIXES_SilentKick);
+	static stock FIXES_SilentKick = 2;
 	#define FIXES_SilentKick                     (2)
 #elseif FIXES_SilentKick
 	#undef FIXES_SilentKick
-	_FIXES_JUST_PAWNDOC(FIXES_SilentKick);
+	static stock FIXES_SilentKick = 1;
 	#define FIXES_SilentKick                     (1)
 #else
 	#undef FIXES_SilentKick
-	_FIXES_JUST_PAWNDOC(FIXES_SilentKick);
+	static stock FIXES_SilentKick = 0;
 	#define FIXES_SilentKick                     (0)
 #endif
 
@@ -723,17 +721,17 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIXES_PRINTF(%0);
 #elseif _FIXES_IS_UNSET(FIXES_Debug)
 	#undef FIXES_Debug
-	_FIXES_JUST_PAWNDOC(FIXES_Debug);
+	static stock FIXES_Debug = 2;
 	#define FIXES_Debug                          (2)
 	#define FIXES_PRINTF                         _FIXES_PRINTF
 #elseif FIXES_Debug
 	#undef FIXES_Debug
-	_FIXES_JUST_PAWNDOC(FIXES_Debug);
+	static stock FIXES_Debug = 1;
 	#define FIXES_Debug                          (1)
 	#define FIXES_PRINTF                         _FIXES_PRINTF
 #else
 	#undef FIXES_Debug
-	_FIXES_JUST_PAWNDOC(FIXES_Debug);
+	static stock FIXES_Debug = 0;
 	#define FIXES_Debug                          (0)
 	#define FIXES_PRINTF(%0);
 #endif
@@ -752,15 +750,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIXES_Single                         (0)
 #elseif _FIXES_IS_UNSET(FIXES_Single)
 	#undef FIXES_Single
-	_FIXES_JUST_PAWNDOC(FIXES_Single);
+	static stock FIXES_Single = 2;
 	#define FIXES_Single                         (2)
 #elseif FIXES_Single
 	#undef FIXES_Single
-	_FIXES_JUST_PAWNDOC(FIXES_Single);
+	static stock FIXES_Single = 1;
 	#define FIXES_Single                         (1)
 #else
 	#undef FIXES_Single
-	_FIXES_JUST_PAWNDOC(FIXES_Single);
+	static stock FIXES_Single = 0;
 	#define FIXES_Single                         (0)
 #endif
 
@@ -776,15 +774,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIXES_SingleMsg                      (0)
 #elseif _FIXES_IS_UNSET(FIXES_SingleMsg)
 	#undef FIXES_SingleMsg
-	_FIXES_JUST_PAWNDOC(FIXES_SingleMsg);
+	static stock FIXES_SingleMsg = 2;
 	#define FIXES_SingleMsg                      (2)
 #elseif FIXES_SingleMsg
 	#undef FIXES_SingleMsg
-	_FIXES_JUST_PAWNDOC(FIXES_SingleMsg);
+	static stock FIXES_SingleMsg = 1;
 	#define FIXES_SingleMsg                      (1)
 #else
 	#undef FIXES_SingleMsg
-	_FIXES_JUST_PAWNDOC(FIXES_SingleMsg);
+	static stock FIXES_SingleMsg = 0;
 	#define FIXES_SingleMsg                      (0)
 #endif
 
@@ -801,15 +799,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIXES_ServerVarMsg                   (0)
 #elseif _FIXES_IS_UNSET(FIXES_ServerVarMsg)
 	#undef FIXES_ServerVarMsg
-	_FIXES_JUST_PAWNDOC(FIXES_ServerVarMsg);
+	static stock FIXES_ServerVarMsg = 2;
 	#define FIXES_ServerVarMsg                   (2)
 #elseif FIXES_ServerVarMsg
 	#undef FIXES_ServerVarMsg
-	_FIXES_JUST_PAWNDOC(FIXES_ServerVarMsg);
+	static stock FIXES_ServerVarMsg = 1;
 	#define FIXES_ServerVarMsg                   (1)
 #else
 	#undef FIXES_ServerVarMsg
-	_FIXES_JUST_PAWNDOC(FIXES_ServerVarMsg);
+	static stock FIXES_ServerVarMsg = 0;
 	#define FIXES_ServerVarMsg                   (0)
 #endif
 
@@ -825,15 +823,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIXES_GetMaxPlayersMsg               (0)
 #elseif _FIXES_IS_UNSET(FIXES_GetMaxPlayersMsg)
 	#undef FIXES_GetMaxPlayersMsg
-	_FIXES_JUST_PAWNDOC(FIXES_GetMaxPlayersMsg);
+	static stock FIXES_GetMaxPlayersMsg = 2;
 	#define FIXES_GetMaxPlayersMsg               (2)
 #elseif FIXES_GetMaxPlayersMsg
 	#undef FIXES_GetMaxPlayersMsg
-	_FIXES_JUST_PAWNDOC(FIXES_GetMaxPlayersMsg);
+	static stock FIXES_GetMaxPlayersMsg = 1;
 	#define FIXES_GetMaxPlayersMsg               (1)
 #else
 	#undef FIXES_GetMaxPlayersMsg
-	_FIXES_JUST_PAWNDOC(FIXES_GetMaxPlayersMsg);
+	static stock FIXES_GetMaxPlayersMsg = 0;
 	#define FIXES_GetMaxPlayersMsg               (0)
 #endif
 
@@ -875,15 +873,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_API                              _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_API)
 	#undef FIX_API
-	_FIXES_JUST_PAWNDOC(FIX_API);
+	static stock FIX_API = 2;
 	#define FIX_API                              (2)
 #elseif FIX_API
 	#undef FIX_API
-	_FIXES_JUST_PAWNDOC(FIX_API);
+	static stock FIX_API = 1;
 	#define FIX_API                              (1)
 #else
 	#undef FIX_API
-	_FIXES_JUST_PAWNDOC(FIX_API);
+	static stock FIX_API = 0;
 	#define FIX_API                              (0)
 #endif
 
@@ -909,15 +907,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_Natives                          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_Natives)
 	#undef FIX_Natives
-	_FIXES_JUST_PAWNDOC(FIX_Natives);
+	static stock FIX_Natives = 2;
 	#define FIX_Natives                          (2)
 #elseif FIX_Natives
 	#undef FIX_Natives
-	_FIXES_JUST_PAWNDOC(FIX_Natives);
+	static stock FIX_Natives = 1;
 	#define FIX_Natives                          (1)
 #else
 	#undef FIX_Natives
-	_FIXES_JUST_PAWNDOC(FIX_Natives);
+	static stock FIX_Natives = 0;
 	#define FIX_Natives                          (0)
 #endif
 
@@ -948,15 +946,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerColour)
 	#undef FIX_GetPlayerColour
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerColour);
+	static stock FIX_GetPlayerColour = 2;
 	#define FIX_GetPlayerColour                  (2)
 #elseif FIX_GetPlayerColour
 	#undef FIX_GetPlayerColour
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerColour);
+	static stock FIX_GetPlayerColour = 1;
 	#define FIX_GetPlayerColour                  (1)
 #else
 	#undef FIX_GetPlayerColour
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerColour);
+	static stock FIX_GetPlayerColour = 0;
 	#define FIX_GetPlayerColour                  (0)
 #endif
 
@@ -981,15 +979,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_FILTERSCRIPT                     _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_FILTERSCRIPT)
 	#undef FIX_FILTERSCRIPT
-	_FIXES_JUST_PAWNDOC(FIX_FILTERSCRIPT);
+	static stock FIX_FILTERSCRIPT = 2;
 	#define FIX_FILTERSCRIPT                     (2)
 #elseif FIX_FILTERSCRIPT
 	#undef FIX_FILTERSCRIPT
-	_FIXES_JUST_PAWNDOC(FIX_FILTERSCRIPT);
+	static stock FIX_FILTERSCRIPT = 1;
 	#define FIX_FILTERSCRIPT                     (1)
 #else
 	#undef FIX_FILTERSCRIPT
-	_FIXES_JUST_PAWNDOC(FIX_FILTERSCRIPT);
+	static stock FIX_FILTERSCRIPT = 0;
 	#define FIX_FILTERSCRIPT                     (0)
 #endif
 
@@ -1011,15 +1009,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SpawnPlayer                      _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SpawnPlayer)
 	#undef FIX_SpawnPlayer
-	_FIXES_JUST_PAWNDOC(FIX_SpawnPlayer);
+	static stock FIX_SpawnPlayer = 2;
 	#define FIX_SpawnPlayer                      (2)
 #elseif FIX_SpawnPlayer
 	#undef FIX_SpawnPlayer
-	_FIXES_JUST_PAWNDOC(FIX_SpawnPlayer);
+	static stock FIX_SpawnPlayer = 1;
 	#define FIX_SpawnPlayer                      (1)
 #else
 	#undef FIX_SpawnPlayer
-	_FIXES_JUST_PAWNDOC(FIX_SpawnPlayer);
+	static stock FIX_SpawnPlayer = 0;
 	#define FIX_SpawnPlayer                      (0)
 #endif
 
@@ -1046,15 +1044,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerName                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerName)
 	#undef FIX_SetPlayerName
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerName);
+	static stock FIX_SetPlayerName = 2;
 	#define FIX_SetPlayerName                    (2)
 #elseif FIX_SetPlayerName
 	#undef FIX_SetPlayerName
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerName);
+	static stock FIX_SetPlayerName = 1;
 	#define FIX_SetPlayerName                    (1)
 #else
 	#undef FIX_SetPlayerName
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerName);
+	static stock FIX_SetPlayerName = 0;
 	#define FIX_SetPlayerName                    (0)
 #endif
 
@@ -1080,15 +1078,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerSkin                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerSkin)
 	#undef FIX_GetPlayerSkin
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerSkin);
+	static stock FIX_GetPlayerSkin = 2;
 	#define FIX_GetPlayerSkin                    (2)
 #elseif FIX_GetPlayerSkin
 	#undef FIX_GetPlayerSkin
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerSkin);
+	static stock FIX_GetPlayerSkin = 1;
 	#define FIX_GetPlayerSkin                    (1)
 #else
 	#undef FIX_GetPlayerSkin
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerSkin);
+	static stock FIX_GetPlayerSkin = 0;
 	#define FIX_GetPlayerSkin                    (0)
 #endif
 
@@ -1120,15 +1118,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeaponName)
 	#undef FIX_GetWeaponName
-	_FIXES_JUST_PAWNDOC(FIX_GetWeaponName);
+	static stock FIX_GetWeaponName = 2;
 	#define FIX_GetWeaponName                    (2)
 #elseif FIX_GetWeaponName
 	#undef FIX_GetWeaponName
-	_FIXES_JUST_PAWNDOC(FIX_GetWeaponName);
+	static stock FIX_GetWeaponName = 1;
 	#define FIX_GetWeaponName                    (1)
 #else
 	#undef FIX_GetWeaponName
-	_FIXES_JUST_PAWNDOC(FIX_GetWeaponName);
+	static stock FIX_GetWeaponName = 0;
 	#define FIX_GetWeaponName                    (0)
 #endif
 
@@ -1152,15 +1150,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerWorldBounds             _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerWorldBounds)
 	#undef FIX_SetPlayerWorldBounds
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerWorldBounds);
+	static stock FIX_SetPlayerWorldBounds = 2;
 	#define FIX_SetPlayerWorldBounds             (2)
 #elseif FIX_SetPlayerWorldBounds
 	#undef FIX_SetPlayerWorldBounds
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerWorldBounds);
+	static stock FIX_SetPlayerWorldBounds = 1;
 	#define FIX_SetPlayerWorldBounds             (1)
 #else
 	#undef FIX_SetPlayerWorldBounds
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerWorldBounds);
+	static stock FIX_SetPlayerWorldBounds = 0;
 	#define FIX_SetPlayerWorldBounds             (0)
 #endif
 
@@ -1200,15 +1198,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)
 	#undef FIX_TogglePlayerControllable
-	_FIXES_JUST_PAWNDOC(FIX_TogglePlayerControllable);
+	static stock FIX_TogglePlayerControllable = 2;
 	#define FIX_TogglePlayerControllable         (2)
 #elseif FIX_TogglePlayerControllable
 	#undef FIX_TogglePlayerControllable
-	_FIXES_JUST_PAWNDOC(FIX_TogglePlayerControllable);
+	static stock FIX_TogglePlayerControllable = 1;
 	#define FIX_TogglePlayerControllable         (1)
 #else
 	#undef FIX_TogglePlayerControllable
-	_FIXES_JUST_PAWNDOC(FIX_TogglePlayerControllable);
+	static stock FIX_TogglePlayerControllable = 0;
 	#define FIX_TogglePlayerControllable         (0)
 #endif
 
@@ -1233,15 +1231,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_HydraSniper                      _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_HydraSniper)
 	#undef FIX_HydraSniper
-	_FIXES_JUST_PAWNDOC(FIX_HydraSniper);
+	static stock FIX_HydraSniper = 2;
 	#define FIX_HydraSniper                      (2)
 #elseif FIX_HydraSniper
 	#undef FIX_HydraSniper
-	_FIXES_JUST_PAWNDOC(FIX_HydraSniper);
+	static stock FIX_HydraSniper = 1;
 	#define FIX_HydraSniper                      (1)
 #else
 	#undef FIX_HydraSniper
-	_FIXES_JUST_PAWNDOC(FIX_HydraSniper);
+	static stock FIX_HydraSniper = 0;
 	#define FIX_HydraSniper                      (0)
 #endif
 
@@ -1264,15 +1262,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_IsPlayerInCheckpoint             _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInCheckpoint)
 	#undef FIX_IsPlayerInCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_IsPlayerInCheckpoint);
+	static stock FIX_IsPlayerInCheckpoint = 2;
 	#define FIX_IsPlayerInCheckpoint             (2)
 #elseif FIX_IsPlayerInCheckpoint
 	#undef FIX_IsPlayerInCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_IsPlayerInCheckpoint);
+	static stock FIX_IsPlayerInCheckpoint = 1;
 	#define FIX_IsPlayerInCheckpoint             (1)
 #else
 	#undef FIX_IsPlayerInCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_IsPlayerInCheckpoint);
+	static stock FIX_IsPlayerInCheckpoint = 0;
 	#define FIX_IsPlayerInCheckpoint             (0)
 #endif
 
@@ -1301,15 +1299,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_IsPlayerInRaceCheckpoint         _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInRaceCheckpoint)
 	#undef FIX_IsPlayerInRaceCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_IsPlayerInRaceCheckpoint);
+	static stock FIX_IsPlayerInRaceCheckpoint = 2;
 	#define FIX_IsPlayerInRaceCheckpoint         (2)
 #elseif FIX_IsPlayerInRaceCheckpoint
 	#undef FIX_IsPlayerInRaceCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_IsPlayerInRaceCheckpoint);
+	static stock FIX_IsPlayerInRaceCheckpoint = 1;
 	#define FIX_IsPlayerInRaceCheckpoint         (1)
 #else
 	#undef FIX_IsPlayerInRaceCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_IsPlayerInRaceCheckpoint);
+	static stock FIX_IsPlayerInRaceCheckpoint = 0;
 	#define FIX_IsPlayerInRaceCheckpoint         (0)
 #endif
 
@@ -1337,15 +1335,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerWeapon                  _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeapon)
 	#undef FIX_GetPlayerWeapon
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWeapon);
+	static stock FIX_GetPlayerWeapon = 2;
 	#define FIX_GetPlayerWeapon                  (2)
 #elseif FIX_GetPlayerWeapon
 	#undef FIX_GetPlayerWeapon
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWeapon);
+	static stock FIX_GetPlayerWeapon = 1;
 	#define FIX_GetPlayerWeapon                  (1)
 #else
 	#undef FIX_GetPlayerWeapon
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWeapon);
+	static stock FIX_GetPlayerWeapon = 0;
 	#define FIX_GetPlayerWeapon                  (0)
 #endif
 
@@ -1371,15 +1369,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_PutPlayerInVehicle               _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_PutPlayerInVehicle)
 	#undef FIX_PutPlayerInVehicle
-	_FIXES_JUST_PAWNDOC(FIX_PutPlayerInVehicle);
+	static stock FIX_PutPlayerInVehicle = 2;
 	#define FIX_PutPlayerInVehicle               (2)
 #elseif FIX_PutPlayerInVehicle
 	#undef FIX_PutPlayerInVehicle
-	_FIXES_JUST_PAWNDOC(FIX_PutPlayerInVehicle);
+	static stock FIX_PutPlayerInVehicle = 1;
 	#define FIX_PutPlayerInVehicle               (1)
 #else
 	#undef FIX_PutPlayerInVehicle
-	_FIXES_JUST_PAWNDOC(FIX_PutPlayerInVehicle);
+	static stock FIX_PutPlayerInVehicle = 0;
 	#define FIX_PutPlayerInVehicle               (0)
 #endif
 
@@ -1409,15 +1407,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_KEY_AIM)
 	#undef FIX_KEY_AIM
-	_FIXES_JUST_PAWNDOC(FIX_KEY_AIM);
+	static stock FIX_KEY_AIM = 2;
 	#define FIX_KEY_AIM                          (2)
 #elseif FIX_KEY_AIM
 	#undef FIX_KEY_AIM
-	_FIXES_JUST_PAWNDOC(FIX_KEY_AIM);
+	static stock FIX_KEY_AIM = 1;
 	#define FIX_KEY_AIM                          (1)
 #else
 	#undef FIX_KEY_AIM
-	_FIXES_JUST_PAWNDOC(FIX_KEY_AIM);
+	static stock FIX_KEY_AIM = 0;
 	#define FIX_KEY_AIM                          (0)
 #endif
 
@@ -1447,15 +1445,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SPECIAL_ACTION_PISSING)
 	#undef FIX_SPECIAL_ACTION_PISSING
-	_FIXES_JUST_PAWNDOC(FIX_SPECIAL_ACTION_PISSING);
+	static stock FIX_SPECIAL_ACTION_PISSING = 2;
 	#define FIX_SPECIAL_ACTION_PISSING           (2)
 #elseif FIX_SPECIAL_ACTION_PISSING
 	#undef FIX_SPECIAL_ACTION_PISSING
-	_FIXES_JUST_PAWNDOC(FIX_SPECIAL_ACTION_PISSING);
+	static stock FIX_SPECIAL_ACTION_PISSING = 1;
 	#define FIX_SPECIAL_ACTION_PISSING           (1)
 #else
 	#undef FIX_SPECIAL_ACTION_PISSING
-	_FIXES_JUST_PAWNDOC(FIX_SPECIAL_ACTION_PISSING);
+	static stock FIX_SPECIAL_ACTION_PISSING = 0;
 	#define FIX_SPECIAL_ACTION_PISSING           (0)
 #endif
 
@@ -1485,15 +1483,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
 	#undef FIX_IsValidVehicle
-	_FIXES_JUST_PAWNDOC(FIX_IsValidVehicle);
+	static stock FIX_IsValidVehicle = 2;
 	#define FIX_IsValidVehicle                   (2)
 #elseif FIX_IsValidVehicle
 	#undef FIX_IsValidVehicle
-	_FIXES_JUST_PAWNDOC(FIX_IsValidVehicle);
+	static stock FIX_IsValidVehicle = 1;
 	#define FIX_IsValidVehicle                   (1)
 #else
 	#undef FIX_IsValidVehicle
-	_FIXES_JUST_PAWNDOC(FIX_IsValidVehicle);
+	static stock FIX_IsValidVehicle = 0;
 	#define FIX_IsValidVehicle                   (0)
 #endif
 
@@ -1524,15 +1522,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetGravity)
 	#undef FIX_GetGravity
-	_FIXES_JUST_PAWNDOC(FIX_GetGravity);
+	static stock FIX_GetGravity = 2;
 	#define FIX_GetGravity                       (2)
 #elseif FIX_GetGravity
 	#undef FIX_GetGravity
-	_FIXES_JUST_PAWNDOC(FIX_GetGravity);
+	static stock FIX_GetGravity = 1;
 	#define FIX_GetGravity                       (1)
 #else
 	#undef FIX_GetGravity
-	_FIXES_JUST_PAWNDOC(FIX_GetGravity);
+	static stock FIX_GetGravity = 0;
 	#define FIX_GetGravity                       (0)
 #endif
 
@@ -1563,15 +1561,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_gpci)
 	#undef FIX_gpci
-	_FIXES_JUST_PAWNDOC(FIX_gpci);
+	static stock FIX_gpci = 2;
 	#define FIX_gpci                             (2)
 #elseif FIX_gpci
 	#undef FIX_gpci
-	_FIXES_JUST_PAWNDOC(FIX_gpci);
+	static stock FIX_gpci = 1;
 	#define FIX_gpci                             (1)
 #else
 	#undef FIX_gpci
-	_FIXES_JUST_PAWNDOC(FIX_gpci);
+	static stock FIX_gpci = 0;
 	#define FIX_gpci                             (0)
 #endif
 
@@ -1601,15 +1599,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_WEAPONS)
 	#undef FIX_WEAPONS
-	_FIXES_JUST_PAWNDOC(FIX_WEAPONS);
+	static stock FIX_WEAPONS = 2;
 	#define FIX_WEAPONS                          (2)
 #elseif FIX_WEAPONS
 	#undef FIX_WEAPONS
-	_FIXES_JUST_PAWNDOC(FIX_WEAPONS);
+	static stock FIX_WEAPONS = 1;
 	#define FIX_WEAPONS                          (1)
 #else
 	#undef FIX_WEAPONS
-	_FIXES_JUST_PAWNDOC(FIX_WEAPONS);
+	static stock FIX_WEAPONS = 0;
 	#define FIX_WEAPONS                          (0)
 #endif
 
@@ -1640,15 +1638,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_BODYPARTS)
 	#undef FIX_BODYPARTS
-	_FIXES_JUST_PAWNDOC(FIX_BODYPARTS);
+	static stock FIX_BODYPARTS = 2;
 	#define FIX_BODYPARTS                        (2)
 #elseif FIX_BODYPARTS
 	#undef FIX_BODYPARTS
-	_FIXES_JUST_PAWNDOC(FIX_BODYPARTS);
+	static stock FIX_BODYPARTS = 1;
 	#define FIX_BODYPARTS                        (1)
 #else
 	#undef FIX_BODYPARTS
-	_FIXES_JUST_PAWNDOC(FIX_BODYPARTS);
+	static stock FIX_BODYPARTS = 0;
 	#define FIX_BODYPARTS                        (0)
 #endif
 
@@ -1679,15 +1677,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_CAMERAMODES)
 	#undef FIX_CAMERAMODES
-	_FIXES_JUST_PAWNDOC(FIX_CAMERAMODES);
+	static stock FIX_CAMERAMODES = 2;
 	#define FIX_CAMERAMODES                      (2)
 #elseif FIX_CAMERAMODES
 	#undef FIX_CAMERAMODES
-	_FIXES_JUST_PAWNDOC(FIX_CAMERAMODES);
+	static stock FIX_CAMERAMODES = 1;
 	#define FIX_CAMERAMODES                      (1)
 #else
 	#undef FIX_CAMERAMODES
-	_FIXES_JUST_PAWNDOC(FIX_CAMERAMODES);
+	static stock FIX_CAMERAMODES = 0;
 	#define FIX_CAMERAMODES                      (0)
 #endif
 
@@ -1711,15 +1709,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_DriveBy                          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_DriveBy)
 	#undef FIX_DriveBy
-	_FIXES_JUST_PAWNDOC(FIX_DriveBy);
+	static stock FIX_DriveBy = 2;
 	#define FIX_DriveBy                          (2)
 #elseif FIX_DriveBy
 	#undef FIX_DriveBy
-	_FIXES_JUST_PAWNDOC(FIX_DriveBy);
+	static stock FIX_DriveBy = 1;
 	#define FIX_DriveBy                          (1)
 #else
 	#undef FIX_DriveBy
-	_FIXES_JUST_PAWNDOC(FIX_DriveBy);
+	static stock FIX_DriveBy = 0;
 	#define FIX_DriveBy                          (0)
 #endif
 
@@ -1742,15 +1740,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SilentTeleport                   _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SilentTeleport)
 	#undef FIX_SilentTeleport
-	_FIXES_JUST_PAWNDOC(FIX_SilentTeleport);
+	static stock FIX_SilentTeleport = 2;
 	#define FIX_SilentTeleport                   (2)
 #elseif FIX_SilentTeleport
 	#undef FIX_SilentTeleport
-	_FIXES_JUST_PAWNDOC(FIX_SilentTeleport);
+	static stock FIX_SilentTeleport = 1;
 	#define FIX_SilentTeleport                   (1)
 #else
 	#undef FIX_SilentTeleport
-	_FIXES_JUST_PAWNDOC(FIX_SilentTeleport);
+	static stock FIX_SilentTeleport = 0;
 	#define FIX_SilentTeleport                   (0)
 #endif
 
@@ -1773,15 +1771,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerCheckpoint              _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCheckpoint)
 	#undef FIX_SetPlayerCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerCheckpoint);
+	static stock FIX_SetPlayerCheckpoint = 2;
 	#define FIX_SetPlayerCheckpoint              (2)
 #elseif FIX_SetPlayerCheckpoint
 	#undef FIX_SetPlayerCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerCheckpoint);
+	static stock FIX_SetPlayerCheckpoint = 1;
 	#define FIX_SetPlayerCheckpoint              (1)
 #else
 	#undef FIX_SetPlayerCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerCheckpoint);
+	static stock FIX_SetPlayerCheckpoint = 0;
 	#define FIX_SetPlayerCheckpoint              (0)
 #endif
 
@@ -1804,15 +1802,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerRaceCheckpoint          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerRaceCheckpoint)
 	#undef FIX_SetPlayerRaceCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerRaceCheckpoint);
+	static stock FIX_SetPlayerRaceCheckpoint = 2;
 	#define FIX_SetPlayerRaceCheckpoint          (2)
 #elseif FIX_SetPlayerRaceCheckpoint
 	#undef FIX_SetPlayerRaceCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerRaceCheckpoint);
+	static stock FIX_SetPlayerRaceCheckpoint = 1;
 	#define FIX_SetPlayerRaceCheckpoint          (1)
 #else
 	#undef FIX_SetPlayerRaceCheckpoint
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerRaceCheckpoint);
+	static stock FIX_SetPlayerRaceCheckpoint = 0;
 	#define FIX_SetPlayerRaceCheckpoint          (0)
 #endif
 
@@ -1834,15 +1832,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_TextDrawCreate                   _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_TextDrawCreate)
 	#undef FIX_TextDrawCreate
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawCreate);
+	static stock FIX_TextDrawCreate = 2;
 	#define FIX_TextDrawCreate                   (2)
 #elseif FIX_TextDrawCreate
 	#undef FIX_TextDrawCreate
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawCreate);
+	static stock FIX_TextDrawCreate = 1;
 	#define FIX_TextDrawCreate                   (1)
 #else
 	#undef FIX_TextDrawCreate
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawCreate);
+	static stock FIX_TextDrawCreate = 0;
 	#define FIX_TextDrawCreate                   (0)
 #endif
 
@@ -1864,15 +1862,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_AttachTrailerToVehicle                  _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_AttachTrailerToVehicle)
 	#undef FIX_AttachTrailerToVehicle
-	_FIXES_JUST_PAWNDOC(FIX_AttachTrailerToVehicle);
+	static stock FIX_AttachTrailerToVehicle = 2;
 	#define FIX_AttachTrailerToVehicle           (2)
 #elseif FIX_AttachTrailerToVehicle
 	#undef FIX_AttachTrailerToVehicle
-	_FIXES_JUST_PAWNDOC(FIX_AttachTrailerToVehicle);
+	static stock FIX_AttachTrailerToVehicle = 1;
 	#define FIX_AttachTrailerToVehicle           (1)
 #else
 	#undef FIX_AttachTrailerToVehicle
-	_FIXES_JUST_PAWNDOC(FIX_AttachTrailerToVehicle);
+	static stock FIX_AttachTrailerToVehicle = 0;
 	#define FIX_AttachTrailerToVehicle           (0)
 #endif
 
@@ -1905,15 +1903,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetVehicleComponentInSlot        _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetVehicleComponentInSlot)
 	#undef FIX_GetVehicleComponentInSlot
-	_FIXES_JUST_PAWNDOC(FIX_GetVehicleComponentInSlot);
+	static stock FIX_GetVehicleComponentInSlot = 2;
 	#define FIX_GetVehicleComponentInSlot        (2)
 #elseif FIX_GetVehicleComponentInSlot
 	#undef FIX_GetVehicleComponentInSlot
-	_FIXES_JUST_PAWNDOC(FIX_GetVehicleComponentInSlot);
+	static stock FIX_GetVehicleComponentInSlot = 1;
 	#define FIX_GetVehicleComponentInSlot        (1)
 #else
 	#undef FIX_GetVehicleComponentInSlot
-	_FIXES_JUST_PAWNDOC(FIX_GetVehicleComponentInSlot);
+	static stock FIX_GetVehicleComponentInSlot = 0;
 	#define FIX_GetVehicleComponentInSlot        (0)
 #endif
 
@@ -1937,15 +1935,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_TextDrawCreate_2                 _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_TextDrawCreate_2)
 	#undef FIX_TextDrawCreate_2
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawCreate_2);
+	static stock FIX_TextDrawCreate_2 = 2;
 	#define FIX_TextDrawCreate_2                 (2)
 #elseif FIX_TextDrawCreate_2
 	#undef FIX_TextDrawCreate_2
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawCreate_2);
+	static stock FIX_TextDrawCreate_2 = 1;
 	#define FIX_TextDrawCreate_2                 (1)
 #else
 	#undef FIX_TextDrawCreate_2
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawCreate_2);
+	static stock FIX_TextDrawCreate_2 = 0;
 	#define FIX_TextDrawCreate_2                 (0)
 #endif
 
@@ -1967,15 +1965,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_TextDrawSetString                _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString)
 	#undef FIX_TextDrawSetString
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawSetString);
+	static stock FIX_TextDrawSetString = 2;
 	#define FIX_TextDrawSetString                (2)
 #elseif FIX_TextDrawSetString
 	#undef FIX_TextDrawSetString
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawSetString);
+	static stock FIX_TextDrawSetString = 1;
 	#define FIX_TextDrawSetString                (1)
 #else
 	#undef FIX_TextDrawSetString
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawSetString);
+	static stock FIX_TextDrawSetString = 0;
 	#define FIX_TextDrawSetString                (0)
 #endif
 
@@ -1999,15 +1997,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_TextDrawSetString_2              _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_TextDrawSetString_2)
 	#undef FIX_TextDrawSetString_2
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawSetString_2);
+	static stock FIX_TextDrawSetString_2 = 2;
 	#define FIX_TextDrawSetString_2              (2)
 #elseif FIX_TextDrawSetString_2
 	#undef FIX_TextDrawSetString_2
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawSetString_2);
+	static stock FIX_TextDrawSetString_2 = 1;
 	#define FIX_TextDrawSetString_2              (1)
 #else
 	#undef FIX_TextDrawSetString_2
-	_FIXES_JUST_PAWNDOC(FIX_TextDrawSetString_2);
+	static stock FIX_TextDrawSetString_2 = 0;
 	#define FIX_TextDrawSetString_2              (0)
 #endif
 
@@ -2031,15 +2029,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_AllowInteriorWeapons             _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_AllowInteriorWeapons)
 	#undef FIX_AllowInteriorWeapons
-	_FIXES_JUST_PAWNDOC(FIX_AllowInteriorWeapons);
+	static stock FIX_AllowInteriorWeapons = 2;
 	#define FIX_AllowInteriorWeapons             (2)
 #elseif FIX_AllowInteriorWeapons
 	#undef FIX_AllowInteriorWeapons
-	_FIXES_JUST_PAWNDOC(FIX_AllowInteriorWeapons);
+	static stock FIX_AllowInteriorWeapons = 1;
 	#define FIX_AllowInteriorWeapons             (1)
 #else
 	#undef FIX_AllowInteriorWeapons
-	_FIXES_JUST_PAWNDOC(FIX_AllowInteriorWeapons);
+	static stock FIX_AllowInteriorWeapons = 0;
 	#define FIX_AllowInteriorWeapons             (0)
 #endif
 
@@ -2074,15 +2072,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle)
 	#undef FIX_OnPlayerEnterVehicle
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerEnterVehicle);
+	static stock FIX_OnPlayerEnterVehicle = 2;
 	#define FIX_OnPlayerEnterVehicle             (2)
 #elseif FIX_OnPlayerEnterVehicle
 	#undef FIX_OnPlayerEnterVehicle
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerEnterVehicle);
+	static stock FIX_OnPlayerEnterVehicle = 1;
 	#define FIX_OnPlayerEnterVehicle             (1)
 #else
 	#undef FIX_OnPlayerEnterVehicle
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerEnterVehicle);
+	static stock FIX_OnPlayerEnterVehicle = 0;
 	#define FIX_OnPlayerEnterVehicle             (0)
 #endif
 
@@ -2105,15 +2103,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnPlayerEnterVehicle_2           _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_2)
 	#undef FIX_OnPlayerEnterVehicle_2
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerEnterVehicle_2);
+	static stock FIX_OnPlayerEnterVehicle_2 = 2;
 	#define FIX_OnPlayerEnterVehicle_2           (2)
 #elseif FIX_OnPlayerEnterVehicle_2
 	#undef FIX_OnPlayerEnterVehicle_2
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerEnterVehicle_2);
+	static stock FIX_OnPlayerEnterVehicle_2 = 1;
 	#define FIX_OnPlayerEnterVehicle_2           (1)
 #else
 	#undef FIX_OnPlayerEnterVehicle_2
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerEnterVehicle_2);
+	static stock FIX_OnPlayerEnterVehicle_2 = 0;
 	#define FIX_OnPlayerEnterVehicle_2           (0)
 #endif
 
@@ -2139,15 +2137,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnPlayerEnterVehicle_3           _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerEnterVehicle_3)
 	#undef FIX_OnPlayerEnterVehicle_3
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerEnterVehicle_3);
+	static stock FIX_OnPlayerEnterVehicle_3 = 2;
 	#define FIX_OnPlayerEnterVehicle_3           (2)
 #elseif FIX_OnPlayerEnterVehicle_3
 	#undef FIX_OnPlayerEnterVehicle_3
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerEnterVehicle_3);
+	static stock FIX_OnPlayerEnterVehicle_3 = 1;
 	#define FIX_OnPlayerEnterVehicle_3           (1)
 #else
 	#undef FIX_OnPlayerEnterVehicle_3
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerEnterVehicle_3);
+	static stock FIX_OnPlayerEnterVehicle_3 = 0;
 	#define FIX_OnPlayerEnterVehicle_3           (0)
 #endif
 
@@ -2181,15 +2179,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_AllowTeleport)
 	#undef FIX_AllowTeleport
-	_FIXES_JUST_PAWNDOC(FIX_AllowTeleport);
+	static stock FIX_AllowTeleport = 2;
 	#define FIX_AllowTeleport                    (2)
 #elseif FIX_AllowTeleport
 	#undef FIX_AllowTeleport
-	_FIXES_JUST_PAWNDOC(FIX_AllowTeleport);
+	static stock FIX_AllowTeleport = 1;
 	#define FIX_AllowTeleport                    (1)
 #else
 	#undef FIX_AllowTeleport
-	_FIXES_JUST_PAWNDOC(FIX_AllowTeleport);
+	static stock FIX_AllowTeleport = 0;
 	#define FIX_AllowTeleport                    (0)
 #endif
 
@@ -2212,15 +2210,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerSpecialAction           _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSpecialAction)
 	#undef FIX_SetPlayerSpecialAction
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerSpecialAction);
+	static stock FIX_SetPlayerSpecialAction = 2;
 	#define FIX_SetPlayerSpecialAction           (2)
 #elseif FIX_SetPlayerSpecialAction
 	#undef FIX_SetPlayerSpecialAction
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerSpecialAction);
+	static stock FIX_SetPlayerSpecialAction = 1;
 	#define FIX_SetPlayerSpecialAction           (1)
 #else
 	#undef FIX_SetPlayerSpecialAction
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerSpecialAction);
+	static stock FIX_SetPlayerSpecialAction = 0;
 	#define FIX_SetPlayerSpecialAction           (0)
 #endif
 
@@ -2243,15 +2241,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ClearAnimations                  _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations)
 	#undef FIX_ClearAnimations
-	_FIXES_JUST_PAWNDOC(FIX_ClearAnimations);
+	static stock FIX_ClearAnimations = 2;
 	#define FIX_ClearAnimations                  (2)
 #elseif FIX_ClearAnimations
 	#undef FIX_ClearAnimations
-	_FIXES_JUST_PAWNDOC(FIX_ClearAnimations);
+	static stock FIX_ClearAnimations = 1;
 	#define FIX_ClearAnimations                  (1)
 #else
 	#undef FIX_ClearAnimations
-	_FIXES_JUST_PAWNDOC(FIX_ClearAnimations);
+	static stock FIX_ClearAnimations = 0;
 	#define FIX_ClearAnimations                  (0)
 #endif
 
@@ -2274,15 +2272,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ClearAnimations_2                _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_ClearAnimations_2)
 	#undef FIX_ClearAnimations_2
-	_FIXES_JUST_PAWNDOC(FIX_ClearAnimations_2);
+	static stock FIX_ClearAnimations_2 = 2;
 	#define FIX_ClearAnimations_2                (2)
 #elseif FIX_ClearAnimations_2
 	#undef FIX_ClearAnimations_2
-	_FIXES_JUST_PAWNDOC(FIX_ClearAnimations_2);
+	static stock FIX_ClearAnimations_2 = 1;
 	#define FIX_ClearAnimations_2                (1)
 #else
 	#undef FIX_ClearAnimations_2
-	_FIXES_JUST_PAWNDOC(FIX_ClearAnimations_2);
+	static stock FIX_ClearAnimations_2 = 0;
 	#define FIX_ClearAnimations_2                (0)
 #endif
 
@@ -2306,15 +2304,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GangZoneCreate                   _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GangZoneCreate)
 	#undef FIX_GangZoneCreate
-	_FIXES_JUST_PAWNDOC(FIX_GangZoneCreate);
+	static stock FIX_GangZoneCreate = 2;
 	#define FIX_GangZoneCreate                   (2)
 #elseif FIX_GangZoneCreate
 	#undef FIX_GangZoneCreate
-	_FIXES_JUST_PAWNDOC(FIX_GangZoneCreate);
+	static stock FIX_GangZoneCreate = 1;
 	#define FIX_GangZoneCreate                   (1)
 #else
 	#undef FIX_GangZoneCreate
-	_FIXES_JUST_PAWNDOC(FIX_GangZoneCreate);
+	static stock FIX_GangZoneCreate = 0;
 	#define FIX_GangZoneCreate                   (0)
 #endif
 
@@ -2347,15 +2345,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_OnDialogResponse)
 	#undef FIX_OnDialogResponse
-	_FIXES_JUST_PAWNDOC(FIX_OnDialogResponse);
+	static stock FIX_OnDialogResponse = 2;
 	#define FIX_OnDialogResponse                 (2)
 #elseif FIX_OnDialogResponse
 	#undef FIX_OnDialogResponse
-	_FIXES_JUST_PAWNDOC(FIX_OnDialogResponse);
+	static stock FIX_OnDialogResponse = 1;
 	#define FIX_OnDialogResponse                 (1)
 #else
 	#undef FIX_OnDialogResponse
-	_FIXES_JUST_PAWNDOC(FIX_OnDialogResponse);
+	static stock FIX_OnDialogResponse = 0;
 	#define FIX_OnDialogResponse                 (0)
 #endif
 
@@ -2387,15 +2385,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerDialog)
 	#undef FIX_GetPlayerDialog
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerDialog);
+	static stock FIX_GetPlayerDialog = 2;
 	#define FIX_GetPlayerDialog                  (2)
 #elseif FIX_GetPlayerDialog
 	#undef FIX_GetPlayerDialog
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerDialog);
+	static stock FIX_GetPlayerDialog = 1;
 	#define FIX_GetPlayerDialog                  (1)
 #else
 	#undef FIX_GetPlayerDialog
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerDialog);
+	static stock FIX_GetPlayerDialog = 0;
 	#define FIX_GetPlayerDialog                  (0)
 #endif
 
@@ -2420,15 +2418,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_PlayerDialogResponse             _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_PlayerDialogResponse)
 	#undef FIX_PlayerDialogResponse
-	_FIXES_JUST_PAWNDOC(FIX_PlayerDialogResponse);
+	static stock FIX_PlayerDialogResponse = 2;
 	#define FIX_PlayerDialogResponse             (2)
 #elseif FIX_PlayerDialogResponse
 	#undef FIX_PlayerDialogResponse
-	_FIXES_JUST_PAWNDOC(FIX_PlayerDialogResponse);
+	static stock FIX_PlayerDialogResponse = 1;
 	#define FIX_PlayerDialogResponse             (1)
 #else
 	#undef FIX_PlayerDialogResponse
-	_FIXES_JUST_PAWNDOC(FIX_PlayerDialogResponse);
+	static stock FIX_PlayerDialogResponse = 0;
 	#define FIX_PlayerDialogResponse             (0)
 #endif
 
@@ -2459,15 +2457,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetSpawnInfo)
 	#undef FIX_SetSpawnInfo
-	_FIXES_JUST_PAWNDOC(FIX_SetSpawnInfo);
+	static stock FIX_SetSpawnInfo = 2;
 	#define FIX_SetSpawnInfo                     (2)
 #elseif FIX_SetSpawnInfo
 	#undef FIX_SetSpawnInfo
-	_FIXES_JUST_PAWNDOC(FIX_SetSpawnInfo);
+	static stock FIX_SetSpawnInfo = 1;
 	#define FIX_SetSpawnInfo                     (1)
 #else
 	#undef FIX_SetSpawnInfo
-	_FIXES_JUST_PAWNDOC(FIX_SetSpawnInfo);
+	static stock FIX_SetSpawnInfo = 0;
 	#define FIX_SetSpawnInfo                     (0)
 #endif
 
@@ -2490,15 +2488,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetSpawnInfo_2                   _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetSpawnInfo_2)
 	#undef FIX_SetSpawnInfo_2
-	_FIXES_JUST_PAWNDOC(FIX_SetSpawnInfo_2);
+	static stock FIX_SetSpawnInfo_2 = 2;
 	#define FIX_SetSpawnInfo_2                   (2)
 #elseif FIX_SetSpawnInfo_2
 	#undef FIX_SetSpawnInfo_2
-	_FIXES_JUST_PAWNDOC(FIX_SetSpawnInfo_2);
+	static stock FIX_SetSpawnInfo_2 = 1;
 	#define FIX_SetSpawnInfo_2                   (1)
 #else
 	#undef FIX_SetSpawnInfo_2
-	_FIXES_JUST_PAWNDOC(FIX_SetSpawnInfo_2);
+	static stock FIX_SetSpawnInfo_2 = 0;
 	#define FIX_SetSpawnInfo_2                   (0)
 #endif
 
@@ -2521,15 +2519,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerSkin                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerSkin)
 	#undef FIX_SetPlayerSkin
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerSkin);
+	static stock FIX_SetPlayerSkin = 2;
 	#define FIX_SetPlayerSkin                    (2)
 #elseif FIX_SetPlayerSkin
 	#undef FIX_SetPlayerSkin
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerSkin);
+	static stock FIX_SetPlayerSkin = 1;
 	#define FIX_SetPlayerSkin                    (1)
 #else
 	#undef FIX_SetPlayerSkin
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerSkin);
+	static stock FIX_SetPlayerSkin = 0;
 	#define FIX_SetPlayerSkin                    (0)
 #endif
 
@@ -2551,15 +2549,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_valstr                           _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_valstr)
 	#undef FIX_valstr
-	_FIXES_JUST_PAWNDOC(FIX_valstr);
+	static stock FIX_valstr = 2;
 	#define FIX_valstr                           (2)
 #elseif FIX_valstr
 	#undef FIX_valstr
-	_FIXES_JUST_PAWNDOC(FIX_valstr);
+	static stock FIX_valstr = 1;
 	#define FIX_valstr                           (1)
 #else
 	#undef FIX_valstr
-	_FIXES_JUST_PAWNDOC(FIX_valstr);
+	static stock FIX_valstr = 0;
 	#define FIX_valstr                           (0)
 #endif
 
@@ -2582,15 +2580,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_file_inc                         _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_file_inc)
 	#undef FIX_file_inc
-	_FIXES_JUST_PAWNDOC(FIX_file_inc);
+	static stock FIX_file_inc = 2;
 	#define FIX_file_inc                         (2)
 #elseif FIX_file_inc
 	#undef FIX_file_inc
-	_FIXES_JUST_PAWNDOC(FIX_file_inc);
+	static stock FIX_file_inc = 1;
 	#define FIX_file_inc                         (1)
 #else
 	#undef FIX_file_inc
-	_FIXES_JUST_PAWNDOC(FIX_file_inc);
+	static stock FIX_file_inc = 0;
 	#define FIX_file_inc                         (0)
 #endif
 
@@ -2611,15 +2609,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fclose                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fclose)
 	#undef FIX_fclose
-	_FIXES_JUST_PAWNDOC(FIX_fclose);
+	static stock FIX_fclose = 2;
 	#define FIX_fclose                           (2)
 #elseif FIX_fclose
 	#undef FIX_fclose
-	_FIXES_JUST_PAWNDOC(FIX_fclose);
+	static stock FIX_fclose = 1;
 	#define FIX_fclose                           (1)
 #else
 	#undef FIX_fclose
-	_FIXES_JUST_PAWNDOC(FIX_fclose);
+	static stock FIX_fclose = 0;
 	#define FIX_fclose                           (0)
 #endif
 
@@ -2640,15 +2638,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fwrite                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fwrite)
 	#undef FIX_fwrite
-	_FIXES_JUST_PAWNDOC(FIX_fwrite);
+	static stock FIX_fwrite = 2;
 	#define FIX_fwrite                           (2)
 #elseif FIX_fwrite
 	#undef FIX_fwrite
-	_FIXES_JUST_PAWNDOC(FIX_fwrite);
+	static stock FIX_fwrite = 1;
 	#define FIX_fwrite                           (1)
 #else
 	#undef FIX_fwrite
-	_FIXES_JUST_PAWNDOC(FIX_fwrite);
+	static stock FIX_fwrite = 0;
 	#define FIX_fwrite                           (0)
 #endif
 
@@ -2669,15 +2667,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fread                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fread)
 	#undef FIX_fread
-	_FIXES_JUST_PAWNDOC(FIX_fread);
+	static stock FIX_fread = 2;
 	#define FIX_fread                            (2)
 #elseif FIX_fread
 	#undef FIX_fread
-	_FIXES_JUST_PAWNDOC(FIX_fread);
+	static stock FIX_fread = 1;
 	#define FIX_fread                            (1)
 #else
 	#undef FIX_fread
-	_FIXES_JUST_PAWNDOC(FIX_fread);
+	static stock FIX_fread = 0;
 	#define FIX_fread                            (0)
 #endif
 
@@ -2698,15 +2696,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fputchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fputchar)
 	#undef FIX_fputchar
-	_FIXES_JUST_PAWNDOC(FIX_fputchar);
+	static stock FIX_fputchar = 2;
 	#define FIX_fputchar                         (2)
 #elseif FIX_fputchar
 	#undef FIX_fputchar
-	_FIXES_JUST_PAWNDOC(FIX_fputchar);
+	static stock FIX_fputchar = 1;
 	#define FIX_fputchar                         (1)
 #else
 	#undef FIX_fputchar
-	_FIXES_JUST_PAWNDOC(FIX_fputchar);
+	static stock FIX_fputchar = 0;
 	#define FIX_fputchar                         (0)
 #endif
 
@@ -2727,15 +2725,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fgetchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fgetchar)
 	#undef FIX_fgetchar
-	_FIXES_JUST_PAWNDOC(FIX_fgetchar);
+	static stock FIX_fgetchar = 2;
 	#define FIX_fgetchar                         (2)
 #elseif FIX_fgetchar
 	#undef FIX_fgetchar
-	_FIXES_JUST_PAWNDOC(FIX_fgetchar);
+	static stock FIX_fgetchar = 1;
 	#define FIX_fgetchar                         (1)
 #else
 	#undef FIX_fgetchar
-	_FIXES_JUST_PAWNDOC(FIX_fgetchar);
+	static stock FIX_fgetchar = 0;
 	#define FIX_fgetchar                         (0)
 #endif
 
@@ -2756,15 +2754,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fblockwrite                      (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockwrite)
 	#undef FIX_fblockwrite
-	_FIXES_JUST_PAWNDOC(FIX_fblockwrite);
+	static stock FIX_fblockwrite = 2;
 	#define FIX_fblockwrite                      (2)
 #elseif FIX_fblockwrite
 	#undef FIX_fblockwrite
-	_FIXES_JUST_PAWNDOC(FIX_fblockwrite);
+	static stock FIX_fblockwrite = 1;
 	#define FIX_fblockwrite                      (1)
 #else
 	#undef FIX_fblockwrite
-	_FIXES_JUST_PAWNDOC(FIX_fblockwrite);
+	static stock FIX_fblockwrite = 0;
 	#define FIX_fblockwrite                      (0)
 #endif
 
@@ -2785,15 +2783,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fblockread                       (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockread)
 	#undef FIX_fblockread
-	_FIXES_JUST_PAWNDOC(FIX_fblockread);
+	static stock FIX_fblockread = 2;
 	#define FIX_fblockread                       (2)
 #elseif FIX_fblockread
 	#undef FIX_fblockread
-	_FIXES_JUST_PAWNDOC(FIX_fblockread);
+	static stock FIX_fblockread = 1;
 	#define FIX_fblockread                       (1)
 #else
 	#undef FIX_fblockread
-	_FIXES_JUST_PAWNDOC(FIX_fblockread);
+	static stock FIX_fblockread = 0;
 	#define FIX_fblockread                       (0)
 #endif
 
@@ -2814,15 +2812,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fseek                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fseek)
 	#undef FIX_fseek
-	_FIXES_JUST_PAWNDOC(FIX_fseek);
+	static stock FIX_fseek = 2;
 	#define FIX_fseek                            (2)
 #elseif FIX_fseek
 	#undef FIX_fseek
-	_FIXES_JUST_PAWNDOC(FIX_fseek);
+	static stock FIX_fseek = 1;
 	#define FIX_fseek                            (1)
 #else
 	#undef FIX_fseek
-	_FIXES_JUST_PAWNDOC(FIX_fseek);
+	static stock FIX_fseek = 0;
 	#define FIX_fseek                            (0)
 #endif
 
@@ -2843,15 +2841,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_flength                          (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_flength)
 	#undef FIX_flength
-	_FIXES_JUST_PAWNDOC(FIX_flength);
+	static stock FIX_flength = 2;
 	#define FIX_flength                          (2)
 #elseif FIX_flength
 	#undef FIX_flength
-	_FIXES_JUST_PAWNDOC(FIX_flength);
+	static stock FIX_flength = 1;
 	#define FIX_flength                          (1)
 #else
 	#undef FIX_flength
-	_FIXES_JUST_PAWNDOC(FIX_flength);
+	static stock FIX_flength = 0;
 	#define FIX_flength                          (0)
 #endif
 
@@ -2873,15 +2871,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerAttachedObject          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerAttachedObject)
 	#undef FIX_SetPlayerAttachedObject
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerAttachedObject);
+	static stock FIX_SetPlayerAttachedObject = 2;
 	#define FIX_SetPlayerAttachedObject          (2)
 #elseif FIX_SetPlayerAttachedObject
 	#undef FIX_SetPlayerAttachedObject
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerAttachedObject);
+	static stock FIX_SetPlayerAttachedObject = 1;
 	#define FIX_SetPlayerAttachedObject          (1)
 #else
 	#undef FIX_SetPlayerAttachedObject
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerAttachedObject);
+	static stock FIX_SetPlayerAttachedObject = 0;
 	#define FIX_SetPlayerAttachedObject          (0)
 #endif
 
@@ -2905,15 +2903,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnPlayerDeath                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDeath)
 	#undef FIX_OnPlayerDeath
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerDeath);
+	static stock FIX_OnPlayerDeath = 2;
 	#define FIX_OnPlayerDeath                    (2)
 #elseif FIX_OnPlayerDeath
 	#undef FIX_OnPlayerDeath
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerDeath);
+	static stock FIX_OnPlayerDeath = 1;
 	#define FIX_OnPlayerDeath                    (1)
 #else
 	#undef FIX_OnPlayerDeath
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerDeath);
+	static stock FIX_OnPlayerDeath = 0;
 	#define FIX_OnPlayerDeath                    (0)
 #endif
 
@@ -2936,15 +2934,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_strins                           _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_strins)
 	#undef FIX_strins
-	_FIXES_JUST_PAWNDOC(FIX_strins);
+	static stock FIX_strins = 2;
 	#define FIX_strins                           (2)
 #elseif FIX_strins
 	#undef FIX_strins
-	_FIXES_JUST_PAWNDOC(FIX_strins);
+	static stock FIX_strins = 1;
 	#define FIX_strins                           (1)
 #else
 	#undef FIX_strins
-	_FIXES_JUST_PAWNDOC(FIX_strins);
+	static stock FIX_strins = 0;
 	#define FIX_strins                           (0)
 #endif
 
@@ -2966,15 +2964,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_IsPlayerConnected                _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerConnected)
 	#undef FIX_IsPlayerConnected
-	_FIXES_JUST_PAWNDOC(FIX_IsPlayerConnected);
+	static stock FIX_IsPlayerConnected = 2;
 	#define FIX_IsPlayerConnected                (2)
 #elseif FIX_IsPlayerConnected
 	#undef FIX_IsPlayerConnected
-	_FIXES_JUST_PAWNDOC(FIX_IsPlayerConnected);
+	static stock FIX_IsPlayerConnected = 1;
 	#define FIX_IsPlayerConnected                (1)
 #else
 	#undef FIX_IsPlayerConnected
-	_FIXES_JUST_PAWNDOC(FIX_IsPlayerConnected);
+	static stock FIX_IsPlayerConnected = 0;
 	#define FIX_IsPlayerConnected                (0)
 #endif
 
@@ -2999,15 +2997,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_TrainExit                        _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_TrainExit)
 	#undef FIX_TrainExit
-	_FIXES_JUST_PAWNDOC(FIX_TrainExit);
+	static stock FIX_TrainExit = 2;
 	#define FIX_TrainExit                        (2)
 #elseif FIX_TrainExit
 	#undef FIX_TrainExit
-	_FIXES_JUST_PAWNDOC(FIX_TrainExit);
+	static stock FIX_TrainExit = 1;
 	#define FIX_TrainExit                        (1)
 #else
 	#undef FIX_TrainExit
-	_FIXES_JUST_PAWNDOC(FIX_TrainExit);
+	static stock FIX_TrainExit = 0;
 	#define FIX_TrainExit                        (0)
 #endif
 
@@ -3040,15 +3038,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_Kick)
 	#undef FIX_Kick
-	_FIXES_JUST_PAWNDOC(FIX_Kick);
+	static stock FIX_Kick = 2;
 	#define FIX_Kick                             (2)
 #elseif FIX_Kick
 	#undef FIX_Kick
-	_FIXES_JUST_PAWNDOC(FIX_Kick);
+	static stock FIX_Kick = 1;
 	#define FIX_Kick                             (1)
 #else
 	#undef FIX_Kick
-	_FIXES_JUST_PAWNDOC(FIX_Kick);
+	static stock FIX_Kick = 0;
 	#define FIX_Kick                             (0)
 #endif
 
@@ -3072,15 +3070,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnVehicleMod                     _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_OnVehicleMod)
 	#undef FIX_OnVehicleMod
-	_FIXES_JUST_PAWNDOC(FIX_OnVehicleMod);
+	static stock FIX_OnVehicleMod = 2;
 	#define FIX_OnVehicleMod                     (2)
 #elseif FIX_OnVehicleMod
 	#undef FIX_OnVehicleMod
-	_FIXES_JUST_PAWNDOC(FIX_OnVehicleMod);
+	static stock FIX_OnVehicleMod = 1;
 	#define FIX_OnVehicleMod                     (1)
 #else
 	#undef FIX_OnVehicleMod
-	_FIXES_JUST_PAWNDOC(FIX_OnVehicleMod);
+	static stock FIX_OnVehicleMod = 0;
 	#define FIX_OnVehicleMod                     (0)
 #endif
 
@@ -3102,15 +3100,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_random                           _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_random)
 	#undef FIX_random
-	_FIXES_JUST_PAWNDOC(FIX_random);
+	static stock FIX_random = 2;
 	#define FIX_random                           (2)
 #elseif FIX_random
 	#undef FIX_random
-	_FIXES_JUST_PAWNDOC(FIX_random);
+	static stock FIX_random = 1;
 	#define FIX_random                           (1)
 #else
 	#undef FIX_random
-	_FIXES_JUST_PAWNDOC(FIX_random);
+	static stock FIX_random = 0;
 	#define FIX_random                           (0)
 #endif
 
@@ -3132,15 +3130,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_sleep                            _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_sleep)
 	#undef FIX_sleep
-	_FIXES_JUST_PAWNDOC(FIX_sleep);
+	static stock FIX_sleep = 2;
 	#define FIX_sleep                            (2)
 #elseif FIX_sleep
 	#undef FIX_sleep
-	_FIXES_JUST_PAWNDOC(FIX_sleep);
+	static stock FIX_sleep = 1;
 	#define FIX_sleep                            (1)
 #else
 	#undef FIX_sleep
-	_FIXES_JUST_PAWNDOC(FIX_sleep);
+	static stock FIX_sleep = 0;
 	#define FIX_sleep                            (0)
 #endif
 
@@ -3163,15 +3161,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_Menus                            _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_Menus)
 	#undef FIX_Menus
-	_FIXES_JUST_PAWNDOC(FIX_Menus);
+	static stock FIX_Menus = 2;
 	#define FIX_Menus                            (2)
 #elseif FIX_Menus
 	#undef FIX_Menus
-	_FIXES_JUST_PAWNDOC(FIX_Menus);
+	static stock FIX_Menus = 1;
 	#define FIX_Menus                            (1)
 #else
 	#undef FIX_Menus
-	_FIXES_JUST_PAWNDOC(FIX_Menus);
+	static stock FIX_Menus = 0;
 	#define FIX_Menus                            (0)
 #endif
 
@@ -3193,15 +3191,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_AddMenuItem                      FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_AddMenuItem)
 	#undef FIX_AddMenuItem
-	_FIXES_JUST_PAWNDOC(FIX_AddMenuItem);
+	static stock FIX_AddMenuItem = 2;
 	#define FIX_AddMenuItem                      (2)
 #elseif FIX_AddMenuItem
 	#undef FIX_AddMenuItem
-	_FIXES_JUST_PAWNDOC(FIX_AddMenuItem);
+	static stock FIX_AddMenuItem = 1;
 	#define FIX_AddMenuItem                      (1)
 #else
 	#undef FIX_AddMenuItem
-	_FIXES_JUST_PAWNDOC(FIX_AddMenuItem);
+	static stock FIX_AddMenuItem = 0;
 	#define FIX_AddMenuItem                      (0)
 #endif
 
@@ -3223,15 +3221,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetMenuColumnHeader              FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_SetMenuColumnHeader)
 	#undef FIX_SetMenuColumnHeader
-	_FIXES_JUST_PAWNDOC(FIX_SetMenuColumnHeader);
+	static stock FIX_SetMenuColumnHeader = 2;
 	#define FIX_SetMenuColumnHeader              (2)
 #elseif FIX_SetMenuColumnHeader
 	#undef FIX_SetMenuColumnHeader
-	_FIXES_JUST_PAWNDOC(FIX_SetMenuColumnHeader);
+	static stock FIX_SetMenuColumnHeader = 1;
 	#define FIX_SetMenuColumnHeader              (1)
 #else
 	#undef FIX_SetMenuColumnHeader
-	_FIXES_JUST_PAWNDOC(FIX_SetMenuColumnHeader);
+	static stock FIX_SetMenuColumnHeader = 0;
 	#define FIX_SetMenuColumnHeader              (0)
 #endif
 
@@ -3253,15 +3251,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ShowMenuForPlayer                FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_ShowMenuForPlayer)
 	#undef FIX_ShowMenuForPlayer
-	_FIXES_JUST_PAWNDOC(FIX_ShowMenuForPlayer);
+	static stock FIX_ShowMenuForPlayer = 2;
 	#define FIX_ShowMenuForPlayer                (2)
 #elseif FIX_ShowMenuForPlayer
 	#undef FIX_ShowMenuForPlayer
-	_FIXES_JUST_PAWNDOC(FIX_ShowMenuForPlayer);
+	static stock FIX_ShowMenuForPlayer = 1;
 	#define FIX_ShowMenuForPlayer                (1)
 #else
 	#undef FIX_ShowMenuForPlayer
-	_FIXES_JUST_PAWNDOC(FIX_ShowMenuForPlayer);
+	static stock FIX_ShowMenuForPlayer = 0;
 	#define FIX_ShowMenuForPlayer                (0)
 #endif
 
@@ -3298,15 +3296,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_HideMenuForPlayer                FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
 	#undef FIX_HideMenuForPlayer
-	_FIXES_JUST_PAWNDOC(FIX_HideMenuForPlayer);
+	static stock FIX_HideMenuForPlayer = 2;
 	#define FIX_HideMenuForPlayer                (2)
 #elseif FIX_HideMenuForPlayer
 	#undef FIX_HideMenuForPlayer
-	_FIXES_JUST_PAWNDOC(FIX_HideMenuForPlayer);
+	static stock FIX_HideMenuForPlayer = 1;
 	#define FIX_HideMenuForPlayer                (1)
 #else
 	#undef FIX_HideMenuForPlayer
-	_FIXES_JUST_PAWNDOC(FIX_HideMenuForPlayer);
+	static stock FIX_HideMenuForPlayer = 0;
 	#define FIX_HideMenuForPlayer                (0)
 #endif
 
@@ -3329,15 +3327,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerMenu                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerMenu)
 	#undef FIX_GetPlayerMenu
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerMenu);
+	static stock FIX_GetPlayerMenu = 2;
 	#define FIX_GetPlayerMenu                    (2)
 #elseif FIX_GetPlayerMenu
 	#undef FIX_GetPlayerMenu
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerMenu);
+	static stock FIX_GetPlayerMenu = 1;
 	#define FIX_GetPlayerMenu                    (1)
 #else
 	#undef FIX_GetPlayerMenu
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerMenu);
+	static stock FIX_GetPlayerMenu = 0;
 	#define FIX_GetPlayerMenu                    (0)
 #endif
 
@@ -3359,17 +3357,17 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_HideMenuForPlayer_2              FIXES_EnableAll
 #elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer_2)
 	#undef FIX_HideMenuForPlayer_2
-	_FIXES_JUST_PAWNDOC(FIX_HideMenuForPlayer_2);
+	static stock FIX_HideMenuForPlayer_2 = 2;
 	#define FIX_HideMenuForPlayer_2              (2)
 #elseif FIX_HideMenuForPlayer_2 && !FIX_GetPlayerMenu
 	#error FIX_HideMenuForPlayer_2 requires FIX_GetPlayerMenu
 #elseif FIX_HideMenuForPlayer_2
 	#undef FIX_HideMenuForPlayer_2
-	_FIXES_JUST_PAWNDOC(FIX_HideMenuForPlayer_2);
+	static stock FIX_HideMenuForPlayer_2 = 1;
 	#define FIX_HideMenuForPlayer_2              (1)
 #else
 	#undef FIX_HideMenuForPlayer_2
-	_FIXES_JUST_PAWNDOC(FIX_HideMenuForPlayer_2);
+	static stock FIX_HideMenuForPlayer_2 = 0;
 	#define FIX_HideMenuForPlayer_2              (0)
 #endif
 
@@ -3391,15 +3389,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_DisableMenu                      FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_DisableMenu)
 	#undef FIX_DisableMenu
-	_FIXES_JUST_PAWNDOC(FIX_DisableMenu);
+	static stock FIX_DisableMenu = 2;
 	#define FIX_DisableMenu                      (2)
 #elseif FIX_DisableMenu
 	#undef FIX_DisableMenu
-	_FIXES_JUST_PAWNDOC(FIX_DisableMenu);
+	static stock FIX_DisableMenu = 1;
 	#define FIX_DisableMenu                      (1)
 #else
 	#undef FIX_DisableMenu
-	_FIXES_JUST_PAWNDOC(FIX_DisableMenu);
+	static stock FIX_DisableMenu = 0;
 	#define FIX_DisableMenu                      (0)
 #endif
 
@@ -3421,15 +3419,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_DisableMenuRow                   FIX_Menus
 #elseif _FIXES_IS_UNSET(FIX_DisableMenuRow)
 	#undef FIX_DisableMenuRow
-	_FIXES_JUST_PAWNDOC(FIX_DisableMenuRow);
+	static stock FIX_DisableMenuRow = 2;
 	#define FIX_DisableMenuRow                   (2)
 #elseif FIX_DisableMenuRow
 	#undef FIX_DisableMenuRow
-	_FIXES_JUST_PAWNDOC(FIX_DisableMenuRow);
+	static stock FIX_DisableMenuRow = 1;
 	#define FIX_DisableMenuRow                   (1)
 #else
 	#undef FIX_DisableMenuRow
-	_FIXES_JUST_PAWNDOC(FIX_DisableMenuRow);
+	static stock FIX_DisableMenuRow = 0;
 	#define FIX_DisableMenuRow                   (0)
 #endif
 
@@ -3453,15 +3451,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerInterior                _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerInterior)
 	#undef FIX_GetPlayerInterior
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerInterior);
+	static stock FIX_GetPlayerInterior = 2;
 	#define FIX_GetPlayerInterior                (2)
 #elseif FIX_GetPlayerInterior
 	#undef FIX_GetPlayerInterior
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerInterior);
+	static stock FIX_GetPlayerInterior = 1;
 	#define FIX_GetPlayerInterior                (1)
 #else
 	#undef FIX_GetPlayerInterior
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerInterior);
+	static stock FIX_GetPlayerInterior = 0;
 	#define FIX_GetPlayerInterior                (0)
 #endif
 
@@ -3484,15 +3482,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ApplyAnimation                   _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation)
 	#undef FIX_ApplyAnimation
-	_FIXES_JUST_PAWNDOC(FIX_ApplyAnimation);
+	static stock FIX_ApplyAnimation = 2;
 	#define FIX_ApplyAnimation                   (2)
 #elseif FIX_ApplyAnimation
 	#undef FIX_ApplyAnimation
-	_FIXES_JUST_PAWNDOC(FIX_ApplyAnimation);
+	static stock FIX_ApplyAnimation = 1;
 	#define FIX_ApplyAnimation                   (1)
 #else
 	#undef FIX_ApplyAnimation
-	_FIXES_JUST_PAWNDOC(FIX_ApplyAnimation);
+	static stock FIX_ApplyAnimation = 0;
 	#define FIX_ApplyAnimation                   (0)
 #endif
 
@@ -3516,15 +3514,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ApplyAnimation_2                 _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_ApplyAnimation_2)
 	#undef FIX_ApplyAnimation_2
-	_FIXES_JUST_PAWNDOC(FIX_ApplyAnimation_2);
+	static stock FIX_ApplyAnimation_2 = 2;
 	#define FIX_ApplyAnimation_2                 (2)
 #elseif FIX_ApplyAnimation_2
 	#undef FIX_ApplyAnimation_2
-	_FIXES_JUST_PAWNDOC(FIX_ApplyAnimation_2);
+	static stock FIX_ApplyAnimation_2 = 1;
 	#define FIX_ApplyAnimation_2                 (1)
 #else
 	#undef FIX_ApplyAnimation_2
-	_FIXES_JUST_PAWNDOC(FIX_ApplyAnimation_2);
+	static stock FIX_ApplyAnimation_2 = 0;
 	#define FIX_ApplyAnimation_2                 (0)
 #endif
 
@@ -3548,15 +3546,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ApplyActorAnimation              _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation)
 	#undef FIX_ApplyActorAnimation
-	_FIXES_JUST_PAWNDOC(FIX_ApplyActorAnimation);
+	static stock FIX_ApplyActorAnimation = 2;
 	#define FIX_ApplyActorAnimation              (2)
 #elseif FIX_ApplyActorAnimation
 	#undef FIX_ApplyActorAnimation
-	_FIXES_JUST_PAWNDOC(FIX_ApplyActorAnimation);
+	static stock FIX_ApplyActorAnimation = 1;
 	#define FIX_ApplyActorAnimation              (1)
 #else
 	#undef FIX_ApplyActorAnimation
-	_FIXES_JUST_PAWNDOC(FIX_ApplyActorAnimation);
+	static stock FIX_ApplyActorAnimation = 0;
 	#define FIX_ApplyActorAnimation              (0)
 #endif
 
@@ -3581,15 +3579,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ApplyActorAnimation_2            _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_ApplyActorAnimation_2)
 	#undef FIX_ApplyActorAnimation_2
-	_FIXES_JUST_PAWNDOC(FIX_ApplyActorAnimation_2);
+	static stock FIX_ApplyActorAnimation_2 = 2;
 	#define FIX_ApplyActorAnimation_2            (2)
 #elseif FIX_ApplyActorAnimation_2
 	#undef FIX_ApplyActorAnimation_2
-	_FIXES_JUST_PAWNDOC(FIX_ApplyActorAnimation_2);
+	static stock FIX_ApplyActorAnimation_2 = 1;
 	#define FIX_ApplyActorAnimation_2            (1)
 #else
 	#undef FIX_ApplyActorAnimation_2
-	_FIXES_JUST_PAWNDOC(FIX_ApplyActorAnimation_2);
+	static stock FIX_ApplyActorAnimation_2 = 0;
 	#define FIX_ApplyActorAnimation_2            (0)
 #endif
 
@@ -3611,15 +3609,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnPlayerSpawn                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerSpawn)
 	#undef FIX_OnPlayerSpawn
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerSpawn);
+	static stock FIX_OnPlayerSpawn = 2;
 	#define FIX_OnPlayerSpawn                    (2)
 #elseif FIX_OnPlayerSpawn
 	#undef FIX_OnPlayerSpawn
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerSpawn);
+	static stock FIX_OnPlayerSpawn = 1;
 	#define FIX_OnPlayerSpawn                    (1)
 #else
 	#undef FIX_OnPlayerSpawn
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerSpawn);
+	static stock FIX_OnPlayerSpawn = 0;
 	#define FIX_OnPlayerSpawn                    (0)
 #endif
 
@@ -3642,15 +3640,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GameText                         _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GameText)
 	#undef FIX_GameText
-	_FIXES_JUST_PAWNDOC(FIX_GameText);
+	static stock FIX_GameText = 2;
 	#define FIX_GameText                         (2)
 #elseif FIX_GameText
 	#undef FIX_GameText
-	_FIXES_JUST_PAWNDOC(FIX_GameText);
+	static stock FIX_GameText = 1;
 	#define FIX_GameText                         (1)
 #else
 	#undef FIX_GameText
-	_FIXES_JUST_PAWNDOC(FIX_GameText);
+	static stock FIX_GameText = 0;
 	#define FIX_GameText                         (0)
 #endif
 
@@ -3682,15 +3680,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_HideGameText)
 	#undef FIX_HideGameText
-	_FIXES_JUST_PAWNDOC(FIX_HideGameText);
+	static stock FIX_HideGameText = 2;
 	#define FIX_HideGameText                     (2)
 #elseif FIX_HideGameText
 	#undef FIX_HideGameText
-	_FIXES_JUST_PAWNDOC(FIX_HideGameText);
+	static stock FIX_HideGameText = 1;
 	#define FIX_HideGameText                     (1)
 #else
 	#undef FIX_HideGameText
-	_FIXES_JUST_PAWNDOC(FIX_HideGameText);
+	static stock FIX_HideGameText = 0;
 	#define FIX_HideGameText                     (0)
 #endif
 
@@ -3721,15 +3719,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWorldBounds)
 	#undef FIX_GetPlayerWorldBounds
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWorldBounds);
+	static stock FIX_GetPlayerWorldBounds = 2;
 	#define FIX_GetPlayerWorldBounds             (2)
 #elseif FIX_GetPlayerWorldBounds
 	#undef FIX_GetPlayerWorldBounds
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWorldBounds);
+	static stock FIX_GetPlayerWorldBounds = 1;
 	#define FIX_GetPlayerWorldBounds             (1)
 #else
 	#undef FIX_GetPlayerWorldBounds
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWorldBounds);
+	static stock FIX_GetPlayerWorldBounds = 0;
 	#define FIX_GetPlayerWorldBounds             (0)
 #endif
 
@@ -3760,15 +3758,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_ClearPlayerWorldBounds)
 	#undef FIX_ClearPlayerWorldBounds
-	_FIXES_JUST_PAWNDOC(FIX_ClearPlayerWorldBounds);
+	static stock FIX_ClearPlayerWorldBounds = 2;
 	#define FIX_ClearPlayerWorldBounds           (2)
 #elseif FIX_ClearPlayerWorldBounds
 	#undef FIX_ClearPlayerWorldBounds
-	_FIXES_JUST_PAWNDOC(FIX_ClearPlayerWorldBounds);
+	static stock FIX_ClearPlayerWorldBounds = 1;
 	#define FIX_ClearPlayerWorldBounds           (1)
 #else
 	#undef FIX_ClearPlayerWorldBounds
-	_FIXES_JUST_PAWNDOC(FIX_ClearPlayerWorldBounds);
+	static stock FIX_ClearPlayerWorldBounds = 0;
 	#define FIX_ClearPlayerWorldBounds           (0)
 #endif
 
@@ -3793,17 +3791,17 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GameTextStyles                   _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GameTextStyles)
 	#undef FIX_GameTextStyles
-	_FIXES_JUST_PAWNDOC(FIX_GameTextStyles);
+	static stock FIX_GameTextStyles = 2;
 	#define FIX_GameTextStyles                   (2)
 #elseif FIX_GameTextStyles && !FIX_GameText
 	#error FIX_GameTextStyles requires FIX_GameText
 #elseif FIX_GameTextStyles
 	#undef FIX_GameTextStyles
-	_FIXES_JUST_PAWNDOC(FIX_GameTextStyles);
+	static stock FIX_GameTextStyles = 1;
 	#define FIX_GameTextStyles                   (1)
 #else
 	#undef FIX_GameTextStyles
-	_FIXES_JUST_PAWNDOC(FIX_GameTextStyles);
+	static stock FIX_GameTextStyles = 0;
 	#define FIX_GameTextStyles                   (0)
 #endif
 
@@ -3825,15 +3823,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnPlayerConnect                  _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerConnect)
 	#undef FIX_OnPlayerConnect
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerConnect);
+	static stock FIX_OnPlayerConnect = 2;
 	#define FIX_OnPlayerConnect                  (2)
 #elseif FIX_OnPlayerConnect
 	#undef FIX_OnPlayerConnect
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerConnect);
+	static stock FIX_OnPlayerConnect = 1;
 	#define FIX_OnPlayerConnect                  (1)
 #else
 	#undef FIX_OnPlayerConnect
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerConnect);
+	static stock FIX_OnPlayerConnect = 0;
 	#define FIX_OnPlayerConnect                  (0)
 #endif
 
@@ -3855,15 +3853,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnPlayerDisconnect               _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerDisconnect)
 	#undef FIX_OnPlayerDisconnect
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerDisconnect);
+	static stock FIX_OnPlayerDisconnect = 2;
 	#define FIX_OnPlayerDisconnect               (2)
 #elseif FIX_OnPlayerDisconnect
 	#undef FIX_OnPlayerDisconnect
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerDisconnect);
+	static stock FIX_OnPlayerDisconnect = 1;
 	#define FIX_OnPlayerDisconnect               (1)
 #else
 	#undef FIX_OnPlayerDisconnect
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerDisconnect);
+	static stock FIX_OnPlayerDisconnect = 0;
 	#define FIX_OnPlayerDisconnect               (0)
 #endif
 
@@ -3886,15 +3884,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_CreatePlayerTextDraw             _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw)
 	#undef FIX_CreatePlayerTextDraw
-	_FIXES_JUST_PAWNDOC(FIX_CreatePlayerTextDraw);
+	static stock FIX_CreatePlayerTextDraw = 2;
 	#define FIX_CreatePlayerTextDraw             (2)
 #elseif FIX_CreatePlayerTextDraw
 	#undef FIX_CreatePlayerTextDraw
-	_FIXES_JUST_PAWNDOC(FIX_CreatePlayerTextDraw);
+	static stock FIX_CreatePlayerTextDraw = 1;
 	#define FIX_CreatePlayerTextDraw             (1)
 #else
 	#undef FIX_CreatePlayerTextDraw
-	_FIXES_JUST_PAWNDOC(FIX_CreatePlayerTextDraw);
+	static stock FIX_CreatePlayerTextDraw = 0;
 	#define FIX_CreatePlayerTextDraw             (0)
 #endif
 
@@ -3918,15 +3916,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_CreatePlayerTextDraw_2           _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_CreatePlayerTextDraw_2)
 	#undef FIX_CreatePlayerTextDraw_2
-	_FIXES_JUST_PAWNDOC(FIX_CreatePlayerTextDraw_2);
+	static stock FIX_CreatePlayerTextDraw_2 = 2;
 	#define FIX_CreatePlayerTextDraw_2           (2)
 #elseif FIX_CreatePlayerTextDraw_2
 	#undef FIX_CreatePlayerTextDraw_2
-	_FIXES_JUST_PAWNDOC(FIX_CreatePlayerTextDraw_2);
+	static stock FIX_CreatePlayerTextDraw_2 = 1;
 	#define FIX_CreatePlayerTextDraw_2           (1)
 #else
 	#undef FIX_CreatePlayerTextDraw_2
-	_FIXES_JUST_PAWNDOC(FIX_CreatePlayerTextDraw_2);
+	static stock FIX_CreatePlayerTextDraw_2 = 0;
 	#define FIX_CreatePlayerTextDraw_2           (0)
 #endif
 
@@ -3949,15 +3947,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_PlayerTextDrawSetString        _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString)
 	#undef FIX_PlayerTextDrawSetString
-	_FIXES_JUST_PAWNDOC(FIX_PlayerTextDrawSetString);
+	static stock FIX_PlayerTextDrawSetString = 2;
 	#define FIX_PlayerTextDrawSetString        (2)
 #elseif FIX_PlayerTextDrawSetString
 	#undef FIX_PlayerTextDrawSetString
-	_FIXES_JUST_PAWNDOC(FIX_PlayerTextDrawSetString);
+	static stock FIX_PlayerTextDrawSetString = 1;
 	#define FIX_PlayerTextDrawSetString        (1)
 #else
 	#undef FIX_PlayerTextDrawSetString
-	_FIXES_JUST_PAWNDOC(FIX_PlayerTextDrawSetString);
+	static stock FIX_PlayerTextDrawSetString = 0;
 	#define FIX_PlayerTextDrawSetString        (0)
 #endif
 
@@ -3987,15 +3985,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_PlayerTextDrawSetString_2          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString_2)
 	#undef FIX_PlayerTextDrawSetString_2
-	_FIXES_JUST_PAWNDOC(FIX_PlayerTextDrawSetString_2);
+	static stock FIX_PlayerTextDrawSetString_2 = 2;
 	#define FIX_PlayerTextDrawSetString_2          (2)
 #elseif FIX_PlayerTextDrawSetString_2
 	#undef FIX_PlayerTextDrawSetString_2
-	_FIXES_JUST_PAWNDOC(FIX_PlayerTextDrawSetString_2);
+	static stock FIX_PlayerTextDrawSetString_2 = 1;
 	#define FIX_PlayerTextDrawSetString_2          (1)
 #else
 	#undef FIX_PlayerTextDrawSetString_2
-	_FIXES_JUST_PAWNDOC(FIX_PlayerTextDrawSetString_2);
+	static stock FIX_PlayerTextDrawSetString_2 = 0;
 	#define FIX_PlayerTextDrawSetString_2          (0)
 #endif
 
@@ -4020,15 +4018,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerCamera                  _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerCamera)
 	#undef FIX_SetPlayerCamera
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerCamera);
+	static stock FIX_SetPlayerCamera = 2;
 	#define FIX_SetPlayerCamera                  (2)
 #elseif FIX_SetPlayerCamera
 	#undef FIX_SetPlayerCamera
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerCamera);
+	static stock FIX_SetPlayerCamera = 1;
 	#define FIX_SetPlayerCamera                  (1)
 #else
 	#undef FIX_SetPlayerCamera
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerCamera);
+	static stock FIX_SetPlayerCamera = 0;
 	#define FIX_SetPlayerCamera                  (0)
 #endif
 
@@ -4050,15 +4048,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerTime                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerTime)
 	#undef FIX_SetPlayerTime
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerTime);
+	static stock FIX_SetPlayerTime = 2;
 	#define FIX_SetPlayerTime                    (2)
 #elseif FIX_SetPlayerTime
 	#undef FIX_SetPlayerTime
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerTime);
+	static stock FIX_SetPlayerTime = 1;
 	#define FIX_SetPlayerTime                    (1)
 #else
 	#undef FIX_SetPlayerTime
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerTime);
+	static stock FIX_SetPlayerTime = 0;
 	#define FIX_SetPlayerTime                    (0)
 #endif
 
@@ -4080,15 +4078,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnPlayerRequestClass             _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_OnPlayerRequestClass)
 	#undef FIX_OnPlayerRequestClass
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerRequestClass);
+	static stock FIX_OnPlayerRequestClass = 2;
 	#define FIX_OnPlayerRequestClass             (2)
 #elseif FIX_OnPlayerRequestClass
 	#undef FIX_OnPlayerRequestClass
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerRequestClass);
+	static stock FIX_OnPlayerRequestClass = 1;
 	#define FIX_OnPlayerRequestClass             (1)
 #else
 	#undef FIX_OnPlayerRequestClass
-	_FIXES_JUST_PAWNDOC(FIX_OnPlayerRequestClass);
+	static stock FIX_OnPlayerRequestClass = 0;
 	#define FIX_OnPlayerRequestClass             (0)
 #endif
 
@@ -4121,15 +4119,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerColour)
 	#undef FIX_SetPlayerColour
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerColour);
+	static stock FIX_SetPlayerColour = 2;
 	#define FIX_SetPlayerColour                  (2)
 #elseif FIX_SetPlayerColour
 	#undef FIX_SetPlayerColour
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerColour);
+	static stock FIX_SetPlayerColour = 1;
 	#define FIX_SetPlayerColour                  (1)
 #else
 	#undef FIX_SetPlayerColour
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerColour);
+	static stock FIX_SetPlayerColour = 0;
 	#define FIX_SetPlayerColour                  (0)
 #endif
 
@@ -4151,15 +4149,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_FileMaths                        _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_FileMaths)
 	#undef FIX_FileMaths
-	_FIXES_JUST_PAWNDOC(FIX_FileMaths);
+	static stock FIX_FileMaths = 2;
 	#define FIX_FileMaths                        (2)
 #elseif FIX_FileMaths
 	#undef FIX_FileMaths
-	_FIXES_JUST_PAWNDOC(FIX_FileMaths);
+	static stock FIX_FileMaths = 1;
 	#define FIX_FileMaths                        (1)
 #else
 	#undef FIX_FileMaths
-	_FIXES_JUST_PAWNDOC(FIX_FileMaths);
+	static stock FIX_FileMaths = 0;
 	#define FIX_FileMaths                        (0)
 #endif
 
@@ -4182,15 +4180,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerWeaponData              _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeaponData)
 	#undef FIX_GetPlayerWeaponData
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWeaponData);
+	static stock FIX_GetPlayerWeaponData = 2;
 	#define FIX_GetPlayerWeaponData              (2)
 #elseif FIX_GetPlayerWeaponData
 	#undef FIX_GetPlayerWeaponData
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWeaponData);
+	static stock FIX_GetPlayerWeaponData = 1;
 	#define FIX_GetPlayerWeaponData              (1)
 #else
 	#undef FIX_GetPlayerWeaponData
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWeaponData);
+	static stock FIX_GetPlayerWeaponData = 0;
 	#define FIX_GetPlayerWeaponData              (0)
 #endif
 
@@ -4212,15 +4210,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_strcmp                           _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_strcmp)
 	#undef FIX_strcmp
-	_FIXES_JUST_PAWNDOC(FIX_strcmp);
+	static stock FIX_strcmp = 2;
 	#define FIX_strcmp                           (2)
 #elseif FIX_strcmp
 	#undef FIX_strcmp
-	_FIXES_JUST_PAWNDOC(FIX_strcmp);
+	static stock FIX_strcmp = 1;
 	#define FIX_strcmp                           (1)
 #else
 	#undef FIX_strcmp
-	_FIXES_JUST_PAWNDOC(FIX_strcmp);
+	static stock FIX_strcmp = 0;
 	#define FIX_strcmp                           (0)
 #endif
 
@@ -4246,15 +4244,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPVarString                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetPVarString)
 	#undef FIX_GetPVarString
-	_FIXES_JUST_PAWNDOC(FIX_GetPVarString);
+	static stock FIX_GetPVarString = 2;
 	#define FIX_GetPVarString                    (2)
 #elseif FIX_GetPVarString
 	#undef FIX_GetPVarString
-	_FIXES_JUST_PAWNDOC(FIX_GetPVarString);
+	static stock FIX_GetPVarString = 1;
 	#define FIX_GetPVarString                    (1)
 #else
 	#undef FIX_GetPVarString
-	_FIXES_JUST_PAWNDOC(FIX_GetPVarString);
+	static stock FIX_GetPVarString = 0;
 	#define FIX_GetPVarString                    (0)
 #endif
 
@@ -4280,15 +4278,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetSVarString                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetSVarString)
 	#undef FIX_GetSVarString
-	_FIXES_JUST_PAWNDOC(FIX_GetSVarString);
+	static stock FIX_GetSVarString = 2;
 	#define FIX_GetSVarString                    (2)
 #elseif FIX_GetSVarString
 	#undef FIX_GetSVarString
-	_FIXES_JUST_PAWNDOC(FIX_GetSVarString);
+	static stock FIX_GetSVarString = 1;
 	#define FIX_GetSVarString                    (1)
 #else
 	#undef FIX_GetSVarString
-	_FIXES_JUST_PAWNDOC(FIX_GetSVarString);
+	static stock FIX_GetSVarString = 0;
 	#define FIX_GetSVarString                    (0)
 #endif
 
@@ -4311,15 +4309,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_toupper                          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_toupper)
 	#undef FIX_toupper
-	_FIXES_JUST_PAWNDOC(FIX_toupper);
+	static stock FIX_toupper = 2;
 	#define FIX_toupper                          (2)
 #elseif FIX_toupper
 	#undef FIX_toupper
-	_FIXES_JUST_PAWNDOC(FIX_toupper);
+	static stock FIX_toupper = 1;
 	#define FIX_toupper                          (1)
 #else
 	#undef FIX_toupper
-	_FIXES_JUST_PAWNDOC(FIX_toupper);
+	static stock FIX_toupper = 0;
 	#define FIX_toupper                          (0)
 #endif
 
@@ -4342,15 +4340,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_tolower                          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_tolower)
 	#undef FIX_tolower
-	_FIXES_JUST_PAWNDOC(FIX_tolower);
+	static stock FIX_tolower = 2;
 	#define FIX_tolower                          (2)
 #elseif FIX_tolower
 	#undef FIX_tolower
-	_FIXES_JUST_PAWNDOC(FIX_tolower);
+	static stock FIX_tolower = 1;
 	#define FIX_tolower                          (1)
 #else
 	#undef FIX_tolower
-	_FIXES_JUST_PAWNDOC(FIX_tolower);
+	static stock FIX_tolower = 0;
 	#define FIX_tolower                          (0)
 #endif
 
@@ -4373,15 +4371,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ispacked                         _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_ispacked)
 	#undef FIX_ispacked
-	_FIXES_JUST_PAWNDOC(FIX_ispacked);
+	static stock FIX_ispacked = 2;
 	#define FIX_ispacked                         (2)
 #elseif FIX_ispacked
 	#undef FIX_ispacked
-	_FIXES_JUST_PAWNDOC(FIX_ispacked);
+	static stock FIX_ispacked = 1;
 	#define FIX_ispacked                         (1)
 #else
 	#undef FIX_ispacked
-	_FIXES_JUST_PAWNDOC(FIX_ispacked);
+	static stock FIX_ispacked = 0;
 	#define FIX_ispacked                         (0)
 #endif
 
@@ -4404,15 +4402,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_PassengerSeating                 _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_PassengerSeating)
 	#undef FIX_PassengerSeating
-	_FIXES_JUST_PAWNDOC(FIX_PassengerSeating);
+	static stock FIX_PassengerSeating = 2;
 	#define FIX_PassengerSeating                 (2)
 #elseif FIX_PassengerSeating
 	#undef FIX_PassengerSeating
-	_FIXES_JUST_PAWNDOC(FIX_PassengerSeating);
+	static stock FIX_PassengerSeating = 1;
 	#define FIX_PassengerSeating                 (1)
 #else
 	#undef FIX_PassengerSeating
-	_FIXES_JUST_PAWNDOC(FIX_PassengerSeating);
+	static stock FIX_PassengerSeating = 0;
 	#define FIX_PassengerSeating                 (0)
 #endif
 
@@ -4434,15 +4432,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GogglesSync                      _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GogglesSync)
 	#undef FIX_GogglesSync
-	_FIXES_JUST_PAWNDOC(FIX_GogglesSync);
+	static stock FIX_GogglesSync = 2;
 	#define FIX_GogglesSync                      (2)
 #elseif FIX_GogglesSync
 	#undef FIX_GogglesSync
-	_FIXES_JUST_PAWNDOC(FIX_GogglesSync);
+	static stock FIX_GogglesSync = 1;
 	#define FIX_GogglesSync                      (1)
 #else
 	#undef FIX_GogglesSync
-	_FIXES_JUST_PAWNDOC(FIX_GogglesSync);
+	static stock FIX_GogglesSync = 0;
 	#define FIX_GogglesSync                      (0)
 #endif
 
@@ -4464,15 +4462,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerPoolSize                _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerPoolSize)
 	#undef FIX_GetPlayerPoolSize
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerPoolSize);
+	static stock FIX_GetPlayerPoolSize = 2;
 	#define FIX_GetPlayerPoolSize                (2)
 #elseif FIX_GetPlayerPoolSize
 	#undef FIX_GetPlayerPoolSize
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerPoolSize);
+	static stock FIX_GetPlayerPoolSize = 1;
 	#define FIX_GetPlayerPoolSize                (1)
 #else
 	#undef FIX_GetPlayerPoolSize
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerPoolSize);
+	static stock FIX_GetPlayerPoolSize = 0;
 	#define FIX_GetPlayerPoolSize                (0)
 #endif
 
@@ -4495,15 +4493,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerPos                     _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetPlayerPos)
 	#undef FIX_SetPlayerPos
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerPos);
+	static stock FIX_SetPlayerPos = 2;
 	#define FIX_SetPlayerPos                     (2)
 #elseif FIX_SetPlayerPos
 	#undef FIX_SetPlayerPos
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerPos);
+	static stock FIX_SetPlayerPos = 1;
 	#define FIX_SetPlayerPos                     (1)
 #else
 	#undef FIX_SetPlayerPos
-	_FIXES_JUST_PAWNDOC(FIX_SetPlayerPos);
+	static stock FIX_SetPlayerPos = 0;
 	#define FIX_SetPlayerPos                     (0)
 #endif
 
@@ -4527,15 +4525,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerAmmo                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerAmmo)
 	#undef FIX_GetPlayerAmmo
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerAmmo);
+	static stock FIX_GetPlayerAmmo = 2;
 	#define FIX_GetPlayerAmmo                    (2)
 #elseif FIX_GetPlayerAmmo
 	#undef FIX_GetPlayerAmmo
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerAmmo);
+	static stock FIX_GetPlayerAmmo = 1;
 	#define FIX_GetPlayerAmmo                    (1)
 #else
 	#undef FIX_GetPlayerAmmo
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerAmmo);
+	static stock FIX_GetPlayerAmmo = 0;
 	#define FIX_GetPlayerAmmo                    (0)
 #endif
 
@@ -4557,15 +4555,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_JIT                              _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_JIT)
 	#undef FIX_JIT
-	_FIXES_JUST_PAWNDOC(FIX_JIT);
+	static stock FIX_JIT = 2;
 	#define FIX_JIT                              (2)
 #elseif FIX_JIT
 	#undef FIX_JIT
-	_FIXES_JUST_PAWNDOC(FIX_JIT);
+	static stock FIX_JIT = 1;
 	#define FIX_JIT                              (1)
 #else
 	#undef FIX_JIT
-	_FIXES_JUST_PAWNDOC(FIX_JIT);
+	static stock FIX_JIT = 0;
 	#define FIX_JIT                              (0)
 #endif
 
@@ -4587,15 +4585,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OS                               _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_OS)
 	#undef FIX_OS
-	_FIXES_JUST_PAWNDOC(FIX_OS);
+	static stock FIX_OS = 2;
 	#define FIX_OS                               (2)
 #elseif FIX_OS
 	#undef FIX_OS
-	_FIXES_JUST_PAWNDOC(FIX_OS);
+	static stock FIX_OS = 1;
 	#define FIX_OS                               (1)
 #else
 	#undef FIX_OS
-	_FIXES_JUST_PAWNDOC(FIX_OS);
+	static stock FIX_OS = 0;
 	#define FIX_OS                               (0)
 #endif
 
@@ -4617,15 +4615,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_const                            _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_const)
 	#undef FIX_const
-	_FIXES_JUST_PAWNDOC(FIX_const);
+	static stock FIX_const = 2;
 	#define FIX_const                            (2)
 #elseif FIX_const
 	#undef FIX_const
-	_FIXES_JUST_PAWNDOC(FIX_const);
+	static stock FIX_const = 1;
 	#define FIX_const                            (1)
 #else
 	#undef FIX_const
-	_FIXES_JUST_PAWNDOC(FIX_const);
+	static stock FIX_const = 0;
 	#define FIX_const                            (0)
 #endif
 
@@ -4655,15 +4653,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_VEHICLES)
 	#undef FIX_VEHICLES
-	_FIXES_JUST_PAWNDOC(FIX_VEHICLES);
+	static stock FIX_VEHICLES = 2;
 	#define FIX_VEHICLES                         (2)
 #elseif FIX_VEHICLES
 	#undef FIX_VEHICLES
-	_FIXES_JUST_PAWNDOC(FIX_VEHICLES);
+	static stock FIX_VEHICLES = 1;
 	#define FIX_VEHICLES                         (1)
 #else
 	#undef FIX_VEHICLES
-	_FIXES_JUST_PAWNDOC(FIX_VEHICLES);
+	static stock FIX_VEHICLES = 0;
 	#define FIX_VEHICLES                         (0)
 #endif
 
@@ -4695,15 +4693,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerWeather)
 	#undef FIX_GetPlayerWeather
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWeather);
+	static stock FIX_GetPlayerWeather = 2;
 	#define FIX_GetPlayerWeather                 (2)
 #elseif FIX_GetPlayerWeather
 	#undef FIX_GetPlayerWeather
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWeather);
+	static stock FIX_GetPlayerWeather = 1;
 	#define FIX_GetPlayerWeather                 (1)
 #else
 	#undef FIX_GetPlayerWeather
-	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWeather);
+	static stock FIX_GetPlayerWeather = 0;
 	#define FIX_GetPlayerWeather                 (0)
 #endif
 
@@ -4735,15 +4733,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWeather)
 	#undef FIX_GetWeather
-	_FIXES_JUST_PAWNDOC(FIX_GetWeather);
+	static stock FIX_GetWeather = 2;
 	#define FIX_GetWeather                       (2)
 #elseif FIX_GetWeather
 	#undef FIX_GetWeather
-	_FIXES_JUST_PAWNDOC(FIX_GetWeather);
+	static stock FIX_GetWeather = 1;
 	#define FIX_GetWeather                       (1)
 #else
 	#undef FIX_GetWeather
-	_FIXES_JUST_PAWNDOC(FIX_GetWeather);
+	static stock FIX_GetWeather = 0;
 	#define FIX_GetWeather                       (0)
 #endif
 
@@ -4774,15 +4772,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetWorldTime)
 	#undef FIX_GetWorldTime
-	_FIXES_JUST_PAWNDOC(FIX_GetWorldTime);
+	static stock FIX_GetWorldTime = 2;
 	#define FIX_GetWorldTime                     (2)
 #elseif FIX_GetWorldTime
 	#undef FIX_GetWorldTime
-	_FIXES_JUST_PAWNDOC(FIX_GetWorldTime);
+	static stock FIX_GetWorldTime = 1;
 	#define FIX_GetWorldTime                     (1)
 #else
 	#undef FIX_GetWorldTime
-	_FIXES_JUST_PAWNDOC(FIX_GetWorldTime);
+	static stock FIX_GetWorldTime = 0;
 	#define FIX_GetWorldTime                     (0)
 #endif
 
@@ -4815,15 +4813,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetConsoleVarAsString)
 	#undef FIX_GetConsoleVarAsString
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsString);
+	static stock FIX_GetConsoleVarAsString = 2;
 	#define FIX_GetConsoleVarAsString            (2)
 #elseif FIX_GetConsoleVarAsString
 	#undef FIX_GetConsoleVarAsString
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsString);
+	static stock FIX_GetConsoleVarAsString = 1;
 	#define FIX_GetConsoleVarAsString            (1)
 #else
 	#undef FIX_GetConsoleVarAsString
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsString);
+	static stock FIX_GetConsoleVarAsString = 0;
 	#define FIX_GetConsoleVarAsString            (0)
 #endif
 
@@ -4856,15 +4854,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetConsoleVarAsInt)
 	#undef FIX_GetConsoleVarAsInt
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsInt);
+	static stock FIX_GetConsoleVarAsInt = 2;
 	#define FIX_GetConsoleVarAsInt               (2)
 #elseif FIX_GetConsoleVarAsInt
 	#undef FIX_GetConsoleVarAsInt
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsInt);
+	static stock FIX_GetConsoleVarAsInt = 1;
 	#define FIX_GetConsoleVarAsInt               (1)
 #else
 	#undef FIX_GetConsoleVarAsInt
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsInt);
+	static stock FIX_GetConsoleVarAsInt = 0;
 	#define FIX_GetConsoleVarAsInt               (0)
 #endif
 
@@ -4897,15 +4895,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetConsoleVarAsBool)
 	#undef FIX_GetConsoleVarAsBool
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsBool);
+	static stock FIX_GetConsoleVarAsBool = 2;
 	#define FIX_GetConsoleVarAsBool              (2)
 #elseif FIX_GetConsoleVarAsBool
 	#undef FIX_GetConsoleVarAsBool
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsBool);
+	static stock FIX_GetConsoleVarAsBool = 1;
 	#define FIX_GetConsoleVarAsBool              (1)
 #else
 	#undef FIX_GetConsoleVarAsBool
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsBool);
+	static stock FIX_GetConsoleVarAsBool = 0;
 	#define FIX_GetConsoleVarAsBool              (0)
 #endif
 
@@ -4952,15 +4950,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetConsoleVarAsFloat)
 	#undef FIX_GetConsoleVarAsFloat
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsFloat);
+	static stock FIX_GetConsoleVarAsFloat = 2;
 	#define FIX_GetConsoleVarAsFloat             (2)
 #elseif FIX_GetConsoleVarAsFloat
 	#undef FIX_GetConsoleVarAsFloat
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsFloat);
+	static stock FIX_GetConsoleVarAsFloat = 1;
 	#define FIX_GetConsoleVarAsFloat             (1)
 #else
 	#undef FIX_GetConsoleVarAsFloat
-	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsFloat);
+	static stock FIX_GetConsoleVarAsFloat = 0;
 	#define FIX_GetConsoleVarAsFloat             (0)
 #endif
 
@@ -4983,15 +4981,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_tabsize                          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_tabsize)
 	#undef FIX_tabsize
-	_FIXES_JUST_PAWNDOC(FIX_tabsize);
+	static stock FIX_tabsize = 2;
 	#define FIX_tabsize                          (2)
 #elseif FIX_tabsize
 	#undef FIX_tabsize
-	_FIXES_JUST_PAWNDOC(FIX_tabsize);
+	static stock FIX_tabsize = 1;
 	#define FIX_tabsize                          (1)
 #else
 	#undef FIX_tabsize
-	_FIXES_JUST_PAWNDOC(FIX_tabsize);
+	static stock FIX_tabsize = 0;
 	#define FIX_tabsize                          (0)
 #endif
 
@@ -5000,15 +4998,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_Callbacks                        _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_Callbacks)
 	#undef FIX_Callbacks
-	_FIXES_JUST_PAWNDOC(FIX_Callbacks);
+	static stock FIX_Callbacks = 2;
 	#define FIX_Callbacks                        (2)
 #elseif FIX_Callbacks
 	#undef FIX_Callbacks
-	_FIXES_JUST_PAWNDOC(FIX_Callbacks);
+	static stock FIX_Callbacks = 1;
 	#define FIX_Callbacks                        (1)
 #else
 	#undef FIX_Callbacks
-	_FIXES_JUST_PAWNDOC(FIX_Callbacks);
+	static stock FIX_Callbacks = 0;
 	#define FIX_Callbacks                        (0)
 #endif
 
@@ -5030,15 +5028,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnRconCommand                    FIX_Callbacks
 #elseif _FIXES_IS_UNSET(FIX_OnRconCommand)
 	#undef FIX_OnRconCommand
-	_FIXES_JUST_PAWNDOC(FIX_OnRconCommand);
+	static stock FIX_OnRconCommand = 2;
 	#define FIX_OnRconCommand                    (2)
 #elseif FIX_OnRconCommand
 	#undef FIX_OnRconCommand
-	_FIXES_JUST_PAWNDOC(FIX_OnRconCommand);
+	static stock FIX_OnRconCommand = 1;
 	#define FIX_OnRconCommand                    (1)
 #else
 	#undef FIX_OnRconCommand
-	_FIXES_JUST_PAWNDOC(FIX_OnRconCommand);
+	static stock FIX_OnRconCommand = 0;
 	#define FIX_OnRconCommand                    (0)
 #endif
 
@@ -5060,15 +5058,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnClientCheckResponse            FIX_Callbacks
 #elseif _FIXES_IS_UNSET(FIX_OnClientCheckResponse)
 	#undef FIX_OnClientCheckResponse
-	_FIXES_JUST_PAWNDOC(FIX_OnClientCheckResponse);
+	static stock FIX_OnClientCheckResponse = 2;
 	#define FIX_OnClientCheckResponse            (2)
 #elseif FIX_OnClientCheckResponse
 	#undef FIX_OnClientCheckResponse
-	_FIXES_JUST_PAWNDOC(FIX_OnClientCheckResponse);
+	static stock FIX_OnClientCheckResponse = 1;
 	#define FIX_OnClientCheckResponse            (1)
 #else
 	#undef FIX_OnClientCheckResponse
-	_FIXES_JUST_PAWNDOC(FIX_OnClientCheckResponse);
+	static stock FIX_OnClientCheckResponse = 0;
 	#define FIX_OnClientCheckResponse            (0)
 #endif
 
@@ -5090,15 +5088,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetMaxPlayers                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetMaxPlayers)
 	#undef FIX_GetMaxPlayers
-	_FIXES_JUST_PAWNDOC(FIX_GetMaxPlayers);
+	static stock FIX_GetMaxPlayers = 2;
 	#define FIX_GetMaxPlayers                    (2)
 #elseif FIX_GetMaxPlayers
 	#undef FIX_GetMaxPlayers
-	_FIXES_JUST_PAWNDOC(FIX_GetMaxPlayers);
+	static stock FIX_GetMaxPlayers = 1;
 	#define FIX_GetMaxPlayers                    (1)
 #else
 	#undef FIX_GetMaxPlayers
-	_FIXES_JUST_PAWNDOC(FIX_GetMaxPlayers);
+	static stock FIX_GetMaxPlayers = 0;
 	#define FIX_GetMaxPlayers                    (0)
 #endif
 
@@ -5123,15 +5121,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_BypassDialog                     _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_BypassDialog)
 	#undef FIX_BypassDialog
-	_FIXES_JUST_PAWNDOC(FIX_BypassDialog);
+	static stock FIX_BypassDialog = 2;
 	#define FIX_BypassDialog                     (2)
 #elseif FIX_BypassDialog
 	#undef FIX_BypassDialog
-	_FIXES_JUST_PAWNDOC(FIX_BypassDialog);
+	static stock FIX_BypassDialog = 1;
 	#define FIX_BypassDialog                     (1)
 #else
 	#undef FIX_BypassDialog
-	_FIXES_JUST_PAWNDOC(FIX_BypassDialog);
+	static stock FIX_BypassDialog = 0;
 	#define FIX_BypassDialog                     (0)
 #endif
 
@@ -5154,15 +5152,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetTimer                         _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_SetTimer)
 	#undef FIX_SetTimer
-	_FIXES_JUST_PAWNDOC(FIX_SetTimer);
+	static stock FIX_SetTimer = 2;
 	#define FIX_SetTimer                         (2)
 #elseif FIX_SetTimer
 	#undef FIX_SetTimer
-	_FIXES_JUST_PAWNDOC(FIX_SetTimer);
+	static stock FIX_SetTimer = 1;
 	#define FIX_SetTimer                         (1)
 #else
 	#undef FIX_SetTimer
-	_FIXES_JUST_PAWNDOC(FIX_SetTimer);
+	static stock FIX_SetTimer = 0;
 	#define FIX_SetTimer                         (0)
 #endif
 
@@ -5184,15 +5182,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_main                             _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_main)
 	#undef FIX_main
-	_FIXES_JUST_PAWNDOC(FIX_main);
+	static stock FIX_main = 2;
 	#define FIX_main                             (2)
 #elseif FIX_main
 	#undef FIX_main
-	_FIXES_JUST_PAWNDOC(FIX_main);
+	static stock FIX_main = 1;
 	#define FIX_main                             (1)
 #else
 	#undef FIX_main
-	_FIXES_JUST_PAWNDOC(FIX_main);
+	static stock FIX_main = 0;
 	#define FIX_main                             (0)
 #endif
 
@@ -5218,15 +5216,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_Pawndoc                          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_Pawndoc)
 	#undef FIX_Pawndoc
-	_FIXES_JUST_PAWNDOC(FIX_Pawndoc);
+	static stock FIX_Pawndoc = 2;
 	#define FIX_Pawndoc                          (2)
 #elseif FIX_Pawndoc
 	#undef FIX_Pawndoc
-	_FIXES_JUST_PAWNDOC(FIX_Pawndoc);
+	static stock FIX_Pawndoc = 1;
 	#define FIX_Pawndoc                          (1)
 #else
 	#undef FIX_Pawndoc
-	_FIXES_JUST_PAWNDOC(FIX_Pawndoc);
+	static stock FIX_Pawndoc = 0;
 	#define FIX_Pawndoc                          (0)
 #endif
 
@@ -18459,7 +18457,6 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef FIXES_SET
 #undef FIXES_GET
 #undef _FIXES_NEW_COMPILER
-#undef _FIXES_JUST_PAWNDOC
 
 #endinput
 
@@ -18486,15 +18483,15 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define FIX_NameOfFixHere                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)
 	#undef FIX_NameOfFixHere
-	_FIXES_JUST_PAWNDOC(FIX_NameOfFixHere);
+	static stock FIX_NameOfFixHere = 2;
 	#define FIX_NameOfFixHere                    (2)
 #elseif FIX_NameOfFixHere
 	#undef FIX_NameOfFixHere
-	_FIXES_JUST_PAWNDOC(FIX_NameOfFixHere);
+	static stock FIX_NameOfFixHere = 1;
 	#define FIX_NameOfFixHere                    (1)
 #else
 	#undef FIX_NameOfFixHere
-	_FIXES_JUST_PAWNDOC(FIX_NameOfFixHere);
+	static stock FIX_NameOfFixHere = 0;
 	#define FIX_NameOfFixHere                    (0)
 #endif
 
