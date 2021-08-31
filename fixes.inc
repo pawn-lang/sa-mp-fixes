@@ -3,14 +3,19 @@
              fixes.inc - Community patch for buggy SA:MP functions.
             ========================================================
 */
+#define _FIXES_NEW_COMPILER ((__Pawn & 0x0F) >= 0x0A)
+// https://github.com/pawn-lang/compiler/issues/674
+#if _FIXES_NEW_COMPILER
+	#define _FIXES_HIDE_COMMENT(%0) const HIDE_THE_FIXES_COMMENT_%0 = %0
+#else
+	#define _FIXES_HIDE_COMMENT(%0);
+#endif
 /**
  * <!--
  * <transition target[^/]+/>
  * -->
 */
-#if (__Pawn & 0x0F) >= 0x0A
-const HIDE_THE_FIXES_COMMENT_1 = 1; // https://github.com/pawn-lang/compiler/issues/674
-#endif
+_FIXES_HIDE_COMMENT(1);
 /**
  * <!--
  * :::::::: README ::::::::
@@ -42,9 +47,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1; // https://github.com/pawn-lang/compiler/iss
  * different bug</a> tricks are needed to hide these comments.
  * -->
  */
-#if (__Pawn & 0x0F) >= 0x0A
-const HIDE_THE_FIXES_COMMENT_2 = 2; // https://github.com/pawn-lang/compiler/issues/674
-#endif
+_FIXES_HIDE_COMMENT(1);
 /**
  * <library name="fixes.inc"
  *   description="Community patches for buggy SA:MP functions.">
