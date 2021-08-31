@@ -106,510 +106,6 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </code>
  *
  * <section>
- *             Fixes
- * </section>
- *
- * <fixeslist>
- * <fix name="GetPlayerColor">
- *     <problem>
- *         Returns "0" if "SetPlayerColor" has never been called.
- *     </problem>
- *     <solution>
- *         Call "SetPlayerColor" in "OnPlayerConnect".
- *     </solution>
- *     <see>OnPlayerConnect</see>
- *     <author    >KoczkaHUN</author>
- * </fix>
- *
-
- *
-
- *
-
- *
-
- *
- * <fix name="GetWeaponName" fixed="0.3.7">
- *     <problem>
- *         Returns nothing for 18, 44, and 45.
- *     </problem>
- *     <solution>
- *         Return the correct names (<c>Molotov Cocktail</c>, <c>Thermal
- *         Goggles</c>, and <c>Night vision Goggles</c>).
- *     </solution>
- *     <see>FIXES_GetWeaponName</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
- *
-
- *
- * <fix name="TogglePlayerControllable">
- *     <problem>
- *         Other players see you moving on the spot.
- *     </problem>
- *     <solution>
- *         Return 0 in OnPlayerUpdate.
- *     </solution>
- *     <see>FIXES_TogglePlayerControllable</see>
- *     <see>OnPlayerUpdate</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=876854" />
- * </fix>
- *
-
- *
-
- *
- * <fix name="IsPlayerInRaceCheckpoint">
- *     <problem>
- *         Function returns an undefined value if it is called before any other
- *         race checkpoint functions are called to initialise the value.
- *     </problem>
- *     <solution>
- *         Call "DisablePlayerRaceCheckpoint" when they connect.
- *     </solution>
- *     <see>OnPlayerConnect</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
- * <fix name="PlayerTextDrawSetString_2">
- *     <problem>
- *         If the last character in the text is a space (" "), the text will all
- *         be blank.
- *     </problem>
- *     <solution>
- *         Remove space characters from the end of the string.
- *     </solution>
- *     <see>FIXES_PlayerTextDrawSetString</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
- * </fix>
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
- * <fix name="OnDialogResponse" fixed="0.3e RC6">
- *     <problem>
- *         Cheaters can spoof the dialogid they are using to respond to ones
- *         they can't actually see.
- *     </problem>
- *     <solution>
- *         Store the displayed dialogid and use that instead.
- *     </solution>
- *     <see>FIXES_OnDialogResponse</see>
- *     <see>FIXES_ShowPlayerDialog</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
- *
- * <fix name="GetPlayerDialog" disabled="true">
- *     <problem>
- *         This function doesn't exist.  Fixed for hidden dialogs.
- *     </problem>
- *     <solution>
- *         Add it.
- *     </solution>
- *     <see>FIXES_GetPlayerDialog</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- * </fix>
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
- * <fix name="file_inc" disabled="true">
- *     <problem>
- *         Includes or excludes all the file function fixes together (can cause
- *         major overhead).
- *     </problem>
- *     <solution>
- *         Optionally group them all under one define.
- *     </solution>
- *     <see>FIX_file_inc</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
- *
-
- *
- * <fix name="GetVehicleComponentInSlot">
- *     <problem>
- *         The function GetVehicleComponentInSlot doesn't work for CARMODTYPE_STEREO.  Both front
- *         bull bars and front bumper components are saved in the CARMODTYPE_FRONT_BUMPER slot.  If
- *         a vehicle has both of them installed, this function will only return the one which was
- *         installed last.  Both rear bull bars and rear bumper components are saved in the
- *         <c>CARMODTYPE_REAR_BUMPER</c> slot.  If a vehicle has both of them installed this
- *         function will only return the one which was installed last.
- *     </problem>
- *     <solution>
- *         Hook functions and store components. This uses some code from vSync library.
- *     </solution>
- *     <see>FIXES_GetVehicleComponentInSlot</see>
- *     <author    href="https://github.com/Mergevos/" >Mergevos</author>
- * </fix>
- *
-
- *
-
- *
-
- *
-
- *
-
- *
- * <fix name="Kick" fixed="0.3x">
- *     <problem>
- *         Calling "Kick" in "OnPlayerConnect" doesn't work properly.
- *     </problem>
- *     <solution>
- *         Defer it.
- *     </solution>
- *     <see>OnPlayerConnect</see>
- *     <see>FIXES_Kick</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1989453" />
- * </fix>
- *
-
- *
- * <fix name="random" disabled="true">
- *     <problem>
- *         Doesn't work with negative numbers.
- *     </problem>
- *     <solution>
- *         Invert then reinvert.
- *     </solution>
- *     <see>FIXES_random</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- * </fix>
- *
-
- *
-
- *
-
- *
-
- *
-
- *
- * <fix name="HideMenuForPlayer_2" disabled="true">
- *     <problem>
- *         Ignores the "menuid" parameter.
- *     </problem>
- *     <solution>
- *         Only hide the correct menu.
- *     </solution>
- *     <see>FIXES_HideMenuForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
- * <fix name="GameTextStyles" disabled="true">
- *     <problem>
- *         San Andreas has fixed styles for area and vehicle names, but they are
- *         not included in the GameText styles list.
- *     </problem>
- *     <solution>
- *         Add them.
- *     </solution>
- *     <see>FIXES_GameTextForAll</see>
- *     <see>FIXES_GameTextForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/NexiusTailer">NexiusTailer</author>
- * </fix>
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
- * <fix name="SetPlayerColor">
- *     <problem>
- *         If used under OnPlayerConnect, the affecting player will not see the
- *         color in the TAB menu.
- *     </problem>
- *     <solution>
- *         Defer it.
- *     </solution>
- *     <see>FIXES_SetPlayerColor</see>
- *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=452407" />
- * </fix>
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
- * <fix name="GetPlayerWeather" disabled="true">
- *     <problem>
- *         This function doesn't exist.
- *     </problem>
- *     <solution>
- *         Add it.
- *     </solution>
- *     <see>FIXES_GetPlayerWeather</see>
- *     <author    href="https://github.com/IstuntmanI/" >IstuntmanI</author>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- * </fix>
- *
- * <fix name="GetWeather" disabled="true">
- *     <problem>
- *         This function doesn't exist.
- *     </problem>
- *     <solution>
- *         Add it.
- *     </solution>
- *     <see>FIXES_GetWeather</see>
- *     <author    href="https://github.com/IstuntmanI/" >IstuntmanI</author>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- * </fix>
- *
- * <fix name="GetWorldTime" disabled="true">
- *     <problem>
- *         This function doesn't exist.
- *     </problem>
- *     <solution>
- *         Add it.
- *     </solution>
- *     <see>FIXES_GetWorldTime</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- * </fix>
- *
- * <fix name="GetServerVarAsString">
- *     <problem>
- *         Crashes on unknown string variables.
- *     </problem>
- *     <solution>
- *         Read the file manually.
- *     </solution>
- *     <see>FIXES_GetServerVarAsString</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
- * </fix>
- *
- * <fix name="GetServerVarAsInt">
- *     <problem>
- *         Crashes on unknown int variables.
- *     </problem>
- *     <solution>
- *         Read the file manually.
- *     </solution>
- *     <see>FIXES_GetServerVarAsString</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
- * </fix>
- *
- * <fix name="GetServerVarAsBool">
- *     <problem>
- *         Crashes on unknown boolean variables.
- *     </problem>
- *     <solution>
- *         Read the file manually.
- *     </solution>
- *     <see>FIXES_GetServerVarAsString</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
- * </fix>
- *
- * <fix name="GetServerVarAsFloat">
- *     <problem>
- *         Doesn't even exist.
- *     </problem>
- *     <solution>
- *         Read the file manually.
- *     </solution>
- *     <see>FIXES_GetServerVarAsString</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
- * </fix>
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
-
- *
- * <fix name="CreateVehicle">
- *     <problem>
- *         Colour <c>-1</c> isn't synced.
- *     </problem>
- *     <solution>
- *         Manually control the colours.
- *     </solution>
- *     <see>FIXES_CreateVehicle</see>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
- *
-
- *
-
- * </fixeslist>
- *
- * <section>
  *             Options
  * </section>
  *
@@ -1425,6 +921,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_Natives                          (0)
 #endif
 
+/**
+ * <fix name="GetPlayerColour">
+ *     <problem>
+ *         Returns "0" if "SetPlayerColor" has never been called.
+ *     </problem>
+ *     <solution>
+ *         Call "SetPlayerColor" in "OnPlayerConnect".
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <author    >KoczkaHUN</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetPlayerColour)
 	#if defined FIX_GetPlayerColor
 		_FIXES_SHOW_PAWNDOC(FIX_GetPlayerColour);
@@ -1583,6 +1092,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerSkin                    (0)
 #endif
 
+/**
+ * <fix name="GetWeaponName" fixed="0.3.7">
+ *     <problem>
+ *         Returns nothing for 18, 44, and 45.
+ *     </problem>
+ *     <solution>
+ *         Return the correct names (<c>Molotov Cocktail</c>, <c>Thermal
+ *         Goggles</c>, and <c>Night vision Goggles</c>).
+ *     </solution>
+ *     <see>FIXES_GetWeaponName</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetWeaponName)
 	#if defined GetVehicleParamsSirenState
 		#if FIXES_EnableDeprecated
@@ -1640,6 +1163,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_SetPlayerWorldBounds);
 	#define FIX_SetPlayerWorldBounds             (0)
 #endif
+
+/**
+ * <fix name="TogglePlayerControllable">
+ *     <problem>
+ *         Other players see you moving on the spot.
+ *     </problem>
+ *     <solution>
+ *         Return 0 in OnPlayerUpdate.
+ *     </solution>
+ *     <see>FIXES_TogglePlayerControllable</see>
+ *     <see>OnPlayerUpdate</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=876854" />
+ * </fix>
+ */
 
 #if !(defined FIX_TogglePlayerControllable) || (defined _PD@TogglePlayerControllable)
 	#if defined SetObjectMaterial
@@ -1737,6 +1275,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_IsPlayerInCheckpoint);
 	#define FIX_IsPlayerInCheckpoint             (0)
 #endif
+
+/**
+ * <fix name="IsPlayerInRaceCheckpoint">
+ *     <problem>
+ *         Function returns an undefined value if it is called before any other
+ *         race checkpoint functions are called to initialise the value.
+ *     </problem>
+ *     <solution>
+ *         Call "DisablePlayerRaceCheckpoint" when they connect.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if !(defined FIX_IsPlayerInRaceCheckpoint) || (defined _PD@IsPlayerInRaceCheckpoint)
 	#if FIXES_ExplicitOptions
@@ -2324,6 +1876,24 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_AttachTrailerToVehicle           (0)
 #endif
 
+/**
+ * <fix name="GetVehicleComponentInSlot">
+ *     <problem>
+ *         The function GetVehicleComponentInSlot doesn't work for CARMODTYPE_STEREO.  Both front
+ *         bull bars and front bumper components are saved in the CARMODTYPE_FRONT_BUMPER slot.  If
+ *         a vehicle has both of them installed, this function will only return the one which was
+ *         installed last.  Both rear bull bars and rear bumper components are saved in the
+ *         <c>CARMODTYPE_REAR_BUMPER</c> slot.  If a vehicle has both of them installed this
+ *         function will only return the one which was installed last.
+ *     </problem>
+ *     <solution>
+ *         Hook functions and store components. This uses some code from vSync library.
+ *     </solution>
+ *     <see>FIXES_GetVehicleComponentInSlot</see>
+ *     <author    href="https://github.com/Mergevos/" >Mergevos</author>
+ * </fix>
+ */
+
 #if !(defined FIX_GetVehicleComponentInSlot) || (defined _PD@GetVehicleComponentInSlot)
 	#if FIXES_ExplicitOptions
 		static FIX_GetVehicleComponentInSlot = _FIXES_DEFAULT;
@@ -2748,6 +2318,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GangZoneCreate                   (0)
 #endif
 
+/**
+ * <fix name="OnDialogResponse" fixed="0.3e RC6">
+ *     <problem>
+ *         Cheaters can spoof the dialogid they are using to respond to ones
+ *         they can't actually see.
+ *     </problem>
+ *     <solution>
+ *         Store the displayed dialogid and use that instead.
+ *     </solution>
+ *     <see>FIXES_OnDialogResponse</see>
+ *     <see>FIXES_ShowPlayerDialog</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_OnDialogResponse)
 	#if defined GetVehicleModelInfo
 		#if FIXES_EnableDeprecated
@@ -2773,6 +2358,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_OnDialogResponse);
 	#define FIX_OnDialogResponse                 (0)
 #endif
+
+/**
+ * <fix name="GetPlayerDialog" disabled="true">
+ *     <problem>
+ *         This function doesn't exist.  Fixed for hidden dialogs.
+ *     </problem>
+ *     <solution>
+ *         Add it.
+ *     </solution>
+ *     <see>FIXES_GetPlayerDialog</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_GetPlayerDialog)
 	#if defined GetPlayerDialog
@@ -2963,6 +2562,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_valstr);
 	#define FIX_valstr                           (0)
 #endif
+
+/**
+ * <fix name="file_inc" disabled="true">
+ *     <problem>
+ *         Includes or excludes all the file function fixes together (can cause
+ *         major overhead).
+ *     </problem>
+ *     <solution>
+ *         Optionally group them all under one define.
+ *     </solution>
+ *     <see>FIX_file_inc</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_file_inc)
 	_FIXES_STOCK FIX_file_inc = _FIXES_DEFAULT;
@@ -3398,6 +3011,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_TrainExit                        (0)
 #endif
 
+/**
+ * <fix name="Kick" fixed="0.3x">
+ *     <problem>
+ *         Calling "Kick" in "OnPlayerConnect" doesn't work properly.
+ *     </problem>
+ *     <solution>
+ *         Defer it.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <see>FIXES_Kick</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1989453" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_Kick)
 	#if defined EnableVehicleFriendlyFire
 		#if FIXES_EnableDeprecated
@@ -3455,6 +3083,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_OnVehicleMod);
 	#define FIX_OnVehicleMod                     (0)
 #endif
+
+/**
+ * <fix name="random" disabled="true">
+ *     <problem>
+ *         Doesn't work with negative numbers.
+ *     </problem>
+ *     <solution>
+ *         Invert then reinvert.
+ *     </solution>
+ *     <see>FIXES_random</see>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_random)
 	_FIXES_STOCK FIX_random = _FIXES_DEFAULT;
@@ -3699,6 +3340,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetPlayerMenu);
 	#define FIX_GetPlayerMenu                    (0)
 #endif
+
+/**
+ * <fix name="HideMenuForPlayer_2" disabled="true">
+ *     <problem>
+ *         Ignores the "menuid" parameter.
+ *     </problem>
+ *     <solution>
+ *         Only hide the correct menu.
+ *     </solution>
+ *     <see>FIXES_HideMenuForPlayer</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_HideMenuForPlayer_2)
 	_FIXES_STOCK FIX_HideMenuForPlayer_2 = FIXES_EnableAll;
@@ -4118,6 +3772,22 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ClearPlayerWorldBounds           (0)
 #endif
 
+/**
+ * <fix name="GameTextStyles" disabled="true">
+ *     <problem>
+ *         San Andreas has fixed styles for area and vehicle names, but they are
+ *         not included in the GameText styles list.
+ *     </problem>
+ *     <solution>
+ *         Add them.
+ *     </solution>
+ *     <see>FIXES_GameTextForAll</see>
+ *     <see>FIXES_GameTextForPlayer</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/NexiusTailer">NexiusTailer</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GameTextStyles)
 	_FIXES_STOCK FIX_GameTextStyles = _FIXES_DEFAULT;
 	#define FIX_GameTextStyles                   _FIXES_DEFAULT
@@ -4291,6 +3961,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_PlayerTextDrawSetString        (0)
 #endif
 
+/**
+ * <fix name="PlayerTextDrawSetString_2">
+ *     <problem>
+ *         If the last character in the text is a space (" "), the text will all
+ *         be blank.
+ *     </problem>
+ *     <solution>
+ *         Remove space characters from the end of the string.
+ *     </solution>
+ *     <see>FIXES_PlayerTextDrawSetString</see>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ * </fix>
+ */
+
 #if !(defined FIX_PlayerTextDrawSetString_2) || (defined _PD@PlayerTextDrawSetString_2)
 	#if FIXES_ExplicitOptions
 		static FIX_PlayerTextDrawSetString_2 = _FIXES_DEFAULT;
@@ -4406,6 +4091,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_OnPlayerRequestClass);
 	#define FIX_OnPlayerRequestClass             (0)
 #endif
+
+/**
+ * <fix name="SetPlayerColour">
+ *     <problem>
+ *         If used under OnPlayerConnect, the affecting player will not see the
+ *         color in the TAB menu.
+ *     </problem>
+ *     <solution>
+ *         Defer it.
+ *     </solution>
+ *     <see>FIXES_SetPlayerColor</see>
+ *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
+ *     <post      href="http://forum.sa-mp.com/showthread.php?t=452407" />
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerColour)
 	#if defined FIX_SetPlayerColor
@@ -4967,6 +4667,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_VEHICLES                         (0)
 #endif
 
+/**
+ * <fix name="GetPlayerWeather" disabled="true">
+ *     <problem>
+ *         This function doesn't exist.
+ *     </problem>
+ *     <solution>
+ *         Add it.
+ *     </solution>
+ *     <see>FIXES_GetPlayerWeather</see>
+ *     <author    href="https://github.com/IstuntmanI/" >IstuntmanI</author>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetPlayerWeather)
 	#if defined GetPlayerWeather
 		#if FIXES_EnableDeprecated
@@ -4993,6 +4707,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerWeather                 (0)
 #endif
 
+/**
+ * <fix name="GetWeather" disabled="true">
+ *     <problem>
+ *         This function doesn't exist.
+ *     </problem>
+ *     <solution>
+ *         Add it.
+ *     </solution>
+ *     <see>FIXES_GetWeather</see>
+ *     <author    href="https://github.com/IstuntmanI/" >IstuntmanI</author>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetWeather)
 	#if defined GetWeather
 		#if FIXES_EnableDeprecated
@@ -5018,6 +4746,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetWeather);
 	#define FIX_GetWeather                       (0)
 #endif
+
+/**
+ * <fix name="GetWorldTime" disabled="true">
+ *     <problem>
+ *         This function doesn't exist.
+ *     </problem>
+ *     <solution>
+ *         Add it.
+ *     </solution>
+ *     <see>FIXES_GetWorldTime</see>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_GetWorldTime)
 	#if defined GetWorldTime
@@ -5054,7 +4795,9 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Read the file manually.
  *     </solution>
  *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <see>FIXES_GetServerVarAsString</see>
  *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
  * </fix>
  */
 
@@ -5092,8 +4835,10 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Read the file manually.
  *     </solution>
- *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <see>FIXES_GetConsoleVarAsInt</see>
+ *     <see>FIXES_GetServerVarAsInt</see>
  *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
  * </fix>
  */
 
@@ -5131,8 +4876,10 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Read the file manually.
  *     </solution>
- *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <see>FIXES_GetConsoleVarAsBool</see>
+ *     <see>FIXES_GetServerVarAsBool</see>
  *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
  * </fix>
  */
 
@@ -5170,8 +4917,10 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Read the file manually.
  *     </solution>
- *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <see>FIXES_GetConsoleVarAsFloat</see>
+ *     <see>FIXES_GetServerVarAsFloat</see>
  *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
  * </fix>
  */
 
@@ -5481,6 +5230,18 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_Pawndoc                          (0)
 #endif
 
+/**
+ * <fix name="CreateVehicle">
+ *     <problem>
+ *         Colour <c>-1</c> isn't synced.
+ *     </problem>
+ *     <solution>
+ *         Manually control the colours.
+ *     </solution>
+ *     <see>FIXES_CreateVehicle</see>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
+ * </fix>
+ */
 //#if !defined FIX_CreateVehicle
 //	_FIXES_STOCK FIX_CreateVehicle = _FIXES_DEFAULT;
 //	#define FIX_CreateVehicle                    _FIXES_DEFAULT
@@ -5492,6 +5253,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 #if defined FIX_CreateVehicle
 	#undef FIX_CreateVehicle
 #endif
+static stock FIX_CreateVehicle = 0;
 #define FIX_CreateVehicle (0)
 
 /*
