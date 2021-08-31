@@ -2135,6 +2135,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 #define _PD@bool: _PD@
 #define _PD@Float: _PD@
 #define _PD@File: _PD@
+#define _PX@%0\32; _PX@
 
 // All other `_FIXES_SHOW_PAWNDOC`s go before their definition, this one goes
 // after, because it needs itself to be defined first.  To avoid the problem of
@@ -2152,7 +2153,6 @@ _FIXES_SHOW_PAWNDOC(SHOW_PAWNDOC(const symbol[])) {}
 
 _FIXES_SHOW_PAWNDOC(HIDE_PAWNDOC(const symbol[])) {}
 #define _FIXES_HIDE_PAWNDOC(%0); const _PX@%0 = 0;
-#define _PX@%0\32; _PX@
 
 /**
  * <remarks>
@@ -2163,7 +2163,6 @@ _FIXES_SHOW_PAWNDOC(HIDE_PAWNDOC(const symbol[])) {}
 
 _FIXES_SHOW_PAWNDOC(bool:IS_DEFINED(const symbol[])) {}
 #define _FIXES_IS_DEFINED(%0) ((defined %0) && !(defined _PD@%0))
-#define _PD@%0\32; _PD@
 
 /**
  * <remarks>
@@ -2174,7 +2173,6 @@ _FIXES_SHOW_PAWNDOC(bool:IS_DEFINED(const symbol[])) {}
 
 _FIXES_SHOW_PAWNDOC(bool:IS_UNDEFINED(const symbol[])) {}
 #define _FIXES_IS_UNDEFINED(%0) (!(defined %0) || (defined _PD@%0))
-#define _PD@%0\32; _PD@
 
 /**
  * <remarks>
