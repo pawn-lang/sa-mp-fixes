@@ -3286,20 +3286,6 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  * </fix>
  */
 
-/**
- * <fix name="HideMenuForPlayer">
- *     <problem>
- *         Crashes when passed an invalid menu ID.
- *     </problem>
- *     <solution>
- *         Don't hide it when passed an invalid menu.
- *     </solution>
- *     <see>FIXES_HideMenuForPlayer</see>
- *     <author href="https://github.com/Y-Less/">Y_Less</author>
- *     <post href="http://forum.sa-mp.com/showpost.php?p=1787297" />
- * </fix>
- */
-
 #if _FIXES_IS_UNDEFINED(FIX_HideMenuForPlayer)
 	static _FIXES_STOCK FIX_HideMenuForPlayer = FIX_Menus;
 	#define FIX_HideMenuForPlayer                FIX_Menus
@@ -10901,6 +10887,8 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define OnGameModeExit(%0) FIXES_OnGameModeExit(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnGameModeExit();
+#else
+	_FIXES_HIDE_PAWNDOC(OnGameModeExit);
 #endif
 
 /**
@@ -11012,6 +11000,8 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define OnFilterScriptExit(%0) FIXES_OnFilterScriptExit(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnFilterScriptExit();
+#else
+	_FIXES_HIDE_PAWNDOC(OnFilterScriptExit);
 #endif
 
 /**
@@ -11280,6 +11270,8 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define OnPlayerConnect(%0) FIXES_OnPlayerConnect(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerConnect(playerid);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerConnect);
 #endif
 
 /**
@@ -11405,6 +11397,8 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define OnPlayerDisconnect(%0) FIXES_OnPlayerDisconnect(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerDisconnect(playerid, reason);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerDisconnect);
 #endif
 
 /**
@@ -11505,6 +11499,8 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#define OnPlayerDeath(%0) FIXES_OnPlayerDeath(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerDeath(playerid, killerid, reason);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerDeath);
 #endif
 
 /**
@@ -11714,6 +11710,8 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 	#define OnPlayerRequestClass(%0) FIXES_OnPlayerRequestClass(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerRequestClass(playerid, classid);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerRequestClass);
 #endif
 
 /**
@@ -11857,6 +11855,8 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 	#define OnPlayerSpawn(%0) FIXES_OnPlayerSpawn(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerSpawn(playerid);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerSpawn);
 #endif
 
 /**
@@ -11980,6 +11980,8 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 	#define OnVehicleMod(%0) FIXES_OnVehicleMod(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+#else
+	_FIXES_HIDE_PAWNDOC(OnVehicleMod);
 #endif
 
 /**
@@ -12212,6 +12214,8 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 	#define OnPlayerText(%0) FIXES_OnPlayerText(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerText(playerid, text[]);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerText);
 #endif
 
 /**
@@ -12437,6 +12441,8 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 	#define OnPlayerUpdate(%0) FIXES_OnPlayerUpdate(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerUpdate(playerid);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerUpdate);
 #endif
 
 /**
@@ -12773,6 +12779,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define OnPlayerInteriorChange(%0) FIXES_OnPlayerInteriorChange(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerInteriorChange);
 #endif
 
 /**
@@ -12950,6 +12958,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define OnPlayerKeyStateChange(%0) FIXES_OnPlayerKeyStateChange(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerKeyStateChange);
 #endif
 
 /**
@@ -13058,6 +13068,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define OnPlayerEnterVehicle(%0) FIXES_OnPlayerEnterVehicle(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerEnterVehicle);
 #endif
 
 /**
@@ -13089,6 +13101,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define OnPlayerExitVehicle(%0) FIXES_OnPlayerExitVehicle(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerExitVehicle(playerid, vehicleid);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerExitVehicle);
 #endif
 
 /**
@@ -13189,6 +13203,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 		ClearAnimations__(playerid);
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(StopPlayerEnterVehicle);
 #endif
 
 /**
@@ -13251,6 +13267,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define OnPlayerSelectedMenuRow(%0) FIXES_OnPlayerSelectedMenuRow(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerSelectedMenuRow(playerid, row);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerSelectedMenuRow);
 #endif
 
 /**
@@ -13313,6 +13331,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define OnPlayerExitedMenu(%0) FIXES_OnPlayerExitedMenu(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerExitedMenu(playerid);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerExitedMenu);
 #endif
 
 /**
@@ -13978,6 +13998,8 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 	#define OnPlayerStateChange(%0) FIXES_OnPlayerStateChange(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerStateChange(playerid, PLAYER_STATE:newstate, PLAYER_STATE:oldstate);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerStateChange);
 #endif
 
 /**
@@ -15194,6 +15216,8 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 	#define OnPlayerClickMap(%0) FIXES_OnPlayerClickMap(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ);
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerClickMap);
 #endif
 
 /**
@@ -15573,6 +15597,8 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 	#define OnDialogResponse(%0) FIXES_OnDialogResponse(%0) <_ALS : _ALS_go>
 
 	_FIXES_FORWARD FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]);
+#else
+	_FIXES_HIDE_PAWNDOC(OnDialogResponse);
 #endif
 
 /**
@@ -16997,6 +17023,8 @@ native BAD_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS
 	{
 		return FIXES_gsVehicleIsLocked[vehicleid];
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(GetVehicleDoorsEx);
 #endif
 
 /**
