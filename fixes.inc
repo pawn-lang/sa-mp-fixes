@@ -2112,7 +2112,6 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 	#error fixes.inc is not required for open.mp
 #endif
 
-// First compiler pass only.
 /**
  * <remarks>
  * Creates fake functions that Pawndoc comments can be attached to in the
@@ -2121,13 +2120,32 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 #if defined _FIXES_DetermineOS
-	#define _FIXES_PAWNDOC(%0);
+	#define _FIXES_SHOW_PAWNDOC(%0)%1\10;
 #else
-	static stock SHOW_PAWNDOC();
-	#define _FIXES_PAWNDOC(%0); static stock _:%0;__PAWNDOC$
-	#define _:%0(%1);__PAWNDOC$ %0(%1){}
-	#define __PAWNDOC$
+	// First compiler pass only.
+	#define _FIXES_SHOW_PAWNDOC(%0)%1\10; static stock %0 %1 const __PAWNDOC:PAWNDOC@%0;
 #endif
+#define __PAWNDOC:%0(%1); __PAWNDOC:%0;
+#define PAWNDOC@%0\32; PAWNDOC@
+#define PAWNDOC@bool: PAWNDOC@
+
+// All other `_FIXES_SHOW_PAWNDOC`s go before their definition, this one goes
+// after, because it needs itself to be defined first.  To avoid the problem of
+// redefinition, it this defines the name as `SHOW_PAWNDOC` instead.
+_FIXES_SHOW_PAWNDOC(SHOW_PAWNDOC(const symbol[])) {}
+
+/**
+ * <remarks>
+ * Create a <c>const</c> that is never used, which has pawndoc documentation
+ * attached to it.  This seems to be the best way to prevent the documentation
+ * from appearing in XML (<c>-r</c>) output - even conditional compilation
+ * doesn't work on comments.
+ * </remarks>
+ */
+
+_FIXES_SHOW_PAWNDOC(HIDE_PAWNDOC(const symbol[])) {}
+#define _FIXES_HIDE_PAWNDOC(%0); const __PAWNDOC@%0;
+#define __PAWNDOC@%0\32; __PAWNDOC@
 
 /**
  * <remarks>
@@ -2158,9 +2176,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
-#if !defined _FIXES_DetermineOS
-static stock bool:_FIXES_IS_UNSET(const symbol[]) {}
-#endif
+_FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 #define _FIXES_IS_UNSET(%0) ((2*%0-1)==2*(%0-1))
 
 /*
@@ -3675,30 +3691,15 @@ static stock bool:_FIXES_IS_UNSET(const symbol[]) {}
 // Creates a `const` var using a descriptive syntax.  See:
 // https://github.com/pawn-lang/compiler/issues/674#issuecomment-908927779
 #if FIX_Pawndoc
-	#define HIDE_PAWNDOC(%0); const HIDE_PAWNDOC_%0;
-#else
-	#define HIDE_PAWNDOC(%0);
+	#define HIDE_PAWNDOC(%0) const HIDE_PAWNDOC_%0
 #endif
 
-// First compiler pass only.
-/**
- * <remarks>
- * Creates fake functions that Pawndoc comments can be attached to in the
- * first compilation phase, before the real macros are created.  Macros
- * can't have documentation comments, but why not?  They need documenting...
- * </remarks>
- */
-#if FIX_Pawndoc && !defined _FIXES_DetermineOS
-	static stock SHOW_PAWNDOC();
-	#define SHOW_PAWNDOC(%0); static stock %0;
-#else
-	#define SHOW_PAWNDOC(%0);
+#if FIX_Pawndoc
+	#define SHOW_PAWNDOC _FIXES_SHOW_PAWNDOC
 #endif
 
 /**
  * <remarks>
- * tabsize
- *
  * Breaks <c>#pragma tabsize 0</c> in such a way that the compiler gives the
  * following error:
  *
@@ -3760,7 +3761,7 @@ static stock bool:_FIXES_IS_UNSET(const symbol[]) {}
  * </remarks>
  */
 
-SHOW_PAWNDOC(do_not_use_tabsize_0);
+_FIXES_SHOW_PAWNDOC(do_not_use_tabsize_0);
 #if FIX_tabsize
 	#define tabsize%00%0\10;%0 _DUMMY_do_not_use_tabsize_0
 #endif
@@ -3771,7 +3772,7 @@ SHOW_PAWNDOC(do_not_use_tabsize_0);
  * </remarks>
  */
 
-SHOW_PAWNDOC(FIXES_EXISTS);
+_FIXES_SHOW_PAWNDOC(FIXES_EXISTS);
 #define FIXES_EXISTS
 
 /**
@@ -3780,7 +3781,7 @@ SHOW_PAWNDOC(FIXES_EXISTS);
  * </remarks>
  */
 
-SHOW_PAWNDOC(FIXES_CONST_CORRECT);
+_FIXES_SHOW_PAWNDOC(FIXES_CONST_CORRECT);
 #define FIXES_CONST_CORRECT
 
 /**
@@ -3789,7 +3790,7 @@ SHOW_PAWNDOC(FIXES_CONST_CORRECT);
  * </remarks>
  */
 
-SHOW_PAWNDOC(FIXES_TAG_CORRECT);
+_FIXES_SHOW_PAWNDOC(FIXES_TAG_CORRECT);
 #define FIXES_TAG_CORRECT
 
 /**
@@ -3798,7 +3799,7 @@ SHOW_PAWNDOC(FIXES_TAG_CORRECT);
  * </remarks>
  */
 
-SHOW_PAWNDOC(FIXES_API);
+_FIXES_SHOW_PAWNDOC(FIXES_API);
 #if FIX_API
 	#define FIXES_API
 #endif
@@ -3809,7 +3810,7 @@ SHOW_PAWNDOC(FIXES_API);
  * </remarks>
  */
 
-SHOW_PAWNDOC(FIXES_USES_STATE_HOOKS);
+_FIXES_SHOW_PAWNDOC(FIXES_USES_STATE_HOOKS);
 #define FIXES_UseStateHooks
 #define FIXES_USES_STATE_HOOKS
 
@@ -3819,7 +3820,7 @@ SHOW_PAWNDOC(FIXES_USES_STATE_HOOKS);
  * </remarks>
  */
 
-SHOW_PAWNDOC(FIXES_PRINTF(const str[]));
+_FIXES_SHOW_PAWNDOC(FIXES_PRINTF(const str[], ...)) {}
 #if defined _FIXES_PRINTF
 	#define FIXES_PRINTF _FIXES_PRINTF
 #else
@@ -3829,13 +3830,11 @@ SHOW_PAWNDOC(FIXES_PRINTF(const str[]));
 
 /**
  * <remarks>
- * _FIXES_IS_IN_CHARGE
- *
  * Test to see if this script is in command or not (master).
  * </remarks>
  */
 
-SHOW_PAWNDOC(bool:_FIXES_IS_IN_CHARGE());
+_FIXES_SHOW_PAWNDOC(bool:_FIXES_IS_IN_CHARGE()) {}
 #if FIXES_Single
 	#define _FIXES_IS_IN_CHARGE(%0)
 #else
@@ -3849,7 +3848,7 @@ SHOW_PAWNDOC(bool:_FIXES_IS_IN_CHARGE());
  * </remarks>
  */
 
-SHOW_PAWNDOC(FIXES_SET(const var[], playerid, value));
+_FIXES_SHOW_PAWNDOC(FIXES_SET(const var[], playerid, value)) {}
 #if FIXES_Single
 	#define FIXES_SET(%0,%1,%2) (FIXES_gs%0[%1] = %2)
 #else
@@ -3863,7 +3862,7 @@ SHOW_PAWNDOC(FIXES_SET(const var[], playerid, value));
  * </remarks>
  */
 
-SHOW_PAWNDOC(FIXES_GET(const var[], playerid));
+_FIXES_SHOW_PAWNDOC(FIXES_GET(const var[], playerid)) {}
 #if FIXES_Single
 	#define FIXES_GET(%0,%1) (FIXES_gs%0[%1])
 #else
@@ -3872,65 +3871,58 @@ SHOW_PAWNDOC(FIXES_GET(const var[], playerid));
 
 /**
  * <remarks>
- * _FIXES_IS_NULL
- *
  * Pretty standard.
  * </remarks>
  */
 
-SHOW_PAWNDOC(bool:_FIXES_IS_NULL(const string[]));
+_FIXES_SHOW_PAWNDOC(bool:_FIXES_IS_NULL(const string[])) {}
 #define _FIXES_IS_NULL(%0) ((%0[(%0[0])=='\1'])=='\0')
 
 /**
  * <remarks>
- * _FIXES_CEILDIV
- *
  * Do a ceiling division of the first number by the second number.
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(_FIXES_CEILDIV(a, b)) {}
 #define _FIXES_CEILDIV(%0,%1) (((%0) + (%1) - 1) / (%1))
 
 /**
  * <remarks>
- * _FIXES_FOREACH
- *
  * A new version of "foreach", but just for this library.
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(_FIXES_FOREACH(iterator[], &playerid)) {}
 #define _FIXES_FOREACH(%1,%0) for (new %0 = MAX_PLAYERS; (%0 = %1[%0]) != MAX_PLAYERS; )
 
 /**
  * <remarks>
- * _FIXES_IN_RANGE
- *
  * Checks if the first parameter is between the other two: %1 &lt;= %0 &lt;%2 (but
  * faster).
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(bool:_FIXES_IN_RANGE(min, value, max)) {}
 #define _FIXES_IN_RANGE(%0,%1,%2) ((_:(%0) - (_:(%1) + cellmin)) < (_:(%2) - (_:(%1) + cellmin)))
 
 /**
  * <remarks>
- * _FIXES_NO_RANGE
- *
  * Checks if the first parameter is not between the other two:
  * <c>!(%1 &lt;= %0 &lt; %2)</c>(but faster).
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(bool:_FIXES_NO_RANGE(min, value, max)) {}
 #define _FIXES_NO_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) >= ((%2) - ((%1) + cellmin)))
 
 /**
  * <remarks>
- * _FIXES_FORWARD
- *
  * Forwards a hooked callbacks, and defines the default state implementations.
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(_FIXES_FOREACH(const function[], ...)) {}
 #define _FIXES_FORWARD%0(%1); \
 	forward%0(%1); \
 	public%0(%1) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 1; } \
@@ -3938,22 +3930,20 @@ SHOW_PAWNDOC(bool:_FIXES_IS_NULL(const string[]));
 
 /**
  * <remarks>
- * _FIXES_IS_VALID_PLAYER
- *
  * Check if the ID is in range of player IDs.
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(bool:_FIXES_IS_VALID_PLAYER(playerid)) {}
 #define _FIXES_IS_VALID_PLAYER(%0) _FIXES_IN_RANGE((%0), 0, MAX_PLAYERS)
 
 /**
  * <remarks>
- * _FIXES_IS_PLAYER_CONNECTED
- *
- * Always valid "IsPlayerConnected" check.
+ * Always valid <c>IsPlayerConnected</c> check.
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(bool:_FIXES_IS_PLAYER_CONNECTED(playerid)) {}
 #define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IS_VALID_PLAYER(%0) && IsPlayerConnected__(%0))
 
 /*
@@ -3973,11 +3963,12 @@ SHOW_PAWNDOC(bool:_FIXES_IS_NULL(const string[]));
 
 /**
  * <remarks>
- * The number of GameText styles recreated using TextDraw functions.  This is 4
- * by default, but can be extended to 6 if you want location and vehicle styles.
+ * The number of GameText styles recreated using TextDraw functions.  This is 7
+ * by default, but can be extended to 16 if you want more default GTA styles.
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #if FIX_GameText
 	#if FIX_GameTextStyles
 		#define FIXES_GT_STYLE_COUNT (16)
@@ -3988,174 +3979,274 @@ SHOW_PAWNDOC(bool:_FIXES_IS_NULL(const string[]));
 
 /**
  * <remarks>
- * INVALID_DIALOG_ID
- *
  * Set when a player can't see a dialog.
  * </remarks>
  */
 
-#if !defined INVALID_DIALOG_ID
+#if defined INVALID_DIALOG_ID && !defined PAWNDOC@INVALID_DIALOG_ID
+	_FIXES_HIDE_PAWNDOC(INVALID_DIALOG_ID);
+#else
+	_FIXES_SHOW_PAWNDOC(INVALID_DIALOG_ID);
 	#define INVALID_DIALOG_ID (-1)
 #endif
 
 /**
  * <remarks>
- * _FIXES_MIN_WORLDBOUNDS
- *
  * Default worldbound range.
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(_FIXES_MIN_WORLDBOUNDS);
 #define _FIXES_MIN_WORLDBOUNDS (-20000.0)
 
 /**
  * <remarks>
- * _FIXES_PROPERTY_OFFSET
- *
+ * Default worldbound range.
+ * </remarks>
+ */
+
+_FIXES_SHOW_PAWNDOC(_FIXES_MAX_WORLDBOUNDS);
+#define _FIXES_MAX_WORLDBOUNDS (20000.0)
+
+/**
+ * <remarks>
  * Defines property offset used for vehicle components.
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #define _FIXES_PROPERTY_OFFSET (12)
 
 /**
  * <remarks>
- * CARMODTYPE_FRONT_BULLBAR
- *
  * Defines additional component slots
  * </remarks>
  */
-#if !defined CARMODTYPE_FRONT_BULLBAR
+
+#if defined CARMODTYPE_FRONT_BULLBAR && !defined PAWNDOC@CARMODTYPE_FRONT_BULLBAR
+	_FIXES_HIDE_PAWNDOC(CARMODTYPE_FRONT_BULLBAR);
+#else
+	_FIXES_SHOW_PAWNDOC(CARMODTYPE_FRONT_BULLBAR);
 	#define CARMODTYPE_FRONT_BULLBAR (14)
 #endif
 
 /**
  * <remarks>
- * CARMODTYPE_REAR_BULLBAR
- *
  * Defines additional component slots
  * </remarks>
  */
-#if !defined CARMODTYPE_REAR_BULLBAR
+
+#if defined CARMODTYPE_REAR_BULLBAR && !defined PAWNDOC@CARMODTYPE_REAR_BULLBAR
+	_FIXES_HIDE_PAWNDOC(CARMODTYPE_REAR_BULLBAR);
+#else
+	_FIXES_SHOW_PAWNDOC(CARMODTYPE_REAR_BULLBAR);
 	#define CARMODTYPE_REAR_BULLBAR (15)
 #endif
 
 /**
  * <remarks>
- * _FIXES_MAX_WORLDBOUNDS
- *
- * Default worldbound range.
- * </remarks>
- */
-
-#define _FIXES_MAX_WORLDBOUNDS (20000.0)
-
-/**
- * <remarks>
- * _FIXES_INFINITY
- *
  * IEEE 754 definition of infinity.
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(_FIXES_INFINITY);
 #define _FIXES_INFINITY (Float:0x7F800000)
 
 /**
  * <remarks>
- * _FIXES_N_INFINITY
- *
  * IEEE 754 definition of negative infinity.
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(_FIXES_N_INFINITY);
 #define _FIXES_N_INFINITY (Float:0xFF800000)
 
 /**
  * <remarks>
- * _FIXES_ATTACHMENTS
- *
  * The number of players whose attachment data (10-bits) can be stored in one
  * cell.
  * </remarks>
  */
 
+_FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 #define _FIXES_ATTACHMENTS (cellbits / MAX_PLAYER_ATTACHED_OBJECTS)
 
 /**
  * <remarks>
- * Future-compatible tag definitions.
+ * Future-compatible tag definitions.  <c>KEY:</c> is defined as <c>_:</c> when
+ * enhanced tags are disabled, and `E_KEY:` when they are enabled.
  * </remarks>
  */
 
-#if !defined KEY
+#if defined KEY && !defined PAWNDOC@KEY
+	_FIXES_HIDE_PAWNDOC(KEY);
+#else
+	_FIXES_SHOW_PAWNDOC(KEY);
 	#define KEY: _:
 #endif
 
-#if !defined VEHICLE_PARAMS
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>VEHICLE_PARAMS:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and `E_VEHICLE_PARAMS:` when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined VEHICLE_PARAMS && !defined PAWNDOC@VEHICLE_PARAMS
+	_FIXES_HIDE_PAWNDOC(VEHICLE_PARAMS);
+#else
+	_FIXES_SHOW_PAWNDOC(VEHICLE_PARAMS);
 	#define VEHICLE_PARAMS: _:
 #endif
 
-#if !defined PLAYER_STATE
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>PLAYER_STATE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and `E_PLAYER_STATE:` when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined PLAYER_STATE && !defined PAWNDOC@PLAYER_STATE
+	_FIXES_HIDE_PAWNDOC(PLAYER_STATE);
+#else
+	_FIXES_SHOW_PAWNDOC(PLAYER_STATE);
 	#define PLAYER_STATE: _:
 #endif
 
-#if !defined SPECIAL_ACTION
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>SPECIAL_ACTION:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and `E_SPECIAL_ACTION:` when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined SPECIAL_ACTION && !defined PAWNDOC@SPECIAL_ACTION
+	_FIXES_HIDE_PAWNDOC(SPECIAL_ACTION);
+#else
+	_FIXES_SHOW_PAWNDOC(SPECIAL_ACTION);
 	#define SPECIAL_ACTION: _:
 #endif
 
-#if !defined PLAYER_VARTYPE
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>PLAYER_VARTYPE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and `E_PLAYER_VARTYPE:` when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined PLAYER_VARTYPE && !defined PAWNDOC@PLAYER_VARTYPE
+	_FIXES_HIDE_PAWNDOC(PLAYER_VARTYPE);
+#else
+	_FIXES_SHOW_PAWNDOC(PLAYER_VARTYPE);
 	#define PLAYER_VARTYPE: _:
 #endif
 
 /**
  * <remarks>
- * <c>_FIXES_KEY_AIM</c>
- * <c>KEY_AIM</c>
- *
- * Because the default SA:MP includes missed this one.
+ * Because the default SA:MP includes missed this one.  Used internally via
+ * <c>_FIXES_KEY_AIM</c>.
  * </remarks>
  */
 
-#define _FIXES_KEY_AIM                   (KEY:128)
-#if FIX_KEY_AIM
-	#define KEY_AIM                      _FIXES_KEY_AIM
+#define _FIXES_KEY_AIM                           (KEY:128)
+#if defined KEY_AIM && !defined PAWNDOC@KEY_AIM
+	_FIXES_HIDE_PAWNDOC(KEY_AIM);
+#else
+	_FIXES_SHOW_PAWNDOC(KEY_AIM);
+	#define KEY_AIM                              _FIXES_KEY_AIM
 #endif
 
 /**
  * <remarks>
- * <c>_FIXES_SPECIAL_ACTION_PISSING</c>
- * <c>SPECIAL_ACTION_PISSING</c>
- *
- * Because the default SA:MP includes missed this one.
+ * Because the default SA:MP includes missed this one.  Used internally via
+ * <c>_FIXES_SPECIAL_ACTION_PISSING</c>.
  * </remarks>
  */
 
-#define _FIXES_SPECIAL_ACTION_PISSING    (68)
-#if FIX_SPECIAL_ACTION_PISSING
-	#define SPECIAL_ACTION_PISSING       _FIXES_SPECIAL_ACTION_PISSING
+#define _FIXES_SPECIAL_ACTION_PISSING            (68)
+#if defined SPECIAL_ACTION_PISSING && !defined PAWNDOC@SPECIAL_ACTION_PISSING
+	_FIXES_HIDE_PAWNDOC(SPECIAL_ACTION_PISSING);
+#else
+	_FIXES_SHOW_PAWNDOC(SPECIAL_ACTION_PISSING);
+	#define SPECIAL_ACTION_PISSING               _FIXES_SPECIAL_ACTION_PISSING
 #endif
 
 /**
  * <remarks>
- * <c>WEAPONS</c>
- *
- * Because the default SA:MP includes missed some of these.
+ * Because the default SA:MP includes missed some weapon names and aliases.
+ * Used internally via <c>_FIXES_WEAPON_FIST</c>.
  * </remarks>
  */
 
-#define _FIXES_WEAPON_FIST                      (0)
-#define _FIXES_WEAPON_NIGHT_VIS_GOGGLES         (44)
-#define _FIXES_WEAPON_THERMAL_GOGGLES           (45)
-
-#if FIX_WEAPONS
-	#define WEAPON_FIST               _FIXES_WEAPON_FIST
-	#define WEAPON_NIGHTSTICK         WEAPON_NITESTICK
-	#define WEAPON_MOLOTOV            WEAPON_MOLTOV
-	#define WEAPON_NIGHT_VIS_GOGGLES  _FIXES_WEAPON_NIGHT_VIS_GOGGLES
-	#define WEAPON_THERMAL_GOGGLES    _FIXES_WEAPON_THERMAL_GOGGLES
+#define _FIXES_WEAPON_FIST                       (0)
+#if defined WEAPON_FIST && !defined PAWNDOC@WEAPON_FIST
+	_FIXES_HIDE_PAWNDOC(WEAPON_FIST);
+#else
+	_FIXES_SHOW_PAWNDOC(WEAPON_FIST);
+	#define WEAPON_FIST                          _FIXES_WEAPON_FIST
 #endif
 
-#define _FIXES_WEAPON_SLOTS                     (13)
+/**
+ * <remarks>
+ * Because the default SA:MP includes missed some weapon names and aliases.
+ * </remarks>
+ */
+
+#if defined WEAPON_NIGHTSTICK && !defined PAWNDOC@WEAPON_NIGHTSTICK
+	_FIXES_HIDE_PAWNDOC(WEAPON_NIGHTSTICK);
+#else
+	_FIXES_SHOW_PAWNDOC(WEAPON_NIGHTSTICK);
+	#define WEAPON_NIGHTSTICK                    WEAPON_NITESTICK
+#endif
+
+/**
+ * <remarks>
+ * Because the default SA:MP includes missed some weapon names and aliases.
+ * </remarks>
+ */
+
+#if defined WEAPON_MOLOTOV && !defined PAWNDOC@WEAPON_MOLOTOV
+	_FIXES_HIDE_PAWNDOC(WEAPON_MOLOTOV);
+#else
+	_FIXES_SHOW_PAWNDOC(WEAPON_MOLOTOV);
+	#define WEAPON_MOLOTOV                       WEAPON_MOLTOV
+#endif
+
+/**
+ * <remarks>
+ * Because the default SA:MP includes missed some weapon names and aliases.
+ * Used internally via <c>_FIXES_WEAPON_NIGHT_VIS_GOGGLES</c>.
+ * </remarks>
+ */
+
+#define _FIXES_WEAPON_NIGHT_VIS_GOGGLES          (44)
+#if defined WEAPON_NIGHT_VIS_GOGGLES && !defined PAWNDOC@WEAPON_NIGHT_VIS_GOGGLES
+	_FIXES_HIDE_PAWNDOC(WEAPON_NIGHT_VIS_GOGGLES);
+#else
+	_FIXES_SHOW_PAWNDOC(WEAPON_NIGHT_VIS_GOGGLES);
+	#define WEAPON_NIGHT_VIS_GOGGLES             _FIXES_WEAPON_NIGHT_VIS_GOGGLES
+#endif
+
+/**
+ * <remarks>
+ * Because the default SA:MP includes missed some weapon names and aliases.
+ * Used internally via <c>_FIXES_WEAPON_THERMAL_GOGGLES</c>.
+ * </remarks>
+ */
+
+#define _FIXES_WEAPON_THERMAL_GOGGLES            (45)
+#if defined WEAPON_THERMAL_GOGGLES && !defined PAWNDOC@WEAPON_THERMAL_GOGGLES
+	_FIXES_HIDE_PAWNDOC(WEAPON_THERMAL_GOGGLES);
+#else
+	_FIXES_SHOW_PAWNDOC(WEAPON_THERMAL_GOGGLES);
+	#define WEAPON_THERMAL_GOGGLES               _FIXES_WEAPON_THERMAL_GOGGLES
+#endif
+
+#define _FIXES_WEAPON_SLOTS                      (13)
 
 /**
  * <remarks>
@@ -16686,7 +16777,6 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef FIXES_SET
 #undef FIXES_GET
 #undef _FIXES_NEW_COMPILER
-#undef _
 
 #endinput
 
