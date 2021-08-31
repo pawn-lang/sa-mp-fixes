@@ -560,6 +560,27 @@ _FIXES_SHOW_PAWNDOC(bool:IS_UNDEFINED(const symbol[])) {}
 _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 #define _FIXES_IS_UNSET(%0) ((2*%0-1)==2*(%0-1))
 
+/**
+ * <remarks>
+ * Future-compatible tags.  Allows for things to be <c>_:</c>, <c>e_</c>, or
+ * <c>E_</c> for progressively stronger tag safety.
+ * </remarks>
+ */
+
+#if _FIXES_IS_DEFINED(__TAG)
+	_FIXES_HIDE_PAWNDOC(__TAG);
+#else
+	_FIXES_SHOW_PAWNDOC(__TAG(const tagname[])) {}
+	#if defined NO_TAGS
+		#define __TAG(%0) _
+	#elseif defined STRONG_TAGS
+		#define __TAG(%0) E_%0
+	#else // if defined WEAK_TAGS
+		#define __TAG(%0) e_%0
+		#define WEAK_TAGS
+	#endif
+#endif
+
 /*
 
      ad88888ba                                 88                                       
@@ -5664,11 +5685,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(KEY);
 #else
 	_FIXES_SHOW_PAWNDOC(KEY);
-	#if defined __TAG
-		#define KEY: __TAG(KEY):
-	#else
-		#define KEY: _:
-	#endif
+	#define KEY: __TAG(KEY):
 #endif
 
 /**
@@ -5683,11 +5700,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(VEHICLE_PARAMS);
 #else
 	_FIXES_SHOW_PAWNDOC(VEHICLE_PARAMS);
-	#if defined __TAG
-		#define VEHICLE_PARAMS: __TAG(VEHICLE_PARAMS):
-	#else
-		#define VEHICLE_PARAMS: _:
-	#endif
+	#define VEHICLE_PARAMS: __TAG(VEHICLE_PARAMS):
 #endif
 
 /**
@@ -5702,11 +5715,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(PLAYER_STATE);
 #else
 	_FIXES_SHOW_PAWNDOC(PLAYER_STATE);
-	#if defined __TAG
-		#define PLAYER_STATE: __TAG(PLAYER_STATE):
-	#else
-		#define PLAYER_STATE: _:
-	#endif
+	#define PLAYER_STATE: __TAG(PLAYER_STATE):
 #endif
 
 /**
@@ -5721,11 +5730,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(SPECIAL_ACTION);
 #else
 	_FIXES_SHOW_PAWNDOC(SPECIAL_ACTION);
-	#if defined __TAG
-		#define SPECIAL_ACTION: __TAG(SPECIAL_ACTION):
-	#else
-		#define SPECIAL_ACTION: _:
-	#endif
+	#define SPECIAL_ACTION: __TAG(SPECIAL_ACTION):
 #endif
 
 /**
@@ -5740,11 +5745,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(PLAYER_VARTYPE);
 #else
 	_FIXES_SHOW_PAWNDOC(PLAYER_VARTYPE);
-	#if defined __TAG
-		#define PLAYER_VARTYPE: __TAG(PLAYER_VARTYPE):
-	#else
-		#define PLAYER_VARTYPE: _:
-	#endif
+	#define PLAYER_VARTYPE: __TAG(PLAYER_VARTYPE):
 #endif
 
 /**
@@ -5758,11 +5759,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(BODY_PART);
 #else
 	_FIXES_SHOW_PAWNDOC(BODY_PART);
-	#if defined __TAG
-		#define BODY_PART: __TAG(BODY_PART):
-	#else
-		#define BODY_PART: _:
-	#endif
+	#define BODY_PART: __TAG(BODY_PART):
 #endif
 
 /**
@@ -5776,11 +5773,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(CAM_MODE);
 #else
 	_FIXES_SHOW_PAWNDOC(CAM_MODE);
-	#if defined __TAG
-		#define CAM_MODE: __TAG(CAM_MODE):
-	#else
-		#define CAM_MODE: _:
-	#endif
+	#define CAM_MODE: __TAG(CAM_MODE):
 #endif
 
 /**
