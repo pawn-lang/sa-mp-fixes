@@ -3,19 +3,14 @@
              fixes.inc - Community patch for buggy SA:MP functions.
             ========================================================
 */
-#define _FIXES_NEW_COMPILER ((__Pawn & 0x0F) >= 0x0A)
-// https://github.com/pawn-lang/compiler/issues/674
-#if _FIXES_NEW_COMPILER
-	#define _FIXES_HIDE_COMMENT(%0) const HIDE_THE_FIXES_COMMENT_%0 = %0
-#else
-	#define _FIXES_HIDE_COMMENT(%0);
-#endif
 /**
  * <!--
  * <transition target[^/]+/>
  * -->
 */
-_FIXES_HIDE_COMMENT(1);
+#if (__Pawn & 0x0F) >= 0x0A
+const HIDE_THE_FIXES_COMMENT_1 = 1;
+#endif
 /**
  * <!--
  * :::::::: README ::::::::
@@ -47,7 +42,9 @@ _FIXES_HIDE_COMMENT(1);
  * different bug</a> tricks are needed to hide these comments.
  * -->
  */
-_FIXES_HIDE_COMMENT(1);
+#if (__Pawn & 0x0F) >= 0x0A
+const HIDE_THE_FIXES_COMMENT_1 = 1;
+#endif
 /**
  * <library name="fixes.inc"
  *   description="Community patches for buggy SA:MP functions.">
@@ -2034,6 +2031,12 @@ _FIXES_HIDE_COMMENT(1);
 #define _FIXES_ENUM enum
 
 #if (__Pawn & 0x0F) >= 0x0A
+	#define _FIXES_NEW_COMPILER (1)
+#else
+	#define _FIXES_NEW_COMPILER (0)
+#endif
+
+#if _FIXES_NEW_COMPILER
 	#if defined __PawnBuild
 		// Extra flags.
 		#if __PawnBuild >= 4
@@ -4737,14 +4740,16 @@ PRE_HOOK(FIXES)
  * </remarks>
  */
 
-#if (__Pawn & 0x0F) < 0x0A
+#if !_FIXES_NEW_COMPILER
 	forward _FIXES_IncludeNatives();
 
 	public _FIXES_IncludeNatives()
 	{
 		static FIXES_glEmpty[] = "";
+		// Do not put this on one line - this prevents macro replacements.
 		SetTimerEx
 			(FIXES_glEmpty, 0, false, FIXES_glEmpty);
+		// Do not put this on one line - this prevents macro replacements.
 		KillTimer
 			(0);
 	}
@@ -7777,7 +7782,7 @@ static stock _FIXES_Bernstein(const name[])
  * </remarks>
  */
 
-#if (__Pawn & 0x0F) >= 0x0A
+#if _FIXES_NEW_COMPILER
 	#pragma warning push
 	#pragma warning disable 238
 #endif
@@ -7789,7 +7794,7 @@ static stock _FIXES_ConstMod(const &target, chr)
 	#emit SREF.S.pri target
 }
 
-#if (__Pawn & 0x0F) >= 0x0A
+#if _FIXES_NEW_COMPILER
 	#pragma warning pop
 #endif
 
@@ -16601,6 +16606,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef _FIXES_IS_NULL
 #undef FIXES_SET
 #undef FIXES_GET
+#undef _FIXES_NEW_COMPILER
 
 #endinput
 
