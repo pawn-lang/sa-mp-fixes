@@ -7879,7 +7879,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 /**
  * <remarks>
  * Check if files outside <c>scriptfiles</c> can be accessed via
- * <a>DANGEROUS_SERVER_ROOT</c>.
+ * <c>DANGEROUS_SERVER_ROOT</c>.
  * </remarks>
  */
 
