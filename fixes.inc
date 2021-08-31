@@ -2121,20 +2121,21 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 #if defined _FIXES_DetermineOS
-	#define _FIXES_SHOW_PAWNDOC(%0)%1\10;
+	#define _FIXES_SHOW_PAWNDOC(FIX%0)%1\10;
 #else
 	// First compiler pass only.
-	#define _FIXES_SHOW_PAWNDOC(%0)%1\10; static stock %0 %1 const __PAWNDOC:_PD@%0 = __PAWNDOC:1;
+	#define _FIXES_SHOW_PAWNDOC(FIX%0)%1\10; static stock %0 %1 const __PAWNDOC:_F@%0 = __PAWNDOC:1;
 #endif
 
 // Convert functions to constants.
 #define __PAWNDOC:%0(%1); __PAWNDOC:%0;
 
 // Strip tags and spaces.
-#define _PD@%0\32; _PD@
-#define _PD@bool: _PD@
-#define _PD@Float: _PD@
-#define _PD@File: _PD@
+#define _F@%0\32; _F@
+#define _F@bool: _F@
+#define _F@Float: _F@
+#define _F@File: _F@
+#define F_@%0\32; F_@
 
 // All other `_FIXES_SHOW_PAWNDOC`s go before their definition, this one goes
 // after, because it needs itself to be defined first.  To avoid the problem of
@@ -2151,8 +2152,7 @@ _FIXES_SHOW_PAWNDOC(SHOW_PAWNDOC(const symbol[])) {}
  */
 
 _FIXES_SHOW_PAWNDOC(HIDE_PAWNDOC(const symbol[])) {}
-#define _FIXES_HIDE_PAWNDOC(%0); const _PX@%0 = 0;
-#define _PX@%0\32; _PX@
+#define _FIXES_HIDE_PAWNDOC(FIX%0); const F_@%0 = 0;
 
 /**
  * <remarks>
@@ -2162,8 +2162,7 @@ _FIXES_SHOW_PAWNDOC(HIDE_PAWNDOC(const symbol[])) {}
  */
 
 _FIXES_SHOW_PAWNDOC(bool:IS_DEFINED(const symbol[])) {}
-#define _FIXES_IS_DEFINED(%0) ((defined %0) && !(defined _PD@%0))
-#define _PD@%0\32; _PD@
+#define _FIXES_IS_DEFINED(FIX%0) ((defined FIX%0) && !(defined _F@%0))
 
 /**
  * <remarks>
