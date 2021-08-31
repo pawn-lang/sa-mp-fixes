@@ -2117,17 +2117,18 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * Creates fake functions that Pawndoc comments can be attached to in the
  * first compilation phase, before the real macros are created.  Macros
  * can't have documentation comments, but why not?  They need documenting...
+ * Used internally as <c>_FIXES_SHOW_PAWNDOC</c>.
  * </remarks>
  */
 #if defined _FIXES_DetermineOS
 	#define _FIXES_SHOW_PAWNDOC(%0)%1\10;
 #else
 	// First compiler pass only.
-	#define _FIXES_SHOW_PAWNDOC(%0)%1\10; static stock %0 %1 const __PAWNDOC:PAWNDOC@%0;
+	#define _FIXES_SHOW_PAWNDOC(%0)%1\10; static stock %0 %1 const __PAWNDOC:_PD@%0 = 1;
 #endif
 #define __PAWNDOC:%0(%1); __PAWNDOC:%0;
-#define PAWNDOC@%0\32; PAWNDOC@
-#define PAWNDOC@bool: PAWNDOC@
+#define _PD@%0\32; _PD@
+#define _PD@bool: _PD@
 
 // All other `_FIXES_SHOW_PAWNDOC`s go before their definition, this one goes
 // after, because it needs itself to be defined first.  To avoid the problem of
@@ -2139,13 +2140,24 @@ _FIXES_SHOW_PAWNDOC(SHOW_PAWNDOC(const symbol[])) {}
  * Create a <c>const</c> that is never used, which has pawndoc documentation
  * attached to it.  This seems to be the best way to prevent the documentation
  * from appearing in XML (<c>-r</c>) output - even conditional compilation
- * doesn't work on comments.
+ * doesn't work on comments.  Used internally as <c>_FIXES_HIDE_PAWNDOC</c>.
  * </remarks>
  */
 
 _FIXES_SHOW_PAWNDOC(HIDE_PAWNDOC(const symbol[])) {}
-#define _FIXES_HIDE_PAWNDOC(%0); const __PAWNDOC@%0;
-#define __PAWNDOC@%0\32; __PAWNDOC@
+#define _FIXES_HIDE_PAWNDOC(%0); const _PX@%0 = 0;
+#define _PX@%0\32; _PX@
+
+/**
+ * <remarks>
+ * Check if the symbol is undefined, or only defined because of a first pass
+ * pawndoc macro.  Used internally as <c>_FIXES_PAWNDOC_DEFINED</c>.
+ * </remarks>
+ */
+
+_FIXES_SHOW_PAWNDOC(bool:PAWNDOC_DEFINED(const symbol[])) {}
+#define _FIXES_PAWNDOC_DEFINED(%0) ((defined %0) && !(defined _PD@%0))
+#define _PD@%0\32; _PD@
 
 /**
  * <remarks>
@@ -3698,6 +3710,10 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define SHOW_PAWNDOC _FIXES_SHOW_PAWNDOC
 #endif
 
+#if FIX_Pawndoc
+	#define PAWNDOC_DEFINED _FIXES_PAWNDOC_DEFINED
+#endif
+
 /**
  * <remarks>
  * Breaks <c>#pragma tabsize 0</c> in such a way that the compiler gives the
@@ -3983,7 +3999,7 @@ _FIXES_SHOW_PAWNDOC(FIXES_GT_STYLE_COUNT);
  * </remarks>
  */
 
-#if defined INVALID_DIALOG_ID && !defined PAWNDOC@INVALID_DIALOG_ID
+#if _FIXES_PAWNDOC_DEFINED(INVALID_DIALOG_ID)
 	_FIXES_HIDE_PAWNDOC(INVALID_DIALOG_ID);
 #else
 	_FIXES_SHOW_PAWNDOC(INVALID_DIALOG_ID);
@@ -4023,7 +4039,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_PROPERTY_OFFSET);
  * </remarks>
  */
 
-#if defined CARMODTYPE_FRONT_BULLBAR && !defined PAWNDOC@CARMODTYPE_FRONT_BULLBAR
+#if _FIXES_PAWNDOC_DEFINED(CARMODTYPE_FRONT_BULLBAR)
 	_FIXES_HIDE_PAWNDOC(CARMODTYPE_FRONT_BULLBAR);
 #else
 	_FIXES_SHOW_PAWNDOC(CARMODTYPE_FRONT_BULLBAR);
@@ -4036,7 +4052,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_PROPERTY_OFFSET);
  * </remarks>
  */
 
-#if defined CARMODTYPE_REAR_BULLBAR && !defined PAWNDOC@CARMODTYPE_REAR_BULLBAR
+#if _FIXES_PAWNDOC_DEFINED(CARMODTYPE_REAR_BULLBAR)
 	_FIXES_HIDE_PAWNDOC(CARMODTYPE_REAR_BULLBAR);
 #else
 	_FIXES_SHOW_PAWNDOC(CARMODTYPE_REAR_BULLBAR);
@@ -4078,7 +4094,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-#if defined KEY && !defined PAWNDOC@KEY
+#if _FIXES_PAWNDOC_DEFINED(KEY)
 	_FIXES_HIDE_PAWNDOC(KEY);
 #else
 	_FIXES_SHOW_PAWNDOC(KEY);
@@ -4093,7 +4109,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-#if defined VEHICLE_PARAMS && !defined PAWNDOC@VEHICLE_PARAMS
+#if _FIXES_PAWNDOC_DEFINED(VEHICLE_PARAMS)
 	_FIXES_HIDE_PAWNDOC(VEHICLE_PARAMS);
 #else
 	_FIXES_SHOW_PAWNDOC(VEHICLE_PARAMS);
@@ -4108,7 +4124,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-#if defined PLAYER_STATE && !defined PAWNDOC@PLAYER_STATE
+#if _FIXES_PAWNDOC_DEFINED(PLAYER_STATE)
 	_FIXES_HIDE_PAWNDOC(PLAYER_STATE);
 #else
 	_FIXES_SHOW_PAWNDOC(PLAYER_STATE);
@@ -4123,7 +4139,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-#if defined SPECIAL_ACTION && !defined PAWNDOC@SPECIAL_ACTION
+#if _FIXES_PAWNDOC_DEFINED(SPECIAL_ACTION)
 	_FIXES_HIDE_PAWNDOC(SPECIAL_ACTION);
 #else
 	_FIXES_SHOW_PAWNDOC(SPECIAL_ACTION);
@@ -4138,7 +4154,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-#if defined PLAYER_VARTYPE && !defined PAWNDOC@PLAYER_VARTYPE
+#if _FIXES_PAWNDOC_DEFINED(PLAYER_VARTYPE)
 	_FIXES_HIDE_PAWNDOC(PLAYER_VARTYPE);
 #else
 	_FIXES_SHOW_PAWNDOC(PLAYER_VARTYPE);
@@ -4153,7 +4169,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  */
 
 #define _FIXES_KEY_AIM                           (KEY:128)
-#if defined KEY_AIM && !defined PAWNDOC@KEY_AIM
+#if _FIXES_PAWNDOC_DEFINED(KEY_AIM)
 	_FIXES_HIDE_PAWNDOC(KEY_AIM);
 #else
 	_FIXES_SHOW_PAWNDOC(KEY_AIM);
@@ -4168,7 +4184,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  */
 
 #define _FIXES_SPECIAL_ACTION_PISSING            (68)
-#if defined SPECIAL_ACTION_PISSING && !defined PAWNDOC@SPECIAL_ACTION_PISSING
+#if _FIXES_PAWNDOC_DEFINED(SPECIAL_ACTION_PISSING)
 	_FIXES_HIDE_PAWNDOC(SPECIAL_ACTION_PISSING);
 #else
 	_FIXES_SHOW_PAWNDOC(SPECIAL_ACTION_PISSING);
@@ -4183,7 +4199,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  */
 
 #define _FIXES_WEAPON_FIST                       (0)
-#if defined WEAPON_FIST && !defined PAWNDOC@WEAPON_FIST
+#if _FIXES_PAWNDOC_DEFINED(WEAPON_FIST)
 	_FIXES_HIDE_PAWNDOC(WEAPON_FIST);
 #else
 	_FIXES_SHOW_PAWNDOC(WEAPON_FIST);
@@ -4196,7 +4212,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-#if defined WEAPON_NIGHTSTICK && !defined PAWNDOC@WEAPON_NIGHTSTICK
+#if _FIXES_PAWNDOC_DEFINED(WEAPON_NIGHTSTICK)
 	_FIXES_HIDE_PAWNDOC(WEAPON_NIGHTSTICK);
 #else
 	_FIXES_SHOW_PAWNDOC(WEAPON_NIGHTSTICK);
@@ -4209,7 +4225,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-#if defined WEAPON_MOLOTOV && !defined PAWNDOC@WEAPON_MOLOTOV
+#if _FIXES_PAWNDOC_DEFINED(WEAPON_MOLOTOV)
 	_FIXES_HIDE_PAWNDOC(WEAPON_MOLOTOV);
 #else
 	_FIXES_SHOW_PAWNDOC(WEAPON_MOLOTOV);
@@ -4224,7 +4240,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  */
 
 #define _FIXES_WEAPON_NIGHT_VIS_GOGGLES          (44)
-#if defined WEAPON_NIGHT_VIS_GOGGLES && !defined PAWNDOC@WEAPON_NIGHT_VIS_GOGGLES
+#if _FIXES_PAWNDOC_DEFINED(WEAPON_NIGHT_VIS_GOGGLES)
 	_FIXES_HIDE_PAWNDOC(WEAPON_NIGHT_VIS_GOGGLES);
 #else
 	_FIXES_SHOW_PAWNDOC(WEAPON_NIGHT_VIS_GOGGLES);
@@ -4239,31 +4255,111 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  */
 
 #define _FIXES_WEAPON_THERMAL_GOGGLES            (45)
-#if defined WEAPON_THERMAL_GOGGLES && !defined PAWNDOC@WEAPON_THERMAL_GOGGLES
+#if _FIXES_PAWNDOC_DEFINED(WEAPON_THERMAL_GOGGLES)
 	_FIXES_HIDE_PAWNDOC(WEAPON_THERMAL_GOGGLES);
 #else
 	_FIXES_SHOW_PAWNDOC(WEAPON_THERMAL_GOGGLES);
 	#define WEAPON_THERMAL_GOGGLES               _FIXES_WEAPON_THERMAL_GOGGLES
 #endif
 
+/**
+ * <remarks>
+ * Maximum number of weapon slots.
+ * </remarks>
+ */
+
+_FIXES_SHOW_PAWNDOC(_FIXES_WEAPON_SLOTS);
 #define _FIXES_WEAPON_SLOTS                      (13)
 
 /**
  * <remarks>
- * <c>BODYPARTS</c>
- *
  * Because the default SA:MP includes missed these.
  * </remarks>
  */
 
 #if FIX_BODYPARTS
-	#define BODY_PART_TORSO                     (3)
-	#define BODY_PART_GROIN                     (4)
-	#define BODY_PART_LEFT_ARM                  (5)
-	#define BODY_PART_RIGHT_ARM                 (6)
-	#define BODY_PART_LEFT_LEG                  (7)
-	#define BODY_PART_RIGHT_LEG                 (8)
-	#define BODY_PART_HEAD                      (9)
+	_FIXES_SHOW_PAWNDOC(BODY_PART_TORSO);
+	#define BODY_PART_TORSO                      (3)
+#else
+	_FIXES_HIDE_PAWNDOC(BODY_PART_TORSO);
+#endif
+
+/**
+ * <remarks>
+ * Because the default SA:MP includes missed these.
+ * </remarks>
+ */
+
+#if FIX_BODYPARTS
+	_FIXES_SHOW_PAWNDOC(BODY_PART_GROIN);
+	#define BODY_PART_GROIN                      (4)
+#else
+	_FIXES_HIDE_PAWNDOC(BODY_PART_GROIN);
+#endif
+
+/**
+ * <remarks>
+ * Because the default SA:MP includes missed these.
+ * </remarks>
+ */
+
+#if FIX_BODYPARTS
+	_FIXES_SHOW_PAWNDOC(BODY_PART_LEFT_ARM);
+	#define BODY_PART_LEFT_ARM                   (5)
+#else
+	_FIXES_HIDE_PAWNDOC(BODY_PART_LEFT_ARM);
+#endif
+
+/**
+ * <remarks>
+ * Because the default SA:MP includes missed these.
+ * </remarks>
+ */
+
+#if FIX_BODYPARTS
+	_FIXES_SHOW_PAWNDOC(BODY_PART_RIGHT_ARM);
+	#define BODY_PART_RIGHT_ARM                  (6)
+#else
+	_FIXES_HIDE_PAWNDOC(BODY_PART_RIGHT_ARM);
+#endif
+
+/**
+ * <remarks>
+ * Because the default SA:MP includes missed these.
+ * </remarks>
+ */
+
+#if FIX_BODYPARTS
+	_FIXES_SHOW_PAWNDOC(BODY_PART_LEFT_LEG);
+	#define BODY_PART_LEFT_LEG                   (7)
+#else
+	_FIXES_HIDE_PAWNDOC(BODY_PART_LEFT_LEG);
+#endif
+
+/**
+ * <remarks>
+ * Because the default SA:MP includes missed these.
+ * </remarks>
+ */
+
+#if FIX_BODYPARTS
+	_FIXES_SHOW_PAWNDOC(BODY_PART_RIGHT_LEG);
+	#define BODY_PART_RIGHT_LEG                  (8)
+#else
+	_FIXES_HIDE_PAWNDOC(BODY_PART_RIGHT_LEG);
+#endif
+
+/**
+ * <remarks>
+ * Because the default SA:MP includes missed these.
+ * </remarks>
+ */
+
+#if FIX_BODYPARTS
+	_FIXES_SHOW_PAWNDOC(BODY_PART_HEAD);
+	#define BODY_PART_HEAD                       (9)
+#else
+	_FIXES_HIDE_PAWNDOC(BODY_PART_HEAD);
 #endif
 
 /**
@@ -4823,39 +4919,52 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
  */
 
 #if FIX_JIT
+	_FIXES_SHOW_PAWNDOC(IS_JIT);
 	#define IS_JIT (_FIXES_gIsJIT)
+#else
+	_FIXES_HIDE_PAWNDOC(IS_JIT);
 #endif
 
 /**
  * <remarks>
- * <c>IS_FILTERSCRIPT</c>
- *
  * "FILTERSCRIPT" can't always be relied on to be set.  This is not a pre-
  * processor macro, but may be better than nothing (also used internally).
  * </remarks>
  */
 
 #if FIX_FILTERSCRIPT
+	_FIXES_SHOW_PAWNDOC(IS_FILTERSCRIPT);
 	#define IS_FILTERSCRIPT (_FIXES_gIsFilterscript)
+#else
+	_FIXES_HIDE_PAWNDOC(IS_FILTERSCRIPT);
 #endif
 
 /**
  * <remarks>
- * <c>IS_WINDOWS</c>
- *
  * True when the code is running on Windows.  NOT a pre-processor macro, since
  * the OS you are running the code on can't be determined at compile-time.
- *
- * <c>IS_LINUX</c>
- *
+ * </remarks>
+ */
+
+#if FIX_OS
+	_FIXES_SHOW_PAWNDOC(IS_WINDOWS);
+	#define IS_WINDOWS (_FIXES_gIsWindows)
+#else
+	_FIXES_HIDE_PAWNDOC(IS_WINDOWS);
+#endif
+
+/**
+ * <remarks>
  * True when the code is running on Linux.  NOT a pre-processor macro, since the
  * OS you are running the code on can't be determined at compile-time.
  * </remarks>
  */
 
 #if FIX_OS
-	#define IS_WINDOWS (_FIXES_gIsWindows)
+	_FIXES_SHOW_PAWNDOC(IS_LINUX);
 	#define IS_LINUX (!_FIXES_gIsWindows)
+#else
+	_FIXES_HIDE_PAWNDOC(IS_LINUX);
 #endif
 
 /*
@@ -4902,15 +5011,15 @@ PRE_HOOK(FIXES)
 
 /**
  * <remarks>
- * _FIXES_IncludeNatives
- *
  * Ensure natives used be various fixes are included in the AMX.  Done before
  * anything else, and using multiple lines, to try and mitigate the effects of
  * ALS (these MUST include the original natives, not hooks).
  * </remarks>
  */
 
-#if !_FIXES_NEW_COMPILER
+#if _FIXES_NEW_COMPILER
+	_FIXES_HIDE_PAWNDOC(_FIXES_IncludeNatives);
+#else
 	forward _FIXES_IncludeNatives();
 
 	public _FIXES_IncludeNatives()
