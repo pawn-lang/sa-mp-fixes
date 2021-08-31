@@ -2219,11 +2219,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  * </remarks>
  */
 
-#if !defined FIXES_EnableAll
+#if !_FIXES_IS_DEFINED(FIXES_EnableAll)
+	_FIXES_SHOW_PAWNDOC(FIXES_EnableAll);
 	#define FIXES_EnableAll                      (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableAll)
 	#undef FIXES_EnableAll
-	#define FIXES_EnableAll                      (3)
+	_FIXES_SHOW_PAWNDOC(FIXES_EnableAll);
+	#define FIXES_EnableAll                      (2)
+#elseif FIXES_EnableAll
+	#undef FIXES_EnableAll
+	_FIXES_SHOW_PAWNDOC(FIXES_EnableAll);
+	#define FIXES_EnableAll                      (1)
+#else
+	#undef FIXES_EnableAll
+	_FIXES_SHOW_PAWNDOC(FIXES_EnableAll);
+	#define FIXES_EnableAll                      (0)
 #endif
 
 /**
@@ -2232,11 +2242,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  * </remarks>
  */
 
-#if !defined FIXES_EnableDeprecated
+#if !_FIXES_IS_DEFINED(FIXES_EnableDeprecated)
+	_FIXES_SHOW_PAWNDOC(FIXES_EnableDeprecated);
 	#define FIXES_EnableDeprecated               (0)
 #elseif _FIXES_IS_UNSET(FIXES_EnableDeprecated)
 	#undef FIXES_EnableDeprecated
+	_FIXES_SHOW_PAWNDOC(FIXES_EnableDeprecated);
 	#define FIXES_EnableDeprecated               (2)
+#elseif FIXES_EnableDeprecated
+	#undef FIXES_EnableDeprecated
+	_FIXES_SHOW_PAWNDOC(FIXES_EnableDeprecated);
+	#define FIXES_EnableDeprecated               (1)
+#else
+	#undef FIXES_EnableDeprecated
+	_FIXES_SHOW_PAWNDOC(FIXES_EnableDeprecated);
+	#define FIXES_EnableDeprecated               (0)
 #endif
 
 /**
@@ -2245,20 +2265,26 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  * </remarks>
  */
 
-#if !defined FIXES_DefaultDisabled
+#if !_FIXES_IS_DEFINED(FIXES_DefaultDisabled)
+	_FIXES_SHOW_PAWNDOC(FIXES_DefaultDisabled);
 	#define FIXES_DefaultDisabled                (0)
 	#define _FIXES_DEFAULT                       (1)
 #elseif _FIXES_IS_UNSET(FIXES_DefaultDisabled)
 	#undef FIXES_DefaultDisabled
+	_FIXES_SHOW_PAWNDOC(FIXES_DefaultDisabled);
 	#define FIXES_DefaultDisabled                (2)
 	// If we want things disabled by default and everything enabled, do it.
-	#define _FIXES_DEFAULT FIXES_EnableAll
+	#define _FIXES_DEFAULT                       FIXES_EnableAll
+#elseif FIXES_DefaultDisabled
+	#undef FIXES_DefaultDisabled
+	_FIXES_SHOW_PAWNDOC(FIXES_DefaultDisabled);
+	#define FIXES_DefaultDisabled                (1)
+	#define _FIXES_DEFAULT                       (0)
 #else
-	#if FIXES_DefaultDisabled
-		#define _FIXES_DEFAULT                   (0)
-	#else
-		#define _FIXES_DEFAULT                   (1)
-	#endif
+	#undef FIXES_DefaultDisabled
+	_FIXES_SHOW_PAWNDOC(FIXES_DefaultDisabled);
+	#define FIXES_DefaultDisabled                (0)
+	#define _FIXES_DEFAULT                       (1)
 #endif
 
 /**
@@ -2267,24 +2293,30 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  * </remarks>
  */
 
-#if !defined FIXES_ExplicitOptions
+#if !_FIXES_IS_DEFINED(FIXES_ExplicitOptions)
+	_FIXES_SHOW_PAWNDOC(FIXES_ExplicitOptions);
 	#if FIXES_DefaultDisabled
-		#define FIXES_ExplicitOptions           (1)
-		#define _FIXES_STOCK static
+		#define FIXES_ExplicitOptions            (1)
+		#define _FIXES_STOCK                     static
 	#else
-		#define FIXES_ExplicitOptions           (0)
-		#define _FIXES_STOCK static stock
+		#define FIXES_ExplicitOptions            (0)
+		#define _FIXES_STOCK                     static stock
 	#endif
 #elseif _FIXES_IS_UNSET(FIXES_ExplicitOptions)
 	#undef FIXES_ExplicitOptions
-	#define FIXES_ExplicitOptions               (2)
-	#define _FIXES_STOCK static
+	_FIXES_SHOW_PAWNDOC(FIXES_ExplicitOptions);
+	#define FIXES_ExplicitOptions                (2)
+	#define _FIXES_STOCK                         static
+#elseif FIXES_ExplicitOptions
+	#undef FIXES_ExplicitOptions
+	_FIXES_SHOW_PAWNDOC(FIXES_ExplicitOptions);
+	#define FIXES_ExplicitOptions                (1)
+	#define _FIXES_STOCK                         static
 #else
-	#if FIXES_ExplicitOptions
-		#define _FIXES_STOCK static
-	#else
-		#define _FIXES_STOCK static stock
-	#endif
+	#undef FIXES_ExplicitOptions
+	_FIXES_SHOW_PAWNDOC(FIXES_ExplicitOptions);
+	#define FIXES_ExplicitOptions                (0)
+	#define _FIXES_STOCK                         static stock
 #endif
 
 /**
@@ -2295,11 +2327,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  * </remarks>
  */
 
-#if !defined FIXES_SilentKick
-	#define FIXES_SilentKick 0
+#if !_FIXES_IS_DEFINED(FIXES_SilentKick)
+	_FIXES_SHOW_PAWNDOC(FIXES_SilentKick);
+	#define FIXES_SilentKick                     (0)
 #elseif _FIXES_IS_UNSET(FIXES_SilentKick)
 	#undef FIXES_SilentKick
-	#define FIXES_SilentKick 2
+	_FIXES_SHOW_PAWNDOC(FIXES_SilentKick);
+	#define FIXES_SilentKick                     (2)
+#elseif FIXES_SilentKick
+	#undef FIXES_SilentKick
+	_FIXES_SHOW_PAWNDOC(FIXES_SilentKick);
+	#define FIXES_SilentKick                     (1)
+#else
+	#undef FIXES_SilentKick
+	_FIXES_SHOW_PAWNDOC(FIXES_SilentKick);
+	#define FIXES_SilentKick                     (0)
 #endif
 
 /**
@@ -2310,14 +2352,25 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  * </remarks>
  */
 
-#if defined FIXES_Debug
-	#if _FIXES_IS_UNSET(FIXES_Debug)
-		#undef FIXES_Debug
-	#elseif FIXES_Debug == 1
-		#define _FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM),printf("*** " %0);
-	#else
-		#undef FIXES_Debug
-	#endif
+#if !_FIXES_IS_DEFINED(FIXES_Debug)
+	_FIXES_SHOW_PAWNDOC(FIXES_Debug);
+	#define FIXES_Debug                          (0)
+	#define FIXES_PRINTF(%0);
+#elseif _FIXES_IS_UNSET(FIXES_Debug)
+	#undef FIXES_Debug
+	_FIXES_SHOW_PAWNDOC(FIXES_Debug);
+	#define FIXES_Debug                          (2)
+	#define FIXES_PRINTF                         _FIXES_PRINTF
+#elseif FIXES_Debug
+	#undef FIXES_Debug
+	_FIXES_SHOW_PAWNDOC(FIXES_Debug);
+	#define FIXES_Debug                          (1)
+	#define FIXES_PRINTF                         _FIXES_PRINTF
+#else
+	#undef FIXES_Debug
+	_FIXES_SHOW_PAWNDOC(FIXES_Debug);
+	#define FIXES_Debug                          (0)
+	#define FIXES_PRINTF(%0);
 #endif
 
 /**
@@ -2329,11 +2382,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  * </remarks>
  */
 
-#if !defined FIXES_Single
-	#define FIXES_Single (1)
+#if !_FIXES_IS_DEFINED(FIXES_Single)
+	_FIXES_SHOW_PAWNDOC(FIXES_Single);
+	#define FIXES_Single                         (0)
 #elseif _FIXES_IS_UNSET(FIXES_Single)
 	#undef FIXES_Single
-	#define FIXES_Single (2)
+	_FIXES_SHOW_PAWNDOC(FIXES_Single);
+	#define FIXES_Single                         (2)
+#elseif FIXES_Single
+	#undef FIXES_Single
+	_FIXES_SHOW_PAWNDOC(FIXES_Single);
+	#define FIXES_Single                         (1)
+#else
+	#undef FIXES_Single
+	_FIXES_SHOW_PAWNDOC(FIXES_Single);
+	#define FIXES_Single                         (0)
 #endif
 
 /**
@@ -2343,11 +2406,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  * </remarks>
  */
 
-#if !defined FIXES_SingleMsg
-	#define FIXES_SingleMsg 1
+#if !_FIXES_IS_DEFINED(FIXES_SingleMsg)
+	_FIXES_SHOW_PAWNDOC(FIXES_SingleMsg);
+	#define FIXES_SingleMsg                      (0)
 #elseif _FIXES_IS_UNSET(FIXES_SingleMsg)
 	#undef FIXES_SingleMsg
-	#define FIXES_SingleMsg 2
+	_FIXES_SHOW_PAWNDOC(FIXES_SingleMsg);
+	#define FIXES_SingleMsg                      (2)
+#elseif FIXES_SingleMsg
+	#undef FIXES_SingleMsg
+	_FIXES_SHOW_PAWNDOC(FIXES_SingleMsg);
+	#define FIXES_SingleMsg                      (1)
+#else
+	#undef FIXES_SingleMsg
+	_FIXES_SHOW_PAWNDOC(FIXES_SingleMsg);
+	#define FIXES_SingleMsg                      (0)
 #endif
 
 /**
@@ -2358,11 +2431,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  * </remarks>
  */
 
-#if !defined FIXES_ServerVarMsg
-	#define FIXES_ServerVarMsg 1
+#if !_FIXES_IS_DEFINED(FIXES_ServerVarMsg)
+	_FIXES_SHOW_PAWNDOC(FIXES_ServerVarMsg);
+	#define FIXES_ServerVarMsg                   (0)
 #elseif _FIXES_IS_UNSET(FIXES_ServerVarMsg)
 	#undef FIXES_ServerVarMsg
-	#define FIXES_ServerVarMsg 2
+	_FIXES_SHOW_PAWNDOC(FIXES_ServerVarMsg);
+	#define FIXES_ServerVarMsg                   (2)
+#elseif FIXES_ServerVarMsg
+	#undef FIXES_ServerVarMsg
+	_FIXES_SHOW_PAWNDOC(FIXES_ServerVarMsg);
+	#define FIXES_ServerVarMsg                   (1)
+#else
+	#undef FIXES_ServerVarMsg
+	_FIXES_SHOW_PAWNDOC(FIXES_ServerVarMsg);
+	#define FIXES_ServerVarMsg                   (0)
 #endif
 
 /**
@@ -2372,11 +2455,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  * </remarks>
  */
 
-#if !defined FIXES_GetMaxPlayersMsg
-	#define FIXES_GetMaxPlayersMsg 1
+#if !_FIXES_IS_DEFINED(FIXES_GetMaxPlayersMsg)
+	_FIXES_SHOW_PAWNDOC(FIXES_GetMaxPlayersMsg);
+	#define FIXES_GetMaxPlayersMsg               (0)
 #elseif _FIXES_IS_UNSET(FIXES_GetMaxPlayersMsg)
 	#undef FIXES_GetMaxPlayersMsg
-	#define FIXES_GetMaxPlayersMsg 2
+	_FIXES_SHOW_PAWNDOC(FIXES_GetMaxPlayersMsg);
+	#define FIXES_GetMaxPlayersMsg               (2)
+#elseif FIXES_GetMaxPlayersMsg
+	#undef FIXES_GetMaxPlayersMsg
+	_FIXES_SHOW_PAWNDOC(FIXES_GetMaxPlayersMsg);
+	#define FIXES_GetMaxPlayersMsg               (1)
+#else
+	#undef FIXES_GetMaxPlayersMsg
+	_FIXES_SHOW_PAWNDOC(FIXES_GetMaxPlayersMsg);
+	#define FIXES_GetMaxPlayersMsg               (0)
 #endif
 
 /*
@@ -3843,12 +3936,7 @@ _FIXES_SHOW_PAWNDOC(FIXES_USES_STATE_HOOKS);
  */
 
 _FIXES_SHOW_PAWNDOC(FIXES_PRINTF(const str[], ...)) {}
-#if defined _FIXES_PRINTF
-	#define FIXES_PRINTF _FIXES_PRINTF
-#else
-	#define FIXES_Debug 0
-	#define FIXES_PRINTF(%0);
-#endif
+#define _FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM),printf("*** " %0);
 
 /**
  * <remarks>
