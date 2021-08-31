@@ -3,11 +3,16 @@
              fixes.inc - Community patch for buggy SA:MP functions.
             ========================================================
 */
-#if (__Pawn & 0x0F) < 0x0A
 /**
  * <!--
  * <transition target[^/]+/>
- * 
+ * -->
+*/
+#if (__Pawn & 0x0F) >= 0x0A
+const HIDE_THE_FIXES_COMMENT_1 = 1; // https://github.com/pawn-lang/compiler/issues/674
+#endif
+/**
+ * <!--
  * :::::::: README ::::::::
  * 
  * To read the generated XML output, copy `pawndoc.xsl` to `pawno/xml/`.
@@ -15,11 +20,14 @@
  * This information goes very close to the top of the generated XML
  * documentation (because of include dependency orders), but doesn't appear in
  * the visual output.
- * 
- * There is a bug in the old compiler related to outputting documentation on
- * state transitions (<a href="https://github.com/Zeex/pawn/issues/184">see this
- * issue</a>).  So after generation of the XML file, you should clean it up with
- * the following RegEx replacement:
+ * -->
+*/
+/**
+ * <!--
+ * There is <a href="https://github.com/Zeex/pawn/issues/184">a bug</a> in the
+ * old compiler related to outputting documentation on state transitions ().  So
+ * after generation of the XML file, you should clean it up with the following
+ * RegEx replacement:
  * 
  * Search: <transition target[^/]+/>
  * Replace: (nothing)
@@ -30,11 +38,12 @@
  * all include the parameter `keep="true"`, which exists simply to not match
  * that RegEx.  I also put the search at the top of this block so it is easier
  * to find in the output code.  This is fixed in the community compiler, but
- * this comment still appears thanks to
- * <a href="https://github.com/pawn-lang/compiler/issues/674">a different
- * bug<a/>.
+ * thanks to <a href="https://github.com/pawn-lang/compiler/issues/674">a
+ * different bug</a> tricks are needed to hide these comments.
  * -->
  */
+#if (__Pawn & 0x0F) >= 0x0A
+const HIDE_THE_FIXES_COMMENT_2 = 2; // https://github.com/pawn-lang/compiler/issues/674
 #endif
 /**
  * <library name="fixes.inc"
