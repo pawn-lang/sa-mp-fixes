@@ -2,7 +2,9 @@
             ========================================================
              fixes.inc - Community patch for buggy SA:MP functions.
             ========================================================
-*//**
+*/
+#if (__Pawn & 0x0F) < 0x0A
+/**
 <!--
 <transition target[^/]+/>
 
@@ -28,7 +30,9 @@ include the parameter `keep="true"`, which exists simply to not match that
 RegEx.  I also put the search at the top of this block so it is easier to find
 in the output code.
 -->
-*//**
+ */
+#endif
+/**
  * <library name="fixes.inc"
  *   description="Community patches for buggy SA:MP functions.">
  *
