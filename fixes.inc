@@ -2528,6 +2528,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 
 #if !_FIXES_IS_DEFINED(FIX_GetPlayerColour)
 	#if defined FIX_GetPlayerColor
+		_FIXES_SHOW_PAWNDOC(FIX_GetPlayerColour);
 		#if _FIXES_IS_UNSET(FIX_GetPlayerColor)
 			#define FIX_GetPlayerColour          (2)
 		#else
@@ -2623,6 +2624,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined GetVehicleParamsSirenState
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_GetWeaponName = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_GetWeaponName);
 		#endif
 		#define FIX_GetWeaponName                FIXES_EnableDeprecated
 	#else
@@ -2664,6 +2667,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined SetObjectMaterial
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_TogglePlayerControllable = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_TogglePlayerControllable);
 		#endif
 		#define FIX_TogglePlayerControllable     FIXES_EnableDeprecated
 	#else
@@ -2773,6 +2778,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined KEY_AIM
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_KEY_AIM = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_KEY_AIM);
 		#endif
 		#define FIX_KEY_AIM                      FIXES_EnableDeprecated
 	#else
@@ -2797,6 +2804,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined SPECIAL_ACTION_PISSING
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_SPECIAL_ACTION_PISSING = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_SPECIAL_ACTION_PISSING);
 		#endif
 		#define FIX_SPECIAL_ACTION_PISSING       FIXES_EnableDeprecated
 	#else
@@ -2821,6 +2830,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined IsValidVehicle
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_IsValidVehicle = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_IsValidVehicle);
 		#endif
 		#define FIX_IsValidVehicle               FIXES_EnableDeprecated
 	#else
@@ -2845,6 +2856,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined GetGravity
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_GetGravity = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_GetGravity);
 		#endif
 		#define FIX_GetGravity                   FIXES_EnableDeprecated
 	#else
@@ -2869,6 +2882,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined gpci
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_gpci = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_gpci);
 		#endif
 		#define FIX_gpci                         FIXES_EnableDeprecated
 	#else
@@ -2893,6 +2908,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined WEAPON_FIST
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_WEAPONS = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_WEAPONS);
 		#endif
 		#define FIX_WEAPONS                      FIXES_EnableDeprecated
 	#else
@@ -2917,6 +2934,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined BODY_PART_LEFT_ARM
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_BODYPARTS = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_BODYPARTS);
 		#endif
 		#define FIX_BODYPARTS                    FIXES_EnableDeprecated
 	#else
@@ -2941,6 +2960,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined CAM_MODE_NONE
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_CAMERAMODES = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_CAMERAMODES);
 		#endif
 		#define FIX_CAMERAMODES                  FIXES_EnableDeprecated
 	#else
@@ -3152,6 +3173,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined OnPlayerClickMap
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_OnPlayerEnterVehicle = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_OnPlayerEnterVehicle);
 		#endif
 		#define FIX_OnPlayerEnterVehicle         FIXES_EnableDeprecated
 	#else
@@ -3213,6 +3236,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#else
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_AllowTeleport = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_AllowTeleport);
 		#endif
 		#define FIX_AllowTeleport                FIXES_EnableDeprecated
 	#endif
@@ -3302,6 +3327,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined GetVehicleModelInfo
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_OnDialogResponse = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_OnDialogResponse);
 		#endif
 		#define FIX_OnDialogResponse             FIXES_EnableDeprecated
 	#else
@@ -3326,6 +3353,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined GetPlayerDialog
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_GetPlayerDialog = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_GetPlayerDialog);
 		#endif
 		#define FIX_GetPlayerDialog              FIXES_EnableDeprecated
 	#else
@@ -3367,6 +3396,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined GetPlayerVersion
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_SetSpawnInfo = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_SetSpawnInfo);
 		#endif
 		#define FIX_SetSpawnInfo                 FIXES_EnableDeprecated
 	#else
@@ -3688,6 +3719,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined EnableVehicleFriendlyFire
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_Kick = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_Kick);
 		#endif
 		#define FIX_Kick                         FIXES_EnableDeprecated
 	#else
@@ -4037,6 +4070,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined HideGameText
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_HideGameText = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_HideGameText);
 		#endif
 		#define FIX_HideGameText                 FIXES_EnableDeprecated
 	#else
@@ -4061,6 +4096,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined GetPlayerWorldBounds
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_GetPlayerWorldBounds = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_GetPlayerWorldBounds);
 		#endif
 		#define FIX_GetPlayerWorldBounds         FIXES_EnableDeprecated
 	#else
@@ -4085,6 +4122,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined ClearPlayerWorldBounds
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_ClearPlayerWorldBounds = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_ClearPlayerWorldBounds);
 		#endif
 		#define FIX_ClearPlayerWorldBounds       FIXES_EnableDeprecated
 	#else
@@ -4279,6 +4318,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 
 #if !_FIXES_IS_DEFINED(FIX_SetPlayerColour)
 	#if defined FIX_SetPlayerColor
+		_FIXES_SHOW_PAWNDOC(FIX_SetPlayerColour);
 		#if _FIXES_IS_UNSET(FIX_SetPlayerColor)
 			#define FIX_SetPlayerColour          (2)
 		#else
@@ -4578,6 +4618,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined VEHICLE_INFERNUS
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_VEHICLES = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_VEHICLES);
 		#endif
 		#define FIX_VEHICLES                     FIXES_EnableDeprecated
 	#else
@@ -4602,6 +4644,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined GetPlayerWeather
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_GetPlayerWeather = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_GetPlayerWeather);
 		#endif
 		#define FIX_GetPlayerWeather             FIXES_EnableDeprecated
 	#else
@@ -4626,6 +4670,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined GetWeather
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_GetWeather = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_GetWeather);
 		#endif
 		#define FIX_GetWeather                   FIXES_EnableDeprecated
 	#else
@@ -4650,6 +4696,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined GetWorldTime
 		#if FIXES_EnableDeprecated
 			_FIXES_STOCK FIX_GetWorldTime = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_GetWorldTime);
 		#endif
 		#define FIX_GetWorldTime                 FIXES_EnableDeprecated
 	#else
@@ -4672,6 +4720,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 
 #if !_FIXES_IS_DEFINED(FIX_GetConsoleVarAsString)
 	#if defined FIX_GetServerVarAsString
+		_FIXES_SHOW_PAWNDOC(FIX_GetConsoleVarAsString);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsString)
 			#define FIX_GetConsoleVarAsString    (2)
 		#else
@@ -4697,6 +4746,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 
 #if !_FIXES_IS_DEFINED(FIX_GetConsoleVarAsInt)
 	#if defined FIX_GetServerVarAsInt   
+		_FIXES_SHOW_PAWNDOC(FIX_GetConsoleVarAsInt);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsInt)
 			#define FIX_GetConsoleVarAsInt       (2)
 		#else
@@ -4722,6 +4772,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 
 #if !_FIXES_IS_DEFINED(FIX_GetConsoleVarAsBool)
 	#if defined FIX_GetServerVarAsBool  
+		_FIXES_SHOW_PAWNDOC(FIX_GetConsoleVarAsBool);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsBool)
 			#define FIX_GetConsoleVarAsBool      (2)
 		#else
@@ -4753,16 +4804,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 		#else
 			#if FIXES_EnableDeprecated
 				_FIXES_STOCK FIX_GetConsoleVarAsFloat = FIXES_EnableDeprecated;
+			#else
+				_FIXES_SHOW_PAWNDOC(FIX_GetConsoleVarAsFloat);
 			#endif
 			#define FIX_GetConsoleVarAsFloat     FIXES_EnableDeprecated
 		#endif
 	#else
 		#if defined FIX_GetServerVarAsFloat
+			_FIXES_SHOW_PAWNDOC(FIX_GetConsoleVarAsFloat);
 			#if _FIXES_IS_UNSET(FIX_GetServerVarAsFloat)
 				#define FIX_GetConsoleVarAsFloat (2)
 			#else
 				#define FIX_GetConsoleVarAsFloat (FIX_GetServerVarAsFloat)
-	#endif
+			#endif
 		#else
 			_FIXES_STOCK FIX_GetConsoleVarAsFloat = FIX_Natives;
 			#define FIX_GetConsoleVarAsFloat     FIX_Natives
