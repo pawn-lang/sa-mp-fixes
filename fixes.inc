@@ -3373,22 +3373,6 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerSkin                    (0)
 #endif
 
-#if !_FIXES_IS_DEFINED(FIX_HideMenuForPlayer)
-	_FIXES_STOCK FIX_HideMenuForPlayer = _FIXES_DEFAULT;
-	#define FIX_HideMenuForPlayer                _FIXES_DEFAULT
-#elseif _FIXES_IS_UNSET(FIX_HideMenuForPlayer)
-	#undef FIX_HideMenuForPlayer
-	#define FIX_HideMenuForPlayer                (2)
-#elseif FIX_HideMenuForPlayer
-	#undef FIX_HideMenuForPlayer
-	_FIXES_SHOW_PAWNDOC(FIX_HideMenuForPlayer);
-	#define FIX_HideMenuForPlayer                (1)
-#else
-	#undef FIX_HideMenuForPlayer
-	_FIXES_SHOW_PAWNDOC(FIX_HideMenuForPlayer);
-	#define FIX_HideMenuForPlayer                (0)
-#endif
-
 #if !_FIXES_IS_DEFINED(FIX_valstr)
 	_FIXES_STOCK FIX_valstr = _FIXES_DEFAULT;
 	#define FIX_valstr                           _FIXES_DEFAULT
