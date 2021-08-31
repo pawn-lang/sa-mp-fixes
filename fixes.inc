@@ -212,7 +212,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <see>FIXES_TogglePlayerControllable</see>
  *     <see>OnPlayerUpdate</see>
  *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=876854" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?pid=876854#pid876854" />
  * </fix>
  *
  * <fix name="HydraSniper">
@@ -226,7 +226,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <see>FIXES_GivePlayerWeapon</see>
  *     <see>FIXES_SetPlayerArmedWeapon</see>
  *     <author    >funky1234</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=965644" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?pid=965644#pid965644" />
  * </fix>
  *
  * <fix name="IsPlayerInCheckpoint">
@@ -282,7 +282,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <see>FIXES_PutPlayerInVehicle</see>
  *     <author    >leong124</author>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1265965" />
+ *     <post      href="http://web-old.archive.org/web/20190415184628/https://forum.sa-mp.com/showpost.php?p=1265965" />
  * </fix>
  *
  * <fix name="KEY_AIM">
@@ -442,7 +442,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    >RyDeR`</author>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  *     <author    href="https://github.com/NexiusTailer">NexiusTailer</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1410296" />
+ *     <post      href="http://web-old.archive.org/web/20190415184630/https://forum.sa-mp.com/showpost.php?p=1410296" />
  * </fix>
  *
  * <fix name="OnPlayerEnterVehicle_2">
@@ -469,7 +469,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <see>OnPlayerEnterVehicle</see>
  *     <author    href="https://github.com/ziggi" >ziggi</author>
  *     <author    href="https://github.com/rt-2" >rt-2</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=560019" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?tid=560019" />
  * </fix>
  *
  * <fix name="AllowTeleport">
@@ -556,8 +556,8 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *         Call "SetPlayerTeam" when they spawn.
  *     </solution>
  *     <see>OnPlayerSpawn</see>
- *     <author    href="http://forum.sa-mp.com/member.php?u=24012" >NaS</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=3994248" />
+ *     <author    href="https://sampforum.blast.hk/member.php?action=profile&uid=24012" >NaS</author>
+ *     <post      href="https://sampforum.blast.hk/showthread.php?tid=649396&pid=3994248#pid3994248" />
  * </fix>
  *
  * <fix name="SetPlayerSkin">
@@ -569,7 +569,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     </solution>
  *     <see>FIXES_SetPlayerSkin</see>
  *     <author    >CyNiC</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1756094" />
+ *     <post      href="http://web-old.archive.org/web/20190415184621/https://forum.sa-mp.com/showpost.php?p=1756094" />
  * </fix>
  *
  * <fix name="HideMenuForPlayer">
@@ -581,7 +581,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     </solution>
  *     <see>FIXES_HideMenuForPlayer</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?tid=332944&pid=1787297#pid1787297" />
  * </fix>
  *
  * <fix name="valstr">
@@ -754,7 +754,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <see>OnPlayerDeath</see>
  *     <see>OnPlayerUpdate</see>
  *     <author    >h02</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1641144" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?tid=312862&pid=1641144#pid1641144" />
  * </fix>
  *
  * <fix name="strins">
@@ -804,7 +804,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <see>OnPlayerConnect</see>
  *     <see>FIXES_Kick</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1989453" />
+ *     <post      href="http://web-old.archive.org/web/20170819203349/http://forum.sa-mp.com/showpost.php?p=1989453" />
  * </fix>
  *
  * <fix name="OnVehicleMod">
@@ -817,7 +817,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <see>OnVehicleMod</see>
  *     <author    href="https://github.com/JernejL/" >JernejL</author>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1671500" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?tid=317303&pid=1671500#pid1671500" />
  * </fix>
  *
  * <fix name="random" disabled="true">
@@ -884,7 +884,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     </solution>
  *     <see>FIXES_HideMenuForPlayer</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?tid=332944&pid=1787297#pid1787297" />
  * </fix>
  *
  * <fix name="HideMenuForPlayer_2" disabled="true">
@@ -1110,7 +1110,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *         Define it.
  *     </solution>
  *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1706447" />
+ *     <post      href="http://web-old.archive.org/web/20190415184625/https://forum.sa-mp.com/showpost.php?p=1706447" />
  * </fix>
  *
  * <fix name="gpci">
@@ -1249,7 +1249,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *         Define it.
  *     </solution>
  *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1309730" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?tid=271586&pid=1309730#pid1309730" />
  * </fix>
  *
  * <fix name="SetPlayerCamera">
@@ -1298,7 +1298,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     </solution>
  *     <see>FIXES_SetPlayerColor</see>
  *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=452407" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?tid=452407" />
  * </fix>
  *
  * <fix name="FileMaths">
@@ -1321,7 +1321,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     </solution>
  *     <see>FIXES_GetPlayerWeaponData</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=567400" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?tid=567400" />
  * </fix>
  *
  * <fix name="strcmp">
@@ -1346,7 +1346,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    href="https://github.com/ziggi" >ziggi</author>
  *     <author    >Mutha_X</author>
  *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?tid=572724&page=2" />
  *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
  * </fix>
  *
@@ -1361,7 +1361,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    href="https://github.com/ziggi" >ziggi</author>
  *     <author    >Mutha_X</author>
  *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
+ *     <post      href="https://sampforum.blast.hk/showthread.php?tid=572724&page=2" />
  *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
  * </fix>
  *
@@ -1813,10 +1813,10 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * included here:</p>
  *
  * <ul>
- *   <li><a href="http://forum.sa-mp.com/showthread.php?t=435525">Timerfix</a> -
+ *   <li><a href="https://sampforum.blast.hk/showthread.php?tid=435525">Timerfix</a> -
  *       <a href="https://github.com/udan11">udan11 (Dan..)</a>'s fixes to make
  *       "SetTimer" and "SetTimerEx" vastly more accurate in their delays.</li>
- *   <li><a href="http://forum.sa-mp.com/showthread.php?t=303682">SQLitei</a> -
+ *   <li><a href="https://sampforum.blast.hk/showthread.php?tid=303682">SQLitei</a> -
  *       <a href="https://github.com/oscar-broman/">Slice</a>'s fixes and
  *       improvements for many SQLite functions.</li>
  * </ul>
@@ -1861,7 +1861,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * <li>ALS should be used to hook functions and callbacks.  See this topic for more
  *    details:
  *
- *        http://forum.sa-mp.com/showthread.php?t=570910
+ *        https://sampforum.blast.hk/showthread.php?tid=570910
  * </li>
  * <li>The ALS prefix for chaining is <c>FIXES_</c>.
  * </li>
@@ -10854,7 +10854,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			if (pbools & e_FIXES_BOOLS_UNCONTROLLABLE)
 			{
 				// Keys based sync blocking, modified based on a post by Slice:
-				// http://forum.sa-mp.com/showpost.php?p=876854  Use "playerid"
+				// https://sampforum.blast.hk/showthread.php?tid=184118&pid=876854#pid876854  Use "playerid"
 				// here as it's a variable that already exists, but note that
 				// after this point, you CANNOT use "playerid" as it has been
 				// "clobbered" (and yes, that's the technical term).  This is
