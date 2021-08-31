@@ -1846,23 +1846,23 @@ in the output code.
  *         /// <remarks>Information about fix here</remarks>
  *         /// <fixes>NameOfFixHere</fixes>
  *         ///
- *
- *         #if _FIXES_SAMP && defined _ALS_NameOfFixHere
+ *         
+ *         #if _FIXES_SAMP &amp;&amp; defined _ALS_NameOfFixHere
  *         	#error _ALS_NameOfFixHere defined
  *         #endif
  *         native BAD_NameOfFixHere(params) = NameOfFixHere;
- *
+ *         
  *         ///
  *         /// <remarks>Information about fix here</remarks>
  *         /// <fixes>NameOfFixHere</fixes>
  *         ///
- *
+ *         
  *         #if FIX_NameOfFixHere
  *             stock FIXES_NameOfFixHere(params)
  *             {
  *                 return 0;
  *             }
- *
+ *         
  *             // The trailing `(` is VERY important to keep future `native X() = Y;`s working.
  *             #if _FIXES_SAMP
  *                 #define _ALS_NameOfFixHere
@@ -1984,14 +1984,14 @@ in the output code.
 
 /*
 
-    88        88                                   88
-    88        88                                   88
-    88        88                                   88
-    88aaaaaaaa88   ,adPPYba,  ,adPPYYba,   ,adPPYb,88   ,adPPYba,  8b,dPPYba,
-    88""""""""88  a8P_____88  ""     `Y8  a8"    `Y88  a8P_____88  88P'   "Y8
-    88        88  8PP"""""""  ,adPPPPP88  8b       88  8PP"""""""  88
-    88        88  "8b,   ,aa  88,    ,88  "8a,   ,d88  "8b,   ,aa  88
-    88        88   `"Ybbd8"'  `"8bbdP"Y8   `"8bbdP"Y8   `"Ybbd8"'  88
+    88        88                                   88                          
+    88        88                                   88                          
+    88        88                                   88                          
+    88aaaaaaaa88   ,adPPYba,  ,adPPYYba,   ,adPPYb,88   ,adPPYba,  8b,dPPYba,  
+    88""""""""88  a8P_____88  ""     `Y8  a8"    `Y88  a8P_____88  88P'   "Y8  
+    88        88  8PP"""""""  ,adPPPPP88  8b       88  8PP"""""""  88          
+    88        88  "8b,   ,aa  88,    ,88  "8a,   ,d88  "8b,   ,aa  88          
+    88        88   `"Ybbd8"'  `"8bbdP"Y8   `"8bbdP"Y8   `"Ybbd8"'  88          
 
 
 
@@ -2019,14 +2019,14 @@ in the output code.
 		#if __PawnBuild >= 4
 			#pragma option -(+
 		#endif
-
+		
 		// Use `static enum` if it is available.
 		#if __PawnBuild >= 2
 			#undef _FIXES_ENUM
 			#define _FIXES_ENUM static enum
 		#endif
 	#endif
-
+	
 	// Stupid "warning" that should not exist ever.
 	#pragma warning push
 	#pragma warning disable 207
@@ -2107,16 +2107,16 @@ in the output code.
 
 /*
 
-     ad88888ba                                 88
-    d8"     "8b                ,d       ,d     ""
-    Y8,                        88       88
-    `Y8aaaaa,     ,adPPYba,  MM88MMM  MM88MMM  88  8b,dPPYba,    ,adPPYb,d8  ,adPPYba,
-      `"""""8b,  a8P_____88    88       88     88  88P'   `"8a  a8"    `Y88  I8[    ""
-            `8b  8PP"""""""    88       88     88  88       88  8b       88   `"Y8ba,
-    Y8a     a8P  "8b,   ,aa    88,      88,    88  88       88  "8a,   ,d88  aa    ]8I
-     "Y88888P"    `"Ybbd8"'    "Y888    "Y888  88  88       88   `"YbbdP"Y8  `"YbbdP"'
-                                                                 aa,    ,88
-                                                                  "Y8bbdP"
+     ad88888ba                                 88                                       
+    d8"     "8b                ,d       ,d     ""                                       
+    Y8,                        88       88                                              
+    `Y8aaaaa,     ,adPPYba,  MM88MMM  MM88MMM  88  8b,dPPYba,    ,adPPYb,d8  ,adPPYba,  
+      `"""""8b,  a8P_____88    88       88     88  88P'   `"8a  a8"    `Y88  I8[    ""  
+            `8b  8PP"""""""    88       88     88  88       88  8b       88   `"Y8ba,   
+    Y8a     a8P  "8b,   ,aa    88,      88,    88  88       88  "8a,   ,d88  aa    ]8I  
+     "Y88888P"    `"Ybbd8"'    "Y888    "Y888  88  88       88   `"YbbdP"Y8  `"YbbdP"'  
+                                                                 aa,    ,88             
+                                                                  "Y8bbdP"              
 
 
 */
@@ -2289,16 +2289,16 @@ in the output code.
 
 /*
 
-      ,ad8888ba,                         88
-     d8"'    `"8b                 ,d     ""
-    d8'        `8b                88
-    88          88  8b,dPPYba,  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,
-    88          88  88P'    "8a   88     88  a8"     "8a  88P'   `"8a  I8[    ""
-    Y8,        ,8P  88       d8   88     88  8b       d8  88       88   `"Y8ba,
-     Y8a.    .a8P   88b,   ,a8"   88,    88  "8a,   ,a8"  88       88  aa    ]8I
-      `"Y8888Y"'    88`YbbdP"'    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'
-                    88
-                    88
+      ,ad8888ba,                         88                                       
+     d8"'    `"8b                 ,d     ""                                       
+    d8'        `8b                88                                              
+    88          88  8b,dPPYba,  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,  
+    88          88  88P'    "8a   88     88  a8"     "8a  88P'   `"8a  I8[    ""  
+    Y8,        ,8P  88       d8   88     88  8b       d8  88       88   `"Y8ba,   
+     Y8a.    .a8P   88b,   ,a8"   88,    88  "8a,   ,a8"  88       88  aa    ]8I  
+      `"Y8888Y"'    88`YbbdP"'    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'  
+                    88                                                            
+                    88                                                            
 
 */
 
@@ -2611,10 +2611,10 @@ in the output code.
 
 #if !defined FIX_AttachTrailerToVehicle
 	_FIXES_STOCK FIX_AttachTrailerToVehicle = _FIXES_DEFAULT;
-	#define FIX_AttachTrailerToVehicle           _FIXES_DEFAULT
+	#define FIX_AttachTrailerToVehicle                  _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_AttachTrailerToVehicle)
 	#undef FIX_AttachTrailerToVehicle
-	#define FIX_AttachTrailerToVehicle           (2)
+	#define FIX_AttachTrailerToVehicle                   (2)
 #endif
 
 #if !defined FIX_GetVehicleComponentInSlot
@@ -3437,7 +3437,7 @@ in the output code.
 			#define FIX_GetConsoleVarAsString    (2)
 		#else
 			#define FIX_GetConsoleVarAsString    (FIX_GetServerVarAsString)
-		#endif
+#endif
 	#else
 		_FIXES_STOCK FIX_GetConsoleVarAsString = _FIXES_DEFAULT;
 		#define FIX_GetConsoleVarAsString        _FIXES_DEFAULT
@@ -3453,7 +3453,7 @@ in the output code.
 			#define FIX_GetConsoleVarAsInt       (2)
 		#else
 			#define FIX_GetConsoleVarAsInt       (FIX_GetServerVarAsInt)
-		#endif
+#endif
 	#else
 		_FIXES_STOCK FIX_GetConsoleVarAsInt    = _FIXES_DEFAULT;
 		#define FIX_GetConsoleVarAsInt           _FIXES_DEFAULT
@@ -3469,7 +3469,7 @@ in the output code.
 			#define FIX_GetConsoleVarAsBool      (2)
 		#else
 			#define FIX_GetConsoleVarAsBool      (FIX_GetServerVarAsBool)
-		#endif
+#endif
 	#else
 		_FIXES_STOCK FIX_GetConsoleVarAsBool   = _FIXES_DEFAULT;
 		#define FIX_GetConsoleVarAsBool          _FIXES_DEFAULT
@@ -3496,11 +3496,11 @@ in the output code.
 				#define FIX_GetConsoleVarAsFloat (2)
 			#else
 				#define FIX_GetConsoleVarAsFloat (FIX_GetServerVarAsFloat)
-			#endif
+	#endif
 		#else
 			_FIXES_STOCK FIX_GetConsoleVarAsFloat = FIX_Natives;
 			#define FIX_GetConsoleVarAsFloat     FIX_Natives
-		#endif
+#endif
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_GetConsoleVarAsFloat)
 	#undef FIX_GetConsoleVarAsFloat
@@ -3586,14 +3586,14 @@ in the output code.
 
 /*
 
-    88b           d88
-    888b         d888
-    88`8b       d8'88
-    88 `8b     d8' 88  ,adPPYYba,   ,adPPYba,  8b,dPPYba,   ,adPPYba,   ,adPPYba,
-    88  `8b   d8'  88  ""     `Y8  a8"     ""  88P'   "Y8  a8"     "8a  I8[    ""
-    88   `8b d8'   88  ,adPPPPP88  8b          88          8b       d8   `"Y8ba,
-    88    `888'    88  88,    ,88  "8a,   ,aa  88          "8a,   ,a8"  aa    ]8I
-    88     `8'     88  `"8bbdP"Y8   `"Ybbd8"'  88           `"YbbdP"'   `"YbbdP"'
+    88b           d88                                                              
+    888b         d888                                                              
+    88`8b       d8'88                                                              
+    88 `8b     d8' 88  ,adPPYYba,   ,adPPYba,  8b,dPPYba,   ,adPPYba,   ,adPPYba,  
+    88  `8b   d8'  88  ""     `Y8  a8"     ""  88P'   "Y8  a8"     "8a  I8[    ""  
+    88   `8b d8'   88  ,adPPPPP88  8b          88          8b       d8   `"Y8ba,   
+    88    `888'    88  88,    ,88  "8a,   ,aa  88          "8a,   ,a8"  aa    ]8I  
+    88     `8'     88  `"8bbdP"Y8   `"Ybbd8"'  88           `"YbbdP"'   `"YbbdP"'  
 
 
 
@@ -3856,14 +3856,14 @@ in the output code.
 
 /*
 
-    88888888ba,                   ad88  88               88           88
-    88      `"8b                 d8"    ""               ""    ,d     ""
-    88        `8b                88                            88
-    88         88   ,adPPYba,  MM88MMM  88  8b,dPPYba,   88  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,
-    88         88  a8P_____88    88     88  88P'   `"8a  88    88     88  a8"     "8a  88P'   `"8a  I8[    ""
-    88         8P  8PP"""""""    88     88  88       88  88    88     88  8b       d8  88       88   `"Y8ba,
-    88      .a8P   "8b,   ,aa    88     88  88       88  88    88,    88  "8a,   ,a8"  88       88  aa    ]8I
-    88888888Y"'     `"Ybbd8"'    88     88  88       88  88    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'
+    88888888ba,                   ad88  88               88           88                                       
+    88      `"8b                 d8"    ""               ""    ,d     ""                                       
+    88        `8b                88                            88                                              
+    88         88   ,adPPYba,  MM88MMM  88  8b,dPPYba,   88  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,  
+    88         88  a8P_____88    88     88  88P'   `"8a  88    88     88  a8"     "8a  88P'   `"8a  I8[    ""  
+    88         8P  8PP"""""""    88     88  88       88  88    88     88  8b       d8  88       88   `"Y8ba,   
+    88      .a8P   "8b,   ,aa    88     88  88       88  88    88,    88  "8a,   ,a8"  88       88  aa    ]8I  
+    88888888Y"'     `"Ybbd8"'    88     88  88       88  88    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'  
 
 
 
@@ -4667,14 +4667,14 @@ in the output code.
 
 /*
 
-           db         88           ad88888ba
-          d88b        88          d8"     "8b
-         d8'`8b       88          Y8,
-        d8'  `8b      88          `Y8aaaaa,
-       d8YaaaaY8b     88            `"""""8b,
-      d8""""""""8b    88                  `8b
-     d8'        `8b   88          Y8a     a8P
-    d8'          `8b  88888888888  "Y88888P"
+           db         88           ad88888ba   
+          d88b        88          d8"     "8b  
+         d8'`8b       88          Y8,          
+        d8'  `8b      88          `Y8aaaaa,    
+       d8YaaaaY8b     88            `"""""8b,  
+      d8""""""""8b    88                  `8b  
+     d8'        `8b   88          Y8a     a8P  
+    d8'          `8b  88888888888  "Y88888P"   
 
 
 
@@ -4748,14 +4748,14 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 
 /*
 
-    88888888888
-    88
-    88
-    88aaaaa      8b,dPPYba,   88       88  88,dPYba,,adPYba,   ,adPPYba,
-    88"""""      88P'   `"8a  88       88  88P'   "88"    "8a  I8[    ""
-    88           88       88  88       88  88      88      88   `"Y8ba,
-    88           88       88  "8a,   ,a88  88      88      88  aa    ]8I
-    88888888888  88       88   `"YbbdP'Y8  88      88      88  `"YbbdP"'
+    88888888888                                                           
+    88                                                                    
+    88                                                                    
+    88aaaaa      8b,dPPYba,   88       88  88,dPYba,,adPYba,   ,adPPYba,  
+    88"""""      88P'   `"8a  88       88  88P'   "88"    "8a  I8[    ""  
+    88           88       88  88       88  88      88      88   `"Y8ba,   
+    88           88       88  "8a,   ,a88  88      88      88  aa    ]8I  
+    88888888888  88       88   `"YbbdP'Y8  88      88      88  `"YbbdP"'  
 
 
 
@@ -4822,14 +4822,14 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 
 /*
 
-                                                88
-                 ,d                             88
-                 88                             88
-    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8
-    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"
-     `"Y8ba,     88    8b       d8  8b          8888[
-    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,
-    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a
+                                                88         
+                 ,d                             88         
+                 88                             88         
+    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8   
+    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"    
+     `"Y8ba,     88    8b       d8  8b          8888[      
+    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,   
+    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a  
 
 
 
@@ -4894,14 +4894,14 @@ stock
 
 /*
 
-                                                88
-                 ,d                             88                                                               ,d
-                 88                             88                                                               88
-    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM
-    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88
-     `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88
-    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,
-    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888
+                                                88                                                                      
+                 ,d                             88                                                               ,d     
+                 88                             88                                                               88     
+    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM  
+    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88     
+     `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88     
+    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,    
+    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888  
 
 
 
@@ -4918,14 +4918,14 @@ stock const
 
 /*
 
-                                             88                                                             88
-                 ,d                   ,d     ""                              ,d                             88
-                 88                   88                                     88                             88
-    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8
-    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"
-     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[
-    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,
-    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a
+                                             88                                                             88         
+                 ,d                   ,d     ""                              ,d                             88         
+                 88                   88                                     88                             88         
+    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8   
+    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"    
+     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[      
+    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,   
+    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a  
 
 
 
@@ -5274,14 +5274,14 @@ static stock
 
 /*
 
-                                             88                                                             88
-                 ,d                   ,d     ""                              ,d                             88                                                               ,d
-                 88                   88                                     88                             88                                                               88
-    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM
-    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88
-     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88
-    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,
-    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888
+                                             88                                                             88                                                                      
+                 ,d                   ,d     ""                              ,d                             88                                                               ,d     
+                 88                   88                                     88                             88                                                               88     
+    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM  
+    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88     
+     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88     
+    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,    
+    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888  
 
 
 
@@ -6756,14 +6756,14 @@ static stock const
 
 /*
 
-    888b      88                       88
-    8888b     88                ,d     ""
-    88 `8b    88                88
-    88  `8b   88  ,adPPYYba,  MM88MMM  88  8b       d8   ,adPPYba,  ,adPPYba,
-    88   `8b  88  ""     `Y8    88     88  `8b     d8'  a8P_____88  I8[    ""
-    88    `8b 88  ,adPPPPP88    88     88   `8b   d8'   8PP"""""""   `"Y8ba,
-    88     `8888  88,    ,88    88,    88    `8b,d8'    "8b,   ,aa  aa    ]8I
-    88      `888  `"8bbdP"Y8    "Y888  88      "8"       `"Ybbd8"'  `"YbbdP"'
+    888b      88                       88                                      
+    8888b     88                ,d     ""                                      
+    88 `8b    88                88                                             
+    88  `8b   88  ,adPPYYba,  MM88MMM  88  8b       d8   ,adPPYba,  ,adPPYba,  
+    88   `8b  88  ""     `Y8    88     88  `8b     d8'  a8P_____88  I8[    ""  
+    88    `8b 88  ,adPPPPP88    88     88   `8b   d8'   8PP"""""""   `"Y8ba,   
+    88     `8888  88,    ,88    88,    88    `8b,d8'    "8b,   ,aa  aa    ]8I  
+    88      `888  `"8bbdP"Y8    "Y888  88      "8"       `"Ybbd8"'  `"YbbdP"'  
 
 
 
@@ -7254,7 +7254,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native CreateExplosion__(Float:X, Float:Y, Float:Z, type, Float:Radius) = CreateExplosion;
 	native EnableZoneNames__(enable) = EnableZoneNames;
 	native UsePlayerPedAnims__() = UsePlayerPedAnims;
-	native DisableInteriorEnterExits__() = DisableInteriorEnterExits;
+	native DisableInteriorEnterExits__() = DisableInteriorEnterExits; 
 	native SetNameTagDrawDistance__(Float:distance) = SetNameTagDrawDistance;
 	native DisableNameTagLOS__() = DisableNameTagLOS;
 	native LimitGlobalChatRadius__(Float:chat_radius) = LimitGlobalChatRadius;
@@ -7622,16 +7622,16 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 
 /*
 
-      ,ad8888ba,
-     d8"'    `"8b                                                      ,d
-    d8'        `8b                                                     88
-    88          88  8b,dPPYba,    ,adPPYba,  8b,dPPYba,  ,adPPYYba,  MM88MMM  ,adPPYba,   8b,dPPYba,  ,adPPYba,
-    88          88  88P'    "8a  a8P_____88  88P'   "Y8  ""     `Y8    88    a8"     "8a  88P'   "Y8  I8[    ""
-    Y8,        ,8P  88       d8  8PP"""""""  88          ,adPPPPP88    88    8b       d8  88           `"Y8ba,
-     Y8a.    .a8P   88b,   ,a8"  "8b,   ,aa  88          88,    ,88    88,   "8a,   ,a8"  88          aa    ]8I
-      `"Y8888Y"'    88`YbbdP"'    `"Ybbd8"'  88          `"8bbdP"Y8    "Y888  `"YbbdP"'   88          `"YbbdP"'
-                    88
-                    88
+      ,ad8888ba,                                                                                                 
+     d8"'    `"8b                                                      ,d                                        
+    d8'        `8b                                                     88                                        
+    88          88  8b,dPPYba,    ,adPPYba,  8b,dPPYba,  ,adPPYYba,  MM88MMM  ,adPPYba,   8b,dPPYba,  ,adPPYba,  
+    88          88  88P'    "8a  a8P_____88  88P'   "Y8  ""     `Y8    88    a8"     "8a  88P'   "Y8  I8[    ""  
+    Y8,        ,8P  88       d8  8PP"""""""  88          ,adPPPPP88    88    8b       d8  88           `"Y8ba,   
+     Y8a.    .a8P   88b,   ,a8"  "8b,   ,aa  88          88,    ,88    88,   "8a,   ,a8"  88          aa    ]8I  
+      `"Y8888Y"'    88`YbbdP"'    `"Ybbd8"'  88          `"8bbdP"Y8    "Y888  `"YbbdP"'   88          `"YbbdP"'  
+                    88                                                                                           
+                    88                                                                                           
 
 */
 
@@ -7676,14 +7676,14 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 
 /*
 
-    88                                                                       88
-    88                ,d                                                     88
-    88                88                                                     88
-    88  8b,dPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,  8b,dPPYba,   ,adPPYYba,  88
-    88  88P'   `"8a   88    a8P_____88  88P'   "Y8  88P'   `"8a  ""     `Y8  88
-    88  88       88   88    8PP"""""""  88          88       88  ,adPPPPP88  88
-    88  88       88   88,   "8b,   ,aa  88          88       88  88,    ,88  88
-    88  88       88   "Y888  `"Ybbd8"'  88          88       88  `"8bbdP"Y8  88
+    88                                                                       88  
+    88                ,d                                                     88  
+    88                88                                                     88  
+    88  8b,dPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,  8b,dPPYba,   ,adPPYYba,  88  
+    88  88P'   `"8a   88    a8P_____88  88P'   "Y8  88P'   `"8a  ""     `Y8  88  
+    88  88       88   88    8PP"""""""  88          88       88  ,adPPPPP88  88  
+    88  88       88   88,   "8b,   ,aa  88          88       88  88,    ,88  88  
+    88  88       88   "Y888  `"Ybbd8"'  88          88       88  `"8bbdP"Y8  88  
 
 
 
@@ -7936,7 +7936,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 
 /**
  * <remarks>
- * Check if <c>MAX_PLAYERS</c> equals <c>GetMaxPlayers</c>, for efficiency.
+ * Check if <c>MAX_PLAYERS</c> equals <c>GetMaxPlayers</c>, for efficiency. 
  * </remarks>
  */
 
@@ -8559,14 +8559,14 @@ static stock _FIXES_CheckMaxPlayers()
 
 /*
 
-    88888888888  88
-    88           ""
-    88
-    88aaaaa      88  8b,     ,d8  ,adPPYba,  ,adPPYba,
-    88"""""      88   `Y8, ,8P'  a8P_____88  I8[    ""
-    88           88     )888(    8PP"""""""   `"Y8ba,
-    88           88   ,d8" "8b,  "8b,   ,aa  aa    ]8I
-    88           88  8P'     `Y8  `"Ybbd8"'  `"YbbdP"'
+    88888888888  88                                     
+    88           ""                                     
+    88                                                  
+    88aaaaa      88  8b,     ,d8  ,adPPYba,  ,adPPYba,  
+    88"""""      88   `Y8, ,8P'  a8P_____88  I8[    ""  
+    88           88     )888(    8PP"""""""   `"Y8ba,   
+    88           88   ,d8" "8b,  "8b,   ,aa  aa    ]8I  
+    88           88  8P'     `Y8  `"Ybbd8"'  `"YbbdP"'  
 
 
 
@@ -9626,9 +9626,9 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
  */
 
 #if _FIXES_SAMP && defined _ALS_SetVehiclePos
-	#error _ALS_SetVehiclePos defined
-#endif
-native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
+	#error _ALS_SetVehiclePos defined 
+#endif 
+native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos; 
 
 /**
  * <fixes>SilentTeleport</fixes>
@@ -10048,31 +10048,31 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		//  BEGIN: OnVehicleMod
 		// =====================
 		#if FIX_OnVehicleMod
-			new
-				modelid = GetVehicleModel__(vehicleid);
-			if (_FIXES_IN_RANGE(modelid, 400, 611 + 1))
+		new
+			modelid = GetVehicleModel__(vehicleid);
+		if (_FIXES_IN_RANGE(modelid, 400, 611 + 1))
+		{
+			if (_FIXES_IN_RANGE(componentid, 1000, 1191 + 1))
 			{
-				if (_FIXES_IN_RANGE(componentid, 1000, 1191 + 1))
+				if (FIXES_gscVehicleMods[(modelid - 400) * 6 + (componentid - 1000 >>> 5)] & 1 << (componentid - 1000 & 0b00011111))
 				{
-					if (FIXES_gscVehicleMods[(modelid - 400) * 6 + (componentid - 1000 >>> 5)] & 1 << (componentid - 1000 & 0b00011111))
-					{
-						return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-					}
-				}
-				else if (componentid == 1192 || componentid == 1193)
-				{
-					if (modelid == 576)
-					{
-						// This save a whole cell off EVERY other vehicle!  This
-						// is the ONLY vehicle with any mods over "6 * 32 + 999"
-						// (1191), the highest value you can fit in 6 cells of a
-						// bit array (minus 1000).
-						return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
-					}
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 				}
 			}
-			// Desync the player entirely.
-			return FIXES_BlockUpdate(playerid);
+			else if (componentid == 1192 || componentid == 1193)
+			{
+				if (modelid == 576)
+				{
+					// This save a whole cell off EVERY other vehicle!  This
+					// is the ONLY vehicle with any mods over "6 * 32 + 999"
+					// (1191), the highest value you can fit in 6 cells of a
+					// bit array (minus 1000).
+					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+				}
+			}
+		}
+		// Desync the player entirely.
+		return FIXES_BlockUpdate(playerid);
 		#else
 			return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 		#endif
@@ -10806,7 +10806,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		// =============================
 		//  END: SilentTeleport
 		// =============================
-
+		
 		// ==========================
 		//  BEGIN: GetPlayerInterior
 		// ==========================
@@ -11047,7 +11047,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * Declare the function to reset the car-jacked player id to invalid id.
  * </remarks>
  */
-
+ 
 #if FIX_SilentTeleport
 	forward FIXES_RemoveJackedId(playerid);
 	public FIXES_RemoveJackedId(playerid) return FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
@@ -11235,7 +11235,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if FIX_BypassDialog
 	#if !FIXES_Single
 		forward @FIXES_BlockUpdate(playerid, bool:block);
-
+		
 		public @FIXES_BlockUpdate(playerid, bool:block)
 		{
 			if (block)
@@ -14877,7 +14877,7 @@ native BAD_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle
 #if FIX_AttachTrailerToVehicle
 	stock FIXES_AttachTrailerToVehicle(trailerid, vehicleid)
 	{
-		if (trailerid == vehicleid)
+		if(trailerid == vehicleid)
 		{
 			return 0;
 		}
@@ -16315,14 +16315,14 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 /*
 
-           db         88888888ba   88
-          d88b        88      "8b  88
-         d8'`8b       88      ,8P  88
-        d8'  `8b      88aaaaaa8P'  88
-       d8YaaaaY8b     88""""""'    88
-      d8""""""""8b    88           88
-     d8'        `8b   88           88
-    d8'          `8b  88           88
+           db         88888888ba   88  
+          d88b        88      "8b  88  
+         d8'`8b       88      ,8P  88  
+        d8'  `8b      88aaaaaa8P'  88  
+       d8YaaaaY8b     88""""""'    88  
+      d8""""""""8b    88           88  
+     d8'        `8b   88           88  
+    d8'          `8b  88           88  
 
 
 
@@ -16545,14 +16545,14 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 /*
 
-    88888888888
-    88                                  ,d
-    88                                  88
-    88aaaaa   ,adPPYba,    ,adPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,
-    88"""""  a8"     "8a  a8"     "8a   88    a8P_____88  88P'   "Y8
-    88       8b       d8  8b       d8   88    8PP"""""""  88
-    88       "8a,   ,a8"  "8a,   ,a8"   88,   "8b,   ,aa  88
-    88        `"YbbdP"'    `"YbbdP"'    "Y888  `"Ybbd8"'  88
+    88888888888                                                       
+    88                                  ,d                            
+    88                                  88                            
+    88aaaaa   ,adPPYba,    ,adPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,  
+    88"""""  a8"     "8a  a8"     "8a   88    a8P_____88  88P'   "Y8  
+    88       8b       d8  8b       d8   88    8PP"""""""  88          
+    88       "8a,   ,a8"  "8a,   ,a8"   88,   "8b,   ,aa  88          
+    88        `"YbbdP"'    `"YbbdP"'    "Y888  `"Ybbd8"'  88          
 
 
 
@@ -16647,7 +16647,7 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 
 /**
  * <remarks>
- *
+ * 
  * </remarks>
  */
 
