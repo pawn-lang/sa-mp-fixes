@@ -401,53 +401,13 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *
 
  *
- * <fix name="Natives">
- *     <problem>
- *         Several natives are included by default, this enables or disables
- *         them all.  Therefore this is an umbrella fix for several fixes.
- *     </problem>
- *     <solution>
- *         Define them.
- *     </solution>
- *     <see>FIX_GetGravity</see>
- *     <see>FIX_gpci</see>
- *     <see>FIX_IsValidVehicle</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="OnPlayerConnect">
- *     <problem>
- *         This function isn't called for players when a filterscript starts.
- *     </problem>
- *     <solution>
- *         Call it for all connected players.
- *     </solution>
- *     <see>FIXES_OnFilterScriptInit</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="OnPlayerDisconnect">
- *     <problem>
- *         This function isn't called for players when a filterscript ends.
- *     </problem>
- *     <solution>
- *         Call it for all connected players.
- *     </solution>
- *     <see>FIXES_OnFilterScriptExit</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="GameText">
- *     <problem>
- *         Several styles do not display for the time specified.
- *     </problem>
- *     <solution>
- *         Recreate the styles in Text Draws and use those instead.
- *     </solution>
- *     <see>FIXES_GameTextForAll</see>
- *     <see>FIXES_GameTextForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
  * <fix name="GameTextStyles" disabled="true">
  *     <problem>
@@ -463,107 +423,23 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    href="https://github.com/NexiusTailer">NexiusTailer</author>
  * </fix>
  *
- * <fix name="HideGameText">
- *     <problem>
- *         There is no "HideGameTextForXYZ" function.
- *     </problem>
- *     <solution>
- *         Show a single space for a game text.
- *     </solution>
- *     <see>FIXES_HideGameTextForAll</see>
- *     <see>FIXES_HideGameTextForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="ClearPlayerWorldBounds">
- *     <problem>
- *         There is no "ClearPlayerWorldBounds" function.
- *     </problem>
- *     <solution>
- *         Put the world bounds back to the default.
- *     </solution>
- *     <see>FIXES_ClearPlayerWorldBounds</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="GetPlayerWorldBounds">
- *     <problem>
- *         There is no "GetPlayerWorldBounds" function.
- *     </problem>
- *     <solution>
- *         Store them and retrieve them.
- *     </solution>
- *     <see>FIXES_GetPlayerWorldBounds</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="WEAPONS">
- *     <problem>
- *         Some weapons are not defined by default.
- *     </problem>
- *     <solution>
- *         Define it.
- *     </solution>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- * </fix>
+
  *
- * <fix name="BODYPARTS">
- *     <problem>
- *         The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined
- *         by default
- *     </problem>
- *     <solution>
- *         Define it.
- *     </solution>
- *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
- * </fix>
+
  *
- * <fix name="CAMERAMODES">
- *     <problem>
- *         The camera modes for GetPlayerCameraMode are not defined by default.
- *     </problem>
- *     <solution>
- *         Define it.
- *     </solution>
- *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1309730" />
- * </fix>
+
  *
- * <fix name="SetPlayerCamera">
- *     <problem>
- *         Using the camera functions directly after enabling spectator mode
- *         doesn't work.
- *     </problem>
- *     <solution>
- *         Defer them.
- *     </solution>
- *     <see>FIXES_SetPlayerCameraPos</see>
- *     <see>FIXES_SetPlayerCameraLookAt</see>
- *     <see>FIXES_TogglePlayerSpectating</see>
- *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
- * </fix>
+
  *
- * <fix name="SetPlayerTime">
- *     <problem>
- *         Using this function under "OnPlayerConnect" doesn't work.
- *     </problem>
- *     <solution>
- *         Defer it.
- *     </solution>
- *     <see>FIXES_SetPlayerTime</see>
- *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
- * </fix>
+
  *
- * <fix name="OnPlayerRequestClass">
- *     <problem>
- *         Random blunts and bottles sometimes appear in class selection.
- *     </problem>
- *     <solution>
- *         Call "RemoveBuildingForPlayer".
- *     </solution>
- *     <see>OnPlayerRequestClass</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
  * <fix name="SetPlayerColor">
  *     <problem>
@@ -578,207 +454,39 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <post      href="http://forum.sa-mp.com/showthread.php?t=452407" />
  * </fix>
  *
- * <fix name="FileMaths">
- *     <problem>
- *         You can write gibberish like "File:a; ++a;".
- *     </problem>
- *     <solution>
- *         Remove the operators.
- *     </solution>
- *     <see>File:operator</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="GetPlayerWeaponData">
- *     <problem>
- *         Old weapons with no ammo left are still returned.
- *     </problem>
- *     <solution>
- *         Set "weapons" to 0.
- *     </solution>
- *     <see>FIXES_GetPlayerWeaponData</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=567400" />
- * </fix>
+
  *
- * <fix name="strcmp">
- *     <problem>
- *         Return 0 if anyone of the string is empty.
- *     </problem>
- *     <solution>
- *         Add a check for empty string.
- *     </solution>
- *     <see>FIXES_strcmp</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="GetPVarString">
- *     <problem>
- *         Wrong symbol code for symbols with code 128 and above.
- *     </problem>
- *     <solution>
- *         Use logical conjunction on symbol and 0xFF.
- *     </solution>
- *     <see>FIXES_GetPVarString</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- *     <author    >Mutha_X</author>
- *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
- *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
- * </fix>
+
  *
- * <fix name="GetSVarString">
- *     <problem>
- *         Wrong symbol code for symbols with code 128 and above.
- *     </problem>
- *     <solution>
- *         Use logical conjunction on symbol and 0xFF.
- *     </solution>
- *     <see>FIXES_GetSVarString</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- *     <author    >Mutha_X</author>
- *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
- *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
- * </fix>
+
  *
- * <fix name="toupper">
- *     <problem>
- *         Not working on Linux for symbols with code 128 and above.
- *     </problem>
- *     <solution>
- *         Recreate the function.
- *     </solution>
- *     <see>FIXES_toupper</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
- * </fix>
+
  *
- * <fix name="tolower">
- *     <problem>
- *         Not working on Linux for symbols with code 128 and above.
- *     </problem>
- *     <solution>
- *         Recreate the function.
- *     </solution>
- *     <see>FIXES_tolower</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
- * </fix>
+
  *
- * <fix name="ispacked">
- *     <problem>
- *         Returns false when the string is packed and starts with a symbol with code 128 and above.
- *     </problem>
- *     <solution>
- *         Check the string manually.
- *     </solution>
- *     <see>FIXES_ispacked</see>
- *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
- *     <author    href="https://github.com/VVWVV" >VVWVV</author>
- * </fix>
+
  *
- * <fix name="PassengerSeating">
- *     <problem>
- *         Teleporting player to passenger seat after delay.
- *     </problem>
- *     <solution>
- *         Call ClearAnimation after some delay.
- *     </solution>
- *     <see>OnPlayerEnterVehicle</see>
- *     <see>OnPlayerStateChange</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- * </fix>
+
  *
- * <fix name="GogglesSync">
- *     <problem>
- *         Visual effects show for all players.
- *     </problem>
- *     <solution>
- *         return 0 in OnPlayerUpdate after key pressed.
- *     </solution>
- *     <see>OnPlayerUpdate</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- * </fix>
+
  *
- * <fix name="GetPlayerPoolSize">
- *     <problem>
- *         Returns "0" even if there are no players on the server.
- *     </problem>
- *     <solution>
- *         Return "-1" if PlayerPoolsize is 0 but Player 0 is not connected.
- *     </solution>
- *     <see>FIXES_GetPlayerPoolSize</see>
- *     <author    href="https://github.com/Bios-Marcel" >Bios-Marcel</author>
- * </fix>
+
  *
- * <fix name="SetPlayerPos">
- *     <problem>
- *         Using this function on skydiving players kills them.
- *     </problem>
- *     <solution>
- *         Remove the parachute when the player is skydiving.
- *     </solution>
- *     <see>FIXES_SetPlayerPos</see>
- *     <see>FIXES_SetPlayerPosFindZ</see>
- *     <author    href="https://github.com/WoutProvost" >Freaksken</author>
- * </fix>
+
  *
- * <fix name="GetPlayerAmmo">
- *     <problem>
- *         Returns erroneous values over 32767 and under -32768 due to overflow.
- *     </problem>
- *     <solution>
- *         Prevent setting or adding ammo above 32767 and setting or removing
- *         ammo below 0.
- *     </solution>
- *     <see>FIXES_SetPlayerAmmo</see>
- *     <see>FIXES_GivePlayerWeapon</see>
- *     <author    href="https://github.com/WoutProvost" >Freaksken</author>
- * </fix>
+
  *
- * <fix name="JIT">
- *     <problem>
- *         Can't easily determine if the script is JIT compiled.
- *     </problem>
- *     <solution>
- *         Provide "IS_JIT" to the script for tests.
- *     </solution>
- *     <see>OnJITCompile</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="OS">
- *     <problem>
- *         Can't easily determine what OS the script is running on.
- *     </problem>
- *     <solution>
- *         Provide "IS_WINDOWS" and "IS_LINUX" to the script for tests.
- *     </solution>
- *     <see>_FIXES_DetermineOS</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="const">
- *     <problem>
- *         Some SA-MP natives don't use "const" when they could.
- *     </problem>
- *     <solution>
- *         Redefine the natives.
- *     </solution>
- *     <see>FIX_const</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="VEHICLES">
- *     <problem>
- *         The vehicle models IDs are not defined by default.
- *     </problem>
- *     <solution>
- *         Define them.
- *     </solution>
- *     <author    href="https://github.com/IstuntmanI" >stuntman</author>
- * </fix>
+
  *
  * <fix name="GetPlayerWeather" disabled="true">
  *     <problem>
@@ -863,131 +571,27 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
  * </fix>
  *
- * <fix name="GetConsoleVarAsString">
- *     <problem>
- *         Crashes on unknown string variables.
- *     </problem>
- *     <solution>
- *         Read the file manually.
- *     </solution>
- *     <see>FIXES_GetConsoleVarAsString</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="GetConsoleVarAsInt">
- *     <problem>
- *         Crashes on unknown int variables.
- *     </problem>
- *     <solution>
- *         Read the file manually.
- *     </solution>
- *     <see>FIXES_GetConsoleVarAsString</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="GetConsoleVarAsBool">
- *     <problem>
- *         Crashes on unknown boolean variables.
- *     </problem>
- *     <solution>
- *         Read the file manually.
- *     </solution>
- *     <see>FIXES_GetConsoleVarAsString</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="GetConsoleVarAsFloat">
- *     <problem>
- *         Doesn't even exist.
- *     </problem>
- *     <solution>
- *         Read the file manually.
- *     </solution>
- *     <see>FIXES_GetConsoleVarAsString</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="tabsize">
- *     <problem>
- *         Some people still use <c>tabsize 0</c>.
- *     </problem>
- *     <solution>
- *         Break the pragma.
- *     </solution>
- *     <see>_DUMMY_do_not_use_tabsize_0</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=3929000" />
- * </fix>
+
  *
- * <fix name="OnRconCommand">
- *     <problem>
- *         Is not called in the gamemode unless first called in a filterscript.
- *     </problem>
- *     <solution>
- *         Load a minimal (embedded) FS to bootstrap it.
- *     </solution>
- *     <see>OnGameModeInit</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="OnClientCheckResponse">
- *     <problem>
- *         Is not called in the gamemode ever.
- *     </problem>
- *     <solution>
- *         Load a minimal (embedded) FS to bootstrap it.
- *     </solution>
- *     <see>OnGameModeInit</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="GetMaxPlayers">
- *     <problem>
- *         If this is > MAX_PLAYERS, can cause OOBs in code.
- *     </problem>
- *     <solution>
- *         Constrain it; but also warn because that doesn't really help.
- *     </solution>
- *     <see>GetMaxPlayers</see>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="BypassDialog">
- *     <problem>
- *         You can type commands and move while in dialogs.
- *     </problem>
- *     <solution>
- *         Return 0.
- *     </solution>
- *     <see>OnPlayerCommandText</see>
- *     <see>OnPlayerText</see>
- *     <see>OnPlayerUpdate</see>
- *     <see>OnDialogResponse</see>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="SetTimer">
- *     <problem>
- *         Valid timers can return ID 0.
- *     </problem>
- *     <solution>
- *         Recreate them and kill the original.
- *     </solution>
- *     <see>FIXES_SetTimer</see>
- *     <see>FIXES_SetTimerEx</see>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="main">
- *     <problem>
- *         Gamemodes without this function give a console error.
- *     </problem>
- *     <solution>
- *         Make a stub version.
- *     </solution>
- *     <see>main</see>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
  * <fix name="CreateVehicle">
  *     <problem>
@@ -1000,32 +604,9 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
  *
- * <fix name="API">
- *     <problem>
- *         fixes.inc isn't intended to extend the SA:MP API, but has a lot of information internally
- *         that can be useful to other scripts.  By not exposing this data, we complicate and bloat
- *         scripts by requiring them to re-implement said functionality.
- *     </problem>
- *     <solution>
- *         Expose the data, behind a tightly controlled API.
- *     </solution>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="Pawndoc">
- *     <problem>
- *         Pawndoc comments aren't ignored inside <c>#if</c> blocks, nor used on macros.
- *     </problem>
- *     <solution>
- *         Place an unconditional <c>const</c> directly after comments, to which the documentation
- *         is attached.  All this "fix" does is provide a meaningful name, and does this on the
- *         first pass for comments you want to keep on macros.
- *     </solution>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
- *     <post   href="https://github.com/pawn-lang/compiler/issues/674#issuecomment-908927779" />
- *     <see>HIDE_PAWNDOC</see>
- *     <see>SHOW_PAWNDOC</see>
- * </fix>
+
  * </fixeslist>
  *
  * <section>
@@ -1779,6 +1360,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 // to the version of the includes for which the user is compiling.
 
 // Controls multiple other fixes.
+/**
+ * <fix name="API">
+ *     <problem>
+ *         fixes.inc isn't intended to extend the SA:MP API, but has a lot of information internally
+ *         that can be useful to other scripts.  By not exposing this data, we complicate and bloat
+ *         scripts by requiring them to re-implement said functionality.
+ *     </problem>
+ *     <solution>
+ *         Expose the data, behind a tightly controlled API.
+ *     </solution>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_API)
 	_FIXES_STOCK FIX_API = _FIXES_DEFAULT;
 	#define FIX_API                              _FIXES_DEFAULT
@@ -1797,6 +1392,22 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 #endif
 
 // Controls multiple other fixes.
+/**
+ * <fix name="Natives">
+ *     <problem>
+ *         Several natives are included by default, this enables or disables
+ *         them all.  Therefore this is an umbrella fix for several fixes.
+ *     </problem>
+ *     <solution>
+ *         Define them.
+ *     </solution>
+ *     <see>FIX_GetGravity</see>
+ *     <see>FIX_gpci</see>
+ *     <see>FIX_IsValidVehicle</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_Natives)
 	_FIXES_STOCK FIX_Natives = _FIXES_DEFAULT;
 	#define FIX_Natives                          _FIXES_DEFAULT
@@ -2412,6 +2023,18 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_gpci                             (0)
 #endif
 
+/**
+ * <fix name="WEAPONS">
+ *     <problem>
+ *         Some weapons are not defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_WEAPONS)
 	#if defined WEAPON_FIST
 		#if FIXES_EnableDeprecated
@@ -2438,6 +2061,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_WEAPONS                          (0)
 #endif
 
+/**
+ * <fix name="BODYPARTS">
+ *     <problem>
+ *         The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined
+ *         by default
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_BODYPARTS)
 	#if defined BODY_PART_LEFT_ARM
 		#if FIXES_EnableDeprecated
@@ -2463,6 +2099,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_BODYPARTS);
 	#define FIX_BODYPARTS                        (0)
 #endif
+
+/**
+ * <fix name="CAMERAMODES">
+ *     <problem>
+ *         The camera modes for GetPlayerCameraMode are not defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1309730" />
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_CAMERAMODES)
 	#if defined CAM_MODE_NONE
@@ -4320,6 +3969,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnPlayerSpawn                    (0)
 #endif
 
+/**
+ * <fix name="GameText">
+ *     <problem>
+ *         Several styles do not display for the time specified.
+ *     </problem>
+ *     <solution>
+ *         Recreate the styles in Text Draws and use those instead.
+ *     </solution>
+ *     <see>FIXES_GameTextForAll</see>
+ *     <see>FIXES_GameTextForPlayer</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GameText)
 	_FIXES_STOCK FIX_GameText = _FIXES_DEFAULT;
 	#define FIX_GameText                         _FIXES_DEFAULT
@@ -4336,6 +3999,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GameText);
 	#define FIX_GameText                         (0)
 #endif
+
+/**
+ * <fix name="HideGameText">
+ *     <problem>
+ *         There is no "HideGameTextForXYZ" function.
+ *     </problem>
+ *     <solution>
+ *         Show a single space for a game text.
+ *     </solution>
+ *     <see>FIXES_HideGameTextForAll</see>
+ *     <see>FIXES_HideGameTextForPlayer</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_HideGameText)
 	#if defined HideGameText
@@ -4363,6 +4040,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_HideGameText                     (0)
 #endif
 
+/**
+ * <fix name="GetPlayerWorldBounds">
+ *     <problem>
+ *         There is no "GetPlayerWorldBounds" function.
+ *     </problem>
+ *     <solution>
+ *         Store them and retrieve them.
+ *     </solution>
+ *     <see>FIXES_GetPlayerWorldBounds</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetPlayerWorldBounds)
 	#if defined GetPlayerWorldBounds
 		#if FIXES_EnableDeprecated
@@ -4388,6 +4078,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetPlayerWorldBounds);
 	#define FIX_GetPlayerWorldBounds             (0)
 #endif
+
+/**
+ * <fix name="ClearPlayerWorldBounds">
+ *     <problem>
+ *         There is no "ClearPlayerWorldBounds" function.
+ *     </problem>
+ *     <solution>
+ *         Put the world bounds back to the default.
+ *     </solution>
+ *     <see>FIXES_ClearPlayerWorldBounds</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_ClearPlayerWorldBounds)
 	#if defined ClearPlayerWorldBounds
@@ -4434,6 +4137,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GameTextStyles                   (0)
 #endif
 
+/**
+ * <fix name="OnPlayerConnect">
+ *     <problem>
+ *         This function isn't called for players when a filterscript starts.
+ *     </problem>
+ *     <solution>
+ *         Call it for all connected players.
+ *     </solution>
+ *     <see>FIXES_OnFilterScriptInit</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_OnPlayerConnect)
 	_FIXES_STOCK FIX_OnPlayerConnect = _FIXES_DEFAULT;
 	#define FIX_OnPlayerConnect                  _FIXES_DEFAULT
@@ -4450,6 +4166,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_OnPlayerConnect);
 	#define FIX_OnPlayerConnect                  (0)
 #endif
+
+/**
+ * <fix name="OnPlayerDisconnect">
+ *     <problem>
+ *         This function isn't called for players when a filterscript ends.
+ *     </problem>
+ *     <solution>
+ *         Call it for all connected players.
+ *     </solution>
+ *     <see>FIXES_OnFilterScriptExit</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_OnPlayerDisconnect)
 	_FIXES_STOCK FIX_OnPlayerDisconnect = _FIXES_DEFAULT;
@@ -4585,6 +4314,22 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_PlayerTextDrawSetString_2          (0)
 #endif
 
+/**
+ * <fix name="SetPlayerCamera">
+ *     <problem>
+ *         Using the camera functions directly after enabling spectator mode
+ *         doesn't work.
+ *     </problem>
+ *     <solution>
+ *         Defer them.
+ *     </solution>
+ *     <see>FIXES_SetPlayerCameraPos</see>
+ *     <see>FIXES_SetPlayerCameraLookAt</see>
+ *     <see>FIXES_TogglePlayerSpectating</see>
+ *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerCamera)
 	_FIXES_STOCK FIX_SetPlayerCamera = _FIXES_DEFAULT;
 	#define FIX_SetPlayerCamera                  _FIXES_DEFAULT
@@ -4602,6 +4347,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerCamera                  (0)
 #endif
 
+/**
+ * <fix name="SetPlayerTime">
+ *     <problem>
+ *         Using this function under "OnPlayerConnect" doesn't work.
+ *     </problem>
+ *     <solution>
+ *         Defer it.
+ *     </solution>
+ *     <see>FIXES_SetPlayerTime</see>
+ *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerTime)
 	_FIXES_STOCK FIX_SetPlayerTime = _FIXES_DEFAULT;
 	#define FIX_SetPlayerTime                    _FIXES_DEFAULT
@@ -4618,6 +4376,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_SetPlayerTime);
 	#define FIX_SetPlayerTime                    (0)
 #endif
+
+/**
+ * <fix name="OnPlayerRequestClass">
+ *     <problem>
+ *         Random blunts and bottles sometimes appear in class selection.
+ *     </problem>
+ *     <solution>
+ *         Call "RemoveBuildingForPlayer".
+ *     </solution>
+ *     <see>OnPlayerRequestClass</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_OnPlayerRequestClass)
 	_FIXES_STOCK FIX_OnPlayerRequestClass = _FIXES_DEFAULT;
@@ -4662,6 +4433,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerColour                  (0)
 #endif
 
+/**
+ * <fix name="FileMaths">
+ *     <problem>
+ *         You can write gibberish like "File:a; ++a;".
+ *     </problem>
+ *     <solution>
+ *         Remove the operators.
+ *     </solution>
+ *     <see>File:operator</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_FileMaths)
 	_FIXES_STOCK FIX_FileMaths = _FIXES_DEFAULT;
 	#define FIX_FileMaths                        _FIXES_DEFAULT
@@ -4678,6 +4462,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_FileMaths);
 	#define FIX_FileMaths                        (0)
 #endif
+
+/**
+ * <fix name="GetPlayerWeaponData">
+ *     <problem>
+ *         Old weapons with no ammo left are still returned.
+ *     </problem>
+ *     <solution>
+ *         Set "weapons" to 0.
+ *     </solution>
+ *     <see>FIXES_GetPlayerWeaponData</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <post      href="http://forum.sa-mp.com/showthread.php?t=567400" />
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_GetPlayerWeaponData)
 	_FIXES_STOCK FIX_GetPlayerWeaponData = _FIXES_DEFAULT;
@@ -4696,6 +4494,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerWeaponData              (0)
 #endif
 
+/**
+ * <fix name="strcmp">
+ *     <problem>
+ *         Return 0 if anyone of the string is empty.
+ *     </problem>
+ *     <solution>
+ *         Add a check for empty string.
+ *     </solution>
+ *     <see>FIXES_strcmp</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_strcmp)
 	_FIXES_STOCK FIX_strcmp = _FIXES_DEFAULT;
 	#define FIX_strcmp                           _FIXES_DEFAULT
@@ -4712,6 +4523,23 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_strcmp);
 	#define FIX_strcmp                           (0)
 #endif
+
+/**
+ * <fix name="GetPVarString">
+ *     <problem>
+ *         Wrong symbol code for symbols with code 128 and above.
+ *     </problem>
+ *     <solution>
+ *         Use logical conjunction on symbol and 0xFF.
+ *     </solution>
+ *     <see>FIXES_GetPVarString</see>
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
+ *     <author    >Mutha_X</author>
+ *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
+ *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
+ *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_GetPVarString)
 	_FIXES_STOCK FIX_GetPVarString = _FIXES_DEFAULT;
@@ -4730,6 +4558,23 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPVarString                    (0)
 #endif
 
+/**
+ * <fix name="GetSVarString">
+ *     <problem>
+ *         Wrong symbol code for symbols with code 128 and above.
+ *     </problem>
+ *     <solution>
+ *         Use logical conjunction on symbol and 0xFF.
+ *     </solution>
+ *     <see>FIXES_GetSVarString</see>
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
+ *     <author    >Mutha_X</author>
+ *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
+ *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
+ *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetSVarString)
 	_FIXES_STOCK FIX_GetSVarString = _FIXES_DEFAULT;
 	#define FIX_GetSVarString                    _FIXES_DEFAULT
@@ -4746,6 +4591,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetSVarString);
 	#define FIX_GetSVarString                    (0)
 #endif
+
+/**
+ * <fix name="toupper">
+ *     <problem>
+ *         Not working on Linux for symbols with code 128 and above.
+ *     </problem>
+ *     <solution>
+ *         Recreate the function.
+ *     </solution>
+ *     <see>FIXES_toupper</see>
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
+ *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_toupper)
 	_FIXES_STOCK FIX_toupper = _FIXES_DEFAULT;
@@ -4764,6 +4623,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_toupper                          (0)
 #endif
 
+/**
+ * <fix name="tolower">
+ *     <problem>
+ *         Not working on Linux for symbols with code 128 and above.
+ *     </problem>
+ *     <solution>
+ *         Recreate the function.
+ *     </solution>
+ *     <see>FIXES_tolower</see>
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
+ *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_tolower)
 	_FIXES_STOCK FIX_tolower = _FIXES_DEFAULT;
 	#define FIX_tolower                          _FIXES_DEFAULT
@@ -4780,6 +4653,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_tolower);
 	#define FIX_tolower                          (0)
 #endif
+
+/**
+ * <fix name="ispacked">
+ *     <problem>
+ *         Returns false when the string is packed and starts with a symbol with code 128 and above.
+ *     </problem>
+ *     <solution>
+ *         Check the string manually.
+ *     </solution>
+ *     <see>FIXES_ispacked</see>
+ *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
+ *     <author    href="https://github.com/VVWVV" >VVWVV</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_ispacked)
 	_FIXES_STOCK FIX_ispacked = _FIXES_DEFAULT;
@@ -4798,6 +4685,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ispacked                         (0)
 #endif
 
+/**
+ * <fix name="PassengerSeating">
+ *     <problem>
+ *         Teleporting player to passenger seat after delay.
+ *     </problem>
+ *     <solution>
+ *         Call ClearAnimation after some delay.
+ *     </solution>
+ *     <see>OnPlayerEnterVehicle</see>
+ *     <see>OnPlayerStateChange</see>
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_PassengerSeating)
 	_FIXES_STOCK FIX_PassengerSeating = _FIXES_DEFAULT;
 	#define FIX_PassengerSeating                 _FIXES_DEFAULT
@@ -4814,6 +4715,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_PassengerSeating);
 	#define FIX_PassengerSeating                 (0)
 #endif
+
+/**
+ * <fix name="GogglesSync">
+ *     <problem>
+ *         Visual effects show for all players.
+ *     </problem>
+ *     <solution>
+ *         return 0 in OnPlayerUpdate after key pressed.
+ *     </solution>
+ *     <see>OnPlayerUpdate</see>
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_GogglesSync)
 	_FIXES_STOCK FIX_GogglesSync = _FIXES_DEFAULT;
@@ -4832,6 +4746,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GogglesSync                      (0)
 #endif
 
+/**
+ * <fix name="GetPlayerPoolSize">
+ *     <problem>
+ *         Returns "0" even if there are no players on the server.
+ *     </problem>
+ *     <solution>
+ *         Return "-1" if PlayerPoolsize is 0 but Player 0 is not connected.
+ *     </solution>
+ *     <see>FIXES_GetPlayerPoolSize</see>
+ *     <author    href="https://github.com/Bios-Marcel" >Bios-Marcel</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetPlayerPoolSize)
 	_FIXES_STOCK FIX_GetPlayerPoolSize = _FIXES_DEFAULT;
 	#define FIX_GetPlayerPoolSize                _FIXES_DEFAULT
@@ -4848,6 +4775,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetPlayerPoolSize);
 	#define FIX_GetPlayerPoolSize                (0)
 #endif
+
+/**
+ * <fix name="SetPlayerPos">
+ *     <problem>
+ *         Using this function on skydiving players kills them.
+ *     </problem>
+ *     <solution>
+ *         Remove the parachute when the player is skydiving.
+ *     </solution>
+ *     <see>FIXES_SetPlayerPos</see>
+ *     <see>FIXES_SetPlayerPosFindZ</see>
+ *     <author    href="https://github.com/WoutProvost" >Freaksken</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerPos)
 	_FIXES_STOCK FIX_SetPlayerPos = _FIXES_DEFAULT;
@@ -4866,6 +4807,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerPos                     (0)
 #endif
 
+/**
+ * <fix name="GetPlayerAmmo">
+ *     <problem>
+ *         Returns erroneous values over 32767 and under -32768 due to overflow.
+ *     </problem>
+ *     <solution>
+ *         Prevent setting or adding ammo above 32767 and setting or removing
+ *         ammo below 0.
+ *     </solution>
+ *     <see>FIXES_SetPlayerAmmo</see>
+ *     <see>FIXES_GivePlayerWeapon</see>
+ *     <author    href="https://github.com/WoutProvost" >Freaksken</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetPlayerAmmo)
 	_FIXES_STOCK FIX_GetPlayerAmmo = _FIXES_DEFAULT;
 	#define FIX_GetPlayerAmmo                    _FIXES_DEFAULT
@@ -4882,6 +4838,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetPlayerAmmo);
 	#define FIX_GetPlayerAmmo                    (0)
 #endif
+
+/**
+ * <fix name="JIT">
+ *     <problem>
+ *         Can't easily determine if the script is JIT compiled.
+ *     </problem>
+ *     <solution>
+ *         Provide "IS_JIT" to the script for tests.
+ *     </solution>
+ *     <see>OnJITCompile</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_JIT)
 	_FIXES_STOCK FIX_JIT = _FIXES_DEFAULT;
@@ -4900,6 +4869,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_JIT                              (0)
 #endif
 
+/**
+ * <fix name="OS">
+ *     <problem>
+ *         Can't easily determine what OS the script is running on.
+ *     </problem>
+ *     <solution>
+ *         Provide "IS_WINDOWS" and "IS_LINUX" to the script for tests.
+ *     </solution>
+ *     <see>_FIXES_DetermineOS</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_OS)
 	_FIXES_STOCK FIX_OS = _FIXES_DEFAULT;
 	#define FIX_OS                               _FIXES_DEFAULT
@@ -4917,6 +4899,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OS                               (0)
 #endif
 
+/**
+ * <fix name="const">
+ *     <problem>
+ *         Some SA-MP natives don't use "const" when they could.
+ *     </problem>
+ *     <solution>
+ *         Redefine the natives.
+ *     </solution>
+ *     <see>FIX_const</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_const)
 	_FIXES_STOCK FIX_const = _FIXES_DEFAULT;
 	#define FIX_const                            _FIXES_DEFAULT
@@ -4933,6 +4928,18 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_const);
 	#define FIX_const                            (0)
 #endif
+
+/**
+ * <fix name="VEHICLES">
+ *     <problem>
+ *         The vehicle models IDs are not defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define them.
+ *     </solution>
+ *     <author    href="https://github.com/IstuntmanI" >stuntman</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_VEHICLES)
 	#if defined VEHICLE_INFERNUS
@@ -5038,6 +5045,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetWorldTime                     (0)
 #endif
 
+/**
+ * <fix name="GetConsoleVarAsString">
+ *     <problem>
+ *         Crashes on unknown string variables.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetConsoleVarAsString)
 	#if defined FIX_GetServerVarAsString
 		_FIXES_SHOW_PAWNDOC(FIX_GetConsoleVarAsString);
@@ -5063,6 +5083,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsString);
 	#define FIX_GetConsoleVarAsString            (0)
 #endif
+
+/**
+ * <fix name="GetConsoleVarAsInt">
+ *     <problem>
+ *         Crashes on unknown int variables.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_GetConsoleVarAsInt)
 	#if defined FIX_GetServerVarAsInt   
@@ -5090,6 +5123,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetConsoleVarAsInt               (0)
 #endif
 
+/**
+ * <fix name="GetConsoleVarAsBool">
+ *     <problem>
+ *         Crashes on unknown boolean variables.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetConsoleVarAsBool)
 	#if defined FIX_GetServerVarAsBool  
 		_FIXES_SHOW_PAWNDOC(FIX_GetConsoleVarAsBool);
@@ -5115,6 +5161,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetConsoleVarAsBool);
 	#define FIX_GetConsoleVarAsBool              (0)
 #endif
+
+/**
+ * <fix name="GetConsoleVarAsFloat">
+ *     <problem>
+ *         Doesn't even exist.
+ *     </problem>
+ *     <solution>
+ *         Read the file manually.
+ *     </solution>
+ *     <see>FIXES_GetConsoleVarAsString</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_GetConsoleVarAsFloat)
 	#if defined GetConsoleVarAsFloat
@@ -5156,6 +5215,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetConsoleVarAsFloat             (0)
 #endif
 
+/**
+ * <fix name="tabsize">
+ *     <problem>
+ *         Some people still use <c>tabsize 0</c>.
+ *     </problem>
+ *     <solution>
+ *         Break the pragma.
+ *     </solution>
+ *     <see>_DUMMY_do_not_use_tabsize_0</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=3929000" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_tabsize)
 	_FIXES_STOCK FIX_tabsize = _FIXES_DEFAULT;
 	#define FIX_tabsize                          _FIXES_DEFAULT
@@ -5190,6 +5263,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_Callbacks                        (0)
 #endif
 
+/**
+ * <fix name="OnRconCommand">
+ *     <problem>
+ *         Is not called in the gamemode unless first called in a filterscript.
+ *     </problem>
+ *     <solution>
+ *         Load a minimal (embedded) FS to bootstrap it.
+ *     </solution>
+ *     <see>OnGameModeInit</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_OnRconCommand)
 	_FIXES_STOCK FIX_OnRconCommand = FIX_Callbacks;
 	#define FIX_OnRconCommand                    FIX_Callbacks
@@ -5206,6 +5292,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_OnRconCommand);
 	#define FIX_OnRconCommand                    (0)
 #endif
+
+/**
+ * <fix name="OnClientCheckResponse">
+ *     <problem>
+ *         Is not called in the gamemode ever.
+ *     </problem>
+ *     <solution>
+ *         Load a minimal (embedded) FS to bootstrap it.
+ *     </solution>
+ *     <see>OnGameModeInit</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_OnClientCheckResponse)
 	_FIXES_STOCK FIX_OnClientCheckResponse = FIX_Callbacks;
@@ -5224,6 +5323,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnClientCheckResponse            (0)
 #endif
 
+/**
+ * <fix name="GetMaxPlayers">
+ *     <problem>
+ *         If this is > MAX_PLAYERS, can cause OOBs in code.
+ *     </problem>
+ *     <solution>
+ *         Constrain it; but also warn because that doesn't really help.
+ *     </solution>
+ *     <see>GetMaxPlayers</see>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetMaxPlayers)
 	_FIXES_STOCK FIX_GetMaxPlayers = _FIXES_DEFAULT;
 	#define FIX_GetMaxPlayers                    _FIXES_DEFAULT
@@ -5240,6 +5352,22 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetMaxPlayers);
 	#define FIX_GetMaxPlayers                    (0)
 #endif
+
+/**
+ * <fix name="BypassDialog">
+ *     <problem>
+ *         You can type commands and move while in dialogs.
+ *     </problem>
+ *     <solution>
+ *         Return 0.
+ *     </solution>
+ *     <see>OnPlayerCommandText</see>
+ *     <see>OnPlayerText</see>
+ *     <see>OnPlayerUpdate</see>
+ *     <see>OnDialogResponse</see>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_BypassDialog)
 	_FIXES_STOCK FIX_BypassDialog = _FIXES_DEFAULT;
@@ -5258,6 +5386,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_BypassDialog                     (0)
 #endif
 
+/**
+ * <fix name="SetTimer">
+ *     <problem>
+ *         Valid timers can return ID 0.
+ *     </problem>
+ *     <solution>
+ *         Recreate them and kill the original.
+ *     </solution>
+ *     <see>FIXES_SetTimer</see>
+ *     <see>FIXES_SetTimerEx</see>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_SetTimer)
 	_FIXES_STOCK FIX_SetTimer = _FIXES_DEFAULT;
 	#define FIX_SetTimer                         _FIXES_DEFAULT
@@ -5275,6 +5417,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetTimer                         (0)
 #endif
 
+/**
+ * <fix name="main">
+ *     <problem>
+ *         Gamemodes without this function give a console error.
+ *     </problem>
+ *     <solution>
+ *         Make a stub version.
+ *     </solution>
+ *     <see>main</see>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_main)
 	_FIXES_STOCK FIX_main = _FIXES_DEFAULT;
 	#define FIX_main                             _FIXES_DEFAULT
@@ -5291,6 +5446,23 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_main);
 	#define FIX_main                             (0)
 #endif
+
+/**
+ * <fix name="Pawndoc">
+ *     <problem>
+ *         Pawndoc comments aren't ignored inside <c>#if</c> blocks, nor used on macros.
+ *     </problem>
+ *     <solution>
+ *         Place an unconditional <c>const</c> directly after comments, to which the documentation
+ *         is attached.  All this "fix" does is provide a meaningful name, and does this on the
+ *         first pass for comments you want to keep on macros.
+ *     </solution>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ *     <post   href="https://github.com/pawn-lang/compiler/issues/674#issuecomment-908927779" />
+ *     <see>HIDE_PAWNDOC</see>
+ *     <see>SHOW_PAWNDOC</see>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_Pawndoc)
 	_FIXES_STOCK FIX_Pawndoc = _FIXES_DEFAULT;
