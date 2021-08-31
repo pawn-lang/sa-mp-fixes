@@ -1734,6 +1734,21 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     </solution>
  *     <author href="https://github.com/Y-Less" >Y_Less</author>
  * </fix>
+ *
+ * <fix name="Pawndoc">
+ *     <problem>
+ *         Pawndoc comments aren't ignored inside <c>#if</c> blocks, nor used on macros.
+ *     </problem>
+ *     <solution>
+ *         Place an unconditional <c>const</c> directly after comments, to which the documentation
+ *         is attached.  All this "fix" does is provide a meaningful name, and does this on the
+ *         first pass for comments you want to keep on macros.
+ *     </solution>
+ *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ *     <post   href="https://github.com/pawn-lang/compiler/issues/674#issuecomment-908927779" />
+ *     <see>HIDE_PAWNDOC</see>
+ *     <see>SHOW_PAWNDOC</see>
+ * </fix>
  * </fixeslist>
  *
  * <section>
@@ -2097,6 +2112,23 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 	#error fixes.inc is not required for open.mp
 #endif
 
+// First compiler pass only.
+/**
+ * <remarks>
+ * Creates fake functions that Pawndoc comments can be attached to in the
+ * first compilation phase, before the real macros are created.  Macros
+ * can't have documentation comments, but why not?  They need documenting...
+ * </remarks>
+ */
+#if defined _FIXES_DetermineOS
+	#define _FIXES_PAWNDOC(%0);
+#else
+	static stock SHOW_PAWNDOC();
+	#define _FIXES_PAWNDOC(%0); static stock _:%0;__PAWNDOC$
+	#define _:%0(%1);__PAWNDOC$ %0(%1){}
+	#define __PAWNDOC$
+#endif
+
 /**
  * <remarks>
  * <p>Test if something is defined, but without a value.  For example:</p>
@@ -2126,6 +2158,9 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
+#if !defined _FIXES_DetermineOS
+static stock bool:_FIXES_IS_UNSET(const symbol[]) {}
+#endif
 #define _FIXES_IS_UNSET(%0) ((2*%0-1)==2*(%0-1))
 
 /*
@@ -2245,7 +2280,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 	#if _FIXES_IS_UNSET(FIXES_Debug)
 		#undef FIXES_Debug
 	#elseif FIXES_Debug == 1
-		#define FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM),printf("*** " %0);
+		#define _FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM),printf("*** " %0);
 	#else
 		#undef FIXES_Debug
 	#endif
@@ -3594,6 +3629,14 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 	#define FIX_main                             (2)
 #endif
 
+#if !defined FIX_Pawndoc
+	_FIXES_STOCK FIX_Pawndoc = _FIXES_DEFAULT;
+	#define FIX_Pawndoc                          _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_Pawndoc)
+	#undef FIX_Pawndoc
+	#define FIX_Pawndoc                          (2)
+#endif
+
 //#if !defined FIX_CreateVehicle
 //	_FIXES_STOCK FIX_CreateVehicle = _FIXES_DEFAULT;
 //	#define FIX_CreateVehicle                    _FIXES_DEFAULT
@@ -3627,6 +3670,29 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 	#define _FIX_Menus                           (1)
 #else
 	#define _FIX_Menus                           (0)
+#endif
+
+// Creates a `const` var using a descriptive syntax.  See:
+// https://github.com/pawn-lang/compiler/issues/674#issuecomment-908927779
+#if FIX_Pawndoc
+	#define HIDE_PAWNDOC(%0); const HIDE_PAWNDOC_%0;
+#else
+	#define HIDE_PAWNDOC(%0);
+#endif
+
+// First compiler pass only.
+/**
+ * <remarks>
+ * Creates fake functions that Pawndoc comments can be attached to in the
+ * first compilation phase, before the real macros are created.  Macros
+ * can't have documentation comments, but why not?  They need documenting...
+ * </remarks>
+ */
+#if FIX_Pawndoc && !defined _FIXES_DetermineOS
+	static stock SHOW_PAWNDOC();
+	#define SHOW_PAWNDOC(%0); static stock %0;
+#else
+	#define SHOW_PAWNDOC(%0);
 #endif
 
 /**
@@ -3694,6 +3760,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
+SHOW_PAWNDOC(do_not_use_tabsize_0);
 #if FIX_tabsize
 	#define tabsize%00%0\10;%0 _DUMMY_do_not_use_tabsize_0
 #endif
@@ -3704,6 +3771,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
+SHOW_PAWNDOC(FIXES_EXISTS);
 #define FIXES_EXISTS
 
 /**
@@ -3712,6 +3780,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
+SHOW_PAWNDOC(FIXES_CONST_CORRECT);
 #define FIXES_CONST_CORRECT
 
 /**
@@ -3720,6 +3789,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
+SHOW_PAWNDOC(FIXES_TAG_CORRECT);
 #define FIXES_TAG_CORRECT
 
 /**
@@ -3728,6 +3798,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
+SHOW_PAWNDOC(FIXES_API);
 #if FIX_API
 	#define FIXES_API
 #endif
@@ -3738,6 +3809,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
+SHOW_PAWNDOC(FIXES_USES_STATE_HOOKS);
 #define FIXES_UseStateHooks
 #define FIXES_USES_STATE_HOOKS
 
@@ -3747,7 +3819,10 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
-#if !defined FIXES_PRINTF
+SHOW_PAWNDOC(FIXES_PRINTF(const str[]));
+#if defined _FIXES_PRINTF
+	#define FIXES_PRINTF _FIXES_PRINTF
+#else
 	#define FIXES_Debug 0
 	#define FIXES_PRINTF(%0);
 #endif
@@ -3760,6 +3835,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
+SHOW_PAWNDOC(bool:_FIXES_IS_IN_CHARGE());
 #if FIXES_Single
 	#define _FIXES_IS_IN_CHARGE(%0)
 #else
@@ -3773,6 +3849,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
+SHOW_PAWNDOC(FIXES_SET(const var[], playerid, value));
 #if FIXES_Single
 	#define FIXES_SET(%0,%1,%2) (FIXES_gs%0[%1] = %2)
 #else
@@ -3786,6 +3863,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
+SHOW_PAWNDOC(FIXES_GET(const var[], playerid));
 #if FIXES_Single
 	#define FIXES_GET(%0,%1) (FIXES_gs%0[%1])
 #else
@@ -3800,6 +3878,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
+SHOW_PAWNDOC(bool:_FIXES_IS_NULL(const string[]));
 #define _FIXES_IS_NULL(%0) ((%0[(%0[0])=='\1'])=='\0')
 
 /**
@@ -16607,6 +16686,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef FIXES_SET
 #undef FIXES_GET
 #undef _FIXES_NEW_COMPILER
+#undef _
 
 #endinput
 
