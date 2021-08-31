@@ -2606,6 +2606,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  */
 
 #if _FIXES_IS_UNDEFINED(FIX_fclose)
+	_FIXES_SHOW_PAWNDOC(FIX_fclose);
 	#define FIX_fclose                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fclose)
 	#undef FIX_fclose
@@ -2635,6 +2636,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  */
 
 #if _FIXES_IS_UNDEFINED(FIX_fwrite)
+	_FIXES_SHOW_PAWNDOC(FIX_fwrite);
 	#define FIX_fwrite                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fwrite)
 	#undef FIX_fwrite
@@ -2664,6 +2666,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  */
 
 #if _FIXES_IS_UNDEFINED(FIX_fread)
+	_FIXES_SHOW_PAWNDOC(FIX_fread);
 	#define FIX_fread                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fread)
 	#undef FIX_fread
@@ -2693,6 +2696,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  */
 
 #if _FIXES_IS_UNDEFINED(FIX_fputchar)
+	_FIXES_SHOW_PAWNDOC(FIX_fputchar);
 	#define FIX_fputchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fputchar)
 	#undef FIX_fputchar
@@ -2722,6 +2726,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  */
 
 #if _FIXES_IS_UNDEFINED(FIX_fgetchar)
+	_FIXES_SHOW_PAWNDOC(FIX_fgetchar);
 	#define FIX_fgetchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fgetchar)
 	#undef FIX_fgetchar
@@ -2751,6 +2756,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  */
 
 #if _FIXES_IS_UNDEFINED(FIX_fblockwrite)
+	_FIXES_SHOW_PAWNDOC(FIX_fblockwrite);
 	#define FIX_fblockwrite                      (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockwrite)
 	#undef FIX_fblockwrite
@@ -2780,6 +2786,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  */
 
 #if _FIXES_IS_UNDEFINED(FIX_fblockread)
+	_FIXES_SHOW_PAWNDOC(FIX_fblockread);
 	#define FIX_fblockread                       (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockread)
 	#undef FIX_fblockread
@@ -2809,6 +2816,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  */
 
 #if _FIXES_IS_UNDEFINED(FIX_fseek)
+	_FIXES_SHOW_PAWNDOC(FIX_fseek);
 	#define FIX_fseek                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fseek)
 	#undef FIX_fseek
@@ -2838,6 +2846,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  */
 
 #if _FIXES_IS_UNDEFINED(FIX_flength)
+	_FIXES_SHOW_PAWNDOC(FIX_flength);
 	#define FIX_flength                          (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_flength)
 	#undef FIX_flength
