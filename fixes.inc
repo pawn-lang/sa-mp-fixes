@@ -17040,6 +17040,8 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 
 	#define _ALS_NameOfFixHere__
 	#define NameOfFixHere__( FIXES_NameOfFixHere(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_NameOfFixHere);
 #endif
 
 // Added API function template.
@@ -17063,5 +17065,7 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 
 	#define _ALS_XXX__
 	#define XXX__( FIXES_XXX(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_XXX);
 #endif
 
