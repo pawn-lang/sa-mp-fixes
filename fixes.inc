@@ -478,11 +478,11 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 	#define _FIXES_SHOW_PAWNDOC(%0)%1\10;
 #else
 	// First compiler pass only.
-	#define _FIXES_SHOW_PAWNDOC(%0)%1\10; static stock %0 %1 const __PAWNDOC:_PD@%0 = __PAWNDOC:1;
+	#define _FIXES_SHOW_PAWNDOC(%0)%1\10; static stock %0 %1 static stock __PAWNDOC:_PD@%0(){}
 #endif
 
 // Convert functions to constants.
-#define __PAWNDOC:%0(%1); __PAWNDOC:%0;
+#define __PAWNDOC:%0(%1)(){} __PAWNDOC:%0(){}
 
 // Strip tags and spaces.
 #define _PD@%0\32; _PD@
@@ -563,7 +563,10 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 /**
  * <remarks>
  * Future-compatible tags.  Allows for things to be <c>_:</c>, <c>e_</c>, or
- * <c>E_</c> for progressively stronger tag safety.
+ * <c>E_</c> for progressively stronger tag safety.  Define <c>NO_TAGS</c> to
+ * get the old behaviour, with all symbols being untagged; <c>WEAK_TAGS</c> to
+ * get warnings for tag safety to improve compatibility (the deafult); or
+ * <c>STRONG_TAGS</c> to get errors for mismatched tags/variables/symbols.
  * </remarks>
  */
 
