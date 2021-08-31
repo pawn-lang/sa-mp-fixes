@@ -1697,7 +1697,7 @@ in the output code.
  *
  * <fix name="CreateVehicle">
  *     <problem>
- *         Colour `-1` isn't synced.
+ *         Colour <c>-1</c> isn't synced.
  *     </problem>
  *     <solution>
  *         Manually control the colours.
@@ -2098,8 +2098,8 @@ in the output code.
  * to solve <c>2n - 1 = 2(n - 1)</c> - you end up trying to prove that
  * <c>n = n - 0.5</c>, a contradiction.  Q.E.D.</p>
  *
- * <p>Conversely, when no value is given this becomes `2 * -1 = 2 * (-1)`, which
- * is trivially correct.</c>
+ * <p>Conversely, when no value is given this becomes <c>2 * -1 = 2 * (-1)</c>,
+ * which is trivially correct.</p>
  * </remarks>
  */
 
@@ -3610,15 +3610,18 @@ in the output code.
  * <remarks>
  * tabsize
  *
- * Breaks `#pragma tabsize 0` in such a way that the compiler gives the
+ * Breaks <c>#pragma tabsize 0</c> in such a way that the compiler gives the
  * following error:
  *
+ * <code>
  *     error 017: undefined symbol "do_not_use_tabsize_0"
+ * </code>
  *
  * There is ZERO reason to use it.  There are ocassionally times when an
  * indentation reset is required, usually because of macros containing code that
  * would otherwise appear correct.  For example:
  *
+ * <code>
  *     #define TEST_MACRO
  *
  *     main()
@@ -3637,10 +3640,12 @@ in the output code.
  *         #endif
  *         printf("a = %d", a);
  *     }
+ * </code>
  *
- * Even that can be fixed without `tabsize 0`, simply by restating the correct
- * indentation level, which resets the internal depth tracking:
+ * Even that can be fixed without <c>tabsize 0</c>, simply by restating the
+ * correct indentation level, which resets the internal depth tracking:
  *
+ * <code>
  *     #define TEST_MACRO
  *
  *     main()
@@ -3660,6 +3665,7 @@ in the output code.
  *         #endif
  *         printf("a = %d", a);
  *     }
+ * </code>
  *
  * There is just no excuse.
  * </remarks>
@@ -3993,6 +3999,10 @@ in the output code.
 
 #if !defined SPECIAL_ACTION
 	#define SPECIAL_ACTION: _:
+#endif
+
+#if !defined PLAYER_VARTYPE
+	#define PLAYER_VARTYPE: _:
 #endif
 
 /**
@@ -4901,7 +4911,7 @@ stock const
 	/**
 	 * <remarks>
 	 * A single re-usable null string.  Const not static because it is used in
-	 * macros `HideGameTextForAll` and `HideGameTextForPlayer`.
+	 * macros <c>HideGameTextForAll</c> and <c>HideGameTextForPlayer</c>.
 	 * </remarks>
 	 */
 	FIXES_gcNull[] = "\1";
@@ -4929,7 +4939,7 @@ static stock
 	/**
 	 * <remarks>
 	 * A single re-usable space.  Static not const because it is used in this
-	 * file in functions that don't take `const` strings.
+	 * file in functions that don't take <c>const</c> strings.
 	 * </remarks>
 	 */
 	FIXES_gsSpace[] = " ",
@@ -6950,7 +6960,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	#if _FIXES_SAMP && defined _ALS_GetPVarType
 		#error _ALS_GetPVarType defined
 	#endif
-	native CST_GetPVarType(playerid, const varname[]) = GetPVarType;
+	native PLAYER_VARTYPE:CST_GetPVarType(playerid, const varname[]) = GetPVarType;
 	#define _ALS_GetPVarType
 	#define GetPVarType( CST_GetPVarType(
 	#if _FIXES_SAMP && defined _ALS_SetPlayerChatBubble
@@ -7548,7 +7558,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native DeletePVar__(playerid, const varname[]) = DeletePVar;
 	native GetPVarsUpperIndex__(playerid) = GetPVarsUpperIndex;
 	native GetPVarNameAtIndex__(playerid, index, ret_varname[], ret_len = sizeof ret_varname) = GetPVarNameAtIndex;
-	native GetPVarType__(playerid, const varname[]) = GetPVarType;
+	native PLAYER_VARTYPE:GetPVarType__(playerid, const varname[]) = GetPVarType;
 	native SetPlayerChatBubble__(playerid, const text[], color, Float:drawdistance, expiretime) = SetPlayerChatBubble;
 	native PutPlayerInVehicle__(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
