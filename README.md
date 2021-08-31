@@ -82,12 +82,12 @@ SetPlayerName | Using "SetPlayerName" when the new name only differs from the ol
 GetPlayerSkin | Returns the new skin after "SetSpawnInfo" is called but before the player actually respawns to get the new skin. | Record the skin in "OnPlayerSpawn" and always return that one. | [Y_Less](https://github.com/Y-Less/) | | 
 GetWeaponName | Returns nothing for 18, 44, and 45. | Return the correct names (`Molotov Cocktail`, `Thermal Goggles`, and `Night vision Goggles`). | [Y_Less](https://github.com/Y-Less/) | | **Fixed in 0.3.7** 
 SetPlayerWorldBounds | Aiming can bypass the edge. | Check for the player leaving the area and reset them to their last good position if they leave the area (aiming or not). | [Y_Less](https://github.com/Y-Less/) | | 
-TogglePlayerControllable | Other players see you moving on the spot. | Return 0 in OnPlayerUpdate. | [Slice](https://github.com/oscar-broman/) | [Link](http://forum.sa-mp.com/showpost.php?p=876854) | 
-HydraSniper | Entering military aircraft with a sniper rifle messes up views. | Set their armed weapon to fists. | funky1234 | [Link](http://forum.sa-mp.com/showpost.php?p=965644) | 
+TogglePlayerControllable | Other players see you moving on the spot. | Return 0 in OnPlayerUpdate. | [Slice](https://github.com/oscar-broman/) | [Link](https://sampforum.blast.hk/showthread.php?tid=184118&pid=876854#pid876854) | 
+HydraSniper | Entering military aircraft with a sniper rifle messes up views. | Set their armed weapon to fists. | funky1234 | [Link](https://sampforum.blast.hk/showthread.php?tid=151670&pid=965644#pid965644) | 
 IsPlayerInCheckpoint | Function returns an undefined value if it is called before any other checkpoint functions are called to initialise the value. | Call "DisablePlayerCheckpoint" when they connect. | [Y_Less](https://github.com/Y-Less/) | | 
 IsPlayerInRaceCheckpoint | Function returns an undefined value if it is called before any other race checkpoint functions are called to initialise the value. | Call "DisablePlayerRaceCheckpoint" when they connect. | [Y_Less](https://github.com/Y-Less/) | | 
 GetPlayerWeapon | Returns the old value after entering in a vehicle. | If "SetPlayerArmedWeapon" and other similar functions is called in a vehicle, store the new value and return that instead. | [Y_Less](https://github.com/Y-Less/) [ronixtey](https://github.com/ronixtey/) | | 
-PutPlayerInVehicle | If this is used on a passenger the driver of their old vehicle doesn't see them in their new vehicle. | Remove them from the vehicle first. | leong124 [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1265965) | 
+PutPlayerInVehicle | If this is used on a passenger the driver of their old vehicle doesn't see them in their new vehicle. | Remove them from the vehicle first. | leong124 [Y_Less](https://github.com/Y-Less/) | [Link](http://web-old.archive.org/web/20190415184628/https://forum.sa-mp.com/showpost.php?p=1265965) | 
 KEY_AIM | "KEY_AIM" isn't defined by default. | Define it. | [Y_Less](https://github.com/Y-Less/) | | 
 SetPlayerCheckpoint | If a checkpoint is already set it will use the size of that checkpoint instead of the new one. | Call "DisablePlayerCheckpoint" before setting the checkpoint. | [ziggi](https://github.com/ziggi/) | | 
 SetPlayerRaceCheckpoint | If a checkpoint is already set it will use the size of that checkpoint instead of the new one. | Call "DisablePlayerRaceCheckpoint" before setting the checkpoint. | [ziggi](https://github.com/ziggi/) | | 
@@ -100,17 +100,17 @@ CreatePlayerTextDraw_2 | If the last character in the text is a space (" "), the
 PlayerTextDrawSetString | Crashes on a blank string and size greater than 1024. | Intercept blank strings and truncate long strings. | TomTrox [Y_Less](https://github.com/Y-Less/) | | 
 PlayerTextDrawSetString_2 | If the last character in the text is a space (" "), the text will all be blank. | Remove space characters from the end of the string. | [ziggi](https://github.com/ziggi/) | [Link](https://github.com/Open-GTO/sa-mp-fixes/issues/55) | 
 AllowInteriorWeapons | Does nothing. | Set the player's weapon to fists in an interior. | KoczkaHUN | | 
-OnPlayerEnterVehicle | Crashes other players when people enter an invalid seat. | Desync the people with invalid seats. | RyDeR` [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1410296) | 
+OnPlayerEnterVehicle | Crashes other players when people enter an invalid seat. | Desync the people with invalid seats. | RyDeR` [Y_Less](https://github.com/Y-Less/) | [Link](http://web-old.archive.org/web/20190415184630/https://forum.sa-mp.com/showpost.php?p=1410296) | 
 OnPlayerEnterVehicle_2 | Crashes the server when hacks enter an invalid vehicle. | Desync the people with invalid vehicles. | im [Y_Less](https://github.com/Y-Less/) | | 
-OnPlayerEnterVehicle_3 | No player animation when trying to enter the driver door of a locked vehicle | Leave the door unlocked and activate an animation when the player attemps to enter a 'locked' vehicle. | [ziggi](https://github.com/ziggi) [rt-2](https://github.com/rt-2) | [Link](http://forum.sa-mp.com/showthread.php?t=560019) | 
+OnPlayerEnterVehicle_3 | No player animation when trying to enter the driver door of a locked vehicle | Leave the door unlocked and activate an animation when the player attemps to enter a 'locked' vehicle. | [ziggi](https://github.com/ziggi) [rt-2](https://github.com/rt-2) | [Link](https://sampforum.blast.hk/showthread.php?tid=127762&pid=560019#pid560019) | 
 AllowTeleport | 0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in favour of "OnPlayerClickMap". Some scripts used the old code and. | Teleport the player in "OnPlayerClickMap". | [Y_Less](https://github.com/Y-Less/) | | 
 SetPlayerSpecialAction | Removing jetpacks from players by setting their special action to 0 causes the sound to stay until death. | Call "ClearAnimations" before "SetPlayerSpecialAction". | MP2 | | 
 OnDialogResponse | Cheaters can spoof the dialogid they are using to respond to ones they can't actually see. | Store the displayed dialogid and use that instead. | [Y_Less](https://github.com/Y-Less/) | | **Fixed in 0.3e RC6** 
 GetPlayerDialog | This function doesn't exist. Fixed for hidden dialogs. | Add it. | [Y_Less](https://github.com/Y-Less/) [simonepri](https://github.com/simonepri/) | | **Disabled By Default** 
 PlayerDialogResponse | A player's dialog doesn't hide when the gamemode restarts, causing the server to print "Warning: PlayerDialogResponse PlayerId: 0 dialog ID doesn't match last sent dialog ID". | Hide it. | [simonepri](https://github.com/simonepri/) | | 
 SetSpawnInfo | Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo". | Call "SetSpawnInfo" at least once. | [Y_Less](https://github.com/Y-Less/) | | 
-SetPlayerSkin | Breaks sitting on bikes. | Put them back in the vehicle after setting their skin. | CyNiC | [Link](http://forum.sa-mp.com/showpost.php?p=1756094) | 
-HideMenuForPlayer | Crashes when passed an invalid menu ID. | Don't hide it when passed an invalid menu. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1787297) | 
+SetPlayerSkin | Breaks sitting on bikes. | Put them back in the vehicle after setting their skin. | CyNiC | [Link](http://web-old.archive.org/web/20190415184621/https://forum.sa-mp.com/showpost.php?p=1756094) | 
+HideMenuForPlayer | Crashes when passed an invalid menu ID. | Don't hide it when passed an invalid menu. | [Y_Less](https://github.com/Y-Less/) | [Link](https://sampforum.blast.hk/showthread.php?tid=332944&pid=1787297#pid1787297) | 
 valstr | Crashes on large numbers. | Use "format" instead. | [Slice](https://github.com/oscar-broman/) | | 
 fclose | Crashes on an invalid handle. | Check for an invalid handle. | [Slice](https://github.com/oscar-broman/) | | 
 fwrite | Crashes on an invalid handle. | Check for an invalid handle. | [Slice](https://github.com/oscar-broman/) | | 
@@ -123,18 +123,18 @@ fseek | Crashes on an invalid handle. | Check for an invalid handle. | [Slice](h
 flength | Crashes on an invalid handle. | Check for an invalid handle. | [Slice](https://github.com/oscar-broman/) | | 
 file_inc | Includes or excludes all the file function fixes together (can cause major overhead). | Optionally group them all under one define. | [Y_Less](https://github.com/Y-Less/) | | **Disabled By Default** 
 SetPlayerAttachedObject | Doesn't remove objects when the mode ends. | Remove them. | [Y_Less](https://github.com/Y-Less/) | | 
-OnPlayerDeath | Clients get stuck when they die with an animation applied. | Clear their animations. | h02 | [Link](http://forum.sa-mp.com/showpost.php?p=1641144) | 
+OnPlayerDeath | Clients get stuck when they die with an animation applied. | Clear their animations. | h02 | [Link](https://sampforum.blast.hk/showthread.php?tid=312862&pid=1641144#pid1641144) | 
 strins | Ignores the "maxlength" parameter causing possible crashes. | Manually check the length. | [Slice](https://github.com/oscar-broman/) [Y_Less](https://github.com/Y-Less) | | 
 IsPlayerConnected | Only uses the lower two bytes of a passed ID. | Mask the numbers. | [Slice](https://github.com/oscar-broman/) | | 
 TrainExit | When getting out of a train entered by "PutPlayerInVehicle", the camera does not reset properly. | Reset the camera. | Terminator3 [Y_Less](https://github.com/Y-Less/) | | 
-Kick | Calling "Kick" in "OnPlayerConnect" doesn't work properly. | Defer it. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1989453) | **Fixed in 0.3x** 
-OnVehicleMod | Crashes other players when invalid mods are applied. | Desync the player. | [JernejL](https://github.com/JernejL/) [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1671500) | 
+Kick | Calling "Kick" in "OnPlayerConnect" doesn't work properly. | Defer it. | [Y_Less](https://github.com/Y-Less/) | [Link](http://web-old.archive.org/web/20190415184620/https://forum.sa-mp.com/showpost.php?p=1989453) | **Fixed in 0.3x** 
+OnVehicleMod | Crashes other players when invalid mods are applied. | Desync the player. | [JernejL](https://github.com/JernejL/) [Y_Less](https://github.com/Y-Less/) | [Link](https://sampforum.blast.hk/showthread.php?tid=317303&pid=1671500#pid1671500) | 
 random | Doesn't work with negative numbers. | Invert then reinvert. | [simonepri](https://github.com/simonepri/) | | **Disabled By Default** 
 sleep | Leaks bytes from the stack. | Call a function to store the correct value. | [Y_Less](https://github.com/Y-Less/) | | 
 AddMenuItem | Crashes when passed an invalid menu ID. | Don't hide it when passed an invalid menu. | [Y_Less](https://github.com/Y-Less/) | | 
 SetMenuColumnHeader | Crashes when passed an invalid menu ID. | Don't hide it when passed an invalid menu. | [Y_Less](https://github.com/Y-Less/) | | 
 ShowMenuForPlayer | Crashes when passed an invalid menu ID. | Don't hide it when passed an invalid menu. | [Y_Less](https://github.com/Y-Less/) | | 
-HideMenuForPlayer | Crashes when passed an invalid menu ID. | Don't hide it when passed an invalid menu. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showpost.php?p=1787297) | 
+HideMenuForPlayer | Crashes when passed an invalid menu ID. | Don't hide it when passed an invalid menu. | [Y_Less](https://github.com/Y-Less/) | [Link](https://sampforum.blast.hk/showthread.php?tid=332944&pid=1787297#pid1787297) | 
 HideMenuForPlayer_2 | Ignores the "menuid" parameter. | Only hide the correct menu. | [Y_Less](https://github.com/Y-Less/) | | **Disabled By Default** 
 DisableMenu | Crashes when passed an invalid menu ID. | Don't hide it when passed an invalid menu. | [Y_Less](https://github.com/Y-Less/) | | 
 DisableMenuRow | Crashes when passed an invalid menu ID. | Don't hide it when passed an invalid menu. | [Y_Less](https://github.com/Y-Less/) | | 
@@ -144,7 +144,7 @@ GetPlayerInterior | Always returns 0 for NPCs. | Return the correct value. | [Y_
 ClearAnimations | Use ClearAnimation while you are in a vehicle cause the player exit from it. | Apply an animation instead of clear animation. | [simonepri](https://github.com/simonepri/) | | 
 ClearAnimations_2 | ClearAnimations doesn't do anything when the animation ends if we pass 1 for the freeze parameter in ApplyAnimation. | Apply an idle animation for stop and then use ClearAnimation. | [simonepri](https://github.com/simonepri/) | | 
 DriveBy | If you press KEY_CROUCH while you're passenger and if you are armed, the player start to aim; if you repress KEY_CROUCH the player don't return in vehicle. | Apply the animation to return the player in the vehicle. | [simonepri](https://github.com/simonepri/) | | 
-SilentTeleport | If a vehicle teleports either by SetVehiclePos or enters an original samp interior if someone tries to enter it he will teleport silently along. | Using 'ClearAnimation' to stop the player before the teleport happens. | [RogueDrifter](https://github.com/RogueDrifter/) | [Link](http://forum.sa-mp.com/showthread.php?t=650422) |
+SilentTeleport | If a vehicle teleports either by SetVehiclePos or enters an original samp interior if someone tries to enter it he will teleport silently along. | Using 'ClearAnimation' to stop the player before the teleport happens. | [RogueDrifter](https://github.com/RogueDrifter/) | [Link](https://sampforum.blast.hk/showthread.php?tid=650422) |
 GangZoneCreate | Gang zones bug on the main map for players at certain angles relative to them. | Set a non floating value for the gang zone co-ordinate. | [simonepri](https://github.com/simonepri/) [Y_Less](https://github.com/Y-Less/) | | 
 SPECIAL_ACTION_PISSING | "SPECIAL_ACTION_PISSING" isn't defined by default. | Define it. | [simonepri](https://github.com/simonepri/) | | 
 IsValidVehicle | "IsValidVehicle" isn't defined by default. | Define it. | [simonepri](https://github.com/simonepri/) | | 
@@ -153,7 +153,7 @@ ApplyAnimation_2 | First time a library is used, it does nothing. | Apply animat
 ApplyActorAnimation | Passing an invalid animation library in ApplyAnimation causes a client crash for streamed in players. | Block ApplyActorAnimation when an invalid library is passed. | [simonepri](https://github.com/simonepri/) [ziggi](https://github.com/ziggi/) | | 
 ApplyActorAnimation_2 | First time a library is used, it does nothing. | Apply animations twice when first using a library. | [simonepri](https://github.com/simonepri/) [Lordzy](https://github.com/Lordzy/) [Y_Less](https://github.com/Y-Less/) [ziggi](https://github.com/ziggi/) | | 
 OnPlayerSpawn | San Andreas deducts $100 from players. | Give them it back. | [Y_Less](https://github.com/Y-Less/) | | 
-GetGravity | "GetGravity" isn't defined by default. | Define it. | [Whitetiger](https://github.com/Whitetigerswt) | [Link](http://forum.sa-mp.com/showpost.php?p=1706447) | 
+GetGravity | "GetGravity" isn't defined by default. | Define it. | [Whitetiger](https://github.com/Whitetigerswt) | [Link](http://web-old.archive.org/web/20190415184625/https://forum.sa-mp.com/showpost.php?p=1706447) | 
 gpci | "gpci" isn't defined by default. | Define it. | [simonepri](https://github.com/simonepri/) | [Link](http://pastebin.com/VQSGpbSm) | 
 Natives | Several natives are included by default, this enables or disables them all. Therefore this is an umbrella fix for several fixes. | Define them. | [Y_Less](https://github.com/Y-Less/) | | 
 OnPlayerConnect | This function isn't called for players when a filterscript starts. | Call it for all connected players. | [Y_Less](https://github.com/Y-Less/) | | 
@@ -165,16 +165,16 @@ ClearPlayerWorldBounds | There is no "ClearPlayerWorldBounds" function. | Put th
 GetPlayerWorldBounds | There is no "GetPlayerWorldBounds" function. | Store them and retrieve them. | [Y_Less](https://github.com/Y-Less/) | | 
 WEAPONS | Some weapons are not defined by default. | Define it. | [ziggi](https://github.com/ziggi) | | 
 BODYPARTS | The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined by default | Define it. | [Whitetiger](https://github.com/Whitetigerswt) | | 
-CAMERAMODES | The camera modes for GetPlayerCameraMode are not defined by default. | Define it. | [Whitetiger](https://github.com/Whitetigerswt) | [Link](http://forum.sa-mp.com/showpost.php?p=1309730) | 
+CAMERAMODES | The camera modes for GetPlayerCameraMode are not defined by default. | Define it. | [Whitetiger](https://github.com/Whitetigerswt) | [Link](https://sampforum.blast.hk/showthread.php?tid=271586&pid=1309730#pid1309730) | 
 SetPlayerCamera | Using the camera functions directly after enabling spectator mode doesn't work. | Defer them. | [Emmet_](https://github.com/emmet-jones) | | 
 SetPlayerTime | Using this function under "OnPlayerConnect" doesn't work. | Defer it. | [Emmet_](https://github.com/emmet-jones) | | 
 OnPlayerRequestClass | Random blunts and bottles sometimes appear in class selection. | Call "RemoveBuildingForPlayer". | [Y_Less](https://github.com/Y-Less/) | | 
-SetPlayerColor | If used under OnPlayerConnect, the affecting player will not see the color in the TAB menu. | Defer it. | [Emmet_](https://github.com/emmet-jones) | [Link](http://forum.sa-mp.com/showthread.php?t=452407) | 
+SetPlayerColor | If used under OnPlayerConnect, the affecting player will not see the color in the TAB menu. | Defer it. | [Emmet_](https://github.com/emmet-jones) | [Link](https://sampforum.blast.hk/showthread.php?tid=452407) | 
 FileMaths | You can write gibberish like "File:a; ++a;". | Remove the operators. | [Y_Less](https://github.com/Y-Less/) | | 
-GetPlayerWeaponData | Old weapons with no ammo left are still returned. | Set "weapons" to 0. | [Y_Less](https://github.com/Y-Less/) | [Link](http://forum.sa-mp.com/showthread.php?t=567400) | 
+GetPlayerWeaponData | Old weapons with no ammo left are still returned. | Set "weapons" to 0. | [Y_Less](https://github.com/Y-Less/) | [Link](https://sampforum.blast.hk/showthread.php?tid=567400) | 
 strcmp | Return 0 if anyone of the string is empty. | Add a check for empty string. | [Y_Less](https://github.com/Y-Less) | | 
-GetPVarString | Wrong symbol code for symbols with code 128 and above. | Use logical conjunction on symbol and 0xFF. | [ziggi](https://github.com/ziggi) Mutha_X [Daniel_Cortez](https://github.com/Daniel-Cortez) | [Link](http://forum.sa-mp.com/showthread.php?t=572724&page=11) [Link](http://pro-pawn.ru/showthread.php?13007) | 
-GetSVarString | Wrong symbol code for symbols with code 128 and above. | Use logical conjunction on symbol and 0xFF. | [ziggi](https://github.com/ziggi) Mutha_X [Daniel_Cortez](https://github.com/Daniel-Cortez) | [Link](http://forum.sa-mp.com/showthread.php?t=572724&page=11) [Link](http://pro-pawn.ru/showthread.php?13007) | 
+GetPVarString | Wrong symbol code for symbols with code 128 and above. | Use logical conjunction on symbol and 0xFF. | [ziggi](https://github.com/ziggi) Mutha_X [Daniel_Cortez](https://github.com/Daniel-Cortez) | [Link](https://sampforum.blast.hk/showthread.php?tid=572724&page=2) [Link](http://pro-pawn.ru/showthread.php?13007) | 
+GetSVarString | Wrong symbol code for symbols with code 128 and above. | Use logical conjunction on symbol and 0xFF. | [ziggi](https://github.com/ziggi) Mutha_X [Daniel_Cortez](https://github.com/Daniel-Cortez) | [Link](https://sampforum.blast.hk/showthread.php?tid=572724&page=2) [Link](http://pro-pawn.ru/showthread.php?13007) | 
 toupper | Not working on Linux for symbols with code 128 and above. | Recreate the function. | [ziggi](https://github.com/ziggi) | [Link](http://pro-pawn.ru/showthread.php?13466&p=72954#post72954) | 
 tolower | Not working on Linux for symbols with code 128 and above. | Recreate the function. | [ziggi](https://github.com/ziggi) | [Link](http://pro-pawn.ru/showthread.php?13466&p=72954#post72954) | 
 PassengerSeating | Teleporting player to passenger seat after delay. | Call ClearAnimation after some delay. | [ziggi](https://github.com/ziggi) | | 
@@ -462,8 +462,8 @@ Again, this is a community project, merely managed by Y_Less and others - if any
 There are a few other includes which aim to fix issues too large to be included here:
 
 
-* [Timerfix](http://forum.sa-mp.com/showthread.php?t=435525) - [udan11 (Dan..)](https://github.com/udan11) 's fixes to make "SetTimer" and "SetTimerEx" vastly more accurate in their delays. 
-* [SQLitei](http://forum.sa-mp.com/showthread.php?t=303682) - [Slice](https://github.com/oscar-broman/) 's fixes and improvements for many SQLite functions. 
+* [Timerfix](https://sampforum.blast.hk/showthread.php?tid=435525) - [udan11 (Dan..)](https://github.com/udan11) 's fixes to make "SetTimer" and "SetTimerEx" vastly more accurate in their delays. 
+* [SQLitei](https://sampforum.blast.hk/showthread.php?tid=303682) - [Slice](https://github.com/oscar-broman/) 's fixes and improvements for many SQLite functions. 
 
 ## Bugs 
 
@@ -488,7 +488,7 @@ The most likely cause of bugs is certain combinations of disabled fixes. Some fi
 * Macros must be upper case, use underscores, and start `FIXES_`: `FIXES_LIKE_THIS`. 
 * Functions should be upper camel case (as the original functions are) `FIXES_LikeThis`. 
 * Globals (after the prefix) should be upper camel case `LikeThis`, and locals lower camel case `likeThis`. 
-* ALS should be used to hook functions and callbacks. See this topic for more details: http://forum.sa-mp.com/showthread.php?t=570910 
+* ALS should be used to hook functions and callbacks. See this topic for more details: https://sampforum.blast.hk/showthread.php?tid=570910
 * The ALS prefix for chaining is `FIXES_`. 
 * When redefining a native, add a `BAD_` external name declaration with the `_ALS_` definition so that others may use the original native if they so desire (with the caveat that it may break all fixes). Note the `BAD_` name is meant to indicate the possibility of breaking the fix, not a comment on the original native function. 
 * The ALS hook defines used here are a little different to the normal ones as this file assumes that it is always first. The pattern is: 
