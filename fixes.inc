@@ -358,8 +358,8 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *             Description of solution.                                                                                           <br /><indent />
  *         &lt;/solution&gt;                                                                                                      <br /><indent />
  *         &lt;see&gt;Relevant functions.&lt;/see&gt;                                                                             <br /><indent />
- *         &lt;author    href="Optional address of their profile"&gt;Person who wrote the fix&lt;/author&gt;                      <br /><indent />
- *         &lt;post      href="Optional link to the original post where applicable." /&gt;                                        <br />
+ *         &lt;author href="Optional address of their profile"&gt;Person who wrote the fix&lt;/author&gt;                      <br /><indent />
+ *         &lt;post href="Optional link to the original post where applicable." /&gt;                                        <br />
  *     &lt;/fix&gt;
  * </code>
  *
@@ -866,7 +866,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Expose the data, behind a tightly controlled API.
  *     </solution>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -900,7 +900,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <see>FIX_GetGravity</see>
  *     <see>FIX_gpci</see>
  *     <see>FIX_IsValidVehicle</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -930,7 +930,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call "SetPlayerColor" in "OnPlayerConnect".
  *     </solution>
  *     <see>OnPlayerConnect</see>
- *     <author    >KoczkaHUN</author>
+ *     <author>KoczkaHUN</author>
  * </fix>
  */
 
@@ -970,7 +970,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Provide an "IS_FILTERSCRIPT" variable (note the naming to
  *         match the original macro).
  *     </solution>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  *     <see>OnFilterScriptInit</see>
  *     <see>OnGameModeInit</see>
  * </fix>
@@ -1002,7 +1002,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Remove the from the vehicle.
  *     </solution>
  *     <see>FIXES_SpawnPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -1035,9 +1035,9 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>OnPlayerConnect</see>
  *     <see>FIXES_SetPlayerName</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
  * </fix>
  */
 
@@ -1071,7 +1071,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <see>OnPlayerSpawn</see>
  *     <see>FIXES_GetPlayerSkin</see>
  *     <see>FIXES_SetPlayerSkin</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -1102,7 +1102,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Goggles</c>, and <c>Night vision Goggles</c>).
  *     </solution>
  *     <see>FIXES_GetWeaponName</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -1143,7 +1143,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>OnPlayerUpdate</see>
  *     <see>FIXES_SetPlayerWorldBounds</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -1174,8 +1174,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_TogglePlayerControllable</see>
  *     <see>OnPlayerUpdate</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=876854" />
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=876854" />
  * </fix>
  */
 
@@ -1223,8 +1223,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <see>OnPlayerStateChange</see>
  *     <see>FIXES_GivePlayerWeapon</see>
  *     <see>FIXES_SetPlayerArmedWeapon</see>
- *     <author    >funky1234</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=965644" />
+ *     <author>funky1234</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=965644" />
  * </fix>
  */
 
@@ -1255,7 +1255,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call "DisablePlayerCheckpoint" when they connect.
  *     </solution>
  *     <see>OnPlayerConnect</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -1286,7 +1286,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call "DisablePlayerRaceCheckpoint" when they connect.
  *     </solution>
  *     <see>OnPlayerConnect</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -1327,8 +1327,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <see>FIXES_GetPlayerWeapon</see>
  *     <see>FIXES_GivePlayerWeapon</see>
  *     <see>FIXES_ResetPlayerWeapons</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/ronixtey/" >ronixtey</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <author href="https://github.com/ronixtey/">ronixtey</author>
  * </fix>
  */
 
@@ -1360,9 +1360,9 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>OnPlayerStateChange</see>
  *     <see>FIXES_PutPlayerInVehicle</see>
- *     <author    >leong124</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1265965" />
+ *     <author>leong124</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=1265965" />
  * </fix>
  */
 
@@ -1391,7 +1391,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -1429,7 +1429,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
  * </fix>
  */
 
@@ -1467,7 +1467,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
  * </fix>
  */
 
@@ -1505,8 +1505,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1706447" />
+ *     <author href="https://github.com/Whitetigerswt">Whitetiger</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=1706447" />
  * </fix>
  */
 
@@ -1544,8 +1544,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- *     <post      href="http://pastebin.com/VQSGpbSm" />
+ *     <author href="https://github.com/simonepri/">simonepri</author>
+ *     <post href="http://pastebin.com/VQSGpbSm" />
  * </fix>
  */
 
@@ -1583,7 +1583,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
+ *     <author href="https://github.com/ziggi">ziggi</author>
  * </fix>
  */
 
@@ -1622,7 +1622,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
+ *     <author href="https://github.com/Whitetigerswt">Whitetiger</author>
  * </fix>
  */
 
@@ -1660,8 +1660,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Define it.
  *     </solution>
- *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1309730" />
+ *     <author href="https://github.com/Whitetigerswt">Whitetiger</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=1309730" />
  * </fix>
  */
 
@@ -1702,7 +1702,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Apply the animation to return the player in the vehicle.
  *     </solution>
  *     <see>OnPlayerKeyStateChange</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
  * </fix>
  */
 
@@ -1733,7 +1733,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *	   <see>OnPlayerEnterVehicle</see>
  *	   <see>OnPlayerInteriorChange</see>
- *     <author    href="https://github.com/RogueDrifter/" >RogueDrifter</author>
+ *     <author href="https://github.com/RogueDrifter/">RogueDrifter</author>
  * </fix>
  */
 
@@ -1764,7 +1764,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call "DisablePlayerCheckpoint" before setting the checkpoint.
  *     </solution>
  *     <see>FIXES_SetPlayerCheckpoint</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ *     <author href="https://github.com/ziggi/">ziggi</author>
  * </fix>
  */
 
@@ -1795,7 +1795,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call "DisablePlayerRaceCheckpoint" before setting the checkpoint.
  *     </solution>
  *     <see>FIXES_SetPlayerRaceCheckpoint</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ *     <author href="https://github.com/ziggi/">ziggi</author>
  * </fix>
  */
 
@@ -1825,7 +1825,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Intercept blank strings.
  *     </solution>
  *     <see>FIXES_TextDrawCreate</see>
- *     <author    >wups</author>
+ *     <author>wups</author>
  * </fix>
  */
 
@@ -1855,7 +1855,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Check if trailerid and vehicleid are equal.
  *     </solution>
  *     <see>FIX_AttachTrailerToVehicle</see>
- *     <author    href="https://github.com/Mergevos/" >Mergevos</author>
+ *     <author href="https://github.com/Mergevos/">Mergevos</author>
  * </fix>
  */
 
@@ -1890,7 +1890,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Hook functions and store components. This uses some code from vSync library.
  *     </solution>
  *     <see>FIXES_GetVehicleComponentInSlot</see>
- *     <author    href="https://github.com/Mergevos/" >Mergevos</author>
+ *     <author href="https://github.com/Mergevos/">Mergevos</author>
  * </fix>
  */
 
@@ -1927,8 +1927,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Remove space characters from the end of the string.
  *     </solution>
  *     <see>FIXES_TextDrawCreate</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ *     <author href="https://github.com/ziggi/">ziggi</author>
+ *     <post href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
  */
 
@@ -1958,7 +1958,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Intercept blank strings and truncate long strings.
  *     </solution>
  *     <see>FIXES_TextDrawSetString</see>
- *     <author    >TomTrox</author>
+ *     <author>TomTrox</author>
  * </fix>
  */
 
@@ -1989,8 +1989,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Remove space characters from the end of the string.
  *     </solution>
  *     <see>FIXES_TextDrawSetString</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ *     <author href="https://github.com/ziggi/">ziggi</author>
+ *     <post href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
  */
 
@@ -2022,7 +2022,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <see>FIXES_AllowInteriorWeapons</see>
  *     <see>OnGameModeInit</see>
  *     <see>OnPlayerUpdate</see>
- *     <author    >KoczkaHUN</author>
+ *     <author>KoczkaHUN</author>
  * </fix>
  */
 
@@ -2053,10 +2053,10 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>OnPlayerStateChange</see>
  *     <see>OnPlayerUpdate</see>
- *     <author    >RyDeR`</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/NexiusTailer">NexiusTailer</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1410296" />
+ *     <author>RyDeR`</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <author href="https://github.com/NexiusTailer">NexiusTailer</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=1410296" />
  * </fix>
  */
 
@@ -2095,8 +2095,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Desync the people with invalid vehicles.
  *     </solution>
  *     <see>OnPlayerEnterVehicle</see>
- *     <author    >im</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author>im</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -2128,9 +2128,9 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         attemps to enter a 'locked' vehicle.
  *     </solution>
  *     <see>OnPlayerEnterVehicle</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- *     <author    href="https://github.com/rt-2" >rt-2</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=560019" />
+ *     <author href="https://github.com/ziggi">ziggi</author>
+ *     <author href="https://github.com/rt-2">rt-2</author>
+ *     <post href="http://forum.sa-mp.com/showthread.php?t=560019" />
  * </fix>
  */
 
@@ -2163,7 +2163,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <see>OnPlayerClickMap</see>
  *     <see>FIXES_AllowPlayerTeleport</see>
  *     <see>FIXES_AllowAdminTeleport</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -2203,7 +2203,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call "ClearAnimations" before "SetPlayerSpecialAction".
  *     </solution>
  *     <see>FIXES_SetPlayerSpecialAction</see>
- *     <author    >MP2</author>
+ *     <author>MP2</author>
  * </fix>
  */
 
@@ -2234,7 +2234,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Apply an animation instead of clear animation.
  *     </solution>
  *     <see>FIXES_ClearAnimations</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
  * </fix>
  */
 
@@ -2265,7 +2265,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Apply an idle animation for stop and then use ClearAnimation.
  *     </solution>
  *     <see>FIXES_ClearAnimations</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
  * </fix>
  */
 
@@ -2296,8 +2296,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Set a non floating value for the gang zone co-ordinate.
  *     </solution>
  *     <see>FIXES_GangZoneCreate</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -2329,7 +2329,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_OnDialogResponse</see>
  *     <see>FIXES_ShowPlayerDialog</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -2368,8 +2368,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Add it.
  *     </solution>
  *     <see>FIXES_GetPlayerDialog</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
  * </fix>
  */
 
@@ -2411,7 +2411,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>OnPlayerConnect</see>
  *     <see>OnGameModeExit</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
  * </fix>
  */
 
@@ -2441,7 +2441,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call "SetSpawnInfo" at least once.
  *     </solution>
  *     <see>OnPlayerConnect</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -2480,8 +2480,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call "SetPlayerTeam" when they spawn.
  *     </solution>
  *     <see>OnPlayerSpawn</see>
- *     <author    href="http://forum.sa-mp.com/member.php?u=24012" >NaS</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=3994248" />
+ *     <author href="http://forum.sa-mp.com/member.php?u=24012">NaS</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=3994248" />
  * </fix>
  */
 
@@ -2511,8 +2511,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Put them back in the vehicle after setting their skin.
  *     </solution>
  *     <see>FIXES_SetPlayerSkin</see>
- *     <author    >CyNiC</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1756094" />
+ *     <author>CyNiC</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=1756094" />
  * </fix>
  */
 
@@ -2542,7 +2542,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Use "format" instead.
  *     </solution>
  *     <see>FIXES_valstr</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
  * </fix>
  */
 
@@ -2573,7 +2573,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Optionally group them all under one define.
  *     </solution>
  *     <see>FIX_file_inc</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -2603,7 +2603,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fclose</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
  * </fix>
  */
 
@@ -2632,7 +2632,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fwrite</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
  * </fix>
  */
 
@@ -2661,7 +2661,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fread</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
  * </fix>
  */
 
@@ -2690,7 +2690,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fputchar</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
  * </fix>
  */
 
@@ -2719,7 +2719,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fgetchar</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
  * </fix>
  */
 
@@ -2748,7 +2748,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fblockwrite</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
  * </fix>
  */
 
@@ -2777,7 +2777,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fblockread</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
  * </fix>
  */
 
@@ -2806,7 +2806,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_fseek</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
  * </fix>
  */
 
@@ -2835,7 +2835,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Check for an invalid handle.
  *     </solution>
  *     <see>FIXES_flength</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
  * </fix>
  */
 
@@ -2864,7 +2864,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Remove them.
  *     </solution>
  *     <see>OnPlayerDisconnect</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -2895,8 +2895,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>OnPlayerDeath</see>
  *     <see>OnPlayerUpdate</see>
- *     <author    >h02</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1641144" />
+ *     <author>h02</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=1641144" />
  * </fix>
  */
 
@@ -2926,8 +2926,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Manually check the length.
  *     </solution>
  *     <see>FIXES_strins</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -2957,7 +2957,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Mask the numbers.
  *     </solution>
  *     <see>FIXES_IsPlayerConnected</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author href="https://github.com/oscar-broman/">Slice</author>
  * </fix>
  */
 
@@ -2989,8 +2989,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_PutPlayerInVehicle</see>
  *     <see>FIXES_OnPlayerStateChange</see>
- *     <author    >Terminator3</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author>Terminator3</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3021,8 +3021,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>OnPlayerConnect</see>
  *     <see>FIXES_Kick</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1989453" />
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=1989453" />
  * </fix>
  */
 
@@ -3061,9 +3061,9 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Desync the player.
  *     </solution>
  *     <see>OnVehicleMod</see>
- *     <author    href="https://github.com/JernejL/" >JernejL</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1671500" />
+ *     <author href="https://github.com/JernejL/">JernejL</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=1671500" />
  * </fix>
  */
 
@@ -3093,7 +3093,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Invert then reinvert.
  *     </solution>
  *     <see>FIXES_random</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
  * </fix>
  */
 
@@ -3123,7 +3123,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call a function to store the correct value.
  *     </solution>
  *     <see>FIXES_sleep</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3154,7 +3154,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIX_Menus</see>
  *     <see>_FIX_Menus</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3184,7 +3184,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_AddMenuItem</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3214,7 +3214,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_SetMenuColumnHeader</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3244,7 +3244,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_ShowMenuForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3274,8 +3274,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_HideMenuForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=1787297" />
  * </fix>
  */
 
@@ -3288,8 +3288,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_HideMenuForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=1787297" />
  * </fix>
  */
 
@@ -3320,7 +3320,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_GetPlayerMenu</see>
  *     <see>OnPlayerSelectedMenuRow</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3350,7 +3350,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Only hide the correct menu.
  *     </solution>
  *     <see>FIXES_HideMenuForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3382,7 +3382,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_DisableMenu</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3412,7 +3412,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Don't hide it when passed an invalid menu.
  *     </solution>
  *     <see>FIXES_DisableMenuRow</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3443,8 +3443,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_GetPlayerInterior</see>
  *     <see>FIXES_SetPlayerInterior</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
  * </fix>
  */
 
@@ -3475,7 +3475,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Block ApplyAnimation when an invalid library is passed.
  *     </solution>
  *     <see>FIXES_ApplyAnimation</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
  * </fix>
  */
 
@@ -3505,9 +3505,9 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Apply animations twice when first using a library.
  *     </solution>
  *     <see>FIXES_ApplyAnimation</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- *     <author    href="https://github.com/Lordzy/" >Lordzy</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
+ *     <author href="https://github.com/Lordzy/">Lordzy</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3538,8 +3538,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Block ApplyActorAnimation when an invalid library is passed.
  *     </solution>
  *     <see>FIXES_ApplyActorAnimation</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
+ *     <author href="https://github.com/ziggi/">ziggi</author>
  * </fix>
  */
 
@@ -3569,10 +3569,10 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Apply animations twice when first using a library.
  *     </solution>
  *     <see>FIXES_ApplyActorAnimation</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- *     <author    href="https://github.com/Lordzy/" >Lordzy</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ *     <author href="https://github.com/simonepri/">simonepri</author>
+ *     <author href="https://github.com/Lordzy/">Lordzy</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <author href="https://github.com/ziggi/">ziggi</author>
  * </fix>
  */
 
@@ -3602,7 +3602,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Give them it back.
  *     </solution>
  *     <see>OnPlayerSpawn</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3633,7 +3633,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_GameTextForAll</see>
  *     <see>FIXES_GameTextForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3664,7 +3664,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_HideGameTextForAll</see>
  *     <see>FIXES_HideGameTextForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3703,7 +3703,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Store them and retrieve them.
  *     </solution>
  *     <see>FIXES_GetPlayerWorldBounds</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3742,7 +3742,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Put the world bounds back to the default.
  *     </solution>
  *     <see>FIXES_ClearPlayerWorldBounds</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3783,8 +3783,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_GameTextForAll</see>
  *     <see>FIXES_GameTextForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/NexiusTailer">NexiusTailer</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <author href="https://github.com/NexiusTailer">NexiusTailer</author>
  * </fix>
  */
 
@@ -3816,7 +3816,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call it for all connected players.
  *     </solution>
  *     <see>FIXES_OnFilterScriptInit</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3846,7 +3846,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call it for all connected players.
  *     </solution>
  *     <see>FIXES_OnFilterScriptExit</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3876,8 +3876,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Intercept blank strings.
  *     </solution>
  *     <see>FIXES_CreatePlayerTextDraw</see>
- *     <author    >wups</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author>wups</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3908,8 +3908,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Remove space characters from the end of the string.
  *     </solution>
  *     <see>FIXES_CreatePlayerTextDraw</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ *     <author href="https://github.com/ziggi/">ziggi</author>
+ *     <post href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
  */
 
@@ -3939,8 +3939,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Intercept blank strings and truncate long strings.
  *     </solution>
  *     <see>FIXES_PlayerTextDrawSetString</see>
- *     <author    >TomTrox</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author>TomTrox</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -3971,8 +3971,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Remove space characters from the end of the string.
  *     </solution>
  *     <see>FIXES_PlayerTextDrawSetString</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ *     <author href="https://github.com/ziggi/">ziggi</author>
+ *     <post href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
  */
 
@@ -4011,7 +4011,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <see>FIXES_SetPlayerCameraPos</see>
  *     <see>FIXES_SetPlayerCameraLookAt</see>
  *     <see>FIXES_TogglePlayerSpectating</see>
- *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
+ *     <author href="https://github.com/emmet-jones">Emmet_</author>
  * </fix>
  */
 
@@ -4041,7 +4041,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Defer it.
  *     </solution>
  *     <see>FIXES_SetPlayerTime</see>
- *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
+ *     <author href="https://github.com/emmet-jones">Emmet_</author>
  * </fix>
  */
 
@@ -4071,7 +4071,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Call "RemoveBuildingForPlayer".
  *     </solution>
  *     <see>OnPlayerRequestClass</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -4102,8 +4102,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Defer it.
  *     </solution>
  *     <see>FIXES_SetPlayerColor</see>
- *     <author    href="https://github.com/emmet-jones" >Emmet_</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=452407" />
+ *     <author href="https://github.com/emmet-jones">Emmet_</author>
+ *     <post href="http://forum.sa-mp.com/showthread.php?t=452407" />
  * </fix>
  */
 
@@ -4142,7 +4142,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Remove the operators.
  *     </solution>
  *     <see>File:operator</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
 
@@ -4172,8 +4172,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Set "weapons" to 0.
  *     </solution>
  *     <see>FIXES_GetPlayerWeaponData</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=567400" />
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ *     <post href="http://forum.sa-mp.com/showthread.php?t=567400" />
  * </fix>
  */
 
@@ -4203,7 +4203,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Add a check for empty string.
  *     </solution>
  *     <see>FIXES_strcmp</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -4233,11 +4233,11 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Use logical conjunction on symbol and 0xFF.
  *     </solution>
  *     <see>FIXES_GetPVarString</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- *     <author    >Mutha_X</author>
- *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
- *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
+ *     <author href="https://github.com/ziggi">ziggi</author>
+ *     <author>Mutha_X</author>
+ *     <author href="https://github.com/Daniel-Cortez">Daniel_Cortez</author>
+ *     <post href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
+ *     <post href="http://pro-pawn.ru/showthread.php?13007" />
  * </fix>
  */
 
@@ -4267,11 +4267,11 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Use logical conjunction on symbol and 0xFF.
  *     </solution>
  *     <see>FIXES_GetSVarString</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- *     <author    >Mutha_X</author>
- *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
- *     <post      href="http://pro-pawn.ru/showthread.php?13007" />
+ *     <author href="https://github.com/ziggi">ziggi</author>
+ *     <author>Mutha_X</author>
+ *     <author href="https://github.com/Daniel-Cortez">Daniel_Cortez</author>
+ *     <post href="http://forum.sa-mp.com/showthread.php?t=572724&amp;page=11" />
+ *     <post href="http://pro-pawn.ru/showthread.php?13007" />
  * </fix>
  */
 
@@ -4301,8 +4301,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Recreate the function.
  *     </solution>
  *     <see>FIXES_toupper</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
+ *     <author href="https://github.com/ziggi">ziggi</author>
+ *     <post href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
  * </fix>
  */
 
@@ -4332,8 +4332,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Recreate the function.
  *     </solution>
  *     <see>FIXES_tolower</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- *     <post      href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
+ *     <author href="https://github.com/ziggi">ziggi</author>
+ *     <post href="http://pro-pawn.ru/showthread.php?13466&amp;p=72954#post72954" />
  * </fix>
  */
 
@@ -4363,8 +4363,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Check the string manually.
  *     </solution>
  *     <see>FIXES_ispacked</see>
- *     <author    href="https://github.com/Daniel-Cortez" >Daniel_Cortez</author>
- *     <author    href="https://github.com/VVWVV" >VVWVV</author>
+ *     <author href="https://github.com/Daniel-Cortez">Daniel_Cortez</author>
+ *     <author href="https://github.com/VVWVV">VVWVV</author>
  * </fix>
  */
 
@@ -4395,7 +4395,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>OnPlayerEnterVehicle</see>
  *     <see>OnPlayerStateChange</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
+ *     <author href="https://github.com/ziggi">ziggi</author>
  * </fix>
  */
 
@@ -4425,7 +4425,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         return 0 in OnPlayerUpdate after key pressed.
  *     </solution>
  *     <see>OnPlayerUpdate</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
+ *     <author href="https://github.com/ziggi">ziggi</author>
  * </fix>
  */
 
@@ -4455,7 +4455,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Return "-1" if PlayerPoolsize is 0 but Player 0 is not connected.
  *     </solution>
  *     <see>FIXES_GetPlayerPoolSize</see>
- *     <author    href="https://github.com/Bios-Marcel" >Bios-Marcel</author>
+ *     <author href="https://github.com/Bios-Marcel">Bios-Marcel</author>
  * </fix>
  */
 
@@ -4486,7 +4486,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_SetPlayerPos</see>
  *     <see>FIXES_SetPlayerPosFindZ</see>
- *     <author    href="https://github.com/WoutProvost" >Freaksken</author>
+ *     <author href="https://github.com/WoutProvost">Freaksken</author>
  * </fix>
  */
 
@@ -4518,7 +4518,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_SetPlayerAmmo</see>
  *     <see>FIXES_GivePlayerWeapon</see>
- *     <author    href="https://github.com/WoutProvost" >Freaksken</author>
+ *     <author href="https://github.com/WoutProvost">Freaksken</author>
  * </fix>
  */
 
@@ -4548,7 +4548,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Provide "IS_JIT" to the script for tests.
  *     </solution>
  *     <see>OnJITCompile</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -4578,7 +4578,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Provide "IS_WINDOWS" and "IS_LINUX" to the script for tests.
  *     </solution>
  *     <see>_FIXES_DetermineOS</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -4608,7 +4608,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Redefine the natives.
  *     </solution>
  *     <see>FIX_const</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -4637,7 +4637,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <solution>
  *         Define them.
  *     </solution>
- *     <author    href="https://github.com/IstuntmanI" >stuntman</author>
+ *     <author href="https://github.com/IstuntmanI">stuntman</author>
  * </fix>
  */
 
@@ -4676,8 +4676,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Add it.
  *     </solution>
  *     <see>FIXES_GetPlayerWeather</see>
- *     <author    href="https://github.com/IstuntmanI/" >IstuntmanI</author>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ *     <author href="https://github.com/IstuntmanI/">IstuntmanI</author>
+ *     <author href="https://github.com/ziggi/">ziggi</author>
  * </fix>
  */
 
@@ -4716,8 +4716,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Add it.
  *     </solution>
  *     <see>FIXES_GetWeather</see>
- *     <author    href="https://github.com/IstuntmanI/" >IstuntmanI</author>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ *     <author href="https://github.com/IstuntmanI/">IstuntmanI</author>
+ *     <author href="https://github.com/ziggi/">ziggi</author>
  * </fix>
  */
 
@@ -4756,7 +4756,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Add it.
  *     </solution>
  *     <see>FIXES_GetWorldTime</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ *     <author href="https://github.com/ziggi/">ziggi</author>
  * </fix>
  */
 
@@ -4796,8 +4796,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_GetConsoleVarAsString</see>
  *     <see>FIXES_GetServerVarAsString</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
+ *     <post href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
  * </fix>
  */
 
@@ -4837,8 +4837,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_GetConsoleVarAsInt</see>
  *     <see>FIXES_GetServerVarAsInt</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
+ *     <post href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
  * </fix>
  */
 
@@ -4878,8 +4878,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_GetConsoleVarAsBool</see>
  *     <see>FIXES_GetServerVarAsBool</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
+ *     <post href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
  * </fix>
  */
 
@@ -4919,8 +4919,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_GetConsoleVarAsFloat</see>
  *     <see>FIXES_GetServerVarAsFloat</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
+ *     <post href="https://github.com/Open-GTO/sa-mp-fixes/issues/73" />
  * </fix>
  */
 
@@ -4973,8 +4973,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Break the pragma.
  *     </solution>
  *     <see>_DUMMY_do_not_use_tabsize_0</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=3929000" />
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
+ *     <post href="http://forum.sa-mp.com/showpost.php?p=3929000" />
  * </fix>
  */
 
@@ -5021,7 +5021,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Load a minimal (embedded) FS to bootstrap it.
  *     </solution>
  *     <see>OnGameModeInit</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -5051,7 +5051,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Load a minimal (embedded) FS to bootstrap it.
  *     </solution>
  *     <see>OnGameModeInit</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -5081,7 +5081,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Constrain it; but also warn because that doesn't really help.
  *     </solution>
  *     <see>GetMaxPlayers</see>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -5114,7 +5114,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     <see>OnPlayerText</see>
  *     <see>OnPlayerUpdate</see>
  *     <see>OnDialogResponse</see>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -5145,7 +5145,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *     </solution>
  *     <see>FIXES_SetTimer</see>
  *     <see>FIXES_SetTimerEx</see>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -5175,7 +5175,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         Make a stub version.
  *     </solution>
  *     <see>main</see>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
 
@@ -5206,8 +5206,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
  *         is attached.  All this "fix" does is provide a meaningful name, and does this on the
  *         first pass for comments you want to keep on macros.
  *     </solution>
- *     <author href="https://github.com/Y-Less" >Y_Less</author>
- *     <post   href="https://github.com/pawn-lang/compiler/issues/674#issuecomment-908927779" />
+ *     <author href="https://github.com/Y-Less">Y_Less</author>
+ *     <post href="https://github.com/pawn-lang/compiler/issues/674#issuecomment-908927779" />
  *     <see>HIDE_PAWNDOC</see>
  *     <see>SHOW_PAWNDOC</see>
  * </fix>
@@ -18474,8 +18474,8 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  *         A description of the solution.
  *     </solution>
  *     <see>FIXES_FunctionWithFixIn</see>
- *     <author    href="github.com/account">Name</author>
- *     <post      href="burgershot.gg/post" />
+ *     <author href="github.com/account">Name</author>
+ *     <post href="burgershot.gg/post" />
  * </fix>
  */
 
