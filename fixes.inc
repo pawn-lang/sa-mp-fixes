@@ -5664,7 +5664,11 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(KEY);
 #else
 	_FIXES_SHOW_PAWNDOC(KEY);
-	#define KEY: _:
+	#if defined __TAG
+		#define KEY: __TAG(KEY):
+	#else
+		#define KEY: _:
+	#endif
 #endif
 
 /**
@@ -5679,7 +5683,11 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(VEHICLE_PARAMS);
 #else
 	_FIXES_SHOW_PAWNDOC(VEHICLE_PARAMS);
-	#define VEHICLE_PARAMS: _:
+	#if defined __TAG
+		#define VEHICLE_PARAMS: __TAG(VEHICLE_PARAMS):
+	#else
+		#define VEHICLE_PARAMS: _:
+	#endif
 #endif
 
 /**
@@ -5694,7 +5702,11 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(PLAYER_STATE);
 #else
 	_FIXES_SHOW_PAWNDOC(PLAYER_STATE);
-	#define PLAYER_STATE: _:
+	#if defined __TAG
+		#define PLAYER_STATE: __TAG(PLAYER_STATE):
+	#else
+		#define PLAYER_STATE: _:
+	#endif
 #endif
 
 /**
@@ -5709,7 +5721,11 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(SPECIAL_ACTION);
 #else
 	_FIXES_SHOW_PAWNDOC(SPECIAL_ACTION);
-	#define SPECIAL_ACTION: _:
+	#if defined __TAG
+		#define SPECIAL_ACTION: __TAG(SPECIAL_ACTION):
+	#else
+		#define SPECIAL_ACTION: _:
+	#endif
 #endif
 
 /**
@@ -5724,7 +5740,11 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(PLAYER_VARTYPE);
 #else
 	_FIXES_SHOW_PAWNDOC(PLAYER_VARTYPE);
-	#define PLAYER_VARTYPE: _:
+	#if defined __TAG
+		#define PLAYER_VARTYPE: __TAG(PLAYER_VARTYPE):
+	#else
+		#define PLAYER_VARTYPE: _:
+	#endif
 #endif
 
 /**
@@ -5738,7 +5758,11 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(BODY_PART);
 #else
 	_FIXES_SHOW_PAWNDOC(BODY_PART);
-	#define BODY_PART: _:
+	#if defined __TAG
+		#define BODY_PART: __TAG(BODY_PART):
+	#else
+		#define BODY_PART: _:
+	#endif
 #endif
 
 /**
@@ -5752,7 +5776,11 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 	_FIXES_HIDE_PAWNDOC(CAM_MODE);
 #else
 	_FIXES_SHOW_PAWNDOC(CAM_MODE);
-	#define CAM_MODE: _:
+	#if defined __TAG
+		#define CAM_MODE: __TAG(CAM_MODE):
+	#else
+		#define CAM_MODE: _:
+	#endif
 #endif
 
 /**
