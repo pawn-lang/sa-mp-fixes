@@ -121,61 +121,13 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    >KoczkaHUN</author>
  * </fix>
  *
- * <fix name="FILTERSCRIPT">
- *     <problem>
- *         Despite the fact that is in every new script, many people dont'
- *         define "FILTERSCRIPT" where appropriate.
- *     </problem>
- *     <solution>
- *         Provide an "IS_FILTERSCRIPT" variable (note the naming to
- *         match the original macro).
- *     </solution>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <see>OnFilterScriptInit</see>
- *     <see>OnGameModeInit</see>
- * </fix>
+
  *
- * <fix name="SpawnPlayer">
- *     <problem>
- *         Kills the player if they are in a vehicle.
- *     </problem>
- *     <solution>
- *         Remove the from the vehicle.
- *     </solution>
- *     <see>FIXES_SpawnPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="SetPlayerName">
- *     <problem>
- *         Using "SetPlayerName" when the new name only differs from the old
- *         name in case does not alter the name at all.
- *     </problem>
- *     <solution>
- *         Change their name twice - once to "_FIXES TEMP NAME" and then
- *         to the actual required name.
- *     </solution>
- *     <see>OnPlayerConnect</see>
- *     <see>FIXES_SetPlayerName</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- * </fix>
+
  *
- * <fix name="GetPlayerSkin">
- *     <problem>
- *         Returns the new skin after "SetSpawnInfo" is called but before the
- *         player actually respawns to get the new skin.
- *     </problem>
- *     <solution>
- *         Record the skin in "OnPlayerSpawn" and always return that one.
- *
- *     </solution>
- *     <see>OnPlayerSpawn</see>
- *     <see>FIXES_GetPlayerSkin</see>
- *     <see>FIXES_SetPlayerSkin</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
  * <fix name="GetWeaponName" fixed="0.3.7">
  *     <problem>
@@ -189,18 +141,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *
- * <fix name="SetPlayerWorldBounds">
- *     <problem>
- *         Aiming can bypass the edge.
- *     </problem>
- *     <solution>
- *         Check for the player leaving the area and reset them to their last
- *         good position if they leave the area (aiming or not).
- *     </solution>
- *     <see>OnPlayerUpdate</see>
- *     <see>FIXES_SetPlayerWorldBounds</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
  * <fix name="TogglePlayerControllable">
  *     <problem>
@@ -215,31 +156,9 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=876854" />
  * </fix>
  *
- * <fix name="HydraSniper">
- *     <problem>
- *         Entering military aircraft with a sniper rifle messes up views.
- *     </problem>
- *     <solution>
- *         Set their armed weapon to fists.
- *     </solution>
- *     <see>OnPlayerStateChange</see>
- *     <see>FIXES_GivePlayerWeapon</see>
- *     <see>FIXES_SetPlayerArmedWeapon</see>
- *     <author    >funky1234</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=965644" />
- * </fix>
+
  *
- * <fix name="IsPlayerInCheckpoint">
- *     <problem>
- *         Function returns an undefined value if it is called before any other
- *         checkpoint functions are called to initialise the value.
- *     </problem>
- *     <solution>
- *         Call "DisablePlayerCheckpoint" when they connect.
- *     </solution>
- *     <see>OnPlayerConnect</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
  * <fix name="IsPlayerInRaceCheckpoint">
  *     <problem>
@@ -253,156 +172,29 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *
- * <fix name="GetPlayerWeapon">
- *     <problem>
- *         Returns the old value after entering in a vehicle.
- *     </problem>
- *     <solution>
- *         If "SetPlayerArmedWeapon" and other similar functions is called in a
- *         vehicle, store the new value and return that instead.
- *     </solution>
- *     <see>OnPlayerStateChange</see>
- *     <see>FIXES_SetPlayerArmedWeapon</see>
- *     <see>FIXES_GetPlayerWeapon</see>
- *     <see>FIXES_GivePlayerWeapon</see>
- *     <see>FIXES_ResetPlayerWeapons</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/ronixtey/" >ronixtey</author>
- * </fix>
+
  *
- * <fix name="PutPlayerInVehicle">
- *     <problem>
- *         If this is used on a passenger the driver of their old vehicle
- *         doesn't see them in their new vehicle.
- *     </problem>
- *     <solution>
- *         Remove them from the vehicle first.
- *     </solution>
- *     <see>OnPlayerStateChange</see>
- *     <see>FIXES_PutPlayerInVehicle</see>
- *     <author    >leong124</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1265965" />
- * </fix>
+
  *
- * <fix name="KEY_AIM">
- *     <problem>
- *         "KEY_AIM" isn't defined by default.
- *     </problem>
- *     <solution>
- *         Define it.
- *     </solution>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="SetPlayerCheckpoint">
- *     <problem>
- *         If a checkpoint is already set it will use the size of that
- *         checkpoint instead of the new one.
- *     </problem>
- *     <solution>
- *         Call "DisablePlayerCheckpoint" before setting the checkpoint.
- *     </solution>
- *     <see>FIXES_SetPlayerCheckpoint</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- * </fix>
+
  *
- * <fix name="SetPlayerRaceCheckpoint">
- *     <problem>
- *         If a checkpoint is already set it will use the size of that
- *         checkpoint instead of the new one.
- *     </problem>
- *     <solution>
- *         Call "DisablePlayerRaceCheckpoint" before setting the checkpoint.
- *     </solution>
- *     <see>FIXES_SetPlayerRaceCheckpoint</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- * </fix>
+
  *
- * <fix name="TextDrawCreate">
- *     <problem>
- *         Crashes on a blank string.
- *     </problem>
- *     <solution>
- *         Intercept blank strings.
- *     </solution>
- *     <see>FIXES_TextDrawCreate</see>
- *     <author    >wups</author>
- * </fix>
+
  *
- * <fix name="TextDrawCreate_2">
- *     <problem>
- *         If the last character in the text is a space (" "), the text will all
- *         be blank.
- *     </problem>
- *     <solution>
- *         Remove space characters from the end of the string.
- *     </solution>
- *     <see>FIXES_TextDrawCreate</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
- * </fix>
+
  *
- * <fix name="TextDrawSetString">
- *     <problem>
- *         Crashes on a blank string and size greater than 1024.
- *     </problem>
- *     <solution>
- *         Intercept blank strings and truncate long strings.
- *     </solution>
- *     <see>FIXES_TextDrawSetString</see>
- *     <author    >TomTrox</author>
- * </fix>
+
  *
- * <fix name="TextDrawSetString_2">
- *     <problem>
- *         If the last character in the text is a space (" "), the text will all
- *         be blank.
- *     </problem>
- *     <solution>
- *         Remove space characters from the end of the string.
- *     </solution>
- *     <see>FIXES_TextDrawSetString</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
- * </fix>
+
  *
- * <fix name="CreatePlayerTextDraw">
- *     <problem>
- *         Crashes on a blank string.
- *     </problem>
- *     <solution>
- *         Intercept blank strings.
- *     </solution>
- *     <see>FIXES_CreatePlayerTextDraw</see>
- *     <author    >wups</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="CreatePlayerTextDraw_2">
- *     <problem>
- *         If the last character in the text is a space (" "), the text will all
- *         be blank.
- *     </problem>
- *     <solution>
- *         Remove space characters from the end of the string.
- *     </solution>
- *     <see>FIXES_CreatePlayerTextDraw</see>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
- * </fix>
+
  *
- * <fix name="PlayerTextDrawSetString">
- *     <problem>
- *         Crashes on a blank string and size greater than 1024.
- *     </problem>
- *     <solution>
- *         Intercept blank strings and truncate long strings.
- *     </solution>
- *     <see>FIXES_PlayerTextDrawSetString</see>
- *     <author    >TomTrox</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
  * <fix name="PlayerTextDrawSetString_2">
  *     <problem>
@@ -417,86 +209,17 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
  * </fix>
  *
- * <fix name="AllowInteriorWeapons">
- *     <problem>
- *         Does nothing.
- *     </problem>
- *     <solution>
- *         Set the player's weapon to fists in an interior.
- *     </solution>
- *     <see>FIXES_AllowInteriorWeapons</see>
- *     <see>OnGameModeInit</see>
- *     <see>OnPlayerUpdate</see>
- *     <author    >KoczkaHUN</author>
- * </fix>
+
  *
- * <fix name="OnPlayerEnterVehicle">
- *     <problem>
- *         Crashes other players when people enter an invalid seat.
- *     </problem>
- *     <solution>
- *         Desync the people with invalid seats.
- *     </solution>
- *     <see>OnPlayerStateChange</see>
- *     <see>OnPlayerUpdate</see>
- *     <author    >RyDeR`</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/NexiusTailer">NexiusTailer</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1410296" />
- * </fix>
+
  *
- * <fix name="OnPlayerEnterVehicle_2">
- *     <problem>
- *         Crashes the server when hacks enter an invalid vehicle.
- *     </problem>
- *     <solution>
- *         Desync the people with invalid vehicles.
- *     </solution>
- *     <see>OnPlayerEnterVehicle</see>
- *     <author    >im</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="OnPlayerEnterVehicle_3">
- *     <problem>
- *         No player animation when trying to enter the driver door of a locked
- *         vehicle
- *     </problem>
- *     <solution>
- *         Leave the door unlocked and activate an animation when the player
- *         attemps to enter a 'locked' vehicle.
- *     </solution>
- *     <see>OnPlayerEnterVehicle</see>
- *     <author    href="https://github.com/ziggi" >ziggi</author>
- *     <author    href="https://github.com/rt-2" >rt-2</author>
- *     <post      href="http://forum.sa-mp.com/showthread.php?t=560019" />
- * </fix>
+
  *
- * <fix name="AllowTeleport">
- *     <problem>
- *         0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in
- *         favour of "OnPlayerClickMap".  Some scripts used the old code and.
- *     </problem>
- *     <solution>
- *         Teleport the player in "OnPlayerClickMap".
- *     </solution>
- *     <see>OnPlayerClickMap</see>
- *     <see>FIXES_AllowPlayerTeleport</see>
- *     <see>FIXES_AllowAdminTeleport</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="SetPlayerSpecialAction">
- *     <problem>
- *         Removing jetpacks from players by setting their special action to 0
- *         causes the sound to stay until death.
- *     </problem>
- *     <solution>
- *         Call "ClearAnimations" before "SetPlayerSpecialAction".
- *     </solution>
- *     <see>FIXES_SetPlayerSpecialAction</see>
- *     <author    >MP2</author>
- * </fix>
+
  *
  * <fix name="OnDialogResponse" fixed="0.3e RC6">
  *     <problem>
@@ -523,176 +246,35 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *
- * <fix name="PlayerDialogResponse">
- *     <problem>
- *         A player's dialog doesn't hide when the gamemode restarts, causing
- *         the server to print "Warning: PlayerDialogResponse PlayerId: 0
- *         dialog ID doesn't match last sent dialog ID".
- *     </problem>
- *     <solution>
- *         Hide it.
- *     </solution>
- *     <see>OnPlayerConnect</see>
- *     <see>OnGameModeExit</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- * </fix>
+
  *
- * <fix name="SetSpawnInfo">
- *     <problem>
- *         Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo".
- *     </problem>
- *     <solution>
- *         Call "SetSpawnInfo" at least once.
- *     </solution>
- *     <see>OnPlayerConnect</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="SetSpawnInfo_2">
- *     <problem>
- *         Does not set the correct team after spawn.
- *     </problem>
- *     <solution>
- *         Call "SetPlayerTeam" when they spawn.
- *     </solution>
- *     <see>OnPlayerSpawn</see>
- *     <author    href="http://forum.sa-mp.com/member.php?u=24012" >NaS</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=3994248" />
- * </fix>
+
  *
- * <fix name="SetPlayerSkin">
- *     <problem>
- *         Breaks sitting on bikes.
- *     </problem>
- *     <solution>
- *         Put them back in the vehicle after setting their skin.
- *     </solution>
- *     <see>FIXES_SetPlayerSkin</see>
- *     <author    >CyNiC</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1756094" />
- * </fix>
+
  *
- * <fix name="HideMenuForPlayer">
- *     <problem>
- *         Crashes when passed an invalid menu ID.
- *     </problem>
- *     <solution>
- *         Don't hide it when passed an invalid menu.
- *     </solution>
- *     <see>FIXES_HideMenuForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
- * </fix>
+
  *
- * <fix name="valstr">
- *     <problem>
- *         Crashes on large numbers.
- *     </problem>
- *     <solution>
- *         Use "format" instead.
- *     </solution>
- *     <see>FIXES_valstr</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- * </fix>
+
  *
- * <fix name="fclose">
- *     <problem>
- *         Crashes on an invalid handle.
- *     </problem>
- *     <solution>
- *         Check for an invalid handle.
- *     </solution>
- *     <see>FIXES_fclose</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- * </fix>
+
  *
- * <fix name="fwrite">
- *     <problem>
- *         Crashes on an invalid handle.
- *     </problem>
- *     <solution>
- *         Check for an invalid handle.
- *     </solution>
- *     <see>FIXES_fwrite</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- * </fix>
+
  *
- * <fix name="fread">
- *     <problem>
- *         Crashes on an invalid handle.
- *     </problem>
- *     <solution>
- *         Check for an invalid handle.
- *     </solution>
- *     <see>FIXES_fread</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- * </fix>
+
  *
- * <fix name="fputchar">
- *     <problem>
- *         Crashes on an invalid handle.
- *     </problem>
- *     <solution>
- *         Check for an invalid handle.
- *     </solution>
- *     <see>FIXES_fputchar</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- * </fix>
+
  *
- * <fix name="fgetchar">
- *     <problem>
- *         Crashes on an invalid handle.
- *     </problem>
- *     <solution>
- *         Check for an invalid handle.
- *     </solution>
- *     <see>FIXES_fgetchar</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- * </fix>
+
  *
- * <fix name="fblockwrite">
- *     <problem>
- *         Crashes on an invalid handle.
- *     </problem>
- *     <solution>
- *         Check for an invalid handle.
- *     </solution>
- *     <see>FIXES_fblockwrite</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- * </fix>
+
  *
- * <fix name="fblockread">
- *     <problem>
- *         Crashes on an invalid handle.
- *     </problem>
- *     <solution>
- *         Check for an invalid handle.
- *     </solution>
- *     <see>FIXES_fblockread</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- * </fix>
+
  *
- * <fix name="fseek">
- *     <problem>
- *         Crashes on an invalid handle.
- *     </problem>
- *     <solution>
- *         Check for an invalid handle.
- *     </solution>
- *     <see>FIXES_fseek</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- * </fix>
+
  *
- * <fix name="flength">
- *     <problem>
- *         Crashes on an invalid handle.
- *     </problem>
- *     <solution>
- *         Check for an invalid handle.
- *     </solution>
- *     <see>FIXES_flength</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- * </fix>
+
  *
  * <fix name="file_inc" disabled="true">
  *     <problem>
@@ -706,16 +288,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *
- * <fix name="SetPlayerAttachedObject">
- *     <problem>
- *         Doesn't remove objects when the mode ends.
- *     </problem>
- *     <solution>
- *         Remove them.
- *     </solution>
- *     <see>OnPlayerDisconnect</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
  * <fix name="GetVehicleComponentInSlot">
  *     <problem>
@@ -733,66 +306,15 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    href="https://github.com/Mergevos/" >Mergevos</author>
  * </fix>
  *
- * <fix name="AttachTrailerToVehicle">
- *     <problem>
- *         When trailerid is equal to vehicleid and passenger is in vehicleid, it starts spinning.
- *     </problem>
- *     <solution>
- *         Check if trailerid and vehicleid are equal.
- *     </solution>
- *     <see>FIX_AttachTrailerToVehicle</see>
- *     <author    href="https://github.com/Mergevos/" >Mergevos</author>
- * </fix>
+
  *
- * <fix name="OnPlayerDeath">
- *     <problem>
- *         Clients get stuck when they die with an animation applied.
- *     </problem>
- *     <solution>
- *         Clear their animations.
- *     </solution>
- *     <see>OnPlayerDeath</see>
- *     <see>OnPlayerUpdate</see>
- *     <author    >h02</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1641144" />
- * </fix>
+
  *
- * <fix name="strins">
- *     <problem>
- *         Ignores the "maxlength" parameter causing possible crashes.
- *     </problem>
- *     <solution>
- *         Manually check the length.
- *     </solution>
- *     <see>FIXES_strins</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="IsPlayerConnected">
- *     <problem>
- *         Only uses the lower two bytes of a passed ID.
- *     </problem>
- *     <solution>
- *         Mask the numbers.
- *     </solution>
- *     <see>FIXES_IsPlayerConnected</see>
- *     <author    href="https://github.com/oscar-broman/" >Slice</author>
- * </fix>
+
  *
- * <fix name="TrainExit">
- *     <problem>
- *         When getting out of a train entered by "PutPlayerInVehicle", the
- *         camera does not reset properly.
- *     </problem>
- *     <solution>
- *         Reset the camera.
- *     </solution>
- *     <see>FIXES_PutPlayerInVehicle</see>
- *     <see>FIXES_OnPlayerStateChange</see>
- *     <author    >Terminator3</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
  * <fix name="Kick" fixed="0.3x">
  *     <problem>
@@ -807,18 +329,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <post      href="http://forum.sa-mp.com/showpost.php?p=1989453" />
  * </fix>
  *
- * <fix name="OnVehicleMod">
- *     <problem>
- *         Crashes other players when invalid mods are applied.
- *     </problem>
- *     <solution>
- *         Desync the player.
- *     </solution>
- *     <see>OnVehicleMod</see>
- *     <author    href="https://github.com/JernejL/" >JernejL</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1671500" />
- * </fix>
+
  *
  * <fix name="random" disabled="true">
  *     <problem>
@@ -831,61 +342,15 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    href="https://github.com/simonepri/" >simonepri</author>
  * </fix>
  *
- * <fix name="sleep">
- *     <problem>
- *         Leaks bytes from the stack.
- *     </problem>
- *     <solution>
- *         Call a function to store the correct value.
- *     </solution>
- *     <see>FIXES_sleep</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="AddMenuItem">
- *     <problem>
- *         Crashes when passed an invalid menu ID.
- *     </problem>
- *     <solution>
- *         Don't hide it when passed an invalid menu.
- *     </solution>
- *     <see>FIXES_AddMenuItem</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="SetMenuColumnHeader">
- *     <problem>
- *         Crashes when passed an invalid menu ID.
- *     </problem>
- *     <solution>
- *         Don't hide it when passed an invalid menu.
- *     </solution>
- *     <see>FIXES_SetMenuColumnHeader</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="ShowMenuForPlayer">
- *     <problem>
- *         Crashes when passed an invalid menu ID.
- *     </problem>
- *     <solution>
- *         Don't hide it when passed an invalid menu.
- *     </solution>
- *     <see>FIXES_ShowMenuForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="HideMenuForPlayer">
- *     <problem>
- *         Crashes when passed an invalid menu ID.
- *     </problem>
- *     <solution>
- *         Don't hide it when passed an invalid menu.
- *     </solution>
- *     <see>FIXES_HideMenuForPlayer</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
- * </fix>
+
  *
  * <fix name="HideMenuForPlayer_2" disabled="true">
  *     <problem>
@@ -898,231 +363,43 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
  * </fix>
  *
- * <fix name="DisableMenu">
- *     <problem>
- *         Crashes when passed an invalid menu ID.
- *     </problem>
- *     <solution>
- *         Don't hide it when passed an invalid menu.
- *     </solution>
- *     <see>FIXES_DisableMenu</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="DisableMenuRow">
- *     <problem>
- *         Crashes when passed an invalid menu ID.
- *     </problem>
- *     <solution>
- *         Don't hide it when passed an invalid menu.
- *     </solution>
- *     <see>FIXES_DisableMenuRow</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="Menus">
- *     <problem>
- *         All menu function fixes are included separately for major overhead.
- *     </problem>
- *     <solution>
- *         Optionally group them all under one define.
- *     </solution>
- *     <see>FIX_Menus</see>
- *     <see>_FIX_Menus</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="GetPlayerMenu">
- *     <problem>
- *         Returns previous menu when none is displayed.
- *     </problem>
- *     <solution>
- *         Return the correct value.
- *     </solution>
- *     <see>FIXES_GetPlayerMenu</see>
- *     <see>OnPlayerSelectedMenuRow</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="GetPlayerInterior">
- *     <problem>
- *         Always returns 0 for NPCs.
- *     </problem>
- *     <solution>
- *         Return the correct value.
- *     </solution>
- *     <see>FIXES_GetPlayerInterior</see>
- *     <see>FIXES_SetPlayerInterior</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- * </fix>
+
  *
- * <fix name="ClearAnimations">
- *     <problem>
- *         Use ClearAnimation while you are in a vehicle cause the player exit
- *         from it.
- *     </problem>
- *     <solution>
- *         Apply an animation instead of clear animation.
- *     </solution>
- *     <see>FIXES_ClearAnimations</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- * </fix>
+
  *
- * <fix name="ClearAnimations_2">
- *     <problem>
- *         ClearAnimations doesn't do anything when the animation ends if we
- *         pass 1 for the freeze parameter in ApplyAnimation.
- *     </problem>
- *     <solution>
- *         Apply an idle animation for stop and then use ClearAnimation.
- *     </solution>
- *     <see>FIXES_ClearAnimations</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- * </fix>
+
  *
- * <fix name="DriveBy">
- *     <problem>
- *         If you press KEY_CROUCH while you're passenger and if you are armed,
- *         the player start to aim; if you repress KEY_CROUCH the player don't
- *         return in vehicle.
- *     </problem>
- *     <solution>
- *         Apply the animation to return the player in the vehicle.
- *     </solution>
- *     <see>OnPlayerKeyStateChange</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- * </fix>
+
  *
- * <fix name="SilentTeleport">
- *     <problem>
- *         Player teleports silently while trying to enter a vehicle as that vehicle teleports/changes original interior.
- *     </problem>
- *     <solution>
- *         Stop the player from teleporting by using 'ClearAnimations' before the teleport happens.
- *     </solution>
- *	   <see>OnPlayerEnterVehicle</see>
- *	   <see>OnPlayerInteriorChange</see>
- *     <author    href="https://github.com/RogueDrifter/" >RogueDrifter</author>
- * </fix>
+
  *
- * <fix name="GangZoneCreate">
- *     <problem>
- *         Gang zones bug on the main map for players at certain angles relative
- *         to them.
- *     </problem>
- *     <solution>
- *         Set a non floating value for the gang zone co-ordinate.
- *     </solution>
- *     <see>FIXES_GangZoneCreate</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="SPECIAL_ACTION_PISSING">
- *     <problem>
- *         "SPECIAL_ACTION_PISSING" isn't defined by default.
- *     </problem>
- *     <solution>
- *         Define it.
- *     </solution>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- * </fix>
+
  *
- * <fix name="IsValidVehicle">
- *     <problem>
- *         "IsValidVehicle" isn't defined by default.
- *     </problem>
- *     <solution>
- *         Define it.
- *     </solution>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- * </fix>
+
  *
- * <fix name="ApplyAnimation">
- *     <problem>
- *         Passing an invalid animation library in ApplyAnimation causes a
- *         client crash for streamed in players.
- *     </problem>
- *     <solution>
- *         Block ApplyAnimation when an invalid library is passed.
- *     </solution>
- *     <see>FIXES_ApplyAnimation</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- * </fix>
+
  *
- * <fix name="ApplyAnimation_2">
- *     <problem>
- *         First time a library is used, it does nothing.
- *     </problem>
- *     <solution>
- *         Apply animations twice when first using a library.
- *     </solution>
- *     <see>FIXES_ApplyAnimation</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- *     <author    href="https://github.com/Lordzy/" >Lordzy</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="ApplyActorAnimation">
- *     <problem>
- *         Passing an invalid animation library in ApplyAnimation causes a
- *         client crash for streamed in players.
- *     </problem>
- *     <solution>
- *         Block ApplyActorAnimation when an invalid library is passed.
- *     </solution>
- *     <see>FIXES_ApplyActorAnimation</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- * </fix>
+
  *
- * <fix name="ApplyActorAnimation_2">
- *     <problem>
- *         First time a library is used, it does nothing.
- *     </problem>
- *     <solution>
- *         Apply animations twice when first using a library.
- *     </solution>
- *     <see>FIXES_ApplyActorAnimation</see>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- *     <author    href="https://github.com/Lordzy/" >Lordzy</author>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- *     <author    href="https://github.com/ziggi/" >ziggi</author>
- * </fix>
+
  *
- * <fix name="OnPlayerSpawn">
- *     <problem>
- *         San Andreas deducts $100 from players.
- *     </problem>
- *     <solution>
- *         Give them it back.
- *     </solution>
- *     <see>OnPlayerSpawn</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
+
  *
- * <fix name="GetGravity">
- *     <problem>
- *         "GetGravity" isn't defined by default.
- *     </problem>
- *     <solution>
- *         Define it.
- *     </solution>
- *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
- *     <post      href="http://forum.sa-mp.com/showpost.php?p=1706447" />
- * </fix>
+
  *
- * <fix name="gpci">
- *     <problem>
- *         "gpci" isn't defined by default.
- *     </problem>
- *     <solution>
- *         Define it.
- *     </solution>
- *     <author    href="https://github.com/simonepri/" >simonepri</author>
- *     <post      href="http://pastebin.com/VQSGpbSm" />
- * </fix>
+
  *
  * <fix name="Natives">
  *     <problem>
@@ -2563,6 +1840,22 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerColour                  (0)
 #endif
 
+/**
+ * <fix name="FILTERSCRIPT">
+ *     <problem>
+ *         Despite the fact that is in every new script, many people dont'
+ *         define "FILTERSCRIPT" where appropriate.
+ *     </problem>
+ *     <solution>
+ *         Provide an "IS_FILTERSCRIPT" variable (note the naming to
+ *         match the original macro).
+ *     </solution>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <see>OnFilterScriptInit</see>
+ *     <see>OnGameModeInit</see>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_FILTERSCRIPT)
 	_FIXES_STOCK FIX_FILTERSCRIPT = _FIXES_DEFAULT;
 	#define FIX_FILTERSCRIPT                     _FIXES_DEFAULT
@@ -2579,6 +1872,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_FILTERSCRIPT);
 	#define FIX_FILTERSCRIPT                     (0)
 #endif
+
+/**
+ * <fix name="SpawnPlayer">
+ *     <problem>
+ *         Kills the player if they are in a vehicle.
+ *     </problem>
+ *     <solution>
+ *         Remove the from the vehicle.
+ *     </solution>
+ *     <see>FIXES_SpawnPlayer</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_SpawnPlayer)
 	_FIXES_STOCK FIX_SpawnPlayer = _FIXES_DEFAULT;
@@ -2597,6 +1903,24 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SpawnPlayer                      (0)
 #endif
 
+/**
+ * <fix name="SetPlayerName">
+ *     <problem>
+ *         Using "SetPlayerName" when the new name only differs from the old
+ *         name in case does not alter the name at all.
+ *     </problem>
+ *     <solution>
+ *         Change their name twice - once to "_FIXES TEMP NAME" and then
+ *         to the actual required name.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <see>FIXES_SetPlayerName</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerName)
 	_FIXES_STOCK FIX_SetPlayerName = _FIXES_DEFAULT;
 	#define FIX_SetPlayerName                    _FIXES_DEFAULT
@@ -2613,6 +1937,23 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_SetPlayerName);
 	#define FIX_SetPlayerName                    (0)
 #endif
+
+/**
+ * <fix name="GetPlayerSkin">
+ *     <problem>
+ *         Returns the new skin after "SetSpawnInfo" is called but before the
+ *         player actually respawns to get the new skin.
+ *     </problem>
+ *     <solution>
+ *         Record the skin in "OnPlayerSpawn" and always return that one.
+ *
+ *     </solution>
+ *     <see>OnPlayerSpawn</see>
+ *     <see>FIXES_GetPlayerSkin</see>
+ *     <see>FIXES_SetPlayerSkin</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_GetPlayerSkin)
 	_FIXES_STOCK FIX_GetPlayerSkin = _FIXES_DEFAULT;
@@ -2656,6 +1997,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetWeaponName);
 	#define FIX_GetWeaponName                    (0)
 #endif
+
+/**
+ * <fix name="SetPlayerWorldBounds">
+ *     <problem>
+ *         Aiming can bypass the edge.
+ *     </problem>
+ *     <solution>
+ *         Check for the player leaving the area and reset them to their last
+ *         good position if they leave the area (aiming or not).
+ *     </solution>
+ *     <see>OnPlayerUpdate</see>
+ *     <see>FIXES_SetPlayerWorldBounds</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerWorldBounds)
 	_FIXES_STOCK FIX_SetPlayerWorldBounds = _FIXES_DEFAULT;
@@ -2707,6 +2063,22 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_TogglePlayerControllable         (0)
 #endif
 
+/**
+ * <fix name="HydraSniper">
+ *     <problem>
+ *         Entering military aircraft with a sniper rifle messes up views.
+ *     </problem>
+ *     <solution>
+ *         Set their armed weapon to fists.
+ *     </solution>
+ *     <see>OnPlayerStateChange</see>
+ *     <see>FIXES_GivePlayerWeapon</see>
+ *     <see>FIXES_SetPlayerArmedWeapon</see>
+ *     <author    >funky1234</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=965644" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_HydraSniper)
 	_FIXES_STOCK FIX_HydraSniper = _FIXES_DEFAULT;
 	#define FIX_HydraSniper                      _FIXES_DEFAULT
@@ -2723,6 +2095,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_HydraSniper);
 	#define FIX_HydraSniper                      (0)
 #endif
+
+/**
+ * <fix name="IsPlayerInCheckpoint">
+ *     <problem>
+ *         Function returns an undefined value if it is called before any other
+ *         checkpoint functions are called to initialise the value.
+ *     </problem>
+ *     <solution>
+ *         Call "DisablePlayerCheckpoint" when they connect.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_IsPlayerInCheckpoint)
 	_FIXES_STOCK FIX_IsPlayerInCheckpoint = _FIXES_DEFAULT;
@@ -2764,6 +2150,25 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_IsPlayerInRaceCheckpoint         (0)
 #endif
 
+/**
+ * <fix name="GetPlayerWeapon">
+ *     <problem>
+ *         Returns the old value after entering in a vehicle.
+ *     </problem>
+ *     <solution>
+ *         If "SetPlayerArmedWeapon" and other similar functions is called in a
+ *         vehicle, store the new value and return that instead.
+ *     </solution>
+ *     <see>OnPlayerStateChange</see>
+ *     <see>FIXES_SetPlayerArmedWeapon</see>
+ *     <see>FIXES_GetPlayerWeapon</see>
+ *     <see>FIXES_GivePlayerWeapon</see>
+ *     <see>FIXES_ResetPlayerWeapons</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/ronixtey/" >ronixtey</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetPlayerWeapon)
 	_FIXES_STOCK FIX_GetPlayerWeapon = _FIXES_DEFAULT;
 	#define FIX_GetPlayerWeapon                  _FIXES_DEFAULT
@@ -2781,6 +2186,23 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerWeapon                  (0)
 #endif
 
+/**
+ * <fix name="PutPlayerInVehicle">
+ *     <problem>
+ *         If this is used on a passenger the driver of their old vehicle
+ *         doesn't see them in their new vehicle.
+ *     </problem>
+ *     <solution>
+ *         Remove them from the vehicle first.
+ *     </solution>
+ *     <see>OnPlayerStateChange</see>
+ *     <see>FIXES_PutPlayerInVehicle</see>
+ *     <author    >leong124</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1265965" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_PutPlayerInVehicle)
 	_FIXES_STOCK FIX_PutPlayerInVehicle = _FIXES_DEFAULT;
 	#define FIX_PutPlayerInVehicle               _FIXES_DEFAULT
@@ -2797,6 +2219,18 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_PutPlayerInVehicle);
 	#define FIX_PutPlayerInVehicle               (0)
 #endif
+
+/**
+ * <fix name="KEY_AIM">
+ *     <problem>
+ *         "KEY_AIM" isn't defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_KEY_AIM)
 	#if defined KEY_AIM
@@ -2824,6 +2258,18 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_KEY_AIM                          (0)
 #endif
 
+/**
+ * <fix name="SPECIAL_ACTION_PISSING">
+ *     <problem>
+ *         "SPECIAL_ACTION_PISSING" isn't defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_SPECIAL_ACTION_PISSING)
 	#if defined SPECIAL_ACTION_PISSING
 		#if FIXES_EnableDeprecated
@@ -2849,6 +2295,18 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_SPECIAL_ACTION_PISSING);
 	#define FIX_SPECIAL_ACTION_PISSING           (0)
 #endif
+
+/**
+ * <fix name="IsValidVehicle">
+ *     <problem>
+ *         "IsValidVehicle" isn't defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_IsValidVehicle)
 	#if defined IsValidVehicle
@@ -2876,6 +2334,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_IsValidVehicle                   (0)
 #endif
 
+/**
+ * <fix name="GetGravity">
+ *     <problem>
+ *         "GetGravity" isn't defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    href="https://github.com/Whitetigerswt" >Whitetiger</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1706447" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetGravity)
 	#if defined GetGravity
 		#if FIXES_EnableDeprecated
@@ -2901,6 +2372,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetGravity);
 	#define FIX_GetGravity                       (0)
 #endif
+
+/**
+ * <fix name="gpci">
+ *     <problem>
+ *         "gpci" isn't defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define it.
+ *     </solution>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <post      href="http://pastebin.com/VQSGpbSm" />
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_gpci)
 	#if defined gpci
@@ -3006,6 +2490,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_CAMERAMODES                      (0)
 #endif
 
+/**
+ * <fix name="DriveBy">
+ *     <problem>
+ *         If you press KEY_CROUCH while you're passenger and if you are armed,
+ *         the player start to aim; if you repress KEY_CROUCH the player don't
+ *         return in vehicle.
+ *     </problem>
+ *     <solution>
+ *         Apply the animation to return the player in the vehicle.
+ *     </solution>
+ *     <see>OnPlayerKeyStateChange</see>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_DriveBy)
 	_FIXES_STOCK FIX_DriveBy = _FIXES_DEFAULT;
 	#define FIX_DriveBy                          _FIXES_DEFAULT
@@ -3022,6 +2521,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_DriveBy);
 	#define FIX_DriveBy                          (0)
 #endif
+
+/**
+ * <fix name="SilentTeleport">
+ *     <problem>
+ *         Player teleports silently while trying to enter a vehicle as that vehicle teleports/changes original interior.
+ *     </problem>
+ *     <solution>
+ *         Stop the player from teleporting by using 'ClearAnimations' before the teleport happens.
+ *     </solution>
+ *	   <see>OnPlayerEnterVehicle</see>
+ *	   <see>OnPlayerInteriorChange</see>
+ *     <author    href="https://github.com/RogueDrifter/" >RogueDrifter</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_SilentTeleport)
 	_FIXES_STOCK FIX_SilentTeleport = _FIXES_DEFAULT;
@@ -3040,6 +2553,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SilentTeleport                   (0)
 #endif
 
+/**
+ * <fix name="SetPlayerCheckpoint">
+ *     <problem>
+ *         If a checkpoint is already set it will use the size of that
+ *         checkpoint instead of the new one.
+ *     </problem>
+ *     <solution>
+ *         Call "DisablePlayerCheckpoint" before setting the checkpoint.
+ *     </solution>
+ *     <see>FIXES_SetPlayerCheckpoint</see>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerCheckpoint)
 	_FIXES_STOCK FIX_SetPlayerCheckpoint = _FIXES_DEFAULT;
 	#define FIX_SetPlayerCheckpoint              _FIXES_DEFAULT
@@ -3056,6 +2583,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_SetPlayerCheckpoint);
 	#define FIX_SetPlayerCheckpoint              (0)
 #endif
+
+/**
+ * <fix name="SetPlayerRaceCheckpoint">
+ *     <problem>
+ *         If a checkpoint is already set it will use the size of that
+ *         checkpoint instead of the new one.
+ *     </problem>
+ *     <solution>
+ *         Call "DisablePlayerRaceCheckpoint" before setting the checkpoint.
+ *     </solution>
+ *     <see>FIXES_SetPlayerRaceCheckpoint</see>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerRaceCheckpoint)
 	_FIXES_STOCK FIX_SetPlayerRaceCheckpoint = _FIXES_DEFAULT;
@@ -3074,6 +2615,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerRaceCheckpoint          (0)
 #endif
 
+/**
+ * <fix name="TextDrawCreate">
+ *     <problem>
+ *         Crashes on a blank string.
+ *     </problem>
+ *     <solution>
+ *         Intercept blank strings.
+ *     </solution>
+ *     <see>FIXES_TextDrawCreate</see>
+ *     <author    >wups</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_TextDrawCreate)
 	_FIXES_STOCK FIX_TextDrawCreate = _FIXES_DEFAULT;
 	#define FIX_TextDrawCreate                   _FIXES_DEFAULT
@@ -3090,6 +2644,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_TextDrawCreate);
 	#define FIX_TextDrawCreate                   (0)
 #endif
+
+/**
+ * <fix name="AttachTrailerToVehicle">
+ *     <problem>
+ *         When trailerid is equal to vehicleid and passenger is in vehicleid, it starts spinning.
+ *     </problem>
+ *     <solution>
+ *         Check if trailerid and vehicleid are equal.
+ *     </solution>
+ *     <see>FIX_AttachTrailerToVehicle</see>
+ *     <author    href="https://github.com/Mergevos/" >Mergevos</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_AttachTrailerToVehicle)
 	_FIXES_STOCK FIX_AttachTrailerToVehicle = _FIXES_DEFAULT;
@@ -3131,6 +2698,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetVehicleComponentInSlot        (0)
 #endif
 
+/**
+ * <fix name="TextDrawCreate_2">
+ *     <problem>
+ *         If the last character in the text is a space (" "), the text will all
+ *         be blank.
+ *     </problem>
+ *     <solution>
+ *         Remove space characters from the end of the string.
+ *     </solution>
+ *     <see>FIXES_TextDrawCreate</see>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_TextDrawCreate_2)
 	_FIXES_STOCK FIX_TextDrawCreate_2 = _FIXES_DEFAULT;
 	#define FIX_TextDrawCreate_2                 _FIXES_DEFAULT
@@ -3147,6 +2729,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_TextDrawCreate_2);
 	#define FIX_TextDrawCreate_2                 (0)
 #endif
+
+/**
+ * <fix name="TextDrawSetString">
+ *     <problem>
+ *         Crashes on a blank string and size greater than 1024.
+ *     </problem>
+ *     <solution>
+ *         Intercept blank strings and truncate long strings.
+ *     </solution>
+ *     <see>FIXES_TextDrawSetString</see>
+ *     <author    >TomTrox</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_TextDrawSetString)
 	_FIXES_STOCK FIX_TextDrawSetString = _FIXES_DEFAULT;
@@ -3165,6 +2760,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_TextDrawSetString                (0)
 #endif
 
+/**
+ * <fix name="TextDrawSetString_2">
+ *     <problem>
+ *         If the last character in the text is a space (" "), the text will all
+ *         be blank.
+ *     </problem>
+ *     <solution>
+ *         Remove space characters from the end of the string.
+ *     </solution>
+ *     <see>FIXES_TextDrawSetString</see>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_TextDrawSetString_2)
 	_FIXES_STOCK FIX_TextDrawSetString_2 = _FIXES_DEFAULT;
 	#define FIX_TextDrawSetString_2              _FIXES_DEFAULT
@@ -3182,6 +2792,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_TextDrawSetString_2              (0)
 #endif
 
+/**
+ * <fix name="AllowInteriorWeapons">
+ *     <problem>
+ *         Does nothing.
+ *     </problem>
+ *     <solution>
+ *         Set the player's weapon to fists in an interior.
+ *     </solution>
+ *     <see>FIXES_AllowInteriorWeapons</see>
+ *     <see>OnGameModeInit</see>
+ *     <see>OnPlayerUpdate</see>
+ *     <author    >KoczkaHUN</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_AllowInteriorWeapons)
 	_FIXES_STOCK FIX_AllowInteriorWeapons = _FIXES_DEFAULT;
 	#define FIX_AllowInteriorWeapons             _FIXES_DEFAULT
@@ -3198,6 +2823,23 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_AllowInteriorWeapons);
 	#define FIX_AllowInteriorWeapons             (0)
 #endif
+
+/**
+ * <fix name="OnPlayerEnterVehicle">
+ *     <problem>
+ *         Crashes other players when people enter an invalid seat.
+ *     </problem>
+ *     <solution>
+ *         Desync the people with invalid seats.
+ *     </solution>
+ *     <see>OnPlayerStateChange</see>
+ *     <see>OnPlayerUpdate</see>
+ *     <author    >RyDeR`</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/NexiusTailer">NexiusTailer</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1410296" />
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_OnPlayerEnterVehicle)
 	#if defined OnPlayerClickMap
@@ -3225,6 +2867,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnPlayerEnterVehicle             (0)
 #endif
 
+/**
+ * <fix name="OnPlayerEnterVehicle_2">
+ *     <problem>
+ *         Crashes the server when hacks enter an invalid vehicle.
+ *     </problem>
+ *     <solution>
+ *         Desync the people with invalid vehicles.
+ *     </solution>
+ *     <see>OnPlayerEnterVehicle</see>
+ *     <author    >im</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_OnPlayerEnterVehicle_2)
 	_FIXES_STOCK FIX_OnPlayerEnterVehicle_2 = _FIXES_DEFAULT;
 	#define FIX_OnPlayerEnterVehicle_2           _FIXES_DEFAULT
@@ -3242,6 +2898,23 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnPlayerEnterVehicle_2           (0)
 #endif
 
+/**
+ * <fix name="OnPlayerEnterVehicle_3">
+ *     <problem>
+ *         No player animation when trying to enter the driver door of a locked
+ *         vehicle
+ *     </problem>
+ *     <solution>
+ *         Leave the door unlocked and activate an animation when the player
+ *         attemps to enter a 'locked' vehicle.
+ *     </solution>
+ *     <see>OnPlayerEnterVehicle</see>
+ *     <author    href="https://github.com/ziggi" >ziggi</author>
+ *     <author    href="https://github.com/rt-2" >rt-2</author>
+ *     <post      href="http://forum.sa-mp.com/showthread.php?t=560019" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_OnPlayerEnterVehicle_3)
 	_FIXES_STOCK FIX_OnPlayerEnterVehicle_3 = _FIXES_DEFAULT;
 	#define FIX_OnPlayerEnterVehicle_3           _FIXES_DEFAULT
@@ -3258,6 +2931,22 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_OnPlayerEnterVehicle_3);
 	#define FIX_OnPlayerEnterVehicle_3           (0)
 #endif
+
+/**
+ * <fix name="AllowTeleport">
+ *     <problem>
+ *         0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in
+ *         favour of "OnPlayerClickMap".  Some scripts used the old code and.
+ *     </problem>
+ *     <solution>
+ *         Teleport the player in "OnPlayerClickMap".
+ *     </solution>
+ *     <see>OnPlayerClickMap</see>
+ *     <see>FIXES_AllowPlayerTeleport</see>
+ *     <see>FIXES_AllowAdminTeleport</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_AllowTeleport)
 	#if defined OnPlayerClickMap
@@ -3285,6 +2974,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_AllowTeleport                    (0)
 #endif
 
+/**
+ * <fix name="SetPlayerSpecialAction">
+ *     <problem>
+ *         Removing jetpacks from players by setting their special action to 0
+ *         causes the sound to stay until death.
+ *     </problem>
+ *     <solution>
+ *         Call "ClearAnimations" before "SetPlayerSpecialAction".
+ *     </solution>
+ *     <see>FIXES_SetPlayerSpecialAction</see>
+ *     <author    >MP2</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerSpecialAction)
 	_FIXES_STOCK FIX_SetPlayerSpecialAction = _FIXES_DEFAULT;
 	#define FIX_SetPlayerSpecialAction           _FIXES_DEFAULT
@@ -3301,6 +3004,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_SetPlayerSpecialAction);
 	#define FIX_SetPlayerSpecialAction           (0)
 #endif
+
+/**
+ * <fix name="ClearAnimations">
+ *     <problem>
+ *         Use ClearAnimation while you are in a vehicle cause the player exit
+ *         from it.
+ *     </problem>
+ *     <solution>
+ *         Apply an animation instead of clear animation.
+ *     </solution>
+ *     <see>FIXES_ClearAnimations</see>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_ClearAnimations)
 	_FIXES_STOCK FIX_ClearAnimations = _FIXES_DEFAULT;
@@ -3319,6 +3036,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ClearAnimations                  (0)
 #endif
 
+/**
+ * <fix name="ClearAnimations_2">
+ *     <problem>
+ *         ClearAnimations doesn't do anything when the animation ends if we
+ *         pass 1 for the freeze parameter in ApplyAnimation.
+ *     </problem>
+ *     <solution>
+ *         Apply an idle animation for stop and then use ClearAnimation.
+ *     </solution>
+ *     <see>FIXES_ClearAnimations</see>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_ClearAnimations_2)
 	_FIXES_STOCK FIX_ClearAnimations_2 = _FIXES_DEFAULT;
 	#define FIX_ClearAnimations_2                _FIXES_DEFAULT
@@ -3335,6 +3066,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_ClearAnimations_2);
 	#define FIX_ClearAnimations_2                (0)
 #endif
+
+/**
+ * <fix name="GangZoneCreate">
+ *     <problem>
+ *         Gang zones bug on the main map for players at certain angles relative
+ *         to them.
+ *     </problem>
+ *     <solution>
+ *         Set a non floating value for the gang zone co-ordinate.
+ *     </solution>
+ *     <see>FIXES_GangZoneCreate</see>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_GangZoneCreate)
 	_FIXES_STOCK FIX_GangZoneCreate = _FIXES_DEFAULT;
@@ -3405,6 +3151,22 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_GetPlayerDialog                  (0)
 #endif
 
+/**
+ * <fix name="PlayerDialogResponse">
+ *     <problem>
+ *         A player's dialog doesn't hide when the gamemode restarts, causing
+ *         the server to print "Warning: PlayerDialogResponse PlayerId: 0
+ *         dialog ID doesn't match last sent dialog ID".
+ *     </problem>
+ *     <solution>
+ *         Hide it.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <see>OnGameModeExit</see>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_PlayerDialogResponse)
 	_FIXES_STOCK FIX_PlayerDialogResponse = _FIXES_DEFAULT;
 	#define FIX_PlayerDialogResponse             _FIXES_DEFAULT
@@ -3421,6 +3183,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_PlayerDialogResponse);
 	#define FIX_PlayerDialogResponse             (0)
 #endif
+
+/**
+ * <fix name="SetSpawnInfo">
+ *     <problem>
+ *         Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo".
+ *     </problem>
+ *     <solution>
+ *         Call "SetSpawnInfo" at least once.
+ *     </solution>
+ *     <see>OnPlayerConnect</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_SetSpawnInfo)
 	#if defined GetPlayerVersion
@@ -3448,6 +3223,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetSpawnInfo                     (0)
 #endif
 
+/**
+ * <fix name="SetSpawnInfo_2">
+ *     <problem>
+ *         Does not set the correct team after spawn.
+ *     </problem>
+ *     <solution>
+ *         Call "SetPlayerTeam" when they spawn.
+ *     </solution>
+ *     <see>OnPlayerSpawn</see>
+ *     <author    href="http://forum.sa-mp.com/member.php?u=24012" >NaS</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=3994248" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_SetSpawnInfo_2)
 	_FIXES_STOCK FIX_SetSpawnInfo_2 = _FIXES_DEFAULT;
 	#define FIX_SetSpawnInfo_2                   _FIXES_DEFAULT
@@ -3465,6 +3254,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetSpawnInfo_2                   (0)
 #endif
 
+/**
+ * <fix name="SetPlayerSkin">
+ *     <problem>
+ *         Breaks sitting on bikes.
+ *     </problem>
+ *     <solution>
+ *         Put them back in the vehicle after setting their skin.
+ *     </solution>
+ *     <see>FIXES_SetPlayerSkin</see>
+ *     <author    >CyNiC</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1756094" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerSkin)
 	_FIXES_STOCK FIX_SetPlayerSkin = _FIXES_DEFAULT;
 	#define FIX_SetPlayerSkin                    _FIXES_DEFAULT
@@ -3481,6 +3284,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_SetPlayerSkin);
 	#define FIX_SetPlayerSkin                    (0)
 #endif
+
+/**
+ * <fix name="valstr">
+ *     <problem>
+ *         Crashes on large numbers.
+ *     </problem>
+ *     <solution>
+ *         Use "format" instead.
+ *     </solution>
+ *     <see>FIXES_valstr</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_valstr)
 	_FIXES_STOCK FIX_valstr = _FIXES_DEFAULT;
@@ -3516,6 +3332,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_file_inc                         (0)
 #endif
 
+/**
+ * <fix name="fclose">
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fclose</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_fclose)
 	#define FIX_fclose                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fclose)
@@ -3531,6 +3360,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_fclose);
 	#define FIX_fclose                           (0)
 #endif
+
+/**
+ * <fix name="fwrite">
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fwrite</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_fwrite)
 	#define FIX_fwrite                           (FIX_file_inc)
@@ -3548,6 +3390,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fwrite                           (0)
 #endif
 
+/**
+ * <fix name="fread">
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fread</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_fread)
 	#define FIX_fread                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fread)
@@ -3563,6 +3418,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_fread);
 	#define FIX_fread                            (0)
 #endif
+
+/**
+ * <fix name="fputchar">
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fputchar</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_fputchar)
 	#define FIX_fputchar                         (FIX_file_inc)
@@ -3580,6 +3448,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fputchar                         (0)
 #endif
 
+/**
+ * <fix name="fgetchar">
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fgetchar</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_fgetchar)
 	#define FIX_fgetchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fgetchar)
@@ -3595,6 +3476,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_fgetchar);
 	#define FIX_fgetchar                         (0)
 #endif
+
+/**
+ * <fix name="fblockwrite">
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fblockwrite</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_fblockwrite)
 	#define FIX_fblockwrite                      (FIX_file_inc)
@@ -3612,6 +3506,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fblockwrite                      (0)
 #endif
 
+/**
+ * <fix name="fblockread">
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fblockread</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_fblockread)
 	#define FIX_fblockread                       (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockread)
@@ -3627,6 +3534,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_fblockread);
 	#define FIX_fblockread                       (0)
 #endif
+
+/**
+ * <fix name="fseek">
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_fseek</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_fseek)
 	#define FIX_fseek                            (FIX_file_inc)
@@ -3644,6 +3564,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_fseek                            (0)
 #endif
 
+/**
+ * <fix name="flength">
+ *     <problem>
+ *         Crashes on an invalid handle.
+ *     </problem>
+ *     <solution>
+ *         Check for an invalid handle.
+ *     </solution>
+ *     <see>FIXES_flength</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_flength)
 	#define FIX_flength                          (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_flength)
@@ -3659,6 +3592,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_flength);
 	#define FIX_flength                          (0)
 #endif
+
+/**
+ * <fix name="SetPlayerAttachedObject">
+ *     <problem>
+ *         Doesn't remove objects when the mode ends.
+ *     </problem>
+ *     <solution>
+ *         Remove them.
+ *     </solution>
+ *     <see>OnPlayerDisconnect</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_SetPlayerAttachedObject)
 	_FIXES_STOCK FIX_SetPlayerAttachedObject = _FIXES_DEFAULT;
@@ -3677,6 +3623,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetPlayerAttachedObject          (0)
 #endif
 
+/**
+ * <fix name="OnPlayerDeath">
+ *     <problem>
+ *         Clients get stuck when they die with an animation applied.
+ *     </problem>
+ *     <solution>
+ *         Clear their animations.
+ *     </solution>
+ *     <see>OnPlayerDeath</see>
+ *     <see>OnPlayerUpdate</see>
+ *     <author    >h02</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1641144" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_OnPlayerDeath)
 	_FIXES_STOCK FIX_OnPlayerDeath = _FIXES_DEFAULT;
 	#define FIX_OnPlayerDeath                    _FIXES_DEFAULT
@@ -3693,6 +3654,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_OnPlayerDeath);
 	#define FIX_OnPlayerDeath                    (0)
 #endif
+
+/**
+ * <fix name="strins">
+ *     <problem>
+ *         Ignores the "maxlength" parameter causing possible crashes.
+ *     </problem>
+ *     <solution>
+ *         Manually check the length.
+ *     </solution>
+ *     <see>FIXES_strins</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_strins)
 	_FIXES_STOCK FIX_strins = _FIXES_DEFAULT;
@@ -3711,6 +3686,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_strins                           (0)
 #endif
 
+/**
+ * <fix name="IsPlayerConnected">
+ *     <problem>
+ *         Only uses the lower two bytes of a passed ID.
+ *     </problem>
+ *     <solution>
+ *         Mask the numbers.
+ *     </solution>
+ *     <see>FIXES_IsPlayerConnected</see>
+ *     <author    href="https://github.com/oscar-broman/" >Slice</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_IsPlayerConnected)
 	_FIXES_STOCK FIX_IsPlayerConnected = _FIXES_DEFAULT;
 	#define FIX_IsPlayerConnected                _FIXES_DEFAULT
@@ -3727,6 +3715,22 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_IsPlayerConnected);
 	#define FIX_IsPlayerConnected                (0)
 #endif
+
+/**
+ * <fix name="TrainExit">
+ *     <problem>
+ *         When getting out of a train entered by "PutPlayerInVehicle", the
+ *         camera does not reset properly.
+ *     </problem>
+ *     <solution>
+ *         Reset the camera.
+ *     </solution>
+ *     <see>FIXES_PutPlayerInVehicle</see>
+ *     <see>FIXES_OnPlayerStateChange</see>
+ *     <author    >Terminator3</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_TrainExit)
 	_FIXES_STOCK FIX_TrainExit = _FIXES_DEFAULT;
@@ -3771,6 +3775,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_Kick                             (0)
 #endif
 
+/**
+ * <fix name="OnVehicleMod">
+ *     <problem>
+ *         Crashes other players when invalid mods are applied.
+ *     </problem>
+ *     <solution>
+ *         Desync the player.
+ *     </solution>
+ *     <see>OnVehicleMod</see>
+ *     <author    href="https://github.com/JernejL/" >JernejL</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1671500" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_OnVehicleMod)
 	_FIXES_STOCK FIX_OnVehicleMod = _FIXES_DEFAULT;
 	#define FIX_OnVehicleMod                     _FIXES_DEFAULT
@@ -3805,6 +3824,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_random                           (0)
 #endif
 
+/**
+ * <fix name="sleep">
+ *     <problem>
+ *         Leaks bytes from the stack.
+ *     </problem>
+ *     <solution>
+ *         Call a function to store the correct value.
+ *     </solution>
+ *     <see>FIXES_sleep</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_sleep)
 	_FIXES_STOCK FIX_sleep = _FIXES_DEFAULT;
 	#define FIX_sleep                            _FIXES_DEFAULT
@@ -3821,6 +3853,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_sleep);
 	#define FIX_sleep                            (0)
 #endif
+
+/**
+ * <fix name="Menus">
+ *     <problem>
+ *         All menu function fixes are included separately for major overhead.
+ *     </problem>
+ *     <solution>
+ *         Optionally group them all under one define.
+ *     </solution>
+ *     <see>FIX_Menus</see>
+ *     <see>_FIX_Menus</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_Menus)
 	_FIXES_STOCK FIX_Menus = _FIXES_DEFAULT;
@@ -3839,6 +3885,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_Menus                            (0)
 #endif
 
+/**
+ * <fix name="AddMenuItem">
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_AddMenuItem</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_AddMenuItem)
 	_FIXES_STOCK FIX_AddMenuItem = FIX_Menus;
 	#define FIX_AddMenuItem                      FIX_Menus
@@ -3855,6 +3914,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_AddMenuItem);
 	#define FIX_AddMenuItem                      (0)
 #endif
+
+/**
+ * <fix name="SetMenuColumnHeader">
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_SetMenuColumnHeader</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_SetMenuColumnHeader)
 	_FIXES_STOCK FIX_SetMenuColumnHeader = FIX_Menus;
@@ -3873,6 +3945,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_SetMenuColumnHeader              (0)
 #endif
 
+/**
+ * <fix name="ShowMenuForPlayer">
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_ShowMenuForPlayer</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_ShowMenuForPlayer)
 	_FIXES_STOCK FIX_ShowMenuForPlayer = FIX_Menus;
 	#define FIX_ShowMenuForPlayer                FIX_Menus
@@ -3890,6 +3975,34 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ShowMenuForPlayer                (0)
 #endif
 
+/**
+ * <fix name="HideMenuForPlayer">
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_HideMenuForPlayer</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
+ * </fix>
+ */
+
+/**
+ * <fix name="HideMenuForPlayer">
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_HideMenuForPlayer</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <post      href="http://forum.sa-mp.com/showpost.php?p=1787297" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_HideMenuForPlayer)
 	_FIXES_STOCK FIX_HideMenuForPlayer = FIX_Menus;
 	#define FIX_HideMenuForPlayer                FIX_Menus
@@ -3906,6 +4019,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_HideMenuForPlayer);
 	#define FIX_HideMenuForPlayer                (0)
 #endif
+
+/**
+ * <fix name="GetPlayerMenu">
+ *     <problem>
+ *         Returns previous menu when none is displayed.
+ *     </problem>
+ *     <solution>
+ *         Return the correct value.
+ *     </solution>
+ *     <see>FIXES_GetPlayerMenu</see>
+ *     <see>OnPlayerSelectedMenuRow</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_GetPlayerMenu)
 	_FIXES_STOCK FIX_GetPlayerMenu = _FIXES_DEFAULT;
@@ -3943,6 +4070,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_HideMenuForPlayer_2              (0)
 #endif
 
+/**
+ * <fix name="DisableMenu">
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_DisableMenu</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_DisableMenu)
 	_FIXES_STOCK FIX_DisableMenu = FIX_Menus;
 	#define FIX_DisableMenu                      FIX_Menus
@@ -3959,6 +4099,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_DisableMenu);
 	#define FIX_DisableMenu                      (0)
 #endif
+
+/**
+ * <fix name="DisableMenuRow">
+ *     <problem>
+ *         Crashes when passed an invalid menu ID.
+ *     </problem>
+ *     <solution>
+ *         Don't hide it when passed an invalid menu.
+ *     </solution>
+ *     <see>FIXES_DisableMenuRow</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_DisableMenuRow)
 	_FIXES_STOCK FIX_DisableMenuRow = FIX_Menus;
@@ -3977,6 +4130,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_DisableMenuRow                   (0)
 #endif
 
+/**
+ * <fix name="GetPlayerInterior">
+ *     <problem>
+ *         Always returns 0 for NPCs.
+ *     </problem>
+ *     <solution>
+ *         Return the correct value.
+ *     </solution>
+ *     <see>FIXES_GetPlayerInterior</see>
+ *     <see>FIXES_SetPlayerInterior</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_GetPlayerInterior)
 	_FIXES_STOCK FIX_GetPlayerInterior = _FIXES_DEFAULT;
 	#define FIX_GetPlayerInterior                _FIXES_DEFAULT
@@ -3993,6 +4161,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_GetPlayerInterior);
 	#define FIX_GetPlayerInterior                (0)
 #endif
+
+/**
+ * <fix name="ApplyAnimation">
+ *     <problem>
+ *         Passing an invalid animation library in ApplyAnimation causes a
+ *         client crash for streamed in players.
+ *     </problem>
+ *     <solution>
+ *         Block ApplyAnimation when an invalid library is passed.
+ *     </solution>
+ *     <see>FIXES_ApplyAnimation</see>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_ApplyAnimation)
 	_FIXES_STOCK FIX_ApplyAnimation = _FIXES_DEFAULT;
@@ -4011,6 +4193,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ApplyAnimation                   (0)
 #endif
 
+/**
+ * <fix name="ApplyAnimation_2">
+ *     <problem>
+ *         First time a library is used, it does nothing.
+ *     </problem>
+ *     <solution>
+ *         Apply animations twice when first using a library.
+ *     </solution>
+ *     <see>FIXES_ApplyAnimation</see>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author    href="https://github.com/Lordzy/" >Lordzy</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_ApplyAnimation_2)
 	_FIXES_STOCK FIX_ApplyAnimation_2 = _FIXES_DEFAULT;
 	#define FIX_ApplyAnimation_2                 _FIXES_DEFAULT
@@ -4027,6 +4224,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_ApplyAnimation_2);
 	#define FIX_ApplyAnimation_2                 (0)
 #endif
+
+/**
+ * <fix name="ApplyActorAnimation">
+ *     <problem>
+ *         Passing an invalid animation library in ApplyAnimation causes a
+ *         client crash for streamed in players.
+ *     </problem>
+ *     <solution>
+ *         Block ApplyActorAnimation when an invalid library is passed.
+ *     </solution>
+ *     <see>FIXES_ApplyActorAnimation</see>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_ApplyActorAnimation)
 	_FIXES_STOCK FIX_ApplyActorAnimation = _FIXES_DEFAULT;
@@ -4045,6 +4257,22 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_ApplyActorAnimation              (0)
 #endif
 
+/**
+ * <fix name="ApplyActorAnimation_2">
+ *     <problem>
+ *         First time a library is used, it does nothing.
+ *     </problem>
+ *     <solution>
+ *         Apply animations twice when first using a library.
+ *     </solution>
+ *     <see>FIXES_ApplyActorAnimation</see>
+ *     <author    href="https://github.com/simonepri/" >simonepri</author>
+ *     <author    href="https://github.com/Lordzy/" >Lordzy</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_ApplyActorAnimation_2)
 	_FIXES_STOCK FIX_ApplyActorAnimation_2 = _FIXES_DEFAULT;
 	#define FIX_ApplyActorAnimation_2            _FIXES_DEFAULT
@@ -4061,6 +4289,19 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_ApplyActorAnimation_2);
 	#define FIX_ApplyActorAnimation_2            (0)
 #endif
+
+/**
+ * <fix name="OnPlayerSpawn">
+ *     <problem>
+ *         San Andreas deducts $100 from players.
+ *     </problem>
+ *     <solution>
+ *         Give them it back.
+ *     </solution>
+ *     <see>OnPlayerSpawn</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_OnPlayerSpawn)
 	_FIXES_STOCK FIX_OnPlayerSpawn = _FIXES_DEFAULT;
@@ -4227,6 +4468,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_OnPlayerDisconnect               (0)
 #endif
 
+/**
+ * <fix name="CreatePlayerTextDraw">
+ *     <problem>
+ *         Crashes on a blank string.
+ *     </problem>
+ *     <solution>
+ *         Intercept blank strings.
+ *     </solution>
+ *     <see>FIXES_CreatePlayerTextDraw</see>
+ *     <author    >wups</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_CreatePlayerTextDraw)
 	_FIXES_STOCK FIX_CreatePlayerTextDraw = _FIXES_DEFAULT;
 	#define FIX_CreatePlayerTextDraw             _FIXES_DEFAULT
@@ -4244,6 +4499,21 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIX_CreatePlayerTextDraw             (0)
 #endif
 
+/**
+ * <fix name="CreatePlayerTextDraw_2">
+ *     <problem>
+ *         If the last character in the text is a space (" "), the text will all
+ *         be blank.
+ *     </problem>
+ *     <solution>
+ *         Remove space characters from the end of the string.
+ *     </solution>
+ *     <see>FIXES_CreatePlayerTextDraw</see>
+ *     <author    href="https://github.com/ziggi/" >ziggi</author>
+ *     <post      href="https://github.com/Open-GTO/sa-mp-fixes/issues/55" />
+ * </fix>
+ */
+
 #if _FIXES_IS_UNDEFINED(FIX_CreatePlayerTextDraw_2)
 	_FIXES_STOCK FIX_CreatePlayerTextDraw_2 = _FIXES_DEFAULT;
 	#define FIX_CreatePlayerTextDraw_2           _FIXES_DEFAULT
@@ -4260,6 +4530,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_JUST_PAWNDOC(FIX_CreatePlayerTextDraw_2);
 	#define FIX_CreatePlayerTextDraw_2           (0)
 #endif
+
+/**
+ * <fix name="PlayerTextDrawSetString">
+ *     <problem>
+ *         Crashes on a blank string and size greater than 1024.
+ *     </problem>
+ *     <solution>
+ *         Intercept blank strings and truncate long strings.
+ *     </solution>
+ *     <see>FIXES_PlayerTextDrawSetString</see>
+ *     <author    >TomTrox</author>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
 
 #if _FIXES_IS_UNDEFINED(FIX_PlayerTextDrawSetString)
 	_FIXES_STOCK FIX_PlayerTextDrawSetString = _FIXES_DEFAULT;
