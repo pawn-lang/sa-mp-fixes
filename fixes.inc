@@ -5729,6 +5729,34 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 
 /**
  * <remarks>
+ * Future-compatible tag definitions.  <c>BODY_PART:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and `E_BODY_PART:` when they are enabled.
+ * </remarks>
+ */
+
+#if _FIXES_IS_DEFINED(BODY_PART)
+	_FIXES_HIDE_PAWNDOC(BODY_PART);
+#else
+	_FIXES_SHOW_PAWNDOC(BODY_PART);
+	#define BODY_PART: _:
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>CAM_MODE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and `E_CAM_MODE:` when they are enabled.
+ * </remarks>
+ */
+
+#if _FIXES_IS_DEFINED(CAM_MODE)
+	_FIXES_HIDE_PAWNDOC(CAM_MODE);
+#else
+	_FIXES_SHOW_PAWNDOC(CAM_MODE);
+	#define CAM_MODE: _:
+#endif
+
+/**
+ * <remarks>
  * Because the default SA:MP includes missed this one.  Used internally via
  * <c>_FIXES_KEY_AIM</c>.
  * </remarks>
@@ -5844,114 +5872,47 @@ _FIXES_SHOW_PAWNDOC(_FIXES_WEAPON_SLOTS);
  */
 
 #if FIX_BODYPARTS
-	_FIXES_SHOW_PAWNDOC(BODY_PART_TORSO);
-	#define BODY_PART_TORSO                      (3)
+	enum BODY_PART:__BODY_PART
+	{
+		BODY_PART_TORSO     = 3,
+		BODY_PART_GROIN     = 4,
+		BODY_PART_LEFT_ARM  = 5,
+		BODY_PART_RIGHT_ARM = 6,
+		BODY_PART_LEFT_LEG  = 7,
+		BODY_PART_RIGHT_LEG = 8,
+		BODY_PART_HEAD      = 9
+	}
 #else
-	_FIXES_HIDE_PAWNDOC(BODY_PART_TORSO);
+	_FIXES_HIDE_PAWNDOC(BODYPARTS);
 #endif
 
 /**
  * <remarks>
- * Because the default SA:MP includes missed these.
- * </remarks>
- */
-
-#if FIX_BODYPARTS
-	_FIXES_SHOW_PAWNDOC(BODY_PART_GROIN);
-	#define BODY_PART_GROIN                      (4)
-#else
-	_FIXES_HIDE_PAWNDOC(BODY_PART_GROIN);
-#endif
-
-/**
- * <remarks>
- * Because the default SA:MP includes missed these.
- * </remarks>
- */
-
-#if FIX_BODYPARTS
-	_FIXES_SHOW_PAWNDOC(BODY_PART_LEFT_ARM);
-	#define BODY_PART_LEFT_ARM                   (5)
-#else
-	_FIXES_HIDE_PAWNDOC(BODY_PART_LEFT_ARM);
-#endif
-
-/**
- * <remarks>
- * Because the default SA:MP includes missed these.
- * </remarks>
- */
-
-#if FIX_BODYPARTS
-	_FIXES_SHOW_PAWNDOC(BODY_PART_RIGHT_ARM);
-	#define BODY_PART_RIGHT_ARM                  (6)
-#else
-	_FIXES_HIDE_PAWNDOC(BODY_PART_RIGHT_ARM);
-#endif
-
-/**
- * <remarks>
- * Because the default SA:MP includes missed these.
- * </remarks>
- */
-
-#if FIX_BODYPARTS
-	_FIXES_SHOW_PAWNDOC(BODY_PART_LEFT_LEG);
-	#define BODY_PART_LEFT_LEG                   (7)
-#else
-	_FIXES_HIDE_PAWNDOC(BODY_PART_LEFT_LEG);
-#endif
-
-/**
- * <remarks>
- * Because the default SA:MP includes missed these.
- * </remarks>
- */
-
-#if FIX_BODYPARTS
-	_FIXES_SHOW_PAWNDOC(BODY_PART_RIGHT_LEG);
-	#define BODY_PART_RIGHT_LEG                  (8)
-#else
-	_FIXES_HIDE_PAWNDOC(BODY_PART_RIGHT_LEG);
-#endif
-
-/**
- * <remarks>
- * Because the default SA:MP includes missed these.
- * </remarks>
- */
-
-#if FIX_BODYPARTS
-	_FIXES_SHOW_PAWNDOC(BODY_PART_HEAD);
-	#define BODY_PART_HEAD                       (9)
-#else
-	_FIXES_HIDE_PAWNDOC(BODY_PART_HEAD);
-#endif
-
-/**
- * <remarks>
- * <c>CAMERAMODES</c>
- *
  * Because the default SA:MP includes missed these.
  * </remarks>
  */
 
 #if FIX_CAMERAMODES
-	#define CAM_MODE_DISCONNECTED               (-1)
-	#define CAM_MODE_NONE                       (0)
-	#define CAM_MODE_BEHINDCAR                  (3)
-	#define CAM_MODE_FOLLOWPED                  (4)
-	#define CAM_MODE_SNIPER                     (7)
-	#define CAM_MODE_ROCKETLAUNCHER             (8)
-	#define CAM_MODE_FIXED                      (15)
-	#define CAM_MODE_1STPERSON                  (16)
-	#define CAM_MODE_CAM_ON_A_STRING            (18)
-	#define CAM_MODE_BEHINDBOAT                 (22)
-	#define CAM_MODE_CAMERA                     (46)
-	#define CAM_MODE_ROCKETLAUNCHER_HS          (51)
-	#define CAM_MODE_AIMWEAPON                  (53)
-	#define CAM_MODE_AIMWEAPON_FROMCAR          (55)
-	#define CAM_MODE_DW_HELI_CHASE              (56)
+	enum CAM_MODE:__CAM_MODE
+	{
+		CAM_MODE_DISCONNECTED      = -1,
+		CAM_MODE_NONE              = 0,
+		CAM_MODE_BEHINDCAR         = 3,
+		CAM_MODE_FOLLOWPED         = 4,
+		CAM_MODE_SNIPER            = 7,
+		CAM_MODE_ROCKETLAUNCHER    = 8,
+		CAM_MODE_FIXED             = 15,
+		CAM_MODE_1STPERSON         = 16,
+		CAM_MODE_CAM_ON_A_STRING   = 18,
+		CAM_MODE_BEHINDBOAT        = 22,
+		CAM_MODE_CAMERA            = 46,
+		CAM_MODE_ROCKETLAUNCHER_HS = 51,
+		CAM_MODE_AIMWEAPON         = 53,
+		CAM_MODE_AIMWEAPON_FROMCAR = 55,
+		CAM_MODE_DW_HELI_CHASE     = 56
+	}
+#else
+	_FIXES_HIDE_PAWNDOC(CAMERAMODES);
 #endif
 
 /**
