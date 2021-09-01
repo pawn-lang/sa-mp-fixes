@@ -13069,11 +13069,11 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 					VEHICLE_PARAMS:bonnet,
 					VEHICLE_PARAMS:boot,
 					VEHICLE_PARAMS:objective;
-				GetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
-				SetVehicleParamsEx__(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_ON, bonnet, boot, objective);
+				GetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective),
+				SetVehicleParamsEx__(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_ON, bonnet, boot, objective),
 
-				FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER;
-				FIXES_gsPlayerVehicleID[playerid] = vehicleid;
+				FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER,
+				FIXES_gsPlayerVehicleID[playerid] = vehicleid,
 				FIXES_gsPlayerVehicleTickCount[playerid] = GetTickCount__();
 			}
 		#endif
@@ -13107,7 +13107,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				{
 					if (GetPlayerVehicleID__(i) == vehicleid && GetPlayerState__(i) == PLAYER_STATE_DRIVER)
 					{
-						FIXES_gsJackedId[i] = playerid;
+						FIXES_gsJackedId[i] = playerid,
 						SetTimerEx__("FIXES_RemoveJackedId", 5000, false, "d", i);
 						break;
 					}
@@ -13251,7 +13251,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if FIX_OnPlayerEnterVehicle_3
 	static stock _FIXES_StopPlayerEnterVehicle(playerid)
 	{
-		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER;
+		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER,
 		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
 
 		new
@@ -13264,8 +13264,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			VEHICLE_PARAMS:boot,
 			VEHICLE_PARAMS:objective;
 
-		GetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
-		SetVehicleParamsEx__(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_OFF, bonnet, boot, objective);
+		GetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective),
+		SetVehicleParamsEx__(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_OFF, bonnet, boot, objective),
 
 		ClearAnimations__(playerid);
 	}
@@ -13284,41 +13284,38 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  BEGIN: GetPlayerMenu
 		// ======================
 		#if FIXES_Single
-			FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
-			new
-				ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
+			FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET,
+			row = FIXES_OnPlayerSelectedMenuRow(playerid, row);
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 			{
 				FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 			}
-			return ret;
+			return row;
 		#else
 			new
 				Menu:cur = FIXES_gsCurrentMenu[playerid];
 			_FIXES_IS_IN_CHARGE()
 			{
-				setproperty(5, FIXES_gscMenuProperty, _:cur);
-				CallRemoteFunction__(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
-				FIXES_gsCurrentMenu[playerid] = cur;
-				new
-					ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
+				setproperty(5, FIXES_gscMenuProperty, _:cur),
+				CallRemoteFunction__(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid),
+				FIXES_gsCurrentMenu[playerid] = cur,
+				row = FIXES_OnPlayerSelectedMenuRow(playerid, row);
 				if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 				{
 					FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 				}
-				return ret;
+				return row;
 			}
 			else
 			{
-				FIXES_gsCurrentMenu[playerid] = Menu:getproperty(5, FIXES_gscMenuProperty);
-				FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
-				new
-					ret = FIXES_OnPlayerSelectedMenuRow(playerid, row);
+				FIXES_gsCurrentMenu[playerid] = Menu:getproperty(5, FIXES_gscMenuProperty),
+				FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET,
+				row = FIXES_OnPlayerSelectedMenuRow(playerid, row);
 				if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 				{
 					FIXES_gsCurrentMenu[playerid] = cur;
 				}
-				return ret;
+				return row;
 			}
 		#endif
 		// ======================
@@ -13424,17 +13421,16 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 #if _FIX_Menus || FIX_API
 	stock Menu:FIXES_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0)
 	{
-		new
-			Menu:ret = CreateMenu__(title, columns, x, y, col1width, col2width);
-		if (_FIXES_IN_RANGE(_:ret, 0, MAX_MENUS))
+		columns = _:CreateMenu__(title, columns, x, y, col1width, col2width);
+		if (_FIXES_IN_RANGE(columns, 0, MAX_MENUS))
 		{
 			#if FIXES_Single
-				FIXES_gsValidMenus[_:ret >>> 5] |= 1 << (_:ret & 0x1F);
+				FIXES_gsValidMenus[columns >>> 5] |= 1 << (columns & 0x1F);
 			#else
-				CallRemoteFunction__("_FIXES_CreateMenu", FIXES_gscSpec@i, _:ret);
+				CallRemoteFunction__("_FIXES_CreateMenu", FIXES_gscSpec@i, columns);
 			#endif
 		}
-		return ret;
+		return columns;
 	}
 
 	#if _FIXES_SAMP
@@ -13466,7 +13462,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 
 	public _FIXES_SetPlayerMenu(playerid, Menu:menuid)
 	{
-		FIXES_gsSettings |= e_FIXES_SETTINGS_MENU_SET;
+		FIXES_gsSettings |= e_FIXES_SETTINGS_MENU_SET,
 		FIXES_gsCurrentMenu[playerid] = menuid;
 	}
 #else
@@ -13482,7 +13478,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 
 	public _FIXES_ClearPlayerMenu(playerid)
 	{
-		FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
+		FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET,
 		FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 	}
 #else
@@ -13575,11 +13571,7 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 #if FIX_AddMenuItem
 	stock FIXES_AddMenuItem(Menu:menuid, column, const menutext[])
 	{
-		if (FIXES_IS_VALID_MENU(menuid))
-		{
-			return AddMenuItem__(menuid, column, menutext);
-		}
-		return 0;
+		return FIXES_IS_VALID_MENU(menuid) ? AddMenuItem__(menuid, column, menutext) : 0;
 	}
 
 	#if _FIXES_SAMP
@@ -13609,11 +13601,7 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
 #if FIX_SetMenuColumnHeader
 	stock FIXES_SetMenuColumnHeader(Menu:menuid, column, const columnheader[])
 	{
-		if (FIXES_IS_VALID_MENU(menuid))
-		{
-			return SetMenuColumnHeader__(menuid, column, columnheader);
-		}
-		return 0;
+		return FIXES_IS_VALID_MENU(menuid) ? SetMenuColumnHeader__(menuid, column, columnheader) : 0;
 	}
 
 	#if _FIXES_SAMP
@@ -13789,11 +13777,7 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 #if FIX_DisableMenuRow
 	stock FIXES_DisableMenuRow(Menu:menuid, row)
 	{
-		if (FIXES_IS_VALID_MENU(menuid))
-		{
-			return DisableMenuRow__(menuid, row);
-		}
-		return 0;
+		return FIXES_IS_VALID_MENU(menuid) ? DisableMenuRow__(menuid, row) : 0;
 	}
 
 	#if _FIXES_SAMP
@@ -13823,11 +13807,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 #if FIX_GetPlayerMenu
 	stock Menu:FIXES_GetPlayerMenu(playerid)
 	{
-		if (_FIXES_IS_VALID_PLAYER(playerid))
-		{
-			return FIXES_gsCurrentMenu[playerid];
-		}
-		return Menu:INVALID_MENU;
+		return _FIXES_IS_VALID_PLAYER(playerid) ? FIXES_gsCurrentMenu[playerid] : (Menu:INVALID_MENU);
 	}
 
 	#if _FIXES_SAMP
@@ -14250,11 +14230,7 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 	{
 		new
 			ret = FIXES_GET(PlayerWeapon, playerid);
-		if (ret == -1)
-		{
-			return GetPlayerWeapon__(playerid);
-		}
-		return ret;
+		return ret == -1 ? GetPlayerWeapon__(playerid) : ret;
 	}
 
 	#if _FIXES_SAMP
