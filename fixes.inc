@@ -196,142 +196,145 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </section>
  *
  * <ul>
- * <li>All globals should be <c>static stock</c> whenever possible (so they can only be
- *     accessed from this one file).
- * </li>
- * <li>Statics must start with <c>FIXES_gs</c>, and all other globals with <c>FIXES_g</c>.
- * </li>
- * <li>All functions not overriding existing functions must start with <c>FIXES_</c>.
- * </li>
+ * <li>All globals should be <c>static stock</c> whenever possible (so they can
+ *     only be accessed from this one file).</li>
+ * <li>Statics must start with <c>FIXES_gs</c>, and all other globals with
+ *     <c>FIXES_g</c>.</li>
+ * <li>All functions not overriding existing functions must start with
+ *     <c>FIXES_</c>.</li>
  * <li>Macros must be upper case, use underscores, and start <c>FIXES_</c>:
- *     <c>FIXES_LIKE_THIS</c>.
- * </li>
+ *     <c>FIXES_LIKE_THIS</c>.</li>
  * <li>Functions should be upper camel case (as the original functions are)
- *     <c>FIXES_LikeThis</c>.
- * </li>
- * <li>Globals (after the prefix) should be upper camel case <c>LikeThis</c>, and locals
- *     lower camel case <c>likeThis</c>.
- * </li>
- * <li>ALS should be used to hook functions and callbacks.  See this topic for more
- *    details:
+ *     <c>FIXES_LikeThis</c>.</li>
+ * <li>Globals (after the prefix) should be upper camel case <c>LikeThis</c>,
+ *     and locals lower camel case <c>likeThis</c>.</li>
+ * <li>ALS should be used to hook functions and callbacks.  See
+ *     <a href=http://forum.sa-mp.com/showthread.php?t=570910>this topic</a> for
+ *     more details.</li>
+ * <li>The ALS prefix for chaining is <c>FIXES_</c>.</li>
+ * <li>When redefining a native, add a <c>BAD_</c> external name declaration
+ *     with the <c>_ALS_</c> definition so that others may use the original
+ *     native if they so desire (with the caveat that it may break all fixes).
+ *     Note the <c>BAD_</c> name is meant to indicate the possibility of
+ *     breaking the fix, not a comment on the original native function.</li>
+ * <li>The ALS hook defines used here are a little different to the normal ones
+ *     as this file assumes that it is always first.  The pattern is:
  *
- *        http://forum.sa-mp.com/showthread.php?t=570910
- * </li>
- * <li>The ALS prefix for chaining is <c>FIXES_</c>.
- * </li>
- * <li>When redefining a native, add a <c>BAD_</c> external name declaration with the
- *     <c>_ALS_</c> definition so that others may use the original native if they so
- *     desire (with the caveat that it may break all fixes).  Note the <c>BAD_</c>
- *     name is meant to indicate the possibility of breaking the fix, not a
- *     comment on the original native function.
- * </li>
- * <li>The ALS hook defines used here are a little different to the normal ones as
- *     this file assumes that it is always first.  The pattern is:
- * <code>
- *         ///
- *         /// <remarks>Information about fix here</remarks>
- *         /// <fixes>NameOfFixHere</fixes>
- *         ///
- *         
- *         #if _FIXES_SAMP &amp;&amp; defined _ALS_NameOfFixHere
- *         	#error _ALS_NameOfFixHere defined
+ *     <code>
+ *         ///                                                                  <br />
+ *         /// <remarks>Information about fix here</remarks>                    <br />
+ *         /// <fixes>NameOfFixHere</fixes>                                     <br />
+ *         ///                                                                  <br />
+ *                                                                              <br />
+ *         #if _FIXES_SAMP &amp;&amp; defined _ALS_NameOfFixHere                <br /><indent />
+ *             #error _ALS_NameOfFixHere defined                                <br />
+ *         #endif                                                               <br />
+ *         native BAD_NameOfFixHere(params) = NameOfFixHere;                    <br />
+ *                                                                              <br />
+ *         ///                                                                  <br />
+ *         /// <remarks>Information about fix here</remarks>                    <br />
+ *         /// <fixes>NameOfFixHere</fixes>                                     <br />
+ *         ///                                                                  <br />
+ *                                                                              <br />
+ *         #if FIX_NameOfFixHere                                                <br /><indent />
+ *             stock FIXES_NameOfFixHere(params)                                <br /><indent />
+ *             {                                                                <br /><indent /><indent />
+ *                 return 0;                                                    <br /><indent />
+ *             }                                                                <br />
+ *                                                                              <br /><indent />
+ *             // The trailing `(` is VERY important to keep future `native X() = Y;`s working. <br /><indent />
+ *             #if _FIXES_SAMP                                                  <br /><indent /><indent />
+ *                 #define _ALS_NameOfFixHere                                   <br /><indent /><indent />
+ *                 #define NameOfFixHere( FIXES_NameOfFixHere(                  <br /><indent />
+ *             #endif                                                           <br /><indent />
+ *             // `__` suffix version for hidden calls to the originals.        <br /><indent />
+ *             #define _ALS_NameOfFixHere__                                     <br /><indent />
+ *             #define NameOfFixHere__( FIXES_NameOfFixHere(                    <br />
  *         #endif
- *         native BAD_NameOfFixHere(params) = NameOfFixHere;
- *         
- *         ///
- *         /// <remarks>Information about fix here</remarks>
- *         /// <fixes>NameOfFixHere</fixes>
- *         ///
- *         
- *         #if FIX_NameOfFixHere
- *             stock FIXES_NameOfFixHere(params)
- *             {
- *                 return 0;
- *             }
- *         
- *             // The trailing `(` is VERY important to keep future `native X() = Y;`s working.
- *             #if _FIXES_SAMP
- *                 #define _ALS_NameOfFixHere
- *                 #define NameOfFixHere( FIXES_NameOfFixHere(
- *             #endif
- *             // `__` suffix version for hidden calls to the originals.
- *             #define _ALS_NameOfFixHere__
- *             #define NameOfFixHere__( FIXES_NameOfFixHere(
- *         #endif
- * </code>
- *    A copyable version of this pattern is at the end of the file.
- * </li>
- * <li>Enums start with <c>E_</c> or <c>e_</c> depending on type, then follow rules for
- *     macros.
- * </li>
- * <li>NO libraries should be included - not even the default SA:MP ones.  Let the
- *     user do it.
- * </li>
- * <li>Due to the above rule, you cannot assume any third party libraries AT ALL, so
- *     do not use them.  This can lead to some code duplication, but also means
- *     that the version of the code used here can be tailored for optimisations.
- * </li>
- * <li>Certain terms may be shortened when dealing with long callback names to avoid
- *     compile truncation warnings (max symbol length is 31).  Current list:
- * <ul>
+ *     </code>
+ *
+ *     A copyable version of this pattern is at the end of the file.</li>
+ * <li>Enums start with <c>E_</c> or <c>e_</c> depending on type, then follow
+ *     rules for macros.</li>
+ * <li>NO libraries should be included - not even the default SA:MP ones.  Let
+ *     the user do it.  This is simplified by having copies of all natives.</li>
+ * <li>Due to the above rule, you cannot assume any third party libraries AT
+ *     ALL, so do not use them.  This can lead to some code duplication, but
+ *     also means that the version of the code used here can be tailored for
+ *     optimisations.</li>
+ * <li>Certain terms may be shortened when dealing with long callback names to
+ *     avoid compile truncation warnings (max symbol length is 31).  Current
+ *     list:
+ *     <ul>
  *         <li><c>Checkpoint</c>: <c>CP</c></li>
  *         <li><c>Update   </c>: <c>Upd</c></li>
  *         <li><c>TextDraw </c>: <c>TD</c></li>
  *         <li><c>Object   </c>: <c>Obj</c></li>
  *         <li><c>Player   </c>: <c>P</c></li>
- * </ul></li>
- * <li>Document all fixes at the top of the file, and highlight code.
- * </li>
- * <li>4 space TABS - do not edit this file in PAWNO unless you know how to correct
- *     the indentation.
- * </li>
+ *     </ul></li>
+ * <li>Document all fixes at the top of the file, and highlight code.</li>
+ * <li>4 space TABS - do not edit this file in PAWNO unless you know how to
+ *     correct the indentation.</li>
  * <li>All rules have exceptions, but they must be justifiable.  For example
  *     <c>IS_FILTERSCRIPT</c> is a global variable, but is not called
- *     <c>FIXES_gIsFilterscript</c> to better match the <c>FILTERSCRIPT</c> macro it
- *     replaces.  Now a macro for <c>_FIXES_gIsFilterscript</c>.
- * </li>
- * <li>Variables which need to be fully global (i.e. not <c>static</c>), but should not
- *     actually be used by other people (e.g. appear inside a macro) should be
- *     prefixed with <c>_FIXES</c> instead of <c>FIXES</c> to indicate their private use.
- * </li>
- * <li>No comments beyond the end of column 80 (where the line in <c>PAWNO</c> is).
- * </li>
+ *     <c>FIXES_gIsFilterscript</c> to better match the <c>FILTERSCRIPT</c>
+ *     macro it replaces.  Now a macro for <c>_FIXES_gIsFilterscript</c>.</li>
+ * <li>Variables which need to be fully global (i.e. not <c>static</c>), but
+ *     should not actually be used by other people (e.g. appear inside a macro)
+ *     should be prefixed with <c>_FIXES</c> instead of <c>FIXES</c> to indicate
+ *     their private use.</li>
+ * <li>No comments beyond the end of column 80 (where the line in <em>PAWNO</em>
+ *     is).</li>
  * <li>If a bug is fixed in some version of the server it can be conditionally
  *     included here.  This is done by checking for the existance of a native
  *     function introduced in the same server version.  For example
- *     <c>TogglePlayerControllable</c> was fixed in 0.3eRC6, the same time as the
- *     <c>SetObjectMaterial</c> native was introduced, thus the inclusion becomes:
- * <code>
- *         #if !defined FIX_TogglePlayerControllable                            <br /><indent />
- *             #if defined SetObjectMaterial                                    <br /><indent /><indent />
- *                 #define FIX_TogglePlayerControllable (0)                     <br /><indent />
+ *     <c>TogglePlayerControllable</c> was fixed in 0.3eRC6, the same time as
+ *     the <c>SetObjectMaterial</c> native was introduced, thus the inclusion
+ *     becomes:
+ *
+ *     <code>
+ *         #if _FIXES_IS_UNDEFINED(FIX_NameOfFixHere)                           <br /><indent />
+ *             #if defined NativeInFixRelease                                   <br /><indent /><indent />
+ *                 #if FIXES_EnableDeprecated                                   <br /><indent /><indent /><indent />
+ *                     static _FIXES_STOCK FIX_NameOfFixHere = FIXES_EnableDeprecated; <br /><indent /><indent />
+ *                 #else                                                        <br /><indent /><indent /><indent />
+ *                     _FIXES_SHOW_PAWNDOC(FIX_NameOfFixHere);                  <br /><indent /><indent />
+ *                 #endif                                                       <br /><indent /><indent />
+ *                 #define FIX_NameOfFixHere                FIXES_EnableDeprecated <br /><indent />
  *             #else                                                            <br /><indent /><indent />
- *                 #define FIX_TogglePlayerControllable (1)                     <br /><indent />
+ *                 static _FIXES_STOCK FIX_NameOfFixHere = _FIXES_DEFAULT;      <br /><indent /><indent />
+ *                 #define FIX_NameOfFixHere                _FIXES_DEFAULT      <br /><indent />
  *             #endif                                                           <br />
- *         #elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)                <br /><indent />
- *             #undef FIX_TogglePlayerControllable                              <br /><indent />
- *             #define FIX_TogglePlayerControllable     (2)                     <br />
+ *         #elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)                           <br /><indent />
+ *             #undef FIX_NameOfFixHere                                         <br /><indent />
+ *             static stock FIX_NameOfFixHere = 2;                              <br /><indent />
+ *             #define FIX_NameOfFixHere                    (2)                 <br />
+ *         #elseif FIX_NameOfFixHere                                            <br /><indent />
+ *             #undef FIX_NameOfFixHere                                         <br /><indent />
+ *             static stock FIX_NameOfFixHere = 1;                              <br /><indent />
+ *             #define FIX_NameOfFixHere                    (1)                 <br />
+ *         #else                                                                <br /><indent />
+ *             #undef FIX_NameOfFixHere                                         <br /><indent />
+ *             static stock FIX_NameOfFixHere = 0;                              <br /><indent />
+ *             #define FIX_NameOfFixHere                    (0)                 <br />
  *         #endif
- * </code>
+ *     </code>
+ *
  *     This only includes this fix if that native doesn't exist.  A copyable
- *     version of this pattern is at the end of the file.
- * </li>
+ *     version of this pattern is at the end of the file.</li>
  * <li>To reduce general memory consumption, strings in this include are stored
  *     globally in constant arrays and referenced.  This is EXACTLY as fast as
  *     using the string constants directly, but means that strings are not
  *     stored in the assembly multiple times (unless the string is only used
- *     once, in which case it's more work for no gain).  See this post for more
- *     details:
- *
- *         <a href="http://forum.sa-mp.com/showpost.php?p=1795601" />
- * </li>
+ *     once, in which case it's more work for no gain).  See
+ *     <a href="<a href="http://forum.sa-mp.com/showpost.php?p=1795601" />this
+ *     post</a> for more details.</li>
  * <li>DO NOT EDIT THIS FILE IN PAWNO OR ON GITHUB.  Both mess up the spacing -
  *     GitHub in an almost irreversible way (except for the fact that nothing is
  *     irreversible in source control.  Pawno spacing is less tricky to solve,
  *     and can be worked around if you know when it uses spaces and tabs - in
  *     short, always write code first THEN indent and you won't have a problem
- *     (in that editor at least, that is normally a bad way to write code).
- * </li>
+ *     (in that editor at least, that is normally a bad way to write code).</li>
  * </ul>
  * <section>
  *             Documentation Explanation
@@ -910,9 +913,10 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 /**
  * <fix name="API">
  *     <problem>
- *         fixes.inc isn't intended to extend the SA:MP API, but has a lot of information internally
- *         that can be useful to other scripts.  By not exposing this data, we complicate and bloat
- *         scripts by requiring them to re-implement said functionality.
+ *         fixes.inc isn't intended to extend the SA:MP API, but has a lot of
+ *         information internally that can be useful to other scripts.  By not
+ *         exposing this data, we complicate and bloat scripts by requiring them
+ *         to re-implement said functionality.
  *     </problem>
  *     <solution>
  *         Expose the data, behind a tightly controlled API.
@@ -1777,10 +1781,12 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 /**
  * <fix name="SilentTeleport">
  *     <problem>
- *         Player teleports silently while trying to enter a vehicle as that vehicle teleports/changes original interior.
+ *         Player teleports silently while trying to enter a vehicle as that
+ *         vehicle teleports/changes original interior.
  *     </problem>
  *     <solution>
- *         Stop the player from teleporting by using 'ClearAnimations' before the teleport happens.
+ *         Stop the player from teleporting by using 'ClearAnimations' before
+ *         the teleport happens.
  *     </solution>
  *	   <see>OnPlayerEnterVehicle</see>
  *	   <see>OnPlayerInteriorChange</see>
@@ -1900,7 +1906,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 /**
  * <fix name="AttachTrailerToVehicle">
  *     <problem>
- *         When trailerid is equal to vehicleid and passenger is in vehicleid, it starts spinning.
+ *         When trailerid is equal to vehicleid and passenger is in vehicleid,
+ *         it starts spinning.
  *     </problem>
  *     <solution>
  *         Check if trailerid and vehicleid are equal.
@@ -1930,15 +1937,18 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 /**
  * <fix name="GetVehicleComponentInSlot">
  *     <problem>
- *         The function GetVehicleComponentInSlot doesn't work for CARMODTYPE_STEREO.  Both front
- *         bull bars and front bumper components are saved in the CARMODTYPE_FRONT_BUMPER slot.  If
- *         a vehicle has both of them installed, this function will only return the one which was
- *         installed last.  Both rear bull bars and rear bumper components are saved in the
- *         <c>CARMODTYPE_REAR_BUMPER</c> slot.  If a vehicle has both of them installed this
- *         function will only return the one which was installed last.
+ *         The function GetVehicleComponentInSlot doesn't work for
+ *         <c>CARMODTYPE_STEREO</c>.  Both front bull bars and front bumper
+ *         components are saved in the <c>CARMODTYPE_FRONT_BUMPER</c> slot.  If
+ *         a vehicle has both of them installed, this function will only return
+ *         the one which was installed last.  Both rear bull bars and rear
+ *         bumper components are saved in the <c>CARMODTYPE_REAR_BUMPER</c>
+ *         slot.  If a vehicle has both of them installed this function will
+ *         only return the one which was installed last.
  *     </problem>
  *     <solution>
- *         Hook functions and store components. This uses some code from vSync library.
+ *         Hook functions and store components. This uses some code from vSync
+ *         library.
  *     </solution>
  *     <see>FIXES_GetVehicleComponentInSlot</see>
  *     <author href="https://github.com/Mergevos/">Mergevos</author>
@@ -4403,7 +4413,8 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 /**
  * <fix name="ispacked">
  *     <problem>
- *         Returns false when the string is packed and starts with a symbol with code 128 and above.
+ *         Returns false when the string is packed and starts with a symbol
+ *         with code 128 and above.
  *     </problem>
  *     <solution>
  *         Check the string manually.
@@ -5245,12 +5256,15 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 /**
  * <fix name="Pawndoc">
  *     <problem>
- *         Pawndoc comments aren't ignored inside <c>#if</c> blocks, nor used on macros.
+ *         Pawndoc comments aren't ignored inside <c>#if</c> blocks, nor used
+ *         on macros.
  *     </problem>
  *     <solution>
- *         Place an unconditional <c>const</c> directly after comments, to which the documentation
- *         is attached.  All this "fix" does is provide a meaningful name, and does this on the
- *         first pass for comments you want to keep on macros.
+ *         Place an unconditional <c>const</c> directly after comments, to which
+ *         the documentation is attached.  This fix provides three macros, which
+ *         define and detect additional unused functions, so that the correct
+ *         branches in any <c>#if defined</c> code is still taken in the second
+ *         compiler pass.
  *     </solution>
  *     <author href="https://github.com/Y-Less">Y_Less</author>
  *     <post href="https://github.com/pawn-lang/compiler/issues/674#issuecomment-908927779" />
@@ -5435,7 +5449,8 @@ _FIXES_SHOW_PAWNDOC(FIXES_TAG_CORRECT);
 
 /**
  * <remarks>
- * Is the extended API defined for use?  Better for testing (<c>#if defined FIXES_API</c>).
+ * Is the extended API defined for use?  Better for testing
+ * (<c>#if defined FIXES_API</c>).
  * </remarks>
  */
 
@@ -18730,7 +18745,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 // Fix inclusion template.
 
 /**
- * <fix name="" disabled="true" fixed="">
+ * <fix name="NameOfFixHere" disabled="false">
  *     <problem>
  *         A description of the problem.
  *     </problem>
@@ -18746,6 +18761,48 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #if _FIXES_IS_UNDEFINED(FIX_NameOfFixHere)
 	static _FIXES_STOCK FIX_NameOfFixHere = _FIXES_DEFAULT;
 	#define FIX_NameOfFixHere                    _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)
+	#undef FIX_NameOfFixHere
+	static stock FIX_NameOfFixHere = 2;
+	#define FIX_NameOfFixHere                    (2)
+#elseif FIX_NameOfFixHere
+	#undef FIX_NameOfFixHere
+	static stock FIX_NameOfFixHere = 1;
+	#define FIX_NameOfFixHere                    (1)
+#else
+	#undef FIX_NameOfFixHere
+	static stock FIX_NameOfFixHere = 0;
+	#define FIX_NameOfFixHere                    (0)
+#endif
+
+// Fix natively fixed inclusion template.
+
+/**
+ * <fix name="NameOfFixHere" disabled="true" fixed="version">
+ *     <problem>
+ *         A description of the problem.
+ *     </problem>
+ *     <solution>
+ *         A description of the solution.
+ *     </solution>
+ *     <see>FIXES_FunctionWithFixIn</see>
+ *     <author href="github.com/account">Name</author>
+ *     <post href="burgershot.gg/post" />
+ * </fix>
+ */
+
+#if _FIXES_IS_UNDEFINED(FIX_NameOfFixHere)
+	#if defined NativeInFixRelease
+		#if FIXES_EnableDeprecated
+			static _FIXES_STOCK FIX_NameOfFixHere = FIXES_EnableDeprecated;
+		#else
+			_FIXES_SHOW_PAWNDOC(FIX_NameOfFixHere);
+		#endif
+		#define FIX_NameOfFixHere                FIXES_EnableDeprecated
+	#else
+		static _FIXES_STOCK FIX_NameOfFixHere = _FIXES_DEFAULT;
+		#define FIX_NameOfFixHere                _FIXES_DEFAULT
+	#endif
 #elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)
 	#undef FIX_NameOfFixHere
 	static stock FIX_NameOfFixHere = 2;
