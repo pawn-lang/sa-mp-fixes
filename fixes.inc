@@ -5549,7 +5549,7 @@ _FIXES_SHOW_PAWNDOC(bool:_FIXES_NO_RANGE(min, value, max)) {}
  * </remarks>
  */
 
-_FIXES_SHOW_PAWNDOC(_FIXES_FOREACH(const function[], ...)) {}
+_FIXES_SHOW_PAWNDOC(_FIXES_FORWARD(const function[], ...)) {}
 #define _FIXES_FORWARD%0(%1); \
 	forward%0(%1); \
 	public%0(%1) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 1; } \
