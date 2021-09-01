@@ -494,12 +494,12 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * <p/>
  * <code>
  *     // Equivalent to `#if defined MACRO_NAME`                                <br />
- *     #if _FIXES_IS_DEFINED(MACRO_NAME)                                        <br />
- *         // `#define MACRO_NAME` exists previously.                           <br />
+ *     #if _FIXES_IS_DEFINED(MACRO_NAME)                                        <br /><indent />
+ *         // `#define MACRO_NAME` exists previously.                           <br /><indent />
  *         _FIXES_HIDE_PAWNDOC(MACRO_NAME);                                     <br />
- *     #else                                                                    <br />
- *         // Doesn't exist.  Document it and define it.                        <br />
- *         _FIXES_SHOW_PAWNDOC(MACRO_NAME(parameters)) {}                       <br />
+ *     #else                                                                    <br /><indent />
+ *         // Doesn't exist.  Document it and define it.                        <br /><indent />
+ *         _FIXES_SHOW_PAWNDOC(MACRO_NAME(parameters)) {}                       <br /><indent />
  *         #define MACRO_NAME(%0) (%0)                                          <br />
  *     #endif
  * </code>
@@ -9571,6 +9571,8 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	forward bool:operator>=(File:a, File:b);
 	forward bool:operator>=(_:a, File:b);
 	forward bool:operator>=(File:a, _:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FILE_MATHS);
 #endif
 
 /*
@@ -9762,8 +9764,6 @@ static stock _FIXES_RemoveInternal(array[], value, size)
  */
 
 #if !FIXES_Single
-	forward _FIXES_DetermineOrder();
-
 	static FIXES_DetermineOrder()
 	{
 		deleteproperty(5, FIXES_gscOrderProperty),
@@ -9773,6 +9773,10 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 		deleteproperty(5, FIXES_gscNoGMProperty),
 		CallRemoteFunction__(FIXES_gscDetermineOrder, FIXES_gscSpec@);
 	}
+
+	forward _FIXES_DetermineOrder();
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_DetermineOrder);
 #endif
 
 /**
@@ -9830,6 +9834,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 		#endif
 	}
 #else
+	_FIXES_HIDE_PAWNDOC(_FIXES_CheckServerRoot);
 	#define _FIXES_CheckServerRoot();
 #endif
 
@@ -10347,6 +10352,8 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawTextSize__(playerid, t, 200.0, 620.0);
 		}
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_CreateGameTextDraws);
 #endif
 
 /**
@@ -10394,6 +10401,8 @@ static stock _FIXES_CheckMaxPlayers()
 
 		return -1;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_GetAnimLibIndex);
 #endif
 
 #if FIX_CreateVehicle || FIX_API
@@ -10873,6 +10882,8 @@ _FIXES_FORWARD FIXES_OnGameModeInit();
 	#endif
 	#define _ALS_OnClientCheckResponse
 	#define OnClientCheckResponse(%0) FIXES_OnClientCheckResponse(%0) <OnClientCheckResponse : OnClientCheckResponse_GM>
+#else
+	_FIXES_HIDE_PAWNDOC(OnClientCheckResponse);
 #endif
 
 /**
@@ -12220,6 +12231,8 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 	forward FIXES_OnPlayerCommandText(playerid, cmdtext[]);
 	public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 0; }
 	public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <> { return 0; }
+#else
+	_FIXES_HIDE_PAWNDOC(OnPlayerCommandText);
 #endif
 
 /**
@@ -12826,7 +12839,13 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#endif
 	native BAD_SetTimer(const funcname[], interval, repeating) = SetTimer;
 	native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+#else
+	_FIXES_HIDE_PAWNDOC(BAD_SetTimer);
 #endif
+
+/**
+ * <fixes>SetTimer</fixes>
+ */
 
 #if !FIX_SetTimer
 	static
@@ -12847,6 +12866,10 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		return ret;
 	}
 
+/**
+ * <fixes>SetTimer</fixes>
+ */
+
 #if FIX_SetTimer
 	#if _FIXES_SAMP
 		#if defined _ALS_SetTimer
@@ -12858,8 +12881,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#endif
 	#define _ALS_SetTimer__
 	#define SetTimer__( FIXES_SetTimer(
-#else
-	_FIXES_HIDE_PAWNDOC(SetTimer);
 #endif
 
 #if !FIX_SetTimer
@@ -12922,8 +12943,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#endif
 	#define _ALS_SetTimerEx__
 	#define SetTimerEx__( FIXES_SetTimerEx(
-#else
-	_FIXES_HIDE_PAWNDOC(SetTimerEx);
 #endif
 
 /**
@@ -12931,6 +12950,15 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  */
 
 #if FIX_DriveBy
+
+	static stock _FIXES_HideDriveByWeapon(playerid)
+	{
+		FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon__(playerid),
+		FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
+		SetPlayerArmedWeapon__(playerid, 0),
+		ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1),
+		SetTimerEx__(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
+	}
 	forward _FIXES_DriveBy(playerid);
 
 	public  _FIXES_DriveBy(playerid)
@@ -12941,15 +12969,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		}
 		return FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_DRIVE_BY;
 	}
-
-	static stock _FIXES_HideDriveByWeapon(playerid)
-	{
-		FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon__(playerid),
-		FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
-		SetPlayerArmedWeapon__(playerid, 0),
-		ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1),
-		SetTimerEx__(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
-	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_HideDriveByWeapon);
 #endif
 
 /**
@@ -13000,6 +13021,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if FIX_SilentTeleport
 	forward FIXES_RemoveJackedId(playerid);
 	public FIXES_RemoveJackedId(playerid) return FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_RemoveJackedId);
 #endif
 
 /**
@@ -13177,6 +13200,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_BLOCK | type,
 			0;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_BlockUpdate);
 #endif
 
 /**
@@ -13200,7 +13225,11 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				FIXES_gsPlayerBools[playerid] &= ~(e_FIXES_BOOLS_BLOCK | e_FIXES_BOOLS_DIALOG_BLOCK);
 			}
 		}
+	#else
+		_FIXES_HIDE_PAWNDOC(@FIXES_BlockUpdate);
 	#endif
+#else
+	_FIXES_HIDE_PAWNDOC(@FIXES_BlockUpdate);
 #endif
 
 /**
@@ -13369,7 +13398,10 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  */
 
 #if _FIX_Menus || FIX_API
+	_FIXES_SHOW_PAWNDOC(FIXES_IS_VALID_MENU(Menu:menuid)) {}
 	#define FIXES_IS_VALID_MENU(%0) (_FIXES_IN_RANGE(_:(%0), 0, MAX_MENUS) && (FIXES_gsValidMenus[_:(%0) >>> 5] & (1 << (_:(%0) & 0x1F))))
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_IS_VALID_MENU);
 #endif
 
 /**
@@ -13382,15 +13414,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
 
 #if _FIX_Menus || FIX_API
-	#if !FIXES_Single
-		forward _FIXES_CreateMenu(ret);
-
-		public _FIXES_CreateMenu(ret)
-		{
-			FIXES_gsValidMenus[ret >>> 5] |= 1 << (ret & 0x1F);
-		}
-	#endif
-
 	stock Menu:FIXES_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0)
 	{
 		new
@@ -13413,6 +13436,15 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 
 	#define _ALS_CreateMenu__
 	#define CreateMenu__( FIXES_CreateMenu(
+
+	#if !FIXES_Single
+		forward _FIXES_CreateMenu(ret);
+
+		public _FIXES_CreateMenu(ret)
+		{
+			FIXES_gsValidMenus[ret >>> 5] |= 1 << (ret & 0x1F);
+		}
+	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(CreateMenu);
 #endif
@@ -13429,6 +13461,8 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 		FIXES_gsSettings |= e_FIXES_SETTINGS_MENU_SET;
 		FIXES_gsCurrentMenu[playerid] = menuid;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_SetPlayerMenu);
 #endif
 
 /**
@@ -13443,6 +13477,8 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
 		FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_ClearPlayerMenu);
 #endif
 
 /**
@@ -14417,6 +14453,8 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 			}
 			return 0;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_SetCheckpoint);
 #endif
 
 /**
@@ -14518,6 +14556,8 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 			}
 			return 0;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_SetRaceCheckpoint);
 #endif
 
 /**
@@ -14585,6 +14625,8 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 
 	#define _ALS_DisablePlayerRaceCP
 	#define DisablePlayerRaceCheckpoint( FIXES_DisablePlayerRaceCP(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_DisablePlayerRaceCP);
 #endif
 
 /**
@@ -14636,6 +14678,8 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 		}
 		return 1;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_HideGameTextForPlayer);
 #endif
 
 /**
@@ -14649,6 +14693,8 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 	{
 		return _FIXES_HideGameTextForPlayer(playerid, style, FIXES_gsPlayerPGTShown[style], FIXES_gsGTTimer[style]);
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_HideGameTextTimer);
 #endif
 
 /**
@@ -14680,6 +14726,8 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 		}
 		return 1;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_GameTextShow);
 #endif
 
 /**
@@ -14790,18 +14838,12 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_HideGameText
-	//stock FIXES_HideGameTextForAll(style)
-	//{
-	//	if (FIXES_gsGTTimer[style][MAX_PLAYERS] != 0)
-	//	{
-	//		KillTimer__(FIXES_gsGTTimer[style][MAX_PLAYERS]);
-	//		FIXES_gsGTTimer[style][MAX_PLAYERS] = 0;
-	//	}
-	//	return GameTextForAll__(FIXES_gcSpace, 0, style);
-	//}
+	_FIXES_SHOW_PAWNDOC(HideGameTextForAll(style));
 
 	#define _ALS_HideGameTextForAll
 	#define HideGameTextForAll(%0) GameTextForAll(FIXES_gcNull, 0, (%0))
+#else
+	_FIXES_HIDE_PAWNDOC(HideGameTextForAll);
 #endif
 
 /**
@@ -14813,22 +14855,12 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_HideGameText
-	//stock FIXES_HideGameTextForPlayer(playerid, style)
-	//{
-	//	if (_FIXES_IS_VALID_PLAYER(playerid))
-	//	{
-	//		if (FIXES_gsGTTimer[style][playerid] != 0)
-	//		{
-	//			KillTimer__(FIXES_gsGTTimer[style][playerid]);
-	//			FIXES_gsGTTimer[style][playerid] = 0;
-	//		}
-	//		return GameTextForPlayer__(playerid, FIXES_gcSpace, 0, style);
-	//	}
-	//	return 0;
-	//}
+	_FIXES_SHOW_PAWNDOC(HideGameTextForPlayer(playerid, style));
 
 	#define _ALS_HideGameTextForPlayer
 	#define HideGameTextForPlayer(%0,%1) GameTextForPlayer((%0), FIXES_gcNull, 0, (%1))
+#else
+	_FIXES_HIDE_PAWNDOC(HideGameTextForPlayer);
 #endif
 
 /**
@@ -14844,7 +14876,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 #if FIX_CreatePlayerTextDraw || FIX_CreatePlayerTextDraw_2
-
 	#if FIX_CreatePlayerTextDraw
 		#define _FIXES_PASS_STRING(%0(%1,%2,%3,%4)) (_FIXES_IS_NULL(%4) ? %0(%1,%2,%3,FIXES_gsSpace) : %0(%1,%2,%3,%4))
 	#else
@@ -14872,13 +14903,14 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#undef _FIXES_RETURN_STRING
 
 	#if _FIXES_SAMP
-	#if defined _ALS_CreatePlayerTextDraw
-		#undef CreatePlayerTextDraw
-	#else
-		#define _ALS_CreatePlayerTextDraw
+		#if defined _ALS_CreatePlayerTextDraw
+			#undef CreatePlayerTextDraw
+		#else
+			#define _ALS_CreatePlayerTextDraw
+		#endif
+		#define CreatePlayerTextDraw( FIXES_CreatePlayerTextDraw(
 	#endif
-	#define CreatePlayerTextDraw( FIXES_CreatePlayerTextDraw(
-#endif
+
 	#define _ALS_CreatePlayerTextDraw__
 	#define CreatePlayerTextDraw__( FIXES_CreatePlayerTextDraw(
 #else
@@ -14903,7 +14935,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  */
 
 #if FIX_PlayerTextDrawSetString || FIX_PlayerTextDrawSetString_2
-
 	#if FIX_PlayerTextDrawSetString
 		#define _FIXES_PASS_STRING(%0(%2,%3,%4)) (_FIXES_IS_NULL(%4) ? %0(%2,%3,FIXES_gsSpace) : %0(%2,%3,%4))
 	#else
@@ -14931,13 +14962,14 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#undef _FIXES_RETURN_STRING
 
 	#if _FIXES_SAMP
-	#if defined _ALS_PlayerTextDrawSetString
-		#undef PlayerTextDrawSetString
-	#else
-		#define _ALS_PlayerTextDrawSetString
+		#if defined _ALS_PlayerTextDrawSetString
+			#undef PlayerTextDrawSetString
+		#else
+			#define _ALS_PlayerTextDrawSetString
+		#endif
+		#define PlayerTextDrawSetString( FIXES_PlayerTextDrawSetString(
 	#endif
-	#define PlayerTextDrawSetString( FIXES_PlayerTextDrawSetString(
-#endif
+
 	#define _ALS_PlayerTextDrawSetString__
 	#define PlayerTextDrawSetString__( FIXES_PlayerTextDrawSetString(
 #else
@@ -14954,10 +14986,11 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#error _ALS_TextDrawCreate defined
 	#endif
 	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
+#else
+	_FIXES_HIDE_PAWNDOC(BAD_TextDrawCreate);
 #endif
 
 #if FIX_TextDrawCreate || FIX_TextDrawCreate_2
-
 	#if FIX_TextDrawCreate
 		#define _FIXES_PASS_STRING(%0(%2,%3,%4)) (_FIXES_IS_NULL(%4) ? %0(%2,%3,FIXES_gsSpace) : %0(%2,%3,%4))
 	#else
@@ -14985,13 +15018,14 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#undef _FIXES_RETURN_STRING
 
 	#if _FIXES_SAMP
-	#if defined _ALS_TextDrawCreate
-		#undef TextDrawCreate
-	#else
-		#define _ALS_TextDrawCreate
+		#if defined _ALS_TextDrawCreate
+			#undef TextDrawCreate
+		#else
+			#define _ALS_TextDrawCreate
+		#endif
+		#define TextDrawCreate( FIXES_TextDrawCreate(
 	#endif
-	#define TextDrawCreate( FIXES_TextDrawCreate(
-#endif
+
 	#define _ALS_TextDrawCreate__
 	#define TextDrawCreate__( FIXES_TextDrawCreate(
 #else
@@ -15008,6 +15042,8 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#error _ALS_TextDrawSetString defined
 	#endif
 	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
+#else
+	_FIXES_HIDE_PAWNDOC(BAD_TextDrawSetString);
 #endif
 
 /**
@@ -15016,7 +15052,6 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  */
 
 #if FIX_TextDrawSetString || FIX_TextDrawSetString_2
-
 	#if FIX_TextDrawSetString
 		#define _FIXES_PASS_STRING(%0(%3,%4)) (_FIXES_IS_NULL(%4) ? %0(%3,FIXES_gsSpace) : %0(%3,%4))
 	#else
@@ -15044,13 +15079,14 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#undef _FIXES_RETURN_STRING
 
 	#if _FIXES_SAMP
-	#if defined _ALS_TextDrawSetString
-		#undef TextDrawSetString
-	#else
-		#define _ALS_TextDrawSetString
+		#if defined _ALS_TextDrawSetString
+			#undef TextDrawSetString
+		#else
+			#define _ALS_TextDrawSetString
+		#endif
+		#define TextDrawSetString( FIXES_TextDrawSetString(
 	#endif
-	#define TextDrawSetString( FIXES_TextDrawSetString(
-#endif
+
 	#define _ALS_TextDrawSetString__
 	#define TextDrawSetString__( FIXES_TextDrawSetString(
 #else
@@ -15096,13 +15132,13 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 			return allow;
 		}
 	#else
-		forward _FIXES_AllowInteriorWeapons(allow);
-
 		stock FIXES_AllowInteriorWeapons(allow)
 		{
 			CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, allow);
 			return allow;
 		}
+
+		forward _FIXES_AllowInteriorWeapons(allow);
 
 		public _FIXES_AllowInteriorWeapons(allow)
 		{
@@ -15381,6 +15417,8 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 			}
 		}
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_AllowTeleport);
 #endif
 
 /**
@@ -15538,13 +15576,14 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 	}
 
 	#if _FIXES_SAMP
-	#if defined _ALS_ShowPlayerDialog
-		#undef ShowPlayerDialog
-	#else
-		#define _ALS_ShowPlayerDialog
+		#if defined _ALS_ShowPlayerDialog
+			#undef ShowPlayerDialog
+		#else
+			#define _ALS_ShowPlayerDialog
+		#endif
+		#define ShowPlayerDialog( FIXES_ShowPlayerDialog(
 	#endif
-	#define ShowPlayerDialog( FIXES_ShowPlayerDialog(
-#endif
+
 	#define _ALS_ShowPlayerDialog__
 	#define ShowPlayerDialog__( FIXES_ShowPlayerDialog(
 #else
@@ -16263,6 +16302,8 @@ native BAD_Kick(playerid) = Kick;
 		}
 		return 0;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_DetermineOrder);
 #endif
 
 /**
@@ -16369,6 +16410,8 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx__("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
 		}
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_ApplyAnimationDelay);
 #endif
 
 /**
@@ -16383,6 +16426,8 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		ApplyAnimation__(playerid, FIXES_gscAnimLib[animlib], FIXES_gsPlayerAnimName[playerid << 6], fDelta, loop, lockx, locky, freeze, time, forcesync),
 		FIXES_gsPlayerAnimTimer[playerid] = 0;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_ApplyAnimation);
 #endif
 
 /**
@@ -16395,6 +16440,8 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		#error _ALS_ApplyAnimation defined
 	#endif
 	native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+#else
+	_FIXES_HIDE_PAWNDOC(BAD_ApplyAnimation);
 #endif
 
 /**
@@ -16420,13 +16467,14 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 	}
 
 	#if _FIXES_SAMP
-	#if defined _ALS_ApplyAnimation
-		#undef ApplyAnimation
-	#else
-		#define _ALS_ApplyAnimation
+		#if defined _ALS_ApplyAnimation
+			#undef ApplyAnimation
+		#else
+			#define _ALS_ApplyAnimation
+		#endif
+		#define ApplyAnimation( FIXES_ApplyAnimation(
 	#endif
-	#define ApplyAnimation( FIXES_ApplyAnimation(
-#endif
+
 	#define _ALS_ApplyAnimation__
 	#define ApplyAnimation__( FIXES_ApplyAnimation(
 #else
@@ -16453,6 +16501,8 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 			FIXES_gsActorAnimTimer[actorid] = SetTimerEx__("_FIXES_ApplyActorAnimation", 350, false, "ddfdddddd", actorid, idx, fDelta, loop, lockx, locky, freeze, time);
 		}
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_ApplyActorAnimationDelay);
 #endif
 
 /**
@@ -16467,6 +16517,8 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		ApplyActorAnimation__(actorid, FIXES_gscAnimLib[animlib], FIXES_gsActorAnimName[actorid << 6], fDelta, loop, lockx, locky, freeze, time),
 		FIXES_gsActorAnimTimer[actorid] = 0;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_ApplyActorAnimation);
 #endif
 
 /**
@@ -16504,13 +16556,14 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 	}
 
 	#if _FIXES_SAMP
-	#if defined _ALS_ApplyActorAnimation
-		#undef ApplyActorAnimation
-	#else
-		#define _ALS_ApplyActorAnimation
+		#if defined _ALS_ApplyActorAnimation
+			#undef ApplyActorAnimation
+		#else
+			#define _ALS_ApplyActorAnimation
+		#endif
+		#define ApplyActorAnimation( FIXES_ApplyActorAnimation(
 	#endif
-	#define ApplyActorAnimation( FIXES_ApplyActorAnimation(
-#endif
+
 	#define _ALS_ApplyActorAnimation__
 	#define ApplyActorAnimation__( FIXES_ApplyActorAnimation(
 #else
@@ -17127,6 +17180,8 @@ native BAD_random(max) = random;
 	// extra bracket comes from nowhere!
 	#define FIXES_sleep(%0;) FIXES_sleep _FIXES_SLEEP_BRACKET %0);
 	#define _FIXES_SLEEP_BRACKET (
+#else
+	_FIXES_HIDE_PAWNDOC(sleep);
 #endif
 
 /**
@@ -17151,6 +17206,8 @@ native BAD_random(max) = random;
 		}
 		return 0;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_SetCamera);
 #endif
 
 /**
@@ -17499,13 +17556,14 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 	}
 
 	#if _FIXES_SAMP
-	#if defined _ALS_GetPVarString
-		#undef GetPVarString
-	#else
-		#define _ALS_GetPVarString
+		#if defined _ALS_GetPVarString
+			#undef GetPVarString
+		#else
+			#define _ALS_GetPVarString
+		#endif
+		#define GetPVarString( FIXES_GetPVarString(
 	#endif
-	#define GetPVarString( FIXES_GetPVarString(
-#endif
+
 	#define _ALS_GetPVarString__
 	#define GetPVarString__( FIXES_GetPVarString(
 #else
@@ -17537,13 +17595,14 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 	}
 
 	#if _FIXES_SAMP
-	#if defined _ALS_GetSVarString
-		#undef GetSVarString
-	#else
-		#define _ALS_GetSVarString
+		#if defined _ALS_GetSVarString
+			#undef GetSVarString
+		#else
+			#define _ALS_GetSVarString
+		#endif
+		#define GetSVarString( FIXES_GetSVarString(
 	#endif
-	#define GetSVarString( FIXES_GetSVarString(
-#endif
+
 	#define _ALS_GetSVarString__
 	#define GetSVarString__( FIXES_GetSVarString(
 #else
@@ -17646,10 +17705,11 @@ native bool:BAD_ispacked(const string[]) = ispacked;
  */
 
 #if FIX_ispacked
+	_FIXES_SHOW_PAWNDOC(bool:ispacked(const string[]));
 	#if _FIXES_SAMP
-	#define _ALS_ispacked
+		#define _ALS_ispacked
 		#define ispacked(%0) (((%0)[0] & ~0xFF) != 0)
-#endif
+	#endif
 	#define _ALS_ispacked__
 	#define ispacked__(%0) (((%0)[0] & ~0xFF) != 0)
 #else
@@ -17808,6 +17868,8 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 				}
 			}
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_RemoveFlyingParachute);
 #endif
 
 /**
