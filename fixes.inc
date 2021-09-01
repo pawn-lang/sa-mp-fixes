@@ -469,6 +469,12 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 	#error fixes.inc is not required for open.mp
 #endif
 
+#if defined _FIXES_DetermineOS
+	#define _FIXES_FIRST_PASS                     (0)
+#else
+	#define _FIXES_FIRST_PASS                     (1)
+#endif
+
 /**
  * <remarks>
  * Creates fake functions that Pawndoc comments can be attached to in the
@@ -507,11 +513,11 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * </remarks>
  */
 
-#if defined _FIXES_DetermineOS
-	#define _FIXES_SHOW_PAWNDOC(%0)%1\10;
-#else
+#if _FIXES_FIRST_PASS
 	// First compiler pass only.
 	#define _FIXES_SHOW_PAWNDOC(%0)%1\10; static stock %0 %1 static stock __PAWNDOC:_PD@%0(){}
+#else
+	#define _FIXES_SHOW_PAWNDOC(%0)%1\10;
 #endif
 
 // Ensure that pawndoc functions are valid syntactically for `_PD@`.
@@ -1215,7 +1221,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if defined SetObjectMaterial
 		#if FIXES_EnableDeprecated
 			static _FIXES_STOCK FIX_TogglePlayerControllable = FIXES_EnableDeprecated;
-		#elseif !defined _FIXES_DetermineOS
+		#elseif _FIXES_FIRST_PASS
 			static stock FIX_TogglePlayerControllable;
 			static stock __PAWNDOC:_PD@TogglePlayerControllable() {}
 		#endif
@@ -1224,7 +1230,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 		#if FIXES_ExplicitOptions
 			static FIX_TogglePlayerControllable = _FIXES_DEFAULT;
 		#endif
-		#if !defined _FIXES_DetermineOS
+		#if _FIXES_FIRST_PASS
 			static stock FIX_TogglePlayerControllable;
 			static stock __PAWNDOC:_PD@TogglePlayerControllable() {}
 		#endif
@@ -1326,7 +1332,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if FIXES_ExplicitOptions
 		static FIX_IsPlayerInRaceCheckpoint = _FIXES_DEFAULT;
 	#endif
-	#if !defined _FIXES_DetermineOS
+	#if _FIXES_FIRST_PASS
 		static stock FIX_IsPlayerInRaceCheckpoint;
 		static stock __PAWNDOC:_PD@IsPlayerInRaceCheckpoint() {}
 	#endif
@@ -1936,7 +1942,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if FIXES_ExplicitOptions
 		static FIX_GetVehicleComponentInSlot = _FIXES_DEFAULT;
 	#endif
-	#if !defined _FIXES_DetermineOS
+	#if _FIXES_FIRST_PASS
 		static stock FIX_GetVehicleComponentInSlot;
 		static stock __PAWNDOC:_PD@GetVehicleComponentInSlot() {}
 	#endif
@@ -4013,7 +4019,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#if FIXES_ExplicitOptions
 		static FIX_PlayerTextDrawSetString_2 = _FIXES_DEFAULT;
 	#endif
-	#if !defined _FIXES_DetermineOS
+	#if _FIXES_FIRST_PASS
 		static stock FIX_PlayerTextDrawSetString_2;
 		static stock __PAWNDOC:_PD@PlayerTextDrawSetString_2() {}
 	#endif
@@ -6606,8 +6612,6 @@ _FIXES_SHOW_PAWNDOC(_FIXES_WEAPON_SLOTS);
 
 /**
  * <remarks>
- * CHAIN_ORDER
- *
  * Allows y_hooks to call things in the correct order when it exists.
  * </remarks>
  */
@@ -6618,13 +6622,20 @@ _FIXES_SHOW_PAWNDOC(_FIXES_WEAPON_SLOTS);
 
 /**
  * <remarks>
- * PRE_HOOK
- *
  * A method of pre-hooking callbacks to still have them called before any ones
  * re-written by y_hooks.
  * </remarks>
  */
 
+#if _FIXES_FIRST_PASS
+#else
+#endif
+#if _FIXES_IS_DEFINED(PRE_HOOK)
+	#undef PRE_HOOK
+	_FIXES_SHOW_PAWNDOC(PRE_HOOK(const library[])) {}
+#else
+	_FIXES_HIDE_PAWNDOC(PRE_HOOK);
+#endif
 #define PRE_HOOK(%0) forward @CO_%0();public @CO_%0(){return CHAIN_ORDER()+1;}
 
 PRE_HOOK(FIXES)
@@ -18807,6 +18818,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef FIXES_SET
 #undef FIXES_GET
 #undef _FIXES_NEW_COMPILER
+#undef _FIXES_FIRST_PASS
 
 #endinput
 
