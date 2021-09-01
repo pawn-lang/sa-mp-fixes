@@ -481,7 +481,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 	#define _FIXES_SHOW_PAWNDOC(%0)%1\10; static stock %0 %1 static stock __PAWNDOC:_PD@%0(){}
 #endif
 
-// Convert functions to constants.
+// Ensure that pawndoc functions are valid syntactically for `_PD@`.
 #define __PAWNDOC:%0(%1)(){} __PAWNDOC:%0(){}
 
 // Strip tags and spaces.
