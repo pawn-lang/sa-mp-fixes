@@ -469,9 +469,22 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 	#error fixes.inc is not required for open.mp
 #endif
 
+/**
+ * <remarks>
+ * True on the first pass of the compiler, and not on any others.  This is the
+ * pass of the compiler in which functions are collected, so that later pass can
+ * call functions defined later in code.  We can detect this pass using
+ * <c>#if defined FutureFunction</c> (here we use <c>_FIXES_DetermineOS</c>
+ * because it is always compiled).  If it exists, this can't be the first pass;
+ * if it doesn't, it is.  We can then use this pass knowledge to generate
+ * pawndoc comments for macros in only the first pass.
+ * </remarks>
+ */
+
 #if defined _FIXES_DetermineOS
 	#define _FIXES_FIRST_PASS                     (0)
 #else
+	static stock _FIXES_FIRST_PASS = 1;
 	#define _FIXES_FIRST_PASS                     (1)
 #endif
 
@@ -6610,14 +6623,9 @@ _FIXES_SHOW_PAWNDOC(_FIXES_WEAPON_SLOTS);
 
 */
 
-/**
- * <remarks>
- * Allows y_hooks to call things in the correct order when it exists.
- * </remarks>
- */
-
-#if !defined CHAIN_ORDER
+#if _FIXES_IS_UNDEFINED(CHAIN_ORDER)
 	#define CHAIN_ORDER() 0
+	static stock _PD@CHAIN_ORDER() {}
 #endif
 
 /**
@@ -6628,18 +6636,25 @@ _FIXES_SHOW_PAWNDOC(_FIXES_WEAPON_SLOTS);
  */
 
 #if _FIXES_FIRST_PASS
-#else
-#endif
-#if _FIXES_IS_DEFINED(PRE_HOOK)
-	#undef PRE_HOOK
+	#if defined PRE_HOOK
+		#undef PRE_HOOK
+	#endif
+
 	_FIXES_SHOW_PAWNDOC(PRE_HOOK(const library[])) {}
-#else
-	_FIXES_HIDE_PAWNDOC(PRE_HOOK);
 #endif
+
 #define PRE_HOOK(%0) forward @CO_%0();public @CO_%0(){return CHAIN_ORDER()+1;}
 
 PRE_HOOK(FIXES)
 #undef CHAIN_ORDER
+
+/**
+ * <remarks>
+ * Allows y_hooks to call things in the correct order when it exists.
+ * </remarks>
+ */
+
+static stock CHAIN_ORDER() {}
 #define CHAIN_ORDER @CO_FIXES
 
 /**
