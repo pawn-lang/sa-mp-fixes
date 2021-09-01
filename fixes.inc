@@ -471,7 +471,36 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * Creates fake functions that Pawndoc comments can be attached to in the
  * first compilation phase, before the real macros are created.  Macros
  * can't have documentation comments, but why not?  They need documenting...
+ * <p/>
  * Used internally as <c>_FIXES_SHOW_PAWNDOC</c>.
+ * <p/>
+ * This also creates a second function with the name <c>_PD@%0</c>, i.e. the
+ * symbol name prefixed with <c>_PD@</c>, this is always a function so that it
+ * can be detected in the second phase of compilation.  The problem with
+ * defining a function with the name as a macro is that you then have a function
+ * with that name (obviously), and earlier <c>#if defined MACRO_NAME</c> checks
+ * will fail on the second compiler pass when they shouldn't.  They should only
+ * be used to detect macros of that name, which are only defined per-pass, but
+ * they now detect the function of that name instead, which is defined globally.
+ * <p/>
+ * Thus, if you use this system you need to be able to detect that the MACRO
+ * isn't defined, which is done by detecting either <c>!defined MACRO</c>, or
+ * checking if that branch was used in the last compilation phase by checking
+ * that this <c>_PD@</c> function is defined.  Of course, this is all internal
+ * and the code simply becomes:
+ * <p/>
+ * <code>
+ *     // Equivalent to `#if defined MACRO_NAME`                                <br />
+ *     #if _FIXES_IS_DEFINED(MACRO_NAME)                                        <br />
+ *         // `#define MACRO_NAME` exists previously.                           <br />
+ *         _FIXES_HIDE_PAWNDOC(MACRO_NAME);                                     <br />
+ *     #else                                                                    <br />
+ *         // Doesn't exist.  Document it and define it.                        <br />
+ *         _FIXES_SHOW_PAWNDOC(MACRO_NAME(parameters)) {}                       <br />
+ *         #define MACRO_NAME(%0) (%0)                                          <br />
+ *     #endif
+ * </code>
+ * <br />
  * </remarks>
  */
 #if defined _FIXES_DetermineOS
