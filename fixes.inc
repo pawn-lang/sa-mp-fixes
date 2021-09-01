@@ -684,26 +684,26 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	_FIXES_SHOW_PAWNDOC(FIXES_ExplicitOptions);
 	#if FIXES_DefaultDisabled
 		#define FIXES_ExplicitOptions            (1)
-		#define _FIXES_STOCK%0=%1;               %0=%1;const __PAWNDOC:_PD@%0 = __PAWNDOC:1;
+		#define _FIXES_STOCK%0=%1;               %0=%1;static stock __PAWNDOC:_PD@%0() {}
 	#else
 		#define FIXES_ExplicitOptions            (0)
-		#define _FIXES_STOCK%0=%1;               stock%0=%1;const __PAWNDOC:_PD@%0 = __PAWNDOC:1;
+		#define _FIXES_STOCK%0=%1;               stock%0=%1;static stock __PAWNDOC:_PD@%0() {}
 	#endif
 #elseif _FIXES_IS_UNSET(FIXES_ExplicitOptions)
 	#undef FIXES_ExplicitOptions
 	static stock FIXES_ExplicitOptions = 2;
 	#define FIXES_ExplicitOptions                (2)
-	#define _FIXES_STOCK%0=%1;                   %0=%1;const __PAWNDOC:_PD@%0 = __PAWNDOC:1;
+	#define _FIXES_STOCK%0=%1;                   %0=%1;static stock __PAWNDOC:_PD@%0() {}
 #elseif FIXES_ExplicitOptions
 	#undef FIXES_ExplicitOptions
 	static stock FIXES_ExplicitOptions = 1;
 	#define FIXES_ExplicitOptions                (1)
-	#define _FIXES_STOCK%0=%1;                   %0=%1;const __PAWNDOC:_PD@%0 = __PAWNDOC:1;
+	#define _FIXES_STOCK%0=%1;                   %0=%1;static stock __PAWNDOC:_PD@%0() {}
 #else
 	#undef FIXES_ExplicitOptions
 	static stock FIXES_ExplicitOptions = 0;
 	#define FIXES_ExplicitOptions                (0)
-	#define _FIXES_STOCK%0=%1;                   stock%0=%1;const __PAWNDOC:_PD@%0 = __PAWNDOC:1;
+	#define _FIXES_STOCK%0=%1;                   stock%0=%1;static stock __PAWNDOC:_PD@%0() {}
 #endif
 
 /**
@@ -1207,7 +1207,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 			static _FIXES_STOCK FIX_TogglePlayerControllable = FIXES_EnableDeprecated;
 		#elseif !defined _FIXES_DetermineOS
 			static stock FIX_TogglePlayerControllable;
-			const _PD@TogglePlayerControllable = 1;
+			static stock __PAWNDOC:_PD@TogglePlayerControllable() {}
 		#endif
 		#define FIX_TogglePlayerControllable     FIXES_EnableDeprecated
 	#else
@@ -1216,7 +1216,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 		#endif
 		#if !defined _FIXES_DetermineOS
 			static stock FIX_TogglePlayerControllable;
-			const _PD@TogglePlayerControllable = 1;
+			static stock __PAWNDOC:_PD@TogglePlayerControllable() {}
 		#endif
 		#define FIX_TogglePlayerControllable     _FIXES_DEFAULT
 	#endif
@@ -1318,7 +1318,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 	#if !defined _FIXES_DetermineOS
 		static stock FIX_IsPlayerInRaceCheckpoint;
-		const _PD@IsPlayerInRaceCheckpoint = 1;
+		static stock __PAWNDOC:_PD@IsPlayerInRaceCheckpoint() {}
 	#endif
 	#define FIX_IsPlayerInRaceCheckpoint         _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInRaceCheckpoint)
@@ -1922,7 +1922,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 	#if !defined _FIXES_DetermineOS
 		static stock FIX_GetVehicleComponentInSlot;
-		const _PD@GetVehicleComponentInSlot = 1;
+		static stock __PAWNDOC:_PD@GetVehicleComponentInSlot() {}
 	#endif
 	#define FIX_GetVehicleComponentInSlot        _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetVehicleComponentInSlot)
@@ -3999,7 +3999,7 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#endif
 	#if !defined _FIXES_DetermineOS
 		static stock FIX_PlayerTextDrawSetString_2;
-		const _PD@PlayerTextDrawSetString_2 = 1;
+		static stock __PAWNDOC:_PD@PlayerTextDrawSetString_2() {}
 	#endif
 	#define FIX_PlayerTextDrawSetString_2          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString_2)
