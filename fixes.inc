@@ -12668,7 +12668,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 	#define _ALS_ClearPlayerWorldBounds__
 	#define ClearPlayerWorldBounds__( FIXES_ClearPlayerWorldBounds(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_ClearPlayerWorldBounds);
+	static stock _PX@FIXES_ClearPlayerWorldBound();
 #endif
 
 /**
@@ -12828,7 +12828,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 	_FIXES_FORWARD FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_OnPlayerInteriorChange);
+	static stock _PX@FIXES_OnPlayerInteriorChang();
 #endif
 
 /**
@@ -13017,7 +13017,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 	_FIXES_FORWARD FIXES_OnPlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_OnPlayerKeyStateChange);
+	static stock _PX@FIXES_OnPlayerKeyStateChang();
 #endif
 
 /**
@@ -13129,7 +13129,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 	_FIXES_FORWARD FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_OnPlayerEnterVehicle);
+	static stock _PX@FIXES_OnPlayerEnterVehicl();
 #endif
 
 /**
@@ -13270,7 +13270,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		ClearAnimations__(playerid);
 	}
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_StopPlayerEnterVehicle);
+	static stock _PX@_FIXES_StopPlayerEnterVehic();
 #endif
 
 /**
@@ -13334,7 +13334,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 	_FIXES_FORWARD FIXES_OnPlayerSelectedMenuRow(playerid, row);
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_OnPlayerSelectedMenuRow);
+	static stock _PX@FIXES_OnPlayerSelectedMenuR();
 #endif
 
 /**
@@ -14536,7 +14536,7 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 	#define _ALS_DisablePlayerCheckpoint__
 	#define DisablePlayerCheckpoint__( FIXES_DisablePlayerCheckpoint(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_DisablePlayerCheckpoint);
+	static stock _PX@FIXES_DisablePlayerCheckpoi();
 #endif
 
 /**
@@ -14603,7 +14603,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 	#define _ALS_SetPlayerRaceCheckpoint__
 	#define SetPlayerRaceCheckpoint__( FIXES_SetPlayerRaceCheckpoint(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerRaceCheckpoint);
+	static stock _PX@FIXES_SetPlayerRaceCheckpoi();
 #endif
 
 /**
@@ -14687,7 +14687,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 		return 1;
 	}
 #else
-	_FIXES_HIDE_PAWNDOC(_FIXES_HideGameTextForPlayer);
+	static stock _PX@_FIXES_HideGameTextForPlaye();
 #endif
 
 /**
@@ -14981,7 +14981,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#define _ALS_PlayerTextDrawSetString__
 	#define PlayerTextDrawSetString__( FIXES_PlayerTextDrawSetString(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_PlayerTextDrawSetString);
+	static stock _PX@FIXES_PlayerTextDrawSetStri();
 #endif
 
 /**
@@ -15461,7 +15461,7 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 	#define _ALS_SetPlayerSpecialAction__
 	#define SetPlayerSpecialAction__( FIXES_SetPlayerSpecialAction(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerSpecialAction);
+	static stock _PX@FIXES_SetPlayerSpecialActio();
 #endif
 
 /**
@@ -16510,7 +16510,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		}
 	}
 #else
-	_FIXES_HIDE_PAWNDOC(_FIXES_ApplyActorAnimationDelay);
+	static stock _PX@_FIXES_ApplyActorAnimationD();
 #endif
 
 /**
@@ -16695,7 +16695,7 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 	#define _ALS_GetVehicleComponentType__
 	#define GetVehicleComponentType__( FIXES_GetVehicleComponentType(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleComponentType);
+	static stock _PX@FIXES_GetVehicleComponentTy();
 #endif
 
 /**
@@ -16911,7 +16911,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 	#define _ALS_RemoveVehicleComponent__
 	#define RemoveVehicleComponent__( FIXES_RemoveVehicleComponent(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_RemoveVehicleComponent);
+	static stock _PX@FIXES_RemoveVehicleComponen();
 #endif
 
 /**
@@ -16995,7 +16995,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 	#define _ALS_GetVehicleComponentInSlot__
 	#define GetVehicleComponentInSlot__( FIXES_GetVehicleComponentInSlot(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleComponentInSlot);
+	static stock _PX@FIXES_GetVehicleComponentIn();
 #endif
 
 
@@ -17025,7 +17025,7 @@ native BAD_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle
 	#define _ALS_AttachTrailerToVehicle__
 	#define AttachTrailerToVehicle__( FIXES_AttachTrailerToVehicle(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_AttachTrailerToVehicle);
+	static stock _PX@FIXES_AttachTrailerToVehicl();
 #endif
 
 
@@ -17355,7 +17355,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 	#define _ALS_TogglePlayerSpectating__
 	#define TogglePlayerSpectating__( FIXES_TogglePlayerSpectating(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_TogglePlayerSpectating);
+	static stock _PX@FIXES_TogglePlayerSpectatin();
 #endif
 
 /**
@@ -17877,7 +17877,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 			}
 	}
 #else
-	_FIXES_HIDE_PAWNDOC(_FIXES_RemoveFlyingParachute);
+	static stock _PX@_FIXES_RemoveFlyingParachut();
 #endif
 
 /**
@@ -18644,7 +18644,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define _ALS_VehicleCanHaveComponent__
 	#define VehicleCanHaveComponent__( FIXES_VehicleCanHaveComponent(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_VehicleCanHaveComponent);
+	static stock _PX@FIXES_VehicleCanHaveCompone();
 #endif
 
 /**
@@ -18665,7 +18665,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define _ALS_IsValidAnimationLibrary__
 	#define IsValidAnimationLibrary__( FIXES_IsValidAnimationLibrary(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_IsValidAnimationLibrary);
+	static stock _PX@FIXES_IsValidAnimationLibra();
 #endif
 
 /**
