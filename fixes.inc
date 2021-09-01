@@ -5830,6 +5830,25 @@ _FIXES_SHOW_PAWNDOC(_FIXES_ATTACHMENTS);
 
 /**
  * <remarks>
+ * Future-compatible tag definitions.  <c>VEHICLE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and `E_VEHICLE:` when they are enabled.
+ * </remarks>
+ */
+
+#if _FIXES_IS_DEFINED(VEHICLE)
+	_FIXES_HIDE_PAWNDOC(FIXES_VEHICLE);
+#else
+	_FIXES_SHOW_PAWNDOC(VEHICLE);
+	// `__TAG(VEHICLE):` is not currently in the enhanced SA:MP includes.
+	//#if defined __TAG
+	//	#define VEHICLE: __TAG(VEHICLE):
+	//#else
+		#define VEHICLE: _:
+	//#endif
+#endif
+
+/**
+ * <remarks>
  * Because the default SA:MP includes missed this one.  Used internally via
  * <c>_FIXES_KEY_AIM</c>.
  * </remarks>
@@ -5947,16 +5966,16 @@ _FIXES_SHOW_PAWNDOC(_FIXES_WEAPON_SLOTS);
 #if FIX_BODYPARTS
 	enum BODY_PART:__BODY_PART
 	{
-		BODY_PART_TORSO     = 3,
-		BODY_PART_GROIN     = 4,
-		BODY_PART_LEFT_ARM  = 5,
-		BODY_PART_RIGHT_ARM = 6,
-		BODY_PART_LEFT_LEG  = 7,
-		BODY_PART_RIGHT_LEG = 8,
-		BODY_PART_HEAD      = 9
+		BODY_PART_TORSO                           = 3,
+		BODY_PART_GROIN                           = 4,
+		BODY_PART_LEFT_ARM                        = 5,
+		BODY_PART_RIGHT_ARM                       = 6,
+		BODY_PART_LEFT_LEG                        = 7,
+		BODY_PART_RIGHT_LEG                       = 8,
+		BODY_PART_HEAD                            = 9
 	}
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_BODYPARTS);
+	_FIXES_HIDE_PAWNDOC(FIXES___BODY_PART);
 #endif
 
 /**
@@ -5968,546 +5987,549 @@ _FIXES_SHOW_PAWNDOC(_FIXES_WEAPON_SLOTS);
 #if FIX_CAMERAMODES
 	enum CAM_MODE:__CAM_MODE
 	{
-		CAM_MODE_DISCONNECTED      = -1,
-		CAM_MODE_NONE              = 0,
-		CAM_MODE_BEHINDCAR         = 3,
-		CAM_MODE_FOLLOWPED         = 4,
-		CAM_MODE_SNIPER            = 7,
-		CAM_MODE_ROCKETLAUNCHER    = 8,
-		CAM_MODE_FIXED             = 15,
-		CAM_MODE_1STPERSON         = 16,
-		CAM_MODE_CAM_ON_A_STRING   = 18,
-		CAM_MODE_BEHINDBOAT        = 22,
-		CAM_MODE_CAMERA            = 46,
-		CAM_MODE_ROCKETLAUNCHER_HS = 51,
-		CAM_MODE_AIMWEAPON         = 53,
-		CAM_MODE_AIMWEAPON_FROMCAR = 55,
-		CAM_MODE_DW_HELI_CHASE     = 56
+		CAM_MODE_DISCONNECTED                     = -1,
+		CAM_MODE_NONE                             = 0,
+		CAM_MODE_BEHINDCAR                        = 3,
+		CAM_MODE_FOLLOWPED                        = 4,
+		CAM_MODE_SNIPER                           = 7,
+		CAM_MODE_ROCKETLAUNCHER                   = 8,
+		CAM_MODE_FIXED                            = 15,
+		CAM_MODE_1STPERSON                        = 16,
+		CAM_MODE_CAM_ON_A_STRING                  = 18,
+		CAM_MODE_BEHINDBOAT                       = 22,
+		CAM_MODE_CAMERA                           = 46,
+		CAM_MODE_ROCKETLAUNCHER_HS                = 51,
+		CAM_MODE_AIMWEAPON                        = 53,
+		CAM_MODE_AIMWEAPON_FROMCAR                = 55,
+		CAM_MODE_DW_HELI_CHASE                    = 56
 	}
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_CAMERAMODES);
+	_FIXES_HIDE_PAWNDOC(FIXES___CAM_MODE);
 #endif
 
 /**
  * <remarks>
- * <c>VEHICLES</c>
- *
  * Because the default SA:MP includes missed these.
  * </remarks>
  */
 
 #if FIX_VEHICLES
 	// In alphabetical order.
-	#define VEHICLE_ADMIRAL                     (445)
-	#define VEHICLE_ALPHA                       (602)
-	#define VEHICLE_AMBULAN                     (416)
-	#define VEHICLE_AMBULANCE                   (416)
-	#define VEHICLE_ANDROM                      (592)
-	#define VEHICLE_ANDROMADA                   (592)
-	#define VEHICLE_ARTICT1                     (435)
-	#define VEHICLE_ARTICT2                     (450)
-	#define VEHICLE_ARTICT3                     (591)
-	#define VEHICLE_ARTICLETRAILER1             (435)
-	#define VEHICLE_ARTICLETRAILER2             (450)
-	#define VEHICLE_ARTICLETRAILER3             (591)
-	#define VEHICLE_AT400                       (577)
-	#define VEHICLE_BAGGAGE                     (485)
-	#define VEHICLE_BANDITO                     (568)
-	#define VEHICLE_BANSHEE                     (429)
-	#define VEHICLE_BARRACKS                    (433)
-	#define VEHICLE_BEAGLE                      (511)
-	#define VEHICLE_BENSON                      (499)
-	#define VEHICLE_BERKLEYSRCVAN               (459)
-	#define VEHICLE_BF400                       (581)
-	#define VEHICLE_BFINJECT                    (424)
-	#define VEHICLE_BFINJECTION                 (424)
-	#define VEHICLE_BIKE                        (509)
-	#define VEHICLE_BLADE                       (536)
-	#define VEHICLE_BLISTAC                     (496)
-	#define VEHICLE_BLISTACOMPACT               (496)
-	#define VEHICLE_BLOODRA                     (504)
-	#define VEHICLE_BLOODRINGBANGER             (504)
-	#define VEHICLE_BMX                         (481)
-	#define VEHICLE_BOBCAT                      (422)
-	#define VEHICLE_BOXBURG                     (609)
-	#define VEHICLE_BOXVILLE                    (498)
-	#define VEHICLE_BRAVURA                     (401)
-	#define VEHICLE_BROADWAY                    (575)
-	#define VEHICLE_BROWNSTREAK                 (538)
-	#define VEHICLE_BUCCANEE                    (518)
-	#define VEHICLE_BUCCANEER                   (518)
-	#define VEHICLE_BUFFALO                     (402)
-	#define VEHICLE_BULLET                      (541)
-	#define VEHICLE_BURRITO                     (482)
-	#define VEHICLE_BUS                         (431)
-	#define VEHICLE_CABBIE                      (438)
-	#define VEHICLE_CADDY                       (457)
-	#define VEHICLE_CADRONA                     (527)
-	#define VEHICLE_CAMPER                      (483)
-	#define VEHICLE_CARGOBOB                    (548)
-	#define VEHICLE_CEMENT                      (524)
-	#define VEHICLE_CEMENTTRUCK                 (524)
-	#define VEHICLE_CHEETAH                     (415)
-	#define VEHICLE_CLOVER                      (542)
-	#define VEHICLE_CLUB                        (589)
-	#define VEHICLE_COACH                       (437)
-	#define VEHICLE_COASTG                      (472)
-	#define VEHICLE_COASTGUARD                  (472)
-	#define VEHICLE_COMET                       (480)
-	#define VEHICLE_COPCARLA                    (596)
-	#define VEHICLE_COPCARSF                    (597)
-	#define VEHICLE_COPCARVG                    (598)
-	#define VEHICLE_COPCARRU                    (599)
-	#define VEHICLE_CROPDUST                    (512)
-	#define VEHICLE_DFT30                       (578)
-	#define VEHICLE_DINGHY                      (473)
-	#define VEHICLE_DODO                        (593)
-	#define VEHICLE_DOZER                       (486)
-	#define VEHICLE_DUMPER                      (406)
-	#define VEHICLE_DUNERIDE                    (573)
-	#define VEHICLE_ELEGANT                     (507)
-	#define VEHICLE_ELEGY                       (562)
-	#define VEHICLE_EMPEROR                     (585)
-	#define VEHICLE_ENFORCER                    (427)
-	#define VEHICLE_ESPERANT                    (419)
-	#define VEHICLE_ESPERANTO                   (419)
-	#define VEHICLE_EUROS                       (587)
-	#define VEHICLE_FAGGIO                      (462)
-	#define VEHICLE_FBIRANCH                    (490)
-	#define VEHICLE_FBIRANCHER                  (490)
-	#define VEHICLE_FCR900                      (521)
-	#define VEHICLE_FELTZER                     (533)
-	#define VEHICLE_FIRELA                      (544)
-	#define VEHICLE_FIRETRUK                    (407)
-	#define VEHICLE_FIRETRUCK                   (407)
-	#define VEHICLE_FIRETRUCKLA                 (544)
-	#define VEHICLE_FLASH                       (565)
-	#define VEHICLE_FLATBED                     (455)
-	#define VEHICLE_FORKLIFT                    (530)
-	#define VEHICLE_FORTUNE                     (526)
-	#define VEHICLE_FREEWAY                     (463)
-	#define VEHICLE_FREIGHT                     (537)
-	#define VEHICLE_GLENDALE                    (466)
-	#define VEHICLE_GLENDALESHIT                (604)
-	#define VEHICLE_GLENSHIT                    (604)
-	#define VEHICLE_GREENWOO                    (492)
-	#define VEHICLE_GREENWOOD                   (492)
-	#define VEHICLE_HERMES                      (474)
-	#define VEHICLE_HOTDOG                      (588)
-	#define VEHICLE_HOTKNIFE                    (434)
-	#define VEHICLE_HOTRINA                     (502)
-	#define VEHICLE_HOTRINB                     (503)
-	#define VEHICLE_HOTRING                     (494)
-	#define VEHICLE_HOTRINGRACER                (494)
-	#define VEHICLE_HOTRINGRACERA               (502)
-	#define VEHICLE_HOTRINGRACERB               (503)
-	#define VEHICLE_HUNTER                      (425)
-	#define VEHICLE_HUNTLEY                     (579)
-	#define VEHICLE_HUSTLER                     (545)
-	#define VEHICLE_INFERNUS                    (411)
-	#define VEHICLE_INTRUDER                    (546)
-	#define VEHICLE_JESTER                      (559)
-	#define VEHICLE_JETMAX                      (493)
-	#define VEHICLE_JOURNEY                     (508)
-	#define VEHICLE_KART                        (571)
-	#define VEHICLE_LANDSTAL                    (400)
-	#define VEHICLE_LANDSTALKER                 (400)
-	#define VEHICLE_LAUNCH                      (595)
-	#define VEHICLE_LINERUN                     (403)
-	#define VEHICLE_LINERUNNER                  (403)
-	#define VEHICLE_QUAD                        (471)
-	#define VEHICLE_MAJESTIC                    (517)
-	#define VEHICLE_MTBIKE                      (510)
-	#define VEHICLE_MOUNTAINBIKE                (510)
-	#define VEHICLE_MANANA                      (410)
-	#define VEHICLE_MARQUIS                     (484)
-	#define VEHICLE_MAVERICK                    (487)
-	#define VEHICLE_MERIT                       (551)
-	#define VEHICLE_MESA                        (500)
-	#define VEHICLE_MONSTER                     (444)
-	#define VEHICLE_MONSTERA                    (556)
-	#define VEHICLE_MONSTERB                    (557)
-	#define VEHICLE_MOONBEAM                    (418)
-	#define VEHICLE_MOWER                       (572)
-	#define VEHICLE_MRWHOOP                     (423)
-	#define VEHICLE_MRWHOOPEE                   (423)
-	#define VEHICLE_MULE                        (414)
-	#define VEHICLE_NEBULA                      (516)
-	#define VEHICLE_NEVADA                      (553)
-	#define VEHICLE_NEWSVAN                     (582)
-	#define VEHICLE_NRG500                      (522)
-	#define VEHICLE_OCEANIC                     (467)
-	#define VEHICLE_PACKER                      (443)
-	#define VEHICLE_PATRIOT                     (470)
-	#define VEHICLE_PCJ600                      (461)
-	#define VEHICLE_PEREN                       (404)
-	#define VEHICLE_PERRENIAL                   (404)
-	#define VEHICLE_PETRO                       (514)
-	#define VEHICLE_PETROLTRAILER               (584)
-	#define VEHICLE_PETROTR                     (584)
-	#define VEHICLE_PHOENIX                     (603)
-	#define VEHICLE_PICADOR                     (600)
-	#define VEHICLE_PIZZABOY                    (448)
-	#define VEHICLE_POLICECARLSPD               (596)
-	#define VEHICLE_POLICECARSFPD               (597)
-	#define VEHICLE_POLICECARLVPD               (598)
-	#define VEHICLE_POLICERANGER                (599)
-	#define VEHICLE_POLMAV                      (497)
-	#define VEHICLE_POLICEMAVERICK              (497)
-	#define VEHICLE_PONY                        (413)
-	#define VEHICLE_PREDATOR                    (430)
-	#define VEHICLE_PREMIER                     (426)
-	#define VEHICLE_PREVION                     (436)
-	#define VEHICLE_PRIMO                       (547)
-	#define VEHICLE_RAINDANC                    (563)
-	#define VEHICLE_RAINDANCE                   (563)
-	#define VEHICLE_RANCHER                     (489)
-	#define VEHICLE_RANCHERLURE                 (505)
-	#define VEHICLE_RCBANDIT                    (441)
-	#define VEHICLE_RCBARON                     (464)
-	#define VEHICLE_RCRAIDER                    (465)
-	#define VEHICLE_RCGOBLIN                    (501)
-	#define VEHICLE_RDTRAIN                     (515)
-	#define VEHICLE_REEFER                      (453)
-	#define VEHICLE_REGINA                      (479)
-	#define VEHICLE_REMINGTN                    (534)
-	#define VEHICLE_REMINGTON                   (534)
-	#define VEHICLE_RHINO                       (432)
-	#define VEHICLE_RNCHLURE                    (505)
-	#define VEHICLE_ROADTRAIN                   (515)
-	#define VEHICLE_ROMERO                      (442)
-	#define VEHICLE_RUMPO                       (440)
-	#define VEHICLE_RUSTLER                     (476)
-	#define VEHICLE_SABRE                       (475)
-	#define VEHICLE_SADLER                      (543)
-	#define VEHICLE_SADLERSHIT                  (605)
-	#define VEHICLE_SADLSHIT                    (605)
-	#define VEHICLE_SANCHEZ                     (468)
-	#define VEHICLE_SANDKING                    (495)
-	#define VEHICLE_SAVANNA                     (567)
-	#define VEHICLE_SEASPAR                     (447)
-	#define VEHICLE_SEASPARROW                  (447)
-	#define VEHICLE_SECURICA                    (428)
-	#define VEHICLE_SECURICAR                   (428)
-	#define VEHICLE_SENTINEL                    (405)
-	#define VEHICLE_SHAMAL                      (519)
-	#define VEHICLE_STREAK                      (538)
-	#define VEHICLE_STREAKC                     (570)
-	#define VEHICLE_STREAKTRAILER               (570)
-	#define VEHICLE_SKIMMER                     (460)
-	#define VEHICLE_SLAMVAN                     (535)
-	#define VEHICLE_SOLAIR                      (458)
-	#define VEHICLE_SPARROW                     (469)
-	#define VEHICLE_SPEEDER                     (452)
-	#define VEHICLE_SQUALO                      (446)
-	#define VEHICLE_STAFFORD                    (580)
-	#define VEHICLE_STALLION                    (439)
-	#define VEHICLE_STRATUM                     (561)
-	#define VEHICLE_STRETCH                     (409)
-	#define VEHICLE_STUNT                       (513)
-	#define VEHICLE_STUNTPLANE                  (513)
-	#define VEHICLE_SULTAN                      (560)
-	#define VEHICLE_SUNRISE                     (550)
-	#define VEHICLE_SUPERGT                     (506)
-	#define VEHICLE_SWAT                        (601)
-	#define VEHICLE_SWATVAN                     (601)
-	#define VEHICLE_SWEEPER                     (574)
-	#define VEHICLE_TAHOMA                      (566)
-	#define VEHICLE_TAMPA                       (549)
-	#define VEHICLE_TANKER                      (514)
-	#define VEHICLE_TAXI                        (420)
-	#define VEHICLE_TOPFUN                      (459)
-	#define VEHICLE_TORNADO                     (576)
-	#define VEHICLE_TOWTRUCK                    (525)
-	#define VEHICLE_TRACTOR                     (531)
-	#define VEHICLE_TRAM                        (449)
-	#define VEHICLE_TRASH                       (408)
-	#define VEHICLE_TRASHMASTER                 (408)
-	#define VEHICLE_TROPIC                      (454)
-	#define VEHICLE_TUG                         (583)
-	#define VEHICLE_TUGSTAIR                    (608)
-	#define VEHICLE_TUGSTAIRSTRAILER            (608)
-	#define VEHICLE_TURISMO                     (451)
-	#define VEHICLE_URANUS                      (558)
-	#define VEHICLE_UTILITY                     (552)
-	#define VEHICLE_UTILITYVAN                  (552)
-	#define VEHICLE_VCNMAV                      (488)
-	#define VEHICLE_SANNEWSMAVERICK             (488)
-	#define VEHICLE_VINCENT                     (540)
-	#define VEHICLE_VIRGO                       (491)
-	#define VEHICLE_VOODOO                      (412)
-	#define VEHICLE_VORTEX                      (539)
-	#define VEHICLE_WALTON                      (478)
-	#define VEHICLE_WASHING                     (421)
-	#define VEHICLE_WASHINGTON                  (421)
-	#define VEHICLE_WAYFARER                    (586)
-	#define VEHICLE_WILLARD                     (529)
-	#define VEHICLE_WINDSOR                     (555)
-	#define VEHICLE_YANKEE                      (456)
-	#define VEHICLE_YOSEMITE                    (554)
-	#define VEHICLE_ZR350                       (477)
+	enum VEHICLE:__VEHICLE
+	{
+		VEHICLE_ADMIRAL                           = 445,
+		VEHICLE_ALPHA                             = 602,
+		VEHICLE_AMBULAN                           = 416,
+		VEHICLE_AMBULANCE                         = 416,
+		VEHICLE_ANDROM                            = 592,
+		VEHICLE_ANDROMADA                         = 592,
+		VEHICLE_ARTICT1                           = 435,
+		VEHICLE_ARTICT2                           = 450,
+		VEHICLE_ARTICT3                           = 591,
+		VEHICLE_ARTICLETRAILER1                   = 435,
+		VEHICLE_ARTICLETRAILER2                   = 450,
+		VEHICLE_ARTICLETRAILER3                   = 591,
+		VEHICLE_AT400                             = 577,
+		VEHICLE_BAGGAGE                           = 485,
+		VEHICLE_BANDITO                           = 568,
+		VEHICLE_BANSHEE                           = 429,
+		VEHICLE_BARRACKS                          = 433,
+		VEHICLE_BEAGLE                            = 511,
+		VEHICLE_BENSON                            = 499,
+		VEHICLE_BERKLEYSRCVAN                     = 459,
+		VEHICLE_BF400                             = 581,
+		VEHICLE_BFINJECT                          = 424,
+		VEHICLE_BFINJECTION                       = 424,
+		VEHICLE_BIKE                              = 509,
+		VEHICLE_BLADE                             = 536,
+		VEHICLE_BLISTAC                           = 496,
+		VEHICLE_BLISTACOMPACT                     = 496,
+		VEHICLE_BLOODRA                           = 504,
+		VEHICLE_BLOODRINGBANGER                   = 504,
+		VEHICLE_BMX                               = 481,
+		VEHICLE_BOBCAT                            = 422,
+		VEHICLE_BOXBURG                           = 609,
+		VEHICLE_BOXVILLE                          = 498,
+		VEHICLE_BRAVURA                           = 401,
+		VEHICLE_BROADWAY                          = 575,
+		VEHICLE_BROWNSTREAK                       = 538,
+		VEHICLE_BUCCANEE                          = 518,
+		VEHICLE_BUCCANEER                         = 518,
+		VEHICLE_BUFFALO                           = 402,
+		VEHICLE_BULLET                            = 541,
+		VEHICLE_BURRITO                           = 482,
+		VEHICLE_BUS                               = 431,
+		VEHICLE_CABBIE                            = 438,
+		VEHICLE_CADDY                             = 457,
+		VEHICLE_CADRONA                           = 527,
+		VEHICLE_CAMPER                            = 483,
+		VEHICLE_CARGOBOB                          = 548,
+		VEHICLE_CEMENT                            = 524,
+		VEHICLE_CEMENTTRUCK                       = 524,
+		VEHICLE_CHEETAH                           = 415,
+		VEHICLE_CLOVER                            = 542,
+		VEHICLE_CLUB                              = 589,
+		VEHICLE_COACH                             = 437,
+		VEHICLE_COASTG                            = 472,
+		VEHICLE_COASTGUARD                        = 472,
+		VEHICLE_COMET                             = 480,
+		VEHICLE_COPCARLA                          = 596,
+		VEHICLE_COPCARSF                          = 597,
+		VEHICLE_COPCARVG                          = 598,
+		VEHICLE_COPCARRU                          = 599,
+		VEHICLE_CROPDUST                          = 512,
+		VEHICLE_DFT30                             = 578,
+		VEHICLE_DINGHY                            = 473,
+		VEHICLE_DODO                              = 593,
+		VEHICLE_DOZER                             = 486,
+		VEHICLE_DUMPER                            = 406,
+		VEHICLE_DUNERIDE                          = 573,
+		VEHICLE_ELEGANT                           = 507,
+		VEHICLE_ELEGY                             = 562,
+		VEHICLE_EMPEROR                           = 585,
+		VEHICLE_ENFORCER                          = 427,
+		VEHICLE_ESPERANT                          = 419,
+		VEHICLE_ESPERANTO                         = 419,
+		VEHICLE_EUROS                             = 587,
+		VEHICLE_FAGGIO                            = 462,
+		VEHICLE_FBIRANCH                          = 490,
+		VEHICLE_FBIRANCHER                        = 490,
+		VEHICLE_FCR900                            = 521,
+		VEHICLE_FELTZER                           = 533,
+		VEHICLE_FIRELA                            = 544,
+		VEHICLE_FIRETRUK                          = 407,
+		VEHICLE_FIRETRUCK                         = 407,
+		VEHICLE_FIRETRUCKLA                       = 544,
+		VEHICLE_FLASH                             = 565,
+		VEHICLE_FLATBED                           = 455,
+		VEHICLE_FORKLIFT                          = 530,
+		VEHICLE_FORTUNE                           = 526,
+		VEHICLE_FREEWAY                           = 463,
+		VEHICLE_FREIGHT                           = 537,
+		VEHICLE_GLENDALE                          = 466,
+		VEHICLE_GLENDALESHIT                      = 604,
+		VEHICLE_GLENSHIT                          = 604,
+		VEHICLE_GREENWOO                          = 492,
+		VEHICLE_GREENWOOD                         = 492,
+		VEHICLE_HERMES                            = 474,
+		VEHICLE_HOTDOG                            = 588,
+		VEHICLE_HOTKNIFE                          = 434,
+		VEHICLE_HOTRINA                           = 502,
+		VEHICLE_HOTRINB                           = 503,
+		VEHICLE_HOTRING                           = 494,
+		VEHICLE_HOTRINGRACER                      = 494,
+		VEHICLE_HOTRINGRACERA                     = 502,
+		VEHICLE_HOTRINGRACERB                     = 503,
+		VEHICLE_HUNTER                            = 425,
+		VEHICLE_HUNTLEY                           = 579,
+		VEHICLE_HUSTLER                           = 545,
+		VEHICLE_INFERNUS                          = 411,
+		VEHICLE_INTRUDER                          = 546,
+		VEHICLE_JESTER                            = 559,
+		VEHICLE_JETMAX                            = 493,
+		VEHICLE_JOURNEY                           = 508,
+		VEHICLE_KART                              = 571,
+		VEHICLE_LANDSTAL                          = 400,
+		VEHICLE_LANDSTALKER                       = 400,
+		VEHICLE_LAUNCH                            = 595,
+		VEHICLE_LINERUN                           = 403,
+		VEHICLE_LINERUNNER                        = 403,
+		VEHICLE_QUAD                              = 471,
+		VEHICLE_MAJESTIC                          = 517,
+		VEHICLE_MTBIKE                            = 510,
+		VEHICLE_MOUNTAINBIKE                      = 510,
+		VEHICLE_MANANA                            = 410,
+		VEHICLE_MARQUIS                           = 484,
+		VEHICLE_MAVERICK                          = 487,
+		VEHICLE_MERIT                             = 551,
+		VEHICLE_MESA                              = 500,
+		VEHICLE_MONSTER                           = 444,
+		VEHICLE_MONSTERA                          = 556,
+		VEHICLE_MONSTERB                          = 557,
+		VEHICLE_MOONBEAM                          = 418,
+		VEHICLE_MOWER                             = 572,
+		VEHICLE_MRWHOOP                           = 423,
+		VEHICLE_MRWHOOPEE                         = 423,
+		VEHICLE_MULE                              = 414,
+		VEHICLE_NEBULA                            = 516,
+		VEHICLE_NEVADA                            = 553,
+		VEHICLE_NEWSVAN                           = 582,
+		VEHICLE_NRG500                            = 522,
+		VEHICLE_OCEANIC                           = 467,
+		VEHICLE_PACKER                            = 443,
+		VEHICLE_PATRIOT                           = 470,
+		VEHICLE_PCJ600                            = 461,
+		VEHICLE_PEREN                             = 404,
+		VEHICLE_PERRENIAL                         = 404,
+		VEHICLE_PETRO                             = 514,
+		VEHICLE_PETROLTRAILER                     = 584,
+		VEHICLE_PETROTR                           = 584,
+		VEHICLE_PHOENIX                           = 603,
+		VEHICLE_PICADOR                           = 600,
+		VEHICLE_PIZZABOY                          = 448,
+		VEHICLE_POLICECARLSPD                     = 596,
+		VEHICLE_POLICECARSFPD                     = 597,
+		VEHICLE_POLICECARLVPD                     = 598,
+		VEHICLE_POLICERANGER                      = 599,
+		VEHICLE_POLMAV                            = 497,
+		VEHICLE_POLICEMAVERICK                    = 497,
+		VEHICLE_PONY                              = 413,
+		VEHICLE_PREDATOR                          = 430,
+		VEHICLE_PREMIER                           = 426,
+		VEHICLE_PREVION                           = 436,
+		VEHICLE_PRIMO                             = 547,
+		VEHICLE_RAINDANC                          = 563,
+		VEHICLE_RAINDANCE                         = 563,
+		VEHICLE_RANCHER                           = 489,
+		VEHICLE_RANCHERLURE                       = 505,
+		VEHICLE_RCBANDIT                          = 441,
+		VEHICLE_RCBARON                           = 464,
+		VEHICLE_RCRAIDER                          = 465,
+		VEHICLE_RCGOBLIN                          = 501,
+		VEHICLE_RDTRAIN                           = 515,
+		VEHICLE_REEFER                            = 453,
+		VEHICLE_REGINA                            = 479,
+		VEHICLE_REMINGTN                          = 534,
+		VEHICLE_REMINGTON                         = 534,
+		VEHICLE_RHINO                             = 432,
+		VEHICLE_RNCHLURE                          = 505,
+		VEHICLE_ROADTRAIN                         = 515,
+		VEHICLE_ROMERO                            = 442,
+		VEHICLE_RUMPO                             = 440,
+		VEHICLE_RUSTLER                           = 476,
+		VEHICLE_SABRE                             = 475,
+		VEHICLE_SADLER                            = 543,
+		VEHICLE_SADLERSHIT                        = 605,
+		VEHICLE_SADLSHIT                          = 605,
+		VEHICLE_SANCHEZ                           = 468,
+		VEHICLE_SANDKING                          = 495,
+		VEHICLE_SAVANNA                           = 567,
+		VEHICLE_SEASPAR                           = 447,
+		VEHICLE_SEASPARROW                        = 447,
+		VEHICLE_SECURICA                          = 428,
+		VEHICLE_SECURICAR                         = 428,
+		VEHICLE_SENTINEL                          = 405,
+		VEHICLE_SHAMAL                            = 519,
+		VEHICLE_STREAK                            = 538,
+		VEHICLE_STREAKC                           = 570,
+		VEHICLE_STREAKTRAILER                     = 570,
+		VEHICLE_SKIMMER                           = 460,
+		VEHICLE_SLAMVAN                           = 535,
+		VEHICLE_SOLAIR                            = 458,
+		VEHICLE_SPARROW                           = 469,
+		VEHICLE_SPEEDER                           = 452,
+		VEHICLE_SQUALO                            = 446,
+		VEHICLE_STAFFORD                          = 580,
+		VEHICLE_STALLION                          = 439,
+		VEHICLE_STRATUM                           = 561,
+		VEHICLE_STRETCH                           = 409,
+		VEHICLE_STUNT                             = 513,
+		VEHICLE_STUNTPLANE                        = 513,
+		VEHICLE_SULTAN                            = 560,
+		VEHICLE_SUNRISE                           = 550,
+		VEHICLE_SUPERGT                           = 506,
+		VEHICLE_SWAT                              = 601,
+		VEHICLE_SWATVAN                           = 601,
+		VEHICLE_SWEEPER                           = 574,
+		VEHICLE_TAHOMA                            = 566,
+		VEHICLE_TAMPA                             = 549,
+		VEHICLE_TANKER                            = 514,
+		VEHICLE_TAXI                              = 420,
+		VEHICLE_TOPFUN                            = 459,
+		VEHICLE_TORNADO                           = 576,
+		VEHICLE_TOWTRUCK                          = 525,
+		VEHICLE_TRACTOR                           = 531,
+		VEHICLE_TRAM                              = 449,
+		VEHICLE_TRASH                             = 408,
+		VEHICLE_TRASHMASTER                       = 408,
+		VEHICLE_TROPIC                            = 454,
+		VEHICLE_TUG                               = 583,
+		VEHICLE_TUGSTAIR                          = 608,
+		VEHICLE_TUGSTAIRSTRAILER                  = 608,
+		VEHICLE_TURISMO                           = 451,
+		VEHICLE_URANUS                            = 558,
+		VEHICLE_UTILITY                           = 552,
+		VEHICLE_UTILITYVAN                        = 552,
+		VEHICLE_VCNMAV                            = 488,
+		VEHICLE_SANNEWSMAVERICK                   = 488,
+		VEHICLE_VINCENT                           = 540,
+		VEHICLE_VIRGO                             = 491,
+		VEHICLE_VOODOO                            = 412,
+		VEHICLE_VORTEX                            = 539,
+		VEHICLE_WALTON                            = 478,
+		VEHICLE_WASHING                           = 421,
+		VEHICLE_WASHINGTON                        = 421,
+		VEHICLE_WAYFARER                          = 586,
+		VEHICLE_WILLARD                           = 529,
+		VEHICLE_WINDSOR                           = 555,
+		VEHICLE_YANKEE                            = 456,
+		VEHICLE_YOSEMITE                          = 554,
+		VEHICLE_ZR350                             = 477
 
-	// In numerical order.
-	#define VEHICLE_LANDSTAL                    (400)
-	#define VEHICLE_LANDSTALKER                 (400)
-	#define VEHICLE_BRAVURA                     (401)
-	#define VEHICLE_BUFFALO                     (402)
-	#define VEHICLE_LINERUN                     (403)
-	#define VEHICLE_LINERUNNER                  (403)
-	#define VEHICLE_PEREN                       (404)
-	#define VEHICLE_PERRENIAL                   (404)
-	#define VEHICLE_SENTINEL                    (405)
-	#define VEHICLE_DUMPER                      (406)
-	#define VEHICLE_FIRETRUK                    (407)
-	#define VEHICLE_FIRETRUCK                   (407)
-	#define VEHICLE_TRASH                       (408)
-	#define VEHICLE_TRASHMASTER                 (408)
-	#define VEHICLE_STRETCH                     (409)
-	#define VEHICLE_MANANA                      (410)
-	#define VEHICLE_INFERNUS                    (411)
-	#define VEHICLE_VOODOO                      (412)
-	#define VEHICLE_PONY                        (413)
-	#define VEHICLE_MULE                        (414)
-	#define VEHICLE_CHEETAH                     (415)
-	#define VEHICLE_AMBULAN                     (416)
-	#define VEHICLE_AMBULANCE                   (416)
-	#define VEHICLE_LEVIATHAN                   (417)
-	#define VEHICLE_MOONBEAM                    (418)
-	#define VEHICLE_ESPERANT                    (419)
-	#define VEHICLE_ESPERANTO                   (419)
-	#define VEHICLE_TAXI                        (420)
-	#define VEHICLE_WASHING                     (421)
-	#define VEHICLE_WASHINGTON                  (421)
-	#define VEHICLE_BOBCAT                      (422)
-	#define VEHICLE_MRWHOOP                     (423)
-	#define VEHICLE_MRWHOOPEE                   (423)
-	#define VEHICLE_BFINJECT                    (424)
-	#define VEHICLE_BFINJECTION                 (424)
-	#define VEHICLE_HUNTER                      (425)
-	#define VEHICLE_PREMIER                     (426)
-	#define VEHICLE_ENFORCER                    (427)
-	#define VEHICLE_SECURICA                    (428)
-	#define VEHICLE_SECURICAR                   (428)
-	#define VEHICLE_BANSHEE                     (429)
-	#define VEHICLE_PREDATOR                    (430)
-	#define VEHICLE_BUS                         (431)
-	#define VEHICLE_RHINO                       (432)
-	#define VEHICLE_BARRACKS                    (433)
-	#define VEHICLE_HOTKNIFE                    (434)
-	#define VEHICLE_ARTICT1                     (435)
-	#define VEHICLE_ARTICLETRAILER1             (435)
-	#define VEHICLE_PREVION                     (436)
-	#define VEHICLE_COACH                       (437)
-	#define VEHICLE_CABBIE                      (438)
-	#define VEHICLE_STALLION                    (439)
-	#define VEHICLE_RUMPO                       (440)
-	#define VEHICLE_RCBANDIT                    (441)
-	#define VEHICLE_ROMERO                      (442)
-	#define VEHICLE_PACKER                      (443)
-	#define VEHICLE_MONSTER                     (444)
-	#define VEHICLE_ADMIRAL                     (445)
-	#define VEHICLE_SQUALO                      (446)
-	#define VEHICLE_SEASPAR                     (447)
-	#define VEHICLE_SEASPARROW                  (447)
-	#define VEHICLE_PIZZABOY                    (448)
-	#define VEHICLE_TRAM                        (449)
-	#define VEHICLE_ARTICT2                     (450)
-	#define VEHICLE_ARTICLETRAILER2             (450)
-	#define VEHICLE_TURISMO                     (451)
-	#define VEHICLE_SPEEDER                     (452)
-	#define VEHICLE_REEFER                      (453)
-	#define VEHICLE_TROPIC                      (454)
-	#define VEHICLE_FLATBED                     (455)
-	#define VEHICLE_YANKEE                      (456)
-	#define VEHICLE_CADDY                       (457)
-	#define VEHICLE_SOLAIR                      (458)
-	#define VEHICLE_TOPFUN                      (459)
-	#define VEHICLE_BERKLEYSRCVAN               (459)
-	#define VEHICLE_SKIMMER                     (460)
-	#define VEHICLE_PCJ600                      (461)
-	#define VEHICLE_FAGGIO                      (462)
-	#define VEHICLE_FREEWAY                     (463)
-	#define VEHICLE_RCBARON                     (464)
-	#define VEHICLE_RCRAIDER                    (465)
-	#define VEHICLE_GLENDALE                    (466)
-	#define VEHICLE_OCEANIC                     (467)
-	#define VEHICLE_SANCHEZ                     (468)
-	#define VEHICLE_SPARROW                     (469)
-	#define VEHICLE_PATRIOT                     (470)
-	#define VEHICLE_QUAD                        (471)
-	#define VEHICLE_COASTG                      (472)
-	#define VEHICLE_COASTGUARD                  (472)
-	#define VEHICLE_DINGHY                      (473)
-	#define VEHICLE_HERMES                      (474)
-	#define VEHICLE_SABRE                       (475)
-	#define VEHICLE_RUSTLER                     (476)
-	#define VEHICLE_ZR350                       (477)
-	#define VEHICLE_WALTON                      (478)
-	#define VEHICLE_REGINA                      (479)
-	#define VEHICLE_COMET                       (480)
-	#define VEHICLE_BMX                         (481)
-	#define VEHICLE_BURRITO                     (482)
-	#define VEHICLE_CAMPER                      (483)
-	#define VEHICLE_MARQUIS                     (484)
-	#define VEHICLE_BAGGAGE                     (485)
-	#define VEHICLE_DOZER                       (486)
-	#define VEHICLE_MAVERICK                    (487)
-	#define VEHICLE_VCNMAV                      (488)
-	#define VEHICLE_SANNEWSMAVERICK             (488)
-	#define VEHICLE_RANCHER                     (489)
-	#define VEHICLE_FBIRANCHER                  (490)
-	#define VEHICLE_VIRGO                       (491)
-	#define VEHICLE_GREENWOO                    (492)
-	#define VEHICLE_GREENWOOD                   (492)
-	#define VEHICLE_JETMAX                      (493)
-	#define VEHICLE_HOTRING                     (494)
-	#define VEHICLE_HOTRINGRACER                (494)
-	#define VEHICLE_SANDKING                    (495)
-	#define VEHICLE_BLISTAC                     (496)
-	#define VEHICLE_BLISTACOMPACT               (496)
-	#define VEHICLE_POLMAV                      (497)
-	#define VEHICLE_POLICEMAVERICK              (497)
-	#define VEHICLE_BOXVILLE                    (498)
-	#define VEHICLE_BENSON                      (499)
-	#define VEHICLE_MESA                        (500)
-	#define VEHICLE_RCGOBLIN                    (501)
-	#define VEHICLE_HOTRINA                     (502)
-	#define VEHICLE_HOTRINGRACERA               (502)
-	#define VEHICLE_HOTRINB                     (503)
-	#define VEHICLE_HOTRINGRACERB               (503)
-	#define VEHICLE_BLOODRA                     (504)
-	#define VEHICLE_BLOODRINGBANGER             (504)
-	#define VEHICLE_RNCHLURE                    (505)
-	#define VEHICLE_RANCHERLURE                 (505)
-	#define VEHICLE_SUPERGT                     (506)
-	#define VEHICLE_ELEGANT                     (507)
-	#define VEHICLE_JOURNEY                     (508)
-	#define VEHICLE_BIKE                        (509)
-	#define VEHICLE_MTBIKE                      (510)
-	#define VEHICLE_MOUNTAINBIKE                (510)
-	#define VEHICLE_BEAGLE                      (511)
-	#define VEHICLE_CROPDUST                    (512)
-	#define VEHICLE_STUNT                       (513)
-	#define VEHICLE_STUNTPLANE                  (513)
-	#define VEHICLE_PETRO                       (514)
-	#define VEHICLE_TANKER                      (514)
-	#define VEHICLE_RDTRAIN                     (515)
-	#define VEHICLE_ROADTRAIN                   (515)
-	#define VEHICLE_NEBULA                      (516)
-	#define VEHICLE_MAJESTIC                    (517)
-	#define VEHICLE_BUCCANEE                    (518)
-	#define VEHICLE_BUCCANEER                   (518)
-	#define VEHICLE_SHAMAL                      (519)
-	#define VEHICLE_HYDRA                       (520)
-	#define VEHICLE_FCR900                      (521)
-	#define VEHICLE_NRG500                      (522)
-	#define VEHICLE_HPV1000                     (523)
-	#define VEHICLE_CEMENT                      (524)
-	#define VEHICLE_CEMENTTRUCK                 (524)
-	#define VEHICLE_TOWTRUCK                    (525)
-	#define VEHICLE_FORTUNE                     (526)
-	#define VEHICLE_CADRONA                     (527)
-	#define VEHICLE_FBITRUCK                    (528)
-	#define VEHICLE_WILLARD                     (529)
-	#define VEHICLE_FORKLIFT                    (530)
-	#define VEHICLE_TRACTOR                     (531)
-	#define VEHICLE_COMBINE                     (532)
-	#define VEHICLE_FELTZER                     (533)
-	#define VEHICLE_REMINGTN                    (534)
-	#define VEHICLE_REMINGTON                   (534)
-	#define VEHICLE_SLAMVAN                     (535)
-	#define VEHICLE_BLADE                       (536)
-	#define VEHICLE_FREIGHT                     (537)
-	#define VEHICLE_STREAK                      (538)
-	#define VEHICLE_BROWNSTREAK                 (538)
-	#define VEHICLE_VORTEX                      (539)
-	#define VEHICLE_VINCENT                     (540)
-	#define VEHICLE_BULLET                      (541)
-	#define VEHICLE_CLOVER                      (542)
-	#define VEHICLE_SADLER                      (543)
-	#define VEHICLE_FIRELA                      (544)
-	#define VEHICLE_FIRETRUCKLA                 (544)
-	#define VEHICLE_HUSTLER                     (545)
-	#define VEHICLE_INTRUDER                    (546)
-	#define VEHICLE_PRIMO                       (547)
-	#define VEHICLE_CARGOBOB                    (548)
-	#define VEHICLE_TAMPA                       (549)
-	#define VEHICLE_SUNRISE                     (550)
-	#define VEHICLE_MERIT                       (551)
-	#define VEHICLE_UTILITY                     (552)
-	#define VEHICLE_UTILITYVAN                  (552)
-	#define VEHICLE_NEVADA                      (553)
-	#define VEHICLE_YOSEMITE                    (554)
-	#define VEHICLE_WINDSOR                     (555)
-	#define VEHICLE_MONSTERA                    (556)
-	#define VEHICLE_MONSTERB                    (557)
-	#define VEHICLE_URANUS                      (558)
-	#define VEHICLE_JESTER                      (559)
-	#define VEHICLE_SULTAN                      (560)
-	#define VEHICLE_STRATUM                     (561)
-	#define VEHICLE_ELEGY                       (562)
-	#define VEHICLE_RAINDANC                    (563)
-	#define VEHICLE_RAINDANCE                   (563)
-	#define VEHICLE_RCTIGER                     (564)
-	#define VEHICLE_FLASH                       (565)
-	#define VEHICLE_TAHOMA                      (566)
-	#define VEHICLE_SAVANNA                     (567)
-	#define VEHICLE_BANDITO                     (568)
-	#define VEHICLE_FREIGHTFLATTRAILER          (569)
-	#define VEHICLE_STREAKC                     (570)
-	#define VEHICLE_STREAKTRAILER               (570)
-	#define VEHICLE_KART                        (571)
-	#define VEHICLE_MOWER                       (572)
-	#define VEHICLE_DUNERIDE                    (573)
-	#define VEHICLE_SWEEPER                     (574)
-	#define VEHICLE_BROADWAY                    (575)
-	#define VEHICLE_TORNADO                     (576)
-	#define VEHICLE_AT400                       (577)
-	#define VEHICLE_DFT30                       (578)
-	#define VEHICLE_HUNTLEY                     (579)
-	#define VEHICLE_STAFFORD                    (580)
-	#define VEHICLE_BF400                       (581)
-	#define VEHICLE_NEWSVAN                     (582)
-	#define VEHICLE_TUG                         (583)
-	#define VEHICLE_PETROTR                     (584)
-	#define VEHICLE_PETROLTRAILER               (584)
-	#define VEHICLE_EMPEROR                     (585)
-	#define VEHICLE_WAYFARER                    (586)
-	#define VEHICLE_EUROS                       (587)
-	#define VEHICLE_HOTDOG                      (588)
-	#define VEHICLE_CLUB                        (589)
-	#define VEHICLE_FREIGHTBOXTRAILER           (590)
-	#define VEHICLE_ARTICT3                     (591)
-	#define VEHICLE_ARTICLETRAILER3             (591)
-	#define VEHICLE_ANDROM                      (592)
-	#define VEHICLE_ANDROMADA                   (592)
-	#define VEHICLE_DODO                        (593)
-	#define VEHICLE_RCCAM                       (594)
-	#define VEHICLE_LAUNCH                      (595)
-	#define VEHICLE_COPCARLA                    (596)
-	#define VEHICLE_POLICECARLSPD               (596)
-	#define VEHICLE_COPCARSF                    (597)
-	#define VEHICLE_POLICECARSFPD               (597)
-	#define VEHICLE_COPCARVG                    (598)
-	#define VEHICLE_POLICECARLVPD               (598)
-	#define VEHICLE_COPCARRU                    (599)
-	#define VEHICLE_POLICERANGER                (599)
-	#define VEHICLE_PICADOR                     (600)
-	#define VEHICLE_SWATVAN                     (601)
-	#define VEHICLE_SWAT                        (601)
-	#define VEHICLE_ALPHA                       (602)
-	#define VEHICLE_PHOENIX                     (603)
-	#define VEHICLE_GLENSHIT                    (604)
-	#define VEHICLE_GLENDALESHIT                (604)
-	#define VEHICLE_SADLSHIT                    (605)
-	#define VEHICLE_SADLERSHIT                  (605)
-	#define VEHICLE_BAGGAGETRAILERA             (606)
-	#define VEHICLE_BAGGAGETRAILERB             (607)
-	#define VEHICLE_TUGSTAIR                    (608)
-	#define VEHICLE_TUGSTAIRSTRAILER            (608)
-	#define VEHICLE_BOXBURG                     (609)
-	#define VEHICLE_FARMTRAILER                 (610)
-	#define VEHICLE_UTILITYTRAILER              (611)
+		// In numerical order.
+		// VEHICLE_LANDSTAL                       = 400,
+		// VEHICLE_LANDSTALKER                    = 400,
+		// VEHICLE_BRAVURA                        = 401,
+		// VEHICLE_BUFFALO                        = 402,
+		// VEHICLE_LINERUN                        = 403,
+		// VEHICLE_LINERUNNER                     = 403,
+		// VEHICLE_PEREN                          = 404,
+		// VEHICLE_PERRENIAL                      = 404,
+		// VEHICLE_SENTINEL                       = 405,
+		// VEHICLE_DUMPER                         = 406,
+		// VEHICLE_FIRETRUK                       = 407,
+		// VEHICLE_FIRETRUCK                      = 407,
+		// VEHICLE_TRASH                          = 408,
+		// VEHICLE_TRASHMASTER                    = 408,
+		// VEHICLE_STRETCH                        = 409,
+		// VEHICLE_MANANA                         = 410,
+		// VEHICLE_INFERNUS                       = 411,
+		// VEHICLE_VOODOO                         = 412,
+		// VEHICLE_PONY                           = 413,
+		// VEHICLE_MULE                           = 414,
+		// VEHICLE_CHEETAH                        = 415,
+		// VEHICLE_AMBULAN                        = 416,
+		// VEHICLE_AMBULANCE                      = 416,
+		// VEHICLE_LEVIATHAN                      = 417,
+		// VEHICLE_MOONBEAM                       = 418,
+		// VEHICLE_ESPERANT                       = 419,
+		// VEHICLE_ESPERANTO                      = 419,
+		// VEHICLE_TAXI                           = 420,
+		// VEHICLE_WASHING                        = 421,
+		// VEHICLE_WASHINGTON                     = 421,
+		// VEHICLE_BOBCAT                         = 422,
+		// VEHICLE_MRWHOOP                        = 423,
+		// VEHICLE_MRWHOOPEE                      = 423,
+		// VEHICLE_BFINJECT                       = 424,
+		// VEHICLE_BFINJECTION                    = 424,
+		// VEHICLE_HUNTER                         = 425,
+		// VEHICLE_PREMIER                        = 426,
+		// VEHICLE_ENFORCER                       = 427,
+		// VEHICLE_SECURICA                       = 428,
+		// VEHICLE_SECURICAR                      = 428,
+		// VEHICLE_BANSHEE                        = 429,
+		// VEHICLE_PREDATOR                       = 430,
+		// VEHICLE_BUS                            = 431,
+		// VEHICLE_RHINO                          = 432,
+		// VEHICLE_BARRACKS                       = 433,
+		// VEHICLE_HOTKNIFE                       = 434,
+		// VEHICLE_ARTICT1                        = 435,
+		// VEHICLE_ARTICLETRAILER1                = 435,
+		// VEHICLE_PREVION                        = 436,
+		// VEHICLE_COACH                          = 437,
+		// VEHICLE_CABBIE                         = 438,
+		// VEHICLE_STALLION                       = 439,
+		// VEHICLE_RUMPO                          = 440,
+		// VEHICLE_RCBANDIT                       = 441,
+		// VEHICLE_ROMERO                         = 442,
+		// VEHICLE_PACKER                         = 443,
+		// VEHICLE_MONSTER                        = 444,
+		// VEHICLE_ADMIRAL                        = 445,
+		// VEHICLE_SQUALO                         = 446,
+		// VEHICLE_SEASPAR                        = 447,
+		// VEHICLE_SEASPARROW                     = 447,
+		// VEHICLE_PIZZABOY                       = 448,
+		// VEHICLE_TRAM                           = 449,
+		// VEHICLE_ARTICT2                        = 450,
+		// VEHICLE_ARTICLETRAILER2                = 450,
+		// VEHICLE_TURISMO                        = 451,
+		// VEHICLE_SPEEDER                        = 452,
+		// VEHICLE_REEFER                         = 453,
+		// VEHICLE_TROPIC                         = 454,
+		// VEHICLE_FLATBED                        = 455,
+		// VEHICLE_YANKEE                         = 456,
+		// VEHICLE_CADDY                          = 457,
+		// VEHICLE_SOLAIR                         = 458,
+		// VEHICLE_TOPFUN                         = 459,
+		// VEHICLE_BERKLEYSRCVAN                  = 459,
+		// VEHICLE_SKIMMER                        = 460,
+		// VEHICLE_PCJ600                         = 461,
+		// VEHICLE_FAGGIO                         = 462,
+		// VEHICLE_FREEWAY                        = 463,
+		// VEHICLE_RCBARON                        = 464,
+		// VEHICLE_RCRAIDER                       = 465,
+		// VEHICLE_GLENDALE                       = 466,
+		// VEHICLE_OCEANIC                        = 467,
+		// VEHICLE_SANCHEZ                        = 468,
+		// VEHICLE_SPARROW                        = 469,
+		// VEHICLE_PATRIOT                        = 470,
+		// VEHICLE_QUAD                           = 471,
+		// VEHICLE_COASTG                         = 472,
+		// VEHICLE_COASTGUARD                     = 472,
+		// VEHICLE_DINGHY                         = 473,
+		// VEHICLE_HERMES                         = 474,
+		// VEHICLE_SABRE                          = 475,
+		// VEHICLE_RUSTLER                        = 476,
+		// VEHICLE_ZR350                          = 477,
+		// VEHICLE_WALTON                         = 478,
+		// VEHICLE_REGINA                         = 479,
+		// VEHICLE_COMET                          = 480,
+		// VEHICLE_BMX                            = 481,
+		// VEHICLE_BURRITO                        = 482,
+		// VEHICLE_CAMPER                         = 483,
+		// VEHICLE_MARQUIS                        = 484,
+		// VEHICLE_BAGGAGE                        = 485,
+		// VEHICLE_DOZER                          = 486,
+		// VEHICLE_MAVERICK                       = 487,
+		// VEHICLE_VCNMAV                         = 488,
+		// VEHICLE_SANNEWSMAVERICK                = 488,
+		// VEHICLE_RANCHER                        = 489,
+		// VEHICLE_FBIRANCHER                     = 490,
+		// VEHICLE_VIRGO                          = 491,
+		// VEHICLE_GREENWOO                       = 492,
+		// VEHICLE_GREENWOOD                      = 492,
+		// VEHICLE_JETMAX                         = 493,
+		// VEHICLE_HOTRING                        = 494,
+		// VEHICLE_HOTRINGRACER                   = 494,
+		// VEHICLE_SANDKING                       = 495,
+		// VEHICLE_BLISTAC                        = 496,
+		// VEHICLE_BLISTACOMPACT                  = 496,
+		// VEHICLE_POLMAV                         = 497,
+		// VEHICLE_POLICEMAVERICK                 = 497,
+		// VEHICLE_BOXVILLE                       = 498,
+		// VEHICLE_BENSON                         = 499,
+		// VEHICLE_MESA                           = 500,
+		// VEHICLE_RCGOBLIN                       = 501,
+		// VEHICLE_HOTRINA                        = 502,
+		// VEHICLE_HOTRINGRACERA                  = 502,
+		// VEHICLE_HOTRINB                        = 503,
+		// VEHICLE_HOTRINGRACERB                  = 503,
+		// VEHICLE_BLOODRA                        = 504,
+		// VEHICLE_BLOODRINGBANGER                = 504,
+		// VEHICLE_RNCHLURE                       = 505,
+		// VEHICLE_RANCHERLURE                    = 505,
+		// VEHICLE_SUPERGT                        = 506,
+		// VEHICLE_ELEGANT                        = 507,
+		// VEHICLE_JOURNEY                        = 508,
+		// VEHICLE_BIKE                           = 509,
+		// VEHICLE_MTBIKE                         = 510,
+		// VEHICLE_MOUNTAINBIKE                   = 510,
+		// VEHICLE_BEAGLE                         = 511,
+		// VEHICLE_CROPDUST                       = 512,
+		// VEHICLE_STUNT                          = 513,
+		// VEHICLE_STUNTPLANE                     = 513,
+		// VEHICLE_PETRO                          = 514,
+		// VEHICLE_TANKER                         = 514,
+		// VEHICLE_RDTRAIN                        = 515,
+		// VEHICLE_ROADTRAIN                      = 515,
+		// VEHICLE_NEBULA                         = 516,
+		// VEHICLE_MAJESTIC                       = 517,
+		// VEHICLE_BUCCANEE                       = 518,
+		// VEHICLE_BUCCANEER                      = 518,
+		// VEHICLE_SHAMAL                         = 519,
+		// VEHICLE_HYDRA                          = 520,
+		// VEHICLE_FCR900                         = 521,
+		// VEHICLE_NRG500                         = 522,
+		// VEHICLE_HPV1000                        = 523,
+		// VEHICLE_CEMENT                         = 524,
+		// VEHICLE_CEMENTTRUCK                    = 524,
+		// VEHICLE_TOWTRUCK                       = 525,
+		// VEHICLE_FORTUNE                        = 526,
+		// VEHICLE_CADRONA                        = 527,
+		// VEHICLE_FBITRUCK                       = 528,
+		// VEHICLE_WILLARD                        = 529,
+		// VEHICLE_FORKLIFT                       = 530,
+		// VEHICLE_TRACTOR                        = 531,
+		// VEHICLE_COMBINE                        = 532,
+		// VEHICLE_FELTZER                        = 533,
+		// VEHICLE_REMINGTN                       = 534,
+		// VEHICLE_REMINGTON                      = 534,
+		// VEHICLE_SLAMVAN                        = 535,
+		// VEHICLE_BLADE                          = 536,
+		// VEHICLE_FREIGHT                        = 537,
+		// VEHICLE_STREAK                         = 538,
+		// VEHICLE_BROWNSTREAK                    = 538,
+		// VEHICLE_VORTEX                         = 539,
+		// VEHICLE_VINCENT                        = 540,
+		// VEHICLE_BULLET                         = 541,
+		// VEHICLE_CLOVER                         = 542,
+		// VEHICLE_SADLER                         = 543,
+		// VEHICLE_FIRELA                         = 544,
+		// VEHICLE_FIRETRUCKLA                    = 544,
+		// VEHICLE_HUSTLER                        = 545,
+		// VEHICLE_INTRUDER                       = 546,
+		// VEHICLE_PRIMO                          = 547,
+		// VEHICLE_CARGOBOB                       = 548,
+		// VEHICLE_TAMPA                          = 549,
+		// VEHICLE_SUNRISE                        = 550,
+		// VEHICLE_MERIT                          = 551,
+		// VEHICLE_UTILITY                        = 552,
+		// VEHICLE_UTILITYVAN                     = 552,
+		// VEHICLE_NEVADA                         = 553,
+		// VEHICLE_YOSEMITE                       = 554,
+		// VEHICLE_WINDSOR                        = 555,
+		// VEHICLE_MONSTERA                       = 556,
+		// VEHICLE_MONSTERB                       = 557,
+		// VEHICLE_URANUS                         = 558,
+		// VEHICLE_JESTER                         = 559,
+		// VEHICLE_SULTAN                         = 560,
+		// VEHICLE_STRATUM                        = 561,
+		// VEHICLE_ELEGY                          = 562,
+		// VEHICLE_RAINDANC                       = 563,
+		// VEHICLE_RAINDANCE                      = 563,
+		// VEHICLE_RCTIGER                        = 564,
+		// VEHICLE_FLASH                          = 565,
+		// VEHICLE_TAHOMA                         = 566,
+		// VEHICLE_SAVANNA                        = 567,
+		// VEHICLE_BANDITO                        = 568,
+		// VEHICLE_FREIGHTFLATTRAILER             = 569,
+		// VEHICLE_STREAKC                        = 570,
+		// VEHICLE_STREAKTRAILER                  = 570,
+		// VEHICLE_KART                           = 571,
+		// VEHICLE_MOWER                          = 572,
+		// VEHICLE_DUNERIDE                       = 573,
+		// VEHICLE_SWEEPER                        = 574,
+		// VEHICLE_BROADWAY                       = 575,
+		// VEHICLE_TORNADO                        = 576,
+		// VEHICLE_AT400                          = 577,
+		// VEHICLE_DFT30                          = 578,
+		// VEHICLE_HUNTLEY                        = 579,
+		// VEHICLE_STAFFORD                       = 580,
+		// VEHICLE_BF400                          = 581,
+		// VEHICLE_NEWSVAN                        = 582,
+		// VEHICLE_TUG                            = 583,
+		// VEHICLE_PETROTR                        = 584,
+		// VEHICLE_PETROLTRAILER                  = 584,
+		// VEHICLE_EMPEROR                        = 585,
+		// VEHICLE_WAYFARER                       = 586,
+		// VEHICLE_EUROS                          = 587,
+		// VEHICLE_HOTDOG                         = 588,
+		// VEHICLE_CLUB                           = 589,
+		// VEHICLE_FREIGHTBOXTRAILER              = 590,
+		// VEHICLE_ARTICT3                        = 591,
+		// VEHICLE_ARTICLETRAILER3                = 591,
+		// VEHICLE_ANDROM                         = 592,
+		// VEHICLE_ANDROMADA                      = 592,
+		// VEHICLE_DODO                           = 593,
+		// VEHICLE_RCCAM                          = 594,
+		// VEHICLE_LAUNCH                         = 595,
+		// VEHICLE_COPCARLA                       = 596,
+		// VEHICLE_POLICECARLSPD                  = 596,
+		// VEHICLE_COPCARSF                       = 597,
+		// VEHICLE_POLICECARSFPD                  = 597,
+		// VEHICLE_COPCARVG                       = 598,
+		// VEHICLE_POLICECARLVPD                  = 598,
+		// VEHICLE_COPCARRU                       = 599,
+		// VEHICLE_POLICERANGER                   = 599,
+		// VEHICLE_PICADOR                        = 600,
+		// VEHICLE_SWATVAN                        = 601,
+		// VEHICLE_SWAT                           = 601,
+		// VEHICLE_ALPHA                          = 602,
+		// VEHICLE_PHOENIX                        = 603,
+		// VEHICLE_GLENSHIT                       = 604,
+		// VEHICLE_GLENDALESHIT                   = 604,
+		// VEHICLE_SADLSHIT                       = 605,
+		// VEHICLE_SADLERSHIT                     = 605,
+		// VEHICLE_BAGGAGETRAILERA                = 606,
+		// VEHICLE_BAGGAGETRAILERB                = 607,
+		// VEHICLE_TUGSTAIR                       = 608,
+		// VEHICLE_TUGSTAIRSTRAILER               = 608,
+		// VEHICLE_BOXBURG                        = 609,
+		// VEHICLE_FARMTRAILER                    = 610,
+		// VEHICLE_UTILITYTRAILER                 = 611
+	}
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES___VEHICLE);
 #endif
 
 /**
