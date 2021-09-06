@@ -19048,6 +19048,11 @@ static stock FIXES_zzzzzzzzzzzzzzzzzzzzzzzzy;
 	#endinput
 #endif
 
+// This somehow stops the "spread" of the comment above `e_FIXES`.
+enum e_FIXES_PAWNDOC_BUG_FIX_0()
+{
+}
+
 // There's a bug in the compiler with enum pawndocs, hence why the unused bug
 // fix enums exist, and why the enums here are before their pawndoc comments.
 enum e_FIXES()
@@ -19069,7 +19074,7 @@ enum e_FIXES()
 */
 
 // This somehow stops the "spread" of the comment above `e_FIXES`.
-enum e_FIXES_UNUSED_BUG_FIX_1()
+enum e_FIXES_PAWNDOC_BUG_FIX_1()
 {
 }
 
@@ -19093,25 +19098,14 @@ enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz()
 
 // This somehow stops the "spread" of the comment above
 // `e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz`.
-enum e_FIXES_UNUSED_BUG_FIX_2()
+enum e_FIXES_PAWNDOC_BUG_FIX_2()
 {
 }
 
-/**
-	<hidden />
-	<remarks>
-		This constant only exists to hide other consts.  It starts a massive
-		comment block in the pawndoc XML output that hides all fixes.inc
-		consts when the library is built with <c>FIXES_NoPawndoc</c>.
-		<p />
-		Note that the actual hiding itself is done by an XML comment started
-		here and ended by a later variable.
-	</remarks>
-
-	<!--
-*/
-
-const e_FIXES:e_FIXES_ = e_FIXES;
+// Another pawndoc bugfix.  Resets the internal comment tracker (I'm guessing).
+static stock _FIXES_PawndocBugFix3()
+{
+}
 
 /**
 	<hidden />
@@ -19132,22 +19126,6 @@ const e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz = e_FIXESz
 /**
 	<hidden />
 	<remarks>
-		This function only exists to hide other functions.  It starts a massive
-		comment block in the pawndoc XML output that hides all fixes.inc
-		functions when the library is built with <c>FIXES_NoPawndoc</c>.
-		<p />
-		Note that the actual hiding itself is done by an XML comment started
-		here and ended by a later variable.
-	</remarks>
-
-	<!--
-*/
-
-static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
-
-/**
-	<hidden />
-	<remarks>
 		This function only exists to hide other functions.  It ends a massive
 		comment block in the pawndoc XML output that hides all fixes.inc
 		functions when the library is built with <c>FIXES_NoPawndoc</c>.
@@ -19160,6 +19138,38 @@ static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
 */
 
 static stock e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:FIXES_zzzzzzzzzzzzzzzzzzzzzzzzz() { return e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz; }
+
+/**
+	<hidden />
+	<remarks>
+		This constant only exists to hide other consts.  It starts a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		consts when the library is built with <c>FIXES_NoPawndoc</c>.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		here and ended by a later variable.
+	</remarks>
+
+	<!--
+*/
+
+const e_FIXES:e_FIXES_ = e_FIXES;
+
+/**
+	<hidden />
+	<remarks>
+		This function only exists to hide other functions.  It starts a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		functions when the library is built with <c>FIXES_NoPawndoc</c>.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		here and ended by a later variable.
+	</remarks>
+
+	<!--
+*/
+
+static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
 
 #endinput
 
