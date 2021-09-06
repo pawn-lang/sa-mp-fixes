@@ -19048,9 +19048,9 @@ static stock FIXES_zzzzzzzzzzzzzzzzzzzzzzzzy;
 	#endinput
 #endif
 
-// There's a bug with enums in pawndoc, hence why their comments are below
-// instead of above.
-enum e_FIXES
+// There's a bug in the compiler with enum pawndocs, hence why the unused bug
+// fix enums exist, and why the enums here are before their pawndoc comments.
+enum e_FIXES()
 {
 }
 
@@ -19068,25 +19068,12 @@ enum e_FIXES
 	<!--
 */
 
-/**
-	<hidden />
-	<remarks>
-		This constant only exists to hide other consts.  It starts a massive
-		comment block in the pawndoc XML output that hides all fixes.inc
-		consts when the library is built with <c>FIXES_NoPawndoc</c>.
-		<p />
-		Note that the actual hiding itself is done by an XML comment started
-		here and ended by a later variable.
-	</remarks>
+// This somehow stops the "spread" of the comment above `e_FIXES`.
+enum e_FIXES_UNUSED_BUG_FIX_1()
+{
+}
 
-	<!--
-*/
-
-const e_FIXES:e_FIXES_ = e_FIXES;
-
-// There's a bug with enums in pawndoc, hence why their comments are below
-// instead of above.
-enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz
+enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz()
 {
 }
 
@@ -19103,6 +19090,28 @@ enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz
 
 	-->
 */
+
+// This somehow stops the "spread" of the comment above
+// `e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz`.
+enum e_FIXES_UNUSED_BUG_FIX_2()
+{
+}
+
+/**
+	<hidden />
+	<remarks>
+		This constant only exists to hide other consts.  It starts a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		consts when the library is built with <c>FIXES_NoPawndoc</c>.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		here and ended by a later variable.
+	</remarks>
+
+	<!--
+*/
+
+const e_FIXES:e_FIXES_ = e_FIXES;
 
 /**
 	<hidden />
@@ -19134,7 +19143,7 @@ const e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz = e_FIXESz
 	<!--
 */
 
-static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES; }
+static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
 
 /**
 	<hidden />
@@ -19150,7 +19159,7 @@ static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES; }
 	-->
 */
 
-static stock e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:FIXES_zzzzzzzzzzzzzzzzzzzzzzzzz() { return e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz; }
+static stock e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:FIXES_zzzzzzzzzzzzzzzzzzzzzzzzz() { return e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz; }
 
 #endinput
 
