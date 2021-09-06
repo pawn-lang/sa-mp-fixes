@@ -5507,7 +5507,7 @@ _FIXES_SHOW_PAWNDOC(FIXES_SET(const var[], playerid, value)) {}
 #if FIXES_Single
 	#define FIXES_SET(%0,%1,%2) (FIXES_gs%0[%1] = %2)
 #else
-	#define FIXES_SET(%0,%1,%2) SetPVarInt(%1, FIXES_pvar%0, %2)
+	#define FIXES_SET(%0,%1,%2) SetPVarInt__(%1, FIXES_pvar%0, %2)
 #endif
 
 /**
@@ -5521,7 +5521,7 @@ _FIXES_SHOW_PAWNDOC(FIXES_GET(const var[], playerid)) {}
 #if FIXES_Single
 	#define FIXES_GET(%0,%1) (FIXES_gs%0[%1])
 #else
-	#define FIXES_GET(%0,%1) GetPVarInt(%1, FIXES_pvar%0)
+	#define FIXES_GET(%0,%1) GetPVarInt__(%1, FIXES_pvar%0)
 #endif
 
 /**
@@ -10812,7 +10812,7 @@ public OnGameModeInit()
 		#if FIX_OnRconCommand || FIX_OnClientCheckResponse
 			// First, test if the fix has already been loaded.
 			setproperty(27, FIXES_gscOnClientCheckResponse, 0),
-			SendRconCommand(FIXES_gscOnClientCheckResponse);
+			SendRconCommand__(FIXES_gscOnClientCheckResponse);
 			if (getproperty(27, FIXES_gscOnClientCheckResponse) != 27)
 			{
 				if (!fexist(FIXES_gscRconFixFS))
