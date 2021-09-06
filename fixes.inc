@@ -18852,23 +18852,28 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef _FIXES_FIRST_PASS
 
 /**
-	This function only exists to hide other functions.  It starts a massive
-	comment block in the pawndoc XML output that hides all internal functions -
-	that is, those that start with <c>_</c>.  This is a very common pattern used
-	throughout fixes.inc (and most of programming).  Unfortunately these weirdly
-	named internal functions appear in the generated documentation always.  This
-	is the best way to hide them.  You still see one function (this one), but at
-	least the documentation for this one function can explain why it exists.
-	<p />
-	This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> and starts the internal
-	functions block.  This is the last possible name before the first character
-	is <c>_</c> when the functions are sorted lexicographically
-	(alphabetically).  There's also <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c> that
-	starts the variables block; they could have the same name if they were not
-	declared in the same scope, but they might not always be separately defined.
-	<p />
-	Note that the actual hiding itself is done by an XML comment started here
-	and ended by a later variable.
+	<hidden />
+	<remarks>
+		This function only exists to hide other functions.  It starts a massive
+		comment block in the pawndoc XML output that hides all internal
+		functions - that is, those that start with <c>_</c>.  This is a very
+		common pattern used throughout fixes.inc (and most of programming).
+		Unfortunately these weirdly named internal functions appear in the
+		generated documentation always.  This is the best way to hide them.  You
+		still see one function (this one), but at least the documentation for
+		this one function can explain why it exists.
+		<p />
+		This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> and starts the internal
+		functions block.  This is the last possible name before the first
+		character is <c>_</c> when the functions are sorted lexicographically
+		(alphabetically).  There's also <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c>
+		that starts the variables block; they could have the same name if they
+		were not declared in the same scope, but they might not always be
+		separately defined.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		here and ended by a later variable.
+	</remarks>
 
 	<!--
 */
@@ -18876,24 +18881,28 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
 
 /**
-	This function only exists to hide other functions.  It end a massive comment
-	block in the pawndoc XML output that hides all internal functions - that is,
-	those that start with <c>_</c>.  This is a very common pattern used
-	throughout fixes.inc (and most of programming).  Unfortunately these weirdly
-	named internal functions appear in the generated documentation always.  This
-	is the best way to hide them.  You still see one function
-	(<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c>), but at least the documentation for
-	that can explain why it exists.
-	<p />
-	This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> and ends the internal
-	functions block.  This is the last possible name before the first character
-	is no longer <c>_</c> when the functions are sorted lexicographically
-	(alphabetically).  There's also <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> that
-	ends the variables block; they could have the same name if they were not
-	declared in the same scope, but they might not always be separately defined.
-	<p />
-	Note that the actual hiding itself is done by an XML comment started earlier
-	and ended here.
+	<hidden />
+	<remarks>
+		This function only exists to hide other functions.  It end a massive
+		comment block in the pawndoc XML output that hides all internal
+		functions - that is, those that start with <c>_</c>.  This is a very
+		common pattern used throughout fixes.inc (and most of programming).
+		Unfortunately these weirdly named internal functions appear in the
+		generated documentation always.  This is the best way to hide them.  You
+		still see one function (<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c>), but at
+		least the documentation for that can explain why it exists.
+		<p />
+		This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> and ends the internal
+		functions block.  This is the last possible name before the first
+		character is no longer <c>_</c> when the functions are sorted
+		lexicographically (alphabetically).  There's also
+		<c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> that ends the variables block;
+		they could have the same name if they were not declared in the same
+		scope, but they might not always be separately defined.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		earlier and ended here.
+	</remarks>
 
 	-->
 */
@@ -18901,24 +18910,28 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
 static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 
 /**
-	This variable only exists to hide other variables.  It starts a massive
-	comment block in the pawndoc XML output that hides all internal variables -
-	that is, those that start with <c>_</c>.  This is a very common pattern used
-	throughout fixes.inc (and most of programming).  Unfortunately these weirdly
-	named internal variables appear in the generated documentation always.  This
-	is the best way to hide them.  You still see one variable (this one), but at
-	least the documentation for this one variable can explain why it exists.
-	<p />
-	This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c> and starts the internal
-	variables block.  This is the last possible name, except one, before the
-	first character is <c>_</c> when the functions are sorted lexicographically
-	(alphabetically).  There's also <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c>
-	that starts the functions block; they could have the same name if they were
-	not declared in the same scope, but they might not always be separately
-	defined.
-	<p />
-	Note that the actual hiding itself is done by an XML comment started here
-	and ended by a later variable.
+	<hidden />
+	<remarks>
+		This variable only exists to hide other variables.  It starts a massive
+		comment block in the pawndoc XML output that hides all internal
+		variables - that is, those that start with <c>_</c>.  This is a very
+		common pattern used throughout fixes.inc (and most of programming).
+		Unfortunately these weirdly named internal variables appear in the
+		generated documentation always.  This is the best way to hide them.  You
+		still see one variable (this one), but at least the documentation for
+		this one variable can explain why it exists.
+		<p />
+		This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c> and starts the internal
+		variables block.  This is the last possible name, except one, before the
+		first character is <c>_</c> when the functions are sorted
+		lexicographically (alphabetically).  There's also
+		<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> that starts the functions block;
+		they could have the same name if they were not declared in the same
+		scope, but they might not always be separately defined.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		here and ended by a later variable.
+	</remarks>
 
 	<!--
 */
@@ -18926,25 +18939,28 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
 
 /**
-	This variable only exists to hide other variables.  It end a massive comment
-	block in the pawndoc XML output that hides all internal variables - that is,
-	those that start with <c>_</c>.  This is a very common pattern used
-	throughout fixes.inc (and most of programming).  Unfortunately these weirdly
-	named internal variables appear in the generated documentation always.  This
-	is the best way to hide them.  You still see one variable
-	(<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c>), but at least the documentation for
-	that can explain why it exists.
-	<p />
-	This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> and ends the internal
-	variables block.  This is the last possible name before the first character
-	is no longer <c>_</c>, except for one, when the functions are sorted
-	lexicographically (alphabetically).  There's also
-	<c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> that ends the functions block; they
-	could have the same name if they were not declared in the same scope, but
-	they might not always be separately defined.
-	<p />
-	Note that the actual hiding itself is done by an XML comment started earlier
-	and ended here.
+	<hidden />
+	<remarks>
+		This variable only exists to hide other variables.  It end a massive
+		comment block in the pawndoc XML output that hides all internal
+		variables - that is, those that start with <c>_</c>.  This is a very
+		common pattern used throughout fixes.inc (and most of programming).
+		Unfortunately these weirdly named internal variables appear in the
+		generated documentation always.  This is the best way to hide them.  You
+		still see one variable (<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c>), but at
+		least the documentation for that can explain why it exists.
+		<p />
+		This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> and ends the internal
+		variables block.  This is the last possible name before the first
+		character is no longer <c>_</c>, except for one, when the functions are
+		sorted lexicographically (alphabetically).  There's also
+		<c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> that ends the functions block;
+		they could have the same name if they were not declared in the same
+		scope, but they might not always be separately defined.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		earlier and ended here.
+	</remarks>
 
 	-->
 */
@@ -18952,16 +18968,19 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
 static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 
 /**
-	This variable only exists to hide other variables.  It starts a massive
-	comment block in the pawndoc XML output that hides all fixes.inc internal
-	variables - that is, those that start with <c>FIXES_g<c> or
-	<c>FIXES_pvar</c>.  In theory, this could be set up to hide any variable
-	that starts <c>FIXES_&lt;lower-case&gt;</c>, but there are only two patterns
-	currently in use.  Anything that continues with an upper-case letter is an
-	external setting and needs its documentation exposing.
-	<p />
-	Note that the actual hiding itself is done by an XML comment started here
-	and ended by a later variable.
+	<hidden />
+	<remarks>
+		This variable only exists to hide other variables.  It starts a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		internal variables - that is, those that start with <c>FIXES_g<c> or
+		<c>FIXES_pvar</c>.  In theory, this could be set up to hide any variable
+		that starts <c>FIXES_&lt;lower-case&gt;</c>, but there are only two
+		patterns currently in use.  Anything that continues with an upper-case
+		letter is an external setting and needs its documentation exposing.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		here and ended by a later variable.
+	</remarks>
 
 	<!--
 */
@@ -18969,16 +18988,19 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 static stock FIXES_g;
 
 /**
-	This variable only exists to hide other variables.  It ends a massive
-	comment block in the pawndoc XML output that hides all fixes.inc internal
-	variables - that is, those that start with <c>FIXES_g<c> or
-	<c>FIXES_pvar</c>.  In theory, this could be set up to hide any variable
-	that starts <c>FIXES_&lt;lower-case&gt;</c>, but there are only two patterns
-	currently in use.  Anything that continues with an upper-case letter is an
-	external setting and needs its documentation exposing.
-	<p />
-	Note that the actual hiding itself is done by an XML comment started earlier
-	and ended here.
+	<hidden />
+	<remarks>
+		This variable only exists to hide other variables.  It ends a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		internal variables - that is, those that start with <c>FIXES_g<c> or
+		<c>FIXES_pvar</c>.  In theory, this could be set up to hide any variable
+		that starts <c>FIXES_&lt;lower-case&gt;</c>, but there are only two
+		patterns currently in use.  Anything that continues with an upper-case
+		letter is an external setting and needs its documentation exposing.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		earlier and ended here.
+	</remarks>
 
 	-->
 */
