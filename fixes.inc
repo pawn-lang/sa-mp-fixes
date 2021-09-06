@@ -19048,17 +19048,6 @@ static stock FIXES_zzzzzzzzzzzzzzzzzzzzzzzzy;
 	#endinput
 #endif
 
-// This somehow stops the "spread" of the comment above `e_FIXES`.
-static stock e_FIXES_PAWNDOC_BUG_FIX_0()
-{
-}
-
-// There's a bug in the compiler with enum pawndocs, hence why the unused bug
-// fix enums exist, and why the enums here are before their pawndoc comments.
-enum e_FIXES()
-{
-}
-
 /**
 	<hidden />
 	<remarks>
@@ -19073,15 +19062,15 @@ enum e_FIXES()
 	<!--
 */
 
-// This somehow stops the "spread" of the comment above `e_FIXES`. Resets the
-// internal comment tracker (I'm guessing... something like that).
-static stock e_FIXES_PAWNDOC_BUG_FIX_1()
+// There's a bug in the compiler with enum pawndocs, hence why the unused bug
+// fix (native) functions exist.
+enum e_FIXES()
 {
 }
 
-enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz()
-{
-}
+// This somehow stops the "spread" of the comment above `e_FIXES`. Resets the
+// internal comment tracker (I'm guessing... something like that).
+native _FIXES_ENUM_FIX_1();
 
 /**
 	<hidden />
@@ -19097,12 +19086,16 @@ enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz()
 	-->
 */
 
+// There's a bug in the compiler with enum pawndocs, hence why the unused bug
+// fix (native) functions exist.
+enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz()
+{
+}
+
 // This somehow stops the "spread" of the comment above
 // `e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz`. Resets the internal comment tracker (I'm
 // guessing... something like that).
-static stock e_FIXES_PAWNDOC_BUG_FIX_2()
-{
-}
+native _FIXES_ENUM_FIX_2();
 
 /**
 	<hidden />
