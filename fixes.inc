@@ -18854,7 +18854,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 /**
 	This function only exists to hide other functions.  It starts a massive
 	comment block in the pawndoc XML output that hides all internal functions -
-	that is, those that start with `_`.  This is a very common pattern used
+	that is, those that start with <c>_</c>.  This is a very common pattern used
 	throughout fixes.inc (and most of programming).  Unfortunately these weirdly
 	named internal functions appear in the generated documentation always.  This
 	is the best way to hide them.  You still see one function (this one), but at
@@ -18872,10 +18872,10 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
 /**
 	This function only exists to hide other functions.  It end a massive comment
 	block in the pawndoc XML output that hides all internal functions - that is,
-	those that start with `_`.  This is a very common pattern used throughout
-	fixes.inc (and most of programming).  Unfortunately these weirdly named
-	internal functions appear in the generated documentation always.  This is
-	the best way to hide them.  You still see one function
+	those that start with <c>_</c>.  This is a very common pattern used
+	throughout fixes.inc (and most of programming).  Unfortunately these weirdly
+	named internal functions appear in the generated documentation always.  This
+	is the best way to hide them.  You still see one function
 	(<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c>), but at least the documentation for
 	that can explain why it exists.
 
@@ -18894,7 +18894,7 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 /**
 	This variable only exists to hide other variables.  It starts a massive
 	comment block in the pawndoc XML output that hides all internal variables -
-	that is, those that start with `_`.  This is a very common pattern used
+	that is, those that start with <c>_</c>.  This is a very common pattern used
 	throughout fixes.inc (and most of programming).  Unfortunately these weirdly
 	named internal variables appear in the generated documentation always.  This
 	is the best way to hide them.  You still see one variable (this one), but at
@@ -18915,10 +18915,10 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
 /**
 	This variable only exists to hide other variables.  It end a massive comment
 	block in the pawndoc XML output that hides all internal variables - that is,
-	those that start with `_`.  This is a very common pattern used throughout
-	fixes.inc (and most of programming).  Unfortunately these weirdly named
-	internal variables appear in the generated documentation always.  This is
-	the best way to hide them.  You still see one variable
+	those that start with <c>_</c>.  This is a very common pattern used
+	throughout fixes.inc (and most of programming).  Unfortunately these weirdly
+	named internal variables appear in the generated documentation always.  This
+	is the best way to hide them.  You still see one variable
 	(<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c>), but at least the documentation for
 	that can explain why it exists.
 
