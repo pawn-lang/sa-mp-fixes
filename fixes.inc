@@ -18861,7 +18861,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	least the documentation for this one function can explain why it exists.
 
 	This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> and starts the internal
-	functions block.  This is the first possible name alphabetically before the
+	functions block.  This is the last possible name alphabetically before the
 	first character is <c>_</c>.
 
 	<!--
@@ -18901,8 +18901,8 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 	least the documentation for this one variable can explain why it exists.
 
 	This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c> and starts the internal
-	variables block.  This is the first possible name alphabetically, except
-	one, before the first character is <c>_</c>.  There's also a
+	variables block.  This is the last possible name alphabetically, except one,
+	before the first character is <c>_</c>.  There's also a
 	<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> that starts the functions block.
 	They could have the same name if they were not declared in the same scope,
 	but they might not always be separately defined.
