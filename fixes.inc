@@ -887,6 +887,33 @@ _FIXES_SHOW_PAWNDOC(_FIXES_IS_UNSET(const symbol[])) {}
 	#define FIXES_GetMaxPlayersMsg               (0)
 #endif
 
+/**
+ * <remarks>
+ * If this define is set to 1, then compiling with <c>-r</c> will attempt to
+ * hide as many of the functions and variables in fixes.inc from the output XML
+ * as possible.  This will vastly simplify the generated documentation (at least
+ * the visible parts, this is done by embeddeding XML comments in the output, so
+ * all the data still exists, just hidden in the file).
+ * </remarks>
+ */
+
+#if _FIXES_IS_UNDEFINED(FIXES_NoPawndoc)
+	_FIXES_SHOW_PAWNDOC(FIXES_NoPawndoc);
+	#define FIXES_NoPawndoc                      (0)
+#elseif _FIXES_IS_UNSET(FIXES_NoPawndoc)
+	#undef FIXES_NoPawndoc
+	static stock FIXES_NoPawndoc = 2;
+	#define FIXES_NoPawndoc                      (2)
+#elseif FIXES_NoPawndoc
+	#undef FIXES_NoPawndoc
+	static stock FIXES_NoPawndoc = 1;
+	#define FIXES_NoPawndoc                      (1)
+#else
+	#undef FIXES_NoPawndoc
+	static stock FIXES_NoPawndoc = 0;
+	#define FIXES_NoPawndoc                      (0)
+#endif
+
 /*
 
       ,ad8888ba,                         88                                       
@@ -18971,12 +18998,15 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 	<hidden />
 	<remarks>
 		This variable only exists to hide other variables.  It starts a massive
-		comment block in the pawndoc XML output that hides all fixes.inc
-		internal variables - that is, those that start with <c>FIXES_g<c> or
-		<c>FIXES_pvar</c>.  In theory, this could be set up to hide any variable
-		that starts <c>FIXES_&lt;lower-case&gt;</c>, but there are only two
-		patterns currently in use.  Anything that continues with an upper-case
-		letter is an external setting and needs its documentation exposing.
+		comment block in the pawndoc XML output that either hides all fixes.inc
+		internal variables or absolutely all fixes.inc variables.  The internal
+		ones are those that start with <c>FIXES_g<c> or <c>FIXES_pvar</c> (in
+		theory this could be set up to hide any variable that starts
+		<c>FIXES_&lt;lower-case&gt;</c>, but there are only two patterns
+		currently in use).  Anything that continues with an upper-case letter is
+		an external setting and needs its documentation exposing, unless the
+		library is built with <c>FIXES_NoPawndoc</c>, in which case these are
+		hidden as well.
 		<p />
 		Note that the actual hiding itself is done by an XML comment started
 		here and ended by a later variable.
@@ -18985,18 +19015,25 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 	<!--
 */
 
-static stock FIXES_g;
+#if FIXES_NoPawndoc
+	static stock FIXES_;
+#else
+	static stock FIXES_g;
+#endif
 
 /**
 	<hidden />
 	<remarks>
 		This variable only exists to hide other variables.  It ends a massive
-		comment block in the pawndoc XML output that hides all fixes.inc
-		internal variables - that is, those that start with <c>FIXES_g<c> or
-		<c>FIXES_pvar</c>.  In theory, this could be set up to hide any variable
-		that starts <c>FIXES_&lt;lower-case&gt;</c>, but there are only two
-		patterns currently in use.  Anything that continues with an upper-case
-		letter is an external setting and needs its documentation exposing.
+		comment block in the pawndoc XML output that either hides all fixes.inc
+		internal variables or absolutely all fixes.inc variables.  The internal
+		ones are those that start with <c>FIXES_g<c> or <c>FIXES_pvar</c> (in
+		theory this could be set up to hide any variable that starts
+		<c>FIXES_&lt;lower-case&gt;</c>, but there are only two patterns
+		currently in use).  Anything that continues with an upper-case letter is
+		an external setting and needs its documentation exposing, unless the
+		library is built with <c>FIXES_NoPawndoc</c>, in which case these are
+		hidden as well.
 		<p />
 		Note that the actual hiding itself is done by an XML comment started
 		earlier and ended here.
@@ -19005,7 +19042,115 @@ static stock FIXES_g;
 	-->
 */
 
-static stock FIXES_pzzzzzzzzzzzzzzzzzzzzzzzz;
+static stock FIXES_zzzzzzzzzzzzzzzzzzzzzzzzy;
+
+#if !FIXES_NoPawndoc
+	#endinput
+#endif
+
+/**
+	<hidden />
+	<remarks>
+		This function only exists to hide other functions.  It starts a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		functions when the library is built with <c>FIXES_NoPawndoc</c>.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		here and ended by a later variable.
+	</remarks>
+
+	<!--
+*/
+
+static stock FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
+
+/**
+	<hidden />
+	<remarks>
+		This function only exists to hide other functions.  It ends a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		functions when the library is built with <c>FIXES_NoPawndoc</c>.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		earlier and ended here.
+	</remarks>
+
+	-->
+*/
+
+static stock FIXES_zzzzzzzzzzzzzzzzzzzzzzzzz() {}
+
+// There's a bug with enums in pawndoc, hence why their comments are below
+// instead of above.
+enum e_FIXES()
+{
+}
+
+/**
+	<hidden />
+	<remarks>
+		This enum only exists to hide other enums.  It starts a massive comment
+		block in the pawndoc XML output that hides all fixes.inc enums when the
+		library is built with <c>FIXES_NoPawndoc</c>.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		here and ended by a later variable.
+	</remarks>
+
+	<!--
+*/
+
+/**
+	<hidden />
+	<remarks>
+		This constant only exists to hide other consts.  It starts a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		consts when the library is built with <c>FIXES_NoPawndoc</c>.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		here and ended by a later variable.
+	</remarks>
+
+	<!--
+*/
+
+const e_FIXES:e_FIXES_ = e_FIXES;
+
+// There's a bug with enums in pawndoc, hence why their comments are below
+// instead of above.
+enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz()
+{
+}
+
+/**
+	<hidden />
+	<remarks>
+		This enum only exists to hide other enums.  It ends a massive comment
+		block in the pawndoc XML output that hides all fixes.inc enums when the
+		library is built with <c>FIXES_NoPawndoc</c>.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		earlier and ended here.
+	</remarks>
+
+	-->
+*/
+
+/**
+	<hidden />
+	<remarks>
+		This constant only exists to hide other consts.  It ends a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		consts when the library is built with <c>FIXES_NoPawndoc</c>.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		earlier and ended here.
+	</remarks>
+
+	-->
+*/
+
+const e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz = e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz;
 
 #endinput
 
