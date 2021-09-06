@@ -18951,6 +18951,40 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
 
 static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 
+/**
+	This variable only exists to hide other variables.  It starts a massive
+	comment block in the pawndoc XML output that hides all fixes.inc internal
+	variables - that is, those that start with <c>FIXES_g<c> or
+	<c>FIXES_pvar</c>.  In theory, this could be set up to hide any variable
+	that starts <c>FIXES_&lt;lower-case&gt;</c>, but there are only two patterns
+	currently in use.  Anything that continues with an upper-case letter is an
+	external setting and needs its documentation exposing.
+	<p />
+	Note that the actual hiding itself is done by an XML comment started here
+	and ended by a later variable.
+
+	<!--
+*/
+
+static stock FIXES_g;
+
+/**
+	This variable only exists to hide other variables.  It ends a massive
+	comment block in the pawndoc XML output that hides all fixes.inc internal
+	variables - that is, those that start with <c>FIXES_g<c> or
+	<c>FIXES_pvar</c>.  In theory, this could be set up to hide any variable
+	that starts <c>FIXES_&lt;lower-case&gt;</c>, but there are only two patterns
+	currently in use.  Anything that continues with an upper-case letter is an
+	external setting and needs its documentation exposing.
+	<p />
+	Note that the actual hiding itself is done by an XML comment started earlier
+	and ended here.
+
+	-->
+*/
+
+static stock FIXES_pzzzzzzzzzzzzzzzzzzzzzzzz;
+
 #endinput
 
 // Fix inclusion template.
