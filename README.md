@@ -426,6 +426,7 @@ There are a few settings for improved execution of this script. Define these sym
 * `FIXES_EnableDeprecated`: Enable all past (deprecated) fixes.  Might causes errors and conflicts with newer SA:MP includes.  Default `0`.
 * `FIXES_DefaultDisabled`: Disable all fixes by default, and require them to be individually enabled with `FIX_<name> 1`  Default `0`.
 * `FIXES_ExplicitOptions`: Require fixes to be explicitly enabled or disabled, and show a warning for every fix not mentioned.  Useful in combination with `FIXES_DefaultDisabled`, so default `1` with that, `0` otherwise.
+* `FIXES_NoPawndoc`: If this define is set to `1`, then compiling with `-r` will attempt to hide as many of the functions and variables in fixes.inc from the output XML as possible.  This will vastly simplify the generated documentation (at least the visible parts, this is done by embeddeding XML comments in the output, so all the data still exists, just hidden in the file).
 
 
 Note that `options` are which fixes to include, and `settings` are more over-arching customisations.
