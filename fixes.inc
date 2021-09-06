@@ -18859,13 +18859,16 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	named internal functions appear in the generated documentation always.  This
 	is the best way to hide them.  You still see one function (this one), but at
 	least the documentation for this one function can explain why it exists.
-
+	<p />
 	This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> and starts the internal
 	functions block.  This is the last possible name before the first character
 	is <c>_</c> when the functions are sorted lexicographically
 	(alphabetically).  There's also <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c> that
 	starts the variables block; they could have the same name if they were not
 	declared in the same scope, but they might not always be separately defined.
+	<p />
+	Note that the actual hiding itself is done by an XML comment started here
+	and ended by a later variable.
 
 	<!--
 */
@@ -18881,13 +18884,16 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
 	is the best way to hide them.  You still see one function
 	(<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c>), but at least the documentation for
 	that can explain why it exists.
-
+	<p />
 	This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> and ends the internal
 	functions block.  This is the last possible name before the first character
 	is no longer <c>_</c> when the functions are sorted lexicographically
 	(alphabetically).  There's also <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> that
 	ends the variables block; they could have the same name if they were not
 	declared in the same scope, but they might not always be separately defined.
+	<p />
+	Note that the actual hiding itself is done by an XML comment started earlier
+	and ended here.
 
 	-->
 */
@@ -18902,7 +18908,7 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 	named internal variables appear in the generated documentation always.  This
 	is the best way to hide them.  You still see one variable (this one), but at
 	least the documentation for this one variable can explain why it exists.
-
+	<p />
 	This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c> and starts the internal
 	variables block.  This is the last possible name, except one, before the
 	first character is <c>_</c> when the functions are sorted lexicographically
@@ -18910,6 +18916,9 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 	that starts the functions block; they could have the same name if they were
 	not declared in the same scope, but they might not always be separately
 	defined.
+	<p />
+	Note that the actual hiding itself is done by an XML comment started here
+	and ended by a later variable.
 
 	<!--
 */
@@ -18925,7 +18934,7 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
 	is the best way to hide them.  You still see one variable
 	(<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c>), but at least the documentation for
 	that can explain why it exists.
-
+	<p />
 	This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> and ends the internal
 	variables block.  This is the last possible name before the first character
 	is no longer <c>_</c>, except for one, when the functions are sorted
@@ -18933,6 +18942,9 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
 	<c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> that ends the functions block; they
 	could have the same name if they were not declared in the same scope, but
 	they might not always be separately defined.
+	<p />
+	Note that the actual hiding itself is done by an XML comment started earlier
+	and ended here.
 
 	-->
 */
