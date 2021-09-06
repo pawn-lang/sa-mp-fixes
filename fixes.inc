@@ -5445,6 +5445,15 @@ _FIXES_SHOW_PAWNDOC(FIXES_TAG_CORRECT);
 
 /**
  * <remarks>
+ * This include has methods of hiding unwanted pawndoc declarations.
+ * </remarks>
+ */
+
+_FIXES_SHOW_PAWNDOC(FIXES_PAWNDOC);
+#define FIXES_PAWNDOC
+
+/**
+ * <remarks>
  * Is the extended API defined for use?  Better for testing
  * (<c>#if defined FIXES_API</c>).
  * </remarks>
@@ -6650,7 +6659,8 @@ PRE_HOOK(FIXES)
 
 /**
  * <remarks>
- * Allows y_hooks to call things in the correct order when it exists.
+ * Allows y_hooks to call things in the correct order when it exists.  Note that
+ * this doesn't depend on y_hooks at all, it is merely detected by it.
  * </remarks>
  */
 
@@ -18834,6 +18844,89 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef FIXES_GET
 #undef _FIXES_NEW_COMPILER
 #undef _FIXES_FIRST_PASS
+
+/**
+	This function only exists to hide other functions.  It starts a massive
+	comment block in the pawndoc XML output that hides all internal functions -
+	that is, those that start with `_`.  This is a very common pattern used
+	throughout fixes.inc (and most of programming).  Unfortunately these weirdly
+	named internal functions appear in the generated documentation always.  This
+	is the best way to hide them.  You still see one function (this one), but at
+	least the documentation for this one function can explain why it exists.
+
+	This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> and starts the internal
+	functions block.  This is the first possible name alphabetically before the
+	first character is <c>_</c>.
+
+	<!--
+*/
+
+static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
+
+/**
+	This function only exists to hide other functions.  It end a massive comment
+	block in the pawndoc XML output that hides all internal functions - that is,
+	those that start with `_`.  This is a very common pattern used throughout
+	fixes.inc (and most of programming).  Unfortunately these weirdly named
+	internal functions appear in the generated documentation always.  This is
+	the best way to hide them.  You still see one function
+	(<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c>), but at least the documentation for
+	that can explain why it exists.
+
+	This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> and ends the internal
+	functions block.  This is the last possible name alphabetically before the
+	first character is no longer <c>_</c>.  There's also a
+	<c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> that ends the variables block.  They
+	could have the same name if they were not declared in the same scope, but
+	they might not always be separately defined.
+
+	-->
+*/
+
+static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
+
+/**
+	This variable only exists to hide other variables.  It starts a massive
+	comment block in the pawndoc XML output that hides all internal variables -
+	that is, those that start with `_`.  This is a very common pattern used
+	throughout fixes.inc (and most of programming).  Unfortunately these weirdly
+	named internal variables appear in the generated documentation always.  This
+	is the best way to hide them.  You still see one variable (this one), but at
+	least the documentation for this one variable can explain why it exists.
+
+	This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c> and starts the internal
+	variables block.  This is the first possible name alphabetically, except
+	one, before the first character is <c>_</c>.  There's also a
+	<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> that starts the functions block.
+	They could have the same name if they were not declared in the same scope,
+	but they might not always be separately defined.
+
+	<!--
+*/
+
+static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
+
+/**
+	This variable only exists to hide other variables.  It end a massive comment
+	block in the pawndoc XML output that hides all internal variables - that is,
+	those that start with `_`.  This is a very common pattern used throughout
+	fixes.inc (and most of programming).  Unfortunately these weirdly named
+	internal variables appear in the generated documentation always.  This is
+	the best way to hide them.  You still see one variable
+	(<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c>), but at least the documentation for
+	that can explain why it exists.
+
+	This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> and ends the internal
+	variables block.  This is the last possible name alphabetically before the
+	first character is no longer <c>_</c>, except for one.  There's also a
+	<c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> that ends the functions block.  They
+	could have the same name if they were not declared in the same scope, but
+	they might not always be separately defined.
+
+	-->
+*/
+
+static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 
 #endinput
 
