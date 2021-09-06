@@ -19048,9 +19048,8 @@ static stock FIXES_zzzzzzzzzzzzzzzzzzzzzzzzy;
 	#endinput
 #endif
 
-// This somehow stops the "spread" of the comment above `e_FIXES`. Resets the
-// internal comment tracker (I'm guessing... something like that).
-enum e_FIXES_PawndocBugFix1()
+// This somehow stops the "spread" of the comment above `e_FIXES`.
+static stock e_FIXES_PAWNDOC_BUG_FIX_0()
 {
 }
 
@@ -19076,7 +19075,7 @@ enum e_FIXES()
 
 // This somehow stops the "spread" of the comment above `e_FIXES`. Resets the
 // internal comment tracker (I'm guessing... something like that).
-enum e_FIXES_PawndocBugFix2()
+static stock e_FIXES_PAWNDOC_BUG_FIX_1()
 {
 }
 
@@ -19098,16 +19097,10 @@ enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz()
 	-->
 */
 
-// This somehow stops the "spread" of the comment above `e_FIXES`. Resets the
-// internal comment tracker (I'm guessing... something like that).
-enum e_FIXES_PawndocBugFix3()
-{
-}
-
 // This somehow stops the "spread" of the comment above
 // `e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz`. Resets the internal comment tracker (I'm
 // guessing... something like that).
-static stock _FIXES_PawndocBugFix3()
+static stock e_FIXES_PAWNDOC_BUG_FIX_2()
 {
 }
 
