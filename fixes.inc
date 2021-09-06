@@ -17747,7 +17747,8 @@ native bool:BAD_ispacked(const string[]) = ispacked;
  */
 
 #if FIX_ispacked
-	_FIXES_SHOW_PAWNDOC(bool:ispacked(const string[]));
+	// For some reason this causes major issues when called `string[]`.
+	_FIXES_SHOW_PAWNDOC(bool:ispacked(const packedString[]));
 	#if _FIXES_SAMP
 		#define _ALS_ispacked
 		#define ispacked(%0) (((%0)[0] & ~0xFF) != 0)
