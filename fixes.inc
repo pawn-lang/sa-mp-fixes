@@ -19052,7 +19052,6 @@ static stock FIXES_zzzzzzzzzzzzzzzzzzzzzzzzy;
 // instead of above.
 enum e_FIXES
 {
-	e_FIXES_
 }
 
 /**
@@ -19083,7 +19082,7 @@ enum e_FIXES
 	<!--
 */
 
-const e_FIXES:e_FIXES_0 = e_FIXES_;
+const e_FIXES:e_FIXES_ = e_FIXES;
 
 // There's a bug with enums in pawndoc, hence why their comments are below
 // instead of above.
@@ -19105,8 +19104,6 @@ enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz
 	-->
 */
 
-const e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz = e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz;
-
 /**
 	<hidden />
 	<remarks>
@@ -19120,6 +19117,8 @@ const e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz = e_FIXESz
 
 	-->
 */
+
+const e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz = e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz;
 
 /**
 	<hidden />
@@ -19135,7 +19134,7 @@ const e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz = e_FIXESz
 	<!--
 */
 
-static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_0; }
+static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES; }
 
 /**
 	<hidden />
@@ -19151,7 +19150,7 @@ static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_0; }
 	-->
 */
 
-static stock e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:FIXES_zzzzzzzzzzzzzzzzzzzzzzzzz() { return e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz; }
+static stock e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:FIXES_zzzzzzzzzzzzzzzzzzzzzzzzz() { return e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz; }
 
 #endinput
 
