@@ -17747,7 +17747,12 @@ native bool:BAD_ispacked(const string[]) = ispacked;
  */
 
 #if FIX_ispacked
-	// For some reason this causes major issues when called `string[]`.
+	// For some reason this causes major issues when called `string[]`.  I think
+	// it is something to do with the fact that we're defining a `static stock`
+	// function with the same name as a `native` for one compiler pass.  It also
+	// doesn't seem to appear in the compiled output, which was an effect I
+	// tried to create for a long time then gave up on (see 
+	// <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ()</c> for my alternative work-around).
 	_FIXES_SHOW_PAWNDOC(bool:ispacked(const packedString[]));
 	#if _FIXES_SAMP
 		#define _ALS_ispacked
