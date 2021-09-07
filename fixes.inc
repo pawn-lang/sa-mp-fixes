@@ -944,6 +944,37 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIXES_NoPawndoc                      (0)
 #endif
 
+/**
+ * <remarks>
+ * fixes.inc doesn't need YSI.  YSI doesn't need fixes.inc.  However, they are
+ * both written to be aware of each other and adapt accordingly.  For example,
+ * fixes.inc uses a special type of ALS hooking which y_hooks can detect and use
+ * to call these callbacks in a better order (so-called "pre-hooks").  But if
+ * you don't have y_hooks the other version of ALS is very fractionally better.
+ * This define can thus be used to guarantee to fixes.inc that YSI doesn't exist
+ * and not to use any of the adapted code.  However, if you're wrong the include
+ * probably just won't work, and the overhead when not using this is absolutely
+ * tiny.  So, if in doubt - don't.
+ * </remarks>
+ */
+
+#if !defined FIXES_NoYSI
+	_FIXES_CONST_PAWNDOC(FIXES_NoYSI);
+	#define FIXES_NoYSI                          (0)
+#elseif _FIXES_IS_UNSET(FIXES_NoYSI)
+	#undef FIXES_NoYSI
+	static stock FIXES_NoYSI = 2;
+	#define FIXES_NoYSI                          (2)
+#elseif FIXES_NoYSI
+	#undef FIXES_NoYSI
+	static stock FIXES_NoYSI = 1;
+	#define FIXES_NoYSI                          (1)
+#else
+	#undef FIXES_NoYSI
+	static stock FIXES_NoYSI = 0;
+	#define FIXES_NoYSI                          (0)
+#endif
+
 /*
 
       ,ad8888ba,                         88                                       
