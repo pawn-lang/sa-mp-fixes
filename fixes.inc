@@ -5301,19 +5301,21 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * <fix name="Pawndoc">
  *     <problem>
  *         Pawndoc comments aren't ignored inside <c>#if</c> blocks, nor used
- *         on macros.
+ *         on macros.  Plus are weird on <c>enum</c>s.
  *     </problem>
  *     <solution>
- *         Place an unconditional <c>const</c> directly after comments, to which
- *         the documentation is attached.  This fix provides three macros, which
- *         define and detect additional unused functions, so that the correct
- *         branches in any <c>#if defined</c> code is still taken in the second
- *         compiler pass.
+ *         Place fake functions or constants before the macros (depending on
+ *         type) to attach to the documentation in the XML.  Plus a macro for
+ *         going after enums to fix their weirdness, and one <c>CLOSE</c> macro
+ *         to clean up an internal detail.
  *     </solution>
  *     <author href="https://github.com/Y-Less">Y_Less</author>
  *     <post href="https://github.com/pawn-lang/compiler/issues/674#issuecomment-908927779" />
  *     <see>HIDE_PAWNDOC</see>
- *     <see>SHOW_PAWNDOC</see>
+ *     <see>FUNC_PAWNDOC</see>
+ *     <see>CONST_PAWNDOC</see>
+ *     <see>ENUM_PAWNDOC</see>
+ *     <see>CLOSE_PAWNDOC</see>
  * </fix>
  */
 
@@ -5389,11 +5391,20 @@ static stock FIX_CreateVehicle = 0;
 #endif
 
 #if FIX_Pawndoc
+	#define FUNC_PAWNDOC _FIXES_FUNC_PAWNDOC
 	#define FUNCTION_PAWNDOC _FIXES_FUNC_PAWNDOC
 #endif
 
 #if FIX_Pawndoc
 	#define CONST_PAWNDOC _FIXES_CONST_PAWNDOC
+#endif
+
+#if FIX_Pawndoc
+	#define ENUM_PAWNDOC _FIXES_ENUM_PAWNDOC
+#endif
+
+#if FIX_Pawndoc
+	#define CLOSE_PAWNDOC _FIXES_CLOSE_PAWNDOC
 #endif
 
 /**
