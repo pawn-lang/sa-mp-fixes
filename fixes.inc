@@ -593,7 +593,7 @@ _FIXES_FUNC_PAWNDOC(HIDE_PAWNDOC(const symbol[]));
  */
 
 _FIXES_FUNC_PAWNDOC(ENUM_PAWNDOC(const symbol[]));
-#define _FIXES_ENUM_PAWNDOC(%0); native _@%0() = __PAWNDOC;
+#define _FIXES_ENUM_PAWNDOC(%0); static stock %0:_@%0() { return %0; }
 
 /**
  * <remarks>
@@ -6063,6 +6063,8 @@ _FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS);
 		BODY_PART_RIGHT_LEG                       = 8,
 		BODY_PART_HEAD                            = 9
 	}
+
+	_FIXES_ENUM_PAWNDOC(__BODY_PART);
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES___BODY_PART);
 #endif
@@ -6092,6 +6094,8 @@ _FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS);
 		CAM_MODE_AIMWEAPON_FROMCAR                = 55,
 		CAM_MODE_DW_HELI_CHASE                    = 56
 	}
+
+	_FIXES_ENUM_PAWNDOC(__CAM_MODE);
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES___CAM_MODE);
 #endif
@@ -6617,6 +6621,8 @@ _FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS);
 		// VEHICLE_FARMTRAILER                    = 610,
 		// VEHICLE_UTILITYTRAILER                 = 611
 	}
+
+	_FIXES_ENUM_PAWNDOC(__VEHICLE);
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES___VEHICLE);
 #endif
