@@ -18899,6 +18899,19 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 /**
 	<hidden />
 	<remarks>
+		<c>PAWNDOC</c> is a fake function used throughout the code to invoke
+		natives that don't exist so we can attach pawndoc output to them and
+		have it show up in the XML output.  This is one function spread all over
+		the place using automata - one state per fake function.  This is so we
+		don't have dozens of auxiliary functions in the output, and so those
+		functions don't need unique names.
+	</remarks>
+*/
+_FIXES_CLOSE_PAWNDOC();
+
+/**
+	<hidden />
+	<remarks>
 		This function only exists to hide other functions.  It starts a massive
 		comment block in the pawndoc XML output that hides all internal
 		functions - that is, those that start with <c>_</c>.  This is a very
