@@ -5788,7 +5788,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 /**
  * <remarks>
  * Future-compatible tag definitions.  <c>KEY:</c> is defined as <c>_:</c> when
- * enhanced tags are disabled, and `E_KEY:` when they are enabled.
+ * enhanced tags are disabled, and <c>E_KEY:</c> when they are enabled.
  * </remarks>
  */
 
@@ -5806,8 +5806,8 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 /**
  * <remarks>
  * Future-compatible tag definitions.  <c>VEHICLE_PARAMS:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and `E_VEHICLE_PARAMS:` when they
- * are enabled.
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_VEHICLE_PARAMS:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -5825,8 +5825,8 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 /**
  * <remarks>
  * Future-compatible tag definitions.  <c>PLAYER_STATE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and `E_PLAYER_STATE:` when they
- * are enabled.
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_PLAYER_STATE:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -5844,8 +5844,8 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 /**
  * <remarks>
  * Future-compatible tag definitions.  <c>SPECIAL_ACTION:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and `E_SPECIAL_ACTION:` when they
- * are enabled.
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_SPECIAL_ACTION:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -5863,8 +5863,8 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 /**
  * <remarks>
  * Future-compatible tag definitions.  <c>PLAYER_VARTYPE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and `E_PLAYER_VARTYPE:` when they
- * are enabled.
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_PLAYER_VARTYPE:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -5882,7 +5882,8 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 /**
  * <remarks>
  * Future-compatible tag definitions.  <c>BODY_PART:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and `E_BODY_PART:` when they are enabled.
+ * when enhanced tags are disabled, and <c>E_BODY_PART:</c> when they are
+ * enabled.
  * </remarks>
  */
 
@@ -5900,7 +5901,8 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 /**
  * <remarks>
  * Future-compatible tag definitions.  <c>CAM_MODE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and `E_CAM_MODE:` when they are enabled.
+ * when enhanced tags are disabled, and <c>E_CAM_MODE:</c> when they are
+ * enabled.
  * </remarks>
  */
 
@@ -5918,7 +5920,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 /**
  * <remarks>
  * Future-compatible tag definitions.  <c>VEHICLE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and `E_VEHICLE:` when they are enabled.
+ * when enhanced tags are disabled, and <c>E_VEHICLE:</c> when they are enabled.
  * </remarks>
  */
 
