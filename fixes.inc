@@ -507,7 +507,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * <code>
  *     #if defined MACRO_NAME                                                   <br /><indent />
  *         // `#define MACRO_NAME` exists previously, don't document it here.   <br /><indent />
- *         _FIXES_HIDE_PAWNDOC(MACRO_NAME);                                     <br />
+ *         _FIXES_HIDE_PAWNDOC(SIMILAR_NAME);                                   <br />
  *     #else                                                                    <br /><indent />
  *         // Doesn't exist.  Document it and define it.                        <br /><indent />
  *         _FIXES_FUNC_PAWNDOC(MACRO_NAME(parameters));                         <br /><indent />
@@ -543,7 +543,7 @@ _FIXES_FUNC_PAWNDOC(FUNC_PAWNDOC(const symbol[]));
  * <code>
  *     #if defined MACRO_NAME                                                   <br /><indent />
  *         // `#define MACRO_NAME` exists previously, don't document it here.   <br /><indent />
- *         _FIXES_HIDE_PAWNDOC(MACRO_NAME);                                     <br />
+ *         _FIXES_HIDE_PAWNDOC(SIMILAR_NAME);                                   <br />
  *     #else                                                                    <br /><indent />
  *         // Doesn't exist.  Document it and define it.                        <br /><indent />
  *         _FIXES_CONST_PAWNDOC(MACRO_NAME);                                    <br /><indent />
@@ -569,11 +569,46 @@ _FIXES_FUNC_PAWNDOC(CONST_PAWNDOC(const symbol[]));
  * attached to it.  This seems to be the best way to prevent the documentation
  * from appearing in XML (<c>-r</c>) output - even conditional compilation
  * doesn't work on comments.  Used internally as <c>_FIXES_HIDE_PAWNDOC</c>.
+ * <p />
+ * The input should have some unique name, so when using it within an ifdef
+ * block, don't use the same name as the tested symbol, because the the
+ * replacement in question will be applied to the hidden variable as well.
+ * <p />
+ * This should also be a globally unique symbol name, because this only works
+ * with `<c>const</c>`, not `<c>static const</c>`.
  * </remarks>
  */
 
 _FIXES_FUNC_PAWNDOC(HIDE_PAWNDOC(const symbol[]));
 #define _FIXES_HIDE_PAWNDOC(%0); const %0 = 0;
+
+/**
+ * <remarks>
+ * There's a bug with the pawndoc for enums.  They loose the documentation, or
+ * get some other documentation unless they're immediately followed by another
+ * declaration, most notably a function.  This declares a <c>native</c> with a
+ * similar name (prefixed with <c>_@</c>, so watch symbol lengths) so the docs
+ * are attached to the correct symbol and the additional function isn't output.
+ * </remarks>
+ */
+
+_FIXES_FUNC_PAWNDOC(ENUM_PAWNDOC(const symbol[]));
+#define _FIXES_ENUM_PAWNDOC(%0); native _@%0() = __PAWNDOC;
+
+/**
+ * <remarks>
+ * Use this after all other pawndoc fixes to finish off the <c>PAWNDOC</c>
+ * function in the current file.
+ * </remarks>
+ */
+
+_FIXES_FUNC_PAWNDOC(CLOSE_PAWNDOC());
+#if _FIXES_FIRST_PASS
+	// First compiler pass only.
+	#define _FIXES_CLOSE_PAWNDOC(); static stock PAWNDOC() <__PAWNDOC:PAWNDOC> {} static stock PAWNDOC() <> {}
+#else
+	#define _FIXES_CLOSE_PAWNDOC();
+#endif
 
 /**
  * <remarks>
@@ -6656,13 +6691,11 @@ _FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS);
  * </remarks>
  */
 
-#if _FIXES_FIRST_PASS
-	#if defined PRE_HOOK
-		#undef PRE_HOOK
-	#endif
-
-	_FIXES_FUNC_PAWNDOC(PRE_HOOK(const library[]));
+#if defined PRE_HOOK
+	#undef PRE_HOOK
 #endif
+
+_FIXES_FUNC_PAWNDOC(PRE_HOOK(const library[]));
 
 #define PRE_HOOK(%0) forward @CO_%0();public @CO_%0(){return CHAIN_ORDER()+1;}
 
@@ -6676,7 +6709,7 @@ PRE_HOOK(FIXES)
  * </remarks>
  */
 
-static stock CHAIN_ORDER() {}
+_FIXES_FUNC_PAWNDOC(CHAIN_ORDER());
 #define CHAIN_ORDER @CO_FIXES
 
 /**
@@ -19036,6 +19069,38 @@ static stock FIXES_zzzzzzzzzzzzzzzzzzzzzzzzy;
 /**
 	<hidden />
 	<remarks>
+		This variable only exists to hide other variables.  It starts a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		options, i.e. those that start with <c>FIX_<c>.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		here and ended by a later variable.
+	</remarks>
+
+	<!--
+*/
+
+static stock FIX_;
+
+/**
+	<hidden />
+	<remarks>
+		This variable only exists to hide other variables.  It ends a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		options, i.e. those that start with <c>FIX_<c>.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		earlier and ended here.
+	</remarks>
+
+	-->
+*/
+
+static stock FIX_zzzzzzzzzzzzzzzzzzzzzzzzzzy;
+
+/**
+	<hidden />
+	<remarks>
 		This enum only exists to hide other enums.  It starts a massive comment
 		block in the pawndoc XML output that hides all fixes.inc enums when the
 		library is built with <c>FIXES_NoPawndoc</c>.
@@ -19055,7 +19120,7 @@ enum e_FIXES()
 
 // This somehow stops the "spread" of the comment above `e_FIXES`. Resets the
 // internal comment tracker (I'm guessing... something like that).
-native _FIXES_ENUM_FIX_1();
+_FIXES_ENUM_PAWNDOC(e_FIXES);
 
 /**
 	<hidden />
@@ -19080,7 +19145,7 @@ enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz()
 // This somehow stops the "spread" of the comment above
 // `e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz`. Resets the internal comment tracker (I'm
 // guessing... something like that).
-native _FIXES_ENUM_FIX_2();
+_FIXES_ENUM_PAWNDOC(e_FIXESzzzzzzzzzzzzzzzzzzzzzz);
 
 /**
 	<hidden />
