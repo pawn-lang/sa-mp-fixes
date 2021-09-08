@@ -11057,6 +11057,9 @@ public OnGameModeInit()
 		return ret;
 	}
 
+	// Although this looks like state-based ALS, it isn't.  It USES states, but
+	// not to detect if the callback is hooked, but to detect if the callback is
+	// in a gamemode or filterscript.  It only needs to be called in gamemodes.
 	forward FIXES_OnClientCheckResponse(playerid, actionid, memaddr, retndata);
 	public FIXES_OnClientCheckResponse(playerid, actionid, memaddr, retndata) <OnClientCheckResponse : OnClientCheckResponse_FS>
 	{
