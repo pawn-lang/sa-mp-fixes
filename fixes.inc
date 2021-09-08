@@ -6972,6 +6972,9 @@ stock
 
 */
 
+#if !FIX_HideGameText
+static
+#endif
 stock const
 	/**
 	 * <remarks>
