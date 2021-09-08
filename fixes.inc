@@ -10685,7 +10685,7 @@ public OnJITCompile()
 	_FIXES_gIsJIT = true;
 	_FIXES_DetermineOS();
 
-	#if !FIXES_NoYSI || defined FIXES_OnJITCompile
+	#if defined FIXES_OnJITCompile
 		return FIXES_OnJITCompile();
 	#else
 		return 1;
@@ -10813,7 +10813,7 @@ public OnFilterScriptInit()
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_NO_GAME_TEXT;
 	#endif
 
-	#if !FIXES_NoYSI || defined FIXES_OnFilterScriptInit
+	#if defined FIXES_OnFilterScriptInit
 		return FIXES_OnFilterScriptInit();
 	#else
 		return 1;
@@ -11015,7 +11015,7 @@ public OnGameModeInit()
 	#if !FIXES_Single
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
 	#endif
-	#if !FIXES_NoYSI || defined FIXES_OnGameModeInit
+	#if defined FIXES_OnGameModeInit
 		return FIXES_OnGameModeInit();
 	#else
 		return 1;
@@ -11113,7 +11113,7 @@ public OnGameModeInit()
 		//  END:   PlayerDialogResponse
 		// =============================
 
-		#if !FIXES_NoYSI || defined FIXES_OnGameModeExit
+		#if defined FIXES_OnGameModeExit
 			return FIXES_OnGameModeExit();
 		#else
 			return 1;
@@ -11184,7 +11184,7 @@ public OnGameModeInit()
 			//  BEGIN: GameText
 			// =================
 			#if FIX_GameText
-				#if !FIXES_NoYSI || defined FIXES_OnFilterScriptExit
+				#if defined FIXES_OnFilterScriptExit
 					FIXES_OnFilterScriptExit();
 				#endif
 				#if !FIX_OnPlayerDisconnect
@@ -11226,7 +11226,7 @@ public OnGameModeInit()
 							TextDrawDestroy__(FIXES_gsGTStyle[1]),
 							TextDrawDestroy__(FIXES_gsGTStyle[0]);
 			#else
-				#if !FIXES_NoYSI || defined FIXES_OnFilterScriptExit
+				#if defined FIXES_OnFilterScriptExit
 					return FIXES_OnFilterScriptExit();
 				#else
 					return 1;
@@ -11241,7 +11241,7 @@ public OnGameModeInit()
 				FIXES_gsSettings |= e_FIXES_SETTINGS_ENDING,
 				FIXES_DetermineOrder();
 			}
-			#if !FIXES_NoYSI || defined FIXES_OnFilterScriptExit
+			#if defined FIXES_OnFilterScriptExit
 				return FIXES_OnFilterScriptExit();
 			#else
 				return 1;
@@ -11515,7 +11515,7 @@ public OnGameModeInit()
 		//  BEGIN: Kick
 		// =============
 		#if FIX_Kick || FIX_SetPlayerTime || FIX_SetPlayerColour
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerConnect
+			#if defined FIXES_OnPlayerConnect
 				new
 					ret = FIXES_OnPlayerConnect(playerid);
 				return
@@ -11527,7 +11527,7 @@ public OnGameModeInit()
 					1;
 			#endif
 		#else
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerConnect
+			#if defined FIXES_OnPlayerConnect
 				return FIXES_OnPlayerConnect(playerid);
 			#else
 				return 1;
@@ -11567,7 +11567,7 @@ public OnGameModeInit()
 #if FIX_Kick || FIX_SilentTeleport || (FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)) || FIX_OnPlayerEnterVehicle_3 || FIX_GetPlayerMenu || _FIX_Menus || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable || FIX_ApplyAnimation_2
 	public OnPlayerDisconnect(playerid, reason)
 	{
-		#if !FIXES_NoYSI || defined FIXES_OnPlayerDisconnect
+		#if defined FIXES_OnPlayerDisconnect
 			new
 				ret = FIXES_OnPlayerDisconnect(playerid, reason);
 		#endif
@@ -11672,7 +11672,7 @@ public OnGameModeInit()
 			_FIXES_RemoveInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
 		#endif
 
-		#if !FIXES_NoYSI || defined FIXES_OnPlayerDisconnect
+		#if defined FIXES_OnPlayerDisconnect
 			return ret;
 		#else
 			return 1;
@@ -11775,7 +11775,7 @@ public OnGameModeInit()
 		//  BEGIN: OnPlayerSpawn
 		// ======================
 		#if FIX_OnPlayerSpawn
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerDeath
+			#if defined FIXES_OnPlayerDeath
 				new
 					ret = FIXES_OnPlayerDeath(playerid, killerid, reason);
 				return
@@ -11787,7 +11787,7 @@ public OnGameModeInit()
 					1;
 			#endif
 		#else
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerDeath
+			#if defined FIXES_OnPlayerDeath
 				return FIXES_OnPlayerDeath(playerid, killerid, reason);
 			#else
 				return 1;
@@ -12014,7 +12014,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		// ===========================
 		//  END: OnPlayerRequestClass
 		// ===========================
-		#if !FIXES_NoYSI || defined FIXES_OnPlayerRequestClass
+		#if defined FIXES_OnPlayerRequestClass
 			return FIXES_OnPlayerRequestClass(playerid, classid);
 		#else
 			return 1;
@@ -12171,7 +12171,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		// END: SilentTeleport
 		// =========================
 
-		#if !FIXES_NoYSI || defined FIXES_OnPlayerSpawn
+		#if defined FIXES_OnPlayerSpawn
 			return FIXES_OnPlayerSpawn(playerid);
 		#else
 			return 1;
@@ -12207,7 +12207,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		#if !FIXES_Single
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
 			{
-				#if !FIXES_NoYSI || defined FIXES_OnVehicleMod
+				#if defined FIXES_OnVehicleMod
 					return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 				#else
 					return 1;
@@ -12290,7 +12290,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 					{
 						if (FIXES_gscVehicleMods[(modelid - 400) * 6 + (componentid - 1000 >>> 5)] & 1 << (componentid - 1000 & 0b00011111))
 						{
-							#if !FIXES_NoYSI || defined FIXES_OnVehicleMod
+							#if defined FIXES_OnVehicleMod
 								return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 							#else
 								return 1;
@@ -12305,7 +12305,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 							// is the ONLY vehicle with any mods over "6 * 32 + 999"
 							// (1191), the highest value you can fit in 6 cells of a
 							// bit array (minus 1000).
-							#if !FIXES_NoYSI || defined FIXES_OnVehicleMod
+							#if defined FIXES_OnVehicleMod
 								return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 							#else
 								return 1;
@@ -12316,7 +12316,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 				// Desync the player entirely.
 				return FIXES_BlockUpdate(playerid);
 		#else
-			#if !FIXES_NoYSI || defined FIXES_OnVehicleMod
+			#if defined FIXES_OnVehicleMod
 				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 			#else
 				return 1;
@@ -12565,7 +12565,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 	public OnPlayerText(playerid, text[])
 	{
 		// Just return 1, don't acknowldege anything!
-		#if !FIXES_NoYSI || defined FIXES_OnPlayerText
+		#if defined FIXES_OnPlayerText
 			return
 				_FIXES_IS_VALID_PLAYER(playerid) &&
 				!(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_BLOCK) &&
@@ -12656,7 +12656,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if !FIXES_Single
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
 			{
-				#if !FIXES_NoYSI || defined FIXES_OnPlayerUpdate
+				#if defined FIXES_OnPlayerUpdate
 					return FIXES_OnPlayerUpdate(playerid);
 				#else
 					return 1;
@@ -12746,7 +12746,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 				// just to avoid "statement has no effect" warnings.  ALWAYS
 				// return 0 in this case, regardless of what other callbacks
 				// return.
-				#if !FIXES_NoYSI || defined FIXES_OnPlayerUpdate
+				#if defined FIXES_OnPlayerUpdate
 					return
 						playerid = FIXES_OnPlayerUpdate(playerid),
 						(keys || ud || lr) ? 0 : playerid;
@@ -12811,7 +12811,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		//  END:   GogglesSync
 		// =================================
 
-		#if !FIXES_NoYSI || defined FIXES_OnPlayerUpdate
+		#if defined FIXES_OnPlayerUpdate
 			return FIXES_OnPlayerUpdate(playerid);
 		#else
 			return 1;
@@ -13162,7 +13162,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		// ===========================
 		//  END: AllowInteriorWeapons
 		// ===========================
-		#if !FIXES_NoYSI || defined FIXES_OnPlayerInteriorChange
+		#if defined FIXES_OnPlayerInteriorChange
 			return FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
 		#else
 			return 1;
@@ -13363,7 +13363,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  END: DriveBy
 		// =============================
 
-		#if !FIXES_NoYSI || defined FIXES_OnPlayerKeyStateChange
+		#if defined FIXES_OnPlayerKeyStateChange
 			return FIXES_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 		#else
 			return 1;
@@ -13487,7 +13487,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  END: SilentTeleport
 		// =============================
 
-		#if !FIXES_NoYSI || defined FIXES_OnPlayerEnterVehicle
+		#if defined FIXES_OnPlayerEnterVehicle
 			return FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
 		#else
 			return 1;
@@ -13526,7 +13526,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#if FIX_OnPlayerEnterVehicle_2
 			if (_FIXES_IN_RANGE(vehicleid, 1, MAX_VEHICLES))
 			{
-				#if !FIXES_NoYSI || defined FIXES_OnPlayerExitVehicle
+				#if defined FIXES_OnPlayerExitVehicle
 					return FIXES_OnPlayerExitVehicle(playerid, vehicleid);
 				#else
 					return 1;
@@ -13678,14 +13678,14 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		// ======================
 		#if FIXES_Single
 				FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+			#if defined FIXES_OnPlayerSelectedMenuRow
 				row = FIXES_OnPlayerSelectedMenuRow(playerid, row);
 			#endif
 				if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 				{
 					FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 				}
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+			#if defined FIXES_OnPlayerSelectedMenuRow
 					return row;
 			#else
 					return 1;
@@ -13698,14 +13698,14 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 					setproperty(5, FIXES_gscMenuProperty, _:cur),
 					CallRemoteFunction__(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid),
 					FIXES_gsCurrentMenu[playerid] = cur;
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+			#if defined FIXES_OnPlayerSelectedMenuRow
 					row = FIXES_OnPlayerSelectedMenuRow(playerid, row);
 			#endif
 					if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 					{
 						FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 					}
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+			#if defined FIXES_OnPlayerSelectedMenuRow
 					return row;
 			#else
 					return 1;
@@ -13715,14 +13715,14 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				{
 					FIXES_gsCurrentMenu[playerid] = Menu:getproperty(5, FIXES_gscMenuProperty),
 					FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+			#if defined FIXES_OnPlayerSelectedMenuRow
 					row = FIXES_OnPlayerSelectedMenuRow(playerid, row);
 			#endif
 					if (!(FIXES_gsSettings & e_FIXES_SETTINGS_MENU_SET))
 					{
 						FIXES_gsCurrentMenu[playerid] = cur;
 					}
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+			#if defined FIXES_OnPlayerSelectedMenuRow
 					return row;
 			#else
 					return 1;
@@ -13765,7 +13765,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		// ======================
 		#if FIXES_Single
 				FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+			#if defined FIXES_OnPlayerSelectedMenuRow
 				new
 					ret = FIXES_OnPlayerExitedMenu(playerid);
 			#endif
@@ -13773,7 +13773,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				{
 					FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 				}
-			#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+			#if defined FIXES_OnPlayerSelectedMenuRow
 				return ret;
 			#else
 				return 1;
@@ -13786,7 +13786,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 					setproperty(5, FIXES_gscMenuProperty, _:cur);
 					CallRemoteFunction__(FIXES_gscClearPlayerMenu, FIXES_gscSpec@i, playerid);
 					FIXES_gsCurrentMenu[playerid] = cur;
-				#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+				#if defined FIXES_OnPlayerSelectedMenuRow
 					new
 						ret = FIXES_OnPlayerExitedMenu(playerid);
 				#endif
@@ -13794,7 +13794,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 					{
 						FIXES_gsCurrentMenu[playerid] = Menu:INVALID_MENU;
 					}
-				#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+				#if defined FIXES_OnPlayerSelectedMenuRow
 					return ret;
 				#else
 					return 1;
@@ -13804,7 +13804,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			{
 					FIXES_gsCurrentMenu[playerid] = Menu:getproperty(5, FIXES_gscMenuProperty);
 					FIXES_gsSettings &= ~e_FIXES_SETTINGS_MENU_SET;
-				#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+				#if defined FIXES_OnPlayerSelectedMenuRow
 					new
 						ret = FIXES_OnPlayerExitedMenu(playerid);
 				#endif
@@ -13812,7 +13812,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 					{
 						FIXES_gsCurrentMenu[playerid] = cur;
 					}
-				#if !FIXES_NoYSI || defined FIXES_OnPlayerSelectedMenuRow
+				#if defined FIXES_OnPlayerSelectedMenuRow
 					return ret;
 				#else
 					return 1;
@@ -14279,7 +14279,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 		#if !FIXES_Single
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
 			{
-				#if !FIXES_NoYSI || defined FIXES_OnPlayerStateChange
+				#if defined FIXES_OnPlayerStateChange
 					return FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
 				#else
 					return 1;
@@ -14490,7 +14490,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 		//  END:   PassengerSeating
 		// =================================
 
-		#if !FIXES_NoYSI || defined FIXES_OnPlayerStateChange
+		#if defined FIXES_OnPlayerStateChange
 			return FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
 		#else
 			return 1;
@@ -15716,7 +15716,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 		// ======================
 		//  END:   AllowTeleport
 		// ======================
-		#if !FIXES_NoYSI || defined FIXES_OnPlayerClickMap
+		#if defined FIXES_OnPlayerClickMap
 			return FIXES_OnPlayerClickMap(playerid, fX, fY, fZ);
 		#else
 			return 1;
@@ -16108,7 +16108,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 					SetPVarInt__(playerid, FIXES_pvarPlayerDialog, INVALID_DIALOG_ID);
 				#endif
 			#endif
-			#if !FIXES_NoYSI || defined FIXES_OnDialogResponse
+			#if defined FIXES_OnDialogResponse
 				return FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext);
 			#else
 				return 1;
