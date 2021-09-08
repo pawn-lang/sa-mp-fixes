@@ -6982,7 +6982,7 @@ stock const
 	 * macros <c>HideGameTextForAll</c> and <c>HideGameTextForPlayer</c>.
 	 * </remarks>
 	 */
-	FIXES_gcNull[] = "\1";
+	_FIXES_gcNull[] = "\1";
 
 /*
 
@@ -15295,7 +15295,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	_FIXES_FUNC_PAWNDOC(HideGameTextForAll(style));
 
 	#define _ALS_HideGameTextForAll
-	#define HideGameTextForAll(%0) GameTextForAll__(FIXES_gcNull, 0, (%0))
+	#define HideGameTextForAll(%0) GameTextForAll__(_FIXES_gcNull, 0, (%0))
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_HideGameTextForAll);
 #endif
@@ -15312,7 +15312,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	_FIXES_FUNC_PAWNDOC(HideGameTextForPlayer(playerid, style));
 
 	#define _ALS_HideGameTextForPlayer
-	#define HideGameTextForPlayer(%0,%1) GameTextForPlayer__((%0), FIXES_gcNull, 0, (%1))
+	#define HideGameTextForPlayer(%0,%1) GameTextForPlayer__((%0), _FIXES_gcNull, 0, (%1))
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_HideGameTextForPlayer);
 #endif
