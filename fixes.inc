@@ -7036,6 +7036,48 @@ static stock
 
 	/**
 	 * <remarks>
+	 * Collection of boolean values for players.
+	 * </remarks>
+	 */
+	e_FIXES_BOOLS:FIXES_gsPlayerBools[MAX_PLAYERS],
+
+	/**
+	 * <remarks>
+	 * Handle to read from server.cfg.
+	 * </remarks>
+	 */
+	File:FIXES_gsServerCFG,
+
+	/**
+	 * <remarks>
+	 * Stores the ID of the server weather.
+	 * </remarks>
+	 */
+	FIXES_gsServerWeather = 10,
+
+	/**
+	 * <remarks>
+	 * A collection of 1-bit options, compressed together to save space.
+	 * </remarks>
+	 */
+	e_FIXES_SETTINGS:FIXES_gsSettings = e_FIXES_SETTINGS_SECOND_USE,
+
+	/**
+	 * <remarks>
+	 * The position of the character right-trimmed from a "const" string.
+	 * </remarks>
+	 */
+	FIXES_gsTrimPos,
+
+	/**
+	 * <remarks>
+	 * The character right-trimmed from a "const" string.
+	 * </remarks>
+	 */
+	FIXES_gsTrimChr,
+
+	/**
+	 * <remarks>
 	 * A record of which players are connected to the server.  We ensure that
 	 * this only exists when required, since it depends on add and remove
 	 * functions to be called at the right time.
@@ -7050,7 +7092,9 @@ static stock
 	 * A record of which menus have and haven't been shown yet.
 	 * </remarks>
 	 */
+#if _FIX_Menus || FIX_API
 	FIXES_gsValidMenus[_FIXES_CEILDIV(_:MAX_MENUS, cellbits)],
+#endif
 
 	/**
 	 * <remarks>
@@ -7069,6 +7113,7 @@ static stock
 	 */
 #if FIX_OnPlayerEnterVehicle_3
 	FIXES_gsPlayerVehicleID[MAX_PLAYERS],
+#endif
 
 	/**
 	 * <remarks>
@@ -7076,13 +7121,16 @@ static stock
 	 * trying to enter the locked vehicle.
 	 * </remarks>
 	 */
+#if FIX_OnPlayerEnterVehicle_3
 	FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS],
+#endif
 
 	/**
 	 * <remarks>
 	 * Boolean: Stores if a certain vehicle is 'locked' or not.
 	 * </remarks>
 	 */
+#if FIX_OnPlayerEnterVehicle_3
 	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES],
 #endif
 
@@ -7097,39 +7145,141 @@ static stock
 
 	/**
 	 * <remarks>
-	 * Collection of boolean values for players.
+	 * All data for players on where their worldbounds are and where they last
+	 * were before they went through the bounds by crouching.
+	 * <p />
+	 * <ul>
+	 * <li>P = Previous.</li>
+	 * <li>L = Lower.</li>
+	 * <li>U = Upper.</li>
+	 * </ul>
+	 * <p />
+	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
+	 * array takes up more space because it needs the array header, and takes
+	 * more code to access, because it needs to look up offsets.
 	 * </remarks>
 	 */
-	e_FIXES_BOOLS:FIXES_gsPlayerBools[MAX_PLAYERS],
-
-	/**
-	 * <remarks>
-	 * Handle to read from server.cfg.
-	 * </remarks>
-	 */
-	File:FIXES_gsServerCFG,
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
+	Float:FIXES_gsWorldbounds_PX[MAX_PLAYERS],
+#endif
 
 	/**
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
-	 *
-	 * P = Previous.
-	 * L = Lower.
-	 * U = Upper.
-	 *
+	 * <p />
+	 * <ul>
+	 * <li>P = Previous.</li>
+	 * <li>L = Lower.</li>
+	 * <li>U = Upper.</li>
+	 * </ul>
+	 * <p />
+	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
+	 * array takes up more space because it needs the array header, and takes
+	 * more code to access, because it needs to look up offsets.
 	 * </remarks>
 	 */
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-	// Previous.
-	Float:FIXES_gsWorldbounds_PX[MAX_PLAYERS],
 	Float:FIXES_gsWorldbounds_PY[MAX_PLAYERS],
+#endif
+
+	/**
+	 * <remarks>
+	 * All data for players on where their worldbounds are and where they last
+	 * were before they went through the bounds by crouching.
+	 * <p />
+	 * <ul>
+	 * <li>P = Previous.</li>
+	 * <li>L = Lower.</li>
+	 * <li>U = Upper.</li>
+	 * </ul>
+	 * <p />
+	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
+	 * array takes up more space because it needs the array header, and takes
+	 * more code to access, because it needs to look up offsets.
+	 * </remarks>
+	 */
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 	Float:FIXES_gsWorldbounds_PZ[MAX_PLAYERS],
-	// Lower.
+#endif
+
+	/**
+	 * <remarks>
+	 * All data for players on where their worldbounds are and where they last
+	 * were before they went through the bounds by crouching.
+	 * <p />
+	 * <ul>
+	 * <li>P = Previous.</li>
+	 * <li>L = Lower.</li>
+	 * <li>U = Upper.</li>
+	 * </ul>
+	 * <p />
+	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
+	 * array takes up more space because it needs the array header, and takes
+	 * more code to access, because it needs to look up offsets.
+	 * </remarks>
+	 */
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 	Float:FIXES_gsWorldbounds_LX[MAX_PLAYERS],
+#endif
+
+	/**
+	 * <remarks>
+	 * All data for players on where their worldbounds are and where they last
+	 * were before they went through the bounds by crouching.
+	 * <p />
+	 * <ul>
+	 * <li>P = Previous.</li>
+	 * <li>L = Lower.</li>
+	 * <li>U = Upper.</li>
+	 * </ul>
+	 * <p />
+	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
+	 * array takes up more space because it needs the array header, and takes
+	 * more code to access, because it needs to look up offsets.
+	 * </remarks>
+	 */
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 	Float:FIXES_gsWorldbounds_LY[MAX_PLAYERS],
-	// Upper.
+#endif
+
+	/**
+	 * <remarks>
+	 * All data for players on where their worldbounds are and where they last
+	 * were before they went through the bounds by crouching.
+	 * <p />
+	 * <ul>
+	 * <li>P = Previous.</li>
+	 * <li>L = Lower.</li>
+	 * <li>U = Upper.</li>
+	 * </ul>
+	 * <p />
+	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
+	 * array takes up more space because it needs the array header, and takes
+	 * more code to access, because it needs to look up offsets.
+	 * </remarks>
+	 */
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 	Float:FIXES_gsWorldbounds_UX[MAX_PLAYERS],
+#endif
+
+	/**
+	 * <remarks>
+	 * All data for players on where their worldbounds are and where they last
+	 * were before they went through the bounds by crouching.
+	 * <p />
+	 * <ul>
+	 * <li>P = Previous.</li>
+	 * <li>L = Lower.</li>
+	 * <li>U = Upper.</li>
+	 * </ul>
+	 * <p />
+	 * Why is this not an enum?  Simple - multiple arrays are better.  A 2d enum
+	 * array takes up more space because it needs the array header, and takes
+	 * more code to access, because it needs to look up offsets.
+	 * </remarks>
+	 */
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 	Float:FIXES_gsWorldbounds_UY[MAX_PLAYERS],
 #endif
 
@@ -7147,7 +7297,9 @@ static stock
 	 * What vehicle the player is due to go in.
 	 * </remarks>
 	 */
+#if FIX_PutPlayerInVehicle
 	FIXES_gsVehicleSeatData[MAX_PLAYERS],
+#endif
 
 	/**
 	 * <remarks>
@@ -7170,28 +7322,12 @@ static stock
 
 	/**
 	 * <remarks>
-	 * Stores the ID of the server weather.
-	 * </remarks>
-	 */
-#if FIX_GetWeather
-	FIXES_gsServerWeather = 10,
-#endif
-
-	/**
-	 * <remarks>
 	 * The player's current interior.
 	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetPlayerInterior
 	FIXES_gsPlayerInterior[MAX_PLAYERS],
 #endif
-
-	/**
-	 * <remarks>
-	 * A collection of 1-bit options, compressed together to save space.
-	 * </remarks>
-	 */
-	e_FIXES_SETTINGS:FIXES_gsSettings = e_FIXES_SETTINGS_SECOND_USE,
 
 	/**
 	 * <remarks>
@@ -7216,14 +7352,18 @@ static stock
 	 * The weapon to set after re-enter to vehicle.
 	 * </remarks>
 	 */
+#if FIX_DriveBy
 	FIXES_gsDriveByWeapon[MAX_PLAYERS],
+#endif
 
 	/**
 	 * <remarks>
 	 * The menu the player can currently see.
 	 * </remarks>
 	 */
+#if FIX_GetPlayerMenu
 	Menu:FIXES_gsCurrentMenu[MAX_PLAYERS] = {Menu:INVALID_MENU, ...},
+#endif
 
 	/**
 	 * <remarks>
@@ -7379,22 +7519,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_SilentTeleport
-	FIXES_gsJackedId[MAX_PLAYERS] = {INVALID_PLAYER_ID, ...},
+	FIXES_gsJackedId[MAX_PLAYERS] = {INVALID_PLAYER_ID, ...};
 #endif
-
-	/**
-	 * <remarks>
-	 * The position of the character right-trimmed from a "const" string.
-	 * </remarks>
-	 */
-	FIXES_gsTrimPos,
-
-	/**
-	 * <remarks>
-	 * The character right-trimmed from a "const" string.
-	 * </remarks>
-	 */
-	FIXES_gsTrimChr;
 
 /*
 
@@ -7746,7 +7872,6 @@ _FIXES_STATIC_STOCK_CONST
 		"***                  improve the more common case).\n"                            \
 		"***";
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * This variable records wether or not this player is brand new to the
@@ -7756,90 +7881,90 @@ _FIXES_STATIC_STOCK_CONST
 	 * </remarks>
 	 */
 #if !FIXES_Single
+_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarNotNewPlayer[] = "FIXES_pvarNotNewPlayer";
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current weapon.
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetPlayerWeapon
+_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerWeapon[] = "FIXES_pvarPlayerWeapon";
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current skin.
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetPlayerSkin
+_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerSkin[] = "FIXES_pvarPlayerSkin";
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's spectator mode.
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_SetPlayerCamera
+_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerSpectate[] = "FIXES_pvarPlayerSpectate";
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the kick timer function.
 	 * </remarks>
 	 */
 #if FIX_Kick
+_FIXES_STATIC_STOCK_CONST
 	FIXES_gscKick[] = "_FIXES_Kick";
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store a player's kick timer.
 	 * </remarks>
 	 */
 #if FIX_Kick
+_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarKick[] = "FIXES_pvarKick";
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current dialogid.
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_OnDialogResponse || FIX_GetPlayerDialog
+_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog";
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current weather.
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetPlayerWeather
+_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerWeather[] = "FIXES_pvarPlayerWeather";
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * A player's current interior.
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_GetPlayerInterior
+_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerInterior[] = "FIXES_pvarPlayerInterior";
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Used in OnDialogResponse to be able to get the correct ID in multiple
@@ -7847,36 +7972,47 @@ _FIXES_STATIC_STOCK_CONST
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_OnDialogResponse
+_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog";
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Used in OnPlayerDeath to save a player's cash before death.
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_OnPlayerSpawn
+_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash";
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's checkpoint state.
 	 * </remarks>
 	 */
 #if !FIXES_Single && FIX_SetPlayerCheckpoint
+_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerCheckpoint[] = "FIXES_pvarPlayerCheckpoint";
 #endif
 
+	/**
+	 * <remarks>
+	 * Name of the pvar in which to store the player's race checkpoint state.
+	 * </remarks>
+	 */
+#if !FIXES_Single && FIX_SetPlayerRaceCheckpoint
 _FIXES_STATIC_STOCK_CONST
+	FIXES_pvarPlayerRaceCheckpoint[] = "FIXES_pvarPlayerRaceCheckpoint";
+#endif
+
 	/**
 	 * <remarks>
 	 * All vehicle primary colours from carcols.dat.
 	 * </remarks>
 	 */
 #if FIX_CreateVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	FIXES_gscVehiclePrimary[1158] =
 		{
 			4, 123, 113, 101, 75, 62, 40, 36,      // 400 - landstal
@@ -8094,13 +8230,13 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * All vehicle secondary colours from carcols.dat.
 	 * </remarks>
 	 */
 #if FIX_CreateVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	FIXES_gscVehicleSecondary[1158] =
 		{
 			1, 1, 1, 1, 1, 1, 1, 1,                // 400 - landstal
@@ -8318,7 +8454,6 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * The vehicle colours are in a flat array.  These are the offsets for each
@@ -8326,6 +8461,7 @@ _FIXES_STATIC_STOCK_CONST
 	 * </remarks>
 	 */
 #if FIX_CreateVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	FIXES_gscVehicleIndexes[212 + 1] =
 		{
 			   0,                                  // 400 - landstal
@@ -8544,7 +8680,6 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
@@ -8553,7 +8688,8 @@ _FIXES_STATIC_STOCK_CONST
 	 * </remarks>
 	 */
 #if FIX_CreateVehicle || FIX_API
-	FIXES_gscColour3Camper[8 char] = {0x01010300, 0x03030878}, // 483
+_FIXES_STATIC_STOCK_CONST
+	FIXES_gscColour3Camper[8 char] = {0x01010300, 0x03030878}; // 483
 
 	/**
 	 * <remarks>
@@ -8562,7 +8698,8 @@ _FIXES_STATIC_STOCK_CONST
 	 * van and the squalo.
 	 * </remarks>
 	 */
-	FIXES_gscColour3Cement[8 char] = {0x177B1F1E, 0x173E4040}, // 524
+_FIXES_STATIC_STOCK_CONST
+	FIXES_gscColour3Cement[8 char] = {0x177B1F1E, 0x173E4040}; // 524
 
 	/**
 	 * <remarks>
@@ -8571,7 +8708,8 @@ _FIXES_STATIC_STOCK_CONST
 	 * the cement truck.
 	 * </remarks>
 	 */
-	FIXES_gscColour3Squalo[8 char] = {0x00010001, 0x01010101}, // 446
+_FIXES_STATIC_STOCK_CONST
+	FIXES_gscColour3Squalo[8 char] = {0x00010001, 0x01010101}; // 446
 
 	/**
 	 * <remarks>
@@ -8580,7 +8718,8 @@ _FIXES_STATIC_STOCK_CONST
 	 * truck and the squalo.
 	 * </remarks>
 	 */
-	FIXES_gscColour4Camper[8 char] = {0x00000000, 0x00000000}, // 483
+_FIXES_STATIC_STOCK_CONST
+	FIXES_gscColour4Camper[8 char] = {0x00000000, 0x00000000}; // 483
 
 	/**
 	 * <remarks>
@@ -8589,7 +8728,8 @@ _FIXES_STATIC_STOCK_CONST
 	 * van and the squalo.
 	 * </remarks>
 	 */
-	FIXES_gscColour4Cement[8 char] = {0x00000000, 0x00000000}, // 524
+_FIXES_STATIC_STOCK_CONST
+	FIXES_gscColour4Cement[8 char] = {0x00000000, 0x00000000}; // 524
 
 	/**
 	 * <remarks>
@@ -8598,7 +8738,8 @@ _FIXES_STATIC_STOCK_CONST
 	 * the cement truck.
 	 * </remarks>
 	 */
-	FIXES_gscColour4Squalo[8 char] = {0x01010101, 0x01010101}, // 446
+_FIXES_STATIC_STOCK_CONST
+	FIXES_gscColour4Squalo[8 char] = {0x01010101, 0x01010101}; // 446
 #endif
 
 	/**
@@ -8607,6 +8748,7 @@ _FIXES_STATIC_STOCK_CONST
 	 * </remarks>
 	 */
 #if FIX_API
+_FIXES_STATIC_STOCK_CONST
 	FIXES_gscVehicleColours[256] =
 		{
 			0x00000000, 0xF5F5F500, 0x2A77A100, 0x84041000, 0x26373900, 0x86446E00, 0xD78E1000, 0x4C75B700,
@@ -8644,17 +8786,6 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
-_FIXES_STATIC_STOCK_CONST
-	/**
-	 * <remarks>
-	 * Name of the pvar in which to store the player's race checkpoint state.
-	 * </remarks>
-	 */
-#if !FIXES_Single && FIX_SetPlayerRaceCheckpoint
-	FIXES_pvarPlayerRaceCheckpoint[] = "FIXES_pvarPlayerRaceCheckpoint";
-#endif
-
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * There are only 100 colours used by default, with SA:MP looping through
@@ -8662,6 +8793,7 @@ _FIXES_STATIC_STOCK_CONST
 	 * </remarks>
 	 */
 #if FIX_GetPlayerColour || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	FIXES_gscPlayerColours[100] =
 		{
 			0xFF8C13FF, 0xC715FFFF, 0x20B2AAFF, 0xDC143CFF, 0x6495EDFF,
@@ -8687,7 +8819,6 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * This is a compressed (4-bit) list of the maximum number of passengers in
@@ -8696,6 +8827,7 @@ _FIXES_STATIC_STOCK_CONST
 	 * </remarks>
 	 */
 #if FIX_OnPlayerEnterVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	FIXES_gscMaxPassengers[] =
 		{
 			0x10331113, 0x11311131, 0x11331313, 0x80133301, 0x1381F110, 0x10311103, 0x10001F10, 0x11113311, 0x13113311,
@@ -8704,7 +8836,6 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * This is a bit array of all the valid mods (-1000) for all vehicles (-400)
@@ -8721,6 +8852,7 @@ _FIXES_STATIC_STOCK_CONST
 	 * </remarks>
 	 */
 #if FIX_OnVehicleMod || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	FIXES_gscVehicleMods[] =
 		{
 			0x033C2700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000,
@@ -8938,26 +9070,26 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
 	 * </remarks>
 	 */
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	FIXES_gscAnimIndexes[24] =
 		{
 			0, 2, 21, 35, 42, 42, 53, 62, 64, 67, 68, 71, 75, 81, 82, 84, 94, 96, 104, 122, 127, 128, 131, 135
 		};
 #endif
 
-_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * List of valid animation libraries.
 	 * </remarks>
 	 */
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	FIXES_gscAnimLib[135][] =
 		{
 			"AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
