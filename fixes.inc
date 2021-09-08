@@ -8249,24 +8249,6 @@ static stock const
 #endif
 	/**
 	 * <remarks>
-	 * NULL.  This is stored as a global string to reduce memory usage.
-	 * </remarks>
-	 */
-	FIXES_gscNULL[] = "\1",
-	/**
-	 * <remarks>
-	 * (null).  This is stored as a global string to reduce memory usage.
-	 * </remarks>
-	 */
-	FIXES_gscNull[] = "(null)",
-	/**
-	 * <remarks>
-	 * A single re-usable new line.
-	 * </remarks>
-	 */
-	FIXES_gscLF[] = "\n",
-	/**
-	 * <remarks>
 	 * There are only 100 colours used by default, with SA:MP looping through
 	 * them repeatedly.
 	 * </remarks>
