@@ -8695,7 +8695,7 @@ static stock const
 	FIXES_gscOrderProperty[] = "FIXES_gscOrderProperty",
 	/**
 	 * <remarks>
-	 * Call <symbolref name="_FIXES_DetermineOrder" /> in the GM or not?
+	 * Call <symbolref name="_FIXES_DetermineOrderRemote" /> in the GM or not?
 	 * </remarks>
 	 */
 	FIXES_gscNoGMProperty[] = "FIXES_gscNoGMProperty",
@@ -8704,7 +8704,7 @@ static stock const
 	 * Name of the ordering callback.
 	 * </remarks>
 	 */
-	FIXES_gscDetermineOrder[] = "_FIXES_DetermineOrder",
+	FIXES_gscDetermineOrder[] = "_FIXES_DetermineOrderRemote",
 	/**
 	 * <remarks>
 	 * Name of the remote set player menu function.
@@ -8770,7 +8770,7 @@ static stock const
 	 * Name of the remote block update function.
 	 * </remarks>
 	 */
-	FIXES_gscBlockUpdate[] = "@FIXES_BlockUpdate",
+	FIXES_gscBlockUpdate[] = "_FIXES_BlockUpdateRemote",
 	/**
 	 * <remarks>
 	 * The property for accurate returns.
@@ -9924,7 +9924,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
  */
 
 #if !FIXES_Single
-	static FIXES_DetermineOrder()
+	static _FIXES_DetermineOrder()
 	{
 		deleteproperty(5, FIXES_gscOrderProperty),
 		// Called in the Game Mode first (thus needs correcting).
@@ -9934,9 +9934,9 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 		CallRemoteFunction__(FIXES_gscDetermineOrder, FIXES_gscSpec@);
 	}
 
-	forward _FIXES_DetermineOrder();
+	forward _FIXES_DetermineOrderRemote();
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_DetermineOrder);
+	_FIXES_HIDE_PAWNDOC(_FIXES_DetermineOrder);
 #endif
 
 /**
@@ -10765,7 +10765,7 @@ public OnFilterScriptInit()
 		//  END:   GameText
 		// =================
 	#else
-		FIXES_DetermineOrder(),
+		_FIXES_DetermineOrder(),
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
 	#endif
 
@@ -10925,7 +10925,7 @@ public OnGameModeInit()
 		//  END:   GameText
 		// =================
 		#if !FIXES_Single
-			FIXES_DetermineOrder();
+			_FIXES_DetermineOrder();
 		#endif
 		// ======================
 		//  BEGIN: OnRconCommand
@@ -11099,7 +11099,7 @@ public OnGameModeInit()
 			if (!_FIXES_gIsFilterscript && FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
 			{
 				FIXES_gsSettings |= e_FIXES_SETTINGS_ENDING,
-				FIXES_DetermineOrder();
+				_FIXES_DetermineOrder();
 			}
 		#endif
 
@@ -11242,7 +11242,7 @@ public OnGameModeInit()
 			if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
 			{
 				FIXES_gsSettings |= e_FIXES_SETTINGS_ENDING,
-				FIXES_DetermineOrder();
+				_FIXES_DetermineOrder();
 			}
 			#if defined FIXES_OnFilterScriptExit
 				return FIXES_OnFilterScriptExit();
@@ -12317,7 +12317,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 					}
 				}
 				// Desync the player entirely.
-				return FIXES_BlockUpdate(playerid);
+				return _FIXES_BlockUpdate(playerid);
 		#else
 			#if defined FIXES_OnVehicleMod
 				return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
@@ -13436,7 +13436,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#if FIX_OnPlayerEnterVehicle_2
 			if (!(0 < vehicleid < MAX_VEHICLES))
 			{
-				return FIXES_BlockUpdate(playerid);
+				return _FIXES_BlockUpdate(playerid);
 			}
 		#endif
 		// =============================
@@ -13551,7 +13551,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 					return 1;
 				#endif
 			}
-			return FIXES_BlockUpdate(playerid);
+			return _FIXES_BlockUpdate(playerid);
 		#endif
 		// =============================
 		//  END: OnPlayerEnterVehicle_2
@@ -13584,7 +13584,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  */
 
 #if FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_Kick || FIX_OnVehicleMod || FIX_BypassDialog
-	static stock FIXES_BlockUpdate(playerid, bool:kick = true, e_FIXES_BOOLS:type = e_FIXES_BOOLS_FORCE_BLOCK)
+	static stock _FIXES_BlockUpdate(playerid, bool:kick = true, e_FIXES_BOOLS:type = e_FIXES_BOOLS_FORCE_BLOCK)
 	{
 		if (type == e_FIXES_BOOLS_FORCE_BLOCK)
 		{
@@ -13621,7 +13621,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			0;
 	}
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_BlockUpdate);
+	_FIXES_HIDE_PAWNDOC(_FIXES_BlockUpdate);
 #endif
 
 /**
@@ -13632,13 +13632,13 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 #if FIX_BypassDialog
 	#if !FIXES_Single
-		forward @FIXES_BlockUpdate(playerid, bool:block);
+		forward _FIXES_BlockUpdateRemote(playerid, bool:block);
 		
-		public @FIXES_BlockUpdate(playerid, bool:block)
+		public _FIXES_BlockUpdateRemote(playerid, bool:block)
 		{
 			if (block)
 			{
-				FIXES_BlockUpdate(playerid, false, e_FIXES_BOOLS_DIALOG_BLOCK);
+				_FIXES_BlockUpdate(playerid, false, e_FIXES_BOOLS_DIALOG_BLOCK);
 			}
 			else if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DIALOG_BLOCK)
 			{
@@ -13646,10 +13646,10 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			}
 		}
 	#else
-		_FIXES_HIDE_PAWNDOC(@FIXES_BlockUpdate);
+		_FIXES_HIDE_PAWNDOC(_FIXES_BlockUpdateRemote);
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(@FIXES_BlockUpdate);
+	_FIXES_HIDE_PAWNDOC(_FIXES_BlockUpdateRemote);
 #endif
 
 /**
@@ -14320,7 +14320,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 						if (model == 0 || model == 15)
 						{
 							// Shouldn't be in this vehicle at all.
-							FIXES_BlockUpdate(playerid);
+							_FIXES_BlockUpdate(playerid);
 						}
 						else
 						{
@@ -14328,13 +14328,13 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 							if (!(0 < GetPlayerVehicleSeat__(playerid) <= model))
 							{
 								// In an out of range seat.
-								FIXES_BlockUpdate(playerid);
+								_FIXES_BlockUpdate(playerid);
 							}
 						}
 					}
 					else
 					{
-						FIXES_BlockUpdate(playerid);
+						_FIXES_BlockUpdate(playerid);
 					}
 				}
 				else if (newstate == PLAYER_STATE_DRIVER)
@@ -14346,13 +14346,13 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 						if (_FIXES_NO_RANGE(model, 0, 211 + 1) || FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2) & 0xF == 15)
 						{
 							// In an invalid vehicle (one you can't drive).
-							FIXES_BlockUpdate(playerid);
+							_FIXES_BlockUpdate(playerid);
 						}
 					}
 					else
 					{
 						// They are a driver, but not in the driver's seat.
-						FIXES_BlockUpdate(playerid);
+						_FIXES_BlockUpdate(playerid);
 					}
 			#if !FIX_HydraSniper && !FIX_GetPlayerWeapon
 				}
@@ -16039,7 +16039,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		#endif
 		#if FIX_BypassDialog
 			#if FIXES_Single
-				FIXES_BlockUpdate(playerid, false, e_FIXES_BOOLS_DIALOG_BLOCK);
+				_FIXES_BlockUpdate(playerid, false, e_FIXES_BOOLS_DIALOG_BLOCK);
 			#else
 				CallRemoteFunction__(FIXES_gscBlockUpdate, FIXES_gscSpec@ii, playerid, true);
 			#endif
@@ -16525,7 +16525,7 @@ native BAD_Kick(playerid) = Kick;
 
 		public @FIXES_Kick(playerid)
 		{
-			FIXES_BlockUpdate(playerid, false);
+			_FIXES_BlockUpdate(playerid, false);
 		}
 	#endif
 
@@ -16536,7 +16536,7 @@ native BAD_Kick(playerid) = Kick;
 			// Disable as much of the server as possible quickly.
 			return
 				#if FIXES_Single
-					FIXES_BlockUpdate(playerid, false),
+					_FIXES_BlockUpdate(playerid, false),
 				#else
 					CallRemoteFunction__("@FIXES_Kick", "i", playerid),
 				#endif
@@ -16576,7 +16576,7 @@ native BAD_Kick(playerid) = Kick;
  */
 
 #if !FIXES_Single
-	public _FIXES_DetermineOrder()
+	public _FIXES_DetermineOrderRemote()
 	{
 		// TODO: Graceful handoff.  I thought I was past all this rubbish!
 		if (!_FIXES_gIsFilterscript)
@@ -16617,7 +16617,7 @@ native BAD_Kick(playerid) = Kick;
 			// master.
 			if (FIXES_gsSettings & (e_FIXES_SETTINGS_IN_CHARGE | e_FIXES_SETTINGS_DROP_ALL_DATA) == e_FIXES_SETTINGS_IN_CHARGE)
 			{
-				FIXES_PRINTF("_FIXES_DetermineOrder: Was in charge");
+				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Was in charge");
 				// This script is currently in charge, but a new script has
 				// usurped it!  Pass all relevant data over to the new script.
 				// Also, this wasn't triggered by a game mode change (where we
@@ -16692,13 +16692,13 @@ native BAD_Kick(playerid) = Kick;
 				//  END:   GameText
 				// =================
 
-				FIXES_PRINTF("_FIXES_DetermineOrder: Not in charge");
+				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Not in charge");
 				return 0;
 			}
 			else
 			{
 				FIXES_gsSettings &= ~e_FIXES_SETTINGS_IN_CHARGE;
-				FIXES_PRINTF("_FIXES_DetermineOrder: Not in charge");
+				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Not in charge");
 				return 0;
 			}
 		}
@@ -16708,11 +16708,11 @@ native BAD_Kick(playerid) = Kick;
 			#if FIXES_Debug
 				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
 				{
-					FIXES_PRINTF("_FIXES_DetermineOrder: Already in charge");
+					FIXES_PRINTF("_FIXES_DetermineOrderRemote: Already in charge");
 				}
 			#endif
 			FIXES_gsSettings |= e_FIXES_SETTINGS_IN_CHARGE;
-			FIXES_PRINTF("_FIXES_DetermineOrder: Now in charge");
+			FIXES_PRINTF("_FIXES_DetermineOrderRemote: Now in charge");
 
 			// =================
 			//  BEGIN: GameText
@@ -16783,7 +16783,7 @@ native BAD_Kick(playerid) = Kick;
 			// =================
 
 			#if FIXES_Debug
-				FIXES_PRINTF("_FIXES_DetermineOrder: Ending");
+				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Ending");
 			#endif
 
 			FIXES_gsSettings |= e_FIXES_SETTINGS_ENDED;
@@ -16791,7 +16791,7 @@ native BAD_Kick(playerid) = Kick;
 		return 0;
 	}
 #else
-	_FIXES_HIDE_PAWNDOC(_FIXES_DetermineOrder);
+	_FIXES_HIDE_PAWNDOC(_FIXES_DetermineOrderRemote);
 #endif
 
 /**
