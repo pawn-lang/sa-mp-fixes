@@ -18620,14 +18620,14 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 
 /**
  * <fixes>SetPlayerPos</fixes>
- * <fixes>* NOTE:</fixes>
- * <fixes>"PARACHUTE", "FALL_skyDive", 958</fixes>
- * <fixes>"PARACHUTE", "FALL_SkyDive_Accel", 959</fixes>
- * <fixes>"PARACHUTE", "FALL_skyDive_DIE", 960</fixes>
- * <fixes>"PARACHUTE", "FALL_SkyDive_L", 961</fixes>
- * <fixes>"PARACHUTE", "FALL_SkyDive_R", 962</fixes>
- * <fixes>"ped", "FALL_skyDive", 1134</fixes>
  */
+// NOTE:
+// "PARACHUTE", "FALL_skyDive", 958
+// "PARACHUTE", "FALL_SkyDive_Accel", 959
+// "PARACHUTE", "FALL_skyDive_DIE", 960
+// "PARACHUTE", "FALL_SkyDive_L", 961
+// "PARACHUTE", "FALL_SkyDive_R", 962
+// "ped", "FALL_skyDive", 1134
 
 #if _FIXES_SAMP && defined _ALS_SetPlayerPos
 	#error _ALS_SetPlayerPos defined
@@ -18636,14 +18636,14 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 
 /**
  * <fixes>SetPlayerPos</fixes>
- * <fixes>* NOTE:</fixes>
- * <fixes>"PARACHUTE", "FALL_skyDive", 958</fixes>
- * <fixes>"PARACHUTE", "FALL_SkyDive_Accel", 959</fixes>
- * <fixes>"PARACHUTE", "FALL_skyDive_DIE", 960</fixes>
- * <fixes>"PARACHUTE", "FALL_SkyDive_L", 961</fixes>
- * <fixes>"PARACHUTE", "FALL_SkyDive_R", 962</fixes>
- * <fixes>"ped", "FALL_skyDive", 1134</fixes>
  */
+// NOTE:
+// "PARACHUTE", "FALL_skyDive", 958
+// "PARACHUTE", "FALL_SkyDive_Accel", 959
+// "PARACHUTE", "FALL_skyDive_DIE", 960
+// "PARACHUTE", "FALL_SkyDive_L", 961
+// "PARACHUTE", "FALL_SkyDive_R", 962
+// "ped", "FALL_skyDive", 1134
 
 #if FIX_SetPlayerPos
 	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
@@ -19669,6 +19669,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef _FIXES_NEW_COMPILER
 #undef _FIXES_FIRST_PASS
 #undef _FIXES_STATIC_STOCK_CONST
+#undef _FIXES_STATIC_STOCK
 #if !FIXES_NoYSI
 	#undef _FIXES_FORWARD
 #endif
