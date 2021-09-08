@@ -5693,7 +5693,6 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_VALID_PLAYER(playerid));
 _FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_PLAYER_CONNECTED(playerid));
 #define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IS_VALID_PLAYER(%0) && IsPlayerConnected__(%0))
 
-
 /**
  * <remarks>
  * Either <c>const</c> or <c>static stock const</c> depending on the value of
@@ -5706,6 +5705,20 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK_CONST);
 	#define _FIXES_STATIC_STOCK_CONST const
 #else
 	#define _FIXES_STATIC_STOCK_CONST static stock const
+#endif
+
+/**
+ * <remarks>
+ * Either <c>new</c> or <c>static stock</c> depending on the value of
+ * <c>FIXES_Debug</c>, so we can examine them externally.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK);
+#if FIXES_Debug
+	#define _FIXES_STATIC_STOCK new
+#else
+	#define _FIXES_STATIC_STOCK static stock
 #endif
 
 /*
@@ -6917,59 +6930,60 @@ _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
 // simpler than trying to figure out when or if a semi-colon is needed.  The
 // three `_FIXES_gIs...` variables always exist, they are only `static` if the
 // relevant fixes are not enabled since they may still be needed in this file.
-#if !FIX_FILTERSCRIPT
-static
-#endif
-stock
+
 	/**
 	 * <remarks>
 	 * Runtime equivalent of "FILTERSCRIPT" for when it is not set by the user.
 	 * </remarks>
 	 */
-	bool:_FIXES_gIsFilterscript;
-
-#if !FIX_JIT
+#if !FIX_FILTERSCRIPT
 static
 #endif
 stock
+	bool:_FIXES_gIsFilterscript;
+
 	/**
 	 * <remarks>
 	 * True when the JIT plugin is being used.
 	 * </remarks>
 	 */
-	bool:_FIXES_gIsJIT = false;
-
-#if !FIX_OS
+#if !FIX_JIT
 static
 #endif
 stock
+	bool:_FIXES_gIsJIT = false;
+
 	/**
 	 * <remarks>
 	 * True on Windows, false on Linux.
 	 * </remarks>
 	 */
-	bool:_FIXES_gIsWindows;
-
-#if !FIX_GetMaxPlayers
+#if !FIX_OS
 static
 #endif
 stock
+	bool:_FIXES_gIsWindows;
+
 	/**
 	 * <remarks>
 	 * <c>maxplayers</c> server var value.
 	 * </remarks>
 	 */
-	_FIXES_gsMaxPlayers = MAX_PLAYERS;
-
-#if !FIX_GetWorldTime
+#if !FIX_GetMaxPlayers
 static
 #endif
 stock
+	_FIXES_gsMaxPlayers = MAX_PLAYERS;
+
 	/**
 	 * <remarks>
 	 * Stores the current server world time (hours).
 	 * </remarks>
 	 */
+#if !FIX_GetWorldTime
+static
+#endif
+stock
 	_FIXES_gsWorldTime = 12;
 
 /*
@@ -6987,16 +7001,16 @@ stock
 
 */
 
-#if !FIX_HideGameText
-static
-#endif
-stock const
 	/**
 	 * <remarks>
 	 * A single re-usable null string.  Const not static because it is used in
 	 * macros <c>HideGameTextForAll</c> and <c>HideGameTextForPlayer</c>.
 	 * </remarks>
 	 */
+#if !FIX_HideGameText
+static
+#endif
+stock const
 	_FIXES_gcNull[] = "\1";
 
 /*
@@ -7014,67 +7028,70 @@ stock const
 
 */
 
-#if FIXES_Debug
-new
-#else
-static stock
-#endif
 	/**
 	 * <remarks>
 	 * A single re-usable space.  Static not const because it is used in this
 	 * file in functions that don't take <c>const</c> strings.
 	 * </remarks>
 	 */
-	FIXES_gsSpace[] = " ",
+_FIXES_STATIC_STOCK
+	FIXES_gsSpace[] = " ";
 
 	/**
 	 * <remarks>
 	 * Only determine the OS once.
 	 * </remarks>
 	 */
-	bool:FIXES_gsKnownOS = false,
+_FIXES_STATIC_STOCK
+	bool:FIXES_gsKnownOS = false;
 
 	/**
 	 * <remarks>
 	 * Collection of boolean values for players.
 	 * </remarks>
 	 */
-	e_FIXES_BOOLS:FIXES_gsPlayerBools[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	e_FIXES_BOOLS:FIXES_gsPlayerBools[MAX_PLAYERS];
 
 	/**
 	 * <remarks>
 	 * Handle to read from server.cfg.
 	 * </remarks>
 	 */
-	File:FIXES_gsServerCFG,
+_FIXES_STATIC_STOCK
+	File:FIXES_gsServerCFG;
 
 	/**
 	 * <remarks>
 	 * Stores the ID of the server weather.
 	 * </remarks>
 	 */
-	FIXES_gsServerWeather = 10,
+_FIXES_STATIC_STOCK
+	FIXES_gsServerWeather = 10;
 
 	/**
 	 * <remarks>
 	 * A collection of 1-bit options, compressed together to save space.
 	 * </remarks>
 	 */
-	e_FIXES_SETTINGS:FIXES_gsSettings = e_FIXES_SETTINGS_SECOND_USE,
+_FIXES_STATIC_STOCK
+	e_FIXES_SETTINGS:FIXES_gsSettings = e_FIXES_SETTINGS_SECOND_USE;
 
 	/**
 	 * <remarks>
 	 * The position of the character right-trimmed from a "const" string.
 	 * </remarks>
 	 */
-	FIXES_gsTrimPos,
+_FIXES_STATIC_STOCK
+	FIXES_gsTrimPos;
 
 	/**
 	 * <remarks>
 	 * The character right-trimmed from a "const" string.
 	 * </remarks>
 	 */
-	FIXES_gsTrimChr,
+_FIXES_STATIC_STOCK
+	FIXES_gsTrimChr;
 
 	/**
 	 * <remarks>
@@ -7084,7 +7101,8 @@ static stock
 	 * </remarks>
 	 */
 #if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
-	FIXES_gsPlayersIterator[MAX_PLAYERS + 1] = {0, 1, ...},
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayersIterator[MAX_PLAYERS + 1] = {0, 1, ...};
 #endif
 
 	/**
@@ -7093,7 +7111,8 @@ static stock
 	 * </remarks>
 	 */
 #if _FIX_Menus || FIX_API
-	FIXES_gsValidMenus[_FIXES_CEILDIV(_:MAX_MENUS, cellbits)],
+_FIXES_STATIC_STOCK
+	FIXES_gsValidMenus[_FIXES_CEILDIV(_:MAX_MENUS, cellbits)];
 #endif
 
 	/**
@@ -7102,7 +7121,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
-	FIXES_gsPlayerIP[MAX_PLAYERS] = {-1, ...},
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerIP[MAX_PLAYERS] = {-1, ...};
 #endif
 
 	/**
@@ -7112,7 +7132,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_OnPlayerEnterVehicle_3
-	FIXES_gsPlayerVehicleID[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerVehicleID[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7122,7 +7143,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_OnPlayerEnterVehicle_3
-	FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7131,7 +7153,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_OnPlayerEnterVehicle_3
-	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES],
+_FIXES_STATIC_STOCK
+	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES];
 #endif
 
 	/**
@@ -7140,7 +7163,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetPlayerSkin
-	FIXES_gsPlayerSkin[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerSkin[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7160,7 +7184,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-	Float:FIXES_gsWorldbounds_PX[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	Float:FIXES_gsWorldbounds_PX[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7180,7 +7205,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-	Float:FIXES_gsWorldbounds_PY[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	Float:FIXES_gsWorldbounds_PY[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7200,7 +7226,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-	Float:FIXES_gsWorldbounds_PZ[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	Float:FIXES_gsWorldbounds_PZ[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7220,7 +7247,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-	Float:FIXES_gsWorldbounds_LX[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	Float:FIXES_gsWorldbounds_LX[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7240,7 +7268,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-	Float:FIXES_gsWorldbounds_LY[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	Float:FIXES_gsWorldbounds_LY[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7260,7 +7289,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-	Float:FIXES_gsWorldbounds_UX[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	Float:FIXES_gsWorldbounds_UX[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7280,7 +7310,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-	Float:FIXES_gsWorldbounds_UY[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	Float:FIXES_gsWorldbounds_UY[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7289,7 +7320,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetPlayerWeapon
-	FIXES_gsPlayerWeapon[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerWeapon[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7298,7 +7330,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_PutPlayerInVehicle
-	FIXES_gsVehicleSeatData[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	FIXES_gsVehicleSeatData[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7308,7 +7341,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
-	FIXES_gsPlayerDialog[MAX_PLAYERS] = {-1, ...},
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerDialog[MAX_PLAYERS] = {-1, ...};
 #endif
 
 	/**
@@ -7317,7 +7351,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_GetPlayerWeather
-	FIXES_gsPlayerWeather[MAX_PLAYERS] = {-1, ...},
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerWeather[MAX_PLAYERS] = {-1, ...};
 #endif
 
 	/**
@@ -7326,7 +7361,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetPlayerInterior
-	FIXES_gsPlayerInterior[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerInterior[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7335,7 +7371,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_OnPlayerDeath
-	FIXES_gsLastAnimation[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	FIXES_gsLastAnimation[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7344,7 +7381,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_OnPlayerSpawn
-	FIXES_gsPlayerLastCash[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerLastCash[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7353,7 +7391,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_DriveBy
-	FIXES_gsDriveByWeapon[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	FIXES_gsDriveByWeapon[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7362,7 +7401,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_GetPlayerMenu
-	Menu:FIXES_gsCurrentMenu[MAX_PLAYERS] = {Menu:INVALID_MENU, ...},
+_FIXES_STATIC_STOCK
+	Menu:FIXES_gsCurrentMenu[MAX_PLAYERS] = {Menu:INVALID_MENU, ...};
 #endif
 
 	/**
@@ -7372,7 +7412,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_GameText
-	Text:FIXES_gsGTStyle[FIXES_GT_STYLE_COUNT],
+_FIXES_STATIC_STOCK
+	Text:FIXES_gsGTStyle[FIXES_GT_STYLE_COUNT];
 #endif
 
 	/**
@@ -7381,7 +7422,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_GameText
-	FIXES_gsPlayerPGTShown[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1],
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerPGTShown[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1];
 #endif
 
 	/**
@@ -7391,7 +7433,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_GameText
-	PlayerText:FIXES_gsPGTStyle[MAX_PLAYERS][FIXES_GT_STYLE_COUNT],
+_FIXES_STATIC_STOCK
+	PlayerText:FIXES_gsPGTStyle[MAX_PLAYERS][FIXES_GT_STYLE_COUNT];
 #endif
 
 	/**
@@ -7400,7 +7443,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_GameText
-	FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1],
+_FIXES_STATIC_STOCK
+	FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1];
 #endif
 
 	/**
@@ -7410,7 +7454,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_ApplyAnimation_2
-	FIXES_gsPlayerAnimTimer[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerAnimTimer[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7419,7 +7464,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_ApplyAnimation_2
-	FIXES_gsPlayerAnimName[MAX_PLAYERS * 64],
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerAnimName[MAX_PLAYERS * 64];
 #endif
 
 	/**
@@ -7428,7 +7474,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_ApplyAnimation_2
-	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)],
+_FIXES_STATIC_STOCK
+	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)];
 #endif
 
 	/**
@@ -7438,7 +7485,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_ApplyActorAnimation_2
-	FIXES_gsActorAnimTimer[MAX_ACTORS],
+_FIXES_STATIC_STOCK
+	FIXES_gsActorAnimTimer[MAX_ACTORS];
 #endif
 
 	/**
@@ -7447,7 +7495,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_ApplyActorAnimation_2
-	FIXES_gsActorAnimName[MAX_ACTORS * 64],
+_FIXES_STATIC_STOCK
+	FIXES_gsActorAnimName[MAX_ACTORS * 64];
 #endif
 
 	/**
@@ -7456,7 +7505,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_ApplyActorAnimation_2
-	FIXES_gsActorAnimLibs[MAX_ACTORS][_FIXES_CEILDIV(135, cellbits)],
+_FIXES_STATIC_STOCK
+	FIXES_gsActorAnimLibs[MAX_ACTORS][_FIXES_CEILDIV(135, cellbits)];
 #endif
 
 	/**
@@ -7465,7 +7515,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_PassengerSeating
-	FIXES_gsPSTimer[MAX_PLAYERS],
+_FIXES_STATIC_STOCK
+	FIXES_gsPSTimer[MAX_PLAYERS];
 #endif
 
 	/**
@@ -7474,7 +7525,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
-	FIXES_gsStereo[MAX_VEHICLES],
+_FIXES_STATIC_STOCK
+	FIXES_gsStereo[MAX_VEHICLES];
 #endif
 
 	/**
@@ -7483,7 +7535,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
-	FIXES_gsFrontBumper[MAX_VEHICLES],
+_FIXES_STATIC_STOCK
+	FIXES_gsFrontBumper[MAX_VEHICLES];
 #endif
 
 	/**
@@ -7492,7 +7545,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
-	FIXES_gsRearBumper[MAX_VEHICLES],
+_FIXES_STATIC_STOCK
+	FIXES_gsRearBumper[MAX_VEHICLES];
 #endif
 
 	/**
@@ -7501,7 +7555,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
-	FIXES_gsFrontBullbar[MAX_VEHICLES],
+_FIXES_STATIC_STOCK
+	FIXES_gsFrontBullbar[MAX_VEHICLES];
 #endif
 
 	/**
@@ -7510,7 +7565,8 @@ static stock
 	 * </remarks>
 	 */
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
-	FIXES_gsRearBullbar[MAX_VEHICLES],
+_FIXES_STATIC_STOCK
+	FIXES_gsRearBullbar[MAX_VEHICLES];
 #endif
 
 	/**
@@ -7519,6 +7575,7 @@ static stock
 	 * </remarks>
 	 */
 #if FIX_SilentTeleport
+_FIXES_STATIC_STOCK
 	FIXES_gsJackedId[MAX_PLAYERS] = {INVALID_PLAYER_ID, ...};
 #endif
 
