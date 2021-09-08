@@ -13032,7 +13032,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 	#define _ALS_ClearPlayerWorldBounds__
 	#define ClearPlayerWorldBounds__( FIXES_ClearPlayerWorldBounds(
 #else
-	static stock _PX@FIXES_ClearPlayerWorldBound();
+	_FIXES_HIDE_PAWNDOC(FIXES_ClearPlayerWorldBounds);
 #endif
 
 /**
@@ -13105,8 +13105,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define _ALS_TogglePlayerControllable__
 	#define TogglePlayerControllable__( FIXES_TogglePlayerControllable(
 #else
-	// Too long for the normal macro.
-	static stock _PX@FIXES_TogglePlayerControlla/*ble*/() {}
+	_FIXES_HIDE_PAWNDOC(FIXES_TogglePlayerControllabl);
 #endif
 
 /**
@@ -13204,7 +13203,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		_FIXES_FORWARD FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
 	#endif
 #else
-	static stock _PX@FIXES_OnPlayerInteriorChang();
+	_FIXES_HIDE_PAWNDOC(FIXES_OnPlayerInteriorChange);
 #endif
 
 /**
@@ -13405,7 +13404,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		_FIXES_FORWARD FIXES_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 	#endif
 #else
-	static stock _PX@FIXES_OnPlayerKeyStateChang();
+	_FIXES_HIDE_PAWNDOC(FIXES_OnPlayerKeyStateChange);
 #endif
 
 /**
@@ -13529,7 +13528,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		_FIXES_FORWARD FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
 	#endif
 #else
-	static stock _PX@FIXES_OnPlayerEnterVehicl();
+	_FIXES_HIDE_PAWNDOC(FIXES_OnPlayerEnterVehicle);
 #endif
 
 /**
@@ -13682,7 +13681,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		ClearAnimations__(playerid);
 	}
 #else
-	static stock _PX@_FIXES_StopPlayerEnterVehic();
+	_FIXES_HIDE_PAWNDOC(_FIXES_StopPlayerEnterVehicle);
 #endif
 
 /**
@@ -13769,7 +13768,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		_FIXES_FORWARD FIXES_OnPlayerSelectedMenuRow(playerid, row);
 	#endif
 #else
-	static stock _PX@FIXES_OnPlayerSelectedMenuR();
+	_FIXES_HIDE_PAWNDOC(FIXES_OnPlayerSelectedMenuRow);
 #endif
 
 /**
@@ -14992,7 +14991,7 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 	#define _ALS_DisablePlayerCheckpoint__
 	#define DisablePlayerCheckpoint__( FIXES_DisablePlayerCheckpoint(
 #else
-	static stock _PX@FIXES_DisablePlayerCheckpoi();
+	_FIXES_HIDE_PAWNDOC(FIXES_DisablePlayerCheckpoint);
 #endif
 
 /**
@@ -15059,7 +15058,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 	#define _ALS_SetPlayerRaceCheckpoint__
 	#define SetPlayerRaceCheckpoint__( FIXES_SetPlayerRaceCheckpoint(
 #else
-	static stock _PX@FIXES_SetPlayerRaceCheckpoi();
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerRaceCheckpoint);
 #endif
 
 /**
@@ -15143,7 +15142,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 		return 1;
 	}
 #else
-	static stock _PX@_FIXES_HideGameTextForPlaye();
+	_FIXES_HIDE_PAWNDOC(_FIXES_HideGameTextForPlayer);
 #endif
 
 /**
@@ -15437,7 +15436,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#define _ALS_PlayerTextDrawSetString__
 	#define PlayerTextDrawSetString__( FIXES_PlayerTextDrawSetString(
 #else
-	static stock _PX@FIXES_PlayerTextDrawSetStri();
+	_FIXES_HIDE_PAWNDOC(FIXES_PlayerTextDrawSetString);
 #endif
 
 /**
@@ -15929,7 +15928,7 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 	#define _ALS_SetPlayerSpecialAction__
 	#define SetPlayerSpecialAction__( FIXES_SetPlayerSpecialAction(
 #else
-	static stock _PX@FIXES_SetPlayerSpecialActio();
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerSpecialAction);
 #endif
 
 /**
@@ -16990,7 +16989,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		}
 	}
 #else
-	static stock _PX@_FIXES_ApplyActorAnimationD();
+	_FIXES_HIDE_PAWNDOC(_FIXES_ApplyActorAnimation);
 #endif
 
 /**
@@ -17006,7 +17005,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		FIXES_gsActorAnimTimer[actorid] = 0;
 	}
 #else
-	_FIXES_HIDE_PAWNDOC(_FIXES_ApplyActorAnimation);
+	_FIXES_HIDE_PAWNDOC(_@FIXES_ApplyActorAnimation);
 #endif
 
 /**
@@ -17175,7 +17174,7 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 	#define _ALS_GetVehicleComponentType__
 	#define GetVehicleComponentType__( FIXES_GetVehicleComponentType(
 #else
-	static stock _PX@FIXES_GetVehicleComponentTy();
+	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleComponentType);
 #endif
 
 /**
@@ -17391,7 +17390,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 	#define _ALS_RemoveVehicleComponent__
 	#define RemoveVehicleComponent__( FIXES_RemoveVehicleComponent(
 #else
-	static stock _PX@FIXES_RemoveVehicleComponen();
+	_FIXES_HIDE_PAWNDOC(FIXES_RemoveVehicleComponent);
 #endif
 
 /**
@@ -17475,7 +17474,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 	#define _ALS_GetVehicleComponentInSlot__
 	#define GetVehicleComponentInSlot__( FIXES_GetVehicleComponentInSlot(
 #else
-	static stock _PX@FIXES_GetVehicleComponentIn();
+	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleComponentInSl);
 #endif
 
 
@@ -17505,7 +17504,7 @@ native BAD_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle
 	#define _ALS_AttachTrailerToVehicle__
 	#define AttachTrailerToVehicle__( FIXES_AttachTrailerToVehicle(
 #else
-	static stock _PX@FIXES_AttachTrailerToVehicl();
+	_FIXES_HIDE_PAWNDOC(FIXES_AttachTrailerToVehicle);
 #endif
 
 
@@ -17835,7 +17834,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 	#define _ALS_TogglePlayerSpectating__
 	#define TogglePlayerSpectating__( FIXES_TogglePlayerSpectating(
 #else
-	static stock _PX@FIXES_TogglePlayerSpectatin();
+	_FIXES_HIDE_PAWNDOC(FIXES_TogglePlayerSpectating);
 #endif
 
 /**
@@ -18363,7 +18362,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 			}
 	}
 #else
-	static stock _PX@_FIXES_RemoveFlyingParachut();
+	_FIXES_HIDE_PAWNDOC(_FIXES_RemoveFlyingParachute);
 #endif
 
 /**
@@ -19130,7 +19129,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define _ALS_VehicleCanHaveComponent__
 	#define VehicleCanHaveComponent__( FIXES_VehicleCanHaveComponent(
 #else
-	static stock _PX@FIXES_VehicleCanHaveCompone();
+	_FIXES_HIDE_PAWNDOC(FIXES_VehicleCanHaveComponent);
 #endif
 
 /**
@@ -19151,7 +19150,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define _ALS_IsValidAnimationLibrary__
 	#define IsValidAnimationLibrary__( FIXES_IsValidAnimationLibrary(
 #else
-	static stock _PX@FIXES_IsValidAnimationLibra();
+	_FIXES_HIDE_PAWNDOC(FIXES_IsValidAnimationLibrary);
 #endif
 
 /**
