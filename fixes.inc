@@ -15920,6 +15920,8 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#error _ALS_PlayerTextDrawSetString defined
 	#endif
 	native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_PlayerTextDrawSetString);
 #endif
 
 /**
@@ -15982,6 +15984,11 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_BAD_TextDrawCreate);
 #endif
+
+/**
+ * <fixes>TextDrawCreate</fixes>
+ * <fixes>TextDrawCreate_2</fixes>
+ */
 
 #if FIX_TextDrawCreate || FIX_TextDrawCreate_2
 	#if FIX_TextDrawCreate
@@ -16551,6 +16558,8 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		#error _ALS_ShowPlayerDialog defined
 	#endif
 	native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_ShowPlayerDialog);
 #endif
 
 /**
@@ -17548,6 +17557,8 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		#error _ALS_ApplyActorAnimation defined
 	#endif
 	native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_PlayerTextDrawSetString);
 #endif
 
 /**
@@ -18557,6 +18568,8 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 		#error _ALS_GetPVarString defined
 	#endif
 	native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_GetPVarString);
 #endif
 
 /**
@@ -18596,6 +18609,8 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
 		#error _ALS_GetSVarString defined
 	#endif
 	native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_GetSVarString);
 #endif
 
 /**
@@ -18909,10 +18924,11 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
  */
 
 #if FIX_GetPlayerAmmo
+	_FIXES_FUNC_PAWNDOC(FIXES_SetPlayerAmmo(playerid, weaponid, ammo));
 	#if _FIXES_SAMP
-	#define _ALS_SetPlayerAmmo
+		#define _ALS_SetPlayerAmmo
 		#define SetPlayerAmmo(%0,%1,%2) BAD_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
-#endif
+	#endif
 	#define _ALS_SetPlayerAmmo__
 	#define SetPlayerAmmo__(%0,%1,%2) BAD_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
 #else
@@ -19148,6 +19164,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
  */
 
 #if FIX_GetWorldTime
+	_FIXES_FUNC_PAWNDOC(FIXES_SetWorldTime(time));
 	#if _FIXES_SAMP
 		#define _ALS_SetWorldTime
 		#define SetWorldTime(%0) BAD_SetWorldTime((_FIXES_gsWorldTime=(%0)))
@@ -19167,10 +19184,11 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #endif
 
 #if FIX_GetWorldTime
+	_FIXES_FUNC_PAWNDOC(FIXES_GetWorldTime());
 	#if _FIXES_SAMP
-	#define _ALS_GetWorldTime
+		#define _ALS_GetWorldTime
 		#define GetWorldTime() (_FIXES_gsWorldTime)
-#endif
+	#endif
 	#define _ALS_GetWorldTime__
 	#define GetWorldTime__() (_FIXES_gsWorldTime)
 #else
@@ -19186,6 +19204,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #endif
 
 #if FIX_GetMaxPlayers
+	_FIXES_FUNC_PAWNDOC(FIXES_GetMaxPlayers());
 	#if _FIXES_SAMP
 		#define _ALS_GetMaxPlayers
 		#define GetMaxPlayers() (_FIXES_gsMaxPlayers)
