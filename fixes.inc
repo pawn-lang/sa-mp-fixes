@@ -10348,7 +10348,7 @@ static stock _FIXES_Bernstein(const name[])
 
 /**
  * <remarks>
- * Modify a constant reference.
+ * Modify a constant reference and return the old value.
  * </remarks>
  */
 
@@ -10360,8 +10360,11 @@ static stock _FIXES_Bernstein(const name[])
 static stock _FIXES_ConstMod(const &target, chr)
 {
 	#pragma unused target, chr
-	#emit LOAD.S.pri chr
 	#emit SREF.S.pri target
+	#emit LOAD.S.alt chr
+	#emit SREF.S.alt target
+	#emit RETN
+	return 0;
 }
 
 #if _FIXES_NEW_COMPILER
@@ -10386,8 +10389,7 @@ static stock _FIXES_RTrim(const string[])
 			break;
 	}
 	FIXES_gsTrimPos = length + 1,
-	FIXES_gsTrimChr = string[FIXES_gsTrimPos],
-	_FIXES_ConstMod(string[FIXES_gsTrimPos], '\0');
+	FIXES_gsTrimChr = _FIXES_ConstMod(string[FIXES_gsTrimPos], '\0');
 }
 
 /**
