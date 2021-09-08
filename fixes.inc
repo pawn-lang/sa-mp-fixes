@@ -12537,22 +12537,37 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 	public OnPlayerCommandText(playerid, cmdtext[])
 	{
 		// Just return 1, don't acknowldege anything!
+		#if defined FIXES_OnPlayerText
 		return
 			_FIXES_IS_VALID_PLAYER(playerid) && (
 				(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_BLOCK)
 				|| FIXES_OnPlayerCommandText(playerid, cmdtext)
 			);
+		#else
+			return 
+				_FIXES_IS_VALID_PLAYER(playerid) &&
+				(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_BLOCK);
+		#endif
 	}
 
 	#if defined _ALS_OnPlayerCommandText
 		#error _ALS_OnPlayerCommandText defined
 	#endif
 	#define _ALS_OnPlayerCommandText
-	#define OnPlayerCommandText(%0) FIXES_OnPlayerCommandText(%0) <_ALS : _ALS_go>
 
-	forward FIXES_OnPlayerCommandText(playerid, cmdtext[]);
-	public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 0; }
-	public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <> { return 0; }
+	#if FIXES_NoYSI
+		#define OnPlayerCommandText( FIXES_OnPlayerCommandText(
+		
+		#if defined FIXES_OnPlayerCommandText
+			forward FIXES_OnPlayerCommandText(playerid, cmdtext[]);
+		#endif
+	#else
+		#define OnPlayerCommandText(%0) FIXES_OnPlayerCommandText(%0) <_ALS : _ALS_go>
+		forward FIXES_OnPlayerCommandText(playerid, cmdtext[]);
+		public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <_ALS : _ALS_x0, _ALS : _ALS_x1> { return 0; }
+		public FIXES_OnPlayerCommandText(playerid, cmdtext[]) <> { return 0; }
+	#endif
+
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_OnPlayerCommandText);
 #endif
@@ -12581,6 +12596,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#error _ALS_OnPlayerText defined
 	#endif
 	#define _ALS_OnPlayerText
+
 	#if FIXES_NoYSI
 		#define OnPlayerText( FIXES_OnPlayerText(
 		
