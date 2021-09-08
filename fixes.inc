@@ -12290,7 +12290,11 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 					{
 						if (FIXES_gscVehicleMods[(modelid - 400) * 6 + (componentid - 1000 >>> 5)] & 1 << (componentid - 1000 & 0b00011111))
 						{
-							return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+							#if !FIXES_NoYSI || defined FIXES_OnVehicleMod
+								return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+							#else
+								return 1;
+							#endif
 						}
 					}
 					else if (componentid == 1192 || componentid == 1193)
@@ -12301,7 +12305,11 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 							// is the ONLY vehicle with any mods over "6 * 32 + 999"
 							// (1191), the highest value you can fit in 6 cells of a
 							// bit array (minus 1000).
-							return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+							#if !FIXES_NoYSI || defined FIXES_OnVehicleMod
+								return FIXES_OnVehicleMod(playerid, vehicleid, componentid);
+							#else
+								return 1;
+							#endif
 						}
 					}
 				}
@@ -12323,7 +12331,6 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 		#error _ALS_OnVehicleMod defined
 	#endif
 	#define _ALS_OnVehicleMod
-	#define OnVehicleMod(%0) FIXES_OnVehicleMod(%0) <_ALS : _ALS_go>
 
 	#if FIXES_NoYSI
 		#define OnVehicleMod( FIXES_OnVehicleMod(
@@ -12649,7 +12656,11 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if !FIXES_Single
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
 			{
-				return FIXES_OnPlayerUpdate(playerid);
+				#if !FIXES_NoYSI || defined FIXES_OnPlayerUpdate
+					return FIXES_OnPlayerUpdate(playerid);
+				#else
+					return 1;
+				#endif
 			}
 		#endif
 
@@ -12735,15 +12746,14 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 				// just to avoid "statement has no effect" warnings.  ALWAYS
 				// return 0 in this case, regardless of what other callbacks
 				// return.
-				playerid = FIXES_OnPlayerUpdate(playerid);
-				if (keys || ud || lr)
-				{
-					return 0;
-				}
-				else
-				{
-					return playerid;
-				}
+				#if !FIXES_NoYSI || defined FIXES_OnPlayerUpdate
+					return
+						playerid = FIXES_OnPlayerUpdate(playerid),
+						(keys || ud || lr) ? 0 : playerid;
+				#else
+					return
+						!(keys || ud || lr);
+				#endif
 			}
 		#endif
 		// =================================
@@ -14269,7 +14279,11 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 		#if !FIXES_Single
 			if (!(FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE))
 			{
-				return FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
+				#if !FIXES_NoYSI || defined FIXES_OnPlayerStateChange
+					return FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
+				#else
+					return 1;
+				#endif
 			}
 		#endif
 
@@ -19252,7 +19266,6 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef _FIXES_IS_VALID_PLAYER
 #undef _FIXES_IN_RANGE
 #undef _FIXES_NO_RANGE
-#undef _FIXES_FORWARD
 #undef _FIXES_IS_PLAYER_CONNECTED
 #undef _FIXES_ENUM
 #undef FIXES_PRINTF
@@ -19263,6 +19276,9 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef FIXES_GET
 #undef _FIXES_NEW_COMPILER
 #undef _FIXES_FIRST_PASS
+#if !FIXES_NoYSI
+	#undef _FIXES_FORWARD
+#endif
 
 /**
 	<hidden />
@@ -19728,5 +19744,4 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_XXX);
 #endif
-
 
