@@ -6930,60 +6930,59 @@ _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
 // simpler than trying to figure out when or if a semi-colon is needed.  The
 // three `_FIXES_gIs...` variables always exist, they are only `static` if the
 // relevant fixes are not enabled since they may still be needed in this file.
-
+#if !FIX_FILTERSCRIPT
+static
+#endif
+stock
 	/**
 	 * <remarks>
 	 * Runtime equivalent of "FILTERSCRIPT" for when it is not set by the user.
 	 * </remarks>
 	 */
-#if !FIX_FILTERSCRIPT
+	bool:_FIXES_gIsFilterscript;
+
+#if !FIX_JIT
 static
 #endif
 stock
-	bool:_FIXES_gIsFilterscript;
-
 	/**
 	 * <remarks>
 	 * True when the JIT plugin is being used.
 	 * </remarks>
 	 */
-#if !FIX_JIT
+	bool:_FIXES_gIsJIT = false;
+
+#if !FIX_OS
 static
 #endif
 stock
-	bool:_FIXES_gIsJIT = false;
-
 	/**
 	 * <remarks>
 	 * True on Windows, false on Linux.
 	 * </remarks>
 	 */
-#if !FIX_OS
+	bool:_FIXES_gIsWindows;
+
+#if !FIX_GetMaxPlayers
 static
 #endif
 stock
-	bool:_FIXES_gIsWindows;
-
 	/**
 	 * <remarks>
 	 * <c>maxplayers</c> server var value.
 	 * </remarks>
 	 */
-#if !FIX_GetMaxPlayers
+	_FIXES_gsMaxPlayers = MAX_PLAYERS;
+
+#if !FIX_GetWorldTime
 static
 #endif
 stock
-	_FIXES_gsMaxPlayers = MAX_PLAYERS;
-
 	/**
 	 * <remarks>
 	 * Stores the current server world time (hours).
 	 * </remarks>
 	 */
-#if !FIX_GetWorldTime
-static
-#endif
-stock
 	_FIXES_gsWorldTime = 12;
 
 /*
@@ -7001,16 +7000,16 @@ stock
 
 */
 
+#if !FIX_HideGameText
+static
+#endif
+stock const
 	/**
 	 * <remarks>
 	 * A single re-usable null string.  Const not static because it is used in
 	 * macros <c>HideGameTextForAll</c> and <c>HideGameTextForPlayer</c>.
 	 * </remarks>
 	 */
-#if !FIX_HideGameText
-static
-#endif
-stock const
 	_FIXES_gcNull[] = "\1";
 
 /*
@@ -7028,71 +7027,73 @@ stock const
 
 */
 
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * A single re-usable space.  Static not const because it is used in this
 	 * file in functions that don't take <c>const</c> strings.
 	 * </remarks>
 	 */
-_FIXES_STATIC_STOCK
 	FIXES_gsSpace[] = " ";
 
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Only determine the OS once.
 	 * </remarks>
 	 */
-_FIXES_STATIC_STOCK
 	bool:FIXES_gsKnownOS = false;
 
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Collection of boolean values for players.
 	 * </remarks>
 	 */
-_FIXES_STATIC_STOCK
 	e_FIXES_BOOLS:FIXES_gsPlayerBools[MAX_PLAYERS];
 
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Handle to read from server.cfg.
 	 * </remarks>
 	 */
-_FIXES_STATIC_STOCK
 	File:FIXES_gsServerCFG;
 
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Stores the ID of the server weather.
 	 * </remarks>
 	 */
-_FIXES_STATIC_STOCK
 	FIXES_gsServerWeather = 10;
 
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * A collection of 1-bit options, compressed together to save space.
 	 * </remarks>
 	 */
-_FIXES_STATIC_STOCK
 	e_FIXES_SETTINGS:FIXES_gsSettings = e_FIXES_SETTINGS_SECOND_USE;
 
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The position of the character right-trimmed from a "const" string.
 	 * </remarks>
 	 */
-_FIXES_STATIC_STOCK
 	FIXES_gsTrimPos;
 
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The character right-trimmed from a "const" string.
 	 * </remarks>
 	 */
-_FIXES_STATIC_STOCK
 	FIXES_gsTrimChr;
 
+#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * A record of which players are connected to the server.  We ensure that
@@ -7100,73 +7101,73 @@ _FIXES_STATIC_STOCK
 	 * functions to be called at the right time.
 	 * </remarks>
 	 */
-#if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayersIterator[MAX_PLAYERS + 1] = {0, 1, ...};
 #endif
 
+#if _FIX_Menus || FIX_API
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * A record of which menus have and haven't been shown yet.
 	 * </remarks>
 	 */
-#if _FIX_Menus || FIX_API
-_FIXES_STATIC_STOCK
 	FIXES_gsValidMenus[_FIXES_CEILDIV(_:MAX_MENUS, cellbits)];
 #endif
 
+#if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * A player's IP as a 32-bit integer.
 	 * </remarks>
 	 */
-#if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerIP[MAX_PLAYERS] = {-1, ...};
 #endif
 
+#if FIX_OnPlayerEnterVehicle_3
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Stores the locked vehicle's id that the player
 	 * is currently trying to enter.
 	 * </remarks>
 	 */
-#if FIX_OnPlayerEnterVehicle_3
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerVehicleID[MAX_PLAYERS];
 #endif
 
+#if FIX_OnPlayerEnterVehicle_3
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Stores the server tick when the player started
 	 * trying to enter the locked vehicle.
 	 * </remarks>
 	 */
-#if FIX_OnPlayerEnterVehicle_3
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS];
 #endif
 
+#if FIX_OnPlayerEnterVehicle_3
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Boolean: Stores if a certain vehicle is 'locked' or not.
 	 * </remarks>
 	 */
-#if FIX_OnPlayerEnterVehicle_3
-_FIXES_STATIC_STOCK
 	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES];
 #endif
 
+#if FIXES_Single && FIX_GetPlayerSkin
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The skin the player is currently using.
 	 * </remarks>
 	 */
-#if FIXES_Single && FIX_GetPlayerSkin
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerSkin[MAX_PLAYERS];
 #endif
 
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
@@ -7183,11 +7184,11 @@ _FIXES_STATIC_STOCK
 	 * more code to access, because it needs to look up offsets.
 	 * </remarks>
 	 */
-#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-_FIXES_STATIC_STOCK
 	Float:FIXES_gsWorldbounds_PX[MAX_PLAYERS];
 #endif
 
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
@@ -7204,11 +7205,11 @@ _FIXES_STATIC_STOCK
 	 * more code to access, because it needs to look up offsets.
 	 * </remarks>
 	 */
-#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-_FIXES_STATIC_STOCK
 	Float:FIXES_gsWorldbounds_PY[MAX_PLAYERS];
 #endif
 
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
@@ -7225,11 +7226,11 @@ _FIXES_STATIC_STOCK
 	 * more code to access, because it needs to look up offsets.
 	 * </remarks>
 	 */
-#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-_FIXES_STATIC_STOCK
 	Float:FIXES_gsWorldbounds_PZ[MAX_PLAYERS];
 #endif
 
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
@@ -7246,11 +7247,11 @@ _FIXES_STATIC_STOCK
 	 * more code to access, because it needs to look up offsets.
 	 * </remarks>
 	 */
-#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-_FIXES_STATIC_STOCK
 	Float:FIXES_gsWorldbounds_LX[MAX_PLAYERS];
 #endif
 
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
@@ -7267,11 +7268,11 @@ _FIXES_STATIC_STOCK
 	 * more code to access, because it needs to look up offsets.
 	 * </remarks>
 	 */
-#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-_FIXES_STATIC_STOCK
 	Float:FIXES_gsWorldbounds_LY[MAX_PLAYERS];
 #endif
 
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
@@ -7288,11 +7289,11 @@ _FIXES_STATIC_STOCK
 	 * more code to access, because it needs to look up offsets.
 	 * </remarks>
 	 */
-#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-_FIXES_STATIC_STOCK
 	Float:FIXES_gsWorldbounds_UX[MAX_PLAYERS];
 #endif
 
+#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
@@ -7309,273 +7310,271 @@ _FIXES_STATIC_STOCK
 	 * more code to access, because it needs to look up offsets.
 	 * </remarks>
 	 */
-#if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
-_FIXES_STATIC_STOCK
 	Float:FIXES_gsWorldbounds_UY[MAX_PLAYERS];
 #endif
 
+#if FIXES_Single && FIX_GetPlayerWeapon
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Stores the weapon set by "SetPlayerArmedWeapon" when in a vehicle.
 	 * </remarks>
 	 */
-#if FIXES_Single && FIX_GetPlayerWeapon
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerWeapon[MAX_PLAYERS];
 #endif
 
+#if FIX_PutPlayerInVehicle
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * What vehicle the player is due to go in.
 	 * </remarks>
 	 */
-#if FIX_PutPlayerInVehicle
-_FIXES_STATIC_STOCK
 	FIXES_gsVehicleSeatData[MAX_PLAYERS];
 #endif
 
+#if FIX_OnDialogResponse || FIX_GetPlayerDialog
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Stores the true ID of the dialog the player is looking at to prevent
 	 * spoofing.
 	 * </remarks>
 	 */
-#if FIX_OnDialogResponse || FIX_GetPlayerDialog
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerDialog[MAX_PLAYERS] = {-1, ...};
 #endif
 
+#if FIX_GetPlayerWeather
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Stores the ID of the player weather.
 	 * </remarks>
 	 */
-#if FIX_GetPlayerWeather
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerWeather[MAX_PLAYERS] = {-1, ...};
 #endif
 
+#if FIXES_Single && FIX_GetPlayerInterior
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The player's current interior.
 	 * </remarks>
 	 */
-#if FIXES_Single && FIX_GetPlayerInterior
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerInterior[MAX_PLAYERS];
 #endif
 
+#if FIX_OnPlayerDeath
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The last animation a player used.
 	 * </remarks>
 	 */
-#if FIX_OnPlayerDeath
-_FIXES_STATIC_STOCK
 	FIXES_gsLastAnimation[MAX_PLAYERS];
 #endif
 
+#if FIX_OnPlayerSpawn
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * A player's cash before dying.
 	 * </remarks>
 	 */
-#if FIX_OnPlayerSpawn
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerLastCash[MAX_PLAYERS];
 #endif
 
+#if FIX_DriveBy
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The weapon to set after re-enter to vehicle.
 	 * </remarks>
 	 */
-#if FIX_DriveBy
-_FIXES_STATIC_STOCK
 	FIXES_gsDriveByWeapon[MAX_PLAYERS];
 #endif
 
+#if FIX_GetPlayerMenu
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The menu the player can currently see.
 	 * </remarks>
 	 */
-#if FIX_GetPlayerMenu
-_FIXES_STATIC_STOCK
 	Menu:FIXES_gsCurrentMenu[MAX_PLAYERS] = {Menu:INVALID_MENU, ...};
 #endif
 
+#if FIX_GameText
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The pre-defined TextDraw styles used to recreate the bugged GameText
 	 * styles for GameTextForAll.
 	 * </remarks>
 	 */
-#if FIX_GameText
-_FIXES_STATIC_STOCK
 	Text:FIXES_gsGTStyle[FIXES_GT_STYLE_COUNT];
 #endif
 
+#if FIX_GameText
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * A linked list of which players can see a certain GameText style.
 	 * </remarks>
 	 */
-#if FIX_GameText
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerPGTShown[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1];
 #endif
 
+#if FIX_GameText
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The predefined TextDraw styles used to recreate the bugged GameText
 	 * styles for GameTextForPlayer.
 	 * </remarks>
 	 */
-#if FIX_GameText
-_FIXES_STATIC_STOCK
 	PlayerText:FIXES_gsPGTStyle[MAX_PLAYERS][FIXES_GT_STYLE_COUNT];
 #endif
 
+#if FIX_GameText
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The timers used to hide per-player GameText messages.
 	 * </remarks>
 	 */
-#if FIX_GameText
-_FIXES_STATIC_STOCK
 	FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1];
 #endif
 
+#if FIX_ApplyAnimation_2
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Used for storing the timer ID for deferring class selection animation
 	 * application.
 	 * </remarks>
 	 */
-#if FIX_ApplyAnimation_2
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerAnimTimer[MAX_PLAYERS];
 #endif
 
+#if FIX_ApplyAnimation_2
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Used for storing the animation name.
 	 * </remarks>
 	 */
-#if FIX_ApplyAnimation_2
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerAnimName[MAX_PLAYERS * 64];
 #endif
 
+#if FIX_ApplyAnimation_2
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Which animation libraries the player has synced.
 	 * </remarks>
 	 */
-#if FIX_ApplyAnimation_2
-_FIXES_STATIC_STOCK
 	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)];
 #endif
 
+#if FIX_ApplyActorAnimation_2
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Used for storing the timer ID for deferring class selection animation
 	 * application.
 	 * </remarks>
 	 */
-#if FIX_ApplyActorAnimation_2
-_FIXES_STATIC_STOCK
 	FIXES_gsActorAnimTimer[MAX_ACTORS];
 #endif
 
+#if FIX_ApplyActorAnimation_2
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Used for storing the animation name.
 	 * </remarks>
 	 */
-#if FIX_ApplyActorAnimation_2
-_FIXES_STATIC_STOCK
 	FIXES_gsActorAnimName[MAX_ACTORS * 64];
 #endif
 
+#if FIX_ApplyActorAnimation_2
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * Which animation libraries the actor has synced.
 	 * </remarks>
 	 */
-#if FIX_ApplyActorAnimation_2
-_FIXES_STATIC_STOCK
 	FIXES_gsActorAnimLibs[MAX_ACTORS][_FIXES_CEILDIV(135, cellbits)];
 #endif
 
+#if FIX_PassengerSeating
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The timers used to prevent players seating.
 	 * </remarks>
 	 */
-#if FIX_PassengerSeating
-_FIXES_STATIC_STOCK
 	FIXES_gsPSTimer[MAX_PLAYERS];
 #endif
 
+#if FIXES_Single && FIX_GetVehicleComponentInSlot
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The vehicle's stereo used in GetVehicleComponent.
 	 * </remarks>
 	 */
-#if FIXES_Single && FIX_GetVehicleComponentInSlot
-_FIXES_STATIC_STOCK
 	FIXES_gsStereo[MAX_VEHICLES];
 #endif
 
+#if FIXES_Single && FIX_GetVehicleComponentInSlot
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The vehicle's front bumper used in GetVehicleComponent.
 	 * </remarks>
 	 */
-#if FIXES_Single && FIX_GetVehicleComponentInSlot
-_FIXES_STATIC_STOCK
 	FIXES_gsFrontBumper[MAX_VEHICLES];
 #endif
 
+#if FIXES_Single && FIX_GetVehicleComponentInSlot
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The vehicle's rear bumper used in GetVehicleComponent.
 	 * </remarks>
 	 */
-#if FIXES_Single && FIX_GetVehicleComponentInSlot
-_FIXES_STATIC_STOCK
 	FIXES_gsRearBumper[MAX_VEHICLES];
 #endif
 
+#if FIXES_Single && FIX_GetVehicleComponentInSlot
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The vehicle's front bullbar used in GetVehicleComponent.
 	 * </remarks>
 	 */
-#if FIXES_Single && FIX_GetVehicleComponentInSlot
-_FIXES_STATIC_STOCK
 	FIXES_gsFrontBullbar[MAX_VEHICLES];
 #endif
 
+#if FIXES_Single && FIX_GetVehicleComponentInSlot
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The vehicle's rear bullbar used in GetVehicleComponent.
 	 * </remarks>
 	 */
-#if FIXES_Single && FIX_GetVehicleComponentInSlot
-_FIXES_STATIC_STOCK
 	FIXES_gsRearBullbar[MAX_VEHICLES];
 #endif
 
+#if FIX_SilentTeleport
+_FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
 	 * The player id who is getting carjacked before the car teleports.
 	 * </remarks>
 	 */
-#if FIX_SilentTeleport
-_FIXES_STATIC_STOCK
 	FIXES_gsJackedId[MAX_PLAYERS] = {INVALID_PLAYER_ID, ...};
 #endif
 
@@ -7929,6 +7928,8 @@ _FIXES_STATIC_STOCK_CONST
 		"***                  improve the more common case).\n"                            \
 		"***";
 
+#if !FIXES_Single
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * This variable records wether or not this player is brand new to the
@@ -7937,139 +7938,137 @@ _FIXES_STATIC_STOCK_CONST
 	 * time they connect, then this gets set.
 	 * </remarks>
 	 */
-#if !FIXES_Single
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarNotNewPlayer[] = "FIXES_pvarNotNewPlayer";
 #endif
 
+#if !FIXES_Single && FIX_GetPlayerWeapon
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current weapon.
 	 * </remarks>
 	 */
-#if !FIXES_Single && FIX_GetPlayerWeapon
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerWeapon[] = "FIXES_pvarPlayerWeapon";
 #endif
 
+#if !FIXES_Single && FIX_GetPlayerSkin
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current skin.
 	 * </remarks>
 	 */
-#if !FIXES_Single && FIX_GetPlayerSkin
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerSkin[] = "FIXES_pvarPlayerSkin";
 #endif
 
+#if !FIXES_Single && FIX_SetPlayerCamera
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's spectator mode.
 	 * </remarks>
 	 */
-#if !FIXES_Single && FIX_SetPlayerCamera
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerSpectate[] = "FIXES_pvarPlayerSpectate";
 #endif
 
+#if FIX_Kick
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the kick timer function.
 	 * </remarks>
 	 */
-#if FIX_Kick
-_FIXES_STATIC_STOCK_CONST
 	FIXES_gscKick[] = "_FIXES_Kick";
 #endif
 
+#if FIX_Kick
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store a player's kick timer.
 	 * </remarks>
 	 */
-#if FIX_Kick
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarKick[] = "FIXES_pvarKick";
 #endif
 
+#if !FIXES_Single && FIX_OnDialogResponse || FIX_GetPlayerDialog
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current dialogid.
 	 * </remarks>
 	 */
-#if !FIXES_Single && FIX_OnDialogResponse || FIX_GetPlayerDialog
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog";
 #endif
 
+#if !FIXES_Single && FIX_GetPlayerWeather
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current weather.
 	 * </remarks>
 	 */
-#if !FIXES_Single && FIX_GetPlayerWeather
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerWeather[] = "FIXES_pvarPlayerWeather";
 #endif
 
+#if !FIXES_Single && FIX_GetPlayerInterior
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * A player's current interior.
 	 * </remarks>
 	 */
-#if !FIXES_Single && FIX_GetPlayerInterior
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerInterior[] = "FIXES_pvarPlayerInterior";
 #endif
 
+#if !FIXES_Single && FIX_OnDialogResponse
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Used in OnDialogResponse to be able to get the correct ID in multiple
 	 * scripts while still correctly resetting the ID for future use.
 	 * </remarks>
 	 */
-#if !FIXES_Single && FIX_OnDialogResponse
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog";
 #endif
 
+#if !FIXES_Single && FIX_OnPlayerSpawn
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Used in OnPlayerDeath to save a player's cash before death.
 	 * </remarks>
 	 */
-#if !FIXES_Single && FIX_OnPlayerSpawn
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash";
 #endif
 
+#if !FIXES_Single && FIX_SetPlayerCheckpoint
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's checkpoint state.
 	 * </remarks>
 	 */
-#if !FIXES_Single && FIX_SetPlayerCheckpoint
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerCheckpoint[] = "FIXES_pvarPlayerCheckpoint";
 #endif
 
+#if !FIXES_Single && FIX_SetPlayerRaceCheckpoint
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's race checkpoint state.
 	 * </remarks>
 	 */
-#if !FIXES_Single && FIX_SetPlayerRaceCheckpoint
-_FIXES_STATIC_STOCK_CONST
 	FIXES_pvarPlayerRaceCheckpoint[] = "FIXES_pvarPlayerRaceCheckpoint";
 #endif
 
+#if FIX_CreateVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * All vehicle primary colours from carcols.dat.
 	 * </remarks>
 	 */
-#if FIX_CreateVehicle || FIX_API
-_FIXES_STATIC_STOCK_CONST
 	FIXES_gscVehiclePrimary[1158] =
 		{
 			4, 123, 113, 101, 75, 62, 40, 36,      // 400 - landstal
@@ -8287,13 +8286,13 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
+#if FIX_CreateVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * All vehicle secondary colours from carcols.dat.
 	 * </remarks>
 	 */
-#if FIX_CreateVehicle || FIX_API
-_FIXES_STATIC_STOCK_CONST
 	FIXES_gscVehicleSecondary[1158] =
 		{
 			1, 1, 1, 1, 1, 1, 1, 1,                // 400 - landstal
@@ -8511,14 +8510,14 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
+#if FIX_CreateVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * The vehicle colours are in a flat array.  These are the offsets for each
 	 * model type.  N+1 so there's a final end-point.
 	 * </remarks>
 	 */
-#if FIX_CreateVehicle || FIX_API
-_FIXES_STATIC_STOCK_CONST
 	FIXES_gscVehicleIndexes[212 + 1] =
 		{
 			   0,                                  // 400 - landstal
@@ -8737,37 +8736,8 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
-	/**
-	 * <remarks>
-	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
-	 * is the third colour for the camper van.  The other two are the cement
-	 * truck and the squalo.
-	 * </remarks>
-	 */
 #if FIX_CreateVehicle || FIX_API
 _FIXES_STATIC_STOCK_CONST
-	FIXES_gscColour3Camper[8 char] = {0x01010300, 0x03030878}; // 483
-
-	/**
-	 * <remarks>
-	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
-	 * is the third colour for the cement truck.  The other two are the camper
-	 * van and the squalo.
-	 * </remarks>
-	 */
-_FIXES_STATIC_STOCK_CONST
-	FIXES_gscColour3Cement[8 char] = {0x177B1F1E, 0x173E4040}; // 524
-
-	/**
-	 * <remarks>
-	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
-	 * is the third colour for the squalo.  The other two are the camper van and
-	 * the cement truck.
-	 * </remarks>
-	 */
-_FIXES_STATIC_STOCK_CONST
-	FIXES_gscColour3Squalo[8 char] = {0x00010001, 0x01010101}; // 446
-
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
@@ -8775,9 +8745,11 @@ _FIXES_STATIC_STOCK_CONST
 	 * truck and the squalo.
 	 * </remarks>
 	 */
-_FIXES_STATIC_STOCK_CONST
-	FIXES_gscColour4Camper[8 char] = {0x00000000, 0x00000000}; // 483
+	FIXES_gscColour3Camper[8 char] = {0x01010300, 0x03030878}; // 483
+#endif
 
+#if FIX_CreateVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
@@ -8785,9 +8757,11 @@ _FIXES_STATIC_STOCK_CONST
 	 * van and the squalo.
 	 * </remarks>
 	 */
-_FIXES_STATIC_STOCK_CONST
-	FIXES_gscColour4Cement[8 char] = {0x00000000, 0x00000000}; // 524
+	FIXES_gscColour3Cement[8 char] = {0x177B1F1E, 0x173E4040}; // 524
+#endif
 
+#if FIX_CreateVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
@@ -8795,17 +8769,51 @@ _FIXES_STATIC_STOCK_CONST
 	 * the cement truck.
 	 * </remarks>
 	 */
+	FIXES_gscColour3Squalo[8 char] = {0x00010001, 0x01010101}; // 446
+#endif
+
+#if FIX_CreateVehicle || FIX_API
 _FIXES_STATIC_STOCK_CONST
+	/**
+	 * <remarks>
+	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
+	 * is the third colour for the camper van.  The other two are the cement
+	 * truck and the squalo.
+	 * </remarks>
+	 */
+	FIXES_gscColour4Camper[8 char] = {0x00000000, 0x00000000}; // 483
+
+#if FIX_CreateVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
+	/**
+	 * <remarks>
+	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
+	 * is the third colour for the cement truck.  The other two are the camper
+	 * van and the squalo.
+	 * </remarks>
+	 */
+	FIXES_gscColour4Cement[8 char] = {0x00000000, 0x00000000}; // 524
+#endif
+
+#if FIX_CreateVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
+	/**
+	 * <remarks>
+	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
+	 * is the third colour for the squalo.  The other two are the camper van and
+	 * the cement truck.
+	 * </remarks>
+	 */
 	FIXES_gscColour4Squalo[8 char] = {0x01010101, 0x01010101}; // 446
 #endif
 
+#if FIX_API
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.
 	 * </remarks>
 	 */
-#if FIX_API
-_FIXES_STATIC_STOCK_CONST
 	FIXES_gscVehicleColours[256] =
 		{
 			0x00000000, 0xF5F5F500, 0x2A77A100, 0x84041000, 0x26373900, 0x86446E00, 0xD78E1000, 0x4C75B700,
@@ -8843,14 +8851,14 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
+#if FIX_GetPlayerColour || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * There are only 100 colours used by default, with SA:MP looping through
 	 * them repeatedly.
 	 * </remarks>
 	 */
-#if FIX_GetPlayerColour || FIX_API
-_FIXES_STATIC_STOCK_CONST
 	FIXES_gscPlayerColours[100] =
 		{
 			0xFF8C13FF, 0xC715FFFF, 0x20B2AAFF, 0xDC143CFF, 0x6495EDFF,
@@ -8876,6 +8884,8 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
+#if FIX_OnPlayerEnterVehicle || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * This is a compressed (4-bit) list of the maximum number of passengers in
@@ -8883,8 +8893,6 @@ _FIXES_STATIC_STOCK_CONST
 	 * vehicle.
 	 * </remarks>
 	 */
-#if FIX_OnPlayerEnterVehicle || FIX_API
-_FIXES_STATIC_STOCK_CONST
 	FIXES_gscMaxPassengers[] =
 		{
 			0x10331113, 0x11311131, 0x11331313, 0x80133301, 0x1381F110, 0x10311103, 0x10001F10, 0x11113311, 0x13113311,
@@ -8893,6 +8901,8 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
+#if FIX_OnVehicleMod || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * This is a bit array of all the valid mods (-1000) for all vehicles (-400)
@@ -8908,8 +8918,6 @@ _FIXES_STATIC_STOCK_CONST
 	 * somehow - it seems like that would require more explicit model handling.
 	 * </remarks>
 	 */
-#if FIX_OnVehicleMod || FIX_API
-_FIXES_STATIC_STOCK_CONST
 	FIXES_gscVehicleMods[] =
 		{
 			0x033C2700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000,
@@ -9127,26 +9135,26 @@ _FIXES_STATIC_STOCK_CONST
 		};
 #endif
 
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
 	 * </remarks>
 	 */
-#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
-_FIXES_STATIC_STOCK_CONST
 	FIXES_gscAnimIndexes[24] =
 		{
 			0, 2, 21, 35, 42, 42, 53, 62, 64, 67, 68, 71, 75, 81, 82, 84, 94, 96, 104, 122, 127, 128, 131, 135
 		};
 #endif
 
+#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
+_FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
 	 * List of valid animation libraries.
 	 * </remarks>
 	 */
-#if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
-_FIXES_STATIC_STOCK_CONST
 	FIXES_gscAnimLib[135][] =
 		{
 			"AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
