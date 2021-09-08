@@ -6856,6 +6856,8 @@ _FIXES_ENUM e_FIXES_BOOLS:(<<= 1)
 	e_FIXES_BOOLS_FORCE_BLOCK,
 }
 
+_FIXES_ENUM_PAWNDOC(e_FIXES_BOOLS);
+
 /**
  * <remarks>
  * e_FIXES_SETTINGS
@@ -6878,6 +6880,8 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 	e_FIXES_SETTINGS_NO_GAME_TEXT,
 	e_FIXES_SETTINGS_SECOND_USE
 }
+
+_FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
 
 /*
 
@@ -6931,17 +6935,20 @@ stock
 	 */
 	bool:_FIXES_gIsWindows;
 
-#if FIX_GetMaxPlayers
+#if !FIX_GetMaxPlayers
+static
+#endif
 stock
 	/**
 	 * <remarks>
-	 * `maxplayers` server var value.
+	 * <c>maxplayers</c> server var value.
 	 * </remarks>
 	 */
 	_FIXES_gsMaxPlayers = MAX_PLAYERS;
-#endif
 
-#if FIX_GetWorldTime
+#if !FIX_GetWorldTime
+static
+#endif
 stock
 	/**
 	 * <remarks>
@@ -6949,7 +6956,6 @@ stock
 	 * </remarks>
 	 */
 	_FIXES_gsWorldTime = 12;
-#endif
 
 /*
 
