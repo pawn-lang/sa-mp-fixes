@@ -6760,7 +6760,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS);
 
 */
 
-#if !defined CHAIN_ORDER
+#if !FIXES_NoYSI && !defined CHAIN_ORDER
 	#define CHAIN_ORDER() 0
 #endif
 
@@ -6771,16 +6771,19 @@ _FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS);
  * </remarks>
  */
 
-#if defined PRE_HOOK
-	#undef PRE_HOOK
+#if FIXES_NoYSI
+	_FIXES_HIDE_PAWNDOC(PRE_HOOK);
+#else
+	#if defined PRE_HOOK
+		#undef PRE_HOOK
+	#endif
+
+	_FIXES_FUNC_PAWNDOC(PRE_HOOK(const library[]));
+
+	#define PRE_HOOK(%0) forward @CO_%0();public @CO_%0(){return CHAIN_ORDER()+1;}
+
+	PRE_HOOK(On)
 #endif
-
-_FIXES_FUNC_PAWNDOC(PRE_HOOK(const library[]));
-
-#define PRE_HOOK(%0) forward @CO_%0();public @CO_%0(){return CHAIN_ORDER()+1;}
-
-PRE_HOOK(On)
-#undef CHAIN_ORDER
 
 /**
  * <remarks>
@@ -6789,8 +6792,14 @@ PRE_HOOK(On)
  * </remarks>
  */
 
-_FIXES_FUNC_PAWNDOC(CHAIN_ORDER());
-#define CHAIN_ORDER @CO_On
+#if FIXES_NoYSI
+	_FIXES_HIDE_PAWNDOC(CHAIN_ORDER);
+#else
+	#undef CHAIN_ORDER
+
+	_FIXES_FUNC_PAWNDOC(CHAIN_ORDER());
+	#define CHAIN_ORDER @CO_On
+#endif
 
 /**
  * <remarks>
