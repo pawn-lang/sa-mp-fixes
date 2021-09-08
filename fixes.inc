@@ -14,9 +14,9 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 /**
  * <!--
  * :::::::: README ::::::::
- * 
+ *
  * To read the generated XML output, copy `pawndoc.xsl` to `pawno/xml/`.
- * 
+ *
  * This information goes very close to the top of the generated XML
  * documentation (because of include dependency orders), but doesn't appear in
  * the visual output.
@@ -28,10 +28,10 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * old compiler related to outputting documentation on state transitions ().  So
  * after generation of the XML file, you should clean it up with the following
  * RegEx replacement:
- * 
+ *
  * Search: <transition target[^/]+/>
  * Replace: (nothing)
- * 
+ *
  * This works 99% of the time, though you may get one where the corrupted target
  * includes the character `/`, in which case you should manually delete them.
  * Note that YSI now includes manual documentation for transitions, but these
@@ -252,7 +252,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  *             #define NameOfFixHere__( FIXES_NameOfFixHere(                    <br />
  *         #endif
  *     </code>
- *         
+ *
  *     A copyable version of this pattern is at the end of the file.</li>
  * <li>Enums start with <c>E_</c> or <c>e_</c> depending on type, then follow
  *     rules for macros.</li>
@@ -373,14 +373,14 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 
 /*
 
-    88        88                                   88                          
-    88        88                                   88                          
-    88        88                                   88                          
-    88aaaaaaaa88   ,adPPYba,  ,adPPYYba,   ,adPPYb,88   ,adPPYba,  8b,dPPYba,  
-    88""""""""88  a8P_____88  ""     `Y8  a8"    `Y88  a8P_____88  88P'   "Y8  
-    88        88  8PP"""""""  ,adPPPPP88  8b       88  8PP"""""""  88          
-    88        88  "8b,   ,aa  88,    ,88  "8a,   ,d88  "8b,   ,aa  88          
-    88        88   `"Ybbd8"'  `"8bbdP"Y8   `"8bbdP"Y8   `"Ybbd8"'  88          
+    88        88                                   88
+    88        88                                   88
+    88        88                                   88
+    88aaaaaaaa88   ,adPPYba,  ,adPPYYba,   ,adPPYb,88   ,adPPYba,  8b,dPPYba,
+    88""""""""88  a8P_____88  ""     `Y8  a8"    `Y88  a8P_____88  88P'   "Y8
+    88        88  8PP"""""""  ,adPPPPP88  8b       88  8PP"""""""  88
+    88        88  "8b,   ,aa  88,    ,88  "8a,   ,d88  "8b,   ,aa  88
+    88        88   `"Ybbd8"'  `"8bbdP"Y8   `"8bbdP"Y8   `"Ybbd8"'  88
 
 
 
@@ -414,14 +414,14 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
 		#if __PawnBuild >= 4
 			#pragma option -(+
 		#endif
-		
+
 		// Use `static enum` if it is available.
 		#if __PawnBuild >= 2
 			#undef _FIXES_ENUM
 			#define _FIXES_ENUM static enum
 		#endif
 	#endif
-	
+
 	// Stupid "warning" that should not exist ever.
 	#pragma warning push
 	#pragma warning disable 207
@@ -644,16 +644,16 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 /*
 
-     ad88888ba                                 88                                       
-    d8"     "8b                ,d       ,d     ""                                       
-    Y8,                        88       88                                              
-    `Y8aaaaa,     ,adPPYba,  MM88MMM  MM88MMM  88  8b,dPPYba,    ,adPPYb,d8  ,adPPYba,  
-      `"""""8b,  a8P_____88    88       88     88  88P'   `"8a  a8"    `Y88  I8[    ""  
-            `8b  8PP"""""""    88       88     88  88       88  8b       88   `"Y8ba,   
-    Y8a     a8P  "8b,   ,aa    88,      88,    88  88       88  "8a,   ,d88  aa    ]8I  
-     "Y88888P"    `"Ybbd8"'    "Y888    "Y888  88  88       88   `"YbbdP"Y8  `"YbbdP"'  
-                                                                 aa,    ,88             
-                                                                  "Y8bbdP"              
+     ad88888ba                                 88
+    d8"     "8b                ,d       ,d     ""
+    Y8,                        88       88
+    `Y8aaaaa,     ,adPPYba,  MM88MMM  MM88MMM  88  8b,dPPYba,    ,adPPYb,d8  ,adPPYba,
+      `"""""8b,  a8P_____88    88       88     88  88P'   `"8a  a8"    `Y88  I8[    ""
+            `8b  8PP"""""""    88       88     88  88       88  8b       88   `"Y8ba,
+    Y8a     a8P  "8b,   ,aa    88,      88,    88  88       88  "8a,   ,d88  aa    ]8I
+     "Y88888P"    `"Ybbd8"'    "Y888    "Y888  88  88       88   `"YbbdP"Y8  `"YbbdP"'
+                                                                 aa,    ,88
+                                                                  "Y8bbdP"
 
 
 */
@@ -977,16 +977,16 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 /*
 
-      ,ad8888ba,                         88                                       
-     d8"'    `"8b                 ,d     ""                                       
-    d8'        `8b                88                                              
-    88          88  8b,dPPYba,  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,  
-    88          88  88P'    "8a   88     88  a8"     "8a  88P'   `"8a  I8[    ""  
-    Y8,        ,8P  88       d8   88     88  8b       d8  88       88   `"Y8ba,   
-     Y8a.    .a8P   88b,   ,a8"   88,    88  "8a,   ,a8"  88       88  aa    ]8I  
-      `"Y8888Y"'    88`YbbdP"'    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'  
-                    88                                                            
-                    88                                                            
+      ,ad8888ba,                         88
+     d8"'    `"8b                 ,d     ""
+    d8'        `8b                88
+    88          88  8b,dPPYba,  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,
+    88          88  88P'    "8a   88     88  a8"     "8a  88P'   `"8a  I8[    ""
+    Y8,        ,8P  88       d8   88     88  8b       d8  88       88   `"Y8ba,
+     Y8a.    .a8P   88b,   ,a8"   88,    88  "8a,   ,a8"  88       88  aa    ]8I
+      `"Y8888Y"'    88`YbbdP"'    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'
+                    88
+                    88
 
 */
 
@@ -4975,7 +4975,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_GetConsoleVarAsInt
-	#if defined FIX_GetServerVarAsInt   
+	#if defined FIX_GetServerVarAsInt
 		_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsInt);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsInt)
 			#define FIX_GetConsoleVarAsInt       (2)
@@ -5016,7 +5016,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_GetConsoleVarAsBool
-	#if defined FIX_GetServerVarAsBool  
+	#if defined FIX_GetServerVarAsBool
 		_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsBool);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsBool)
 			#define FIX_GetConsoleVarAsBool      (2)
@@ -5395,14 +5395,14 @@ static stock FIX_CreateVehicle = 0;
 
 /*
 
-    88b           d88                                                              
-    888b         d888                                                              
-    88`8b       d8'88                                                              
-    88 `8b     d8' 88  ,adPPYYba,   ,adPPYba,  8b,dPPYba,   ,adPPYba,   ,adPPYba,  
-    88  `8b   d8'  88  ""     `Y8  a8"     ""  88P'   "Y8  a8"     "8a  I8[    ""  
-    88   `8b d8'   88  ,adPPPPP88  8b          88          8b       d8   `"Y8ba,   
-    88    `888'    88  88,    ,88  "8a,   ,aa  88          "8a,   ,a8"  aa    ]8I  
-    88     `8'     88  `"8bbdP"Y8   `"Ybbd8"'  88           `"YbbdP"'   `"YbbdP"'  
+    88b           d88
+    888b         d888
+    88`8b       d8'88
+    88 `8b     d8' 88  ,adPPYYba,   ,adPPYba,  8b,dPPYba,   ,adPPYba,   ,adPPYba,
+    88  `8b   d8'  88  ""     `Y8  a8"     ""  88P'   "Y8  a8"     "8a  I8[    ""
+    88   `8b d8'   88  ,adPPPPP88  8b          88          8b       d8   `"Y8ba,
+    88    `888'    88  88,    ,88  "8a,   ,aa  88          "8a,   ,a8"  aa    ]8I
+    88     `8'     88  `"8bbdP"Y8   `"Ybbd8"'  88           `"YbbdP"'   `"YbbdP"'
 
 
 
@@ -5695,14 +5695,14 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_PLAYER_CONNECTED(playerid));
 
 /*
 
-    88888888ba,                   ad88  88               88           88                                       
-    88      `"8b                 d8"    ""               ""    ,d     ""                                       
-    88        `8b                88                            88                                              
-    88         88   ,adPPYba,  MM88MMM  88  8b,dPPYba,   88  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,  
-    88         88  a8P_____88    88     88  88P'   `"8a  88    88     88  a8"     "8a  88P'   `"8a  I8[    ""  
-    88         8P  8PP"""""""    88     88  88       88  88    88     88  8b       d8  88       88   `"Y8ba,   
-    88      .a8P   "8b,   ,aa    88     88  88       88  88    88,    88  "8a,   ,a8"  88       88  aa    ]8I  
-    88888888Y"'     `"Ybbd8"'    88     88  88       88  88    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'  
+    88888888ba,                   ad88  88               88           88
+    88      `"8b                 d8"    ""               ""    ,d     ""
+    88        `8b                88                            88
+    88         88   ,adPPYba,  MM88MMM  88  8b,dPPYba,   88  MM88MMM  88   ,adPPYba,   8b,dPPYba,   ,adPPYba,
+    88         88  a8P_____88    88     88  88P'   `"8a  88    88     88  a8"     "8a  88P'   `"8a  I8[    ""
+    88         8P  8PP"""""""    88     88  88       88  88    88     88  8b       d8  88       88   `"Y8ba,
+    88      .a8P   "8b,   ,aa    88     88  88       88  88    88,    88  "8a,   ,a8"  88       88  aa    ]8I
+    88888888Y"'     `"Ybbd8"'    88     88  88       88  88    "Y888  88   `"YbbdP"'   88       88  `"YbbdP"'
 
 
 
@@ -6723,14 +6723,14 @@ _FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS);
 
 /*
 
-           db         88           ad88888ba   
-          d88b        88          d8"     "8b  
-         d8'`8b       88          Y8,          
-        d8'  `8b      88          `Y8aaaaa,    
-       d8YaaaaY8b     88            `"""""8b,  
-      d8""""""""8b    88                  `8b  
-     d8'        `8b   88          Y8a     a8P  
-    d8'          `8b  88888888888  "Y88888P"   
+           db         88           ad88888ba
+          d88b        88          d8"     "8b
+         d8'`8b       88          Y8,
+        d8'  `8b      88          `Y8aaaaa,
+       d8YaaaaY8b     88            `"""""8b,
+      d8""""""""8b    88                  `8b
+     d8'        `8b   88          Y8a     a8P
+    d8'          `8b  88888888888  "Y88888P"
 
 
 
@@ -6811,14 +6811,14 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 
 /*
 
-    88888888888                                                           
-    88                                                                    
-    88                                                                    
-    88aaaaa      8b,dPPYba,   88       88  88,dPYba,,adPYba,   ,adPPYba,  
-    88"""""      88P'   `"8a  88       88  88P'   "88"    "8a  I8[    ""  
-    88           88       88  88       88  88      88      88   `"Y8ba,   
-    88           88       88  "8a,   ,a88  88      88      88  aa    ]8I  
-    88888888888  88       88   `"YbbdP'Y8  88      88      88  `"YbbdP"'  
+    88888888888
+    88
+    88
+    88aaaaa      8b,dPPYba,   88       88  88,dPYba,,adPYba,   ,adPPYba,
+    88"""""      88P'   `"8a  88       88  88P'   "88"    "8a  I8[    ""
+    88           88       88  88       88  88      88      88   `"Y8ba,
+    88           88       88  "8a,   ,a88  88      88      88  aa    ]8I
+    88888888888  88       88   `"YbbdP'Y8  88      88      88  `"YbbdP"'
 
 
 
@@ -6889,14 +6889,14 @@ _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
 
 /*
 
-                                                88         
-                 ,d                             88         
-                 88                             88         
-    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8   
-    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"    
-     `"Y8ba,     88    8b       d8  8b          8888[      
-    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,   
-    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a  
+                                                88
+                 ,d                             88
+                 88                             88
+    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8
+    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"
+     `"Y8ba,     88    8b       d8  8b          8888[
+    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,
+    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a
 
 
 
@@ -6963,14 +6963,14 @@ stock
 
 /*
 
-                                                88                                                                      
-                 ,d                             88                                                               ,d     
-                 88                             88                                                               88     
-    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM  
-    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88     
-     `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88     
-    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,    
-    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888  
+                                                88
+                 ,d                             88                                                               ,d
+                 88                             88                                                               88
+    ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM
+    I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88
+     `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88
+    aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,
+    `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888
 
 
 
@@ -6990,14 +6990,14 @@ stock const
 
 /*
 
-                                             88                                                             88         
-                 ,d                   ,d     ""                              ,d                             88         
-                 88                   88                                     88                             88         
-    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8   
-    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"    
-     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[      
-    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,   
-    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a  
+                                             88                                                             88
+                 ,d                   ,d     ""                              ,d                             88
+                 88                   88                                     88                             88
+    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8
+    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"
+     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[
+    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,
+    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a
 
 
 
@@ -7015,14 +7015,14 @@ static stock
 	 * </remarks>
 	 */
 	FIXES_gsSpace[] = " ",
-	
+
 	/**
 	 * <remarks>
 	 * Only determine the OS once.
 	 * </remarks>
 	 */
 	bool:FIXES_gsKnownOS = false,
-	
+
 	/**
 	 * <remarks>
 	 * A record of which players are connected to the server.  We ensure that
@@ -7031,21 +7031,21 @@ static stock
 	 * </remarks>
 	 */
 	FIXES_gsPlayersIterator[MAX_PLAYERS + 1] = {0, 1, ...},
-	
+
 	/**
 	 * <remarks>
 	 * A record of which menus have and haven't been shown yet.
 	 * </remarks>
 	 */
 	FIXES_gsValidMenus[_FIXES_CEILDIV(_:MAX_MENUS, cellbits)],
-	
+
 	/**
 	 * <remarks>
 	 * A player's IP as a 32-bit integer.
 	 * </remarks>
 	 */
 	FIXES_gsPlayerIP[MAX_PLAYERS] = {-1, ...},
-	
+
 	/**
 	 * <remarks>
 	 * Stores the locked vehicle's id that the player
@@ -7053,7 +7053,7 @@ static stock
 	 * </remarks>
 	 */
 	FIXES_gsPlayerVehicleID[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * Stores the server tick when the player started
@@ -7061,35 +7061,35 @@ static stock
 	 * </remarks>
 	 */
 	FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * Boolean: Stores if a certain vehicle is 'locked' or not.
 	 * </remarks>
 	 */
 	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES],
-	
+
 	/**
 	 * <remarks>
 	 * The skin the player is currently using.
 	 * </remarks>
 	 */
 	FIXES_gsPlayerSkin[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * Collection of boolean values for players.
 	 * </remarks>
 	 */
 	e_FIXES_BOOLS:FIXES_gsPlayerBools[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * Handle to read from server.cfg.
 	 * </remarks>
 	 */
 	File:FIXES_gsServerCFG,
-	
+
 	/**
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
@@ -7111,21 +7111,21 @@ static stock
 	// Upper.
 	Float:FIXES_gsWorldbounds_UX[MAX_PLAYERS],
 	Float:FIXES_gsWorldbounds_UY[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * Stores the weapon set by "SetPlayerArmedWeapon" when in a vehicle.
 	 * </remarks>
 	 */
 	FIXES_gsPlayerWeapon[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * What vehicle the player is due to go in.
 	 * </remarks>
 	 */
 	FIXES_gsVehicleSeatData[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * Stores the true ID of the dialog the player is looking at to prevent
@@ -7133,63 +7133,63 @@ static stock
 	 * </remarks>
 	 */
 	FIXES_gsPlayerDialog[MAX_PLAYERS] = {-1, ...},
-	
+
 	/**
 	 * <remarks>
 	 * Stores the ID of the player weather.
 	 * </remarks>
 	 */
 	FIXES_gsPlayerWeather[MAX_PLAYERS] = {-1, ...},
-	
+
 	/**
 	 * <remarks>
 	 * Stores the ID of the server weather.
 	 * </remarks>
 	 */
 	FIXES_gsServerWeather = 10,
-	
+
 	/**
 	 * <remarks>
 	 * The player's current interior.
 	 * </remarks>
 	 */
 	FIXES_gsPlayerInterior[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * A collection of 1-bit options, compressed together to save space.
 	 * </remarks>
 	 */
 	e_FIXES_SETTINGS:FIXES_gsSettings = e_FIXES_SETTINGS_SECOND_USE,
-	
+
 	/**
 	 * <remarks>
 	 * The last animation a player used.
 	 * </remarks>
 	 */
 	FIXES_gsLastAnimation[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * A player's cash before dying.
 	 * </remarks>
 	 */
 	FIXES_gsPlayerLastCash[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * The weapon to set after re-enter to vehicle.
 	 * </remarks>
 	 */
 	FIXES_gsDriveByWeapon[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * The menu the player can currently see.
 	 * </remarks>
 	 */
 	Menu:FIXES_gsCurrentMenu[MAX_PLAYERS] = {Menu:INVALID_MENU, ...},
-	
+
 	/**
 	 * <remarks>
 	 * The pre-defined TextDraw styles used to recreate the bugged GameText
@@ -7197,14 +7197,14 @@ static stock
 	 * </remarks>
 	 */
 	Text:FIXES_gsGTStyle[FIXES_GT_STYLE_COUNT],
-	
+
 	/**
 	 * <remarks>
 	 * A linked list of which players can see a certain GameText style.
 	 * </remarks>
 	 */
 	FIXES_gsPlayerPGTShown[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1],
-	
+
 	/**
 	 * <remarks>
 	 * The predefined TextDraw styles used to recreate the bugged GameText
@@ -7212,14 +7212,14 @@ static stock
 	 * </remarks>
 	 */
 	PlayerText:FIXES_gsPGTStyle[MAX_PLAYERS][FIXES_GT_STYLE_COUNT],
-	
+
 	/**
 	 * <remarks>
 	 * The timers used to hide per-player GameText messages.
 	 * </remarks>
 	 */
 	FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1],
-	
+
 	/**
 	 * <remarks>
 	 * Used for storing the timer ID for deferring class selection animation
@@ -7227,21 +7227,21 @@ static stock
 	 * </remarks>
 	 */
 	FIXES_gsPlayerAnimTimer[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * Used for storing the animation name.
 	 * </remarks>
 	 */
 	FIXES_gsPlayerAnimName[MAX_PLAYERS * 64],
-	
+
 	/**
 	 * <remarks>
 	 * Which animation libraries the player has synced.
 	 * </remarks>
 	 */
 	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)],
-	
+
 	/**
 	 * <remarks>
 	 * Used for storing the timer ID for deferring class selection animation
@@ -7249,77 +7249,77 @@ static stock
 	 * </remarks>
 	 */
 	FIXES_gsActorAnimTimer[MAX_ACTORS],
-	
+
 	/**
 	 * <remarks>
 	 * Used for storing the animation name.
 	 * </remarks>
 	 */
 	FIXES_gsActorAnimName[MAX_ACTORS * 64],
-	
+
 	/**
 	 * <remarks>
 	 * Which animation libraries the actor has synced.
 	 * </remarks>
 	 */
 	FIXES_gsActorAnimLibs[MAX_ACTORS][_FIXES_CEILDIV(135, cellbits)],
-	
+
 	/**
 	 * <remarks>
 	 * The timers used to prevent players seating.
 	 * </remarks>
 	 */
 	FIXES_gsPSTimer[MAX_PLAYERS],
-	
+
 	/**
 	 * <remarks>
 	 * The vehicle's stereo used in GetVehicleComponent.
 	 * </remarks>
 	 */
 	FIXES_gsStereo[MAX_VEHICLES],
-	
+
 	/**
 	 * <remarks>
 	 * The vehicle's front bumper used in GetVehicleComponent.
 	 * </remarks>
 	 */
 	FIXES_gsFrontBumper[MAX_VEHICLES],
-	
+
 	/**
 	 * <remarks>
 	 * The vehicle's rear bumper used in GetVehicleComponent.
 	 * </remarks>
 	 */
 	FIXES_gsRearBumper[MAX_VEHICLES],
-	
+
 	/**
 	 * <remarks>
 	 * The vehicle's front bullbar used in GetVehicleComponent.
 	 * </remarks>
 	 */
 	FIXES_gsFrontBullbar[MAX_VEHICLES],
-	
+
 	/**
 	 * <remarks>
 	 * The vehicle's rear bullbar used in GetVehicleComponent.
 	 * </remarks>
 	 */
 	FIXES_gsRearBullbar[MAX_VEHICLES],
-	
+
 	/**
 	 * <remarks>
 	 * The player id who is getting carjacked before the car teleports.
 	 * </remarks>
 	 */
 	FIXES_gsJackedId[MAX_PLAYERS] = {INVALID_PLAYER_ID, ...},
-	
+
 	/**
 	 * <remarks>
 	 * The position of the character right-trimmed from a "const" string.
 	 * </remarks>
 	 */
 	FIXES_gsTrimPos,
-	
+
 	/**
 	 * <remarks>
 	 * The character right-trimmed from a "const" string.
@@ -7329,14 +7329,14 @@ static stock
 
 /*
 
-                                             88                                                             88                                                                      
-                 ,d                   ,d     ""                              ,d                             88                                                               ,d     
-                 88                   88                                     88                             88                                                               88     
-    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM  
-    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88     
-     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88     
-    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,    
-    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888  
+                                             88                                                             88
+                 ,d                   ,d     ""                              ,d                             88                                                               ,d
+                 88                   88                                     88                             88                                                               88
+    ,adPPYba,  MM88MMM  ,adPPYYba,  MM88MMM  88   ,adPPYba,     ,adPPYba,  MM88MMM  ,adPPYba,    ,adPPYba,  88   ,d8       ,adPPYba,   ,adPPYba,   8b,dPPYba,   ,adPPYba,  MM88MMM
+    I8[    ""    88     ""     `Y8    88     88  a8"     ""     I8[    ""    88    a8"     "8a  a8"     ""  88 ,a8"       a8"     ""  a8"     "8a  88P'   `"8a  I8[    ""    88
+     `"Y8ba,     88     ,adPPPPP88    88     88  8b              `"Y8ba,     88    8b       d8  8b          8888[         8b          8b       d8  88       88   `"Y8ba,     88
+    aa    ]8I    88,    88,    ,88    88,    88  "8a,   ,aa     aa    ]8I    88,   "8a,   ,a8"  "8a,   ,aa  88`"Yba,      "8a,   ,aa  "8a,   ,a8"  88       88  aa    ]8I    88,
+    `"YbbdP"'    "Y888  `"8bbdP"Y8    "Y888  88   `"Ybbd8"'     `"YbbdP"'    "Y888  `"YbbdP"'    `"Ybbd8"'  88   `Y8a      `"Ybbd8"'   `"YbbdP"'   88       88  `"YbbdP"'    "Y888
 
 
 
@@ -7356,63 +7356,63 @@ static stock const
 	 * </remarks>
 	 */
 	FIXES_pvarNotNewPlayer[] = "FIXES_pvarNotNewPlayer",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current weapon.
 	 * </remarks>
 	 */
 	FIXES_pvarPlayerWeapon[] = "FIXES_pvarPlayerWeapon",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current skin.
 	 * </remarks>
 	 */
 	FIXES_pvarPlayerSkin[] = "FIXES_pvarPlayerSkin",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's spectator mode.
 	 * </remarks>
 	 */
 	FIXES_pvarPlayerSpectate[] = "FIXES_pvarPlayerSpectate",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the kick timer function.
 	 * </remarks>
 	 */
 	FIXES_gscKick[] = "_FIXES_Kick",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store a player's kick timer.
 	 * </remarks>
 	 */
 	FIXES_pvarKick[] = "FIXES_pvarKick",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current dialogid.
 	 * </remarks>
 	 */
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current weather.
 	 * </remarks>
 	 */
 	FIXES_pvarPlayerWeather[] = "FIXES_pvarPlayerWeather",
-	
+
 	/**
 	 * <remarks>
 	 * A player's current interior.
 	 * </remarks>
 	 */
 	FIXES_pvarPlayerInterior[] = "FIXES_pvarPlayerInterior",
-	
+
 	/**
 	 * <remarks>
 	 * Used in OnDialogResponse to be able to get the correct ID in multiple
@@ -7420,14 +7420,14 @@ static stock const
 	 * </remarks>
 	 */
 	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog",
-	
+
 	/**
 	 * <remarks>
 	 * Used in OnPlayerDeath to save a player's cash before death.
 	 * </remarks>
 	 */
 	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the GameText hide timer function.
@@ -7487,7 +7487,7 @@ static stock const
 	 * </remarks>
 	 */
 	FIXES_pvarPlayerCheckpoint[] = "FIXES_pvarPlayerCheckpoint",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the SetRaceCheckpoint timer function.
@@ -7714,7 +7714,7 @@ static stock const
 			                                       // 610 - farmtr1
 			                                       // 611 - utiltr1
 		},
-	
+
 	/**
 	 * <remarks>
 	 * All vehicle secondary colours from carcols.dat.
@@ -7935,7 +7935,7 @@ static stock const
 			                                       // 610 - farmtr1
 			                                       // 611 - utiltr1
 		},
-	
+
 	/**
 	 * <remarks>
 	 * The vehicle colours are in a flat array.  These are the offsets for each
@@ -8158,7 +8158,7 @@ static stock const
 			1158,                                  // 611 - utiltr1
 			1158
 		},
-	
+
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
@@ -8167,7 +8167,7 @@ static stock const
 	 * </remarks>
 	 */
 	FIXES_gscColour3Camper[8 char] = {0x01010300, 0x03030878}, // 483
-	
+
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
@@ -8176,7 +8176,7 @@ static stock const
 	 * </remarks>
 	 */
 	FIXES_gscColour3Cement[8 char] = {0x177B1F1E, 0x173E4040}, // 524
-	
+
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
@@ -8185,7 +8185,7 @@ static stock const
 	 * </remarks>
 	 */
 	FIXES_gscColour3Squalo[8 char] = {0x00010001, 0x01010101}, // 446
-	
+
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
@@ -8194,7 +8194,7 @@ static stock const
 	 * </remarks>
 	 */
 	FIXES_gscColour4Camper[8 char] = {0x00000000, 0x00000000}, // 483
-	
+
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
@@ -8203,7 +8203,7 @@ static stock const
 	 * </remarks>
 	 */
 	FIXES_gscColour4Cement[8 char] = {0x00000000, 0x00000000}, // 524
-	
+
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
@@ -8212,7 +8212,7 @@ static stock const
 	 * </remarks>
 	 */
 	FIXES_gscColour4Squalo[8 char] = {0x01010101, 0x01010101}, // 446
-	
+
 	/**
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.
@@ -8253,14 +8253,14 @@ static stock const
 			0x31949000, 0x56941D00, 0x59163D00, 0x1B8A2F00, 0x38160B00, 0x04180400, 0x355D8E00, 0x2E3F5B00,
 			0x561A2800, 0x4E0E2700, 0x706C6700, 0x3B3E4200, 0x2E2D3300, 0x7B7E7D00, 0x4A444200, 0x28344E00
 		},
-	
+
 	/**
 	 * <remarks>
 	 * Name of the pvar in which to store the player's race checkpoint state.
 	 * </remarks>
 	 */
 	FIXES_pvarPlayerRaceCheckpoint[] = "FIXES_pvarPlayerRaceCheckpoint",
-	
+
 	/**
 	 * <remarks>
 	 * There are only 100 colours used by default, with SA:MP looping through
@@ -8290,7 +8290,7 @@ static stock const
 			0x10C9C5FF, 0x70524DFF, 0x0BE472FF, 0x8A2CD7FF, 0x6152C2FF,
 			0xCF72A9FF, 0xE59338FF, 0xEEDC2DFF, 0xD8C762FF, 0xD8C762FF
 		},
-	
+
 	/**
 	 * <remarks>
 	 * This is a compressed (4-bit) list of the maximum number of passengers in
@@ -8304,7 +8304,7 @@ static stock const
 			0x31101100, 0x30002301, 0x11031311, 0x11111331, 0x10013111, 0x01131100, 0x11111110, 0x11100031, 0x11130111,
 			0x33113311, 0x11111101, 0x33101133, 0x10100510, 0x03133111, 0xFF11113F, 0x13330111, 0xFF131111, 0x0000FF3F
 		},
-	
+
 	/**
 	 * <remarks>
 	 * This is a bit array of all the valid mods (-1000) for all vehicles (-400)
@@ -8535,7 +8535,7 @@ static stock const
 			0x02000700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000,
 			0x02000700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000
 		},
-	
+
 	/**
 	 * <remarks>
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
@@ -8545,7 +8545,7 @@ static stock const
 		{
 			0, 2, 21, 35, 42, 42, 53, 62, 64, 67, 68, 71, 75, 81, 82, 84, 94, 96, 104, 122, 127, 128, 131, 135
 		},
-	
+
 	/**
 	 * <remarks>
 	 * List of valid animation libraries.
@@ -8581,259 +8581,259 @@ static stock const
 			"TRAIN",        "TRUCK",        "UZI",          "VAN",          "VENDING",
 			"VORTEX",       "WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
 		},
-	
+
 	/**
 	 * <remarks>
 	 * ".".
 	 * </remarks>
 	 */
 	FIXES_gscDot[] = ".",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c></c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@[] = "",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>i</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@i[] = "i",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>ii</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@ii[] = "ii",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>ai</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@ai[] = "ai",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>is</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@is[] = "is",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>iii</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@iii[] = "iii",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>isii</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@isii[] = "isii",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>ifff</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@ifff[] = "ifff",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>iifff</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@iifff[] = "iifff",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>iifffi</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@iifffi[] = "iifffi",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>iifffffff</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@iifffffff[] = "iifffffff",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>iffff</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@iffff[] = "iffff",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>iiiis</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@iiiis[] = "iiiis",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>iiiii</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@iiiii[] = "iiiii",
-	
+
 	/**
 	 * <remarks>
 	 * Specifier <c>iiiiii</c>.
 	 * </remarks>
 	 */
 	FIXES_gscSpec@iiiiii[] = "iiiiii",
-	
+
 	/**
 	 * <remarks>
 	 * The temporary name to give when renaming people.
 	 * </remarks>
 	 */
 	FIXES_gscTempName[] = "FIXES_TEMP_NAME",
-	
+
 	/**
 	 * <remarks>
 	 * The property to check for script ordering.
 	 * </remarks>
 	 */
 	FIXES_gscOrderProperty[] = "FIXES_gscOrderProperty",
-	
+
 	/**
 	 * <remarks>
 	 * Call <symbolref name="_FIXES_DetermineOrderRemote" /> in the GM or not?
 	 * </remarks>
 	 */
 	FIXES_gscNoGMProperty[] = "FIXES_gscNoGMProperty",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the ordering callback.
 	 * </remarks>
 	 */
 	FIXES_gscDetermineOrder[] = "_FIXES_DetermineOrderRemote",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the remote set player menu function.
 	 * </remarks>
 	 */
 	FIXES_gscSetPlayerMenu[] = "_FIXES_SetPlayerMenu",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the remote function to clear a player's menu set.
 	 * </remarks>
 	 */
 	FIXES_gscClearPlayerMenu[] = "_FIXES_ClearPlayerMenu",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the remote allow teleport function.
 	 * </remarks>
 	 */
 	FIXES_gscAllowTeleport[] = "_FIXES_AllowTeleport",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the remote vehicle entry function.
 	 * </remarks>
 	 */
 	FIXES_gscPutPlayerInVehicle[] = "_FIXES_PutPlayerInVehicle",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the remote interior weapons function.
 	 * </remarks>
 	 */
 	FIXES_gscAllowInteriorWeapons[] = "_FIXES_AllowInteriorWeapons",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the remote player toggle function.
 	 * </remarks>
 	 */
 	FIXES_gscTogglePlayerControl[] = "_FIXES_TogglePlayerControllable",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the remote player clock function.
 	 * </remarks>
 	 */
 	FIXES_gscTogglePlayerClock[] = "_FIXES_TogglePlayerClock",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the remote player clock function.
 	 * </remarks>
 	 */
 	FIXES_gscGetWeather[] = "_FIXES_GetWeather",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the remote world bounds function.
 	 * </remarks>
 	 */
 	FIXES_gscSetPlayerWorldBounds[] = "_FIXES_SetPlayerWorldBounds",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the remote GameText show function.
 	 * </remarks>
 	 */
 	FIXES_gscGameTextShow[] = "_FIXES_GameTextShow",
-	
+
 	/**
 	 * <remarks>
 	 * Name of the remote block update function.
 	 * </remarks>
 	 */
 	FIXES_gscBlockUpdate[] = "_FIXES_BlockUpdateRemote",
-	
+
 	/**
 	 * <remarks>
 	 * The property for accurate returns.
 	 * </remarks>
 	 */
 	FIXES_gscReturnProperty[] = "FIXES_gscReturnProperty",
-	
+
 	/**
 	 * <remarks>
 	 * The property for checking this is the only running script with fixes in.
 	 * </remarks>
 	 */
 	FIXES_gscSingleProperty[] = "FIXES_gscSingleProperty",
-	
+
 	/**
 	 * <remarks>
 	 * The property for a player's current menu.
 	 * </remarks>
 	 */
 	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
-	
+
 	/**
 	 * <remarks>
 	 * The property for a player's current menu.
 	 * </remarks>
 	 */
 	FIXES_gscRconFixFS[] = "callbackfix.amx",
-	
+
 	/**
 	 * <remarks>
 	 * The property AND command to check for RCON fix presence.
 	 * </remarks>
 	 */
 	FIXES_gscOnClientCheckResponse[] = !"FIXES_OnClientCheckResponse",
-	
+
 	/**
 	 * <remarks>
 	 * Error shown when multiple scripts are detected with <c>FIXES_SINGLE</c>.
@@ -8848,14 +8848,14 @@ static stock const
 
 /*
 
-    888b      88                       88                                      
-    8888b     88                ,d     ""                                      
-    88 `8b    88                88                                             
-    88  `8b   88  ,adPPYYba,  MM88MMM  88  8b       d8   ,adPPYba,  ,adPPYba,  
-    88   `8b  88  ""     `Y8    88     88  `8b     d8'  a8P_____88  I8[    ""  
-    88    `8b 88  ,adPPPPP88    88     88   `8b   d8'   8PP"""""""   `"Y8ba,   
-    88     `8888  88,    ,88    88,    88    `8b,d8'    "8b,   ,aa  aa    ]8I  
-    88      `888  `"8bbdP"Y8    "Y888  88      "8"       `"Ybbd8"'  `"YbbdP"'  
+    888b      88                       88
+    8888b     88                ,d     ""
+    88 `8b    88                88
+    88  `8b   88  ,adPPYYba,  MM88MMM  88  8b       d8   ,adPPYba,  ,adPPYba,
+    88   `8b  88  ""     `Y8    88     88  `8b     d8'  a8P_____88  I8[    ""
+    88    `8b 88  ,adPPPPP88    88     88   `8b   d8'   8PP"""""""   `"Y8ba,
+    88     `8888  88,    ,88    88,    88    `8b,d8'    "8b,   ,aa  aa    ]8I
+    88      `888  `"8bbdP"Y8    "Y888  88      "8"       `"Ybbd8"'  `"YbbdP"'
 
 
 
@@ -9346,7 +9346,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native CreateExplosion__(Float:X, Float:Y, Float:Z, type, Float:Radius) = CreateExplosion;
 	native EnableZoneNames__(enable) = EnableZoneNames;
 	native UsePlayerPedAnims__() = UsePlayerPedAnims;
-	native DisableInteriorEnterExits__() = DisableInteriorEnterExits; 
+	native DisableInteriorEnterExits__() = DisableInteriorEnterExits;
 	native SetNameTagDrawDistance__(Float:distance) = SetNameTagDrawDistance;
 	native DisableNameTagLOS__() = DisableNameTagLOS;
 	native LimitGlobalChatRadius__(Float:chat_radius) = LimitGlobalChatRadius;
@@ -9714,16 +9714,16 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 
 /*
 
-      ,ad8888ba,                                                                                                 
-     d8"'    `"8b                                                      ,d                                        
-    d8'        `8b                                                     88                                        
-    88          88  8b,dPPYba,    ,adPPYba,  8b,dPPYba,  ,adPPYYba,  MM88MMM  ,adPPYba,   8b,dPPYba,  ,adPPYba,  
-    88          88  88P'    "8a  a8P_____88  88P'   "Y8  ""     `Y8    88    a8"     "8a  88P'   "Y8  I8[    ""  
-    Y8,        ,8P  88       d8  8PP"""""""  88          ,adPPPPP88    88    8b       d8  88           `"Y8ba,   
-     Y8a.    .a8P   88b,   ,a8"  "8b,   ,aa  88          88,    ,88    88,   "8a,   ,a8"  88          aa    ]8I  
-      `"Y8888Y"'    88`YbbdP"'    `"Ybbd8"'  88          `"8bbdP"Y8    "Y888  `"YbbdP"'   88          `"YbbdP"'  
-                    88                                                                                           
-                    88                                                                                           
+      ,ad8888ba,
+     d8"'    `"8b                                                      ,d
+    d8'        `8b                                                     88
+    88          88  8b,dPPYba,    ,adPPYba,  8b,dPPYba,  ,adPPYYba,  MM88MMM  ,adPPYba,   8b,dPPYba,  ,adPPYba,
+    88          88  88P'    "8a  a8P_____88  88P'   "Y8  ""     `Y8    88    a8"     "8a  88P'   "Y8  I8[    ""
+    Y8,        ,8P  88       d8  8PP"""""""  88          ,adPPPPP88    88    8b       d8  88           `"Y8ba,
+     Y8a.    .a8P   88b,   ,a8"  "8b,   ,aa  88          88,    ,88    88,   "8a,   ,a8"  88          aa    ]8I
+      `"Y8888Y"'    88`YbbdP"'    `"Ybbd8"'  88          `"8bbdP"Y8    "Y888  `"YbbdP"'   88          `"YbbdP"'
+                    88
+                    88
 
 */
 
@@ -9770,14 +9770,14 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 
 /*
 
-    88                                                                       88  
-    88                ,d                                                     88  
-    88                88                                                     88  
-    88  8b,dPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,  8b,dPPYba,   ,adPPYYba,  88  
-    88  88P'   `"8a   88    a8P_____88  88P'   "Y8  88P'   `"8a  ""     `Y8  88  
-    88  88       88   88    8PP"""""""  88          88       88  ,adPPPPP88  88  
-    88  88       88   88,   "8b,   ,aa  88          88       88  88,    ,88  88  
-    88  88       88   "Y888  `"Ybbd8"'  88          88       88  `"8bbdP"Y8  88  
+    88                                                                       88
+    88                ,d                                                     88
+    88                88                                                     88
+    88  8b,dPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,  8b,dPPYba,   ,adPPYYba,  88
+    88  88P'   `"8a   88    a8P_____88  88P'   "Y8  88P'   `"8a  ""     `Y8  88
+    88  88       88   88    8PP"""""""  88          88       88  ,adPPPPP88  88
+    88  88       88   88,   "8b,   ,aa  88          88       88  88,    ,88  88
+    88  88       88   "Y888  `"Ybbd8"'  88          88       88  `"8bbdP"Y8  88
 
 
 
@@ -10033,7 +10033,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 
 /**
  * <remarks>
- * Check if <c>MAX_PLAYERS</c> equals <c>GetMaxPlayers</c>, for efficiency. 
+ * Check if <c>MAX_PLAYERS</c> equals <c>GetMaxPlayers</c>, for efficiency.
  * </remarks>
  */
 
@@ -10660,14 +10660,14 @@ static stock _FIXES_CheckMaxPlayers()
 
 /*
 
-    88888888888  88                                     
-    88           ""                                     
-    88                                                  
-    88aaaaa      88  8b,     ,d8  ,adPPYba,  ,adPPYba,  
-    88"""""      88   `Y8, ,8P'  a8P_____88  I8[    ""  
-    88           88     )888(    8PP"""""""   `"Y8ba,   
-    88           88   ,d8" "8b,  "8b,   ,aa  aa    ]8I  
-    88           88  8P'     `Y8  `"Ybbd8"'  `"YbbdP"'  
+    88888888888  88
+    88           ""
+    88
+    88aaaaa      88  8b,     ,d8  ,adPPYba,  ,adPPYba,
+    88"""""      88   `Y8, ,8P'  a8P_____88  I8[    ""
+    88           88     )888(    8PP"""""""   `"Y8ba,
+    88           88   ,d8" "8b,  "8b,   ,aa  aa    ]8I
+    88           88  8P'     `Y8  `"Ybbd8"'  `"YbbdP"'
 
 
 
@@ -10732,7 +10732,7 @@ public OnJITCompile()
 
 #if FIXES_NoYSI
 	#define OnJITCompile( FIXES_OnJITCompile(
-	
+
 	#if defined FIXES_OnJITCompile
 		forward FIXES_OnJITCompile();
 	#endif
@@ -10860,7 +10860,7 @@ public OnFilterScriptInit()
 
 #if FIXES_NoYSI
 	#define OnFilterScriptInit( FIXES_OnFilterScriptInit(
-	
+
 	#if defined FIXES_OnFilterScriptInit
 		forward FIXES_OnFilterScriptInit();
 	#endif
@@ -11062,7 +11062,7 @@ public OnGameModeInit()
 
 #if FIXES_NoYSI
 	#define OnGameModeInit( FIXES_OnGameModeInit(
-	
+
 	#if defined FIXES_OnGameModeInit
 		forward FIXES_OnGameModeInit();
 	#endif
@@ -11155,15 +11155,15 @@ public OnGameModeInit()
 			return 1;
 		#endif
 	}
-	
+
 	#if defined _ALS_OnGameModeExit
 		#error _ALS_OnGameModeExit defined
 	#endif
 	#define _ALS_OnGameModeExit
-	
+
 	#if FIXES_NoYSI
 		#define OnGameModeExit( FIXES_OnGameModeExit(
-		
+
 		#if defined FIXES_OnGameModeExit
 			forward FIXES_OnGameModeExit();
 		#endif
@@ -11284,15 +11284,15 @@ public OnGameModeInit()
 			#endif
 		#endif
 	}
-	
+
 	#if defined _ALS_OnFilterScriptExit
 		#error _ALS_OnFilterScriptExit defined
 	#endif
 	#define _ALS_OnFilterScriptExit
-	
+
 	#if FIXES_NoYSI
 		#define OnFilterScriptExit( FIXES_OnFilterScriptExit(
-		
+
 		#if defined FIXES_OnFilterScriptExit
 			forward FIXES_OnFilterScriptExit();
 		#endif
@@ -11573,15 +11573,15 @@ public OnGameModeInit()
 		//  END:   Kick
 		// =============
 	}
-	
+
 	#if defined _ALS_OnPlayerConnect
 		#error _ALS_OnPlayerConnect defined
 	#endif
 	#define _ALS_OnPlayerConnect
-	
+
 	#if FIXES_NoYSI
 		#define OnPlayerConnect( FIXES_OnPlayerConnect(
-		
+
 		#if defined FIXES_OnPlayerConnect
 			forward FIXES_OnPlayerConnect(playerid);
 		#endif
@@ -11722,7 +11722,7 @@ public OnGameModeInit()
 
 	#if FIXES_NoYSI
 		#define OnPlayerDisconnect( FIXES_OnPlayerDisconnect(
-		
+
 		#if defined FIXES_OnPlayerDisconnect
 			forward FIXES_OnPlayerDisconnect(playerid, reason);
 		#endif
@@ -11833,15 +11833,15 @@ public OnGameModeInit()
 		//  END:   OnPlayerSpawn
 		// ======================
 	}
-	
+
 	#if defined _ALS_OnPlayerDeath
 		#error _ALS_OnPlayerDeath defined
 	#endif
 	#define _ALS_OnPlayerDeath
-	
+
 	#if FIXES_NoYSI
 		#define OnPlayerDeath( FIXES_OnPlayerDeath(
-		
+
 		#if defined FIXES_OnPlayerDeath
 			forward FIXES_OnPlayerDeath(playerid, killerid, reason);
 		#endif
@@ -11858,9 +11858,9 @@ public OnGameModeInit()
  */
 
 #if _FIXES_SAMP && defined _ALS_SetVehiclePos
-	#error _ALS_SetVehiclePos defined 
-#endif 
-native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos; 
+	#error _ALS_SetVehiclePos defined
+#endif
+native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 
 /**
  * <fixes>SilentTeleport</fixes>
@@ -12056,15 +12056,15 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			return 1;
 		#endif
 	}
-	
+
 	#if defined _ALS_OnPlayerRequestClass
 		#error _ALS_OnPlayerRequestClass defined
 	#endif
 	#define _ALS_OnPlayerRequestClass
-	
+
 	#if FIXES_NoYSI
 		#define OnPlayerRequestClass( FIXES_OnPlayerRequestClass(
-		
+
 		#if defined FIXES_OnPlayerRequestClass
 			forward FIXES_OnPlayerRequestClass(playerid, classid);
 		#endif
@@ -12213,15 +12213,15 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			return 1;
 		#endif
 	}
-	
+
 	#if defined _ALS_OnPlayerSpawn
 		#error _ALS_OnPlayerSpawn defined
 	#endif
 	#define _ALS_OnPlayerSpawn
-	
+
 	#if FIXES_NoYSI
 		#define OnPlayerSpawn( FIXES_OnPlayerSpawn(
-		
+
 		#if defined FIXES_OnPlayerSpawn
 			forward FIXES_OnPlayerSpawn(playerid);
 		#endif
@@ -12281,7 +12281,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 						{
 							FIXES_gsRearBullbar[vehicleid] = componentid;
 						}
-					#else 
+					#else
 						case CARMODTYPE_STEREO:
 						{
 							valstr(componentstring, componentid);
@@ -12370,7 +12370,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 
 	#if FIXES_NoYSI
 		#define OnVehicleMod( FIXES_OnVehicleMod(
-		
+
 		#if defined FIXES_OnVehicleMod
 			forward FIXES_OnVehicleMod(playerid, vehicleid, componentid);
 		#endif
@@ -12580,7 +12580,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 				|| FIXES_OnPlayerCommandText(playerid, cmdtext)
 			);
 		#else
-			return 
+			return
 				_FIXES_IS_VALID_PLAYER(playerid) &&
 				(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_BLOCK);
 		#endif
@@ -12593,7 +12593,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 
 	#if FIXES_NoYSI
 		#define OnPlayerCommandText( FIXES_OnPlayerCommandText(
-		
+
 		#if defined FIXES_OnPlayerCommandText
 			forward FIXES_OnPlayerCommandText(playerid, cmdtext[]);
 		#endif
@@ -12635,7 +12635,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 
 	#if FIXES_NoYSI
 		#define OnPlayerText( FIXES_OnPlayerText(
-		
+
 		#if defined FIXES_OnPlayerText
 			forward FIXES_OnPlayerText(playerid, text[]);
 		#endif
@@ -12869,15 +12869,15 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 			return 1;
 		#endif
 	}
-	
+
 	#if defined _ALS_OnPlayerUpdate
 		#error _ALS_OnPlayerUpdate defined
 	#endif
 	#define _ALS_OnPlayerUpdate
-	
+
 	#if FIXES_NoYSI
 		#define OnPlayerUpdate( FIXES_OnPlayerUpdate(
-		
+
 		#if defined FIXES_OnPlayerUpdate
 			forward FIXES_OnPlayerUpdate(playerid);
 		#endif
@@ -13162,7 +13162,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		// =============================
 		//  END: SilentTeleport
 		// =============================
-		
+
 		// ==========================
 		//  BEGIN: GetPlayerInterior
 		// ==========================
@@ -13219,15 +13219,15 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			return 1;
 		#endif
 	}
-	
+
 	#if defined _ALS_OnPlayerInteriorChange
 		#error _ALS_OnPlayerInteriorChange defined
 	#endif
 	#define _ALS_OnPlayerInteriorChange
-	
+
 	#if FIXES_NoYSI
 		#define OnPlayerInteriorChange( FIXES_OnPlayerInteriorChange(
-		
+
 		#if defined FIXES_OnPlayerInteriorChange
 			forward FIXES_OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid);
 		#endif
@@ -13356,7 +13356,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#endif
 		#define SetTimerEx( FIXES_SetTimerEx(
 	#endif
-	
+
 	#define _ALS_SetTimerEx__
 	#define SetTimerEx__( FIXES_SetTimerEx(
 #endif
@@ -13374,7 +13374,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1),
 		SetTimerEx__(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
 	}
-	
+
 	forward _FIXES_DriveBy(playerid);
 
 	public  _FIXES_DriveBy(playerid)
@@ -13420,15 +13420,15 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			return 1;
 		#endif
 	}
-	
+
 	#if defined _ALS_OnPlayerKeyStateChange
 		#error _ALS_OnPlayerKeyStateChange defined
 	#endif
 	#define _ALS_OnPlayerKeyStateChange
-	
+
 	#if FIXES_NoYSI
 		#define OnPlayerKeyStateChange( FIXES_OnPlayerKeyStateChange(
-		
+
 		#if defined FIXES_OnPlayerKeyStateChange
 			forward FIXES_OnPlayerKeyStateChange(playerid, newkeys, oldkeys);
 		#endif
@@ -13445,7 +13445,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * Declare the function to reset the car-jacked player id to invalid id.
  * </remarks>
  */
- 
+
 #if FIX_SilentTeleport
 	forward FIXES_RemoveJackedId(playerid);
 	public FIXES_RemoveJackedId(playerid) return FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
@@ -13544,15 +13544,15 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			return 1;
 		#endif
 	}
-	
+
 	#if defined _ALS_OnPlayerEnterVehicle
 		#error _ALS_OnPlayerEnterVehicle defined
 	#endif
 	#define _ALS_OnPlayerEnterVehicle
-	
+
 	#if FIXES_NoYSI
 		#define OnPlayerEnterVehicle( FIXES_OnPlayerEnterVehicle(
-		
+
 		#if defined FIXES_OnPlayerEnterVehicle
 			forward FIXES_OnPlayerEnterVehicle(playerid, vehicleid, ispassenger);
 		#endif
@@ -13589,15 +13589,15 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		//  END: OnPlayerEnterVehicle_2
 		// =============================
 	}
-	
+
 	#if defined _ALS_OnPlayerExitVehicle
 		#error _ALS_OnPlayerExitVehicle defined
 	#endif
 	#define _ALS_OnPlayerExitVehicle
-	
+
 	#if FIXES_NoYSI
 		#define OnPlayerExitVehicle( FIXES_OnPlayerExitVehicle(
-		
+
 		#if defined FIXES_OnPlayerExitVehicle
 			forward FIXES_OnPlayerExitVehicle(playerid, vehicleid);
 		#endif
@@ -13665,7 +13665,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if FIX_BypassDialog
 	#if !FIXES_Single
 		forward _FIXES_BlockUpdateRemote(playerid, bool:block);
-		
+
 		public _FIXES_BlockUpdateRemote(playerid, bool:block)
 		{
 			if (block)
@@ -13792,7 +13792,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 	#if FIXES_NoYSI
 		#define OnPlayerSelectedMenuRow( FIXES_OnPlayerSelectedMenuRow(
-		
+
 		#if defined FIXES_OnPlayerSelectedMenuRow
 			forward FIXES_OnPlayerSelectedMenuRow(playerid, row);
 		#endif
@@ -13882,7 +13882,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 	#if FIXES_NoYSI
 		#define OnPlayerExitedMenu( FIXES_OnPlayerExitedMenu(
-		
+
 		#if defined FIXES_OnPlayerExitedMenu
 			forward FIXES_OnPlayerExitedMenu(playerid);
 		#endif
@@ -14547,15 +14547,15 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 			return 1;
 		#endif
 	}
-	
+
 	#if defined _ALS_OnPlayerStateChange
 		#error _ALS_OnPlayerStateChange defined
 	#endif
 	#define _ALS_OnPlayerStateChange
-	
+
 	#if FIXES_NoYSI
 		#define OnPlayerStateChange( FIXES_OnPlayerStateChange(
-		
+
 		#if defined FIXES_OnPlayerStateChange
 			forward FIXES_OnPlayerStateChange(playerid, newstate, oldstate);
 		#endif
@@ -15773,15 +15773,15 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 			return 1;
 		#endif
 	}
-	
+
 	#if defined _ALS_OnPlayerClickMap
 		#error _ALS_OnPlayerClickMap defined
 	#endif
 	#define _ALS_OnPlayerClickMap
-	
+
 	#if FIXES_NoYSI
 		#define OnPlayerClickMap( FIXES_OnPlayerClickMap(
-		
+
 		#if defined FIXES_OnPlayerClickMap
 			forward FIXES_OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ);
 		#endif
@@ -16169,15 +16169,15 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		//  END:   OnDialogResponse
 		// =========================
 	}
-	
+
 	#if defined _ALS_OnDialogResponse
 		#error _ALS_OnDialogResponse defined
 	#endif
 	#define _ALS_OnDialogResponse
-	
+
 	#if FIXES_NoYSI
 		#define OnDialogResponse( FIXES_OnDialogResponse(
-		
+
 		#if defined FIXES_OnDialogResponse
 			forward FIXES_OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]);
 		#endif
@@ -17227,9 +17227,9 @@ native BAD_DestroyVehicle(vehicleid) = DestroyVehicle;
 	stock FIXES_DestroyVehicle(vehicleid)
 	{
 		new ret = DestroyVehicle__(vehicleid);
-		if (ret) 
+		if (ret)
 		{
-			#if FIXES_Single		
+			#if FIXES_Single
 				FIXES_gsStereo[vehicleid] = 0,
 				FIXES_gsFrontBumper[vehicleid] = 0,
 				FIXES_gsRearBumper[vehicleid] = 0,
@@ -17278,7 +17278,7 @@ native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 				componentstring[8],
 			#endif
 				ret = AddVehicleComponent__(vehicleid, componentid);
-		if (ret) 
+		if (ret)
 		{
 			switch (FIXES_GetVehicleComponentType(componentid))
 			{
@@ -17459,7 +17459,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 				{
 					return FIXES_gsRearBullbar[vehicleid];
 				}
-			#else 
+			#else
 				case CARMODTYPE_STEREO:
 				{
 					getproperty(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET, "", vehicleid, componentstring);
@@ -18229,7 +18229,7 @@ native bool:BAD_ispacked(const string[]) = ispacked;
 	// it is something to do with the fact that we're defining a `static stock`
 	// function with the same name as a `native` for one compiler pass.  It also
 	// doesn't seem to appear in the compiled output, which was an effect I
-	// tried to create for a long time then gave up on (see 
+	// tried to create for a long time then gave up on (see
 	// <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ()</c> for my alternative work-around).
 	_FIXES_FUNC_PAWNDOC(bool:ispacked(const packedString[]));
 	#if _FIXES_SAMP
@@ -18819,7 +18819,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 
 	#define _ALS_GetConsoleVarAsString__
 	#define GetConsoleVarAsString__( FIXES_GetConsoleVarAsString(
-	
+
 	#pragma deprecated Use `GetConsoleVarAsString`
 	stock bool:FIXES_GetServerVarAsString(const varname[], buffer[], len = sizeof (buffer))
 	{
@@ -18897,7 +18897,7 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 
 	#define _ALS_GetConsoleVarAsInt__
 	#define GetConsoleVarAsInt__( FIXES_GetConsoleVarAsInt(
-	
+
 	#pragma deprecated Use `GetConsoleVarAsInt`
 	stock FIXES_GetServerVarAsInt(const varname[])
 	{
@@ -18963,7 +18963,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 	#define _ALS_GetConsoleVarAsBool__
 	#define GetConsoleVarAsBool__( FIXES_GetConsoleVarAsBool(
-	
+
 	#pragma deprecated Use `GetConsoleVarAsBool`
 	stock bool:FIXES_GetServerVarAsBool(const varname[])
 	{
@@ -19022,7 +19022,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 	#define _ALS_GetConsoleVarAsFloat__
 	#define GetConsoleVarAsFloat__( FIXES_GetConsoleVarAsFloat(
-	
+
 	#pragma deprecated Use `GetConsoleVarAsFloat`
 	stock Float:FIXES_GetServerVarAsFloat(const varname[])
 	{
@@ -19042,14 +19042,14 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 /*
 
-           db         88888888ba   88  
-          d88b        88      "8b  88  
-         d8'`8b       88      ,8P  88  
-        d8'  `8b      88aaaaaa8P'  88  
-       d8YaaaaY8b     88""""""'    88  
-      d8""""""""8b    88           88  
-     d8'        `8b   88           88  
-    d8'          `8b  88           88  
+           db         88888888ba   88
+          d88b        88      "8b  88
+         d8'`8b       88      ,8P  88
+        d8'  `8b      88aaaaaa8P'  88
+       d8YaaaaY8b     88""""""'    88
+      d8""""""""8b    88           88
+     d8'        `8b   88           88
+    d8'          `8b  88           88
 
 
 
@@ -19290,14 +19290,14 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 /*
 
-    88888888888                                                       
-    88                                  ,d                            
-    88                                  88                            
-    88aaaaa   ,adPPYba,    ,adPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,  
-    88"""""  a8"     "8a  a8"     "8a   88    a8P_____88  88P'   "Y8  
-    88       8b       d8  8b       d8   88    8PP"""""""  88          
-    88       "8a,   ,a8"  "8a,   ,a8"   88,   "8b,   ,aa  88          
-    88        `"YbbdP"'    `"YbbdP"'    "Y888  `"Ybbd8"'  88          
+    88888888888
+    88                                  ,d
+    88                                  88
+    88aaaaa   ,adPPYba,    ,adPPYba,  MM88MMM  ,adPPYba,  8b,dPPYba,
+    88"""""  a8"     "8a  a8"     "8a   88    a8P_____88  88P'   "Y8
+    88       8b       d8  8b       d8   88    8PP"""""""  88
+    88       "8a,   ,a8"  "8a,   ,a8"   88,   "8b,   ,aa  88
+    88        `"YbbdP"'    `"YbbdP"'    "Y888  `"Ybbd8"'  88
 
 
 
@@ -19775,7 +19775,7 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 
 /**
  * <remarks>
- * 
+ *
  * </remarks>
  */
 
