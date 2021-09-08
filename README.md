@@ -415,18 +415,19 @@ A few fixes are disabled by default, to enable them all do:
 There are a few settings for improved execution of this script. Define these symbols as `1` before you include fixes.inc to explicitly enable them, `0` to explicitly disable them.
 
 
-* `FIXES_Single`: You only have one script that uses *fixes.inc* running (no other gamemodes or filterscripts).  Using this define will vastly simplify the code in that case, as no cross-script communication is required.  Default `1`.
-* `FIXES_SilentKick`: When a player is kicked for illegal mods/vehicles, don't send them a message.  Default `0`.
-* `FIXES_Debug`: Additional information in the server console.  Default `0`.
+* `FIXES_Single`: If this define is set to 1, then the old style include is used, with no support for multiple scripts running at the same time on the server.  You only have one script that uses *fixes.inc* running (no other gamemodes or filterscripts).  Using this define will vastly simplify the code in that case, as no cross-script communication is required, but will cause bugs if there actually is another script running.  Default `0`.
+* `FIXES_SilentKick`: If this define is set to `1`, then players will not be given a message when they are kicked for cheats (mainly invalid vehicles and mods), instead they will just loose connection to the server.  Default `0`.
+* `FIXES_Debug`: If this define is set to `1`, then debug printing is turned on for any functions which may use it.  Otherwise, the compiler entirely removes the code to print anything, leaving no run-time overhead.  Default `0`.
 * `FIXES_SingleMsg`: Show a message at mode start if `FIXES_Single` is set, but this is NOT the only script running *fixes.inc*.  This will entirely disable the check, so should only be used if you are absolutely certain that no other scripts are running at the same time (gamemodes or filterscripts).  Default `1`.
-* `FIXES_ServerVarMsg`: Show a message at mode start about server var fixes.  Default `1`.
-* `FIXES_GetMaxPlayersMsg`: Show a message at mode start about max player fixes.  Default `1`.
+* `FIXES_ServerVarMsg`: If this define is set to `1`, then the server will not give a message when `GetServerVarAsString` and related functions are used without a valid directory redirect.  Default `1`.
+* `FIXES_GetMaxPlayersMsg`: If this define is set to 1, then the server will not give a message when `GetMaxPlayers` doesn't match `MAX_PLAYERS`. Default `1`.
 * `FIXES_Debug`: Additional information in the server console.  Default `0`.
-* `FIXES_EnableAll`: Enable all current and future default disabled fixes.  Default `0`.
-* `FIXES_EnableDeprecated`: Enable all past (deprecated) fixes.  Might causes errors and conflicts with newer SA:MP includes.  Default `0`.
-* `FIXES_DefaultDisabled`: Disable all fixes by default, and require them to be individually enabled with `FIX_<name> 1`  Default `0`.
+* `FIXES_EnableAll`: Enable everything, even things that probably shouldn't be enabled.  Default `0`.
+* `FIXES_EnableDeprecated`: Enable all deprecated fixes (those that are no longer needed because they were fixed in later server revisions).  Might causes errors and conflicts with newer SA:MP includes.  Default `0`.
+* `FIXES_DefaultDisabled`: Disable all fixes by default, and require them to be individually enabled with `#define FIX_<name> 1`  Default `0`.
 * `FIXES_ExplicitOptions`: Require fixes to be explicitly enabled or disabled, and show a warning for every fix not mentioned.  Useful in combination with `FIXES_DefaultDisabled`, so default `1` with that, `0` otherwise.
-* `FIXES_NoPawndoc`: If this define is set to `1`, then compiling with `-r` will attempt to hide as many of the functions and variables in fixes.inc from the output XML as possible.  This will vastly simplify the generated documentation (at least the visible parts, this is done by embeddeding XML comments in the output, so all the data still exists, just hidden in the file).
+* `FIXES_NoPawndoc`: If this define is set to `1`, then compiling with `-r` will attempt to hide as many of the functions and variables in fixes.inc from the output XML as possible.  This will vastly simplify the generated documentation (at least the visible parts, this is done by embeddeding XML comments in the output, so all the data still exists, just hidden in the file).  Default `0`.
+* `FIXES_NoYSI`: fixes.inc doesn't need YSI.  YSI doesn't need fixes.inc.  However, they are both written to be aware of each other and adapt accordingly.  For example, fixes.inc uses a special type of ALS hooking which y_hooks can detect and use to call these callbacks in a better order (so-called "pre-hooks").  But if you don't have y_hooks the other version of ALS is very fractionally better.  This define can thus be used to guarantee to fixes.inc that YSI doesn't exist and not to use any of the adapted code.  However, if you're wrong the include probably just won't work, the overhead when not using YSI is absolutely tiny, and when using YSI its optimised out.  So, if in doubt - don't use this.  Default `0`.
 
 
 Note that `options` are which fixes to include, and `settings` are more over-arching customisations.

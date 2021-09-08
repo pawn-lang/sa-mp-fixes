@@ -683,7 +683,9 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 /**
  * <remarks>
- * Enable deprecated fixes - those that are no longer needed.
+ * Enable all deprecated fixes (those that are no longer needed because they
+ * were fixed in later server revisions).  Might causes errors and conflicts
+ * with newer SA:MP includes.
  * </remarks>
  */
 
@@ -706,7 +708,8 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 /**
  * <remarks>
- * Disable all fixes by default and explicitly enable them.
+ * Disable all fixes by default, and require them to be individually enabled
+ * with <c>#define FIX_<name> 1</c>.
  * </remarks>
  */
 
@@ -734,7 +737,10 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 /**
  * <remarks>
- * Explicitly enable or disable all fixes, with warnings for the rest.
+ * Require fixes to be explicitly enabled or disabled, and show a warning for
+ * every fix not mentioned.  Useful in combination with
+ * <c>FIXES_DefaultDisabled</c>, so default <c>1</c> with that, <c>0</c>
+ * otherwise.
  * </remarks>
  */
 
@@ -767,8 +773,8 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 /**
  * <remarks>
  * If this define is set to 1, then players will not be given a message when
- * they are kicked for cheats, instead they will just loose connection to the
- * server.
+ * they are kicked for cheats (mainly invalid vehicles and mods), instead they
+ * will just loose connection to the server.
  * </remarks>
  */
 
@@ -793,7 +799,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * <remarks>
  * If this define is set to 1, then debug printing is turned on for any
  * functions which may use it.  Otherwise, the compiler entirely removes the
- * code to print anything, leaving 0 run-time overhead.
+ * code to print anything, leaving no run-time overhead.
  * </remarks>
  */
 
@@ -821,9 +827,11 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 /**
  * <remarks>
  * If this define is set to 1, then the old style include is used, with no
- * support for multiple scripts running at the same time on the server (i.e. no
- * gamemodes and filter scripts at the same time).  You can only have one or the
- * other or bugs.
+ * support for multiple scripts running at the same time on the server.  You
+ * only have one script that uses <emph>fixes.inc</emph> running (no other
+ * gamemodes or filterscripts).  Using this define will vastly simplify the code
+ * in that case, as no cross-script communication is required, but will cause
+ * bugs if there actually is another script running.
  * </remarks>
  */
 
@@ -846,8 +854,10 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 /**
  * <remarks>
- * If this define is set to 1, then the server will not give a message when
- * <see>FIXES_Single</see> is set, but the script isn't REALLY the only one.
+ * Show a message at mode start if <c>FIXES_Single</c> is set, but this is NOT
+ * the only script running <emph>fixes.inc</emph>.  This will entirely disable
+ * the check, so should only be used if you are absolutely certain that no other
+ * scripts are running at the same time (gamemodes or filterscripts).
  * </remarks>
  */
 
@@ -896,7 +906,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 /**
  * <remarks>
  * If this define is set to 1, then the server will not give a message when
- * <see>GetMaxPlayer</see> doesn't match <c>MAX_PLAYERS</c>.
+ * <see>GetMaxPlayers</see> doesn't match <c>MAX_PLAYERS</c>.
  * </remarks>
  */
 
