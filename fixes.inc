@@ -19959,7 +19959,8 @@ const e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz = e_FIXESz
 	<remarks>
 		This function only exists to hide other functions.  It ends a massive
 		comment block in the pawndoc XML output that hides all fixes.inc
-		functions when the library is built with <c>FIXES_NoPawndoc</c>.
+		functions when the library is built with <c>FIXES_NoPawndoc</c>.  It is
+		the last valid function name where they start with <c>FIXES_</c>.
 		<p />
 		Note that the actual hiding itself is done by an XML comment started
 		earlier and ended here.
@@ -19991,7 +19992,8 @@ const e_FIXES:e_FIXES_ = e_FIXES;
 	<remarks>
 		This function only exists to hide other functions.  It starts a massive
 		comment block in the pawndoc XML output that hides all fixes.inc
-		functions when the library is built with <c>FIXES_NoPawndoc</c>.
+		functions when the library is built with <c>FIXES_NoPawndoc</c>.  It is
+		the last valid function name before they start with <c>FIXES_</c>.
 		<p />
 		Note that the actual hiding itself is done by an XML comment started
 		here and ended by a later variable.
@@ -20001,6 +20003,40 @@ const e_FIXES:e_FIXES_ = e_FIXES;
 */
 
 static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
+
+/**
+	<hidden />
+	<remarks>
+		This function only exists to hide other functions.  It ends a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		functions when the library is built with <c>FIXES_NoPawndoc</c>
+		temporarilly so that chained callbacks can be documented.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		earlier and ended here.
+	</remarks>
+
+	-->
+*/
+
+static stock FIXES_On() { }
+
+/**
+	<hidden />
+	<remarks>
+		This function only exists to hide other functions.  It starts a massive
+		comment block in the pawndoc XML output that hides all fixes.inc
+		functions when the library is built with <c>FIXES_NoPawndoc</c>.  This
+		stops the hiding mid-way through for callbacks.
+		<p />
+		Note that the actual hiding itself is done by an XML comment started
+		here and ended by a later variable.
+	</remarks>
+
+	<!--
+*/
+
+static stock FIXES_Onzzzzzzzzzzzzzzzzzzzzzzz() { }
 
 #endinput
 
