@@ -7758,7 +7758,7 @@ _FIXES_STATIC_STOCK
 	 * Is the first colour on a vehicle random?  Bit array of booleans.
 	 * </remarks>
 	 */
-	FIXES_gsRandomVehicleColour1[_FIXES_CEILDIV(MAX_VEHICLES, cellbits)] = {0, ...};
+	FIXES_gsRandomVehicleColour1[_FIXES_CEILDIV((MAX_VEHICLES + 1), cellbits)] = {0, ...};
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour1);
 #endif
@@ -7770,7 +7770,7 @@ _FIXES_STATIC_STOCK
 	 * Is the second colour on a vehicle random?  Bit array of booleans.
 	 * </remarks>
 	 */
-	FIXES_gsRandomVehicleColour2[_FIXES_CEILDIV(MAX_VEHICLES, cellbits)] = {0, ...};
+	FIXES_gsRandomVehicleColour2[_FIXES_CEILDIV((MAX_VEHICLES + 1), cellbits)] = {0, ...};
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour2);
 #endif
@@ -7784,7 +7784,7 @@ _FIXES_STATIC_STOCK
 	 * extra colour.  This might become compile-time opt-in.
 	 * </remarks>
 	 */
-	FIXES_gsBackupVehicleColour[MAX_VEHICLES char] = {0, ...};
+	FIXES_gsBackupVehicleColour[(MAX_VEHICLES + 1) char] = {0, ...};
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsBackupVehicleColour);
 #endif
@@ -7796,7 +7796,7 @@ _FIXES_STATIC_STOCK
 	 * Are the colours on a vehicle random?  Bit array of booleans.
 	 * </remarks>
 	 */
-	FIXES_gsRandomVehicleColour[_FIXES_CEILDIV(MAX_VEHICLES, cellbits)] = {0, ...};
+	FIXES_gsRandomVehicleColour[_FIXES_CEILDIV((MAX_VEHICLES + 1), cellbits)] = {0, ...};
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour);
 #endif
