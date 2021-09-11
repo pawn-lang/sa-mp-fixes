@@ -16840,7 +16840,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  */
 
 #if FIX_OnVehicleSpawn
-	stock FIXES_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false)
+	stock FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false)
 	{
 		#if FIXES_OneRandomVehicleColour
 				if (color1 == -1)
@@ -16848,61 +16848,61 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 					if (color2 == -1)
 					{
 						return
-							_FIXES_GetRandomCarColPair(vehicletype, color1, color2),
-							vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
-							FIXES_gsBackupVehicleColour{vehicletype} = 0,
-							color1 = vehicletype >>> 5,
-							color2 = 1 << (vehicletype & 31),
+							_FIXES_GetRandomCarColPair(modelid, color1, color2),
+							modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{modelid} = 0,
+							color1 = modelid >>> 5,
+							color2 = 1 << (modelid & 31),
 							FIXES_gsRandomVehicleColour1[color1] |= color2,
 							FIXES_gsRandomVehicleColour2[color1] |= color2,
-							vehicletype;
+							modelid;
 					}
 					else
 					{
 						return
 							// Random temp var.
-							_FIXES_GetRandomCarColPair(vehicletype, color1, FIXES_gsTrimChr),
-							vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
-							FIXES_gsBackupVehicleColour{vehicletype} = color2,
-							color1 = vehicletype >>> 5,
-							color2 = 1 << (vehicletype & 31),
+							_FIXES_GetRandomCarColPair(modelid, color1, FIXES_gsTrimChr),
+							modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{modelid} = color2,
+							color1 = modelid >>> 5,
+							color2 = 1 << (modelid & 31),
 							FIXES_gsRandomVehicleColour1[color1] |= color2,
 							FIXES_gsRandomVehicleColour2[color1] &= ~color2,
-							vehicletype;
+							modelid;
 					}
 				}
 				else if (color2 == -1)
 				{
 						return
 							// Random temp var.
-							_FIXES_GetRandomCarColPair(vehicletype, FIXES_gsTrimChr, color2),
-							vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
-							FIXES_gsBackupVehicleColour{vehicletype} = color1,
-							color1 = vehicletype >>> 5,
-							color2 = 1 << (vehicletype & 31),
+							_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, color2),
+							modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{modelid} = color1,
+							color1 = modelid >>> 5,
+							color2 = 1 << (modelid & 31),
 							FIXES_gsRandomVehicleColour1[color1] &= ~color2,
 							FIXES_gsRandomVehicleColour2[color1] |= color2,
-							vehicletype;
+							modelid;
 				}
 				else
 				{
 					return
-						vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
-						FIXES_gsBackupVehicleColour{vehicletype} = 0,
-						color1 = vehicletype >>> 5,
-						color2 = 1 << (vehicletype & 31),
+						modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsBackupVehicleColour{modelid} = 0,
+						color1 = modelid >>> 5,
+						color2 = 1 << (modelid & 31),
 						FIXES_gsRandomVehicleColour1[color1] &= ~color2,
 						FIXES_gsRandomVehicleColour2[color1] &= ~color2,
-						vehicletype;
+						modelid;
 				}
 		#else
 				if (color1 == -1 && color2 == -1)
 				{
 					return
-						_FIXES_GetRandomCarColPair(vehicletype, color1, color2),
-						vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
-						FIXES_gsRandomVehicleColour[vehicletype >>> 5] |= 1 << (vehicletype & 31),
-						vehicletype;
+						_FIXES_GetRandomCarColPair(modelid, color1, color2),
+						modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31),
+						modelid;
 				}
 			#if !FIXES_NoVehicleColourMsg
 				else if (color1 == -1 || color2 == -1)
@@ -16919,18 +16919,18 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 						print(FIXES_gscThreeStars),
 						print(       "***                    If you want to fix this issue, fix your code."),
 						print(FIXES_gscThreeStars),
-						_FIXES_GetRandomCarColPair(vehicletype, color1, color2),
-						vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
-						FIXES_gsRandomVehicleColour[vehicletype >>> 5] |= 1 << (vehicletype & 31),
-						vehicletype;
+						_FIXES_GetRandomCarColPair(modelid, color1, color2),
+						modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31),
+						modelid;
 				}
 			#endif
 				else
 				{
 					return
-						vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
-						FIXES_gsRandomVehicleColour[vehicletype >>> 5] &= ~(1 << (vehicletype & 31)),
-						vehicletype;
+						modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsRandomVehicleColour[modelid >>> 5] &= ~(1 << (modelid & 31)),
+						modelid;
 				}
 		#endif
 	}
@@ -16944,6 +16944,228 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 	#define CreateVehicle__( FIXES_CreateVehicle(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_CreateVehicle);
+#endif
+
+/**
+ * <fixes>OnVehicleSpawn</fixes>
+ */
+
+#if FIX_OnVehicleSpawn
+	stock FIXES_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false)
+	{
+		#if FIXES_OneRandomVehicleColour
+				if (color1 == -1)
+				{
+					if (color2 == -1)
+					{
+						return
+							_FIXES_GetRandomCarColPair(modelid, color1, color2),
+							modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{modelid} = 0,
+							color1 = modelid >>> 5,
+							color2 = 1 << (modelid & 31),
+							FIXES_gsRandomVehicleColour1[color1] |= color2,
+							FIXES_gsRandomVehicleColour2[color1] |= color2,
+							modelid;
+					}
+					else
+					{
+						return
+							// Random temp var.
+							_FIXES_GetRandomCarColPair(modelid, color1, FIXES_gsTrimChr),
+							modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{modelid} = color2,
+							color1 = modelid >>> 5,
+							color2 = 1 << (modelid & 31),
+							FIXES_gsRandomVehicleColour1[color1] |= color2,
+							FIXES_gsRandomVehicleColour2[color1] &= ~color2,
+							modelid;
+					}
+				}
+				else if (color2 == -1)
+				{
+						return
+							// Random temp var.
+							_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, color2),
+							modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{modelid} = color1,
+							color1 = modelid >>> 5,
+							color2 = 1 << (modelid & 31),
+							FIXES_gsRandomVehicleColour1[color1] &= ~color2,
+							FIXES_gsRandomVehicleColour2[color1] |= color2,
+							modelid;
+				}
+				else
+				{
+					return
+						modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsBackupVehicleColour{modelid} = 0,
+						color1 = modelid >>> 5,
+						color2 = 1 << (modelid & 31),
+						FIXES_gsRandomVehicleColour1[color1] &= ~color2,
+						FIXES_gsRandomVehicleColour2[color1] &= ~color2,
+						modelid;
+				}
+		#else
+				if (color1 == -1 && color2 == -1)
+				{
+					return
+						_FIXES_GetRandomCarColPair(modelid, color1, color2),
+						modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31),
+						modelid;
+				}
+			#if !FIXES_NoVehicleColourMsg
+				else if (color1 == -1 || color2 == -1)
+				{
+					return
+						printf("\7\7\7*** fixes.inc warning: `AddStaticVehicle` called with only one random colour.  If"),
+						print(       "***                    you want to support this case, recompile with:"),
+						print(FIXES_gscThreeStars),
+						print(       "***                        #define FIXES_OneRandomVehicleColour"),
+						print(FIXES_gscThreeStars),
+						print(       "***                    If you want to disable this message, recompile with:"),
+						print(FIXES_gscThreeStars),
+						print(       "***                        #define FIXES_NoVehicleColourMsg"),
+						print(FIXES_gscThreeStars),
+						print(       "***                    If you want to fix this issue, fix your code."),
+						print(FIXES_gscThreeStars),
+						_FIXES_GetRandomCarColPair(modelid, color1, color2),
+						modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2),
+						FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31),
+						modelid;
+				}
+			#endif
+				else
+				{
+					return
+						modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2),
+						FIXES_gsRandomVehicleColour[modelid >>> 5] &= ~(1 << (modelid & 31)),
+						modelid;
+				}
+		#endif
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_AddStaticVehicle
+		#define AddStaticVehicle( FIXES_AddStaticVehicle(
+	#endif
+
+	#define _ALS_AddStaticVehicle__
+	#define AddStaticVehicle__( FIXES_AddStaticVehicle(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_AddStaticVehicle);
+#endif
+
+/**
+ * <fixes>OnVehicleSpawn</fixes>
+ */
+
+#if FIX_OnVehicleSpawn
+	stock FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false)
+	{
+		#if FIXES_OneRandomVehicleColour
+				if (color1 == -1)
+				{
+					if (color2 == -1)
+					{
+						return
+							_FIXES_GetRandomCarColPair(modelid, color1, color2),
+							modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{modelid} = 0,
+							color1 = modelid >>> 5,
+							color2 = 1 << (modelid & 31),
+							FIXES_gsRandomVehicleColour1[color1] |= color2,
+							FIXES_gsRandomVehicleColour2[color1] |= color2,
+							modelid;
+					}
+					else
+					{
+						return
+							// Random temp var.
+							_FIXES_GetRandomCarColPair(modelid, color1, FIXES_gsTrimChr),
+							modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{modelid} = color2,
+							color1 = modelid >>> 5,
+							color2 = 1 << (modelid & 31),
+							FIXES_gsRandomVehicleColour1[color1] |= color2,
+							FIXES_gsRandomVehicleColour2[color1] &= ~color2,
+							modelid;
+					}
+				}
+				else if (color2 == -1)
+				{
+						return
+							// Random temp var.
+							_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, color2),
+							modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{modelid} = color1,
+							color1 = modelid >>> 5,
+							color2 = 1 << (modelid & 31),
+							FIXES_gsRandomVehicleColour1[color1] &= ~color2,
+							FIXES_gsRandomVehicleColour2[color1] |= color2,
+							modelid;
+				}
+				else
+				{
+					return
+						modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsBackupVehicleColour{modelid} = 0,
+						color1 = modelid >>> 5,
+						color2 = 1 << (modelid & 31),
+						FIXES_gsRandomVehicleColour1[color1] &= ~color2,
+						FIXES_gsRandomVehicleColour2[color1] &= ~color2,
+						modelid;
+				}
+		#else
+				if (color1 == -1 && color2 == -1)
+				{
+					return
+						_FIXES_GetRandomCarColPair(modelid, color1, color2),
+						modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31),
+						modelid;
+				}
+			#if !FIXES_NoVehicleColourMsg
+				else if (color1 == -1 || color2 == -1)
+				{
+					return
+						printf("\7\7\7*** fixes.inc warning: `AddStaticVehicleEx` called with only one random colour."),
+						print(       "***                    If you want to support this case, recompile with:"),
+						print(FIXES_gscThreeStars),
+						print(       "***                        #define FIXES_OneRandomVehicleColour"),
+						print(FIXES_gscThreeStars),
+						print(       "***                    If you want to disable this message, recompile with:"),
+						print(FIXES_gscThreeStars),
+						print(       "***                        #define FIXES_NoVehicleColourMsg"),
+						print(FIXES_gscThreeStars),
+						print(       "***                    If you want to fix this issue, fix your code."),
+						print(FIXES_gscThreeStars),
+						_FIXES_GetRandomCarColPair(modelid, color1, color2),
+						modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31),
+						modelid;
+				}
+			#endif
+				else
+				{
+					return
+						modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsRandomVehicleColour[modelid >>> 5] &= ~(1 << (modelid & 31)),
+						modelid;
+				}
+		#endif
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_AddStaticVehicleEx
+		#define AddStaticVehicleEx( FIXES_AddStaticVehicleEx(
+	#endif
+
+	#define _ALS_AddStaticVehicleEx__
+	#define AddStaticVehicleEx__( FIXES_AddStaticVehicleEx(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_AddStaticVehicleEx);
 #endif
 
 /**
