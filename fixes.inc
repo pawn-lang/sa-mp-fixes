@@ -11530,7 +11530,10 @@ public OnGameModeInit()
 				}
 				if (fexist(FIXES_gscRconFixFS))
 				{
-					SendRconCommand__("loadfs ../scriptfiles/callbackfix");
+					#if defined _INC_y_rconfix
+						SendRconCommand__("loadfs ../scriptfiles/callbackfix");
+					#endif
+					
 					#if FIX_OnClientCheckResponse
 						state OnClientCheckResponse : OnClientCheckResponse_GM;
 					#endif
