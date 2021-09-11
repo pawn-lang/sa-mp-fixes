@@ -16951,7 +16951,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  */
 
 #if FIX_OnVehicleSpawn
-	stock FIXES_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false)
+	stock FIXES_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2)
 	{
 		#if FIXES_OneRandomVehicleColour
 				if (color1 == -1)
@@ -16960,7 +16960,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 					{
 						return
 							_FIXES_GetRandomCarColPair(modelid, color1, color2),
-							modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2),
 							FIXES_gsBackupVehicleColour{modelid} = 0,
 							color1 = modelid >>> 5,
 							color2 = 1 << (modelid & 31),
@@ -16973,7 +16973,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 						return
 							// Random temp var.
 							_FIXES_GetRandomCarColPair(modelid, color1, FIXES_gsTrimChr),
-							modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2),
 							FIXES_gsBackupVehicleColour{modelid} = color2,
 							color1 = modelid >>> 5,
 							color2 = 1 << (modelid & 31),
@@ -16987,7 +16987,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 						return
 							// Random temp var.
 							_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, color2),
-							modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2),
 							FIXES_gsBackupVehicleColour{modelid} = color1,
 							color1 = modelid >>> 5,
 							color2 = 1 << (modelid & 31),
@@ -16998,7 +16998,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 				else
 				{
 					return
-						modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2),
 						FIXES_gsBackupVehicleColour{modelid} = 0,
 						color1 = modelid >>> 5,
 						color2 = 1 << (modelid & 31),
@@ -17011,7 +17011,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 				{
 					return
 						_FIXES_GetRandomCarColPair(modelid, color1, color2),
-						modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						modelid = AddStaticVehicle(modelid, x, y, z, rotation, color1, color2),
 						FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31),
 						modelid;
 				}
