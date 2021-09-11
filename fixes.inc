@@ -10061,7 +10061,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:id, color, const text[]) = UpdatePlayer3DTextLabelText;
 	native ShowPlayerDialog__(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
 	native gpci__(playerid, serial[], maxlen) = gpci;
-	native CreateVehicle__(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, addsiren = 0) = CreateVehicle;
+	native CreateVehicle__(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false) = CreateVehicle;
 	native DestroyVehicle__(vehicleid) = DestroyVehicle;
 	native IsVehicleStreamedIn__(vehicleid, forplayerid) = IsVehicleStreamedIn;
 	native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
@@ -10639,7 +10639,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 				print("* If you're not able to, or just don't want to make these changes you can      *");
 				print("* suppress the warning by defining this at the top of your mode:               *");
 				print("*                                                                              *");
-				print("*     #define FIXES_NoServerVarMsg 0                                             *");
+				print("*     #define FIXES_NoServerVarMsg                                             *");
 				print("*                                                                              *");
 				print("* Or (preferably) disable the relevant fixes with:                             *");
 				print("*                                                                              *");
@@ -10677,7 +10677,7 @@ static stock _FIXES_CheckMaxPlayers()
 				print(FIXES_gscThreeStars),
 				print(           "***                  Disable this message with:"),
 				print(FIXES_gscThreeStars),
-				print(           "***                      #define FIXES_NoGetMaxPlayersMsg 0"),
+				print(           "***                      #define FIXES_NoGetMaxPlayersMsg"),
 				print(FIXES_gscThreeStars);
 			#endif
 			_FIXES_gsMaxPlayers = MAX_PLAYERS;
@@ -10689,7 +10689,7 @@ static stock _FIXES_CheckMaxPlayers()
 			print(FIXES_gscThreeStars),
 			print(       "***                    Disable this message with:"),
 			print(FIXES_gscThreeStars),
-			print(       "***                        #define FIXES_NoGetMaxPlayersMsg 0"),
+			print(       "***                        #define FIXES_NoGetMaxPlayersMsg"),
 			print(FIXES_gscThreeStars);
 		}
 	#endif
@@ -11389,7 +11389,7 @@ public OnFilterScriptInit()
 	_FIXES_gIsFilterscript = true;
 	_FIXES_DetermineOS();
 	_FIXES_CheckServerRoot();
-	#if FIXES_Single && FIXES_NoSingleMsg
+	#if FIXES_Single && !FIXES_NoSingleMsg
 		// Check this really IS the only script running.
 		if (existproperty(5, FIXES_gscSingleProperty))
 		{
@@ -16833,6 +16833,117 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(On_DialogResponse);
+#endif
+
+/**
+ * <fixes>OnVehicleSpawn</fixes>
+ */
+
+#if FIX_OnVehicleSpawn
+	stock FIXES_CreateVehicle(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false)
+	{
+		#if FIXES_OneRandomVehicleColour
+				if (color1 == -1)
+				{
+					if (color2 == -1)
+					{
+						return
+							_FIXES_GetRandomCarColPair(vehicletype, color1, color2),
+							vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{vehicletype} = 0,
+							color1 = vehicletype >>> 5,
+							color2 = 1 << (vehicletype & 31),
+							FIXES_gsRandomVehicleColour1[color1] |= color2,
+							FIXES_gsRandomVehicleColour2[color1] |= color2,
+							vehicletype;
+					}
+					else
+					{
+						return
+							// Random temp var.
+							_FIXES_GetRandomCarColPair(vehicletype, color1, FIXES_gsTrimChr),
+							vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{vehicletype} = color2,
+							color1 = vehicletype >>> 5,
+							color2 = 1 << (vehicletype & 31),
+							FIXES_gsRandomVehicleColour1[color1] |= color2,
+							FIXES_gsRandomVehicleColour2[color1] &= ~color2,
+							vehicletype;
+					}
+				}
+				else if (color2 == -1)
+				{
+						return
+							// Random temp var.
+							_FIXES_GetRandomCarColPair(vehicletype, FIXES_gsTrimChr, color2),
+							vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+							FIXES_gsBackupVehicleColour{vehicletype} = color1,
+							color1 = vehicletype >>> 5,
+							color2 = 1 << (vehicletype & 31),
+							FIXES_gsRandomVehicleColour1[color1] &= ~color2,
+							FIXES_gsRandomVehicleColour2[color1] |= color2,
+							vehicletype;
+				}
+				else
+				{
+					return
+						vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsBackupVehicleColour{vehicletype} = 0,
+						color1 = vehicletype >>> 5,
+						color2 = 1 << (vehicletype & 31),
+						FIXES_gsRandomVehicleColour1[color1] &= ~color2,
+						FIXES_gsRandomVehicleColour2[color1] &= ~color2,
+						vehicletype;
+				}
+		#else
+				if (color1 == -1 && color2 == -1)
+				{
+					return
+						_FIXES_GetRandomCarColPair(vehicletype, color1, color2),
+						vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsRandomVehicleColour[vehicletype >>> 5] |= 1 << (vehicletype & 31),
+						vehicletype;
+				}
+			#if !FIXES_NoVehicleColourMsg
+				else if (color1 == -1 || color2 == -1)
+				{
+					return
+						printf("\7\7\7*** fixes.inc warning: `CreateVehicle` called with only one random colour.  If"),
+						print(       "***                    you want to support this case, recompile with:"),
+						print(FIXES_gscThreeStars),
+						print(       "***                        #define FIXES_OneRandomVehicleColour"),
+						print(FIXES_gscThreeStars),
+						print(       "***                    If you want to disable this message, recompile with:"),
+						print(FIXES_gscThreeStars),
+						print(       "***                        #define FIXES_NoVehicleColourMsg"),
+						print(FIXES_gscThreeStars),
+						print(       "***                    If you want to fix this issue, fix your code."),
+						print(FIXES_gscThreeStars),
+						_FIXES_GetRandomCarColPair(vehicletype, color1, color2),
+						vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsRandomVehicleColour[vehicletype >>> 5] |= 1 << (vehicletype & 31),
+						vehicletype;
+				}
+			#endif
+				else
+				{
+					return
+						vehicletype = CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+						FIXES_gsRandomVehicleColour[vehicletype >>> 5] &= ~(1 << (vehicletype & 31)),
+						vehicletype;
+				}
+		#endif
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_CreateVehicle
+		#define CreateVehicle( FIXES_CreateVehicle(
+	#endif
+
+	#define _ALS_CreateVehicle__
+	#define CreateVehicle__( FIXES_CreateVehicle(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_CreateVehicle);
 #endif
 
 /**
