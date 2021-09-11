@@ -861,21 +861,21 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </remarks>
  */
 
-#if !defined FIXES_SingleMsg
-	_FIXES_CONST_PAWNDOC(FIXES_SingleMsg);
-	#define FIXES_SingleMsg                      (0)
-#elseif _FIXES_IS_UNSET(FIXES_SingleMsg)
-	#undef FIXES_SingleMsg
-	static stock FIXES_SingleMsg = 2;
-	#define FIXES_SingleMsg                      (2)
-#elseif FIXES_SingleMsg
-	#undef FIXES_SingleMsg
-	static stock FIXES_SingleMsg = 1;
-	#define FIXES_SingleMsg                      (1)
+#if !defined FIXES_NoSingleMsg
+	_FIXES_CONST_PAWNDOC(FIXES_NoSingleMsg);
+	#define FIXES_NoSingleMsg                    (0)
+#elseif _FIXES_IS_UNSET(FIXES_NoSingleMsg)
+	#undef FIXES_NoSingleMsg
+	static stock FIXES_NoSingleMsg = 2;
+	#define FIXES_NoSingleMsg                    (2)
+#elseif FIXES_NoSingleMsg
+	#undef FIXES_NoSingleMsg
+	static stock FIXES_NoSingleMsg = 1;
+	#define FIXES_NoSingleMsg                    (1)
 #else
-	#undef FIXES_SingleMsg
-	static stock FIXES_SingleMsg = 0;
-	#define FIXES_SingleMsg                      (0)
+	#undef FIXES_NoSingleMsg
+	static stock FIXES_NoSingleMsg = 0;
+	#define FIXES_NoSingleMsg                    (0)
 #endif
 
 /**
@@ -886,21 +886,21 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </remarks>
  */
 
-#if !defined FIXES_ServerVarMsg
-	_FIXES_CONST_PAWNDOC(FIXES_ServerVarMsg);
-	#define FIXES_ServerVarMsg                   (0)
-#elseif _FIXES_IS_UNSET(FIXES_ServerVarMsg)
-	#undef FIXES_ServerVarMsg
-	static stock FIXES_ServerVarMsg = 2;
-	#define FIXES_ServerVarMsg                   (2)
-#elseif FIXES_ServerVarMsg
-	#undef FIXES_ServerVarMsg
-	static stock FIXES_ServerVarMsg = 1;
-	#define FIXES_ServerVarMsg                   (1)
+#if !defined FIXES_NoServerVarMsg
+	_FIXES_CONST_PAWNDOC(FIXES_NoServerVarMsg);
+	#define FIXES_NoServerVarMsg                 (0)
+#elseif _FIXES_IS_UNSET(FIXES_NoServerVarMsg)
+	#undef FIXES_NoServerVarMsg
+	static stock FIXES_NoServerVarMsg = 2;
+	#define FIXES_NoServerVarMsg                 (2)
+#elseif FIXES_NoServerVarMsg
+	#undef FIXES_NoServerVarMsg
+	static stock FIXES_NoServerVarMsg = 1;
+	#define FIXES_NoServerVarMsg                 (1)
 #else
-	#undef FIXES_ServerVarMsg
-	static stock FIXES_ServerVarMsg = 0;
-	#define FIXES_ServerVarMsg                   (0)
+	#undef FIXES_NoServerVarMsg
+	static stock FIXES_NoServerVarMsg = 0;
+	#define FIXES_NoServerVarMsg                 (0)
 #endif
 
 /**
@@ -910,21 +910,21 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </remarks>
  */
 
-#if !defined FIXES_GetMaxPlayersMsg
-	_FIXES_CONST_PAWNDOC(FIXES_GetMaxPlayersMsg);
-	#define FIXES_GetMaxPlayersMsg               (0)
-#elseif _FIXES_IS_UNSET(FIXES_GetMaxPlayersMsg)
-	#undef FIXES_GetMaxPlayersMsg
-	static stock FIXES_GetMaxPlayersMsg = 2;
-	#define FIXES_GetMaxPlayersMsg               (2)
-#elseif FIXES_GetMaxPlayersMsg
-	#undef FIXES_GetMaxPlayersMsg
-	static stock FIXES_GetMaxPlayersMsg = 1;
-	#define FIXES_GetMaxPlayersMsg               (1)
+#if !defined FIXES_NoGetMaxPlayersMsg
+	_FIXES_CONST_PAWNDOC(FIXES_NoGetMaxPlayersMsg);
+	#define FIXES_NoGetMaxPlayersMsg             (0)
+#elseif _FIXES_IS_UNSET(FIXES_NoGetMaxPlayersMsg)
+	#undef FIXES_NoGetMaxPlayersMsg
+	static stock FIXES_NoGetMaxPlayersMsg = 2;
+	#define FIXES_NoGetMaxPlayersMsg             (2)
+#elseif FIXES_NoGetMaxPlayersMsg
+	#undef FIXES_NoGetMaxPlayersMsg
+	static stock FIXES_NoGetMaxPlayersMsg = 1;
+	#define FIXES_NoGetMaxPlayersMsg             (1)
 #else
-	#undef FIXES_GetMaxPlayersMsg
-	static stock FIXES_GetMaxPlayersMsg = 0;
-	#define FIXES_GetMaxPlayersMsg               (0)
+	#undef FIXES_NoGetMaxPlayersMsg
+	static stock FIXES_NoGetMaxPlayersMsg = 0;
+	#define FIXES_NoGetMaxPlayersMsg             (0)
 #endif
 
 /**
@@ -983,6 +983,76 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#undef FIXES_NoYSI
 	static stock FIXES_NoYSI = 0;
 	#define FIXES_NoYSI                          (0)
+#endif
+
+/**
+ * <remarks>
+ * Most vehicles are created with two explicit colours (say <c>5, 6</c>) or two
+ * random colours (<c>-1, -1</c>).  It is allowed, but rare, to create a vehicle
+ * with one random colour and one fixed colour (<c>-1, 5</c>, <c>9, -1</c> etc).
+ * fixes.inc supports this, but it takes a lot more code to fix than the common
+ * case of all or nothing.  Thus, having only one random colour is only
+ * supported with this explicit setting enabled.
+ * </remarks>
+ */
+
+#if !defined FIXES_OneRandomVehicleColour
+	#if !defined FIXES_OneRandomVehicleColor
+		_FIXES_CONST_PAWNDOC(FIXES_OneRandomVehicleColour);
+		#define FIXES_OneRandomVehicleColour         (0)
+	#elseif _FIXES_IS_UNSET(FIXES_OneRandomVehicleColor)
+		static stock FIXES_OneRandomVehicleColour = 2;
+		#define FIXES_OneRandomVehicleColour         (2)
+	#else
+		static stock FIXES_OneRandomVehicleColour = FIXES_OneRandomVehicleColor;
+		#define FIXES_OneRandomVehicleColour         (FIXES_OneRandomVehicleColor)
+	#endif
+	#define FIXES_OneRandomVehicleColour         (0)
+#elseif _FIXES_IS_UNSET(FIXES_OneRandomVehicleColour)
+	#undef FIXES_OneRandomVehicleColour
+	static stock FIXES_OneRandomVehicleColour = 2;
+	#define FIXES_OneRandomVehicleColour         (2)
+#elseif FIXES_OneRandomVehicleColour
+	#undef FIXES_OneRandomVehicleColour
+	static stock FIXES_OneRandomVehicleColour = 1;
+	#define FIXES_OneRandomVehicleColour         (1)
+#else
+	#undef FIXES_OneRandomVehicleColour
+	static stock FIXES_OneRandomVehicleColour = 0;
+	#define FIXES_OneRandomVehicleColour         (0)
+#endif
+
+/**
+ * <remarks>
+ * Show a message at vehicle creation if <c>FIXES_OneRandomVehicleColour</c>
+ * is set, but a vehicle is created with only one random colour.
+ * </remarks>
+ */
+
+#if !defined FIXES_NoVehicleColourMsg
+	#if !defined FIXES_NoVehicleColorMsg
+		_FIXES_CONST_PAWNDOC(FIXES_NoVehicleColourMsg);
+		#define FIXES_NoVehicleColourMsg             (0)
+	#elseif _FIXES_IS_UNSET(FIXES_NoVehicleColorMsg)
+		static stock FIXES_NoVehicleColourMsg = 2;
+		#define FIXES_NoVehicleColourMsg             (2)
+	#else
+		static stock FIXES_NoVehicleColourMsg = FIXES_NoVehicleColorMsg;
+		#define FIXES_NoVehicleColourMsg             (FIXES_NoVehicleColorMsg)
+	#endif
+	#define FIXES_NoVehicleColourMsg             (0)
+#elseif _FIXES_IS_UNSET(FIXES_NoVehicleColourMsg)
+	#undef FIXES_NoVehicleColourMsg
+	static stock FIXES_NoVehicleColourMsg = 2;
+	#define FIXES_NoVehicleColourMsg             (2)
+#elseif FIXES_NoVehicleColourMsg
+	#undef FIXES_NoVehicleColourMsg
+	static stock FIXES_NoVehicleColourMsg = 1;
+	#define FIXES_NoVehicleColourMsg             (1)
+#else
+	#undef FIXES_NoVehicleColourMsg
+	static stock FIXES_NoVehicleColourMsg = 0;
+	#define FIXES_NoVehicleColourMsg             (0)
 #endif
 
 /*
@@ -7681,7 +7751,7 @@ _FIXES_STATIC_STOCK
 	_FIXES_HIDE_PAWNDOC(FIXES_gsJackedId);
 #endif
 
-#if FIX_OnVehicleSpawn
+#if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
 _FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
@@ -7693,7 +7763,7 @@ _FIXES_STATIC_STOCK
 	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour1);
 #endif
 
-#if FIX_OnVehicleSpawn
+#if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
 _FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
@@ -7705,7 +7775,7 @@ _FIXES_STATIC_STOCK
 	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour2);
 #endif
 
-#if FIX_OnVehicleSpawn
+#if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
 _FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
@@ -7717,6 +7787,18 @@ _FIXES_STATIC_STOCK
 	FIXES_gsBackupVehicleColour[MAX_VEHICLES char] = {0, ...};
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsBackupVehicleColour);
+#endif
+
+#if FIX_OnVehicleSpawn && !FIXES_OneRandomVehicleColour
+_FIXES_STATIC_STOCK
+	/**
+	 * <remarks>
+	 * Are the colours on a vehicle random?  Bit array of booleans.
+	 * </remarks>
+	 */
+	FIXES_gsRandomVehicleColour[_FIXES_CEILDIV(MAX_VEHICLES, cellbits)] = {0, ...};
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour);
 #endif
 
 /*
@@ -10528,7 +10610,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 	static stock _FIXES_CheckServerRoot()
 	{
 		FIXES_gsServerCFG = fopen("DANGEROUS_SERVER_ROOT/server.cfg", io_read);
-		#if FIXES_ServerVarMsg
+		#if FIXES_NoServerVarMsg
 			if (!FIXES_gsServerCFG)
 			{
 				print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM);
@@ -10557,7 +10639,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 				print("* If you're not able to, or just don't want to make these changes you can      *");
 				print("* suppress the warning by defining this at the top of your mode:               *");
 				print("*                                                                              *");
-				print("*     #define FIXES_ServerVarMsg 0                                             *");
+				print("*     #define FIXES_NoServerVarMsg 0                                             *");
 				print("*                                                                              *");
 				print("* Or (preferably) disable the relevant fixes with:                             *");
 				print("*                                                                              *");
@@ -10588,26 +10670,26 @@ static stock _FIXES_CheckMaxPlayers()
 		// Check max players match.
 		if (_FIXES_gsMaxPlayers > MAX_PLAYERS)
 		{
-			#if FIXES_GetMaxPlayersMsg
+			#if FIXES_NoGetMaxPlayersMsg
 				printf("\7\7\7\7\7*** fixes.inc error: Server var `maxplayers` (%d) > `MAX_PLAYERS` (%d), may", _FIXES_gsMaxPlayers, MAX_PLAYERS),
 				print(           "***                  cause OOBs with many players.  Recompile your mode with a"),
 				print(           "***                  higher `MAX_PLAYERS` to ensure sufficient array space."),
 				print(FIXES_gscThreeStars),
 				print(           "***                  Disable this message with:"),
 				print(FIXES_gscThreeStars),
-				print(           "***                      #define FIXES_GetMaxPlayersMsg 0"),
+				print(           "***                      #define FIXES_NoGetMaxPlayersMsg 0"),
 				print(FIXES_gscThreeStars);
 			#endif
 			_FIXES_gsMaxPlayers = MAX_PLAYERS;
 		}
-	#if FIXES_GetMaxPlayersMsg
+	#if FIXES_NoGetMaxPlayersMsg
 		else if (_FIXES_gsMaxPlayers < MAX_PLAYERS)
 		{
 			printf("\7\7\7*** fixes.inc warning: Server var `maxplayers` (%d) < `MAX_PLAYERS` (%d), wasting memory.", _FIXES_gsMaxPlayers, MAX_PLAYERS),
 			print(FIXES_gscThreeStars),
 			print(       "***                    Disable this message with:"),
 			print(FIXES_gscThreeStars),
-			print(       "***                        #define FIXES_GetMaxPlayersMsg 0"),
+			print(       "***                        #define FIXES_NoGetMaxPlayersMsg 0"),
 			print(FIXES_gscThreeStars);
 		}
 	#endif
@@ -11307,7 +11389,7 @@ public OnFilterScriptInit()
 	_FIXES_gIsFilterscript = true;
 	_FIXES_DetermineOS();
 	_FIXES_CheckServerRoot();
-	#if FIXES_Single && FIXES_SingleMsg
+	#if FIXES_Single && FIXES_NoSingleMsg
 		// Check this really IS the only script running.
 		if (existproperty(5, FIXES_gscSingleProperty))
 		{
@@ -11432,7 +11514,7 @@ public OnGameModeInit()
 	state _ALS : _ALS_go;
 	_FIXES_DetermineOS();
 
-	#if FIXES_Single && FIXES_SingleMsg
+	#if FIXES_Single && FIXES_NoSingleMsg
 		// Check this really IS the only script running.  Properties reset when
 		// a gamemode restarts, so we don't have to worry about filterscipts
 		// detecting themselves.
@@ -16766,31 +16848,42 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		_FIXES_IS_IN_CHARGE
 		{
 			// Pick some new colours.
-			new
-				slot = vehicleid >>> 5,
-				mask = 1 << (vehicleid & 31);
-			if (FIXES_gsRandomVehicleColour1[slot] & mask)
-			{
-				if (FIXES_gsRandomVehicleColour2[slot] & mask)
+			#if FIXES_OneRandomVehicleColour
+				new
+					slot = vehicleid >>> 5,
+					mask = 1 << (vehicleid & 31);
+				if (FIXES_gsRandomVehicleColour1[slot] & mask)
+				{
+					if (FIXES_gsRandomVehicleColour2[slot] & mask)
+					{
+						// Both colours are random.
+						_FIXES_GetRandomCarColPair(GetVehicleModel(vehicleid), slot, mask),
+						ChangeVehicleColor(vehicleid, slot, mask);
+					}
+					else
+					{
+						// Only colour 1 is random.
+						_FIXES_GetRandomCarColPair(GetVehicleModel(vehicleid), slot, mask),
+						ChangeVehicleColor(vehicleid, slot, FIXES_gsBackupVehicleColour{vehicleid});
+					}
+				}
+				else if (FIXES_gsRandomVehicleColour2[slot] & mask)
+				{
+					// Only colour 2 is random.
+					_FIXES_GetRandomCarColPair(GetVehicleModel(vehicleid), slot, mask),
+					ChangeVehicleColor(vehicleid, FIXES_gsBackupVehicleColour{vehicleid}, mask);
+				}
+				// Else neither colour is random.
+			#else
+				if (FIXES_gsRandomVehicleColour[vehicleid >>> 5] >>> (vehicleid & 31) & 1)
 				{
 					// Both colours are random.
-					_FIXES_GetRandomCarColPair(GetVehicleModel(vehicleid), slot, mask),
-					ChangeVehicleColor(vehicleid, slot, mask);
+					new c0, c1;
+					_FIXES_GetRandomCarColPair(GetVehicleModel(vehicleid), c0, c1),
+					ChangeVehicleColor(vehicleid, c0, c1);
 				}
-				else
-				{
-					// Only colour 1 is random.
-					_FIXES_GetRandomCarColPair(GetVehicleModel(vehicleid), slot, mask),
-					ChangeVehicleColor(vehicleid, slot, FIXES_gsBackupVehicleColour{vehicleid});
-				}
-			}
-			else if (FIXES_gsRandomVehicleColour2[slot] & mask)
-			{
-				// Only colour 2 is random.
-				_FIXES_GetRandomCarColPair(GetVehicleModel(vehicleid), slot, mask),
-				ChangeVehicleColor(vehicleid, FIXES_gsBackupVehicleColour{vehicleid}, mask);
-			}
-			// Else neither colour is random.
+				// Else neither colour is random.
+			#endif
 		}
 		
 		#if defined On_VehicleSpawn
