@@ -5378,30 +5378,34 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
- * <fix name="CreateVehicle">
+ * <fix name="OnVehicleSpawn">
  *     <problem>
  *         Colour <c>-1</c> isn't synced.
  *     </problem>
  *     <solution>
  *         Manually control the colours.
  *     </solution>
- *     <see>FIXES_CreateVehicle</see>
+ *     <see>FIXES_OnVehicleSpawn</see>
  *     <author href="https://github.com/Y-Less">Y_Less</author>
  * </fix>
  */
-//#if !defined FIX_CreateVehicle
-//	static _FIXES_STOCK FIX_CreateVehicle = _FIXES_DEFAULT;
-//	#define FIX_CreateVehicle                    _FIXES_DEFAULT
-//#elseif _FIXES_IS_UNSET(FIX_CreateVehicle)
-//	#undef FIX_CreateVehicle
-//	#define FIX_CreateVehicle                  (2)
-//#endif
-// Disable it for now.
-#if defined FIX_CreateVehicle
-	#undef FIX_CreateVehicle
+
+#if !defined FIX_OnVehicleSpawn
+	static _FIXES_STOCK FIX_OnVehicleSpawn = _FIXES_DEFAULT;
+	#define FIX_OnVehicleSpawn                   _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_OnVehicleSpawn)
+	#undef FIX_OnVehicleSpawn
+	static stock FIX_OnVehicleSpawn = 2;
+	#define FIX_OnVehicleSpawn                   (2)
+#elseif FIX_OnVehicleSpawn
+	#undef FIX_OnVehicleSpawn
+	static stock FIX_OnVehicleSpawn = 1;
+	#define FIX_OnVehicleSpawn                   (1)
+#else
+	#undef FIX_OnVehicleSpawn
+	static stock FIX_OnVehicleSpawn = 0;
+	#define FIX_OnVehicleSpawn                   (0)
 #endif
-static stock FIX_CreateVehicle = 0;
-#define FIX_CreateVehicle (0)
 
 /*
 
@@ -7677,6 +7681,44 @@ _FIXES_STATIC_STOCK
 	_FIXES_HIDE_PAWNDOC(FIXES_gsJackedId);
 #endif
 
+#if FIX_OnVehicleSpawn
+_FIXES_STATIC_STOCK
+	/**
+	 * <remarks>
+	 * Is the first colour on a vehicle random?  Bit array of booleans.
+	 * </remarks>
+	 */
+	FIXES_gsRandomVehicleColour1[_FIXES_CEILDIV(MAX_VEHICLES, cellbits)] = {0, ...};
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour1);
+#endif
+
+#if FIX_OnVehicleSpawn
+_FIXES_STATIC_STOCK
+	/**
+	 * <remarks>
+	 * Is the second colour on a vehicle random?  Bit array of booleans.
+	 * </remarks>
+	 */
+	FIXES_gsRandomVehicleColour2[_FIXES_CEILDIV(MAX_VEHICLES, cellbits)] = {0, ...};
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour2);
+#endif
+
+#if FIX_OnVehicleSpawn
+_FIXES_STATIC_STOCK
+	/**
+	 * <remarks>
+	 * If only one of the two vehicle colours is random we need to support
+	 * keeping the other one constant.  That means we need to remember one
+	 * extra colour.  This might become compile-time opt-in.
+	 * </remarks>
+	 */
+	FIXES_gsBackupVehicleColour[MAX_VEHICLES char] = {0, ...};
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_gsBackupVehicleColour);
+#endif
+
 /*
 
                                              88                                                             88
@@ -8187,7 +8229,7 @@ _FIXES_STATIC_STOCK_CONST
 	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerRaceCheckpoint);
 #endif
 
-#if FIX_CreateVehicle || FIX_API
+#if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
@@ -8413,7 +8455,7 @@ _FIXES_STATIC_STOCK_CONST
 	_FIXES_HIDE_PAWNDOC(FIXES_gscVehiclePrimary);
 #endif
 
-#if FIX_CreateVehicle || FIX_API
+#if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
@@ -8639,7 +8681,7 @@ _FIXES_STATIC_STOCK_CONST
 	_FIXES_HIDE_PAWNDOC(FIXES_gscVehicleSecondary);
 #endif
 
-#if FIX_CreateVehicle || FIX_API
+#if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
@@ -8867,7 +8909,7 @@ _FIXES_STATIC_STOCK_CONST
 	_FIXES_HIDE_PAWNDOC(FIXES_gscVehicleIndexes);
 #endif
 
-#if FIX_CreateVehicle || FIX_API
+#if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
@@ -8881,7 +8923,7 @@ _FIXES_STATIC_STOCK_CONST
 	_FIXES_HIDE_PAWNDOC(FIXES_gscColour3Camper);
 #endif
 
-#if FIX_CreateVehicle || FIX_API
+#if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
@@ -8895,7 +8937,7 @@ _FIXES_STATIC_STOCK_CONST
 	_FIXES_HIDE_PAWNDOC(FIXES_gscColour3Cement);
 #endif
 
-#if FIX_CreateVehicle || FIX_API
+#if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
@@ -8909,7 +8951,7 @@ _FIXES_STATIC_STOCK_CONST
 	_FIXES_HIDE_PAWNDOC(FIXES_gscColour3Squalo);
 #endif
 
-#if FIX_CreateVehicle || FIX_API
+#if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
@@ -8923,7 +8965,7 @@ _FIXES_STATIC_STOCK_CONST
 	_FIXES_HIDE_PAWNDOC(FIXES_gscColour4Camper);
 #endif
 
-#if FIX_CreateVehicle || FIX_API
+#if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
@@ -8937,7 +8979,7 @@ _FIXES_STATIC_STOCK_CONST
 	_FIXES_HIDE_PAWNDOC(FIXES_gscColour4Cement);
 #endif
 
-#if FIX_CreateVehicle || FIX_API
+#if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
 	 * <remarks>
@@ -11101,7 +11143,7 @@ static stock _FIXES_CheckMaxPlayers()
 	_FIXES_HIDE_PAWNDOC(_FIXES_GetAnimLibIndex);
 #endif
 
-#if FIX_CreateVehicle || FIX_API
+#if FIX_OnVehicleSpawn || FIX_API
 	#if !FIX_API
 	static
 	#endif
@@ -11124,7 +11166,11 @@ static stock _FIXES_CheckMaxPlayers()
 					colour4 = 0,
 					true;
 			}
-			// Get a random number in the given range.
+			// Get a random number in the given range.  You would think that:
+			//
+			//   start += random(end - start);
+			//
+			// would be more efficient.  You would sadly be wrong...
 			end = random(end - start) + start,
 			colour1 = FIXES_gscVehiclePrimary[end],
 			colour2 = FIXES_gscVehicleSecondary[end];
@@ -14409,7 +14455,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 #if _FIX_Menus || FIX_API
 	_FIXES_FUNC_PAWNDOC(FIXES_IS_VALID_MENU(Menu:menuid));
-	#define FIXES_IS_VALID_MENU(%0) (_FIXES_IN_RANGE(_:(%0), 0, MAX_MENUS) && (FIXES_gsValidMenus[_:(%0) >>> 5] & (1 << (_:(%0) & 0x1F))))
+	#define FIXES_IS_VALID_MENU(%0) (_FIXES_IN_RANGE(_:(%0), 0, MAX_MENUS) && (FIXES_gsValidMenus[_:(%0) >>> 5] >>> (_:(%0) & 0x1F) & 1))
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_IS_VALID_MENU);
 #endif
@@ -14857,7 +14903,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 						model = GetVehicleModel__(GetPlayerVehicleID__(playerid)) - 400;
 					if (_FIXES_IN_RANGE(model, 0, 211 + 1))
 					{
-						model = (FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2)) & 0xF;
+						model = FIXES_gscMaxPassengers[model >>> 3] >>> ((model & 7) << 2) & 0xF;
 						if (model == 0 || model == 15)
 						{
 							// Shouldn't be in this vehicle at all.
@@ -16708,6 +16754,75 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #endif
 
 /**
+ * <fixes>OnVehicleSpawn</fixes>
+ */
+
+#if FIX_OnVehicleSpawn
+	public OnVehicleSpawn(vehicleid)
+	{
+		// =======================
+		//  BEGIN: OnVehicleSpawn
+		// =======================
+		_FIXES_IS_IN_CHARGE
+		{
+			// Pick some new colours.
+			new
+				slot = vehicleid >>> 5,
+				mask = 1 << (vehicleid & 31);
+			if (FIXES_gsRandomVehicleColour1[slot] & mask)
+			{
+				if (FIXES_gsRandomVehicleColour2[slot] & mask)
+				{
+					// Both colours are random.
+					_FIXES_GetRandomCarColPair(GetVehicleModel(vehicleid), slot, mask),
+					ChangeVehicleColor(vehicleid, slot, mask);
+				}
+				else
+				{
+					// Only colour 1 is random.
+					_FIXES_GetRandomCarColPair(GetVehicleModel(vehicleid), slot, mask),
+					ChangeVehicleColor(vehicleid, slot, FIXES_gsBackupVehicleColour{vehicleid});
+				}
+			}
+			else if (FIXES_gsRandomVehicleColour2[slot] & mask)
+			{
+				// Only colour 2 is random.
+				_FIXES_GetRandomCarColPair(GetVehicleModel(vehicleid), slot, mask),
+				ChangeVehicleColor(vehicleid, FIXES_gsBackupVehicleColour{vehicleid}, mask);
+			}
+			// Else neither colour is random.
+		}
+		
+		#if defined On_VehicleSpawn
+			return On_VehicleSpawn(vehicleid);
+		#else
+			return 1;
+		#endif
+		// =======================
+		//  END:   OnVehicleSpawn
+		// =======================
+	}
+
+	#if defined _ALS_OnVehicleSpawn
+		#error _ALS_OnVehicleSpawn defined
+	#endif
+	#define _ALS_OnVehicleSpawn
+
+	#if FIXES_NoYSI
+		#define OnVehicleSpawn( On_VehicleSpawn(
+
+		#if defined On_VehicleSpawn
+			forward On_VehicleSpawn(vehicleid);
+		#endif
+	#else
+		#define OnVehicleSpawn(%0) On_VehicleSpawn(%0) <_ALS : _ALS_go>
+		_FIXES_FORWARD On_VehicleSpawn(vehicleid);
+	#endif
+#else
+	_FIXES_HIDE_PAWNDOC(On_VehicleSpawn);
+#endif
+
+/**
  * <fixes>GetPlayerDialog</fixes>
  */
 
@@ -17440,7 +17555,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 			KillTimer__(FIXES_gsPlayerAnimTimer[playerid]),
 			FIXES_gsPlayerAnimTimer[playerid] = 0;
 		}
-		if (FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] & (1 << (idx & 0x1F)))
+		if (FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] & >>> (idx & 0x1F) & 1)
 		{
 			FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
 			FIXES_gsPlayerAnimName[playerid << 6] = '\0',
@@ -17531,7 +17646,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 			KillTimer__(FIXES_gsActorAnimTimer[actorid]),
 			FIXES_gsActorAnimTimer[actorid] = 0;
 		}
-		if (FIXES_gsActorAnimLibs[actorid][idx >>> 5] & (1 << (idx & 0x1F)))
+		if (FIXES_gsActorAnimLibs[actorid][idx >>> 5] >>> (idx & 0x1F) & 1)
 		{
 			FIXES_gsActorAnimLibs[actorid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
 			FIXES_gsActorAnimName[actorid << 6] = '\0',
