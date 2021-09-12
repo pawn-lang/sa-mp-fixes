@@ -445,6 +445,8 @@ Other code and includes can test for certain fixes.inc symbols, to see what is d
 * `FIXES_USES_STATE_HOOKS`:  fixes.inc uses advanced state-based ALS hooks, not just regular ones.
 * `FIXES_CONST_CORRECT`:  The include is fully const-correct (and backwards-compatible).
 * `FIXES_TAG_CORRECT`:  The include is fully tag-correct (and backwards-compatible), i.e. optionally uses additional tags in callbacks such as `OnPlayerStateChange`.
+* `FIXES_PAWNDOC`:  The include has methods of hiding unwanted pawndoc declarations.
+* `FIXES_ID`:  The include defines the pubic variable `@_`, which is a unique ID for the current script.  This is also defined by YSI if it isn't defined here.
 
 
 ## Expansion 

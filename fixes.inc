@@ -5603,7 +5603,7 @@ _FIXES_CONST_PAWNDOC(FIXES_EXISTS);
 
 /**
  * <remarks>
- * The include is fully const-correct.
+ * The include is fully const-correct (and backwards-compatible).
  * </remarks>
  */
 
@@ -5612,7 +5612,8 @@ _FIXES_CONST_PAWNDOC(FIXES_CONST_CORRECT);
 
 /**
  * <remarks>
- * The include is fully tag-correct.
+ * The include is fully tag-correct (and backwards-compatible), i.e. optionally
+ * uses additional tags in callbacks such as `OnPlayerStateChange`.
  * </remarks>
  */
 
@@ -5621,7 +5622,7 @@ _FIXES_CONST_PAWNDOC(FIXES_TAG_CORRECT);
 
 /**
  * <remarks>
- * This include has methods of hiding unwanted pawndoc declarations.
+ * The include has methods of hiding unwanted pawndoc declarations.
  * </remarks>
  */
 
@@ -5630,7 +5631,8 @@ _FIXES_CONST_PAWNDOC(FIXES_PAWNDOC);
 
 /**
  * <remarks>
- * This include determines filterscript counts and IDs.
+ * The include defines the pubic variable `@_`, which is a unique ID for the
+ * current script.  This is also defined by YSI if it isn't defined here.
  * </remarks>
  */
 
@@ -5639,7 +5641,7 @@ _FIXES_CONST_PAWNDOC(FIXES_ID);
 
 /**
  * <remarks>
- * Is the extended API defined for use?  Better for testing
+ * The additional API functions (see above) were defined and can be used.
  * (<c>#if defined FIXES_API</c>).
  * </remarks>
  */
@@ -5651,13 +5653,17 @@ _FIXES_CONST_PAWNDOC(FIXES_API);
 
 /**
  * <remarks>
- * A marker to indicate that this version of fixes.inc uses state-based hooks.
+ * fixes.inc uses advanced state-based ALS hooks, not just regular ones.
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(FIXES_USES_STATE_HOOKS);
-#define FIXES_UseStateHooks
-#define FIXES_USES_STATE_HOOKS
+#if FIXES_NoYSI
+	_FIXES_HIDE_PAWNDOC(FIXES_USES_STATE_HOOKS);
+#else
+	_FIXES_CONST_PAWNDOC(FIXES_USES_STATE_HOOKS);
+	#define FIXES_UseStateHooks
+	#define FIXES_USES_STATE_HOOKS
+#endif
 
 /**
  * <remarks>
