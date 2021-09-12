@@ -17013,7 +17013,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #if FIX_GangZoneCreate
 	stock FIXES_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy)
 	{
-		return GangZoneCreate__(floatsub(minx, floatfract(minx)), floatsub(miny, floatfract(miny)), floatsub(maxx, floatfract(maxx)), floatsub(maxy, floatfract(maxy)));
+		return GangZoneCreate__(floatrount(minx, floatround_tozero), floatround(miny, floatround_tozero), floatround(maxx, floatround_tozero), floatround(maxy, floatround_tozero));
 	}
 
 	#if _FIXES_SAMP
@@ -20197,21 +20197,24 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		     0xBA25640C, // gamemode15
 		     0x740D30D2, // worldtime
 		     0x2FB2D3BF, // version
-		     0xFBE0D5FE, // lagcomp
+		     0xFBE0D5FE, // lagcomp // Almost bool
 		     0x19BECDF7, // logtimeformat
 		     0x62420997, // nosign
 		     0x9D57983F, // plugins
 		     0x3AFFC879, // filterscripts
 		     0xD93377B5, // gamemodetext
 		     0x74C01C1D, // weather
-		     0xB605A0C3, // gravity
+		     0xB605A0C3, // gravity // float
 		     0x8FED0775, // rcon_password
 		     0x77E7547E, // weburl
 		     0x40736C5E, // mapname
 		     0x672924D7, // language
 		     0x0E9495C2, // hostname
 		     0x5D876F9A, // password
-		     0x7C706484: // bind
+		     0x7C706484, // bind
+		     0x7C78F2F5, // echo
+		     0x2D2A0363, // artwork
+		     0x2D273D0F: // artpath
 			return bool:GetConsoleVarAsString__(varname, buffer, len);
 		default:
 			return false;
@@ -20316,10 +20319,10 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 	{
 		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
 		{
-		case 0xF59D7562, // cookielogging
-		     0x5DD3AB50, // concookies
-		     0x24DF3EEB, // db_log_queries
-		     0xD8FC2F7F, // db_logging
+		case 0xF59D7562, // cookielogging // bool
+		     0x5DD3AB50, // concookies // bool
+		     0x24DF3EEB, // db_log_queries // bool
+		     0xD8FC2F7F, // db_logging // bool
 		     0xCEF27485, // conseedtime
 		     0x0C43D2DD, // lagcompmode
 		     0xB3AAF0EC, // minconnectiontime
@@ -20327,14 +20330,18 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 		     0xED02304A, // ackslimit
 		     0x55A5C0C8, // messageslimit
 		     0xBD012555, // messageholelimit
-		     0x16C6DD58, // chatlogging
+		     0x16C6DD58, // chatlogging // bool
 		     0x9420F5BA, // weapon_rate
 		     0x5C8B384F, // incar_rate
 		     0x01F89DEB, // onfoot_rate
 		     0x57452FAC, // maxnpc
 		     0x0BAD27EA, // sleep
 		     0x0A9910C4, // stream_rate
-		     0xE20F31D1: // maxplayers
+		     0xE20F31D1, // maxplayers
+			 0x16847CA0, // useartwork
+			 0x0BAD27EA, // sleep
+			 0x0B874649, // mtu
+			 0x7C75D85C: // port
 			return GetConsoleVarAsInt__(varname);
 		default:
 			return 0;
@@ -20400,7 +20407,8 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 		     0x7C78F2F5, // rcon
 		     0xA300A7ED, // logqueries
 		     0x97EABC6B, // timestamp
-		     0x57CBE04F: // myriad
+		     0x57CBE04F, // myriad
+		     0x6658699A: // output
 			return bool:GetConsoleVarAsBool__(varname);
 		default:
 			return false;
