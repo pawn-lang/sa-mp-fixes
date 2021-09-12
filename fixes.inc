@@ -7009,8 +7009,7 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 	e_FIXES_SETTINGS_MENU_SET,
 	e_FIXES_SETTINGS_ENDING,
 	e_FIXES_SETTINGS_ENDED,
-	e_FIXES_SETTINGS_NO_GAME_TEXT,
-	e_FIXES_SETTINGS_SECOND_USE
+	e_FIXES_SETTINGS_NO_GAME_TEXT
 }
 
 _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
@@ -7201,7 +7200,7 @@ _FIXES_STATIC_STOCK
 	 * A collection of 1-bit options, compressed together to save space.
 	 * </remarks>
 	 */
-	e_FIXES_SETTINGS:FIXES_gsSettings = e_FIXES_SETTINGS_SECOND_USE;
+	e_FIXES_SETTINGS:FIXES_gsSettings = e_FIXES_SETTINGS_NONE;
 
 _FIXES_STATIC_STOCK
 	/**
@@ -7920,6 +7919,13 @@ _FIXES_STATIC_STOCK_CONST
 	 * </remarks>
 	 */
 	FIXES_gscSetRaceCheckpoint[] = "_FIXES_SetRaceCheckpoint",
+
+	/**
+	 * <remarks>
+	 * Name of the ID/existence determination function.
+	 * </remarks>
+	 */
+	FIXES_gscDetermineID[] = "_FIXES_DetermineID",
 
 	/**
 	 * <remarks>
@@ -11474,7 +11480,8 @@ public _FIXES_DetermineID()
 {
 	new prop[2];
 	prop[0] = 'a' + @_,
-	setproperty(5, prop, @_);
+	setproperty(5, prop, @_),
+	setproperty(5, FIXES_gscSingleProperty, 1);
 }
 
 /**
@@ -11693,24 +11700,6 @@ public OnJITCompile()
 
 public OnFilterScriptInit()
 {
-	// It is possible for this to be the only thing done in this function!
-	state _ALS : _ALS_go;
-	_FIXES_gIsFilterscript = true;
-	_FIXES_DetermineOS();
-	_FIXES_CheckServerRoot();
-	#if FIXES_Single && !FIXES_NoSingleMsg
-		// Check this really IS the only script running.
-		if (existproperty(5, FIXES_gscSingleProperty))
-		{
-			print(FIXES_gscMultiScriptError);
-		}
-		else
-		{
-			FIXES_gsSettings &= ~e_FIXES_SETTINGS_SECOND_USE,
-			setproperty(5, FIXES_gscSingleProperty, 1);
-		}
-	#endif
-
 	// ======================
 	//  BEGIN: GetMaxPlayers
 	// ======================
@@ -11720,6 +11709,44 @@ public OnFilterScriptInit()
 	// ======================
 	//  END:   GetMaxPlayers
 	// ======================
+
+	// It is possible for this to be the only thing done in this function!
+	state _ALS : _ALS_go;
+	_FIXES_gIsFilterscript = true,
+	_FIXES_DetermineOS(),
+	_FIXES_CheckServerRoot(),
+	_FIXES_UnloadRconFixFS(),
+	_FIXES_CountFilterscripts();
+
+	// Collect information about other fixes.inc scripts that are running.
+	#if FIXES_Single && !FIXES_NoSingleMsg
+		deleteproperty(5, FIXES_gscSingleProperty);
+	#endif
+	new prop[2];
+	for (@_ = 1; @_ <= 16; ++@_)
+	{
+		prop[0] = 'a' + @_,
+		deleteproperty(5, prop);
+	}
+	CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@);
+
+	// Loop to find a free ID.
+	for (@_ = 1; @_ <= 16; ++@_)
+	{
+		prop[0] = 'a' + @_;
+		if (!existproperty(5, prop))
+		{
+			break;
+		}
+	}
+
+	#if FIXES_Single && !FIXES_NoSingleMsg
+		// Check this really IS the only script running.
+		if (existproperty(5, FIXES_gscSingleProperty))
+		{
+			print(FIXES_gscMultiScriptError);
+		}
+	#endif
 
 	// =================
 	//  BEGIN: GameText
@@ -11786,21 +11813,6 @@ public OnFilterScriptInit()
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_NO_GAME_TEXT;
 	#endif
 
-	_FIXES_UnloadRconFixFS(),
-	_FIXES_CountFilterscripts(),
-	CallRemoteFunction__("_FIXES_DetermineID", FIXES_gscSpec@);
-
-	// Loop to find a free ID.
-	new prop[2];
-	for (@_ = 1; @_ <= 16; ++@_)
-	{
-		prop[0] = 'a' + @_;
-		if (!existproperty(5, prop))
-		{
-			break;
-		}
-	}
-
 	#if defined On_FilterScriptInit
 		return On_FilterScriptInit();
 	#else
@@ -11838,32 +11850,6 @@ public OnGameModeInit()
 	state _ALS : _ALS_go;
 	_FIXES_DetermineOS();
 
-	#if FIXES_Single && FIXES_NoSingleMsg
-		// Check this really IS the only script running.  Properties reset when
-		// a gamemode restarts, so we don't have to worry about filterscipts
-		// detecting themselves.
-		if (FIXES_gsSettings & e_FIXES_SETTINGS_SECOND_USE)
-		{
-			if (existproperty(5, FIXES_gscSingleProperty))
-			{
-				print(FIXES_gscMultiScriptError);
-			}
-			else
-			{
-				setproperty(5, FIXES_gscSingleProperty, 1);
-			}
-		}
-		else
-		{
-			// When the server starts, we need to allow an FS to load with a GM
-			// that doesn't use fixes.inc.  This is the only case where a
-			// property can be set while a ganemode isn't running.  This will
-			// mean that the FS won't complain if they are both using fixes, but
-			// the GM still will, so all is good.
-			FIXES_gsSettings |= e_FIXES_SETTINGS_SECOND_USE;
-		}
-	#endif
-
 	// =============================
 	//  BEGIN: AllowInteriorWeapons
 	// =============================
@@ -11885,8 +11871,6 @@ public OnGameModeInit()
 	// ===========================
 	if (!_FIXES_gIsFilterscript)
 	{
-		_FIXES_CheckServerRoot();
-
 		// ======================
 		//  BEGIN: GetMaxPlayers
 		// ======================
@@ -11896,6 +11880,21 @@ public OnGameModeInit()
 		// ======================
 		//  END:   GetMaxPlayers
 		// ======================
+
+		_FIXES_CheckServerRoot(),
+		_FIXES_UnloadRconFixFS(),
+		_FIXES_CountFilterscripts(),
+		@_ = 0,
+		_FIXES_LoadRconFixFS();
+		// Collect information about other fixes.inc scripts that are running.
+		#if FIXES_Single && !FIXES_NoSingleMsg
+			deleteproperty(5, FIXES_gscSingleProperty),
+			CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@);
+			if (existproperty(5, FIXES_gscSingleProperty))
+			{
+				print(FIXES_gscMultiScriptError);
+			}
+		#endif
 
 		// =================
 		//  BEGIN: GameText
@@ -11912,14 +11911,10 @@ public OnGameModeInit()
 		// =================
 		//  END:   GameText
 		// =================
+
 		#if !FIXES_Single
 			_FIXES_DetermineOrder();
 		#endif
-
-		_FIXES_UnloadRconFixFS(),
-		_FIXES_CountFilterscripts(),
-		@_ = 0,
-		_FIXES_LoadRconFixFS();
 	}
 	#if !FIXES_Single
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
