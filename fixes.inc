@@ -11324,11 +11324,8 @@ static stock _FIXES_CheckMaxPlayers()
  * <fixes>OnClientCheckResponse</fixes>
  */
 
-#if FIX_OnRconCommand || FIX_OnClientCheckResponse || FIX_API
-	#if !FIX_API
-	static
-	#endif
-	stock _FIXES_UnloadRconFixFS()
+#if FIX_OnRconCommand || FIX_OnClientCheckResponse
+	static stock _FIXES_UnloadRconFixFS()
 	{
 		print("\7*** fixes.inc info: Trying to unload RconCommand/ClientCheckResponse fix FS..."),
 		print(  "***                 Ignore any errors if the FS already unloaded."),
@@ -11343,11 +11340,8 @@ static stock _FIXES_CheckMaxPlayers()
  * <fixes>OnClientCheckResponse</fixes>
  */
 
-#if FIX_OnRconCommand || FIX_OnClientCheckResponse || FIX_API
-	#if !FIX_API
-	static
-	#endif
-	stock _FIXES_LoadRconFixFS()
+#if FIX_OnRconCommand || FIX_OnClientCheckResponse
+	static stock _FIXES_LoadRconFixFS()
 	{
 		// First, test if the fix has already been loaded.
 		deleteproperty(27, FIXES_gscOnClientCheckResponse),
