@@ -11479,10 +11479,10 @@ forward _FIXES_DetermineID();
 
 public _FIXES_DetermineID()
 {
-	new prop[2];
-	prop[0] = 'a' + @_,
-	setproperty(5, prop, @_),
-	setproperty(5, FIXES_gscSingleProperty, getproperty(5, FIXES_gscSingleProperty) + 1);
+	if (@_ != -1)
+	{
+		setproperty(5, FIXES_gscSingleProperty, getproperty(5, FIXES_gscSingleProperty) | @_);
+	}
 }
 
 /**
@@ -11717,33 +11717,26 @@ public OnFilterScriptInit()
 	_FIXES_DetermineOS(),
 	_FIXES_CheckServerRoot(),
 	_FIXES_UnloadRconFixFS(),
-	_FIXES_CountFilterscripts();
+	_FIXES_CountFilterscripts(),
 
 	// Collect information about other fixes.inc scripts that are running.
-	#if FIXES_Single && !FIXES_NoSingleMsg
-		setproperty(5, FIXES_gscSingleProperty, 0);
-	#endif
-	new prop[2];
-	for (@_ = 1; @_ <= 16; ++@_)
-	{
-		prop[0] = 'a' + @_,
-		deleteproperty(5, prop);
-	}
-	CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@);
+	setproperty(5, FIXES_gscSingleProperty, 0),
+	CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@),
+	@_ = getproperty(5, FIXES_gscSingleProperty);
 
 	// Loop to find a free ID.
-	for (@_ = 1; @_ <= 16; ++@_)
+	for (new i = 0; i != 17; ++i)
 	{
-		prop[0] = 'a' + @_;
-		if (!existproperty(5, prop))
+		if (!(@_ & (1 << i)))
 		{
+			@_ = 1 << i;
 			break;
 		}
 	}
 
 	#if FIXES_Single && !FIXES_NoSingleMsg
 		// Check this really IS the only script running.
-		if (getproperty(5, FIXES_gscSingleProperty) > 1)
+		if (getproperty(5, FIXES_gscSingleProperty))
 		{
 			print(FIXES_gscMultiScriptError);
 		}
@@ -11870,6 +11863,7 @@ public OnGameModeInit()
 	// ===========================
 	//  END: AllowInteriorWeapons
 	// ===========================
+
 	if (!_FIXES_gIsFilterscript)
 	{
 		// ======================
@@ -11885,13 +11879,23 @@ public OnGameModeInit()
 		_FIXES_CheckServerRoot(),
 		_FIXES_UnloadRconFixFS(),
 		_FIXES_CountFilterscripts(),
-		@_ = 0,
-		_FIXES_LoadRconFixFS();
+		_FIXES_LoadRconFixFS(),
 		// Collect information about other fixes.inc scripts that are running.
+		setproperty(5, FIXES_gscSingleProperty, 0),
+		CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@),
+		@_ = getproperty(5, FIXES_gscSingleProperty);
+
+		// Loop to find a free ID.
+		for (new i = 0; i != 17; ++i)
+		{
+			if (!(@_ & (1 << i)))
+			{
+				@_ = 1 << i;
+				break;
+			}
+		}
 		#if FIXES_Single && !FIXES_NoSingleMsg
-			setproperty(5, FIXES_gscSingleProperty, 0),
-			CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@);
-			if (setproperty(5, FIXES_gscSingleProperty) > 1)
+			if (getproperty(5, FIXES_gscSingleProperty))
 			{
 				print(FIXES_gscMultiScriptError);
 			}
