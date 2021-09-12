@@ -550,29 +550,45 @@ A copyable version of this pattern is at the end of the file.
 * If a bug is fixed in some version of the server it can be conditionally included here. This is done by checking for the existance of a native function introduced in the same server version. For example `TogglePlayerControllable` was fixed in 0.3eRC6, the same time as the `SetObjectMaterial` native was introduced, thus the inclusion becomes: 
 
 ```pawn
-#if !defined FIX_TogglePlayerControllable
-	// This fix isn't specified.
+/**
+ * <fix name="NameOfFixHere" disabled="true" fixed="version">
+ *     <problem>
+ *         A description of the problem.
+ *     </problem>
+ *     <solution>
+ *         A description of the solution.
+ *     </solution>
+ *     <see>FIXES_FunctionWithFixIn</see>
+ *     <author href="github.com/account">Name</author>
+ *     <post href="burgershot.gg/post" />
+ * </fix>
+ */
 
-	// Check for some native introduced in the same version as this was fixed.
-	#if defined SetObjectMaterial
-		// Is fixed, only include this fix if we want deprecated fixes.
-		#define FIX_TogglePlayerControllable FIXES_EnableDeprecated
-	#else 
-		// Not fixed yet (use only this branch if there's no native fix).
-
-		// Define a symbol of this name, to give warnings with `FIXES_ExplicitOptions`.
-		_FIXES_STOCK FIX_TogglePlayerControllable = _FIXES_DEFAULT;
-
-		// Enable or disable the fix according to `FIXES_DefaultDisabled`.
-		#define FIX_TogglePlayerControllable _FIXES_DEFAULT
-	#endif 
-#elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)
-	// The fix is specified, but with no `0` or `1`.
-	#undef FIX_TogglePlayerControllable 
-
-	// Default to `2` (`1`, but special).
-	#define FIX_TogglePlayerControllable (2) 
-#endif 
+#if !defined FIX_NameOfFixHere
+	#if defined NativeInFixRelease
+		#if FIXES_EnableDeprecated
+			static _FIXES_STOCK FIX_NameOfFixHere = FIXES_EnableDeprecated;
+		#else
+			_FIXES_CONST_PAWNDOC(FIX_NameOfFixHere);
+		#endif
+		#define FIX_NameOfFixHere                FIXES_EnableDeprecated
+	#else
+		static _FIXES_STOCK FIX_NameOfFixHere = _FIXES_DEFAULT;
+		#define FIX_NameOfFixHere                _FIXES_DEFAULT
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)
+	#undef FIX_NameOfFixHere
+	static stock FIX_NameOfFixHere = 2;
+	#define FIX_NameOfFixHere                    (2)
+#elseif FIX_NameOfFixHere
+	#undef FIX_NameOfFixHere
+	static stock FIX_NameOfFixHere = 1;
+	#define FIX_NameOfFixHere                    (1)
+#else
+	#undef FIX_NameOfFixHere
+	static stock FIX_NameOfFixHere = 0;
+	#define FIX_NameOfFixHere                    (0)
+#endif
 ```
 
 This only includes this fix if that native doesn't exist. A copyable version of this pattern is at the end of the file. 
