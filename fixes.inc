@@ -11734,7 +11734,6 @@ static stock _FIXES_DetermineID()
 
 		// Declare some natives for use.
 		native setproperty(id, const name[], value, const string[]);
-
 		forward OnFilterScriptInit();
 
 		// Use the same string for everything, so we only need one.
@@ -11758,16 +11757,27 @@ static stock _FIXES_DetermineID()
 			#emit RETN
 		}
 	*/
+	#define _FIXES_DETERMINE_ID_CODE (0x00004180)
 	static
 		lIDDeterminationCode[] = {
 			0x00000084, 0x0808F1E0, 0x00080014, 0x0000006C, 0x000000B4, 0x000000C0, 0x000040C0, 0xFFFFFFFF,
 			0x00000038, 0x00000040, 0x00000048, 0x00000048, 0x00000048, 0x00000048, 0x00000008, 0x0000004A,
 			0x00000000, 0x0000005D, 0x6E4F001F, 0x746C6946, 0x63537265, 0x74706972, 0x74696E49, 0x74657300,
 			0x706F7270, 0x79747265, 0x00000000, 0x2E007880, 0x01270827, 0x05270027, 0x7B800A27, 0x300E2C00,
-			0x00004180 // Starts at `A`, increment for each character (`+= 265`).
+			_FIXES_DETERMINE_ID_CODE // Starts at `A` and do `+= 265`.
 	};
 	// Spawn up to 16 copies of this FS, each one taking up a slot so we can
 	// determine how many slots are free.
+	
+	// Reset the counter.
+	lIDDeterminationCode[sizeof (lIDDeterminationCode) - 1] = _FIXES_DETERMINE_ID_CODE;
+	for (new i = 0; i != 16; ++i)
+	{
+		// Move on to the next FS, by incrementing the character value to change
+		// the property written to.
+		lIDDeterminationCode[sizeof (lIDDeterminationCode) - 1] += 265;
+	}
+	#undef _FIXES_DETERMINE_ID_CODE
 }
 
 /**
