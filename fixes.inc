@@ -15710,9 +15710,13 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 #if FIX_GetPlayerWeapon
 	stock FIXES_GetPlayerWeapon(playerid)
 	{
-		new
-			ret = FIXES_GET(PlayerWeapon, playerid);
-		return ret == -1 ? GetPlayerWeapon__(playerid) : ret;
+		if (_FIXES_IS_VALID_PLAYER(playerid))
+		{
+			new
+				ret = FIXES_GET(PlayerWeapon, playerid);
+			return ret == -1 ? GetPlayerWeapon__(playerid) : ret;
+		}
+		return 0;
 	}
 
 	#if _FIXES_SAMP
