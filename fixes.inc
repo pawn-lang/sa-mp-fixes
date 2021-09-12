@@ -5630,6 +5630,15 @@ _FIXES_CONST_PAWNDOC(FIXES_PAWNDOC);
 
 /**
  * <remarks>
+ * This include determines filterscript counts and IDs.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(FIXES_ID);
+#define FIXES_ID
+
+/**
+ * <remarks>
  * Is the extended API defined for use?  Better for testing
  * (<c>#if defined FIXES_API</c>).
  * </remarks>
@@ -7005,6 +7014,29 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 }
 
 _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
+
+/*
+
+                              88           88  88
+                              88           88  ""
+                              88           88
+    8b,dPPYba,   88       88  88,dPPYba,   88  88   ,adPPYba,
+    88P'    "8a  88       88  88P'    "8a  88  88  a8"     ""
+    88       d8  88       88  88       d8  88  88  8b
+    88b,   ,a8"  "8a,   ,a88  88b,   ,a8"  88  88  "8a,   ,aa
+    88`YbbdP"'    `"YbbdP'Y8  8Y"Ybbd8"'   88  88   `"Ybbd8"'
+    88
+    88
+
+*/
+
+public
+	/**
+	 * <remarks>
+	 * The unique ID of this script.
+	 * </remarks>
+	 */
+	@_ = -1;
 
 /*
 
@@ -11329,7 +11361,12 @@ static stock _FIXES_CheckMaxPlayers()
 	{
 		print("\7*** fixes.inc info: Trying to unload RconCommand/ClientCheckResponse fix FS..."),
 		print(  "***                 Ignore any errors if the FS already unloaded."),
-		SendRconCommand__("unloadfs ../scriptfiles/callbackfix");
+		deleteproperty(27, FIXES_gscOnClientCheckResponse),
+		SendRconCommand__(FIXES_gscOnClientCheckResponse);
+		if (existproperty(27, FIXES_gscOnClientCheckResponse))
+		{
+			SendRconCommand__("unloadfs ../scriptfiles/callbackfix");
+		}
 	}
 #else
 	_FIXES_HIDE_PAWNDOC(_FIXES_UnloadRconFixFS);
@@ -11402,12 +11439,12 @@ static stock _FIXES_CheckMaxPlayers()
 					File:fs = fopen(FIXES_gscRconFixFS, io_write);
 				if (fs)
 				{
-					fblockwrite(fs, lRCFixCode);
+					fblockwrite(fs, lRCFixCode),
 					fclose(fs);
 				}
 				else
 				{
-					print("\7\7\7*** fixes.inc warning: Could not write RconCommand/ClientCheckResponse fix FS."),
+					print("\7\7\7*** fixes.inc warning: Could not write RconCommand/ClientCheckResponse fix FS.");
 				}
 			}
 			if (fexist(FIXES_gscRconFixFS))
@@ -11425,10 +11462,30 @@ static stock _FIXES_CheckMaxPlayers()
 	_FIXES_HIDE_PAWNDOC(_FIXES_LoadRconFixFS);
 #endif
 
+/**
+ * <remarks>
+ * Set a property marking the current ID as in use.
+ * </remarks>
+ */
+
+forward _FIXES_DetermineID();
+
+public _FIXES_DetermineID()
+{
+	new prop[2];
+	prop[0] = 'a' + @_,
+	setproperty(5, prop, @_);
+}
+
+/**
+ * <remarks>
+ * Load many filterscripts until the server is full, then we can determine how
+ * many were loaded previously (through a simple subtraction).
+ * </remarks>
+ */
+
 static stock _FIXES_CountFilterscripts()
 {
-	new
-		id = 16;
 	/*
 		// Minimise code size.
 		#pragma option -d0
@@ -11459,17 +11516,17 @@ static stock _FIXES_CountFilterscripts()
 			#emit RETN
 		}
 	*/
-	#define _FIXES_DETERMINE_ID_CODE (0x00004180)
+	#define _FIXES_FS_COUNT_CODE (0x00004180)
 	static
-		lIDDeterminationCode[] = {
+		lFSCountCode[] = {
 			0x00000084, 0x0808F1E0, 0x00080014, 0x0000006C, 0x000000B4, 0x000000C0, 0x000040C0, 0xFFFFFFFF,
 			0x00000038, 0x00000040, 0x00000048, 0x00000048, 0x00000048, 0x00000048, 0x00000008, 0x0000004A,
 			0x00000000, 0x0000005D, 0x6E4F001F, 0x746C6946, 0x63537265, 0x74706972, 0x74696E49, 0x74657300,
 			0x706F7270, 0x79747265, 0x00000000, 0x2E007880, 0x01270827, 0x05270027, 0x7B800A27, 0x300E2C00,
-			_FIXES_DETERMINE_ID_CODE // Starts at `A` and do `+= 265`.
+			_FIXES_FS_COUNT_CODE // Starts at `A` and do `+= 265`.
 		},
-		lIDDeterminationFile[] = "iddeterminationA.amx",
-		lIDDeterminationLoad[] = "unloadfs ../scriptfiles/iddeterminationA";
+		lFSCountFile[] = "fs-count-A.amx",
+		lFSCountLoad[] = "unloadfs ../scriptfiles/fs-count-A";
 
 	// Spawn up to 16 copies of this FS, each one taking up a slot so we can
 	// determine how many slots are free.
@@ -11477,64 +11534,68 @@ static stock _FIXES_CountFilterscripts()
 	print(  "***                 Ignore any errors due to insufficient FS slots."),
 
 	// Reset the counters.
-	lIDDeterminationCode[sizeof (lIDDeterminationCode) - 1] = _FIXES_DETERMINE_ID_CODE,
-	lIDDeterminationFile[sizeof (lIDDeterminationFile) - 6] = 'A',
-	lIDDeterminationLoad[sizeof (lIDDeterminationLoad) - 2] = 'A';
+	lFSCountCode[sizeof (lFSCountCode) - 1] = _FIXES_FS_COUNT_CODE,
+	lFSCountFile[sizeof (lFSCountFile) - 6] = 'A',
+	lFSCountLoad[sizeof (lFSCountLoad) - 2] = 'A';
 
+	// Write the files.
 	for (new i = 0; i != 16; ++i)
 	{
-		// Write this file.
-		if (!fexist(lIDDeterminationFile))
+		if (!fexist(lFSCountFile))
 		{
 			new
-				File:fs = fopen(lIDDeterminationFile, io_write);
+				File:fs = fopen(lFSCountFile, io_write);
 			if (fs)
 			{
-				fblockwrite(fs, lIDDeterminationCode);
+				fblockwrite(fs, lFSCountCode),
 				fclose(fs);
 			}
 			else
 			{
-				print("\7\7\7*** fixes.inc warning: Could not write ID determination FS."),
+				return
+					print("\7\7\7*** fixes.inc warning: Could not write ID determination FS."),
+					-1;
 			}
+		}
+		lFSCountCode[sizeof (lFSCountCode) - 1] += 256,
+		lFSCountFile[sizeof (lFSCountFile) - 6] += 1;
+	}
+
+	// Load the filterscripts.
+	new loaded = 0;
+	for (new i = 0; i != 16; ++i)
+	{
+		// The final letter as a string, so just (say) "A".
+		deleteproperty(5, lFSCountLoad[sizeof (lFSCountLoad) - 2]),
+		SendRconCommand__(lFSCountLoad[2]);
+
+		// Test if it was loaded.
+		if (existproperty(5, lFSCountLoad[sizeof (lFSCountLoad) - 2]))
+		{
+			// Yes.
+			++loaded;
+		}
+		else
+		{
+			// No.
+			break;
 		}
 
-		if (fexist(lIDDeterminationFile))
-		{
-			// Load this FS.
-			SendRconCommand__(lIDDeterminationLoad[2]);
-			
-			// Test if it was loaded.
-			if (existproperty(5, lIDDeterminationLoad[sizeof (lIDDeterminationLoad) - 2]))
-			{
-				// Yes.
-				--id;
-			}
-			else
-			{
-				// No.
-				break;
-			}
-		}
-		
 		// Move on to the next one by incrementing character values to change
 		// the property and file written to, and the file loaded.
-		lIDDeterminationCode[sizeof (lIDDeterminationCode) - 1] += 265,
-		lIDDeterminationFile[sizeof (lIDDeterminationFile) - 6] += 1,
-		lIDDeterminationLoad[sizeof (lIDDeterminationLoad) - 2] += 1;
+		lFSCountLoad[sizeof (lFSCountLoad) - 2] += 1;
 	}
-	#undef _FIXES_DETERMINE_ID_CODE
 
-	// Clear all the filterscripts from memory.
-	lIDDeterminationLoad[sizeof (lIDDeterminationLoad) - 2] = 'A';
-	for (new i = 0; i != 16 - id; ++i)
+	// Clear all the temporary filterscipts from memory.
+	for (new i = loaded; i--; )
 	{
 		// Unloadfs.
-		SendRconCommand__(lIDDeterminationLoad);
-		lIDDeterminationLoad[sizeof (lIDDeterminationLoad) - 2] += 1;
+		lFSCountLoad[sizeof (lFSCountLoad) - 2] -= 1,
+		SendRconCommand__(lFSCountLoad);
 	}
 
-	return id;
+	#undef _FIXES_FS_COUNT_CODE
+	return 16 - loaded;
 }
 
 /*
@@ -11725,6 +11786,21 @@ public OnFilterScriptInit()
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_NO_GAME_TEXT;
 	#endif
 
+	_FIXES_UnloadRconFixFS(),
+	_FIXES_CountFilterscripts(),
+	CallRemoteFunction__("_FIXES_DetermineID", FIXES_gscSpec@);
+
+	// Loop to find a free ID.
+	new prop[2];
+	for (@_ = 1; @_ <= 16; ++@_)
+	{
+		prop[0] = 'a' + @_;
+		if (!existproperty(5, prop))
+		{
+			break;
+		}
+	}
+
 	#if defined On_FilterScriptInit
 		return On_FilterScriptInit();
 	#else
@@ -11839,6 +11915,11 @@ public OnGameModeInit()
 		#if !FIXES_Single
 			_FIXES_DetermineOrder();
 		#endif
+
+		_FIXES_UnloadRconFixFS(),
+		_FIXES_CountFilterscripts(),
+		@_ = 0,
+		_FIXES_LoadRconFixFS();
 	}
 	#if !FIXES_Single
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
@@ -17457,7 +17538,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 				// Else neither colour is random.
 			#endif
 		}
-		
+
 		#if defined On_VehicleSpawn
 			return On_VehicleSpawn(vehicleid);
 		#else
