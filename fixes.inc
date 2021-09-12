@@ -16976,12 +16976,16 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 				#endif
 			}
 		#if !FIXES_Single
-			else
+			else if (color1 == -1 || color2 == -1)
 			{
 				return
 					setproperty(5, FIXES_gscReturnProperty, INVALID_VEHICLE_ID),
 					CallRemoteFunction(FIXES_gscCreateVehicle, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
 					getproperty(5, FIXES_gscReturnProperty);
+			}
+			else
+			{
+				return CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
 			}
 		#endif
 	}
@@ -17134,12 +17138,16 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 				#endif
 			}
 		#if !FIXES_Single
-			else
+			else if (color1 == -1 || color2 == -1)
 			{
 				return
 					setproperty(5, FIXES_gscReturnProperty, INVALID_VEHICLE_ID),
 					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
 					getproperty(5, FIXES_gscReturnProperty);
+			}
+			else
+			{
+				return AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
 			}
 		#endif
 	}
@@ -17185,12 +17193,16 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 				return FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, 120000, false);
 			}
 		#if !FIXES_Single
-			else
+			else if (color1 == -1 || color2 == -1)
 			{
 				return
 					setproperty(5, FIXES_gscReturnProperty, INVALID_VEHICLE_ID),
 					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, color1, color2, 120000, false),
 					getproperty(5, FIXES_gscReturnProperty);
+			}
+			else
+			{
+				return AddStaticVehicle(modelid, x, y, z, rotation, color1, color2);
 			}
 		#endif
 	}
