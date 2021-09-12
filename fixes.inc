@@ -5479,6 +5479,37 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_OnVehicleSpawn                   (0)
 #endif
 
+/**
+ * <fix name="floatfract">
+ *     <problem>
+ *         Incorrect on negative numbers.
+ *     </problem>
+ *     <solution>
+ *         Use floatround and subtraction.
+ *     </solution>
+ *     <see>FIXES_floatfract</see>
+ *     <author href="https://github.com/MuthaX">MuthaX</author>
+ *     <post href="https://github.com/pawn-lang/sa-mp-fixes/issues/150" />
+ * </fix>
+ */
+
+#if !defined FIX_floatfract
+	static _FIXES_STOCK FIX_floatfract = _FIXES_DEFAULT;
+	#define FIX_floatfract                       _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_floatfract)
+	#undef FIX_floatfract
+	static stock FIX_floatfract = 2;
+	#define FIX_floatfract                       (2)
+#elseif FIX_floatfract
+	#undef FIX_floatfract
+	static stock FIX_floatfract = 1;
+	#define FIX_floatfract                       (1)
+#else
+	#undef FIX_floatfract
+	static stock FIX_floatfract = 0;
+	#define FIX_floatfract                       (0)
+#endif
+
 /*
 
     88b           d88
@@ -17918,6 +17949,27 @@ native BAD_flength(File:handle) = flength;
 	#define flength__( FIXES_flength(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_flength);
+#endif
+
+/**
+ * <fixes>floatfract</fixes>
+ */
+
+#if FIX_floatfract
+	stock Float:FIXES_floatfract(Float:value)
+	{
+		return (value - floatround(value, floatround_tozero));
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_floatfract
+		#define floatfract( FIXES_floatfract(
+	#endif
+
+	#define _ALS_floatfract__
+	#define floatfract__( FIXES_floatfract(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_floatfract);
 #endif
 
 /**
