@@ -11315,6 +11315,8 @@ static stock _FIXES_CheckMaxPlayers()
 		}
 		return false;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_GetRandomCarColPair);
 #endif
 
 /**
@@ -11325,8 +11327,12 @@ static stock _FIXES_CheckMaxPlayers()
 #if FIX_OnRconCommand || FIX_OnClientCheckResponse
 	static stock _FIXES_UnloadRconFixFS()
 	{
+		print("\7*** fixes.inc info: Trying to unload RconCommand/ClientCheckResponse fix FS..."),
+		print(  "***                 Ignore any errors if the FS already unloaded."),
 		SendRconCommand__("unloadfs ../scriptfiles/callbackfix");
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_UnloadRconFixFS);
 #endif
 
 /**
@@ -11338,9 +11344,9 @@ static stock _FIXES_CheckMaxPlayers()
 	static stock _FIXES_LoadRconFixFS()
 	{
 		// First, test if the fix has already been loaded.
-		setproperty(27, FIXES_gscOnClientCheckResponse, 0),
+		deleteproperty(27, FIXES_gscOnClientCheckResponse),
 		SendRconCommand__(FIXES_gscOnClientCheckResponse);
-		if (getproperty(27, FIXES_gscOnClientCheckResponse) != 27)
+		if (!existproperty(27, FIXES_gscOnClientCheckResponse))
 		{
 			if (!fexist(FIXES_gscRconFixFS))
 			{
@@ -11414,10 +11420,12 @@ static stock _FIXES_CheckMaxPlayers()
 				#endif
 			}
 		}
-	}	
+	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_LoadRconFixFS);
 #endif
 
-static stock _FIXES_DetermineID()
+static stock _FIXES_CountFilterscripts()
 {
 	new
 		id = 16;
