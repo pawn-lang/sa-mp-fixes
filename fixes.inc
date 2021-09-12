@@ -11725,6 +11725,51 @@ public OnGameModeInit()
 	_FIXES_FORWARD On_GameModeInit();
 #endif
 
+static stock _FIXES_DetermineID()
+{
+	/*
+		// Minimise code size.
+		#pragma option -d0
+		#pragma option -O1
+
+		// Declare some natives for use.
+		native setproperty(id, const name[], value, const string[]);
+
+		forward OnFilterScriptInit();
+
+		// Use the same string for everything, so we only need one.
+		new const ID[] = "A";
+
+		// We need an extra byte of padding in the output, to make it a multiple of 4.
+		new const UNUSED[] = "";
+
+		// Make the function as small as physically possible.
+		#pragma naked
+		public OnFilterScriptInit()
+		{
+			#emit PROC
+			#emit PUSH.C       UNUSED
+			#emit PUSH.C       1
+			#emit PUSH.C       ID
+			#emit PUSH.C       5
+			#emit PUSH.C       10
+			#emit SYSREQ.C     setproperty
+			#emit STACK        14
+			#emit RETN
+		}
+	*/
+	static
+		lIDDeterminationCode[] = {
+			0x00000084, 0x0808F1E0, 0x00080014, 0x0000006C, 0x000000B4, 0x000000C0, 0x000040C0, 0xFFFFFFFF,
+			0x00000038, 0x00000040, 0x00000048, 0x00000048, 0x00000048, 0x00000048, 0x00000008, 0x0000004A,
+			0x00000000, 0x0000005D, 0x6E4F001F, 0x746C6946, 0x63537265, 0x74706972, 0x74696E49, 0x74657300,
+			0x706F7270, 0x79747265, 0x00000000, 0x2E007880, 0x01270827, 0x05270027, 0x7B800A27, 0x300E2C00,
+			0x00004180 // Starts at `A`, increment for each character (`+= 265`).
+	};
+	// Spawn up to 16 copies of this FS, each one taking up a slot so we can
+	// determine how many slots are free.
+}
+
 /**
  * <remarks>
  * Allow <c>OnClientCheckResponse</c> to be called in gamemodes.
@@ -11734,6 +11779,7 @@ public OnGameModeInit()
 
 #if FIX_OnClientCheckResponse
 	forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
+
 	public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
 	{
 		#if defined On_ClientCheckResponse
