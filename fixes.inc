@@ -11248,6 +11248,11 @@ static stock _FIXES_CheckMaxPlayers()
 	_FIXES_HIDE_PAWNDOC(_FIXES_GetAnimLibIndex);
 #endif
 
+/**
+ * <fixes>OnVehicleSpawn</fixes>
+ * <fixes>API</fixes>
+ */
+
 #if FIX_OnVehicleSpawn || FIX_API
 	#if !FIX_API
 	static
@@ -11311,6 +11316,218 @@ static stock _FIXES_CheckMaxPlayers()
 		return false;
 	}
 #endif
+
+/**
+ * <fixes>OnRconCommand</fixes>
+ * <fixes>OnClientCheckResponse</fixes>
+ */
+
+#if FIX_OnRconCommand || FIX_OnClientCheckResponse
+	static stock _FIXES_UnloadRconFixFS()
+	{
+		SendRconCommand__("unloadfs ../scriptfiles/callbackfix");
+	}
+#endif
+
+/**
+ * <fixes>OnRconCommand</fixes>
+ * <fixes>OnClientCheckResponse</fixes>
+ */
+
+#if FIX_OnRconCommand || FIX_OnClientCheckResponse
+	static stock _FIXES_LoadRconFixFS()
+	{
+		// First, test if the fix has already been loaded.
+		setproperty(27, FIXES_gscOnClientCheckResponse, 0),
+		SendRconCommand__(FIXES_gscOnClientCheckResponse);
+		if (getproperty(27, FIXES_gscOnClientCheckResponse) != 27)
+		{
+			if (!fexist(FIXES_gscRconFixFS))
+			{
+				/*
+					// Minimise code size.
+					#pragma option -d0
+					#pragma option -O1
+
+					// Declare some natives for use.
+					native CallRemoteFunction(const function[], const format[], ...);
+					native setproperty(id = 0, const name[] = "", value = cellmin, const string[] = "");
+					native strcmp(const string1[], const string2[], bool:ignorecase = false, length = cellmax);
+
+					// Use the same string for everything, so we only need one.  And pack it.
+					new const FIXES_gscOnClientCheckResponse[] = !"FIXES_OnClientCheckResponse";
+
+					forward OnRconCommand(const cmd[]);
+
+					// This callback just needs to exist in one filterscript.
+					public OnRconCommand(const cmd[])
+					{
+						// The smallest I could make the assembly without `#emit`.
+						if (strcmp(cmd, FIXES_gscOnClientCheckResponse, true) == 0)
+						{
+							// Add 2 cells of padding here to make the AMX a nice size.
+							return !setproperty(27, FIXES_gscOnClientCheckResponse, 27, "\0\0");
+						}
+						return 0;
+					}
+
+					forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
+
+					// This callback needs to invoke a different callback in GMs.
+					public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
+					{
+						// Invoke the global callback.
+						return CallRemoteFunction(FIXES_gscOnClientCheckResponse, !"iiii", playerid, actionid, memaddr, retndata);
+					}
+				*/
+				static
+					lRCFixCode[] = {
+						0x00000120, 0x0808F1E0, 0x00080014, 0x000000AC, 0x00000190, 0x000001C0, 0x000041C0, 0xFFFFFFFF,
+						0x00000038, 0x00000048, 0x00000060, 0x00000060, 0x00000060, 0x00000060, 0x00000094, 0x00000062,
+						0x00000008, 0x00000078, 0x00000000, 0x00000086, 0x00000000, 0x0000008D, 0x00000000, 0x00000099,
+						0x6E4F001F, 0x65696C43, 0x6843746E, 0x526B6365, 0x6F707365, 0x0065736E, 0x63526E4F, 0x6F436E6F,
+						0x6E616D6D, 0x74730064, 0x706D6372, 0x74657300, 0x706F7270, 0x79747265, 0x6C614300, 0x6D65526C,
+						0x4665746F, 0x74636E75, 0x006E6F69, 0x2E007880, 0xFFFF8727, 0x01277FFF, 0x0C290027, 0x7B801027,
+						0x36142C00, 0x1C270C81, 0x00271B27, 0x10271B27, 0x2C017B80, 0x30548014, 0x2E305980, 0x81180581,
+						0x05811405, 0x0C058110, 0x00272827, 0x7B801827, 0x301C2C02, 0xB0A5B284, 0xFD9A8545, 0x9B846E9E,
+						0x8665D2B1, 0x6886D1F3, 0xD68DAB86, 0xCDAB8652, 0xF3866FE0, 0x0000CACD, 0xCB860000, 0x0069D2A5
+					};
+				new
+					File:fs = fopen(FIXES_gscRconFixFS, io_write);
+				if (fs)
+				{
+					fblockwrite(fs, lRCFixCode);
+					fclose(fs);
+				}
+				else
+				{
+					print("\7\7\7*** fixes.inc warning: Could not write RconCommand/ClientCheckResponse fix FS."),
+				}
+			}
+			if (fexist(FIXES_gscRconFixFS))
+			{
+				print("\7*** fixes.inc info: Trying to load RconCommand/ClientCheckResponse fix FS..."),
+				print(  "***                 Ignore any errors if the FS already loaded."),
+				SendRconCommand__("loadfs ../scriptfiles/callbackfix");
+				#if FIX_OnClientCheckResponse
+					state OnClientCheckResponse : OnClientCheckResponse_GM;
+				#endif
+			}
+		}
+	}	
+#endif
+
+static stock _FIXES_DetermineID()
+{
+	new
+		id = 16;
+	/*
+		// Minimise code size.
+		#pragma option -d0
+		#pragma option -O1
+
+		// Declare some natives for use.
+		native setproperty(id, const name[], value, const string[]);
+		forward OnFilterScriptInit();
+
+		// Use the same string for everything, so we only need one.
+		new const ID[] = "A";
+
+		// We need an extra byte of padding in the output, to make it a multiple of 4.
+		new const UNUSED[] = "";
+
+		// Make the function as small as physically possible.
+		#pragma naked
+		public OnFilterScriptInit()
+		{
+			#emit PROC
+			#emit PUSH.C       UNUSED
+			#emit PUSH.C       1
+			#emit PUSH.C       ID
+			#emit PUSH.C       5
+			#emit PUSH.C       10
+			#emit SYSREQ.C     setproperty
+			#emit STACK        14
+			#emit RETN
+		}
+	*/
+	#define _FIXES_DETERMINE_ID_CODE (0x00004180)
+	static
+		lIDDeterminationCode[] = {
+			0x00000084, 0x0808F1E0, 0x00080014, 0x0000006C, 0x000000B4, 0x000000C0, 0x000040C0, 0xFFFFFFFF,
+			0x00000038, 0x00000040, 0x00000048, 0x00000048, 0x00000048, 0x00000048, 0x00000008, 0x0000004A,
+			0x00000000, 0x0000005D, 0x6E4F001F, 0x746C6946, 0x63537265, 0x74706972, 0x74696E49, 0x74657300,
+			0x706F7270, 0x79747265, 0x00000000, 0x2E007880, 0x01270827, 0x05270027, 0x7B800A27, 0x300E2C00,
+			_FIXES_DETERMINE_ID_CODE // Starts at `A` and do `+= 265`.
+		},
+		lIDDeterminationFile[] = "iddeterminationA.amx",
+		lIDDeterminationLoad[] = "unloadfs ../scriptfiles/iddeterminationA";
+
+	// Spawn up to 16 copies of this FS, each one taking up a slot so we can
+	// determine how many slots are free.
+	print("\7*** fixes.inc info: Trying to load multiple ID determination FSes..."),
+	print(  "***                 Ignore any errors due to insufficient FS slots."),
+
+	// Reset the counters.
+	lIDDeterminationCode[sizeof (lIDDeterminationCode) - 1] = _FIXES_DETERMINE_ID_CODE,
+	lIDDeterminationFile[sizeof (lIDDeterminationFile) - 6] = 'A',
+	lIDDeterminationLoad[sizeof (lIDDeterminationLoad) - 2] = 'A';
+
+	for (new i = 0; i != 16; ++i)
+	{
+		// Write this file.
+		if (!fexist(lIDDeterminationFile))
+		{
+			new
+				File:fs = fopen(lIDDeterminationFile, io_write);
+			if (fs)
+			{
+				fblockwrite(fs, lIDDeterminationCode);
+				fclose(fs);
+			}
+			else
+			{
+				print("\7\7\7*** fixes.inc warning: Could not write ID determination FS."),
+			}
+		}
+
+		if (fexist(lIDDeterminationFile))
+		{
+			// Load this FS.
+			SendRconCommand__(lIDDeterminationLoad[2]);
+			
+			// Test if it was loaded.
+			if (existproperty(5, lIDDeterminationLoad[sizeof (lIDDeterminationLoad) - 2]))
+			{
+				// Yes.
+				--id;
+			}
+			else
+			{
+				// No.
+				break;
+			}
+		}
+		
+		// Move on to the next one by incrementing character values to change
+		// the property and file written to, and the file loaded.
+		lIDDeterminationCode[sizeof (lIDDeterminationCode) - 1] += 265,
+		lIDDeterminationFile[sizeof (lIDDeterminationFile) - 6] += 1,
+		lIDDeterminationLoad[sizeof (lIDDeterminationLoad) - 2] += 1;
+	}
+	#undef _FIXES_DETERMINE_ID_CODE
+
+	// Clear all the filterscripts from memory.
+	lIDDeterminationLoad[sizeof (lIDDeterminationLoad) - 2] = 'A';
+	for (new i = 0; i != 16 - id; ++i)
+	{
+		// Unloadfs.
+		SendRconCommand__(lIDDeterminationLoad);
+		lIDDeterminationLoad[sizeof (lIDDeterminationLoad) - 2] += 1;
+	}
+
+	return id;
+}
 
 /*
 
@@ -11614,90 +11831,6 @@ public OnGameModeInit()
 		#if !FIXES_Single
 			_FIXES_DetermineOrder();
 		#endif
-		// ======================
-		//  BEGIN: OnRconCommand
-		// ======================
-		#if FIX_OnRconCommand || FIX_OnClientCheckResponse
-			// First, test if the fix has already been loaded.
-			setproperty(27, FIXES_gscOnClientCheckResponse, 0),
-			SendRconCommand__(FIXES_gscOnClientCheckResponse);
-			if (getproperty(27, FIXES_gscOnClientCheckResponse) != 27)
-			{
-				if (!fexist(FIXES_gscRconFixFS))
-				{
-					/*
-						// Minimise code size.
-						#pragma option -d0
-						#pragma option -O1
-
-						// Declare some natives for use.
-						native CallRemoteFunction(const function[], const format[], ...);
-						native setproperty(id = 0, const name[] = "", value = cellmin, const string[] = "");
-						native strcmp(const string1[], const string2[], bool:ignorecase = false, length = cellmax);
-
-						// Use the same string for everything, so we only need one.  And pack it.
-						new const FIXES_OnClientCheckResponse[] = !"FIXES_OnClientCheckResponse";
-
-						forward OnRconCommand(const cmd[]);
-
-						// This callback just needs to exist in one filterscript.
-						public OnRconCommand(const cmd[])
-						{
-							// The smallest I could make the assembly without `#emit`.
-							if (strcmp(cmd, FIXES_OnClientCheckResponse, true) == 0)
-							{
-								// Add 2 cells of padding here to make the AMX a nice size.
-								return !setproperty(27, FIXES_OnClientCheckResponse, 27, "\0\0");
-							}
-							return 0;
-						}
-
-						forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
-
-						// This callback needs to invoke a different callback in GMs.
-						public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
-						{
-							// Invoke the global callback.
-							return CallRemoteFunction(FIXES_OnClientCheckResponse, !"iiii", playerid, actionid, memaddr, retndata);
-						}
-					*/
-					static
-						lRCFixCode[] = {
-							0x00000120, 0x0808F1E0, 0x00080014, 0x000000AC, 0x00000190, 0x000001C0, 0x000041C0, 0xFFFFFFFF,
-							0x00000038, 0x00000048, 0x00000060, 0x00000060, 0x00000060, 0x00000060, 0x00000094, 0x00000062,
-							0x00000008, 0x00000078, 0x00000000, 0x00000086, 0x00000000, 0x0000008D, 0x00000000, 0x00000099,
-							0x6E4F001F, 0x65696C43, 0x6843746E, 0x526B6365, 0x6F707365, 0x0065736E, 0x63526E4F, 0x6F436E6F,
-							0x6E616D6D, 0x74730064, 0x706D6372, 0x74657300, 0x706F7270, 0x79747265, 0x6C614300, 0x6D65526C,
-							0x4665746F, 0x74636E75, 0x006E6F69, 0x2E007880, 0xFFFF8727, 0x01277FFF, 0x0C290027, 0x7B801027,
-							0x36142C00, 0x1C270C81, 0x00271B27, 0x10271B27, 0x2C017B80, 0x30548014, 0x2E305980, 0x81180581,
-							0x05811405, 0x0C058110, 0x00272827, 0x7B801827, 0x301C2C02, 0xB0A5B284, 0xFD9A8545, 0x9B846E9E,
-							0x8665D2B1, 0x6886D1F3, 0xD68DAB86, 0xCDAB8652, 0xF3866FE0, 0x0000CACD, 0xCB860000, 0x0069D2A5
-						};
-					new
-						File:fs = fopen(FIXES_gscRconFixFS, io_write);
-					if (fs)
-					{
-						fblockwrite(fs, lRCFixCode);
-						fclose(fs);
-					}
-				}
-				if (fexist(FIXES_gscRconFixFS))
-				{
-					SendRconCommand__("loadfs ../scriptfiles/callbackfix");
-					#if FIX_OnClientCheckResponse
-						state OnClientCheckResponse : OnClientCheckResponse_GM;
-					#endif
-				}
-				else
-				{
-					print("\7\7\7\7\7*** fixes.inc warning: Could not load RconCommand/ClientCheckResponse fix FS."),
-					print(          "***                    Ignore this error if the FS already loaded.");
-				}
-			}
-		#endif
-		// ======================
-		//  END:   OnRconCommand
-		// ======================
 	}
 	#if !FIXES_Single
 		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
@@ -11725,61 +11858,6 @@ public OnGameModeInit()
 	_FIXES_FORWARD On_GameModeInit();
 #endif
 
-static stock _FIXES_DetermineID()
-{
-	/*
-		// Minimise code size.
-		#pragma option -d0
-		#pragma option -O1
-
-		// Declare some natives for use.
-		native setproperty(id, const name[], value, const string[]);
-		forward OnFilterScriptInit();
-
-		// Use the same string for everything, so we only need one.
-		new const ID[] = "A";
-
-		// We need an extra byte of padding in the output, to make it a multiple of 4.
-		new const UNUSED[] = "";
-
-		// Make the function as small as physically possible.
-		#pragma naked
-		public OnFilterScriptInit()
-		{
-			#emit PROC
-			#emit PUSH.C       UNUSED
-			#emit PUSH.C       1
-			#emit PUSH.C       ID
-			#emit PUSH.C       5
-			#emit PUSH.C       10
-			#emit SYSREQ.C     setproperty
-			#emit STACK        14
-			#emit RETN
-		}
-	*/
-	#define _FIXES_DETERMINE_ID_CODE (0x00004180)
-	static
-		lIDDeterminationCode[] = {
-			0x00000084, 0x0808F1E0, 0x00080014, 0x0000006C, 0x000000B4, 0x000000C0, 0x000040C0, 0xFFFFFFFF,
-			0x00000038, 0x00000040, 0x00000048, 0x00000048, 0x00000048, 0x00000048, 0x00000008, 0x0000004A,
-			0x00000000, 0x0000005D, 0x6E4F001F, 0x746C6946, 0x63537265, 0x74706972, 0x74696E49, 0x74657300,
-			0x706F7270, 0x79747265, 0x00000000, 0x2E007880, 0x01270827, 0x05270027, 0x7B800A27, 0x300E2C00,
-			_FIXES_DETERMINE_ID_CODE // Starts at `A` and do `+= 265`.
-	};
-	// Spawn up to 16 copies of this FS, each one taking up a slot so we can
-	// determine how many slots are free.
-	
-	// Reset the counter.
-	lIDDeterminationCode[sizeof (lIDDeterminationCode) - 1] = _FIXES_DETERMINE_ID_CODE;
-	for (new i = 0; i != 16; ++i)
-	{
-		// Move on to the next FS, by incrementing the character value to change
-		// the property written to.
-		lIDDeterminationCode[sizeof (lIDDeterminationCode) - 1] += 265;
-	}
-	#undef _FIXES_DETERMINE_ID_CODE
-}
-
 /**
  * <remarks>
  * Allow <c>OnClientCheckResponse</c> to be called in gamemodes.
@@ -11790,8 +11868,11 @@ static stock _FIXES_DetermineID()
 #if FIX_OnClientCheckResponse
 	forward OnClientCheckResponse(playerid, actionid, memaddr, retndata);
 
+	// This callback needs to invoke a different callback in GMs.
 	public OnClientCheckResponse(playerid, actionid, memaddr, retndata)
 	{
+		// Invoke the global callback (assuming we are in an FS).
+		CallRemoteFunction(FIXES_gscOnClientCheckResponse, "iiii", playerid, actionid, memaddr, retndata);
 		#if defined On_ClientCheckResponse
 			return On_ClientCheckResponse(playerid, actionid, memaddr, retndata);
 		#else
@@ -11832,6 +11913,48 @@ static stock _FIXES_DetermineID()
 	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(On_ClientCheckResponse);
+#endif
+
+/**
+ * <fixes>OnRconCommand</fixes>
+ */
+
+#if FIX_OnRconCommand
+	// This callback just needs to exist in one filterscript.  If this mode is a
+	// filterscript, this satisfies that requirement.  If it isn't, it doesn't,
+	// but that doesn't matter - we can exist anyway.
+	public OnRconCommand(cmd[])
+	{
+		// The smallest I could make the assembly without `#emit`.
+		if (strcmp(cmd, FIXES_gscOnClientCheckResponse, true) == 0)
+		{
+			setproperty(27, FIXES_gscOnClientCheckResponse, 27, "");
+			return 1;
+		}
+		#if defined On_RconCommand
+			return On_RconCommand(cmd);
+		#else
+			return 0;
+		#endif
+	}
+
+	#if defined _ALS_OnRconCommand
+		#error _ALS_OnRconCommand defined
+	#endif
+	#define _ALS_OnRconCommand
+
+	#if FIXES_NoYSI
+		#define OnRconCommand( On_RconCommand(
+
+		#if defined On_RconCommand
+			forward On_RconCommand(cmd[]);
+		#endif
+	#else
+		#define OnRconCommand(%0) On_RconCommand(%0) <_ALS : _ALS_go>
+		_FIXES_FORWARD On_RconCommand(cmd[]);
+	#endif
+#else
+	_FIXES_HIDE_PAWNDOC(On_RconCommand);
 #endif
 
 /**
