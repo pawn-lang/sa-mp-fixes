@@ -11429,18 +11429,12 @@ static stock _FIXES_DetermineID()
 		// Declare some natives for use.
 		native setproperty(id, const name[], value, const string[]);
 		forward OnFilterScriptInit();
-		forward FIXES_ClaimID();
 
 		// Use the same string for everything, so we only need one.
 		new const ID[] = "A";
 
 		// We need an extra byte of padding in the output, to make it a multiple of 4.
 		new const UNUSED[] = "";
-
-		// This is a 0 byte function.  It will get the same address in the AMX as
-		// `OnFilterScriptInit`, so that we can call it two different ways.
-		#pragma naked
-		public FIXES_ClaimID() {}
 
 		// Make the function as small as physically possible.
 		#pragma naked
@@ -11460,11 +11454,11 @@ static stock _FIXES_DetermineID()
 	#define _FIXES_DETERMINE_ID_CODE (0x00004180)
 	static
 		lIDDeterminationCode[] = {
-			0x00000098, 0x0808F1E0, 0x00080014, 0x00000080, 0x000000C8, 0x000000D4, 0x000040D4, 0xFFFFFFFF,
-			0x00000038, 0x00000048, 0x00000050, 0x00000050, 0x00000050, 0x00000050, 0x00000008, 0x00000052,
-			0x00000008, 0x00000060, 0x00000000, 0x00000073, 0x4946001F, 0x5F534558, 0x69616C43, 0x0044496D,
-			0x69466E4F, 0x7265746C, 0x69726353, 0x6E497470, 0x73007469, 0x72707465, 0x7265706F, 0x00007974,
-			0x2E007880, 0x01270827, 0x05270027, 0x7B800A27, 0x300E2C00, _FIXES_DETERMINE_ID_CODE
+			0x00000084, 0x0808F1E0, 0x00080014, 0x0000006C, 0x000000B4, 0x000000C0, 0x000040C0, 0xFFFFFFFF,
+			0x00000038, 0x00000040, 0x00000048, 0x00000048, 0x00000048, 0x00000048, 0x00000008, 0x0000004A,
+			0x00000000, 0x0000005D, 0x6E4F001F, 0x746C6946, 0x63537265, 0x74706972, 0x74696E49, 0x74657300,
+			0x706F7270, 0x79747265, 0x00000000, 0x2E007880, 0x01270827, 0x05270027, 0x7B800A27, 0x300E2C00,
+			_FIXES_DETERMINE_ID_CODE // Starts at `A` and do `+= 265`.
 		},
 		lIDDeterminationFile[] = "iddeterminationA.amx",
 		lIDDeterminationLoad[] = "unloadfs ../scriptfiles/iddeterminationA";
@@ -11474,7 +11468,7 @@ static stock _FIXES_DetermineID()
 	print("\7*** fixes.inc info: Trying to load multiple ID determination FSes..."),
 	print(  "***                 Ignore any errors due to insufficient FS slots."),
 
-	// Reset the counters.  Starts at `A` and do `+= 265`.
+	// Reset the counters.
 	lIDDeterminationCode[sizeof (lIDDeterminationCode) - 1] = _FIXES_DETERMINE_ID_CODE,
 	lIDDeterminationFile[sizeof (lIDDeterminationFile) - 6] = 'A',
 	lIDDeterminationLoad[sizeof (lIDDeterminationLoad) - 2] = 'A';
