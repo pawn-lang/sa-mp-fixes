@@ -7009,7 +7009,8 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 	e_FIXES_SETTINGS_MENU_SET,
 	e_FIXES_SETTINGS_ENDING,
 	e_FIXES_SETTINGS_ENDED,
-	e_FIXES_SETTINGS_NO_GAME_TEXT
+	e_FIXES_SETTINGS_NO_GAME_TEXT,
+	e_FIXES_SETTINGS_NO_RCON
 }
 
 _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
@@ -11481,7 +11482,7 @@ public _FIXES_DetermineID()
 	new prop[2];
 	prop[0] = 'a' + @_,
 	setproperty(5, prop, @_),
-	setproperty(5, FIXES_gscSingleProperty, 1);
+	setproperty(5, FIXES_gscSingleProperty, getproperty(5, FIXES_gscSingleProperty) + 1);
 }
 
 /**
@@ -11720,7 +11721,7 @@ public OnFilterScriptInit()
 
 	// Collect information about other fixes.inc scripts that are running.
 	#if FIXES_Single && !FIXES_NoSingleMsg
-		deleteproperty(5, FIXES_gscSingleProperty);
+		setproperty(5, FIXES_gscSingleProperty, 0);
 	#endif
 	new prop[2];
 	for (@_ = 1; @_ <= 16; ++@_)
@@ -11742,7 +11743,7 @@ public OnFilterScriptInit()
 
 	#if FIXES_Single && !FIXES_NoSingleMsg
 		// Check this really IS the only script running.
-		if (existproperty(5, FIXES_gscSingleProperty))
+		if (getproperty(5, FIXES_gscSingleProperty) > 1)
 		{
 			print(FIXES_gscMultiScriptError);
 		}
@@ -11888,9 +11889,9 @@ public OnGameModeInit()
 		_FIXES_LoadRconFixFS();
 		// Collect information about other fixes.inc scripts that are running.
 		#if FIXES_Single && !FIXES_NoSingleMsg
-			deleteproperty(5, FIXES_gscSingleProperty),
+			setproperty(5, FIXES_gscSingleProperty, 0),
 			CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@);
-			if (existproperty(5, FIXES_gscSingleProperty))
+			if (setproperty(5, FIXES_gscSingleProperty) > 1)
 			{
 				print(FIXES_gscMultiScriptError);
 			}
@@ -12009,8 +12010,7 @@ public OnGameModeInit()
 	// but that doesn't matter - we can exist anyway.
 	public OnRconCommand(cmd[])
 	{
-		// The smallest I could make the assembly without `#emit`.
-		if (strcmp(cmd, FIXES_gscOnClientCheckResponse, true) == 0)
+		if (_FIXES_gIsFilterscript && !(FIXES_gsSettings & e_FIXES_SETTINGS_NO_RCON) && !strcmp(cmd, FIXES_gscOnClientCheckResponse, true))
 		{
 			setproperty(27, FIXES_gscOnClientCheckResponse, 27, "");
 			return 1;
@@ -12104,9 +12104,15 @@ public OnGameModeInit()
  * </remarks>
  */
 
-#if !FIXES_Single || FIX_GameText || FIX_OnPlayerDisconnect
+#if !FIXES_Single || FIX_GameText || FIX_OnPlayerDisconnect || FIX_OnClientCheckResponse || FIX_OnRconCommand
 	public OnFilterScriptExit()
 	{
+		// Reload the callbackfix filterscript, since we can't do it now.
+		#if FIX_OnClientCheckResponse || FIX_OnRconCommand
+			FIXES_gsSettings |= e_FIXES_SETTINGS_NO_RCON,
+			_FIXES_LoadRconFixFS();
+		#endif
+
 		#if FIX_OnPlayerDisconnect
 			// Removal safe loop.
 			for (new next, playerid = FIXES_gsPlayersIterator[MAX_PLAYERS]; playerid != MAX_PLAYERS; playerid = next)
