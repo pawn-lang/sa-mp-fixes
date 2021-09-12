@@ -837,7 +837,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 #if !defined FIXES_Single
 	_FIXES_CONST_PAWNDOC(FIXES_Single);
-	#define FIXES_Single                         (0)
+	#define FIXES_Single                         (1)
 #elseif _FIXES_IS_UNSET(FIXES_Single)
 	#undef FIXES_Single
 	static stock FIXES_Single = 2;
