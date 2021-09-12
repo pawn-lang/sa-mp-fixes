@@ -16408,13 +16408,15 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerInterior);
 #endif
 
+#if FIX_AllowTeleport && !defined FILTERSCRIPT && !FIXES_Single
+	forward _FIXES_AllowTeleport(playerid, allow);
+#endif
+
 /**
  * <fixes>AllowTeleport</fixes>
  */
 
 #if FIX_AllowTeleport && !defined FILTERSCRIPT
-	forward _FIXES_AllowTeleport(playerid, allow);
-
 	public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 	{
 		// ======================
