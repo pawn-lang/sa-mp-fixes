@@ -9,7 +9,7 @@
  * -->
 */
 #if (__Pawn & 0x0F) >= 0x0A
-const HIDE_THE_FIXES_COMMENT_1 = 1;
+const _HIDE_THE_FIXES_COMMENT_1 = 1;
 #endif
 /**
  * <!--
@@ -43,7 +43,7 @@ const HIDE_THE_FIXES_COMMENT_1 = 1;
  * -->
  */
 #if (__Pawn & 0x0F) >= 0x0A
-const HIDE_THE_FIXES_COMMENT_1 = 1;
+const _HIDE_THE_FIXES_COMMENT_2 = 2;
 #endif
 /**
  * <library name="fixes.inc"
