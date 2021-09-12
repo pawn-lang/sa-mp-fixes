@@ -854,7 +854,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 /**
  * <remarks>
- * Show a message at mode start if <c>FIXES_Single</c> is set, but this is NOT
+ * Hide a message at mode start if <c>FIXES_Single</c> is set, but this is NOT
  * the only script running <emph>fixes.inc</emph>.  This will entirely disable
  * the check, so should only be used if you are absolutely certain that no other
  * scripts are running at the same time (gamemodes or filterscripts).
@@ -1025,7 +1025,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 /**
  * <remarks>
- * Show a message at vehicle creation if <c>FIXES_OneRandomVehicleColour</c>
+ * Hide a message at vehicle creation if <c>FIXES_OneRandomVehicleColour</c>
  * is set, but a vehicle is created with only one random colour.
  * </remarks>
  */
