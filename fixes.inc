@@ -4722,38 +4722,6 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
- * <fix name="TogglePlayerSpectating">
- *     <problem>
- *         Breaks when their target leaves the stream radius.
- *     </problem>
- *     <solution>
- *         Constantly move the spectator to the spectatee.
- *     </solution>
- *     <see>FIXES_SetPlayerPos</see>
- *     <see>FIXES_SetPlayerPosFindZ</see>
- *     <see>FIXES_UpdatePlayerPos</see>
- *     <author    href="https://github.com/Y-Less" >Y_Less</author>
- * </fix>
- */
-
-#if !defined FIX_TogglePlayerSpectating
-	static _FIXES_STOCK FIX_TogglePlayerSpectating = _FIXES_DEFAULT;
-	#define FIX_TogglePlayerSpectating           _FIXES_DEFAULT
-#elseif _FIXES_IS_UNSET(FIX_TogglePlayerSpectating)
-	#undef FIX_TogglePlayerSpectating
-	static stock FIX_TogglePlayerSpectating = 2;
-	#define FIX_TogglePlayerSpectating           (2)
-#elseif FIX_TogglePlayerSpectating
-	#undef FIX_TogglePlayerSpectating
-	static stock FIX_TogglePlayerSpectating = 1;
-	#define FIX_TogglePlayerSpectating           (1)
-#else
-	#undef FIX_TogglePlayerSpectating
-	static stock FIX_TogglePlayerSpectating = 0;
-	#define FIX_TogglePlayerSpectating           (0)
-#endif
-
-/**
  * <fix name="GetPlayerAmmo">
  *     <problem>
  *         Returns erroneous values over 32767 and under -32768 due to overflow.
@@ -19860,42 +19828,16 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 // "PARACHUTE", "FALL_SkyDive_R", 962
 // "ped", "FALL_skyDive", 1134
 
-#if FIX_SetPlayerPos || FIX_TogglePlayerSpectating
+#if FIX_SetPlayerPos
 	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 	{
-			new
-				ret = SetPlayerPos__(playerid, x, y, z);
-			// =====================
-			//  BEGIN: SetPlayerPos
-			// =====================
-		#if FIX_SetPlayerPos
-			if (ret)
-			{
-				_FIXES_RemoveFlyingParachute(playerid);
-			}
-		#endif
-			// =====================
-			//  END:   SetPlayerPos
-			// =====================
-
-			// ===============================
-			//  BEGIN: TogglePlayerSpectating
-			// ===============================
-		#if FIX_TogglePlayerSpectating
-			_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
-			{
-				if (FIXES_gsPlayerTarget[i] >>> 8 == playerid)
-				{
-					SetPlayerPos__(i, x, y, z),
-					TogglePlayerSpectating__(i, true),
-					PlayerSpectatePlayer__(i, playerid, FIXES_gsPlayerTarget[i] & 255);
-				}
-			}
-		#endif
-			// ===============================
-			//  END:   TogglePlayerSpectating
-			// ===============================
-			return ret;
+		new
+			ret = SetPlayerPos__(playerid, x, y, z);
+		if (ret)
+		{
+			_FIXES_RemoveFlyingParachute(playerid);
+		}
+		return ret;
 	}
 
 	#if _FIXES_SAMP
@@ -19924,42 +19866,16 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
  * <fixes>TogglePlayerSpectating</fixes>
  */
 
-#if FIX_SetPlayerPos || FIX_TogglePlayerSpectating
+#if FIX_SetPlayerPos
 	stock FIXES_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z)
 	{
-			new
-				ret = SetPlayerPosFindZ__(playerid, x, y, z);
-			// =====================
-			//  BEGIN: SetPlayerPos
-			// =====================
-		#if FIX_SetPlayerPos
-			if (ret)
-			{
-				_FIXES_RemoveFlyingParachute(playerid);
-			}
-		#endif
-			// =====================
-			//  END:   SetPlayerPos
-			// =====================
-
-			// ===============================
-			//  BEGIN: TogglePlayerSpectating
-			// ===============================
-		#if FIX_TogglePlayerSpectating
-			_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
-			{
-				if (FIXES_gsPlayerTarget[i] >>> 8 == playerid)
-				{
-					SetPlayerPosFindZ__(i, x, y, z),
-					TogglePlayerSpectating__(i, true),
-					PlayerSpectatePlayer__(i, playerid, FIXES_gsPlayerTarget[i] & 255);
-				}
-			}
-		#endif
-			// ===============================
-			//  END:   TogglePlayerSpectating
-			// ===============================
-			return ret;
+		new
+			ret = SetPlayerPosFindZ__(playerid, x, y, z);
+		if (ret)
+		{
+			_FIXES_RemoveFlyingParachute(playerid);
+		}
+		return ret;
 	}
 
 	#if _FIXES_SAMP
