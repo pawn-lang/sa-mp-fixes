@@ -205,6 +205,8 @@ AttachTrailerToVehicle | When trailerid is equal to vehicleid and passenger is i
 GetVehicleComponentInSlot | The function doesn't work for CARMODTYPE_STEREO. Both front bull bars and front bumper components are saved in the CARMODTYPE_FRONT_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last. Both rear bull bars and rear bumper components are saved in the CARMODTYPE_REAR_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last. | Hook functions and store components. This uses some code from vSync library. | [Mergevos](https://github.com/Mergevos) || 
 API | fixes.inc isn't intended to extend the SA:MP API, but has a lot of information internally that can be useful to other scripts.  By not exposing this data, we complicate and bloat scripts by requiring them to re-implement said functionality. | Expose the data, behind a tightly controlled API. | [Y_Less](https://github.com/Y-Less) | | 
 floatfract | Incorrect on negative numbers. | Use floatround and subtraction. | [MuthaX](https://github.com/MuthaX) | [Link](https://github.com/pawn-lang/sa-mp-fixes/issues/150) | 
+strfind | The function is prone to OOB access when the search start index is negative. | Clamp it to 0. | [Daniel-Cortez](https://github.com/Daniel-Cortez) | [Link](https://github.com/pawn-lang/sa-mp-fixes/issues/91) | 
+strdel | The function is prone to OOB access when the index of the first character to remove is negative. | Clamp it to 0. | [Daniel-Cortez](https://github.com/Daniel-Cortez) | [Link](https://github.com/pawn-lang/sa-mp-fixes/issues/91) | 
 
 ## API
 

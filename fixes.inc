@@ -5510,6 +5510,70 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_floatfract                       (0)
 #endif
 
+/**
+ * <fix name="strfind">
+ *     <problem>
+ *         The function is prone to OOB access when the search start index is
+ *         negative.
+ *     </problem>
+ *     <solution>
+ *         Clamp it to 0.
+ *     </solution>
+ *     <see>FIXES_strfind</see>
+ *     <author href="https://github.com/Daniel-Cortez">Daniel-Cortez</author>
+ *     <post href="https://github.com/pawn-lang/sa-mp-fixes/issues/91" />
+ * </fix>
+ */
+
+#if !defined FIX_strfind
+	static _FIXES_STOCK FIX_strfind = _FIXES_DEFAULT;
+	#define FIX_strfind                          _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_strfind)
+	#undef FIX_strfind
+	static stock FIX_strfind = 2;
+	#define FIX_strfind                          (2)
+#elseif FIX_strfind
+	#undef FIX_strfind
+	static stock FIX_strfind = 1;
+	#define FIX_strfind                          (1)
+#else
+	#undef FIX_strfind
+	static stock FIX_strfind = 0;
+	#define FIX_strfind                          (0)
+#endif
+
+/**
+ * <fix name="strdel">
+ *     <problem>
+ *         The function is prone to OOB access when the index of the first
+ *         character to remove is negative.
+ *     </problem>
+ *     <solution>
+ *         Clamp it to 0.
+ *     </solution>
+ *     <see>FIXES_strdel</see>
+ *     <author href="https://github.com/Daniel-Cortez">Daniel-Cortez</author>
+ *     <post href="https://github.com/pawn-lang/sa-mp-fixes/issues/91" />
+ * </fix>
+ */
+
+#if !defined FIX_strdel
+	static _FIXES_STOCK FIX_strdel = _FIXES_DEFAULT;
+	#define FIX_strdel                           _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_strdel)
+	#undef FIX_strdel
+	static stock FIX_strdel = 2;
+	#define FIX_strdel                           (2)
+#elseif FIX_strdel
+	#undef FIX_strdel
+	static stock FIX_strdel = 1;
+	#define FIX_strdel                           (1)
+#else
+	#undef FIX_strdel
+	static stock FIX_strdel = 0;
+	#define FIX_strdel                           (0)
+#endif
+
 /*
 
     88b           d88
@@ -17986,6 +18050,48 @@ native BAD_flength(File:handle) = flength;
 	#define floatfract__( FIXES_floatfract(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_floatfract);
+#endif
+
+/**
+ * <fixes>strfind</fixes>
+ */
+
+#if FIX_strfind
+	stock FIXES_strfind(const string[], const sub[], bool:ignorecase = false, pos = 0)
+	{
+		return strfind__(string, sub, ignorecase, pos < 0 ? 0 : pos);
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_strfind
+		#define strfind( FIXES_strfind(
+	#endif
+
+	#define _ALS_strfind__
+	#define strfind__( FIXES_strfind(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_strfind);
+#endif
+
+/**
+ * <fixes>strdel</fixes>
+ */
+
+#if FIX_strdel
+	stock FIXES_strdel(string[], start, end)
+	{
+		return strdel__(string, start < 0 ? 0 : start, end);
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_strdel
+		#define strdel( FIXES_strdel(
+	#endif
+
+	#define _ALS_strdel__
+	#define strdel__( FIXES_strdel(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_strdel);
 #endif
 
 /**
