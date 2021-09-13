@@ -101,11 +101,17 @@ public TestCompiles()
 	fseek(File:0);
 	flength(File:0);
 	strins(str, "", 0);
+	floatfract(5.5);
+	strdel(str, 0, 0);
+	strfind("h", "c");
 	random(0);
 	sleep(0);
 	strcmp("", "");
 	toupper(0);
 	tolower(0);
+	CreateVehicle(400, 5.5, 5.5, 5.5, 5.5, 0, 0, 0, false);
+	AddStaticVehicle(400, 5.5, 5.5, 5.5, 5.5, 0, 0);
+	AddStaticVehicleEx(400, 5.5, 5.5, 5.5, 5.5, 0, 0, 0, false);
 	if (ispacked(str))
 	{
 	}
