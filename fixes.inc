@@ -19863,18 +19863,36 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 	{
 			new
 				ret = SetPlayerPos__(playerid, x, y, z);
-		#if FIX_SetPlayerPos
 			// =====================
 			//  BEGIN: SetPlayerPos
 			// =====================
+		#if FIX_SetPlayerPos
 			if (ret)
 			{
 				_FIXES_RemoveFlyingParachute(playerid);
 			}
+		#endif
 			// =====================
 			//  END:   SetPlayerPos
 			// =====================
+
+			// ===============================
+			//  BEGIN: TogglePlayerSpectating
+			// ===============================
+		#if FIX_TogglePlayerSpectating
+			_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
+			{
+				if (FIXES_gsPlayerTarget[i] >>> 8 == playerid)
+				{
+					SetPlayerPos__(i, x, y, z),
+					TogglePlayerSpectating__(i, true),
+					PlayerSpectatePlayer__(i, playerid, FIXES_gsPlayerTarget[i] & 255);
+				}
+			}
 		#endif
+			// ===============================
+			//  END:   TogglePlayerSpectating
+			// ===============================
 			return ret;
 	}
 
@@ -19907,23 +19925,23 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 	{
 			new
 				ret = SetPlayerPosFindZ__(playerid, x, y, z);
-		#if FIX_SetPlayerPos
 			// =====================
 			//  BEGIN: SetPlayerPos
 			// =====================
+		#if FIX_SetPlayerPos
 			if (ret)
 			{
 				_FIXES_RemoveFlyingParachute(playerid);
 			}
+		#endif
 			// =====================
 			//  END:   SetPlayerPos
 			// =====================
-		#endif
 
-		#if FIX_TogglePlayerSpectating
 			// ===============================
 			//  BEGIN: TogglePlayerSpectating
 			// ===============================
+		#if FIX_TogglePlayerSpectating
 			_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
 			{
 				if (FIXES_gsPlayerTarget[i] >>> 8 == playerid)
@@ -19933,10 +19951,10 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 					PlayerSpectatePlayer__(i, playerid, FIXES_gsPlayerTarget[i] & 255);
 				}
 			}
+		#endif
 			// ===============================
 			//  END:   TogglePlayerSpectating
 			// ===============================
-		#endif
 			return ret;
 	}
 
