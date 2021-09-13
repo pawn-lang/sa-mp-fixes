@@ -17089,7 +17089,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #if FIX_GangZoneCreate
 	stock FIXES_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy)
 	{
-		return GangZoneCreate__(floatrount(minx, floatround_tozero), floatround(miny, floatround_tozero), floatround(maxx, floatround_tozero), floatround(maxy, floatround_tozero));
+		return GangZoneCreate__(floatround(minx, floatround_tozero), floatround(miny, floatround_tozero), floatround(maxx, floatround_tozero), floatround(maxy, floatround_tozero));
 	}
 
 	#if _FIXES_SAMP
@@ -20413,7 +20413,6 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 		     0x0A9910C4, // stream_rate
 		     0xE20F31D1, // maxplayers
 			 0x16847CA0, // useartwork
-			 0x0BAD27EA, // sleep
 			 0x0B874649, // mtu
 			 0x7C75D85C: // port
 			return GetConsoleVarAsInt__(varname);
