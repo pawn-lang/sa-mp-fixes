@@ -18438,7 +18438,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 			KillTimer__(FIXES_gsPlayerAnimTimer[playerid]),
 			FIXES_gsPlayerAnimTimer[playerid] = 0;
 		}
-		if (FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] & >>> (idx & 0x1F) & 1)
+		if (FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] >>> (idx & 0x1F) & 1)
 		{
 			FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
 			FIXES_gsPlayerAnimName[playerid << 6] = '\0',
