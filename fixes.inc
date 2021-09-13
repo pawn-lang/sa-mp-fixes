@@ -18091,7 +18091,7 @@ native BAD_flength(File:handle) = flength;
 #if FIX_strfind
 	stock FIXES_strfind(const string[], const sub[], bool:ignorecase = false, pos = 0)
 	{
-		return strfind__(string, sub, ignorecase, pos < 0 ? 0 : pos);
+		return strfind(string, sub, ignorecase, pos < 0 ? 0 : pos);
 	}
 
 	#if _FIXES_SAMP
@@ -18112,7 +18112,7 @@ native BAD_flength(File:handle) = flength;
 #if FIX_strdel
 	stock FIXES_strdel(string[], start, end)
 	{
-		return strdel__(string, start < 0 ? 0 : start, end);
+		return strdel(string, start < 0 ? 0 : start, end);
 	}
 
 	#if _FIXES_SAMP
@@ -19833,6 +19833,7 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 
 /**
  * <fixes>SetPlayerPos</fixes>
+ * <fixes>TogglePlayerSpectating</fixes>
  */
 // NOTE:
 // "PARACHUTE", "FALL_skyDive", 958
@@ -19849,6 +19850,7 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 
 /**
  * <fixes>SetPlayerPos</fixes>
+ * <fixes>TogglePlayerSpectating</fixes>
  */
 // NOTE:
 // "PARACHUTE", "FALL_skyDive", 958
@@ -19909,6 +19911,7 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 
 /**
  * <fixes>SetPlayerPos</fixes>
+ * <fixes>TogglePlayerSpectating</fixes>
  */
 
 #if _FIXES_SAMP && defined _ALS_SetPlayerPosFindZ
@@ -19918,6 +19921,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 
 /**
  * <fixes>SetPlayerPos</fixes>
+ * <fixes>TogglePlayerSpectating</fixes>
  */
 
 #if FIX_SetPlayerPos || FIX_TogglePlayerSpectating
