@@ -11276,6 +11276,64 @@ static stock _FIXES_CheckMaxPlayers()
 #endif
 
 /**
+ * <remarks>
+ * Destroy the text draws used to replicate game texts.
+ * </remarks>
+ * <fixes>GameText</fixes>
+ */
+
+#if FIX_GameText
+	static _FIXES_DestroyGameTextDraws(const playerid)
+	{
+		if (playerid == INVALID_PLAYER_ID)
+		{
+			#if FIX_GameTextStyles
+				TextDrawDestroy__(FIXES_gsGTStyle[7]),
+				TextDrawDestroy__(FIXES_gsGTStyle[8]),
+				TextDrawDestroy__(FIXES_gsGTStyle[9]),
+				TextDrawDestroy__(FIXES_gsGTStyle[10]),
+				TextDrawDestroy__(FIXES_gsGTStyle[11]),
+				TextDrawDestroy__(FIXES_gsGTStyle[12]),
+				TextDrawDestroy__(FIXES_gsGTStyle[13]),
+				TextDrawDestroy__(FIXES_gsGTStyle[14]),
+				TextDrawDestroy__(FIXES_gsGTStyle[15]),
+			#endif
+				TextDrawDestroy__(FIXES_gsGTStyle[0]),
+				TextDrawDestroy__(FIXES_gsGTStyle[1]),
+				TextDrawDestroy__(FIXES_gsGTStyle[2]),
+				TextDrawDestroy__(FIXES_gsGTStyle[3]),
+				TextDrawDestroy__(FIXES_gsGTStyle[4]),
+				TextDrawDestroy__(FIXES_gsGTStyle[5]),
+				TextDrawDestroy__(FIXES_gsGTStyle[6]);
+		}
+		else
+		{
+			#if FIX_GameTextStyles
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][7]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][8]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][9]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][10]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][11]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][12]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][13]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][14]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][15]),
+			#endif
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][0]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][1]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][2]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][3]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][4]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][5]),
+				PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][6]);
+		}
+		return 1;
+	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_DestroyGameTextDraws);
+#endif
+
+/**
  * <fixes>ApplyAnimation</fixes>
  * <fixes>ApplyAnimation_2</fixes>
  * <fixes>ApplyActorAnimation</fixes>
@@ -12165,22 +12223,7 @@ public OnGameModeInit()
 					//  BEGIN: GameText
 					// =================
 					#if FIX_GameText
-						#if FIX_GameTextStyles
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][13]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][12]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][11]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][10]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][9]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][8]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][7]),
-						#endif
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][6]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][5]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][4]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][3]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][2]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][1]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][0]);
+						_FIXES_DestroyGameTextDraws(INVALID_PLAYER_ID);
 					#endif
 				#endif
 			}
@@ -12196,41 +12239,10 @@ public OnGameModeInit()
 				#if !FIX_OnPlayerDisconnect
 					_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
 					{
-						#if FIX_GameTextStyles
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][13]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][12]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][11]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][10]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][9]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][8]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][7]),
-						#endif
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][6]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][5]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][4]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][3]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][2]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][1]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][0]);
+						_FIXES_DestroyGameTextDraws(playerid);
 					}
 				#endif
-					return
-						#if FIX_GameTextStyles
-							TextDrawDestroy__(FIXES_gsGTStyle[13]),
-							TextDrawDestroy__(FIXES_gsGTStyle[12]),
-							TextDrawDestroy__(FIXES_gsGTStyle[11]),
-							TextDrawDestroy__(FIXES_gsGTStyle[10]),
-							TextDrawDestroy__(FIXES_gsGTStyle[9]),
-							TextDrawDestroy__(FIXES_gsGTStyle[8]),
-							TextDrawDestroy__(FIXES_gsGTStyle[7]),
-						#endif
-							TextDrawDestroy__(FIXES_gsGTStyle[6]),
-							TextDrawDestroy__(FIXES_gsGTStyle[5]),
-							TextDrawDestroy__(FIXES_gsGTStyle[4]),
-							TextDrawDestroy__(FIXES_gsGTStyle[3]),
-							TextDrawDestroy__(FIXES_gsGTStyle[2]),
-							TextDrawDestroy__(FIXES_gsGTStyle[1]),
-							TextDrawDestroy__(FIXES_gsGTStyle[0]);
+					return _FIXES_DestroyGameTextDraws(INVALID_PLAYER_ID);
 			#else
 				#if defined On_FilterScriptExit
 					return On_FilterScriptExit();
@@ -18111,10 +18123,7 @@ native BAD_Kick(playerid) = Kick;
 						//  BEGIN: GameText
 						// =================
 						#if FIX_GameText
-							for (new j = 0; j != FIXES_GT_STYLE_COUNT; ++j)
-							{
-								PlayerTextDrawDestroy__(i, FIXES_gsPGTStyle[i][j]);
-							}
+							_FIXES_DestroyGameTextDraws(i);
 						#endif
 						// =================
 						//  END:   GameText
@@ -18149,22 +18158,7 @@ native BAD_Kick(playerid) = Kick;
 				//  BEGIN: GameText
 				// =================
 				#if FIX_GameText
-					#if FIX_GameTextStyles
-						TextDrawDestroy__(FIXES_gsGTStyle[13]),
-						TextDrawDestroy__(FIXES_gsGTStyle[12]),
-						TextDrawDestroy__(FIXES_gsGTStyle[11]),
-						TextDrawDestroy__(FIXES_gsGTStyle[10]),
-						TextDrawDestroy__(FIXES_gsGTStyle[9]),
-						TextDrawDestroy__(FIXES_gsGTStyle[8]),
-						TextDrawDestroy__(FIXES_gsGTStyle[7]),
-					#endif
-						TextDrawDestroy__(FIXES_gsGTStyle[6]),
-						TextDrawDestroy__(FIXES_gsGTStyle[5]),
-						TextDrawDestroy__(FIXES_gsGTStyle[4]),
-						TextDrawDestroy__(FIXES_gsGTStyle[3]),
-						TextDrawDestroy__(FIXES_gsGTStyle[2]),
-						TextDrawDestroy__(FIXES_gsGTStyle[1]),
-						TextDrawDestroy__(FIXES_gsGTStyle[0]);
+					_FIXES_DestroyGameTextDraws(INVALID_PLAYER_ID);
 				#endif
 				// =================
 				//  END:   GameText
@@ -18222,39 +18216,9 @@ native BAD_Kick(playerid) = Kick;
 					// Destroy all the relevant TextDraws.
 					_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
 					{
-						#if FIX_GameTextStyles
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][13]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][12]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][11]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][10]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][9]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][8]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][7]),
-						#endif
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][6]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][5]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][4]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][3]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][2]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][1]),
-							PlayerTextDrawDestroy__(playerid, FIXES_gsPGTStyle[playerid][0]);
+						_FIXES_DestroyGameTextDraws(playerid);
 					}
-				#if FIX_GameTextStyles
-					TextDrawDestroy__(FIXES_gsGTStyle[13]),
-					TextDrawDestroy__(FIXES_gsGTStyle[12]),
-					TextDrawDestroy__(FIXES_gsGTStyle[11]),
-					TextDrawDestroy__(FIXES_gsGTStyle[10]),
-					TextDrawDestroy__(FIXES_gsGTStyle[9]),
-					TextDrawDestroy__(FIXES_gsGTStyle[8]),
-					TextDrawDestroy__(FIXES_gsGTStyle[7]),
-				#endif
-					TextDrawDestroy__(FIXES_gsGTStyle[6]),
-					TextDrawDestroy__(FIXES_gsGTStyle[5]),
-					TextDrawDestroy__(FIXES_gsGTStyle[4]),
-					TextDrawDestroy__(FIXES_gsGTStyle[3]),
-					TextDrawDestroy__(FIXES_gsGTStyle[2]),
-					TextDrawDestroy__(FIXES_gsGTStyle[1]),
-					TextDrawDestroy__(FIXES_gsGTStyle[0]);
+					_FIXES_DestroyGameTextDraws(INVALID_PLAYER_ID);
 			#endif
 			// =================
 			//  END:   GameText
