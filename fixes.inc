@@ -20449,35 +20449,10 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  * <fixes>GetConsoleVarAsFloat</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_GetConsoleVarAsFloat
-	#error _ALS_GetConsoleVarAsFloat defined
-#endif
-#if defined GetConsoleVarAsFloat
-	native BAD_GetConsoleVarAsFloat(const varname[]) = GetConsoleVarAsFloat;
-#else
-	_FIXES_HIDE_PAWNDOC(_FIXES_GetConsoleVarAsFloat);
-#endif
-
-/**
- * <fixes>GetConsoleVarAsFloat</fixes>
- */
-
-#if _FIXES_SAMP && defined _ALS_GetServerVarAsFloat
-	#error _ALS_GetServerVarAsFloat defined
-#endif
-#if defined GetServerVarAsFloat
-	native BAD_GetServerVarAsFloat(const varname[]) = GetServerVarAsFloat;
-#else
-	_FIXES_HIDE_PAWNDOC(_FIXES_GetServerVarAsFloat);
-#endif
-
-/**
- * <fixes>GetConsoleVarAsFloat</fixes>
- */
-
 #if FIX_GetConsoleVarAsFloat
 	stock Float:FIXES_GetConsoleVarAsFloat(const varname[])
 	{
+		GetConsoleVarAsFloat
 		if (!FIXES_gsServerCFG) // 0x03A253F3 = stream_distance.
 			return 0.0;
 		new
