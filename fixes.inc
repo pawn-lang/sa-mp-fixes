@@ -2541,7 +2541,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 /**
  * <fix name="OnDialogResponse" fixed="0.3e RC6">
  *     <problem>
- *         Cheaters can spoof the dialogid they are using to respond to ones
+ *         Cheaters can spoof the ialogid they are using to respond to ones
  *         they can't actually see.
  *     </problem>
  *     <solution>
@@ -11860,38 +11860,41 @@ public OnJITCompile()
 
 public OnFilterScriptInit()
 {
+		// It is possible for this to be the only thing done in this function!
+		state _ALS : _ALS_go;
+
 	// ======================
 	//  BEGIN: GetMaxPlayers
 	// ======================
 	#if FIX_GetMaxPlayers
-		_FIXES_CheckMaxPlayers();
+		_FIXES_CheckMaxPlayers(),
 	#endif
 	// ======================
 	//  END:   GetMaxPlayers
 	// ======================
 
-	// It is possible for this to be the only thing done in this function!
-	state _ALS : _ALS_go;
-	_FIXES_gIsFilterscript = true,
-	_FIXES_DetermineOS(),
-	_FIXES_CheckServerRoot(),
-	_FIXES_UnloadRconFixFS(),
-	_FIXES_CountFilterscripts(),
+		_FIXES_gIsFilterscript = true,
+		_FIXES_DetermineOS(),
+		_FIXES_CheckServerRoot();
+	#if FIX_OnRconCommand || FIX_OnClientCheckResponse
+		_FIXES_UnloadRconFixFS(),
+	#endif
+		_FIXES_CountFilterscripts(),
 
-	// Collect information about other fixes.inc scripts that are running.
-	setproperty(5, FIXES_gscSingleProperty, 0),
-	CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@),
-	@_ = getproperty(5, FIXES_gscSingleProperty);
+		// Collect information about other fixes.inc scripts that are running.
+		setproperty(5, FIXES_gscSingleProperty, 0),
+		CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@),
+		@_ = getproperty(5, FIXES_gscSingleProperty);
 
-	// Loop to find a free ID.
-	for (new i = 0; i != 17; ++i)
-	{
-		if (!(@_ & (1 << i)))
+		// Loop to find a free ID.
+		for (new i = 0; i != 17; ++i)
 		{
-			@_ = 1 << i;
-			break;
+			if (!(@_ & (1 << i)))
+			{
+				@_ = 1 << i;
+				break;
+			}
 		}
-	}
 
 	#if FIXES_Single && !FIXES_NoSingleMsg
 		// Check this really IS the only script running.
@@ -11901,9 +11904,9 @@ public OnFilterScriptInit()
 		}
 	#endif
 
-	// =================
-	//  BEGIN: GameText
-	// =================
+		// =================
+		//  BEGIN: GameText
+		// =================
 	#if FIX_GameText
 		for (new i = 0; i != sizeof (FIXES_gsPlayerPGTShown); ++i)
 		{
@@ -12029,30 +12032,36 @@ public OnGameModeInit()
 		//  BEGIN: GetMaxPlayers
 		// ======================
 		#if FIX_GetMaxPlayers
-			_FIXES_CheckMaxPlayers();
+			_FIXES_CheckMaxPlayers(),
 		#endif
 		// ======================
 		//  END:   GetMaxPlayers
 		// ======================
 
-		_FIXES_CheckServerRoot(),
-		_FIXES_UnloadRconFixFS(),
-		_FIXES_CountFilterscripts(),
-		_FIXES_LoadRconFixFS(),
-		// Collect information about other fixes.inc scripts that are running.
-		setproperty(5, FIXES_gscSingleProperty, 0),
-		CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@),
-		@_ = getproperty(5, FIXES_gscSingleProperty);
+			_FIXES_CheckServerRoot();
+		#if FIX_OnRconCommand || FIX_OnClientCheckResponse
+			_FIXES_UnloadRconFixFS(),
+		#endif
+			_FIXES_CountFilterscripts();
+		#if FIX_OnRconCommand || FIX_OnClientCheckResponse
+			_FIXES_LoadRconFixFS(),
+		#endif
+			// Collect information about other fixes.inc scripts that are
+			// running.
+			setproperty(5, FIXES_gscSingleProperty, 0),
+			CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@),
+			@_ = getproperty(5, FIXES_gscSingleProperty);
 
-		// Loop to find a free ID.
-		for (new i = 0; i != 17; ++i)
-		{
-			if (!(@_ & (1 << i)))
+			// Loop to find a free ID.
+			for (new i = 0; i != 17; ++i)
 			{
-				@_ = 1 << i;
-				break;
+				if (!(@_ & (1 << i)))
+				{
+					@_ = 1 << i;
+					break;
+				}
 			}
-		}
+
 		#if FIXES_Single && !FIXES_NoSingleMsg
 			if (getproperty(5, FIXES_gscSingleProperty))
 			{
