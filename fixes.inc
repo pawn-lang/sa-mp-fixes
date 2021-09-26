@@ -2541,7 +2541,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 /**
  * <fix name="OnDialogResponse" fixed="0.3e RC6">
  *     <problem>
- *         Cheaters can spoof the ialogid they are using to respond to ones
+ *         Cheaters can spoof the dialogid they are using to respond to ones
  *         they can't actually see.
  *     </problem>
  *     <solution>
