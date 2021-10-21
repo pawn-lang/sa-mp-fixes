@@ -17897,16 +17897,19 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 #if _FIXES_SAMP && defined _ALS_fgetchar
 	#error _ALS_fgetchar defined
 #endif
-native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
+native BAD_fgetchar(File:handle, bool:utf8 = true) = fgetchar;
 
 /**
  * <fixes>fgetchar</fixes>
  */
 
 #if FIX_fgetchar
-	stock FIXES_fgetchar(File:handle, value, bool:utf8 = true)
+	stock FIXES_fgetchar(File:handle, bool:utf8 = true)
 	{
-		return handle ? fgetchar(handle, value, utf8) : '\0';
+		// Use `BAD_fgetchar` because the default declaration is wrong.  It has
+		// `value` as the second parameter, which somehow went documented as
+		// "useless" but never fixed for 15+ years.
+		return handle ? BAD_fgetchar(handle, utf8) : '\0';
 	}
 
 	#if _FIXES_SAMP
