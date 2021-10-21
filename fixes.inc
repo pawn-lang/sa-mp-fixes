@@ -17904,12 +17904,10 @@ native BAD_fgetchar(File:handle, bool:utf8 = true) = fgetchar;
  */
 
 #if FIX_fgetchar
-	stock FIXES_fgetchar(File:handle, bool:utf8 = true)
+	stock FIXES_fgetchar(File:handle, value, bool:utf8 = true)
 	{
-		// Use `BAD_fgetchar` because the default declaration is wrong.  It has
-		// `value` as the second parameter, which somehow went documented as
-		// "useless" but never fixed for 15+ years.
-		return handle ? BAD_fgetchar(handle, utf8) : '\0';
+		// Ignore `value`.
+		return handle ? fgetchar(handle, 0, utf8) : '\0';
 	}
 
 	#if _FIXES_SAMP
