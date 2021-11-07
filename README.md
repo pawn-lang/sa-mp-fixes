@@ -208,6 +208,62 @@ floatfract | Incorrect on negative numbers. | Use floatround and subtraction. | 
 strfind | The function is prone to OOB access when the search start index is negative. | Clamp it to 0. | [Daniel-Cortez](https://github.com/Daniel-Cortez) | [Link](https://github.com/pawn-lang/sa-mp-fixes/issues/91) | 
 strdel | The function is prone to OOB access when the index of the first character to remove is negative. | Clamp it to 0. | [Daniel-Cortez](https://github.com/Daniel-Cortez) | [Link](https://github.com/pawn-lang/sa-mp-fixes/issues/91) | 
 
+## Options 
+
+
+A few fixes are disabled by default, to enable them all do:
+
+```pawn
+#define FIX_GetPlayerDialog 1 
+#define FIX_file_inc 1 
+#define FIX_random 1 
+#define FIX_HideMenuForPlayer_2 1 
+#define FIX_GameTextStyles 1 
+#define FIX_GetPlayerWeather 1 
+#define FIX_GetWeather 1 
+#define FIX_GetWorldTime 1 
+```
+
+## Settings
+
+
+There are a few settings for improved execution of this script. Define these symbols as `1` before you include fixes.inc to explicitly enable them, `0` to explicitly disable them.
+
+
+* `FIXES_Single`: If this define is set to 1, then the old style include is used, with no support for multiple scripts running at the same time on the server.  You only have one script that uses *fixes.inc* running (no other gamemodes or filterscripts).  Using this define will vastly simplify the code in that case, as no cross-script communication is required, but will cause bugs if there actually is another script running.  Default `1`.
+* `FIXES_SilentKick`: If this define is set to `1`, then players will not be given a message when they are kicked for cheats (mainly invalid vehicles and mods), instead they will just loose connection to the server.  Default `0`.
+* `FIXES_Debug`: If this define is set to `1`, then debug printing is turned on for any functions which may use it.  Otherwise, the compiler entirely removes the code to print anything, leaving no run-time overhead.  Default `0`.
+* `FIXES_NoSingleMsg`: Hide a message at mode start if `FIXES_Single` is set, but this is NOT the only script running *fixes.inc*.  This will entirely disable the check, so should only be used if you are absolutely certain that no other scripts are running at the same time (gamemodes or filterscripts).  Default `1`.
+* `FIXES_NoServerVarMsg`: If this define is set to `1`, then the server will not give a message when `GetServerVarAsString` and related functions are used without a valid directory redirect.  Default `1`.
+* `FIXES_NoGetMaxPlayersMsg`: If this define is set to 1, then the server will not give a message when `GetMaxPlayers` doesn't match `MAX_PLAYERS`. Default `1`.
+* `FIXES_Debug`: Additional information in the server console.  Default `0`.
+* `FIXES_EnableAll`: Enable everything, even things that probably shouldn't be enabled.  Default `0`.
+* `FIXES_EnableDeprecated`: Enable all deprecated fixes (those that are no longer needed because they were fixed in later server revisions).  Might causes errors and conflicts with newer SA:MP includes.  Default `0`.
+* `FIXES_DefaultDisabled`: Disable all fixes by default, and require them to be individually enabled with `#define FIX_<name> 1`  Default `0`.
+* `FIXES_ExplicitOptions`: Require fixes to be explicitly enabled or disabled, and show a warning for every fix not mentioned.  Useful in combination with `FIXES_DefaultDisabled`, so default `1` with that, `0` otherwise.
+* `FIXES_NoPawndoc`: If this define is set to `1`, then compiling with `-r` will attempt to hide as many of the functions and variables in fixes.inc from the output XML as possible.  This will vastly simplify the generated documentation (at least the visible parts, this is done by embeddeding XML comments in the output, so all the data still exists, just hidden in the file).  Default `0`.
+* `FIXES_NoYSI`: fixes.inc doesn't need YSI.  YSI doesn't need fixes.inc.  However, they are both written to be aware of each other and adapt accordingly.  For example, fixes.inc uses a special type of ALS hooking which y_hooks can detect and use to call these callbacks in a better order (so-called "pre-hooks").  But if you don't have y_hooks the other version of ALS is very fractionally better.  This define can thus be used to guarantee to fixes.inc that YSI doesn't exist and not to use any of the adapted code.  However, if you're wrong the include probably just won't work, the overhead when not using YSI is absolutely tiny, and when using YSI its optimised out.  So, if in doubt - don't use this.  Default `0`.
+* `FIXES_OneRandomVehicleColour`: Most vehicles are created with two explicit colours (say `5, 6`) or two random colours (`-1, -1`).  It is allowed, but rare, to create a vehicle with one random colour and one fixed colour (`-1, 5`, `9, -1` etc).  fixes.inc supports this, but it takes a lot more code to fix than the common case of all or nothing.  Thus, having only one random colour is only supported with this explicit setting enabled.  Default `0`.
+* `FIXES_NoVehicleColourMsg`: Hide a message at vehicle creation if `FIXES_OneRandomVehicleColour` is set, but a vehicle is created with only one random colour.  Default `0`.
+
+Note that `options` are which fixes to include, and `settings` are more over-arching customisations.
+
+
+## Tests
+
+
+Other code and includes can test for certain fixes.inc symbols, to see what is defined and what isn't.  These all use basic `#if defined` checks, with no need to test the value:
+
+
+* `FIXES_EXISTS`:  The include is used.
+* `FIXES_API`:  The additional API functions (see above) were defined and can be used.
+* `FIXES_USES_STATE_HOOKS`:  fixes.inc uses advanced state-based ALS hooks, not just regular ones.
+* `FIXES_CONST_CORRECT`:  The include is fully const-correct (and backwards-compatible).
+* `FIXES_TAG_CORRECT`:  The include is fully tag-correct (and backwards-compatible), i.e. optionally uses additional tags in callbacks such as `OnPlayerStateChange`.
+* `FIXES_PAWNDOC`:  The include has methods of hiding unwanted pawndoc declarations.
+* `FIXES_ID`:  The include defines the pubic variable `@_`, which is a unique ID for the current script.  This is also defined by YSI if it isn't defined here.
+
+
 ## API
 
 fixes.inc includes a lot of data and processing that is required for it to function, but could be
@@ -396,71 +452,6 @@ printf("Colours chosen for the Sandking: %08x, %08x", CarColIndexToColour(c1), C
 
 Note that you can also use the alias `CarColIndexToColor`.
 
-## Options 
-
-
-A few fixes are disabled by default, to enable them all do:
-
-```pawn
-#define FIX_GetPlayerDialog 1 
-#define FIX_file_inc 1 
-#define FIX_random 1 
-#define FIX_HideMenuForPlayer_2 1 
-#define FIX_GameTextStyles 1 
-#define FIX_GetPlayerWeather 1 
-#define FIX_GetWeather 1 
-#define FIX_GetWorldTime 1 
-```
-
-## Settings
-
-
-There are a few settings for improved execution of this script. Define these symbols as `1` before you include fixes.inc to explicitly enable them, `0` to explicitly disable them.
-
-
-* `FIXES_Single`: If this define is set to 1, then the old style include is used, with no support for multiple scripts running at the same time on the server.  You only have one script that uses *fixes.inc* running (no other gamemodes or filterscripts).  Using this define will vastly simplify the code in that case, as no cross-script communication is required, but will cause bugs if there actually is another script running.  Default `1`.
-* `FIXES_SilentKick`: If this define is set to `1`, then players will not be given a message when they are kicked for cheats (mainly invalid vehicles and mods), instead they will just loose connection to the server.  Default `0`.
-* `FIXES_Debug`: If this define is set to `1`, then debug printing is turned on for any functions which may use it.  Otherwise, the compiler entirely removes the code to print anything, leaving no run-time overhead.  Default `0`.
-* `FIXES_NoSingleMsg`: Hide a message at mode start if `FIXES_Single` is set, but this is NOT the only script running *fixes.inc*.  This will entirely disable the check, so should only be used if you are absolutely certain that no other scripts are running at the same time (gamemodes or filterscripts).  Default `1`.
-* `FIXES_NoServerVarMsg`: If this define is set to `1`, then the server will not give a message when `GetServerVarAsString` and related functions are used without a valid directory redirect.  Default `1`.
-* `FIXES_NoGetMaxPlayersMsg`: If this define is set to 1, then the server will not give a message when `GetMaxPlayers` doesn't match `MAX_PLAYERS`. Default `1`.
-* `FIXES_Debug`: Additional information in the server console.  Default `0`.
-* `FIXES_EnableAll`: Enable everything, even things that probably shouldn't be enabled.  Default `0`.
-* `FIXES_EnableDeprecated`: Enable all deprecated fixes (those that are no longer needed because they were fixed in later server revisions).  Might causes errors and conflicts with newer SA:MP includes.  Default `0`.
-* `FIXES_DefaultDisabled`: Disable all fixes by default, and require them to be individually enabled with `#define FIX_<name> 1`  Default `0`.
-* `FIXES_ExplicitOptions`: Require fixes to be explicitly enabled or disabled, and show a warning for every fix not mentioned.  Useful in combination with `FIXES_DefaultDisabled`, so default `1` with that, `0` otherwise.
-* `FIXES_NoPawndoc`: If this define is set to `1`, then compiling with `-r` will attempt to hide as many of the functions and variables in fixes.inc from the output XML as possible.  This will vastly simplify the generated documentation (at least the visible parts, this is done by embeddeding XML comments in the output, so all the data still exists, just hidden in the file).  Default `0`.
-* `FIXES_NoYSI`: fixes.inc doesn't need YSI.  YSI doesn't need fixes.inc.  However, they are both written to be aware of each other and adapt accordingly.  For example, fixes.inc uses a special type of ALS hooking which y_hooks can detect and use to call these callbacks in a better order (so-called "pre-hooks").  But if you don't have y_hooks the other version of ALS is very fractionally better.  This define can thus be used to guarantee to fixes.inc that YSI doesn't exist and not to use any of the adapted code.  However, if you're wrong the include probably just won't work, the overhead when not using YSI is absolutely tiny, and when using YSI its optimised out.  So, if in doubt - don't use this.  Default `0`.
-* `FIXES_OneRandomVehicleColour`: Most vehicles are created with two explicit colours (say `5, 6`) or two random colours (`-1, -1`).  It is allowed, but rare, to create a vehicle with one random colour and one fixed colour (`-1, 5`, `9, -1` etc).  fixes.inc supports this, but it takes a lot more code to fix than the common case of all or nothing.  Thus, having only one random colour is only supported with this explicit setting enabled.  Default `0`.
-* `FIXES_NoVehicleColourMsg`: Hide a message at vehicle creation if `FIXES_OneRandomVehicleColour` is set, but a vehicle is created with only one random colour.  Default `0`.
-
-Note that `options` are which fixes to include, and `settings` are more over-arching customisations.
-
-
-## Tests
-
-
-Other code and includes can test for certain fixes.inc symbols, to see what is defined and what isn't.  These all use basic `#if defined` checks, with no need to test the value:
-
-
-* `FIXES_EXISTS`:  The include is used.
-* `FIXES_API`:  The additional API functions (see above) were defined and can be used.
-* `FIXES_USES_STATE_HOOKS`:  fixes.inc uses advanced state-based ALS hooks, not just regular ones.
-* `FIXES_CONST_CORRECT`:  The include is fully const-correct (and backwards-compatible).
-* `FIXES_TAG_CORRECT`:  The include is fully tag-correct (and backwards-compatible), i.e. optionally uses additional tags in callbacks such as `OnPlayerStateChange`.
-* `FIXES_PAWNDOC`:  The include has methods of hiding unwanted pawndoc declarations.
-* `FIXES_ID`:  The include defines the pubic variable `@_`, which is a unique ID for the current script.  This is also defined by YSI if it isn't defined here.
-
-
-## Expansion 
-
-
-The file is fairly well documented, with a list of the currently (hopefully) fixed bugs at the top. If you know of others, or have solutions for others, it would be greatly appreciated if you could post them as issues on this repository. The fixes also need extensive testing to find bugs in the fixes themselves.
-
-
-
-Again, this is a community project, merely managed by Y_Less and others - if anyone has comments, contributions, criticisms etc. please again post them as issues on the repository. This includes additions to source code, documentation, presentation, translations (mainly of this documentation - multiple versions of the include should be avoided to reduce fragmentation), or any other related area you can think of.
-
 
 
 ## Other Fixes 
@@ -471,6 +462,13 @@ There are a few other includes which aim to fix issues too large to be included 
 
 * [Timerfix](https://sampforum.blast.hk/showthread.php?tid=435525) - [udan11 (Dan..)](https://github.com/udan11) 's fixes to make "SetTimer" and "SetTimerEx" vastly more accurate in their delays. 
 * [SQLitei](https://sampforum.blast.hk/showthread.php?tid=303682) - [Slice](https://github.com/oscar-broman/) 's fixes and improvements for many SQLite functions. 
+
+
+## New Features
+
+
+fixes.inc is not intended to add new features; however, it does add a few and detractors think it is funny to point to those as a good reason why the library is bad.  The reason why is simple - they were added before the exact scope and definition of "fix" was determined.  New features are not added any more, but existing features that were already added (most notably the new game text styles) are left in because removing them is more breaking than having them.  Yes, they exist; no, they probably shouldn't; no, they wouldn't be added today; no, they won't be removed.
+
 
 ## Bugs 
 
@@ -484,6 +482,16 @@ Originally Posted by [Y_Less](https://github.com/Y-Less/) :
 
 
 The most likely cause of bugs is certain combinations of disabled fixes. Some fixes are inter-mixed and while they SHOULD work when the fixes they are combined with are disabled, not every combination has been tested. There are literally billions of possible combinations - if you find one that doesn't compile or work, please tell us.
+
+
+## Expansion 
+
+
+The file is fairly well documented, with a list of the currently (hopefully) fixed bugs at the top. If you know of others, or have solutions for others, it would be greatly appreciated if you could post them as issues on this repository. The fixes also need extensive testing to find bugs in the fixes themselves.
+
+
+
+Again, this is a community project, merely managed by Y_Less and others - if anyone has comments, contributions, criticisms etc. please again post them as issues on the repository. This includes additions to source code, documentation, presentation, translations (mainly of this documentation - multiple versions of the include should be avoided to reduce fragmentation), or any other related area you can think of.
 
 
 
@@ -622,6 +630,7 @@ The descriptions of the fixes all look like:
 	<post href="Optional link to the original post where applicable." /> 
 </fix> 
 ```
+
 
 ## Thanks
 
