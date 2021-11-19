@@ -10825,7 +10825,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 	}
 #else
 	_FIXES_HIDE_PAWNDOC(_FIXES_CheckServerRoot);
-	#define _FIXES_CheckServerRoot(),
+	#define _FIXES_CheckServerRoot();
 #endif
 
 /**
@@ -11880,8 +11880,8 @@ public OnFilterScriptInit()
 	//  END:   GetMaxPlayers
 	// ======================
 
-		_FIXES_gIsFilterscript = true,
-		_FIXES_DetermineOS(),
+		_FIXES_gIsFilterscript = true;
+		_FIXES_DetermineOS();
 		_FIXES_CheckServerRoot();
 	#if FIX_OnRconCommand || FIX_OnClientCheckResponse
 		_FIXES_UnloadRconFixFS(),
