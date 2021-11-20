@@ -17914,7 +17914,10 @@ native BAD_fgetchar(File:handle, bool:utf8 = true) = fgetchar;
 	stock FIXES_fgetchar(File:handle, value, bool:utf8 = true)
 	{
 		// Ignore `value`.
-		return handle ? fgetchar(handle, 0, utf8) : '\0';
+		#pragma unused value
+		// Pass `utf8` to both parameters, as the native was fixed later so the `utf8` parameter
+		// could be second or third depending on pawn version.
+		return handle ? fgetchar(handle, _:utf8, utf8) : '\0';
 	}
 
 	#if _FIXES_SAMP
