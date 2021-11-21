@@ -17793,9 +17793,7 @@ native BAD_fclose(File:handle) = fclose;
 #if FIX_fclose
 	stock bool:FIXES_fclose(File:handle)
 	{
-		new ret = handle && fclose(handle);
-		printf("fclose(%d) -> %d", _:handle, ret);
-		return ret;
+		return handle && fclose(handle);
 	}
 
 	#if _FIXES_SAMP
@@ -17825,9 +17823,7 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 #if FIX_fwrite
 	stock FIXES_fwrite(File:handle, const string[])
 	{
-		new ret = handle ? fwrite(handle, string) : 0;
-		printf("fwrite(%d, \"%s\") -> %d", _:handle, string, ret);
-		return ret;
+		return handle ? fwrite(handle, string) : 0;
 	}
 
 	#if _FIXES_SAMP
@@ -17857,9 +17853,7 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 #if FIX_fread
 	stock FIXES_fread(File:handle, string[], size = sizeof (string), bool:pack = false)
 	{
-		new ret = handle ? fread(handle, string, size, pack) : 0;
-		printf("fread(%d, \"%s\", %d, %d) -> %d", _:handle, string, size, pack, ret);
-		return ret;
+		return handle ? fread(handle, string, size, pack) : 0;
 	}
 
 	#if _FIXES_SAMP
@@ -17889,9 +17883,7 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 #if FIX_fputchar
 	stock bool:FIXES_fputchar(File:handle, value, bool:utf8 = true)
 	{
-		new ret = handle && fputchar(handle, value, utf8);
-		printf("fputchar(%d, \'%d\', %d) -> %d", _:handle, value, utf8, ret);
-		return ret;
+		return handle && fputchar(handle, value, utf8);
 	}
 
 	#if _FIXES_SAMP
@@ -17925,9 +17917,7 @@ native BAD_fgetchar(File:handle, bool:utf8 = true) = fgetchar;
 		#pragma unused value
 		// Pass `utf8` to both parameters, as the native was fixed later so the `utf8` parameter
 		// could be second or third depending on pawn version.
-		new ret = handle ? fgetchar(handle, (_:utf8), utf8) : '\0';
-		printf("fgetchar(%d, \'%d\', %d) -> %d", _:handle, value, utf8, ret);
-		return ret;
+		return handle ? fgetchar(handle, _:utf8, utf8) : '\0';
 	}
 
 	#if _FIXES_SAMP
@@ -17957,9 +17947,7 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
 #if FIX_fblockwrite
 	stock FIXES_fblockwrite(File:handle, const buffer[], size = sizeof (buffer))
 	{
-		new ret = handle ? fblockwrite(handle, buffer, size) : 0;
-		printf("fblockwrite(%d, \"%s\", %d) -> %d", _:handle, buffer, size, ret);
-		return ret;
+		return handle ? fblockwrite(handle, buffer, size) : 0;
 	}
 
 	#if _FIXES_SAMP
@@ -17989,9 +17977,7 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
 #if FIX_fblockread
 	stock FIXES_fblockread(File:handle, buffer[], size = sizeof (buffer))
 	{
-		new ret = handle ? fblockread(handle, buffer, size) : 0;
-		printf("fblockread(%d, \"%s\", %d) -> %d", _:handle, buffer, size, ret);
-		return ret;
+		return handle ? fblockread(handle, buffer, size) : 0;
 	}
 
 	#if _FIXES_SAMP
@@ -18021,9 +18007,7 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
 #if FIX_fseek
 	stock FIXES_fseek(File:handle, position = 0, seek_whence:whence = seek_start)
 	{
-		new ret = handle ? fseek(handle, position, whence) : 0;
-		printf("fseek(%d, %d, %d) -> %d", _:handle, position, whence, ret);
-		return ret;
+		return handle ? fseek(handle, position, whence) : 0;
 	}
 
 	#if _FIXES_SAMP
@@ -18053,9 +18037,7 @@ native BAD_flength(File:handle) = flength;
 #if FIX_flength
 	stock FIXES_flength(File:handle)
 	{
-		new ret = handle ? flength(handle) : 0;
-		printf("flength(%d) -> %d", _:handle, ret);
-		return ret;
+		return handle ? flength(handle) : 0;
 	}
 
 	#if _FIXES_SAMP
@@ -18068,29 +18050,6 @@ native BAD_flength(File:handle) = flength;
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_flength);
 #endif
-
-/**
- * <fixes>fopen</fixes>
- */
-
-//#if FIX_fopen
-	stock FIXES_fopen(const name[], filemode:mode = io_readwrite)
-	{
-		new ret = fopen(name);
-		printf("fopen(\"%s\", %d) -> %d", _:name, mode, ret);
-		return ret;
-	}
-
-	#if _FIXES_SAMP
-		#define _ALS_fopen
-		#define fopen( FIXES_fopen(
-	#endif
-
-	#define _ALS_fopen__
-	#define fopen__( FIXES_fopen(
-//#else
-//	_FIXES_HIDE_PAWNDOC(FIXES_fopen);
-//#endif
 
 /**
  * <fixes>floatfract</fixes>
