@@ -11532,8 +11532,10 @@ static stock _FIXES_CheckMaxPlayers()
 #if FIX_OnRconCommand || FIX_OnClientCheckResponse
 	static stock _FIXES_UnloadRconFixFS()
 	{
+		print(  FIXES_gsSpace),
 		print("\7*** fixes.inc info: Trying to unload RconCommand/ClientCheckResponse fix FS..."),
 		print(  "***                 Ignore any errors if the FS already unloaded."),
+		print(  FIXES_gsSpace),
 		deleteproperty(27, FIXES_gscOnClientCheckResponse),
 		SendRconCommand__(FIXES_gscOnClientCheckResponse);
 		if (existproperty(27, FIXES_gscOnClientCheckResponse))
@@ -11622,8 +11624,10 @@ static stock _FIXES_CheckMaxPlayers()
 			}
 			if (fexist(FIXES_gscRconFixFS))
 			{
+				print(  FIXES_gsSpace),
 				print("\7*** fixes.inc info: Trying to load RconCommand/ClientCheckResponse fix FS..."),
 				print(  "***                 Ignore any errors if the FS already loaded."),
+				print(  FIXES_gsSpace),
 				SendRconCommand__("loadfs ../scriptfiles/callbackfix");
 				#if FIX_OnClientCheckResponse
 					state OnClientCheckResponse : OnClientCheckResponse_GM;
@@ -11704,8 +11708,10 @@ static stock _FIXES_CountFilterscripts()
 
 	// Spawn up to 16 copies of this FS, each one taking up a slot so we can
 	// determine how many slots are free.
+	print(  FIXES_gsSpace),
 	print("\7*** fixes.inc info: Trying to load multiple ID determination FSes..."),
 	print(  "***                 Ignore any errors due to insufficient FS slots."),
+	print(  FIXES_gsSpace),
 
 	// Reset the counters.
 	lFSCountCode[sizeof (lFSCountCode) - 1] = _FIXES_FS_COUNT_CODE,
@@ -11760,6 +11766,11 @@ static stock _FIXES_CountFilterscripts()
 		lFSCountLoad[sizeof (lFSCountLoad) - 2] += 1;
 	}
 
+	print(  FIXES_gsSpace),
+	print("\7*** fixes.inc info: If this crashes it might be due to pawn-uuid.  See:"),
+	print(  FIXES_gsSpace),
+	print(  "    https://github.com/Southclaws/pawn-uuid/issues/8#issuecomment-984940512"),
+	print(  FIXES_gsSpace);
 	// Clear all the temporary filterscipts from memory.
 	for (new i = loaded; i--; )
 	{
