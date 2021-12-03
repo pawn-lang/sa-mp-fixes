@@ -11891,22 +11891,6 @@ public OnFilterScriptInit()
 		state _ALS : _ALS_go;
 
 	// ======================
-	//  BEGIN: SetTimer
-	// ======================
-	#if FIX_SetTimer
-		// Reserve timer ID `0` always.
-		new timer = SetTimer__(FIXES_gscFakeTimerFunc, cellmax, true);
-		if (timer)
-		{
-			KillTimer__(timer);
-		}
-	#endif
-	// ======================
-	//  END:   SetTimer
-	// ======================
-
-
-	// ======================
 	//  BEGIN: GetMaxPlayers
 	// ======================
 	#if FIX_GetMaxPlayers
@@ -12071,21 +12055,6 @@ public OnGameModeInit()
 
 	if (!_FIXES_gIsFilterscript)
 	{
-		// ======================
-		//  BEGIN: SetTimer
-		// ======================
-		#if FIX_SetTimer
-			// Reserve timer ID `0` always.
-			new timer = SetTimer__(FIXES_gscFakeTimerFunc, cellmax, true);
-			if (timer)
-			{
-				KillTimer__(timer);
-			}
-		#endif
-		// ======================
-		//  END:   SetTimer
-		// ======================
-
 		// ======================
 		//  BEGIN: GetMaxPlayers
 		// ======================
@@ -14381,17 +14350,19 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	stock FIXES_SetTimer(const funcname[], interval, repeating)
 	{
 		new
-			ret = SetTimer__(funcname, interval, repeating);
-		if (ret == 0)
+			timer = SetTimer__(funcname, interval, repeating);
+		if (timer == 0 || timer == -1)
 		{
-			// Got a timer ID of 0, which is actually valid.
-			// Make a new version.
-			ret = SetTimer__(funcname, interval, repeating);
-			// Kill the old version.
-			KillTimer__(0);
-			// If this is still 0 there was probably a problem, so go with it.
+			return
+				// Got a timer ID of 0, which is actually valid.  Also cover
+				// `-1` because someone started a rumour that that's the invalid
+				// ID. Make a new version.
+				interval = SetTimer__(funcname, interval, repeating),
+				// Kill the old version.
+				KillTimer__(timer),
+				interval;
 		}
-		return ret;
+		return timer;
 	}
 
 #if FIX_SetTimer
@@ -14437,7 +14408,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 		// At this point we have NOT restored the function header to the stack,
 		// but it's unneeded.
-		if (sTimer == 0)
+		if (sTimer == 0 || sTimer == -1)
 		{
 			// Call it again.
 			#emit SYSREQ.C     SetTimerEx
@@ -14491,7 +14462,17 @@ native BAD_KillTimer(timerid) = KillTimer;
 #if FIX_SetTimer
 	stock bool:FIXES_KillTimer(timerid)
 	{
-		return timerid && KillTimer__(timerid);
+		switch (timerid)
+		{
+		case 0:
+			return false;
+		case -1:
+			return
+				print("\7\7\7*** fixes.inc warning: Timer with ID `-1` detected.  This might be due to using"),
+				print(      "***                    an invalid/reset timer value of `-1` instead of `0`."),
+				false;
+		}
+		return KillTimer__(timerid);
 	}
 
 	#if _FIXES_SAMP
