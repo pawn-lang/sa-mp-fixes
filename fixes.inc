@@ -14350,19 +14350,31 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	stock FIXES_SetTimer(const funcname[], interval, repeating)
 	{
 		new
-			timer = SetTimer__(funcname, interval, repeating);
-		if (timer == 0 || timer == -1)
+			timer1 = SetTimer__(funcname, interval, repeating);
+		if (timer1 != 0 && timer1 != -1)
 		{
-			return
-				// Got a timer ID of 0, which is actually valid.  Also cover
-				// `-1` because someone started a rumour that that's the invalid
-				// ID. Make a new version.
-				interval = SetTimer__(funcname, interval, repeating),
-				// Kill the old version.
-				KillTimer__(timer),
-				interval;
+			return timer1;
 		}
-		return timer;
+		// Got a timer ID of 0, which is actually valid.  Also cover `-1`
+		// because someone started a rumour that that's the invalid ID.  Make
+		// a new version.
+		new
+			timer2 = SetTimer__(funcname, interval, repeating);
+		if (timer2 != 0 && timer2 != -1)
+		{
+			// Kill the old version, AFTER creating a new one so the ID can't be
+			// reused.
+			return
+				KillTimer__(timer1),
+				timer2;
+		}
+		// It is possible to have both created timers return invalid values,
+		// since there are two.
+		return
+			interval = SetTimer__(funcname, interval, repeating);
+			KillTimer__(timer2),
+			KillTimer__(timer1),
+			interval;
 	}
 
 #if FIX_SetTimer
@@ -14393,7 +14405,8 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		static
 			sAddress, // Return address.
 			sFrame,   // Caller frame.
-			sTimer;   // Timer return value.
+			sTimer1,  // Timer 1 return value.
+			sTimer2;  // Timer 2 return value.
 
 		// Get the function preamble off the stack.
 		#emit POP.pri
@@ -14404,21 +14417,42 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		// We can now just call `SetTimerEx` directly - the stack is correct for
 		// this call.
 		#emit SYSREQ.C     SetTimerEx
-		#emit STOR.pri     sTimer
+		#emit STOR.pri     sTimer1
 
 		// At this point we have NOT restored the function header to the stack,
 		// but it's unneeded.
-		if (sTimer == 0 || sTimer == -1)
+		if (sTimer1 == 0 || sTimer1 == -1)
 		{
 			// Call it again.
 			#emit SYSREQ.C     SetTimerEx
-			#emit STOR.pri     sTimer
+			#emit STOR.pri     sTimer2
 
-			// Kill the original.
-			#emit PUSH.C       0
-			#emit PUSH.C       4
-			#emit SYSREQ.C     KillTimer
-			#emit STACK        8
+			if (sTimer2 == 0 || sTimer2 == -1)
+			{
+				// Call it again.
+				#emit SYSREQ.C     SetTimerEx
+				#emit MOVE.alt
+
+				// Kill the others.
+				#emit PUSH         sTimer2
+				#emit PUSH.C       4
+				#emit SYSREQ.C     KillTimer
+				#emit STACK        8
+				#emit PUSH         sTimer1
+				#emit PUSH.C       4
+				#emit SYSREQ.C     KillTimer
+				#emit STACK        8
+				#emit STOR.alt     sTimer1
+			}
+			else
+			{
+				// Kill the original.
+				#emit PUSH         sTimer1
+				#emit PUSH.C       4
+				#emit SYSREQ.C     KillTimer
+				#emit STACK        8
+				sTimer1 = sTimer2;
+			}
 		}
 
 		// Compiler bug fix.
@@ -14429,7 +14463,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#emit PUSH         sFrame
 
 		// And return the stored timer ID.
-		return sTimer;
+		return sTimer1;
 	}
 
 #if FIX_SetTimer
