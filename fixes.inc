@@ -14437,12 +14437,11 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 				#emit PUSH         sTimer2
 				#emit PUSH.C       4
 				#emit SYSREQ.C     KillTimer
-				#emit STACK        8
 				#emit PUSH         sTimer1
 				#emit PUSH.C       4
 				#emit SYSREQ.C     KillTimer
-				#emit STACK        8
 				#emit STOR.alt     sTimer1
+				#emit STACK        16
 			}
 			else
 			{
