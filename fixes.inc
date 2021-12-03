@@ -956,6 +956,30 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 /**
  * <remarks>
+ * You know that an invalid timer is ID <c>0</c>, not <c>-1</c>, so exclude the
+ * excess code designed to warn about/detect people using <c>-1</c>.
+ * </remarks>
+ */
+
+#if !defined FIXES_CorrectInvalidTimerID
+	_FIXES_CONST_PAWNDOC(FIXES_CorrectInvalidTimerID);
+	#define FIXES_CorrectInvalidTimerID          (0)
+#elseif _FIXES_IS_UNSET(FIXES_CorrectInvalidTimerID)
+	#undef FIXES_CorrectInvalidTimerID
+	static stock FIXES_CorrectInvalidTimerID = 2;
+	#define FIXES_CorrectInvalidTimerID          (2)
+#elseif FIXES_CorrectInvalidTimerID
+	#undef FIXES_CorrectInvalidTimerID
+	static stock FIXES_CorrectInvalidTimerID = 1;
+	#define FIXES_CorrectInvalidTimerID          (1)
+#else
+	#undef FIXES_CorrectInvalidTimerID
+	static stock FIXES_CorrectInvalidTimerID = 0;
+	#define FIXES_CorrectInvalidTimerID          (0)
+#endif
+
+/**
+ * <remarks>
  * fixes.inc doesn't need YSI.  YSI doesn't need fixes.inc.  However, they are
  * both written to be aware of each other and adapt accordingly.  For example,
  * fixes.inc uses a special type of ALS hooking which y_hooks can detect and use
@@ -14349,32 +14373,48 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 	stock FIXES_SetTimer(const funcname[], interval, repeating)
 	{
-		new
-			timer1 = SetTimer__(funcname, interval, repeating);
-		if (timer1 != 0 && timer1 != -1)
-		{
-			return timer1;
-		}
-		// Got a timer ID of 0, which is actually valid.  Also cover `-1`
-		// because someone started a rumour that that's the invalid ID.  Make
-		// a new version.
-		new
-			timer2 = SetTimer__(funcname, interval, repeating);
-		if (timer2 != 0 && timer2 != -1)
-		{
-			// Kill the old version, AFTER creating a new one so the ID can't be
-			// reused.
+		#if FIXES_CorrectInvalidTimerID
+			new
+				timerid = SetTimer__(funcname, interval, repeating);
+			if (timerid)
+			{
+				return timerid;
+			}
+			// Got a timer ID of 0, which is actually valid.  Start a new one.
 			return
+				interval = SetTimer__(funcname, interval, repeating);
+				// Kill the old version, AFTER creating a new one so the ID
+				// can't be reused.
+				KillTimer__(timerid),
+				interval;
+		#else
+			new
+				timer1 = SetTimer__(funcname, interval, repeating);
+			if (timer1 != 0 && timer1 != -1)
+			{
+				return timer1;
+			}
+			// Got a timer ID of 0, which is actually valid.  Also cover `-1`
+			// because someone started a rumour that that's the invalid ID.  Make
+			// a new version.
+			new
+				timer2 = SetTimer__(funcname, interval, repeating);
+			if (timer2 != 0 && timer2 != -1)
+			{
+				// Kill the old version, AFTER creating a new one so the ID can't be
+				// reused.
+				return
+					KillTimer__(timer1),
+					timer2;
+			}
+			// It is possible to have both created timers return invalid values,
+			// since there are two.
+			return
+				interval = SetTimer__(funcname, interval, repeating);
+				KillTimer__(timer2),
 				KillTimer__(timer1),
-				timer2;
-		}
-		// It is possible to have both created timers return invalid values,
-		// since there are two.
-		return
-			interval = SetTimer__(funcname, interval, repeating);
-			KillTimer__(timer2),
-			KillTimer__(timer1),
-			interval;
+				interval;
+		#endif
 	}
 
 #if FIX_SetTimer
@@ -14419,40 +14459,52 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#emit SYSREQ.C     SetTimerEx
 		#emit STOR.pri     sTimer1
 
+		// Sadly this code can't be fully adapted for
+		// `FIXES_CorrectInvalidTimerID`, because we can't `#ifdef` out `#emit`.
+
 		// At this point we have NOT restored the function header to the stack,
 		// but it's unneeded.
-		if (sTimer1 == 0 || sTimer1 == -1)
-		{
-			// Call it again.
-			#emit SYSREQ.C     SetTimerEx
-			#emit STOR.pri     sTimer2
-
-			if (sTimer2 == 0 || sTimer2 == -1)
+		#if FIXES_CorrectInvalidTimerID
+			if (sTimer1 == 0)
+		#else
+			if (sTimer1 == 0 || sTimer1 == -1)
+		#endif
 			{
 				// Call it again.
 				#emit SYSREQ.C     SetTimerEx
-				#emit MOVE.alt
+				#emit STOR.pri     sTimer2
 
-				// Kill the others.
-				#emit PUSH         sTimer2
-				#emit PUSH.C       4
-				#emit SYSREQ.C     KillTimer
-				#emit PUSH         sTimer1
-				#emit PUSH.C       4
-				#emit SYSREQ.C     KillTimer
-				#emit STOR.alt     sTimer1
-				#emit STACK        16
+				#if FIXES_CorrectInvalidTimerID
+					// This shouldn't be required.
+					if (sTimer2 == 0)
+				#else
+					if (sTimer2 == 0 || sTimer2 == -1)
+				#endif
+					{
+						// Call it again.
+						#emit SYSREQ.C     SetTimerEx
+						#emit MOVE.alt
+
+						// Kill the others.
+						#emit PUSH         sTimer2
+						#emit PUSH.C       4
+						#emit SYSREQ.C     KillTimer
+						#emit PUSH         sTimer1
+						#emit PUSH.C       4
+						#emit SYSREQ.C     KillTimer
+						#emit STOR.alt     sTimer1
+						#emit STACK        16
+					}
+					else
+					{
+						// Kill the original.
+						#emit PUSH         sTimer1
+						#emit PUSH.C       4
+						#emit SYSREQ.C     KillTimer
+						#emit STACK        8
+						sTimer1 = sTimer2;
+					}
 			}
-			else
-			{
-				// Kill the original.
-				#emit PUSH         sTimer1
-				#emit PUSH.C       4
-				#emit SYSREQ.C     KillTimer
-				#emit STACK        8
-				sTimer1 = sTimer2;
-			}
-		}
 
 		// Compiler bug fix.
 		{}
@@ -14495,17 +14547,21 @@ native BAD_KillTimer(timerid) = KillTimer;
 #if FIX_SetTimer
 	stock bool:FIXES_KillTimer(timerid)
 	{
-		switch (timerid)
-		{
-		case 0:
-			return false;
-		case -1:
-			return
-				print("\7\7\7*** fixes.inc warning: Timer with ID `-1` detected.  This might be due to using"),
-				print(      "***                    an invalid/reset timer value of `-1` instead of `0`."),
-				false;
-		}
-		return KillTimer__(timerid);
+		#if FIXES_CorrectInvalidTimerID
+			return timerid && KillTimer__(timerid);
+		#else
+			switch (timerid)
+			{
+			case 0:
+				return false;
+			case -1:
+				return
+					print("\7\7\7*** fixes.inc warning: Timer with ID `-1` detected.  This might be due to using"),
+					print(      "***                    an invalid/reset timer value of `-1` instead of `0`."),
+					false;
+			}
+			return KillTimer__(timerid);
+		#endif
 	}
 
 	#if _FIXES_SAMP
