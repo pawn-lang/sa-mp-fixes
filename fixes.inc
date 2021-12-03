@@ -8311,6 +8311,15 @@ _FIXES_STATIC_STOCK_CONST
 
 	/**
 	 * <remarks>
+	 * A function that doesn't exist for timer 0.  Its intended to be both
+	 * always invalid (you can't declare a function called just <c>_</c>), and
+	 * in the middle of the function list (to reduce search overhead).
+	 * </remarks>
+	 */
+	FIXES_gscFakeTimerFunc[] = !"_",
+
+	/**
+	 * <remarks>
 	 * Error shown when multiple scripts are detected with <c>FIXES_SINGLE</c>.
 	 * </remarks>
 	 */
@@ -11882,6 +11891,22 @@ public OnFilterScriptInit()
 		state _ALS : _ALS_go;
 
 	// ======================
+	//  BEGIN: SetTimer
+	// ======================
+	#if FIX_SetTimer
+		// Reserve timer ID `0` always.
+		new timer = SetTimer__(FIXES_gscFakeTimerFunc, cellmax, true);
+		if (timer)
+		{
+			KillTimer__(timer);
+		}
+	#endif
+	// ======================
+	//  END:   SetTimer
+	// ======================
+
+
+	// ======================
 	//  BEGIN: GetMaxPlayers
 	// ======================
 	#if FIX_GetMaxPlayers
@@ -12046,6 +12071,21 @@ public OnGameModeInit()
 
 	if (!_FIXES_gIsFilterscript)
 	{
+		// ======================
+		//  BEGIN: SetTimer
+		// ======================
+		#if FIX_SetTimer
+			// Reserve timer ID `0` always.
+			new timer = SetTimer__(FIXES_gscFakeTimerFunc, cellmax, true);
+			if (timer)
+			{
+				KillTimer__(timer);
+			}
+		#endif
+		// ======================
+		//  END:   SetTimer
+		// ======================
+
 		// ======================
 		//  BEGIN: GetMaxPlayers
 		// ======================
@@ -14354,10 +14394,6 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		return ret;
 	}
 
-/**
- * <fixes>SetTimer</fixes>
- */
-
 #if FIX_SetTimer
 	#if _FIXES_SAMP
 		#if defined _ALS_SetTimer
@@ -14371,6 +14407,10 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define _ALS_SetTimer__
 	#define SetTimer__( FIXES_SetTimer(
 #endif
+
+/**
+ * <fixes>SetTimer</fixes>
+ */
 
 #if !FIX_SetTimer
 	static
@@ -14433,6 +14473,40 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 	#define _ALS_SetTimerEx__
 	#define SetTimerEx__( FIXES_SetTimerEx(
+#endif
+
+/**
+ * <fixes>SetTimer</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_KillTimer
+	#error _ALS_KillTimer defined
+#endif
+native BAD_KillTimer(timerid) = KillTimer;
+
+/**
+ * <fixes>SetTimer</fixes>
+ */
+
+#if FIX_SetTimer
+	stock bool:FIXES_KillTimer(timerid)
+	{
+		return timerid && KillTimer__(timerid);
+	}
+
+	#if _FIXES_SAMP
+		#if defined _ALS_KillTimer
+			#undef KillTimer
+		#else
+			#define _ALS_KillTimer
+		#endif
+		#define KillTimer( FIXES_KillTimer(
+	#endif
+
+	#define _ALS_KillTimer__
+	#define KillTimer__( FIXES_KillTimer(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_KillTimer);
 #endif
 
 /**
