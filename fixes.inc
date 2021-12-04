@@ -14440,30 +14440,31 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 	stock FIXES_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...)
 	{
-		#pragma unused funcname, interval, repeating, format
+			#pragma unused funcname, interval, repeating, format
 
-		static
-			sAddress, // Return address.
-			sFrame,   // Caller frame.
-			sTimer1,  // Timer 1 return value.
-			sTimer2;  // Timer 2 return value.
+			static
+				sAddress, // Return address.
+				sFrame,   // Caller frame.
+				sTimer1,  // Timer 1 return value.
+				sTimer2;  // Timer 2 return value.
 
-		// Get the function preamble off the stack.
-		#emit POP.pri
-		#emit POP.alt
-		#emit STOR.pri     sFrame
-		#emit STOR.alt     sAddress
+			// Get the function preamble off the stack.
+			#emit POP.pri
+			#emit POP.alt
+			#emit STOR.pri     sFrame
+			#emit STOR.alt     sAddress
 
-		// We can now just call `SetTimerEx` directly - the stack is correct for
-		// this call.
-		#emit SYSREQ.C     SetTimerEx
-		#emit STOR.pri     sTimer1
+			// We can now just call `SetTimerEx` directly - the stack is correct
+			// for this call.
+			#emit SYSREQ.C     SetTimerEx
+			#emit STOR.pri     sTimer1
 
-		// Sadly this code can't be fully adapted for
-		// `FIXES_CorrectInvalidTimerID`, because we can't `#ifdef` out `#emit`.
+			// Sadly this code can't be fully adapted for
+			// `FIXES_CorrectInvalidTimerID`, because we can't `#ifdef` out
+			// `#emit`.
 
-		// At this point we have NOT restored the function header to the stack,
-		// but it's unneeded.
+			// At this point we have NOT restored the function header to the
+			// stack, but it's unneeded.
 		#if FIXES_CorrectInvalidTimerID
 			if (sTimer1 == 0)
 		#else
@@ -14506,15 +14507,15 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 					}
 			}
 
-		// Compiler bug fix.
-		{}
+			// Compiler bug fix.
+			{}
 
-		// Now we can put the stack back, after one or two calls.
-		#emit PUSH         sAddress
-		#emit PUSH         sFrame
+			// Now we can put the stack back, after one or two calls.
+			#emit PUSH         sAddress
+			#emit PUSH         sFrame
 
-		// And return the stored timer ID.
-		return sTimer1;
+			// And return the stored timer ID.
+			return sTimer1;
 	}
 
 #if FIX_SetTimer
