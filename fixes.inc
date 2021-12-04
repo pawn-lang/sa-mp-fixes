@@ -5958,116 +5958,6 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK);
 
 /**
  * <remarks>
- * The number of GameText styles recreated using TextDraw functions.  This is 7
- * by default, but can be extended to 16 if you want more default GTA styles.
- * </remarks>
- */
-
-_FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
-#if FIX_GameText
-	#if FIX_GameTextStyles
-		#define FIXES_GT_STYLE_COUNT (16)
-	#else
-		#define FIXES_GT_STYLE_COUNT (7)
-	#endif
-#endif
-
-/**
- * <remarks>
- * Set when a player can't see a dialog.
- * </remarks>
- */
-
-#if defined INVALID_DIALOG_ID
-	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_DIALOG_ID);
-#else
-	_FIXES_CONST_PAWNDOC(INVALID_DIALOG_ID);
-	#define INVALID_DIALOG_ID (-1)
-#endif
-
-/**
- * <remarks>
- * Default worldbound range.
- * </remarks>
- */
-
-_FIXES_CONST_PAWNDOC(_FIXES_MIN_WORLDBOUNDS);
-#define _FIXES_MIN_WORLDBOUNDS (-20000.0)
-
-/**
- * <remarks>
- * Default worldbound range.
- * </remarks>
- */
-
-_FIXES_CONST_PAWNDOC(_FIXES_MAX_WORLDBOUNDS);
-#define _FIXES_MAX_WORLDBOUNDS (20000.0)
-
-/**
- * <remarks>
- * Defines property offset used for vehicle components.
- * </remarks>
- */
-
-_FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
-#define _FIXES_PROPERTY_OFFSET (CARMODTYPE:12)
-
-/**
- * <remarks>
- * Defines additional component slots
- * </remarks>
- */
-
-#if defined CARMODTYPE_FRONT_BULLBAR
-	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_FRONT_BULLBAR);
-#else
-	_FIXES_CONST_PAWNDOC(CARMODTYPE_FRONT_BULLBAR);
-	#define CARMODTYPE_FRONT_BULLBAR (CARMODTYPE:14)
-#endif
-
-/**
- * <remarks>
- * Defines additional component slots
- * </remarks>
- */
-
-#if defined CARMODTYPE_REAR_BULLBAR
-	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_REAR_BULLBAR);
-#else
-	_FIXES_CONST_PAWNDOC(CARMODTYPE_REAR_BULLBAR);
-	#define CARMODTYPE_REAR_BULLBAR (CARMODTYPE:15)
-#endif
-
-/**
- * <remarks>
- * IEEE 754 definition of infinity.
- * </remarks>
- */
-
-_FIXES_CONST_PAWNDOC(_FIXES_INFINITY);
-#define _FIXES_INFINITY (Float:0x7F800000)
-
-/**
- * <remarks>
- * IEEE 754 definition of negative infinity.
- * </remarks>
- */
-
-_FIXES_CONST_PAWNDOC(_FIXES_N_INFINITY);
-#define _FIXES_N_INFINITY (Float:0xFF800000)
-
-/**
- * <remarks>
- * The number of players whose attachment data (10-bits) can be stored in one
- * cell.
- * </remarks>
- */
-
-_FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
-#define _FIXES_ATTACHMENTS (cellbits / MAX_PLAYER_ATTACHED_OBJECTS)
-
-/**
- * <remarks>
  * Future-compatible tag definitions.  <c>KEY:</c> is defined as <c>_:</c> when
  * enhanced tags are disabled, and <c>E_KEY:</c> when they are enabled.
  * </remarks>
@@ -6238,6 +6128,81 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 
 /**
  * <remarks>
+ * The number of GameText styles recreated using TextDraw functions.  This is 7
+ * by default, but can be extended to 16 if you want more default GTA styles.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
+#if FIX_GameText
+	#if FIX_GameTextStyles
+		#define FIXES_GT_STYLE_COUNT (16)
+	#else
+		#define FIXES_GT_STYLE_COUNT (7)
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Set when a player can't see a dialog.
+ * </remarks>
+ */
+
+#if defined INVALID_DIALOG_ID
+	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_DIALOG_ID);
+#else
+	_FIXES_CONST_PAWNDOC(INVALID_DIALOG_ID);
+	#define INVALID_DIALOG_ID (-1)
+#endif
+
+/**
+ * <remarks>
+ * Default worldbound range.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_MIN_WORLDBOUNDS);
+#define _FIXES_MIN_WORLDBOUNDS (-20000.0)
+
+/**
+ * <remarks>
+ * Default worldbound range.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_MAX_WORLDBOUNDS);
+#define _FIXES_MAX_WORLDBOUNDS (20000.0)
+
+/**
+ * <remarks>
+ * IEEE 754 definition of infinity.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_INFINITY);
+#define _FIXES_INFINITY (Float:0x7F800000)
+
+/**
+ * <remarks>
+ * IEEE 754 definition of negative infinity.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_N_INFINITY);
+#define _FIXES_N_INFINITY (Float:0xFF800000)
+
+/**
+ * <remarks>
+ * The number of players whose attachment data (10-bits) can be stored in one
+ * cell.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
+#define _FIXES_ATTACHMENTS (cellbits / MAX_PLAYER_ATTACHED_OBJECTS)
+
+/**
+ * <remarks>
  * Because the default SA:MP includes missed this one.  Used internally via
  * <c>_FIXES_KEY_AIM</c>.
  * </remarks>
@@ -6258,7 +6223,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-#define _FIXES_SPECIAL_ACTION_PISSING            (68)
+#define _FIXES_SPECIAL_ACTION_PISSING            (SPECIAL_ACTION:68)
 #if defined SPECIAL_ACTION_PISSING
 	_FIXES_HIDE_PAWNDOC(FIXES_SPECIAL_ACTION_PISSING);
 #else
@@ -6268,12 +6233,47 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 
 /**
  * <remarks>
+ * Defines property offset used for vehicle components.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
+#define _FIXES_PROPERTY_OFFSET                   (CARMODTYPE:12)
+
+/**
+ * <remarks>
+ * Defines additional component slots
+ * </remarks>
+ */
+
+#if defined CARMODTYPE_FRONT_BULLBAR
+	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_FRONT_BULLBAR);
+#else
+	_FIXES_CONST_PAWNDOC(CARMODTYPE_FRONT_BULLBAR);
+	#define CARMODTYPE_FRONT_BULLBAR             (CARMODTYPE:14)
+#endif
+
+/**
+ * <remarks>
+ * Defines additional component slots
+ * </remarks>
+ */
+
+#if defined CARMODTYPE_REAR_BULLBAR
+	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_REAR_BULLBAR);
+#else
+	_FIXES_CONST_PAWNDOC(CARMODTYPE_REAR_BULLBAR);
+	#define CARMODTYPE_REAR_BULLBAR              (CARMODTYPE:15)
+#endif
+
+/**
+ * <remarks>
  * Because the default SA:MP includes missed some weapon names and aliases.
  * Used internally via <c>_FIXES_WEAPON_FIST</c>.
  * </remarks>
  */
 
-#define _FIXES_WEAPON_FIST                       (0)
+#define _FIXES_WEAPON_FIST                       (WEAPON:0)
 #if defined WEAPON_FIST
 	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_FIST);
 #else
@@ -6314,7 +6314,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-#define _FIXES_WEAPON_NIGHT_VIS_GOGGLES          (44)
+#define _FIXES_WEAPON_NIGHT_VIS_GOGGLES          (WEAPON:44)
 #if defined WEAPON_NIGHT_VIS_GOGGLES
 	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_NIGHT_VIS_GOGGLES);
 #else
@@ -6329,7 +6329,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-#define _FIXES_WEAPON_THERMAL_GOGGLES            (45)
+#define _FIXES_WEAPON_THERMAL_GOGGLES            (WEAPON:45)
 #if defined WEAPON_THERMAL_GOGGLES
 	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_THERMAL_GOGGLES);
 #else
