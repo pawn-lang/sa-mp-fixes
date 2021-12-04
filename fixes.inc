@@ -6010,7 +6010,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAX_WORLDBOUNDS);
  */
 
 _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
-#define _FIXES_PROPERTY_OFFSET (12)
+#define _FIXES_PROPERTY_OFFSET (CARMODTYPE:12)
 
 /**
  * <remarks>
@@ -6022,7 +6022,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_FRONT_BULLBAR);
 #else
 	_FIXES_CONST_PAWNDOC(CARMODTYPE_FRONT_BULLBAR);
-	#define CARMODTYPE_FRONT_BULLBAR (14)
+	#define CARMODTYPE_FRONT_BULLBAR (CARMODTYPE:14)
 #endif
 
 /**
@@ -6035,7 +6035,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_REAR_BULLBAR);
 #else
 	_FIXES_CONST_PAWNDOC(CARMODTYPE_REAR_BULLBAR);
-	#define CARMODTYPE_REAR_BULLBAR (15)
+	#define CARMODTYPE_REAR_BULLBAR (CARMODTYPE:15)
 #endif
 
 /**
@@ -6215,6 +6215,25 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 	//#else
 		#define VEHICLE: _:
 	//#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>CARMODTYPE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_CARMODTYPE:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined CARMODTYPE
+	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE);
+#else
+	_FIXES_CONST_PAWNDOC(CARMODTYPE);
+	#if defined __TAG
+		#define CARMODTYPE: __TAG(CARMODTYPE):
+	#else
+		#define CARMODTYPE: _:
+	#endif
 #endif
 
 /**
@@ -14561,7 +14580,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 					print(      "***                    an invalid/reset timer value of `-1` instead of `0`."),
 					false;
 			}
-			return KillTimer__(timerid);
+			return bool:KillTimer__(timerid);
 		#endif
 	}
 
