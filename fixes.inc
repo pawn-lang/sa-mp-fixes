@@ -17359,7 +17359,6 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog || FIX_BypassDialog
 	public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	{
-		printf("OnDialogResponse");
 		// =========================
 		//  BEGIN: OnDialogResponse
 		// =========================
