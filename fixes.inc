@@ -11538,9 +11538,9 @@ static stock _FIXES_CheckMaxPlayers()
 			//   start += random(end - start);
 			//
 			// would be more efficient.  You would sadly be wrong...
-			end = random(end - start) + start,
-			colour1 = FIXES_gscVehiclePrimary[end],
-			colour2 = FIXES_gscVehicleSecondary[end];
+			end = random(end - start),
+			colour1 = FIXES_gscVehiclePrimary[start + end],
+			colour2 = FIXES_gscVehicleSecondary[start + end];
 
 			// Three vehicles have four colours, not two.
 			switch (modelid)
