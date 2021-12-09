@@ -14401,7 +14401,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			}
 			// Got a timer ID of 0, which is actually valid.  Start a new one.
 			return
-				interval = SetTimer__(funcname, interval, repeating);
+				interval = SetTimer__(funcname, interval, repeating),
 				// Kill the old version, AFTER creating a new one so the ID
 				// can't be reused.
 				KillTimer__(timerid),
@@ -14429,7 +14429,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			// It is possible to have both created timers return invalid values,
 			// since there are two.
 			return
-				interval = SetTimer__(funcname, interval, repeating);
+				interval = SetTimer__(funcname, interval, repeating),
 				KillTimer__(timer2),
 				KillTimer__(timer1),
 				interval;
