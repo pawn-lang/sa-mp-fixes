@@ -6212,6 +6212,25 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK);
 
 /**
  * <remarks>
+ * Future-compatible tag definitions.  <c>WEAPON:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_WEAPON:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined WEAPON
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON);
+#else
+	_FIXES_CONST_PAWNDOC(WEAPON);
+	#if defined __TAG
+		#define WEAPON: __TAG(WEAPON):
+	#else
+		#define WEAPON: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
  * The number of GameText styles recreated using TextDraw functions.  This is 7
  * by default, but can be extended to 16 if you want more default GTA styles.
  * </remarks>
