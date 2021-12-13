@@ -1517,11 +1517,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 		#endif
 		#define FIX_TogglePlayerControllable     FIXES_EnableDeprecated
 	#else
-		#if FIXES_ExplicitOptions
-			static FIX_TogglePlayerControllable = _FIXES_DEFAULT;
-		#else
-			_FIXES_CONST_PAWNDOC(FIX_TogglePlayerControllable);
-		#endif
+		static _FIXES_OPTION FIX_TogglePlayerControllable = _FIXES_DEFAULT;
 		#define FIX_TogglePlayerControllable     _FIXES_DEFAULT
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_TogglePlayerControllable)
@@ -1617,11 +1613,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_IsPlayerInRaceCheckpoint
-	#if FIXES_ExplicitOptions
-		static FIX_IsPlayerInRaceCheckpoint = _FIXES_DEFAULT;
-	#else
-		_FIXES_CONST_PAWNDOC(FIX_IsPlayerInRaceCheckpoint);
-	#endif
+	static _FIXES_OPTION FIX_IsPlayerInRaceCheckpoint = _FIXES_DEFAULT;
 	#define FIX_IsPlayerInRaceCheckpoint         _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_IsPlayerInRaceCheckpoint)
 	#undef FIX_IsPlayerInRaceCheckpoint
@@ -2225,11 +2217,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_GetVehicleComponentInSlot
-	#if FIXES_ExplicitOptions
-		static FIX_GetVehicleComponentInSlot = _FIXES_DEFAULT;
-	#else
-		_FIXES_CONST_PAWNDOC(FIX_GetVehicleComponentInSlot);
-	#endif
+	static _FIXES_OPTION FIX_GetVehicleComponentInSlot = _FIXES_DEFAULT;
 	#define FIX_GetVehicleComponentInSlot        _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetVehicleComponentInSlot)
 	#undef FIX_GetVehicleComponentInSlot
@@ -4300,11 +4288,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_PlayerTextDrawSetString_2
-	#if FIXES_ExplicitOptions
-		static FIX_PlayerTextDrawSetString_2 = _FIXES_DEFAULT;
-	#else
-		_FIXES_CONST_PAWNDOC(FIX_PlayerTextDrawSetString_2);
-	#endif
+	static _FIXES_OPTION FIX_PlayerTextDrawSetString_2 = _FIXES_DEFAULT;
 	#define FIX_PlayerTextDrawSetString_2          _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_PlayerTextDrawSetString_2)
 	#undef FIX_PlayerTextDrawSetString_2
