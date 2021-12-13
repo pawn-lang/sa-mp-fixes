@@ -42,7 +42,7 @@
 #endif
 
 #if !defined _FIXES_WARNING
-	#error `fixes-settings.inc` included, but `_FIXES_WARNING` is not defined to select a warning message.
+	#error `_fixes_settings.inc` included, but `_FIXES_WARNING` is not defined to select a warning message.
 #endif
 
 // The caller always undefines `_FIXES_WARNING` after trying to include this
@@ -129,5 +129,5 @@
 	#endinput
 #endif
 
-#error `fixes-settings.inc` included, but `_FIXES_WARNING` is set to a valid warning message.
+#error `_fixes_settings.inc` included, but `_FIXES_WARNING` is not set to a valid warning message.
 
