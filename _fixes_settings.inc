@@ -38,7 +38,7 @@
 #if defined _FIXES_WARN
 	// Hide the warning variable so there aren't two.
 	#undef _FIXES_WARN
-	#define _FIXES_WARN static stock
+	#define _FIXES_WARN stock
 #endif
 
 #if !defined _FIXES_WARNING
