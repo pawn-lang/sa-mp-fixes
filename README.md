@@ -230,6 +230,7 @@ A few fixes are disabled by default, to enable them all do:
 There are a few settings for improved execution of this script. Define these symbols as `1` before you include fixes.inc to explicitly enable them, `0` to explicitly disable them.
 
 
+* `FIXES_ExplicitSettings`: Require settings to be explicitly enabled or disabled, and show a warning for every setting not mentioned.  Default `0` for now.
 * `FIXES_Single`: If this define is set to 1, then the old style include is used, with no support for multiple scripts running at the same time on the server.  You only have one script that uses *fixes.inc* running (no other gamemodes or filterscripts).  Using this define will vastly simplify the code in that case, as no cross-script communication is required, but will cause bugs if there actually is another script running.  Default `1`.
 * `FIXES_SilentKick`: If this define is set to `1`, then players will not be given a message when they are kicked for cheats (mainly invalid vehicles and mods), instead they will just loose connection to the server.  Default `0`.
 * `FIXES_Debug`: If this define is set to `1`, then debug printing is turned on for any functions which may use it.  Otherwise, the compiler entirely removes the code to print anything, leaving no run-time overhead.  Default `0`.
