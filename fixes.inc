@@ -1103,15 +1103,15 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 		#define _FIXES_WARNING 14
 		#tryinclude "_fixes_settings"
 		#undef _FIXES_WARNING
-		#define FIXES_OneRandomVehicleColor          (0)
+		#define FIXES_OneRandomVehicleColor      (0)
 		static _FIXES_SETTING FIXES_OneRandomVehicleColour = 0;
-		#define FIXES_OneRandomVehicleColour         (0)
+		#define FIXES_OneRandomVehicleColour     (0)
 	#elseif _FIXES_IS_UNSET(FIXES_OneRandomVehicleColor)
 		static stock FIXES_OneRandomVehicleColour = 2;
-		#define FIXES_OneRandomVehicleColour         (2)
+		#define FIXES_OneRandomVehicleColour     (2)
 	#else
 		static stock FIXES_OneRandomVehicleColour = FIXES_OneRandomVehicleColor;
-		#define FIXES_OneRandomVehicleColour         (FIXES_OneRandomVehicleColor)
+		#define FIXES_OneRandomVehicleColour     (FIXES_OneRandomVehicleColor)
 	#endif
 	#define FIXES_OneRandomVehicleColour         (0)
 #elseif _FIXES_IS_UNSET(FIXES_OneRandomVehicleColour)
@@ -1140,15 +1140,15 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 		#define _FIXES_WARNING 15
 		#tryinclude "_fixes_settings"
 		#undef _FIXES_WARNING
-		#define FIXES_NoVehicleColorMsg              (0)
+		#define FIXES_NoVehicleColorMsg          (0)
 		static _FIXES_SETTING FIXES_NoVehicleColourMsg = 0;
-		#define FIXES_NoVehicleColourMsg             (0)
+		#define FIXES_NoVehicleColourMsg         (0)
 	#elseif _FIXES_IS_UNSET(FIXES_NoVehicleColorMsg)
 		static stock FIXES_NoVehicleColourMsg = 2;
-		#define FIXES_NoVehicleColourMsg             (2)
+		#define FIXES_NoVehicleColourMsg         (2)
 	#else
 		static stock FIXES_NoVehicleColourMsg = FIXES_NoVehicleColorMsg;
-		#define FIXES_NoVehicleColourMsg             (FIXES_NoVehicleColorMsg)
+		#define FIXES_NoVehicleColourMsg         (FIXES_NoVehicleColorMsg)
 	#endif
 	#define FIXES_NoVehicleColourMsg             (0)
 #elseif _FIXES_IS_UNSET(FIXES_NoVehicleColourMsg)
@@ -1797,7 +1797,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 		#define FIX_IsValidVehicle               FIXES_EnableDeprecated
 	#else
 		static _FIXES_OPTION FIX_IsValidVehicle = FIX_Natives;
-	#define FIX_IsValidVehicle               FIX_Natives
+	#define FIX_IsValidVehicle                   FIX_Natives
 	#endif
 #elseif _FIXES_IS_UNSET(FIX_IsValidVehicle)
 	#undef FIX_IsValidVehicle
@@ -2180,7 +2180,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 #if !defined FIX_AttachTrailerToVehicle
 	static _FIXES_OPTION FIX_AttachTrailerToVehicle = _FIXES_DEFAULT;
-	#define FIX_AttachTrailerToVehicle                  _FIXES_DEFAULT
+	#define FIX_AttachTrailerToVehicle           _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_AttachTrailerToVehicle)
 	#undef FIX_AttachTrailerToVehicle
 	static stock FIX_AttachTrailerToVehicle = 2;
