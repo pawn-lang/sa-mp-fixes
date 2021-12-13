@@ -35,10 +35,10 @@
 	#undef _inc__fixes_settings
 #endif
 
-#if defined _FIXES_WARN
+#if defined _FIXES_SETTING
 	// Hide the warning variable so there aren't two.
-	#undef _FIXES_WARN
-	#define _FIXES_WARN stock
+	#undef _FIXES_SETTING
+	#define _FIXES_SETTING stock
 #endif
 
 #if !defined _FIXES_WARNING
