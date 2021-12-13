@@ -1,13 +1,3 @@
-#if defined _inc__fixes_settings
-	// Allow this file to be included multiple times.
-	#undef _inc__fixes_settings
-#endif
-
-#if !FIXES_ExplicitSettings
-	// Warning about unused settings is disabled.
-	#endinput
-#endif
-
 #if !_FIXES_NEW_COMPILER
 	// This is the old compiler.  We have to use `#endinput` to hide warnings.
 	// This is why the warnings are in a separate (optional) file - just
@@ -24,7 +14,25 @@
 	// would need to be to make this work).  Plus, having a 20,000+ line file
 	// repeatedly include another 20,000+ line file for just five lines of code
 	// is truly awful, and I suspect will bring the compiler to a crawl.
+	//
+	// Do this check before the `_inc__fixes_settings` check so that we utilise
+	// the old compiler's in-built compiler guards to avoid including this file
+	// multiple times when not needed.
 	#endinput
+#endif
+
+#if !FIXES_ExplicitSettings
+	// Warning about unused settings is disabled.  Do this check before the
+	// `_inc__fixes_settings` check so that we utilise the old compiler's
+	// in-built compiler guards to avoid including this file multiple times when
+	// not needed.
+	#endinput
+#endif
+
+#if defined _inc__fixes_settings
+	// Allow this file to be included multiple times.  This line is only hit on
+	// the new compiler in compatibility mode.
+	#undef _inc__fixes_settings
 #endif
 
 #if defined _FIXES_WARN
