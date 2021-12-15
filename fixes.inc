@@ -472,8 +472,8 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 /**
  * <remarks>
  * True on the first pass of the compiler, and not on any others.  This is the
- * pass of the compiler in which functions are collected, so that later pass can
- * call functions defined later in code.  We can detect this pass using
+ * pass of the compiler in which functions are collected, so that later passes
+ * can call functions defined later in code.  We can detect this pass using
  * <c>#if defined FutureFunction</c> (here we use <c>_FIXES_DetermineOS</c>
  * because it is always compiled).  If it exists, this can't be the first pass;
  * if it doesn't, it is.  We can then use this pass knowledge to generate
