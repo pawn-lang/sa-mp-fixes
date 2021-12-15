@@ -49,82 +49,82 @@
 // file, as it needs to be undefined whether the include worked or not.  Thus we
 // can't also undefine it in here, as the sensible option would seem to be, as
 // then it will be undefined twice in some situations.
-#if _FIXES_WARNING == 0
+#if _FIXES_WARNING == 1
 	#warning The `FIXES_ExplicitSettings` setting, to make all settings explicit, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 1
+#if _FIXES_WARNING == 2
 	#warning The `FIXES_EnableAll` setting, to enable all fixes, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 2
+#if _FIXES_WARNING == 3
 	#warning The `FIXES_EnableDeprecated` setting, to enable fixes for fixed bugs, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 3
+#if _FIXES_WARNING == 4
 	#warning The `FIXES_DefaultDisabled` setting, to disable all fixes by default, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 4
+#if _FIXES_WARNING == 5
 	#warning The `FIXES_ExplicitOptions` setting, to make all fixes explicit, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 5
+#if _FIXES_WARNING == 6
 	#warning The `FIXES_SilentKick` setting, to kick users without any message, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 6
+#if _FIXES_WARNING == 7
 	#warning The `FIXES_Debug` setting, to enable debug mode, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 7
+#if _FIXES_WARNING == 8
 	#warning The `FIXES_Single` setting, to enable single script mode, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 8
+#if _FIXES_WARNING == 9
 	#warning The `FIXES_NoSingleMsg` setting, to disable the single mode warning message, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 9
+#if _FIXES_WARNING == 10
 	#warning The `FIXES_NoServerVarMsg` setting, to disable the config access warning message, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 10
+#if _FIXES_WARNING == 11
 	#warning The `FIXES_NoGetMaxPlayersMsg` setting, to disable the `MAX_PLAYERS` warning message, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 11
+#if _FIXES_WARNING == 12
 	#warning The `FIXES_NoPawndoc` setting, to disable all fixes.inc pawndoc output, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 12
+#if _FIXES_WARNING == 13
 	#warning The `FIXES_CorrectInvalidTimerID` setting, to specify that you know invalid timers are `0`, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 13
+#if _FIXES_WARNING == 14
 	#warning The `FIXES_NoYSI` setting, to optimise the code when YSI isn't used, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 14
+#if _FIXES_WARNING == 15
 	#warning The `FIXES_OneRandomVehicleColour` setting, to allow only one random vehicle colour, must now be explicit.
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 15
+#if _FIXES_WARNING == 16
 	#warning The `FIXES_NoVehicleColourMsg` setting, to disable the vehicle colours warning, must now be explicit.
 	#endinput
 #endif

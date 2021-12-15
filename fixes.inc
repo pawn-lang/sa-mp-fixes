@@ -671,7 +671,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define _FIXES_SETTING                       stock
 	// The include needs `FIXES_ExplicitSettings` to be defined...
 	#define FIXES_ExplicitSettings               (0)
-	#define _FIXES_WARNING 0
+	#define _FIXES_WARNING 1
 	// If the warning include gets included it redefines `static _FIXES_SETTING`.
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
@@ -703,7 +703,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_EnableAll
-	#define _FIXES_WARNING 1
+	#define _FIXES_WARNING 2
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_EnableAll = 0;
@@ -731,7 +731,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_EnableDeprecated
-	#define _FIXES_WARNING 2
+	#define _FIXES_WARNING 3
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_EnableDeprecated = 0;
@@ -758,7 +758,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_DefaultDisabled
-	#define _FIXES_WARNING 3
+	#define _FIXES_WARNING 4
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_DefaultDisabled = 0;
@@ -792,7 +792,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_ExplicitOptions
-	#define _FIXES_WARNING 4
+	#define _FIXES_WARNING 5
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	#if FIXES_DefaultDisabled
@@ -830,7 +830,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_SilentKick
-	#define _FIXES_WARNING 5
+	#define _FIXES_WARNING 6
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_SilentKick = 0;
@@ -858,7 +858,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_Debug
-	#define _FIXES_WARNING 6
+	#define _FIXES_WARNING 7
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_Debug = 0;
@@ -893,7 +893,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_Single
-	#define _FIXES_WARNING 7
+	#define _FIXES_WARNING 8
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_Single = 1;
@@ -922,7 +922,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_NoSingleMsg
-	#define _FIXES_WARNING 8
+	#define _FIXES_WARNING 9
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_NoSingleMsg = 0;
@@ -950,7 +950,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_NoServerVarMsg
-	#define _FIXES_WARNING 9
+	#define _FIXES_WARNING 10
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_NoServerVarMsg = 0;
@@ -977,7 +977,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_NoGetMaxPlayersMsg
-	#define _FIXES_WARNING 10
+	#define _FIXES_WARNING 11
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_NoGetMaxPlayersMsg = 0;
@@ -1007,7 +1007,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_NoPawndoc
-	#define _FIXES_WARNING 11
+	#define _FIXES_WARNING 12
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_NoPawndoc = 0;
@@ -1034,7 +1034,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_CorrectInvalidTimerID
-	#define _FIXES_WARNING 12
+	#define _FIXES_WARNING 13
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_CorrectInvalidTimerID = 0;
@@ -1068,7 +1068,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIXES_NoYSI
-	#define _FIXES_WARNING 13
+	#define _FIXES_WARNING 14
 	#tryinclude "_fixes_settings"
 	#undef _FIXES_WARNING
 	static _FIXES_SETTING FIXES_NoYSI = 0;
@@ -1100,7 +1100,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 #if !defined FIXES_OneRandomVehicleColour
 	#if !defined FIXES_OneRandomVehicleColor
-		#define _FIXES_WARNING 14
+		#define _FIXES_WARNING 15
 		#tryinclude "_fixes_settings"
 		#undef _FIXES_WARNING
 		#define FIXES_OneRandomVehicleColor      (0)
@@ -1137,7 +1137,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 #if !defined FIXES_NoVehicleColourMsg
 	#if !defined FIXES_NoVehicleColorMsg
-		#define _FIXES_WARNING 15
+		#define _FIXES_WARNING 16
 		#tryinclude "_fixes_settings"
 		#undef _FIXES_WARNING
 		#define FIXES_NoVehicleColorMsg          (0)
