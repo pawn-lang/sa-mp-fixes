@@ -15704,7 +15704,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 				CallRemoteFunction__("_FIXES_CreateMenu", FIXES_gscSpec@i, columns);
 			#endif
 		}
-		return columns;
+		return Menu:columns;
 	}
 
 	#if _FIXES_SAMP
