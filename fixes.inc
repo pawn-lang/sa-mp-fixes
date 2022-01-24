@@ -6336,9 +6336,9 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_IN_CHARGE());
 
 _FIXES_FUNC_PAWNDOC(FIXES_SET(const var[], playerid, value));
 #if FIXES_Single
-	#define FIXES_SET(%0,%1,%2) (FIXES_gs%0[%1] = %2)
+	#define FIXES_SET(%0,%1,%2) (FIXES_gs%0[(%1)] = (%2))
 #else
-	#define FIXES_SET(%0,%1,%2) SetPVarInt__(%1, FIXES_pvar%0, %2)
+	#define FIXES_SET(%0,%1,%2) SetPVarInt__((%1), FIXES_pvar%0, _:(%2))
 #endif
 
 /**
@@ -6350,9 +6350,9 @@ _FIXES_FUNC_PAWNDOC(FIXES_SET(const var[], playerid, value));
 
 _FIXES_FUNC_PAWNDOC(FIXES_GET(const var[], playerid));
 #if FIXES_Single
-	#define FIXES_GET(%0,%1) (FIXES_gs%0[%1])
+	#define FIXES_GET(%0,%1) (FIXES_gs%0[(%1)])
 #else
-	#define FIXES_GET(%0,%1) GetPVarInt__(%1, FIXES_pvar%0)
+	#define FIXES_GET(%0,%1) GetPVarInt__((%1), FIXES_pvar%0)
 #endif
 
 /**
@@ -8159,7 +8159,7 @@ _FIXES_STATIC_STOCK
 	 * Stores the weapon set by "SetPlayerArmedWeapon" when in a vehicle.
 	 * </remarks>
 	 */
-	FIXES_gsPlayerWeapon[MAX_PLAYERS];
+	WEAPON:FIXES_gsPlayerWeapon[MAX_PLAYERS];
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerWeapon);
 #endif
@@ -8244,7 +8244,7 @@ _FIXES_STATIC_STOCK
 	 * The weapon to set after re-enter to vehicle.
 	 * </remarks>
 	 */
-	FIXES_gsDriveByWeapon[MAX_PLAYERS];
+	WEAPON:FIXES_gsDriveByWeapon[MAX_PLAYERS];
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsDriveByWeapon);
 #endif
@@ -10970,10 +10970,10 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native GetPlayerColor__(playerid) = GetPlayerColor;
 	native SetPlayerSkin__(playerid, skinid) = SetPlayerSkin;
 	native GetPlayerSkin__(playerid) = GetPlayerSkin;
-	native GivePlayerWeapon__(playerid, weaponid, ammo) = GivePlayerWeapon;
+	native GivePlayerWeapon__(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
 	native ResetPlayerWeapons__(playerid) = ResetPlayerWeapons;
-	native SetPlayerArmedWeapon__(playerid, weaponid) = SetPlayerArmedWeapon;
-	native GetPlayerWeaponData__(playerid, slot, &weapons, &ammo) = GetPlayerWeaponData;
+	native SetPlayerArmedWeapon__(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon;
+	native GetPlayerWeaponData__(playerid, slot, &WEAPON:weapon, &ammo) = GetPlayerWeaponData;
 	native GivePlayerMoney__(playerid, money) = GivePlayerMoney;
 	native ResetPlayerMoney__(playerid) = ResetPlayerMoney;
 	native SetPlayerName__(playerid, const name[]) = SetPlayerName;
@@ -10981,7 +10981,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState;
 	native GetPlayerIp__(playerid, ip[], len = sizeof ip) = GetPlayerIp;
 	native GetPlayerPing__(playerid) = GetPlayerPing;
-	native GetPlayerWeapon__(playerid) = GetPlayerWeapon;
+	native WEAPON:GetPlayerWeapon__(playerid) = GetPlayerWeapon;
 	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 	native GetPlayerName__(playerid, name[], len = sizeof name) = GetPlayerName;
 	native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime;
@@ -13141,7 +13141,7 @@ public OnGameModeInit()
 				//  BEGIN: GetPlayerWeapon
 				// ========================
 				#if FIX_GetPlayerWeapon
-					FIXES_SET(PlayerWeapon, playerid, -1);
+					FIXES_SET(PlayerWeapon, playerid, WEAPON:-1);
 				#endif
 				// ========================
 				//  END:   GetPlayerWeapon
@@ -14393,7 +14393,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#if FIX_AllowInteriorWeapons
 			if (pbools & e_FIXES_BOOLS_INTERIOR)
 			{
-				SetPlayerArmedWeapon__(playerid, 0);
+				SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST);
 			}
 		#endif
 		// ============================
@@ -14861,11 +14861,11 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_INTERIOR;
 					_FIXES_IS_IN_CHARGE()
 					{
-						SetPlayerArmedWeapon__(playerid, 0);
+						SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST);
 						#if FIX_GetPlayerWeapon
 							if (IsPlayerInAnyVehicle__(playerid))
 							{
-								FIXES_SET(PlayerWeapon, playerid, 0);
+								FIXES_SET(PlayerWeapon, playerid, _FIXES_WEAPON_FIST);
 							}
 						#endif
 					}
@@ -15148,7 +15148,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 	{
 		FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon__(playerid),
 		FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
-		SetPlayerArmedWeapon__(playerid, 0),
+		SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST),
 		ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1),
 		SetTimerEx__(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
 	}
@@ -16183,12 +16183,12 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 					new
 						model = GetVehicleModel__(GetPlayerVehicleID__(playerid)) - 400;
 			#endif
-					if (GetPlayerWeapon__(playerid) == 34 && (model == 120 || model == 25))
+					if (GetPlayerWeapon__(playerid) == WEAPON_SNIPER && (model == 120 || model == 25))
 					{
-						SetPlayerArmedWeapon__(playerid, 0);
+						SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST);
 						#if FIX_GetPlayerWeapon
 							// This is the first cross-dependednt fix.
-							FIXES_SET(PlayerWeapon, playerid, 0);
+							FIXES_SET(PlayerWeapon, playerid, _FIXES_WEAPON_FIST);
 						#endif
 					}
 			#if !FIX_GetPlayerWeapon
@@ -16223,11 +16223,11 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 					// And have the weapon data clobber the ammo data, thus
 					// avoiding a variable allocation (wow, a whole ONE
 					// instruction...).
-					GetPlayerWeaponData__(playerid, 4, model, ammo);
+					GetPlayerWeaponData__(playerid, 4, WEAPON:model, ammo);
 					if (model)
 					{
-						SetPlayerArmedWeapon__(playerid, model);
-						FIXES_SET(PlayerWeapon, playerid, model);
+						SetPlayerArmedWeapon__(playerid, WEAPON:model);
+						FIXES_SET(PlayerWeapon, playerid, WEAPON:model);
 					}
 				}
 		#endif
@@ -16250,7 +16250,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 				//  BEGIN: GetPlayerWeapon
 				// ========================
 				#if FIX_GetPlayerWeapon
-					FIXES_SET(PlayerWeapon, playerid, -1);
+					FIXES_SET(PlayerWeapon, playerid, WEAPON:-1);
 				#endif
 				// ========================
 				//  END:   GetPlayerWeapon
@@ -16363,7 +16363,7 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
  */
 
 #if FIX_HydraSniper || FIX_GetPlayerWeapon || FIX_GetPlayerAmmo
-	stock FIXES_GivePlayerWeapon(playerid, weaponid, ammo)
+	stock FIXES_GivePlayerWeapon(playerid, WEAPON:weaponid, ammo)
 	{
 		#if FIX_GetPlayerAmmo
 			new
@@ -16384,12 +16384,12 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 		{
 			#if FIX_HydraSniper
 				vid = GetVehicleModel__(vid);
-				if (weaponid == 34 && (vid == 520 || vid == 425))
+				if (weaponid == WEAPON_SNIPER && (vid == 520 || vid == 425))
 				{
 					vid = GivePlayerWeapon__(playerid, weaponid, ammo),
-					SetPlayerArmedWeapon__(playerid, 0);
+					SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST);
 					#if FIX_GetPlayerWeapon
-						FIXES_SET(PlayerWeapon, playerid, 0);
+						FIXES_SET(PlayerWeapon, playerid, _FIXES_WEAPON_FIST);
 					#endif
 					return vid;
 				}
@@ -16433,7 +16433,7 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 	{
 		if (IsPlayerInAnyVehicle__(playerid))
 		{
-			FIXES_SET(PlayerWeapon, playerid, 0);
+			FIXES_SET(PlayerWeapon, playerid, _FIXES_WEAPON_FIST);
 		}
 		return ResetPlayerWeapons__(playerid);
 	}
@@ -16463,7 +16463,7 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
  */
 
 #if FIX_GetPlayerWeapon || FIX_AllowInteriorWeapons || FIX_HydraSniper
-	stock FIXES_SetPlayerArmedWeapon(playerid, weaponid)
+	stock FIXES_SetPlayerArmedWeapon(playerid, WEAPON:weaponid)
 	{
 		#if FIX_AllowInteriorWeapons
 			if (FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR && GetPlayerInterior__(playerid))
@@ -16478,7 +16478,7 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 		{
 			#if FIX_HydraSniper
 				vid = GetVehicleModel__(vid);
-				if (weaponid == 34 && (vid == 520 || vid == 425))
+				if (weaponid == WEAPON_SNIPER && (vid == 520 || vid == 425))
 				{
 					return 0;
 				}
@@ -16516,15 +16516,15 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
  */
 
 #if FIX_GetPlayerWeapon
-	stock FIXES_GetPlayerWeapon(playerid)
+	stock WEAPON:FIXES_GetPlayerWeapon(playerid)
 	{
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
 			new
-				ret = FIXES_GET(PlayerWeapon, playerid);
-			return ret == -1 ? GetPlayerWeapon__(playerid) : ret;
+				WEAPON:ret = WEAPON:FIXES_GET(PlayerWeapon, playerid);
+			return (ret == WEAPON:-1) ? GetPlayerWeapon__(playerid) : ret;
 		}
-		return 0;
+		return _FIXES_WEAPON_FIST;
 	}
 
 	#if _FIXES_SAMP
@@ -20221,20 +20221,20 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 #if _FIXES_SAMP && defined _ALS_GetPlayerWeaponData
 	#error _ALS_GetPlayerWeaponData defined
 #endif
-native BAD_GetPlayerWeaponData(playerid, slot, &weapons, &ammo) = GetPlayerWeaponData;
+native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeaponData;
 
 /**
  * <fixes>GetPlayerWeaponData</fixes>
  */
 
 #if FIX_GetPlayerWeaponData
-	stock FIXES_GetPlayerWeaponData(playerid, slot, &weapons, &ammo)
+	stock FIXES_GetPlayerWeaponData(playerid, slot, &WEAPON:weapon, &ammo)
 	{
 		// This reuses the "slot" variable so we don't have to declare a new one
 		// and can put all the code in a single statement.
 		return
-			slot = GetPlayerWeaponData__(playerid, slot, weapons, ammo),
-			weapons = ammo ? weapons : 0,
+			slot = GetPlayerWeaponData__(playerid, slot, weapon, ammo),
+			weapon = ammo ? weapon : _FIXES_WEAPON_FIST,
 			slot;
 	}
 
@@ -20642,16 +20642,17 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 				{
 					new
 						slot,
-						weapons[_FIXES_WEAPON_SLOTS][2];
-					for (slot = 0; slot < sizeof(weapons); slot++)
+						WEAPON:weapons[_FIXES_WEAPON_SLOTS],
+						ammo[_FIXES_WEAPON_SLOTS];
+					for (slot = 0; slot != _FIXES_WEAPON_SLOTS; ++slot)
 					{
-						GetPlayerWeaponData__(playerid, slot, weapons[slot][0], weapons[slot][1]);
+						GetPlayerWeaponData__(playerid, slot, weapons[slot], ammo[slot]);
 					}
-					weapons[11][0] = 0;
+					weapons[11] = 0,
 					ResetPlayerWeapons__(playerid);
-					for (slot = 0; slot < sizeof(weapons); slot++)
+					for (slot = 0; slot != _FIXES_WEAPON_SLOTS; ++slot)
 					{
-						GivePlayerWeapon__(playerid, weapons[slot][0], weapons[slot][1]);
+						GivePlayerWeapon__(playerid, weapons[slot], ammo[slot]);
 					}
 				}
 			}
