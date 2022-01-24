@@ -11246,7 +11246,7 @@ static stock _FIXES_Bernstein(const name[])
 static stock _FIXES_ConstMod(const &target, chr)
 {
 	#pragma unused target, chr
-	#emit SREF.S.pri target
+	#emit LREF.S.pri target
 	#emit LOAD.S.alt chr
 	#emit SREF.S.alt target
 	#emit RETN
