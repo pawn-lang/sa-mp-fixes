@@ -17160,7 +17160,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#define _FIXES_PASS_STRING(%0) %0
 	#endif
 	#if FIX_CreatePlayerTextDraw_2
-		#define _FIXES_RETURN_STRING(%0) new PlayerText:ret = _FIXES_PASS_STRING(%0)
+		#define _FIXES_RETURN_STRING(%0) y = Float:_FIXES_PASS_STRING(%0)
 	#else
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
@@ -17173,7 +17173,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			_FIXES_RETURN_STRING(CreatePlayerTextDraw__(playerid, x, y, text));
 		#if FIX_CreatePlayerTextDraw_2
 			_FIXES_UnTrim(text);
-			return ret;
+			return PlayerText:y;
 		#endif
 	}
 
@@ -17221,7 +17221,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#define _FIXES_PASS_STRING(%0) %0
 	#endif
 	#if FIX_PlayerTextDrawSetString_2
-		#define _FIXES_RETURN_STRING(%0) new ret = _FIXES_PASS_STRING(%0)
+		#define _FIXES_RETURN_STRING(%0) playerid = _FIXES_PASS_STRING(%0)
 	#else
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
@@ -17234,7 +17234,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			_FIXES_RETURN_STRING(PlayerTextDrawSetString__(playerid, text, string));
 		#if FIX_PlayerTextDrawSetString_2
 			_FIXES_UnTrim(string);
-			return ret;
+			return playerid;
 		#endif
 	}
 
@@ -17282,7 +17282,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#define _FIXES_PASS_STRING(%0) %0
 	#endif
 	#if FIX_TextDrawCreate_2
-		#define _FIXES_RETURN_STRING(%0) new Text:ret = _FIXES_PASS_STRING(%0)
+		#define _FIXES_RETURN_STRING(%0) x = Float:_FIXES_PASS_STRING(%0)
 	#else
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
@@ -17295,7 +17295,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			_FIXES_RETURN_STRING(TextDrawCreate__(x, y, text));
 		#if FIX_TextDrawCreate_2
 			_FIXES_UnTrim(text);
-			return ret;
+			return Text:x;
 		#endif
 	}
 
@@ -17343,7 +17343,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#define _FIXES_PASS_STRING(%0) %0
 	#endif
 	#if FIX_TextDrawSetString_2
-		#define _FIXES_RETURN_STRING(%0) new ret = _FIXES_PASS_STRING(%0)
+		#define _FIXES_RETURN_STRING(%0) text = Text:_FIXES_PASS_STRING(%0)
 	#else
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
@@ -17356,7 +17356,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			_FIXES_RETURN_STRING(TextDrawSetString__(text, string));
 		#if FIX_TextDrawSetString_2
 			_FIXES_UnTrim(string);
-			return ret;
+			return _:text;
 		#endif
 	}
 
