@@ -15766,7 +15766,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * <fixes>SetTimer</fixes>
  */
 
-#if !FIX_SetTimer
+#if !FIX_SetTimer || _FIXES_NPC
 	static
 #endif
 	stock FIXES_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...)
@@ -15849,7 +15849,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			return sTimer1;
 	}
 
-#if FIX_SetTimer
+#if FIX_SetTimer && !_FIXES_NPC
 	#if _FIXES_SAMP
 		#if defined _ALS_SetTimerEx
 			#undef SetTimerEx
