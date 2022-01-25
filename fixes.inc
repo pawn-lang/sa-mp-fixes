@@ -9888,7 +9888,7 @@ _FIXES_STATIC_STOCK_CONST
 		"***                  Please compile your modes with \"#define FIXES_Single 0\"\n" \
 		"***                  at the top, as this setting is no longer the default (to\n"  \
 		"***                  improve the more common case).\n"                            \
-		"***";
+		"***",
 
 	/**
 	 * <remarks>
@@ -13488,7 +13488,7 @@ static stock _FIXES_CountFilterscripts()
  * <fixes>LocalNPCNatives</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_SetTimerEx
+#if _FIXES_NPC && _FIXES_SAMP && defined _ALS_SetTimerEx
 	#error _ALS_SetTimerEx defined
 #endif
 
@@ -16349,7 +16349,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  * <fixes>SetTimer</fixes>
  */
 
-#if !FIX_const
+#if !FIX_const && !_FIXES_NPC
 	#if _FIXES_SAMP && defined _ALS_SetTimer
 		#error _ALS_SetTimer defined
 	#endif
