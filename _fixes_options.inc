@@ -680,11 +680,16 @@
 #endif
 
 #if _FIXES_WARNING == 127
-	#warning Option `FIX_CallLocalFunction` must now be explicit.
+	#warning Option `FIX_LocalNPCNatives` must now be explicit.
 	#endinput
 #endif
 
 #if _FIXES_WARNING == 128
+	#warning Option `FIX_RemoteNPCNatives` must now be explicit.
+	#endinput
+#endif
+
+#if _FIXES_WARNING == 129
 	#warning Option `FIX_GetPlayerName` must now be explicit.
 	#endinput
 #endif

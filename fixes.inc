@@ -6679,12 +6679,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
- * <fix name="CallLocalFunction">
+ * <fix name="LocalNPCNatives">
  *     <problem>
- *         Isn't defined in NPC modes.
+ *         Many natives aren't defined in the NPC includes.  Simple ones can be
+ *         defined in pawn.
  *     </problem>
  *     <solution>
- *         Write a pawn version using <c>funcidx</c>.
+ *         Write pawn reimplementations of natives that can be.
  *     </solution>
  *     <see>FIXES_CallLocalFunction</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
@@ -6692,29 +6693,62 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !_FIXES_NPC
-	#if defined FIX_CallLocalFunction
-		#undef FIX_CallLocalFunction
+	#if defined FIX_LocalNPCNatives
+		#undef FIX_LocalNPCNatives
 	#endif
-	static stock FIX_CallLocalFunction = 0;
-	#define FIX_CallLocalFunction                (0)
-#elseif !defined FIX_CallLocalFunction
+	static stock FIX_LocalNPCNatives = 0;
+	#define FIX_LocalNPCNatives                  (0)
+#elseif !defined FIX_LocalNPCNatives
 	#define _FIXES_WARNING 127
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
-	static _FIXES_OPTION FIX_CallLocalFunction = FIX_Natives;
-	#define FIX_CallLocalFunction                FIX_Natives
-#elseif _FIXES_IS_UNSET(FIX_CallLocalFunction)
-	#undef FIX_CallLocalFunction
-	static stock FIX_CallLocalFunction = 2;
-	#define FIX_CallLocalFunction                (2)
-#elseif FIX_CallLocalFunction
-	#undef FIX_CallLocalFunction
-	static stock FIX_CallLocalFunction = 1;
-	#define FIX_CallLocalFunction                (1)
+	static _FIXES_OPTION FIX_LocalNPCNatives = FIX_Natives;
+	#define FIX_LocalNPCNatives                  FIX_Natives
+#elseif _FIXES_IS_UNSET(FIX_LocalNPCNatives)
+	#undef FIX_LocalNPCNatives
+	static stock FIX_LocalNPCNatives = 2;
+	#define FIX_LocalNPCNatives                  (2)
+#elseif FIX_LocalNPCNatives
+	#undef FIX_LocalNPCNatives
+	static stock FIX_LocalNPCNatives = 1;
+	#define FIX_LocalNPCNatives                  (1)
 #else
-	#undef FIX_CallLocalFunction
-	static stock FIX_CallLocalFunction = 0;
-	#define FIX_CallLocalFunction                (0)
+	#undef FIX_LocalNPCNatives
+	static stock FIX_LocalNPCNatives = 0;
+	#define FIX_LocalNPCNatives                  (0)
+#endif
+
+/**
+ * <fix name="RemoteNPCNatives">
+ *     <problem>
+ *         Many natives aren't defined in the NPC includes.  Most need to be
+ *         called in the GM remotely and the result returned.
+ *     </problem>
+ *     <solution>
+ *         Call the natives remotely, where the return values aren't important.
+ *     </solution>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_RemoteNPCNatives
+	#define _FIXES_WARNING 128
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_RemoteNPCNatives = FIX_Natives;
+	#define FIX_RemoteNPCNatives                 FIX_Natives
+#elseif _FIXES_IS_UNSET(FIX_RemoteNPCNatives)
+	#undef FIX_RemoteNPCNatives
+	static stock FIX_RemoteNPCNatives = 2;
+	#define FIX_RemoteNPCNatives                 (2)
+#elseif FIX_RemoteNPCNatives
+	#undef FIX_RemoteNPCNatives
+	static stock FIX_RemoteNPCNatives = 1;
+	#define FIX_RemoteNPCNatives                 (1)
+#else
+	#undef FIX_RemoteNPCNatives
+	static stock FIX_RemoteNPCNatives = 0;
+	#define FIX_RemoteNPCNatives                 (0)
 #endif
 
 /**
@@ -6731,7 +6765,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_GetPlayerName
-	#define _FIXES_WARNING 128
+	#define _FIXES_WARNING 129
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
 	static _FIXES_OPTION FIX_GetPlayerName = _FIXES_DEFAULT;
@@ -11411,6 +11445,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
 	native WEAPON:GetPlayerArmedWeapon__(playerid) = GetPlayerArmedWeapon;
+	native WEAPON:GetPlayerWeapon__(playerid) = GetPlayerArmedWeapon;
 	native GetPlayerHealth__(playerid) = GetPlayerHealth;
 	native GetPlayerArmour__(playerid) = GetPlayerArmour;
 	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
@@ -15947,7 +15982,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 	#error _ALS_CallLocalFunction defined
 #endif
 
-#if !FIX_CallLocalFunction
+#if !FIX_LocalNPCNatives
 	static
 #endif
 	stock FIXES_CallLocalFunction(const funcname[], const format[], {Float,_}:...)
@@ -15964,7 +15999,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 		return 1;
 	}
 
-#if FIX_CallLocalFunction
+#if FIX_LocalNPCNatives
 	#if _FIXES_SAMP
 		#if defined _ALS_CallLocalFunction
 			#undef CallLocalFunction
