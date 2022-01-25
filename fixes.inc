@@ -11445,7 +11445,6 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
 	native WEAPON:GetPlayerArmedWeapon__(playerid) = GetPlayerArmedWeapon;
-	native WEAPON:GetPlayerWeapon__(playerid) = GetPlayerArmedWeapon;
 	native GetPlayerHealth__(playerid) = GetPlayerHealth;
 	native GetPlayerArmour__(playerid) = GetPlayerArmour;
 	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
@@ -13172,6 +13171,89 @@ static stock _FIXES_CountFilterscripts()
 	#undef _FIXES_FS_COUNT_CODE
 	return 16 - loaded;
 }
+
+/*
+
+    888b      88  88888888ba     ,ad8888ba,      88                                               88  
+    8888b     88  88      "8b   d8"'    `"8b     88                                               88  
+    88 `8b    88  88      ,8P  d8'               88                                               88  
+    88  `8b   88  88aaaaaa8P'  88                88           ,adPPYba,    ,adPPYba,  ,adPPYYba,  88  
+    88   `8b  88  88""""""'    88                88          a8"     "8a  a8"     ""  ""     `Y8  88  
+    88    `8b 88  88           Y8,               88          8b       d8  8b          ,adPPPPP88  88  
+    88     `8888  88            Y8a.    .a8P     88          "8a,   ,a8"  "8a,   ,aa  88,    ,88  88  
+    88      `888  88             `"Y8888Y"'      88888888888  `"YbbdP"'    `"Ybbd8"'  `"8bbdP"Y8  88  
+
+
+
+*/
+
+/**
+ * <fixes>LocalNPCNatives</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_CallLocalFunction
+	#error _ALS_CallLocalFunction defined
+#endif
+
+#if !FIX_LocalNPCNatives
+	static
+#endif
+	stock FIXES_CallLocalFunction(const funcname[], const format[], {Float,_}:...)
+	{
+		new idx = funcidx(funcname);
+		if (idx == -1)
+		{
+			// The function doesn't exist.
+			return 0;
+		}
+		// The function does exist.  Extract the address from the header.
+
+		// Loop through the parameter types and resolve cells.
+		return 1;
+	}
+
+#if FIX_LocalNPCNatives
+	#if _FIXES_SAMP
+		#if defined _ALS_CallLocalFunction
+			#undef CallLocalFunction
+		#else
+			#define _ALS_CallLocalFunction
+		#endif
+		#define CallLocalFunction( FIXES_CallLocalFunction(
+	#endif
+
+	#define _ALS_CallLocalFunction__
+	#define CallLocalFunction__( FIXES_CallLocalFunction(
+#endif
+
+/**
+ * <fixes>LocalNPCNatives</fixes>
+ */
+
+#if FIX_LocalNPCNatives
+	native WEAPON:GetPlayerWeapon__(playerid) = GetPlayerArmedWeapon;
+
+	#if _FIXES_SAMP
+		native WEAPON:GetPlayerWeapon(playerid) = GetPlayerArmedWeapon;
+	#endif
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerArmedWeapon);
+#endif
+
+/*
+
+    888b      88  88888888ba     ,ad8888ba,      88888888ba                                                                  
+    8888b     88  88      "8b   d8"'    `"8b     88      "8b                                               ,d                
+    88 `8b    88  88      ,8P  d8'               88      ,8P                                               88                
+    88  `8b   88  88aaaaaa8P'  88                88aaaaaa8P'  ,adPPYba,  88,dPYba,,adPYba,    ,adPPYba,  MM88MMM  ,adPPYba,  
+    88   `8b  88  88""""""'    88                88""""88'   a8P_____88  88P'   "88"    "8a  a8"     "8a   88    a8P_____88  
+    88    `8b 88  88           Y8,               88    `8b   8PP"""""""  88      88      88  8b       d8   88    8PP"""""""  
+    88     `8888  88            Y8a.    .a8P     88     `8b  "8b,   ,aa  88      88      88  "8a,   ,a8"   88,   "8b,   ,aa  
+    88      `888  88             `"Y8888Y"'      88      `8b  `"Ybbd8"'  88      88      88   `"YbbdP"'    "Y888  `"Ybbd8"'  
+
+
+
+*/
 
 /*
 
@@ -15972,45 +16054,6 @@ native BAD_KillTimer(timerid) = KillTimer;
 	#define KillTimer__( FIXES_KillTimer(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_KillTimer);
-#endif
-
-/**
- * <fixes>CallLocalFunction</fixes>
- */
-
-#if _FIXES_SAMP && defined _ALS_CallLocalFunction
-	#error _ALS_CallLocalFunction defined
-#endif
-
-#if !FIX_LocalNPCNatives
-	static
-#endif
-	stock FIXES_CallLocalFunction(const funcname[], const format[], {Float,_}:...)
-	{
-		new idx = funcidx(funcname);
-		if (idx == -1)
-		{
-			// The function doesn't exist.
-			return 0;
-		}
-		// The function does exist.  Extract the address from the header.
-
-		// Loop through the parameter types and resolve cells.
-		return 1;
-	}
-
-#if FIX_LocalNPCNatives
-	#if _FIXES_SAMP
-		#if defined _ALS_CallLocalFunction
-			#undef CallLocalFunction
-		#else
-			#define _ALS_CallLocalFunction
-		#endif
-		#define CallLocalFunction( FIXES_CallLocalFunction(
-	#endif
-
-	#define _ALS_CallLocalFunction__
-	#define CallLocalFunction__( FIXES_CallLocalFunction(
 #endif
 
 /**
@@ -22460,6 +22503,21 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 /*
 
+      ,ad8888ba,   88b           d88     88888888ba                                                                  
+     d8"'    `"8b  888b         d888     88      "8b                                               ,d                
+    d8'            88`8b       d8'88     88      ,8P                                               88                
+    88             88 `8b     d8' 88     88aaaaaa8P'  ,adPPYba,  88,dPYba,,adPYba,    ,adPPYba,  MM88MMM  ,adPPYba,  
+    88      88888  88  `8b   d8'  88     88""""88'   a8P_____88  88P'   "88"    "8a  a8"     "8a   88    a8P_____88  
+    Y8,        88  88   `8b d8'   88     88    `8b   8PP"""""""  88      88      88  8b       d8   88    8PP"""""""  
+     Y8a.    .a88  88    `888'    88     88     `8b  "8b,   ,aa  88      88      88  "8a,   ,a8"   88,   "8b,   ,aa  
+      `"Y88888P"   88     `8'     88     88      `8b  `"Ybbd8"'  88      88      88   `"YbbdP"'    "Y888  `"Ybbd8"'  
+
+
+
+*/
+
+/*
+
     88888888888
     88                                  ,d
     88                                  88
@@ -22853,6 +22911,48 @@ static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
  */
 
 #if !defined FIX_NameOfFixHere
+	#define _FIXES_WARNING <num>
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_NameOfFixHere = _FIXES_DEFAULT;
+	#define FIX_NameOfFixHere                    _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)
+	#undef FIX_NameOfFixHere
+	static stock FIX_NameOfFixHere = 2;
+	#define FIX_NameOfFixHere                    (2)
+#elseif FIX_NameOfFixHere
+	#undef FIX_NameOfFixHere
+	static stock FIX_NameOfFixHere = 1;
+	#define FIX_NameOfFixHere                    (1)
+#else
+	#undef FIX_NameOfFixHere
+	static stock FIX_NameOfFixHere = 0;
+	#define FIX_NameOfFixHere                    (0)
+#endif
+
+// Non-NPC fix inclusion template.
+
+/**
+ * <fix name="NameOfFixHere" disabled="false">
+ *     <problem>
+ *         A description of the problem.
+ *     </problem>
+ *     <solution>
+ *         A description of the solution.
+ *     </solution>
+ *     <see>FIXES_FunctionWithFixIn</see>
+ *     <author    href="github.com/account">Name</author>
+ *     <post      href="burgershot.gg/post" />
+ * </fix>
+ */
+
+#if _FIXES_NPC
+	#if defined FIX_NameOfFixHere
+		#undef FIX_NameOfFixHere
+	#endif
+	static stock FIX_NameOfFixHere = 0;
+	#define FIX_NameOfFixHere                    (0)
+#elseif !defined FIX_NameOfFixHere
 	#define _FIXES_WARNING <num>
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
