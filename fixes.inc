@@ -1269,7 +1269,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPlayerColour
+#if _FIXES_NPC
+	#if defined FIX_GetPlayerColour
+		#undef FIX_GetPlayerColour
+	#endif
+	static stock FIX_GetPlayerColour = 0;
+	#define FIX_GetPlayerColour                  (0)
+#elseif !defined FIX_GetPlayerColour
 	#if defined FIX_GetPlayerColor
 		_FIXES_CONST_PAWNDOC(FIX_GetPlayerColour);
 		#if _FIXES_IS_UNSET(FIX_GetPlayerColor)
@@ -1347,7 +1353,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SpawnPlayer
+#if _FIXES_NPC
+	#if defined FIX_SpawnPlayer
+		#undef FIX_SpawnPlayer
+	#endif
+	static stock FIX_SpawnPlayer = 0;
+	#define FIX_SpawnPlayer                          (0)
+#elseif !defined FIX_SpawnPlayer
 	#define _FIXES_WARNING 5
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -1385,7 +1397,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetPlayerName
+#if _FIXES_NPC
+	#if defined FIX_SetPlayerName
+		#undef FIX_SetPlayerName
+	#endif
+	static stock FIX_SetPlayerName = 0;
+	#define FIX_SetPlayerName                          (0)
+#elseif !defined FIX_SetPlayerName
 	#define _FIXES_WARNING 6
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -1422,7 +1440,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPlayerSkin
+#if _FIXES_NPC
+	#if defined FIX_GetPlayerSkin
+		#undef FIX_GetPlayerSkin
+	#endif
+	static stock FIX_GetPlayerSkin = 0;
+	#define FIX_GetPlayerSkin                          (0)
+#elseif !defined FIX_GetPlayerSkin
 	#define _FIXES_WARNING 7
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -1503,7 +1527,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetPlayerWorldBounds
+#if _FIXES_NPC
+	#if defined FIX_SetPlayerWorldBounds
+		#undef FIX_SetPlayerWorldBounds
+	#endif
+	static stock FIX_SetPlayerWorldBounds = 0;
+	#define FIX_SetPlayerWorldBounds                          (0)
+#elseif !defined FIX_SetPlayerWorldBounds
 	#define _FIXES_WARNING 9
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -1538,7 +1568,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_TogglePlayerControllable
+#if _FIXES_NPC
+	#if defined FIX_TogglePlayerControllable
+		#undef FIX_TogglePlayerControllable
+	#endif
+	static stock FIX_TogglePlayerControllable = 0;
+	#define FIX_TogglePlayerControllable                          (0)
+#elseif !defined FIX_TogglePlayerControllable
 	#if defined SetObjectMaterial
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 10
@@ -1586,7 +1622,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_HydraSniper
+#if _FIXES_NPC
+	#if defined FIX_HydraSniper
+		#undef FIX_HydraSniper
+	#endif
+	static stock FIX_HydraSniper = 0;
+	#define FIX_HydraSniper                          (0)
+#elseif !defined FIX_HydraSniper
 	#define _FIXES_WARNING 11
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -1620,7 +1662,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_IsPlayerInCheckpoint
+#if _FIXES_NPC
+	#if defined FIX_IsPlayerInCheckpoint
+		#undef FIX_IsPlayerInCheckpoint
+	#endif
+	static stock FIX_IsPlayerInCheckpoint = 0;
+	#define FIX_IsPlayerInCheckpoint                          (0)
+#elseif !defined FIX_IsPlayerInCheckpoint
 	#define _FIXES_WARNING 12
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -1654,7 +1702,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_IsPlayerInRaceCheckpoint
+#if _FIXES_NPC
+	#if defined FIX_IsPlayerInRaceCheckpoint
+		#undef FIX_IsPlayerInRaceCheckpoint
+	#endif
+	static stock FIX_IsPlayerInRaceCheckpoint = 0;
+	#define FIX_IsPlayerInRaceCheckpoint                          (0)
+#elseif !defined FIX_IsPlayerInRaceCheckpoint
 	#define _FIXES_WARNING 13
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -1693,7 +1747,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPlayerWeapon
+#if _FIXES_NPC
+	#if defined FIX_GetPlayerWeapon
+		#undef FIX_GetPlayerWeapon
+	#endif
+	static stock FIX_GetPlayerWeapon = 0;
+	#define FIX_GetPlayerWeapon                          (0)
+#elseif !defined FIX_GetPlayerWeapon
 	#define _FIXES_WARNING 14
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -1730,7 +1790,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_PutPlayerInVehicle
+#if _FIXES_NPC
+	#if defined FIX_PutPlayerInVehicle
+		#undef FIX_PutPlayerInVehicle
+	#endif
+	static stock FIX_PutPlayerInVehicle = 0;
+	#define FIX_PutPlayerInVehicle                          (0)
+#elseif !defined FIX_PutPlayerInVehicle
 	#define _FIXES_WARNING 15
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -1850,7 +1916,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_IsValidVehicle
+#if _FIXES_NPC
+	#if defined FIX_IsValidVehicle
+		#undef FIX_IsValidVehicle
+	#endif
+	static stock FIX_IsValidVehicle = 0;
+	#define FIX_IsValidVehicle                          (0)
+#elseif !defined FIX_IsValidVehicle
 	#if defined IsValidVehicle
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 18
@@ -1895,7 +1967,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetGravity
+#if _FIXES_NPC
+	#if defined FIX_GetGravity
+		#undef FIX_GetGravity
+	#endif
+	static stock FIX_GetGravity = 0;
+	#define FIX_GetGravity                          (0)
+#elseif !defined FIX_GetGravity
 	#if defined GetGravity
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 19
@@ -1940,7 +2018,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_gpci
+#if _FIXES_NPC
+	#if defined FIX_gpci
+		#undef FIX_gpci
+	#endif
+	static stock FIX_gpci = 0;
+	#define FIX_gpci                          (0)
+#elseif !defined FIX_gpci
 	#if defined gpci
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 20
@@ -2121,7 +2205,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_DriveBy
+#if _FIXES_NPC
+	#if defined FIX_DriveBy
+		#undef FIX_DriveBy
+	#endif
+	static stock FIX_DriveBy = 0;
+	#define FIX_DriveBy                          (0)
+#elseif !defined FIX_DriveBy
 	#define _FIXES_WARNING 24
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2157,7 +2247,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SilentTeleport
+#if _FIXES_NPC
+	#if defined FIX_SilentTeleport
+		#undef FIX_SilentTeleport
+	#endif
+	static stock FIX_SilentTeleport = 0;
+	#define FIX_SilentTeleport                          (0)
+#elseif !defined FIX_SilentTeleport
 	#define _FIXES_WARNING 25
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2191,7 +2287,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetPlayerCheckpoint
+#if _FIXES_NPC
+	#if defined FIX_SetPlayerCheckpoint
+		#undef FIX_SetPlayerCheckpoint
+	#endif
+	static stock FIX_SetPlayerCheckpoint = 0;
+	#define FIX_SetPlayerCheckpoint                          (0)
+#elseif !defined FIX_SetPlayerCheckpoint
 	#define _FIXES_WARNING 26
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2225,7 +2327,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetPlayerRaceCheckpoint
+#if _FIXES_NPC
+	#if defined FIX_SetPlayerRaceCheckpoint
+		#undef FIX_SetPlayerRaceCheckpoint
+	#endif
+	static stock FIX_SetPlayerRaceCheckpoint = 0;
+	#define FIX_SetPlayerRaceCheckpoint                          (0)
+#elseif !defined FIX_SetPlayerRaceCheckpoint
 	#define _FIXES_WARNING 27
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2258,7 +2366,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_TextDrawCreate
+#if _FIXES_NPC
+	#if defined FIX_TextDrawCreate
+		#undef FIX_TextDrawCreate
+	#endif
+	static stock FIX_TextDrawCreate = 0;
+	#define FIX_TextDrawCreate                          (0)
+#elseif !defined FIX_TextDrawCreate
 	#define _FIXES_WARNING 28
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2292,7 +2406,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_AttachTrailerToVehicle
+#if _FIXES_NPC
+	#if defined FIX_AttachTrailerToVehicle
+		#undef FIX_AttachTrailerToVehicle
+	#endif
+	static stock FIX_AttachTrailerToVehicle = 0;
+	#define FIX_AttachTrailerToVehicle                          (0)
+#elseif !defined FIX_AttachTrailerToVehicle
 	#define _FIXES_WARNING 29
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2333,7 +2453,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetVehicleComponentInSlot
+#if _FIXES_NPC
+	#if defined FIX_GetVehicleComponentInSlot
+		#undef FIX_GetVehicleComponentInSlot
+	#endif
+	static stock FIX_GetVehicleComponentInSlot = 0;
+	#define FIX_GetVehicleComponentInSlot                          (0)
+#elseif !defined FIX_GetVehicleComponentInSlot
 	#define _FIXES_WARNING 30
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2368,7 +2494,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_TextDrawCreate_2
+#if _FIXES_NPC
+	#if defined FIX_TextDrawCreate_2
+		#undef FIX_TextDrawCreate_2
+	#endif
+	static stock FIX_TextDrawCreate_2 = 0;
+	#define FIX_TextDrawCreate_2                          (0)
+#elseif !defined FIX_TextDrawCreate_2
 	#define _FIXES_WARNING 31
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2401,7 +2533,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_TextDrawSetString
+#if _FIXES_NPC
+	#if defined FIX_TextDrawSetString
+		#undef FIX_TextDrawSetString
+	#endif
+	static stock FIX_TextDrawSetString = 0;
+	#define FIX_TextDrawSetString                          (0)
+#elseif !defined FIX_TextDrawSetString
 	#define _FIXES_WARNING 32
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2436,7 +2574,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_TextDrawSetString_2
+#if _FIXES_NPC
+	#if defined FIX_TextDrawSetString_2
+		#undef FIX_TextDrawSetString_2
+	#endif
+	static stock FIX_TextDrawSetString_2 = 0;
+	#define FIX_TextDrawSetString_2                          (0)
+#elseif !defined FIX_TextDrawSetString_2
 	#define _FIXES_WARNING 33
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2471,7 +2615,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_AllowInteriorWeapons
+#if _FIXES_NPC
+	#if defined FIX_AllowInteriorWeapons
+		#undef FIX_AllowInteriorWeapons
+	#endif
+	static stock FIX_AllowInteriorWeapons = 0;
+	#define FIX_AllowInteriorWeapons                          (0)
+#elseif !defined FIX_AllowInteriorWeapons
 	#define _FIXES_WARNING 34
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2508,7 +2658,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnPlayerEnterVehicle
+#if _FIXES_NPC
+	#if defined FIX_OnPlayerEnterVehicle
+		#undef FIX_OnPlayerEnterVehicle
+	#endif
+	static stock FIX_OnPlayerEnterVehicle = 0;
+	#define FIX_OnPlayerEnterVehicle                          (0)
+#elseif !defined FIX_OnPlayerEnterVehicle
 	#if defined OnPlayerClickMap
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 35
@@ -2554,7 +2710,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnPlayerEnterVehicle_2
+#if _FIXES_NPC
+	#if defined FIX_OnPlayerEnterVehicle_2
+		#undef FIX_OnPlayerEnterVehicle_2
+	#endif
+	static stock FIX_OnPlayerEnterVehicle_2 = 0;
+	#define FIX_OnPlayerEnterVehicle_2                          (0)
+#elseif !defined FIX_OnPlayerEnterVehicle_2
 	#define _FIXES_WARNING 36
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2591,7 +2753,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnPlayerEnterVehicle_3
+#if _FIXES_NPC
+	#if defined FIX_OnPlayerEnterVehicle_3
+		#undef FIX_OnPlayerEnterVehicle_3
+	#endif
+	static stock FIX_OnPlayerEnterVehicle_3 = 0;
+	#define FIX_OnPlayerEnterVehicle_3                          (0)
+#elseif !defined FIX_OnPlayerEnterVehicle_3
 	#define _FIXES_WARNING 37
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2627,7 +2795,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_AllowTeleport
+#if _FIXES_NPC
+	#if defined FIX_AllowTeleport
+		#undef FIX_AllowTeleport
+	#endif
+	static stock FIX_AllowTeleport = 0;
+	#define FIX_AllowTeleport                          (0)
+#elseif !defined FIX_AllowTeleport
 	#if defined OnPlayerClickMap
 		#define _FIXES_WARNING 38
 		#tryinclude "_fixes_options"
@@ -2673,7 +2847,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetPlayerSpecialAction
+#if _FIXES_NPC
+	#if defined FIX_SetPlayerSpecialAction
+		#undef FIX_SetPlayerSpecialAction
+	#endif
+	static stock FIX_SetPlayerSpecialAction = 0;
+	#define FIX_SetPlayerSpecialAction                          (0)
+#elseif !defined FIX_SetPlayerSpecialAction
 	#define _FIXES_WARNING 39
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2707,7 +2887,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_ClearAnimations
+#if _FIXES_NPC
+	#if defined FIX_ClearAnimations
+		#undef FIX_ClearAnimations
+	#endif
+	static stock FIX_ClearAnimations = 0;
+	#define FIX_ClearAnimations                          (0)
+#elseif !defined FIX_ClearAnimations
 	#define _FIXES_WARNING 40
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2741,7 +2927,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_ClearAnimations_2
+#if _FIXES_NPC
+	#if defined FIX_ClearAnimations_2
+		#undef FIX_ClearAnimations_2
+	#endif
+	static stock FIX_ClearAnimations_2 = 0;
+	#define FIX_ClearAnimations_2                          (0)
+#elseif !defined FIX_ClearAnimations_2
 	#define _FIXES_WARNING 41
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2776,7 +2968,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GangZoneCreate
+#if _FIXES_NPC
+	#if defined FIX_GangZoneCreate
+		#undef FIX_GangZoneCreate
+	#endif
+	static stock FIX_GangZoneCreate = 0;
+	#define FIX_GangZoneCreate                          (0)
+#elseif !defined FIX_GangZoneCreate
 	#define _FIXES_WARNING 42
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2811,7 +3009,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnDialogResponse
+#if _FIXES_NPC
+	#if defined FIX_OnDialogResponse
+		#undef FIX_OnDialogResponse
+	#endif
+	static stock FIX_OnDialogResponse = 0;
+	#define FIX_OnDialogResponse                          (0)
+#elseif !defined FIX_OnDialogResponse
 	#if defined GetVehicleModelInfo
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 43
@@ -2857,7 +3061,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPlayerDialog
+#if _FIXES_NPC
+	#if defined FIX_GetPlayerDialog
+		#undef FIX_GetPlayerDialog
+	#endif
+	static stock FIX_GetPlayerDialog = 0;
+	#define FIX_GetPlayerDialog                          (0)
+#elseif !defined FIX_GetPlayerDialog
 	#if defined GetPlayerDialog
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 44
@@ -2905,7 +3115,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_PlayerDialogResponse
+#if _FIXES_NPC
+	#if defined FIX_PlayerDialogResponse
+		#undef FIX_PlayerDialogResponse
+	#endif
+	static stock FIX_PlayerDialogResponse = 0;
+	#define FIX_PlayerDialogResponse                          (0)
+#elseif !defined FIX_PlayerDialogResponse
 	#define _FIXES_WARNING 45
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -2938,7 +3154,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetSpawnInfo
+#if _FIXES_NPC
+	#if defined FIX_SetSpawnInfo
+		#undef FIX_SetSpawnInfo
+	#endif
+	static stock FIX_SetSpawnInfo = 0;
+	#define FIX_SetSpawnInfo                          (0)
+#elseif !defined FIX_SetSpawnInfo
 	#if defined GetPlayerVersion
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 46
@@ -2984,7 +3206,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetSpawnInfo_2
+#if _FIXES_NPC
+	#if defined FIX_SetSpawnInfo_2
+		#undef FIX_SetSpawnInfo_2
+	#endif
+	static stock FIX_SetSpawnInfo_2 = 0;
+	#define FIX_SetSpawnInfo_2                          (0)
+#elseif !defined FIX_SetSpawnInfo_2
 	#define _FIXES_WARNING 47
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3018,7 +3246,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetPlayerSkin
+#if _FIXES_NPC
+	#if defined FIX_SetPlayerSkin
+		#undef FIX_SetPlayerSkin
+	#endif
+	static stock FIX_SetPlayerSkin = 0;
+	#define FIX_SetPlayerSkin                          (0)
+#elseif !defined FIX_SetPlayerSkin
 	#define _FIXES_WARNING 48
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3388,7 +3622,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetPlayerAttachedObject
+#if _FIXES_NPC
+	#if defined FIX_SetPlayerAttachedObject
+		#undef FIX_SetPlayerAttachedObject
+	#endif
+	static stock FIX_SetPlayerAttachedObject = 0;
+	#define FIX_SetPlayerAttachedObject                          (0)
+#elseif !defined FIX_SetPlayerAttachedObject
 	#define _FIXES_WARNING 51
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3526,7 +3766,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_TrainExit
+#if _FIXES_NPC
+	#if defined FIX_TrainExit
+		#undef FIX_TrainExit
+	#endif
+	static stock FIX_TrainExit = 0;
+	#define FIX_TrainExit                          (0)
+#elseif !defined FIX_TrainExit
 	#define _FIXES_WARNING 55
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3561,7 +3807,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_Kick
+#if _FIXES_NPC
+	#if defined FIX_Kick
+		#undef FIX_Kick
+	#endif
+	static stock FIX_Kick = 0;
+	#define FIX_Kick                          (0)
+#elseif !defined FIX_Kick
 	#if defined EnableVehicleFriendlyFire
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 56
@@ -3608,7 +3860,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnVehicleMod
+#if _FIXES_NPC
+	#if defined FIX_OnVehicleMod
+		#undef FIX_OnVehicleMod
+	#endif
+	static stock FIX_OnVehicleMod = 0;
+	#define FIX_OnVehicleMod                          (0)
+#elseif !defined FIX_OnVehicleMod
 	#define _FIXES_WARNING 57
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3708,7 +3966,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_Menus
+#if _FIXES_NPC
+	#if defined FIX_Menus
+		#undef FIX_Menus
+	#endif
+	static stock FIX_Menus = 0;
+	#define FIX_Menus                          (0)
+#elseif !defined FIX_Menus
 	#define _FIXES_WARNING 60
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3741,7 +4005,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_AddMenuItem
+#if _FIXES_NPC
+	#if defined FIX_AddMenuItem
+		#undef FIX_AddMenuItem
+	#endif
+	static stock FIX_AddMenuItem = 0;
+	#define FIX_AddMenuItem                          (0)
+#elseif !defined FIX_AddMenuItem
 	#define _FIXES_WARNING 61
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3774,7 +4044,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetMenuColumnHeader
+#if _FIXES_NPC
+	#if defined FIX_SetMenuColumnHeader
+		#undef FIX_SetMenuColumnHeader
+	#endif
+	static stock FIX_SetMenuColumnHeader = 0;
+	#define FIX_SetMenuColumnHeader                          (0)
+#elseif !defined FIX_SetMenuColumnHeader
 	#define _FIXES_WARNING 62
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3807,7 +4083,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_ShowMenuForPlayer
+#if _FIXES_NPC
+	#if defined FIX_ShowMenuForPlayer
+		#undef FIX_ShowMenuForPlayer
+	#endif
+	static stock FIX_ShowMenuForPlayer = 0;
+	#define FIX_ShowMenuForPlayer                          (0)
+#elseif !defined FIX_ShowMenuForPlayer
 	#define _FIXES_WARNING 63
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3841,7 +4123,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_HideMenuForPlayer
+#if _FIXES_NPC
+	#if defined FIX_HideMenuForPlayer
+		#undef FIX_HideMenuForPlayer
+	#endif
+	static stock FIX_HideMenuForPlayer = 0;
+	#define FIX_HideMenuForPlayer                          (0)
+#elseif !defined FIX_HideMenuForPlayer
 	#define _FIXES_WARNING 64
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3875,7 +4163,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPlayerMenu
+#if _FIXES_NPC
+	#if defined FIX_GetPlayerMenu
+		#undef FIX_GetPlayerMenu
+	#endif
+	static stock FIX_GetPlayerMenu = 0;
+	#define FIX_GetPlayerMenu                          (0)
+#elseif !defined FIX_GetPlayerMenu
 	#define _FIXES_WARNING 65
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3908,7 +4202,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_HideMenuForPlayer_2
+#if _FIXES_NPC
+	#if defined FIX_HideMenuForPlayer_2
+		#undef FIX_HideMenuForPlayer_2
+	#endif
+	static stock FIX_HideMenuForPlayer_2 = 0;
+	#define FIX_HideMenuForPlayer_2                          (0)
+#elseif !defined FIX_HideMenuForPlayer_2
 	#define _FIXES_WARNING 66
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3943,7 +4243,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_DisableMenu
+#if _FIXES_NPC
+	#if defined FIX_DisableMenu
+		#undef FIX_DisableMenu
+	#endif
+	static stock FIX_DisableMenu = 0;
+	#define FIX_DisableMenu                          (0)
+#elseif !defined FIX_DisableMenu
 	#define _FIXES_WARNING 67
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -3976,7 +4282,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_DisableMenuRow
+#if _FIXES_NPC
+	#if defined FIX_DisableMenuRow
+		#undef FIX_DisableMenuRow
+	#endif
+	static stock FIX_DisableMenuRow = 0;
+	#define FIX_DisableMenuRow                          (0)
+#elseif !defined FIX_DisableMenuRow
 	#define _FIXES_WARNING 68
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4011,7 +4323,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPlayerInterior
+#if _FIXES_NPC
+	#if defined FIX_GetPlayerInterior
+		#undef FIX_GetPlayerInterior
+	#endif
+	static stock FIX_GetPlayerInterior = 0;
+	#define FIX_GetPlayerInterior                          (0)
+#elseif !defined FIX_GetPlayerInterior
 	#define _FIXES_WARNING 69
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4045,7 +4363,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_ApplyAnimation
+#if _FIXES_NPC
+	#if defined FIX_ApplyAnimation
+		#undef FIX_ApplyAnimation
+	#endif
+	static stock FIX_ApplyAnimation = 0;
+	#define FIX_ApplyAnimation                          (0)
+#elseif !defined FIX_ApplyAnimation
 	#define _FIXES_WARNING 70
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4080,7 +4404,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_ApplyAnimation_2
+#if _FIXES_NPC
+	#if defined FIX_ApplyAnimation_2
+		#undef FIX_ApplyAnimation_2
+	#endif
+	static stock FIX_ApplyAnimation_2 = 0;
+	#define FIX_ApplyAnimation_2                          (0)
+#elseif !defined FIX_ApplyAnimation_2
 	#define _FIXES_WARNING 71
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4115,7 +4445,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_ApplyActorAnimation
+#if _FIXES_NPC
+	#if defined FIX_ApplyActorAnimation
+		#undef FIX_ApplyActorAnimation
+	#endif
+	static stock FIX_ApplyActorAnimation = 0;
+	#define FIX_ApplyActorAnimation                          (0)
+#elseif !defined FIX_ApplyActorAnimation
 	#define _FIXES_WARNING 72
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4151,7 +4487,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_ApplyActorAnimation_2
+#if _FIXES_NPC
+	#if defined FIX_ApplyActorAnimation_2
+		#undef FIX_ApplyActorAnimation_2
+	#endif
+	static stock FIX_ApplyActorAnimation_2 = 0;
+	#define FIX_ApplyActorAnimation_2                          (0)
+#elseif !defined FIX_ApplyActorAnimation_2
 	#define _FIXES_WARNING 73
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4184,7 +4526,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnPlayerSpawn
+#if _FIXES_NPC
+	#if defined FIX_OnPlayerSpawn
+		#undef FIX_OnPlayerSpawn
+	#endif
+	static stock FIX_OnPlayerSpawn = 0;
+	#define FIX_OnPlayerSpawn                          (0)
+#elseif !defined FIX_OnPlayerSpawn
 	#define _FIXES_WARNING 74
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4218,7 +4566,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GameText
+#if _FIXES_NPC
+	#if defined FIX_GameText
+		#undef FIX_GameText
+	#endif
+	static stock FIX_GameText = 0;
+	#define FIX_GameText                          (0)
+#elseif !defined FIX_GameText
 	#define _FIXES_WARNING 75
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4252,7 +4606,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_HideGameText
+#if _FIXES_NPC
+	#if defined FIX_HideGameText
+		#undef FIX_HideGameText
+	#endif
+	static stock FIX_HideGameText = 0;
+	#define FIX_HideGameText                          (0)
+#elseif !defined FIX_HideGameText
 	#if defined HideGameText
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 76
@@ -4297,7 +4657,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPlayerWorldBounds
+#if _FIXES_NPC
+	#if defined FIX_GetPlayerWorldBounds
+		#undef FIX_GetPlayerWorldBounds
+	#endif
+	static stock FIX_GetPlayerWorldBounds = 0;
+	#define FIX_GetPlayerWorldBounds                          (0)
+#elseif !defined FIX_GetPlayerWorldBounds
 	#if defined GetPlayerWorldBounds
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 77
@@ -4342,7 +4708,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_ClearPlayerWorldBounds
+#if _FIXES_NPC
+	#if defined FIX_ClearPlayerWorldBounds
+		#undef FIX_ClearPlayerWorldBounds
+	#endif
+	static stock FIX_ClearPlayerWorldBounds = 0;
+	#define FIX_ClearPlayerWorldBounds                          (0)
+#elseif !defined FIX_ClearPlayerWorldBounds
 	#if defined ClearPlayerWorldBounds
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 78
@@ -4390,7 +4762,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GameTextStyles
+#if _FIXES_NPC
+	#if defined FIX_GameTextStyles
+		#undef FIX_GameTextStyles
+	#endif
+	static stock FIX_GameTextStyles = 0;
+	#define FIX_GameTextStyles                          (0)
+#elseif !defined FIX_GameTextStyles
 	#define _FIXES_WARNING 79
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4425,7 +4803,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnPlayerConnect
+#if _FIXES_NPC
+	#if defined FIX_OnPlayerConnect
+		#undef FIX_OnPlayerConnect
+	#endif
+	static stock FIX_OnPlayerConnect = 0;
+	#define FIX_OnPlayerConnect                          (0)
+#elseif !defined FIX_OnPlayerConnect
 	#define _FIXES_WARNING 80
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4458,7 +4842,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnPlayerDisconnect
+#if _FIXES_NPC
+	#if defined FIX_OnPlayerDisconnect
+		#undef FIX_OnPlayerDisconnect
+	#endif
+	static stock FIX_OnPlayerDisconnect = 0;
+	#define FIX_OnPlayerDisconnect                          (0)
+#elseif !defined FIX_OnPlayerDisconnect
 	#define _FIXES_WARNING 81
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4492,7 +4882,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_CreatePlayerTextDraw
+#if _FIXES_NPC
+	#if defined FIX_CreatePlayerTextDraw
+		#undef FIX_CreatePlayerTextDraw
+	#endif
+	static stock FIX_CreatePlayerTextDraw = 0;
+	#define FIX_CreatePlayerTextDraw                          (0)
+#elseif !defined FIX_CreatePlayerTextDraw
 	#define _FIXES_WARNING 82
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4527,7 +4923,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_CreatePlayerTextDraw_2
+#if _FIXES_NPC
+	#if defined FIX_CreatePlayerTextDraw_2
+		#undef FIX_CreatePlayerTextDraw_2
+	#endif
+	static stock FIX_CreatePlayerTextDraw_2 = 0;
+	#define FIX_CreatePlayerTextDraw_2                          (0)
+#elseif !defined FIX_CreatePlayerTextDraw_2
 	#define _FIXES_WARNING 83
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4561,7 +4963,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_PlayerTextDrawSetString
+#if _FIXES_NPC
+	#if defined FIX_PlayerTextDrawSetString
+		#undef FIX_PlayerTextDrawSetString
+	#endif
+	static stock FIX_PlayerTextDrawSetString = 0;
+	#define FIX_PlayerTextDrawSetString                          (0)
+#elseif !defined FIX_PlayerTextDrawSetString
 	#define _FIXES_WARNING 84
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4596,7 +5004,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_PlayerTextDrawSetString_2
+#if _FIXES_NPC
+	#if defined FIX_PlayerTextDrawSetString_2
+		#undef FIX_PlayerTextDrawSetString_2
+	#endif
+	static stock FIX_PlayerTextDrawSetString_2 = 0;
+	#define FIX_PlayerTextDrawSetString_2                          (0)
+#elseif !defined FIX_PlayerTextDrawSetString_2
 	#define _FIXES_WARNING 85
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4632,7 +5046,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetPlayerCamera
+#if _FIXES_NPC
+	#if defined FIX_SetPlayerCamera
+		#undef FIX_SetPlayerCamera
+	#endif
+	static stock FIX_SetPlayerCamera = 0;
+	#define FIX_SetPlayerCamera                          (0)
+#elseif !defined FIX_SetPlayerCamera
 	#define _FIXES_WARNING 86
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4665,7 +5085,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetPlayerTime
+#if _FIXES_NPC
+	#if defined FIX_SetPlayerTime
+		#undef FIX_SetPlayerTime
+	#endif
+	static stock FIX_SetPlayerTime = 0;
+	#define FIX_SetPlayerTime                          (0)
+#elseif !defined FIX_SetPlayerTime
 	#define _FIXES_WARNING 87
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4698,7 +5124,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnPlayerRequestClass
+#if _FIXES_NPC
+	#if defined FIX_OnPlayerRequestClass
+		#undef FIX_OnPlayerRequestClass
+	#endif
+	static stock FIX_OnPlayerRequestClass = 0;
+	#define FIX_OnPlayerRequestClass                          (0)
+#elseif !defined FIX_OnPlayerRequestClass
 	#define _FIXES_WARNING 88
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4733,7 +5165,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetPlayerColour
+#if _FIXES_NPC
+	#if defined FIX_SetPlayerColour
+		#undef FIX_SetPlayerColour
+	#endif
+	static stock FIX_SetPlayerColour = 0;
+	#define FIX_SetPlayerColour                          (0)
+#elseif !defined FIX_SetPlayerColour
 	#if defined FIX_SetPlayerColor
 		_FIXES_CONST_PAWNDOC(FIX_SetPlayerColour);
 		#if _FIXES_IS_UNSET(FIX_SetPlayerColor)
@@ -4809,7 +5247,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPlayerWeaponData
+#if _FIXES_NPC
+	#if defined FIX_GetPlayerWeaponData
+		#undef FIX_GetPlayerWeaponData
+	#endif
+	static stock FIX_GetPlayerWeaponData = 0;
+	#define FIX_GetPlayerWeaponData                          (0)
+#elseif !defined FIX_GetPlayerWeaponData
 	#define _FIXES_WARNING 91
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4879,7 +5323,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPVarString
+#if _FIXES_NPC
+	#if defined FIX_GetPVarString
+		#undef FIX_GetPVarString
+	#endif
+	static stock FIX_GetPVarString = 0;
+	#define FIX_GetPVarString                          (0)
+#elseif !defined FIX_GetPVarString
 	#define _FIXES_WARNING 93
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -4916,7 +5366,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetSVarString
+#if _FIXES_NPC
+	#if defined FIX_GetSVarString
+		#undef FIX_GetSVarString
+	#endif
+	static stock FIX_GetSVarString = 0;
+	#define FIX_GetSVarString                          (0)
+#elseif !defined FIX_GetSVarString
 	#define _FIXES_WARNING 94
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -5053,7 +5509,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_PassengerSeating
+#if _FIXES_NPC
+	#if defined FIX_PassengerSeating
+		#undef FIX_PassengerSeating
+	#endif
+	static stock FIX_PassengerSeating = 0;
+	#define FIX_PassengerSeating                          (0)
+#elseif !defined FIX_PassengerSeating
 	#define _FIXES_WARNING 98
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -5086,7 +5548,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GogglesSync
+#if _FIXES_NPC
+	#if defined FIX_GogglesSync
+		#undef FIX_GogglesSync
+	#endif
+	static stock FIX_GogglesSync = 0;
+	#define FIX_GogglesSync                          (0)
+#elseif !defined FIX_GogglesSync
 	#define _FIXES_WARNING 99
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -5119,7 +5587,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPlayerPoolSize
+#if _FIXES_NPC
+	#if defined FIX_GetPlayerPoolSize
+		#undef FIX_GetPlayerPoolSize
+	#endif
+	static stock FIX_GetPlayerPoolSize = 0;
+	#define FIX_GetPlayerPoolSize                          (0)
+#elseif !defined FIX_GetPlayerPoolSize
 	#define _FIXES_WARNING 100
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -5153,7 +5627,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_SetPlayerPos
+#if _FIXES_NPC
+	#if defined FIX_SetPlayerPos
+		#undef FIX_SetPlayerPos
+	#endif
+	static stock FIX_SetPlayerPos = 0;
+	#define FIX_SetPlayerPos                          (0)
+#elseif !defined FIX_SetPlayerPos
 	#define _FIXES_WARNING 101
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -5188,7 +5668,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPlayerAmmo
+#if _FIXES_NPC
+	#if defined FIX_GetPlayerAmmo
+		#undef FIX_GetPlayerAmmo
+	#endif
+	static stock FIX_GetPlayerAmmo = 0;
+	#define FIX_GetPlayerAmmo                          (0)
+#elseif !defined FIX_GetPlayerAmmo
 	#define _FIXES_WARNING 102
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -5221,7 +5707,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_JIT
+#if _FIXES_NPC
+	#if defined FIX_JIT
+		#undef FIX_JIT
+	#endif
+	static stock FIX_JIT = 0;
+	#define FIX_JIT                          (0)
+#elseif !defined FIX_JIT
 	#define _FIXES_WARNING 103
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -5365,7 +5857,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetPlayerWeather
+#if _FIXES_NPC
+	#if defined FIX_GetPlayerWeather
+		#undef FIX_GetPlayerWeather
+	#endif
+	static stock FIX_GetPlayerWeather = 0;
+	#define FIX_GetPlayerWeather                          (0)
+#elseif !defined FIX_GetPlayerWeather
 	#if defined GetPlayerWeather
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 107
@@ -5411,7 +5909,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetWeather
+#if _FIXES_NPC
+	#if defined FIX_GetWeather
+		#undef FIX_GetWeather
+	#endif
+	static stock FIX_GetWeather = 0;
+	#define FIX_GetWeather                          (0)
+#elseif !defined FIX_GetWeather
 	#if defined GetWeather
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 108
@@ -5456,7 +5960,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetWorldTime
+#if _FIXES_NPC
+	#if defined FIX_GetWorldTime
+		#undef FIX_GetWorldTime
+	#endif
+	static stock FIX_GetWorldTime = 0;
+	#define FIX_GetWorldTime                          (0)
+#elseif !defined FIX_GetWorldTime
 	#if defined GetWorldTime
 		#if FIXES_EnableDeprecated
 			#define _FIXES_WARNING 109
@@ -5503,7 +6013,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetConsoleVarAsString
+#if _FIXES_NPC
+	#if defined FIX_GetConsoleVarAsString
+		#undef FIX_GetConsoleVarAsString
+	#endif
+	static stock FIX_GetConsoleVarAsString = 0;
+	#define FIX_GetConsoleVarAsString                          (0)
+#elseif !defined FIX_GetConsoleVarAsString
 	#if defined FIX_GetServerVarAsString
 		_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsString);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsString)
@@ -5547,7 +6063,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetConsoleVarAsInt
+#if _FIXES_NPC
+	#if defined FIX_GetConsoleVarAsInt
+		#undef FIX_GetConsoleVarAsInt
+	#endif
+	static stock FIX_GetConsoleVarAsInt = 0;
+	#define FIX_GetConsoleVarAsInt                          (0)
+#elseif !defined FIX_GetConsoleVarAsInt
 	#if defined FIX_GetServerVarAsInt
 		_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsInt);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsInt)
@@ -5591,7 +6113,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetConsoleVarAsBool
+#if _FIXES_NPC
+	#if defined FIX_GetConsoleVarAsBool
+		#undef FIX_GetConsoleVarAsBool
+	#endif
+	static stock FIX_GetConsoleVarAsBool = 0;
+	#define FIX_GetConsoleVarAsBool                          (0)
+#elseif !defined FIX_GetConsoleVarAsBool
 	#if defined FIX_GetServerVarAsBool
 		_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsBool);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsBool)
@@ -5635,7 +6163,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_GetConsoleVarAsFloat
+#if _FIXES_NPC
+	#if defined FIX_GetConsoleVarAsFloat
+		#undef FIX_GetConsoleVarAsFloat
+	#endif
+	static stock FIX_GetConsoleVarAsFloat = 0;
+	#define FIX_GetConsoleVarAsFloat                          (0)
+#elseif !defined FIX_GetConsoleVarAsFloat
 	#if defined GetConsoleVarAsFloat
 		#if FIX_GetConsoleVarAsString
 			#define _FIXES_WARNING 113
@@ -5718,7 +6252,26 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_tabsize                          (0)
 #endif
 
-#if !defined FIX_Callbacks
+/**
+ * <fix name="Callbacks">
+ *     <problem>
+ *         Several callbacks only work in filterscripts first.
+ *     </problem>
+ *     <solution>
+ *         This is a single define for all those callbacks.
+ *     </solution>
+ *     <see>OnGameModeInit</see>
+ *     <author    href="https://github.com/Y-Less" >Y_Less</author>
+ * </fix>
+ */
+
+#if _FIXES_NPC
+	#if defined FIX_Callbacks
+		#undef FIX_Callbacks
+	#endif
+	static stock FIX_Callbacks = 0;
+	#define FIX_Callbacks                          (0)
+#elseif !defined FIX_Callbacks
 	#define _FIXES_WARNING 115
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -5751,7 +6304,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnRconCommand
+#if _FIXES_NPC
+	#if defined FIX_OnRconCommand
+		#undef FIX_OnRconCommand
+	#endif
+	static stock FIX_OnRconCommand = 0;
+	#define FIX_OnRconCommand                          (0)
+#elseif !defined FIX_OnRconCommand
 	#define _FIXES_WARNING 116
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -5784,7 +6343,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnClientCheckResponse
+#if _FIXES_NPC
+	#if defined FIX_OnClientCheckResponse
+		#undef FIX_OnClientCheckResponse
+	#endif
+	static stock FIX_OnClientCheckResponse = 0;
+	#define FIX_OnClientCheckResponse                          (0)
+#elseif !defined FIX_OnClientCheckResponse
 	#define _FIXES_WARNING 117
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -5853,7 +6418,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_BypassDialog
+#if _FIXES_NPC
+	#if defined FIX_BypassDialog
+		#undef FIX_BypassDialog
+	#endif
+	static stock FIX_BypassDialog = 0;
+	#define FIX_BypassDialog                          (0)
+#elseif !defined FIX_BypassDialog
 	#define _FIXES_WARNING 119
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -5995,7 +6566,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnVehicleSpawn
+#if _FIXES_NPC
+	#if defined FIX_OnVehicleSpawn
+		#undef FIX_OnVehicleSpawn
+	#endif
+	static stock FIX_OnVehicleSpawn = 0;
+	#define FIX_OnVehicleSpawn                          (0)
+#elseif !defined FIX_OnVehicleSpawn
 	#define _FIXES_WARNING 123
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
