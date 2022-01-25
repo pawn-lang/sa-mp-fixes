@@ -6694,6 +6694,96 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 	_FIXES_CONST_PAWNDOC(INVALID_DIALOG_ID);
 	#define INVALID_DIALOG_ID (-1)
 #endif
+/**
+ * <remarks>
+ * The maximum number of actors that can exist.
+ * </remarks>
+ */
+
+#if defined MAX_ACTORS
+	_FIXES_HIDE_PAWNDOC(FIXES_MAX_ACTORS);
+#else
+	_FIXES_CONST_PAWNDOC(MAX_ACTORS);
+	#define MAX_ACTORS (1000)
+#endif
+
+/**
+ * <remarks>
+ * The ID of an invalid actor.
+ * </remarks>
+ */
+
+#if defined INVALID_ACTOR_ID
+	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_ACTOR_ID);
+#else
+	_FIXES_CONST_PAWNDOC(INVALID_ACTOR_ID);
+	#define INVALID_ACTOR_ID (0xFFFF)
+#endif
+
+/**
+ * <remarks>
+ * The maximum number of per-player text draws that can be created.
+ * </remarks>
+ */
+
+#if defined MAX_PLAYER_TEXT_DRAWS
+	_FIXES_HIDE_PAWNDOC(FIXES_MAX_PLAYER_TEXT_DRAWS);
+#else
+	_FIXES_CONST_PAWNDOC(MAX_PLAYER_TEXT_DRAWS);
+	#define MAX_PLAYER_TEXT_DRAWS (256)
+#endif
+
+/**
+ * <remarks>
+ * The maximum number of global 3D texts that can be created.
+ * </remarks>
+ */
+
+#if defined MAX_3DTEXT_GLOBAL
+	_FIXES_HIDE_PAWNDOC(FIXES_MAX_3DTEXT_GLOBAL);
+#else
+	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_GLOBAL);
+	#define MAX_3DTEXT_GLOBAL (1024)
+#endif
+
+/**
+ * <remarks>
+ * The maximum number of per-player 3D texts that can be created.
+ * </remarks>
+ */
+
+#if defined MAX_3DTEXT_PLAYER
+	_FIXES_HIDE_PAWNDOC(FIXES_MAX_3DTEXT_PLAYER);
+#else
+	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_PLAYER);
+	#define MAX_3DTEXT_PLAYER (1024)
+#endif
+
+/**
+ * <remarks>
+ * The maximum number of pickups that can be created.
+ * </remarks>
+ */
+
+#if defined MAX_PICKUPS
+	_FIXES_HIDE_PAWNDOC(FIXES_MAX_PICKUPS);
+#else
+	_FIXES_CONST_PAWNDOC(MAX_PICKUPS);
+	#define MAX_PICKUPS (4096)
+#endif
+
+/**
+ * <remarks>
+ * The ID of an invalid 3D text.
+ * </remarks>
+ */
+
+#if defined INVALID_3DTEXT_ID
+	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_3DTEXT_ID);
+#else
+	_FIXES_CONST_PAWNDOC(INVALID_3DTEXT_ID);
+	#define INVALID_3DTEXT_ID (0xFFFF)
+#endif
 
 /**
  * <remarks>
