@@ -3663,7 +3663,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_OnPlayerDeath
+#if _FIXES_NPC
+	#if defined FIX_OnPlayerDeath
+		#undef FIX_OnPlayerDeath
+	#endif
+	static stock FIX_OnPlayerDeath = 0;
+	#define FIX_OnPlayerDeath                          (0)
+#elseif !defined FIX_OnPlayerDeath
 	#define _FIXES_WARNING 52
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -10963,340 +10969,364 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
  */
 
 #if FIX_const
-	// a_actor
-	#if _FIXES_SAMP && defined _ALS_ApplyActorAnimation
-		#error _ALS_ApplyActorAnimation defined
-	#endif
-	native CST_ApplyActorAnimation(actorid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
-	native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
-	#define _ALS_ApplyActorAnimation
-	#define ApplyActorAnimation( CST_ApplyActorAnimation(
-
-	// a_http
-	// Try very hard to include it!  The first one should be enough.  Shame that
-	// include has no include guard in it, making it harder to use with Zeex's
-	// compiler.
-	#if !defined HTTP_ERROR_MALFORMED_RESPONSE
-		#tryinclude <a_http>
-	#endif
-	#if !defined HTTP_ERROR_MALFORMED_RESPONSE
-		#tryinclude "a_http"
-	#endif
-	#if !defined HTTP_ERROR_MALFORMED_RESPONSE
-		#tryinclude "..\a_http"
-	#endif
-	#if defined HTTP_ERROR_MALFORMED_RESPONSE
-		#if _FIXES_SAMP && defined _ALS_HTTP
-			#error _ALS_HTTP defined
+	#if _FIXES_NPC
+		// a_npc
+		#if _FIXES_SAMP && defined _ALS_SetTimer
+			#error _ALS_SetTimer defined
 		#endif
-		native CST_HTTP(index, type, const url[], const data[], const callback[]) = HTTP;
-		#define _ALS_HTTP
-		#define HTTP( CST_HTTP(
-		// Because a_http can be included multiple times (on one compiler),
-		// ensure that multiple definitions don't break (too quickly - there's
-		// nothing we can do if it gets included a load of times, but that's an
-		// issue you would get with the new compiler anyway).
-		#define CST_HTTP(%0,%1,%2[],%3[],%4[]); a_http_included_too_many_times(%0,%1,%2[],%3[],%4[]) = HTTP;
-	#endif
+		native CST_SetTimer(const funcname[], interval, repeating) = SetTimer;
+		native BAD_SetTimer(funcname[], interval, repeating) = SetTimer;
+		#define _ALS_SetTimer
+		#define SetTimer( CST_SetTimer(
+		#if _FIXES_SAMP && defined _ALS_SendChat
+			#error _ALS_SendChat defined
+		#endif
+		native CST_SendChat(const msg[]) = SendChat;
+		native BAD_SendChat(msg[]) = SendChat;
+		#define _ALS_SendChat
+		#define SendChat( CST_SendChat(
+		#if _FIXES_SAMP && defined _ALS_SendCommand
+			#error _ALS_SendCommand defined
+		#endif
+		native CST_SendCommand(const commandtext[]) = SendCommand;
+		native BAD_SendCommand(commandtext[]) = SendCommand;
+		#define _ALS_SendCommand
+		#define SendCommand( CST_SendCommand(
+		#if _FIXES_SAMP && defined _ALS_StartRecordingPlayback
+			#error _ALS_StartRecordingPlayback defined
+		#endif
+		native CST_StartRecordingPlayback(playbacktype, const recordname[]) = StartRecordingPlayback;
+		native BAD_StartRecordingPlayback(playbacktype, recordname[]) = StartRecordingPlayback;
+		#define _ALS_StartRecordingPlayback
+		#define StartRecordingPlayback( CST_(
+	#else
+		// a_actor
+		#if _FIXES_SAMP && defined _ALS_ApplyActorAnimation
+			#error _ALS_ApplyActorAnimation defined
+		#endif
+		native CST_ApplyActorAnimation(actorid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
+		native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
+		#define _ALS_ApplyActorAnimation
+		#define ApplyActorAnimation( CST_ApplyActorAnimation(
 
-	// a_npc
-	//
-	//   native CONST_SetTimer(const funcname[], interval, repeating) = SetTimer;
-	//   native CONST_SendChat(const msg[]) = SendChat;
-	//   native CONST_SendCommand(const commandtext[]) = SendCommand;
-	//   native CONST_StartRecordingPlayback(playbacktype, const recordname[]) = StartRecordingPlayback;
-	//
+		// a_http
+		// Try very hard to include it!  The first one should be enough.  Shame that
+		// include has no include guard in it, making it harder to use with Zeex's
+		// compiler.
+		#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+			#tryinclude <a_http>
+		#endif
+		#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+			#tryinclude "a_http"
+		#endif
+		#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+			#tryinclude "..\a_http"
+		#endif
+		#if defined HTTP_ERROR_MALFORMED_RESPONSE
+			#if _FIXES_SAMP && defined _ALS_HTTP
+				#error _ALS_HTTP defined
+			#endif
+			native CST_HTTP(index, type, const url[], const data[], const callback[]) = HTTP;
+			#define _ALS_HTTP
+			#define HTTP( CST_HTTP(
+			// Because a_http can be included multiple times (on one compiler),
+			// ensure that multiple definitions don't break (too quickly - there's
+			// nothing we can do if it gets included a load of times, but that's an
+			// issue you would get with the new compiler anyway).
+			#define CST_HTTP(%0,%1,%2[],%3[],%4[]); a_http_included_too_many_times(%0,%1,%2[],%3[],%4[]) = HTTP;
+		#endif
 
-	// a_objects
-	#if _FIXES_SAMP && defined _ALS_SetObjectMaterial
-		#error _ALS_SetObjectMaterial defined
-	#endif
-	native CST_SetObjectMaterial(objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor=0) = SetObjectMaterial;
-	#define _ALS_SetObjectMaterial
-	#define SetObjectMaterial( CST_SetObjectMaterial(
-	#if _FIXES_SAMP && defined _ALS_SetPlayerObjectMaterial
-		#error _ALS_SetPlayerObjectMaterial defined
-	#endif
-	native CST_SetPlayerObjectMaterial(playerid, objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor=0) = SetPlayerObjectMaterial;
-	#define _ALS_SetPlayerObjectMaterial
-	#define SetPlayerObjectMaterial( CST_SetPlayerObjectMaterial(
-	#if _FIXES_SAMP && defined _ALS_SetObjectMaterialText
-		#error _ALS_SetObjectMaterialText defined
-	#endif
-	native CST_SetObjectMaterialText(objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetObjectMaterialText;
-	#define _ALS_SetObjectMaterialText
-	#define SetObjectMaterialText( CST_SetObjectMaterialText(
-	#if _FIXES_SAMP && defined _ALS_SetPlayerObjMaterialText
-		#error _ALS_SetPlayerObjMaterialText defined
-	#endif
-	native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetPlayerObjectMaterialText;
-	#define _ALS_SetPlayerObjMaterialText
-	#define SetPlayerObjectMaterialText( CST_SetPlayerObjectMaterialText(
+		// a_objects
+		#if _FIXES_SAMP && defined _ALS_SetObjectMaterial
+			#error _ALS_SetObjectMaterial defined
+		#endif
+		native CST_SetObjectMaterial(objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor=0) = SetObjectMaterial;
+		#define _ALS_SetObjectMaterial
+		#define SetObjectMaterial( CST_SetObjectMaterial(
+		#if _FIXES_SAMP && defined _ALS_SetPlayerObjectMaterial
+			#error _ALS_SetPlayerObjectMaterial defined
+		#endif
+		native CST_SetPlayerObjectMaterial(playerid, objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor=0) = SetPlayerObjectMaterial;
+		#define _ALS_SetPlayerObjectMaterial
+		#define SetPlayerObjectMaterial( CST_SetPlayerObjectMaterial(
+		#if _FIXES_SAMP && defined _ALS_SetObjectMaterialText
+			#error _ALS_SetObjectMaterialText defined
+		#endif
+		native CST_SetObjectMaterialText(objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetObjectMaterialText;
+		#define _ALS_SetObjectMaterialText
+		#define SetObjectMaterialText( CST_SetObjectMaterialText(
+		#if _FIXES_SAMP && defined _ALS_SetPlayerObjMaterialText
+			#error _ALS_SetPlayerObjMaterialText defined
+		#endif
+		native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetPlayerObjectMaterialText;
+		#define _ALS_SetPlayerObjMaterialText
+		#define SetPlayerObjectMaterialText( CST_SetPlayerObjectMaterialText(
 
-	// a_players
-	#if _FIXES_SAMP && defined _ALS_PlayAudioStreamForPlayer
-		#error _ALS_PlayAudioStreamForPlayer defined
-	#endif
-	native CST_PlayAudioStreamForPlayer(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0) = PlayAudioStreamForPlayer;
-	#define _ALS_PlayAudioStreamForPlayer
-	#define PlayAudioStreamForPlayer( CST_PlayAudioStreamForPlayer(
-	#if _FIXES_SAMP && defined _ALS_SetPlayerShopName
-		#error _ALS_SetPlayerShopName defined
-	#endif
-	native CST_SetPlayerShopName(playerid, const shopname[]) = SetPlayerShopName;
-	#define _ALS_SetPlayerShopName
-	#define SetPlayerShopName( CST_SetPlayerShopName(
-	#if _FIXES_SAMP && defined _ALS_CreatePlayerTextDraw
-		#error _ALS_CreatePlayerTextDraw defined
-	#endif
-	native PlayerText:CST_CreatePlayerTextDraw(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
-	native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
-	#define _ALS_CreatePlayerTextDraw
-	#define CreatePlayerTextDraw( CST_CreatePlayerTextDraw(
-	#if _FIXES_SAMP && defined _ALS_PlayerTextDrawSetString
-		#error _ALS_PlayerTextDrawSetString defined
-	#endif
-	native CST_PlayerTextDrawSetString(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
-	native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
-	#define _ALS_PlayerTextDrawSetString
-	#define PlayerTextDrawSetString( CST_PlayerTextDrawSetString(
-	#if _FIXES_SAMP && defined _ALS_SetPVarInt
-		#error _ALS_SetPVarInt defined
-	#endif
-	native CST_SetPVarInt(playerid, const varname[], int_value) = SetPVarInt;
-	#define _ALS_SetPVarInt
-	#define SetPVarInt( CST_SetPVarInt(
-	#if _FIXES_SAMP && defined _ALS_GetPVarInt
-		#error _ALS_GetPVarInt defined
-	#endif
-	native CST_GetPVarInt(playerid, const varname[]) = GetPVarInt;
-	#define _ALS_GetPVarInt
-	#define GetPVarInt( CST_GetPVarInt(
-	#if _FIXES_SAMP && defined _ALS_SetPVarString
-		#error _ALS_SetPVarString defined
-	#endif
-	native CST_SetPVarString(playerid, const varname[], const string_value[]) = SetPVarString;
-	#define _ALS_SetPVarString
-	#define SetPVarString( CST_SetPVarString(
-	#if _FIXES_SAMP && defined _ALS_GetPVarString
-		#error _ALS_GetPVarString defined
-	#endif
-	native CST_GetPVarString(playerid, const varname[], string_return[], len) = GetPVarString;
-	native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
-	#define _ALS_GetPVarString
-	#define GetPVarString( CST_GetPVarString(
-	#if _FIXES_SAMP && defined _ALS_SetPVarFloat
-		#error _ALS_SetPVarFloat defined
-	#endif
-	native CST_SetPVarFloat(playerid, const varname[], Float:float_value) = SetPVarFloat;
-	#define _ALS_SetPVarFloat
-	#define SetPVarFloat( CST_SetPVarFloat(
-	#if _FIXES_SAMP && defined _ALS_GetPVarFloat
-		#error _ALS_GetPVarFloat defined
-	#endif
-	native Float:CST_GetPVarFloat(playerid, const varname[]) = GetPVarFloat;
-	#define _ALS_GetPVarFloat
-	#define GetPVarFloat( CST_GetPVarFloat(
-	#if _FIXES_SAMP && defined _ALS_DeletePVar
-		#error _ALS_DeletePVar defined
-	#endif
-	native CST_DeletePVar(playerid, const varname[]) = DeletePVar;
-	#define _ALS_DeletePVar
-	#define DeletePVar( CST_DeletePVar(
-	#if _FIXES_SAMP && defined _ALS_GetPVarType
-		#error _ALS_GetPVarType defined
-	#endif
-	native PLAYER_VARTYPE:CST_GetPVarType(playerid, const varname[]) = GetPVarType;
-	#define _ALS_GetPVarType
-	#define GetPVarType( CST_GetPVarType(
-	#if _FIXES_SAMP && defined _ALS_SetPlayerChatBubble
-		#error _ALS_SetPlayerChatBubble defined
-	#endif
-	native CST_SetPlayerChatBubble(playerid, const text[], color, Float:drawdistance, expiretime) = SetPlayerChatBubble;
-	#define _ALS_SetPlayerChatBubble
-	#define SetPlayerChatBubble( CST_SetPlayerChatBubble(
-	#if _FIXES_SAMP && defined _ALS_ApplyAnimation
-		#error _ALS_ApplyAnimation defined
-	#endif
-	native CST_ApplyAnimation(playerid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
-	native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
-	#define _ALS_ApplyAnimation
-	#define ApplyAnimation( CST_ApplyAnimation(
-	#if _FIXES_SAMP && defined _ALS_StartRecordingPlayerData
-		#error _ALS_StartRecordingPlayerData defined
-	#endif
-	native CST_StartRecordingPlayerData(playerid, recordtype, const recordname[]) = StartRecordingPlayerData;
-	#define _ALS_StartRecordingPlayerData
-	#define StartRecordingPlayerData( CST_StartRecordingPlayerData(
+		// a_players
+		#if _FIXES_SAMP && defined _ALS_PlayAudioStreamForPlayer
+			#error _ALS_PlayAudioStreamForPlayer defined
+		#endif
+		native CST_PlayAudioStreamForPlayer(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0) = PlayAudioStreamForPlayer;
+		#define _ALS_PlayAudioStreamForPlayer
+		#define PlayAudioStreamForPlayer( CST_PlayAudioStreamForPlayer(
+		#if _FIXES_SAMP && defined _ALS_SetPlayerShopName
+			#error _ALS_SetPlayerShopName defined
+		#endif
+		native CST_SetPlayerShopName(playerid, const shopname[]) = SetPlayerShopName;
+		#define _ALS_SetPlayerShopName
+		#define SetPlayerShopName( CST_SetPlayerShopName(
+		#if _FIXES_SAMP && defined _ALS_CreatePlayerTextDraw
+			#error _ALS_CreatePlayerTextDraw defined
+		#endif
+		native PlayerText:CST_CreatePlayerTextDraw(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
+		native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
+		#define _ALS_CreatePlayerTextDraw
+		#define CreatePlayerTextDraw( CST_CreatePlayerTextDraw(
+		#if _FIXES_SAMP && defined _ALS_PlayerTextDrawSetString
+			#error _ALS_PlayerTextDrawSetString defined
+		#endif
+		native CST_PlayerTextDrawSetString(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
+		native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
+		#define _ALS_PlayerTextDrawSetString
+		#define PlayerTextDrawSetString( CST_PlayerTextDrawSetString(
+		#if _FIXES_SAMP && defined _ALS_SetPVarInt
+			#error _ALS_SetPVarInt defined
+		#endif
+		native CST_SetPVarInt(playerid, const varname[], int_value) = SetPVarInt;
+		#define _ALS_SetPVarInt
+		#define SetPVarInt( CST_SetPVarInt(
+		#if _FIXES_SAMP && defined _ALS_GetPVarInt
+			#error _ALS_GetPVarInt defined
+		#endif
+		native CST_GetPVarInt(playerid, const varname[]) = GetPVarInt;
+		#define _ALS_GetPVarInt
+		#define GetPVarInt( CST_GetPVarInt(
+		#if _FIXES_SAMP && defined _ALS_SetPVarString
+			#error _ALS_SetPVarString defined
+		#endif
+		native CST_SetPVarString(playerid, const varname[], const string_value[]) = SetPVarString;
+		#define _ALS_SetPVarString
+		#define SetPVarString( CST_SetPVarString(
+		#if _FIXES_SAMP && defined _ALS_GetPVarString
+			#error _ALS_GetPVarString defined
+		#endif
+		native CST_GetPVarString(playerid, const varname[], string_return[], len) = GetPVarString;
+		native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
+		#define _ALS_GetPVarString
+		#define GetPVarString( CST_GetPVarString(
+		#if _FIXES_SAMP && defined _ALS_SetPVarFloat
+			#error _ALS_SetPVarFloat defined
+		#endif
+		native CST_SetPVarFloat(playerid, const varname[], Float:float_value) = SetPVarFloat;
+		#define _ALS_SetPVarFloat
+		#define SetPVarFloat( CST_SetPVarFloat(
+		#if _FIXES_SAMP && defined _ALS_GetPVarFloat
+			#error _ALS_GetPVarFloat defined
+		#endif
+		native Float:CST_GetPVarFloat(playerid, const varname[]) = GetPVarFloat;
+		#define _ALS_GetPVarFloat
+		#define GetPVarFloat( CST_GetPVarFloat(
+		#if _FIXES_SAMP && defined _ALS_DeletePVar
+			#error _ALS_DeletePVar defined
+		#endif
+		native CST_DeletePVar(playerid, const varname[]) = DeletePVar;
+		#define _ALS_DeletePVar
+		#define DeletePVar( CST_DeletePVar(
+		#if _FIXES_SAMP && defined _ALS_GetPVarType
+			#error _ALS_GetPVarType defined
+		#endif
+		native PLAYER_VARTYPE:CST_GetPVarType(playerid, const varname[]) = GetPVarType;
+		#define _ALS_GetPVarType
+		#define GetPVarType( CST_GetPVarType(
+		#if _FIXES_SAMP && defined _ALS_SetPlayerChatBubble
+			#error _ALS_SetPlayerChatBubble defined
+		#endif
+		native CST_SetPlayerChatBubble(playerid, const text[], color, Float:drawdistance, expiretime) = SetPlayerChatBubble;
+		#define _ALS_SetPlayerChatBubble
+		#define SetPlayerChatBubble( CST_SetPlayerChatBubble(
+		#if _FIXES_SAMP && defined _ALS_ApplyAnimation
+			#error _ALS_ApplyAnimation defined
+		#endif
+		native CST_ApplyAnimation(playerid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+		native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+		#define _ALS_ApplyAnimation
+		#define ApplyAnimation( CST_ApplyAnimation(
+		#if _FIXES_SAMP && defined _ALS_StartRecordingPlayerData
+			#error _ALS_StartRecordingPlayerData defined
+		#endif
+		native CST_StartRecordingPlayerData(playerid, recordtype, const recordname[]) = StartRecordingPlayerData;
+		#define _ALS_StartRecordingPlayerData
+		#define StartRecordingPlayerData( CST_StartRecordingPlayerData(
 
-	// a_samp
-	#if _FIXES_SAMP && defined _ALS_SetTimer
-		#error _ALS_SetTimer defined
-	#endif
-	native CST_SetTimer(const funcname[], interval, repeating) = SetTimer;
-	native BAD_SetTimer(const funcname[], interval, repeating) = SetTimer;
-	#define _ALS_SetTimer
-	#define SetTimer( CST_SetTimer(
-	#if _FIXES_SAMP && defined _ALS_SetTimerEx
-		#error _ALS_SetTimerEx defined
-	#endif
-	native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
-	native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
-	#define _ALS_SetTimerEx
-	#define SetTimerEx( CST_SetTimerEx(
-	#if _FIXES_SAMP && defined _ALS_SHA256_PassHash
-		#error _ALS_SHA256_PassHash defined
-	#endif
-	native CST_SHA256_PassHash(const password[], const salt[], ret_hash[], ret_hash_len) = SHA256_PassHash;
-	#define _ALS_SHA256_PassHash // SHA256 for password hashing
-	#define SHA256_PassHash( CST_SHA256_PassHash(
-	#if _FIXES_SAMP && defined _ALS_SetSVarInt
-		#error _ALS_SetSVarInt defined
-	#endif
-	native CST_SetSVarInt(const varname[], int_value) = SetSVarInt;
-	#define _ALS_SetSVarInt
-	#define SetSVarInt( CST_SetSVarInt(
-	#if _FIXES_SAMP && defined _ALS_GetSVarInt
-		#error _ALS_GetSVarInt defined
-	#endif
-	native CST_GetSVarInt(const varname[]) = GetSVarInt;
-	#define _ALS_GetSVarInt
-	#define GetSVarInt( CST_GetSVarInt(
-	#if _FIXES_SAMP && defined _ALS_SetSVarString
-		#error _ALS_SetSVarString defined
-	#endif
-	native CST_SetSVarString(const varname[], const string_value[]) = SetSVarString;
-	#define _ALS_SetSVarString
-	#define SetSVarString( CST_SetSVarString(
-	#if _FIXES_SAMP && defined _ALS_GetSVarString
-		#error _ALS_GetSVarString defined
-	#endif
-	native CST_GetSVarString(const varname[], string_return[], len) = GetSVarString;
-	native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
-	#define _ALS_GetSVarString
-	#define GetSVarString( CST_GetSVarString(
-	#if _FIXES_SAMP && defined _ALS_SetSVarFloat
-		#error _ALS_SetSVarFloat defined
-	#endif
-	native CST_SetSVarFloat(const varname[], Float:float_value) = SetSVarFloat;
-	#define _ALS_SetSVarFloat
-	#define SetSVarFloat( CST_SetSVarFloat(
-	#if _FIXES_SAMP && defined _ALS_GetSVarFloat
-		#error _ALS_GetSVarFloat defined
-	#endif
-	native Float:CST_GetSVarFloat(const varname[]) = GetSVarFloat;
-	#define _ALS_GetSVarFloat
-	#define GetSVarFloat( CST_GetSVarFloat(
-	#if _FIXES_SAMP && defined _ALS_DeleteSVar
-		#error _ALS_DeleteSVar defined
-	#endif
-	native CST_DeleteSVar(const varname[]) = DeleteSVar;
-	#define _ALS_DeleteSVar
-	#define DeleteSVar( CST_DeleteSVar(
-	#if _FIXES_SAMP && defined _ALS_GetSVarType
-		#error _ALS_GetSVarType defined
-	#endif
-	native CST_GetSVarType(const varname[]) = GetSVarType;
-	#define _ALS_GetSVarType
-	#define GetSVarType( CST_GetSVarType(
-	#if _FIXES_SAMP && defined _ALS_ConnectNPC
-		#error _ALS_ConnectNPC defined
-	#endif
-	native CST_ConnectNPC(const name[], const script[]) = ConnectNPC;
-	#define _ALS_ConnectNPC
-	#define ConnectNPC( CST_ConnectNPC(
-	#if _FIXES_SAMP && defined _ALS_SendRconCommand
-		#error _ALS_SendRconCommand defined
-	#endif
-	native CST_SendRconCommand(const command[]) = SendRconCommand;
-	#define _ALS_SendRconCommand
-	#define SendRconCommand( CST_SendRconCommand(
-	// This is the only case where a variable is "const" but shouldn't be.
-	#if _FIXES_SAMP && defined _ALS_GetPlayerVersion
-		#error _ALS_GetPlayerVersion defined
-	#endif
-	native CST_GetPlayerVersion(playerid, version[], len) = GetPlayerVersion;
-	#define _ALS_GetPlayerVersion
-	#define GetPlayerVersion( CST_GetPlayerVersion(
-	#if _FIXES_SAMP && defined _ALS_BlockIpAddress
-		#error _ALS_BlockIpAddress defined
-	#endif
-	native CST_BlockIpAddress(const ip_address[], timems) = BlockIpAddress;
-	#define _ALS_BlockIpAddress
-	#define BlockIpAddress( CST_BlockIpAddress(
-	#if _FIXES_SAMP && defined _ALS_UnBlockIpAddress
-		#error _ALS_UnBlockIpAddress defined
-	#endif
-	native CST_UnBlockIpAddress(const ip_address[]) = UnBlockIpAddress;
-	#define _ALS_UnBlockIpAddress
-	#define UnBlockIpAddress( CST_UnBlockIpAddress(
-	#if _FIXES_SAMP && defined _ALS_TextDrawCreate
-		#error _ALS_TextDrawCreate defined
-	#endif
-	native Text:CST_TextDrawCreate(Float:x, Float:y, const text[]) = TextDrawCreate;
-	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
-	#define _ALS_TextDrawCreate
-	#define TextDrawCreate( CST_TextDrawCreate(
-	#if _FIXES_SAMP && defined _ALS_TextDrawSetString
-		#error _ALS_TextDrawSetString defined
-	#endif
-	native CST_TextDrawSetString(Text:text, const string[]) = TextDrawSetString;
-	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
-	#define _ALS_TextDrawSetString
-	#define TextDrawSetString( CST_TextDrawSetString(
-	#if _FIXES_SAMP && defined _ALS_Create3DTextLabel
-		#error _ALS_Create3DTextLabel defined
-	#endif
-	native Text3D:CST_Create3DTextLabel(const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, virtualworld, testLOS=0) = Create3DTextLabel;
-	#define _ALS_Create3DTextLabel
-	#define Create3DTextLabel( CST_Create3DTextLabel(
-	#if _FIXES_SAMP && defined _ALS_Update3DTextLabelText
-		#error _ALS_Update3DTextLabelText defined
-	#endif
-	native CST_Update3DTextLabelText(Text3D:id, color, const text[]) = Update3DTextLabelText;
-	#define _ALS_Update3DTextLabelText
-	#define Update3DTextLabelText( CST_Update3DTextLabelText(
-	#if _FIXES_SAMP && defined _ALS_CreatePlayer3DTextLabel
-		#error _ALS_CreatePlayer3DTextLabel defined
-	#endif
-	native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, attachedplayer=INVALID_PLAYER_ID, attachedvehicle=INVALID_VEHICLE_ID, testLOS=0) = CreatePlayer3DTextLabel;
-	#define _ALS_CreatePlayer3DTextLabel
-	#define CreatePlayer3DTextLabel( CST_CreatePlayer3DTextLabel(
-	#if _FIXES_SAMP && defined _ALS_UpdPlayer3DTextLabelText
-		#error _ALS_UpdPlayer3DTextLabelText defined
-	#endif
-	native CST_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:id, color, const text[]) = UpdatePlayer3DTextLabelText;
-	#define _ALS_UpdPlayer3DTextLabelText
-	#define UpdatePlayer3DTextLabelText( CST_UpdatePlayer3DTextLabelText(
-	#if _FIXES_SAMP && defined _ALS_ShowPlayerDialog
-		#error _ALS_ShowPlayerDialog defined
-	#endif
-	native CST_ShowPlayerDialog(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
-	native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
-	#define _ALS_ShowPlayerDialog
-	#define ShowPlayerDialog( CST_ShowPlayerDialog(
+		// a_samp
+		#if _FIXES_SAMP && defined _ALS_SetTimer
+			#error _ALS_SetTimer defined
+		#endif
+		native CST_SetTimer(const funcname[], interval, repeating) = SetTimer;
+		native BAD_SetTimer(funcname[], interval, repeating) = SetTimer;
+		#define _ALS_SetTimer
+		#define SetTimer( CST_SetTimer(
+		#if _FIXES_SAMP && defined _ALS_SetTimerEx
+			#error _ALS_SetTimerEx defined
+		#endif
+		native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+		native BAD_SetTimerEx(funcname[], interval, repeating, format[], {Float,_}:...) = SetTimerEx;
+		#define _ALS_SetTimerEx
+		#define SetTimerEx( CST_SetTimerEx(
+		#if _FIXES_SAMP && defined _ALS_SHA256_PassHash
+			#error _ALS_SHA256_PassHash defined
+		#endif
+		native CST_SHA256_PassHash(const password[], const salt[], ret_hash[], ret_hash_len) = SHA256_PassHash;
+		#define _ALS_SHA256_PassHash // SHA256 for password hashing
+		#define SHA256_PassHash( CST_SHA256_PassHash(
+		#if _FIXES_SAMP && defined _ALS_SetSVarInt
+			#error _ALS_SetSVarInt defined
+		#endif
+		native CST_SetSVarInt(const varname[], int_value) = SetSVarInt;
+		#define _ALS_SetSVarInt
+		#define SetSVarInt( CST_SetSVarInt(
+		#if _FIXES_SAMP && defined _ALS_GetSVarInt
+			#error _ALS_GetSVarInt defined
+		#endif
+		native CST_GetSVarInt(const varname[]) = GetSVarInt;
+		#define _ALS_GetSVarInt
+		#define GetSVarInt( CST_GetSVarInt(
+		#if _FIXES_SAMP && defined _ALS_SetSVarString
+			#error _ALS_SetSVarString defined
+		#endif
+		native CST_SetSVarString(const varname[], const string_value[]) = SetSVarString;
+		#define _ALS_SetSVarString
+		#define SetSVarString( CST_SetSVarString(
+		#if _FIXES_SAMP && defined _ALS_GetSVarString
+			#error _ALS_GetSVarString defined
+		#endif
+		native CST_GetSVarString(const varname[], string_return[], len) = GetSVarString;
+		native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
+		#define _ALS_GetSVarString
+		#define GetSVarString( CST_GetSVarString(
+		#if _FIXES_SAMP && defined _ALS_SetSVarFloat
+			#error _ALS_SetSVarFloat defined
+		#endif
+		native CST_SetSVarFloat(const varname[], Float:float_value) = SetSVarFloat;
+		#define _ALS_SetSVarFloat
+		#define SetSVarFloat( CST_SetSVarFloat(
+		#if _FIXES_SAMP && defined _ALS_GetSVarFloat
+			#error _ALS_GetSVarFloat defined
+		#endif
+		native Float:CST_GetSVarFloat(const varname[]) = GetSVarFloat;
+		#define _ALS_GetSVarFloat
+		#define GetSVarFloat( CST_GetSVarFloat(
+		#if _FIXES_SAMP && defined _ALS_DeleteSVar
+			#error _ALS_DeleteSVar defined
+		#endif
+		native CST_DeleteSVar(const varname[]) = DeleteSVar;
+		#define _ALS_DeleteSVar
+		#define DeleteSVar( CST_DeleteSVar(
+		#if _FIXES_SAMP && defined _ALS_GetSVarType
+			#error _ALS_GetSVarType defined
+		#endif
+		native CST_GetSVarType(const varname[]) = GetSVarType;
+		#define _ALS_GetSVarType
+		#define GetSVarType( CST_GetSVarType(
+		#if _FIXES_SAMP && defined _ALS_ConnectNPC
+			#error _ALS_ConnectNPC defined
+		#endif
+		native CST_ConnectNPC(const name[], const script[]) = ConnectNPC;
+		#define _ALS_ConnectNPC
+		#define ConnectNPC( CST_ConnectNPC(
+		#if _FIXES_SAMP && defined _ALS_SendRconCommand
+			#error _ALS_SendRconCommand defined
+		#endif
+		native CST_SendRconCommand(const command[]) = SendRconCommand;
+		#define _ALS_SendRconCommand
+		#define SendRconCommand( CST_SendRconCommand(
+		// This is the only case where a variable is "const" but shouldn't be.
+		#if _FIXES_SAMP && defined _ALS_GetPlayerVersion
+			#error _ALS_GetPlayerVersion defined
+		#endif
+		native CST_GetPlayerVersion(playerid, version[], len) = GetPlayerVersion;
+		#define _ALS_GetPlayerVersion
+		#define GetPlayerVersion( CST_GetPlayerVersion(
+		#if _FIXES_SAMP && defined _ALS_BlockIpAddress
+			#error _ALS_BlockIpAddress defined
+		#endif
+		native CST_BlockIpAddress(const ip_address[], timems) = BlockIpAddress;
+		#define _ALS_BlockIpAddress
+		#define BlockIpAddress( CST_BlockIpAddress(
+		#if _FIXES_SAMP && defined _ALS_UnBlockIpAddress
+			#error _ALS_UnBlockIpAddress defined
+		#endif
+		native CST_UnBlockIpAddress(const ip_address[]) = UnBlockIpAddress;
+		#define _ALS_UnBlockIpAddress
+		#define UnBlockIpAddress( CST_UnBlockIpAddress(
+		#if _FIXES_SAMP && defined _ALS_TextDrawCreate
+			#error _ALS_TextDrawCreate defined
+		#endif
+		native Text:CST_TextDrawCreate(Float:x, Float:y, const text[]) = TextDrawCreate;
+		native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
+		#define _ALS_TextDrawCreate
+		#define TextDrawCreate( CST_TextDrawCreate(
+		#if _FIXES_SAMP && defined _ALS_TextDrawSetString
+			#error _ALS_TextDrawSetString defined
+		#endif
+		native CST_TextDrawSetString(Text:text, const string[]) = TextDrawSetString;
+		native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
+		#define _ALS_TextDrawSetString
+		#define TextDrawSetString( CST_TextDrawSetString(
+		#if _FIXES_SAMP && defined _ALS_Create3DTextLabel
+			#error _ALS_Create3DTextLabel defined
+		#endif
+		native Text3D:CST_Create3DTextLabel(const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, virtualworld, testLOS=0) = Create3DTextLabel;
+		#define _ALS_Create3DTextLabel
+		#define Create3DTextLabel( CST_Create3DTextLabel(
+		#if _FIXES_SAMP && defined _ALS_Update3DTextLabelText
+			#error _ALS_Update3DTextLabelText defined
+		#endif
+		native CST_Update3DTextLabelText(Text3D:id, color, const text[]) = Update3DTextLabelText;
+		#define _ALS_Update3DTextLabelText
+		#define Update3DTextLabelText( CST_Update3DTextLabelText(
+		#if _FIXES_SAMP && defined _ALS_CreatePlayer3DTextLabel
+			#error _ALS_CreatePlayer3DTextLabel defined
+		#endif
+		native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, attachedplayer=INVALID_PLAYER_ID, attachedvehicle=INVALID_VEHICLE_ID, testLOS=0) = CreatePlayer3DTextLabel;
+		#define _ALS_CreatePlayer3DTextLabel
+		#define CreatePlayer3DTextLabel( CST_CreatePlayer3DTextLabel(
+		#if _FIXES_SAMP && defined _ALS_UpdPlayer3DTextLabelText
+			#error _ALS_UpdPlayer3DTextLabelText defined
+		#endif
+		native CST_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:id, color, const text[]) = UpdatePlayer3DTextLabelText;
+		#define _ALS_UpdPlayer3DTextLabelText
+		#define UpdatePlayer3DTextLabelText( CST_UpdatePlayer3DTextLabelText(
+		#if _FIXES_SAMP && defined _ALS_ShowPlayerDialog
+			#error _ALS_ShowPlayerDialog defined
+		#endif
+		native CST_ShowPlayerDialog(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
+		native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
+		#define _ALS_ShowPlayerDialog
+		#define ShowPlayerDialog( CST_ShowPlayerDialog(
 
-	// a_sampdb
-	#if _FIXES_SAMP && defined _ALS_db_open
-		#error _ALS_db_open defined
-	#endif
-	native DB:CST_db_open(const name[]) = db_open;
-	#define _ALS_db_open
-	#define db_open( CST_db_open(
-	#if _FIXES_SAMP && defined _ALS_db_query
-		#error _ALS_db_query defined
-	#endif
-	native DBResult:CST_db_query(DB:db, const query[]) = db_query;
-	#define _ALS_db_query
-	#define db_query( CST_db_query(
+		// a_sampdb
+		#if _FIXES_SAMP && defined _ALS_db_open
+			#error _ALS_db_open defined
+		#endif
+		native DB:CST_db_open(const name[]) = db_open;
+		#define _ALS_db_open
+		#define db_open( CST_db_open(
+		#if _FIXES_SAMP && defined _ALS_db_query
+			#error _ALS_db_query defined
+		#endif
+		native DBResult:CST_db_query(DB:db, const query[]) = db_query;
+		#define _ALS_db_query
+		#define db_query( CST_db_query(
 
-	// a_vehicles
-	#if _FIXES_SAMP && defined _ALS_SetVehicleNumberPlate
-		#error _ALS_SetVehicleNumberPlate defined
+		// a_vehicles
+		#if _FIXES_SAMP && defined _ALS_SetVehicleNumberPlate
+			#error _ALS_SetVehicleNumberPlate defined
+		#endif
+		native CST_SetVehicleNumberPlate(vehicleid, const numberplate[]) = SetVehicleNumberPlate;
+		#define _ALS_SetVehicleNumberPlate
+		#define SetVehicleNumberPlate( CST_SetVehicleNumberPlate(
 	#endif
-	native CST_SetVehicleNumberPlate(vehicleid, const numberplate[]) = SetVehicleNumberPlate;
-	#define _ALS_SetVehicleNumberPlate
-	#define SetVehicleNumberPlate( CST_SetVehicleNumberPlate(
 
 	#define _FIXES_MAYBE_CONST const
 #else
@@ -13135,176 +13165,42 @@ public OnJITCompile()
  * <fixes>GameText</fixes>
  */
 
-public OnFilterScriptInit()
-{
+#if _FIXES_NPC
+	public OnNPCModeInit()
+	{
 		// It is possible for this to be the only thing done in this function!
 		state _ALS : _ALS_go;
-
-	// ======================
-	//  BEGIN: GetMaxPlayers
-	// ======================
-	#if FIX_GetMaxPlayers
-		_FIXES_CheckMaxPlayers(),
-	#endif
-	// ======================
-	//  END:   GetMaxPlayers
-	// ======================
-
-		_FIXES_gIsFilterscript = true;
+		_FIXES_gIsFilterscript = false;
 		_FIXES_DetermineOS();
-		_FIXES_CheckServerRoot();
-	#if FIX_OnRconCommand || FIX_OnClientCheckResponse
-		_FIXES_UnloadRconFixFS(),
-	#endif
-		_FIXES_CountFilterscripts(),
 
-		// Collect information about other fixes.inc scripts that are running.
-		setproperty(5, FIXES_gscSingleProperty, 0),
-		CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@),
-		@_ = getproperty(5, FIXES_gscSingleProperty);
-
-		// Loop to find a free ID.
-		for (new i = 0; i != 17; ++i)
-		{
-			if (!(@_ & (1 << i)))
-			{
-				@_ = 1 << i;
-				break;
-			}
-		}
-
-	#if FIXES_Single && !FIXES_NoSingleMsg
-		// Check this really IS the only script running.
-		if (getproperty(5, FIXES_gscSingleProperty))
-		{
-			print(FIXES_gscMultiScriptError);
-		}
-	#endif
-
-		// =================
-		//  BEGIN: GameText
-		// =================
-	#if FIX_GameText
-		for (new i = 0; i != sizeof (FIXES_gsPlayerPGTShown); ++i)
-		{
-			FIXES_gsPlayerPGTShown[i][MAX_PLAYERS] = MAX_PLAYERS;
-		}
-	#endif
-	#if FIXES_Single
-		#if FIX_GameText
-			_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
+		#if defined On_NPCModeInit
+			return On_NPCModeInit();
+		#else
+			return 1;
 		#endif
-		// =================
-		//  END:   GameText
-		// =================
+	}
+
+	#if defined _ALS_OnNPCModeInit
+		#error _ALS_OnNPCModeInit defined
+	#endif
+	#define _ALS_OnNPCModeInit
+
+	#if FIXES_NoYSI
+		#define OnNPCModeInit( On_NPCModeInit(
+
+		#if defined On_NPCModeInit
+			forward On_NPCModeInit();
+		#endif
 	#else
-		_FIXES_DetermineOrder(),
-		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
-	#endif
-
-	#if !FIXES_Single && FIX_GameText && FIX_OnPlayerConnect
-		FIXES_gsSettings |= e_FIXES_SETTINGS_NO_GAME_TEXT;
-	#endif
-	// These are all the fixes that use "_FIXES_FOREACH".
-	#if FIX_OnPlayerConnect || _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
-		for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
-		{
-			if (BAD_IsPlayerConnected(playerid))
-			{
-				// No "defined" checks - if you don't want this fix because
-				// you don't have an "OnPlayerConnect", just don't use it!
-				// Of course, it helps that the copy of "OnPlayerConnect"
-				// in this include is almost always called!
-				#if FIX_OnPlayerConnect
-					// ========================
-					//  BEGIN: OnPlayerConnect
-					// ========================
-					OnPlayerConnect(playerid);
-					// ========================
-					//  END:   OnPlayerConnect
-					// ========================
-				#else
-					_FIXES_AddInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
-
-					#if FIX_GameText
-						// =================
-						//  BEGIN: GameText
-						// =================
-						_FIXES_IS_IN_CHARGE()
-						{
-							_FIXES_CreateGameTextDraws(playerid);
-						}
-						// =================
-						//  END:   GameText
-						// =================
-					#endif
-				#endif
-			}
-		}
-	#endif
-	#if !FIXES_Single && FIX_GameText && FIX_OnPlayerConnect
-		FIXES_gsSettings &= ~e_FIXES_SETTINGS_NO_GAME_TEXT;
-	#endif
-
-	#if defined On_FilterScriptInit
-		return On_FilterScriptInit();
-	#else
-		return 1;
-	#endif
-}
-
-#if defined _ALS_OnFilterScriptInit
-	#error _ALS_OnFilterScriptInit defined
-#endif
-#define _ALS_OnFilterScriptInit
-
-#if FIXES_NoYSI
-	#define OnFilterScriptInit( On_FilterScriptInit(
-
-	#if defined On_FilterScriptInit
-		forward On_FilterScriptInit();
+		#define OnNPCModeInit(%0) On_NPCModeInit(%0) <_ALS : _ALS_go>
+		_FIXES_FORWARD On_NPCModeInit();
 	#endif
 #else
-	#define OnFilterScriptInit(%0) On_FilterScriptInit(%0) <_ALS : _ALS_go>
-	_FIXES_FORWARD On_FilterScriptInit();
-#endif
-
-/**
- * <remarks>
- * Call <symbolref name="On_ScriptInit" /> if this is not a FilterScript.
- * </remarks>
- * <fixes>IS_FILTERSCRIPT</fixes>
- * <fixes>AllowInteriorWeapons</fixes>
- * <fixes>AllowTeleport</fixes>
- */
-
-public OnGameModeInit()
-{
-	state _ALS : _ALS_go;
-	_FIXES_DetermineOS();
-
-	// =============================
-	//  BEGIN: AllowInteriorWeapons
-	// =============================
-	// ======================
-	//  BEGIN: AllowTeleport
-	// ======================
-	#if FIX_AllowInteriorWeapons && FIX_AllowTeleport && !defined FILTERSCRIPT
-		FIXES_gsSettings &= ~(e_FIXES_SETTINGS_INTERIOR | e_FIXES_SETTINGS_ADMIN_TELEPORT);
-	#elseif FIX_AllowInteriorWeapons
-		FIXES_gsSettings &= ~e_FIXES_SETTINGS_INTERIOR;
-	#elseif FIX_AllowTeleport && !defined FILTERSCRIPT
-		FIXES_gsSettings &= ~e_FIXES_SETTINGS_ADMIN_TELEPORT;
-	#endif
-	// ======================
-	//  END:   AllowTeleport
-	// ======================
-	// ===========================
-	//  END: AllowInteriorWeapons
-	// ===========================
-
-	if (!_FIXES_gIsFilterscript)
+	public OnFilterScriptInit()
 	{
+			// It is possible for this to be the only thing done in this function!
+			state _ALS : _ALS_go;
+
 		// ======================
 		//  BEGIN: GetMaxPlayers
 		// ======================
@@ -13315,16 +13211,15 @@ public OnGameModeInit()
 		//  END:   GetMaxPlayers
 		// ======================
 
+			_FIXES_gIsFilterscript = true;
+			_FIXES_DetermineOS();
 			_FIXES_CheckServerRoot();
 		#if FIX_OnRconCommand || FIX_OnClientCheckResponse
 			_FIXES_UnloadRconFixFS(),
 		#endif
-			_FIXES_CountFilterscripts();
-		#if FIX_OnRconCommand || FIX_OnClientCheckResponse
-			_FIXES_LoadRconFixFS(),
-		#endif
-			// Collect information about other fixes.inc scripts that are
-			// running.
+			_FIXES_CountFilterscripts(),
+
+			// Collect information about other fixes.inc scripts that are running.
 			setproperty(5, FIXES_gscSingleProperty, 0),
 			CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@),
 			@_ = getproperty(5, FIXES_gscSingleProperty);
@@ -13340,56 +13235,227 @@ public OnGameModeInit()
 			}
 
 		#if FIXES_Single && !FIXES_NoSingleMsg
+			// Check this really IS the only script running.
 			if (getproperty(5, FIXES_gscSingleProperty))
 			{
 				print(FIXES_gscMultiScriptError);
 			}
 		#endif
 
-		// =================
-		//  BEGIN: GameText
-		// =================
+			// =================
+			//  BEGIN: GameText
+			// =================
 		#if FIX_GameText
-				for (new i = 0; i != sizeof (FIXES_gsPlayerPGTShown); ++i)
-				{
-					FIXES_gsPlayerPGTShown[i][MAX_PLAYERS] = MAX_PLAYERS;
-				}
-			#if FIXES_Single
+			for (new i = 0; i != sizeof (FIXES_gsPlayerPGTShown); ++i)
+			{
+				FIXES_gsPlayerPGTShown[i][MAX_PLAYERS] = MAX_PLAYERS;
+			}
+		#endif
+		#if FIXES_Single
+			#if FIX_GameText
 				_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
 			#endif
+			// =================
+			//  END:   GameText
+			// =================
+		#else
+			_FIXES_DetermineOrder(),
+			FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
 		#endif
-		// =================
-		//  END:   GameText
-		// =================
 
-		#if !FIXES_Single
-			_FIXES_DetermineOrder();
+		#if !FIXES_Single && FIX_GameText && FIX_OnPlayerConnect
+			FIXES_gsSettings |= e_FIXES_SETTINGS_NO_GAME_TEXT;
+		#endif
+		// These are all the fixes that use "_FIXES_FOREACH".
+		#if FIX_OnPlayerConnect || _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
+			for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
+			{
+				if (BAD_IsPlayerConnected(playerid))
+				{
+					// No "defined" checks - if you don't want this fix because
+					// you don't have an "OnPlayerConnect", just don't use it!
+					// Of course, it helps that the copy of "OnPlayerConnect"
+					// in this include is almost always called!
+					#if FIX_OnPlayerConnect
+						// ========================
+						//  BEGIN: OnPlayerConnect
+						// ========================
+						OnPlayerConnect(playerid);
+						// ========================
+						//  END:   OnPlayerConnect
+						// ========================
+					#else
+						_FIXES_AddInternal(FIXES_gsPlayersIterator, playerid, MAX_PLAYERS);
+
+						#if FIX_GameText
+							// =================
+							//  BEGIN: GameText
+							// =================
+							_FIXES_IS_IN_CHARGE()
+							{
+								_FIXES_CreateGameTextDraws(playerid);
+							}
+							// =================
+							//  END:   GameText
+							// =================
+						#endif
+					#endif
+				}
+			}
+		#endif
+		#if !FIXES_Single && FIX_GameText && FIX_OnPlayerConnect
+			FIXES_gsSettings &= ~e_FIXES_SETTINGS_NO_GAME_TEXT;
+		#endif
+
+		#if defined On_FilterScriptInit
+			return On_FilterScriptInit();
+		#else
+			return 1;
 		#endif
 	}
-	#if !FIXES_Single
-		FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
+
+	#if defined _ALS_OnFilterScriptInit
+		#error _ALS_OnFilterScriptInit defined
 	#endif
-	#if defined On_GameModeInit
-		return On_GameModeInit();
+	#define _ALS_OnFilterScriptInit
+
+	#if FIXES_NoYSI
+		#define OnFilterScriptInit( On_FilterScriptInit(
+
+		#if defined On_FilterScriptInit
+			forward On_FilterScriptInit();
+		#endif
 	#else
-		return 1;
+		#define OnFilterScriptInit(%0) On_FilterScriptInit(%0) <_ALS : _ALS_go>
+		_FIXES_FORWARD On_FilterScriptInit();
 	#endif
-}
-
-#if defined _ALS_OnGameModeInit
-	#error _ALS_OnGameModeInit defined
 #endif
-#define _ALS_OnGameModeInit
 
-#if FIXES_NoYSI
-	#define OnGameModeInit( On_GameModeInit(
+/**
+ * <remarks>
+ * Call <symbolref name="On_ScriptInit" /> if this is not a FilterScript.
+ * </remarks>
+ * <fixes>IS_FILTERSCRIPT</fixes>
+ * <fixes>AllowInteriorWeapons</fixes>
+ * <fixes>AllowTeleport</fixes>
+ */
 
-	#if defined On_GameModeInit
-		forward On_GameModeInit();
-	#endif
+#if _FIXES_NPC
+	_FIXES_HIDE_PAWNDOC(On_GameModeInit);
 #else
-	#define OnGameModeInit(%0) On_GameModeInit(%0) <_ALS : _ALS_go>
-	_FIXES_FORWARD On_GameModeInit();
+	public OnGameModeInit()
+	{
+		state _ALS : _ALS_go;
+		_FIXES_DetermineOS();
+
+		// =============================
+		//  BEGIN: AllowInteriorWeapons
+		// =============================
+		// ======================
+		//  BEGIN: AllowTeleport
+		// ======================
+		#if FIX_AllowInteriorWeapons && FIX_AllowTeleport && !defined FILTERSCRIPT
+			FIXES_gsSettings &= ~(e_FIXES_SETTINGS_INTERIOR | e_FIXES_SETTINGS_ADMIN_TELEPORT);
+		#elseif FIX_AllowInteriorWeapons
+			FIXES_gsSettings &= ~e_FIXES_SETTINGS_INTERIOR;
+		#elseif FIX_AllowTeleport && !defined FILTERSCRIPT
+			FIXES_gsSettings &= ~e_FIXES_SETTINGS_ADMIN_TELEPORT;
+		#endif
+		// ======================
+		//  END:   AllowTeleport
+		// ======================
+		// ===========================
+		//  END: AllowInteriorWeapons
+		// ===========================
+
+		if (!_FIXES_gIsFilterscript)
+		{
+			// ======================
+			//  BEGIN: GetMaxPlayers
+			// ======================
+			#if FIX_GetMaxPlayers
+				_FIXES_CheckMaxPlayers(),
+			#endif
+			// ======================
+			//  END:   GetMaxPlayers
+			// ======================
+
+				_FIXES_CheckServerRoot();
+			#if FIX_OnRconCommand || FIX_OnClientCheckResponse
+				_FIXES_UnloadRconFixFS(),
+			#endif
+				_FIXES_CountFilterscripts();
+			#if FIX_OnRconCommand || FIX_OnClientCheckResponse
+				_FIXES_LoadRconFixFS(),
+			#endif
+				// Collect information about other fixes.inc scripts that are
+				// running.
+				setproperty(5, FIXES_gscSingleProperty, 0),
+				CallRemoteFunction__(FIXES_gscDetermineID, FIXES_gscSpec@),
+				@_ = getproperty(5, FIXES_gscSingleProperty);
+
+				// Loop to find a free ID.
+				for (new i = 0; i != 17; ++i)
+				{
+					if (!(@_ & (1 << i)))
+					{
+						@_ = 1 << i;
+						break;
+					}
+				}
+
+			#if FIXES_Single && !FIXES_NoSingleMsg
+				if (getproperty(5, FIXES_gscSingleProperty))
+				{
+					print(FIXES_gscMultiScriptError);
+				}
+			#endif
+
+			// =================
+			//  BEGIN: GameText
+			// =================
+			#if FIX_GameText
+					for (new i = 0; i != sizeof (FIXES_gsPlayerPGTShown); ++i)
+					{
+						FIXES_gsPlayerPGTShown[i][MAX_PLAYERS] = MAX_PLAYERS;
+					}
+				#if FIXES_Single
+					_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
+				#endif
+			#endif
+			// =================
+			//  END:   GameText
+			// =================
+
+			#if !FIXES_Single
+				_FIXES_DetermineOrder();
+			#endif
+		}
+		#if !FIXES_Single
+			FIXES_gsSettings &= ~e_FIXES_SETTINGS_DROP_ALL_DATA;
+		#endif
+		#if defined On_GameModeInit
+			return On_GameModeInit();
+		#else
+			return 1;
+		#endif
+	}
+
+	#if defined _ALS_OnGameModeInit
+		#error _ALS_OnGameModeInit defined
+	#endif
+	#define _ALS_OnGameModeInit
+
+	#if FIXES_NoYSI
+		#define OnGameModeInit( On_GameModeInit(
+
+		#if defined On_GameModeInit
+			forward On_GameModeInit();
+		#endif
+	#else
+		#define OnGameModeInit(%0) On_GameModeInit(%0) <_ALS : _ALS_go>
+		_FIXES_FORWARD On_GameModeInit();
+	#endif
 #endif
 
 /**
@@ -15580,12 +15646,12 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#if _FIXES_SAMP && defined _ALS_SetTimer
 		#error _ALS_SetTimer defined
 	#endif
-	native BAD_SetTimer(const funcname[], interval, repeating) = SetTimer;
+	native BAD_SetTimer(funcname[], interval, repeating) = SetTimer;
 
 	#if _FIXES_SAMP && defined _ALS_SetTimerEx
 		#error _ALS_SetTimerEx defined
 	#endif
-	native BAD_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
+	native BAD_SetTimerEx(funcname[], interval, repeating, format[], {Float,_}:...) = SetTimerEx;
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_BAD_SetTimer);
 #endif
