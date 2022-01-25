@@ -8662,7 +8662,7 @@ _FIXES_STATIC_STOCK
 	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayersIterator);
 #endif
 
-#if _FIX_Menus || FIX_API
+#if _FIX_Menus || (FIX_API && !_FIXES_NPC)
 _FIXES_STATIC_STOCK
 	/**
 	 * <remarks>
@@ -16530,7 +16530,7 @@ native BAD_KillTimer(timerid) = KillTimer;
  * <fixes>Menus</fixes>
  */
 
-#if _FIX_Menus || FIX_API
+#if _FIX_Menus || (FIX_API && !_FIXES_NPC)
 	_FIXES_FUNC_PAWNDOC(FIXES_IS_VALID_MENU(Menu:menuid));
 	#define FIXES_IS_VALID_MENU(%0) (_FIXES_IN_RANGE(_:(%0), 0, MAX_MENUS) && (FIXES_gsValidMenus[_:(%0) >>> 5] >>> (_:(%0) & 0x1F) & 1))
 #else
@@ -16546,7 +16546,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
 
-#if _FIX_Menus || FIX_API
+#if _FIX_Menus || (FIX_API && !_FIXES_NPC)
 	stock Menu:FIXES_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0)
 	{
 		columns = _:CreateMenu__(title, columns, x, y, col1width, col2width);
@@ -16626,7 +16626,7 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
  * <fixes>GetPlayerMenu</fixes>
  */
 
-#if _FIX_Menus || FIX_GetPlayerMenu || FIX_API
+#if _FIX_Menus || FIX_GetPlayerMenu || (FIX_API && !_FIXES_NPC)
 	#if (_FIX_Menus || FIX_API) && !FIXES_Single
 		forward _FIXES_DestroyMenu(ret);
 
@@ -21616,7 +21616,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
  * <fixes>GetPlayerWeather</fixes>
  */
 
-#if FIX_GetPlayerWeather || FIX_API
+#if FIX_GetPlayerWeather || (FIX_API && !_FIXES_NPC)
 	#if FIXES_Single
 		stock FIXES_TogglePlayerClock(playerid, toggle)
 		{
@@ -22359,7 +22359,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  * </remarks>
  */
 
-#if FIX_API
+#if FIX_API && !_FIXES_NPC
 	stock bool:FIXES_PlayerHasClockEnabled(playerid)
 	{
 		return (_FIXES_IS_VALID_PLAYER(playerid) && (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CLOCK_ENABLED));
@@ -22382,7 +22382,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  * </remarks>
  */
 
-#if FIX_API
+#if FIX_API && !_FIXES_NPC
 	stock bool:FIXES_IsMenuValid(Menu:menuid)
 	{
 		return FIXES_IS_VALID_MENU(menuid);
