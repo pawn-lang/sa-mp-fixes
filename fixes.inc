@@ -1487,23 +1487,11 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	static stock FIX_GetWeaponName = 0;
 	#define FIX_GetWeaponName                    (0)
 #elseif !defined FIX_GetWeaponName
-	#if defined GetVehicleParamsSirenState
-		#if FIXES_EnableDeprecated
-			#define _FIXES_WARNING 8
-			#tryinclude "_fixes_options"
-			#undef _FIXES_WARNING
-			static _FIXES_OPTION FIX_GetWeaponName = FIXES_EnableDeprecated;
-		#else
-			_FIXES_CONST_PAWNDOC(FIX_GetWeaponName);
-		#endif
-		#define FIX_GetWeaponName                FIXES_EnableDeprecated
-	#else
-		#define _FIXES_WARNING 8
-		#tryinclude "_fixes_options"
-		#undef _FIXES_WARNING
-		static _FIXES_OPTION FIX_GetWeaponName = _FIXES_DEFAULT;
-		#define FIX_GetWeaponName                _FIXES_DEFAULT
-	#endif
+	#define _FIXES_WARNING 8
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_GetWeaponName = _FIXES_DEFAULT;
+	#define FIX_GetWeaponName                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetWeaponName)
 	#undef FIX_GetWeaponName
 	static stock FIX_GetWeaponName = 2;
@@ -13204,7 +13192,7 @@ static stock _FIXES_CountFilterscripts()
 #if !FIX_LocalNPCNatives
 	static
 #endif
-	stock FIXES_CallLocalFunction(const funcname[], const format[], {Float,_}:...)
+	stock FIXES_CallLocalFunctionNPC(const funcname[], const format[], {Float,_}:...)
 	{
 		new idx = funcidx(funcname);
 		if (idx == -1)
@@ -13225,11 +13213,11 @@ static stock _FIXES_CountFilterscripts()
 		#else
 			#define _ALS_CallLocalFunction
 		#endif
-		#define CallLocalFunction( FIXES_CallLocalFunction(
+		#define CallLocalFunction( FIXES_CallLocalFunctionNPC(
 	#endif
 
 	#define _ALS_CallLocalFunction__
-	#define CallLocalFunction__( FIXES_CallLocalFunction(
+	#define CallLocalFunction__( FIXES_CallLocalFunctionNPC(
 #endif
 
 /**
@@ -13241,7 +13229,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_IsPlayerInRangeOfPoint(const funcname[], const format[], {Float,_}:...)
+	stock FIXES_IsPlayerInRangeOfPointNPC(const funcname[], const format[], {Float,_}:...)
 	{
 	}
 
@@ -13251,13 +13239,13 @@ static stock _FIXES_CountFilterscripts()
 		#else
 			#define _ALS_IsPlayerInRangeOfPoint
 		#endif
-		#define IsPlayerInRangeOfPoint( FIXES_IsPlayerInRangeOfPoint(
+		#define IsPlayerInRangeOfPoint( FIXES_IsPlayerInRangeOfPointNPC(
 	#endif
 
 	#define _ALS_IsPlayerInRangeOfPoint__
-	#define IsPlayerInRangeOfPoint__( FIXES_IsPlayerInRangeOfPoint(
+	#define IsPlayerInRangeOfPoint__( FIXES_IsPlayerInRangeOfPointNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_IsPlayerInRangeOfPoint);
+	_FIXES_HIDE_PAWNDOC(FIXES_IsPlayerInRangeOfPointNPC);
 #endif
 
 /**
@@ -13269,7 +13257,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_SetTimerEx(const funcname[], const format[], {Float,_}:...)
+	stock FIXES_SetTimerExNPC(const funcname[], const format[], {Float,_}:...)
 	{
 	}
 
@@ -13279,13 +13267,13 @@ static stock _FIXES_CountFilterscripts()
 		#else
 			#define _ALS_SetTimerEx
 		#endif
-		#define SetTimerEx( FIXES_SetTimerEx(
+		#define SetTimerEx( FIXES_SetTimerExNPC(
 	#endif
 
 	#define _ALS_SetTimerEx__
-	#define SetTimerEx__( FIXES_SetTimerEx(
+	#define SetTimerEx__( FIXES_SetTimerExNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetTimerEx);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetTimerExNPC);
 #endif
 
 /**
@@ -13297,7 +13285,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_VectorSize(const funcname[], const format[], {Float,_}:...)
+	stock FIXES_VectorSizeNPC(const funcname[], const format[], {Float,_}:...)
 	{
 	}
 
@@ -13307,13 +13295,13 @@ static stock _FIXES_CountFilterscripts()
 		#else
 			#define _ALS_VectorSize
 		#endif
-		#define VectorSize( FIXES_VectorSize(
+		#define VectorSize( FIXES_VectorSizeNPC(
 	#endif
 
 	#define _ALS_VectorSize__
-	#define VectorSize__( FIXES_VectorSize(
+	#define VectorSize__( FIXES_VectorSizeNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_VectorSize);
+	_FIXES_HIDE_PAWNDOC(FIXES_VectorSizeNPC);
 #endif
 
 /**
@@ -13325,7 +13313,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_CallRemoteFunction(const funcname[], const format[], {Float,_}:...)
+	stock FIXES_CallRemoteFunctionNPC(const funcname[], const format[], {Float,_}:...)
 	{
 	}
 
@@ -13335,13 +13323,13 @@ static stock _FIXES_CountFilterscripts()
 		#else
 			#define _ALS_CallRemoteFunction
 		#endif
-		#define CallRemoteFunction( FIXES_CallRemoteFunction(
+		#define CallRemoteFunction( FIXES_CallRemoteFunctionNPC(
 	#endif
 
 	#define _ALS_CallRemoteFunction__
-	#define CallRemoteFunction__( FIXES_CallRemoteFunction(
+	#define CallRemoteFunction__( FIXES_CallRemoteFunctionNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_CallRemoteFunction);
+	_FIXES_HIDE_PAWNDOC(FIXES_CallRemoteFunctionNPC);
 #endif
 
 /**
@@ -13353,8 +13341,103 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_GetWeaponName(weaponid, weapon[], len = sizeof (weapon))
+	stock FIXES_GetWeaponNameNPC(weaponid, weapon[], len = sizeof (weapon))
 	{
+		weapon[0] = '\0';
+		switch (weaponid)
+		{
+		case 0:
+			return strcat(weapon, "Fists", len), 1;
+		case 1:
+			return strcat(weapon, "Brass Knuckles", len), 1;
+		case 2:
+			return strcat(weapon, "Golf Club", len), 1;
+		case 3:
+			return strcat(weapon, "Nite Stick", len), 1;
+		case 4:
+			return strcat(weapon, "Knife", len), 1;
+		case 5:
+			return strcat(weapon, "Baseball Bat", len), 1;
+		case 6:
+			return strcat(weapon, "Shovel", len), 1;
+		case 7:
+			return strcat(weapon, "Pool Cue", len), 1;
+		case 8:
+			return strcat(weapon, "Katana", len), 1;
+		case 9:
+			return strcat(weapon, "Chainsaw", len), 1;
+		case 10, 11:
+			return strcat(weapon, "Dildo", len), 1;
+		case 12, 13:
+			return strcat(weapon, "Vibrator", len), 1;
+		case 14:
+			return strcat(weapon, "Flowers", len), 1;
+		case 15:
+			return strcat(weapon, "Cane", len), 1;
+		case 16:
+			return strcat(weapon, "Grenade", len), 1;
+		case 17:
+			return strcat(weapon, "Teargas", len), 1;
+		case 18:
+			return strcat(weapon, "Molotov Cocktail", len), 1;
+		case 22:
+			return strcat(weapon, "Colt 45", len), 1;
+		case 23:
+			return strcat(weapon, "Silenced Pistol", len), 1;
+		case 24:
+			return strcat(weapon, "Desert Eagle", len), 1;
+		case 25:
+			return strcat(weapon, "Shotgun", len), 1;
+		case 26:
+			return strcat(weapon, "Sawn-off Shotgun", len), 1;
+		case 27:
+			return strcat(weapon, "Combat Shotgun", len), 1;
+		case 28:
+			return strcat(weapon, "UZI", len), 1;
+		case 29:
+			return strcat(weapon, "MP5", len), 1;
+		case 30:
+			return strcat(weapon, "AK47", len), 1;
+		case 31:
+			return strcat(weapon, "M4", len), 1;
+		case 32:
+			return strcat(weapon, "TEC9", len), 1;
+		case 33:
+			return strcat(weapon, "Rifle", len), 1;
+		case 34:
+			return strcat(weapon, "Sniper Rifle", len), 1;
+		case 35:
+			return strcat(weapon, "Rocket Launcher", len), 1;
+		case 36:
+			return strcat(weapon, "Heat Seaker", len), 1;
+		case 37:
+			return strcat(weapon, "Flamethrower", len), 1;
+		case 38:
+			return strcat(weapon, "Minigun", len), 1;
+		case 39:
+			return strcat(weapon, "Satchel Explosives", len), 1;
+		case 40:
+			return strcat(weapon, "Bomb", len), 1;
+		case 41:
+			return strcat(weapon, "Spray Can", len), 1;
+		case 42:
+			return strcat(weapon, "Fire Extinguisher", len), 1;
+		case 43:
+			return strcat(weapon, "Camera", len), 1;
+		case 44:
+			return strcat(weapon, "Night Vision", len), 1;
+		case 45:
+			return strcat(weapon, "Thermal Goggles", len), 1;
+		case 46:
+			return strcat(weapon, "Parachute", len), 1;
+		case 49:
+			return strcat(weapon, "Vehicle", len), 1;
+		case 53:
+			return strcat(weapon, "Drowned", len), 1;
+		case 54:
+			return strcat(weapon, "Splat", len), 1;
+		}
+		return 0;
 	}
 
 	#if _FIXES_SAMP
@@ -13363,13 +13446,13 @@ static stock _FIXES_CountFilterscripts()
 		#else
 			#define _ALS_GetWeaponName
 		#endif
-		#define GetWeaponName( FIXES_GetWeaponName(
+		#define GetWeaponName( FIXES_GetWeaponNameNPC(
 	#endif
 
 	#define _ALS_GetWeaponName__
-	#define GetWeaponName__( FIXES_GetWeaponName(
+	#define GetWeaponName__( FIXES_GetWeaponNameNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetWeaponName);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetWeaponNameNPC);
 #endif
 
 /**
@@ -13381,8 +13464,8 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	_FIXES_FUNC_PAWNDOC(FIXES_GetPlayerPoolSize());
-	#define FIXES_GetPlayerPoolSize() (MAX_PLAYERS}
+	_FIXES_FUNC_PAWNDOC(FIXES_GetPlayerPoolSizeNPC());
+	#define FIXES_GetPlayerPoolSizeNPC() (MAX_PLAYERS}
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetPlayerPoolSize
@@ -13390,13 +13473,13 @@ static stock _FIXES_CountFilterscripts()
 		#else
 			#define _ALS_GetPlayerPoolSize
 		#endif
-		#define GetPlayerPoolSize( FIXES_GetPlayerPoolSize(
+		#define GetPlayerPoolSize( FIXES_GetPlayerPoolSizeNPC(
 	#endif
 
 	#define _ALS_GetPlayerPoolSize__
-	#define GetPlayerPoolSize__( FIXES_GetPlayerPoolSize(
+	#define GetPlayerPoolSize__( FIXES_GetPlayerPoolSizeNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerPoolSize);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerPoolSizeNPC);
 #endif
 
 /**
@@ -13408,8 +13491,8 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	_FIXES_FUNC_PAWNDOC(FIXES_GetVehiclePoolSize());
-	#define FIXES_GetVehiclePoolSize() (MAX_VEHICLES}
+	_FIXES_FUNC_PAWNDOC(FIXES_GetVehiclePoolSizeNPC());
+	#define FIXES_GetVehiclePoolSizeNPC() (MAX_VEHICLES}
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetVehiclePoolSize
@@ -13417,11 +13500,11 @@ static stock _FIXES_CountFilterscripts()
 		#else
 			#define _ALS_GetVehiclePoolSize
 		#endif
-		#define GetVehiclePoolSize( FIXES_GetVehiclePoolSize(
+		#define GetVehiclePoolSize( FIXES_GetVehiclePoolSizeNPC(
 	#endif
 
 	#define _ALS_GetVehiclePoolSize__
-	#define GetVehiclePoolSize__( FIXES_GetVehiclePoolSize(
+	#define GetVehiclePoolSize__( FIXES_GetVehiclePoolSizeNPC(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetVehiclePoolSize);
 #endif
@@ -13435,8 +13518,8 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	_FIXES_FUNC_PAWNDOC(FIXES_GetActorPoolSize());
-	#define FIXES_GetActorPoolSize() (MAX_ACTORS)
+	_FIXES_FUNC_PAWNDOC(FIXES_GetActorPoolSizeNPC());
+	#define FIXES_GetActorPoolSizeNPC() (MAX_ACTORS)
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetActorPoolSize
@@ -13444,13 +13527,13 @@ static stock _FIXES_CountFilterscripts()
 		#else
 			#define _ALS_GetActorPoolSize
 		#endif
-		#define GetActorPoolSize( FIXES_GetActorPoolSize(
+		#define GetActorPoolSize( FIXES_GetActorPoolSizeNPC(
 	#endif
 
 	#define _ALS_GetActorPoolSize__
-	#define GetActorPoolSize__( FIXES_GetActorPoolSize(
+	#define GetActorPoolSize__( FIXES_GetActorPoolSizeNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetActorPoolSize);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetActorPoolSizeNPC);
 #endif
 
 /**
@@ -15317,35 +15400,26 @@ native BAD_GetWeaponName(weaponid, weapon[], len = sizeof (weapon)) = GetWeaponN
 #if FIX_GetWeaponName
 	stock FIXES_GetWeaponName(weaponid, weapon[], len = sizeof (weapon))
 	{
-		switch (weaponid)
-		{
+			weapon[0] = 0;
+		#if defined GetVehicleParamsSirenState
+			if (!weaponid)
+			{
+				return strcat(weapon, "Fists", len), 1;
+			}
+		#else
+			switch (weaponid)
+			{
+			case 0:
+				return strcat(weapon, "Fists", len), 1;
 			case 18:
-			{
-				return
-					weapon[0] = 0,
-					strcat(weapon, "Molotov Cocktail", len),
-					1;
-			}
+				return strcat(weapon, "Molotov Cocktail", len), 1;
 			case 44:
-			{
-				return
-					weapon[0] = 0,
-					strcat(weapon, "Night Vision Goggles", len),
-					1;
-			}
+				return strcat(weapon, "Night Vision", len), 1;
 			case 45:
-			{
-				return
-					weapon[0] = 0,
-					strcat(weapon, "Thermal Goggles", len),
-					1;
+				return strcat(weapon, "Thermal Goggles", len), 1;
 			}
-			default:
-			{
-				return GetWeaponName__(weaponid, weapon, len);
-			}
-		}
-		return 0;
+		#endif
+			return GetWeaponName__(weaponid, weapon, len);
 	}
 
 	#if _FIXES_SAMP
