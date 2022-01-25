@@ -6019,13 +6019,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if _FIXES_NPC
-	#if defined FIX_GetConsoleVarAsString
-		#undef FIX_GetConsoleVarAsString
-	#endif
-	static stock FIX_GetConsoleVarAsString = 0;
-	#define FIX_GetConsoleVarAsString                          (0)
-#elseif !defined FIX_GetConsoleVarAsString
+#if !defined FIX_GetConsoleVarAsString
 	#if defined FIX_GetServerVarAsString
 		_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsString);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsString)
@@ -6069,13 +6063,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if _FIXES_NPC
-	#if defined FIX_GetConsoleVarAsInt
-		#undef FIX_GetConsoleVarAsInt
-	#endif
-	static stock FIX_GetConsoleVarAsInt = 0;
-	#define FIX_GetConsoleVarAsInt                          (0)
-#elseif !defined FIX_GetConsoleVarAsInt
+#if !defined FIX_GetConsoleVarAsInt
 	#if defined FIX_GetServerVarAsInt
 		_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsInt);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsInt)
@@ -6119,13 +6107,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if _FIXES_NPC
-	#if defined FIX_GetConsoleVarAsBool
-		#undef FIX_GetConsoleVarAsBool
-	#endif
-	static stock FIX_GetConsoleVarAsBool = 0;
-	#define FIX_GetConsoleVarAsBool                          (0)
-#elseif !defined FIX_GetConsoleVarAsBool
+#if !defined FIX_GetConsoleVarAsBool
 	#if defined FIX_GetServerVarAsBool
 		_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsBool);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsBool)
@@ -6169,13 +6151,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if _FIXES_NPC
-	#if defined FIX_GetConsoleVarAsFloat
-		#undef FIX_GetConsoleVarAsFloat
-	#endif
-	static stock FIX_GetConsoleVarAsFloat = 0;
-	#define FIX_GetConsoleVarAsFloat                          (0)
-#elseif !defined FIX_GetConsoleVarAsFloat
+#if !defined FIX_GetConsoleVarAsFloat
 	#if defined GetConsoleVarAsFloat
 		#if FIX_GetConsoleVarAsString
 			#define _FIXES_WARNING 113
@@ -9657,6 +9633,14 @@ _FIXES_STATIC_STOCK_CONST
 		"***                  at the top, as this setting is no longer the default (to\n"  \
 		"***                  improve the more common case).\n"                            \
 		"***";
+
+	/**
+	 * <remarks>
+	 * Error shown when server.cfg can't be read from an NPC mode.
+	 * </remarks>
+	 */
+	FIXES_gscNoNPCConfigs[] = "\7\7\7\7\7"                                             \
+		"*** fixes.inc error: Could not get .cfg \"%s\" from NPC mode.";
 
 #if !FIXES_Single
 _FIXES_STATIC_STOCK_CONST
@@ -13254,6 +13238,7 @@ public OnJITCompile()
 		state _ALS : _ALS_go;
 		_FIXES_gIsFilterscript = false;
 		_FIXES_DetermineOS();
+		_FIXES_CheckServerRoot();
 
 		#if defined On_NPCModeInit
 			return On_NPCModeInit();
@@ -21842,47 +21827,57 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 	stock bool:FIXES_GetConsoleVarAsString(const varname[], buffer[], len = sizeof (buffer))
 	{
 		buffer[0] = '\0';
-		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
+		if (!FIXES_gsServerCFG)
 		{
-		case 0x6A7D4118, // gamemode0
-		     0x6A7D4119, // gamemode1
-		     0x6A7D411A, // gamemode2
-		     0x6A7D411B, // gamemode3
-		     0x6A7D411C, // gamemode4
-		     0x6A7D411D, // gamemode5
-		     0x6A7D411E, // gamemode6
-		     0x6A7D411F, // gamemode7
-		     0x6A7D4110, // gamemode8
-		     0x6A7D4111, // gamemode9
-		     0xBA256409, // gamemode10
-		     0xBA256408, // gamemode11
-		     0xBA25640B, // gamemode12
-		     0xBA25640A, // gamemode13
-		     0xBA25640D, // gamemode14
-		     0xBA25640C, // gamemode15
-		     0x740D30D2, // worldtime
-		     0x2FB2D3BF, // version
-		     0xFBE0D5FE, // lagcomp // Almost bool
-		     0x19BECDF7, // logtimeformat
-		     0x62420997, // nosign
-		     0x9D57983F, // plugins
-		     0x3AFFC879, // filterscripts
-		     0xD93377B5, // gamemodetext
-		     0x74C01C1D, // weather
-		     0xB605A0C3, // gravity // float
-		     0x8FED0775, // rcon_password
-		     0x77E7547E, // weburl
-		     0x40736C5E, // mapname
-		     0x672924D7, // language
-		     0x0E9495C2, // hostname
-		     0x5D876F9A, // password
-		     0x7C706484, // bind
-		     0x7C78F2F5, // echo
-		     0x2D2A0363, // artwork
-		     0x2D273D0F: // artpath
-			return bool:GetConsoleVarAsString__(varname, buffer, len);
-		default:
-			return false;
+			#if _FIXES_NPC
+				return
+					printf(FIXES_gscNoNPCConfigs, varname),
+					buffer[0] = '\0',
+					false;
+			#else
+				switch (_FIXES_Bernstein(varname))
+				{
+				case 0x6A7D4118, // gamemode0
+					 0x6A7D4119, // gamemode1
+					 0x6A7D411A, // gamemode2
+					 0x6A7D411B, // gamemode3
+					 0x6A7D411C, // gamemode4
+					 0x6A7D411D, // gamemode5
+					 0x6A7D411E, // gamemode6
+					 0x6A7D411F, // gamemode7
+					 0x6A7D4110, // gamemode8
+					 0x6A7D4111, // gamemode9
+					 0xBA256409, // gamemode10
+					 0xBA256408, // gamemode11
+					 0xBA25640B, // gamemode12
+					 0xBA25640A, // gamemode13
+					 0xBA25640D, // gamemode14
+					 0xBA25640C, // gamemode15
+					 0x740D30D2, // worldtime
+					 0x2FB2D3BF, // version
+					 0xFBE0D5FE, // lagcomp // Almost bool
+					 0x19BECDF7, // logtimeformat
+					 0x62420997, // nosign
+					 0x9D57983F, // plugins
+					 0x3AFFC879, // filterscripts
+					 0xD93377B5, // gamemodetext
+					 0x74C01C1D, // weather
+					 0xB605A0C3, // gravity // float
+					 0x8FED0775, // rcon_password
+					 0x77E7547E, // weburl
+					 0x40736C5E, // mapname
+					 0x672924D7, // language
+					 0x0E9495C2, // hostname
+					 0x5D876F9A, // password
+					 0x7C706484, // bind
+					 0x7C78F2F5, // echo
+					 0x2D2A0363, // artwork
+					 0x2D273D0F: // artpath
+					return bool:GetConsoleVarAsString__(varname, buffer, len);
+				default:
+					return false;
+				}
+			#endif
 		}
 		fseek(FIXES_gsServerCFG, 0, seek_start);
 		// Read the file line-by-line.  Take care of very long lines.
@@ -21982,33 +21977,42 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 #if FIX_GetConsoleVarAsInt
 	stock FIXES_GetConsoleVarAsInt(const varname[])
 	{
-		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
+		if (!FIXES_gsServerCFG)
 		{
-		case 0xF59D7562, // cookielogging // bool
-		     0x5DD3AB50, // concookies // bool
-		     0x24DF3EEB, // db_log_queries // bool
-		     0xD8FC2F7F, // db_logging // bool
-		     0xCEF27485, // conseedtime
-		     0x0C43D2DD, // lagcompmode
-		     0xB3AAF0EC, // minconnectiontime
-		     0x2E17DD8D, // playertimeout
-		     0xED02304A, // ackslimit
-		     0x55A5C0C8, // messageslimit
-		     0xBD012555, // messageholelimit
-		     0x16C6DD58, // chatlogging // bool
-		     0x9420F5BA, // weapon_rate
-		     0x5C8B384F, // incar_rate
-		     0x01F89DEB, // onfoot_rate
-		     0x57452FAC, // maxnpc
-		     0x0BAD27EA, // sleep
-		     0x0A9910C4, // stream_rate
-		     0xE20F31D1, // maxplayers
-			 0x16847CA0, // useartwork
-			 0x0B874649, // mtu
-			 0x7C75D85C: // port
-			return GetConsoleVarAsInt__(varname);
-		default:
-			return 0;
+			#if _FIXES_NPC
+				return
+					printf(FIXES_gscNoNPCConfigs, varname),
+					0;
+			#else
+				switch (_FIXES_Bernstein(varname))
+				{
+				case 0xF59D7562, // cookielogging // bool
+					 0x5DD3AB50, // concookies // bool
+					 0x24DF3EEB, // db_log_queries // bool
+					 0xD8FC2F7F, // db_logging // bool
+					 0xCEF27485, // conseedtime
+					 0x0C43D2DD, // lagcompmode
+					 0xB3AAF0EC, // minconnectiontime
+					 0x2E17DD8D, // playertimeout
+					 0xED02304A, // ackslimit
+					 0x55A5C0C8, // messageslimit
+					 0xBD012555, // messageholelimit
+					 0x16C6DD58, // chatlogging // bool
+					 0x9420F5BA, // weapon_rate
+					 0x5C8B384F, // incar_rate
+					 0x01F89DEB, // onfoot_rate
+					 0x57452FAC, // maxnpc
+					 0x0BAD27EA, // sleep
+					 0x0A9910C4, // stream_rate
+					 0xE20F31D1, // maxplayers
+					 0x16847CA0, // useartwork
+					 0x0B874649, // mtu
+					 0x7C75D85C: // port
+					return GetConsoleVarAsInt__(varname);
+				default:
+					return 0;
+				}
+			#endif
 		}
 		new
 			buffer[16];
@@ -22063,19 +22067,28 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #if FIX_GetConsoleVarAsBool
 	stock bool:FIXES_GetConsoleVarAsBool(const varname[])
 	{
-		if (!FIXES_gsServerCFG) switch (_FIXES_Bernstein(varname))
+		if (!FIXES_gsServerCFG)
 		{
-		case 0x5F92A936, // announce
-		     0xFB6572C5, // lanmode
-		     0x0B3513EF, // query
-		     0x7C78F2F5, // rcon
-		     0xA300A7ED, // logqueries
-		     0x97EABC6B, // timestamp
-		     0x57CBE04F, // myriad
-		     0x6658699A: // output
-			return bool:GetConsoleVarAsBool__(varname);
-		default:
-			return false;
+			#if _FIXES_NPC
+				return
+					printf(FIXES_gscNoNPCConfigs, varname),
+					false;
+			#else
+				switch (_FIXES_Bernstein(varname))
+				{
+				case 0x5F92A936, // announce
+					 0xFB6572C5, // lanmode
+					 0x0B3513EF, // query
+					 0x7C78F2F5, // rcon
+					 0xA300A7ED, // logqueries
+					 0x97EABC6B, // timestamp
+					 0x57CBE04F, // myriad
+					 0x6658699A: // output
+					return bool:GetConsoleVarAsBool__(varname);
+				default:
+					return false;
+				}
+			#endif
 		}
 		new
 			buffer[16];
@@ -22117,8 +22130,19 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	stock Float:FIXES_GetConsoleVarAsFloat(const varname[])
 	{
 		GetConsoleVarAsFloat
-		if (!FIXES_gsServerCFG) // 0x03A253F3 = stream_distance.
-			return 0.0;
+		if (!FIXES_gsServerCFG)
+		{
+			// 0x03A253F3 = stream_distance.
+			#if _FIXES_NPC
+				return
+					printf(FIXES_gscNoNPCConfigs, varname),
+					0.0;
+			#else
+				return
+					printf("*** fixes.inc error: Could not get .cfg \"%s\".", varname),
+					0.0;
+			#endif
+		}
 		new
 			buffer[16];
 		if (FIXES_GetConsoleVarAsString(varname, buffer, sizeof (buffer)))
