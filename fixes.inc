@@ -433,17 +433,17 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 #if !defined OPEN_MP
 	// Try them all until one sticks.  If we already included one these
 	// repeat includes are internally short-circuited, so no harm done.
-#if !defined _samp_included
-	#tryinclude <a_samp>
-	#tryinclude "a_samp"
-#endif
-#if !defined _samp_included
-	#tryinclude <a_npc>
-	#tryinclude "a_npc"
-#endif
-#if !defined _samp_included
-	#error Could not find a_samp.inc
-#endif
+	//#if !defined _samp_included
+	//	#tryinclude <a_samp>
+	//	#tryinclude "a_samp"
+	//#endif
+	//#if !defined _samp_included
+	//	#tryinclude <a_npc>
+	//	#tryinclude "a_npc"
+	//#endif
+	#if !defined _samp_included
+		#error Include <a_samp> or <a_npc> before fixes.inc
+	#endif
 	#if defined SendClientMessage
 		#define _FIXES_NPC 0
 		// Do nothing.
@@ -10251,11 +10251,11 @@ _FIXES_STATIC_STOCK_CONST
  */
 
 #if FIX_IsValidVehicle
-	native IsValidVehicle(vehicleid);
+	native bool:IsValidVehicle(vehicleid);
 #else
 	_FIXES_HIDE_PAWNDOC(_FIXES_IsValidVehicle);
 #endif
-native BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
+native bool:BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
 
 /**
  * <remarks>
@@ -10657,12 +10657,12 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState;
 	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
-	native GetPlayerArmedWeapon__(playerid) = GetPlayerArmedWeapon;
+	native WEAPON:GetPlayerArmedWeapon__(playerid) = GetPlayerArmedWeapon;
 	native GetPlayerHealth__(playerid) = GetPlayerHealth;
 	native GetPlayerArmour__(playerid) = GetPlayerArmour;
 	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
-	native IsPlayerStreamedIn__(playerid) = IsPlayerStreamedIn;
-	native IsVehicleStreamedIn__(vehicleid) = IsVehicleStreamedIn;
+	native bool:IsPlayerStreamedIn__(playerid) = IsPlayerStreamedIn;
+	native bool:IsVehicleStreamedIn__(vehicleid) = IsVehicleStreamedIn;
 	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
 	native GetMyPos__(&Float:x, &Float:y, &Float:z) = GetMyPos;
@@ -10670,9 +10670,9 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native GetMyFacingAngle__(&Float:ang) = GetMyFacingAngle;
 	native SetMyFacingAngle__(Float:ang) = SetMyFacingAngle;
 	native GetDistanceFromMeToPoint__(Float:X, Float:Y, Float:Z, &Float:Distance) = GetDistanceFromMeToPoint;
-	native IsPlayerInRangeOfPoint__(playerid, Float:range, Float:X, Float:Y, Float:Z) = IsPlayerInRangeOfPoint;
+	native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:X, Float:Y, Float:Z) = IsPlayerInRangeOfPoint;
 	native GetPlayerName__(playerid, name[], len) = GetPlayerName;
-	native IsPlayerConnected__(playerid) = IsPlayerConnected;
+	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
 #else
 	native SendClientMessage__(playerid, color, const message[]) = SendClientMessage;
 	native SendClientMessageToAll__(color, const message[]) = SendClientMessageToAll;
@@ -10739,13 +10739,13 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native LimitGlobalChatRadius__(Float:chat_radius) = LimitGlobalChatRadius;
 	native LimitPlayerMarkerRadius__(Float:marker_radius) = LimitPlayerMarkerRadius;
 	native ConnectNPC__(const name[], const script[]) = ConnectNPC;
-	native IsPlayerNPC__(playerid) = IsPlayerNPC;
+	native bool:IsPlayerNPC__(playerid) = IsPlayerNPC;
 	native AddSimpleModel__(virtualworld, baseid, newid, const dffname[], const txdname[]) = AddSimpleModel;
 	native AddSimpleModelTimed__(virtualworld, baseid, newid, const dffname[], const txdname[], timeon, timeoff) = AddSimpleModelTimed;
 	native FindModelFileNameFromCRC__(crc, retstr[], retstr_size = sizeof retstr) = FindModelFileNameFromCRC;
 	native FindTextureFileNameFromCRC__(crc, retstr[], retstr_size = sizeof retstr) = FindTextureFileNameFromCRC;
 	native RedirectDownload__(playerid, const url[]) = RedirectDownload;
-	native IsPlayerAdmin__(playerid) = IsPlayerAdmin;
+	native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
 	native Kick__(playerid) = Kick;
 	native Ban__(playerid) = Ban;
 	native BanEx__(playerid, const reason[]) = BanEx;
@@ -10777,7 +10777,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native SetMenuColumnHeader__(Menu:menuid, column, const columnheader[]) = SetMenuColumnHeader;
 	native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer;
 	native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer;
-	native IsValidMenu__(Menu:menuid) = IsValidMenu;
+	native bool:IsValidMenu__(Menu:menuid) = IsValidMenu;
 	native DisableMenu__(Menu:menuid) = DisableMenu;
 	native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow;
 	native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu;
@@ -10825,7 +10825,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native gpci__(playerid, serial[], maxlen) = gpci;
 	native CreateVehicle__(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false) = CreateVehicle;
 	native DestroyVehicle__(vehicleid) = DestroyVehicle;
-	native IsVehicleStreamedIn__(vehicleid, forplayerid) = IsVehicleStreamedIn;
+	native bool:IsVehicleStreamedIn__(vehicleid, forplayerid) = IsVehicleStreamedIn;
 	native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
 	native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 	native GetVehicleZAngle__(vehicleid, &Float:z_angle) = GetVehicleZAngle;
@@ -10851,7 +10851,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native GetVehicleHealth__(vehicleid, &Float:health) = GetVehicleHealth;
 	native AttachTrailerToVehicle__(trailerid, vehicleid) = AttachTrailerToVehicle;
 	native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle;
-	native IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
+	native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
 	native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer;
 	native SetVehicleNumberPlate__(vehicleid, const numberplate[]) = SetVehicleNumberPlate;
 	native GetVehicleModel__(vehicleid) = GetVehicleModel;
@@ -10886,7 +10886,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native db_debug_openresults__() = db_debug_openresults;
 	native CreateActor__(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = CreateActor;
 	native DestroyActor__(actorid) = DestroyActor;
-	native IsActorStreamedIn__(actorid, forplayerid) = IsActorStreamedIn;
+	native bool:IsActorStreamedIn__(actorid, forplayerid) = IsActorStreamedIn;
 	native SetActorVirtualWorld__(actorid, vworld) = SetActorVirtualWorld;
 	native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld;
 	native ApplyActorAnimation__(actorid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
@@ -10898,8 +10898,8 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native SetActorHealth__(actorid, Float:health) = SetActorHealth;
 	native GetActorHealth__(actorid, &Float:health) = GetActorHealth;
 	native SetActorInvulnerable__(actorid, invulnerable = true) = SetActorInvulnerable;
-	native IsActorInvulnerable__(actorid) = IsActorInvulnerable;
-	native IsValidActor__(actorid) = IsValidActor;
+	native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
+	native bool:IsValidActor__(actorid) = IsValidActor;
 	native HTTP__(index, type, const url[], const data[], const callback[]) = HTTP;
 	native CreateObject__(modelid, Float:X, Float:Y, Float:Z, Float:rX, Float:rY, Float:rZ, Float:DrawDistance = 0.0) = CreateObject;
 	native AttachObjectToVehicle__(objectid, vehicleid, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:RotX, Float:RotY, Float:RotZ) = AttachObjectToVehicle;
@@ -10911,11 +10911,11 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native GetObjectRot__(objectid, &Float:RotX, &Float:RotY, &Float:RotZ) = GetObjectRot;
 	native GetObjectModel__(objectid) = GetObjectModel;
 	native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol;
-	native IsValidObject__(objectid) = IsValidObject;
+	native bool:IsValidObject__(objectid) = IsValidObject;
 	native DestroyObject__(objectid) = DestroyObject;
 	native MoveObject__(objectid, Float:X, Float:Y, Float:Z, Float:Speed, Float:RotX = -1000.0, Float:RotY = -1000.0, Float:RotZ = -1000.0) = MoveObject;
 	native StopObject__(objectid) = StopObject;
-	native IsObjectMoving__(objectid) = IsObjectMoving;
+	native bool:IsObjectMoving__(objectid) = IsObjectMoving;
 	native EditObject__(playerid, objectid) = EditObject;
 	native EditPlayerObject__(playerid, objectid) = EditPlayerObject;
 	native SelectObject__(playerid) = SelectObject;
@@ -10928,11 +10928,11 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native GetPlayerObjectRot__(playerid, objectid, &Float:RotX, &Float:RotY, &Float:RotZ) = GetPlayerObjectRot;
 	native GetPlayerObjectModel__(playerid, objectid) = GetPlayerObjectModel;
 	native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCameraCol;
-	native IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
+	native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
 	native DestroyPlayerObject__(playerid, objectid) = DestroyPlayerObject;
 	native MovePlayerObject__(playerid, objectid, Float:X, Float:Y, Float:Z, Float:Speed, Float:RotX = -1000.0, Float:RotY = -1000.0, Float:RotZ = -1000.0) = MovePlayerObject;
 	native StopPlayerObject__(playerid, objectid) = StopPlayerObject;
-	native IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
+	native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
 	native AttachPlayerObjectToPlayer__(objectplayer, objectid, attachplayer, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:rX, Float:rY, Float:rZ) = AttachPlayerObjectToPlayer;
 	native SetObjectMaterial__(objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor = 0) = SetObjectMaterial;
 	native SetPlayerObjectMaterial__(playerid, objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor = 0) = SetPlayerObjectMaterial;
@@ -10946,9 +10946,9 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 	native SetPlayerFacingAngle__(playerid, Float:ang) = SetPlayerFacingAngle;
 	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
-	native IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
+	native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 	native Float:GetPlayerDistanceFromPoint__(playerid, Float:X, Float:Y, Float:Z) = GetPlayerDistanceFromPoint;
-	native IsPlayerStreamedIn__(playerid, forplayerid) = IsPlayerStreamedIn;
+	native bool:IsPlayerStreamedIn__(playerid, forplayerid) = IsPlayerStreamedIn;
 	native SetPlayerInterior__(playerid, interiorid) = SetPlayerInterior;
 	native GetPlayerInterior__(playerid) = GetPlayerInterior;
 	native SetPlayerHealth__(playerid, Float:health) = SetPlayerHealth;
@@ -11006,7 +11006,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native GetPlayerLastShotVectors__(playerid, &Float:fOriginX, &Float:fOriginY, &Float:fOriginZ, &Float:fHitPosX, &Float:fHitPosY, &Float:fHitPosZ) = GetPlayerLastShotVectors;
 	native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0, materialcolor1 = 0, materialcolor2 = 0) = SetPlayerAttachedObject;
 	native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject;
-	native IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+	native bool:IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 	native EditAttachedObject__(playerid, index) = EditAttachedObject;
 	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
 	native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy;
@@ -11079,11 +11079,11 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native AttachCameraToPlayerObject__(playerid, playerobjectid) = AttachCameraToPlayerObject;
 	native InterpolateCameraPos__(playerid, Float:FromX, Float:FromY, Float:FromZ, Float:ToX, Float:ToY, Float:ToZ, time, cut = CAMERA_CUT) = InterpolateCameraPos;
 	native InterpolateCameraLookAt__(playerid, Float:FromX, Float:FromY, Float:FromZ, Float:ToX, Float:ToY, Float:ToZ, time, cut = CAMERA_CUT) = InterpolateCameraLookAt;
-	native IsPlayerConnected__(playerid) = IsPlayerConnected;
-	native IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
-	native IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
-	native IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
-	native IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
+	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
+	native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
+	native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
+	native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
+	native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
 	native SetPlayerVirtualWorld__(playerid, worldid) = SetPlayerVirtualWorld;
 	native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld;
 	native EnableStuntBonusForPlayer__(playerid, enable) = EnableStuntBonusForPlayer;
@@ -12397,14 +12397,14 @@ static stock _FIXES_CountFilterscripts()
 #if _FIXES_SAMP && defined _ALS_IsPlayerConnected
 	#error _ALS_IsPlayerConnected defined
 #endif
-native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
+native bool:BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 
 /**
  * <fixes>IsPlayerConnected</fixes>
  */
 
 #if FIX_IsPlayerConnected
-	stock FIXES_IsPlayerConnected(playerid)
+	stock bool:FIXES_IsPlayerConnected(playerid)
 	{
 		return _FIXES_IS_PLAYER_CONNECTED(playerid);
 	}
