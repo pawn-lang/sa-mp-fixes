@@ -13229,8 +13229,16 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_IsPlayerInRangeOfPointNPC(const funcname[], const format[], {Float,_}:...)
+	stock bool:FIXES_IsPlayerInRangeOfPointNPC(playerid, Float:range, Float:x, Float:y, Float:z)
 	{
+		new Float:px, Float:py, Float:pz;
+		return
+			GetPlayerPos__(playerid, px, py, pz) && (
+				x -= px,
+				y -= py,
+				z -= pz,
+				(x * x + y * y + z * z) < (range * range)
+			);
 	}
 
 	#if _FIXES_SAMP
@@ -13285,8 +13293,9 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_VectorSizeNPC(const funcname[], const format[], {Float,_}:...)
+	stock Float:FIXES_VectorSizeNPC(Float:x, Float:y, Float:z)
 	{
+		return floatsqrt(x * x + y * y + z * z);
 	}
 
 	#if _FIXES_SAMP
