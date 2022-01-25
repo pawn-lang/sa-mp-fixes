@@ -3959,45 +3959,6 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
- * <fix name="CallLocalFunction">
- *     <problem>
- *         Isn't defined in NPC modes.
- *     </problem>
- *     <solution>
- *         Write a pawn version using <c>funcidx</c>.
- *     </solution>
- *     <see>FIXES_CallLocalFunction</see>
- *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
- * </fix>
- */
-
-#if !_FIXES_NPC
-	#if defined FIX_CallLocalFunction
-		#undef FIX_CallLocalFunction
-	#endif
-	static stock FIX_CallLocalFunction = 0;
-	#define FIX_CallLocalFunction                (0)
-#elseif !defined FIX_CallLocalFunction
-	#define _FIXES_WARNING 61
-	#tryinclude "_fixes_options"
-	#undef _FIXES_WARNING
-	static _FIXES_OPTION FIX_CallLocalFunction = _FIXES_DEFAULT;
-	#define FIX_CallLocalFunction                _FIXES_DEFAULT
-#elseif _FIXES_IS_UNSET(FIX_CallLocalFunction)
-	#undef FIX_CallLocalFunction
-	static stock FIX_CallLocalFunction = 2;
-	#define FIX_CallLocalFunction                (2)
-#elseif FIX_CallLocalFunction
-	#undef FIX_CallLocalFunction
-	static stock FIX_CallLocalFunction = 1;
-	#define FIX_CallLocalFunction                (1)
-#else
-	#undef FIX_CallLocalFunction
-	static stock FIX_CallLocalFunction = 0;
-	#define FIX_CallLocalFunction                (0)
-#endif
-
-/**
  * <fix name="Menus">
  *     <problem>
  *         All menu function fixes are included separately for major overhead.
@@ -6739,6 +6700,78 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#undef FIX_strdel
 	static stock FIX_strdel = 0;
 	#define FIX_strdel                           (0)
+#endif
+
+/**
+ * <fix name="CallLocalFunction">
+ *     <problem>
+ *         Isn't defined in NPC modes.
+ *     </problem>
+ *     <solution>
+ *         Write a pawn version using <c>funcidx</c>.
+ *     </solution>
+ *     <see>FIXES_CallLocalFunction</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
+#if !_FIXES_NPC
+	#if defined FIX_CallLocalFunction
+		#undef FIX_CallLocalFunction
+	#endif
+	static stock FIX_CallLocalFunction = 0;
+	#define FIX_CallLocalFunction                (0)
+#elseif !defined FIX_CallLocalFunction
+	#define _FIXES_WARNING 127
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_CallLocalFunction = _FIXES_DEFAULT;
+	#define FIX_CallLocalFunction                _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_CallLocalFunction)
+	#undef FIX_CallLocalFunction
+	static stock FIX_CallLocalFunction = 2;
+	#define FIX_CallLocalFunction                (2)
+#elseif FIX_CallLocalFunction
+	#undef FIX_CallLocalFunction
+	static stock FIX_CallLocalFunction = 1;
+	#define FIX_CallLocalFunction                (1)
+#else
+	#undef FIX_CallLocalFunction
+	static stock FIX_CallLocalFunction = 0;
+	#define FIX_CallLocalFunction                (0)
+#endif
+
+/**
+ * <fix name="GetPlayerName">
+ *     <problem>
+ *         Un-const-correct - uses <c>const</c> but shouldn't.
+ *     </problem>
+ *     <solution>
+ *         Redefine it without, plus a <c>len</c> default.
+ *     </solution>
+ *     <see>FIXES_GetPlayerName</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_GetPlayerName
+	#define _FIXES_WARNING 128
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_GetPlayerName = _FIXES_DEFAULT;
+	#define FIX_GetPlayerName                _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerName)
+	#undef FIX_GetPlayerName
+	static stock FIX_GetPlayerName = 2;
+	#define FIX_GetPlayerName                (2)
+#elseif FIX_GetPlayerName
+	#undef FIX_GetPlayerName
+	static stock FIX_GetPlayerName = 1;
+	#define FIX_GetPlayerName                (1)
+#else
+	#undef FIX_GetPlayerName
+	static stock FIX_GetPlayerName = 0;
+	#define FIX_GetPlayerName                (0)
 #endif
 
 /*
@@ -11833,6 +11866,16 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native CancelSelectTextDraw__(playerid) = CancelSelectTextDraw;	// cancel textdraw selection with the mouse
 	native CreateExplosionForPlayer__(playerid, Float:X, Float:Y, Float:Z, type, Float:Radius) = CreateExplosionForPlayer;
 	native SendClientCheck__(playerid, type, memAddr, memOffset, byteCount) = SendClientCheck;
+#endif
+
+#if FIX_GetPlayerName
+	#if _FIXES_SAMP && defined _ALS_GetPlayerName
+		#error _ALS_GetPlayerName defined
+	#endif
+	native BAD_GetPlayerName(playerid, const name[], len) = GetPlayerName;
+	native FIXES_GetPlayerName(playerid, name[], len = sizeof (name)) = GetPlayerName;
+	#define _ALS_GetPlayerName
+	#define GetPlayerName( FIXES_GetPlayerName(
 #endif
 
 /*
