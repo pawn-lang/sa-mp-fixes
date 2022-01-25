@@ -6725,8 +6725,8 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define _FIXES_WARNING 127
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
-	static _FIXES_OPTION FIX_CallLocalFunction = _FIXES_DEFAULT;
-	#define FIX_CallLocalFunction                _FIXES_DEFAULT
+	static _FIXES_OPTION FIX_CallLocalFunction = FIX_Natives;
+	#define FIX_CallLocalFunction                FIX_Natives
 #elseif _FIXES_IS_UNSET(FIX_CallLocalFunction)
 	#undef FIX_CallLocalFunction
 	static stock FIX_CallLocalFunction = 2;
