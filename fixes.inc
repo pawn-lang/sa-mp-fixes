@@ -7327,6 +7327,234 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK);
 
 /**
  * <remarks>
+ * Future-compatible tag definitions.  <c>MAPICON:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_MAPICON:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined MAPICON
+	_FIXES_HIDE_PAWNDOC(FIXES_MAPICON);
+#else
+	_FIXES_CONST_PAWNDOC(MAPICON);
+	#if defined __TAG
+		#define MAPICON: __TAG(MAPICON):
+	#else
+		#define MAPICON: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>CAMERA:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_CAMERA:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined CAMERA
+	_FIXES_HIDE_PAWNDOC(FIXES_CAMERA);
+#else
+	_FIXES_CONST_PAWNDOC(CAMERA);
+	#if defined __TAG
+		#define CAMERA: __TAG(CAMERA):
+	#else
+		#define CAMERA: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>SPECTATE_MODE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_SPECTATE_MODE:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined SPECTATE_MODE
+	_FIXES_HIDE_PAWNDOC(FIXES_SPECTATE_MODE);
+#else
+	_FIXES_CONST_PAWNDOC(SPECTATE_MODE);
+	#if defined __TAG
+		#define SPECTATE_MODE: __TAG(SPECTATE_MODE):
+	#else
+		#define SPECTATE_MODE: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>PLAYER_RECORDING_TYPE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_PLAYER_RECORDING_TYPE:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined PLAYER_RECORDING_TYPE
+	_FIXES_HIDE_PAWNDOC(FIXES_PLAYER_RECORDING_TYPE);
+#else
+	_FIXES_CONST_PAWNDOC(PLAYER_RECORDING_TYPE);
+	#if defined __TAG
+		#define PLAYER_RECORDING_TYPE: __TAG(PLAYER_RECORDING_TYPE):
+	#else
+		#define PLAYER_RECORDING_TYPE: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>VEHICLE_MODEL_INFO:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_VEHICLE_MODEL_INFO:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined VEHICLE_MODEL_INFO
+	_FIXES_HIDE_PAWNDOC(FIXES_VEHICLE_MODEL_INFO);
+#else
+	_FIXES_CONST_PAWNDOC(VEHICLE_MODEL_INFO);
+	#if defined __TAG
+		#define VEHICLE_MODEL_INFO: __TAG(VEHICLE_MODEL_INFO):
+	#else
+		#define VEHICLE_MODEL_INFO: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>OBJECT_MATERIAL_SIZE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_OBJECT_MATERIAL_SIZE:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined OBJECT_MATERIAL_SIZE
+	_FIXES_HIDE_PAWNDOC(FIXES_OBJECT_MATERIAL_SIZE);
+#else
+	_FIXES_CONST_PAWNDOC(OBJECT_MATERIAL_SIZE);
+	#if defined __TAG
+		#define OBJECT_MATERIAL_SIZE: __TAG(OBJECT_MATERIAL_SIZE):
+	#else
+		#define OBJECT_MATERIAL_SIZE: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>OBJECT_MATERIAL_TEXT_ALIGN:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_OBJECT_MATERIAL_TEXT_ALIGN:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined OBJECT_MATERIAL_TEXT_ALIGN
+	_FIXES_HIDE_PAWNDOC(FIXES_OBJECT_MATERIAL_TEXT_ALIGN);
+#else
+	_FIXES_CONST_PAWNDOC(OBJECT_MATERIAL_TEXT_ALIGN);
+	#if defined __TAG
+		#define OBJECT_MATERIAL_TEXT_ALIGN: __TAG(OBJECT_MATERIAL_TEXT_ALIGN):
+	#else
+		#define OBJECT_MATERIAL_TEXT_ALIGN: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>HTTP_METHOD:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_HTTP_METHOD:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined HTTP_METHOD
+	_FIXES_HIDE_PAWNDOC(FIXES_HTTP_METHOD);
+#else
+	_FIXES_CONST_PAWNDOC(HTTP_METHOD);
+	#if defined __TAG
+		#define HTTP_METHOD: __TAG(HTTP_METHOD):
+	#else
+		#define HTTP_METHOD: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>HTTP_ERROR:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_HTTP_ERROR:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined HTTP_ERROR
+	_FIXES_HIDE_PAWNDOC(FIXES_HTTP_ERROR);
+#else
+	_FIXES_CONST_PAWNDOC(HTTP_ERROR);
+	#if defined __TAG
+		#define HTTP_ERROR: __TAG(HTTP_ERROR):
+	#else
+		#define HTTP_ERROR: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>FIGHT_STYLE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_FIGHT_STYLE:</c> when
+ * they are enabled.
+ * </remarks>
+ */
+
+#if defined FIGHT_STYLE
+	_FIXES_HIDE_PAWNDOC(FIXES_FIGHT_STYLE);
+#else
+	_FIXES_CONST_PAWNDOC(FIGHT_STYLE);
+	#if defined __TAG
+		#define FIGHT_STYLE: __TAG(FIGHT_STYLE):
+	#else
+		#define FIGHT_STYLE: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>WEAPONSKILL:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_WEAPONSKILL:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined WEAPONSKILL
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPONSKILL);
+#else
+	_FIXES_CONST_PAWNDOC(WEAPONSKILL);
+	#if defined __TAG
+		#define WEAPONSKILL: __TAG(WEAPONSKILL):
+	#else
+		#define WEAPONSKILL: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>WEAPONSTATE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_WEAPONSTATE:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined WEAPONSTATE
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPONSTATE);
+#else
+	_FIXES_CONST_PAWNDOC(WEAPONSTATE);
+	#if defined __TAG
+		#define WEAPONSTATE: __TAG(WEAPONSTATE):
+	#else
+		#define WEAPONSTATE: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
  * The number of GameText styles recreated using TextDraw functions.  This is 7
  * by default, but can be extended to 16 if you want more default GTA styles.
  * </remarks>
