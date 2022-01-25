@@ -13465,7 +13465,7 @@ static stock _FIXES_CountFilterscripts()
 
 #if FIX_LocalNPCNatives
 	_FIXES_FUNC_PAWNDOC(FIXES_GetPlayerPoolSizeNPC());
-	#define FIXES_GetPlayerPoolSizeNPC() (MAX_PLAYERS}
+	#define FIXES_GetPlayerPoolSizeNPC() (MAX_PLAYERS + 1)
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetPlayerPoolSize
@@ -13492,7 +13492,7 @@ static stock _FIXES_CountFilterscripts()
 
 #if FIX_LocalNPCNatives
 	_FIXES_FUNC_PAWNDOC(FIXES_GetVehiclePoolSizeNPC());
-	#define FIXES_GetVehiclePoolSizeNPC() (MAX_VEHICLES}
+	#define FIXES_GetVehiclePoolSizeNPC() (MAX_VEHICLES + 1)
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetVehiclePoolSize
@@ -13519,7 +13519,7 @@ static stock _FIXES_CountFilterscripts()
 
 #if FIX_LocalNPCNatives
 	_FIXES_FUNC_PAWNDOC(FIXES_GetActorPoolSizeNPC());
-	#define FIXES_GetActorPoolSizeNPC() (MAX_ACTORS)
+	#define FIXES_GetActorPoolSizeNPC() (MAX_ACTORS + 1)
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetActorPoolSize
