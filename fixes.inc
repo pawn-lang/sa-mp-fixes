@@ -3959,6 +3959,45 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <fix name="CallLocalFunction">
+ *     <problem>
+ *         Isn't defined in NPC modes.
+ *     </problem>
+ *     <solution>
+ *         Write a pawn version using <c>funcidx</c>.
+ *     </solution>
+ *     <see>FIXES_CallLocalFunction</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
+#if !_FIXES_NPC
+	#if defined FIX_CallLocalFunction
+		#undef FIX_CallLocalFunction
+	#endif
+	static stock FIX_CallLocalFunction = 0;
+	#define FIX_CallLocalFunction                (0)
+#elseif !defined FIX_CallLocalFunction
+	#define _FIXES_WARNING 61
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_CallLocalFunction = _FIXES_DEFAULT;
+	#define FIX_CallLocalFunction                _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_CallLocalFunction)
+	#undef FIX_CallLocalFunction
+	static stock FIX_CallLocalFunction = 2;
+	#define FIX_CallLocalFunction                (2)
+#elseif FIX_CallLocalFunction
+	#undef FIX_CallLocalFunction
+	static stock FIX_CallLocalFunction = 1;
+	#define FIX_CallLocalFunction                (1)
+#else
+	#undef FIX_CallLocalFunction
+	static stock FIX_CallLocalFunction = 0;
+	#define FIX_CallLocalFunction                (0)
+#endif
+
+/**
  * <fix name="Menus">
  *     <problem>
  *         All menu function fixes are included separately for major overhead.
@@ -3977,7 +4016,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 		#undef FIX_Menus
 	#endif
 	static stock FIX_Menus = 0;
-	#define FIX_Menus                          (0)
+	#define FIX_Menus                            (0)
 #elseif !defined FIX_Menus
 	#define _FIXES_WARNING 60
 	#tryinclude "_fixes_options"
@@ -15870,6 +15909,45 @@ native BAD_KillTimer(timerid) = KillTimer;
 	#define KillTimer__( FIXES_KillTimer(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_KillTimer);
+#endif
+
+/**
+ * <fixes>CallLocalFunction</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_CallLocalFunction
+	#error _ALS_CallLocalFunction defined
+#endif
+
+#if !FIX_CallLocalFunction
+	static
+#endif
+	stock FIXES_CallLocalFunction(const funcname[], const format[], {Float,_}:...)
+	{
+		new idx = funcidx(funcname);
+		if (idx == -1)
+		{
+			// The function doesn't exist.
+			return 0;
+		}
+		// The function does exist.  Extract the address from the header.
+
+		// Loop through the parameter types and resolve cells.
+		return 1;
+	}
+
+#if FIX_CallLocalFunction
+	#if _FIXES_SAMP
+		#if defined _ALS_CallLocalFunction
+			#undef CallLocalFunction
+		#else
+			#define _ALS_CallLocalFunction
+		#endif
+		#define CallLocalFunction( FIXES_CallLocalFunction(
+	#endif
+
+	#define _ALS_CallLocalFunction__
+	#define CallLocalFunction__( FIXES_CallLocalFunction(
 #endif
 
 /**
