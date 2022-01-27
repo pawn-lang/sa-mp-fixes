@@ -7954,6 +7954,175 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
 
 /**
  * <remarks>
+ * <c>IS_JIT</c>
+ *
+ * True when the code is JIT compiled.
+ * </remarks>
+ */
+
+#if FIX_JIT
+	_FIXES_CONST_PAWNDOC(IS_JIT);
+	#define IS_JIT (_FIXES_gIsJIT)
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_IS_JIT);
+#endif
+
+/**
+ * <remarks>
+ * "FILTERSCRIPT" can't always be relied on to be set.  This is not a pre-
+ * processor macro, but may be better than nothing (also used internally).
+ * </remarks>
+ */
+
+#if FIX_FILTERSCRIPT
+	_FIXES_CONST_PAWNDOC(IS_FILTERSCRIPT);
+	#define IS_FILTERSCRIPT (_FIXES_gIsFilterscript)
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_IS_FILTERSCRIPT);
+#endif
+
+/**
+ * <remarks>
+ * True when the code is running on Windows.  NOT a pre-processor macro, since
+ * the OS you are running the code on can't be determined at compile-time.
+ * </remarks>
+ */
+
+#if FIX_OS
+	_FIXES_CONST_PAWNDOC(IS_WINDOWS);
+	#define IS_WINDOWS (_FIXES_gIsWindows)
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_IS_WINDOWS);
+#endif
+
+/**
+ * <remarks>
+ * True when the code is running on Linux.  NOT a pre-processor macro, since the
+ * OS you are running the code on can't be determined at compile-time.
+ * </remarks>
+ */
+
+#if FIX_OS
+	_FIXES_CONST_PAWNDOC(IS_LINUX);
+	#define IS_LINUX (!_FIXES_gIsWindows)
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_IS_LINUX);
+#endif
+
+/*
+
+           db         88           ad88888ba
+          d88b        88          d8"     "8b
+         d8'`8b       88          Y8,
+        d8'  `8b      88          `Y8aaaaa,
+       d8YaaaaY8b     88            `"""""8b,
+      d8""""""""8b    88                  `8b
+     d8'        `8b   88          Y8a     a8P
+    d8'          `8b  88888888888  "Y88888P"
+
+
+
+*/
+
+#if !FIXES_NoYSI && !defined CHAIN_ORDER
+	#define CHAIN_ORDER() 0
+#endif
+
+/**
+ * <remarks>
+ * A method of pre-hooking callbacks to still have them called before any ones
+ * re-written by y_hooks.
+ * </remarks>
+ */
+
+#if FIXES_NoYSI
+	_FIXES_HIDE_PAWNDOC(PRE_HOOK);
+#else
+	#if defined PRE_HOOK
+		#undef PRE_HOOK
+	#endif
+
+	_FIXES_FUNC_PAWNDOC(PRE_HOOK(const library[]));
+
+	#define PRE_HOOK(%0) forward @CO_%0();public @CO_%0(){return CHAIN_ORDER()+1;}
+
+	PRE_HOOK(On)
+#endif
+
+/**
+ * <remarks>
+ * Allows y_hooks to call things in the correct order when it exists.  Note that
+ * this doesn't depend on y_hooks at all, it is merely detected by it.
+ * </remarks>
+ */
+
+#if FIXES_NoYSI
+	_FIXES_HIDE_PAWNDOC(CHAIN_ORDER);
+#else
+	#undef CHAIN_ORDER
+
+	_FIXES_FUNC_PAWNDOC(CHAIN_ORDER());
+	#define CHAIN_ORDER @CO_On
+#endif
+
+/**
+ * <remarks>
+ * Ensure natives used be various fixes are included in the AMX.  Done before
+ * anything else, and using multiple lines, to try and mitigate the effects of
+ * ALS (these MUST include the original natives, not hooks).
+ * </remarks>
+ */
+
+#if _FIXES_NEW_COMPILER
+	_FIXES_HIDE_PAWNDOC(_FIXES_IncludeNatives);
+#else
+	forward _FIXES_IncludeNatives();
+
+	public _FIXES_IncludeNatives()
+	{
+		static FIXES_glEmpty[] = "";
+		// Do not put this on one line - this prevents macro replacements.
+		SetTimerEx
+			(FIXES_glEmpty, 0, false, FIXES_glEmpty);
+		// Do not put this on one line - this prevents macro replacements.
+		KillTimer
+			(0);
+	}
+#endif
+
+/**
+ * <remarks>
+ * _FIXES_IncludeStates
+ *
+ * Define the "_ALS" states used by hooks.
+ * </remarks>
+ */
+
+static stock _FIXES_IncludeStates() <_ALS : _ALS_x0, _ALS : _ALS_x1, _ALS : _ALS_x2, _ALS : _ALS_x3>
+{
+}
+
+static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
+{
+}
+
+/*
+
+    88888888888
+    88
+    88
+    88aaaaa      8b,dPPYba,   88       88  88,dPYba,,adPYba,   ,adPPYba,
+    88"""""      88P'   `"8a  88       88  88P'   "88"    "8a  I8[    ""
+    88           88       88  88       88  88      88      88   `"Y8ba,
+    88           88       88  "8a,   ,a88  88      88      88  aa    ]8I
+    88888888888  88       88   `"YbbdP'Y8  88      88      88  `"YbbdP"'
+
+
+
+*/
+
+/**
+ * <remarks>
  * Because the default SA:MP includes missed these.
  * </remarks>
  */
@@ -8532,175 +8701,6 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES___VEHICLE);
 #endif
-
-/**
- * <remarks>
- * <c>IS_JIT</c>
- *
- * True when the code is JIT compiled.
- * </remarks>
- */
-
-#if FIX_JIT
-	_FIXES_CONST_PAWNDOC(IS_JIT);
-	#define IS_JIT (_FIXES_gIsJIT)
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_IS_JIT);
-#endif
-
-/**
- * <remarks>
- * "FILTERSCRIPT" can't always be relied on to be set.  This is not a pre-
- * processor macro, but may be better than nothing (also used internally).
- * </remarks>
- */
-
-#if FIX_FILTERSCRIPT
-	_FIXES_CONST_PAWNDOC(IS_FILTERSCRIPT);
-	#define IS_FILTERSCRIPT (_FIXES_gIsFilterscript)
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_IS_FILTERSCRIPT);
-#endif
-
-/**
- * <remarks>
- * True when the code is running on Windows.  NOT a pre-processor macro, since
- * the OS you are running the code on can't be determined at compile-time.
- * </remarks>
- */
-
-#if FIX_OS
-	_FIXES_CONST_PAWNDOC(IS_WINDOWS);
-	#define IS_WINDOWS (_FIXES_gIsWindows)
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_IS_WINDOWS);
-#endif
-
-/**
- * <remarks>
- * True when the code is running on Linux.  NOT a pre-processor macro, since the
- * OS you are running the code on can't be determined at compile-time.
- * </remarks>
- */
-
-#if FIX_OS
-	_FIXES_CONST_PAWNDOC(IS_LINUX);
-	#define IS_LINUX (!_FIXES_gIsWindows)
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_IS_LINUX);
-#endif
-
-/*
-
-           db         88           ad88888ba
-          d88b        88          d8"     "8b
-         d8'`8b       88          Y8,
-        d8'  `8b      88          `Y8aaaaa,
-       d8YaaaaY8b     88            `"""""8b,
-      d8""""""""8b    88                  `8b
-     d8'        `8b   88          Y8a     a8P
-    d8'          `8b  88888888888  "Y88888P"
-
-
-
-*/
-
-#if !FIXES_NoYSI && !defined CHAIN_ORDER
-	#define CHAIN_ORDER() 0
-#endif
-
-/**
- * <remarks>
- * A method of pre-hooking callbacks to still have them called before any ones
- * re-written by y_hooks.
- * </remarks>
- */
-
-#if FIXES_NoYSI
-	_FIXES_HIDE_PAWNDOC(PRE_HOOK);
-#else
-	#if defined PRE_HOOK
-		#undef PRE_HOOK
-	#endif
-
-	_FIXES_FUNC_PAWNDOC(PRE_HOOK(const library[]));
-
-	#define PRE_HOOK(%0) forward @CO_%0();public @CO_%0(){return CHAIN_ORDER()+1;}
-
-	PRE_HOOK(On)
-#endif
-
-/**
- * <remarks>
- * Allows y_hooks to call things in the correct order when it exists.  Note that
- * this doesn't depend on y_hooks at all, it is merely detected by it.
- * </remarks>
- */
-
-#if FIXES_NoYSI
-	_FIXES_HIDE_PAWNDOC(CHAIN_ORDER);
-#else
-	#undef CHAIN_ORDER
-
-	_FIXES_FUNC_PAWNDOC(CHAIN_ORDER());
-	#define CHAIN_ORDER @CO_On
-#endif
-
-/**
- * <remarks>
- * Ensure natives used be various fixes are included in the AMX.  Done before
- * anything else, and using multiple lines, to try and mitigate the effects of
- * ALS (these MUST include the original natives, not hooks).
- * </remarks>
- */
-
-#if _FIXES_NEW_COMPILER
-	_FIXES_HIDE_PAWNDOC(_FIXES_IncludeNatives);
-#else
-	forward _FIXES_IncludeNatives();
-
-	public _FIXES_IncludeNatives()
-	{
-		static FIXES_glEmpty[] = "";
-		// Do not put this on one line - this prevents macro replacements.
-		SetTimerEx
-			(FIXES_glEmpty, 0, false, FIXES_glEmpty);
-		// Do not put this on one line - this prevents macro replacements.
-		KillTimer
-			(0);
-	}
-#endif
-
-/**
- * <remarks>
- * _FIXES_IncludeStates
- *
- * Define the "_ALS" states used by hooks.
- * </remarks>
- */
-
-static stock _FIXES_IncludeStates() <_ALS : _ALS_x0, _ALS : _ALS_x1, _ALS : _ALS_x2, _ALS : _ALS_x3>
-{
-}
-
-static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
-{
-}
-
-/*
-
-    88888888888
-    88
-    88
-    88aaaaa      8b,dPPYba,   88       88  88,dPYba,,adPYba,   ,adPPYba,
-    88"""""      88P'   `"8a  88       88  88P'   "88"    "8a  I8[    ""
-    88           88       88  88       88  88      88      88   `"Y8ba,
-    88           88       88  "8a,   ,a88  88      88      88  aa    ]8I
-    88888888888  88       88   `"YbbdP'Y8  88      88      88  `"YbbdP"'
-
-
-
-*/
 
 /**
  * <remarks>
