@@ -12479,6 +12479,189 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 
 /**
  * <remarks>
+ * Figure out which the first filterscript to be called is so that it can do the
+ * majority of the work.  More detail:  Several pieces of code for some fixes
+ * rely on things like blocking <symbolref name="OnPlayerUpdate" />.  This
+ * should be done in the first script in which
+ * <symbolref name="OnPlayerUpdate" /> is called only, so we need to find out
+ * in advance which script will be called first (at least out of all the fixed
+ * scripts).
+ * </remarks>
+ */
+
+#if !FIXES_Single
+	public _FIXES_DetermineOrderRemote()
+	{
+		// TODO: Graceful handoff.  I thought I was past all this rubbish!
+		if (!_FIXES_gIsFilterscript)
+		{
+			if (existproperty(5, FIXES_gscNoGMProperty))
+			{
+				return 0;
+			}
+			// Make sure certain data is synced with what the GM thinks it is.
+			// =============================
+			//  BEGIN: AllowInteriorWeapons
+			// =============================
+			#if FIX_AllowInteriorWeapons
+				CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, !(FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR));
+			#endif
+			// =============================
+			//  END: AllowInteriorWeapons
+			// =============================
+		}
+		if (existproperty(5, FIXES_gscOrderProperty))
+		{
+			// Either this is a Filter Script (1) and we don't want gamemodes
+			// (1) or this isn't a filterscript (0) and we do want gamemodes
+			// (0).  All other cases return here due to a logic mismatch.  This
+			// is to rectify the difference in call orders between
+			// "CallRemoteFunction" and normal callbacks.  Now DOESN'T end on
+			// the second time round for filterscripts to correctly pass on the
+			// data to GameModes.
+			if (!existproperty(5, FIXES_gscNoGMProperty) && _FIXES_gIsFilterscript == bool:getproperty(5, FIXES_gscOrderProperty))
+			{
+				// The game mode is not in charge, which means we are checking
+				// the filterscripts a second time and shouldn't be.
+				return 0;
+			}
+			// If this script was previously the owner, and we are not ending
+			// the game mode (in which case discard all data), and if we are
+			// only dealing with filterscripts or the gamemode is now the
+			// master.
+			if (FIXES_gsSettings & (e_FIXES_SETTINGS_IN_CHARGE | e_FIXES_SETTINGS_DROP_ALL_DATA) == e_FIXES_SETTINGS_IN_CHARGE)
+			{
+				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Was in charge");
+				// This script is currently in charge, but a new script has
+				// usurped it!  Pass all relevant data over to the new script.
+				// Also, this wasn't triggered by a game mode change (where we
+				// just want to dump and reset all data).  There is no need to
+				// reset the admin teleport data as that is always handled by
+				// the Game Mode, so it will either be correct, or it will be
+				// blank.
+				FIXES_gsSettings &= ~e_FIXES_SETTINGS_IN_CHARGE;
+				#if FIX_PutPlayerInVehicle || FIX_GameText || FIX_TogglePlayerControllable
+					_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
+					{
+						// =================
+						//  BEGIN: GameText
+						// =================
+						#if FIX_GameText
+							_FIXES_DestroyGameTextDraws(i);
+						#endif
+						// =================
+						//  END:   GameText
+						// =================
+
+						// =================================
+						//  BEGIN: TogglePlayerControllable
+						// =================================
+						#if FIX_TogglePlayerControllable
+							CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, i, !(FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_UNCONTROLLABLE));
+						#endif
+						// =================================
+						//  END:   TogglePlayerControllable
+						// =================================
+
+						// ===========================
+						//  BEGIN: PutPlayerInVehicle
+						// ===========================
+						#if FIX_PutPlayerInVehicle
+							if (FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_PUT_IN_VEHICLE)
+							{
+								CallRemoteFunction__(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iii, i, FIXES_gsVehicleSeatData[i] & 0x00FFFFFF, FIXES_gsVehicleSeatData[i] >>> 24);
+							}
+						#endif
+						// ===========================
+						//  END:   PutPlayerInVehicle
+						// ===========================
+					}
+				#endif
+
+				// =================
+				//  BEGIN: GameText
+				// =================
+				#if FIX_GameText
+					_FIXES_DestroyGameTextDraws(INVALID_PLAYER_ID);
+				#endif
+				// =================
+				//  END:   GameText
+				// =================
+
+				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Not in charge");
+				return 0;
+			}
+			else
+			{
+				FIXES_gsSettings &= ~e_FIXES_SETTINGS_IN_CHARGE;
+				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Not in charge");
+				return 0;
+			}
+		}
+		else if (!(FIXES_gsSettings & e_FIXES_SETTINGS_ENDING))
+		{
+			setproperty(5, FIXES_gscOrderProperty, _FIXES_gIsFilterscript);
+			#if FIXES_Debug
+				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
+				{
+					FIXES_PRINTF("_FIXES_DetermineOrderRemote: Already in charge");
+				}
+			#endif
+			FIXES_gsSettings |= e_FIXES_SETTINGS_IN_CHARGE;
+			FIXES_PRINTF("_FIXES_DetermineOrderRemote: Now in charge");
+
+			// =================
+			//  BEGIN: GameText
+			// =================
+			#if FIX_GameText
+				// Create all the relevant TextDraws.
+				_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
+				{
+					_FIXES_CreateGameTextDraws(playerid);
+				}
+				_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
+			#endif
+			// =================
+			//  END:   GameText
+			// =================
+			return 1;
+		}
+		else if (!(FIXES_gsSettings & e_FIXES_SETTINGS_ENDED))
+		{
+			// Only called when a filterscript that is currently master (and
+			// thus called first by "CallRemoteFunction") ends.  This doesn't
+			// get triggered when a gamemode is master, but that doesn't matter
+			// because in that case all the textdraws are destroyed anyway.
+
+			// =================
+			//  BEGIN: GameText
+			// =================
+			#if FIX_GameText
+					// Destroy all the relevant TextDraws.
+					_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
+					{
+						_FIXES_DestroyGameTextDraws(playerid);
+					}
+					_FIXES_DestroyGameTextDraws(INVALID_PLAYER_ID);
+			#endif
+			// =================
+			//  END:   GameText
+			// =================
+
+			#if FIXES_Debug
+				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Ending");
+			#endif
+
+			FIXES_gsSettings |= e_FIXES_SETTINGS_ENDED;
+		}
+		return 0;
+	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_DetermineOrderRemote);
+#endif
+
+/**
+ * <remarks>
  * Check if files outside <c>scriptfiles</c> can be accessed via
  * <c>DANGEROUS_SERVER_ROOT</c>.
  * </remarks>
@@ -20430,189 +20613,6 @@ native BAD_Kick(playerid) = Kick;
 	#define Kick__( FIXES_Kick(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_Kick);
-#endif
-
-/**
- * <remarks>
- * Figure out which the first filterscript to be called is so that it can do the
- * majority of the work.  More detail:  Several pieces of code for some fixes
- * rely on things like blocking <symbolref name="OnPlayerUpdate" />.  This
- * should be done in the first script in which
- * <symbolref name="OnPlayerUpdate" /> is called only, so we need to find out
- * in advance which script will be called first (at least out of all the fixed
- * scripts).
- * </remarks>
- */
-
-#if !FIXES_Single
-	public _FIXES_DetermineOrderRemote()
-	{
-		// TODO: Graceful handoff.  I thought I was past all this rubbish!
-		if (!_FIXES_gIsFilterscript)
-		{
-			if (existproperty(5, FIXES_gscNoGMProperty))
-			{
-				return 0;
-			}
-			// Make sure certain data is synced with what the GM thinks it is.
-			// =============================
-			//  BEGIN: AllowInteriorWeapons
-			// =============================
-			#if FIX_AllowInteriorWeapons
-				CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, !(FIXES_gsSettings & e_FIXES_SETTINGS_INTERIOR));
-			#endif
-			// =============================
-			//  END: AllowInteriorWeapons
-			// =============================
-		}
-		if (existproperty(5, FIXES_gscOrderProperty))
-		{
-			// Either this is a Filter Script (1) and we don't want gamemodes
-			// (1) or this isn't a filterscript (0) and we do want gamemodes
-			// (0).  All other cases return here due to a logic mismatch.  This
-			// is to rectify the difference in call orders between
-			// "CallRemoteFunction" and normal callbacks.  Now DOESN'T end on
-			// the second time round for filterscripts to correctly pass on the
-			// data to GameModes.
-			if (!existproperty(5, FIXES_gscNoGMProperty) && _FIXES_gIsFilterscript == bool:getproperty(5, FIXES_gscOrderProperty))
-			{
-				// The game mode is not in charge, which means we are checking
-				// the filterscripts a second time and shouldn't be.
-				return 0;
-			}
-			// If this script was previously the owner, and we are not ending
-			// the game mode (in which case discard all data), and if we are
-			// only dealing with filterscripts or the gamemode is now the
-			// master.
-			if (FIXES_gsSettings & (e_FIXES_SETTINGS_IN_CHARGE | e_FIXES_SETTINGS_DROP_ALL_DATA) == e_FIXES_SETTINGS_IN_CHARGE)
-			{
-				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Was in charge");
-				// This script is currently in charge, but a new script has
-				// usurped it!  Pass all relevant data over to the new script.
-				// Also, this wasn't triggered by a game mode change (where we
-				// just want to dump and reset all data).  There is no need to
-				// reset the admin teleport data as that is always handled by
-				// the Game Mode, so it will either be correct, or it will be
-				// blank.
-				FIXES_gsSettings &= ~e_FIXES_SETTINGS_IN_CHARGE;
-				#if FIX_PutPlayerInVehicle || FIX_GameText || FIX_TogglePlayerControllable
-					_FIXES_FOREACH(FIXES_gsPlayersIterator, i)
-					{
-						// =================
-						//  BEGIN: GameText
-						// =================
-						#if FIX_GameText
-							_FIXES_DestroyGameTextDraws(i);
-						#endif
-						// =================
-						//  END:   GameText
-						// =================
-
-						// =================================
-						//  BEGIN: TogglePlayerControllable
-						// =================================
-						#if FIX_TogglePlayerControllable
-							CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, i, !(FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_UNCONTROLLABLE));
-						#endif
-						// =================================
-						//  END:   TogglePlayerControllable
-						// =================================
-
-						// ===========================
-						//  BEGIN: PutPlayerInVehicle
-						// ===========================
-						#if FIX_PutPlayerInVehicle
-							if (FIXES_gsPlayerBools[i] & e_FIXES_BOOLS_PUT_IN_VEHICLE)
-							{
-								CallRemoteFunction__(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iii, i, FIXES_gsVehicleSeatData[i] & 0x00FFFFFF, FIXES_gsVehicleSeatData[i] >>> 24);
-							}
-						#endif
-						// ===========================
-						//  END:   PutPlayerInVehicle
-						// ===========================
-					}
-				#endif
-
-				// =================
-				//  BEGIN: GameText
-				// =================
-				#if FIX_GameText
-					_FIXES_DestroyGameTextDraws(INVALID_PLAYER_ID);
-				#endif
-				// =================
-				//  END:   GameText
-				// =================
-
-				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Not in charge");
-				return 0;
-			}
-			else
-			{
-				FIXES_gsSettings &= ~e_FIXES_SETTINGS_IN_CHARGE;
-				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Not in charge");
-				return 0;
-			}
-		}
-		else if (!(FIXES_gsSettings & e_FIXES_SETTINGS_ENDING))
-		{
-			setproperty(5, FIXES_gscOrderProperty, _FIXES_gIsFilterscript);
-			#if FIXES_Debug
-				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
-				{
-					FIXES_PRINTF("_FIXES_DetermineOrderRemote: Already in charge");
-				}
-			#endif
-			FIXES_gsSettings |= e_FIXES_SETTINGS_IN_CHARGE;
-			FIXES_PRINTF("_FIXES_DetermineOrderRemote: Now in charge");
-
-			// =================
-			//  BEGIN: GameText
-			// =================
-			#if FIX_GameText
-				// Create all the relevant TextDraws.
-				_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
-				{
-					_FIXES_CreateGameTextDraws(playerid);
-				}
-				_FIXES_CreateGameTextDraws(INVALID_PLAYER_ID);
-			#endif
-			// =================
-			//  END:   GameText
-			// =================
-			return 1;
-		}
-		else if (!(FIXES_gsSettings & e_FIXES_SETTINGS_ENDED))
-		{
-			// Only called when a filterscript that is currently master (and
-			// thus called first by "CallRemoteFunction") ends.  This doesn't
-			// get triggered when a gamemode is master, but that doesn't matter
-			// because in that case all the textdraws are destroyed anyway.
-
-			// =================
-			//  BEGIN: GameText
-			// =================
-			#if FIX_GameText
-					// Destroy all the relevant TextDraws.
-					_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
-					{
-						_FIXES_DestroyGameTextDraws(playerid);
-					}
-					_FIXES_DestroyGameTextDraws(INVALID_PLAYER_ID);
-			#endif
-			// =================
-			//  END:   GameText
-			// =================
-
-			#if FIXES_Debug
-				FIXES_PRINTF("_FIXES_DetermineOrderRemote: Ending");
-			#endif
-
-			FIXES_gsSettings |= e_FIXES_SETTINGS_ENDED;
-		}
-		return 0;
-	}
-#else
-	_FIXES_HIDE_PAWNDOC(_FIXES_DetermineOrderRemote);
 #endif
 
 /**
