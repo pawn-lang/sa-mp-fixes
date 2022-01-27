@@ -12662,6 +12662,39 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 
 /**
  * <remarks>
+ * Look up the streamer include version from the public variable by name.  This
+ * avoids a hard dependency on the include, plus avoids a change to include
+ * orders.
+ * </remarks>
+ */
+
+#if FIX_Streamer_HasIntData || FIX_Streamer_RemoveIntData
+	static _FIXES_GetStreamerVersion()
+	{
+		// Loosely based on code from YSI and amx_assembly.  Both have generic
+		// ways to read a public variable, but this code is fairly inlined for a
+		// single pubvar.
+		
+		
+		// As a C-string, this: `Streamer_IncludeFileVersion` becomes:
+		//
+		// Stre  = 0x65727453
+		// amer  = 0x72656D61
+		// _Inc  = 0x636E495F
+		// lude  = 0x6564756C
+		// File  = 0x656C6946
+		// Vers  = 0x73726556
+		// ion\0 = 0x006E6F69
+		//
+		
+	}
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_GetStreamerVersion);
+	#define _FIXES_GetStreamerVersion();
+#endif
+
+/**
+ * <remarks>
  * Check if files outside <c>scriptfiles</c> can be accessed via
  * <c>DANGEROUS_SERVER_ROOT</c>.
  * </remarks>
