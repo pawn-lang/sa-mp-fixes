@@ -6792,7 +6792,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !_FIXES_NPC
+#if _FIXES_NPC
 	#if defined FIX_Streamer_HasIntData
 		#undef FIX_Streamer_HasIntData
 	#endif
@@ -6832,7 +6832,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !_FIXES_NPC
+#if _FIXES_NPC
 	#if defined FIX_Streamer_RemoveIntData
 		#undef FIX_Streamer_RemoveIntData
 	#endif
@@ -12303,13 +12303,13 @@ static stock _FIXES_DetermineOS()
 	new
 		val;
 	// The code at address 0 is always `HALT`.
-	#emit LCTRL                0
+	#emit LCTRL        0
 	#emit MOVE.alt
-	#emit LCTRL                1
+	#emit LCTRL        1
 	#emit SUB.alt
-	#emit STOR.S.pri           val
-	#emit LREF.S.alt           val
-	#emit STOR.S.alt           val
+	#emit STOR.S.pri   val
+	#emit LREF.S.alt   val
+	#emit STOR.S.alt   val
 	_FIXES_gIsWindows = (val == 120);
 }
 
@@ -12362,9 +12362,9 @@ static stock _FIXES_Bernstein(const name[])
 static stock _FIXES_ConstMod(const &target, chr)
 {
 	#pragma unused target, chr
-	#emit LREF.S.pri target
-	#emit LOAD.S.alt chr
-	#emit SREF.S.alt target
+	#emit LREF.S.pri   target
+	#emit LOAD.S.alt   chr
+	#emit SREF.S.alt   target
 	#emit RETN
 	return 0;
 }
@@ -12668,14 +12668,55 @@ static stock _FIXES_RemoveInternal(array[], value, size)
  * </remarks>
  */
 
-#if FIX_Streamer_HasIntData || FIX_Streamer_RemoveIntData
-	static _FIXES_GetStreamerVersion()
+	static
+#if !FIX_Streamer_HasIntData && !FIX_Streamer_RemoveIntData
+	stock
+#endif
+	_FIXES_GetStreamerVersion()
+{
+	// Loosely based on code from YSI and amx_assembly.  Both have generic ways
+	// to read a public variable, but this code is fairly inlined for a single
+	// pubvar.
+	new
+		start,
+		end,
+		addr,
+		val;
+
+	// Get the pointer to the start of the tags table.
+	#emit LCTRL        1
+	#emit NEG
+	#emit ADD.C        48
+	#emit STOR.S.pri   end
+	#emit LREF.S.alt   end
+	#emit LCTRL        1
+	#emit NEG
+	#emit ADD
+	#emit ADD.C        4
+	#emit STOR.S.pri   end
+
+	// Get the pointer to the start of the pubvar table.
+	#emit LCTRL        1
+	#emit NEG
+	#emit ADD.C        44
+	#emit STOR.S.pri   start
+	#emit LREF.S.alt   start
+	#emit LCTRL        1
+	#emit NEG
+	#emit ADD
+	#emit ADD.C        4
+	#emit STOR.S.pri   start
+
+	// Loop over all pubvars.
+	for (; start != end; start += 8)
 	{
-		// Loosely based on code from YSI and amx_assembly.  Both have generic
-		// ways to read a public variable, but this code is fairly inlined for a
-		// single pubvar.
-		
-		
+		// Get the name table offset.
+		#emit LREF.S.alt   start
+		#emit LCTRL        1
+		#emit NEG
+		#emit ADD
+		#emit STOR.S.pri   addr
+
 		// As a C-string, this: `Streamer_IncludeFileVersion` becomes:
 		//
 		// Stre  = 0x65727453
@@ -12686,10 +12727,46 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 		// Vers  = 0x73726556
 		// ion\0 = 0x006E6F69
 		//
-		
+		#emit LREF.S.pri   addr
+		#emit STOR.S.pri   val
+		if (val != 0x65727453) continue; // "Stre"
+		addr += 4;
+		#emit LREF.S.pri   addr
+		#emit STOR.S.pri   val
+		if (val != 0x72656D61) continue; // "amer"
+		addr += 4;
+		#emit LREF.S.pri   addr
+		#emit STOR.S.pri   val
+		if (val != 0x636E495F) continue; // "_Inc"
+		addr += 4;
+		#emit LREF.S.pri   addr
+		#emit STOR.S.pri   val
+		if (val != 0x6564756C) continue; // "lude"
+		addr += 4;
+		#emit LREF.S.pri   addr
+		#emit STOR.S.pri   val
+		if (val != 0x656C6946) continue; // "File"
+		addr += 4;
+		#emit LREF.S.pri   addr
+		#emit STOR.S.pri   val
+		if (val != 0x73726556) continue; // "Vers"
+		addr += 4;
+		#emit LREF.S.pri   addr
+		#emit STOR.S.pri   val
+		if (val != 0x006E6F69) continue; // "ion\0"
+
+		// Found the correct entry, get the value.
+		start -= 4;
+		#emit LREF.S.pri   start
+		#emit STOR.S.pri   addr
+		#emit LREF.S.pri   addr
+		#emit STOR.S.pri   val
+		FIXES_gsStreamer_IncludeVersion = val;
+		return;
 	}
-#else
-	_FIXES_HIDE_PAWNDOC(_FIXES_GetStreamerVersion);
+}
+
+#if !FIX_Streamer_HasIntData && !FIX_Streamer_RemoveIntData
 	#define _FIXES_GetStreamerVersion();
 #endif
 
@@ -14201,6 +14278,7 @@ public OnJITCompile()
 		_FIXES_gIsFilterscript = false;
 		_FIXES_DetermineOS();
 		_FIXES_CheckServerRoot();
+		_FIXES_GetStreamerVersion();
 
 		#if defined On_NPCModeInit
 			return On_NPCModeInit();
@@ -14243,6 +14321,7 @@ public OnJITCompile()
 			_FIXES_gIsFilterscript = true;
 			_FIXES_DetermineOS();
 			_FIXES_CheckServerRoot();
+			_FIXES_GetStreamerVersion();
 		#if FIX_OnRconCommand || FIX_OnClientCheckResponse
 			_FIXES_UnloadRconFixFS(),
 		#endif
@@ -14410,6 +14489,7 @@ public OnJITCompile()
 			// ======================
 
 				_FIXES_CheckServerRoot();
+				_FIXES_GetStreamerVersion();
 			#if FIX_OnRconCommand || FIX_OnClientCheckResponse
 				_FIXES_UnloadRconFixFS(),
 			#endif
