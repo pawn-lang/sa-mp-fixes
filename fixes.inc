@@ -6763,19 +6763,99 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
 	static _FIXES_OPTION FIX_GetPlayerName = _FIXES_DEFAULT;
-	#define FIX_GetPlayerName                _FIXES_DEFAULT
+	#define FIX_GetPlayerName                    _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_GetPlayerName)
 	#undef FIX_GetPlayerName
 	static stock FIX_GetPlayerName = 2;
-	#define FIX_GetPlayerName                (2)
+	#define FIX_GetPlayerName                    (2)
 #elseif FIX_GetPlayerName
 	#undef FIX_GetPlayerName
 	static stock FIX_GetPlayerName = 1;
-	#define FIX_GetPlayerName                (1)
+	#define FIX_GetPlayerName                    (1)
 #else
 	#undef FIX_GetPlayerName
 	static stock FIX_GetPlayerName = 0;
-	#define FIX_GetPlayerName                (0)
+	#define FIX_GetPlayerName                    (0)
+#endif
+
+/**
+ * <fix name="Streamer_HasIntData">
+ *     <problem>
+ *         Int data functions expect more parameters than they specify.
+ *     </problem>
+ *     <solution>
+ *         Pass a hidden fake one if the version is right.
+ *     </solution>
+ *     <see>FIXES_streamer</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <post href="https://github.com/samp-incognito/samp-streamer-plugin/pull/380" />
+ * </fix>
+ */
+
+#if !_FIXES_NPC
+	#if defined FIX_Streamer_HasIntData
+		#undef FIX_Streamer_HasIntData
+	#endif
+	static stock FIX_Streamer_HasIntData = 0;
+	#define FIX_Streamer_HasIntData              (0)
+#elseif !defined FIX_Streamer_HasIntData
+	#define _FIXES_WARNING 130
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_Streamer_HasIntData = _FIXES_DEFAULT;
+	#define FIX_Streamer_HasIntData              _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_Streamer_HasIntData)
+	#undef FIX_Streamer_HasIntData
+	static stock FIX_Streamer_HasIntData = 2;
+	#define FIX_Streamer_HasIntData              (2)
+#elseif FIX_Streamer_HasIntData
+	#undef FIX_Streamer_HasIntData
+	static stock FIX_Streamer_HasIntData = 1;
+	#define FIX_Streamer_HasIntData              (1)
+#else
+	#undef FIX_Streamer_HasIntData
+	static stock FIX_Streamer_HasIntData = 0;
+	#define FIX_Streamer_HasIntData              (0)
+#endif
+
+/**
+ * <fix name="Streamer_RemoveIntData">
+ *     <problem>
+ *         Int data functions expect more parameters than they specify.
+ *     </problem>
+ *     <solution>
+ *         Pass a hidden fake one if the version is right.
+ *     </solution>
+ *     <see>FIXES_streamer</see>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ *     <post href="https://github.com/samp-incognito/samp-streamer-plugin/pull/380" />
+ * </fix>
+ */
+
+#if !_FIXES_NPC
+	#if defined FIX_Streamer_RemoveIntData
+		#undef FIX_Streamer_RemoveIntData
+	#endif
+	static stock FIX_Streamer_RemoveIntData = 0;
+	#define FIX_Streamer_RemoveIntData           (0)
+#elseif !defined FIX_Streamer_RemoveIntData
+	#define _FIXES_WARNING 131
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_Streamer_RemoveIntData = _FIXES_DEFAULT;
+	#define FIX_Streamer_RemoveIntData           _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_Streamer_RemoveIntData)
+	#undef FIX_Streamer_RemoveIntData
+	static stock FIX_Streamer_RemoveIntData = 2;
+	#define FIX_Streamer_RemoveIntData           (2)
+#elseif FIX_Streamer_RemoveIntData
+	#undef FIX_Streamer_RemoveIntData
+	static stock FIX_Streamer_RemoveIntData = 1;
+	#define FIX_Streamer_RemoveIntData           (1)
+#else
+	#undef FIX_Streamer_RemoveIntData
+	static stock FIX_Streamer_RemoveIntData = 0;
+	#define FIX_Streamer_RemoveIntData           (0)
 #endif
 
 /*
@@ -7865,6 +7945,15 @@ _FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS);
 
 /**
  * <remarks>
+ * Streamer plugin tags.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
+#define _FIXES_STREAMER_ALL_TAGS {DynamicObject,DynamicPickup,DynamicCP,DynamicRaceCP,DynamicMapIcon,DynamicText3D,Text3D,DynamicArea,DynamicActor,_}
+
+/**
+ * <remarks>
  * Because the default SA:MP includes missed these.
  * </remarks>
  */
@@ -8879,6 +8968,14 @@ _FIXES_STATIC_STOCK
 	 * </remarks>
 	 */
 	FIXES_gsTrimChr;
+
+_FIXES_STATIC_STOCK
+	/**
+	 * <remarks>
+	 * Local copy of the streamer version, read from the public variable.
+	 * </remarks>
+	 */
+	FIXES_gsStreamer_IncludeVersion;
 
 #if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 _FIXES_STATIC_STOCK
@@ -21361,6 +21458,82 @@ native BAD_random(max) = random;
 #endif
 
 /**
+ * <fixes>streamer</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_streamer
+	#error _ALS_streamer defined
+#endif
+native bool:BAD_Streamer_HasIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0) = Streamer_HasIntData;
+native bool:Streamer_HasIntData__(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_HasIntData;
+
+/**
+ * <fixes>streamer</fixes>
+ */
+
+#if FIX_Streamer_HasIntData
+	stock bool:FIXES_Streamer_HasIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data)
+	{
+		assert(FIXES_gsStreamer_IncludeVersion != 0);
+		// This isn't a compile-time constant, so we can't use `#if`.
+		if (FIXES_gsStreamer_IncludeVersion > 0x295)
+		{
+			return bool:Streamer_HasIntData__(type, id, data);
+		}
+		// https://github.com/samp-incognito/samp-streamer-plugin/pull/380
+		return BAD_Streamer_HasIntData(type, id, data);
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_Streamer_HasIntData
+		#define Streamer_HasIntData( FIXES_Streamer_HasIntData(
+	#endif
+
+	#define _ALS_Streamer_HasIntData__
+	#define Streamer_HasIntData__( FIXES_Streamer_HasIntData(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_Streamer_HasIntData);
+#endif
+
+/**
+ * <fixes>streamer</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_streamer
+	#error _ALS_streamer defined
+#endif
+native bool:BAD_Streamer_RemoveIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0) = Streamer_RemoveIntData;
+native bool:Streamer_RemoveIntData__(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_RemoveIntData;
+
+/**
+ * <fixes>streamer</fixes>
+ */
+
+#if FIX_Streamer_RemoveIntData
+	stock bool:FIXES_Streamer_RemoveIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data)
+	{
+		assert(FIXES_gsStreamer_IncludeVersion != 0);
+		// This isn't a compile-time constant, so we can't use `#if`.
+		if (FIXES_gsStreamer_IncludeVersion > 0x295)
+		{
+			return bool:Streamer_RemoveIntData__(type, id, data);
+		}
+		// https://github.com/samp-incognito/samp-streamer-plugin/pull/380
+		return BAD_Streamer_RemoveIntData(type, id, data);
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_Streamer_RemoveIntData
+		#define Streamer_RemoveIntData( FIXES_Streamer_RemoveIntData(
+	#endif
+
+	#define _ALS_Streamer_RemoveIntData__
+	#define Streamer_RemoveIntData__( FIXES_Streamer_RemoveIntData(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_Streamer_RemoveIntData);
+#endif
+
+/**
  * <fixes>sleep</fixes>
  */
 
@@ -23886,6 +24059,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef _FIXES_FIRST_PASS
 #undef _FIXES_STATIC_STOCK_CONST
 #undef _FIXES_STATIC_STOCK
+#undef _FIXES_STREAMER_ALL_TAGS
 #if !FIXES_NoYSI
 	#undef _FIXES_FORWARD
 #endif
