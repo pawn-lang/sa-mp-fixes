@@ -9992,8 +9992,16 @@ _FIXES_STATIC_STOCK_CONST
 	 * Error shown when server.cfg can't be read from an NPC mode.
 	 * </remarks>
 	 */
-	FIXES_gscNoNPCConfigs[] = "\7\7\7\7\7"                                             \
-		"*** fixes.inc error: Could not get .cfg \"%s\" from NPC mode.";
+	FIXES_gscNoNPCConfigs[] = "\7\7\7" \
+		"*** fixes.inc warning: Could not get .cfg \"%s\" from NPC mode.",
+
+	/**
+	 * <remarks>
+	 * Error shown when server.cfg can't be read from an NPC mode.
+	 * </remarks>
+	 */
+	FIXES_gscUnknownStreamerVersion[] = "\7\7\7" \
+		"*** fixes.inc warning: Unknown streamer version; include <streamer.inc>.";
 
 #if !FIXES_Single
 _FIXES_STATIC_STOCK_CONST
@@ -21587,16 +21595,23 @@ native bool:_FIXES_Streamer_HasIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data
 #if FIX_Streamer_HasIntData
 	stock bool:FIXES_Streamer_HasIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data)
 	{
-		printf("FIXES_Streamer_HasIntData: %d %d %d", type, id, data);
-		printf("FIXES_gsStreamer_IncludeVersion: %08x", FIXES_gsStreamer_IncludeVersion);
 		assert(FIXES_gsStreamer_IncludeVersion != 0);
 		// This isn't a compile-time constant, so we can't use `#if`.
 		if (FIXES_gsStreamer_IncludeVersion > 0x295)
 		{
 			return bool:_FIXES_Streamer_HasIntData_B(type, id, data);
 		}
-		// https://github.com/samp-incognito/samp-streamer-plugin/pull/380
-		return _FIXES_Streamer_HasIntData_A(type, id, data);
+		else if (FIXES_gsStreamer_IncludeVersion > 0)
+		{
+			// https://github.com/samp-incognito/samp-streamer-plugin/pull/380
+			return _FIXES_Streamer_HasIntData_A(type, id, data);
+		}
+		else
+		{
+			return
+				printf(FIXES_gscUnknownStreamerVersion),
+				false;
+		}
 	}
 
 	#if _FIXES_SAMP
@@ -21635,8 +21650,17 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 		{
 			return bool:_FIXES_Streamer_RemoveIntData_B(type, id, data);
 		}
-		// https://github.com/samp-incognito/samp-streamer-plugin/pull/380
-		return _FIXES_Streamer_RemoveIntData_A(type, id, data);
+		else if (FIXES_gsStreamer_IncludeVersion > 0)
+		{
+			// https://github.com/samp-incognito/samp-streamer-plugin/pull/380
+			return _FIXES_Streamer_RemoveIntData_A(type, id, data);
+		}
+		else
+		{
+			return
+				printf(FIXES_gscUnknownStreamerVersion),
+				false;
+		}
 	}
 
 	#if _FIXES_SAMP
@@ -23032,7 +23056,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 					0.0;
 			#else
 				return
-					printf("*** fixes.inc error: Could not get .cfg \"%s\".", varname),
+					printf("\7\7\7\7\7*** fixes.inc warning: Could not get .cfg \"%s\".", varname),
 					0.0;
 			#endif
 		}
