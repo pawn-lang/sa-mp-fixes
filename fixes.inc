@@ -21587,14 +21587,16 @@ native bool:_FIXES_Streamer_HasIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data
 #if FIX_Streamer_HasIntData
 	stock bool:FIXES_Streamer_HasIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data)
 	{
+		printf("FIXES_Streamer_HasIntData: %d %d %d", type, id, data);
+		printf("FIXES_gsStreamer_IncludeVersion: %08x", FIXES_gsStreamer_IncludeVersion);
 		assert(FIXES_gsStreamer_IncludeVersion != 0);
 		// This isn't a compile-time constant, so we can't use `#if`.
 		if (FIXES_gsStreamer_IncludeVersion > 0x295)
 		{
-			return bool:_FIXES_Streamer_HasIntData_A(type, id, data);
+			return bool:_FIXES_Streamer_HasIntData_B(type, id, data);
 		}
 		// https://github.com/samp-incognito/samp-streamer-plugin/pull/380
-		return _FIXES_Streamer_HasIntData_B(type, id, data);
+		return _FIXES_Streamer_HasIntData_A(type, id, data);
 	}
 
 	#if _FIXES_SAMP
@@ -21631,10 +21633,10 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 		// This isn't a compile-time constant, so we can't use `#if`.
 		if (FIXES_gsStreamer_IncludeVersion > 0x295)
 		{
-			return bool:_FIXES_Streamer_RemoveIntData_A(type, id, data);
+			return bool:_FIXES_Streamer_RemoveIntData_B(type, id, data);
 		}
 		// https://github.com/samp-incognito/samp-streamer-plugin/pull/380
-		return _FIXES_Streamer_RemoveIntData_B(type, id, data);
+		return _FIXES_Streamer_RemoveIntData_A(type, id, data);
 	}
 
 	#if _FIXES_SAMP
