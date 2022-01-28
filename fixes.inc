@@ -21600,6 +21600,8 @@ native bool:Streamer_HasIntData__(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Str
 	#if _FIXES_SAMP
 		#define _ALS_Streamer_HasIntData
 		#define Streamer_HasIntData( FIXES_Streamer_HasIntData(
+		// Don't break future native declarations.
+		#define FIXES_Streamer_HasIntData(type,%9\32;STREAMER_ALL_TAGS:id,%9\32;data); _FIXES_Streamer_HasIntData();
 	#endif
 
 	#define _ALS_Streamer_HasIntData__
@@ -21638,6 +21640,8 @@ native bool:Streamer_RemoveIntData__(type, _FIXES_STREAMER_ALL_TAGS:id, data) = 
 	#if _FIXES_SAMP
 		#define _ALS_Streamer_RemoveIntData
 		#define Streamer_RemoveIntData( FIXES_Streamer_RemoveIntData(
+		// Don't break future native declarations.
+		#define FIXES_Streamer_RemoveIntData(type,%9\32;STREAMER_ALL_TAGS:id,%9\32;data); _FIXES_Streamer_RemoveIntData();
 	#endif
 
 	#define _ALS_Streamer_RemoveIntData__
