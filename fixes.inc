@@ -21577,8 +21577,8 @@ native BAD_random(max) = random;
 #if _FIXES_SAMP && defined _ALS_streamer
 	#error _ALS_streamer defined
 #endif
-native bool:BAD_Streamer_HasIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0) = Streamer_HasIntData;
-native bool:Streamer_HasIntData__(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_HasIntData;
+native bool:_FIXES_Streamer_HasIntData_A(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0) = Streamer_HasIntData;
+native bool:_FIXES_Streamer_HasIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_HasIntData;
 
 /**
  * <fixes>streamer</fixes>
@@ -21591,10 +21591,10 @@ native bool:Streamer_HasIntData__(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Str
 		// This isn't a compile-time constant, so we can't use `#if`.
 		if (FIXES_gsStreamer_IncludeVersion > 0x295)
 		{
-			return bool:Streamer_HasIntData__(type, id, data);
+			return bool:_FIXES_Streamer_HasIntData_A(type, id, data);
 		}
 		// https://github.com/samp-incognito/samp-streamer-plugin/pull/380
-		return BAD_Streamer_HasIntData(type, id, data);
+		return _FIXES_Streamer_HasIntData_B(type, id, data);
 	}
 
 	#if _FIXES_SAMP
@@ -21617,8 +21617,8 @@ native bool:Streamer_HasIntData__(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Str
 #if _FIXES_SAMP && defined _ALS_streamer
 	#error _ALS_streamer defined
 #endif
-native bool:BAD_Streamer_RemoveIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0) = Streamer_RemoveIntData;
-native bool:Streamer_RemoveIntData__(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_RemoveIntData;
+native bool:_FIXES_Streamer_RemoveIntData_A(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0) = Streamer_RemoveIntData;
+native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_RemoveIntData;
 
 /**
  * <fixes>streamer</fixes>
@@ -21631,10 +21631,10 @@ native bool:Streamer_RemoveIntData__(type, _FIXES_STREAMER_ALL_TAGS:id, data) = 
 		// This isn't a compile-time constant, so we can't use `#if`.
 		if (FIXES_gsStreamer_IncludeVersion > 0x295)
 		{
-			return bool:Streamer_RemoveIntData__(type, id, data);
+			return bool:_FIXES_Streamer_RemoveIntData_A(type, id, data);
 		}
 		// https://github.com/samp-incognito/samp-streamer-plugin/pull/380
-		return BAD_Streamer_RemoveIntData(type, id, data);
+		return _FIXES_Streamer_RemoveIntData_B(type, id, data);
 	}
 
 	#if _FIXES_SAMP
