@@ -16136,7 +16136,7 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 			{
 				new
 					seat = GetPlayerVehicleSeat__(playerid);
-				ClearAnimations__(playerid, 1);
+				ClearAnimations__(playerid, true);
 				new
 					ret = SetPlayerSkin__(playerid, skinid);
 				PutPlayerInVehicle__(playerid, vehicleid, seat);
@@ -16548,7 +16548,7 @@ native BAD_GetWeaponName(weaponid, weapon[], len = sizeof (weapon)) = GetWeaponN
 
 					if (_FIXES_NO_RANGE(animation, 1007, 1060 + 1) && _FIXES_NO_RANGE(animation, 225, 233 + 1))
 					{
-						ClearAnimations__(playerid, 1);
+						ClearAnimations__(playerid, true);
 						FIXES_gsPSTimer[playerid] = 0;
 					}
 				}
@@ -16982,7 +16982,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if !FIX_SetTimer
 	static
 #endif
-	stock FIXES_SetTimer(const funcname[], interval, repeating)
+	stock FIXES_SetTimer(const funcname[], interval, bool:repeating)
 	{
 		#if FIXES_CorrectInvalidTimerID
 			new
@@ -17049,7 +17049,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if !FIX_SetTimer || _FIXES_NPC
 	static
 #endif
-	stock FIXES_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...)
+	stock FIXES_SetTimerEx(const funcname[], interval, bool:repeating, const format[], {Float,_}:...)
 	{
 			#pragma unused funcname, interval, repeating, format
 
@@ -17201,7 +17201,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 		FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon__(playerid),
 		FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
 		SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST),
-		ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, 0, 0, 0, 0, 1, 1),
+		ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, false, false, false, false, 1, true),
 		SetTimerEx__(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
 	}
 
@@ -19821,27 +19821,27 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
  */
 
 #if FIX_ClearAnimations || FIX_ClearAnimations_2
-	stock FIXES_ClearAnimations(playerid, forcesync = 0)
+	stock FIXES_ClearAnimations(playerid, bool:forceSync = false)
 	{
 		#if FIX_ClearAnimations || FIX_ClearAnimations_2
 			if (IsPlayerInAnyVehicle__(playerid))
 		#endif
 		#if FIX_ClearAnimations
 			{
-				return ApplyAnimation__(playerid, "PED", "CAR_SIT", 4.0, 0, 0, 0, 0, 1, forcesync);
+				return ApplyAnimation__(playerid, "PED", "CAR_SIT", 4.0, false, false, false, false, 1, forceSync);
 			}
 		#endif
 		#if FIX_ClearAnimations + FIX_ClearAnimations_2 == 1 // XOR
 			{
-				return ClearAnimations__(playerid, forcesync);
+				return ClearAnimations__(playerid, forceSync);
 			}
 		#endif
 		#if FIX_ClearAnimations_2
 			new
-				ret = ClearAnimations__(playerid, forcesync);
-			ApplyAnimation__(playerid, "PED", "IDLE_STANCE", 4.0, 0, 0, 0, 0, 1, forcesync);
-			ApplyAnimation__(playerid, "PED", "IDLE_CHAT", 4.0, 0, 0, 0, 0, 1, forcesync);
-			ApplyAnimation__(playerid, "PED", "WALK_PLAYER", 4.0, 0, 0, 0, 0, 1, forcesync);
+				ret = ClearAnimations__(playerid, forceSync);
+			ApplyAnimation__(playerid, "PED", "IDLE_STANCE", 4.0, false, false, false, false, 1, forceSync);
+			ApplyAnimation__(playerid, "PED", "IDLE_CHAT", 4.0, false, false, false, false, 1, forceSync);
+			ApplyAnimation__(playerid, "PED", "WALK_PLAYER", 4.0, false, false, false, false, 1, forceSync);
 			return ret;
 		#endif
 	}
@@ -21036,7 +21036,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  */
 
 #if FIX_ApplyAnimation_2
-	static stock _FIXES_ApplyAnimationDelay(const animname[], playerid, idx, Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+	static stock _FIXES_ApplyAnimationDelay(playerid, idx, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync)
 	{
 		if (FIXES_gsPlayerAnimTimer[playerid])
 		{
@@ -21047,8 +21047,8 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		{
 			FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
 			FIXES_gsPlayerAnimName[playerid << 6] = '\0',
-			strcat(FIXES_gsPlayerAnimName[playerid << 6], animname, 64),
-			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx__("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
+			strcat(FIXES_gsPlayerAnimName[playerid << 6], animationName, 64),
+			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx__("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, delta, loop, lockX, lockY, freeze, time, forceSync);
 		}
 	}
 #else
@@ -21060,11 +21060,11 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  */
 
 #if FIX_ApplyAnimation_2
-	forward _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync);
+	forward _FIXES_ApplyAnimation(playerid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync);
 
-	public _FIXES_ApplyAnimation(playerid, animlib, Float:fDelta, loop, lockx, locky, freeze, time, forcesync)
+	public _FIXES_ApplyAnimation(playerid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync)
 	{
-		ApplyAnimation__(playerid, FIXES_gscAnimLib[animlib], FIXES_gsPlayerAnimName[playerid << 6], fDelta, loop, lockx, locky, freeze, time, forcesync),
+		ApplyAnimation__(playerid, FIXES_gscAnimLib[animationLibrary], FIXES_gsPlayerAnimName[playerid << 6], delta, loop, lockX, lockY, freeze, time, forceSync),
 		FIXES_gsPlayerAnimTimer[playerid] = 0;
 	}
 #else
@@ -21091,17 +21091,17 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  */
 
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
-	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animlib[], _FIXES_MAYBE_CONST animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync = false)
 	{
 		new
-			idx = _FIXES_GetAnimLibIndex(animlib);
+			idx = _FIXES_GetAnimLibIndex(animationLibrary);
 
 		if (~idx) // != -1
 		{
 			#if FIX_ApplyAnimation_2
-				_FIXES_ApplyAnimationDelay(animname, playerid, idx, fDelta, loop, lockx, locky, freeze, time, forcesync);
+				_FIXES_ApplyAnimationDelay(playerid, idx, animationName, idx, delta, loop, lockX, lockY, freeze, time, forceSync);
 			#endif
-				return ApplyAnimation__(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
+				return ApplyAnimation__(playerid, animationLibrary, animationName, delta, loop, lockX, lockY, freeze, time, forceSync);
 		}
 
 		return 0;
@@ -21127,7 +21127,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  */
 
 #if FIX_ApplyActorAnimation_2
-	static stock _FIXES_ApplyActorAnimationDelay(const animname[], actorid, idx, Float:fDelta, loop, lockx, locky, freeze, time)
+	static stock _FIXES_ApplyActorAnimationDelay(actorid, idx, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
 	{
 		if (FIXES_gsActorAnimTimer[actorid])
 		{
@@ -21138,8 +21138,8 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 		{
 			FIXES_gsActorAnimLibs[actorid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
 			FIXES_gsActorAnimName[actorid << 6] = '\0',
-			strcat(FIXES_gsActorAnimName[actorid << 6], animname, 64),
-			FIXES_gsActorAnimTimer[actorid] = SetTimerEx__("_FIXES_ApplyActorAnimation", 350, false, "ddfdddddd", actorid, idx, fDelta, loop, lockx, locky, freeze, time);
+			strcat(FIXES_gsActorAnimName[actorid << 6], animationName, 64),
+			FIXES_gsActorAnimTimer[actorid] = SetTimerEx__("_FIXES_ApplyActorAnimation", 350, false, "ddfdddddd", actorid, idx, delta, loop, lockX, lockY, freeze, time);
 		}
 	}
 #else
@@ -21151,11 +21151,11 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  */
 
 #if FIX_ApplyActorAnimation_2
-	forward _FIXES_ApplyActorAnimation(actorid, animlib, Float:fDelta, loop, lockx, locky, freeze, time);
+	forward _FIXES_ApplyActorAnimation(actorid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time);
 
-	public _FIXES_ApplyActorAnimation(actorid, animlib, Float:fDelta, loop, lockx, locky, freeze, time)
+	public _FIXES_ApplyActorAnimation(actorid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
 	{
-		ApplyActorAnimation__(actorid, FIXES_gscAnimLib[animlib], FIXES_gsActorAnimName[actorid << 6], fDelta, loop, lockx, locky, freeze, time),
+		ApplyActorAnimation__(actorid, FIXES_gscAnimLib[animationLibrary], FIXES_gsActorAnimName[actorid << 6], delta, loop, lockX, lockY, freeze, time),
 		FIXES_gsActorAnimTimer[actorid] = 0;
 	}
 #else
@@ -21182,17 +21182,17 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
  */
 
 #if FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
-	stock FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animlib[], _FIXES_MAYBE_CONST animname[], Float:fDelta, loop, lockx, locky, freeze, time)
+	stock FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
 	{
 		new
-			idx = _FIXES_GetAnimLibIndex(animlib);
+			idx = _FIXES_GetAnimLibIndex(animationLibrary);
 
 		if (~idx) // != -1
 		{
 			#if FIX_ApplyActorAnimation_2
-				_FIXES_ApplyActorAnimationDelay(animname, actorid, idx, fDelta, loop, lockx, locky, freeze, time);
+				_FIXES_ApplyActorAnimationDelay(actorid, idx, animationName, delta, loop, lockX, lockY, freeze, time);
 			#endif
-				return ApplyActorAnimation__(actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time);
+				return ApplyActorAnimation__(actorid, animationLibrary, animationName, delta, loop, lockX, lockY, freeze, time);
 		}
 
 		return 0;
@@ -22055,7 +22055,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
  */
 
 #if FIX_SetPlayerCamera
-	stock FIXES_TogglePlayerSpectating(playerid, toggle)
+	stock FIXES_TogglePlayerSpectating(playerid, bool:toggle)
 	{
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
@@ -22731,7 +22731,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 
 #if FIX_GetPlayerWeather || (FIX_API && !_FIXES_NPC)
 	#if FIXES_Single
-		stock FIXES_TogglePlayerClock(playerid, toggle)
+		stock FIXES_TogglePlayerClock(playerid, bool:toggle)
 		{
 			if (TogglePlayerClock__(playerid, toggle))
 			{
@@ -22748,9 +22748,9 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 			return 0;
 		}
 	#else
-		forward _FIXES_TogglePlayerClock(playerid, toggle);
+		forward _FIXES_TogglePlayerClock(playerid, bool:toggle);
 
-		stock FIXES_TogglePlayerClock(playerid, toggle)
+		stock FIXES_TogglePlayerClock(playerid, bool:toggle)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -22761,7 +22761,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 			return 0;
 		}
 
-		public _FIXES_TogglePlayerClock(playerid, toggle)
+		public _FIXES_TogglePlayerClock(playerid, bool:toggle)
 		{
 			if (toggle)
 			{
