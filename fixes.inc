@@ -15104,7 +15104,7 @@ static stock _FIXES_CountFilterscripts()
 
 #if FIX_LocalNPCNatives
 	_FIXES_FUNC_PAWNDOC(FIXES_GetPlayerPoolSizeNPC());
-	#define FIXES_GetPlayerPoolSizeNPC() (MAX_PLAYERS + 1)
+	#define FIXES_GetPlayerPoolSizeNPC() (MAX_PLAYERS - 1)
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetPlayerPoolSize
@@ -15131,7 +15131,7 @@ static stock _FIXES_CountFilterscripts()
 
 #if FIX_LocalNPCNatives
 	_FIXES_FUNC_PAWNDOC(FIXES_GetVehiclePoolSizeNPC());
-	#define FIXES_GetVehiclePoolSizeNPC() (MAX_VEHICLES + 1)
+	#define FIXES_GetVehiclePoolSizeNPC() (MAX_VEHICLES - 1)
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetVehiclePoolSize
@@ -15158,7 +15158,7 @@ static stock _FIXES_CountFilterscripts()
 
 #if FIX_LocalNPCNatives
 	_FIXES_FUNC_PAWNDOC(FIXES_GetActorPoolSizeNPC());
-	#define FIXES_GetActorPoolSizeNPC() (MAX_ACTORS + 1)
+	#define FIXES_GetActorPoolSizeNPC() (MAX_ACTORS - 1)
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetActorPoolSize
@@ -23228,9 +23228,6 @@ native bool:BAD_ispacked(const string[]) = ispacked;
  * <fixes>GetPlayerPoolSize</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_GetPlayerPoolSize
-	#error _ALS_GetPlayerPoolSize defined
-#endif
 native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 
 /**

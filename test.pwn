@@ -1,4 +1,4 @@
-#include <a_samp>
+#include <a_npc>
 
 #undef MAX_PLAYERS
 #define MAX_PLAYERS (100)
