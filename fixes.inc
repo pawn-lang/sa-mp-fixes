@@ -7528,7 +7528,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK);
  */
 
 #if defined OBJECT_MATERIAL_TEXT_ALIGN
-	_FIXES_HIDE_PAWNDOC(FIXES_OBJECT_MATERIAL_TEXT_ALIGN);
+	_FIXES_HIDE_PAWNDOC(FIXES_OBJECT_MATERIAL_TEXT_ALN);
 #else
 	_FIXES_CONST_PAWNDOC(OBJECT_MATERIAL_TEXT_ALIGN);
 	#if defined __TAG
@@ -7630,6 +7630,177 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK);
 		#define WEAPONSTATE: __TAG(WEAPONSTATE):
 	#else
 		#define WEAPONSTATE: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>SELECT_OBJECT:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_SELECT_OBJECT:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined SELECT_OBJECT
+	_FIXES_HIDE_PAWNDOC(FIXES_SELECT_OBJECT);
+#else
+	_FIXES_CONST_PAWNDOC(SELECT_OBJECT);
+	#if defined __TAG
+		#define SELECT_OBJECT: __TAG(SELECT_OBJECT):
+	#else
+		#define SELECT_OBJECT: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>BULLET_HIT_TYPE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_BULLET_HIT_TYPE:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined BULLET_HIT_TYPE
+	_FIXES_HIDE_PAWNDOC(FIXES_BULLET_HIT_TYPE);
+#else
+	_FIXES_CONST_PAWNDOC(BULLET_HIT_TYPE);
+	#if defined __TAG
+		#define BULLET_HIT_TYPE: __TAG(BULLET_HIT_TYPE):
+	#else
+		#define BULLET_HIT_TYPE: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>DOWNLOAD_REQUEST:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_DOWNLOAD_REQUEST:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined DOWNLOAD_REQUEST
+	_FIXES_HIDE_PAWNDOC(FIXES_DOWNLOAD_REQUEST);
+#else
+	_FIXES_CONST_PAWNDOC(DOWNLOAD_REQUEST);
+	#if defined __TAG
+		#define DOWNLOAD_REQUEST: __TAG(DOWNLOAD_REQUEST):
+	#else
+		#define DOWNLOAD_REQUEST: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>CLICK_SOURCE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_CLICK_SOURCE:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined CLICK_SOURCE
+	_FIXES_HIDE_PAWNDOC(FIXES_CLICK_SOURCE);
+#else
+	_FIXES_CONST_PAWNDOC(CLICK_SOURCE);
+	#if defined __TAG
+		#define CLICK_SOURCE: __TAG(CLICK_SOURCE):
+	#else
+		#define CLICK_SOURCE: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>EDIT_RESPONSE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_EDIT_RESPONSE:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined EDIT_RESPONSE
+	_FIXES_HIDE_PAWNDOC(FIXES_EDIT_RESPONSE);
+#else
+	_FIXES_CONST_PAWNDOC(EDIT_RESPONSE);
+	#if defined __TAG
+		#define EDIT_RESPONSE: __TAG(EDIT_RESPONSE):
+	#else
+		#define EDIT_RESPONSE: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>DIALOG_STYLE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_DIALOG_STYLE:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined DIALOG_STYLE
+	_FIXES_HIDE_PAWNDOC(FIXES_DIALOG_STYLE);
+#else
+	_FIXES_CONST_PAWNDOC(DIALOG_STYLE);
+	#if defined __TAG
+		#define DIALOG_STYLE: __TAG(DIALOG_STYLE):
+	#else
+		#define DIALOG_STYLE: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>TEXT_DRAW_FONT:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_TEXT_DRAW_FONT:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined TEXT_DRAW_FONT
+	_FIXES_HIDE_PAWNDOC(FIXES_TEXT_DRAW_FONT);
+#else
+	_FIXES_CONST_PAWNDOC(TEXT_DRAW_FONT);
+	#if defined __TAG
+		#define TEXT_DRAW_FONT: __TAG(TEXT_DRAW_FONT):
+	#else
+		#define TEXT_DRAW_FONT: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>TEXT_DRAW_ALIGN:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_TEXT_DRAW_ALIGN:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined TEXT_DRAW_ALIGN
+	_FIXES_HIDE_PAWNDOC(FIXES_TEXT_DRAW_ALIGN);
+#else
+	_FIXES_CONST_PAWNDOC(TEXT_DRAW_ALIGN);
+	#if defined __TAG
+		#define TEXT_DRAW_ALIGN: __TAG(TEXT_DRAW_ALIGN):
+	#else
+		#define TEXT_DRAW_ALIGN: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>SERVER_VARTYPE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_SERVER_VARTYPE:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined SERVER_VARTYPE
+	_FIXES_HIDE_PAWNDOC(FIXES_SERVER_VARTYPE);
+#else
+	_FIXES_CONST_PAWNDOC(SERVER_VARTYPE);
+	#if defined __TAG
+		#define SERVER_VARTYPE: __TAG(SERVER_VARTYPE):
+	#else
+		#define SERVER_VARTYPE: _:
 	#endif
 #endif
 
@@ -11917,7 +12088,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native NetStats_BytesReceived__(playerid) = NetStats_BytesReceived;
 	native NetStats_MessagesSent__(playerid) = NetStats_MessagesSent;
 	native NetStats_BytesSent__(playerid) = NetStats_BytesSent;
-	native NetStats_MessagesRecvPerSecond__(playerid) = NetStats_MessagesRecvPerSecond;
+	native NetStats_MessagesRecvPerSec__(playerid) = NetStats_MessagesRecvPerSecond;
 	native Float:NetStats_PacketLossPercent__(playerid) = NetStats_PacketLossPercent;
 	native NetStats_ConnectionStatus__(playerid) = NetStats_ConnectionStatus;
 	native NetStats_GetIpPort__(playerid, output[], size = sizeof (output)) = NetStats_GetIpPort;
@@ -12027,8 +12198,8 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native DB_NumFields__(DBResult:result) = db_num_fields;
 	native bool:DB_FieldName__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
 	native bool:DB_GetField__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
-	native DB_GetFieldInt__(DBResult:result, field = 0) = db_get_field_int = DB_GetFieldInt;
-	native Float:DB_GetFieldFloat__(DBResult:result, field = 0) = db_get_field_float = DB_GetFieldFloat;
+	native DB_GetFieldInt__(DBResult:result, field = 0) = db_get_field_int;
+	native Float:DB_GetFieldFloat__(DBResult:result, field = 0) = db_get_field_float;
 	native bool:DB_GetFieldAssoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
 	native DB_GetFieldAssocInt__(DBResult:result, const field[]) = db_get_field_assoc_int;
 	native Float:DB_GetFieldAssocFloat__(DBResult:result, const field[]) = db_get_field_assoc_float;
@@ -12159,7 +12330,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetPlayerLastShotVectors__(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
 	native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
 	native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject;
-	native bool:IsPlayerAttachedObjectSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+	native bool:IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 	native EditAttachedObject__(playerid, index) = EditAttachedObject;
 	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
 	native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy;
@@ -12180,7 +12351,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native PlayerTextDrawSetString__(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
 	native PlayerTextDrawSetPreviewModel__(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel;
 	native PlayerTextDrawSetPreviewRot__(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot;
-	native PlayerTextDrawSetPreviewVehCol__(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
+	native PlayerTDSetPreviewVehCol__(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
 	native SetPVarInt__(playerid, const pvar[], value) = SetPVarInt;
 	native GetPVarInt__(playerid, const pvar[]) = GetPVarInt;
 	native SetPVarString__(playerid, const pvar[], const value[]) = SetPVarString;
@@ -12204,7 +12375,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetAnimationName__(index, animationLibrary[], len1 = sizeof (animationLibrary), animationName[], len2 = sizeof (animationName)) = GetAnimationName; 
 	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
 	native SetPlayerSpecialAction__(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
-	native DisableRemoteVehicleCollisions__(playerid, bool:disable) = DisableRemoteVehicleCollisions;
+	native DisableRemoteVehCollisions__(playerid, bool:disable) = DisableRemoteVehicleCollisions;
 	native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
 	native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint;
 	native SetPlayerRaceCheckpoint__(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
@@ -21456,7 +21627,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 		#define GetVehicleComponentInSlot( FIXES_GetVehicleComponentInSlot(
 	#endif
 
-	#define _ALS_GetVehicleComponentInSlot__
+	#define _ALS_GetVehComponentInSlot__
 	#define GetVehicleComponentInSlot__( FIXES_GetVehicleComponentInSlot(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleComponentInSl);
