@@ -10469,13 +10469,6 @@ _FIXES_STATIC_STOCK_CONST
 
 	/**
 	 * <remarks>
-	 * Name of the remote player clock function.
-	 * </remarks>
-	 */
-	FIXES_gscGetWeather[] = "_FIXES_GetWeather",
-
-	/**
-	 * <remarks>
 	 * Name of the remote world bounds function.
 	 * </remarks>
 	 */
@@ -23551,29 +23544,10 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 #endif
 
 #if FIX_GetWeather
-	#if FIXES_Single
-		stock FIXES_GetWeather()
-		{
-			return FIXES_gsServerWeather;
-		}
-	#else
-		forward _FIXES_GetWeather();
-
-		stock FIXES_GetWeather()
-		{
-			return
-				CallRemoteFunction__(FIXES_gscGetWeather, FIXES_gscSpec@),
-				getproperty(5, FIXES_gscReturnProperty);
-		}
-
-		public _FIXES_GetWeather()
-		{
-			_FIXES_IS_IN_CHARGE()
-			{
-				setproperty(5, FIXES_gscReturnProperty, FIXES_gsServerWeather);
-			}
-		}
-	#endif
+	stock FIXES_GetWeather()
+	{
+		return FIXES_gsServerWeather;
+	}
 
 	#if _FIXES_SAMP
 		#define _ALS_GetWeather
@@ -23600,17 +23574,30 @@ native BAD_SetWeather(weather) = SetWeather;
  */
 
 #if FIX_GetWeather
-	stock FIXES_SetWeather(weather)
-	{
-		FIXES_gsServerWeather = weather;
-		#if FIX_GetPlayerWeather
-			_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
-			{
-				FIXES_SET(PlayerWeather, playerid, weather);
-			}
-		#endif
-		return SetWeather__(weather);
-	}
+		stock FIXES_SetWeather(weather)
+		{
+			#if FIXES_Single
+				FIXES_gsServerWeather = weather;
+			#else
+				CallRemoteFunction__("_FIXES_SetWeather", FIXES_gscSpec@i, weather),
+			#endif
+			#if FIX_GetPlayerWeather
+				_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
+				{
+					FIXES_SET(PlayerWeather, playerid, weather);
+				}
+			#endif
+			return SetWeather__(weather);
+		}
+
+	#if !FIXES_Single
+		forward _FIXES_SetWeather(weather);
+
+		public _FIXES_SetWeather(weather)
+		{
+			FIXES_gsServerWeather = weather;
+		}
+	#endif
 
 	#if _FIXES_SAMP
 		#define _ALS_SetWeather

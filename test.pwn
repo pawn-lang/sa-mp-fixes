@@ -1,10 +1,4 @@
-// This is a comment
-// uncomment the line below if you want to write a filterscript
-//#define FILTERSCRIPT
-
 #include <a_samp>
-
-#define FIX_bool_tags 0
 
 #undef MAX_PLAYERS
 #define MAX_PLAYERS (100)
