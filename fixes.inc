@@ -25191,6 +25191,9 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #undef _FIXES_STATIC_STOCK_CONST
 #undef _FIXES_STATIC_STOCK
 #undef _FIXES_STREAMER_ALL_TAGS
+#undef _FIXES_MAYBE_BOOL
+#undef _FIXES_MAYBE_TRUE
+#undef _FIXES_MAYBE_FALSE
 #if !FIXES_NoYSI
 	#undef _FIXES_FORWARD
 #endif
