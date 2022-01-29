@@ -11959,13 +11959,13 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native Float:ATan2__(Float:y, Float:x) = atan2;
 	native SendChat__(const message[]) = SendChat;
 	native SendCommand__(const command[]) = SendCommand;
-	native GetPlayerState__(playerid) = GetPlayerState;
+	native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState;
 	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 	native GetPlayerVehicleid__(playerid) = GetPlayerVehicleid;
-	native GetPlayerArmedWeapon__(playerid) = GetPlayerArmedWeapon;
+	native WEAPON:GetPlayerArmedWeapon__(playerid) = GetPlayerArmedWeapon;
 	native GetPlayerHealth__(playerid) = GetPlayerHealth;
 	native GetPlayerArmour__(playerid) = GetPlayerArmour;
-	native GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
+	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
 	native bool:IsPlayerStreamedIn__(playerid) = IsPlayerStreamedIn;
 	native bool:IsVehicleStreamedIn__(vehicleid) = IsVehicleStreamedIn;
 	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
@@ -12034,7 +12034,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native ShowPlayerMarkers__(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
 	native GameModeExit__() = GameModeExit;
 	native SetWorldTime__(hour) = SetWorldTime;
-	native GetWeaponName__(weaponid, weapon[], len = sizeof (weapon)) = GetWeaponName;
+	native GetWeaponName__(WEAPON:weaponid, weapon[], len = sizeof (weapon)) = GetWeaponName;
 	#pragma deprecated Use `OnVehicleDamageStatusUpdate`.
 	native EnableTirePopping__(bool:enable) = EnableTirePopping; 
 	native EnableVehicleFriendlyFire__() = EnableVehicleFriendlyFire;
@@ -13635,11 +13635,11 @@ static stock _FIXES_CheckMaxPlayers()
 	#if !FIX_API
 	static
 	#endif
-	stock _FIXES_GetAnimLibIndex(const animlib[])
+	stock _FIXES_GetAnimLibIndex(const animationLibrary[])
 	{
 		new
 			diff,
-			idx = animlib[0] & ~0x20;
+			idx = animationLibrary[0] & ~0x20;
 		// Uses a sort of optimised binary search.  The code first identifies the area in the array
 		// in which libraries with this first letter are, then does a binary search using only that
 		// subset of the array.  This used to use an N-ary search that just went linearly through
@@ -13655,7 +13655,7 @@ static stock _FIXES_CheckMaxPlayers()
 			while (upper != lower)
 			{
 				idx = (upper - lower) / 2 + lower;
-				if ((diff = strcmp(FIXES_gscAnimLib[idx], animlib, true)))
+				if ((diff = strcmp(FIXES_gscAnimLib[idx], animationLibrary, true)))
 				{
 					if (diff > 0) upper = idx;
 					else lower = idx + 1;
@@ -14029,9 +14029,9 @@ static stock _FIXES_CountFilterscripts()
 #if !FIX_LocalNPCNatives
 	static
 #endif
-	stock FIXES_CallLocalFunctionNPC(const funcname[], const format[], {Float,_}:...)
+	stock FIXES_CallLocalFunctionNPC(const functionName[], const format[], {Float,_}:...)
 	{
-		new idx = funcidx(funcname);
+		new idx = funcidx(functionName);
 		if (idx == -1)
 		{
 			// The function doesn't exist.
@@ -14102,7 +14102,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_SetTimerExNPC(const funcname[], const format[], {Float,_}:...)
+	stock FIXES_SetTimerExNPC(const functionName[], const format[], {Float,_}:...)
 	{
 	}
 
@@ -14159,7 +14159,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_CallRemoteFunctionNPC(const funcname[], const format[], {Float,_}:...)
+	stock FIXES_CallRemoteFunctionNPC(const functionName[], const format[], {Float,_}:...)
 	{
 	}
 
@@ -14187,100 +14187,100 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_GetWeaponNameNPC(weaponid, weapon[], len = sizeof (weapon))
+	stock FIXES_GetWeaponNameNPC(WEAPON:weaponid, weapon[], len = sizeof (weapon))
 	{
 		weapon[0] = '\0';
 		switch (weaponid)
 		{
-		case 0:
+		case WEAPON:0:
 			return strcat(weapon, "Fists", len), 1;
-		case 1:
+		case WEAPON:1:
 			return strcat(weapon, "Brass Knuckles", len), 1;
-		case 2:
+		case WEAPON:2:
 			return strcat(weapon, "Golf Club", len), 1;
-		case 3:
+		case WEAPON:3:
 			return strcat(weapon, "Nite Stick", len), 1;
-		case 4:
+		case WEAPON:4:
 			return strcat(weapon, "Knife", len), 1;
-		case 5:
+		case WEAPON:5:
 			return strcat(weapon, "Baseball Bat", len), 1;
-		case 6:
+		case WEAPON:6:
 			return strcat(weapon, "Shovel", len), 1;
-		case 7:
+		case WEAPON:7:
 			return strcat(weapon, "Pool Cue", len), 1;
-		case 8:
+		case WEAPON:8:
 			return strcat(weapon, "Katana", len), 1;
-		case 9:
+		case WEAPON:9:
 			return strcat(weapon, "Chainsaw", len), 1;
-		case 10, 11:
+		case WEAPON:10, WEAPON:11:
 			return strcat(weapon, "Dildo", len), 1;
-		case 12, 13:
+		case WEAPON:12, WEAPON:13:
 			return strcat(weapon, "Vibrator", len), 1;
-		case 14:
+		case WEAPON:14:
 			return strcat(weapon, "Flowers", len), 1;
-		case 15:
+		case WEAPON:15:
 			return strcat(weapon, "Cane", len), 1;
-		case 16:
+		case WEAPON:16:
 			return strcat(weapon, "Grenade", len), 1;
-		case 17:
+		case WEAPON:17:
 			return strcat(weapon, "Teargas", len), 1;
-		case 18:
+		case WEAPON:18:
 			return strcat(weapon, "Molotov Cocktail", len), 1;
-		case 22:
+		case WEAPON:22:
 			return strcat(weapon, "Colt 45", len), 1;
-		case 23:
+		case WEAPON:23:
 			return strcat(weapon, "Silenced Pistol", len), 1;
-		case 24:
+		case WEAPON:24:
 			return strcat(weapon, "Desert Eagle", len), 1;
-		case 25:
+		case WEAPON:25:
 			return strcat(weapon, "Shotgun", len), 1;
-		case 26:
+		case WEAPON:26:
 			return strcat(weapon, "Sawn-off Shotgun", len), 1;
-		case 27:
+		case WEAPON:27:
 			return strcat(weapon, "Combat Shotgun", len), 1;
-		case 28:
+		case WEAPON:28:
 			return strcat(weapon, "UZI", len), 1;
-		case 29:
+		case WEAPON:29:
 			return strcat(weapon, "MP5", len), 1;
-		case 30:
+		case WEAPON:30:
 			return strcat(weapon, "AK47", len), 1;
-		case 31:
+		case WEAPON:31:
 			return strcat(weapon, "M4", len), 1;
-		case 32:
+		case WEAPON:32:
 			return strcat(weapon, "TEC9", len), 1;
-		case 33:
+		case WEAPON:33:
 			return strcat(weapon, "Rifle", len), 1;
-		case 34:
+		case WEAPON:34:
 			return strcat(weapon, "Sniper Rifle", len), 1;
-		case 35:
+		case WEAPON:35:
 			return strcat(weapon, "Rocket Launcher", len), 1;
-		case 36:
+		case WEAPON:36:
 			return strcat(weapon, "Heat Seaker", len), 1;
-		case 37:
+		case WEAPON:37:
 			return strcat(weapon, "Flamethrower", len), 1;
-		case 38:
+		case WEAPON:38:
 			return strcat(weapon, "Minigun", len), 1;
-		case 39:
+		case WEAPON:39:
 			return strcat(weapon, "Satchel Explosives", len), 1;
-		case 40:
+		case WEAPON:40:
 			return strcat(weapon, "Bomb", len), 1;
-		case 41:
+		case WEAPON:41:
 			return strcat(weapon, "Spray Can", len), 1;
-		case 42:
+		case WEAPON:42:
 			return strcat(weapon, "Fire Extinguisher", len), 1;
-		case 43:
+		case WEAPON:43:
 			return strcat(weapon, "Camera", len), 1;
-		case 44:
+		case WEAPON:44:
 			return strcat(weapon, "Night Vision", len), 1;
-		case 45:
+		case WEAPON:45:
 			return strcat(weapon, "Thermal Goggles", len), 1;
-		case 46:
+		case WEAPON:46:
 			return strcat(weapon, "Parachute", len), 1;
-		case 49:
+		case WEAPON:49:
 			return strcat(weapon, "Vehicle", len), 1;
-		case 53:
+		case WEAPON:53:
 			return strcat(weapon, "Drowned", len), 1;
-		case 54:
+		case WEAPON:54:
 			return strcat(weapon, "Splat", len), 1;
 		}
 		return 0;
@@ -16247,24 +16247,24 @@ native BAD_GetWeaponName(weaponid, weapon[], len = sizeof (weapon)) = GetWeaponN
  */
 
 #if FIX_GetWeaponName
-	stock FIXES_GetWeaponName(weaponid, weapon[], len = sizeof (weapon))
+	stock FIXES_GetWeaponName(WEAPON:weaponid, weapon[], len = sizeof (weapon))
 	{
 			weapon[0] = 0;
 		#if defined GetVehicleParamsSirenState
-			if (!weaponid)
+			if (weaponid == WEAPON:0)
 			{
 				return strcat(weapon, "Fists", len), 1;
 			}
 		#else
 			switch (weaponid)
 			{
-			case 0:
+			case WEAPON:0:
 				return strcat(weapon, "Fists", len), 1;
-			case 18:
+			case WEAPON:18:
 				return strcat(weapon, "Molotov Cocktail", len), 1;
-			case 44:
+			case WEAPON:44:
 				return strcat(weapon, "Night Vision", len), 1;
-			case 45:
+			case WEAPON:45:
 				return strcat(weapon, "Thermal Goggles", len), 1;
 			}
 		#endif
@@ -16628,12 +16628,12 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 	#if FIXES_Single
-		stock FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
+		stock FIXES_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				FIXES_PRINTF("Call SetPlayerWorldBounds");
-				if (x_max == x_min || y_max == y_min)
+				if (maxX == minX || maxY == minY)
 				{
 					// Impossibly small area, disable checks entirely.
 					return
@@ -16646,90 +16646,90 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 				// parameters).
 				new
 					Float:tmp;
-				if (x_max < x_min)
+				if (maxX < minX)
 				{
-					tmp = x_min,
-					x_min = x_max,
-					x_max = tmp;
+					tmp = minX,
+					minX = maxX,
+					maxX = tmp;
 				}
-				if (y_max < y_min)
+				if (maxY < minY)
 				{
-					tmp = y_min,
-					y_min = y_max,
-					y_max = tmp;
+					tmp = minY,
+					minY = maxY,
+					maxY = tmp;
 				}
 				// Give a little leway so this fix isn't noticed if you're not
 				// trying to break through the world bounds.  Leway removed in
 				// favour of keys.
 				return
-					FIXES_gsWorldbounds_LX[playerid] = x_min,
-					FIXES_gsWorldbounds_UX[playerid] = x_max,
+					FIXES_gsWorldbounds_LX[playerid] = minX,
+					FIXES_gsWorldbounds_UX[playerid] = maxX,
 
-					FIXES_gsWorldbounds_LY[playerid] = y_min,
-					FIXES_gsWorldbounds_UY[playerid] = y_max,
+					FIXES_gsWorldbounds_LY[playerid] = minY,
+					FIXES_gsWorldbounds_UY[playerid] = maxY,
 
 					GetPlayerPos__(playerid, tmp, tmp, tmp),
-					FIXES_gsWorldbounds_PX[playerid] = (x_max - x_min) / 2 + x_min,
-					FIXES_gsWorldbounds_PY[playerid] = (y_max - y_min) / 2 + y_min,
+					FIXES_gsWorldbounds_PX[playerid] = (maxX - minX) / 2 + minX,
+					FIXES_gsWorldbounds_PY[playerid] = (maxY - minY) / 2 + minY,
 					FIXES_gsWorldbounds_PZ[playerid] = tmp,
 
-					SetPlayerWorldBounds__(playerid, x_max, x_min, y_max, y_min);
+					SetPlayerWorldBounds__(playerid, maxX, minX, maxY, minY);
 			}
 			return 0;
 		}
 	#else
-		forward _FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min);
+		forward _FIXES_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY);
 
-		stock FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
+		stock FIXES_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				FIXES_PRINTF("Call SetPlayerWorldBounds");
 				// Impossibly small area, disable checks entirely.
-				if (x_max == x_min || y_max == y_min)
+				if (maxX == minX || maxY == minY)
 					return
 						CallRemoteFunction__(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, playerid, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS, _FIXES_MAX_WORLDBOUNDS, _FIXES_MIN_WORLDBOUNDS),
 						getproperty(5, FIXES_gscReturnProperty);
 				new
 					Float:tmp;
-				if (x_max < x_min)
+				if (maxX < minX)
 				{
-					tmp = x_min,
-					x_min = x_max,
-					x_max = tmp;
+					tmp = minX,
+					minX = maxX,
+					maxX = tmp;
 				}
-				if (y_max < y_min)
+				if (maxY < minY)
 				{
-					tmp = y_min,
-					y_min = y_max,
-					y_max = tmp;
+					tmp = minY,
+					minY = maxY,
+					maxY = tmp;
 				}
 				return
-					CallRemoteFunction__(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, playerid, x_max, x_min, y_max, y_min),
+					CallRemoteFunction__(FIXES_gscSetPlayerWorldBounds, FIXES_gscSpec@iffff, playerid, maxX, minX, maxY, minY),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			return 0;
 		}
 
-		public _FIXES_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min)
+		public _FIXES_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY)
 		{
-			FIXES_PRINTF("_FIXES_SetPlayerWorldBounds: %d %.2f %.2f %.2f %.2f", playerid, x_max, x_min, y_max, y_min);
-			FIXES_gsWorldbounds_LX[playerid] = x_min,
-			FIXES_gsWorldbounds_UX[playerid] = x_max,
+			FIXES_PRINTF("_FIXES_SetPlayerWorldBounds: %d %.2f %.2f %.2f %.2f", playerid, maxX, minX, maxY, minY);
+			FIXES_gsWorldbounds_LX[playerid] = minX,
+			FIXES_gsWorldbounds_UX[playerid] = maxX,
 
-			FIXES_gsWorldbounds_LY[playerid] = y_min,
-			FIXES_gsWorldbounds_UY[playerid] = y_max;
+			FIXES_gsWorldbounds_LY[playerid] = minY,
+			FIXES_gsWorldbounds_UY[playerid] = maxY;
 
 			new
 				Float:tmp;
 			GetPlayerPos__(playerid, tmp, tmp, tmp),
-			FIXES_gsWorldbounds_PX[playerid] = (x_max - x_min) / 2 + x_min,
-			FIXES_gsWorldbounds_PY[playerid] = (y_max - y_min) / 2 + y_min,
+			FIXES_gsWorldbounds_PX[playerid] = (maxX - minX) / 2 + minX,
+			FIXES_gsWorldbounds_PY[playerid] = (maxY - minY) / 2 + minY,
 			FIXES_gsWorldbounds_PZ[playerid] = tmp;
 
 			_FIXES_IS_IN_CHARGE()
 			{
-				setproperty(5, FIXES_gscReturnProperty, SetPlayerWorldBounds__(playerid, x_max, x_min, y_max, y_min));
+				setproperty(5, FIXES_gscReturnProperty, SetPlayerWorldBounds__(playerid, maxX, minX, maxY, minY));
 			}
 			return 0;
 		}
@@ -16747,14 +16747,14 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 #endif
 
 #if FIX_GetPlayerWorldBounds
-	stock FIXES_GetPlayerWorldBounds(playerid, &Float:x_max, &Float:x_min, &Float:y_max, &Float:y_min)
+	stock FIXES_GetPlayerWorldBounds(playerid, &Float:maxX, &Float:minX, &Float:maxY, &Float:minY)
 	{
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
-			x_min = FIXES_gsWorldbounds_LX[playerid],
-			x_max = FIXES_gsWorldbounds_UX[playerid],
-			y_min = FIXES_gsWorldbounds_LY[playerid],
-			y_max = FIXES_gsWorldbounds_UY[playerid];
+			minX = FIXES_gsWorldbounds_LX[playerid],
+			maxX = FIXES_gsWorldbounds_UX[playerid],
+			minY = FIXES_gsWorldbounds_LY[playerid],
+			maxY = FIXES_gsWorldbounds_UY[playerid];
 		}
 	}
 
@@ -16801,9 +16801,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 #if FIX_TogglePlayerControllable
 	#if FIXES_Single
-		stock FIXES_TogglePlayerControllable(playerid, toggle)
+		stock FIXES_TogglePlayerControllable(playerid, bool:toggle)
 		{
-			if (TogglePlayerControllable__(playerid, toggle))
+			if (TogglePlayerControllable__(playerid, bool:toggle))
 			{
 				if (toggle)
 				{
@@ -16818,9 +16818,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			return 0;
 		}
 	#else
-		forward _FIXES_TogglePlayerControllable(playerid, toggle);
+		forward _FIXES_TogglePlayerControllable(playerid, bool:toggle);
 
-		stock FIXES_TogglePlayerControllable(playerid, toggle)
+		stock FIXES_TogglePlayerControllable(playerid, bool:toggle)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -16831,7 +16831,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			return 0;
 		}
 
-		public _FIXES_TogglePlayerControllable(playerid, toggle)
+		public _FIXES_TogglePlayerControllable(playerid, bool:toggle)
 		{
 			_FIXES_IS_IN_CHARGE()
 			{
@@ -16982,25 +16982,25 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if !FIX_SetTimer
 	static
 #endif
-	stock FIXES_SetTimer(const funcname[], interval, bool:repeating)
+	stock FIXES_SetTimer(const functionName[], interval, bool:repeating)
 	{
 		#if FIXES_CorrectInvalidTimerID
 			new
-				timerid = SetTimer__(funcname, interval, repeating);
+				timerid = SetTimer__(functionName, interval, repeating);
 			if (timerid)
 			{
 				return timerid;
 			}
 			// Got a timer ID of 0, which is actually valid.  Start a new one.
 			return
-				interval = SetTimer__(funcname, interval, repeating),
+				interval = SetTimer__(functionName, interval, repeating),
 				// Kill the old version, AFTER creating a new one so the ID
 				// can't be reused.
 				KillTimer__(timerid),
 				interval;
 		#else
 			new
-				timer1 = SetTimer__(funcname, interval, repeating);
+				timer1 = SetTimer__(functionName, interval, repeating);
 			if (timer1 != 0 && timer1 != -1)
 			{
 				return timer1;
@@ -17009,7 +17009,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			// because someone started a rumour that that's the invalid ID.  Make
 			// a new version.
 			new
-				timer2 = SetTimer__(funcname, interval, repeating);
+				timer2 = SetTimer__(functionName, interval, repeating);
 			if (timer2 != 0 && timer2 != -1)
 			{
 				// Kill the old version, AFTER creating a new one so the ID can't be
@@ -17021,7 +17021,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			// It is possible to have both created timers return invalid values,
 			// since there are two.
 			return
-				interval = SetTimer__(funcname, interval, repeating),
+				interval = SetTimer__(functionName, interval, repeating),
 				KillTimer__(timer2),
 				KillTimer__(timer1),
 				interval;
@@ -17049,9 +17049,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if !FIX_SetTimer || _FIXES_NPC
 	static
 #endif
-	stock FIXES_SetTimerEx(const funcname[], interval, bool:repeating, const format[], {Float,_}:...)
+	stock FIXES_SetTimerEx(const functionName[], interval, bool:repeating, const format[], {Float,_}:...)
 	{
-			#pragma unused funcname, interval, repeating, format
+			#pragma unused functionName, interval, repeating, format
 
 			static
 				sAddress, // Return address.
@@ -17895,7 +17895,7 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
  */
 
 #if FIX_AddMenuItem
-	stock FIXES_AddMenuItem(Menu:menuid, column, const menutext[])
+	stock FIXES_AddMenuItem(Menu:menuid, column, const text[])
 	{
 		return FIXES_IS_VALID_MENU(menuid) ? AddMenuItem__(menuid, column, menutext) : 0;
 	}
@@ -17925,9 +17925,9 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
  */
 
 #if FIX_SetMenuColumnHeader
-	stock FIXES_SetMenuColumnHeader(Menu:menuid, column, const columnheader[])
+	stock FIXES_SetMenuColumnHeader(Menu:menuid, column, const heading[])
 	{
-		return FIXES_IS_VALID_MENU(menuid) ? SetMenuColumnHeader__(menuid, column, columnheader) : 0;
+		return FIXES_IS_VALID_MENU(menuid) ? SetMenuColumnHeader__(menuid, column, heading) : 0;
 	}
 
 	#if _FIXES_SAMP
@@ -18904,7 +18904,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
  */
 
 #if FIX_SetPlayerRaceCheckpoint
-	stock FIXES_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
+	stock FIXES_SetPlayerRaceCheckpoint(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size)
 	{
 		return
 			#if FIXES_Single
@@ -18913,7 +18913,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 				SetPVarInt__(playerid, FIXES_pvarPlayerRaceCheckpoint, 1),
 			#endif
 				DisablePlayerRaceCheckpoint__(playerid),
-				SetTimerEx__(FIXES_gscSetRaceCheckpoint, 50, 0, FIXES_gscSpec@iifffffff, playerid, type, x, y, z, nextx, nexty, nextz, size),
+				SetTimerEx__(FIXES_gscSetRaceCheckpoint, 50, false, FIXES_gscSpec@iifffffff, playerid, type, centerX, centerY, centerZ, nextX, nextY, nextZ, size),
 				1;
 	}
 
@@ -19445,7 +19445,7 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 
 #if FIX_AllowInteriorWeapons
 	#if FIXES_Single
-		stock FIXES_AllowInteriorWeapons(allow)
+		stock bool:FIXES_AllowInteriorWeapons(bool:allow)
 		{
 			if (allow)
 			{
@@ -19469,15 +19469,15 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 			return allow;
 		}
 	#else
-		stock FIXES_AllowInteriorWeapons(allow)
+		stock bool:FIXES_AllowInteriorWeapons(bool:allow)
 		{
 			CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, allow);
 			return allow;
 		}
 
-		forward _FIXES_AllowInteriorWeapons(allow);
+		forward bool:_FIXES_AllowInteriorWeapons(bool:allow);
 
-		public _FIXES_AllowInteriorWeapons(allow)
+		public bool:_FIXES_AllowInteriorWeapons(bool:allow)
 		{
 			if (allow)
 			{
@@ -19591,7 +19591,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
  */
 
 #if FIX_AllowTeleport && !defined FILTERSCRIPT
-	public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
+	public OnPlayerClickMap(playerid, Float:x, Float:y, Float:z)
 	{
 		// ======================
 		//  BEGIN: AllowTeleport
@@ -19603,7 +19603,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 				// most callbacks are Filter Script first.
 				if ((FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_TELEPORT) || ((FIXES_gsSettings & e_FIXES_SETTINGS_ADMIN_TELEPORT) && (IsPlayerAdmin__(playerid))))
 				{
-					SetPlayerPosFindZ__(playerid, fX, fY, fZ);
+					SetPlayerPosFindZ__(playerid, x, y, z);
 				}
 			}
 		#endif
@@ -19611,7 +19611,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 		//  END:   AllowTeleport
 		// ======================
 		#if defined On_PlayerClickMap
-			return On_PlayerClickMap(playerid, fX, fY, fZ);
+			return On_PlayerClickMap(playerid, x, y, z);
 		#else
 			return 1;
 		#endif
@@ -19651,7 +19651,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 
 #if FIX_AllowTeleport
 	#if FIXES_Single
-		stock FIXES_AllowPlayerTeleport(playerid, allow)
+		stock bool:FIXES_AllowPlayerTeleport(playerid, bool:allow)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -19663,17 +19663,20 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 				{
 					FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_TELEPORT;
 				}
+				return true;
 			}
-			return 0;
+			return false;
 		}
 	#else
-		stock FIXES_AllowPlayerTeleport(playerid, allow)
+		stock bool:FIXES_AllowPlayerTeleport(playerid, bool:allow)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
-				CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, playerid, allow);
+				return
+					CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, playerid, allow),
+					true;
 			}
-			return 0;
+			return false;
 		}
 	#endif
 
@@ -19703,7 +19706,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 
 #if FIX_AllowTeleport
 	#if FIXES_Single
-		stock FIXES_AllowAdminTeleport(allow)
+		stock bool:FIXES_AllowAdminTeleport(bool:allow)
 		{
 			if (allow)
 			{
@@ -19716,7 +19719,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 			return allow;
 		}
 	#else
-		stock FIXES_AllowAdminTeleport(allow)
+		stock bool:FIXES_AllowAdminTeleport(bool:allow)
 		{
 			return
 				CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, INVALID_PLAYER_ID, allow),
@@ -19786,7 +19789,7 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
  */
 
 #if FIX_SetPlayerSpecialAction
-	stock FIXES_SetPlayerSpecialAction(playerid, actionid)
+	stock FIXES_SetPlayerSpecialAction(playerid, SPECIAL_ACTION:actionid)
 	{
 		if (GetPlayerSpecialAction__(playerid) == SPECIAL_ACTION_USEJETPACK)
 		{
@@ -19871,9 +19874,9 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  */
 
 #if FIX_GangZoneCreate
-	stock FIXES_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy)
+	stock FIXES_GangZoneCreate(Float:minX, Float:minY, Float:maxX, Float:maxY)
 	{
-		return GangZoneCreate__(floatround(minx, floatround_tozero), floatround(miny, floatround_tozero), floatround(maxx, floatround_tozero), floatround(maxy, floatround_tozero));
+		return GangZoneCreate__(floatround(minX, floatround_tozero), floatround(minY, floatround_tozero), floatround(maxX, floatround_tozero), floatround(maxY, floatround_tozero));
 	}
 
 	#if _FIXES_SAMP
@@ -19907,7 +19910,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  */
 
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog || FIX_BypassDialog
-	stock FIXES_ShowPlayerDialog(playerid, dialog, style, _FIXES_MAYBE_CONST title[], _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[])
+	stock FIXES_ShowPlayerDialog(playerid, dialog, DIALOG_STYLE:style, _FIXES_MAYBE_CONST title[], _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[])
 	{
 		#if FIX_OnDialogResponse || FIX_GetPlayerDialog
 		if (_FIXES_IS_VALID_PLAYER(playerid))
@@ -20038,79 +20041,88 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  * <fixes>OnVehicleSpawn</fixes>
  */
 
+#if _FIXES_SAMP && defined _ALS_CreateVehicle
+	#error _ALS_CreateVehicle defined
+#endif
+native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, addSiren = 0) = CreateVehicle;
+
+/**
+ * <fixes>OnVehicleSpawn</fixes>
+ */
+
 #if FIX_OnVehicleSpawn
-	stock FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false)
+	stock FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false)
 	{
 		#if !FIXES_Single
 			_FIXES_IS_IN_CHARGE()
 		#endif
 			{
 				#if FIXES_OneRandomVehicleColour
-						if (color1 == -1)
+						if (colour1 == -1)
 						{
-							if (color2 == -1)
+							if (colour2 == -1)
 							{
-								_FIXES_GetRandomCarColPair(modelid, color1, color2),
-								modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+								_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
+								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 								if (1 <= modelid <= MAX_VEHICLES)
 								{
 									FIXES_gsBackupVehicleColour{modelid} = 0,
-									color1 = modelid >>> 5,
-									color2 = 1 << (modelid & 31),
-									FIXES_gsRandomVehicleColour1[color1] |= color2,
-									FIXES_gsRandomVehicleColour2[color1] |= color2;
+									colour1 = modelid >>> 5,
+									colour2 = 1 << (modelid & 31),
+									FIXES_gsRandomVehicleColour1[colour1] |= colour2,
+									FIXES_gsRandomVehicleColour2[colour1] |= colour2;
 								}
 								return modelid;
 							}
 							else
 							{
 								// Random temp var.
-								_FIXES_GetRandomCarColPair(modelid, color1, FIXES_gsTrimChr),
-								modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+								_FIXES_GetRandomCarColPair(modelid, colour1, FIXES_gsTrimChr),
+								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 								if (1 <= modelid <= MAX_VEHICLES)
 								{
-									FIXES_gsBackupVehicleColour{modelid} = color2,
-									color1 = modelid >>> 5,
-									color2 = 1 << (modelid & 31),
-									FIXES_gsRandomVehicleColour1[color1] |= color2,
-									FIXES_gsRandomVehicleColour2[color1] &= ~color2;
+									FIXES_gsBackupVehicleColour{modelid} = colour2,
+									colour1 = modelid >>> 5,
+									colour2 = 1 << (modelid & 31),
+									FIXES_gsRandomVehicleColour1[colour1] |= colour2,
+									FIXES_gsRandomVehicleColour2[colour1] &= ~colour2;
 								}
 								return modelid;
 							}
 						}
-						else if (color2 == -1)
+						else if (colour2 == -1)
 						{
 								// Random temp var.
-								_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, color2),
-								modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+								_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, colour2),
+								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 								if (1 <= modelid <= MAX_VEHICLES)
 								{
-									FIXES_gsBackupVehicleColour{modelid} = color1,
-									color1 = modelid >>> 5,
-									color2 = 1 << (modelid & 31),
-									FIXES_gsRandomVehicleColour1[color1] &= ~color2,
-									FIXES_gsRandomVehicleColour2[color1] |= color2;
+									FIXES_gsBackupVehicleColour{modelid} = colour1,
+									colour1 = modelid >>> 5,
+									colour2 = 1 << (modelid & 31),
+									FIXES_gsRandomVehicleColour1[colour1] &= ~colour2,
+									FIXES_gsRandomVehicleColour2[colour1] |= colour2;
 								}
 								return modelid;
 						}
 						else
 						{
-							modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsBackupVehicleColour{modelid} = 0,
-								color1 = modelid >>> 5,
-								color2 = 1 << (modelid & 31),
-								FIXES_gsRandomVehicleColour1[color1] &= ~color2,
-								FIXES_gsRandomVehicleColour2[color1] &= ~color2;
+								colour1 = modelid >>> 5,
+								colour2 = 1 << (modelid & 31),
+								FIXES_gsRandomVehicleColour1[colour1] &= ~colour2,
+								FIXES_gsRandomVehicleColour2[colour1] &= ~colour2;
 							}
 							return modelid;
 						}
 				#else
-						if (color1 == -1 && color2 == -1)
+						if (colour1 == -1 && colour2 == -1)
 						{
-							_FIXES_GetRandomCarColPair(modelid, color1, color2),
-							modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -20118,7 +20130,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 							return modelid;
 						}
 					#if !FIXES_NoVehicleColourMsg
-						else if (color1 == -1 || color2 == -1)
+						else if (colour1 == -1 || colour2 == -1)
 						{
 							print("\7\7\7*** fixes.inc warning: `CreateVehicle` called with only one random colour.  If"),
 							print(      "***                    you want to support this case, recompile with:"),
@@ -20131,8 +20143,8 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 							print(FIXES_gscThreeStars),
 							print(      "***                    If you want to fix this issue, fix your code."),
 							print(FIXES_gscThreeStars),
-							_FIXES_GetRandomCarColPair(modelid, color1, color2),
-							modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -20142,7 +20154,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 					#endif
 						else
 						{
-							modelid = CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] &= ~(1 << (modelid & 31));
@@ -20152,16 +20164,16 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 				#endif
 			}
 		#if !FIXES_Single
-			else if (color1 == -1 || color2 == -1)
+			else if (colour1 == -1 || colour2 == -1)
 			{
 				return
 					setproperty(5, FIXES_gscReturnProperty, INVALID_VEHICLE_ID),
-					CallRemoteFunction(FIXES_gscCreateVehicle, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+					CallRemoteFunction(FIXES_gscCreateVehicle, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			else
 			{
-				return CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+				return CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 			}
 		#endif
 	}
@@ -20182,13 +20194,13 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  */
 
 #if FIX_OnVehicleSpawn && !FIXES_Single
-	forward _FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren);
+	forward _FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren);
 
-	public _FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren)
+	public _FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren)
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
-			setproperty(5, FIXES_gscReturnProperty, FIXES_CreateVehicle(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren));
+			setproperty(5, FIXES_gscReturnProperty, FIXES_CreateVehicle(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren));
 		}
 	}
 #else
@@ -20199,79 +20211,88 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  * <fixes>OnVehicleSpawn</fixes>
  */
 
+#if _FIXES_SAMP && defined _ALS_AddStaticVehicleEx
+	#error _ALS_AddStaticVehicleEx defined
+#endif
+native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, addSiren) = AddStaticVehicleEx;
+
+/**
+ * <fixes>OnVehicleSpawn</fixes>
+ */
+
 #if FIX_OnVehicleSpawn
-	stock FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false)
+	stock FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false)
 	{
 		#if !FIXES_Single
 			_FIXES_IS_IN_CHARGE()
 		#endif
 			{
 				#if FIXES_OneRandomVehicleColour
-						if (color1 == -1)
+						if (colour1 == -1)
 						{
-							if (color2 == -1)
+							if (colour2 == -1)
 							{
-								_FIXES_GetRandomCarColPair(modelid, color1, color2),
-								modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+								_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
+								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 								if (1 <= modelid <= MAX_VEHICLES)
 								{
 									FIXES_gsBackupVehicleColour{modelid} = 0,
-									color1 = modelid >>> 5,
-									color2 = 1 << (modelid & 31),
-									FIXES_gsRandomVehicleColour1[color1] |= color2,
-									FIXES_gsRandomVehicleColour2[color1] |= color2;
+									colour1 = modelid >>> 5,
+									colour2 = 1 << (modelid & 31),
+									FIXES_gsRandomVehicleColour1[colour1] |= colour2,
+									FIXES_gsRandomVehicleColour2[colour1] |= colour2;
 								}
 								return modelid;
 							}
 							else
 							{
 								// Random temp var.
-								_FIXES_GetRandomCarColPair(modelid, color1, FIXES_gsTrimChr),
-								modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+								_FIXES_GetRandomCarColPair(modelid, colour1, FIXES_gsTrimChr),
+								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 								if (1 <= modelid <= MAX_VEHICLES)
 								{
-									FIXES_gsBackupVehicleColour{modelid} = color2,
-									color1 = modelid >>> 5,
-									color2 = 1 << (modelid & 31),
-									FIXES_gsRandomVehicleColour1[color1] |= color2,
-									FIXES_gsRandomVehicleColour2[color1] &= ~color2;
+									FIXES_gsBackupVehicleColour{modelid} = colour2,
+									colour1 = modelid >>> 5,
+									colour2 = 1 << (modelid & 31),
+									FIXES_gsRandomVehicleColour1[colour1] |= colour2,
+									FIXES_gsRandomVehicleColour2[colour1] &= ~colour2;
 								}
 								return modelid;
 							}
 						}
-						else if (color2 == -1)
+						else if (colour2 == -1)
 						{
 							// Random temp var.
-							_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, color2),
-							modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+							_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, colour2),
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
-								FIXES_gsBackupVehicleColour{modelid} = color1,
-								color1 = modelid >>> 5,
-								color2 = 1 << (modelid & 31),
-								FIXES_gsRandomVehicleColour1[color1] &= ~color2,
-								FIXES_gsRandomVehicleColour2[color1] |= color2;
+								FIXES_gsBackupVehicleColour{modelid} = colour1,
+								colour1 = modelid >>> 5,
+								colour2 = 1 << (modelid & 31),
+								FIXES_gsRandomVehicleColour1[colour1] &= ~colour2,
+								FIXES_gsRandomVehicleColour2[colour1] |= colour2;
 							}
 							return modelid;
 						}
 						else
 						{
-							modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsBackupVehicleColour{modelid} = 0,
-								color1 = modelid >>> 5,
-								color2 = 1 << (modelid & 31),
-								FIXES_gsRandomVehicleColour1[color1] &= ~color2,
-								FIXES_gsRandomVehicleColour2[color1] &= ~color2;
+								colour1 = modelid >>> 5,
+								colour2 = 1 << (modelid & 31),
+								FIXES_gsRandomVehicleColour1[colour1] &= ~colour2,
+								FIXES_gsRandomVehicleColour2[colour1] &= ~colour2;
 							}
 							return modelid;
 						}
 				#else
-						if (color1 == -1 && color2 == -1)
+						if (colour1 == -1 && colour2 == -1)
 						{
-							_FIXES_GetRandomCarColPair(modelid, color1, color2),
-							modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -20279,7 +20300,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 							return modelid;
 						}
 					#if !FIXES_NoVehicleColourMsg
-						else if (color1 == -1 || color2 == -1)
+						else if (colour1 == -1 || colour2 == -1)
 						{
 							print("\7\7\7*** fixes.inc warning: `AddStaticVehicle(Ex)` called with only one random"),
 							print(      "***                     colour.  If you want to support this case, recompile"),
@@ -20293,8 +20314,8 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 							print(FIXES_gscThreeStars),
 							print(      "***                    If you want to fix this issue, fix your code."),
 							print(FIXES_gscThreeStars),
-							_FIXES_GetRandomCarColPair(modelid, color1, color2),
-							modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -20304,7 +20325,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 					#endif
 						else
 						{
-							modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+							modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] &= ~(1 << (modelid & 31));
@@ -20314,16 +20335,16 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 				#endif
 			}
 		#if !FIXES_Single
-			else if (color1 == -1 || color2 == -1)
+			else if (colour1 == -1 || colour2 == -1)
 			{
 				return
 					setproperty(5, FIXES_gscReturnProperty, INVALID_VEHICLE_ID),
-					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren),
+					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			else
 			{
-				return AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
+				return AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 			}
 		#endif
 	}
@@ -20344,13 +20365,13 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  */
 
 #if FIX_OnVehicleSpawn && !FIXES_Single
-	forward _FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren);
+	forward _FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren);
 
-	public _FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren)
+	public _FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren)
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
-			setproperty(5, FIXES_gscReturnProperty, FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, respawn_delay, addsiren));
+			setproperty(5, FIXES_gscReturnProperty, FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren));
 		}
 	}
 #else
@@ -20361,24 +20382,33 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  * <fixes>OnVehicleSpawn</fixes>
  */
 
+#if _FIXES_SAMP && defined _ALS_AddStaticVehicle
+	#error _ALS_AddStaticVehicle defined
+#endif
+native BAD_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2) = AddStaticVehicle;
+
+/**
+ * <fixes>OnVehicleSpawn</fixes>
+ */
+
 #if FIX_OnVehicleSpawn
-	stock FIXES_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, color1, color2)
+	stock FIXES_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2)
 	{
 			_FIXES_IS_IN_CHARGE()
 			{
-				return FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, color1, color2, 120000, false);
+				return FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, 120000, false);
 			}
 		#if !FIXES_Single
-			else if (color1 == -1 || color2 == -1)
+			else if (colour1 == -1 || colour2 == -1)
 			{
 				return
 					setproperty(5, FIXES_gscReturnProperty, INVALID_VEHICLE_ID),
-					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, color1, color2, 120000, false),
+					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, colour1, colour2, 120000, false),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			else
 			{
-				return AddStaticVehicle(modelid, x, y, z, rotation, color1, color2);
+				return AddStaticVehicle__(modelid, x, y, z, rotation, colour1, colour2);
 			}
 		#endif
 	}
@@ -20954,14 +20984,14 @@ native BAD_Kick(playerid) = Kick;
 #if _FIXES_SAMP && defined _ALS_strins
 	#error _ALS_strins defined
 #endif
-native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = strins;
+native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = strins;
 
 /**
  * <fixes>strins</fixes>
  */
 
 #if FIX_strins
-	stock FIXES_strins(string[], const substr[], pos, maxlength = sizeof string)
+	stock FIXES_strins(string[], const substr[], pos, maxlength = sizeof (string))
 	{
 		if (string[0] > 255)
 		{
@@ -21220,19 +21250,19 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof string) = st
 #if _FIXES_SAMP && defined _ALS_CreateActor
 	#error _ALS_CreateActor defined
 #endif
-native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = CreateActor;
+native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:rotation) = CreateActor;
 
 /**
  * <fixes>ApplyActorAnimation_2</fixes>
  */
 
 #if FIX_ApplyActorAnimation_2
-	stock FIXES_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:Rotation)
+	stock FIXES_CreateActor(modelid, Float:x, Float:y, Float:z, Float:rotation)
 	{
 		new
 			actorid;
 
-		actorid = CreateActor__(modelid, X, Y, Z, Rotation);
+		actorid = CreateActor__(modelid, x, y, z, rotation);
 
 		if (actorid == INVALID_ACTOR_ID)
 		{
@@ -21309,14 +21339,13 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
  */
 
 #if FIX_GetVehicleComponentInSlot
-	stock FIXES_GetVehicleComponentType(componentid)
+	stock CARMODTYPE:FIXES_GetVehicleComponentType(componentid)
 	{
-		if (componentid == 1100 || componentid == 1115 || componentid == 1116 || componentid == 1123 || componentid == 1125)
+		switch (componentid)
 		{
+		case 1100, 1115, 1116, 1123, 1125:
 			return CARMODTYPE_FRONT_BULLBAR;
-		}
-		else if (componentid == 1109 || componentid == 1110)
-		{
+		case 1109, 1110:
 			return CARMODTYPE_REAR_BULLBAR;
 		}
 		return GetVehicleComponentType__(componentid);
@@ -21554,7 +21583,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
  */
 
 #if FIX_GetVehicleComponentInSlot
-	stock FIXES_GetVehicleComponentInSlot(vehicleid, slot)
+	stock FIXES_GetVehicleComponentInSlot(vehicleid, CARMODTYPE:slot)
 	{
 		#if !FIXES_Single
 			new componentstring[8];
@@ -22010,7 +22039,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
  */
 
 #if FIX_SetPlayerCamera
-	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, cut = CAMERA_CUT)
+	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, CAMERA:cut = CAMERA_CUT)
 	{
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
@@ -22290,11 +22319,11 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
  */
 
 #if FIX_GetPVarString
-	stock FIXES_GetPVarString(playerid, _FIXES_MAYBE_CONST varname[], string_return[], len)
+	stock FIXES_GetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], value[], len = sizeof (value))
 	{
-		len = GetPVarString__(playerid, varname, string_return, len);
+		len = GetPVarString__(playerid, pvar, value, len);
 		static i; i = -1;
-		do {} while ((string_return[++i] &= 0xFF) != '\0');
+		do {} while ((value[++i] &= 0xFF) != '\0');
 		return len;
 	}
 
@@ -22331,11 +22360,11 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, lengt
  */
 
 #if FIX_GetSVarString
-	stock FIXES_GetSVarString(_FIXES_MAYBE_CONST varname[], string_return[], len)
+	stock FIXES_GetSVarString(_FIXES_MAYBE_CONST svar[], value[], len = sizeof (value))
 	{
-		len = GetSVarString__(varname, string_return, len);
+		len = GetSVarString__(svar, value, len);
 		static i; i = -1;
-		do {} while ((string_return[++i] &= 0xFF) != '\0');
+		do {} while ((value[++i] &= 0xFF) != '\0');
 		return len;
 	}
 
@@ -22370,16 +22399,13 @@ native BAD_toupper(c) = toupper;
 #if FIX_toupper
 	stock FIXES_toupper(c)
 	{
-		switch (c)
+		if (_FIXES_IN_RANGE(c, 'a', 'z' + 1) || _FIXES_IN_RANGE(c, 224, 255 + 1))
 		{
-			case 'a'..'z', 224..255:
-			{
-				return c - 32;
-			}
-			case 168:
-			{
-				return c - 16;
-			}
+			return c - 32;
+		}
+		if (c == 168)
+		{
+			return c - 16;
 		}
 		return c;
 	}
@@ -22411,16 +22437,13 @@ native BAD_tolower(c) = tolower;
 #if FIX_tolower
 	stock FIXES_tolower(c)
 	{
-		switch (c)
+		if (_FIXES_IN_RANGE(c, 'A', 'Z' + 1) || _FIXES_IN_RANGE(c, 192, 223 + 1))
 		{
-			case 'A'..'Z', 192..223:
-			{
-				return c + 32;
-			}
-			case 184:
-			{
-				return c + 16;
-			}
+			return c + 32;
+		}
+		if (c == 184)
+		{
+			return c + 16;
 		}
 		return c;
 	}
@@ -22642,13 +22665,13 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
  */
 
 #if FIX_GetPlayerAmmo
-	_FIXES_FUNC_PAWNDOC(FIXES_SetPlayerAmmo(playerid, weaponid, ammo));
+	native FIXES_SetPlayerAmmo(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
 	#if _FIXES_SAMP
 		#define _ALS_SetPlayerAmmo
-		#define SetPlayerAmmo(%0,%1,%2) BAD_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
+		#define SetPlayerAmmo(%0,%1,%2) FIXES_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
 	#endif
 	#define _ALS_SetPlayerAmmo__
-	#define SetPlayerAmmo__(%0,%1,%2) BAD_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
+	#define SetPlayerAmmo__(%0,%1,%2) FIXES_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerAmmo);
 #endif
@@ -22952,18 +22975,18 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  */
 
 #if FIX_GetConsoleVarAsString || FIX_GetConsoleVarAsFloat || FIX_GetConsoleVarAsInt || FIX_GetConsoleVarAsBool
-	stock bool:FIXES_GetConsoleVarAsString(const varname[], buffer[], len = sizeof (buffer))
+	stock bool:FIXES_GetConsoleVarAsString(const cvar[], buffer[], len = sizeof (buffer))
 	{
 		buffer[0] = '\0';
 		if (!FIXES_gsServerCFG)
 		{
 			#if _FIXES_NPC
 				return
-					printf(FIXES_gscNoNPCConfigs, varname),
+					printf(FIXES_gscNoNPCConfigs, cvar),
 					buffer[0] = '\0',
 					false;
 			#else
-				switch (_FIXES_Bernstein(varname))
+				switch (_FIXES_Bernstein(cvar))
 				{
 				case 0x6A7D4118, // gamemode0
 					 0x6A7D4119, // gamemode1
@@ -23001,7 +23024,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 					 0x7C78F2F5, // echo
 					 0x2D2A0363, // artwork
 					 0x2D273D0F: // artpath
-					return bool:GetConsoleVarAsString__(varname, buffer, len);
+					return bool:GetConsoleVarAsString__(cvar, buffer, len);
 				default:
 					return false;
 				}
@@ -23010,7 +23033,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		fseek(FIXES_gsServerCFG, 0, seek_start);
 		// Read the file line-by-line.  Take care of very long lines.
 		new
-			cmpLen = strlen(varname),
+			cmpLen = strlen(cvar),
 			readOffset,
 			line[128],
 			lineLen,
@@ -23021,9 +23044,9 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 			if (lineState == 0)
 			{
 				// There is no explicit comments (#) check, since a commented
-				// line simply won't match the parameter varname.
-				if (lineLen < cmpLen || strcmp(line, varname, true, cmpLen) || line[cmpLen] > ' ')
-					lineState = 2; // The varname didn't match exactly.
+				// line simply won't match the parameter cvar.
+				if (lineLen < cmpLen || strcmp(line, cvar, true, cmpLen) || line[cmpLen] > ' ')
+					lineState = 2; // The cvar didn't match exactly.
 				else
 				{
 					readOffset = cmpLen;
@@ -23068,9 +23091,9 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 	#define GetConsoleVarAsString__( FIXES_GetConsoleVarAsString(
 
 	#pragma deprecated Use `GetConsoleVarAsString`
-	stock bool:FIXES_GetServerVarAsString(const varname[], buffer[], len = sizeof (buffer))
+	stock bool:FIXES_GetServerVarAsString(const cvar[], buffer[], len = sizeof (buffer))
 	{
-		return FIXES_GetConsoleVarAsString(varname, buffer, len);
+		return FIXES_GetConsoleVarAsString(cvar, buffer, len);
 	}
 
 	#if _FIXES_SAMP
@@ -23103,16 +23126,16 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
  */
 
 #if FIX_GetConsoleVarAsInt
-	stock FIXES_GetConsoleVarAsInt(const varname[])
+	stock FIXES_GetConsoleVarAsInt(const cvar[])
 	{
 		if (!FIXES_gsServerCFG)
 		{
 			#if _FIXES_NPC
 				return
-					printf(FIXES_gscNoNPCConfigs, varname),
+					printf(FIXES_gscNoNPCConfigs, cvar),
 					0;
 			#else
-				switch (_FIXES_Bernstein(varname))
+				switch (_FIXES_Bernstein(cvar))
 				{
 				case 0xF59D7562, // cookielogging // bool
 					 0x5DD3AB50, // concookies // bool
@@ -23136,7 +23159,7 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 					 0x16847CA0, // useartwork
 					 0x0B874649, // mtu
 					 0x7C75D85C: // port
-					return GetConsoleVarAsInt__(varname);
+					return GetConsoleVarAsInt__(cvar);
 				default:
 					return 0;
 				}
@@ -23144,7 +23167,7 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 		}
 		new
 			buffer[16];
-		if (FIXES_GetConsoleVarAsString(varname, buffer, sizeof (buffer)))
+		if (FIXES_GetConsoleVarAsString(cvar, buffer, sizeof (buffer)))
 			return strval(buffer);
 		return 0;
 	}
@@ -23158,9 +23181,9 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 	#define GetConsoleVarAsInt__( FIXES_GetConsoleVarAsInt(
 
 	#pragma deprecated Use `GetConsoleVarAsInt`
-	stock FIXES_GetServerVarAsInt(const varname[])
+	stock FIXES_GetServerVarAsInt(const cvar[])
 	{
-		return FIXES_GetConsoleVarAsInt(varname);
+		return FIXES_GetConsoleVarAsInt(cvar);
 	}
 
 	#if _FIXES_SAMP
@@ -23193,16 +23216,16 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_GetConsoleVarAsBool
-	stock bool:FIXES_GetConsoleVarAsBool(const varname[])
+	stock bool:FIXES_GetConsoleVarAsBool(const cvar[])
 	{
 		if (!FIXES_gsServerCFG)
 		{
 			#if _FIXES_NPC
 				return
-					printf(FIXES_gscNoNPCConfigs, varname),
+					printf(FIXES_gscNoNPCConfigs, cvar),
 					false;
 			#else
-				switch (_FIXES_Bernstein(varname))
+				switch (_FIXES_Bernstein(cvar))
 				{
 				case 0x5F92A936, // announce
 					 0xFB6572C5, // lanmode
@@ -23212,7 +23235,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 					 0x97EABC6B, // timestamp
 					 0x57CBE04F, // myriad
 					 0x6658699A: // output
-					return bool:GetConsoleVarAsBool__(varname);
+					return bool:GetConsoleVarAsBool__(cvar);
 				default:
 					return false;
 				}
@@ -23220,7 +23243,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 		}
 		new
 			buffer[16];
-		if (FIXES_GetConsoleVarAsString(varname, buffer, sizeof (buffer)))
+		if (FIXES_GetConsoleVarAsString(cvar, buffer, sizeof (buffer)))
 			return strval(buffer) != 0;
 		return false;
 	}
@@ -23234,9 +23257,9 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define GetConsoleVarAsBool__( FIXES_GetConsoleVarAsBool(
 
 	#pragma deprecated Use `GetConsoleVarAsBool`
-	stock bool:FIXES_GetServerVarAsBool(const varname[])
+	stock bool:FIXES_GetServerVarAsBool(const cvar[])
 	{
-		return FIXES_GetConsoleVarAsBool(varname);
+		return FIXES_GetConsoleVarAsBool(cvar);
 	}
 
 	#if _FIXES_SAMP
@@ -23255,7 +23278,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_GetConsoleVarAsFloat
-	stock Float:FIXES_GetConsoleVarAsFloat(const varname[])
+	stock Float:FIXES_GetConsoleVarAsFloat(const cvar[])
 	{
 		GetConsoleVarAsFloat
 		if (!FIXES_gsServerCFG)
@@ -23263,17 +23286,17 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 			// 0x03A253F3 = stream_distance.
 			#if _FIXES_NPC
 				return
-					printf(FIXES_gscNoNPCConfigs, varname),
+					printf(FIXES_gscNoNPCConfigs, cvar),
 					0.0;
 			#else
 				return
-					printf("\7\7\7\7\7*** fixes.inc warning: Could not get .cfg \"%s\".", varname),
+					printf("\7\7\7\7\7*** fixes.inc warning: Could not get .cfg \"%s\".", cvar),
 					0.0;
 			#endif
 		}
 		new
 			buffer[16];
-		if (FIXES_GetConsoleVarAsString(varname, buffer, sizeof (buffer)))
+		if (FIXES_GetConsoleVarAsString(cvar, buffer, sizeof (buffer)))
 			return floatstr(buffer);
 		return 0.0;
 	}
@@ -23287,9 +23310,9 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define GetConsoleVarAsFloat__( FIXES_GetConsoleVarAsFloat(
 
 	#pragma deprecated Use `GetConsoleVarAsFloat`
-	stock Float:FIXES_GetServerVarAsFloat(const varname[])
+	stock Float:FIXES_GetServerVarAsFloat(const cvar[])
 	{
-		return FIXES_GetConsoleVarAsFloat(varname);
+		return FIXES_GetConsoleVarAsFloat(cvar);
 	}
 
 	#if _FIXES_SAMP
@@ -23435,7 +23458,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_API
-	_FIXES_FUNC_PAWNDOC(IsValidAnimationLibrary(const animlib[]));
+	_FIXES_FUNC_PAWNDOC(IsValidAnimationLibrary(const animationLibrary[]));
 	#define FIXES_IsValidAnimationLibrary(%0) (_FIXES_GetAnimLibIndex(%0) != -1)
 
 	#if _FIXES_SAMP
