@@ -4,15 +4,40 @@
 
 #include <a_samp>
 
-native SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCount);
-native GetPlayerCustomSkin(playerid);
+#undef MAX_PLAYERS
+#define MAX_PLAYERS (100)
 
-native AddCharModel(baseid, newid, const dff[], const textureLibrary[]);
-native AddSimpleModel(virtualWorld, baseid, newid, const dff[], const textureLibrary[]);
-native AddSimpleModelTimed(virtualWorld, baseid, newid, const dff[], const textureLibrary[], timeOn, timeOff);
-native FindModelFileNameFromCRC(crc, output[], retstr_size = sizeof (output));
-native FindTextureFileNameFromCRC(crc, output[], retstr_size = sizeof (output));
-native RedirectDownload(playerid, const url[]);
+#if !defined SendClientCheck
+	native SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCount);
+#endif
+
+#if !defined GetPlayerCustomSkin
+	native GetPlayerCustomSkin(playerid);
+#endif
+
+#if !defined AddCharModel
+	native AddCharModel(baseid, newid, const dff[], const textureLibrary[]);
+#endif
+
+#if !defined AddSimpleModel
+	native AddSimpleModel(virtualWorld, baseid, newid, const dff[], const textureLibrary[]);
+#endif
+
+#if !defined AddSimpleModelTimed
+	native AddSimpleModelTimed(virtualWorld, baseid, newid, const dff[], const textureLibrary[], timeOn, timeOff);
+#endif
+
+#if !defined FindModelFileNameFromCRC
+	native FindModelFileNameFromCRC(crc, output[], retstr_size = sizeof (output));
+#endif
+
+#if !defined FindTextureFileNameFromCRC
+	native FindTextureFileNameFromCRC(crc, output[], retstr_size = sizeof (output));
+#endif
+
+#if !defined RedirectDownload
+	native RedirectDownload(playerid, const url[]);
+#endif
 
 #include "fixes"
 
