@@ -6934,6 +6934,39 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_limit_tags                       (0)
 #endif
 
+/**
+ * <fix name="bool_tags">
+ *     <problem>
+ *         Many <c>true/false<c> parameters use <c>1/0</c> with no <c>bool:</c>
+ *         tag.
+ *     </problem>
+ *     <solution>
+ *         Add the tag.
+ *     </solution>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_bool_tags
+	#define _FIXES_WARNING 134
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_bool_tags = _FIXES_DEFAULT;
+	#define FIX_bool_tags                        _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_bool_tags)
+	#undef FIX_bool_tags
+	static stock FIX_bool_tags = 2;
+	#define FIX_bool_tags                        (2)
+#elseif FIX_bool_tags
+	#undef FIX_bool_tags
+	static stock FIX_bool_tags = 1;
+	#define FIX_bool_tags                        (1)
+#else
+	#undef FIX_bool_tags
+	static stock FIX_bool_tags = 0;
+	#define FIX_bool_tags                        (0)
+#endif
+
 /*
 
     88b           d88
@@ -7135,7 +7168,7 @@ _FIXES_FUNC_PAWNDOC(FIXES_PRINTF(const str[], ...));
  * </remarks>
  */
 
-_FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_IN_CHARGE());
+_FIXES_FUNC_PAWNDOC(_FIXES_MAYBE_BOOL:_FIXES_IS_IN_CHARGE());
 #if FIXES_Single
 	#define _FIXES_IS_IN_CHARGE(%0)
 #else
@@ -7176,7 +7209,7 @@ _FIXES_FUNC_PAWNDOC(FIXES_GET(const var[], playerid));
  * </remarks>
  */
 
-_FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_NULL(const string[]));
+_FIXES_FUNC_PAWNDOC(_FIXES_MAYBE_BOOL:_FIXES_IS_NULL(const string[]));
 #define _FIXES_IS_NULL(%0) ((%0[(%0[0])=='\1'])=='\0')
 
 /**
@@ -7204,7 +7237,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_FOREACH(iterator[], &playerid));
  * </remarks>
  */
 
-_FIXES_FUNC_PAWNDOC(bool:_FIXES_IN_RANGE(min, value, max));
+_FIXES_FUNC_PAWNDOC(_FIXES_MAYBE_BOOL:_FIXES_IN_RANGE(min, value, max));
 #define _FIXES_IN_RANGE(%0,%1,%2) ((_:(%0) - (_:(%1) + cellmin)) < (_:(%2) - (_:(%1) + cellmin)))
 
 /**
@@ -7214,7 +7247,7 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_IN_RANGE(min, value, max));
  * </remarks>
  */
 
-_FIXES_FUNC_PAWNDOC(bool:_FIXES_NO_RANGE(min, value, max));
+_FIXES_FUNC_PAWNDOC(_FIXES_MAYBE_BOOL:_FIXES_NO_RANGE(min, value, max));
 #define _FIXES_NO_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) >= ((%2) - ((%1) + cellmin)))
 
 /**
@@ -7237,7 +7270,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_FORWARD(const function[], ...));
  * </remarks>
  */
 
-_FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_VALID_PLAYER(playerid));
+_FIXES_FUNC_PAWNDOC(_FIXES_MAYBE_BOOL:_FIXES_IS_VALID_PLAYER(playerid));
 #define _FIXES_IS_VALID_PLAYER(%0) _FIXES_IN_RANGE((%0), 0, MAX_PLAYERS)
 
 /**
@@ -7246,7 +7279,7 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_VALID_PLAYER(playerid));
  * </remarks>
  */
 
-_FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_PLAYER_CONNECTED(playerid));
+_FIXES_FUNC_PAWNDOC(_FIXES_MAYBE_BOOL:_FIXES_IS_PLAYER_CONNECTED(playerid));
 #define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IS_VALID_PLAYER(%0) && IsPlayerConnected__(%0))
 
 /**
@@ -7275,6 +7308,34 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK);
 	#define _FIXES_STATIC_STOCK new
 #else
 	#define _FIXES_STATIC_STOCK static stock
+#endif
+
+/**
+ * <remarks>
+ * Either <c>const</c> or nothing, depending on the value of <c>FIX_const</c>,
+ * so we can add <c>const</c> as required on the new compiler.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_CONST);
+#if FIX_const
+	#define _FIXES_MAYBE_CONST const
+#else
+	#define _FIXES_MAYBE_CONST
+#endif
+
+/**
+ * <remarks>
+ * Either <c>bool</c> or <c>_</c>, depending on the value of
+ * <c>FIX_bool_tags</c>, to reduce excessive warnings.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_BOOL);
+#if FIX_bool_tags
+	#define _FIXES_MAYBE_BOOL bool
+#else
+	#define _FIXES_MAYBE_BOOL _
 #endif
 
 /*
@@ -9291,7 +9352,7 @@ stock
 	 * Runtime equivalent of "FILTERSCRIPT" for when it is not set by the user.
 	 * </remarks>
 	 */
-	bool:_FIXES_gIsFilterscript;
+	_FIXES_MAYBE_BOOL:_FIXES_gIsFilterscript;
 
 #if !FIX_JIT
 static
@@ -9302,7 +9363,7 @@ stock
 	 * True when the JIT plugin is being used.
 	 * </remarks>
 	 */
-	bool:_FIXES_gIsJIT = false;
+	_FIXES_MAYBE_BOOL:_FIXES_gIsJIT = false;
 
 #if !FIX_OS
 static
@@ -9313,7 +9374,7 @@ stock
 	 * True on Windows, false on Linux.
 	 * </remarks>
 	 */
-	bool:_FIXES_gIsWindows;
+	_FIXES_MAYBE_BOOL:_FIXES_gIsWindows;
 
 #if !FIX_GetMaxPlayers
 static
@@ -9394,7 +9455,7 @@ _FIXES_STATIC_STOCK
 	 * Only determine the OS once.
 	 * </remarks>
 	 */
-	bool:FIXES_gsKnownOS = false;
+	_FIXES_MAYBE_BOOL:FIXES_gsKnownOS = false;
 
 _FIXES_STATIC_STOCK
 	/**
@@ -9523,7 +9584,7 @@ _FIXES_STATIC_STOCK
 	 * Boolean: Stores if a certain vehicle is 'locked' or not.
 	 * </remarks>
 	 */
-	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES];
+	_FIXES_MAYBE_BOOL:FIXES_gsVehicleIsLocked[MAX_VEHICLES];
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsVehicleIsLocked);
 #endif
@@ -11816,11 +11877,11 @@ _FIXES_STATIC_STOCK_CONST
  */
 
 #if FIX_IsValidVehicle
-	native bool:IsValidVehicle(vehicleid);
+	native _FIXES_MAYBE_BOOL:IsValidVehicle(vehicleid);
 #else
 	_FIXES_HIDE_PAWNDOC(_FIXES_IsValidVehicle);
 #endif
-native bool:BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
+native _FIXES_MAYBE_BOOL:BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
 
 /**
  * <remarks>
@@ -11882,7 +11943,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetTimer
 			#error _ALS_SetTimer defined
 		#endif
-		native CST_SetTimer(const functionName[], interval, bool:repeating) = SetTimer;
+		native CST_SetTimer(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
 		native BAD_SetTimer(functionName[], interval, repeating) = SetTimer;
 		#define _ALS_SetTimer
 		#define SetTimer( CST_SetTimer(
@@ -11912,7 +11973,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_ApplyActorAnimation
 			#error _ALS_ApplyActorAnimation defined
 		#endif
-		native CST_ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time) = ApplyActorAnimation;
+		native CST_ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation;
 		native BAD_ApplyActorAnimation(actorid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time) = ApplyActorAnimation;
 		#define _ALS_ApplyActorAnimation
 		#define ApplyActorAnimation( CST_ApplyActorAnimation(
@@ -11960,13 +12021,13 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetObjectMaterialText
 			#error _ALS_SetObjectMaterialText defined
 		#endif
-		native CST_SetObjectMaterialText(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
+		native CST_SetObjectMaterialText(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
 		#define _ALS_SetObjectMaterialText
 		#define SetObjectMaterialText( CST_SetObjectMaterialText(
 		#if _FIXES_SAMP && defined _ALS_SetPlayerObjMaterialText
 			#error _ALS_SetPlayerObjMaterialText defined
 		#endif
-		native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
+		native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
 		#define _ALS_SetPlayerObjMaterialText
 		#define SetPlayerObjectMaterialText( CST_SetPlayerObjectMaterialText(
 
@@ -12059,7 +12120,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_ApplyAnimation
 			#error _ALS_ApplyAnimation defined
 		#endif
-		native CST_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync = false) = ApplyAnimation;
+		native CST_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync = false) = ApplyAnimation;
 		native BAD_ApplyAnimation(playerid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time, forceSync = 0) = ApplyAnimation;
 		#define _ALS_ApplyAnimation
 		#define ApplyAnimation( CST_ApplyAnimation(
@@ -12074,14 +12135,14 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetTimer
 			#error _ALS_SetTimer defined
 		#endif
-		native CST_SetTimer(const functionName[], interval, bool:repeating) = SetTimer;
+		native CST_SetTimer(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
 		native BAD_SetTimer(functionName[], interval, repeating) = SetTimer;
 		#define _ALS_SetTimer
 		#define SetTimer( CST_SetTimer(
 		#if _FIXES_SAMP && defined _ALS_SetTimerEx
 			#error _ALS_SetTimerEx defined
 		#endif
-		native CST_SetTimerEx(const functionName[], interval, bool:repeating, const format[], {Float,_}:...) = SetTimerEx;
+		native CST_SetTimerEx(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[], {Float,_}:...) = SetTimerEx;
 		native BAD_SetTimerEx(functionName[], interval, repeating, format[], {Float,_}:...) = SetTimerEx;
 		#define _ALS_SetTimerEx
 		#define SetTimerEx( CST_SetTimerEx(
@@ -12198,7 +12259,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_Create3DTextLabel
 			#error _ALS_Create3DTextLabel defined
 		#endif
-		native Text3D:CST_Create3DTextLabel(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false) = Create3DTextLabel;
+		native Text3D:CST_Create3DTextLabel(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = false) = Create3DTextLabel;
 		#define _ALS_Create3DTextLabel
 		#define Create3DTextLabel( CST_Create3DTextLabel(
 		#if _FIXES_SAMP && defined _ALS_Update3DTextLabelText
@@ -12210,7 +12271,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_CreatePlayer3DTextLabel
 			#error _ALS_CreatePlayer3DTextLabel defined
 		#endif
-		native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false) = CreatePlayer3DTextLabel;
+		native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = false) = CreatePlayer3DTextLabel;
 		#define _ALS_CreatePlayer3DTextLabel
 		#define CreatePlayer3DTextLabel( CST_CreatePlayer3DTextLabel(
 		#if _FIXES_SAMP && defined _ALS_UpdPlayer3DTextLabelText
@@ -12249,10 +12310,6 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#define _ALS_SetVehicleNumberPlate
 		#define SetVehicleNumberPlate( CST_SetVehicleNumberPlate(
 	#endif
-
-	#define _FIXES_MAYBE_CONST const
-#else
-	#define _FIXES_MAYBE_CONST
 #endif
 
 // All SA:MP natives, copied here for posterity?  No, because then we can
@@ -12267,7 +12324,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native Print__(const string[]) = print;
 	native PrintF__(const format[], {Float, _}:...) = printf;
 	native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
-	native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer;
+	native SetTimer__(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
 	native KillTimer__(timerid) = KillTimer;
 	native GetTickCount__() = GetTickCount;
 	native Float:ASin__(Float:value) = asin;
@@ -12283,8 +12340,8 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetPlayerHealth__(playerid) = GetPlayerHealth;
 	native GetPlayerArmour__(playerid) = GetPlayerArmour;
 	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
-	native bool:IsPlayerStreamedIn__(playerid) = IsPlayerStreamedIn;
-	native bool:IsVehicleStreamedIn__(vehicleid) = IsVehicleStreamedIn;
+	native _FIXES_MAYBE_BOOL:IsPlayerStreamedIn__(playerid) = IsPlayerStreamedIn;
+	native _FIXES_MAYBE_BOOL:IsVehicleStreamedIn__(vehicleid) = IsVehicleStreamedIn;
 	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
 	native GetMyPos__(&Float:x, &Float:y, &Float:z) = GetMyPos;
@@ -12292,9 +12349,9 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetMyFacingAngle__(&Float:ang) = GetMyFacingAngle;
 	native SetMyFacingAngle__(Float:ang) = SetMyFacingAngle;
 	native GetDistanceFromMeToPoint__(Float:x, Float:y, Float:z, &Float:distance) = GetDistanceFromMeToPoint;
-	native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
+	native _FIXES_MAYBE_BOOL:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 	native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName;
-	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
+	native _FIXES_MAYBE_BOOL:IsPlayerConnected__(playerid) = IsPlayerConnected;
 	native StartRecordingPlayback__(PLAYER_RECORDING_TYPE:playbacktype, const recordFile[]) = StartRecordingPlayback;
 	native StopRecordingPlayback__() = StopRecordingPlayback;
 	native PauseRecordingPlayback__() = PauseRecordingPlayback;
@@ -12311,8 +12368,8 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native SendDeathMessageToPlayer__(playerid, killer, killee, weapon) = SendDeathMessageToPlayer;
 	native GameTextForAll__(const string[], time, style) = GameTextForAll;
 	native GameTextForPlayer__(playerid, const string[], time, style) = GameTextForPlayer;
-	native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer;
-	native SetTimerEx__(const functionName[], interval, bool:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
+	native SetTimer__(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
+	native SetTimerEx__(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
 	native KillTimer__(timerid) = KillTimer;
 	native GetTickCount__() = GetTickCount;
 	native GetMaxPlayers__() = GetMaxPlayers;
@@ -12343,29 +12400,29 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native AddPlayerClass__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass;
 	native AddPlayerClassEx__(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx;
 	native AddStaticVehicle__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle;
-	native AddStaticVehicleEx__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, bool:addSiren = false) = AddStaticVehicleEx;
+	native AddStaticVehicleEx__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = AddStaticVehicleEx;
 	native AddStaticPickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup;
 	native CreatePickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup;
 	native DestroyPickup__(pickup) = DestroyPickup;
-	native ShowNameTags__(bool:show) = ShowNameTags;
+	native ShowNameTags__(_FIXES_MAYBE_BOOL:show) = ShowNameTags;
 	native ShowPlayerMarkers__(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
 	native GameModeExit__() = GameModeExit;
 	native SetWorldTime__(hour) = SetWorldTime;
 	native GetWeaponName__(WEAPON:weaponid, weapon[], len = sizeof (weapon)) = GetWeaponName;
 	#pragma deprecated Use `OnVehicleDamageStatusUpdate`.
-	native EnableTirePopping__(bool:enable) = EnableTirePopping; 
+	native EnableTirePopping__(_FIXES_MAYBE_BOOL:enable) = EnableTirePopping; 
 	native EnableVehicleFriendlyFire__() = EnableVehicleFriendlyFire;
 	#pragma deprecated Use `OnPlayerInteriorChange`.
-	native AllowInteriorWeapons__(bool:allow) = AllowInteriorWeapons;
+	native AllowInteriorWeapons__(_FIXES_MAYBE_BOOL:allow) = AllowInteriorWeapons;
 	native SetWeather__(weatherid) = SetWeather;
 	native Float:GetGravity__() = GetGravity;
 	native SetGravity__(Float:gravity) = SetGravity;
 	#pragma deprecated Use `OnPlayerClickMap`.
-	native AllowAdminTeleport__(bool:allow) = AllowAdminTeleport;
+	native AllowAdminTeleport__(_FIXES_MAYBE_BOOL:allow) = AllowAdminTeleport;
 	#pragma deprecated Use `CreatePickup`.
 	native SetDeathDropAmount__(amount) = SetDeathDropAmount;
 	native CreateExplosion__(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion;
-	native EnableZoneNames__(bool:enable) = EnableZoneNames;
+	native EnableZoneNames__(_FIXES_MAYBE_BOOL:enable) = EnableZoneNames;
 	native UsePlayerPedAnims__() = UsePlayerPedAnims; 
 	native DisableInteriorEnterExits__() = DisableInteriorEnterExits;  
 	native SetNameTagDrawDistance__(Float:distance) = SetNameTagDrawDistance; 
@@ -12373,14 +12430,14 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native LimitGlobalChatRadius__(Float:chatRadius) = LimitGlobalChatRadius;
 	native LimitPlayerMarkerRadius__(Float:markerRadius) = LimitPlayerMarkerRadius;
 	native ConnectNPC__(const name[], const script[]) = ConnectNPC;
-	native bool:IsPlayerNPC__(playerid) = IsPlayerNPC;
+	native _FIXES_MAYBE_BOOL:IsPlayerNPC__(playerid) = IsPlayerNPC;
 	native AddCharModel__(baseid, newid, const dff[], const textureLibrary[]) = AddCharModel;
 	native AddSimpleModel__(virtualWorld, baseid, newid, const dff[], const textureLibrary[]) = AddSimpleModel;
 	native AddSimpleModelTimed__(virtualWorld, baseid, newid, const dff[], const textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
 	native FindModelFileNameFromCRC__(crc, output[], retstr_size = sizeof (output)) = FindModelFileNameFromCRC;
 	native FindTextureFileNameFromCRC__(crc, output[], retstr_size = sizeof (output)) = FindTextureFileNameFromCRC;
 	native RedirectDownload__(playerid, const url[]) = RedirectDownload;
-	native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
+	native _FIXES_MAYBE_BOOL:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
 	native Kick__(playerid) = Kick;
 	native Ban__(playerid) = Ban;
 	native BanEx__(playerid, const reason[]) = BanEx;
@@ -12395,10 +12452,10 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	#pragma deprecated Use `GetConsoleVarAsInt`.
 	native GetServerVarAsInt__(const cvar[]) = GetServerVarAsInt;
 	#pragma deprecated Use `GetConsoleVarAsBool`.
-	native bool:GetServerVarAsBool__(const cvar[]) = GetServerVarAsBool;
+	native _FIXES_MAYBE_BOOL:GetServerVarAsBool__(const cvar[]) = GetServerVarAsBool;
 	native GetConsoleVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetConsoleVarAsString;
 	native GetConsoleVarAsInt__(const cvar[]) = GetConsoleVarAsInt;
-	native bool:GetConsoleVarAsBool__(const cvar[]) = GetConsoleVarAsBool;
+	native _FIXES_MAYBE_BOOL:GetConsoleVarAsBool__(const cvar[]) = GetConsoleVarAsBool;
 	native GetServerTickRate__() = GetServerTickRate;
 	native NetStats_GetConnectedTime__(playerid) = NetStats_GetConnectedTime;
 	native NetStats_MessagesReceived__(playerid) = NetStats_MessagesReceived;
@@ -12415,7 +12472,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native SetMenuColumnHeader__(Menu:menuid, column, const heading[]) = SetMenuColumnHeader;
 	native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer;
 	native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer;
-	native bool:IsValidMenu__(Menu:menuid) = IsValidMenu;
+	native _FIXES_MAYBE_BOOL:IsValidMenu__(Menu:menuid) = IsValidMenu;
 	native DisableMenu__(Menu:menuid) = DisableMenu;
 	native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow;
 	native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu;
@@ -12425,14 +12482,14 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native TextDrawTextSize__(Text:text, Float:width, Float:height) = TextDrawTextSize;
 	native TextDrawAlignment__(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment;
 	native TextDrawColor__(Text:text, colour) = TextDrawColor;
-	native TextDrawUseBox__(Text:text, bool:use) = TextDrawUseBox;
+	native TextDrawUseBox__(Text:text, _FIXES_MAYBE_BOOL:use) = TextDrawUseBox;
 	native TextDrawBoxColor__(Text:text, colour) = TextDrawBoxColor;
 	native TextDrawSetShadow__(Text:text, size) = TextDrawSetShadow;
 	native TextDrawSetOutline__(Text:text, size) = TextDrawSetOutline;
 	native TextDrawBackgroundColor__(Text:text, colour) = TextDrawBackgroundColor;
 	native TextDrawFont__(Text:text, font) = TextDrawFont;
-	native TextDrawSetProportional__(Text:text, bool:set) = TextDrawSetProportional;
-	native TextDrawSetSelectable__(Text:text, bool:set) = TextDrawSetSelectable;
+	native TextDrawSetProportional__(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetProportional;
+	native TextDrawSetSelectable__(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetSelectable;
 	native TextDrawShowForPlayer__(playerid, Text:text) = TextDrawShowForPlayer;
 	native TextDrawHideForPlayer__(playerid, Text:text) = TextDrawHideForPlayer;
 	native TextDrawShowForAll__(Text:text) = TextDrawShowForAll;
@@ -12451,20 +12508,20 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GangZoneFlashForAll__(zone, flashColour) = GangZoneFlashForAll;
 	native GangZoneStopFlashForPlayer__(playerid, zone) = GangZoneStopFlashForPlayer;
 	native GangZoneStopFlashForAll__(zone) = GangZoneStopFlashForAll;
-	native Text3D:Create3DTextLabel__(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false) = Create3DTextLabel;
+	native Text3D:Create3DTextLabel__(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = false) = Create3DTextLabel;
 	native Delete3DTextLabel__(Text3D:textid) = Delete3DTextLabel;
 	native Attach3DTextLabelToPlayer__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer;
 	native Attach3DTextLabelToVehicle__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle;
 	native Update3DTextLabelText__(Text3D:textid, colour, const text[]) = Update3DTextLabelText;
-	native PlayerText3D:CreatePlayer3DTextLabel__(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false) = CreatePlayer3DTextLabel;
+	native PlayerText3D:CreatePlayer3DTextLabel__(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = false) = CreatePlayer3DTextLabel;
 	native DeletePlayer3DTextLabel__(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel;
 	native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText;
 	native ShowPlayerDialog__(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
 	native gpci__(playerid, output[], size = sizeof (output)) = gpci;
 	native GPCI__(playerid, output[], size = sizeof (output)) = gpci;
-	native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false) = CreateVehicle;
+	native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = CreateVehicle;
 	native DestroyVehicle__(vehicleid) = DestroyVehicle;
-	native bool:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn;
+	native _FIXES_MAYBE_BOOL:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn;
 	native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
 	native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 	native GetVehicleZAngle__(vehicleid, &Float:angle) = GetVehicleZAngle;
@@ -12490,7 +12547,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetVehicleHealth__(vehicleid, &Float:health) = GetVehicleHealth;
 	native AttachTrailerToVehicle__(trailerid, vehicleid) = AttachTrailerToVehicle;
 	native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle;
-	native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
+	native _FIXES_MAYBE_BOOL:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
 	native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer;
 	native SetVehicleNumberPlate__(vehicleid, const numberPlate[]) = SetVehicleNumberPlate;
 	native GetVehicleModel__(vehicleid) = GetVehicleModel;
@@ -12505,19 +12562,19 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetVehicleModelInfo__(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo;
 	native SetVehicleVirtualWorld__(vehicleid, virtualWorld) = SetVehicleVirtualWorld;
 	native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld;
-	native bool:IsValidVehicle__(vehicleid) = IsValidVehicle;
+	native _FIXES_MAYBE_BOOL:IsValidVehicle__(vehicleid) = IsValidVehicle;
 	native DB:DB_Open__(const name[]) = db_open;
-	native bool:DB_Close__(DB:db) = db_close;
+	native _FIXES_MAYBE_BOOL:DB_Close__(DB:db) = db_close;
 	native DBResult:DB_Query__(DB:db, const query[]) = db_query;
-	native bool:DB_FreeResult__(DBResult:result) = db_free_result;
+	native _FIXES_MAYBE_BOOL:DB_FreeResult__(DBResult:result) = db_free_result;
 	native DB_NumRows__(DBResult:result) = db_num_rows;
-	native bool:DB_NextRow__(DBResult:result) = db_next_row;
+	native _FIXES_MAYBE_BOOL:DB_NextRow__(DBResult:result) = db_next_row;
 	native DB_NumFields__(DBResult:result) = db_num_fields;
-	native bool:DB_FieldName__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
-	native bool:DB_GetField__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
+	native _FIXES_MAYBE_BOOL:DB_FieldName__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
+	native _FIXES_MAYBE_BOOL:DB_GetField__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
 	native DB_GetFieldInt__(DBResult:result, field = 0) = db_get_field_int;
 	native Float:DB_GetFieldFloat__(DBResult:result, field = 0) = db_get_field_float;
-	native bool:DB_GetFieldAssoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
+	native _FIXES_MAYBE_BOOL:DB_GetFieldAssoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
 	native DB_GetFieldAssocInt__(DBResult:result, const field[]) = db_get_field_assoc_int;
 	native Float:DB_GetFieldAssocFloat__(DBResult:result, const field[]) = db_get_field_assoc_float;
 	native DB_GetMemHandle__(DB:db) = db_get_mem_handle;
@@ -12526,10 +12583,10 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native DB_DebugOpenResults__() = db_debug_openresults;
 	native CreateActor__(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor;
 	native DestroyActor__(actorid) = DestroyActor;
-	native bool:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn;
+	native _FIXES_MAYBE_BOOL:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn;
 	native SetActorVirtualWorld__(actorid, virtualWorld) = SetActorVirtualWorld;
 	native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld;
-	native ApplyActorAnimation__(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time) = ApplyActorAnimation;
+	native ApplyActorAnimation__(actorid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation;
 	native ClearActorAnimations__(actorid) = ClearActorAnimations;
 	native SetActorPos__(actorid, Float:x, Float:y, Float:z) = SetActorPos;
 	native GetActorPos__(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
@@ -12537,13 +12594,13 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetActorFacingAngle__(actorid, &Float:angle) = GetActorFacingAngle;
 	native SetActorHealth__(actorid, Float:health) = SetActorHealth;
 	native GetActorHealth__(actorid, &Float:health) = GetActorHealth;
-	native SetActorInvulnerable__(actorid, bool:invulnerable = true) = SetActorInvulnerable;
-	native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
-	native bool:IsValidActor__(actorid) = IsValidActor;
+	native SetActorInvulnerable__(actorid, _FIXES_MAYBE_BOOL:invulnerable = true) = SetActorInvulnerable;
+	native _FIXES_MAYBE_BOOL:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
+	native _FIXES_MAYBE_BOOL:IsValidActor__(actorid) = IsValidActor;
 	native HTTP__(index, HTTP_METHOD:method, const url[], const data[], const callback[]) = HTTP;
 	native CreateObject__(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject;
 	native AttachObjectToVehicle__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle;
-	native AttachObjectToObject__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, bool:syncRotation = true) = AttachObjectToObject;
+	native AttachObjectToObject__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, _FIXES_MAYBE_BOOL:syncRotation = true) = AttachObjectToObject;
 	native AttachObjectToPlayer__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer;
 	native SetObjectPos__(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
 	native GetObjectPos__(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
@@ -12551,11 +12608,11 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetObjectRot__(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot;
 	native GetObjectModel__(objectid) = GetObjectModel;
 	native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol;
-	native bool:IsValidObject__(objectid) = IsValidObject;
+	native _FIXES_MAYBE_BOOL:IsValidObject__(objectid) = IsValidObject;
 	native DestroyObject__(objectid) = DestroyObject;
 	native MoveObject__(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject;
 	native StopObject__(objectid) = StopObject;
-	native bool:IsObjectMoving__(objectid) = IsObjectMoving;
+	native _FIXES_MAYBE_BOOL:IsObjectMoving__(objectid) = IsObjectMoving;
 	native EditObject__(playerid, objectid) = EditObject;
 	native EditPlayerObject__(playerid, objectid) = EditPlayerObject;
 	native SelectObject__(playerid) = SelectObject;
@@ -12568,17 +12625,17 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetPlayerObjectRot__(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot;
 	native GetPlayerObjectModel__(playerid, objectid) = GetPlayerObjectModel;
 	native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCameraCol;
-	native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
+	native _FIXES_MAYBE_BOOL:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
 	native DestroyPlayerObject__(playerid, objectid) = DestroyPlayerObject;
 	native MovePlayerObject__(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject;
 	native StopPlayerObject__(playerid, objectid) = StopPlayerObject;
-	native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
+	native _FIXES_MAYBE_BOOL:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
 	native AttachPlayerObjectToPlayer__(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer;
 	native SetObjectMaterial__(objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetObjectMaterial;
 	native SetPlayerObjectMaterial__(playerid, objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetPlayerObjectMaterial;
-	native SetObjectMaterialText__(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
-	native SetPlayerObjectMaterialText__(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
-	native SetObjectsDefaultCameraCol__(bool:disable) = SetObjectsDefaultCameraCol;
+	native SetObjectMaterialText__(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
+	native SetPlayerObjectMaterialText__(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
+	native SetObjectsDefaultCameraCol__(_FIXES_MAYBE_BOOL:disable) = SetObjectsDefaultCameraCol;
 	native SetSpawnInfo__(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo;
 	native SpawnPlayer__(playerid) = SpawnPlayer;
 	native SetPlayerPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
@@ -12586,9 +12643,9 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 	native SetPlayerFacingAngle__(playerid, Float:ang) = SetPlayerFacingAngle;
 	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
-	native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
+	native _FIXES_MAYBE_BOOL:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 	native Float:GetPlayerDistanceFromPoint__(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
-	native bool:IsPlayerStreamedIn__(targetid, playerid) = IsPlayerStreamedIn;
+	native _FIXES_MAYBE_BOOL:IsPlayerStreamedIn__(targetid, playerid) = IsPlayerStreamedIn;
 	native SetPlayerInterior__(playerid, interiorid) = SetPlayerInterior;
 	native GetPlayerInterior__(playerid) = GetPlayerInterior;
 	native SetPlayerHealth__(playerid, Float:health) = SetPlayerHealth;
@@ -12627,7 +12684,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName;
 	native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime;
 	native GetPlayerTime__(playerid, &hour, &minute) = GetPlayerTime;
-	native TogglePlayerClock__(playerid, bool:toggle) = TogglePlayerClock;
+	native TogglePlayerClock__(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerClock;
 	native SetPlayerWeather__(playerid, weather) = SetPlayerWeather;
 	native ForceClassSelection__(playerid) = ForceClassSelection;
 	native SetPlayerWantedLevel__(playerid, level) = SetPlayerWantedLevel;
@@ -12637,7 +12694,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native SetPlayerVelocity__(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity;
 	native GetPlayerVelocity__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity;
 	native PlayCrimeReportForPlayer__(playerid, suspectid, crime) = PlayCrimeReportForPlayer;
-	native PlayAudioStreamForPlayer__(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, bool:usepos = false) = PlayAudioStreamForPlayer;
+	native PlayAudioStreamForPlayer__(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, _FIXES_MAYBE_BOOL:usepos = false) = PlayAudioStreamForPlayer;
 	native StopAudioStreamForPlayer__(playerid) = StopAudioStreamForPlayer;
 	native SetPlayerShopName__(playerid, const shopname[]) = SetPlayerShopName;
 	native SetPlayerSkillLevel__(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel;
@@ -12647,7 +12704,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetPlayerLastShotVectors__(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
 	native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
 	native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject;
-	native bool:IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+	native _FIXES_MAYBE_BOOL:IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 	native EditAttachedObject__(playerid, index) = EditAttachedObject;
 	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
 	native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy;
@@ -12655,14 +12712,14 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native PlayerTextDrawTextSize__(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize;
 	native PlayerTextDrawAlignment__(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment;
 	native PlayerTextDrawColor__(playerid, PlayerText:text, colour) = PlayerTextDrawColor;
-	native PlayerTextDrawUseBox__(playerid, PlayerText:text, bool:use) = PlayerTextDrawUseBox;
+	native PlayerTextDrawUseBox__(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:use) = PlayerTextDrawUseBox;
 	native PlayerTextDrawBoxColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor;
 	native PlayerTextDrawSetShadow__(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
 	native PlayerTextDrawSetOutline__(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
 	native PlayerTextDrawBackgroundColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor;
 	native PlayerTextDrawFont__(playerid, PlayerText:text, font) = PlayerTextDrawFont;
-	native PlayerTextDrawSetProportional__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetProportional;
-	native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetSelectable;
+	native PlayerTextDrawSetProportional__(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetProportional;
+	native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetSelectable;
 	native PlayerTextDrawShow__(playerid, PlayerText:text) = PlayerTextDrawShow;
 	native PlayerTextDrawHide__(playerid, PlayerText:text) = PlayerTextDrawHide;
 	native PlayerTextDrawSetString__(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
@@ -12684,33 +12741,33 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
 	native GetPlayerVehicleSeat__(playerid) = GetPlayerVehicleSeat;
 	native RemovePlayerFromVehicle__(playerid) = RemovePlayerFromVehicle;
-	native TogglePlayerControllable__(playerid, bool:toggle) = TogglePlayerControllable;
+	native TogglePlayerControllable__(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerControllable;
 	native PlayerPlaySound__(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
-	native ApplyAnimation__(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync = false) = ApplyAnimation;
-	native ClearAnimations__(playerid, bool:forceSync = false) = ClearAnimations;
+	native ApplyAnimation__(playerid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync = false) = ApplyAnimation;
+	native ClearAnimations__(playerid, _FIXES_MAYBE_BOOL:forceSync = false) = ClearAnimations;
 	native GetPlayerAnimationIndex__(playerid) = GetPlayerAnimationIndex; 
 	native GetAnimationName__(index, animationLibrary[], len1 = sizeof (animationLibrary), animationName[], len2 = sizeof (animationName)) = GetAnimationName; 
 	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
 	native SetPlayerSpecialAction__(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
-	native DisableRemoteVehCollisions__(playerid, bool:disable) = DisableRemoteVehicleCollisions;
+	native DisableRemoteVehCollisions__(playerid, _FIXES_MAYBE_BOOL:disable) = DisableRemoteVehicleCollisions;
 	native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
 	native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint;
 	native SetPlayerRaceCheckpoint__(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
 	native DisablePlayerRaceCheckpoint__(playerid) = DisablePlayerRaceCheckpoint;
 	native SetPlayerWorldBounds__(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds;
 	native SetPlayerMarkerForPlayer__(playerid, targetid, colour) = SetPlayerMarkerForPlayer;
-	native ShowPlayerNameTagForPlayer__(playerid, targetid, bool:show) = ShowPlayerNameTagForPlayer;
+	native ShowPlayerNameTagForPlayer__(playerid, targetid, _FIXES_MAYBE_BOOL:show) = ShowPlayerNameTagForPlayer;
 	native SetPlayerMapIcon__(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon;
 	native RemovePlayerMapIcon__(playerid, iconid) = RemovePlayerMapIcon;
 	#pragma deprecated Use `OnPlayerClickMap`.
-	native AllowPlayerTeleport__(playerid, bool:allow) = AllowPlayerTeleport;
+	native AllowPlayerTeleport__(playerid, _FIXES_MAYBE_BOOL:allow) = AllowPlayerTeleport;
 	native SetPlayerCameraPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
 	native SetPlayerCameraLookAt__(playerid, Float:x, Float:y, Float:z, CAMERA:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
 	native SetCameraBehindPlayer__(playerid) = SetCameraBehindPlayer;
 	native GetPlayerCameraPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
 	native GetPlayerCameraFrontVector__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
 	native GetPlayerCameraMode__(playerid) = GetPlayerCameraMode;
-	native EnablePlayerCameraTarget__(playerid, bool:enable) = EnablePlayerCameraTarget;
+	native EnablePlayerCameraTarget__(playerid, _FIXES_MAYBE_BOOL:enable) = EnablePlayerCameraTarget;
 	native GetPlayerCameraTargetObject__(playerid) = GetPlayerCameraTargetObject;
 	native GetPlayerCameraTargetVehicle__(playerid) = GetPlayerCameraTargetVehicle;
 	native GetPlayerCameraTargetPlayer__(playerid) = GetPlayerCameraTargetPlayer;
@@ -12721,16 +12778,16 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native AttachCameraToPlayerObject__(playerid, objectid) = AttachCameraToPlayerObject;
 	native InterpolateCameraPos__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAMERA:cut = CAMERA_CUT) = InterpolateCameraPos;
 	native InterpolateCameraLookAt__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAMERA:cut = CAMERA_CUT) = InterpolateCameraLookAt;
-	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
-	native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
-	native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
-	native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
-	native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
+	native _FIXES_MAYBE_BOOL:IsPlayerConnected__(playerid) = IsPlayerConnected;
+	native _FIXES_MAYBE_BOOL:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
+	native _FIXES_MAYBE_BOOL:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
+	native _FIXES_MAYBE_BOOL:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
+	native _FIXES_MAYBE_BOOL:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
 	native SetPlayerVirtualWorld__(playerid, virtualWorld) = SetPlayerVirtualWorld;
 	native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld;
-	native EnableStuntBonusForPlayer__(playerid, bool:enable) = EnableStuntBonusForPlayer;
-	native EnableStuntBonusForAll__(bool:enable) = EnableStuntBonusForAll;
-	native TogglePlayerSpectating__(playerid, bool:toggle) = TogglePlayerSpectating;
+	native EnableStuntBonusForPlayer__(playerid, _FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForPlayer;
+	native EnableStuntBonusForAll__(_FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForAll;
+	native TogglePlayerSpectating__(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerSpectating;
 	native PlayerSpectatePlayer__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer;
 	native PlayerSpectateVehicle__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle;
 	native StartRecordingPlayerData__(playerid, PLAYER_RECORDING_TYPE:recordType, const recordFile[]) = StartRecordingPlayerData;
@@ -13175,18 +13232,18 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 	forward File:operator%(File:a, File:b);
 	forward File:operator%(_:a, File:b);
 	forward File:operator%(File:a, _:b);
-	forward bool:operator<(File:a, File:b);
-	forward bool:operator<(_:a, File:b);
-	forward bool:operator<(File:a, _:b);
-	forward bool:operator<=(File:a, File:b);
-	forward bool:operator<=(_:a, File:b);
-	forward bool:operator<=(File:a, _:b);
-	forward bool:operator>(File:a, File:b);
-	forward bool:operator>(_:a, File:b);
-	forward bool:operator>(File:a, _:b);
-	forward bool:operator>=(File:a, File:b);
-	forward bool:operator>=(_:a, File:b);
-	forward bool:operator>=(File:a, _:b);
+	forward _FIXES_MAYBE_BOOL:operator<(File:a, File:b);
+	forward _FIXES_MAYBE_BOOL:operator<(_:a, File:b);
+	forward _FIXES_MAYBE_BOOL:operator<(File:a, _:b);
+	forward _FIXES_MAYBE_BOOL:operator<=(File:a, File:b);
+	forward _FIXES_MAYBE_BOOL:operator<=(_:a, File:b);
+	forward _FIXES_MAYBE_BOOL:operator<=(File:a, _:b);
+	forward _FIXES_MAYBE_BOOL:operator>(File:a, File:b);
+	forward _FIXES_MAYBE_BOOL:operator>(_:a, File:b);
+	forward _FIXES_MAYBE_BOOL:operator>(File:a, _:b);
+	forward _FIXES_MAYBE_BOOL:operator>=(File:a, File:b);
+	forward _FIXES_MAYBE_BOOL:operator>=(_:a, File:b);
+	forward _FIXES_MAYBE_BOOL:operator>=(File:a, _:b);
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS);
 #endif
@@ -13439,7 +13496,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 			// "CallRemoteFunction" and normal callbacks.  Now DOESN'T end on
 			// the second time round for filterscripts to correctly pass on the
 			// data to GameModes.
-			if (!existproperty(5, FIXES_gscNoGMProperty) && _FIXES_gIsFilterscript == bool:getproperty(5, FIXES_gscOrderProperty))
+			if (!existproperty(5, FIXES_gscNoGMProperty) && _FIXES_gIsFilterscript == _FIXES_MAYBE_BOOL:getproperty(5, FIXES_gscOrderProperty))
 			{
 				// The game mode is not in charge, which means we are checking
 				// the filterscripts a second time and shouldn't be.
@@ -14383,7 +14440,7 @@ static stock _FIXES_CheckMaxPlayers()
 	#if !FIX_API
 	static
 	#endif
-	stock bool:_FIXES_GetRandomCarColPair(modelid, &colour1, &colour2, &colour3 = 0, &colour4 = 0)
+	stock _FIXES_MAYBE_BOOL:_FIXES_GetRandomCarColPair(modelid, &colour1, &colour2, &colour3 = 0, &colour4 = 0)
 	{
 		modelid -= 400;
 		if (_FIXES_IN_RANGE(modelid, 0, 211 + 1))
@@ -14491,7 +14548,7 @@ static stock _FIXES_CheckMaxPlayers()
 					// Declare some natives for use.
 					native CallRemoteFunction(const function[], const format[], ...);
 					native setproperty(id = 0, const name[] = "", value = cellmin, const string[] = "");
-					native strcmp(const string1[], const string2[], bool:ignorecase = false, length = cellmax);
+					native strcmp(const string1[], const string2[], _FIXES_MAYBE_BOOL:ignorecase = false, length = cellmax);
 
 					// Use the same string for everything, so we only need one.  And pack it.
 					new const FIXES_gscOnClientCheckResponse[] = !"FIXES_OnClientCheckResponse";
@@ -14767,7 +14824,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock bool:FIXES_IsPlayerInRangeOfPointNPC(playerid, Float:range, Float:x, Float:y, Float:z)
+	stock _FIXES_MAYBE_BOOL:FIXES_IsPlayerInRangeOfPointNPC(playerid, Float:range, Float:x, Float:y, Float:z)
 	{
 		new Float:px, Float:py, Float:pz;
 		return
@@ -15119,14 +15176,14 @@ static stock _FIXES_CountFilterscripts()
 #if _FIXES_SAMP && defined _ALS_IsPlayerConnected
 	#error _ALS_IsPlayerConnected defined
 #endif
-native bool:BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
+native _FIXES_MAYBE_BOOL:BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 
 /**
  * <fixes>IsPlayerConnected</fixes>
  */
 
 #if FIX_IsPlayerConnected
-	stock bool:FIXES_IsPlayerConnected(playerid)
+	stock _FIXES_MAYBE_BOOL:FIXES_IsPlayerConnected(playerid)
 	{
 		return _FIXES_IS_PLAYER_CONNECTED(playerid);
 	}
@@ -17497,9 +17554,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 #if FIX_TogglePlayerControllable
 	#if FIXES_Single
-		stock FIXES_TogglePlayerControllable(playerid, bool:toggle)
+		stock FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
-			if (TogglePlayerControllable__(playerid, bool:toggle))
+			if (TogglePlayerControllable__(playerid, _FIXES_MAYBE_BOOL:toggle))
 			{
 				if (toggle)
 				{
@@ -17514,9 +17571,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			return 0;
 		}
 	#else
-		forward _FIXES_TogglePlayerControllable(playerid, bool:toggle);
+		forward _FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle);
 
-		stock FIXES_TogglePlayerControllable(playerid, bool:toggle)
+		stock FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -17527,7 +17584,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			return 0;
 		}
 
-		public _FIXES_TogglePlayerControllable(playerid, bool:toggle)
+		public _FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
 			_FIXES_IS_IN_CHARGE()
 			{
@@ -17678,7 +17735,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if !FIX_SetTimer
 	static
 #endif
-	stock FIXES_SetTimer(const functionName[], interval, bool:repeating)
+	stock FIXES_SetTimer(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating)
 	{
 		#if FIXES_CorrectInvalidTimerID
 			new
@@ -17745,7 +17802,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if !FIX_SetTimer || _FIXES_NPC
 	static
 #endif
-	stock FIXES_SetTimerEx(const functionName[], interval, bool:repeating, const format[], {Float,_}:...)
+	stock FIXES_SetTimerEx(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[], {Float,_}:...)
 	{
 			#pragma unused functionName, interval, repeating, format
 
@@ -17853,7 +17910,7 @@ native BAD_KillTimer(timerid) = KillTimer;
  */
 
 #if FIX_SetTimer
-	stock bool:FIXES_KillTimer(timerid)
+	stock _FIXES_MAYBE_BOOL:FIXES_KillTimer(timerid)
 	{
 		#if FIXES_CorrectInvalidTimerID
 			return timerid && KillTimer__(timerid);
@@ -17868,7 +17925,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 					print(      "***                    an invalid/reset timer value of `-1` instead of `0`."),
 					false;
 			}
-			return bool:KillTimer__(timerid);
+			return _FIXES_MAYBE_BOOL:KillTimer__(timerid);
 		#endif
 	}
 
@@ -18142,7 +18199,7 @@ native BAD_KillTimer(timerid) = KillTimer;
  */
 
 #if FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_Kick || FIX_OnVehicleMod || FIX_BypassDialog
-	static stock _FIXES_BlockUpdate(playerid, bool:kick = true, e_FIXES_BOOLS:type = e_FIXES_BOOLS_FORCE_BLOCK)
+	static stock _FIXES_BlockUpdate(playerid, _FIXES_MAYBE_BOOL:kick = true, e_FIXES_BOOLS:type = e_FIXES_BOOLS_FORCE_BLOCK)
 	{
 		if (type == e_FIXES_BOOLS_FORCE_BLOCK)
 		{
@@ -18159,11 +18216,11 @@ native BAD_KillTimer(timerid) = KillTimer;
 				SendRconCommand__(ip),
 				// Just re-using an existing variable, so override the tags.
 				FIXES_gsPlayerIP[playerid] = strval(ip[_:kick]) << 24,
-				kick = bool:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
+				kick = _FIXES_MAYBE_BOOL:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
 				FIXES_gsPlayerIP[playerid] |= strval(ip[_:kick]) << 16,
-				kick = bool:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
+				kick = _FIXES_MAYBE_BOOL:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
 				FIXES_gsPlayerIP[playerid] |= strval(ip[_:kick]) << 8,
-				kick = bool:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
+				kick = _FIXES_MAYBE_BOOL:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
 				FIXES_gsPlayerIP[playerid] |= strval(ip[_:kick]);
 			#else
 				Kick__(playerid);
@@ -18190,9 +18247,9 @@ native BAD_KillTimer(timerid) = KillTimer;
 
 #if FIX_BypassDialog
 	#if !FIXES_Single
-		forward _FIXES_BlockUpdateRemote(playerid, bool:block);
+		forward _FIXES_BlockUpdateRemote(playerid, _FIXES_MAYBE_BOOL:block);
 
-		public _FIXES_BlockUpdateRemote(playerid, bool:block)
+		public _FIXES_BlockUpdateRemote(playerid, _FIXES_MAYBE_BOOL:block)
 		{
 			if (block)
 			{
@@ -20141,7 +20198,7 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 
 #if FIX_AllowInteriorWeapons
 	#if FIXES_Single
-		stock bool:FIXES_AllowInteriorWeapons(bool:allow)
+		stock _FIXES_MAYBE_BOOL:FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow)
 		{
 			if (allow)
 			{
@@ -20165,15 +20222,15 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 			return allow;
 		}
 	#else
-		stock bool:FIXES_AllowInteriorWeapons(bool:allow)
+		stock _FIXES_MAYBE_BOOL:FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow)
 		{
 			CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, allow);
 			return allow;
 		}
 
-		forward bool:_FIXES_AllowInteriorWeapons(bool:allow);
+		forward _FIXES_MAYBE_BOOL:_FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow);
 
-		public bool:_FIXES_AllowInteriorWeapons(bool:allow)
+		public _FIXES_MAYBE_BOOL:_FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow)
 		{
 			if (allow)
 			{
@@ -20347,7 +20404,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 
 #if FIX_AllowTeleport
 	#if FIXES_Single
-		stock bool:FIXES_AllowPlayerTeleport(playerid, bool:allow)
+		stock _FIXES_MAYBE_BOOL:FIXES_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -20364,7 +20421,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 			return false;
 		}
 	#else
-		stock bool:FIXES_AllowPlayerTeleport(playerid, bool:allow)
+		stock _FIXES_MAYBE_BOOL:FIXES_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -20402,7 +20459,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 
 #if FIX_AllowTeleport
 	#if FIXES_Single
-		stock bool:FIXES_AllowAdminTeleport(bool:allow)
+		stock _FIXES_MAYBE_BOOL:FIXES_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow)
 		{
 			if (allow)
 			{
@@ -20415,7 +20472,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 			return allow;
 		}
 	#else
-		stock bool:FIXES_AllowAdminTeleport(bool:allow)
+		stock _FIXES_MAYBE_BOOL:FIXES_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow)
 		{
 			return
 				CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, INVALID_PLAYER_ID, allow),
@@ -20520,7 +20577,7 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
  */
 
 #if FIX_ClearAnimations || FIX_ClearAnimations_2
-	stock FIXES_ClearAnimations(playerid, bool:forceSync = false)
+	stock FIXES_ClearAnimations(playerid, _FIXES_MAYBE_BOOL:forceSync = false)
 	{
 		#if FIX_ClearAnimations || FIX_ClearAnimations_2
 			if (IsPlayerInAnyVehicle__(playerid))
@@ -20747,7 +20804,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
  */
 
 #if FIX_OnVehicleSpawn
-	stock FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false)
+	stock FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false)
 	{
 		#if !FIXES_Single
 			_FIXES_IS_IN_CHARGE()
@@ -20890,9 +20947,9 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
  */
 
 #if FIX_OnVehicleSpawn && !FIXES_Single
-	forward _FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren);
+	forward _FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren);
 
-	public _FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren)
+	public _FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren)
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
@@ -20917,7 +20974,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
  */
 
 #if FIX_OnVehicleSpawn
-	stock FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false)
+	stock FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false)
 	{
 		#if !FIXES_Single
 			_FIXES_IS_IN_CHARGE()
@@ -21061,9 +21118,9 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
  */
 
 #if FIX_OnVehicleSpawn && !FIXES_Single
-	forward _FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren);
+	forward _FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren);
 
-	public _FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren)
+	public _FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren)
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
@@ -21236,14 +21293,14 @@ native BAD_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, 
 #if _FIXES_SAMP && defined _ALS_valstr
 	#error _ALS_valstr defined
 #endif
-native BAD_valstr(dest[], value, bool:pack = false) = valstr;
+native BAD_valstr(dest[], value, _FIXES_MAYBE_BOOL:pack = false) = valstr;
 
 /**
  * <fixes>valstr</fixes>
  */
 
 #if FIX_valstr
-	stock FIXES_valstr(dest[], value, bool:pack = false)
+	stock FIXES_valstr(dest[], value, _FIXES_MAYBE_BOOL:pack = false)
 	{
 		// "format" can't handle cellmin properly.
 		static const
@@ -21285,7 +21342,7 @@ native BAD_fclose(File:handle) = fclose;
  */
 
 #if FIX_fclose
-	stock bool:FIXES_fclose(File:handle)
+	stock _FIXES_MAYBE_BOOL:FIXES_fclose(File:handle)
 	{
 		return handle && fclose(handle);
 	}
@@ -21338,14 +21395,14 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 #if _FIXES_SAMP && defined _ALS_fread
 	#error _ALS_fread defined
 #endif
-native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = false) = fread;
+native BAD_fread(File:handle, string[], size = sizeof (string), _FIXES_MAYBE_BOOL:pack = false) = fread;
 
 /**
  * <fixes>fread</fixes>
  */
 
 #if FIX_fread
-	stock FIXES_fread(File:handle, string[], size = sizeof (string), bool:pack = false)
+	stock FIXES_fread(File:handle, string[], size = sizeof (string), _FIXES_MAYBE_BOOL:pack = false)
 	{
 		return handle ? fread(handle, string, size, pack) : 0;
 	}
@@ -21368,14 +21425,14 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 #if _FIXES_SAMP && defined _ALS_fputchar
 	#error _ALS_fputchar defined
 #endif
-native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
+native BAD_fputchar(File:handle, value, _FIXES_MAYBE_BOOL:utf8 = true) = fputchar;
 
 /**
  * <fixes>fputchar</fixes>
  */
 
 #if FIX_fputchar
-	stock bool:FIXES_fputchar(File:handle, value, bool:utf8 = true)
+	stock _FIXES_MAYBE_BOOL:FIXES_fputchar(File:handle, value, _FIXES_MAYBE_BOOL:utf8 = true)
 	{
 		return handle && fputchar(handle, value, utf8);
 	}
@@ -21398,14 +21455,14 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 #if _FIXES_SAMP && defined _ALS_fgetchar
 	#error _ALS_fgetchar defined
 #endif
-native BAD_fgetchar(File:handle, bool:utf8 = true) = fgetchar;
+native BAD_fgetchar(File:handle, _FIXES_MAYBE_BOOL:utf8 = true) = fgetchar;
 
 /**
  * <fixes>fgetchar</fixes>
  */
 
 #if FIX_fgetchar
-	stock FIXES_fgetchar(File:handle, value, bool:utf8 = true)
+	stock FIXES_fgetchar(File:handle, value, _FIXES_MAYBE_BOOL:utf8 = true)
 	{
 		// Ignore `value`.
 		#pragma unused value
@@ -21571,7 +21628,7 @@ native BAD_flength(File:handle) = flength;
  */
 
 #if FIX_strfind
-	stock FIXES_strfind(const string[], const sub[], bool:ignorecase = false, pos = 0)
+	stock FIXES_strfind(const string[], const sub[], _FIXES_MAYBE_BOOL:ignorecase = false, pos = 0)
 	{
 		return strfind(string, sub, ignorecase, pos < 0 ? 0 : pos);
 	}
@@ -21762,7 +21819,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyAnimation_2
-	static stock _FIXES_ApplyAnimationDelay(playerid, libraryIndex, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync)
+	static stock _FIXES_ApplyAnimationDelay(playerid, libraryIndex, const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync)
 	{
 		if (FIXES_gsPlayerAnimTimer[playerid])
 		{
@@ -21786,9 +21843,9 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyAnimation_2
-	forward _FIXES_ApplyAnimation(playerid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync);
+	forward _FIXES_ApplyAnimation(playerid, animationLibrary, Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync);
 
-	public _FIXES_ApplyAnimation(playerid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync)
+	public _FIXES_ApplyAnimation(playerid, animationLibrary, Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync)
 	{
 		ApplyAnimation__(playerid, FIXES_gscAnimLib[animationLibrary], FIXES_gsPlayerAnimName[playerid << 6], delta, loop, lockX, lockY, freeze, time, forceSync),
 		FIXES_gsPlayerAnimTimer[playerid] = 0;
@@ -21817,7 +21874,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
-	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync = false)
+	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync = false)
 	{
 		new
 			libraryIndex = _FIXES_GetAnimLibIndex(animationLibrary);
@@ -21853,7 +21910,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyActorAnimation_2
-	static stock _FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
+	static stock _FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time)
 	{
 		if (FIXES_gsActorAnimTimer[actorid])
 		{
@@ -21877,9 +21934,9 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyActorAnimation_2
-	forward _FIXES_ApplyActorAnimation(actorid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time);
+	forward _FIXES_ApplyActorAnimation(actorid, animationLibrary, Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time);
 
-	public _FIXES_ApplyActorAnimation(actorid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
+	public _FIXES_ApplyActorAnimation(actorid, animationLibrary, Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time)
 	{
 		ApplyActorAnimation__(actorid, FIXES_gscAnimLib[animationLibrary], FIXES_gsActorAnimName[actorid << 6], delta, loop, lockX, lockY, freeze, time),
 		FIXES_gsActorAnimTimer[actorid] = 0;
@@ -21908,7 +21965,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
-	stock FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
+	stock FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time)
 	{
 		new
 			libraryIndex = _FIXES_GetAnimLibIndex(animationLibrary);
@@ -22521,21 +22578,21 @@ native BAD_random(max) = random;
 #if _FIXES_SAMP && defined _ALS_streamer
 	#error _ALS_streamer defined
 #endif
-native bool:_FIXES_Streamer_HasIntData_A(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0) = Streamer_HasIntData;
-native bool:_FIXES_Streamer_HasIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_HasIntData;
+native _FIXES_MAYBE_BOOL:_FIXES_Streamer_HasIntData_A(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0) = Streamer_HasIntData;
+native _FIXES_MAYBE_BOOL:_FIXES_Streamer_HasIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_HasIntData;
 
 /**
  * <fixes>streamer</fixes>
  */
 
 #if FIX_Streamer_HasIntData
-	stock bool:FIXES_Streamer_HasIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data)
+	stock _FIXES_MAYBE_BOOL:FIXES_Streamer_HasIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data)
 	{
 		assert(FIXES_gsStreamer_IncludeVersion != 0);
 		// This isn't a compile-time constant, so we can't use `#if`.
 		if (FIXES_gsStreamer_IncludeVersion > 0x295)
 		{
-			return bool:_FIXES_Streamer_HasIntData_B(type, id, data);
+			return _FIXES_MAYBE_BOOL:_FIXES_Streamer_HasIntData_B(type, id, data);
 		}
 		else if (FIXES_gsStreamer_IncludeVersion > 0)
 		{
@@ -22570,21 +22627,21 @@ native bool:_FIXES_Streamer_HasIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data
 #if _FIXES_SAMP && defined _ALS_streamer
 	#error _ALS_streamer defined
 #endif
-native bool:_FIXES_Streamer_RemoveIntData_A(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0) = Streamer_RemoveIntData;
-native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_RemoveIntData;
+native _FIXES_MAYBE_BOOL:_FIXES_Streamer_RemoveIntData_A(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0) = Streamer_RemoveIntData;
+native _FIXES_MAYBE_BOOL:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_RemoveIntData;
 
 /**
  * <fixes>streamer</fixes>
  */
 
 #if FIX_Streamer_RemoveIntData
-	stock bool:FIXES_Streamer_RemoveIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data)
+	stock _FIXES_MAYBE_BOOL:FIXES_Streamer_RemoveIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data)
 	{
 		assert(FIXES_gsStreamer_IncludeVersion != 0);
 		// This isn't a compile-time constant, so we can't use `#if`.
 		if (FIXES_gsStreamer_IncludeVersion > 0x295)
 		{
-			return bool:_FIXES_Streamer_RemoveIntData_B(type, id, data);
+			return _FIXES_MAYBE_BOOL:_FIXES_Streamer_RemoveIntData_B(type, id, data);
 		}
 		else if (FIXES_gsStreamer_IncludeVersion > 0)
 		{
@@ -22780,7 +22837,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
  */
 
 #if FIX_SetPlayerCamera
-	stock FIXES_TogglePlayerSpectating(playerid, bool:toggle)
+	stock FIXES_TogglePlayerSpectating(playerid, _FIXES_MAYBE_BOOL:toggle)
 	{
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
@@ -22948,14 +23005,14 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 #if _FIXES_SAMP && defined _ALS_strcmp
 	#error _ALS_strcmp defined
 #endif
-native BAD_strcmp(const string1[], const string2[], bool:ignorecase=false, length=cellmax) = strcmp;
+native BAD_strcmp(const string1[], const string2[], _FIXES_MAYBE_BOOL:ignorecase=false, length=cellmax) = strcmp;
 
 /**
  * <fixes>strcmp</fixes>
  */
 
 #if FIX_strcmp
-	stock FIXES_strcmp(const string1[], const string2[], bool:ignorecase=false, length=cellmax)
+	stock FIXES_strcmp(const string1[], const string2[], _FIXES_MAYBE_BOOL:ignorecase=false, length=cellmax)
 	{
 		if (length == 0)
 			return 0;
@@ -23149,7 +23206,7 @@ native BAD_tolower(c) = tolower;
 #if _FIXES_SAMP && defined _ALS_ispacked
 	#error _ALS_ispacked defined
 #endif
-native bool:BAD_ispacked(const string[]) = ispacked;
+native _FIXES_MAYBE_BOOL:BAD_ispacked(const string[]) = ispacked;
 
 /**
  * <fixes>ispacked</fixes>
@@ -23162,7 +23219,7 @@ native bool:BAD_ispacked(const string[]) = ispacked;
 	// doesn't seem to appear in the compiled output, which was an effect I
 	// tried to create for a long time then gave up on (see
 	// <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ()</c> for my alternative work-around).
-	_FIXES_FUNC_PAWNDOC(bool:ispacked(const packedString[]));
+	_FIXES_FUNC_PAWNDOC(_FIXES_MAYBE_BOOL:ispacked(const packedString[]));
 	#if _FIXES_SAMP
 		#define _ALS_ispacked
 		#define ispacked(%0) (((%0)[0] & ~0xFF) != 0)
@@ -23437,7 +23494,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 
 #if FIX_GetPlayerWeather || (FIX_API && !_FIXES_NPC)
 	#if FIXES_Single
-		stock FIXES_TogglePlayerClock(playerid, bool:toggle)
+		stock FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
 			if (TogglePlayerClock__(playerid, toggle))
 			{
@@ -23454,9 +23511,9 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 			return 0;
 		}
 	#else
-		forward _FIXES_TogglePlayerClock(playerid, bool:toggle);
+		forward _FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle);
 
-		stock FIXES_TogglePlayerClock(playerid, bool:toggle)
+		stock FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -23467,7 +23524,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 			return 0;
 		}
 
-		public _FIXES_TogglePlayerClock(playerid, bool:toggle)
+		public _FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
 			if (toggle)
 			{
@@ -23644,7 +23701,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
  */
 
 #if FIX_GetConsoleVarAsString || FIX_GetConsoleVarAsFloat || FIX_GetConsoleVarAsInt || FIX_GetConsoleVarAsBool
-	stock bool:FIXES_GetConsoleVarAsString(const cvar[], buffer[], len = sizeof (buffer))
+	stock _FIXES_MAYBE_BOOL:FIXES_GetConsoleVarAsString(const cvar[], buffer[], len = sizeof (buffer))
 	{
 		buffer[0] = '\0';
 		if (!FIXES_gsServerCFG)
@@ -23693,7 +23750,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 					 0x7C78F2F5, // echo
 					 0x2D2A0363, // artwork
 					 0x2D273D0F: // artpath
-					return bool:GetConsoleVarAsString__(cvar, buffer, len);
+					return _FIXES_MAYBE_BOOL:GetConsoleVarAsString__(cvar, buffer, len);
 				default:
 					return false;
 				}
@@ -23760,7 +23817,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 	#define GetConsoleVarAsString__( FIXES_GetConsoleVarAsString(
 
 	#pragma deprecated Use `GetConsoleVarAsString`
-	stock bool:FIXES_GetServerVarAsString(const cvar[], buffer[], len = sizeof (buffer))
+	stock _FIXES_MAYBE_BOOL:FIXES_GetServerVarAsString(const cvar[], buffer[], len = sizeof (buffer))
 	{
 		return FIXES_GetConsoleVarAsString(cvar, buffer, len);
 	}
@@ -23885,7 +23942,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_GetConsoleVarAsBool
-	stock bool:FIXES_GetConsoleVarAsBool(const cvar[])
+	stock _FIXES_MAYBE_BOOL:FIXES_GetConsoleVarAsBool(const cvar[])
 	{
 		if (!FIXES_gsServerCFG)
 		{
@@ -23904,7 +23961,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 					 0x97EABC6B, // timestamp
 					 0x57CBE04F, // myriad
 					 0x6658699A: // output
-					return bool:GetConsoleVarAsBool__(cvar);
+					return _FIXES_MAYBE_BOOL:GetConsoleVarAsBool__(cvar);
 				default:
 					return false;
 				}
@@ -23926,7 +23983,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define GetConsoleVarAsBool__( FIXES_GetConsoleVarAsBool(
 
 	#pragma deprecated Use `GetConsoleVarAsBool`
-	stock bool:FIXES_GetServerVarAsBool(const cvar[])
+	stock _FIXES_MAYBE_BOOL:FIXES_GetServerVarAsBool(const cvar[])
 	{
 		return FIXES_GetConsoleVarAsBool(cvar);
 	}
@@ -24082,7 +24139,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_API
-	stock bool:FIXES_VehicleCanHaveComponent(modelid, componentid)
+	stock _FIXES_MAYBE_BOOL:FIXES_VehicleCanHaveComponent(modelid, componentid)
 	{
 		if (_FIXES_IN_RANGE(modelid, 400, 611 + 1))
 		{
@@ -24204,7 +24261,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_API && !_FIXES_NPC
-	stock bool:FIXES_PlayerHasClockEnabled(playerid)
+	stock _FIXES_MAYBE_BOOL:FIXES_PlayerHasClockEnabled(playerid)
 	{
 		return (_FIXES_IS_VALID_PLAYER(playerid) && (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_CLOCK_ENABLED));
 	}
@@ -24227,7 +24284,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
  */
 
 #if FIX_API && !_FIXES_NPC
-	stock bool:FIXES_IsMenuValid(Menu:menuid)
+	stock _FIXES_MAYBE_BOOL:FIXES_IsMenuValid(Menu:menuid)
 	{
 		return FIXES_IS_VALID_MENU(menuid);
 	}
@@ -24308,13 +24365,13 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native LimitGlobalChatRadius__(Float:chat_radius) = LimitGlobalChatRadius;
 	native LimitPlayerMarkerRadius__(Float:marker_radius) = LimitPlayerMarkerRadius;
 	native ConnectNPC__(const name[], const script[]) = ConnectNPC;
-	native bool:IsPlayerNPC__(playerid) = IsPlayerNPC;
+	native _FIXES_MAYBE_BOOL:IsPlayerNPC__(playerid) = IsPlayerNPC;
 	native AddSimpleModel__(virtualworld, baseid, newid, const dffname[], const txdname[]) = AddSimpleModel;
 	native AddSimpleModelTimed__(virtualworld, baseid, newid, const dffname[], const txdname[], timeon, timeoff) = AddSimpleModelTimed;
 	native FindModelFileNameFromCRC__(crc, retstr[], retstr_size = sizeof retstr) = FindModelFileNameFromCRC;
 	native FindTextureFileNameFromCRC__(crc, retstr[], retstr_size = sizeof retstr) = FindTextureFileNameFromCRC;
 	native RedirectDownload__(playerid, const url[]) = RedirectDownload;
-	native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
+	native _FIXES_MAYBE_BOOL:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
 	native Kick__(playerid) = Kick;
 	native Ban__(playerid) = Ban;
 	native BanEx__(playerid, const reason[]) = BanEx;
@@ -24340,7 +24397,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native SetMenuColumnHeader__(Menu:menuid, column, const columnheader[]) = SetMenuColumnHeader;
 	native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer;
 	native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer;
-	native bool:IsValidMenu__(Menu:menuid) = IsValidMenu;
+	native _FIXES_MAYBE_BOOL:IsValidMenu__(Menu:menuid) = IsValidMenu;
 	native DisableMenu__(Menu:menuid) = DisableMenu;
 	native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow;
 	native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu;
@@ -24386,7 +24443,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:id, color, const text[]) = UpdatePlayer3DTextLabelText;
 	native ShowPlayerDialog__(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
 	native gpci__(playerid, serial[], maxlen) = gpci;
-	native CreateVehicle__(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false) = CreateVehicle;
+	native CreateVehicle__(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, _FIXES_MAYBE_BOOL:addsiren = false) = CreateVehicle;
 	native DestroyVehicle__(vehicleid) = DestroyVehicle;
 	native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
 	native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
@@ -24413,7 +24470,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native GetVehicleHealth__(vehicleid, &Float:health) = GetVehicleHealth;
 	native AttachTrailerToVehicle__(trailerid, vehicleid) = AttachTrailerToVehicle;
 	native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle;
-	native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
+	native _FIXES_MAYBE_BOOL:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
 	native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer;
 	native SetVehicleNumberPlate__(vehicleid, const numberplate[]) = SetVehicleNumberPlate;
 	native GetVehicleModel__(vehicleid) = GetVehicleModel;
@@ -24428,7 +24485,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native GetVehicleModelInfo__(vehiclemodel, infotype, &Float:X, &Float:Y, &Float:Z) = GetVehicleModelInfo;
 	native SetVehicleVirtualWorld__(vehicleid, worldid) = SetVehicleVirtualWorld;
 	native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld;
-	native bool:IsValidVehicle__(vehicleid) = IsValidVehicle;
+	native _FIXES_MAYBE_BOOL:IsValidVehicle__(vehicleid) = IsValidVehicle;
 	native DB:db_open__(const name[]) = db_open;
 	native db_close__(DB:db) = db_close;
 	native DBResult:db_query__(DB:db, const query[]) = db_query;
@@ -24448,7 +24505,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native db_debug_openresults__() = db_debug_openresults;
 	native CreateActor__(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = CreateActor;
 	native DestroyActor__(actorid) = DestroyActor;
-	native bool:IsActorStreamedIn__(actorid, forplayerid) = IsActorStreamedIn;
+	native _FIXES_MAYBE_BOOL:IsActorStreamedIn__(actorid, forplayerid) = IsActorStreamedIn;
 	native SetActorVirtualWorld__(actorid, vworld) = SetActorVirtualWorld;
 	native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld;
 	native ApplyActorAnimation__(actorid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
@@ -24460,8 +24517,8 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native SetActorHealth__(actorid, Float:health) = SetActorHealth;
 	native GetActorHealth__(actorid, &Float:health) = GetActorHealth;
 	native SetActorInvulnerable__(actorid, invulnerable = true) = SetActorInvulnerable;
-	native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
-	native bool:IsValidActor__(actorid) = IsValidActor;
+	native _FIXES_MAYBE_BOOL:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
+	native _FIXES_MAYBE_BOOL:IsValidActor__(actorid) = IsValidActor;
 	native HTTP__(index, type, const url[], const data[], const callback[]) = HTTP;
 	native CreateObject__(modelid, Float:X, Float:Y, Float:Z, Float:rX, Float:rY, Float:rZ, Float:DrawDistance = 0.0) = CreateObject;
 	native AttachObjectToVehicle__(objectid, vehicleid, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:RotX, Float:RotY, Float:RotZ) = AttachObjectToVehicle;
@@ -24473,11 +24530,11 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native GetObjectRot__(objectid, &Float:RotX, &Float:RotY, &Float:RotZ) = GetObjectRot;
 	native GetObjectModel__(objectid) = GetObjectModel;
 	native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol;
-	native bool:IsValidObject__(objectid) = IsValidObject;
+	native _FIXES_MAYBE_BOOL:IsValidObject__(objectid) = IsValidObject;
 	native DestroyObject__(objectid) = DestroyObject;
 	native MoveObject__(objectid, Float:X, Float:Y, Float:Z, Float:Speed, Float:RotX = -1000.0, Float:RotY = -1000.0, Float:RotZ = -1000.0) = MoveObject;
 	native StopObject__(objectid) = StopObject;
-	native bool:IsObjectMoving__(objectid) = IsObjectMoving;
+	native _FIXES_MAYBE_BOOL:IsObjectMoving__(objectid) = IsObjectMoving;
 	native EditObject__(playerid, objectid) = EditObject;
 	native EditPlayerObject__(playerid, objectid) = EditPlayerObject;
 	native SelectObject__(playerid) = SelectObject;
@@ -24490,11 +24547,11 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native GetPlayerObjectRot__(playerid, objectid, &Float:RotX, &Float:RotY, &Float:RotZ) = GetPlayerObjectRot;
 	native GetPlayerObjectModel__(playerid, objectid) = GetPlayerObjectModel;
 	native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCameraCol;
-	native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
+	native _FIXES_MAYBE_BOOL:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
 	native DestroyPlayerObject__(playerid, objectid) = DestroyPlayerObject;
 	native MovePlayerObject__(playerid, objectid, Float:X, Float:Y, Float:Z, Float:Speed, Float:RotX = -1000.0, Float:RotY = -1000.0, Float:RotZ = -1000.0) = MovePlayerObject;
 	native StopPlayerObject__(playerid, objectid) = StopPlayerObject;
-	native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
+	native _FIXES_MAYBE_BOOL:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
 	native AttachPlayerObjectToPlayer__(objectplayer, objectid, attachplayer, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:rX, Float:rY, Float:rZ) = AttachPlayerObjectToPlayer;
 	native SetObjectMaterial__(objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor = 0) = SetObjectMaterial;
 	native SetPlayerObjectMaterial__(playerid, objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor = 0) = SetPlayerObjectMaterial;
@@ -24561,7 +24618,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native GetPlayerLastShotVectors__(playerid, &Float:fOriginX, &Float:fOriginY, &Float:fOriginZ, &Float:fHitPosX, &Float:fHitPosY, &Float:fHitPosZ) = GetPlayerLastShotVectors;
 	native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0, materialcolor1 = 0, materialcolor2 = 0) = SetPlayerAttachedObject;
 	native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject;
-	native bool:IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+	native _FIXES_MAYBE_BOOL:IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 	native EditAttachedObject__(playerid, index) = EditAttachedObject;
 	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
 	native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy;
@@ -24632,11 +24689,11 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native AttachCameraToPlayerObject__(playerid, playerobjectid) = AttachCameraToPlayerObject;
 	native InterpolateCameraPos__(playerid, Float:FromX, Float:FromY, Float:FromZ, Float:ToX, Float:ToY, Float:ToZ, time, cut = CAMERA_CUT) = InterpolateCameraPos;
 	native InterpolateCameraLookAt__(playerid, Float:FromX, Float:FromY, Float:FromZ, Float:ToX, Float:ToY, Float:ToZ, time, cut = CAMERA_CUT) = InterpolateCameraLookAt;
-	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
-	native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
-	native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
-	native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
-	native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
+	native _FIXES_MAYBE_BOOL:IsPlayerConnected__(playerid) = IsPlayerConnected;
+	native _FIXES_MAYBE_BOOL:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
+	native _FIXES_MAYBE_BOOL:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
+	native _FIXES_MAYBE_BOOL:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
+	native _FIXES_MAYBE_BOOL:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
 	native SetPlayerVirtualWorld__(playerid, worldid) = SetPlayerVirtualWorld;
 	native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld;
 	native EnableStuntBonusForPlayer__(playerid, enable) = EnableStuntBonusForPlayer;
@@ -24718,13 +24775,13 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native LimitGlobalChatRadius__(Float:chat_radius) = LimitGlobalChatRadius;
 	native LimitPlayerMarkerRadius__(Float:marker_radius) = LimitPlayerMarkerRadius;
 	native ConnectNPC__(const name[], const script[]) = ConnectNPC;
-	native bool:IsPlayerNPC__(playerid) = IsPlayerNPC;
+	native _FIXES_MAYBE_BOOL:IsPlayerNPC__(playerid) = IsPlayerNPC;
 	native AddSimpleModel__(virtualworld, baseid, newid, const dffname[], const txdname[]) = AddSimpleModel;
 	native AddSimpleModelTimed__(virtualworld, baseid, newid, const dffname[], const txdname[], timeon, timeoff) = AddSimpleModelTimed;
 	native FindModelFileNameFromCRC__(crc, retstr[], retstr_size = sizeof retstr) = FindModelFileNameFromCRC;
 	native FindTextureFileNameFromCRC__(crc, retstr[], retstr_size = sizeof retstr) = FindTextureFileNameFromCRC;
 	native RedirectDownload__(playerid, const url[]) = RedirectDownload;
-	native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
+	native _FIXES_MAYBE_BOOL:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
 	native Kick__(playerid) = Kick;
 	native Ban__(playerid) = Ban;
 	native BanEx__(playerid, const reason[]) = BanEx;
@@ -24750,7 +24807,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native SetMenuColumnHeader__(Menu:menuid, column, const columnheader[]) = SetMenuColumnHeader;
 	native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer;
 	native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer;
-	native bool:IsValidMenu__(Menu:menuid) = IsValidMenu;
+	native _FIXES_MAYBE_BOOL:IsValidMenu__(Menu:menuid) = IsValidMenu;
 	native DisableMenu__(Menu:menuid) = DisableMenu;
 	native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow;
 	native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu;
@@ -24796,7 +24853,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:id, color, const text[]) = UpdatePlayer3DTextLabelText;
 	native ShowPlayerDialog__(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
 	native gpci__(playerid, serial[], maxlen) = gpci;
-	native CreateVehicle__(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, bool:addsiren = false) = CreateVehicle;
+	native CreateVehicle__(vehicletype, Float:x, Float:y, Float:z, Float:rotation, color1, color2, respawn_delay, _FIXES_MAYBE_BOOL:addsiren = false) = CreateVehicle;
 	native DestroyVehicle__(vehicleid) = DestroyVehicle;
 	native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
 	native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
@@ -24823,7 +24880,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native GetVehicleHealth__(vehicleid, &Float:health) = GetVehicleHealth;
 	native AttachTrailerToVehicle__(trailerid, vehicleid) = AttachTrailerToVehicle;
 	native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle;
-	native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
+	native _FIXES_MAYBE_BOOL:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
 	native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer;
 	native SetVehicleNumberPlate__(vehicleid, const numberplate[]) = SetVehicleNumberPlate;
 	native GetVehicleModel__(vehicleid) = GetVehicleModel;
@@ -24838,7 +24895,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native GetVehicleModelInfo__(vehiclemodel, infotype, &Float:X, &Float:Y, &Float:Z) = GetVehicleModelInfo;
 	native SetVehicleVirtualWorld__(vehicleid, worldid) = SetVehicleVirtualWorld;
 	native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld;
-	native bool:IsValidVehicle__(vehicleid) = IsValidVehicle;
+	native _FIXES_MAYBE_BOOL:IsValidVehicle__(vehicleid) = IsValidVehicle;
 	native DB:db_open__(const name[]) = db_open;
 	native db_close__(DB:db) = db_close;
 	native DBResult:db_query__(DB:db, const query[]) = db_query;
@@ -24858,7 +24915,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native db_debug_openresults__() = db_debug_openresults;
 	native CreateActor__(modelid, Float:X, Float:Y, Float:Z, Float:Rotation) = CreateActor;
 	native DestroyActor__(actorid) = DestroyActor;
-	native bool:IsActorStreamedIn__(actorid, forplayerid) = IsActorStreamedIn;
+	native _FIXES_MAYBE_BOOL:IsActorStreamedIn__(actorid, forplayerid) = IsActorStreamedIn;
 	native SetActorVirtualWorld__(actorid, vworld) = SetActorVirtualWorld;
 	native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld;
 	native ApplyActorAnimation__(actorid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
@@ -24870,8 +24927,8 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native SetActorHealth__(actorid, Float:health) = SetActorHealth;
 	native GetActorHealth__(actorid, &Float:health) = GetActorHealth;
 	native SetActorInvulnerable__(actorid, invulnerable = true) = SetActorInvulnerable;
-	native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
-	native bool:IsValidActor__(actorid) = IsValidActor;
+	native _FIXES_MAYBE_BOOL:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
+	native _FIXES_MAYBE_BOOL:IsValidActor__(actorid) = IsValidActor;
 	native HTTP__(index, type, const url[], const data[], const callback[]) = HTTP;
 	native CreateObject__(modelid, Float:X, Float:Y, Float:Z, Float:rX, Float:rY, Float:rZ, Float:DrawDistance = 0.0) = CreateObject;
 	native AttachObjectToVehicle__(objectid, vehicleid, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:RotX, Float:RotY, Float:RotZ) = AttachObjectToVehicle;
@@ -24883,11 +24940,11 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native GetObjectRot__(objectid, &Float:RotX, &Float:RotY, &Float:RotZ) = GetObjectRot;
 	native GetObjectModel__(objectid) = GetObjectModel;
 	native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol;
-	native bool:IsValidObject__(objectid) = IsValidObject;
+	native _FIXES_MAYBE_BOOL:IsValidObject__(objectid) = IsValidObject;
 	native DestroyObject__(objectid) = DestroyObject;
 	native MoveObject__(objectid, Float:X, Float:Y, Float:Z, Float:Speed, Float:RotX = -1000.0, Float:RotY = -1000.0, Float:RotZ = -1000.0) = MoveObject;
 	native StopObject__(objectid) = StopObject;
-	native bool:IsObjectMoving__(objectid) = IsObjectMoving;
+	native _FIXES_MAYBE_BOOL:IsObjectMoving__(objectid) = IsObjectMoving;
 	native EditObject__(playerid, objectid) = EditObject;
 	native EditPlayerObject__(playerid, objectid) = EditPlayerObject;
 	native SelectObject__(playerid) = SelectObject;
@@ -24900,11 +24957,11 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native GetPlayerObjectRot__(playerid, objectid, &Float:RotX, &Float:RotY, &Float:RotZ) = GetPlayerObjectRot;
 	native GetPlayerObjectModel__(playerid, objectid) = GetPlayerObjectModel;
 	native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCameraCol;
-	native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
+	native _FIXES_MAYBE_BOOL:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
 	native DestroyPlayerObject__(playerid, objectid) = DestroyPlayerObject;
 	native MovePlayerObject__(playerid, objectid, Float:X, Float:Y, Float:Z, Float:Speed, Float:RotX = -1000.0, Float:RotY = -1000.0, Float:RotZ = -1000.0) = MovePlayerObject;
 	native StopPlayerObject__(playerid, objectid) = StopPlayerObject;
-	native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
+	native _FIXES_MAYBE_BOOL:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
 	native AttachPlayerObjectToPlayer__(objectplayer, objectid, attachplayer, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:rX, Float:rY, Float:rZ) = AttachPlayerObjectToPlayer;
 	native SetObjectMaterial__(objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor = 0) = SetObjectMaterial;
 	native SetPlayerObjectMaterial__(playerid, objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor = 0) = SetPlayerObjectMaterial;
@@ -24971,7 +25028,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native GetPlayerLastShotVectors__(playerid, &Float:fOriginX, &Float:fOriginY, &Float:fOriginZ, &Float:fHitPosX, &Float:fHitPosY, &Float:fHitPosZ) = GetPlayerLastShotVectors;
 	native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0, materialcolor1 = 0, materialcolor2 = 0) = SetPlayerAttachedObject;
 	native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject;
-	native bool:IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+	native _FIXES_MAYBE_BOOL:IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 	native EditAttachedObject__(playerid, index) = EditAttachedObject;
 	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
 	native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy;
@@ -25042,11 +25099,11 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	native AttachCameraToPlayerObject__(playerid, playerobjectid) = AttachCameraToPlayerObject;
 	native InterpolateCameraPos__(playerid, Float:FromX, Float:FromY, Float:FromZ, Float:ToX, Float:ToY, Float:ToZ, time, cut = CAMERA_CUT) = InterpolateCameraPos;
 	native InterpolateCameraLookAt__(playerid, Float:FromX, Float:FromY, Float:FromZ, Float:ToX, Float:ToY, Float:ToZ, time, cut = CAMERA_CUT) = InterpolateCameraLookAt;
-	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
-	native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
-	native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
-	native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
-	native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
+	native _FIXES_MAYBE_BOOL:IsPlayerConnected__(playerid) = IsPlayerConnected;
+	native _FIXES_MAYBE_BOOL:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
+	native _FIXES_MAYBE_BOOL:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
+	native _FIXES_MAYBE_BOOL:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
+	native _FIXES_MAYBE_BOOL:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
 	native SetPlayerVirtualWorld__(playerid, worldid) = SetPlayerVirtualWorld;
 	native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld;
 	native EnableStuntBonusForPlayer__(playerid, enable) = EnableStuntBonusForPlayer;

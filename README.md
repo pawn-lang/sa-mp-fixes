@@ -203,6 +203,7 @@ Streamer_RemoveIntData | Int data functions expect more parameters than they spe
 Streamer_HasIntData | Int data functions expect more parameters than they specify. | Pass a hidden fake one if the version is right. | [Y_Less](https://github.com/Y-Less)  | [Link](https://github.com/samp-incognito/samp-streamer-plugin/pull/380) |
 default | Many functions are missing default values for string lengths. | Add them. | [Y_Less](https://github.com/Y-Less)  | |
 limit_tags | Some limits, like `MAX_MENUS` are untagged, so can't be used properly. | Redefine them with the tags added. | [Y_Less](https://github.com/Y-Less)  | |
+bool_tags | Many `true/false` parameters use `1/0` with no `bool:` tag. | Add the tag. | [Y_Less](https://github.com/Y-Less)  | |
 
 A few fixes are disabled by default, to enable them all do:
 
