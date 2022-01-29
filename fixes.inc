@@ -444,15 +444,13 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 	#if !defined _samp_included
 		#error Include <a_samp> or <a_npc> before fixes.inc
 	#endif
-	#if defined SendClientMessage
-		#define _FIXES_NPC 0
-		// Do nothing.
-	#elseif defined GetDistanceFromMeToPoint
+	#if defined GetDistanceFromMeToPoint
 		#define _FIXES_NPC 1
 	#elseif defined GetDistanceFromMeToPoint__
 		#define _FIXES_NPC 1
 	#else
-		#error Could not determine script include type - <a_samp> or <a_npc>
+		#define _FIXES_NPC 0
+		// Do nothing.
 	#endif
 	#define _FIXES_SAMP 1
 	#define _FIXES_OMP 0
@@ -7401,7 +7399,10 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_FALSE);
  * </remarks>
  */
 
-const Text:MAX_TEXT_DRAWS__       = Text:MAX_TEXT_DRAWS;
+#if !defined MAX_TEXT_DRAWS
+	#define MAX_TEXT_DRAWS (2048)
+#endif
+const Text:MAX_TEXT_DRAWS__ = Text:MAX_TEXT_DRAWS;
 
 /**
  * <remarks>
@@ -7410,8 +7411,8 @@ const Text:MAX_TEXT_DRAWS__       = Text:MAX_TEXT_DRAWS;
  */
 
 #if defined FIX_limit_tags
-	_FIXES_CONST_PAWNDOC(MAX_TEXT_DRAWS);
 	#undef MAX_TEXT_DRAWS
+	_FIXES_CONST_PAWNDOC(MAX_TEXT_DRAWS);
 	#define MAX_TEXT_DRAWS MAX_TEXT_DRAWS__
 #else
 	_FIXES_HIDE_PAWNDOC(MAX_TEXT_DRAWS);
@@ -7423,6 +7424,9 @@ const Text:MAX_TEXT_DRAWS__       = Text:MAX_TEXT_DRAWS;
  * </remarks>
  */
 
+#if !defined MAX_PLAYER_TEXT_DRAWS
+	#define MAX_PLAYER_TEXT_DRAWS (256)
+#endif
 const PlayerText:MAX_PLAYER_TEXT_DRAWS__ = PlayerText:MAX_PLAYER_TEXT_DRAWS;
 
 /**
@@ -7432,8 +7436,8 @@ const PlayerText:MAX_PLAYER_TEXT_DRAWS__ = PlayerText:MAX_PLAYER_TEXT_DRAWS;
  */
 
 #if defined FIX_limit_tags
-	_FIXES_CONST_PAWNDOC(MAX_PLAYER_TEXT_DRAWS);
 	#undef MAX_PLAYER_TEXT_DRAWS
+	_FIXES_CONST_PAWNDOC(MAX_PLAYER_TEXT_DRAWS);
 	#define MAX_PLAYER_TEXT_DRAWS MAX_PLAYER_TEXT_DRAWS__
 #else
 	_FIXES_HIDE_PAWNDOC(MAX_PLAYER_TEXT_DRAWS);
@@ -7445,7 +7449,10 @@ const PlayerText:MAX_PLAYER_TEXT_DRAWS__ = PlayerText:MAX_PLAYER_TEXT_DRAWS;
  * </remarks>
  */
 
-const Menu:MAX_MENUS__            = Menu:MAX_MENUS;
+#if !defined MAX_MENUS
+	#define MAX_MENUS (128)
+#endif
+const Menu:MAX_MENUS__ = Menu:MAX_MENUS;
 
 /**
  * <remarks>
@@ -7454,8 +7461,8 @@ const Menu:MAX_MENUS__            = Menu:MAX_MENUS;
  */
 
 #if defined FIX_limit_tags
-	_FIXES_CONST_PAWNDOC(MAX_MENUS);
 	#undef MAX_MENUS
+	_FIXES_CONST_PAWNDOC(MAX_MENUS);
 	#define MAX_MENUS MAX_MENUS__
 #else
 	_FIXES_HIDE_PAWNDOC(MAX_MENUS);
@@ -7467,7 +7474,10 @@ const Menu:MAX_MENUS__            = Menu:MAX_MENUS;
  * </remarks>
  */
 
-const Text3D:MAX_3DTEXT_GLOBAL__  = Text3D:MAX_3DTEXT_GLOBAL;
+#if !defined MAX_3DTEXT_GLOBAL
+	#define MAX_3DTEXT_GLOBAL (1024)
+#endif
+const Text3D:MAX_3DTEXT_GLOBAL__ = Text3D:MAX_3DTEXT_GLOBAL;
 
 /**
  * <remarks>
@@ -7476,8 +7486,8 @@ const Text3D:MAX_3DTEXT_GLOBAL__  = Text3D:MAX_3DTEXT_GLOBAL;
  */
 
 #if defined FIX_limit_tags
-	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_GLOBAL);
 	#undef MAX_3DTEXT_GLOBAL
+	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_GLOBAL);
 	#define MAX_3DTEXT_GLOBAL MAX_3DTEXT_GLOBAL__
 #else
 	_FIXES_HIDE_PAWNDOC(MAX_3DTEXT_GLOBAL);
@@ -7489,6 +7499,9 @@ const Text3D:MAX_3DTEXT_GLOBAL__  = Text3D:MAX_3DTEXT_GLOBAL;
  * </remarks>
  */
 
+#if !defined MAX_3DTEXT_PLAYER
+	#define MAX_3DTEXT_PLAYER (1024)
+#endif
 const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
 
 /**
@@ -7498,8 +7511,8 @@ const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
  */
 
 #if defined FIX_limit_tags
-	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_PLAYER);
 	#undef MAX_3DTEXT_PLAYER
+	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_PLAYER);
 	#define MAX_3DTEXT_PLAYER MAX_3DTEXT_PLAYER__
 #else
 	_FIXES_HIDE_PAWNDOC(MAX_3DTEXT_PLAYER);
@@ -7511,12 +7524,15 @@ const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
  * </remarks>
  */
 
-#if defined INVALID_PLAYER_TEXT_DRAW
-	const PlayerText:INVALID_PLAYER_TEXT_DRAW__    = PlayerText:INVALID_PLAYER_TEXT_DRAW;
-	#undef INVALID_PLAYER_TEXT_DRAW
-#else
-	const PlayerText:INVALID_PLAYER_TEXT_DRAW__    = PlayerText:INVALID_TEXT_DRAW;
+#if !defined INVALID_PLAYER_TEXT_DRAW
+	#if defined INVALID_TEXT_DRAW
+		#define INVALID_PLAYER_TEXT_DRAW INVALID_TEXT_DRAW
+	#else
+		#define INVALID_PLAYER_TEXT_DRAW (0xFFFF)
+	#endif
 #endif
+
+const PlayerText:INVALID_PLAYER_TEXT_DRAW__ = PlayerText:INVALID_PLAYER_TEXT_DRAW;
 
 /**
  * <remarks>
@@ -7525,6 +7541,7 @@ const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
  */
 
 #if defined FIX_limit_tags
+	#undef INVALID_PLAYER_TEXT_DRAW
 	_FIXES_CONST_PAWNDOC(INVALID_PLAYER_TEXT_DRAW);
 	#define INVALID_PLAYER_TEXT_DRAW INVALID_PLAYER_TEXT_DRAW__
 #else
@@ -7537,12 +7554,14 @@ const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
  * </remarks>
  */
 
-#if defined INVALID_PLAYER_3DTEXT_ID
-	const PlayerText3D:INVALID_PLAYER_3DTEXT_ID__  = PlayerText3D:INVALID_PLAYER_3DTEXT_ID;
-	#undef INVALID_PLAYER_3DTEXT_ID
-#else
-	const PlayerText3D:INVALID_PLAYER_3DTEXT_ID__  = PlayerText3D:INVALID_3DTEXT_ID;
+#if !defined INVALID_PLAYER_3DTEXT_ID
+	#if defined INVALID_3DTEXT_ID
+		#define INVALID_PLAYER_3DTEXT_ID INVALID_3DTEXT_ID
+	#else
+		#define INVALID_PLAYER_3DTEXT_ID (0xFFFF)
+	#endif
 #endif
+const PlayerText3D:INVALID_PLAYER_3DTEXT_ID__ = PlayerText3D:INVALID_PLAYER_3DTEXT_ID;
 
 /**
  * <remarks>
@@ -7551,6 +7570,7 @@ const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
  */
 
 #if defined FIX_limit_tags
+	#undef INVALID_PLAYER_3DTEXT_ID
 	_FIXES_CONST_PAWNDOC(INVALID_PLAYER_3DTEXT_ID);
 	#define INVALID_PLAYER_3DTEXT_ID INVALID_PLAYER_3DTEXT_ID__
 #else
@@ -7563,6 +7583,9 @@ const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
  * </remarks>
  */
 
+#if !defined INVALID_3DTEXT_ID
+	#define INVALID_3DTEXT_ID (0xFFFF)
+#endif
 const Text3D:INVALID_3DTEXT_ID__               = Text3D:INVALID_3DTEXT_ID;
 
 /**
@@ -7572,8 +7595,8 @@ const Text3D:INVALID_3DTEXT_ID__               = Text3D:INVALID_3DTEXT_ID;
  */
 
 #if defined FIX_limit_tags
-	_FIXES_CONST_PAWNDOC(INVALID_3DTEXT_ID);
 	#undef INVALID_3DTEXT_ID
+	_FIXES_CONST_PAWNDOC(INVALID_3DTEXT_ID);
 	#define INVALID_3DTEXT_ID INVALID_3DTEXT_ID__
 #else
 	_FIXES_HIDE_PAWNDOC(INVALID_3DTEXT_ID);
@@ -7585,6 +7608,9 @@ const Text3D:INVALID_3DTEXT_ID__               = Text3D:INVALID_3DTEXT_ID;
  * </remarks>
  */
 
+#if !defined INVALID_MENU
+	#define INVALID_MENU (0xFF)
+#endif
 const Menu:INVALID_MENU__                      = Menu:INVALID_MENU;
 
 /**
@@ -7594,8 +7620,8 @@ const Menu:INVALID_MENU__                      = Menu:INVALID_MENU;
  */
 
 #if defined FIX_limit_tags
-	_FIXES_CONST_PAWNDOC(INVALID_MENU);
 	#undef INVALID_MENU
+	_FIXES_CONST_PAWNDOC(INVALID_MENU);
 	#define INVALID_MENU INVALID_MENU__
 #else
 	_FIXES_HIDE_PAWNDOC(INVALID_MENU);
@@ -7607,6 +7633,9 @@ const Menu:INVALID_MENU__                      = Menu:INVALID_MENU;
  * </remarks>
  */
 
+#if !defined INVALID_TEXT_DRAW
+	#define INVALID_TEXT_DRAW (0xFFFF)
+#endif
 const Text:INVALID_TEXT_DRAW__                 = Text:INVALID_TEXT_DRAW;
 
 /**
@@ -7616,8 +7645,8 @@ const Text:INVALID_TEXT_DRAW__                 = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined FIX_limit_tags
-	_FIXES_CONST_PAWNDOC(INVALID_TEXT_DRAW);
 	#undef INVALID_TEXT_DRAW
+	_FIXES_CONST_PAWNDOC(INVALID_TEXT_DRAW);
 	#define INVALID_TEXT_DRAW INVALID_TEXT_DRAW__
 #else
 	_FIXES_HIDE_PAWNDOC(INVALID_TEXT_DRAW);
@@ -14925,7 +14954,7 @@ static stock _FIXES_CountFilterscripts()
 #if FIX_LocalNPCNatives
 	stock Float:FIXES_VectorSizeNPC(Float:x, Float:y, Float:z)
 	{
-		return floatsqrt(x * x + y * y + z * z);
+		return floatsqroot(x * x + y * y + z * z);
 	}
 
 	#if _FIXES_SAMP
@@ -14985,95 +15014,95 @@ static stock _FIXES_CountFilterscripts()
 		weapon[0] = '\0';
 		switch (weaponid)
 		{
-		case WEAPON:0:
+		case (WEAPON:0):
 			return strcat(weapon, "Fists", len), 1;
-		case WEAPON:1:
+		case (WEAPON:1):
 			return strcat(weapon, "Brass Knuckles", len), 1;
-		case WEAPON:2:
+		case (WEAPON:2):
 			return strcat(weapon, "Golf Club", len), 1;
-		case WEAPON:3:
+		case (WEAPON:3):
 			return strcat(weapon, "Nite Stick", len), 1;
-		case WEAPON:4:
+		case (WEAPON:4):
 			return strcat(weapon, "Knife", len), 1;
-		case WEAPON:5:
+		case (WEAPON:5):
 			return strcat(weapon, "Baseball Bat", len), 1;
-		case WEAPON:6:
+		case (WEAPON:6):
 			return strcat(weapon, "Shovel", len), 1;
-		case WEAPON:7:
+		case (WEAPON:7):
 			return strcat(weapon, "Pool Cue", len), 1;
-		case WEAPON:8:
+		case (WEAPON:8):
 			return strcat(weapon, "Katana", len), 1;
-		case WEAPON:9:
+		case (WEAPON:9):
 			return strcat(weapon, "Chainsaw", len), 1;
-		case WEAPON:10, WEAPON:11:
+		case (WEAPON:10), (WEAPON:11):
 			return strcat(weapon, "Dildo", len), 1;
-		case WEAPON:12, WEAPON:13:
+		case (WEAPON:12), (WEAPON:13):
 			return strcat(weapon, "Vibrator", len), 1;
-		case WEAPON:14:
+		case (WEAPON:14):
 			return strcat(weapon, "Flowers", len), 1;
-		case WEAPON:15:
+		case (WEAPON:15):
 			return strcat(weapon, "Cane", len), 1;
-		case WEAPON:16:
+		case (WEAPON:16):
 			return strcat(weapon, "Grenade", len), 1;
-		case WEAPON:17:
+		case (WEAPON:17):
 			return strcat(weapon, "Teargas", len), 1;
-		case WEAPON:18:
+		case (WEAPON:18):
 			return strcat(weapon, "Molotov Cocktail", len), 1;
-		case WEAPON:22:
+		case (WEAPON:22):
 			return strcat(weapon, "Colt 45", len), 1;
-		case WEAPON:23:
+		case (WEAPON:23):
 			return strcat(weapon, "Silenced Pistol", len), 1;
-		case WEAPON:24:
+		case (WEAPON:24):
 			return strcat(weapon, "Desert Eagle", len), 1;
-		case WEAPON:25:
+		case (WEAPON:25):
 			return strcat(weapon, "Shotgun", len), 1;
-		case WEAPON:26:
+		case (WEAPON:26):
 			return strcat(weapon, "Sawn-off Shotgun", len), 1;
-		case WEAPON:27:
+		case (WEAPON:27):
 			return strcat(weapon, "Combat Shotgun", len), 1;
-		case WEAPON:28:
+		case (WEAPON:28):
 			return strcat(weapon, "UZI", len), 1;
-		case WEAPON:29:
+		case (WEAPON:29):
 			return strcat(weapon, "MP5", len), 1;
-		case WEAPON:30:
+		case (WEAPON:30):
 			return strcat(weapon, "AK47", len), 1;
-		case WEAPON:31:
+		case (WEAPON:31):
 			return strcat(weapon, "M4", len), 1;
-		case WEAPON:32:
+		case (WEAPON:32):
 			return strcat(weapon, "TEC9", len), 1;
-		case WEAPON:33:
+		case (WEAPON:33):
 			return strcat(weapon, "Rifle", len), 1;
-		case WEAPON:34:
+		case (WEAPON:34):
 			return strcat(weapon, "Sniper Rifle", len), 1;
-		case WEAPON:35:
+		case (WEAPON:35):
 			return strcat(weapon, "Rocket Launcher", len), 1;
-		case WEAPON:36:
+		case (WEAPON:36):
 			return strcat(weapon, "Heat Seaker", len), 1;
-		case WEAPON:37:
+		case (WEAPON:37):
 			return strcat(weapon, "Flamethrower", len), 1;
-		case WEAPON:38:
+		case (WEAPON:38):
 			return strcat(weapon, "Minigun", len), 1;
-		case WEAPON:39:
+		case (WEAPON:39):
 			return strcat(weapon, "Satchel Explosives", len), 1;
-		case WEAPON:40:
+		case (WEAPON:40):
 			return strcat(weapon, "Bomb", len), 1;
-		case WEAPON:41:
+		case (WEAPON:41):
 			return strcat(weapon, "Spray Can", len), 1;
-		case WEAPON:42:
+		case (WEAPON:42):
 			return strcat(weapon, "Fire Extinguisher", len), 1;
-		case WEAPON:43:
+		case (WEAPON:43):
 			return strcat(weapon, "Camera", len), 1;
-		case WEAPON:44:
+		case (WEAPON:44):
 			return strcat(weapon, "Night Vision", len), 1;
-		case WEAPON:45:
+		case (WEAPON:45):
 			return strcat(weapon, "Thermal Goggles", len), 1;
-		case WEAPON:46:
+		case (WEAPON:46):
 			return strcat(weapon, "Parachute", len), 1;
-		case WEAPON:49:
+		case (WEAPON:49):
 			return strcat(weapon, "Vehicle", len), 1;
-		case WEAPON:53:
+		case (WEAPON:53):
 			return strcat(weapon, "Drowned", len), 1;
-		case WEAPON:54:
+		case (WEAPON:54):
 			return strcat(weapon, "Splat", len), 1;
 		}
 		return 0;
@@ -15103,15 +15132,21 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	_FIXES_FUNC_PAWNDOC(FIXES_GetPlayerPoolSizeNPC());
-	#define FIXES_GetPlayerPoolSizeNPC() (MAX_PLAYERS - 1)
+	stock FIXES_GetPlayerPoolSizeNPC()
+	{
+		for (new playerid = MAX_PLAYERS; playerid--; )
+		{
+			if (IsPlayerConnected__(playerid))
+			{
+				return playerid;
+			}
+		}
+		// Default, should be `-1` if there are no players, for looping.
+		return -1;
+	}
 
 	#if _FIXES_SAMP
-		#if defined _ALS_GetPlayerPoolSize
-			#undef GetPlayerPoolSize
-		#else
-			#define _ALS_GetPlayerPoolSize
-		#endif
+		#define _ALS_GetPlayerPoolSize
 		#define GetPlayerPoolSize( FIXES_GetPlayerPoolSizeNPC(
 	#endif
 
@@ -17056,13 +17091,13 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 		#else
 			switch (weaponid)
 			{
-			case WEAPON:0:
+			case (WEAPON:0):
 				return strcat(weapon, "Fists", len), 1;
-			case WEAPON:18:
+			case (WEAPON:18):
 				return strcat(weapon, "Molotov Cocktail", len), 1;
-			case WEAPON:44:
+			case (WEAPON:44):
 				return strcat(weapon, "Night Vision", len), 1;
-			case WEAPON:45:
+			case (WEAPON:45):
 				return strcat(weapon, "Thermal Goggles", len), 1;
 			}
 		#endif

@@ -75,9 +75,9 @@ public CompileTest()
 	ACos__(0);
 	ATan__(0);
 	ATan2__(0, 0);
-	GetPlayerPoolSize();
-	GetVehiclePoolSize();
-	GetActorPoolSize();
+	ivar = GetPlayerPoolSize();
+	ivar = GetVehiclePoolSize();
+	ivar = GetActorPoolSize();
 	SHA256_PassHash("STRING", "STRING", output, _);
 	SetSVarInt("STRING", 0);
 	GetSVarInt("STRING");
