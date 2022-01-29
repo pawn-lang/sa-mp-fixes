@@ -17202,7 +17202,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 		FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
 		SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST),
 		ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, false, false, false, false, 1, true),
-		SetTimerEx__(FIXES_gscDriveBy, 500, 0, FIXES_gscSpec@i, playerid);
+		SetTimerEx__(FIXES_gscDriveBy, 500, false, FIXES_gscSpec@i, playerid);
 	}
 
 	forward _FIXES_DriveBy(playerid);
@@ -17897,7 +17897,7 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 #if FIX_AddMenuItem
 	stock FIXES_AddMenuItem(Menu:menuid, column, const text[])
 	{
-		return FIXES_IS_VALID_MENU(menuid) ? AddMenuItem__(menuid, column, menutext) : 0;
+		return FIXES_IS_VALID_MENU(menuid) ? AddMenuItem__(menuid, column, text) : 0;
 	}
 
 	#if _FIXES_SAMP
@@ -18810,7 +18810,7 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 				SetPVarInt__(playerid, FIXES_pvarPlayerCheckpoint, 1),
 			#endif
 				DisablePlayerCheckpoint__(playerid),
-				SetTimerEx__(FIXES_gscSetCheckpoint, 50, 0, FIXES_gscSpec@iffff, playerid, x, y, z, size),
+				SetTimerEx__(FIXES_gscSetCheckpoint, 50, false, FIXES_gscSpec@iffff, playerid, x, y, z, size),
 				1;
 	}
 
@@ -19591,7 +19591,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
  */
 
 #if FIX_AllowTeleport && !defined FILTERSCRIPT
-	public OnPlayerClickMap(playerid, Float:x, Float:y, Float:z)
+	public OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ)
 	{
 		// ======================
 		//  BEGIN: AllowTeleport
@@ -19603,7 +19603,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 				// most callbacks are Filter Script first.
 				if ((FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_TELEPORT) || ((FIXES_gsSettings & e_FIXES_SETTINGS_ADMIN_TELEPORT) && (IsPlayerAdmin__(playerid))))
 				{
-					SetPlayerPosFindZ__(playerid, x, y, z);
+					SetPlayerPosFindZ__(playerid, fX, fY, fZ);
 				}
 			}
 		#endif
@@ -19611,7 +19611,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 		//  END:   AllowTeleport
 		// ======================
 		#if defined On_PlayerClickMap
-			return On_PlayerClickMap(playerid, x, y, z);
+			return On_PlayerClickMap(playerid, fX, fY, fZ);
 		#else
 			return 1;
 		#endif
@@ -20956,7 +20956,7 @@ native BAD_Kick(playerid) = Kick;
 				#endif
 					TogglePlayerSpectating__(playerid, true),
 					TogglePlayerControllable__(playerid, false),
-					SetPVarInt__(playerid, FIXES_pvarKick, SetTimerEx__(FIXES_gscKick, 1000, 0, FIXES_gscSpec@i, playerid)),
+					SetPVarInt__(playerid, FIXES_pvarKick, SetTimerEx__(FIXES_gscKick, 1000, false, FIXES_gscSpec@i, playerid)),
 					FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_KICKED,
 					1;
 		}
@@ -21066,19 +21066,19 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyAnimation_2
-	static stock _FIXES_ApplyAnimationDelay(playerid, idx, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync)
+	static stock _FIXES_ApplyAnimationDelay(playerid, libraryIndex, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync)
 	{
 		if (FIXES_gsPlayerAnimTimer[playerid])
 		{
 			KillTimer__(FIXES_gsPlayerAnimTimer[playerid]),
 			FIXES_gsPlayerAnimTimer[playerid] = 0;
 		}
-		if (FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] >>> (idx & 0x1F) & 1)
+		if (FIXES_gsPlayerAnimLibs[playerid][libraryIndex >>> 5] >>> (libraryIndex & 0x1F) & 1)
 		{
-			FIXES_gsPlayerAnimLibs[playerid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
+			FIXES_gsPlayerAnimLibs[playerid][libraryIndex >>> 5] &= ~(1 << (libraryIndex & 0x1F)),
 			FIXES_gsPlayerAnimName[playerid << 6] = '\0',
 			strcat(FIXES_gsPlayerAnimName[playerid << 6], animationName, 64),
-			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx__("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, idx, delta, loop, lockX, lockY, freeze, time, forceSync);
+			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx__("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, libraryIndex, delta, loop, lockX, lockY, freeze, time, forceSync);
 		}
 	}
 #else
@@ -21124,12 +21124,12 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync = false)
 	{
 		new
-			idx = _FIXES_GetAnimLibIndex(animationLibrary);
+			libraryIndex = _FIXES_GetAnimLibIndex(animationLibrary);
 
-		if (~idx) // != -1
+		if (~libraryIndex) // != -1
 		{
 			#if FIX_ApplyAnimation_2
-				_FIXES_ApplyAnimationDelay(playerid, idx, animationName, idx, delta, loop, lockX, lockY, freeze, time, forceSync);
+				_FIXES_ApplyAnimationDelay(playerid, libraryIndex, animationName, delta, loop, lockX, lockY, freeze, time, forceSync);
 			#endif
 				return ApplyAnimation__(playerid, animationLibrary, animationName, delta, loop, lockX, lockY, freeze, time, forceSync);
 		}
@@ -21157,19 +21157,19 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyActorAnimation_2
-	static stock _FIXES_ApplyActorAnimationDelay(actorid, idx, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
+	static stock _FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
 	{
 		if (FIXES_gsActorAnimTimer[actorid])
 		{
 			KillTimer__(FIXES_gsActorAnimTimer[actorid]),
 			FIXES_gsActorAnimTimer[actorid] = 0;
 		}
-		if (FIXES_gsActorAnimLibs[actorid][idx >>> 5] >>> (idx & 0x1F) & 1)
+		if (FIXES_gsActorAnimLibs[actorid][libraryIndex >>> 5] >>> (libraryIndex & 0x1F) & 1)
 		{
-			FIXES_gsActorAnimLibs[actorid][idx >>> 5] &= ~(1 << (idx & 0x1F)),
+			FIXES_gsActorAnimLibs[actorid][libraryIndex >>> 5] &= ~(1 << (libraryIndex & 0x1F)),
 			FIXES_gsActorAnimName[actorid << 6] = '\0',
 			strcat(FIXES_gsActorAnimName[actorid << 6], animationName, 64),
-			FIXES_gsActorAnimTimer[actorid] = SetTimerEx__("_FIXES_ApplyActorAnimation", 350, false, "ddfdddddd", actorid, idx, delta, loop, lockX, lockY, freeze, time);
+			FIXES_gsActorAnimTimer[actorid] = SetTimerEx__("_FIXES_ApplyActorAnimation", 350, false, "ddfdddddd", actorid, libraryIndex, delta, loop, lockX, lockY, freeze, time);
 		}
 	}
 #else
@@ -21215,12 +21215,12 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 	stock FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
 	{
 		new
-			idx = _FIXES_GetAnimLibIndex(animationLibrary);
+			libraryIndex = _FIXES_GetAnimLibIndex(animationLibrary);
 
-		if (~idx) // != -1
+		if (~libraryIndex) // != -1
 		{
 			#if FIX_ApplyActorAnimation_2
-				_FIXES_ApplyActorAnimationDelay(actorid, idx, animationName, delta, loop, lockX, lockY, freeze, time);
+				_FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, animationName, delta, loop, lockX, lockY, freeze, time);
 			#endif
 				return ApplyActorAnimation__(actorid, animationLibrary, animationName, delta, loop, lockX, lockY, freeze, time);
 		}
@@ -22004,7 +22004,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 				if (GetPVarInt__(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState__(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
-					SetTimerEx__(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifff, playerid, 1, x, y, z);
+					SetTimerEx__(FIXES_gscSetCamera, 300, false, FIXES_gscSpec@iifff, playerid, 1, x, y, z);
 				}
 				else
 				{
@@ -22049,7 +22049,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 				if (GetPVarInt__(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState__(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
-					SetTimerEx__(FIXES_gscSetCamera, 300, 0, FIXES_gscSpec@iifffi, playerid, 0, x, y, z, cut);
+					SetTimerEx__(FIXES_gscSetCamera, 300, false, FIXES_gscSpec@iifffi, playerid, 0, x, y, z, cut);
 				}
 				else
 				{
@@ -22147,7 +22147,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 		{
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
 			{
-				return SetTimerEx__(FIXES_gscSetTime, 250, 0, FIXES_gscSpec@iii, playerid, hour, minute);
+				return SetTimerEx__(FIXES_gscSetTime, 250, false, FIXES_gscSpec@iii, playerid, hour, minute);
 			}
 			return SetPlayerTime__(playerid, hour, minute);
 		}
@@ -22192,7 +22192,7 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 		{
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_ON_PLAYER_CONNECT)
 			{
-				return SetTimerEx__(FIXES_gscSetColor, 300, 0, FIXES_gscSpec@ii, playerid, color);
+				return SetTimerEx__(FIXES_gscSetColor, 300, false, FIXES_gscSpec@ii, playerid, color);
 			}
 			return SetPlayerColor__(playerid, color);
 		}
