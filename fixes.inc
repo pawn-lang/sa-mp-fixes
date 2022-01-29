@@ -11371,11 +11371,27 @@ native Float:BAD_GetGravity() = GetGravity;
  */
 
 #if FIX_gpci
-	native gpci(playerid, serial[], maxlen);
+	#pragma deprecated Use `GPCI`.
+	native gpci(playerid, serial[], len = sizeof (serial));
 #else
 	_FIXES_HIDE_PAWNDOC(_FIXES_gpci);
 #endif
-native BAD_gpci(playerid, serial[], maxlen) = gpci;
+
+/**
+ * <remarks>
+ * <c>GPCI</c>
+ *
+ * Because the default SA:MP includes missed this one.
+ * </remarks>
+ */
+
+#if FIX_gpci
+	native GPCI(playerid, serial[], len = sizeof (serial)) = gpci;
+#else
+	_FIXES_HIDE_PAWNDOC(_FIXES_GPCI);
+#endif
+
+native BAD_gpci(playerid, serial[], len) = gpci;
 
 /**
  * <remarks>
@@ -11957,6 +11973,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 	native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText;
 	native ShowPlayerDialog__(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
 	native gpci__(playerid, output[], size = sizeof (output)) = gpci;
+	native GPCI__(playerid, output[], size = sizeof (output)) = gpci;
 	native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false) = CreateVehicle;
 	native DestroyVehicle__(vehicleid) = DestroyVehicle;
 	native bool:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn;
