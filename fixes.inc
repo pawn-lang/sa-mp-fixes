@@ -15488,6 +15488,16 @@ public OnJITCompile()
 		//  END: AllowInteriorWeapons
 		// ===========================
 
+		// ===================
+		//  BEGIN: GetWeather
+		// ===================
+		#if FIX_GetWeather || FIX_GetPlayerWeather
+			FIXES_gsServerWeather = 10;
+		#endif
+		// ===================
+		//  END:   GetWeather
+		// ===================
+
 		if (!_FIXES_gIsFilterscript)
 		{
 			// ======================
@@ -23577,13 +23587,13 @@ native BAD_SetWeather(weather) = SetWeather;
  * <fixes>GetPlayerWeather</fixes>
  */
 
-#if FIX_GetWeather
+#if FIX_GetWeather || FIX_GetPlayerWeather
 		stock FIXES_SetWeather(weather)
 		{
-			#if FIXES_Single
-				FIXES_gsServerWeather = weather;
-			#else
+			#if !FIXES_Single && FIX_GetWeather
 				CallRemoteFunction__("_FIXES_SetWeather", FIXES_gscSpec@i, weather),
+			#else
+				FIXES_gsServerWeather = weather;
 			#endif
 			#if FIX_GetPlayerWeather
 				_FIXES_FOREACH(FIXES_gsPlayersIterator, playerid)
@@ -23594,7 +23604,7 @@ native BAD_SetWeather(weather) = SetWeather;
 			return SetWeather__(weather);
 		}
 
-	#if !FIXES_Single
+	#if !FIXES_Single && FIX_GetWeather
 		forward _FIXES_SetWeather(weather);
 
 		public _FIXES_SetWeather(weather)
@@ -23612,6 +23622,22 @@ native BAD_SetWeather(weather) = SetWeather;
 	#define SetWeather__( FIXES_SetWeather(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_SetWeather);
+#endif
+
+/**
+ * <fixes>API</fixes>
+ */
+
+#if FIX_API
+	#if _FIXES_SAMP
+		#define _ALS_ResetWeather
+		#define ResetWeather() SetWeather(10)
+	#endif
+
+	#define _ALS_ResetWeather__
+	#define ResetWeather__() SetWeather(10)
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_ResetWeather);
 #endif
 
 /**
