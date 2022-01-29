@@ -6902,6 +6902,38 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_defaults                         (0)
 #endif
 
+/**
+ * <fix name="limit_tags">
+ *     <problem>
+ *         Some limits, like `MAX_MENUS` are untagged, so can't be used properly.
+ *     </problem>
+ *     <solution>
+ *         Redefine them with the tags added.
+ *     </solution>
+ *     <author    href="https://github.com/Y-Less/" >Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_limit_tags
+	#define _FIXES_WARNING 133
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_limit_tags = _FIXES_DEFAULT;
+	#define FIX_limit_tags                       _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_limit_tags)
+	#undef FIX_limit_tags
+	static stock FIX_limit_tags = 2;
+	#define FIX_limit_tags                       (2)
+#elseif FIX_limit_tags
+	#undef FIX_limit_tags
+	static stock FIX_limit_tags = 1;
+	#define FIX_limit_tags                       (1)
+#else
+	#undef FIX_limit_tags
+	static stock FIX_limit_tags = 0;
+	#define FIX_limit_tags                       (0)
+#endif
+
 /*
 
     88b           d88
@@ -7259,6 +7291,234 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK);
 
 
 */
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+const Text:MAX_TEXT_DRAWS__       = Text:MAX_TEXT_DRAWS;
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined FIX_limit_tags
+	_FIXES_CONST_PAWNDOC(MAX_TEXT_DRAWS);
+	#undef MAX_TEXT_DRAWS
+	#define MAX_TEXT_DRAWS MAX_TEXT_DRAWS__
+#else
+	_FIXES_HIDE_PAWNDOC(MAX_TEXT_DRAWS);
+#endif
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+const PlayerText:MAX_PLAYER_TEXT_DRAWS__ = PlayerText:MAX_PLAYER_TEXT_DRAWS;
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined FIX_limit_tags
+	_FIXES_CONST_PAWNDOC(MAX_PLAYER_TEXT_DRAWS);
+	#undef MAX_PLAYER_TEXT_DRAWS
+	#define MAX_PLAYER_TEXT_DRAWS MAX_PLAYER_TEXT_DRAWS__
+#else
+	_FIXES_HIDE_PAWNDOC(MAX_PLAYER_TEXT_DRAWS);
+#endif
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+const Menu:MAX_MENUS__            = Menu:MAX_MENUS;
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined FIX_limit_tags
+	_FIXES_CONST_PAWNDOC(MAX_MENUS);
+	#undef MAX_MENUS
+	#define MAX_MENUS MAX_MENUS__
+#else
+	_FIXES_HIDE_PAWNDOC(MAX_MENUS);
+#endif
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+const Text3D:MAX_3DTEXT_GLOBAL__  = Text3D:MAX_3DTEXT_GLOBAL;
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined FIX_limit_tags
+	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_GLOBAL);
+	#undef MAX_3DTEXT_GLOBAL
+	#define MAX_3DTEXT_GLOBAL MAX_3DTEXT_GLOBAL__
+#else
+	_FIXES_HIDE_PAWNDOC(MAX_3DTEXT_GLOBAL);
+#endif
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined FIX_limit_tags
+	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_PLAYER);
+	#undef MAX_3DTEXT_PLAYER
+	#define MAX_3DTEXT_PLAYER MAX_3DTEXT_PLAYER__
+#else
+	_FIXES_HIDE_PAWNDOC(MAX_3DTEXT_PLAYER);
+#endif
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined INVALID_PLAYER_TEXT_DRAW
+	const PlayerText:INVALID_PLAYER_TEXT_DRAW__    = PlayerText:INVALID_PLAYER_TEXT_DRAW;
+	#undef INVALID_PLAYER_TEXT_DRAW
+#else
+	const PlayerText:INVALID_PLAYER_TEXT_DRAW__    = PlayerText:INVALID_TEXT_DRAW;
+#endif
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined FIX_limit_tags
+	_FIXES_CONST_PAWNDOC(INVALID_PLAYER_TEXT_DRAW);
+	#define INVALID_PLAYER_TEXT_DRAW INVALID_PLAYER_TEXT_DRAW__
+#else
+	_FIXES_HIDE_PAWNDOC(INVALID_PLAYER_TEXT_DRAW);
+#endif
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined INVALID_PLAYER_3DTEXT_ID
+	const PlayerText3D:INVALID_PLAYER_3DTEXT_ID__  = PlayerText3D:INVALID_PLAYER_3DTEXT_ID;
+	#undef INVALID_PLAYER_3DTEXT_ID
+#else
+	const PlayerText3D:INVALID_PLAYER_3DTEXT_ID__  = PlayerText3D:INVALID_3DTEXT_ID;
+#endif
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined FIX_limit_tags
+	_FIXES_CONST_PAWNDOC(INVALID_PLAYER_3DTEXT_ID);
+	#define INVALID_PLAYER_3DTEXT_ID INVALID_PLAYER_3DTEXT_ID__
+#else
+	_FIXES_HIDE_PAWNDOC(INVALID_PLAYER_3DTEXT_ID);
+#endif
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+const Text3D:INVALID_3DTEXT_ID__               = Text3D:INVALID_3DTEXT_ID;
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined FIX_limit_tags
+	_FIXES_CONST_PAWNDOC(INVALID_3DTEXT_ID);
+	#undef INVALID_3DTEXT_ID
+	#define INVALID_3DTEXT_ID INVALID_3DTEXT_ID__
+#else
+	_FIXES_HIDE_PAWNDOC(INVALID_3DTEXT_ID);
+#endif
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+const Menu:INVALID_MENU__                      = Menu:INVALID_MENU;
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined FIX_limit_tags
+	_FIXES_CONST_PAWNDOC(INVALID_MENU);
+	#undef INVALID_MENU
+	#define INVALID_MENU INVALID_MENU__
+#else
+	_FIXES_HIDE_PAWNDOC(INVALID_MENU);
+#endif
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+const Text:INVALID_TEXT_DRAW__                 = Text:INVALID_TEXT_DRAW;
+
+/**
+ * <remarks>
+ * SA:MP limit with the correct tag added.
+ * </remarks>
+ */
+
+#if defined FIX_limit_tags
+	_FIXES_CONST_PAWNDOC(INVALID_TEXT_DRAW);
+	#undef INVALID_TEXT_DRAW
+	#define INVALID_TEXT_DRAW INVALID_TEXT_DRAW__
+#else
+	_FIXES_HIDE_PAWNDOC(INVALID_TEXT_DRAW);
+#endif
 
 /**
  * <remarks>

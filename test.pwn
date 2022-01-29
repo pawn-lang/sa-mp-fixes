@@ -4,31 +4,8 @@
 
 #include <a_samp>
 
-#if !defined SendClientCheck
-	native SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCount);
-#endif
-#if !defined GetPlayerCustomSkin
-	native GetPlayerCustomSkin(playerid);
-#endif
-
-const Menu:__INVALID_MENU = Menu:INVALID_MENU;
-const Text3D:__INVALID_3DTEXT_ID = Text3D:INVALID_3DTEXT_ID;
-const PlayerText3D:__INVALID_PLAYER_3DTEXT_ID = PlayerText3D:INVALID_3DTEXT_ID;
-const Text:__INVALID_TEXT_DRAW = Text:INVALID_TEXT_DRAW;
-const PlayerText:__INVALID_PLAYER_TEXT_DRAW = PlayerText:INVALID_TEXT_DRAW;
-
-#undef INVALID_MENU
-#define INVALID_MENU __INVALID_MENU
-
-#undef INVALID_3DTEXT_ID
-#define INVALID_3DTEXT_ID __INVALID_3DTEXT_ID
-
-#define INVALID_PLAYER_3DTEXT_ID __INVALID_PLAYER_3DTEXT_ID
-
-#undef INVALID_TEXT_DRAW
-#define INVALID_TEXT_DRAW __INVALID_TEXT_DRAW
-
-#define INVALID_PLAYER_TEXT_DRAW __INVALID_PLAYER_TEXT_DRAW
+native SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCount);
+native GetPlayerCustomSkin(playerid);
 
 native AddCharModel(baseid, newid, const dff[], const textureLibrary[]);
 native AddSimpleModel(virtualWorld, baseid, newid, const dff[], const textureLibrary[]);
