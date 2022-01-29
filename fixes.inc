@@ -7338,6 +7338,34 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_BOOL);
 	#define _FIXES_MAYBE_BOOL _
 #endif
 
+/**
+ * <remarks>
+ * Either <c>true</c> or <c>1</c>, depending on the value of
+ * <c>FIX_bool_tags</c>, to reduce excessive warnings.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_TRUE);
+#if FIX_bool_tags
+	#define _FIXES_MAYBE_TRUE true
+#else
+	#define _FIXES_MAYBE_TRUE 1
+#endif
+
+/**
+ * <remarks>
+ * Either <c>false</c> or <c>0</c>, depending on the value of
+ * <c>FIX_bool_tags</c>, to reduce excessive warnings.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_FALSE);
+#if FIX_bool_tags
+	#define _FIXES_MAYBE_FALSE false
+#else
+	#define _FIXES_MAYBE_FALSE 0
+#endif
+
 /*
 
     88888888ba,                   ad88  88               88           88
