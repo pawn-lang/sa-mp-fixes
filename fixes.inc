@@ -15132,18 +15132,8 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_GetPlayerPoolSizeNPC()
-	{
-		for (new playerid = MAX_PLAYERS; playerid--; )
-		{
-			if (IsPlayerConnected__(playerid))
-			{
-				return playerid;
-			}
-		}
-		// Default, should be `-1` if there are no players, for looping.
-		return -1;
-	}
+	_FIXES_FUNC_PAWNDOC(FIXES_GetPlayerPoolSizeNPC());
+	#define FIXES_GetPlayerPoolSizeNPC() (MAX_PLAYERS - 1)
 
 	#if _FIXES_SAMP
 		#define _ALS_GetPlayerPoolSize
@@ -15169,11 +15159,7 @@ static stock _FIXES_CountFilterscripts()
 	#define FIXES_GetVehiclePoolSizeNPC() (MAX_VEHICLES - 1)
 
 	#if _FIXES_SAMP
-		#if defined _ALS_GetVehiclePoolSize
-			#undef GetVehiclePoolSize
-		#else
-			#define _ALS_GetVehiclePoolSize
-		#endif
+		#define _ALS_GetVehiclePoolSize
 		#define GetVehiclePoolSize( FIXES_GetVehiclePoolSizeNPC(
 	#endif
 
@@ -15196,11 +15182,7 @@ static stock _FIXES_CountFilterscripts()
 	#define FIXES_GetActorPoolSizeNPC() (MAX_ACTORS - 1)
 
 	#if _FIXES_SAMP
-		#if defined _ALS_GetActorPoolSize
-			#undef GetActorPoolSize
-		#else
-			#define _ALS_GetActorPoolSize
-		#endif
+		#define _ALS_GetActorPoolSize
 		#define GetActorPoolSize( FIXES_GetActorPoolSizeNPC(
 	#endif
 
