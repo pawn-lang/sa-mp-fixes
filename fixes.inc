@@ -23390,10 +23390,12 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 
 #if FIX_GetPlayerAmmo
 	native FIXES_SetPlayerAmmo(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
+
 	#if _FIXES_SAMP
 		#define _ALS_SetPlayerAmmo
 		#define SetPlayerAmmo(%0,%1,%2) FIXES_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
 	#endif
+
 	#define _ALS_SetPlayerAmmo__
 	#define SetPlayerAmmo__(%0,%1,%2) FIXES_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
 #else
@@ -23455,8 +23457,9 @@ native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 
 	#if _FIXES_SAMP
 		#define _ALS_SetPlayerWeather
-	#define SetPlayerWeather( FIXES_SetPlayerWeather(
-#endif
+		#define SetPlayerWeather( FIXES_SetPlayerWeather(
+	#endif
+
 	#define _ALS_SetPlayerWeather__
 	#define SetPlayerWeather__( FIXES_SetPlayerWeather(
 #else
@@ -23527,8 +23530,9 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 
 	#if _FIXES_SAMP
 		#define _ALS_TogglePlayerClock
-	#define TogglePlayerClock( FIXES_TogglePlayerClock(
-#endif
+		#define TogglePlayerClock( FIXES_TogglePlayerClock(
+	#endif
+
 	#define _ALS_TogglePlayerClock__
 	#define TogglePlayerClock__( FIXES_TogglePlayerClock(
 #else
@@ -23601,8 +23605,9 @@ native BAD_SetWeather(weather) = SetWeather;
 
 	#if _FIXES_SAMP
 		#define _ALS_SetWeather
-	#define SetWeather( FIXES_SetWeather(
-#endif
+		#define SetWeather( FIXES_SetWeather(
+	#endif
+
 	#define _ALS_SetWeather__
 	#define SetWeather__( FIXES_SetWeather(
 #else
@@ -23628,6 +23633,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 		#define _ALS_SetWorldTime
 		#define SetWorldTime(%0) BAD_SetWorldTime((_FIXES_gsWorldTime=(%0)))
 	#endif
+	
 	#define _ALS_SetWorldTime__
 	#define SetWorldTime__(%0) BAD_SetWorldTime((_FIXES_gsWorldTime=(%0)))
 #else
@@ -23644,10 +23650,12 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 
 #if FIX_GetWorldTime
 	_FIXES_FUNC_PAWNDOC(FIXES_GetWorldTime());
+
 	#if _FIXES_SAMP
 		#define _ALS_GetWorldTime
 		#define GetWorldTime() (_FIXES_gsWorldTime)
 	#endif
+
 	#define _ALS_GetWorldTime__
 	#define GetWorldTime__() (_FIXES_gsWorldTime)
 #else
@@ -23664,10 +23672,12 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 
 #if FIX_GetMaxPlayers
 	_FIXES_FUNC_PAWNDOC(FIXES_GetMaxPlayers());
+
 	#if _FIXES_SAMP
 		#define _ALS_GetMaxPlayers
 		#define GetMaxPlayers() (_FIXES_gsMaxPlayers)
 	#endif
+
 	#define _ALS_GetMaxPlayers__
 	#define GetMaxPlayers__() (_FIXES_gsMaxPlayers)
 #else
