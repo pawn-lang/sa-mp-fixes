@@ -690,7 +690,7 @@
 #endif
 
 #if _FIXES_WARNING == 129
-	#warning Option `FIX_GetPlayerName` must now be explicit.
+	#warning Option `FIX_deconst` must now be explicit.
 	#endinput
 #endif
 
@@ -701,6 +701,11 @@
 
 #if _FIXES_WARNING == 131
 	#warning Option `FIX_Streamer_RemoveIntData` must now be explicit.
+	#endinput
+#endif
+
+#if _FIXES_WARNING == 132
+	#warning Option `FIX_defaults` must now be explicit.
 	#endinput
 #endif
 

@@ -198,9 +198,10 @@ floatfract | Incorrect on negative numbers. | Use floatround and subtraction. | 
 strfind | The function is prone to OOB access when the search start index is negative. | Clamp it to 0. | [Daniel-Cortez](https://github.com/Daniel-Cortez) | [Link](https://github.com/pawn-lang/sa-mp-fixes/issues/91) |
 strdel | The function is prone to OOB access when the index of the first character to remove is negative. | Clamp it to 0. | [Daniel-Cortez](https://github.com/Daniel-Cortez) | [Link](https://github.com/pawn-lang/sa-mp-fixes/issues/91) |
 CallLocalFunction | Isn't defined in NPC modes. | Write a pawn version using `funcidx`. | [Y_Less](https://github.com/Y-Less)  | |
-GetPlayerName | Un-const-correct - uses `const` but shouldn't. | Redefine it without, plus a `len` default. | [Y_Less](https://github.com/Y-Less)  | |
+deconst | Un-const-correct - uses `const` but shouldn't. | Redefine it without, plus a `len` default. | [Y_Less](https://github.com/Y-Less)  | |
 Streamer_RemoveIntData | Int data functions expect more parameters than they specify. | Pass a hidden fake one if the version is right. | [Y_Less](https://github.com/Y-Less)  | [Link](https://github.com/samp-incognito/samp-streamer-plugin/pull/380) |
 Streamer_HasIntData | Int data functions expect more parameters than they specify. | Pass a hidden fake one if the version is right. | [Y_Less](https://github.com/Y-Less)  | [Link](https://github.com/samp-incognito/samp-streamer-plugin/pull/380) |
+default | Many functions are missing default values for string lengths. | Add them. | [Y_Less](https://github.com/Y-Less)  | |
 
 A few fixes are disabled by default, to enable them all do:
 

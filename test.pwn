@@ -1,5 +1,6 @@
 #define FIXES_Single 0
 
+#include <a_samp>
 #include "fixes.inc"
 
 forward TestCompiles();
@@ -23,8 +24,8 @@ public TestCompiles()
 	GetPlayerWorldBounds(0, f1, f2, f3, f4);
 	ClearPlayerWorldBounds(0);
 	TogglePlayerControllable(0, false);
-	SetTimer("", 0, 0);
-	SetTimerEx("", 0, 0, "");
+	SetTimer("", 0, false);
+	SetTimerEx("", 0, false, "");
 	DestroyMenu(Menu:0);
 	AddMenuItem(Menu:0, 0, "");
 	SetMenuColumnHeader(Menu:0, 0, "");
@@ -47,26 +48,26 @@ public TestCompiles()
 	HideGameTextForPlayer(0, 0);
 	PlayerTextDrawSetString(0, PlayerText:0, "");
 	TextDrawSetString(Text:0, "");
-	AllowInteriorWeapons(0);
+	AllowInteriorWeapons(false);
 	GetPlayerInterior(0);
 	SetPlayerInterior(0, 0);
-	AllowPlayerTeleport(0, 0);
-	AllowAdminTeleport(0);
+	AllowPlayerTeleport(0, false);
+	AllowAdminTeleport(false);
 	SetPlayerSpecialAction(0, 0);
-	ClearAnimations(0, 0);
+	ClearAnimations(0, false);
 	GangZoneCreate(0.0, 0.0, 0.0, 0.0);
 	ShowPlayerDialog(0, 0, 0, "", "", "", "");
 	GetPlayerDialog(0);
 	Kick(0);
-	ApplyAnimation(0, "", "", 0.0, 0, 0, 0, 0, 0, 0);
-	ApplyActorAnimation(0, "", "", 0.0, 0, 0, 0, 0, 0);
+	ApplyAnimation(0, "", "", 0.0, false, false, false, false, 0, false);
+	ApplyActorAnimation(0, "", "", 0.0, false, false, false, false, 0);
 	CreateActor(0, 0.0, 0.0, 0.0, 0.0);
 	DestroyActor(0);
 	SetVehicleParamsEx(0, VEHICLE_PARAMS_ON, VEHICLE_PARAMS_ON, VEHICLE_PARAMS_ON, VEHICLE_PARAMS_ON, VEHICLE_PARAMS_ON, VEHICLE_PARAMS_ON, VEHICLE_PARAMS_ON);
 	GetVehicleParamsEx(0, v0, v0, v0, v0, v0, v0, v0);
 	SetPlayerCameraPos(0, 0.0, 0.0, 0.0);
 	SetPlayerCameraLookAt(0, 0.0, 0.0, 0.0);
-	TogglePlayerSpectating(0, 0);
+	TogglePlayerSpectating(0, false);
 	SetPlayerTime(0, 0, 0);
 	SetPlayerColor(0, 0);
 	GetPlayerWeaponData(0, 0, c1, c2);
@@ -77,7 +78,7 @@ public TestCompiles()
 	SetPlayerPosFindZ(0, 0.0, 0.0, 0.0);
 	GetPlayerWeather(0);
 	SetPlayerWeather(0, 0);
-	TogglePlayerClock(0, 0);
+	TogglePlayerClock(0, false);
 	GetWeather();
 	SetWeather(0);
 	GetServerVarAsInt("");
