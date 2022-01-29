@@ -11391,29 +11391,29 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetTimer
 			#error _ALS_SetTimer defined
 		#endif
-		native CST_SetTimer(const funcname[], interval, repeating) = SetTimer;
-		native BAD_SetTimer(funcname[], interval, repeating) = SetTimer;
+		native CST_SetTimer(const functionName[], interval, bool:repeating) = SetTimer;
+		native BAD_SetTimer(functionName[], interval, repeating) = SetTimer;
 		#define _ALS_SetTimer
 		#define SetTimer( CST_SetTimer(
 		#if _FIXES_SAMP && defined _ALS_SendChat
 			#error _ALS_SendChat defined
 		#endif
-		native CST_SendChat(const msg[]) = SendChat;
-		native BAD_SendChat(msg[]) = SendChat;
+		native CST_SendChat(const message[]) = SendChat;
+		native BAD_SendChat(message[]) = SendChat;
 		#define _ALS_SendChat
 		#define SendChat( CST_SendChat(
 		#if _FIXES_SAMP && defined _ALS_SendCommand
 			#error _ALS_SendCommand defined
 		#endif
-		native CST_SendCommand(const commandtext[]) = SendCommand;
-		native BAD_SendCommand(commandtext[]) = SendCommand;
+		native CST_SendCommand(const command[]) = SendCommand;
+		native BAD_SendCommand(command[]) = SendCommand;
 		#define _ALS_SendCommand
 		#define SendCommand( CST_SendCommand(
 		#if _FIXES_SAMP && defined _ALS_StartRecordingPlayback
 			#error _ALS_StartRecordingPlayback defined
 		#endif
-		native CST_StartRecordingPlayback(playbacktype, const recordname[]) = StartRecordingPlayback;
-		native BAD_StartRecordingPlayback(playbacktype, recordname[]) = StartRecordingPlayback;
+		native CST_StartRecordingPlayback(PLAYER_RECORDING_TYPE:playbackType, const recordFile[]) = StartRecordingPlayback;
+		native BAD_StartRecordingPlayback(playbackType, recordFile[]) = StartRecordingPlayback;
 		#define _ALS_StartRecordingPlayback
 		#define StartRecordingPlayback( CST_(
 	#else
@@ -11421,8 +11421,8 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#if _FIXES_SAMP && defined _ALS_ApplyActorAnimation
 			#error _ALS_ApplyActorAnimation defined
 		#endif
-		native CST_ApplyActorAnimation(actorid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
-		native BAD_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time) = ApplyActorAnimation;
+		native CST_ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time) = ApplyActorAnimation;
+		native BAD_ApplyActorAnimation(actorid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time) = ApplyActorAnimation;
 		#define _ALS_ApplyActorAnimation
 		#define ApplyActorAnimation( CST_ApplyActorAnimation(
 
@@ -11443,7 +11443,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 			#if _FIXES_SAMP && defined _ALS_HTTP
 				#error _ALS_HTTP defined
 			#endif
-			native CST_HTTP(index, type, const url[], const data[], const callback[]) = HTTP;
+			native CST_HTTP(index, HTTP_METHOD:method, const url[], const data[], const callback[]) = HTTP;
 			#define _ALS_HTTP
 			#define HTTP( CST_HTTP(
 			// Because a_http can be included multiple times (on one compiler),
@@ -11457,25 +11457,25 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetObjectMaterial
 			#error _ALS_SetObjectMaterial defined
 		#endif
-		native CST_SetObjectMaterial(objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor=0) = SetObjectMaterial;
+		native CST_SetObjectMaterial(objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetObjectMaterial;
 		#define _ALS_SetObjectMaterial
 		#define SetObjectMaterial( CST_SetObjectMaterial(
 		#if _FIXES_SAMP && defined _ALS_SetPlayerObjectMaterial
 			#error _ALS_SetPlayerObjectMaterial defined
 		#endif
-		native CST_SetPlayerObjectMaterial(playerid, objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor=0) = SetPlayerObjectMaterial;
+		native CST_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetPlayerObjectMaterial;
 		#define _ALS_SetPlayerObjectMaterial
 		#define SetPlayerObjectMaterial( CST_SetPlayerObjectMaterial(
 		#if _FIXES_SAMP && defined _ALS_SetObjectMaterialText
 			#error _ALS_SetObjectMaterialText defined
 		#endif
-		native CST_SetObjectMaterialText(objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetObjectMaterialText;
+		native CST_SetObjectMaterialText(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
 		#define _ALS_SetObjectMaterialText
 		#define SetObjectMaterialText( CST_SetObjectMaterialText(
 		#if _FIXES_SAMP && defined _ALS_SetPlayerObjMaterialText
 			#error _ALS_SetPlayerObjMaterialText defined
 		#endif
-		native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialindex = 0, materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0) = SetPlayerObjectMaterialText;
+		native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
 		#define _ALS_SetPlayerObjMaterialText
 		#define SetPlayerObjectMaterialText( CST_SetPlayerObjectMaterialText(
 
@@ -11489,7 +11489,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetPlayerShopName
 			#error _ALS_SetPlayerShopName defined
 		#endif
-		native CST_SetPlayerShopName(playerid, const shopname[]) = SetPlayerShopName;
+		native CST_SetPlayerShopName(playerid, const shopName[]) = SetPlayerShopName;
 		#define _ALS_SetPlayerShopName
 		#define SetPlayerShopName( CST_SetPlayerShopName(
 		#if _FIXES_SAMP && defined _ALS_CreatePlayerTextDraw
@@ -11509,69 +11509,69 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetPVarInt
 			#error _ALS_SetPVarInt defined
 		#endif
-		native CST_SetPVarInt(playerid, const varname[], int_value) = SetPVarInt;
+		native CST_SetPVarInt(playerid, const pvar[], value) = SetPVarInt;
 		#define _ALS_SetPVarInt
 		#define SetPVarInt( CST_SetPVarInt(
 		#if _FIXES_SAMP && defined _ALS_GetPVarInt
 			#error _ALS_GetPVarInt defined
 		#endif
-		native CST_GetPVarInt(playerid, const varname[]) = GetPVarInt;
+		native CST_GetPVarInt(playerid, const pvar[]) = GetPVarInt;
 		#define _ALS_GetPVarInt
 		#define GetPVarInt( CST_GetPVarInt(
 		#if _FIXES_SAMP && defined _ALS_SetPVarString
 			#error _ALS_SetPVarString defined
 		#endif
-		native CST_SetPVarString(playerid, const varname[], const string_value[]) = SetPVarString;
+		native CST_SetPVarString(playerid, const pvar[], const value[]) = SetPVarString;
 		#define _ALS_SetPVarString
 		#define SetPVarString( CST_SetPVarString(
 		#if _FIXES_SAMP && defined _ALS_GetPVarString
 			#error _ALS_GetPVarString defined
 		#endif
-		native CST_GetPVarString(playerid, const varname[], string_return[], len) = GetPVarString;
-		native BAD_GetPVarString(playerid, varname[], string_return[], len) = GetPVarString;
+		native CST_GetPVarString(playerid, const pvar[], output[], len = sizeof (output)) = GetPVarString;
+		native BAD_GetPVarString(playerid, pvar[], output[], len) = GetPVarString;
 		#define _ALS_GetPVarString
 		#define GetPVarString( CST_GetPVarString(
 		#if _FIXES_SAMP && defined _ALS_SetPVarFloat
 			#error _ALS_SetPVarFloat defined
 		#endif
-		native CST_SetPVarFloat(playerid, const varname[], Float:float_value) = SetPVarFloat;
+		native CST_SetPVarFloat(playerid, const pvar[], Float:value) = SetPVarFloat;
 		#define _ALS_SetPVarFloat
 		#define SetPVarFloat( CST_SetPVarFloat(
 		#if _FIXES_SAMP && defined _ALS_GetPVarFloat
 			#error _ALS_GetPVarFloat defined
 		#endif
-		native Float:CST_GetPVarFloat(playerid, const varname[]) = GetPVarFloat;
+		native Float:CST_GetPVarFloat(playerid, const pvar[]) = GetPVarFloat;
 		#define _ALS_GetPVarFloat
 		#define GetPVarFloat( CST_GetPVarFloat(
 		#if _FIXES_SAMP && defined _ALS_DeletePVar
 			#error _ALS_DeletePVar defined
 		#endif
-		native CST_DeletePVar(playerid, const varname[]) = DeletePVar;
+		native CST_DeletePVar(playerid, const pvar[]) = DeletePVar;
 		#define _ALS_DeletePVar
 		#define DeletePVar( CST_DeletePVar(
 		#if _FIXES_SAMP && defined _ALS_GetPVarType
 			#error _ALS_GetPVarType defined
 		#endif
-		native PLAYER_VARTYPE:CST_GetPVarType(playerid, const varname[]) = GetPVarType;
+		native PLAYER_VARTYPE:CST_GetPVarType(playerid, const pvar[]) = GetPVarType;
 		#define _ALS_GetPVarType
 		#define GetPVarType( CST_GetPVarType(
 		#if _FIXES_SAMP && defined _ALS_SetPlayerChatBubble
 			#error _ALS_SetPlayerChatBubble defined
 		#endif
-		native CST_SetPlayerChatBubble(playerid, const text[], color, Float:drawdistance, expiretime) = SetPlayerChatBubble;
+		native CST_SetPlayerChatBubble(playerid, const text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
 		#define _ALS_SetPlayerChatBubble
 		#define SetPlayerChatBubble( CST_SetPlayerChatBubble(
 		#if _FIXES_SAMP && defined _ALS_ApplyAnimation
 			#error _ALS_ApplyAnimation defined
 		#endif
-		native CST_ApplyAnimation(playerid, const animlib[], const animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
-		native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
+		native CST_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync = false) = ApplyAnimation;
+		native BAD_ApplyAnimation(playerid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time, forceSync = 0) = ApplyAnimation;
 		#define _ALS_ApplyAnimation
 		#define ApplyAnimation( CST_ApplyAnimation(
 		#if _FIXES_SAMP && defined _ALS_StartRecordingPlayerData
 			#error _ALS_StartRecordingPlayerData defined
 		#endif
-		native CST_StartRecordingPlayerData(playerid, recordtype, const recordname[]) = StartRecordingPlayerData;
+		native CST_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, const recordFile[]) = StartRecordingPlayerData;
 		#define _ALS_StartRecordingPlayerData
 		#define StartRecordingPlayerData( CST_StartRecordingPlayerData(
 
@@ -11579,70 +11579,71 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetTimer
 			#error _ALS_SetTimer defined
 		#endif
-		native CST_SetTimer(const funcname[], interval, repeating) = SetTimer;
-		native BAD_SetTimer(funcname[], interval, repeating) = SetTimer;
+		native CST_SetTimer(const functionName[], interval, bool:repeating) = SetTimer;
+		native BAD_SetTimer(functionName[], interval, repeating) = SetTimer;
 		#define _ALS_SetTimer
 		#define SetTimer( CST_SetTimer(
 		#if _FIXES_SAMP && defined _ALS_SetTimerEx
 			#error _ALS_SetTimerEx defined
 		#endif
-		native CST_SetTimerEx(const funcname[], interval, repeating, const format[], {Float,_}:...) = SetTimerEx;
-		native BAD_SetTimerEx(funcname[], interval, repeating, format[], {Float,_}:...) = SetTimerEx;
+		native CST_SetTimerEx(const functionName[], interval, bool:repeating, const format[], {Float,_}:...) = SetTimerEx;
+		native BAD_SetTimerEx(functionName[], interval, repeating, format[], {Float,_}:...) = SetTimerEx;
 		#define _ALS_SetTimerEx
 		#define SetTimerEx( CST_SetTimerEx(
 		#if _FIXES_SAMP && defined _ALS_SHA256_PassHash
 			#error _ALS_SHA256_PassHash defined
 		#endif
-		native CST_SHA256_PassHash(const password[], const salt[], ret_hash[], ret_hash_len) = SHA256_PassHash;
+		#pragma deprecated Use BCrypt or better for hashing passwords.
+		native CST_SHA256_PassHash(const password[], const salt[], output[], size = sizeof (output)) = SHA256_PassHash;
 		#define _ALS_SHA256_PassHash // SHA256 for password hashing
 		#define SHA256_PassHash( CST_SHA256_PassHash(
 		#if _FIXES_SAMP && defined _ALS_SetSVarInt
 			#error _ALS_SetSVarInt defined
 		#endif
-		native CST_SetSVarInt(const varname[], int_value) = SetSVarInt;
+		native CST_SetSVarInt(const svar[], value) = SetSVarInt;
 		#define _ALS_SetSVarInt
 		#define SetSVarInt( CST_SetSVarInt(
 		#if _FIXES_SAMP && defined _ALS_GetSVarInt
 			#error _ALS_GetSVarInt defined
 		#endif
-		native CST_GetSVarInt(const varname[]) = GetSVarInt;
+		native CST_GetSVarInt(const svar[]) = GetSVarInt;
 		#define _ALS_GetSVarInt
 		#define GetSVarInt( CST_GetSVarInt(
 		#if _FIXES_SAMP && defined _ALS_SetSVarString
 			#error _ALS_SetSVarString defined
 		#endif
-		native CST_SetSVarString(const varname[], const string_value[]) = SetSVarString;
+		native CST_SetSVarString(const svar[], const value[]) = SetSVarString;
 		#define _ALS_SetSVarString
 		#define SetSVarString( CST_SetSVarString(
 		#if _FIXES_SAMP && defined _ALS_GetSVarString
 			#error _ALS_GetSVarString defined
 		#endif
-		native CST_GetSVarString(const varname[], string_return[], len) = GetSVarString;
-		native BAD_GetSVarString(varname[], string_return[], len) = GetSVarString;
+		native CST_GetSVarString(const svar[], output[], len = sizeof (output)) = GetSVarString;
+		native BAD_GetSVarString(svar[], output[], len) = GetSVarString;
 		#define _ALS_GetSVarString
 		#define GetSVarString( CST_GetSVarString(
 		#if _FIXES_SAMP && defined _ALS_SetSVarFloat
 			#error _ALS_SetSVarFloat defined
 		#endif
-		native CST_SetSVarFloat(const varname[], Float:float_value) = SetSVarFloat;
+		native CST_SetSVarFloat(const svar[], Float:value) = SetSVarFloat;
 		#define _ALS_SetSVarFloat
 		#define SetSVarFloat( CST_SetSVarFloat(
 		#if _FIXES_SAMP && defined _ALS_GetSVarFloat
 			#error _ALS_GetSVarFloat defined
 		#endif
-		native Float:CST_GetSVarFloat(const varname[]) = GetSVarFloat;
+		native Float:CST_GetSVarFloat(const svar[]) = GetSVarFloat;
 		#define _ALS_GetSVarFloat
 		#define GetSVarFloat( CST_GetSVarFloat(
 		#if _FIXES_SAMP && defined _ALS_DeleteSVar
 			#error _ALS_DeleteSVar defined
 		#endif
-		native CST_DeleteSVar(const varname[]) = DeleteSVar;
+		native CST_DeleteSVar(const svar[]) = DeleteSVar;
 		#define _ALS_DeleteSVar
 		#define DeleteSVar( CST_DeleteSVar(
 		#if _FIXES_SAMP && defined _ALS_GetSVarType
 			#error _ALS_GetSVarType defined
 		#endif
-		native CST_GetSVarType(const varname[]) = GetSVarType;
+		native SERVER_VARTYPE:CST_GetSVarType(const svar[]) = GetSVarType;
 		#define _ALS_GetSVarType
 		#define GetSVarType( CST_GetSVarType(
 		#if _FIXES_SAMP && defined _ALS_ConnectNPC
@@ -11661,19 +11662,19 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#if _FIXES_SAMP && defined _ALS_GetPlayerVersion
 			#error _ALS_GetPlayerVersion defined
 		#endif
-		native CST_GetPlayerVersion(playerid, version[], len) = GetPlayerVersion;
+		native CST_GetPlayerVersion(playerid, version[], len = sizeof (version)) = GetPlayerVersion;
 		#define _ALS_GetPlayerVersion
 		#define GetPlayerVersion( CST_GetPlayerVersion(
 		#if _FIXES_SAMP && defined _ALS_BlockIpAddress
 			#error _ALS_BlockIpAddress defined
 		#endif
-		native CST_BlockIpAddress(const ip_address[], timems) = BlockIpAddress;
+		native CST_BlockIpAddress(const ipAddress[], timeMS) = BlockIpAddress;
 		#define _ALS_BlockIpAddress
 		#define BlockIpAddress( CST_BlockIpAddress(
 		#if _FIXES_SAMP && defined _ALS_UnBlockIpAddress
 			#error _ALS_UnBlockIpAddress defined
 		#endif
-		native CST_UnBlockIpAddress(const ip_address[]) = UnBlockIpAddress;
+		native CST_UnBlockIpAddress(const ipAddress[]) = UnBlockIpAddress;
 		#define _ALS_UnBlockIpAddress
 		#define UnBlockIpAddress( CST_UnBlockIpAddress(
 		#if _FIXES_SAMP && defined _ALS_TextDrawCreate
@@ -11693,31 +11694,31 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#if _FIXES_SAMP && defined _ALS_Create3DTextLabel
 			#error _ALS_Create3DTextLabel defined
 		#endif
-		native Text3D:CST_Create3DTextLabel(const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, virtualworld, testLOS=0) = Create3DTextLabel;
+		native Text3D:CST_Create3DTextLabel(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false) = Create3DTextLabel;
 		#define _ALS_Create3DTextLabel
 		#define Create3DTextLabel( CST_Create3DTextLabel(
 		#if _FIXES_SAMP && defined _ALS_Update3DTextLabelText
 			#error _ALS_Update3DTextLabelText defined
 		#endif
-		native CST_Update3DTextLabelText(Text3D:id, color, const text[]) = Update3DTextLabelText;
+		native CST_Update3DTextLabelText(Text3D:textid, colour, const text[]) = Update3DTextLabelText;
 		#define _ALS_Update3DTextLabelText
 		#define Update3DTextLabelText( CST_Update3DTextLabelText(
 		#if _FIXES_SAMP && defined _ALS_CreatePlayer3DTextLabel
 			#error _ALS_CreatePlayer3DTextLabel defined
 		#endif
-		native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], color, Float:X, Float:Y, Float:Z, Float:DrawDistance, attachedplayer=INVALID_PLAYER_ID, attachedvehicle=INVALID_VEHICLE_ID, testLOS=0) = CreatePlayer3DTextLabel;
+		native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false) = CreatePlayer3DTextLabel;
 		#define _ALS_CreatePlayer3DTextLabel
 		#define CreatePlayer3DTextLabel( CST_CreatePlayer3DTextLabel(
 		#if _FIXES_SAMP && defined _ALS_UpdPlayer3DTextLabelText
 			#error _ALS_UpdPlayer3DTextLabelText defined
 		#endif
-		native CST_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:id, color, const text[]) = UpdatePlayer3DTextLabelText;
+		native CST_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText;
 		#define _ALS_UpdPlayer3DTextLabelText
 		#define UpdatePlayer3DTextLabelText( CST_UpdatePlayer3DTextLabelText(
 		#if _FIXES_SAMP && defined _ALS_ShowPlayerDialog
 			#error _ALS_ShowPlayerDialog defined
 		#endif
-		native CST_ShowPlayerDialog(playerid, dialogid, style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
+		native CST_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
 		native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog;
 		#define _ALS_ShowPlayerDialog
 		#define ShowPlayerDialog( CST_ShowPlayerDialog(
@@ -11740,7 +11741,7 @@ native BAD_gpci(playerid, serial[], maxlen) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetVehicleNumberPlate
 			#error _ALS_SetVehicleNumberPlate defined
 		#endif
-		native CST_SetVehicleNumberPlate(vehicleid, const numberplate[]) = SetVehicleNumberPlate;
+		native CST_SetVehicleNumberPlate(vehicleid, const numberPlate[]) = SetVehicleNumberPlate;
 		#define _ALS_SetVehicleNumberPlate
 		#define SetVehicleNumberPlate( CST_SetVehicleNumberPlate(
 	#endif
