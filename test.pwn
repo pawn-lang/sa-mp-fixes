@@ -4,6 +4,8 @@
 
 #include <a_samp>
 
+#define FIX_bool_tags 0
+
 #undef MAX_PLAYERS
 #define MAX_PLAYERS (100)
 

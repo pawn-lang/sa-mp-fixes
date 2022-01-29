@@ -7326,6 +7326,20 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_CONST);
 
 /**
  * <remarks>
+ * Convert a non-zero value to <c>true</c>, and <c>0</c> to <c>false</c> when
+ * <c>FIX_bool_tags</c> is off.  Otherwise do nothing.
+ * </remarks>
+ */
+
+_FIXES_FUNC_PAWNDOC(_FIXES_TO_BOOL);
+#if FIX_bool_tags
+	#define _FIXES_TO_BOOL(%0) ((%0))
+#else
+	#define _FIXES_TO_BOOL(%0) (!!(%0))
+#endif
+
+/**
+ * <remarks>
  * Either <c>bool</c> or <c>_</c>, depending on the value of
  * <c>FIX_bool_tags</c>, to reduce excessive warnings.
  * </remarks>
@@ -17606,7 +17620,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
-					CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
+					CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, _FIXES_TO_BOOL(toggle)),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			return 0;
@@ -17767,21 +17781,21 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	{
 		#if FIXES_CorrectInvalidTimerID
 			new
-				timerid = SetTimer__(functionName, interval, repeating);
+				timerid = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating));
 			if (timerid)
 			{
 				return timerid;
 			}
 			// Got a timer ID of 0, which is actually valid.  Start a new one.
 			return
-				interval = SetTimer__(functionName, interval, repeating),
+				interval = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating)),
 				// Kill the old version, AFTER creating a new one so the ID
 				// can't be reused.
 				KillTimer__(timerid),
 				interval;
 		#else
 			new
-				timer1 = SetTimer__(functionName, interval, repeating);
+				timer1 = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating));
 			if (timer1 != 0 && timer1 != -1)
 			{
 				return timer1;
@@ -17790,7 +17804,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			// because someone started a rumour that that's the invalid ID.  Make
 			// a new version.
 			new
-				timer2 = SetTimer__(functionName, interval, repeating);
+				timer2 = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating));
 			if (timer2 != 0 && timer2 != -1)
 			{
 				// Kill the old version, AFTER creating a new one so the ID can't be
@@ -17802,7 +17816,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			// It is possible to have both created timers return invalid values,
 			// since there are two.
 			return
-				interval = SetTimer__(functionName, interval, repeating),
+				interval = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating)),
 				KillTimer__(timer2),
 				KillTimer__(timer1),
 				interval;
@@ -20247,13 +20261,14 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 					}
 				}
 			}
-			return bool:allow;
+			return _FIXES_TO_BOOL(allow);
 		}
 	#else
 		stock bool:FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow)
 		{
-			CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, allow);
-			return bool:allow;
+			return
+				CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, _FIXES_TO_BOOL(allow)),
+				_FIXES_TO_BOOL(allow);
 		}
 
 		forward bool:_FIXES_AllowInteriorWeapons(bool:allow);
@@ -20454,7 +20469,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
-					CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, playerid, allow),
+					CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, playerid, _FIXES_TO_BOOL(allow)),
 					true;
 			}
 			return false;
@@ -20497,14 +20512,14 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 			{
 				FIXES_gsSettings &= ~e_FIXES_SETTINGS_ADMIN_TELEPORT;
 			}
-			return bool:allow;
+			return _FIXES_TO_BOOL(allow);
 		}
 	#else
 		stock bool:FIXES_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow)
 		{
 			return
-				CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, INVALID_PLAYER_ID, allow),
-				bool:allow;
+				CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, INVALID_PLAYER_ID, _FIXES_TO_BOOL(allow)),
+				_FIXES_TO_BOOL(allow);
 		}
 	#endif
 
@@ -20607,26 +20622,30 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 #if FIX_ClearAnimations || FIX_ClearAnimations_2
 	stock FIXES_ClearAnimations(playerid, _FIXES_MAYBE_BOOL:forceSync = _FIXES_MAYBE_FALSE)
 	{
+		#if !FIX_bool_tags
+			forceSync = _:(!!forceSync);
+		#endif
 		#if FIX_ClearAnimations || FIX_ClearAnimations_2
 			if (IsPlayerInAnyVehicle__(playerid))
 		#endif
 		#if FIX_ClearAnimations
 			{
-				return ApplyAnimation__(playerid, "PED", "CAR_SIT", 4.0, false, false, false, false, 1, forceSync);
+				return ApplyAnimation__(playerid, "PED", "CAR_SIT", 4.0, false, false, false, false, 1, bool:forceSync);
 			}
 		#endif
 		#if FIX_ClearAnimations + FIX_ClearAnimations_2 == 1 // XOR
 			{
-				return ClearAnimations__(playerid, forceSync);
+				return ClearAnimations__(playerid, bool:forceSync);
 			}
 		#endif
 		#if FIX_ClearAnimations_2
 			new
-				ret = ClearAnimations__(playerid, forceSync);
-			ApplyAnimation__(playerid, "PED", "IDLE_STANCE", 4.0, false, false, false, false, 1, forceSync);
-			ApplyAnimation__(playerid, "PED", "IDLE_CHAT", 4.0, false, false, false, false, 1, forceSync);
-			ApplyAnimation__(playerid, "PED", "WALK_PLAYER", 4.0, false, false, false, false, 1, forceSync);
-			return ret;
+				ret = ClearAnimations__(playerid, bool:forceSync);
+			return
+				ApplyAnimation__(playerid, "PED", "IDLE_STANCE", 4.0, false, false, false, false, 1, bool:forceSync),
+				ApplyAnimation__(playerid, "PED", "IDLE_CHAT", 4.0, false, false, false, false, 1, bool:forceSync),
+				ApplyAnimation__(playerid, "PED", "WALK_PLAYER", 4.0, false, false, false, false, 1, bool:forceSync),
+				ret;
 		#endif
 	}
 
@@ -20844,7 +20863,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 							if (colour2 == -1)
 							{
 								_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 								if (1 <= modelid <= MAX_VEHICLES)
 								{
 									FIXES_gsBackupVehicleColour{modelid} = 0,
@@ -20859,7 +20878,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 							{
 								// Random temp var.
 								_FIXES_GetRandomCarColPair(modelid, colour1, FIXES_gsTrimChr),
-								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 								if (1 <= modelid <= MAX_VEHICLES)
 								{
 									FIXES_gsBackupVehicleColour{modelid} = colour2,
@@ -20875,7 +20894,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 						{
 								// Random temp var.
 								_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, colour2),
-								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 								if (1 <= modelid <= MAX_VEHICLES)
 								{
 									FIXES_gsBackupVehicleColour{modelid} = colour1,
@@ -20888,7 +20907,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 						}
 						else
 						{
-							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsBackupVehicleColour{modelid} = 0,
@@ -20903,7 +20922,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 						if (colour1 == -1 && colour2 == -1)
 						{
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -20925,7 +20944,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 							print(      "***                    If you want to fix this issue, fix your code."),
 							print(FIXES_gscThreeStars),
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -20935,7 +20954,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 					#endif
 						else
 						{
-							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] &= ~(1 << (modelid & 31));
@@ -20949,12 +20968,12 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 			{
 				return
 					setproperty(5, FIXES_gscReturnProperty, INVALID_VEHICLE_ID),
-					CallRemoteFunction(FIXES_gscCreateVehicle, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren),
+					CallRemoteFunction(FIXES_gscCreateVehicle, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren)),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			else
 			{
-				return CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+				return CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 			}
 		#endif
 	}
@@ -20981,7 +21000,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
-			setproperty(5, FIXES_gscReturnProperty, FIXES_CreateVehicle(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren));
+			setproperty(5, FIXES_gscReturnProperty, FIXES_CreateVehicle(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren));
 		}
 	}
 #else
@@ -21014,7 +21033,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 							if (colour2 == -1)
 							{
 								_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 								if (1 <= modelid <= MAX_VEHICLES)
 								{
 									FIXES_gsBackupVehicleColour{modelid} = 0,
@@ -21029,7 +21048,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 							{
 								// Random temp var.
 								_FIXES_GetRandomCarColPair(modelid, colour1, FIXES_gsTrimChr),
-								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 								if (1 <= modelid <= MAX_VEHICLES)
 								{
 									FIXES_gsBackupVehicleColour{modelid} = colour2,
@@ -21045,7 +21064,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 						{
 							// Random temp var.
 							_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, colour2),
-							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsBackupVehicleColour{modelid} = colour1,
@@ -21058,7 +21077,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 						}
 						else
 						{
-							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsBackupVehicleColour{modelid} = 0,
@@ -21073,7 +21092,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 						if (colour1 == -1 && colour2 == -1)
 						{
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -21096,7 +21115,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 							print(      "***                    If you want to fix this issue, fix your code."),
 							print(FIXES_gscThreeStars),
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -21106,7 +21125,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 					#endif
 						else
 						{
-							modelid = AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 							if (1 <= modelid <= MAX_VEHICLES)
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] &= ~(1 << (modelid & 31));
@@ -21120,12 +21139,12 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 			{
 				return
 					setproperty(5, FIXES_gscReturnProperty, INVALID_VEHICLE_ID),
-					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren),
+					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren)),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			else
 			{
-				return AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
+				return AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 			}
 		#endif
 	}
@@ -21152,7 +21171,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
-			setproperty(5, FIXES_gscReturnProperty, FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren));
+			setproperty(5, FIXES_gscReturnProperty, FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren));
 		}
 	}
 #else
@@ -21177,7 +21196,7 @@ native BAD_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, 
 	{
 			_FIXES_IS_IN_CHARGE()
 			{
-				return FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, 120000, false);
+				return FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, 120000, _FIXES_MAYBE_FALSE);
 			}
 		#if !FIXES_Single
 			else if (colour1 == -1 || colour2 == -1)
@@ -21847,7 +21866,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyAnimation_2
-	static stock _FIXES_ApplyAnimationDelay(playerid, libraryIndex, const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync)
+	static stock _FIXES_ApplyAnimationDelay(playerid, libraryIndex, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync)
 	{
 		if (FIXES_gsPlayerAnimTimer[playerid])
 		{
@@ -21910,9 +21929,9 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 		if (~libraryIndex) // != -1
 		{
 			#if FIX_ApplyAnimation_2
-				_FIXES_ApplyAnimationDelay(playerid, libraryIndex, animationName, delta, loop, lockX, lockY, freeze, time, forceSync);
+				_FIXES_ApplyAnimationDelay(playerid, libraryIndex, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time, _FIXES_TO_BOOL(forceSync));
 			#endif
-				return ApplyAnimation__(playerid, animationLibrary, animationName, delta, loop, lockX, lockY, freeze, time, forceSync);
+				return ApplyAnimation__(playerid, animationLibrary, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time, _FIXES_TO_BOOL(forceSync));
 		}
 
 		return 0;
@@ -21938,7 +21957,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyActorAnimation_2
-	static stock _FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time)
+	static stock _FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
 	{
 		if (FIXES_gsActorAnimTimer[actorid])
 		{
@@ -22001,9 +22020,9 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 		if (~libraryIndex) // != -1
 		{
 			#if FIX_ApplyActorAnimation_2
-				_FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, animationName, delta, loop, lockX, lockY, freeze, time);
+				_FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time);
 			#endif
-				return ApplyActorAnimation__(actorid, animationLibrary, animationName, delta, loop, lockX, lockY, freeze, time);
+				return ApplyActorAnimation__(actorid, animationLibrary, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time);
 		}
 
 		return 0;
@@ -22885,7 +22904,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 					DeletePVar__(playerid, FIXES_pvarPlayerSpectate);
 				#endif
 			}
-			return TogglePlayerSpectating__(playerid, toggle);
+			return TogglePlayerSpectating__(playerid, _FIXES_TO_BOOL(toggle));
 		}
 		return 0;
 	}
@@ -23468,7 +23487,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 	#if FIXES_Single
 		stock FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
-			if (TogglePlayerClock__(playerid, toggle))
+			if (TogglePlayerClock__(playerid, _FIXES_TO_BOOL(toggle)))
 			{
 				if (toggle)
 				{
@@ -23490,7 +23509,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
-					CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
+					CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, _FIXES_TO_BOOL(toggle)),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			return 0;
@@ -25193,6 +25212,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #undef _FIXES_STATIC_STOCK_CONST
 #undef _FIXES_STATIC_STOCK
 #undef _FIXES_STREAMER_ALL_TAGS
+#undef _FIXES_TO_BOOL
 #undef _FIXES_MAYBE_BOOL
 #undef _FIXES_MAYBE_TRUE
 #undef _FIXES_MAYBE_FALSE
