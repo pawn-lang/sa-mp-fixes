@@ -11971,7 +11971,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetTimer
 			#error _ALS_SetTimer defined
 		#endif
-		native CST_SetTimer(const functionName[], interval, bool:repeating) = SetTimer;
+		native CST_SetTimer(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
 		native BAD_SetTimer(functionName[], interval, repeating) = SetTimer;
 		#define _ALS_SetTimer
 		#define SetTimer( CST_SetTimer(
@@ -12001,7 +12001,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_ApplyActorAnimation
 			#error _ALS_ApplyActorAnimation defined
 		#endif
-		native CST_ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time) = ApplyActorAnimation;
+		native CST_ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation;
 		native BAD_ApplyActorAnimation(actorid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time) = ApplyActorAnimation;
 		#define _ALS_ApplyActorAnimation
 		#define ApplyActorAnimation( CST_ApplyActorAnimation(
@@ -12049,13 +12049,13 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetObjectMaterialText
 			#error _ALS_SetObjectMaterialText defined
 		#endif
-		native CST_SetObjectMaterialText(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
+		native CST_SetObjectMaterialText(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = _FIXES_MAYBE_TRUE, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
 		#define _ALS_SetObjectMaterialText
 		#define SetObjectMaterialText( CST_SetObjectMaterialText(
 		#if _FIXES_SAMP && defined _ALS_SetPlayerObjMaterialText
 			#error _ALS_SetPlayerObjMaterialText defined
 		#endif
-		native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
+		native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = _FIXES_MAYBE_TRUE, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
 		#define _ALS_SetPlayerObjMaterialText
 		#define SetPlayerObjectMaterialText( CST_SetPlayerObjectMaterialText(
 
@@ -12148,7 +12148,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_ApplyAnimation
 			#error _ALS_ApplyAnimation defined
 		#endif
-		native CST_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync = false) = ApplyAnimation;
+		native CST_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync = _FIXES_MAYBE_FALSE) = ApplyAnimation;
 		native BAD_ApplyAnimation(playerid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time, forceSync = 0) = ApplyAnimation;
 		#define _ALS_ApplyAnimation
 		#define ApplyAnimation( CST_ApplyAnimation(
@@ -12163,14 +12163,14 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_SetTimer
 			#error _ALS_SetTimer defined
 		#endif
-		native CST_SetTimer(const functionName[], interval, bool:repeating) = SetTimer;
+		native CST_SetTimer(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
 		native BAD_SetTimer(functionName[], interval, repeating) = SetTimer;
 		#define _ALS_SetTimer
 		#define SetTimer( CST_SetTimer(
 		#if _FIXES_SAMP && defined _ALS_SetTimerEx
 			#error _ALS_SetTimerEx defined
 		#endif
-		native CST_SetTimerEx(const functionName[], interval, bool:repeating, const format[], {Float,_}:...) = SetTimerEx;
+		native CST_SetTimerEx(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[], {Float,_}:...) = SetTimerEx;
 		native BAD_SetTimerEx(functionName[], interval, repeating, format[], {Float,_}:...) = SetTimerEx;
 		#define _ALS_SetTimerEx
 		#define SetTimerEx( CST_SetTimerEx(
@@ -12287,7 +12287,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_Create3DTextLabel
 			#error _ALS_Create3DTextLabel defined
 		#endif
-		native Text3D:CST_Create3DTextLabel(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false) = Create3DTextLabel;
+		native Text3D:CST_Create3DTextLabel(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = _FIXES_MAYBE_FALSE) = Create3DTextLabel;
 		#define _ALS_Create3DTextLabel
 		#define Create3DTextLabel( CST_Create3DTextLabel(
 		#if _FIXES_SAMP && defined _ALS_Update3DTextLabelText
@@ -12299,7 +12299,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_CreatePlayer3DTextLabel
 			#error _ALS_CreatePlayer3DTextLabel defined
 		#endif
-		native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false) = CreatePlayer3DTextLabel;
+		native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = _FIXES_MAYBE_FALSE) = CreatePlayer3DTextLabel;
 		#define _ALS_CreatePlayer3DTextLabel
 		#define CreatePlayer3DTextLabel( CST_CreatePlayer3DTextLabel(
 		#if _FIXES_SAMP && defined _ALS_UpdPlayer3DTextLabelText
@@ -17582,9 +17582,9 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 
 #if FIX_TogglePlayerControllable
 	#if FIXES_Single
-		stock FIXES_TogglePlayerControllable(playerid, bool:toggle)
+		stock FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
-			if (TogglePlayerControllable__(playerid, bool:toggle))
+			if (TogglePlayerControllable__(playerid, _FIXES_MAYBE_BOOL:toggle))
 			{
 				if (toggle)
 				{
@@ -17601,7 +17601,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#else
 		forward _FIXES_TogglePlayerControllable(playerid, bool:toggle);
 
-		stock FIXES_TogglePlayerControllable(playerid, bool:toggle)
+		stock FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -17763,7 +17763,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if !FIX_SetTimer
 	static
 #endif
-	stock FIXES_SetTimer(const functionName[], interval, bool:repeating)
+	stock FIXES_SetTimer(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating)
 	{
 		#if FIXES_CorrectInvalidTimerID
 			new
@@ -17830,7 +17830,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #if !FIX_SetTimer || _FIXES_NPC
 	static
 #endif
-	stock FIXES_SetTimerEx(const functionName[], interval, bool:repeating, const format[], {Float,_}:...)
+	stock FIXES_SetTimerEx(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[], {Float,_}:...)
 	{
 			#pragma unused functionName, interval, repeating, format
 
@@ -18227,7 +18227,7 @@ native BAD_KillTimer(timerid) = KillTimer;
  */
 
 #if FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2 || FIX_Kick || FIX_OnVehicleMod || FIX_BypassDialog
-	static stock _FIXES_BlockUpdate(playerid, bool:kick = true, e_FIXES_BOOLS:type = e_FIXES_BOOLS_FORCE_BLOCK)
+	static stock _FIXES_BlockUpdate(playerid, _FIXES_MAYBE_BOOL:kick = _FIXES_MAYBE_TRUE, e_FIXES_BOOLS:type = e_FIXES_BOOLS_FORCE_BLOCK)
 	{
 		if (type == e_FIXES_BOOLS_FORCE_BLOCK)
 		{
@@ -18244,11 +18244,11 @@ native BAD_KillTimer(timerid) = KillTimer;
 				SendRconCommand__(ip),
 				// Just re-using an existing variable, so override the tags.
 				FIXES_gsPlayerIP[playerid] = strval(ip[_:kick]) << 24,
-				kick = bool:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
+				kick = _FIXES_MAYBE_BOOL:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
 				FIXES_gsPlayerIP[playerid] |= strval(ip[_:kick]) << 16,
-				kick = bool:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
+				kick = _FIXES_MAYBE_BOOL:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
 				FIXES_gsPlayerIP[playerid] |= strval(ip[_:kick]) << 8,
-				kick = bool:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
+				kick = _FIXES_MAYBE_BOOL:(strfind(ip, FIXES_gscDot, false, _:kick) + 1),
 				FIXES_gsPlayerIP[playerid] |= strval(ip[_:kick]);
 			#else
 				Kick__(playerid);
@@ -20226,7 +20226,7 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 
 #if FIX_AllowInteriorWeapons
 	#if FIXES_Single
-		stock bool:FIXES_AllowInteriorWeapons(bool:allow)
+		stock bool:FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow)
 		{
 			if (allow)
 			{
@@ -20247,13 +20247,13 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 					}
 				}
 			}
-			return allow;
+			return bool:allow;
 		}
 	#else
-		stock bool:FIXES_AllowInteriorWeapons(bool:allow)
+		stock bool:FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow)
 		{
 			CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, allow);
-			return allow;
+			return bool:allow;
 		}
 
 		forward bool:_FIXES_AllowInteriorWeapons(bool:allow);
@@ -20432,7 +20432,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 
 #if FIX_AllowTeleport
 	#if FIXES_Single
-		stock bool:FIXES_AllowPlayerTeleport(playerid, bool:allow)
+		stock bool:FIXES_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -20449,7 +20449,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 			return false;
 		}
 	#else
-		stock bool:FIXES_AllowPlayerTeleport(playerid, bool:allow)
+		stock bool:FIXES_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -20487,7 +20487,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 
 #if FIX_AllowTeleport
 	#if FIXES_Single
-		stock bool:FIXES_AllowAdminTeleport(bool:allow)
+		stock bool:FIXES_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow)
 		{
 			if (allow)
 			{
@@ -20497,14 +20497,14 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 			{
 				FIXES_gsSettings &= ~e_FIXES_SETTINGS_ADMIN_TELEPORT;
 			}
-			return allow;
+			return bool:allow;
 		}
 	#else
-		stock bool:FIXES_AllowAdminTeleport(bool:allow)
+		stock bool:FIXES_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow)
 		{
 			return
 				CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, INVALID_PLAYER_ID, allow),
-				allow;
+				bool:allow;
 		}
 	#endif
 
@@ -20605,7 +20605,7 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
  */
 
 #if FIX_ClearAnimations || FIX_ClearAnimations_2
-	stock FIXES_ClearAnimations(playerid, bool:forceSync = false)
+	stock FIXES_ClearAnimations(playerid, _FIXES_MAYBE_BOOL:forceSync = _FIXES_MAYBE_FALSE)
 	{
 		#if FIX_ClearAnimations || FIX_ClearAnimations_2
 			if (IsPlayerInAnyVehicle__(playerid))
@@ -20832,7 +20832,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
  */
 
 #if FIX_OnVehicleSpawn
-	stock FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false)
+	stock FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = _FIXES_MAYBE_FALSE)
 	{
 		#if !FIXES_Single
 			_FIXES_IS_IN_CHARGE()
@@ -21002,7 +21002,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
  */
 
 #if FIX_OnVehicleSpawn
-	stock FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false)
+	stock FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = _FIXES_MAYBE_FALSE)
 	{
 		#if !FIXES_Single
 			_FIXES_IS_IN_CHARGE()
@@ -21847,7 +21847,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyAnimation_2
-	static stock _FIXES_ApplyAnimationDelay(playerid, libraryIndex, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync)
+	static stock _FIXES_ApplyAnimationDelay(playerid, libraryIndex, const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync)
 	{
 		if (FIXES_gsPlayerAnimTimer[playerid])
 		{
@@ -21902,7 +21902,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
-	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync = false)
+	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync = _FIXES_MAYBE_FALSE)
 	{
 		new
 			libraryIndex = _FIXES_GetAnimLibIndex(animationLibrary);
@@ -21938,7 +21938,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyActorAnimation_2
-	static stock _FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
+	static stock _FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time)
 	{
 		if (FIXES_gsActorAnimTimer[actorid])
 		{
@@ -21993,7 +21993,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
-	stock FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
+	stock FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time)
 	{
 		new
 			libraryIndex = _FIXES_GetAnimLibIndex(animationLibrary);
@@ -22865,7 +22865,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
  */
 
 #if FIX_SetPlayerCamera
-	stock FIXES_TogglePlayerSpectating(playerid, bool:toggle)
+	stock FIXES_TogglePlayerSpectating(playerid, _FIXES_MAYBE_BOOL:toggle)
 	{
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
@@ -23024,62 +23024,6 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 	#define GetPlayerWeaponData__( FIXES_GetPlayerWeaponData(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerWeaponData);
-#endif
-
-/**
- * <fixes>strcmp</fixes>
- */
-
-#if _FIXES_SAMP && defined _ALS_strcmp
-	#error _ALS_strcmp defined
-#endif
-native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, length = cellmax) = strcmp;
-
-/**
- * <fixes>strcmp</fixes>
- */
-
-#if FIX_strcmp
-	stock FIXES_strcmp(const string1[], const string2[], bool:ignorecase = false, length = cellmax)
-	{
-		if (length == 0)
-			return 0;
-		if (string1[0])
-		{
-			if (string2[0])
-			{
-				return clamp(strcmp(string1, string2, ignorecase, length), -1, 1);
-			}
-			else
-			{
-				// Positive as st1 is greater (strcmp spec).
-				return 1;
-			}
-		}
-		else
-		{
-			if (string2[0])
-			{
-				// Negative as str2 is greater.
-				return -1;
-			}
-			else
-			{
-				// The strings are the same (empty).
-				return 0;
-			}
-		}
-	}
-
-	#if _FIXES_SAMP
-		#define _ALS_strcmp
-		#define strcmp( FIXES_strcmp(
-	#endif
-
-	#define _ALS_strcmp__
-	#define strcmp__( FIXES_strcmp(
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_strcmp);
 #endif
 
 /**
@@ -23522,7 +23466,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 
 #if FIX_GetPlayerWeather || (FIX_API && !_FIXES_NPC)
 	#if FIXES_Single
-		stock FIXES_TogglePlayerClock(playerid, bool:toggle)
+		stock FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
 			if (TogglePlayerClock__(playerid, toggle))
 			{
@@ -23541,7 +23485,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 	#else
 		forward _FIXES_TogglePlayerClock(playerid, bool:toggle);
 
-		stock FIXES_TogglePlayerClock(playerid, bool:toggle)
+		stock FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -24078,6 +24022,64 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define GetServerVarAsFloat__( FIXES_GetServerVarAsFloat(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsFloat);
+#endif
+
+/**
+ * <fixes>strcmp</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_strcmp
+	#error _ALS_strcmp defined
+#endif
+native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, length = cellmax) = strcmp;
+
+/**
+ * <fixes>strcmp</fixes>
+ */
+
+#if FIX_strcmp
+	stock FIXES_strcmp(const string1[], const string2[], bool:ignorecase = false, length = cellmax)
+	{
+		if (length == 0)
+		{
+			return 0;
+		}
+		if (string1[0])
+		{
+			if (string2[0])
+			{
+				return clamp(strcmp(string1, string2, ignorecase, length), -1, 1);
+			}
+			else
+			{
+				// Positive as st1 is greater (strcmp spec).
+				return 1;
+			}
+		}
+		else
+		{
+			if (string2[0])
+			{
+				// Negative as str2 is greater.
+				return -1;
+			}
+			else
+			{
+				// The strings are the same (empty).
+				return 0;
+			}
+		}
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_strcmp
+		#define strcmp( FIXES_strcmp(
+	#endif
+
+	#define _ALS_strcmp__
+	#define strcmp__( FIXES_strcmp(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_strcmp);
 #endif
 
 /*
