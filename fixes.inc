@@ -14852,16 +14852,92 @@ static stock _FIXES_CountFilterscripts()
 #endif
 	stock FIXES_CallLocalFunctionNPC(const functionName[], const format[], {Float,_}:...)
 	{
-		new idx = funcidx(functionName);
-		if (idx == -1)
+		new
+			func = funcidx(functionName) * 4,
+			tmp = 0,
+			idx = 0;
+		if (func == -4)
 		{
 			// The function doesn't exist.
 			return 0;
 		}
+		{}
 		// The function does exist.  Extract the address from the header.
 
+		// Get the pointer to the start of the public functions table.
+		#emit LCTRL            1
+		#emit NEG
+		#emit ADD.C            32
+		#emit STOR.S.pri       tmp
+		#emit LREF.S.alt       tmp
+
+		// Load the address for the found index.
+		#emit LCTRL            1
+		#emit NEG
+		#emit ADD
+		#emit LOAD.S.alt       func
+		#emit ADD
+		#emit STOR.S.pri       tmp
+		#emit LREF.S.pri       tmp
+		#emit STOR.S.pri       func
+		// `func` is now a pointer to the start of the function.
+
 		// Loop through the parameter types and resolve cells.
-		return 1;
+		#emit ADDR.pri         format
+		#emit STOR.S.pri       tmp
+
+		for ( ; ; )
+		{
+			tmp += 4;
+			switch (format[idx++])
+			{
+			case '\0':
+			{
+				// The end of the specifier.
+				break;
+			}
+			case 'i', 'd', 'x', 'b', 'o', 'f':
+			{
+				// All the integer types.
+				#emit LREF.S.pri   tmp
+				#emit LOAD.I
+				#emit SREF.S.pri   tmp
+			}
+			}
+		}
+		{}
+
+		// Reset the frame header.
+
+		// Adjust the parameter count.
+		#emit LOAD.S.pri       8
+		#emit ADD.C            0xFFFFFFF8
+		#emit STOR.S.pri       16
+
+		// Move the return address.
+		#emit LOAD.S.pri       4
+		#emit STOR.S.pri       12
+
+		// Remove the random extra locals.
+		#emit STACK            8
+
+		// Pop the destination address.
+		#emit POP.alt
+
+		// Restore the caller's frame (so the target can store it again).
+		#emit POP.pri
+		#emit SCTRL            5
+
+		// Remove the old header (`STACK` clobbers `alt`).
+		#emit POP.pri
+		#emit POP.pri
+
+		// Jump to the function.
+		#emit MOVE.pri
+		#emit SCTRL            6
+
+		// This line is never hit.  The destination function handles returning.
+		return 0;
 	}
 
 #if FIX_LocalNPCNatives
