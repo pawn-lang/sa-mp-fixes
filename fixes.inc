@@ -16447,11 +16447,10 @@ public OnJITCompile()
 		// ======================
 		#if FIX_OnPlayerSpawn
 			#if defined On_PlayerDeath
-				new
-					ret = On_PlayerDeath(playerid, killerid, reason);
 				return
+					killerid = On_PlayerDeath(playerid, killerid, reason),
 					FIXES_SET(PlayerLastCash, playerid, GetPlayerMoney__(playerid)),
-					ret;
+					killerid;
 			#else
 				return
 					FIXES_SET(PlayerLastCash, playerid, GetPlayerMoney__(playerid)),
