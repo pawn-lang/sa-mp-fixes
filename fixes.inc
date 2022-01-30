@@ -22047,11 +22047,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 	}
 
 	#if _FIXES_SAMP
-		#if defined _ALS_ApplyAnimation
-			#undef ApplyAnimation
-		#else
-			#define _ALS_ApplyAnimation
-		#endif
+		#define _ALS_ApplyAnimation
 		#define ApplyAnimation( FIXES_ApplyAnimation(
 	#endif
 
@@ -22138,11 +22134,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 	}
 
 	#if _FIXES_SAMP
-		#if defined _ALS_ApplyActorAnimation
-			#undef ApplyActorAnimation
-		#else
-			#define _ALS_ApplyActorAnimation
-		#endif
+		#define _ALS_ApplyActorAnimation
 		#define ApplyActorAnimation( FIXES_ApplyActorAnimation(
 	#endif
 
