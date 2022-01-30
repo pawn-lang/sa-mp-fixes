@@ -7586,7 +7586,7 @@ const PlayerText3D:INVALID_PLAYER_3DTEXT_ID__ = PlayerText3D:INVALID_PLAYER_3DTE
 #if !defined INVALID_3DTEXT_ID
 	#define INVALID_3DTEXT_ID (0xFFFF)
 #endif
-const Text3D:INVALID_3DTEXT_ID__               = Text3D:INVALID_3DTEXT_ID;
+const Text3D:INVALID_3DTEXT_ID__ = Text3D:INVALID_3DTEXT_ID;
 
 /**
  * <remarks>
@@ -7611,7 +7611,7 @@ const Text3D:INVALID_3DTEXT_ID__               = Text3D:INVALID_3DTEXT_ID;
 #if !defined INVALID_MENU
 	#define INVALID_MENU (0xFF)
 #endif
-const Menu:INVALID_MENU__                      = Menu:INVALID_MENU;
+const Menu:INVALID_MENU__ = Menu:INVALID_MENU;
 
 /**
  * <remarks>
@@ -7636,7 +7636,7 @@ const Menu:INVALID_MENU__                      = Menu:INVALID_MENU;
 #if !defined INVALID_TEXT_DRAW
 	#define INVALID_TEXT_DRAW (0xFFFF)
 #endif
-const Text:INVALID_TEXT_DRAW__                 = Text:INVALID_TEXT_DRAW;
+const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
