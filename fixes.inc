@@ -13877,7 +13877,11 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 
 static stock _FIXES_CheckMaxPlayers()
 {
-		_FIXES_gsMaxPlayers = GetMaxPlayers__();
+		#if _FIXES_NPC
+			_FIXES_gsMaxPlayers = MAX_PLAYERS;
+		#else
+			_FIXES_gsMaxPlayers = GetMaxPlayers__();
+		#endif
 		// Check max players match.
 		if (_FIXES_gsMaxPlayers > MAX_PLAYERS)
 		{
@@ -14942,11 +14946,7 @@ static stock _FIXES_CountFilterscripts()
 
 #if FIX_LocalNPCNatives
 	#if _FIXES_SAMP
-		#if defined _ALS_CallLocalFunction
-			#undef CallLocalFunction
-		#else
-			#define _ALS_CallLocalFunction
-		#endif
+		#define _ALS_CallLocalFunction
 		#define CallLocalFunction( FIXES_CallLocalFunctionNPC(
 	#endif
 
@@ -14976,11 +14976,7 @@ static stock _FIXES_CountFilterscripts()
 	}
 
 	#if _FIXES_SAMP
-		#if defined _ALS_IsPlayerInRangeOfPoint
-			#undef IsPlayerInRangeOfPoint
-		#else
-			#define _ALS_IsPlayerInRangeOfPoint
-		#endif
+		#define _ALS_IsPlayerInRangeOfPoint
 		#define IsPlayerInRangeOfPoint( FIXES_IsPlayerInRangeOfPointNPC(
 	#endif
 
@@ -14999,16 +14995,12 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 #if FIX_LocalNPCNatives
-	stock FIXES_SetTimerExNPC(const functionName[], const format[], {Float,_}:...)
+	stock FIXES_SetTimerExNPC(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[], {Float,_}:...)
 	{
 	}
 
 	#if _FIXES_SAMP
-		#if defined _ALS_SetTimerEx
-			#undef SetTimerEx
-		#else
-			#define _ALS_SetTimerEx
-		#endif
+		#define _ALS_SetTimerEx
 		#define SetTimerEx( FIXES_SetTimerExNPC(
 	#endif
 
@@ -15016,6 +15008,30 @@ static stock _FIXES_CountFilterscripts()
 	#define SetTimerEx__( FIXES_SetTimerExNPC(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_SetTimerExNPC);
+#endif
+
+/**
+ * <fixes>LocalNPCNatives</fixes>
+ */
+
+#if _FIXES_NPC && _FIXES_SAMP && defined _ALS_SendRconCommand
+	#error _ALS_SendRconCommand defined
+#endif
+
+#if FIX_LocalNPCNatives
+	stock FIXES_SendRconCommandNPC(const command[])
+	{
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_SendRconCommand
+		#define SendRconCommand( FIXES_SendRconCommandNPC(
+	#endif
+
+	#define _ALS_SendRconCommand__
+	#define SendRconCommand__( FIXES_SendRconCommandNPC(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_SendRconCommandNPC);
 #endif
 
 /**
@@ -15033,11 +15049,7 @@ static stock _FIXES_CountFilterscripts()
 	}
 
 	#if _FIXES_SAMP
-		#if defined _ALS_VectorSize
-			#undef VectorSize
-		#else
-			#define _ALS_VectorSize
-		#endif
+		#define _ALS_VectorSize
 		#define VectorSize( FIXES_VectorSizeNPC(
 	#endif
 
@@ -15061,11 +15073,7 @@ static stock _FIXES_CountFilterscripts()
 	}
 
 	#if _FIXES_SAMP
-		#if defined _ALS_CallRemoteFunction
-			#undef CallRemoteFunction
-		#else
-			#define _ALS_CallRemoteFunction
-		#endif
+		#define _ALS_CallRemoteFunction
 		#define CallRemoteFunction( FIXES_CallRemoteFunctionNPC(
 	#endif
 
@@ -15184,11 +15192,7 @@ static stock _FIXES_CountFilterscripts()
 	}
 
 	#if _FIXES_SAMP
-		#if defined _ALS_GetWeaponName
-			#undef GetWeaponName
-		#else
-			#define _ALS_GetWeaponName
-		#endif
+		#define _ALS_GetWeaponName
 		#define GetWeaponName( FIXES_GetWeaponNameNPC(
 	#endif
 
@@ -15196,29 +15200,6 @@ static stock _FIXES_CountFilterscripts()
 	#define GetWeaponName__( FIXES_GetWeaponNameNPC(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetWeaponNameNPC);
-#endif
-
-/**
- * <fixes>LocalNPCNatives</fixes>
- */
-
-#if _FIXES_SAMP && defined _ALS_GetMaxPlayers
-	#error _ALS_GetMaxPlayers defined
-#endif
-
-#if FIX_LocalNPCNatives
-	_FIXES_FUNC_PAWNDOC(FIXES_GetMaxPlayersNPC());
-	#define FIXES_GetMaxPlayersNPC() (MAX_PLAYERS)
-
-	#if _FIXES_SAMP
-		#define _ALS_GetMaxPlayers
-		#define GetMaxPlayers( FIXES_GetMaxPlayersNPC(
-	#endif
-
-	#define _ALS_GetMaxPlayers__
-	#define GetMaxPlayers__( FIXES_GetMaxPlayersNPC(
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetMaxPlayersNPC);
 #endif
 
 /**
@@ -15406,6 +15387,16 @@ public OnJITCompile()
 		_FIXES_DetermineOS();
 		_FIXES_CheckServerRoot();
 		_FIXES_GetStreamerVersion();
+
+		// ======================
+		//  BEGIN: GetMaxPlayers
+		// ======================
+		#if FIX_GetMaxPlayers
+			_FIXES_CheckMaxPlayers();
+		#endif
+		// ======================
+		//  END:   GetMaxPlayers
+		// ======================
 
 		#if defined On_NPCModeInit
 			return On_NPCModeInit();
@@ -23804,6 +23795,10 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 /**
  * <fixes>GetMaxPlayers</fixes>
  */
+
+#if _FIXES_SAMP && defined _ALS_GetMaxPlayers
+	#error _ALS_GetMaxPlayers defined
+#endif
 
 #if FIX_GetMaxPlayers
 	_FIXES_FUNC_PAWNDOC(FIXES_GetMaxPlayers());
