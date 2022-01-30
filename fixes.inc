@@ -15097,95 +15097,95 @@ static stock _FIXES_CountFilterscripts()
 		weapon[0] = '\0';
 		switch (weaponid)
 		{
-		case (WEAPON:0):
+		case _FIXES_WEAPON_FIST:
 			return strcat(weapon, "Fists", len), 1;
-		case (WEAPON:1):
+		case WEAPON_BRASSKNUCKLE:
 			return strcat(weapon, "Brass Knuckles", len), 1;
-		case (WEAPON:2):
+		case WEAPON_GOLFCLUB:
 			return strcat(weapon, "Golf Club", len), 1;
-		case (WEAPON:3):
+		case WEAPON_NITESTICK:
 			return strcat(weapon, "Nite Stick", len), 1;
-		case (WEAPON:4):
+		case WEAPON_KNIFE:
 			return strcat(weapon, "Knife", len), 1;
-		case (WEAPON:5):
+		case WEAPON_BAT:
 			return strcat(weapon, "Baseball Bat", len), 1;
-		case (WEAPON:6):
+		case WEAPON_SHOVEL:
 			return strcat(weapon, "Shovel", len), 1;
-		case (WEAPON:7):
+		case WEAPON_POOLSTICK:
 			return strcat(weapon, "Pool Cue", len), 1;
-		case (WEAPON:8):
+		case WEAPON_KATANA:
 			return strcat(weapon, "Katana", len), 1;
-		case (WEAPON:9):
+		case WEAPON_CHAINSAW:
 			return strcat(weapon, "Chainsaw", len), 1;
-		case (WEAPON:10), (WEAPON:11):
+		case WEAPON_DILDO, WEAPON_DILDO2:
 			return strcat(weapon, "Dildo", len), 1;
-		case (WEAPON:12), (WEAPON:13):
+		case WEAPON_VIBRATOR, WEAPON_VIBRATOR2:
 			return strcat(weapon, "Vibrator", len), 1;
-		case (WEAPON:14):
+		case WEAPON_FLOWER:
 			return strcat(weapon, "Flowers", len), 1;
-		case (WEAPON:15):
+		case WEAPON_CANE:
 			return strcat(weapon, "Cane", len), 1;
-		case (WEAPON:16):
+		case WEAPON_GRENADE:
 			return strcat(weapon, "Grenade", len), 1;
-		case (WEAPON:17):
+		case WEAPON_TEARGAS:
 			return strcat(weapon, "Teargas", len), 1;
-		case (WEAPON:18):
+		case WEAPON_MOLTOV:
 			return strcat(weapon, "Molotov Cocktail", len), 1;
-		case (WEAPON:22):
+		case WEAPON_COLT45:
 			return strcat(weapon, "Colt 45", len), 1;
-		case (WEAPON:23):
+		case WEAPON_SILENCED:
 			return strcat(weapon, "Silenced Pistol", len), 1;
-		case (WEAPON:24):
+		case WEAPON_DEAGLE:
 			return strcat(weapon, "Desert Eagle", len), 1;
-		case (WEAPON:25):
+		case WEAPON_SHOTGUN:
 			return strcat(weapon, "Shotgun", len), 1;
-		case (WEAPON:26):
+		case WEAPON_SAWEDOFF:
 			return strcat(weapon, "Sawn-off Shotgun", len), 1;
-		case (WEAPON:27):
+		case WEAPON_SHOTGSPA:
 			return strcat(weapon, "Combat Shotgun", len), 1;
-		case (WEAPON:28):
+		case WEAPON_UZI:
 			return strcat(weapon, "UZI", len), 1;
-		case (WEAPON:29):
+		case WEAPON_MP5:
 			return strcat(weapon, "MP5", len), 1;
-		case (WEAPON:30):
+		case WEAPON_AK47:
 			return strcat(weapon, "AK47", len), 1;
-		case (WEAPON:31):
+		case WEAPON_M4:
 			return strcat(weapon, "M4", len), 1;
-		case (WEAPON:32):
+		case WEAPON_TEC9:
 			return strcat(weapon, "TEC9", len), 1;
-		case (WEAPON:33):
+		case WEAPON_RIFLE:
 			return strcat(weapon, "Rifle", len), 1;
-		case (WEAPON:34):
+		case WEAPON_SNIPER:
 			return strcat(weapon, "Sniper Rifle", len), 1;
-		case (WEAPON:35):
+		case WEAPON_ROCKETLAUNCHER:
 			return strcat(weapon, "Rocket Launcher", len), 1;
-		case (WEAPON:36):
+		case WEAPON_HEATSEEKER:
 			return strcat(weapon, "Heat Seaker", len), 1;
-		case (WEAPON:37):
+		case WEAPON_FLAMETHROWER:
 			return strcat(weapon, "Flamethrower", len), 1;
-		case (WEAPON:38):
+		case WEAPON_MINIGUN:
 			return strcat(weapon, "Minigun", len), 1;
-		case (WEAPON:39):
+		case WEAPON_SATCHEL:
 			return strcat(weapon, "Satchel Explosives", len), 1;
-		case (WEAPON:40):
+		case WEAPON_BOMB:
 			return strcat(weapon, "Bomb", len), 1;
-		case (WEAPON:41):
+		case WEAPON_SPRAYCAN:
 			return strcat(weapon, "Spray Can", len), 1;
-		case (WEAPON:42):
+		case WEAPON_FIREEXTINGUISHER:
 			return strcat(weapon, "Fire Extinguisher", len), 1;
-		case (WEAPON:43):
+		case WEAPON_CAMERA:
 			return strcat(weapon, "Camera", len), 1;
-		case (WEAPON:44):
+		case _FIXES_WEAPON_NIGHT_VIS_GOGGLES:
 			return strcat(weapon, "Night Vision", len), 1;
-		case (WEAPON:45):
+		case _FIXES_WEAPON_THERMAL_GOGGLES:
 			return strcat(weapon, "Thermal Goggles", len), 1;
-		case (WEAPON:46):
+		case WEAPON_PARACHUTE:
 			return strcat(weapon, "Parachute", len), 1;
-		case (WEAPON:49):
+		case WEAPON_VEHICLE:
 			return strcat(weapon, "Vehicle", len), 1;
-		case (WEAPON:53):
+		case WEAPON_DROWN:
 			return strcat(weapon, "Drowned", len), 1;
-		case (WEAPON:54):
+		case WEAPON_COLLISION:
 			return strcat(weapon, "Splat", len), 1;
 		}
 		return 0;
@@ -17163,13 +17163,13 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 		#else
 			switch (weaponid)
 			{
-			case (WEAPON:0):
+			case _FIXES_WEAPON_FIST:
 				return strcat(weapon, "Fists", len), 1;
-			case (WEAPON:18):
+			case WEAPON_MOLTOV:
 				return strcat(weapon, "Molotov Cocktail", len), 1;
-			case (WEAPON:44):
+			case _FIXES_WEAPON_NIGHT_VIS_GOGGLES:
 				return strcat(weapon, "Night Vision", len), 1;
-			case (WEAPON:45):
+			case _FIXES_WEAPON_THERMAL_GOGGLES:
 				return strcat(weapon, "Thermal Goggles", len), 1;
 			}
 		#endif
