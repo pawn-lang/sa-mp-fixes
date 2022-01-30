@@ -12399,7 +12399,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native SendCommand__(const command[]) = SendCommand;
 	native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState;
 	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
-	native GetPlayerVehicleid__(playerid) = GetPlayerVehicleid;
+	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
 	native WEAPON:GetPlayerArmedWeapon__(playerid) = GetPlayerArmedWeapon;
 	native GetPlayerHealth__(playerid) = GetPlayerHealth;
 	native GetPlayerArmour__(playerid) = GetPlayerArmour;
@@ -15302,20 +15302,6 @@ static stock _FIXES_CountFilterscripts()
 	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerArmedWeapon);
-#endif
-
-/**
- * <fixes>LocalNPCNatives</fixes>
- */
-
-#if FIX_LocalNPCNatives
-	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleid;
-
-	#if _FIXES_SAMP
-		native GetPlayerVehicleID(playerid) = GetPlayerVehicleid;
-	#endif
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerVehicleIDNPC);
 #endif
 
 /*
@@ -23818,10 +23804,6 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 /**
  * <fixes>GetMaxPlayers</fixes>
  */
-
-#if _FIXES_SAMP && defined _ALS_GetMaxPlayers
-	#error _ALS_GetMaxPlayers defined
-#endif
 
 #if FIX_GetMaxPlayers
 	_FIXES_FUNC_PAWNDOC(FIXES_GetMaxPlayers());
