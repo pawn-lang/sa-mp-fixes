@@ -14690,7 +14690,7 @@ forward _FIXES_DetermineID();
 
 public _FIXES_DetermineID()
 {
-	if (@_ != -1)
+	if (~@_) // != -1
 	{
 		setproperty(5, FIXES_gscSingleProperty, getproperty(5, FIXES_gscSingleProperty) | @_);
 	}
@@ -16649,12 +16649,13 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			if (strcmp(name, sOldName, false))
 			{
 				SetPlayerName__(playerid, FIXES_gscTempName);
-				if (SetPlayerName__(playerid, name) == -1)
+				if (~SetPlayerName__(playerid, name)) // != -1
 				{
-					SetPlayerName__(playerid, sOldName);
-					return -1;
+					return 1;
 				}
-				return 1;
+				return
+					SetPlayerName__(playerid, sOldName),
+					-1;
 			}
 			else
 			{
@@ -17928,7 +17929,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 		#else
 			new
 				timer1 = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating));
-			if (timer1 != 0 && timer1 != -1)
+			if (timer1 && ~timer1) // timer1 != 0 && timer1 != -1
 			{
 				return timer1;
 			}
@@ -17937,7 +17938,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 			// a new version.
 			new
 				timer2 = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating));
-			if (timer2 != 0 && timer2 != -1)
+			if (timer2 && ~timer2)
 			{
 				// Kill the old version, AFTER creating a new one so the ID can't be
 				// reused.
@@ -19501,7 +19502,7 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 		{
 			new
 				WEAPON:ret = WEAPON:FIXES_GET(PlayerWeapon, playerid);
-			return (ret == WEAPON:-1) ? GetPlayerWeapon__(playerid) : ret;
+			return (~ret) ? GetPlayerWeapon__(playerid) : ret; // != -1
 		}
 		return _FIXES_WEAPON_FIST;
 	}
@@ -21267,16 +21268,16 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 				#endif
 			}
 		#if !FIXES_Single
-			else if (colour1 == -1 || colour2 == -1)
+			else if (~colour1 && ~colour2)
+			{
+				return AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+			}
+			else
 			{
 				return
 					setproperty(5, FIXES_gscReturnProperty, INVALID_VEHICLE_ID),
 					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren)),
 					getproperty(5, FIXES_gscReturnProperty);
-			}
-			else
-			{
-				return AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
 			}
 		#endif
 	}
@@ -21331,16 +21332,16 @@ native BAD_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, 
 				return FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, 120000, _FIXES_MAYBE_FALSE);
 			}
 		#if !FIXES_Single
-			else if (colour1 == -1 || colour2 == -1)
+			else if (~colour1 && ~colour2)
+			{
+				return AddStaticVehicle__(modelid, x, y, z, rotation, colour1, colour2);
+			}
+			else
 			{
 				return
 					setproperty(5, FIXES_gscReturnProperty, INVALID_VEHICLE_ID),
 					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, colour1, colour2, 120000, false),
 					getproperty(5, FIXES_gscReturnProperty);
-			}
-			else
-			{
-				return AddStaticVehicle__(modelid, x, y, z, rotation, colour1, colour2);
 			}
 		#endif
 	}
