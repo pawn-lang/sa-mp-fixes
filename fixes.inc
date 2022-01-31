@@ -17273,7 +17273,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 	{
 			weapon[0] = 0;
 		#if defined GetVehicleParamsSirenState
-			if (weaponid == WEAPON:0)
+			if (weaponid == _FIXES_WEAPON_FIST)
 			{
 				return strcat(weapon, "Fists", len), 1;
 			}
