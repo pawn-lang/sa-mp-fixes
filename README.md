@@ -204,6 +204,8 @@ Streamer_HasIntData | Int data functions expect more parameters than they specif
 default | Many functions are missing default values for string lengths. | Add them. | [Y_Less](https://github.com/Y-Less)  | |
 limit_tags | Some limits, like `MAX_MENUS` are untagged, so can't be used properly. | Redefine them with the tags added. | [Y_Less](https://github.com/Y-Less)  | |
 bool_tags | Many `true/false` parameters use `1/0` with no `bool:` tag. | Add the tag. | [Y_Less](https://github.com/Y-Less)  | |
+TEXT_DRAW_ALIGN | The alignment modes for `TextDrawAlignment` are not defined by default. | Define them. | [Y_Less](https://github.com/Y-Less)  | |
+TEXT_DRAW_FONT | The fonts for `TextDrawFont` are not defined by default. | Define them. | [Y_Less](https://github.com/Y-Less)  | |
 
 A few fixes are disabled by default, to enable them all do:
 

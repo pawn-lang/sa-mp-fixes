@@ -6965,17 +6965,17 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_bool_tags                        (0)
 #endif
 
-/* *
+/**
  * <fix name="TEXT_DRAW_ALIGN">
  *     <problem>
  *         The alignment modes for <c>TextDrawAlignment</c> are not defined by default.
  *     </problem>
  *     <solution>
- *         Define it.
+ *         Define them.
  *     </solution>
  *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
- * /
+ */
 
 #if !defined FIX_TEXT_DRAW_ALIGN
 	#if defined TEXT_DRAW_ALIGN_LEFT
@@ -7007,7 +7007,51 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#undef FIX_TEXT_DRAW_ALIGN
 	static stock FIX_TEXT_DRAW_ALIGN = 0;
 	#define FIX_TEXT_DRAW_ALIGN                  (0)
-#endif*/
+#endif
+
+/**
+ * <fix name="TEXT_DRAW_FONT">
+ *     <problem>
+ *         The fonts for <c>TextDrawFont</c> are not defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define them.
+ *     </solution>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_TEXT_DRAW_FONT
+	#if defined TEXT_DRAW_FONT_0
+		#if FIXES_EnableDeprecated
+			#define _FIXES_WARNING 136
+			#tryinclude "_fixes_options"
+			#undef _FIXES_WARNING
+			static _FIXES_OPTION FIX_TEXT_DRAW_FONT = FIXES_EnableDeprecated;
+		#else
+			_FIXES_CONST_PAWNDOC(FIX_TEXT_DRAW_FONT);
+		#endif
+		#define FIX_TEXT_DRAW_FONT              FIXES_EnableDeprecated
+	#else
+		#define _FIXES_WARNING 136
+		#tryinclude "_fixes_options"
+		#undef _FIXES_WARNING
+		static _FIXES_OPTION FIX_TEXT_DRAW_FONT = _FIXES_DEFAULT;
+		#define FIX_TEXT_DRAW_FONT              _FIXES_DEFAULT
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_TEXT_DRAW_FONT)
+	#undef FIX_TEXT_DRAW_FONT
+	static stock FIX_TEXT_DRAW_FONT = 2;
+	#define FIX_TEXT_DRAW_FONT                  (2)
+#elseif FIX_TEXT_DRAW_FONT
+	#undef FIX_TEXT_DRAW_FONT
+	static stock FIX_TEXT_DRAW_FONT = 1;
+	#define FIX_TEXT_DRAW_FONT                  (1)
+#else
+	#undef FIX_TEXT_DRAW_FONT
+	static stock FIX_TEXT_DRAW_FONT = 0;
+	#define FIX_TEXT_DRAW_FONT                  (0)
+#endif
 
 /*
 
@@ -8804,9 +8848,17 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 enum TEXT_DRAW_ALIGN:___FIXES_TEXT_DRAW_ALIGN
 {
 	_FIXES_TEXT_DRAW_ALIGN_LEFT                   = 1,
-	_FIXES_TEXT_DRAW_ALIGN_CENTER,
+	_FIXES_TEXT_DRAW_ALIGN_CENTRE,
 	_FIXES_TEXT_DRAW_ALIGN_RIGHT
 }
+_FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_ALIGN);
+
+#if FIX_TEXT_DRAW_ALIGN
+	#define TEXT_DRAW_ALIGN_LEFT _FIXES_TEXT_DRAW_ALIGN_LEFT
+	#define TEXT_DRAW_ALIGN_CENTER _FIXES_TEXT_DRAW_ALIGN_CENTRE
+	#define TEXT_DRAW_ALIGN_CENTRE _FIXES_TEXT_DRAW_ALIGN_CENTRE
+	#define TEXT_DRAW_ALIGN_RIGHT _FIXES_TEXT_DRAW_ALIGN_RIGHT
+#endif
 
 /**
  * <remarks>
@@ -8823,6 +8875,24 @@ enum TEXT_DRAW_FONT:___FIXES_TEXT_DRAW_FONT
 	_FIXES_TEXT_DRAW_FONT_SPRITE                 = 4,
 	_FIXES_TEXT_DRAW_FONT_MODEL                  = 5,
 }
+_FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_FONT);
+
+#if FIX_TEXT_DRAW_FONT
+	#define TEXT_DRAW_FONT_0 _FIXES_TEXT_DRAW_FONT_0
+	#define TEXT_DRAW_FONT_1 _FIXES_TEXT_DRAW_FONT_1
+	#define TEXT_DRAW_FONT_2 _FIXES_TEXT_DRAW_FONT_2
+	#define TEXT_DRAW_FONT_3 _FIXES_TEXT_DRAW_FONT_3
+
+	// These might be defined even when the fix is on, because an earlier
+	// version of the community includes only had these two.
+	#if !defined TEXT_DRAW_FONT_SPRITE_DRAW
+		#define TEXT_DRAW_FONT_SPRITE_DRAW _FIXES_TEXT_DRAW_FONT_SPRITE
+	#endif
+	
+	#if !defined TEXT_DRAW_FONT_MODEL_PREVIEW
+		#define TEXT_DRAW_FONT_MODEL_PREVIEW _FIXES_TEXT_DRAW_FONT_MODEL
+	#endif
+#endif
 
 /**
  * <remarks>
@@ -14035,7 +14105,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 9 (radio name).
 				t = FIXES_gsGTStyle[9] = TextDrawCreate__(320.0, 22.0, FIXES_gsSpace),
 				TextDrawLetterSize__(t, 0.6, 1.8),
-				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				TextDrawColor__(t, 0x906210FF),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 1),
@@ -14049,7 +14119,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 10 (radio switch).
 				t = FIXES_gsGTStyle[10] = TextDrawCreate__(320.0, 22.0, FIXES_gsSpace),
 				TextDrawLetterSize__(t, 0.6, 1.8),
-				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				TextDrawColor__(t, 0x969696FF),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 1),
@@ -14091,7 +14161,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 13 (stunt).
 				t = FIXES_gsGTStyle[13] = TextDrawCreate__(380.0, 341.15, FIXES_gsSpace),
 				TextDrawLetterSize__(t, 0.58, 2.42),
-				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				TextDrawColor__(t, 0xDDDDDBFF),
 				TextDrawSetShadow__(t, 2),
 				TextDrawSetOutline__(t, 0),
@@ -14135,7 +14205,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 0.
 				t = FIXES_gsGTStyle[0] = TextDrawCreate__(320.0, 214.0, FIXES_gsSpace),
 				TextDrawLetterSize__(t, 1.3, 3.6),
-				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				TextDrawColor__(t, 0x906210FF),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 2),
@@ -14163,7 +14233,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 2.
 				t = FIXES_gsGTStyle[2] = TextDrawCreate__(320.0, 156.0, FIXES_gsSpace),
 				TextDrawLetterSize__(t, 2.1, 4.2),
-				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				TextDrawColor__(t, 0xE1E1E1FF),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 3),
@@ -14177,7 +14247,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 3.
 				t = FIXES_gsGTStyle[3] = TextDrawCreate__(320.0, 154.5, FIXES_gsSpace),
 				TextDrawLetterSize__(t, 0.6, 2.75),
-				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				TextDrawColor__(t, 0x906210FF),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 2),
@@ -14191,7 +14261,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 4.
 				t = FIXES_gsGTStyle[4] = TextDrawCreate__(320.0, 115.5, FIXES_gsSpace),
 				TextDrawLetterSize__(t, 0.6, 2.75),
-				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				TextDrawColor__(t, 0x906210FF),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 2),
@@ -14205,7 +14275,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 5.
 				t = FIXES_gsGTStyle[5] = TextDrawCreate__(320.0, 217.0, FIXES_gsSpace),
 				TextDrawLetterSize__(t, 0.6, 2.75),
-				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				TextDrawColor__(t, 0xE1E1E1FF),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 2),
@@ -14219,7 +14289,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 6.
 				t = FIXES_gsGTStyle[6] = TextDrawCreate__(320.0, 60.0, FIXES_gsSpace),
 				TextDrawLetterSize__(t, 1.0, 3.6),
-				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				TextDrawAlignment__(t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				TextDrawColor__(t, 0xACCBF1FF),
 				TextDrawSetShadow__(t, 0),
 				TextDrawSetOutline__(t, 2),
@@ -14268,7 +14338,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 9 (playerid, radio name).
 				t = FIXES_gsPGTStyle[playerid][9] = CreatePlayerTextDraw__(playerid, 320.0, 22.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize__(playerid, t, 0.6, 1.8),
-				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				PlayerTextDrawColor__(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 1),
@@ -14282,7 +14352,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 10 (playerid, radio switch).
 				t = FIXES_gsPGTStyle[playerid][10] = CreatePlayerTextDraw__(playerid, 320.0, 22.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize__(playerid, t, 0.6, 1.8),
-				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				PlayerTextDrawColor__(playerid, t, 0x969696FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 1),
@@ -14324,7 +14394,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 13 (playerid, stunt).
 				t = FIXES_gsPGTStyle[playerid][13] = CreatePlayerTextDraw__(playerid, 380.0, 341.15, FIXES_gsSpace),
 				PlayerTextDrawLetterSize__(playerid, t, 0.58, 2.42),
-				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				PlayerTextDrawColor__(playerid, t, 0xDDDDDBFF),
 				PlayerTextDrawSetShadow__(playerid, t, 2),
 				PlayerTextDrawSetOutline__(playerid, t, 0),
@@ -14368,7 +14438,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 0.
 				t = FIXES_gsPGTStyle[playerid][0] = CreatePlayerTextDraw__(playerid, 320.0, 214.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize__(playerid, t, 1.3, 3.6),
-				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				PlayerTextDrawColor__(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
@@ -14396,7 +14466,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 2.
 				t = FIXES_gsPGTStyle[playerid][2] = CreatePlayerTextDraw__(playerid, 320.0, 156.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize__(playerid, t, 2.1, 4.2),
-				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				PlayerTextDrawColor__(playerid, t, 0xE1E1E1FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 3),
@@ -14410,7 +14480,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 3.
 				t = FIXES_gsPGTStyle[playerid][3] = CreatePlayerTextDraw__(playerid, 320.0, 154.5, FIXES_gsSpace),
 				PlayerTextDrawLetterSize__(playerid, t, 0.6, 2.75),
-				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				PlayerTextDrawColor__(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
@@ -14424,7 +14494,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 4.
 				t = FIXES_gsPGTStyle[playerid][4] = CreatePlayerTextDraw__(playerid, 320.0, 115.5, FIXES_gsSpace),
 				PlayerTextDrawLetterSize__(playerid, t, 0.6, 2.75),
-				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				PlayerTextDrawColor__(playerid, t, 0x906210FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
@@ -14438,7 +14508,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 5.
 				t = FIXES_gsPGTStyle[playerid][5] = CreatePlayerTextDraw__(playerid, 320.0, 217.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize__(playerid, t, 0.6, 2.75),
-				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				PlayerTextDrawColor__(playerid, t, 0xE1E1E1FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
@@ -14452,7 +14522,7 @@ static stock _FIXES_CheckMaxPlayers()
 				// Global style 6.
 				t = FIXES_gsPGTStyle[playerid][6] = CreatePlayerTextDraw__(playerid, 320.0, 60.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize__(playerid, t, 1.0, 3.6),
-				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTER),
+				PlayerTextDrawAlignment__(playerid, t, _FIXES_TEXT_DRAW_ALIGN_CENTRE),
 				PlayerTextDrawColor__(playerid, t, 0xACCBF1FF),
 				PlayerTextDrawSetShadow__(playerid, t, 0),
 				PlayerTextDrawSetOutline__(playerid, t, 2),
@@ -17173,22 +17243,26 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 
 				new
 					seat = GetPlayerVehicleSeat__(playerid);
-				return
-					ClearAnimations__(playerid, true),
-					skinid = SetPlayerSkin__(playerid, skinid),
-					PutPlayerInVehicle__(playerid, vehicleid, seat),
-
-					// ===============================
-					//  BEGIN: DriveBy
-					// ===============================
+				// ===============================
+				//  BEGIN: DriveBy
+				// ===============================
 				#if FIX_DriveBy
-					_FIXES_HideDriveByWeapon(playerid),
+					return
+						ClearAnimations__(playerid, true),
+						skinid = SetPlayerSkin__(playerid, skinid),
+						PutPlayerInVehicle__(playerid, vehicleid, seat),
+						_FIXES_HideDriveByWeapon(playerid),
+						skinid;
+				#else
+					return
+						ClearAnimations__(playerid, true),
+						skinid = SetPlayerSkin__(playerid, skinid),
+						PutPlayerInVehicle__(playerid, vehicleid, seat),
+						skinid;
 				#endif
-					// ======================
-					//  END:   DriveBy
-					// ======================
-
-					skinid;
+				// ======================
+				//  END:   DriveBy
+				// ======================
 			}
 
 			// ======================
