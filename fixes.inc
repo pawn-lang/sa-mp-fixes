@@ -16869,6 +16869,43 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 #endif
 
 /**
+ * <fixes>GetVehicleComponentInSlot</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_GetVehicleComponentInSlot
+	#error _ALS_GetVehicleComponentInSlot defined
+#endif
+native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlot;
+
+/**
+ * <fixes>GetVehicleComponentInSlot</fixes>
+ */
+
+#if FIX_GetVehicleComponentInSlot
+	stock CARMODTYPE:FIXES_GetVehicleComponentType(componentid)
+	{
+		switch (componentid)
+		{
+		case 1100, 1115, 1116, 1123, 1125:
+			return CARMODTYPE_FRONT_BULLBAR;
+		case 1109, 1110:
+			return CARMODTYPE_REAR_BULLBAR;
+		}
+		return GetVehicleComponentType__(componentid);
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_GetVehicleComponentType
+		#define GetVehicleComponentType( FIXES_GetVehicleComponentType(
+	#endif
+
+	#define _ALS_GetVehicleComponentType__
+	#define GetVehicleComponentType__( FIXES_GetVehicleComponentType(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleComponentType);
+#endif
+
+/**
  * <fixes>OnVehicleMod</fixes>
  */
 
@@ -22232,43 +22269,6 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 	#define DestroyActor__( FIXES_DestroyActor(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_DestroyActor);
-#endif
-
-/**
- * <fixes>GetVehicleComponentInSlot</fixes>
- */
-
-#if _FIXES_SAMP && defined _ALS_GetVehicleComponentInSlot
-	#error _ALS_GetVehicleComponentInSlot defined
-#endif
-native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlot;
-
-/**
- * <fixes>GetVehicleComponentInSlot</fixes>
- */
-
-#if FIX_GetVehicleComponentInSlot
-	stock CARMODTYPE:FIXES_GetVehicleComponentType(componentid)
-	{
-		switch (componentid)
-		{
-		case 1100, 1115, 1116, 1123, 1125:
-			return CARMODTYPE_FRONT_BULLBAR;
-		case 1109, 1110:
-			return CARMODTYPE_REAR_BULLBAR;
-		}
-		return GetVehicleComponentType__(componentid);
-	}
-
-	#if _FIXES_SAMP
-		#define _ALS_GetVehicleComponentType
-		#define GetVehicleComponentType( FIXES_GetVehicleComponentType(
-	#endif
-
-	#define _ALS_GetVehicleComponentType__
-	#define GetVehicleComponentType__( FIXES_GetVehicleComponentType(
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleComponentType);
 #endif
 
 /**
