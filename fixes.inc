@@ -17037,27 +17037,27 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 					#else
 						case CARMODTYPE_STEREO:
 						{
-							valstr(componentstring, componentid);
+							valstr(componentstring, componentid),
 							setproperty(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
 						}
 						case CARMODTYPE_FRONT_BUMPER:
 						{
-							valstr(componentstring, componentid);
+							valstr(componentstring, componentid),
 							setproperty(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
 						}
 						case CARMODTYPE_REAR_BUMPER:
 						{
-							valstr(componentstring, componentid);
+							valstr(componentstring, componentid),
 							setproperty(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
 						}
 						case CARMODTYPE_FRONT_BULLBAR:
 						{
-							valstr(componentstring, componentid);
+							valstr(componentstring, componentid),
 							setproperty(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
 						}
 						case CARMODTYPE_REAR_BULLBAR:
 						{
-							valstr(componentstring, componentid);
+							valstr(componentstring, componentid),
 							setproperty(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
 						}
 					#endif
@@ -17161,23 +17161,6 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 				vehicleid = GetPlayerVehicleID__(playerid);
 			if (vehicleid)
 			{
-				new
-					seat = GetPlayerVehicleSeat__(playerid);
-				ClearAnimations__(playerid, true);
-				new
-					ret = SetPlayerSkin__(playerid, skinid);
-				PutPlayerInVehicle__(playerid, vehicleid, seat);
-
-				// ===============================
-				//  BEGIN: DriveBy
-				// ===============================
-				#if FIX_DriveBy
-					_FIXES_HideDriveByWeapon(playerid);
-				#endif
-				// ======================
-				//  END:   DriveBy
-				// ======================
-
 				// ======================
 				//  BEGIN: GetPlayerSkin
 				// ======================
@@ -17188,7 +17171,24 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 				//  END:   GetPlayerSkin
 				// ======================
 
-				return ret;
+				new
+					seat = GetPlayerVehicleSeat__(playerid);
+				return
+					ClearAnimations__(playerid, true),
+					skinid = SetPlayerSkin__(playerid, skinid),
+					PutPlayerInVehicle__(playerid, vehicleid, seat),
+
+					// ===============================
+					//  BEGIN: DriveBy
+					// ===============================
+				#if FIX_DriveBy
+					_FIXES_HideDriveByWeapon(playerid),
+				#endif
+					// ======================
+					//  END:   DriveBy
+					// ======================
+
+					skinid;
 			}
 
 			// ======================
@@ -18220,11 +18220,12 @@ native BAD_KillTimer(timerid) = KillTimer;
 #if FIX_DriveBy
 	static stock _FIXES_HideDriveByWeapon(playerid)
 	{
-		FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon__(playerid),
-		FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
-		SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST),
-		ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, false, false, false, false, 1, true),
-		SetTimerEx__(FIXES_gscDriveBy, 500, false, FIXES_gscSpec@i, playerid);
+		return
+			FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon__(playerid),
+			FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
+			SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST),
+			ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, false, false, false, false, 1, true),
+			SetTimerEx__(FIXES_gscDriveBy, 500, false, FIXES_gscSpec@i, playerid);
 	}
 
 	forward _FIXES_DriveBy(playerid);
