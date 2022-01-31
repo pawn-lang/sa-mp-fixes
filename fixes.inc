@@ -13648,7 +13648,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
  * </remarks>
  */
 
-#if !FIXES_Single
+#if !_FIXES_NPC && !FIXES_Single
 	static _FIXES_DetermineOrder()
 	{
 		deleteproperty(5, FIXES_gscOrderProperty),
@@ -13676,7 +13676,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
  * </remarks>
  */
 
-#if !FIXES_Single
+#if !_FIXES_NPC && !FIXES_Single
 	public _FIXES_DetermineOrderRemote()
 	{
 		// TODO: Graceful handoff.  I thought I was past all this rubbish!
@@ -15946,7 +15946,7 @@ public OnJITCompile()
  * </remarks>
  */
 
-#if !FIXES_Single || FIX_PlayerDialogResponse
+#if (!_FIXES_NPC && !FIXES_Single) || FIX_PlayerDialogResponse
 	public OnGameModeExit()
 	{
 		#if !FIXES_Single
@@ -16003,7 +16003,7 @@ public OnJITCompile()
  * </remarks>
  */
 
-#if !FIXES_Single || FIX_GameText || FIX_OnPlayerDisconnect || FIX_OnClientCheckResponse || FIX_OnRconCommand
+#if (!_FIXES_NPC && !FIXES_Single) || FIX_GameText || FIX_OnPlayerDisconnect || FIX_OnClientCheckResponse || FIX_OnRconCommand
 	public OnFilterScriptExit()
 	{
 		// Reload the callbackfix filterscript, since we can't do it now.
@@ -22453,11 +22453,11 @@ native BAD_DestroyVehicle(vehicleid) = DestroyVehicle;
 				FIXES_gsFrontBullbar[vehicleid] = 0,
 				FIXES_gsRearBullbar[vehicleid] = 0;
 			#else
-				setproperty(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, FIXES_gsc0),
-				setproperty(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, FIXES_gsc0),
-				setproperty(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, FIXES_gsc0),
-				setproperty(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, FIXES_gsc0),
-				setproperty(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, FIXES_gsc0);
+				setproperty(_:(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, FIXES_gsc0),
+				setproperty(_:(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, FIXES_gsc0),
+				setproperty(_:(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, FIXES_gsc0),
+				setproperty(_:(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, FIXES_gsc0),
+				setproperty(_:(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, FIXES_gsc0);
 			#endif
 		}
 		return ret;
@@ -22524,27 +22524,27 @@ native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 					case CARMODTYPE_STEREO:
 					{
 						valstr(componentstring, componentid);
-						setproperty(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+						setproperty(_:(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 					}
 					case CARMODTYPE_FRONT_BUMPER:
 					{
 						valstr(componentstring, componentid);
-						setproperty(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+						setproperty(_:(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 					}
 					case CARMODTYPE_REAR_BUMPER:
 					{
 						valstr(componentstring, componentid);
-						setproperty(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+						setproperty(_:(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 					}
 					case CARMODTYPE_FRONT_BULLBAR:
 					{
 						valstr(componentstring, componentid);
-						setproperty(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+						setproperty(_:(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 					}
 					case CARMODTYPE_REAR_BULLBAR:
 					{
 						valstr(componentstring, componentid);
-						setproperty(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+						setproperty(_:(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 					}
 				#endif
 			}
@@ -22608,23 +22608,23 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 				#else
 					case CARMODTYPE_STEREO:
 					{
-						setproperty(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, FIXES_gsc0);
+						setproperty(_:(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, FIXES_gsc0);
 					}
 					case CARMODTYPE_FRONT_BUMPER:
 					{
-						setproperty(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, FIXES_gsc0);
+						setproperty(_:(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, FIXES_gsc0);
 					}
 					case CARMODTYPE_REAR_BUMPER:
 					{
-						setproperty(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, FIXES_gsc0);
+						setproperty(_:(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, FIXES_gsc0);
 					}
 					case CARMODTYPE_FRONT_BULLBAR:
 					{
-						setproperty(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, FIXES_gsc0);
+						setproperty(_:(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, FIXES_gsc0);
 					}
 					case CARMODTYPE_REAR_BULLBAR:
 					{
-						setproperty(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, FIXES_gsc0);
+						setproperty(_:(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, FIXES_gsc0);
 					}
 				#endif
 			}
@@ -22679,31 +22679,31 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 			#else
 				case CARMODTYPE_STEREO:
 				{
-					getproperty(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+					getproperty(_:(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 					strunpack(componentstring, componentstring);
 					return strval(componentstring);
 				}
 				case CARMODTYPE_FRONT_BUMPER:
 				{
-					getproperty(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+					getproperty(_:(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 					strunpack(componentstring, componentstring);
 					return strval(componentstring);
 				}
 				case CARMODTYPE_REAR_BUMPER:
 				{
-					getproperty(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+					getproperty(_:(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 					strunpack(componentstring, componentstring);
 					return strval(componentstring);
 				}
 				case CARMODTYPE_FRONT_BULLBAR:
 				{
-					getproperty(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+					getproperty(_:(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 					strunpack(componentstring, componentstring);
 					return strval(componentstring);
 				}
 				case CARMODTYPE_REAR_BULLBAR:
 				{
-					getproperty(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+					getproperty(_:(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 					strunpack(componentstring, componentstring);
 					return strval(componentstring);
 				}
@@ -23850,7 +23850,7 @@ native BAD_SetWeather(weather) = SetWeather;
 		stock FIXES_SetWeather(weather)
 		{
 			#if !FIXES_Single && FIX_GetWeather
-				CallRemoteFunction__("_FIXES_SetWeather", FIXES_gscSpec@i, weather),
+				CallRemoteFunction__("_FIXES_SetWeather", FIXES_gscSpec@i, weather);
 			#else
 				FIXES_gsServerWeather = weather;
 			#endif

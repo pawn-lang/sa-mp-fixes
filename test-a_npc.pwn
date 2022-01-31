@@ -1,5 +1,7 @@
 #define STRONG_TAGS
 
+#define FIXES_Single 0
+
 #tryinclude <samp-stdlib\a_npc>
 #tryinclude <a_npc>
 
