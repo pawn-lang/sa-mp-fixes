@@ -16695,7 +16695,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			return 0;
 		}
 		static
-			sOldName[MAX_PLAYER_NAME];
+			sOldName[MAX_PLAYER_NAME + 1];
 		GetPlayerName__(playerid, sOldName, MAX_PLAYER_NAME);
 		if (!strcmp(name, sOldName, true))
 		{
