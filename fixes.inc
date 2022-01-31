@@ -24474,24 +24474,17 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	{
 		if (_FIXES_IN_RANGE(modelid, 400, 611 + 1))
 		{
-			componentid -= 1000;
-			if (_FIXES_IN_RANGE(componentid, 0, 191 + 1))
+			if (_FIXES_IN_RANGE((componentid -= 1000), 0, 191 + 1))
 			{
-				if (FIXES_gscVehicleMods[(modelid - 400) * 6 + (componentid >>> 5)] & 1 << (componentid & 0b00011111))
-				{
-					return true;
-				}
+				return bool:((FIXES_gscVehicleMods[(modelid - 400) * 6 + (componentid >>> 5)] >>> (componentid & 0b00011111)) & 1);
 			}
-			else if (componentid == 192 || componentid == 193)
+			else
 			{
-				if (modelid == 576)
-				{
-					// This save a whole cell off EVERY other vehicle!  This
-					// is the ONLY vehicle with any mods over "6 * 32 + 999"
-					// (1191), the highest value you can fit in 6 cells of a
-					// bit array (minus 1000).
-					return true;
-				}
+				// This save a whole cell off EVERY other vehicle!  This is the
+				// ONLY vehicle with any mods over "6 * 32 + 999" (1191), the
+				// highest value you can fit in 6 cells of a bit array (minus
+				// 1000).
+				return (componentid == 192 || componentid == 193) && (modelid == 576);
 			}
 		}
 		return false;
