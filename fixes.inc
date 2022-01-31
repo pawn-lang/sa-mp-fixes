@@ -17501,7 +17501,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 				}
 				else
 				{
-					if (1020 <= GetPlayerAnimationIndex__(playerid) <= 1021)
+					if (_FIXES_IN_RANGE(GetPlayerAnimationIndex__(playerid), 1020, 1021 + 1))
 					{
 						FIXES_gsPlayerBools[playerid] |= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
 					}
@@ -18390,7 +18390,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 		//  BEGIN: OnPlayerEnterVehicle_2
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_2
-			if (!(0 < vehicleid < MAX_VEHICLES))
+			if (_FIXES_NO_RANGE(vehicleid, 0 + 1, MAX_VEHICLES))
 			{
 				return _FIXES_BlockUpdate(playerid);
 			}
@@ -21163,7 +21163,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 							{
 								_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
 								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-								if (1 <= modelid <= MAX_VEHICLES)
+								if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 								{
 									FIXES_gsBackupVehicleColour{modelid} = 0,
 									colour1 = modelid >>> 5,
@@ -21178,7 +21178,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 								// Random temp var.
 								_FIXES_GetRandomCarColPair(modelid, colour1, FIXES_gsTrimChr),
 								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-								if (1 <= modelid <= MAX_VEHICLES)
+								if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 								{
 									FIXES_gsBackupVehicleColour{modelid} = colour2,
 									colour1 = modelid >>> 5,
@@ -21191,23 +21191,23 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 						}
 						else if (colour2 == -1)
 						{
-								// Random temp var.
-								_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, colour2),
-								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-								if (1 <= modelid <= MAX_VEHICLES)
-								{
-									FIXES_gsBackupVehicleColour{modelid} = colour1,
-									colour1 = modelid >>> 5,
-									colour2 = 1 << (modelid & 31),
-									FIXES_gsRandomVehicleColour1[colour1] &= ~colour2,
-									FIXES_gsRandomVehicleColour2[colour1] |= colour2;
-								}
-								return modelid;
+							// Random temp var.
+							_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, colour2),
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
+							{
+								FIXES_gsBackupVehicleColour{modelid} = colour1,
+								colour1 = modelid >>> 5,
+								colour2 = 1 << (modelid & 31),
+								FIXES_gsRandomVehicleColour1[colour1] &= ~colour2,
+								FIXES_gsRandomVehicleColour2[colour1] |= colour2;
+							}
+							return modelid;
 						}
 						else
 						{
 							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-							if (1 <= modelid <= MAX_VEHICLES)
+							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsBackupVehicleColour{modelid} = 0,
 								colour1 = modelid >>> 5,
@@ -21222,7 +21222,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 						{
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
 							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-							if (1 <= modelid <= MAX_VEHICLES)
+							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
 							}
@@ -21244,7 +21244,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 							print(FIXES_gscThreeStars),
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
 							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-							if (1 <= modelid <= MAX_VEHICLES)
+							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
 							}
@@ -21254,7 +21254,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 						else
 						{
 							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-							if (1 <= modelid <= MAX_VEHICLES)
+							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] &= ~(1 << (modelid & 31));
 							}
@@ -21333,7 +21333,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 							{
 								_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
 								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-								if (1 <= modelid <= MAX_VEHICLES)
+								if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 								{
 									FIXES_gsBackupVehicleColour{modelid} = 0,
 									colour1 = modelid >>> 5,
@@ -21348,7 +21348,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 								// Random temp var.
 								_FIXES_GetRandomCarColPair(modelid, colour1, FIXES_gsTrimChr),
 								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-								if (1 <= modelid <= MAX_VEHICLES)
+								if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 								{
 									FIXES_gsBackupVehicleColour{modelid} = colour2,
 									colour1 = modelid >>> 5,
@@ -21364,7 +21364,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 							// Random temp var.
 							_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, colour2),
 							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-							if (1 <= modelid <= MAX_VEHICLES)
+							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsBackupVehicleColour{modelid} = colour1,
 								colour1 = modelid >>> 5,
@@ -21377,7 +21377,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 						else
 						{
 							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-							if (1 <= modelid <= MAX_VEHICLES)
+							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsBackupVehicleColour{modelid} = 0,
 								colour1 = modelid >>> 5,
@@ -21392,7 +21392,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 						{
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
 							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-							if (1 <= modelid <= MAX_VEHICLES)
+							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
 							}
@@ -21415,7 +21415,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 							print(FIXES_gscThreeStars),
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
 							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-							if (1 <= modelid <= MAX_VEHICLES)
+							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
 							}
@@ -21425,7 +21425,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 						else
 						{
 							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
-							if (1 <= modelid <= MAX_VEHICLES)
+							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] &= ~(1 << (modelid & 31));
 							}
@@ -24047,7 +24047,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 				{
 					readOffset = cmpLen;
 					// Skip whitespace.
-					while ('\0' < line[readOffset] <= ' ')
+					while (_FIXES_IN_RANGE(line[readOffset], '\0' + 1, ' ' + 1))
 						++readOffset;
 					lineState = 1;
 				}
