@@ -16046,7 +16046,7 @@ public OnJITCompile()
 				#if FIX_SetPlayerName
 					new
 						name[MAX_PLAYER_NAME + 1];
-					GetPlayerName__(playerid, name, MAX_PLAYER_NAME + 1);
+					GetPlayerName__(playerid, name, MAX_PLAYER_NAME);
 					if (strcmp(name, FIXES_gscTempName) == 0)
 					{
 						Kick__(playerid);
@@ -16618,8 +16618,8 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 			return 0;
 		}
 		static
-			sOldName[MAX_PLAYER_NAME + 1];
-		GetPlayerName__(playerid, sOldName, sizeof (sOldName));
+			sOldName[MAX_PLAYER_NAME];
+		GetPlayerName__(playerid, sOldName, MAX_PLAYER_NAME);
 		if (!strcmp(name, sOldName, true))
 		{
 			if (strcmp(name, sOldName, false))
