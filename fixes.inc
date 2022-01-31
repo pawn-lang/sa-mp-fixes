@@ -15894,7 +15894,7 @@ public OnJITCompile()
 		#if FIX_PlayerDialogResponse
 			for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 			{
-				ShowPlayerDialog__(playerid, -1, DIALOG_STYLE:0, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace);
+				ShowPlayerDialog__(playerid, -1, DIALOG_STYLE_MSGBOX, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace);
 			}
 		#endif
 		// =============================
@@ -16218,7 +16218,7 @@ public OnJITCompile()
 				//  BEGIN: PlayerDialogResponse
 				// =============================
 				#if FIX_PlayerDialogResponse
-					ShowPlayerDialog__(playerid, -1, DIALOG_STYLE:0, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace);
+					ShowPlayerDialog__(playerid, -1, DIALOG_STYLE_MSGBOX, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace, FIXES_gsSpace);
 				#endif
 				// =============================
 				//  END:   PlayerDialogResponse
