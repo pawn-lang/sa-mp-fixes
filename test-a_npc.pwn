@@ -1,4 +1,5 @@
-#include <a_npc>
+#tryinclude <samp-stdlib\a_npc>
+#tryinclude <a_npc>
 
 #undef MAX_PLAYERS
 #define MAX_PLAYERS (100)
@@ -16,7 +17,7 @@ public CompileTest()
 {
 	new output[32];
 	new ivar;
-	new Float:fvar;
+	//new Float:fvar;
 
 	// Using defaults.
 	Print__("STRING");
@@ -37,7 +38,7 @@ public CompileTest()
 	ivar = GetPlayerPoolSize();
 	ivar = GetVehiclePoolSize();
 	ivar = GetActorPoolSize();
-	GetWeaponName(0, output, _);
+	GetWeaponName(WEAPON_FIST, output, _);
 	SendRconCommand("STRING");
 	GetPlayerNetworkStats(0, output, sizeof (output));
 	GetNetworkStats(output, sizeof (output));
@@ -146,7 +147,7 @@ public CompileTest()
 	ivar = GetPlayerPoolSize();
 	ivar = GetVehiclePoolSize();
 	ivar = GetActorPoolSize();
-	GetWeaponName(0, output, _);
+	GetWeaponName(WEAPON_FIST, output, _);
 	/*GetGravity();
 	IsPlayerNPC(0);
 	IsPlayerAdmin(0);
