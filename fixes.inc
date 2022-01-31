@@ -8820,8 +8820,8 @@ enum TEXT_DRAW_FONT:___FIXES_TEXT_DRAW_FONT
 	_FIXES_TEXT_DRAW_FONT_1	                     = 1,
 	_FIXES_TEXT_DRAW_FONT_2	                     = 2,
 	_FIXES_TEXT_DRAW_FONT_3	                     = 3,
-	_FIXES_TEXT_DRAW_FONT_SPRITE_DRAW	         = 4,
-	_FIXES_TEXT_DRAW_FONT_MODEL_PREVIEW          = 5,
+	_FIXES_TEXT_DRAW_FONT_SPRITE                 = 4,
+	_FIXES_TEXT_DRAW_FONT_MODEL                  = 5,
 }
 
 /**
