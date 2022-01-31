@@ -7906,20 +7906,20 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>CAMERA:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_CAMERA:</c> when they
+ * Future-compatible tag definitions.  <c>CAM_MOVE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_CAMERA:</c> when they
  * are enabled.
  * </remarks>
  */
 
-#if defined CAMERA
-	_FIXES_HIDE_PAWNDOC(FIXES_CAMERA);
+#if defined CAM_MOVE
+	_FIXES_HIDE_PAWNDOC(FIXES_CAM_MOVE);
 #else
-	_FIXES_CONST_PAWNDOC(CAMERA);
+	_FIXES_CONST_PAWNDOC(CAM_MOVE);
 	#if defined __TAG
-		#define CAMERA: __TAG(CAMERA):
+		#define CAM_MOVE: __TAG(CAM_MOVE):
 	#else
-		#define CAMERA: _:
+		#define CAM_MOVE: _:
 	#endif
 #endif
 
@@ -12898,11 +12898,11 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	#pragma deprecated Use `OnPlayerClickMap`.
 	native AllowPlayerTeleport__(playerid, bool:allow) = AllowPlayerTeleport;
 	native SetPlayerCameraPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
-	native SetPlayerCameraLookAt__(playerid, Float:x, Float:y, Float:z, CAMERA:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
+	native SetPlayerCameraLookAt__(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
 	native SetCameraBehindPlayer__(playerid) = SetCameraBehindPlayer;
 	native GetPlayerCameraPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
 	native GetPlayerCameraFrontVector__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
-	native GetPlayerCameraMode__(playerid) = GetPlayerCameraMode;
+	native CAM_MODE:GetPlayerCameraMode__(playerid) = GetPlayerCameraMode;
 	native EnablePlayerCameraTarget__(playerid, bool:enable) = EnablePlayerCameraTarget;
 	native GetPlayerCameraTargetObject__(playerid) = GetPlayerCameraTargetObject;
 	native GetPlayerCameraTargetVehicle__(playerid) = GetPlayerCameraTargetVehicle;
@@ -12912,8 +12912,8 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native Float:GetPlayerCameraZoom__(playerid) = GetPlayerCameraZoom;
 	native AttachCameraToObject__(playerid, objectid) = AttachCameraToObject;
 	native AttachCameraToPlayerObject__(playerid, objectid) = AttachCameraToPlayerObject;
-	native InterpolateCameraPos__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAMERA:cut = CAMERA_CUT) = InterpolateCameraPos;
-	native InterpolateCameraLookAt__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAMERA:cut = CAMERA_CUT) = InterpolateCameraLookAt;
+	native InterpolateCameraPos__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos;
+	native InterpolateCameraLookAt__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt;
 	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
 	native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
 	native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
@@ -22944,9 +22944,9 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
  */
 
 #if FIX_SetPlayerCamera
-	forward _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z, CAMERA:cut);
+	forward _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z, CAM_MOVE:cut);
 
-	public _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z, CAMERA:cut)
+	public _FIXES_SetCamera(playerid, type, Float:x, Float:y, Float:z, CAM_MOVE:cut)
 	{
 		if (type)
 		{
@@ -23021,7 +23021,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
  */
 
 #if FIX_SetPlayerCamera
-	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, CAMERA:cut = CAMERA_CUT)
+	stock FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT)
 	{
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
