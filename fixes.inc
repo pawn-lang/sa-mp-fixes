@@ -17108,27 +17108,27 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 						case CARMODTYPE_STEREO:
 						{
 							valstr(componentstring, componentid),
-							setproperty(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+							setproperty(_:(CARMODTYPE_STEREO + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 						}
 						case CARMODTYPE_FRONT_BUMPER:
 						{
 							valstr(componentstring, componentid),
-							setproperty(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+							setproperty(_:(CARMODTYPE_FRONT_BUMPER + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 						}
 						case CARMODTYPE_REAR_BUMPER:
 						{
 							valstr(componentstring, componentid),
-							setproperty(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+							setproperty(_:(CARMODTYPE_REAR_BUMPER + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 						}
 						case CARMODTYPE_FRONT_BULLBAR:
 						{
 							valstr(componentstring, componentid),
-							setproperty(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+							setproperty(_:(CARMODTYPE_FRONT_BULLBAR + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 						}
 						case CARMODTYPE_REAR_BULLBAR:
 						{
 							valstr(componentstring, componentid),
-							setproperty(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET, FIXES_gscSpec@, vehicleid, componentstring);
+							setproperty(_:(CARMODTYPE_REAR_BULLBAR + _FIXES_PROPERTY_OFFSET), FIXES_gscSpec@, vehicleid, componentstring);
 						}
 					#endif
 				}
