@@ -18248,7 +18248,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
 			#endif
 				{
-					if ((newkeys & KEY_CROUCH) && !(oldkeys & KEY_CROUCH) && GetPlayerState__(playerid) == PLAYER_STATE_PASSENGER && GetPlayerCameraMode__(playerid) == 55 && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DRIVE_BY))
+					if ((newkeys & KEY_CROUCH) && !(oldkeys & KEY_CROUCH) && GetPlayerState__(playerid) == PLAYER_STATE_PASSENGER && GetPlayerCameraMode__(playerid) == CAM_MODE:55 && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DRIVE_BY))
 					{
 						_FIXES_HideDriveByWeapon(playerid);
 					}
