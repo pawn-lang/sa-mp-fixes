@@ -16836,6 +16836,8 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 
 					// Per-player GTs.
 					#if FIX_GameTextStyles
+						_FIXES_PER_PLAYER_GT(15);
+						_FIXES_PER_PLAYER_GT(14);
 						_FIXES_PER_PLAYER_GT(13);
 						_FIXES_PER_PLAYER_GT(12);
 						_FIXES_PER_PLAYER_GT(11);
@@ -16856,6 +16858,8 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 
 					// Global GTs.
 					#if FIX_GameTextStyles
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[15]),
+						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[14]),
 						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[13]),
 						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[12]),
 						TextDrawHideForPlayer__(playerid, FIXES_gsGTStyle[11]),
