@@ -9802,7 +9802,7 @@ _FIXES_STATIC_STOCK
 	 * Boolean: Stores if a certain vehicle is 'locked' or not.
 	 * </remarks>
 	 */
-	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES];
+	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES + 1];
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsVehicleIsLocked);
 #endif
@@ -10232,7 +10232,7 @@ _FIXES_STATIC_STOCK
 	 * The vehicle's stereo used in GetVehicleComponent.
 	 * </remarks>
 	 */
-	FIXES_gsStereo[MAX_VEHICLES];
+	FIXES_gsStereo[MAX_VEHICLES + 1];
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsStereo);
 #endif
@@ -10244,7 +10244,7 @@ _FIXES_STATIC_STOCK
 	 * The vehicle's front bumper used in GetVehicleComponent.
 	 * </remarks>
 	 */
-	FIXES_gsFrontBumper[MAX_VEHICLES];
+	FIXES_gsFrontBumper[MAX_VEHICLES + 1];
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsFrontBumper);
 #endif
@@ -10256,7 +10256,7 @@ _FIXES_STATIC_STOCK
 	 * The vehicle's rear bumper used in GetVehicleComponent.
 	 * </remarks>
 	 */
-	FIXES_gsRearBumper[MAX_VEHICLES];
+	FIXES_gsRearBumper[MAX_VEHICLES + 1];
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsRearBumper);
 #endif
@@ -10268,7 +10268,7 @@ _FIXES_STATIC_STOCK
 	 * The vehicle's front bullbar used in GetVehicleComponent.
 	 * </remarks>
 	 */
-	FIXES_gsFrontBullbar[MAX_VEHICLES];
+	FIXES_gsFrontBullbar[MAX_VEHICLES + 1];
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsFrontBullbar);
 #endif
@@ -10280,7 +10280,7 @@ _FIXES_STATIC_STOCK
 	 * The vehicle's rear bullbar used in GetVehicleComponent.
 	 * </remarks>
 	 */
-	FIXES_gsRearBullbar[MAX_VEHICLES];
+	FIXES_gsRearBullbar[MAX_VEHICLES + 1];
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_gsRearBullbar);
 #endif
@@ -18390,7 +18390,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 		//  BEGIN: OnPlayerEnterVehicle_2
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_2
-			if (_FIXES_NO_RANGE(vehicleid, 0 + 1, MAX_VEHICLES))
+			if (_FIXES_NO_RANGE(vehicleid, 1, MAX_VEHICLES + 1))
 			{
 				return _FIXES_BlockUpdate(playerid);
 			}
@@ -18499,7 +18499,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 		//  BEGIN: OnPlayerEnterVehicle_2
 		// ===============================
 		#if FIX_OnPlayerEnterVehicle_2
-			if (_FIXES_IN_RANGE(vehicleid, 1, MAX_VEHICLES))
+			if (_FIXES_IN_RANGE(vehicleid, 1, MAX_VEHICLES + 1))
 			{
 				#if defined On_PlayerExitVehicle
 					return On_PlayerExitVehicle(playerid, vehicleid);
