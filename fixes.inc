@@ -8851,8 +8851,12 @@ enum TEXT_DRAW_FONT:___FIXES_TEXT_DRAW_FONT
 	}
 
 	_FIXES_ENUM_PAWNDOC(__CAM_MODE);
+
+	#define _FIXES_CAMMODE_AIMWEAPONFROMCAR CAM_MODE_AIMWEAPON_FROMCAR
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES___CAM_MODE);
+
+	#define _FIXES_CAMMODE_AIMWEAPONFROMCAR (CAM_MODE:55)
 #endif
 
 /**
@@ -18248,7 +18252,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 				if (FIXES_gsSettings & e_FIXES_SETTINGS_IN_CHARGE)
 			#endif
 				{
-					if ((newkeys & KEY_CROUCH) && !(oldkeys & KEY_CROUCH) && GetPlayerState__(playerid) == PLAYER_STATE_PASSENGER && GetPlayerCameraMode__(playerid) == CAM_MODE:55 && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DRIVE_BY))
+					if ((newkeys & KEY_CROUCH) && !(oldkeys & KEY_CROUCH) && GetPlayerState__(playerid) == PLAYER_STATE_PASSENGER && GetPlayerCameraMode__(playerid) == _FIXES_CAMMODE_AIMWEAPONFROMCAR && !(FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_DRIVE_BY))
 					{
 						_FIXES_HideDriveByWeapon(playerid);
 					}
