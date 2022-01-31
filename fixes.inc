@@ -12698,7 +12698,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native TextDrawSetShadow__(Text:text, size) = TextDrawSetShadow;
 	native TextDrawSetOutline__(Text:text, size) = TextDrawSetOutline;
 	native TextDrawBackgroundColor__(Text:text, colour) = TextDrawBackgroundColor;
-	native TextDrawFont__(Text:text, font) = TextDrawFont;
+	native TextDrawFont__(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
 	native TextDrawSetProportional__(Text:text, bool:set) = TextDrawSetProportional;
 	native TextDrawSetSelectable__(Text:text, bool:set) = TextDrawSetSelectable;
 	native TextDrawShowForPlayer__(playerid, Text:text) = TextDrawShowForPlayer;
@@ -12927,7 +12927,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native PlayerTextDrawSetShadow__(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
 	native PlayerTextDrawSetOutline__(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
 	native PlayerTextDrawBackgroundColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor;
-	native PlayerTextDrawFont__(playerid, PlayerText:text, font) = PlayerTextDrawFont;
+	native PlayerTextDrawFont__(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont;
 	native PlayerTextDrawSetProportional__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetProportional;
 	native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetSelectable;
 	native PlayerTextDrawShow__(playerid, PlayerText:text) = PlayerTextDrawShow;
@@ -18357,11 +18357,11 @@ native BAD_KillTimer(timerid) = KillTimer;
 		#define OnPlayerKeyStateChange( On_PlayerKeyStateChange(
 
 		#if defined On_PlayerKeyStateChange
-			forward On_PlayerKeyStateChange(playerid, newkeys, oldkeys);
+			forward On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
 		#endif
 	#else
 		#define OnPlayerKeyStateChange(%0) On_PlayerKeyStateChange(%0) <_ALS : _ALS_go>
-		_FIXES_FORWARD On_PlayerKeyStateChange(playerid, newkeys, oldkeys);
+		_FIXES_FORWARD On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
 	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(On_PlayerKeyStateChange);
@@ -19484,11 +19484,11 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 		#define OnPlayerStateChange( On_PlayerStateChange(
 
 		#if defined On_PlayerStateChange
-			forward On_PlayerStateChange(playerid, newstate, oldstate);
+			forward On_PlayerStateChange(playerid, PLAYER_STATE:newstate, PLAYER_STATE:oldstate);
 		#endif
 	#else
 		#define OnPlayerStateChange(%0) On_PlayerStateChange(%0) <_ALS : _ALS_go>
-		_FIXES_FORWARD On_PlayerStateChange(playerid, newstate, oldstate);
+		_FIXES_FORWARD On_PlayerStateChange(playerid, PLAYER_STATE:newstate, PLAYER_STATE:oldstate);
 	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(On_PlayerStateChange);
@@ -23114,7 +23114,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 				if (GetPVarInt__(playerid, FIXES_pvarPlayerSpectate) || GetPlayerState__(playerid) == PLAYER_STATE_SPECTATING)
 			#endif
 				{
-					SetTimerEx__(FIXES_gscSetCamera, 300, false, FIXES_gscSpec@iifffi, playerid, 0, x, y, z, cut);
+					SetTimerEx__(FIXES_gscSetCamera, 300, false, FIXES_gscSpec@iifffi, playerid, 0, x, y, z, _:cut);
 				}
 				else
 				{

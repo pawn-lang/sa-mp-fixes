@@ -1,3 +1,5 @@
+#define STRONG_TAGS
+
 #tryinclude <samp-stdlib\a_npc>
 #tryinclude <a_npc>
 
