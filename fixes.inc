@@ -17156,20 +17156,17 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 							#endif
 						}
 					}
-					else if (componentid == 1192 || componentid == 1193)
+					else if ((componentid == 1192 || componentid == 1193) && (modelid == 576))
 					{
-						if (modelid == 576)
-						{
-							// This save a whole cell off EVERY other vehicle!  This
-							// is the ONLY vehicle with any mods over "6 * 32 + 999"
-							// (1191), the highest value you can fit in 6 cells of a
-							// bit array (minus 1000).
-							#if defined On_VehicleMod
-								return On_VehicleMod(playerid, vehicleid, componentid);
-							#else
-								return 1;
-							#endif
-						}
+						// This save a whole cell off EVERY other vehicle!  This
+						// is the ONLY vehicle with any mods over "6 * 32 + 999"
+						// (1191), the highest value you can fit in 6 cells of a
+						// bit array (minus 1000).
+						#if defined On_VehicleMod
+							return On_VehicleMod(playerid, vehicleid, componentid);
+						#else
+							return 1;
+						#endif
 					}
 				}
 				// Desync the player entirely.
@@ -24472,11 +24469,11 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #if FIX_API
 	stock bool:FIXES_VehicleCanHaveComponent(modelid, componentid)
 	{
-		if (_FIXES_IN_RANGE(modelid, 400, 611 + 1))
+		if (_FIXES_IN_RANGE((modelid -= 400), 400, 611 + 1))
 		{
 			if (_FIXES_IN_RANGE((componentid -= 1000), 0, 191 + 1))
 			{
-				return bool:((FIXES_gscVehicleMods[(modelid - 400) * 6 + (componentid >>> 5)] >>> (componentid & 0b00011111)) & 1);
+				return bool:((FIXES_gscVehicleMods[modelid * 6 + (componentid >>> 5)] >>> (componentid & 0b00011111)) & 1);
 			}
 			else
 			{
@@ -24484,7 +24481,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 				// ONLY vehicle with any mods over "6 * 32 + 999" (1191), the
 				// highest value you can fit in 6 cells of a bit array (minus
 				// 1000).
-				return (componentid == 192 || componentid == 193) && (modelid == 576);
+				return (componentid == 192 || componentid == 193) && (modelid == 176);
 			}
 		}
 		return false;
