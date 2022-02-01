@@ -19513,39 +19513,40 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 	{
 		#if FIX_GetPlayerAmmo
 			new
-				currentAmmo = GetPlayerAmmo__(playerid);
-			if (currentAmmo + ammo > 32767)
+				ammoAndVehicle = GetPlayerAmmo__(playerid);
+			if (ammoAndVehicle + ammo > 32767)
 			{
-				ammo = 32767 - currentAmmo;
+				ammo = 32767 - ammoAndVehicle;
 			}
-			else if (currentAmmo + ammo < 0)
+			else if (ammoAndVehicle + ammo < 0)
 			{
-				ammo = -currentAmmo;
+				ammo = -ammoAndVehicle;
 			}
+			if ((ammoAndVehicle = GetPlayerVehicleID__(playerid)))
+		#else
+			new
+				ammoAndVehicle = GetPlayerVehicleID__(playerid);
+			if (ammoAndVehicle)
 		#endif
+			{
+				#if FIX_HydraSniper
+					ammoAndVehicle = GetVehicleModel__(ammoAndVehicle);
+					if (weaponid == WEAPON_SNIPER && (ammoAndVehicle == 520 || ammoAndVehicle == 425))
+					{
+						ammoAndVehicle = GivePlayerWeapon__(playerid, weaponid, ammo),
+						SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST);
+						#if FIX_GetPlayerWeapon
+							FIXES_SET(PlayerWeapon, playerid, _FIXES_WEAPON_FIST);
+						#endif
+						return ammoAndVehicle;
+					}
+				#endif
 
-		new
-			vid = GetPlayerVehicleID__(playerid);
-		if (vid)
-		{
-			#if FIX_HydraSniper
-				vid = GetVehicleModel__(vid);
-				if (weaponid == WEAPON_SNIPER && (vid == 520 || vid == 425))
-				{
-					vid = GivePlayerWeapon__(playerid, weaponid, ammo),
-					SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST);
-					#if FIX_GetPlayerWeapon
-						FIXES_SET(PlayerWeapon, playerid, _FIXES_WEAPON_FIST);
-					#endif
-					return vid;
-				}
-			#endif
-
-			#if FIX_GetPlayerWeapon
-				FIXES_SET(PlayerWeapon, playerid, weaponid);
-			#endif
-		}
-		return GivePlayerWeapon__(playerid, weaponid, ammo);
+				#if FIX_GetPlayerWeapon
+					FIXES_SET(PlayerWeapon, playerid, weaponid);
+				#endif
+			}
+			return GivePlayerWeapon__(playerid, weaponid, ammo);
 	}
 
 	#if _FIXES_SAMP
@@ -19618,23 +19619,23 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 				return 0;
 			}
 		#endif
-		new
-			vid = GetPlayerVehicleID__(playerid);
-		if (vid)
-		{
-			#if FIX_HydraSniper
-				vid = GetVehicleModel__(vid);
-				if (weaponid == WEAPON_SNIPER && (vid == 520 || vid == 425))
-				{
-					return 0;
-				}
-			#endif
+			new
+				vid = GetPlayerVehicleID__(playerid);
+			if (vid)
+			{
+				#if FIX_HydraSniper
+					vid = GetVehicleModel__(vid);
+					if (weaponid == WEAPON_SNIPER && (vid == 520 || vid == 425))
+					{
+						return 0;
+					}
+				#endif
 
-			#if FIX_GetPlayerWeapon
-				FIXES_SET(PlayerWeapon, playerid, weaponid);
-			#endif
-		}
-		return SetPlayerArmedWeapon__(playerid, weaponid);
+				#if FIX_GetPlayerWeapon
+					FIXES_SET(PlayerWeapon, playerid, weaponid);
+				#endif
+			}
+			return SetPlayerArmedWeapon__(playerid, weaponid);
 	}
 
 	#if _FIXES_SAMP
@@ -19726,15 +19727,11 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 					vid = GetPlayerVehicleID__(playerid);
 				if (vid)
 				{
-					new
-						Float:x,
-						Float:y,
-						Float:z;
 					// Remove them without the animation.
 					return
-						GetVehiclePos__(vid, x, y, z),
-						SetPlayerPos__(playerid, x, y, z),
 						FIXES_gsVehicleSeatData[playerid] = seatid << 24 | vehicleid,
+						GetVehiclePos__(vid, Float:vid, Float:seatid, Float:vehicleid),
+						SetPlayerPos__(playerid, Float:vid, Float:seatid, Float:vehicleid),
 						FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_PUT_IN_VEHICLE,
 						1;
 				}
@@ -19778,16 +19775,20 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 			//  BEGIN: TrainExit
 			// ==================
 			#if FIX_TrainExit
-				new
-					model = GetVehicleModel__(vehicleid);
-				switch (model)
-				{
-					case 449, 537, 538:
+				#if FIX_PutPlayerInVehicle
+					switch ((vid = GetVehicleModel__(vehicleid)))
+				#else
+					new
+						vid = GetVehicleModel__(vehicleid);
+					switch (vid)
+				#endif
 					{
-						CallRemoteFunction__(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iiiii, playerid, vehicleid, seatid, 0, model);
-						//FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_PUT_IN_TRAIN;
+						case 449, 537, 538:
+						{
+							CallRemoteFunction__(FIXES_gscPutPlayerInVehicle, FIXES_gscSpec@iiiii, playerid, vehicleid, seatid, 0, vid);
+							//FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_PUT_IN_TRAIN;
+						}
 					}
-				}
 			#endif
 			// ==================
 			//  END:   TrainExit
@@ -22358,23 +22359,18 @@ native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:rotation) = Cre
 #if FIX_ApplyActorAnimation_2
 	stock FIXES_CreateActor(modelid, Float:x, Float:y, Float:z, Float:rotation)
 	{
-		new
-			actorid;
-
-		actorid = CreateActor__(modelid, x, y, z, rotation);
-
-		if (actorid == INVALID_ACTOR_ID)
+		if ((modelid = CreateActor__(modelid, x, y, z, rotation)) == INVALID_ACTOR_ID)
 		{
 			return INVALID_ACTOR_ID;
 		}
 
-		FIXES_gsActorAnimLibs[actorid][0] =
-			FIXES_gsActorAnimLibs[actorid][1] =
-				FIXES_gsActorAnimLibs[actorid][2] =
-					FIXES_gsActorAnimLibs[actorid][3] =
-						FIXES_gsActorAnimLibs[actorid][4] = -1;
+		FIXES_gsActorAnimLibs[modelid][0] =
+			FIXES_gsActorAnimLibs[modelid][1] =
+				FIXES_gsActorAnimLibs[modelid][2] =
+					FIXES_gsActorAnimLibs[modelid][3] =
+						FIXES_gsActorAnimLibs[modelid][4] = -1;
 
-		return actorid;
+		return modelid;
 	}
 
 	#if _FIXES_SAMP
@@ -23547,13 +23543,12 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 #if FIX_SetPlayerPos
 	stock FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z)
 	{
-		new
-			ret = SetPlayerPos__(playerid, x, y, z);
-		if (ret)
+		x = Float:SetPlayerPos__(playerid, x, y, z);
+		if (_:x)
 		{
 			_FIXES_RemoveFlyingParachute(playerid);
 		}
-		return ret;
+		return _:x;
 	}
 
 	#if _FIXES_SAMP
@@ -23585,13 +23580,12 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 #if FIX_SetPlayerPos
 	stock FIXES_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z)
 	{
-		new
-			ret = SetPlayerPosFindZ__(playerid, x, y, z);
-		if (ret)
+		x = Float:SetPlayerPosFindZ__(playerid, x, y, z);
+		if (_:x)
 		{
 			_FIXES_RemoveFlyingParachute(playerid);
 		}
-		return ret;
+		return _:x;
 	}
 
 	#if _FIXES_SAMP
