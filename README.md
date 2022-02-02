@@ -247,17 +247,111 @@ There are a few settings for improved execution of this script. Define these sym
 
 Note that `options` are which fixes to include, and `settings` are more over-arching customisations.
 
-## Tests
+## Tags
 
-Other code and includes can test for certain fixes.inc symbols, to see what is defined and what isn't.  These all use basic `#if defined` checks, with no need to test the value:
+Like the enhanced SA:MP includes (https://github.com/pawn-lang/samp-stdlib/tree/consistency-overhaul)
+fixes.inc upgrades many natives and callbacks to use more tags for better compile-time errors.
+These can be a little annoying to adapt your code to at first, but in the long run provide far more
+safety and information.  Like the SA:MP includes there are `WEAK_TAGS` and `STRONG_TAGS`, but unlike
+there the default is none, i.e. most tags will simply be `_:` unless you're using the consistency
+overhaul includes as well.  The one major exception to this is `bool:`, which has been added by
+default to many parameters which were previously `_:` but only accepted `0`/`1` and thus should have
+been `false`/`true`.  This is the `bool_tags` fix and affects the following natives:
 
-* `FIXES_EXISTS`:  The include is used.
-* `FIXES_API`:  The additional API functions (see above) were defined and can be used.
-* `FIXES_USES_STATE_HOOKS`:  fixes.inc uses advanced state-based ALS hooks, not just regular ones.
-* `FIXES_CONST_CORRECT`:  The include is fully const-correct (and backwards-compatible).
-* `FIXES_TAG_CORRECT`:  The include is fully tag-correct (and backwards-compatible), i.e. optionally uses additional tags in callbacks such as `OnPlayerStateChange`.
-* `FIXES_PAWNDOC`:  The include has methods of hiding unwanted pawndoc declarations.
-* `FIXES_ID`:  The include defines the pubic variable `@_`, which is a unique ID for the current script.  This is also defined by YSI if it isn't defined here.
+* `native SetTimer(const functionName[], interval, bool:repeating);`
+* `native SetTimerEx(const functionName[], interval, bool:repeating, const format[] = "", {Float, _}:...);`
+* `native AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, bool:addSiren = false);`
+* `native ShowNameTags(bool:show);`
+* `native EnableTirePopping(bool:enable) `
+* `native AllowInteriorWeapons(bool:allow);`
+* `native AllowAdminTeleport(bool:allow);`
+* `native EnableZoneNames(bool:enable);`
+* `native bool:IsPlayerNPC(playerid);`
+* `native bool:IsPlayerAdmin(playerid);`
+* `native bool:GetServerVarAsBool(const cvar[]);`
+* `native bool:GetConsoleVarAsBool(const cvar[]);`
+* `native bool:IsValidMenu(Menu:menuid);`
+* `native TextDrawUseBox(Text:text, bool:use);`
+* `native TextDrawSetProportional(Text:text, bool:set);`
+* `native TextDrawSetSelectable(Text:text, bool:set);`
+* `native Text3D:Create3DTextLabel(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false);`
+* `native PlayerText3D:CreatePlayer3DTextLabel(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false);`
+* `native CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false);`
+* `native bool:IsVehicleStreamedIn(vehicleid, playerid);`
+* `native bool:IsTrailerAttachedToVehicle(vehicleid);`
+* `native bool:IsValidVehicle(vehicleid);`
+* `native bool:DB_Close(DB:db);`
+* `native bool:DB_FreeResult(DBResult:result);`
+* `native bool:DB_NextRow(DBResult:result);`
+* `native bool:DB_FieldName(DBResult:result, field, output[], size = sizeof (output));`
+* `native bool:DB_GetField(DBResult:result, field, output[], size = sizeof (output));`
+* `native bool:DB_GetFieldAssoc(DBResult:result, const field[], output[], size = sizeof (output));`
+* `native bool:IsActorStreamedIn(actorid, playerid);`
+* `native ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time);`
+* `native SetActorInvulnerable(actorid, bool:invulnerable = true);`
+* `native bool:IsActorInvulnerable(actorid);`
+* `native bool:IsValidActor(actorid);`
+* `native AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, bool:syncRotation = true);`
+* `native bool:IsValidObject(objectid);`
+* `native bool:IsObjectMoving(objectid);`
+* `native bool:IsValidPlayerObject(playerid, objectid);`
+* `native bool:IsPlayerObjectMoving(playerid, objectid);`
+* `native SetObjectMaterialText(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT);`
+* `native SetPlayerObjectMaterialText(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT);`
+* `native SetObjectsDefaultCameraCol(bool:disable);`
+* `native bool:IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z);`
+* `native bool:IsPlayerStreamedIn(targetid, playerid);`
+* `native TogglePlayerClock(playerid, bool:toggle);`
+* `native PlayAudioStreamForPlayer(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, bool:usepos = false);`
+* `native bool:IsPlayerAttachedSlotUsed(playerid, index);`
+* `native PlayerTextDrawUseBox(playerid, PlayerText:text, bool:use);`
+* `native PlayerTextDrawSetProportional(playerid, PlayerText:text, bool:set);`
+* `native PlayerTextDrawSetSelectable(playerid, PlayerText:text, bool:set);`
+* `native TogglePlayerControllable(playerid, bool:toggle);`
+* `native ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE);`
+* `native DisableRemoteVehCollisions(playerid, bool:disable);`
+* `native ShowPlayerNameTagForPlayer(playerid, targetid, bool:show);`
+* `native AllowPlayerTeleport(playerid, bool:allow);`
+* `native EnablePlayerCameraTarget(playerid, bool:enable);`
+* `native bool:IsPlayerConnected(playerid);`
+* `native bool:IsPlayerInVehicle(playerid, vehicleid);`
+* `native bool:IsPlayerInAnyVehicle(playerid);`
+* `native bool:IsPlayerInCheckpoint(playerid);`
+* `native bool:IsPlayerInRaceCheckpoint(playerid);`
+* `native EnableStuntBonusForPlayer(playerid, bool:enable);`
+* `native EnableStuntBonusForAll(bool:enable);`
+* `native TogglePlayerSpectating(playerid, bool:toggle);`
+
+You can also see several additional tags in those definitions, such as `OBJECT_MATERIAL_SIZE:` but
+as stated they are optional.
+
+If you are using `WEAK_TAGS` or `STRONG_TAGS` there is a minor problem - callbacks give an error:
+
+```pawn
+forward OnPlayerStateChange(playerid, PLAYER_STATE:newstate, PLAYER_STATE:oldstate);
+
+public OnPlayerStateChange(playerid, newstate, oldstate)
+{
+}
+```
+
+This gives an error, when it should be fine.  Fixing it in a mode is easy - just use the correct
+tags on the variables in the callbacks.  Fixing it in a generic library needs a few extra lines to
+define a default tag when one isn't found (i.e. the user isn't using the improved includes):
+
+```pawn
+#if !defined PLAYER_STATE
+	// Use the default tag (none, `_:`) when the improved includes aren't found.
+	#define PLAYER_STATE: _:
+#endif
+public OnPlayerStateChange(playerid, PLAYER_STATE:newstate, PLAYER_STATE:oldstate)
+{
+	return Hooked_OnPlayerStateChange(playerid, newstate, oldstate);
+}
+
+// Don't forget to use ALS as normal.
+forward Hooked_OnPlayerStateChange(playerid, PLAYER_STATE:newstate, PLAYER_STATE:oldstate);
+```
 
 ## API
 
@@ -445,6 +539,18 @@ printf("Colours chosen for the Sandking: %08x, %08x", CarColIndexToColour(c1), C
 ```
 
 Note that you can also use the alias `CarColIndexToColor`.
+
+## Tests
+
+Other code and includes can test for certain fixes.inc symbols, to see what is defined and what isn't.  These all use basic `#if defined` checks, with no need to test the value:
+
+* `FIXES_EXISTS`:  The include is used.
+* `FIXES_API`:  The additional API functions (see above) were defined and can be used.
+* `FIXES_USES_STATE_HOOKS`:  fixes.inc uses advanced state-based ALS hooks, not just regular ones.
+* `FIXES_CONST_CORRECT`:  The include is fully const-correct (and backwards-compatible).
+* `FIXES_TAG_CORRECT`:  The include is fully tag-correct (and backwards-compatible), i.e. optionally uses additional tags in callbacks such as `OnPlayerStateChange`.
+* `FIXES_PAWNDOC`:  The include has methods of hiding unwanted pawndoc declarations.
+* `FIXES_ID`:  The include defines the pubic variable `@_`, which is a unique ID for the current script.  This is also defined by YSI if it isn't defined here.
 
 ## Other Fixes
 
