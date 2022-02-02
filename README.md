@@ -206,6 +206,7 @@ limit_tags | Some limits, like `MAX_MENUS` are untagged, so can't be used proper
 bool_tags | Many `true/false` parameters use `1/0` with no `bool:` tag. | Add the tag. | [Y_Less](https://github.com/Y-Less)  | |
 TEXT_DRAW_ALIGN | The alignment modes for `TextDrawAlignment` are not defined by default. | Define them. | [Y_Less](https://github.com/Y-Less)  | |
 TEXT_DRAW_FONT | The fonts for `TextDrawFont` are not defined by default. | Define them. | [Y_Less](https://github.com/Y-Less)  | |
+GetPlayerKeys | `GetPlayerKeys` and `OnPlayerKeyStateChange` don't actually deal with "keys", but "actions".  The defines don't correspond to real keyboard inputs, but bound game commands.  This is one of the biggest sources of confusion, even amongst intermediate coders. | Rename the functions to use `Action` instead of `Key` and deprecate the old ones. | [Y_Less](https://github.com/Y-Less)  | |
 
 A few fixes are disabled by default, to enable them all do:
 

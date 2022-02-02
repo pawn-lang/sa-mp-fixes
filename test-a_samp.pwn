@@ -58,6 +58,7 @@ public CompileTest()
 	new VEHICLE_PARAMS:vparams;
 	new WEAPON:wvar;
 	new KEY:kvar;
+	new ACTION:avar;
 
 	// Using defaults.
 	Print__("STRING");
@@ -320,6 +321,7 @@ public CompileTest()
 	GetPlayerPing(0);
 	GetPlayerWeapon(0);
 	GetPlayerKeys(0, kvar, kvar, kvar);
+	GetPlayerActions(0, avar, avar, avar);
 	GetPlayerName(0, output, sizeof (output));
 	SetPlayerTime(0, 0, 0);
 	GetPlayerTime(0, ivar, ivar);

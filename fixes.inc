@@ -7053,6 +7053,44 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_TEXT_DRAW_FONT                  (0)
 #endif
 
+/**
+ * <fix name="GetPlayerKeys">
+ *     <problem>
+ *         <c>GetPlayerKeys</c> and <c>OnPlayerKeyStateChange</c> don't actually
+ *         deal with "keys", but "actions".  The defines don't correspond to
+ *         real keyboard inputs, but bound game commands.  This is one of the
+ *         biggest sources of confusion, even amongst intermediate coders.
+ *     </problem>
+ *     <solution>
+ *         Rename the functions to use <c>Action</c> instead of <c>Key</c> and
+ *         deprecate the old ones.
+ *     </solution>
+ *     <see>FIXES_GetPlayerActions</see>
+ *     <see>OnPlayerActionStateChange</see>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_GetPlayerKeys
+	#define _FIXES_WARNING 137
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_GetPlayerKeys = _FIXES_DEFAULT;
+	#define FIX_GetPlayerKeys                    _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_GetPlayerKeys)
+	#undef FIX_GetPlayerKeys
+	static stock FIX_GetPlayerKeys = 2;
+	#define FIX_GetPlayerKeys                    (2)
+#elseif FIX_GetPlayerKeys
+	#undef FIX_GetPlayerKeys
+	static stock FIX_GetPlayerKeys = 1;
+	#define FIX_GetPlayerKeys                    (1)
+#else
+	#undef FIX_GetPlayerKeys
+	static stock FIX_GetPlayerKeys = 0;
+	#define FIX_GetPlayerKeys                    (0)
+#endif
+
 /*
 
     88b           d88
@@ -7742,8 +7780,27 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>KEY:</c> is defined as <c>_:</c> when
- * enhanced tags are disabled, and <c>E_KEY:</c> when they are enabled.
+ * Future-compatible tag definitions.  <c>ACTION:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>E_KEY:</c> when they are enabled.
+ * </remarks>
+ */
+
+#if defined ACTION
+	_FIXES_HIDE_PAWNDOC(FIXES_ACTION);
+#elseif FIX_GetPlayerKeys
+	_FIXES_CONST_PAWNDOC(ACTION);
+	#if defined __TAG
+		#define ACTION: __TAG(ACTION):
+	#else
+		#define ACTION: _:
+	#endif
+#else
+	#define ACTION: KEY:
+#endif
+
+/**
+ * <remarks>
+ * Old <c>KEY:</c> tags for <c>GetPlayerKeys</c>, without the rename.
  * </remarks>
  */
 
@@ -8500,7 +8557,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-#define _FIXES_KEY_AIM                           (KEY:128)
+#define _FIXES_KEY_AIM                           (ACTION:128)
 #if defined KEY_AIM
 	_FIXES_HIDE_PAWNDOC(FIXES_KEY_AIM);
 #else
@@ -12554,6 +12611,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native bool:IsPlayerStreamedIn__(playerid) = IsPlayerStreamedIn;
 	native bool:IsVehicleStreamedIn__(vehicleid) = IsVehicleStreamedIn;
 	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
+	native GetPlayerActions__(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys;
 	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
 	native GetMyPos__(&Float:x, &Float:y, &Float:z) = GetMyPos;
 	native SetMyPos__(Float:x, Float:y, Float:z) = SetMyPos;
@@ -12891,6 +12949,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetPlayerPing__(playerid) = GetPlayerPing;
 	native WEAPON:GetPlayerWeapon__(playerid) = GetPlayerWeapon;
 	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
+	native GetPlayerActions__(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys;
 	native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName;
 	native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime;
 	native GetPlayerTime__(playerid, &hour, &minute) = GetPlayerTime;
@@ -13400,6 +13459,37 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_db_get_field_assoc);
+#endif
+
+/**
+ * <fixes>GetPlayerKeys</fixes>
+ */
+
+#if FIX_GetPlayerKeys
+	#pragma deprecated Use `GetPlayerActions`
+	native FIXES_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
+
+	#if _FIXES_SAMP
+		#define _ALS_GetPlayerKeys
+		#define GetPlayerKeys( FIXES_GetPlayerKeys(
+	#endif
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerKeys);
+#endif
+
+/**
+ * <fixes>GetPlayerKeys</fixes>
+ */
+
+#if FIX_GetPlayerKeys
+	native FIXES_GetPlayerActions(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys;
+
+	#if _FIXES_SAMP
+		#define _ALS_GetPlayerActions
+		#define GetPlayerActions( FIXES_GetPlayerActions(
+	#endif
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerActions);
 #endif
 
 /*
@@ -17547,10 +17637,10 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 
 		#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_GogglesSync
 			new
-				KEY:ud,
-				KEY:lr,
-				KEY:keys;
-			GetPlayerKeys__(playerid, keys, ud, lr);
+				ACTION:ud,
+				ACTION:lr,
+				ACTION:keys;
+			GetPlayerActions__(playerid, keys, ud, lr);
 		#endif
 
 		#if (FIX_SetPlayerWorldBounds || FIX_GogglesSync) && !FIX_TogglePlayerControllable
@@ -17663,7 +17753,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 			{
 				case _FIXES_WEAPON_NIGHT_VIS_GOGGLES, _FIXES_WEAPON_THERMAL_GOGGLES:
 				{
-					if ((keys & KEY_FIRE) && GetPlayerState__(playerid) == PLAYER_STATE_ONFOOT)
+					if ((_:keys & _:KEY_FIRE) && GetPlayerState__(playerid) == PLAYER_STATE_ONFOOT)
 					{
 						return 0;
 					}
@@ -18338,7 +18428,13 @@ native BAD_KillTimer(timerid) = KillTimer;
 		//  END: DriveBy
 		// =============================
 
-		#if defined On_PlayerKeyStateChange
+		#if FIX_GetPlayerKeys && defined On_PlayerActionStateChange
+			#if defined On_PlayerKeyStateChange
+				return On_PlayerActionStateChange(playerid, ACTION:newkeys, ACTION:oldkeys) && On_PlayerKeyStateChange(playerid, newkeys, oldkeys);
+			#else
+				return On_PlayerActionStateChange(playerid, ACTION:newkeys, ACTION:oldkeys);
+			#endif
+		#elseif defined On_PlayerKeyStateChange
 			return On_PlayerKeyStateChange(playerid, newkeys, oldkeys);
 		#else
 			return 1;
@@ -18350,15 +18446,42 @@ native BAD_KillTimer(timerid) = KillTimer;
 	#endif
 	#define _ALS_OnPlayerKeyStateChange
 
-	#if FIXES_NoYSI
-		#define OnPlayerKeyStateChange( On_PlayerKeyStateChange(
+	#if FIX_GetPlayerKeys
+		#pragma deprecated Use `OnPlayerActionStateChange`.
+		forward BAD_OnPlayerKeyStateChange();
 
-		#if defined On_PlayerKeyStateChange
-			forward On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
+		#if FIXES_NoYSI
+			#define OnPlayerActionStateChange( On_PlayerActionStateChange(
+			#define OnPlayerKeyStateChange(%0) BAD_OnPlayerKeyStateChange() { } public On_PlayerKeyStateChange(%0)
+
+			#if defined On_PlayerActionStateChange
+				forward On_PlayerActionStateChange(playerid, ACTION:newactions, ACTION:oldactions);
+			#endif
+
+			#if defined On_PlayerKeyStateChange
+				forward On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
+			#endif
+		#else
+			#define OnPlayerActionStateChange( On_PlayerActionStateChange(
+			#define OnPlayerKeyStateChange(%0) BAD_OnPlayerKeyStateChange() { } public On_PlayerKeyStateChange(%0) <_ALS : _ALS_go>
+
+			_FIXES_FORWARD On_PlayerActionStateChange(playerid, ACTION:newkeys, ACTION:oldactions);
+			_FIXES_FORWARD On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
 		#endif
+
+		#define _ALS_OnPlayerActionStateChange
 	#else
-		#define OnPlayerKeyStateChange(%0) On_PlayerKeyStateChange(%0) <_ALS : _ALS_go>
-		_FIXES_FORWARD On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
+		#if FIXES_NoYSI
+			#define OnPlayerKeyStateChange(%0) On_PlayerKeyStateChange(%0)
+
+			#if defined On_PlayerKeyStateChange
+				forward On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
+			#endif
+		#else
+			#define OnPlayerKeyStateChange(%0) On_PlayerKeyStateChange(%0) <_ALS : _ALS_go>
+
+			_FIXES_FORWARD On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
+		#endif
 	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(On_PlayerKeyStateChange);
