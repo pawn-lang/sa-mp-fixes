@@ -129,5 +129,15 @@
 	#endinput
 #endif
 
+#if _FIXES_WARNING == 17
+	#warning Setting `FIXES_CountFilterscripts`, to count loaded filterscripts, must now be explicit.
+	#endinput
+#endif
+
+#if _FIXES_WARNING == 18
+	#warning Setting `FIXES_NoFilterscriptsMsg`, to hide the filterscripts error information, must now be explicit.
+	#endinput
+#endif
+
 #error `_fixes_settings.inc` included, but `_FIXES_WARNING` is not set to a valid warning message.
 

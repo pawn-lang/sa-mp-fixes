@@ -1163,6 +1163,59 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIXES_NoVehicleColourMsg             (0)
 #endif
 
+/**
+ * <remarks>
+ * Load several filterscripts until one fails, to determine the number of
+ * previously loaded filterscripts.
+ * </remarks>
+ */
+
+#if !defined FIXES_CountFilterscripts
+	#define _FIXES_WARNING 17
+	#tryinclude "_fixes_settings"
+	#undef _FIXES_WARNING
+	static _FIXES_SETTING FIXES_CountFilterscripts = 1;
+	#define FIXES_CountFilterscripts             (1)
+#elseif _FIXES_IS_UNSET(FIXES_CountFilterscripts)
+	#undef FIXES_CountFilterscripts
+	static stock FIXES_CountFilterscripts = 2;
+	#define FIXES_CountFilterscripts             (2)
+#elseif FIXES_CountFilterscripts
+	#undef FIXES_CountFilterscripts
+	static stock FIXES_CountFilterscripts = 1;
+	#define FIXES_CountFilterscripts             (1)
+#else
+	#undef FIXES_CountFilterscripts
+	static stock FIXES_CountFilterscripts = 0;
+	#define FIXES_CountFilterscripts             (0)
+#endif
+
+/**
+ * <remarks>
+ * Hide the message about loading filterscripts and the ignorable errors.
+ * </remarks>
+ */
+
+#if !defined FIXES_NoFilterscriptsMsg
+	#define _FIXES_WARNING 17
+	#tryinclude "_fixes_settings"
+	#undef _FIXES_WARNING
+	static _FIXES_SETTING FIXES_NoFilterscriptsMsg = 1;
+	#define FIXES_NoFilterscriptsMsg             (1)
+#elseif _FIXES_IS_UNSET(FIXES_NoFilterscriptsMsg)
+	#undef FIXES_NoFilterscriptsMsg
+	static stock FIXES_NoFilterscriptsMsg = 2;
+	#define FIXES_NoFilterscriptsMsg             (2)
+#elseif FIXES_NoFilterscriptsMsg
+	#undef FIXES_NoFilterscriptsMsg
+	static stock FIXES_NoFilterscriptsMsg = 1;
+	#define FIXES_NoFilterscriptsMsg             (1)
+#else
+	#undef FIXES_NoFilterscriptsMsg
+	static stock FIXES_NoFilterscriptsMsg = 0;
+	#define FIXES_NoFilterscriptsMsg             (0)
+#endif
+
 /*
 
       ,ad8888ba,                         88
@@ -9576,6 +9629,45 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 
 _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
 
+/**
+ * <remarks>
+ * Renaming the <c>KEY_</c> definitions to <c>ACTION_</c> to reduce confusion.
+ * </remarks>
+ */
+#if FIX_GetPlayerKeys && !defined __ACTION
+	enum ACTION:__ACTION (<<= 1)
+	{
+		ACTION_ACTION                                 = 1,
+		ACTION_CROUCH,
+		ACTION_FIRE,
+		ACTION_SPRINT,
+		ACTION_SECONDARY_ATTACK,
+		ACTION_JUMP,
+		ACTION_LOOK_RIGHT,
+		ACTION_HANDBRAKE,
+		ACTION_LOOK_LEFT,
+		ACTION_SUBMISSION,
+		ACTION_LOOK_BEHIND                            = ACTION_SUBMISSION,
+		ACTION_WALK,
+		ACTION_ANALOG_UP,
+		ACTION_ANALOG_DOWN,
+		ACTION_ANALOG_LEFT,
+		ACTION_ANALOG_RIGHT,
+		ACTION_YES                                    = 65536,
+		ACTION_NO,
+		ACTION_CTRL_BACK,
+
+		ACTION_UP                                     = -128,
+		ACTION_DOWN                                   =  128,
+		ACTION_LEFT                                   = -128,
+		ACTION_RIGHT                                  =  128,
+	}
+
+	_FIXES_ENUM_PAWNDOC(__ACTION);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES___ACTION);
+#endif
+
 /*
 
                               88           88  88
@@ -14990,10 +15082,20 @@ static stock _FIXES_CountFilterscripts()
 
 	// Spawn up to 16 copies of this FS, each one taking up a slot so we can
 	// determine how many slots are free.
-	print(  FIXES_gsSpace),
-	print("\7*** fixes.inc info: Trying to load multiple ID determination FSes..."),
-	print(  "***                 Ignore any errors due to insufficient FS slots."),
-	print(  FIXES_gsSpace),
+	#if !FIXES_NoFilterscriptsMsg
+		print(  FIXES_gsSpace),
+		print("\7*** fixes.inc info: Trying to load multiple ID determination FSes...  Ignore any"),
+		print(  "***                 errors due to insufficient FS slots.  Disable this message"),
+		print(  "***                 with:"),
+		print(FIXES_gscThreeStars),
+		print(  "***                     #define FIXES_NoFilterscriptsMsg"),
+		print(FIXES_gscThreeStars),
+		print(  "***                 Disable this check with:"),
+		print(FIXES_gscThreeStars),
+		print(  "***                     #define FIXES_CountFilterscripts (0)"),
+		print(FIXES_gscThreeStars),
+		print(  FIXES_gsSpace);
+	#endif
 
 	// Reset the counters.
 	lFSCountCode[sizeof (lFSCountCode) - 1] = _FIXES_FS_COUNT_CODE,
@@ -15048,11 +15150,13 @@ static stock _FIXES_CountFilterscripts()
 		lFSCountLoad[sizeof (lFSCountLoad) - 2] += 1;
 	}
 
-	print(  FIXES_gsSpace),
-	print("\7*** fixes.inc info: If this crashes it might be due to pawn-uuid.  See:"),
-	print(  FIXES_gsSpace),
-	print(  "    https://github.com/Southclaws/pawn-uuid/issues/8#issuecomment-984940512"),
-	print(  FIXES_gsSpace);
+	#if !FIXES_NoFilterscriptsMsg
+		print(  FIXES_gsSpace),
+		print("\7*** fixes.inc info: If this crashes it might be due to pawn-uuid.  See:"),
+		print(  FIXES_gsSpace),
+		print(  "    https://github.com/Southclaws/pawn-uuid/issues/8#issuecomment-984940512"),
+		print(  FIXES_gsSpace);
+	#endif
 	// Clear all the temporary filterscipts from memory.
 	for (new i = loaded; i--; )
 	{
@@ -15678,9 +15782,11 @@ public OnJITCompile()
 			_FIXES_CheckServerRoot();
 			_FIXES_GetStreamerVersion();
 		#if FIX_OnRconCommand || FIX_OnClientCheckResponse
-			_FIXES_UnloadRconFixFS(),
+			_FIXES_UnloadRconFixFS();
 		#endif
-			_FIXES_CountFilterscripts(),
+		#if FIXES_CountFilterscripts
+			_FIXES_CountFilterscripts();
+		#endif
 
 			// Collect information about other fixes.inc scripts that are running.
 			setproperty(5, FIXES_gscSingleProperty, 0),
@@ -15856,11 +15962,13 @@ public OnJITCompile()
 				_FIXES_CheckServerRoot();
 				_FIXES_GetStreamerVersion();
 			#if FIX_OnRconCommand || FIX_OnClientCheckResponse
-				_FIXES_UnloadRconFixFS(),
+				_FIXES_UnloadRconFixFS();
 			#endif
+			#if FIXES_CountFilterscripts
 				_FIXES_CountFilterscripts();
+			#endif
 			#if FIX_OnRconCommand || FIX_OnClientCheckResponse
-				_FIXES_LoadRconFixFS(),
+				_FIXES_LoadRconFixFS();
 			#endif
 				// Collect information about other fixes.inc scripts that are
 				// running.

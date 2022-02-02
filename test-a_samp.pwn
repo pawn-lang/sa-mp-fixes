@@ -1,5 +1,5 @@
 #define STRONG_TAGS
-#pragma warning disable 234
+//#pragma warning disable 234
 
 //#define FIXES_Single 0
 
