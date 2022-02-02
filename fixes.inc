@@ -7144,6 +7144,50 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_GetPlayerKeys                    (0)
 #endif
 
+/**
+ * <fix name="FORCE_SYNC">
+ *     <problem>
+ *         The sync modes for <c>ApplyAnimation</c> are not defined by default.
+ *     </problem>
+ *     <solution>
+ *         Define them.
+ *     </solution>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_FORCE_SYNC
+	#if defined SYNC_NONE
+		#if FIXES_EnableDeprecated
+			#define _FIXES_WARNING 138
+			#tryinclude "_fixes_options"
+			#undef _FIXES_WARNING
+			static _FIXES_OPTION FIX_FORCE_SYNC = FIXES_EnableDeprecated;
+		#else
+			_FIXES_CONST_PAWNDOC(FIX_FORCE_SYNC);
+		#endif
+		#define FIX_FORCE_SYNC                   FIXES_EnableDeprecated
+	#else
+		#define _FIXES_WARNING 138
+		#tryinclude "_fixes_options"
+		#undef _FIXES_WARNING
+		static _FIXES_OPTION FIX_FORCE_SYNC = _FIXES_DEFAULT;
+		#define FIX_FORCE_SYNC                   _FIXES_DEFAULT
+	#endif
+#elseif _FIXES_IS_UNSET(FIX_FORCE_SYNC)
+	#undef FIX_FORCE_SYNC
+	static stock FIX_FORCE_SYNC = 2;
+	#define FIX_FORCE_SYNC                       (2)
+#elseif FIX_FORCE_SYNC
+	#undef FIX_FORCE_SYNC
+	static stock FIX_FORCE_SYNC = 1;
+	#define FIX_FORCE_SYNC                       (1)
+#else
+	#undef FIX_FORCE_SYNC
+	static stock FIX_FORCE_SYNC = 0;
+	#define FIX_FORCE_SYNC                       (0)
+#endif
+
 /*
 
     88b           d88
@@ -8079,9 +8123,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>SPECTATE_MODE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_SPECTATE_MODE:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>SPECTATE_MODE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_SPECTATE_MODE:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8098,9 +8142,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>PLAYER_RECORDING_TYPE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_PLAYER_RECORDING_TYPE:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>PLAYER_RECORDING_TYPE:</c> is defined
+ * as <c>_:</c> when enhanced tags are disabled, and
+ * <c>E_PLAYER_RECORDING_TYPE:</c> when they are enabled.
  * </remarks>
  */
 
@@ -8117,9 +8161,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>VEHICLE_MODEL_INFO:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_VEHICLE_MODEL_INFO:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>VEHICLE_MODEL_INFO:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_VEHICLE_MODEL_INFO:</c>
+ * when they are enabled.
  * </remarks>
  */
 
@@ -8136,9 +8180,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>OBJECT_MATERIAL_SIZE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_OBJECT_MATERIAL_SIZE:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>OBJECT_MATERIAL_SIZE:</c> is defined
+ * as <c>_:</c> when enhanced tags are disabled, and
+ * <c>E_OBJECT_MATERIAL_SIZE:</c> when they are enabled.
  * </remarks>
  */
 
@@ -8155,9 +8199,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>OBJECT_MATERIAL_TEXT_ALIGN:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_OBJECT_MATERIAL_TEXT_ALIGN:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>OBJECT_MATERIAL_TEXT_ALIGN:</c> is
+ * defined as <c>_:</c> when enhanced tags are disabled, and
+ * <c>E_OBJECT_MATERIAL_TEXT_ALIGN:</c> when they are enabled.
  * </remarks>
  */
 
@@ -8174,9 +8218,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>HTTP_METHOD:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_HTTP_METHOD:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>HTTP_METHOD:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_HTTP_METHOD:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8193,9 +8237,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>HTTP_ERROR:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_HTTP_ERROR:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>HTTP_ERROR:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_HTTP_ERROR:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8231,9 +8275,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>WEAPONSKILL:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_WEAPONSKILL:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>WEAPONSKILL:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_WEAPONSKILL:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8250,9 +8294,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>WEAPONSTATE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_WEAPONSTATE:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>WEAPONSTATE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_WEAPONSTATE:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8269,9 +8313,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>SELECT_OBJECT:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_SELECT_OBJECT:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>SELECT_OBJECT:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_SELECT_OBJECT:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8288,9 +8332,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>BULLET_HIT_TYPE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_BULLET_HIT_TYPE:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>BULLET_HIT_TYPE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_BULLET_HIT_TYPE:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8307,9 +8351,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>DOWNLOAD_REQUEST:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_DOWNLOAD_REQUEST:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>DOWNLOAD_REQUEST:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_DOWNLOAD_REQUEST:</c>
+ * when they are enabled.
  * </remarks>
  */
 
@@ -8326,9 +8370,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>CLICK_SOURCE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_CLICK_SOURCE:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>CLICK_SOURCE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_CLICK_SOURCE:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8345,9 +8389,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>EDIT_RESPONSE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_EDIT_RESPONSE:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>EDIT_RESPONSE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_EDIT_RESPONSE:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8364,9 +8408,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>DIALOG_STYLE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_DIALOG_STYLE:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>DIALOG_STYLE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_DIALOG_STYLE:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8383,9 +8427,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>TEXT_DRAW_FONT:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_TEXT_DRAW_FONT:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>TEXT_DRAW_FONT:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_TEXT_DRAW_FONT:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8402,9 +8446,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>TEXT_DRAW_ALIGN:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_TEXT_DRAW_ALIGN:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>TEXT_DRAW_ALIGN:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_TEXT_DRAW_ALIGN:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8421,9 +8465,9 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
  * <remarks>
- * Future-compatible tag definitions.  <c>SERVER_VARTYPE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_SERVER_VARTYPE:</c> when they
- * are enabled.
+ * Future-compatible tag definitions.  <c>SERVER_VARTYPE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_SERVER_VARTYPE:</c> when
+ * they are enabled.
  * </remarks>
  */
 
@@ -8435,6 +8479,25 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 		#define SERVER_VARTYPE: __TAG(SERVER_VARTYPE):
 	#else
 		#define SERVER_VARTYPE: _:
+	#endif
+#endif
+
+/**
+ * <remarks>
+ * Future-compatible tag definitions.  <c>FORCE_SYNC:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_FORCE_SYNC:</c> when they
+ * are enabled.
+ * </remarks>
+ */
+
+#if defined FORCE_SYNC
+	_FIXES_HIDE_PAWNDOC(FIXES_FORCE_SYNC);
+#else
+	_FIXES_CONST_PAWNDOC(FORCE_SYNC);
+	#if defined __TAG
+		#define FORCE_SYNC: __TAG(FORCE_SYNC):
+	#else
+		#define FORCE_SYNC: _:
 	#endif
 #endif
 
@@ -8961,6 +9024,7 @@ enum TEXT_DRAW_ALIGN:___FIXES_TEXT_DRAW_ALIGN
 	_FIXES_TEXT_DRAW_ALIGN_CENTRE,
 	_FIXES_TEXT_DRAW_ALIGN_RIGHT
 }
+
 _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_ALIGN);
 
 #if FIX_TEXT_DRAW_ALIGN
@@ -9037,6 +9101,27 @@ _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_FONT);
 	_FIXES_HIDE_PAWNDOC(FIXES___CAM_MODE);
 
 	#define _FIXES_CAMMODE_AIMWEAPONFROMCAR (CAM_MODE:55)
+#endif
+
+/**
+ * <remarks>
+ * Sync modes for <c>ApplyAnimation</c> and <c>ClearAnimation</c>.
+ * </remarks>
+ */
+
+enum FORCE_SYNC:___FIXES_FORCE_SYNC
+{
+	_FIXES_FORCE_SYNC_NONE,
+	_FIXES_FORCE_SYNC_ALL,
+	_FIXES_FORCE_SYNC_OTHER
+}
+
+_FIXES_ENUM_PAWNDOC(___FIXES_FORCE_SYNC);
+
+#if FIX_FORCE_SYNC
+	#define SYNC_NONE _FIXES_FORCE_SYNC_NONE
+	#define SYNC_ALL _FIXES_FORCE_SYNC_ALL
+	#define SYNC_OTHER _FIXES_FORCE_SYNC_OTHER
 #endif
 
 /**
@@ -12480,7 +12565,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 		#if _FIXES_SAMP && defined _ALS_ApplyAnimation
 			#error _ALS_ApplyAnimation defined
 		#endif
-		native CST_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync = _FIXES_MAYBE_FALSE) = ApplyAnimation;
+		native CST_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE) = ApplyAnimation;
 		native BAD_ApplyAnimation(playerid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time, forceSync = 0) = ApplyAnimation;
 		#define _ALS_ApplyAnimation
 		#define ApplyAnimation( CST_ApplyAnimation(
@@ -13104,8 +13189,8 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native RemovePlayerFromVehicle__(playerid) = RemovePlayerFromVehicle;
 	native TogglePlayerControllable__(playerid, bool:toggle) = TogglePlayerControllable;
 	native PlayerPlaySound__(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
-	native ApplyAnimation__(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync = false) = ApplyAnimation;
-	native ClearAnimations__(playerid, bool:forceSync = false) = ClearAnimations;
+	native ApplyAnimation__(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE) = ApplyAnimation;
+	native ClearAnimations__(playerid, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE) = ClearAnimations;
 	native GetPlayerAnimationIndex__(playerid) = GetPlayerAnimationIndex; 
 	native GetAnimationName__(index, animationLibrary[], len1 = sizeof (animationLibrary), animationName[], len2 = sizeof (animationName)) = GetAnimationName; 
 	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
@@ -17443,14 +17528,14 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 				// ===============================
 				#if FIX_DriveBy
 					return
-						ClearAnimations__(playerid, true),
+						ClearAnimations__(playerid),
 						skinid = SetPlayerSkin__(playerid, skinid),
 						PutPlayerInVehicle__(playerid, vehicleid, seat),
 						_FIXES_HideDriveByWeapon(playerid),
 						skinid;
 				#else
 					return
-						ClearAnimations__(playerid, true),
+						ClearAnimations__(playerid),
 						skinid = SetPlayerSkin__(playerid, skinid),
 						PutPlayerInVehicle__(playerid, vehicleid, seat),
 						skinid;
@@ -17839,7 +17924,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 
 					if (_FIXES_NO_RANGE(animation, 1007, 1060 + 1) && _FIXES_NO_RANGE(animation, 225, 233 + 1))
 					{
-						ClearAnimations__(playerid, true);
+						ClearAnimations__(playerid, _FIXES_FORCE_SYNC_ALL);
 						FIXES_gsPSTimer[playerid] = 0;
 					}
 				}
@@ -18493,7 +18578,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 			FIXES_gsDriveByWeapon[playerid] = GetPlayerWeapon__(playerid),
 			FIXES_gsPlayerBools[playerid] |= e_FIXES_BOOLS_DRIVE_BY,
 			SetPlayerArmedWeapon__(playerid, _FIXES_WEAPON_FIST),
-			ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, false, false, false, false, 1, true),
+			ApplyAnimation__(playerid, "PED", "CAR_GETIN_RHS", 4.1, false, false, false, false, 1, _FIXES_FORCE_SYNC_ALL),
 			SetTimerEx__(FIXES_gscDriveBy, 500, false, FIXES_gscSpec@i, playerid);
 	}
 
@@ -21151,31 +21236,28 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
  */
 
 #if FIX_ClearAnimations || FIX_ClearAnimations_2
-	stock FIXES_ClearAnimations(playerid, _FIXES_MAYBE_BOOL:forceSync = _FIXES_MAYBE_FALSE)
+	stock FIXES_ClearAnimations(playerid, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE)
 	{
-		#if !FIX_bool_tags
-			forceSync = _:(!!forceSync);
-		#endif
 		#if FIX_ClearAnimations || FIX_ClearAnimations_2
 			if (IsPlayerInAnyVehicle__(playerid))
 		#endif
 		#if FIX_ClearAnimations
 			{
-				return ApplyAnimation__(playerid, "PED", "CAR_SIT", 4.0, false, false, false, false, 1, bool:forceSync);
+				return ApplyAnimation__(playerid, "PED", "CAR_SIT", 4.0, false, false, false, false, 1, forceSync);
 			}
 		#endif
 		#if FIX_ClearAnimations + FIX_ClearAnimations_2 == 1 // XOR
 			{
-				return ClearAnimations__(playerid, bool:forceSync);
+				return ClearAnimations__(playerid, forceSync);
 			}
 		#endif
 		#if FIX_ClearAnimations_2
 			new
-				ret = ClearAnimations__(playerid, bool:forceSync);
+				ret = ClearAnimations__(playerid, forceSync);
 			return
-				ApplyAnimation__(playerid, "PED", "IDLE_STANCE", 4.0, false, false, false, false, 1, bool:forceSync),
-				ApplyAnimation__(playerid, "PED", "IDLE_CHAT", 4.0, false, false, false, false, 1, bool:forceSync),
-				ApplyAnimation__(playerid, "PED", "WALK_PLAYER", 4.0, false, false, false, false, 1, bool:forceSync),
+				ApplyAnimation__(playerid, "PED", "IDLE_STANCE", 4.0, false, false, false, false, 1, forceSync),
+				ApplyAnimation__(playerid, "PED", "IDLE_CHAT", 4.0, false, false, false, false, 1, forceSync),
+				ApplyAnimation__(playerid, "PED", "WALK_PLAYER", 4.0, false, false, false, false, 1, forceSync),
 				ret;
 		#endif
 	}
@@ -22397,7 +22479,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyAnimation_2
-	static stock _FIXES_ApplyAnimationDelay(playerid, libraryIndex, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync)
+	static stock _FIXES_ApplyAnimationDelay(playerid, libraryIndex, const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync)
 	{
 		if (FIXES_gsPlayerAnimTimer[playerid])
 		{
@@ -22409,7 +22491,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 			FIXES_gsPlayerAnimLibs[playerid][libraryIndex >>> 5] &= ~(1 << (libraryIndex & 0x1F)),
 			FIXES_gsPlayerAnimName[playerid << 6] = '\0',
 			strcat(FIXES_gsPlayerAnimName[playerid << 6], animationName, 64),
-			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx__("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, libraryIndex, delta, loop, lockX, lockY, freeze, time, forceSync);
+			FIXES_gsPlayerAnimTimer[playerid] = SetTimerEx__("_FIXES_ApplyAnimation", 350, false, "ddfdddddd", playerid, libraryIndex, delta, loop, lockX, lockY, freeze, time, _:forceSync);
 		}
 	}
 #else
@@ -22421,9 +22503,9 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyAnimation_2
-	forward _FIXES_ApplyAnimation(playerid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync);
+	forward _FIXES_ApplyAnimation(playerid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync);
 
-	public _FIXES_ApplyAnimation(playerid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, bool:forceSync)
+	public _FIXES_ApplyAnimation(playerid, animationLibrary, Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync)
 	{
 		ApplyAnimation__(playerid, FIXES_gscAnimLib[animationLibrary], FIXES_gsPlayerAnimName[playerid << 6], delta, loop, lockX, lockY, freeze, time, forceSync),
 		FIXES_gsPlayerAnimTimer[playerid] = 0;
@@ -22452,7 +22534,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
-	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, _FIXES_MAYBE_BOOL:forceSync = _FIXES_MAYBE_FALSE)
+	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE)
 	{
 		new
 			libraryIndex = _FIXES_GetAnimLibIndex(animationLibrary);
@@ -22460,9 +22542,9 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 		if (~libraryIndex) // != -1
 		{
 			#if FIX_ApplyAnimation_2
-				_FIXES_ApplyAnimationDelay(playerid, libraryIndex, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time, _FIXES_TO_BOOL(forceSync));
+				_FIXES_ApplyAnimationDelay(playerid, libraryIndex, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time, forceSync);
 			#endif
-				return ApplyAnimation__(playerid, animationLibrary, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time, _FIXES_TO_BOOL(forceSync));
+				return ApplyAnimation__(playerid, animationLibrary, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time, forceSync);
 		}
 
 		return 0;

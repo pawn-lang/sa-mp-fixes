@@ -1,7 +1,6 @@
 #define STRONG_TAGS
-//#pragma warning disable 234
-
-//#define FIXES_Single 0
+#pragma warning disable 234
+#define FIXES_Single 0
 
 #tryinclude <samp-stdlib\a_samp>
 #tryinclude <a_samp>
@@ -819,8 +818,8 @@ public CompileTest()
 	RemovePlayerFromVehicle(0);
 	TogglePlayerControllable(0, true);
 	PlayerPlaySound(0, 0, 0, 0, 0);
-	ApplyAnimation(0, "STRING", "STRING", 0.0, false, false, false, false, 0, false);
-	ClearAnimations(0, false);
+	ApplyAnimation(0, "STRING", "STRING", 0.0, false, false, false, false, 0, SYNC_ALL);
+	ClearAnimations(0, SYNC_NONE);
 	GetPlayerAnimationIndex(0);
 	GetAnimationName(0, output, _, output, _);
 	GetPlayerSpecialAction(0);
