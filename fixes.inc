@@ -18655,10 +18655,10 @@ native BAD_KillTimer(timerid) = KillTimer;
 				forward On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
 			#endif
 		#else
-			#define OnPlayerActionStateChange( On_PlayerActionStateChange(
+			#define OnPlayerActionStateChange(%0) On_PlayerActionStateChange(%0) <_ALS : _ALS_go>
 			#define OnPlayerKeyStateChange(%0) BAD_OnPlayerKeyStateChange() { } public On_PlayerKeyStateChange(%0) <_ALS : _ALS_go>
 
-			_FIXES_FORWARD On_PlayerActionStateChange(playerid, ACTION:newkeys, ACTION:oldactions);
+			_FIXES_FORWARD On_PlayerActionStateChange(playerid, ACTION:newactions, ACTION:oldactions);
 			_FIXES_FORWARD On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
 		#endif
 

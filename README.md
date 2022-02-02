@@ -353,6 +353,31 @@ public OnPlayerStateChange(playerid, PLAYER_STATE:newstate, PLAYER_STATE:oldstat
 forward Hooked_OnPlayerStateChange(playerid, PLAYER_STATE:newstate, PLAYER_STATE:oldstate);
 ```
 
+## Keys And Actions
+
+"Keys" have been renamed "Actions" because they aren't keys and the name constantly confused
+everyone.  You can't detect "F" you can only detect "JUMP".  You can't make any assumptions about
+which keys are bound to which actions.  You can't ask players to press a specific key (except when
+using `"~k~"` in strings, which maps actions back to keys).  You can't detect specific keys.  No
+matter how many times this is explained the follow-up questions are invariably, "OK, but how do I
+detect this key?"  You can't, and never could.  Thus `GetPlayerKeys` has been replaced by
+`GetPlayerActions`, `OnPlayerKeyStateChange` has been replaced by `OnPlayerActionStateChange`,
+`newkeys` and `oldkeys` have been replaced by `newactions` and `oldactions`, and `KEY` has been
+replaced by `ACTION` (leading to the interestingly named macro `ACTION_ACTION` from `KEY_ACTION`):
+
+```pawn
+// The `ACTION` tags are optional.
+public OnPlayerActionStateChange(playerid, ACTION:newactions, ACTION:oldactions)
+{
+	new
+		ACTION:actions,
+		ACTION:updown,
+		ACTION:leftright;
+	GetPlayerActions(playerid, actions, updown, leftright);
+	return 1;
+}
+```
+
 ## API
 
 fixes.inc includes a lot of data and processing that is required for it to function, but could be

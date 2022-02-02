@@ -946,4 +946,14 @@ public CompileTest()
 	ivar = GetWorldTime();
 }
 
+public OnPlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys)
+{
+	return 1;
+}
+
+public OnPlayerActionStateChange(playerid, ACTION:newactions, ACTION:oldactions)
+{
+	return 1;
+}
+
 
