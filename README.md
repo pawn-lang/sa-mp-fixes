@@ -191,23 +191,23 @@ BypassDialog | You can type commands and move while in dialogs. | Return 0. | [Y
 SetTimer | Valid timers can return ID 0. | Recreate them and kill the original. | [Y_Less](https://github.com/Y-Less) | |
 main | Gamemodes without this function give a console error. | Make a stub version. | [Y_Less](https://github.com/Y-Less) | |
 OnVehicleSpawn | Colour `-1` isn't synced. | Manually control the colours. | [Y_Less](https://github.com/Y-Less) | |
-AttachTrailerToVehicle | When trailerid is equal to vehicleid and passenger is in vehicleid, it starts spinning. | Check if trailerid and vehicleid are equal. | [Mergevos](https://github.com/Mergevos) ||
-GetVehicleComponentInSlot | The function doesn't work for CARMODTYPE_STEREO. Both front bull bars and front bumper components are saved in the CARMODTYPE_FRONT_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last. Both rear bull bars and rear bumper components are saved in the CARMODTYPE_REAR_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last. | Hook functions and store components. This uses some code from vSync library. | [Mergevos](https://github.com/Mergevos) ||
+AttachTrailerToVehicle | When trailerid is equal to vehicleid and passenger is in vehicleid, it starts spinning. | Check if trailerid and vehicleid are equal. | [Mergevos](https://github.com/Mergevos) | |
+GetVehicleComponentInSlot | The function doesn't work for CARMODTYPE_STEREO. Both front bull bars and front bumper components are saved in the CARMODTYPE_FRONT_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last. Both rear bull bars and rear bumper components are saved in the CARMODTYPE_REAR_BUMPER slot. If a vehicle has both of them installed, this function will only return the one which was installed last. | Hook functions and store components. This uses some code from vSync library. | [Mergevos](https://github.com/Mergevos) | |
 API | fixes.inc isn't intended to extend the SA:MP API, but has a lot of information internally that can be useful to other scripts.  By not exposing this data, we complicate and bloat scripts by requiring them to re-implement said functionality. | Expose the data, behind a tightly controlled API. | [Y_Less](https://github.com/Y-Less) | |
 floatfract | Incorrect on negative numbers. | Use floatround and subtraction. | [MuthaX](https://github.com/MuthaX) | [Link](https://github.com/pawn-lang/sa-mp-fixes/issues/150) |
 strfind | The function is prone to OOB access when the search start index is negative. | Clamp it to 0. | [Daniel-Cortez](https://github.com/Daniel-Cortez) | [Link](https://github.com/pawn-lang/sa-mp-fixes/issues/91) |
 strdel | The function is prone to OOB access when the index of the first character to remove is negative. | Clamp it to 0. | [Daniel-Cortez](https://github.com/Daniel-Cortez) | [Link](https://github.com/pawn-lang/sa-mp-fixes/issues/91) |
-CallLocalFunction | Isn't defined in NPC modes. | Write a pawn version using `funcidx`. | [Y_Less](https://github.com/Y-Less)  | |
-deconst | Un-const-correct - uses `const` but shouldn't. | Redefine it without, plus a `len` default. | [Y_Less](https://github.com/Y-Less)  | |
-Streamer_RemoveIntData | Int data functions expect more parameters than they specify. | Pass a hidden fake one if the version is right. | [Y_Less](https://github.com/Y-Less)  | [Link](https://github.com/samp-incognito/samp-streamer-plugin/pull/380) |
-Streamer_HasIntData | Int data functions expect more parameters than they specify. | Pass a hidden fake one if the version is right. | [Y_Less](https://github.com/Y-Less)  | [Link](https://github.com/samp-incognito/samp-streamer-plugin/pull/380) |
-default | Many functions are missing default values for string lengths. | Add them. | [Y_Less](https://github.com/Y-Less)  | |
-limit_tags | Some limits, like `MAX_MENUS` are untagged, so can't be used properly. | Redefine them with the tags added. | [Y_Less](https://github.com/Y-Less)  | |
-bool_tags | Many `true/false` parameters use `1/0` with no `bool:` tag. | Add the tag. | [Y_Less](https://github.com/Y-Less)  | |
-TEXT_DRAW_ALIGN | The alignment modes for `TextDrawAlignment` are not defined by default. | Define them. | [Y_Less](https://github.com/Y-Less)  | |
-TEXT_DRAW_FONT | The fonts for `TextDrawFont` are not defined by default. | Define them. | [Y_Less](https://github.com/Y-Less)  | |
-GetPlayerKeys | `GetPlayerKeys` and `OnPlayerKeyStateChange` don't actually deal with "keys", but "actions".  The defines don't correspond to real keyboard inputs, but bound game commands.  This is one of the biggest sources of confusion, even amongst intermediate coders. | Rename the functions to use `Action` instead of `Key` and deprecate the old ones. | [Y_Less](https://github.com/Y-Less)  | |
-FORCE_SYNC | The sync modes for `ApplyAnimation` are not defined by default. | Define them. | [Y_Less](https://github.com/Y-Less)  | |
+CallLocalFunction | Isn't defined in NPC modes. | Write a pawn version using `funcidx`. | [Y_Less](https://github.com/Y-Less) | |
+deconst | Un-const-correct - uses `const` but shouldn't. | Redefine it without, plus a `len` default. | [Y_Less](https://github.com/Y-Less) | |
+Streamer_RemoveIntData | Int data functions expect more parameters than they specify. | Pass a hidden fake one if the version is right. | [Y_Less](https://github.com/Y-Less) | [Link](https://github.com/samp-incognito/samp-streamer-plugin/pull/380) |
+Streamer_HasIntData | Int data functions expect more parameters than they specify. | Pass a hidden fake one if the version is right. | [Y_Less](https://github.com/Y-Less) | [Link](https://github.com/samp-incognito/samp-streamer-plugin/pull/380) |
+default | Many functions are missing default values for string lengths. | Add them. | [Y_Less](https://github.com/Y-Less) | |
+limit_tags | Some limits, like `MAX_MENUS` are untagged, so can't be used properly. | Redefine them with the tags added. | [Y_Less](https://github.com/Y-Less) | |
+bool_tags | Many `true/false` parameters use `1/0` with no `bool:` tag. | Add the tag. | [Y_Less](https://github.com/Y-Less) | |
+TEXT_DRAW_ALIGN | The alignment modes for `TextDrawAlignment` are not defined by default. | Define them. | [Y_Less](https://github.com/Y-Less) | |
+TEXT_DRAW_FONT | The fonts for `TextDrawFont` are not defined by default. | Define them. | [Y_Less](https://github.com/Y-Less) | |
+GetPlayerKeys | `GetPlayerKeys` and `OnPlayerKeyStateChange` don't actually deal with "keys", but "actions".  The defines don't correspond to real keyboard inputs, but bound game commands.  This is one of the biggest sources of confusion, even amongst intermediate coders. | Rename the functions to use `Action` instead of `Key` and deprecate the old ones. | [Y_Less](https://github.com/Y-Less) | |
+FORCE_SYNC | The sync modes for `ApplyAnimation` are not defined by default. | Define them. | [Y_Less](https://github.com/Y-Less) | |
 
 A few fixes are disabled by default, to enable them all do:
 
