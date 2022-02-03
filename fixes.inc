@@ -19985,7 +19985,7 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 		{
 			new
 				WEAPON:ret = WEAPON:FIXES_GET(PlayerWeapon, playerid);
-			return (~ret) ? GetPlayerWeapon__(playerid) : ret; // != -1
+			return (~ret) ? ret : GetPlayerWeapon__(playerid); // != -1
 		}
 		return _FIXES_WEAPON_FIST;
 	}
