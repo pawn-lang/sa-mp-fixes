@@ -1,7 +1,8 @@
 #define STRONG_TAGS
-#pragma warning disable 234
-#define FIXES_Single 0
-#define FIX_const 0
+//#pragma warning disable 234
+//#define FIXES_Single 0
+//#define FIX_const 0
+//#define FIX_bool_tags 0
 
 #tryinclude <samp-stdlib\a_samp>
 #tryinclude <a_samp>
