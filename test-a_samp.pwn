@@ -1,11 +1,13 @@
 #define STRONG_TAGS
 #pragma warning disable 234
-//#define FIXES_Single 0
+#define FIXES_Single 0
 #define FIX_const 0
 
-//#tryinclude <samp-stdlib\a_samp>
+#tryinclude <samp-stdlib\a_samp>
 #tryinclude <a_samp>
-#include <a_http>
+#if !defined HTTP
+	#include <a_http>
+#endif
 
 #undef MAX_PLAYERS
 #define MAX_PLAYERS (100)
