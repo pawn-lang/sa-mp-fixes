@@ -5,6 +5,7 @@
 
 //#tryinclude <samp-stdlib\a_samp>
 #tryinclude <a_samp>
+#include <a_http>
 
 #undef MAX_PLAYERS
 #define MAX_PLAYERS (100)

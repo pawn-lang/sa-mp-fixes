@@ -427,13 +427,6 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 	#pragma warning disable 207 // Disable unknown pragmas warning.
 	#pragma disablerecursion    // Disable recursion warning if it exists.
 	#pragma warning pop         // Maybe re-enable unknown pragmas warning.
-
-	// Disable warning 214: `possibly a "const" array argument was intended`.
-	// This code is nominally const-correct, but that can be disabled with
-	// `FIX_const 0`;  When it is disabled a lot more warnings appear in this
-	// code, despite the fact that they are actually not present normally.
-	#pragma warning push
-	#pragma warning disable 214
 #endif
 
 // Detect compiling on open.mp.
@@ -13360,6 +13353,25 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <fixes>defaults</fixes>
+ */
+
+#if FIX_defaults && !FIX_const
+	#if _FIXES_SAMP && defined _ALS_GetPlayerVersion
+		#error _ALS_GetPlayerVersion defined
+	#endif
+
+	native FIXES_GetPlayerVersion(playerid, version[], len = sizeof (version)) = GetPlayerVersion;
+
+	#if _FIXES_SAMP
+		#define _ALS_GetPlayerVersion
+		#define GetPlayerVersion( FIXES_GetPlayerVersion(
+	#endif
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerVersionDefault);
+#endif
+
+/**
  * <fixes>GetSVarString</fixes>
  */
 
@@ -20635,6 +20647,16 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
 
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Disable warning 214: possibly a "const" array argument was intended.
+		// This code is nominally const-correct, but that can be disabled with
+		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
+		// this code, despite the fact that they are actually not present
+		// normally.
+		#pragma warning push
+		#pragma warning disable 214
+	#endif
+
 	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[])
 	{
 		#if FIX_CreatePlayerTextDraw_2
@@ -20646,6 +20668,11 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			return PlayerText:y;
 		#endif
 	}
+
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Re-enable `const` warnings.
+		#pragma warning push
+	#endif
 
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
@@ -20696,6 +20723,16 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
 
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Disable warning 214: possibly a "const" array argument was intended.
+		// This code is nominally const-correct, but that can be disabled with
+		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
+		// this code, despite the fact that they are actually not present
+		// normally.
+		#pragma warning push
+		#pragma warning disable 214
+	#endif
+
 	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[])
 	{
 		#if FIX_PlayerTextDrawSetString_2
@@ -20707,6 +20744,11 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			return playerid;
 		#endif
 	}
+
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Re-enable `const` warnings.
+		#pragma warning push
+	#endif
 
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
@@ -20757,6 +20799,16 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
 
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Disable warning 214: possibly a "const" array argument was intended.
+		// This code is nominally const-correct, but that can be disabled with
+		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
+		// this code, despite the fact that they are actually not present
+		// normally.
+		#pragma warning push
+		#pragma warning disable 214
+	#endif
+
 	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[])
 	{
 		#if FIX_TextDrawCreate_2
@@ -20768,6 +20820,11 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			return Text:x;
 		#endif
 	}
+
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Re-enable `const` warnings.
+		#pragma warning push
+	#endif
 
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
@@ -20818,6 +20875,16 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
 
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Disable warning 214: possibly a "const" array argument was intended.
+		// This code is nominally const-correct, but that can be disabled with
+		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
+		// this code, despite the fact that they are actually not present
+		// normally.
+		#pragma warning push
+		#pragma warning disable 214
+	#endif
+
 	stock FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[])
 	{
 		#if FIX_TextDrawSetString_2
@@ -20829,6 +20896,11 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 			return _:text;
 		#endif
 	}
+
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Re-enable `const` warnings.
+		#pragma warning push
+	#endif
 
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
@@ -21330,6 +21402,16 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
  */
 
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog || FIX_BypassDialog
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Disable warning 214: possibly a "const" array argument was intended.
+		// This code is nominally const-correct, but that can be disabled with
+		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
+		// this code, despite the fact that they are actually not present
+		// normally.
+		#pragma warning push
+		#pragma warning disable 214
+	#endif
+
 	stock FIXES_ShowPlayerDialog(playerid, dialog, DIALOG_STYLE:style, _FIXES_MAYBE_CONST title[], _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[])
 	{
 		#if FIX_OnDialogResponse || FIX_GetPlayerDialog
@@ -21350,6 +21432,11 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 		return 0;
 		#endif
 	}
+
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Re-enable `const` warnings.
+		#pragma warning push
+	#endif
 
 	#if _FIXES_SAMP
 		#if defined _ALS_ShowPlayerDialog
@@ -22541,6 +22628,16 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Disable warning 214: possibly a "const" array argument was intended.
+		// This code is nominally const-correct, but that can be disabled with
+		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
+		// this code, despite the fact that they are actually not present
+		// normally.
+		#pragma warning push
+		#pragma warning disable 214
+	#endif
+
 	stock FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE)
 	{
 		new
@@ -22556,6 +22653,11 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 
 		return 0;
 	}
+
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Re-enable `const` warnings.
+		#pragma warning push
+	#endif
 
 	#if _FIXES_SAMP
 		#if defined _ALS_ApplyAnimation
@@ -22632,6 +22734,16 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
  */
 
 #if FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Disable warning 214: possibly a "const" array argument was intended.
+		// This code is nominally const-correct, but that can be disabled with
+		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
+		// this code, despite the fact that they are actually not present
+		// normally.
+		#pragma warning push
+		#pragma warning disable 214
+	#endif
+
 	stock FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time)
 	{
 		new
@@ -22647,6 +22759,11 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 
 		return 0;
 	}
+
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Re-enable `const` warnings.
+		#pragma warning push
+	#endif
 
 	#if _FIXES_SAMP
 		#if defined _ALS_ApplyActorAnimation
@@ -23641,6 +23758,16 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
  */
 
 #if FIX_GetPVarString
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Disable warning 214: possibly a "const" array argument was intended.
+		// This code is nominally const-correct, but that can be disabled with
+		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
+		// this code, despite the fact that they are actually not present
+		// normally.
+		#pragma warning push
+		#pragma warning disable 214
+	#endif
+
 	stock FIXES_GetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], value[], len = sizeof (value))
 	{
 		len = GetPVarString__(playerid, pvar, value, len);
@@ -23648,6 +23775,11 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 		do {} while ((value[++i] &= 0xFF) != '\0');
 		return len;
 	}
+
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Re-enable `const` warnings.
+		#pragma warning push
+	#endif
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetPVarString
@@ -23669,6 +23801,16 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
  */
 
 #if FIX_GetSVarString
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Disable warning 214: possibly a "const" array argument was intended.
+		// This code is nominally const-correct, but that can be disabled with
+		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
+		// this code, despite the fact that they are actually not present
+		// normally.
+		#pragma warning push
+		#pragma warning disable 214
+	#endif
+
 	stock FIXES_GetSVarString(_FIXES_MAYBE_CONST svar[], value[], len = sizeof (value))
 	{
 		len = GetSVarString__(svar, value, len);
@@ -23676,6 +23818,11 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 		do {} while ((value[++i] &= 0xFF) != '\0');
 		return len;
 	}
+
+	#if _FIXES_NEW_COMPILER && !FIX_const
+		// Re-enable `const` warnings.
+		#pragma warning push
+	#endif
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetSVarString
@@ -25267,11 +25414,6 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 
 
 */
-
-#if _FIXES_NEW_COMPILER
-	// Re-enable `const` warnings.
-	#pragma warning push
-#endif
 
 // Clean up all internal defines.
 #undef _FIXES_CEILDIV
