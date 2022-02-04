@@ -422,11 +422,18 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 		#endif
 	#endif
 
-	// Stupid "warning" that should not exist ever.
+	// Stupid "warning" that should not exist ever:
+	#pragma warning push        // Save the warning state.
+	#pragma warning disable 207 // Disable unknown pragmas warning.
+	#pragma disablerecursion    // Disable recursion warning if it exists.
+	#pragma warning pop         // Maybe re-enable unknown pragmas warning.
+
+	// Disable warning 214: `possibly a "const" array argument was intended`.
+	// This code is nominally const-correct, but that can be disabled with
+	// `FIX_const 0`;  When it is disabled a lot more warnings appear in this
+	// code, despite the fact that they are actually not present normally.
 	#pragma warning push
-	#pragma warning disable 207
-	#pragma disablerecursion
-	#pragma warning pop
+	#pragma warning disable 214
 #endif
 
 // Detect compiling on open.mp.
@@ -25260,6 +25267,11 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 
 
 */
+
+#if _FIXES_NEW_COMPILER
+	// Re-enable `const` warnings.
+	#pragma warning push
+#endif
 
 // Clean up all internal defines.
 #undef _FIXES_CEILDIV
