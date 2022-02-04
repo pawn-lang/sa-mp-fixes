@@ -262,7 +262,7 @@ been `false`/`true`.  This is the `bool_tags` fix and affects the following nati
 * `native SetTimerEx(const functionName[], interval, bool:repeating, const format[] = "", {Float, _}:...);`
 * `native AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, bool:addSiren = false);`
 * `native ShowNameTags(bool:show);`
-* `native EnableTirePopping(bool:enable) `
+* `native EnableTirePopping(bool:enable);`
 * `native AllowInteriorWeapons(bool:allow);`
 * `native AllowAdminTeleport(bool:allow);`
 * `native EnableZoneNames(bool:enable);`

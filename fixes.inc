@@ -24687,6 +24687,324 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	_FIXES_HIDE_PAWNDOC(FIXES_strcmp);
 #endif
 
+#if _FIXES_SAMP && FIX_bool_tags
+	#if !defined _ALS_SetTimer
+		native FIXES_SetTimer(_FIXES_MAYBE_CONST functionName[], interval, bool:repeating) = SetTimer;
+		#define SetTimer( FIXES_SetTimer(
+		#define _ALS_SetTimer
+	#endif
+	#if !defined _ALS_SetTimerEx
+		native FIXES_SetTimerEx(_FIXES_MAYBE_CONST functionName[], interval, bool:repeating, _FIXES_MAYBE_CONST format[] = "", {Float, _}:...) = SetTimerEx;
+		#define SetTimerEx( FIXES_SetTimerEx(
+		#define _ALS_SetTimerEx
+	#endif
+	#if !defined _ALS_AddStaticVehicleEx
+		native FIXES_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, bool:addSiren = false) = AddStaticVehicleEx;
+		#define AddStaticVehicleEx( FIXES_AddStaticVehicleEx(
+		#define _ALS_AddStaticVehicleEx
+	#endif
+	#if !defined _ALS_ShowNameTags
+		native FIXES_ShowNameTags(bool:show) = ShowNameTags;
+		#define ShowNameTags( FIXES_ShowNameTags(
+		#define _ALS_ShowNameTags
+	#endif
+	#if !defined _ALS_EnableTirePopping
+		native FIXES_EnableTirePopping(bool:enable) = EnableTirePopping;
+		#define EnableTirePopping( FIXES_EnableTirePopping(
+		#define _ALS_EnableTirePopping
+	#endif
+	#if !defined _ALS_AllowInteriorWeapons
+		native FIXES_AllowInteriorWeapons(bool:allow) = AllowInteriorWeapons;
+		#define AllowInteriorWeapons( FIXES_AllowInteriorWeapons(
+		#define _ALS_AllowInteriorWeapons
+	#endif
+	#if !defined _ALS_AllowAdminTeleport
+		native FIXES_AllowAdminTeleport(bool:allow) = AllowAdminTeleport;
+		#define AllowAdminTeleport( FIXES_AllowAdminTeleport(
+		#define _ALS_AllowAdminTeleport
+	#endif
+	#if !defined _ALS_EnableZoneNames
+		native FIXES_EnableZoneNames(bool:enable) = EnableZoneNames;
+		#define EnableZoneNames( FIXES_EnableZoneNames(
+		#define _ALS_EnableZoneNames
+	#endif
+	#if !defined _ALS_IsPlayerNPC
+		native bool:FIXES_IsPlayerNPC(playerid) = IsPlayerNPC;
+		#define IsPlayerNPC( FIXES_IsPlayerNPC(
+		#define _ALS_IsPlayerNPC
+	#endif
+	#if !defined _ALS_IsPlayerAdmin
+		native bool:FIXES_IsPlayerAdmin(playerid) = IsPlayerAdmin;
+		#define IsPlayerAdmin( FIXES_IsPlayerAdmin(
+		#define _ALS_IsPlayerAdmin
+	#endif
+	#if !defined _ALS_GetServerVarAsBool
+		native bool:FIXES_GetServerVarAsBool(_FIXES_MAYBE_CONST cvar[]) = GetServerVarAsBool;
+		#define GetServerVarAsBool( FIXES_GetServerVarAsBool(
+		#define _ALS_GetServerVarAsBool
+	#endif
+	#if !defined _ALS_GetConsoleVarAsBool
+		native bool:FIXES_GetConsoleVarAsBool(_FIXES_MAYBE_CONST cvar[]) = GetConsoleVarAsBool;
+		#define GetConsoleVarAsBool( FIXES_GetConsoleVarAsBool(
+		#define _ALS_GetConsoleVarAsBool
+	#endif
+	#if !defined _ALS_IsValidMenu
+		native bool:FIXES_IsValidMenu(Menu:menuid) = IsValidMenu;
+		#define IsValidMenu( FIXES_IsValidMenu(
+		#define _ALS_IsValidMenu
+	#endif
+	#if !defined _ALS_TextDrawUseBox
+		native FIXES_TextDrawUseBox(Text:text, bool:use) = TextDrawUseBox;
+		#define TextDrawUseBox( FIXES_TextDrawUseBox(
+		#define _ALS_TextDrawUseBox
+	#endif
+	#if !defined _ALS_TextDrawSetProportional
+		native FIXES_TextDrawSetProportional(Text:text, bool:set) = TextDrawSetProportional;
+		#define TextDrawSetProportional( FIXES_TextDrawSetProportional(
+		#define _ALS_TextDrawSetProportional
+	#endif
+	#if !defined _ALS_TextDrawSetSelectable
+		native FIXES_TextDrawSetSelectable(Text:text, bool:set) = TextDrawSetSelectable;
+		#define TextDrawSetSelectable( FIXES_TextDrawSetSelectable(
+		#define _ALS_TextDrawSetSelectable
+	#endif
+	#if !defined _ALS_Create3DTextLabel
+		native Text3D:FIXES_Create3DTextLabel(_FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false) = Create3DTextLabel;
+		#define Create3DTextLabel( FIXES_Create3DTextLabel(
+		#define _ALS_Create3DTextLabel
+	#endif
+	#if !defined _ALS_CreatePlayer3DTextLabel
+		native PlayerText3D:FIXES_CreatePlayer3DTextLabel(playerid, _FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false) = CreatePlayer3DTextLabel;
+		#define CreatePlayer3DTextLabel( FIXES_CreatePlayer3DTextLabel(
+		#define _ALS_CreatePlayer3DTextLabel
+	#endif
+	#if !defined _ALS_CreateVehicle
+		native FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false) = CreateVehicle;
+		#define CreateVehicle( FIXES_CreateVehicle(
+		#define _ALS_CreateVehicle
+	#endif
+	#if !defined _ALS_IsVehicleStreamedIn
+		native bool:FIXES_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
+		#define IsVehicleStreamedIn( FIXES_IsVehicleStreamedIn(
+		#define _ALS_IsVehicleStreamedIn
+	#endif
+	#if !defined _ALS_IsTrailerAttachedToVehicle
+		native bool:FIXES_IsTrailerAttachedToVeh(vehicleid) = IsTrailerAttachedToVehicle;
+		#define IsTrailerAttachedToVehicle( FIXES_IsTrailerAttachedToVeh(
+		#define _ALS_IsTrailerAttachedToVehicle
+	#endif
+	#if !defined _ALS_IsValidVehicle
+		native bool:FIXES_IsValidVehicle(vehicleid) = IsValidVehicle;
+		#define IsValidVehicle( FIXES_IsValidVehicle(
+		#define _ALS_IsValidVehicle
+	#endif
+	#if !defined _ALS_DB_Close
+		native bool:FIXES_DB_Close(DB:db) = DB_Close;
+		#define DB_Close( FIXES_DB_Close(
+		#define _ALS_DB_Close
+	#endif
+	#if !defined _ALS_DB_FreeResult
+		native bool:FIXES_DB_FreeResult(DBResult:result) = DB_FreeResult;
+		#define DB_FreeResult( FIXES_DB_FreeResult(
+		#define _ALS_DB_FreeResult
+	#endif
+	#if !defined _ALS_DB_NextRow
+		native bool:FIXES_DB_NextRow(DBResult:result) = DB_NextRow;
+		#define DB_NextRow( FIXES_DB_NextRow(
+		#define _ALS_DB_NextRow
+	#endif
+	#if !defined _ALS_DB_FieldName
+		native bool:FIXES_DB_FieldName(DBResult:result, field, output[], size = sizeof (output)) = DB_FieldName;
+		#define DB_FieldName( FIXES_DB_FieldName(
+		#define _ALS_DB_FieldName
+	#endif
+	#if !defined _ALS_DB_GetField
+		native bool:FIXES_DB_GetField(DBResult:result, field, output[], size = sizeof (output)) = DB_GetField;
+		#define DB_GetField( FIXES_DB_GetField(
+		#define _ALS_DB_GetField
+	#endif
+	#if !defined _ALS_DB_GetFieldAssoc
+		native bool:FIXES_DB_GetFieldAssoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], size = sizeof (output)) = DB_GetFieldAssoc;
+		#define DB_GetFieldAssoc( FIXES_DB_GetFieldAssoc(
+		#define _ALS_DB_GetFieldAssoc
+	#endif
+	#if !defined _ALS_IsActorStreamedIn
+		native bool:FIXES_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
+		#define IsActorStreamedIn( FIXES_IsActorStreamedIn(
+		#define _ALS_IsActorStreamedIn
+	#endif
+	#if !defined _ALS_ApplyActorAnimation
+		native FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time) = ApplyActorAnimation;
+		#define ApplyActorAnimation( FIXES_ApplyActorAnimation(
+		#define _ALS_ApplyActorAnimation
+	#endif
+	#if !defined _ALS_SetActorInvulnerable
+		native FIXES_SetActorInvulnerable(actorid, bool:invulnerable = true) = SetActorInvulnerable;
+		#define SetActorInvulnerable( FIXES_SetActorInvulnerable(
+		#define _ALS_SetActorInvulnerable
+	#endif
+	#if !defined _ALS_IsActorInvulnerable
+		native bool:FIXES_IsActorInvulnerable(actorid) = IsActorInvulnerable;
+		#define IsActorInvulnerable( FIXES_IsActorInvulnerable(
+		#define _ALS_IsActorInvulnerable
+	#endif
+	#if !defined _ALS_IsValidActor
+		native bool:FIXES_IsValidActor(actorid) = IsValidActor;
+		#define IsValidActor( FIXES_IsValidActor(
+		#define _ALS_IsValidActor
+	#endif
+	#if !defined _ALS_AttachObjectToObject
+		native FIXES_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, bool:syncRotation = true) = AttachObjectToObject;
+		#define AttachObjectToObject( FIXES_AttachObjectToObject(
+		#define _ALS_AttachObjectToObject
+	#endif
+	#if !defined _ALS_IsValidObject
+		native bool:FIXES_IsValidObject(objectid) = IsValidObject;
+		#define IsValidObject( FIXES_IsValidObject(
+		#define _ALS_IsValidObject
+	#endif
+	#if !defined _ALS_IsObjectMoving
+		native bool:FIXES_IsObjectMoving(objectid) = IsObjectMoving;
+		#define IsObjectMoving( FIXES_IsObjectMoving(
+		#define _ALS_IsObjectMoving
+	#endif
+	#if !defined _ALS_IsValidPlayerObject
+		native bool:FIXES_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
+		#define IsValidPlayerObject( FIXES_IsValidPlayerObject(
+		#define _ALS_IsValidPlayerObject
+	#endif
+	#if !defined _ALS_IsPlayerObjectMoving
+		native bool:FIXES_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
+		#define IsPlayerObjectMoving( FIXES_IsPlayerObjectMoving(
+		#define _ALS_IsPlayerObjectMoving
+	#endif
+	#if !defined _ALS_SetObjectMaterialText
+		native FIXES_SetObjectMaterialText(objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
+		#define SetObjectMaterialText( FIXES_SetObjectMaterialText(
+		#define _ALS_SetObjectMaterialText
+	#endif
+	#if !defined _ALS_SetPlayerObjMaterialText
+		native FIXES_SetPlayerObjMaterialText(playerid, objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
+		#define SetPlayerObjectMaterialText( FIXES_SetPlayerObjMaterialText(
+		#define _ALS_SetPlayerObjMaterialText
+	#endif
+	#if !defined _ALS_SetObjectsDefaultCameraCol
+		native FIXES_SetObjDefaultCameraCol(bool:disable) = SetObjectsDefaultCameraCol;
+		#define SetObjectsDefaultCameraCol( FIXES_SetObjDefaultCameraCol(
+		#define _ALS_SetObjectsDefaultCameraCol
+	#endif
+	#if !defined _ALS_IsPlayerInRangeOfPoint
+		native bool:FIXES_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
+		#define IsPlayerInRangeOfPoint( FIXES_IsPlayerInRangeOfPoint(
+		#define _ALS_IsPlayerInRangeOfPoint
+	#endif
+	#if !defined _ALS_IsPlayerStreamedIn
+		native bool:FIXES_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
+		#define IsPlayerStreamedIn( FIXES_IsPlayerStreamedIn(
+		#define _ALS_IsPlayerStreamedIn
+	#endif
+	#if !defined _ALS_TogglePlayerClock
+		native FIXES_TogglePlayerClock(playerid, bool:toggle) = TogglePlayerClock;
+		#define TogglePlayerClock( FIXES_TogglePlayerClock(
+		#define _ALS_TogglePlayerClock
+	#endif
+	#if !defined _ALS_PlayAudioStreamForPlayer
+		native FIXES_PlayAudioStreamForPlayer(playerid, _FIXES_MAYBE_CONST url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, bool:usepos = false) = PlayAudioStreamForPlayer;
+		#define PlayAudioStreamForPlayer( FIXES_PlayAudioStreamForPlayer(
+		#define _ALS_PlayAudioStreamForPlayer
+	#endif
+	#if !defined _ALS_IsPlayerAttachedSlotUsed
+		native bool:FIXES_IsPlayerAttachedSlotUsed(playerid, index) = IsPlayerAttachedSlotUsed;
+		#define IsPlayerAttachedSlotUsed( FIXES_IsPlayerAttachedSlotUsed(
+		#define _ALS_IsPlayerAttachedSlotUsed
+	#endif
+	#if !defined _ALS_PlayerTextDrawUseBox
+		native FIXES_PlayerTextDrawUseBox(playerid, PlayerText:text, bool:use) = PlayerTextDrawUseBox;
+		#define PlayerTextDrawUseBox( FIXES_PlayerTextDrawUseBox(
+		#define _ALS_PlayerTextDrawUseBox
+	#endif
+	#if !defined _ALS_PlayerTDSetProportional
+		native FIXES_PlayerTDSetProportional(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetProportional;
+		#define PlayerTextDrawSetProportional( FIXES_PlayerTDSetProportional(
+		#define _ALS_PlayerTDSetProportional
+	#endif
+	#if !defined _ALS_PlayerTDSetSelectable
+		native FIXES_PlayerTDSetSelectable(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetSelectable;
+		#define PlayerTextDrawSetSelectable( FIXES_PlayerTDSetSelectable(
+		#define _ALS_PlayerTDSetSelectable
+	#endif
+	#if !defined _ALS_TogglePlayerControllable
+		native FIXES_TogglePlayerControllable(playerid, bool:toggle) = TogglePlayerControllable;
+		#define TogglePlayerControllable( FIXES_TogglePlayerControllable(
+		#define _ALS_TogglePlayerControllable
+	#endif
+	#if !defined _ALS_ApplyAnimation
+		native FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE) = ApplyAnimation;
+		#define ApplyAnimation( FIXES_ApplyAnimation(
+		#define _ALS_ApplyAnimation
+	#endif
+	#if !defined _ALS_DisableRemoteVehCollisions
+		native FIXES_DisableRemoteVehCol(playerid, bool:disable) = DisableRemoteVehCollisions;
+		#define DisableRemoteVehCollisions( FIXES_DisableRemoteVehCol(
+		#define _ALS_DisableRemoteVehCollisions
+	#endif
+	#if !defined _ALS_ShowPlayerNameTagForPlayer
+		native FIXES_ShowPlayerNameTag4Player(playerid, targetid, bool:show) = ShowPlayerNameTagForPlayer;
+		#define ShowPlayerNameTagForPlayer( FIXES_ShowPlayerNameTag4Player(
+		#define _ALS_ShowPlayerNameTagForPlayer
+	#endif
+	#if !defined _ALS_AllowPlayerTeleport
+		native FIXES_AllowPlayerTeleport(playerid, bool:allow) = AllowPlayerTeleport;
+		#define AllowPlayerTeleport( FIXES_AllowPlayerTeleport(
+		#define _ALS_AllowPlayerTeleport
+	#endif
+	#if !defined _ALS_EnablePlayerCameraTarget
+		native FIXES_EnablePlayerCameraTarget(playerid, bool:enable) = EnablePlayerCameraTarget;
+		#define EnablePlayerCameraTarget( FIXES_EnablePlayerCameraTarget(
+		#define _ALS_EnablePlayerCameraTarget
+	#endif
+	#if !defined _ALS_IsPlayerConnected
+		native bool:FIXES_IsPlayerConnected(playerid) = IsPlayerConnected;
+		#define IsPlayerConnected( FIXES_IsPlayerConnected(
+		#define _ALS_IsPlayerConnected
+	#endif
+	#if !defined _ALS_IsPlayerInVehicle
+		native bool:FIXES_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
+		#define IsPlayerInVehicle( FIXES_IsPlayerInVehicle(
+		#define _ALS_IsPlayerInVehicle
+	#endif
+	#if !defined _ALS_IsPlayerInAnyVehicle
+		native bool:FIXES_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
+		#define IsPlayerInAnyVehicle( FIXES_IsPlayerInAnyVehicle(
+		#define _ALS_IsPlayerInAnyVehicle
+	#endif
+	#if !defined _ALS_IsPlayerInCheckpoint
+		native bool:FIXES_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
+		#define IsPlayerInCheckpoint( FIXES_IsPlayerInCheckpoint(
+		#define _ALS_IsPlayerInCheckpoint
+	#endif
+	#if !defined _ALS_IsPlayerInRaceCheckpoint
+		native bool:FIXES_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
+		#define IsPlayerInRaceCheckpoint( FIXES_IsPlayerInRaceCheckpoint(
+		#define _ALS_IsPlayerInRaceCheckpoint
+	#endif
+	#if !defined _ALS_EnableStuntBonusForPlayer
+		native FIXES_EnableStuntBonusForPlayer(playerid, bool:enable) = EnableStuntBonusForPlayer;
+		#define EnableStuntBonusForPlayer( FIXES_EnableStuntBonusForPlayer(
+		#define _ALS_EnableStuntBonusForPlayer
+	#endif
+	#if !defined _ALS_EnableStuntBonusForAll
+		native FIXES_EnableStuntBonusForAll(bool:enable) = EnableStuntBonusForAll;
+		#define EnableStuntBonusForAll( FIXES_EnableStuntBonusForAll(
+		#define _ALS_EnableStuntBonusForAll
+	#endif
+	#if !defined _ALS_TogglePlayerSpectating
+		native FIXES_TogglePlayerSpectating(playerid, bool:toggle) = TogglePlayerSpectating;
+		#define TogglePlayerSpectating( FIXES_TogglePlayerSpectating(
+		#define _ALS_TogglePlayerSpectating
+	#endif
+#endif
+
 /*
 
            db         88888888ba   88
