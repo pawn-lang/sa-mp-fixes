@@ -13150,7 +13150,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetPlayerLastShotVectors__(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
 	native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
 	native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject;
-	native bool:IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+	native bool:IsPlayerAttachedObjSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 	native EditAttachedObject__(playerid, index) = EditAttachedObject;
 	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
 	native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy;
@@ -13171,7 +13171,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native PlayerTextDrawSetString__(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
 	native PlayerTextDrawSetPreviewModel__(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel;
 	native PlayerTextDrawSetPreviewRot__(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot;
-	native PlayerTDSetPreviewVehCol__(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
+	native PlayerTDSetPreviewVehicleCol__(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
 	native SetPVarInt__(playerid, const pvar[], value) = SetPVarInt;
 	native GetPVarInt__(playerid, const pvar[]) = GetPVarInt;
 	native SetPVarString__(playerid, const pvar[], const value[]) = SetPVarString;
@@ -13195,7 +13195,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native GetAnimationName__(index, animationLibrary[], len1 = sizeof (animationLibrary), animationName[], len2 = sizeof (animationName)) = GetAnimationName; 
 	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
 	native SetPlayerSpecialAction__(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
-	native DisableRemoteVehCollisions__(playerid, bool:disable) = DisableRemoteVehicleCollisions;
+	native DisableRemoteVehicleCols__(playerid, bool:disable) = DisableRemoteVehicleCollisions;
 	native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
 	native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint;
 	native SetPlayerRaceCheckpoint__(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
@@ -16751,7 +16751,7 @@ public OnJITCompile()
 		#if FIX_SetPlayerAttachedObject
 			for (new i = 0; i != MAX_PLAYER_ATTACHED_OBJECTS; ++i)
 			{
-				if (IsPlayerAttachedSlotUsed__(playerid, i))
+				if (IsPlayerAttachedObjSlotUsed__(playerid, i))
 				{
 					RemovePlayerAttachedObject__(playerid, i);
 				}
@@ -24943,8 +24943,8 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 		#define _ALS_IsVehicleStreamedIn
 	#endif
 	#if !defined _ALS_IsTrailerAttachedToVehicle
-		native bool:FIXES_IsTrailerAttachedToVeh(vehicleid) = IsTrailerAttachedToVehicle;
-		#define IsTrailerAttachedToVehicle( FIXES_IsTrailerAttachedToVeh(
+		native bool:FIXES_IsTrailerOnVehicle(vehicleid) = IsTrailerAttachedToVehicle;
+		#define IsTrailerAttachedToVehicle( FIXES_IsTrailerOnVehicle(
 		#define _ALS_IsTrailerAttachedToVehicle
 	#endif
 	#if !defined _ALS_IsValidVehicle
@@ -25043,8 +25043,8 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 		#define _ALS_SetPlayerObjMaterialText
 	#endif
 	#if !defined _ALS_SetObjectsDefaultCameraCol
-		native FIXES_SetObjDefaultCameraCol(bool:disable) = SetObjectsDefaultCameraCol;
-		#define SetObjectsDefaultCameraCol( FIXES_SetObjDefaultCameraCol(
+		native FIXES_SetObjsDefaultCameraCol(bool:disable) = SetObjectsDefaultCameraCol;
+		#define SetObjectsDefaultCameraCol( FIXES_SetObjsDefaultCameraCol(
 		#define _ALS_SetObjectsDefaultCameraCol
 	#endif
 	#if !defined _ALS_IsPlayerInRangeOfPoint
@@ -25097,10 +25097,10 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 		#define ApplyAnimation( FIXES_ApplyAnimation(
 		#define _ALS_ApplyAnimation
 	#endif
-	#if !defined _ALS_DisableRemoteVehCollisions
-		native FIXES_DisableRemoteVehCol(playerid, bool:disable) = DisableRemoteVehCollisions;
-		#define DisableRemoteVehCollisions( FIXES_DisableRemoteVehCol(
-		#define _ALS_DisableRemoteVehCollisions
+	#if !defined _ALS_DisableRemoteVehicleCols
+		native FIXES_DisableRemoteVehicleCols(playerid, bool:disable) = DisableRemoteVehicleCollisions;
+		#define DisableRemoteVehicleCollisions( FIXES_DisableRemoteVehicleCols(
+		#define _ALS_DisableRemoteVehicleCols
 	#endif
 	#if !defined _ALS_ShowPlayerNameTagForPlayer
 		native FIXES_ShowPlayerNameTag4Player(playerid, targetid, bool:show) = ShowPlayerNameTagForPlayer;
