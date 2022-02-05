@@ -12430,1023 +12430,351 @@ _FIXES_STATIC_STOCK_CONST
 
 	*/
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_print(const string[]) = print;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_print(const string[]) = print;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native print__(const string[]) = print;
 	#if defined _ALS_print
-		// Previous hook.
 		#define _ALS_print__
 		#define print__( print(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_printf(const format[], {Float, _}:...) = printf;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_printf(const format[], {Float, _}:...) = printf;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native printf__(const format[], {Float, _}:...) = printf;
 	#if defined _ALS_printf
-		// Previous hook.
 		#define _ALS_printf__
 		#define printf__( printf(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_format(output[], len, const format[], {Float, _}:...) = format;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
 	#if defined _ALS_format
-		// Previous hook.
 		#define _ALS_format__
 		#define format__( format(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_Print(const string[]) = print;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_Print(const string[]) = print;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Print__(const string[]) = print;
 	#if defined _ALS_Print
-		// Previous hook.
 		#define _ALS_Print__
 		#define Print__( Print(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PrintF(const format[], {Float, _}:...) = printf;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PrintF(const format[], {Float, _}:...) = printf;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PrintF__(const format[], {Float, _}:...) = printf;
 	#if defined _ALS_PrintF
-		// Previous hook.
 		#define _ALS_PrintF__
 		#define PrintF__( PrintF(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_Format(output[], len, const format[], {Float, _}:...) = format;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_Format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
 	#if defined _ALS_Format
-		// Previous hook.
 		#define _ALS_Format__
 		#define Format__( Format(
 	#endif
 
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetTimer(functionName[], interval, repeating) = SetTimer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetTimer(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer;
 	#if defined _ALS_SetTimer
-		// Previous hook.
 		#define _ALS_SetTimer__
 		#define SetTimer__( SetTimer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_KillTimer(timerid) = KillTimer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_KillTimer(timerid) = KillTimer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native KillTimer__(timerid) = KillTimer;
 	#if defined _ALS_KillTimer
-		// Previous hook.
 		#define _ALS_KillTimer__
 		#define KillTimer__( KillTimer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetTickCount() = GetTickCount;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetTickCount() = GetTickCount;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetTickCount__() = GetTickCount;
 	#if defined _ALS_GetTickCount
-		// Previous hook.
 		#define _ALS_GetTickCount__
 		#define GetTickCount__( GetTickCount(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_asin(Float:value) = asin;
 	#if FIX_camel_case
 		#pragma deprecated Use `ASin`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_asin(Float:value) = asin;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:asin__(Float:value) = asin;
 	#if defined _ALS_asin
-		// Previous hook.
 		#define _ALS_asin__
 		#define asin__( asin(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_acos(Float:value) = acos;
 	#if FIX_camel_case
 		#pragma deprecated Use `ACos`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_acos(Float:value) = acos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:acos__(Float:value) = acos;
 	#if defined _ALS_acos
-		// Previous hook.
 		#define _ALS_acos__
 		#define acos__( acos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_atan(Float:value) = atan;
 	#if FIX_camel_case
 		#pragma deprecated Use `ATan`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_atan(Float:value) = atan;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:atan__(Float:value) = atan;
 	#if defined _ALS_atan
-		// Previous hook.
 		#define _ALS_atan__
 		#define atan__( atan(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_atan2(Float:y, Float:x) = atan2;
 	#if FIX_camel_case
 		#pragma deprecated Use `ATan2`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_atan2(Float:y, Float:x) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:atan2__(Float:y, Float:x) = atan2;
 	#if defined _ALS_atan2
-		// Previous hook.
 		#define _ALS_atan2__
 		#define atan2__( atan2(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_ASin(Float:value) = asin;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_ASin(Float:value) = asin;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:ASin__(Float:value) = asin;
 	#if defined _ALS_ASin
-		// Previous hook.
 		#define _ALS_ASin__
 		#define ASin__( ASin(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_ACos(Float:value) = acos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_ACos(Float:value) = acos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:ACos__(Float:value) = acos;
 	#if defined _ALS_ACos
-		// Previous hook.
 		#define _ALS_ACos__
 		#define ACos__( ACos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_ATan(Float:value) = atan;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_ATan(Float:value) = atan;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:ATan__(Float:value) = atan;
 	#if defined _ALS_ATan
-		// Previous hook.
 		#define _ALS_ATan__
 		#define ATan__( ATan(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_ATan2(Float:y, Float:x) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_ATan2(Float:y, Float:x) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:ATan2__(Float:y, Float:x) = atan2;
 	#if defined _ALS_ATan2
-		// Previous hook.
 		#define _ALS_ATan2__
 		#define ATan2__( ATan2(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SendChat(const message[]) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SendChat(const message[]) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SendChat__(const message[]) = atan2;
 	#if defined _ALS_SendChat
-		// Previous hook.
 		#define _ALS_SendChat__
 		#define SendChat__( SendChat(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SendCommand(const command[]) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SendCommand(const command[]) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SendCommand__(const command[]) = atan2;
 	#if defined _ALS_SendCommand
-		// Previous hook.
 		#define _ALS_SendCommand__
 		#define SendCommand__( SendCommand(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native PLAYER_STATE:BAD_GetPlayerState(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native PLAYER_STATE:CST_GetPlayerState(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PLAYER_STATE:GetPlayerState__(playerid) = atan2;
 	#if defined _ALS_GetPlayerState
-		// Previous hook.
 		#define _ALS_GetPlayerState__
 		#define GetPlayerState__( GetPlayerState(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerPos(playerid, &Float:x, &Float:y, &Float:z) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerPos(playerid, &Float:x, &Float:y, &Float:z) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = atan2;
 	#if defined _ALS_GetPlayerPos
-		// Previous hook.
 		#define _ALS_GetPlayerPos__
 		#define GetPlayerPos__( GetPlayerPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerVehicleID(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerVehicleID(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerVehicleID__(playerid) = atan2;
 	#if defined _ALS_GetPlayerVehicleID
-		// Previous hook.
 		#define _ALS_GetPlayerVehicleID__
 		#define GetPlayerVehicleID__( GetPlayerVehicleID(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native WEAPON:BAD_GetPlayerArmedWeapon(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native WEAPON:CST_GetPlayerArmedWeapon(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native WEAPON:GetPlayerArmedWeapon__(playerid) = atan2;
 	#if defined _ALS_GetPlayerArmedWeapon
-		// Previous hook.
 		#define _ALS_GetPlayerArmedWeapon__
 		#define GetPlayerArmedWeapon__( GetPlayerArmedWeapon(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerHealth(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerHealth(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerHealth__(playerid) = atan2;
 	#if defined _ALS_GetPlayerHealth
-		// Previous hook.
 		#define _ALS_GetPlayerHealth__
 		#define GetPlayerHealth__( GetPlayerHealth(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerArmour(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerArmour(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerArmour__(playerid) = atan2;
 	#if defined _ALS_GetPlayerArmour
-		// Previous hook.
 		#define _ALS_GetPlayerArmour__
 		#define GetPlayerArmour__( GetPlayerArmour(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native SPECIAL_ACTION:BAD_GetPlayerSpecialAction(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native SPECIAL_ACTION:CST_GetPlayerSpecialAction(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = atan2;
 	#if defined _ALS_GetPlayerSpecialAction
-		// Previous hook.
 		#define _ALS_GetPlayerSpecialAction__
 		#define GetPlayerSpecialAction__( GetPlayerSpecialAction(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native bool:BAD_IsPlayerStreamedIn(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native bool:CST_IsPlayerStreamedIn(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerStreamedIn__(playerid) = atan2;
 	#if defined _ALS_IsPlayerStreamedIn
-		// Previous hook.
 		#define _ALS_IsPlayerStreamedIn__
 		#define IsPlayerStreamedIn__( IsPlayerStreamedIn(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native bool:BAD_IsVehicleStreamedIn(vehicleid) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native bool:CST_IsVehicleStreamedIn(vehicleid) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsVehicleStreamedIn__(vehicleid) = atan2;
 	#if defined _ALS_IsVehicleStreamedIn
-		// Previous hook.
 		#define _ALS_IsVehicleStreamedIn__
 		#define IsVehicleStreamedIn__( IsVehicleStreamedIn(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = atan2;
 	#if defined _ALS_GetPlayerKeys
-		// Previous hook.
 		#define _ALS_GetPlayerKeys__
 		#define GetPlayerKeys__( GetPlayerKeys(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerFacingAngle(playerid, &Float:ang) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerFacingAngle(playerid, &Float:ang) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerFacingAngle__(playerid, &Float:ang) = atan2;
 	#if defined _ALS_GetPlayerFacingAngle
-		// Previous hook.
 		#define _ALS_GetPlayerFacingAngle__
 		#define GetPlayerFacingAngle__( GetPlayerFacingAngle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetMyPos(&Float:x, &Float:y, &Float:z) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetMyPos(&Float:x, &Float:y, &Float:z) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetMyPos__(&Float:x, &Float:y, &Float:z) = atan2;
 	#if defined _ALS_GetMyPos
-		// Previous hook.
 		#define _ALS_GetMyPos__
 		#define GetMyPos__( GetMyPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetMyPos(Float:x, Float:y, Float:z) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetMyPos(Float:x, Float:y, Float:z) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetMyPos__(Float:x, Float:y, Float:z) = atan2;
 	#if defined _ALS_SetMyPos
-		// Previous hook.
 		#define _ALS_SetMyPos__
 		#define SetMyPos__( SetMyPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetMyFacingAngle(&Float:ang) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetMyFacingAngle(&Float:ang) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetMyFacingAngle__(&Float:ang) = atan2;
 	#if defined _ALS_GetMyFacingAngle
-		// Previous hook.
 		#define _ALS_GetMyFacingAngle__
 		#define GetMyFacingAngle__( GetMyFacingAngle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetMyFacingAngle(Float:ang) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetMyFacingAngle(Float:ang) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetMyFacingAngle__(Float:ang) = atan2;
 	#if defined _ALS_SetMyFacingAngle
-		// Previous hook.
 		#define _ALS_SetMyFacingAngle__
 		#define SetMyFacingAngle__( SetMyFacingAngle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetDistanceFromMeToPoint(Float:x, Float:y, Float:z, &Float:distance) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetDistanceFromMeToPoint(Float:x, Float:y, Float:z, &Float:distance) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetDistanceFromMeToPoint__(Float:x, Float:y, Float:z, &Float:distance) = atan2;
 	#if defined _ALS_GetDistanceFromMeToPoint
-		// Previous hook.
 		#define _ALS_GetDistanceFromMeToPoint__
 		#define GetDistanceFromMeToPoint__( GetDistanceFromMeToPoint(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native bool:BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native bool:CST_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = atan2;
 	#if defined _ALS_IsPlayerInRangeOfPoint
-		// Previous hook.
 		#define _ALS_IsPlayerInRangeOfPoint__
 		#define IsPlayerInRangeOfPoint__( IsPlayerInRangeOfPoint(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerName(playerid, name[], len = sizeof (name)) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerName(playerid, name[], len = sizeof (name)) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerName__(playerid, name[], len = sizeof (name)) = atan2;
 	#if defined _ALS_GetPlayerName
-		// Previous hook.
 		#define _ALS_GetPlayerName__
 		#define GetPlayerName__( GetPlayerName(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native bool:BAD_IsPlayerConnected(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native bool:CST_IsPlayerConnected(playerid) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerConnected__(playerid) = atan2;
 	#if defined _ALS_IsPlayerConnected
-		// Previous hook.
 		#define _ALS_IsPlayerConnected__
 		#define IsPlayerConnected__( IsPlayerConnected(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_StartRecordingPlayback(PLAYER_RECORDING_TYPE:playbackType, const recordFile[]) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_StartRecordingPlayback(PLAYER_RECORDING_TYPE:playbackType, const recordFile[]) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native StartRecordingPlayback__(PLAYER_RECORDING_TYPE:playbackType, const recordFile[]) = atan2;
 	#if defined _ALS_StartRecordingPlayback
-		// Previous hook.
 		#define _ALS_StartRecordingPlayback__
 		#define StartRecordingPlayback__( StartRecordingPlayback(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_StopRecordingPlayback() = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_StopRecordingPlayback() = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native StopRecordingPlayback__() = atan2;
 	#if defined _ALS_StopRecordingPlayback
-		// Previous hook.
 		#define _ALS_StopRecordingPlayback__
 		#define StopRecordingPlayback__( StopRecordingPlayback(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PauseRecordingPlayback() = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PauseRecordingPlayback() = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PauseRecordingPlayback__() = atan2;
 	#if defined _ALS_PauseRecordingPlayback
-		// Previous hook.
 		#define _ALS_PauseRecordingPlayback__
 		#define PauseRecordingPlayback__( PauseRecordingPlayback(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ResumeRecordingPlayback() = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ResumeRecordingPlayback() = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ResumeRecordingPlayback__() = atan2;
 	#if defined _ALS_ResumeRecordingPlayback
-		// Previous hook.
 		#define _ALS_ResumeRecordingPlayback__
 		#define ResumeRecordingPlayback__( ResumeRecordingPlayback(
 	#endif
@@ -13461,386 +12789,130 @@ _FIXES_STATIC_STOCK_CONST
 
 	*/
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_CreateActor(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_CreateActor(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CreateActor__(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor;
 	#if defined _ALS_CreateActor
-		// Previous hook.
 		#define _ALS_CreateActor__
 		#define CreateActor__( CreateActor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DestroyActor(actorid) = DestroyActor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DestroyActor(actorid) = DestroyActor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DestroyActor__(actorid) = DestroyActor;
 	#if defined _ALS_DestroyActor
-		// Previous hook.
 		#define _ALS_DestroyActor__
 		#define DestroyActor__( DestroyActor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn;
 	#if defined _ALS_IsActorStreamedIn
-		// Previous hook.
 		#define _ALS_IsActorStreamedIn__
 		#define IsActorStreamedIn__( IsActorStreamedIn(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetActorVirtualWorld(actorid, virtualWorld) = SetActorVirtualWorld;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetActorVirtualWorld(actorid, virtualWorld) = SetActorVirtualWorld;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetActorVirtualWorld__(actorid, virtualWorld) = SetActorVirtualWorld;
 	#if defined _ALS_SetActorVirtualWorld
-		// Previous hook.
 		#define _ALS_SetActorVirtualWorld__
 		#define SetActorVirtualWorld__( SetActorVirtualWorld(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetActorVirtualWorld(actorid) = GetActorVirtualWorld;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetActorVirtualWorld(actorid) = GetActorVirtualWorld;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld;
 	#if defined _ALS_GetActorVirtualWorld
-		// Previous hook.
 		#define _ALS_GetActorVirtualWorld__
 		#define GetActorVirtualWorld__( GetActorVirtualWorld(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ApplyActorAnimation(actorid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time) = ApplyActorAnimation;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ApplyActorAnimation__(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time) = ApplyActorAnimation;
 	#if defined _ALS_ApplyActorAnimation
-		// Previous hook.
 		#define _ALS_ApplyActorAnimation__
 		#define ApplyActorAnimation__( ApplyActorAnimation(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ClearActorAnimations(actorid) = ClearActorAnimations;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ClearActorAnimations(actorid) = ClearActorAnimations;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ClearActorAnimations__(actorid) = ClearActorAnimations;
 	#if defined _ALS_ClearActorAnimations
-		// Previous hook.
 		#define _ALS_ClearActorAnimations__
 		#define ClearActorAnimations__( ClearActorAnimations(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetActorPos(actorid, Float:x, Float:y, Float:z) = SetActorPos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetActorPos(actorid, Float:x, Float:y, Float:z) = SetActorPos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetActorPos__(actorid, Float:x, Float:y, Float:z) = SetActorPos;
 	#if defined _ALS_SetActorPos
-		// Previous hook.
 		#define _ALS_SetActorPos__
 		#define SetActorPos__( SetActorPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetActorPos(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetActorPos(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetActorPos__(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
 	#if defined _ALS_GetActorPos
-		// Previous hook.
 		#define _ALS_GetActorPos__
 		#define GetActorPos__( GetActorPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetActorFacingAngle(actorid, Float:angle) = SetActorFacingAngle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetActorFacingAngle(actorid, Float:angle) = SetActorFacingAngle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetActorFacingAngle__(actorid, Float:angle) = SetActorFacingAngle;
 	#if defined _ALS_SetActorFacingAngle
-		// Previous hook.
 		#define _ALS_SetActorFacingAngle__
 		#define SetActorFacingAngle__( SetActorFacingAngle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetActorFacingAngle(actorid, &Float:angle) = GetActorFacingAngle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetActorFacingAngle(actorid, &Float:angle) = GetActorFacingAngle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetActorFacingAngle__(actorid, &Float:angle) = GetActorFacingAngle;
 	#if defined _ALS_GetActorFacingAngle
-		// Previous hook.
 		#define _ALS_GetActorFacingAngle__
 		#define GetActorFacingAngle__( GetActorFacingAngle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetActorHealth(actorid, Float:health) = SetActorHealth;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetActorHealth(actorid, Float:health) = SetActorHealth;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetActorHealth__(actorid, Float:health) = SetActorHealth;
 	#if defined _ALS_SetActorHealth
-		// Previous hook.
 		#define _ALS_SetActorHealth__
 		#define SetActorHealth__( SetActorHealth(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetActorHealth(actorid, &Float:health) = GetActorHealth;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetActorHealth(actorid, &Float:health) = GetActorHealth;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetActorHealth__(actorid, &Float:health) = GetActorHealth;
 	#if defined _ALS_GetActorHealth
-		// Previous hook.
 		#define _ALS_GetActorHealth__
 		#define GetActorHealth__( GetActorHealth(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetActorInvulnerable(actorid, invulnerable = true) = SetActorInvulnerable;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetActorInvulnerable(actorid, _FIXES_MAYBE_BOOL:invulnerable = true) = SetActorInvulnerable;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetActorInvulnerable__(actorid, bool:invulnerable = true) = SetActorInvulnerable;
 	#if defined _ALS_SetActorInvulnerable
-		// Previous hook.
 		#define _ALS_SetActorInvulnerable__
 		#define SetActorInvulnerable__( SetActorInvulnerable(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsActorInvulnerable(actorid) = IsActorInvulnerable;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsActorInvulnerable(actorid) = IsActorInvulnerable;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
 	#if defined _ALS_IsActorInvulnerable
-		// Previous hook.
 		#define _ALS_IsActorInvulnerable__
 		#define IsActorInvulnerable__( IsActorInvulnerable(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsValidActor(actorid) = IsValidActor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsValidActor(actorid) = IsValidActor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsValidActor__(actorid) = IsValidActor;
 	#if defined _ALS_IsValidActor
-		// Previous hook.
 		#define _ALS_IsValidActor__
 		#define IsValidActor__( IsValidActor(
 	#endif
@@ -13868,26 +12940,10 @@ _FIXES_STATIC_STOCK_CONST
 		#tryinclude "..\a_http"
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_HTTP(index, HTTP_METHOD:method, url[], data[], callback[]) = HTTP;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_HTTP(index, HTTP_METHOD:method, _FIXES_MAYBE_CONST url[], _FIXES_MAYBE_CONST data[], _FIXES_MAYBE_CONST callback[]) = HTTP;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native HTTP__(index, HTTP_METHOD:method, const url[], const data[], const callback[]) = HTTP;
 	#if defined _ALS_HTTP
-		// Previous hook.
 		#define _ALS_HTTP__
 		#define HTTP__( HTTP(
 	#endif
@@ -13903,914 +12959,306 @@ _FIXES_STATIC_STOCK_CONST
 
 	*/
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_CreateObject(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_CreateObject(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CreateObject__(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject;
 	#if defined _ALS_CreateObject
-		// Previous hook.
 		#define _ALS_CreateObject__
 		#define CreateObject__( CreateObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AttachObjectToVehicle(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AttachObjectToVehicle(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AttachObjectToVehicle__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle;
 	#if defined _ALS_AttachObjectToVehicle
-		// Previous hook.
 		#define _ALS_AttachObjectToVehicle__
 		#define AttachObjectToVehicle__( AttachObjectToVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, syncRotation = true) = AttachObjectToObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, _FIXES_MAYBE_BOOL:syncRotation = true) = AttachObjectToObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AttachObjectToObject__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, bool:syncRotation = true) = AttachObjectToObject;
 	#if defined _ALS_AttachObjectToObject
-		// Previous hook.
 		#define _ALS_AttachObjectToObject__
 		#define AttachObjectToObject__( AttachObjectToObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AttachObjectToPlayer(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AttachObjectToPlayer(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AttachObjectToPlayer__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer;
 	#if defined _ALS_AttachObjectToPlayer
-		// Previous hook.
 		#define _ALS_AttachObjectToPlayer__
 		#define AttachObjectToPlayer__( AttachObjectToPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetObjectPos(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetObjectPos(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetObjectPos__(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
 	#if defined _ALS_SetObjectPos
-		// Previous hook.
 		#define _ALS_SetObjectPos__
 		#define SetObjectPos__( SetObjectPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetObjectPos(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetObjectPos(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetObjectPos__(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
 	#if defined _ALS_GetObjectPos
-		// Previous hook.
 		#define _ALS_GetObjectPos__
 		#define GetObjectPos__( GetObjectPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetObjectRot(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectRot;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetObjectRot(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectRot;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetObjectRot__(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectRot;
 	#if defined _ALS_SetObjectRot
-		// Previous hook.
 		#define _ALS_SetObjectRot__
 		#define SetObjectRot__( SetObjectRot(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetObjectRot(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetObjectRot(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetObjectRot__(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot;
 	#if defined _ALS_GetObjectRot
-		// Previous hook.
 		#define _ALS_GetObjectRot__
 		#define GetObjectRot__( GetObjectRot(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetObjectModel(objectid) = GetObjectModel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetObjectModel(objectid) = GetObjectModel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetObjectModel__(objectid) = GetObjectModel;
 	#if defined _ALS_GetObjectModel
-		// Previous hook.
 		#define _ALS_GetObjectModel__
 		#define GetObjectModel__( GetObjectModel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetObjectNoCameraCol(objectid) = SetObjectNoCameraCol;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetObjectNoCameraCol(objectid) = SetObjectNoCameraCol;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol;
 	#if defined _ALS_SetObjectNoCameraCol
-		// Previous hook.
 		#define _ALS_SetObjectNoCameraCol__
 		#define SetObjectNoCameraCol__( SetObjectNoCameraCol(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsValidObject(objectid) = IsValidObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsValidObject(objectid) = IsValidObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsValidObject__(objectid) = IsValidObject;
 	#if defined _ALS_IsValidObject
-		// Previous hook.
 		#define _ALS_IsValidObject__
 		#define IsValidObject__( IsValidObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DestroyObject(objectid) = DestroyObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DestroyObject(objectid) = DestroyObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DestroyObject__(objectid) = DestroyObject;
 	#if defined _ALS_DestroyObject
-		// Previous hook.
 		#define _ALS_DestroyObject__
 		#define DestroyObject__( DestroyObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_MoveObject(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_MoveObject(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native MoveObject__(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject;
 	#if defined _ALS_MoveObject
-		// Previous hook.
 		#define _ALS_MoveObject__
 		#define MoveObject__( MoveObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_StopObject(objectid) = StopObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_StopObject(objectid) = StopObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native StopObject__(objectid) = StopObject;
 	#if defined _ALS_StopObject
-		// Previous hook.
 		#define _ALS_StopObject__
 		#define StopObject__( StopObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsObjectMoving(objectid) = IsObjectMoving;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsObjectMoving(objectid) = IsObjectMoving;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsObjectMoving__(objectid) = IsObjectMoving;
 	#if defined _ALS_IsObjectMoving
-		// Previous hook.
 		#define _ALS_IsObjectMoving__
 		#define IsObjectMoving__( IsObjectMoving(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_EditObject(playerid, objectid) = EditObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_EditObject(playerid, objectid) = EditObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native EditObject__(playerid, objectid) = EditObject;
 	#if defined _ALS_EditObject
-		// Previous hook.
 		#define _ALS_EditObject__
 		#define EditObject__( EditObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_EditPlayerObject(playerid, objectid) = EditPlayerObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_EditPlayerObject(playerid, objectid) = EditPlayerObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native EditPlayerObject__(playerid, objectid) = EditPlayerObject;
 	#if defined _ALS_EditPlayerObject
-		// Previous hook.
 		#define _ALS_EditPlayerObject__
 		#define EditPlayerObject__( EditPlayerObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SelectObject(playerid) = SelectObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SelectObject(playerid) = SelectObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SelectObject__(playerid) = SelectObject;
 	#if defined _ALS_SelectObject
-		// Previous hook.
 		#define _ALS_SelectObject__
 		#define SelectObject__( SelectObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_CancelEdit(playerid) = CancelEdit;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_CancelEdit(playerid) = CancelEdit;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CancelEdit__(playerid) = CancelEdit;
 	#if defined _ALS_CancelEdit
-		// Previous hook.
 		#define _ALS_CancelEdit__
 		#define CancelEdit__( CancelEdit(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_CreatePlayerObject(playerid, modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreatePlayerObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_CreatePlayerObject(playerid, modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreatePlayerObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CreatePlayerObject__(playerid, modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreatePlayerObject;
 	#if defined _ALS_CreatePlayerObject
-		// Previous hook.
 		#define _ALS_CreatePlayerObject__
 		#define CreatePlayerObject__( CreatePlayerObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AttachPlayerObjectToVehicle(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AttachPlayerObjectToVehicle(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AttachPlayerObjectToVehicle__(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToVehicle;
 	#if defined _ALS_AttachPlayerObjectToVehicle
-		// Previous hook.
 		#define _ALS_AttachPlayerObjectToVehicle__
 		#define AttachPlayerObjectToVehicle__( AttachPlayerObjectToVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerObjectPos(playerid, objectid, Float:x, Float:y, Float:z) = SetPlayerObjectPos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerObjectPos(playerid, objectid, Float:x, Float:y, Float:z) = SetPlayerObjectPos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerObjectPos__(playerid, objectid, Float:x, Float:y, Float:z) = SetPlayerObjectPos;
 	#if defined _ALS_SetPlayerObjectPos
-		// Previous hook.
 		#define _ALS_SetPlayerObjectPos__
 		#define SetPlayerObjectPos__( SetPlayerObjectPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerObjectPos(playerid, objectid, &Float:x, &Float:y, &Float:z) = GetPlayerObjectPos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerObjectPos(playerid, objectid, &Float:x, &Float:y, &Float:z) = GetPlayerObjectPos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerObjectPos__(playerid, objectid, &Float:x, &Float:y, &Float:z) = GetPlayerObjectPos;
 	#if defined _ALS_GetPlayerObjectPos
-		// Previous hook.
 		#define _ALS_GetPlayerObjectPos__
 		#define GetPlayerObjectPos__( GetPlayerObjectPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerObjectRot(playerid, objectid, Float:rotX, Float:rotY, Float:rotZ) = SetPlayerObjectRot;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerObjectRot(playerid, objectid, Float:rotX, Float:rotY, Float:rotZ) = SetPlayerObjectRot;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerObjectRot__(playerid, objectid, Float:rotX, Float:rotY, Float:rotZ) = SetPlayerObjectRot;
 	#if defined _ALS_SetPlayerObjectRot
-		// Previous hook.
 		#define _ALS_SetPlayerObjectRot__
 		#define SetPlayerObjectRot__( SetPlayerObjectRot(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerObjectRot(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerObjectRot(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerObjectRot__(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot;
 	#if defined _ALS_GetPlayerObjectRot
-		// Previous hook.
 		#define _ALS_GetPlayerObjectRot__
 		#define GetPlayerObjectRot__( GetPlayerObjectRot(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerObjectModel(playerid, objectid) = GetPlayerObjectModel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerObjectModel(playerid, objectid) = GetPlayerObjectModel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerObjectModel__(playerid, objectid) = GetPlayerObjectModel;
 	#if defined _ALS_GetPlayerObjectModel
-		// Previous hook.
 		#define _ALS_GetPlayerObjectModel__
 		#define GetPlayerObjectModel__( GetPlayerObjectModel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerObjectNoCameraCol(playerid, objectid) = SetPlayerObjectNoCameraCol;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerObjectNoCameraCol(playerid, objectid) = SetPlayerObjectNoCameraCol;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCameraCol;
 	#if defined _ALS_SetPlayerObjectNoCameraCol
-		// Previous hook.
 		#define _ALS_SetPlayerObjectNoCameraCol__
 		#define SetPlayerObjectNoCameraCol__( SetPlayerObjectNoCameraCol(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
 	#if defined _ALS_IsValidPlayerObject
-		// Previous hook.
 		#define _ALS_IsValidPlayerObject__
 		#define IsValidPlayerObject__( IsValidPlayerObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DestroyPlayerObject(playerid, objectid) = DestroyPlayerObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DestroyPlayerObject(playerid, objectid) = DestroyPlayerObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DestroyPlayerObject__(playerid, objectid) = DestroyPlayerObject;
 	#if defined _ALS_DestroyPlayerObject
-		// Previous hook.
 		#define _ALS_DestroyPlayerObject__
 		#define DestroyPlayerObject__( DestroyPlayerObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_MovePlayerObject(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_MovePlayerObject(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native MovePlayerObject__(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject;
 	#if defined _ALS_MovePlayerObject
-		// Previous hook.
 		#define _ALS_MovePlayerObject__
 		#define MovePlayerObject__( MovePlayerObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_StopPlayerObject(playerid, objectid) = StopPlayerObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_StopPlayerObject(playerid, objectid) = StopPlayerObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native StopPlayerObject__(playerid, objectid) = StopPlayerObject;
 	#if defined _ALS_StopPlayerObject
-		// Previous hook.
 		#define _ALS_StopPlayerObject__
 		#define StopPlayerObject__( StopPlayerObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
 	#if defined _ALS_IsPlayerObjectMoving
-		// Previous hook.
 		#define _ALS_IsPlayerObjectMoving__
 		#define IsPlayerObjectMoving__( IsPlayerObjectMoving(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AttachPlayerObjectToPlayer(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AttachPlayerObjectToPlayer(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AttachPlayerObjectToPlayer__(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer;
 	#if defined _ALS_AttachPlayerObjectToPlayer
-		// Previous hook.
 		#define _ALS_AttachPlayerObjectToPlayer__
 		#define AttachPlayerObjectToPlayer__( AttachPlayerObjectToPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetObjectMaterial(objectid, materialIndex, modelid, textureLibrary[], textureName[], materialColour = 0) = SetObjectMaterial;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetObjectMaterial(objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetObjectMaterial;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetObjectMaterial__(objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetObjectMaterial;
 	#if defined _ALS_SetObjectMaterial
-		// Previous hook.
 		#define _ALS_SetObjectMaterial__
 		#define SetObjectMaterial__( SetObjectMaterial(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, textureLibrary[], textureName[], materialColour = 0) = SetPlayerObjectMaterial;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetPlayerObjectMaterial;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerObjectMaterial__(playerid, objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetPlayerObjectMaterial;
 	#if defined _ALS_SetPlayerObjectMaterial
-		// Previous hook.
 		#define _ALS_SetPlayerObjectMaterial__
 		#define SetPlayerObjectMaterial__( SetPlayerObjectMaterial(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetObjectMaterialText(objectid, text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, fontFace[] = "Arial", fontSize = 24, bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetObjectMaterialText(objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetObjectMaterialText__(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
 	#if defined _ALS_SetObjectMaterialText
-		// Previous hook.
 		#define _ALS_SetObjectMaterialText__
 		#define SetObjectMaterialText__( SetObjectMaterialText(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerObjectMaterialText(playerid, objectid, text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, fontFace[] = "Arial", fontSize = 24, bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerObjectMaterialText(playerid, objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerObjectMaterialText__(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
 	#if defined _ALS_SetPlayerObjectMaterialText
-		// Previous hook.
 		#define _ALS_SetPlayerObjectMaterialText__
 		#define SetPlayerObjectMaterialText__( SetPlayerObjectMaterialText(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetObjectsDefaultCameraCol(disable) = SetObjectsDefaultCameraCol;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetObjectsDefaultCameraCol(_FIXES_MAYBE_BOOL:disable) = SetObjectsDefaultCameraCol;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetObjectsDefaultCameraCol__(bool:disable) = SetObjectsDefaultCameraCol;
 	#if defined _ALS_SetObjectsDefaultCameraCol
-		// Previous hook.
 		#define _ALS_SetObjectsDefaultCameraCol__
 		#define SetObjectsDefaultCameraCol__( SetObjectsDefaultCameraCol(
 	#endif
@@ -14825,3846 +13273,1286 @@ _FIXES_STATIC_STOCK_CONST
 
 	*/
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetSpawnInfo__(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo;
 	#if defined _ALS_SetSpawnInfo
-		// Previous hook.
 		#define _ALS_SetSpawnInfo__
 		#define SetSpawnInfo__( SetSpawnInfo(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SpawnPlayer(playerid) = SpawnPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SpawnPlayer(playerid) = SpawnPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SpawnPlayer__(playerid) = SpawnPlayer;
 	#if defined _ALS_SpawnPlayer
-		// Previous hook.
 		#define _ALS_SpawnPlayer__
 		#define SpawnPlayer__( SpawnPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 	#if defined _ALS_SetPlayerPos
-		// Previous hook.
 		#define _ALS_SetPlayerPos__
 		#define SetPlayerPos__( SetPlayerPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerPosFindZ__(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
 	#if defined _ALS_SetPlayerPosFindZ
-		// Previous hook.
 		#define _ALS_SetPlayerPosFindZ__
 		#define SetPlayerPosFindZ__( SetPlayerPosFindZ(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 	#if defined _ALS_GetPlayerPos
-		// Previous hook.
 		#define _ALS_GetPlayerPos__
 		#define GetPlayerPos__( GetPlayerPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerFacingAngle(playerid, Float:ang) = SetPlayerFacingAngle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerFacingAngle(playerid, Float:ang) = SetPlayerFacingAngle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerFacingAngle__(playerid, Float:ang) = SetPlayerFacingAngle;
 	#if defined _ALS_SetPlayerFacingAngle
-		// Previous hook.
 		#define _ALS_SetPlayerFacingAngle__
 		#define SetPlayerFacingAngle__( SetPlayerFacingAngle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerFacingAngle(playerid, &Float:ang) = GetPlayerFacingAngle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerFacingAngle(playerid, &Float:ang) = GetPlayerFacingAngle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
 	#if defined _ALS_GetPlayerFacingAngle
-		// Previous hook.
 		#define _ALS_GetPlayerFacingAngle__
 		#define GetPlayerFacingAngle__( GetPlayerFacingAngle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 	#if defined _ALS_IsPlayerInRangeOfPoint
-		// Previous hook.
 		#define _ALS_IsPlayerInRangeOfPoint__
 		#define IsPlayerInRangeOfPoint__( IsPlayerInRangeOfPoint(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:GetPlayerDistanceFromPoint__(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
 	#if defined _ALS_GetPlayerDistanceFromPoint
-		// Previous hook.
 		#define _ALS_GetPlayerDistanceFromPoint__
 		#define GetPlayerDistanceFromPoint__( GetPlayerDistanceFromPoint(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerStreamedIn__(targetid, playerid) = IsPlayerStreamedIn;
 	#if defined _ALS_IsPlayerStreamedIn
-		// Previous hook.
 		#define _ALS_IsPlayerStreamedIn__
 		#define IsPlayerStreamedIn__( IsPlayerStreamedIn(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerInterior__(playerid, interiorid) = SetPlayerInterior;
 	#if defined _ALS_SetPlayerInterior
-		// Previous hook.
 		#define _ALS_SetPlayerInterior__
 		#define SetPlayerInterior__( SetPlayerInterior(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerInterior(playerid) = GetPlayerInterior;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerInterior__(playerid) = GetPlayerInterior;
 	#if defined _ALS_GetPlayerInterior
-		// Previous hook.
 		#define _ALS_GetPlayerInterior__
 		#define GetPlayerInterior__( GetPlayerInterior(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerHealth(playerid, Float:health) = SetPlayerHealth;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerHealth(playerid, Float:health) = SetPlayerHealth;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerHealth__(playerid, Float:health) = SetPlayerHealth;
 	#if defined _ALS_SetPlayerHealth
-		// Previous hook.
 		#define _ALS_SetPlayerHealth__
 		#define SetPlayerHealth__( SetPlayerHealth(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerHealth(playerid, &Float:health) = GetPlayerHealth;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerHealth(playerid, &Float:health) = GetPlayerHealth;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerHealth__(playerid, &Float:health) = GetPlayerHealth;
 	#if defined _ALS_GetPlayerHealth
-		// Previous hook.
 		#define _ALS_GetPlayerHealth__
 		#define GetPlayerHealth__( GetPlayerHealth(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerArmour(playerid, Float:armour) = SetPlayerArmour;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerArmour(playerid, Float:armour) = SetPlayerArmour;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerArmour__(playerid, Float:armour) = SetPlayerArmour;
 	#if defined _ALS_SetPlayerArmour
-		// Previous hook.
 		#define _ALS_SetPlayerArmour__
 		#define SetPlayerArmour__( SetPlayerArmour(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerArmour(playerid, &Float:armour) = GetPlayerArmour;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerArmour(playerid, &Float:armour) = GetPlayerArmour;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerArmour__(playerid, &Float:armour) = GetPlayerArmour;
 	#if defined _ALS_GetPlayerArmour
-		// Previous hook.
 		#define _ALS_GetPlayerArmour__
 		#define GetPlayerArmour__( GetPlayerArmour(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerAmmo(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerAmmo(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerAmmo__(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
 	#if defined _ALS_SetPlayerAmmo
-		// Previous hook.
 		#define _ALS_SetPlayerAmmo__
 		#define SetPlayerAmmo__( SetPlayerAmmo(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerAmmo(playerid) = GetPlayerAmmo;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerAmmo(playerid) = GetPlayerAmmo;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerAmmo__(playerid) = GetPlayerAmmo;
 	#if defined _ALS_GetPlayerAmmo
-		// Previous hook.
 		#define _ALS_GetPlayerAmmo__
 		#define GetPlayerAmmo__( GetPlayerAmmo(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native WEAPONSTATE:BAD_GetPlayerWeaponState(playerid) = GetPlayerWeaponState;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native WEAPONSTATE:CST_GetPlayerWeaponState(playerid) = GetPlayerWeaponState;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native WEAPONSTATE:GetPlayerWeaponState__(playerid) = GetPlayerWeaponState;
 	#if defined _ALS_GetPlayerWeaponState
-		// Previous hook.
 		#define _ALS_GetPlayerWeaponState__
 		#define GetPlayerWeaponState__( GetPlayerWeaponState(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerTargetPlayer(playerid) = GetPlayerTargetPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerTargetPlayer(playerid) = GetPlayerTargetPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerTargetPlayer__(playerid) = GetPlayerTargetPlayer;
 	#if defined _ALS_GetPlayerTargetPlayer
-		// Previous hook.
 		#define _ALS_GetPlayerTargetPlayer__
 		#define GetPlayerTargetPlayer__( GetPlayerTargetPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerTargetActor(playerid) = GetPlayerTargetActor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerTargetActor(playerid) = GetPlayerTargetActor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerTargetActor__(playerid) = GetPlayerTargetActor;
 	#if defined _ALS_GetPlayerTargetActor
-		// Previous hook.
 		#define _ALS_GetPlayerTargetActor__
 		#define GetPlayerTargetActor__( GetPlayerTargetActor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerTeam(playerid, teamid) = SetPlayerTeam;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerTeam(playerid, teamid) = SetPlayerTeam;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerTeam__(playerid, teamid) = SetPlayerTeam;
 	#if defined _ALS_SetPlayerTeam
-		// Previous hook.
 		#define _ALS_SetPlayerTeam__
 		#define SetPlayerTeam__( SetPlayerTeam(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerTeam(playerid) = GetPlayerTeam;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerTeam(playerid) = GetPlayerTeam;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerTeam__(playerid) = GetPlayerTeam;
 	#if defined _ALS_GetPlayerTeam
-		// Previous hook.
 		#define _ALS_GetPlayerTeam__
 		#define GetPlayerTeam__( GetPlayerTeam(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerScore(playerid, score) = SetPlayerScore;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerScore(playerid, score) = SetPlayerScore;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerScore__(playerid, score) = SetPlayerScore;
 	#if defined _ALS_SetPlayerScore
-		// Previous hook.
 		#define _ALS_SetPlayerScore__
 		#define SetPlayerScore__( SetPlayerScore(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerScore(playerid) = GetPlayerScore;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerScore(playerid) = GetPlayerScore;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerScore__(playerid) = GetPlayerScore;
 	#if defined _ALS_GetPlayerScore
-		// Previous hook.
 		#define _ALS_GetPlayerScore__
 		#define GetPlayerScore__( GetPlayerScore(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerDrunkLevel(playerid) = GetPlayerDrunkLevel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerDrunkLevel(playerid) = GetPlayerDrunkLevel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerDrunkLevel__(playerid) = GetPlayerDrunkLevel;
 	#if defined _ALS_GetPlayerDrunkLevel
-		// Previous hook.
 		#define _ALS_GetPlayerDrunkLevel__
 		#define GetPlayerDrunkLevel__( GetPlayerDrunkLevel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerDrunkLevel(playerid, level) = SetPlayerDrunkLevel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerDrunkLevel(playerid, level) = SetPlayerDrunkLevel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerDrunkLevel__(playerid, level) = SetPlayerDrunkLevel;
 	#if defined _ALS_SetPlayerDrunkLevel
-		// Previous hook.
 		#define _ALS_SetPlayerDrunkLevel__
 		#define SetPlayerDrunkLevel__( SetPlayerDrunkLevel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerColor(playerid, colour) = SetPlayerColor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerColor(playerid, colour) = SetPlayerColor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerColor__(playerid, colour) = SetPlayerColor;
 	#if defined _ALS_SetPlayerColor
-		// Previous hook.
 		#define _ALS_SetPlayerColor__
 		#define SetPlayerColor__( SetPlayerColor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerColor(playerid) = GetPlayerColor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerColor(playerid) = GetPlayerColor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerColor__(playerid) = GetPlayerColor;
 	#if defined _ALS_GetPlayerColor
-		// Previous hook.
 		#define _ALS_GetPlayerColor__
 		#define GetPlayerColor__( GetPlayerColor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerSkin__(playerid, skinid) = SetPlayerSkin;
 	#if defined _ALS_SetPlayerSkin
-		// Previous hook.
 		#define _ALS_SetPlayerSkin__
 		#define SetPlayerSkin__( SetPlayerSkin(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerSkin(playerid) = GetPlayerSkin;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerSkin__(playerid) = GetPlayerSkin;
 	#if defined _ALS_GetPlayerSkin
-		// Previous hook.
 		#define _ALS_GetPlayerSkin__
 		#define GetPlayerSkin__( GetPlayerSkin(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerCustomSkin(playerid) = GetPlayerCustomSkin;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerCustomSkin(playerid) = GetPlayerCustomSkin;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerCustomSkin__(playerid) = GetPlayerCustomSkin;
 	#if defined _ALS_GetPlayerCustomSkin
-		// Previous hook.
 		#define _ALS_GetPlayerCustomSkin__
 		#define GetPlayerCustomSkin__( GetPlayerCustomSkin(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GivePlayerWeapon(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GivePlayerWeapon(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GivePlayerWeapon__(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
 	#if defined _ALS_GivePlayerWeapon
-		// Previous hook.
 		#define _ALS_GivePlayerWeapon__
 		#define GivePlayerWeapon__( GivePlayerWeapon(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ResetPlayerWeapons__(playerid) = ResetPlayerWeapons;
 	#if defined _ALS_ResetPlayerWeapons
-		// Previous hook.
 		#define _ALS_ResetPlayerWeapons__
 		#define ResetPlayerWeapons__( ResetPlayerWeapons(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerArmedWeapon(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerArmedWeapon(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerArmedWeapon__(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon;
 	#if defined _ALS_SetPlayerArmedWeapon
-		// Previous hook.
 		#define _ALS_SetPlayerArmedWeapon__
 		#define SetPlayerArmedWeapon__( SetPlayerArmedWeapon(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerWeaponData(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerWeaponData(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerWeaponData__(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData;
 	#if defined _ALS_GetPlayerWeaponData
-		// Previous hook.
 		#define _ALS_GetPlayerWeaponData__
 		#define GetPlayerWeaponData__( GetPlayerWeaponData(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GivePlayerMoney(playerid, money) = GivePlayerMoney;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GivePlayerMoney(playerid, money) = GivePlayerMoney;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GivePlayerMoney__(playerid, money) = GivePlayerMoney;
 	#if defined _ALS_GivePlayerMoney
-		// Previous hook.
 		#define _ALS_GivePlayerMoney__
 		#define GivePlayerMoney__( GivePlayerMoney(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ResetPlayerMoney(playerid) = ResetPlayerMoney;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ResetPlayerMoney(playerid) = ResetPlayerMoney;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ResetPlayerMoney__(playerid) = ResetPlayerMoney;
 	#if defined _ALS_ResetPlayerMoney
-		// Previous hook.
 		#define _ALS_ResetPlayerMoney__
 		#define ResetPlayerMoney__( ResetPlayerMoney(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerName(playerid, name[]) = SetPlayerName;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerName(playerid, _FIXES_MAYBE_CONST name[]) = SetPlayerName;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerName__(playerid, const name[]) = SetPlayerName;
 	#if defined _ALS_SetPlayerName
-		// Previous hook.
 		#define _ALS_SetPlayerName__
 		#define SetPlayerName__( SetPlayerName(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerMoney(playerid) = GetPlayerMoney;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerMoney(playerid) = GetPlayerMoney;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerMoney__(playerid) = GetPlayerMoney;
 	#if defined _ALS_GetPlayerMoney
-		// Previous hook.
 		#define _ALS_GetPlayerMoney__
 		#define GetPlayerMoney__( GetPlayerMoney(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native PLAYER_STATE:BAD_GetPlayerState(playerid) = GetPlayerState;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native PLAYER_STATE:CST_GetPlayerState(playerid) = GetPlayerState;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState;
 	#if defined _ALS_GetPlayerState
-		// Previous hook.
 		#define _ALS_GetPlayerState__
 		#define GetPlayerState__( GetPlayerState(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerIp(playerid, ip[], len) = GetPlayerIp;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerIp(playerid, ip[], _FIXES_MAYBE_SIZEOF(len, ip)) = GetPlayerIp;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerIp__(playerid, ip[], len = sizeof (ip)) = GetPlayerIp;
 	#if defined _ALS_GetPlayerIp
-		// Previous hook.
 		#define _ALS_GetPlayerIp__
 		#define GetPlayerIp__( GetPlayerIp(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerPing(playerid) = GetPlayerPing;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerPing(playerid) = GetPlayerPing;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerPing__(playerid) = GetPlayerPing;
 	#if defined _ALS_GetPlayerPing
-		// Previous hook.
 		#define _ALS_GetPlayerPing__
 		#define GetPlayerPing__( GetPlayerPing(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native WEAPON:BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native WEAPON:CST_GetPlayerWeapon(playerid) = GetPlayerWeapon;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native WEAPON:GetPlayerWeapon__(playerid) = GetPlayerWeapon;
 	#if defined _ALS_GetPlayerWeapon
-		// Previous hook.
 		#define _ALS_GetPlayerWeapon__
 		#define GetPlayerWeapon__( GetPlayerWeapon(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	#if FIX_GetPlayerKeys
 		#pragma deprecated Use `GetPlayerActions`.
 	#endif
 	native CST_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 	#if defined _ALS_GetPlayerKeys
-		// Previous hook.
 		#define _ALS_GetPlayerKeys__
 		#define GetPlayerKeys__( GetPlayerKeys(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerActions(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerActions(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerActions__(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys;
 	#if defined _ALS_GetPlayerActions
-		// Previous hook.
 		#define _ALS_GetPlayerActions__
 		#define GetPlayerActions__( GetPlayerActions(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerName(playerid, const name[], len) = GetPlayerName;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerName(playerid, _FIXES_NOT_CONST name[], _FIXES_MAYBE_SIZEOF(len, name)) = GetPlayerName;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName;
 	#if defined _ALS_GetPlayerName
-		// Previous hook.
 		#define _ALS_GetPlayerName__
 		#define GetPlayerName__( GetPlayerName(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime;
 	#if defined _ALS_SetPlayerTime
-		// Previous hook.
 		#define _ALS_SetPlayerTime__
 		#define SetPlayerTime__( SetPlayerTime(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerTime(playerid, &hour, &minute) = GetPlayerTime;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerTime(playerid, &hour, &minute) = GetPlayerTime;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerTime__(playerid, &hour, &minute) = GetPlayerTime;
 	#if defined _ALS_GetPlayerTime
-		// Previous hook.
 		#define _ALS_GetPlayerTime__
 		#define GetPlayerTime__( GetPlayerTime(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerClock;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TogglePlayerClock__(playerid, bool:toggle) = TogglePlayerClock;
 	#if defined _ALS_TogglePlayerClock
-		// Previous hook.
 		#define _ALS_TogglePlayerClock__
 		#define TogglePlayerClock__( TogglePlayerClock(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerWeather__(playerid, weather) = SetPlayerWeather;
 	#if defined _ALS_SetPlayerWeather
-		// Previous hook.
 		#define _ALS_SetPlayerWeather__
 		#define SetPlayerWeather__( SetPlayerWeather(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ForceClassSelection(playerid) = ForceClassSelection;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ForceClassSelection(playerid) = ForceClassSelection;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ForceClassSelection__(playerid) = ForceClassSelection;
 	#if defined _ALS_ForceClassSelection
-		// Previous hook.
 		#define _ALS_ForceClassSelection__
 		#define ForceClassSelection__( ForceClassSelection(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerWantedLevel(playerid, level) = SetPlayerWantedLevel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerWantedLevel(playerid, level) = SetPlayerWantedLevel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerWantedLevel__(playerid, level) = SetPlayerWantedLevel;
 	#if defined _ALS_SetPlayerWantedLevel
-		// Previous hook.
 		#define _ALS_SetPlayerWantedLevel__
 		#define SetPlayerWantedLevel__( SetPlayerWantedLevel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerWantedLevel(playerid) = GetPlayerWantedLevel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerWantedLevel(playerid) = GetPlayerWantedLevel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerWantedLevel__(playerid) = GetPlayerWantedLevel;
 	#if defined _ALS_GetPlayerWantedLevel
-		// Previous hook.
 		#define _ALS_GetPlayerWantedLevel__
 		#define GetPlayerWantedLevel__( GetPlayerWantedLevel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerFightingStyle(playerid, FIGHT_STYLE:style) = SetPlayerFightingStyle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerFightingStyle(playerid, FIGHT_STYLE:style) = SetPlayerFightingStyle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerFightingStyle__(playerid, FIGHT_STYLE:style) = SetPlayerFightingStyle;
 	#if defined _ALS_SetPlayerFightingStyle
-		// Previous hook.
 		#define _ALS_SetPlayerFightingStyle__
 		#define SetPlayerFightingStyle__( SetPlayerFightingStyle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native FIGHT_STYLE:BAD_GetPlayerFightingStyle(playerid) = GetPlayerFightingStyle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native FIGHT_STYLE:CST_GetPlayerFightingStyle(playerid) = GetPlayerFightingStyle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native FIGHT_STYLE:GetPlayerFightingStyle__(playerid) = GetPlayerFightingStyle;
 	#if defined _ALS_GetPlayerFightingStyle
-		// Previous hook.
 		#define _ALS_GetPlayerFightingStyle__
 		#define GetPlayerFightingStyle__( GetPlayerFightingStyle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerVelocity(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerVelocity(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerVelocity__(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity;
 	#if defined _ALS_SetPlayerVelocity
-		// Previous hook.
 		#define _ALS_SetPlayerVelocity__
 		#define SetPlayerVelocity__( SetPlayerVelocity(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerVelocity(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerVelocity(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerVelocity__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity;
 	#if defined _ALS_GetPlayerVelocity
-		// Previous hook.
 		#define _ALS_GetPlayerVelocity__
 		#define GetPlayerVelocity__( GetPlayerVelocity(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayCrimeReportForPlayer(playerid, suspectid, crime) = PlayCrimeReportForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayCrimeReportForPlayer(playerid, suspectid, crime) = PlayCrimeReportForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayCrimeReportForPlayer__(playerid, suspectid, crime) = PlayCrimeReportForPlayer;
 	#if defined _ALS_PlayCrimeReportForPlayer
-		// Previous hook.
 		#define _ALS_PlayCrimeReportForPlayer__
 		#define PlayCrimeReportForPlayer__( PlayCrimeReportForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayAudioStreamForPlayer(playerid, url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = false) = PlayAudioStreamForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayAudioStreamForPlayer(playerid, _FIXES_MAYBE_CONST url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, _FIXES_MAYBE_BOOL:usepos = false) = PlayAudioStreamForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayAudioStreamForPlayer__(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, bool:usepos = false) = PlayAudioStreamForPlayer;
 	#if defined _ALS_PlayAudioStreamForPlayer
-		// Previous hook.
 		#define _ALS_PlayAudioStreamForPlayer__
 		#define PlayAudioStreamForPlayer__( PlayAudioStreamForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_StopAudioStreamForPlayer(playerid) = StopAudioStreamForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_StopAudioStreamForPlayer(playerid) = StopAudioStreamForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native StopAudioStreamForPlayer__(playerid) = StopAudioStreamForPlayer;
 	#if defined _ALS_StopAudioStreamForPlayer
-		// Previous hook.
 		#define _ALS_StopAudioStreamForPlayer__
 		#define StopAudioStreamForPlayer__( StopAudioStreamForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerShopName(playerid, shopName[]) = SetPlayerShopName;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerShopName(playerid, _FIXES_MAYBE_CONST shopName[]) = SetPlayerShopName;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerShopName__(playerid, const shopName[]) = SetPlayerShopName;
 	#if defined _ALS_SetPlayerShopName
-		// Previous hook.
 		#define _ALS_SetPlayerShopName__
 		#define SetPlayerShopName__( SetPlayerShopName(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerSkillLevel(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerSkillLevel(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerSkillLevel__(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel;
 	#if defined _ALS_SetPlayerSkillLevel
-		// Previous hook.
 		#define _ALS_SetPlayerSkillLevel__
 		#define SetPlayerSkillLevel__( SetPlayerSkillLevel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerSurfingVehicleID(playerid) = GetPlayerSurfingVehicleID;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerSurfingVehicleID(playerid) = GetPlayerSurfingVehicleID;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerSurfingVehicleID__(playerid) = GetPlayerSurfingVehicleID;
 	#if defined _ALS_GetPlayerSurfingVehicleID
-		// Previous hook.
 		#define _ALS_GetPlayerSurfingVehicleID__
 		#define GetPlayerSurfingVehicleID__( GetPlayerSurfingVehicleID(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerSurfingObjectID(playerid) = GetPlayerSurfingObjectID;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerSurfingObjectID(playerid) = GetPlayerSurfingObjectID;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerSurfingObjectID__(playerid) = GetPlayerSurfingObjectID;
 	#if defined _ALS_GetPlayerSurfingObjectID
-		// Previous hook.
 		#define _ALS_GetPlayerSurfingObjectID__
 		#define GetPlayerSurfingObjectID__( GetPlayerSurfingObjectID(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_RemoveBuildingForPlayer(playerid, modelid, Float:centerX, Float:centerY, Float:centerZ, Float:radius) = RemoveBuildingForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_RemoveBuildingForPlayer(playerid, modelid, Float:centerX, Float:centerY, Float:centerZ, Float:radius) = RemoveBuildingForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native RemoveBuildingForPlayer__(playerid, modelid, Float:centerX, Float:centerY, Float:centerZ, Float:radius) = RemoveBuildingForPlayer;
 	#if defined _ALS_RemoveBuildingForPlayer
-		// Previous hook.
 		#define _ALS_RemoveBuildingForPlayer__
 		#define RemoveBuildingForPlayer__( RemoveBuildingForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerLastShotVectors(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerLastShotVectors(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerLastShotVectors__(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
 	#if defined _ALS_GetPlayerLastShotVectors
-		// Previous hook.
 		#define _ALS_GetPlayerLastShotVectors__
 		#define GetPlayerLastShotVectors__( GetPlayerLastShotVectors(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
 	#if defined _ALS_SetPlayerAttachedObject
-		// Previous hook.
 		#define _ALS_SetPlayerAttachedObject__
 		#define SetPlayerAttachedObject__( SetPlayerAttachedObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject;
 	#if defined _ALS_RemovePlayerAttachedObject
-		// Previous hook.
 		#define _ALS_RemovePlayerAttachedObject__
 		#define RemovePlayerAttachedObject__( RemovePlayerAttachedObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerAttachedObjectSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 	#if defined _ALS_IsPlayerAttachedObjectSlotUsed
-		// Previous hook.
 		#define _ALS_IsPlayerAttachedObjectSlotUsed__
 		#define IsPlayerAttachedObjectSlotUsed__( IsPlayerAttachedObjectSlotUsed(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_EditAttachedObject(playerid, index) = EditAttachedObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_EditAttachedObject(playerid, index) = EditAttachedObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native EditAttachedObject__(playerid, index) = EditAttachedObject;
 	#if defined _ALS_EditAttachedObject
-		// Previous hook.
 		#define _ALS_EditAttachedObject__
 		#define EditAttachedObject__( EditAttachedObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native PlayerText:CST_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = CreatePlayerTextDraw;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
 	#if defined _ALS_CreatePlayerTextDraw
-		// Previous hook.
 		#define _ALS_CreatePlayerTextDraw__
 		#define CreatePlayerTextDraw__( CreatePlayerTextDraw(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawDestroy(playerid, PlayerText:text) = PlayerTextDrawDestroy;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawDestroy(playerid, PlayerText:text) = PlayerTextDrawDestroy;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy;
 	#if defined _ALS_PlayerTextDrawDestroy
-		// Previous hook.
 		#define _ALS_PlayerTextDrawDestroy__
 		#define PlayerTextDrawDestroy__( PlayerTextDrawDestroy(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawLetterSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawLetterSize;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawLetterSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawLetterSize;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawLetterSize__(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawLetterSize;
 	#if defined _ALS_PlayerTextDrawLetterSize
-		// Previous hook.
 		#define _ALS_PlayerTextDrawLetterSize__
 		#define PlayerTextDrawLetterSize__( PlayerTextDrawLetterSize(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawTextSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawTextSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawTextSize__(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize;
 	#if defined _ALS_PlayerTextDrawTextSize
-		// Previous hook.
 		#define _ALS_PlayerTextDrawTextSize__
 		#define PlayerTextDrawTextSize__( PlayerTextDrawTextSize(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawAlignment(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawAlignment(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawAlignment__(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment;
 	#if defined _ALS_PlayerTextDrawAlignment
-		// Previous hook.
 		#define _ALS_PlayerTextDrawAlignment__
 		#define PlayerTextDrawAlignment__( PlayerTextDrawAlignment(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawColor(playerid, PlayerText:text, colour) = PlayerTextDrawColor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawColor(playerid, PlayerText:text, colour) = PlayerTextDrawColor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawColor__(playerid, PlayerText:text, colour) = PlayerTextDrawColor;
 	#if defined _ALS_PlayerTextDrawColor
-		// Previous hook.
 		#define _ALS_PlayerTextDrawColor__
 		#define PlayerTextDrawColor__( PlayerTextDrawColor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawUseBox(playerid, PlayerText:text, use) = PlayerTextDrawUseBox;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawUseBox(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:use) = PlayerTextDrawUseBox;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawUseBox__(playerid, PlayerText:text, bool:use) = PlayerTextDrawUseBox;
 	#if defined _ALS_PlayerTextDrawUseBox
-		// Previous hook.
 		#define _ALS_PlayerTextDrawUseBox__
 		#define PlayerTextDrawUseBox__( PlayerTextDrawUseBox(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawBoxColor(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawBoxColor(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawBoxColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor;
 	#if defined _ALS_PlayerTextDrawBoxColor
-		// Previous hook.
 		#define _ALS_PlayerTextDrawBoxColor__
 		#define PlayerTextDrawBoxColor__( PlayerTextDrawBoxColor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawSetShadow(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawSetShadow(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawSetShadow__(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
 	#if defined _ALS_PlayerTextDrawSetShadow
-		// Previous hook.
 		#define _ALS_PlayerTextDrawSetShadow__
 		#define PlayerTextDrawSetShadow__( PlayerTextDrawSetShadow(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawSetOutline(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawSetOutline(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawSetOutline__(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
 	#if defined _ALS_PlayerTextDrawSetOutline
-		// Previous hook.
 		#define _ALS_PlayerTextDrawSetOutline__
 		#define PlayerTextDrawSetOutline__( PlayerTextDrawSetOutline(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawBackgroundColor(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawBackgroundColor(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawBackgroundColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor;
 	#if defined _ALS_PlayerTextDrawBackgroundColor
-		// Previous hook.
 		#define _ALS_PlayerTextDrawBackgroundColor__
 		#define PlayerTextDrawBackgroundColor__( PlayerTextDrawBackgroundColor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawFont(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawFont(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawFont__(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont;
 	#if defined _ALS_PlayerTextDrawFont
-		// Previous hook.
 		#define _ALS_PlayerTextDrawFont__
 		#define PlayerTextDrawFont__( PlayerTextDrawFont(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawSetProportional(playerid, PlayerText:text, set) = PlayerTextDrawSetProportional;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawSetProportional(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetProportional;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawSetProportional__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetProportional;
 	#if defined _ALS_PlayerTextDrawSetProportional
-		// Previous hook.
 		#define _ALS_PlayerTextDrawSetProportional__
 		#define PlayerTextDrawSetProportional__( PlayerTextDrawSetProportional(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawSetSelectable(playerid, PlayerText:text, set) = PlayerTextDrawSetSelectable;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawSetSelectable(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetSelectable;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetSelectable;
 	#if defined _ALS_PlayerTextDrawSetSelectable
-		// Previous hook.
 		#define _ALS_PlayerTextDrawSetSelectable__
 		#define PlayerTextDrawSetSelectable__( PlayerTextDrawSetSelectable(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawShow(playerid, PlayerText:text) = PlayerTextDrawShow;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawShow(playerid, PlayerText:text) = PlayerTextDrawShow;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawShow__(playerid, PlayerText:text) = PlayerTextDrawShow;
 	#if defined _ALS_PlayerTextDrawShow
-		// Previous hook.
 		#define _ALS_PlayerTextDrawShow__
 		#define PlayerTextDrawShow__( PlayerTextDrawShow(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawHide(playerid, PlayerText:text) = PlayerTextDrawHide;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawHide(playerid, PlayerText:text) = PlayerTextDrawHide;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawHide__(playerid, PlayerText:text) = PlayerTextDrawHide;
 	#if defined _ALS_PlayerTextDrawHide
-		// Previous hook.
 		#define _ALS_PlayerTextDrawHide__
 		#define PlayerTextDrawHide__( PlayerTextDrawHide(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[]) = PlayerTextDrawSetString;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawSetString__(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
 	#if defined _ALS_PlayerTextDrawSetString
-		// Previous hook.
 		#define _ALS_PlayerTextDrawSetString__
 		#define PlayerTextDrawSetString__( PlayerTextDrawSetString(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawSetPreviewModel(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawSetPreviewModel(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawSetPreviewModel__(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel;
 	#if defined _ALS_PlayerTextDrawSetPreviewModel
-		// Previous hook.
 		#define _ALS_PlayerTextDrawSetPreviewModel__
 		#define PlayerTextDrawSetPreviewModel__( PlayerTextDrawSetPreviewModel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawSetPreviewRot(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawSetPreviewRot(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawSetPreviewRot__(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot;
 	#if defined _ALS_PlayerTextDrawSetPreviewRot
-		// Previous hook.
 		#define _ALS_PlayerTextDrawSetPreviewRot__
 		#define PlayerTextDrawSetPreviewRot__( PlayerTextDrawSetPreviewRot(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerTextDrawSetPreviewVehCol(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerTextDrawSetPreviewVehCol(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerTextDrawSetPreviewVehCol__(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
 	#if defined _ALS_PlayerTextDrawSetPreviewVehCol
-		// Previous hook.
 		#define _ALS_PlayerTextDrawSetPreviewVehCol__
 		#define PlayerTextDrawSetPreviewVehCol__( PlayerTextDrawSetPreviewVehCol(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPVarInt(playerid, pvar[], value) = SetPVarInt;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[], value) = SetPVarInt;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPVarInt__(playerid, const pvar[], value) = SetPVarInt;
 	#if defined _ALS_SetPVarInt
-		// Previous hook.
 		#define _ALS_SetPVarInt__
 		#define SetPVarInt__( SetPVarInt(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPVarInt(playerid, pvar[]) = GetPVarInt;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarInt;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPVarInt__(playerid, const pvar[]) = GetPVarInt;
 	#if defined _ALS_GetPVarInt
-		// Previous hook.
 		#define _ALS_GetPVarInt__
 		#define GetPVarInt__( GetPVarInt(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPVarString(playerid, pvar[], value[]) = SetPVarString;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], _FIXES_MAYBE_CONST value[]) = SetPVarString;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPVarString__(playerid, const pvar[], const value[]) = SetPVarString;
 	#if defined _ALS_SetPVarString
-		// Previous hook.
 		#define _ALS_SetPVarString__
 		#define SetPVarString__( SetPVarString(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPVarString(playerid, pvar[], output[], len) = GetPVarString;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetPVarString;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPVarString__(playerid, const pvar[], output[], len = sizeof (output)) = GetPVarString;
 	#if defined _ALS_GetPVarString
-		// Previous hook.
 		#define _ALS_GetPVarString__
 		#define GetPVarString__( GetPVarString(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPVarFloat(playerid, pvar[], Float:value) = SetPVarFloat;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[], Float:value) = SetPVarFloat;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPVarFloat__(playerid, const pvar[], Float:value) = SetPVarFloat;
 	#if defined _ALS_SetPVarFloat
-		// Previous hook.
 		#define _ALS_SetPVarFloat__
 		#define SetPVarFloat__( SetPVarFloat(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_GetPVarFloat(playerid, pvar[]) = GetPVarFloat;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_GetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarFloat;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:GetPVarFloat__(playerid, const pvar[]) = GetPVarFloat;
 	#if defined _ALS_GetPVarFloat
-		// Previous hook.
 		#define _ALS_GetPVarFloat__
 		#define GetPVarFloat__( GetPVarFloat(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DeletePVar(playerid, pvar[]) = DeletePVar;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DeletePVar(playerid, _FIXES_MAYBE_CONST pvar[]) = DeletePVar;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DeletePVar__(playerid, const pvar[]) = DeletePVar;
 	#if defined _ALS_DeletePVar
-		// Previous hook.
 		#define _ALS_DeletePVar__
 		#define DeletePVar__( DeletePVar(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPVarsUpperIndex(playerid) = GetPVarsUpperIndex;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPVarsUpperIndex(playerid) = GetPVarsUpperIndex;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPVarsUpperIndex__(playerid) = GetPVarsUpperIndex;
 	#if defined _ALS_GetPVarsUpperIndex
-		// Previous hook.
 		#define _ALS_GetPVarsUpperIndex__
 		#define GetPVarsUpperIndex__( GetPVarsUpperIndex(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPVarNameAtIndex(playerid, index, output[], size) = GetPVarNameAtIndex;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPVarNameAtIndex(playerid, index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPVarNameAtIndex;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPVarNameAtIndex__(playerid, index, output[], size = sizeof (output)) = GetPVarNameAtIndex;
 	#if defined _ALS_GetPVarNameAtIndex
-		// Previous hook.
 		#define _ALS_GetPVarNameAtIndex__
 		#define GetPVarNameAtIndex__( GetPVarNameAtIndex(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native PLAYER_VARTYPE:BAD_GetPVarType(playerid, pvar[]) = GetPVarType;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native PLAYER_VARTYPE:CST_GetPVarType(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarType;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PLAYER_VARTYPE:GetPVarType__(playerid, const pvar[]) = GetPVarType;
 	#if defined _ALS_GetPVarType
-		// Previous hook.
 		#define _ALS_GetPVarType__
 		#define GetPVarType__( GetPVarType(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerChatBubble(playerid, text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerChatBubble(playerid, _FIXES_MAYBE_CONST text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerChatBubble__(playerid, const text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
 	#if defined _ALS_SetPlayerChatBubble
-		// Previous hook.
 		#define _ALS_SetPlayerChatBubble__
 		#define SetPlayerChatBubble__( SetPlayerChatBubble(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PutPlayerInVehicle__(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 	#if defined _ALS_PutPlayerInVehicle
-		// Previous hook.
 		#define _ALS_PutPlayerInVehicle__
 		#define PutPlayerInVehicle__( PutPlayerInVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerVehicleID(playerid) = GetPlayerVehicleID;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerVehicleID(playerid) = GetPlayerVehicleID;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
 	#if defined _ALS_GetPlayerVehicleID
-		// Previous hook.
 		#define _ALS_GetPlayerVehicleID__
 		#define GetPlayerVehicleID__( GetPlayerVehicleID(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerVehicleSeat(playerid) = GetPlayerVehicleSeat;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerVehicleSeat(playerid) = GetPlayerVehicleSeat;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerVehicleSeat__(playerid) = GetPlayerVehicleSeat;
 	#if defined _ALS_GetPlayerVehicleSeat
-		// Previous hook.
 		#define _ALS_GetPlayerVehicleSeat__
 		#define GetPlayerVehicleSeat__( GetPlayerVehicleSeat(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_RemovePlayerFromVehicle(playerid) = RemovePlayerFromVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_RemovePlayerFromVehicle(playerid) = RemovePlayerFromVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native RemovePlayerFromVehicle__(playerid) = RemovePlayerFromVehicle;
 	#if defined _ALS_RemovePlayerFromVehicle
-		// Previous hook.
 		#define _ALS_RemovePlayerFromVehicle__
 		#define RemovePlayerFromVehicle__( RemovePlayerFromVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerControllable;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TogglePlayerControllable__(playerid, bool:toggle) = TogglePlayerControllable;
 	#if defined _ALS_TogglePlayerControllable
-		// Previous hook.
 		#define _ALS_TogglePlayerControllable__
 		#define TogglePlayerControllable__( TogglePlayerControllable(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerPlaySound(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerPlaySound(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerPlaySound__(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
 	#if defined _ALS_PlayerPlaySound
-		// Previous hook.
 		#define _ALS_PlayerPlaySound__
 		#define PlayerPlaySound__( PlayerPlaySound(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ApplyAnimation(playerid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ApplyAnimation__(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
 	#if defined _ALS_ApplyAnimation
-		// Previous hook.
 		#define _ALS_ApplyAnimation__
 		#define ApplyAnimation__( ApplyAnimation(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ClearAnimations(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = ClearAnimations;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ClearAnimations(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = ClearAnimations;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ClearAnimations__(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = ClearAnimations;
 	#if defined _ALS_ClearAnimations
-		// Previous hook.
 		#define _ALS_ClearAnimations__
 		#define ClearAnimations__( ClearAnimations(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerAnimationIndex(playerid) = GetPlayerAnimationIndex;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerAnimationIndex(playerid) = GetPlayerAnimationIndex;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerAnimationIndex__(playerid) = GetPlayerAnimationIndex;
 	#if defined _ALS_GetPlayerAnimationIndex
-		// Previous hook.
 		#define _ALS_GetPlayerAnimationIndex__
 		#define GetPlayerAnimationIndex__( GetPlayerAnimationIndex(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetAnimationName(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], len2) = GetAnimationName;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetAnimationName(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], _FIXES_MAYBE_SIZEOF(len2, animationName)) = GetAnimationName;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetAnimationName__(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], len2 = sizeof (animationName)) = GetAnimationName;
 	#if defined _ALS_GetAnimationName
-		// Previous hook.
 		#define _ALS_GetAnimationName__
 		#define GetAnimationName__( GetAnimationName(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native SPECIAL_ACTION:BAD_GetPlayerSpecialAction(playerid) = GetPlayerSpecialAction;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native SPECIAL_ACTION:CST_GetPlayerSpecialAction(playerid) = GetPlayerSpecialAction;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
 	#if defined _ALS_GetPlayerSpecialAction
-		// Previous hook.
 		#define _ALS_GetPlayerSpecialAction__
 		#define GetPlayerSpecialAction__( GetPlayerSpecialAction(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerSpecialAction(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerSpecialAction(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerSpecialAction__(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
 	#if defined _ALS_SetPlayerSpecialAction
-		// Previous hook.
 		#define _ALS_SetPlayerSpecialAction__
 		#define SetPlayerSpecialAction__( SetPlayerSpecialAction(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DisableRemoteVehicleCollisions(playerid, disable) = DisableRemoteVehicleCollisions;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DisableRemoteVehicleCollisions(playerid, _FIXES_MAYBE_BOOL:disable) = DisableRemoteVehicleCollisions;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DisableRemoteVehicleCollisions__(playerid, bool:disable) = DisableRemoteVehicleCollisions;
 	#if defined _ALS_DisableRemoteVehicleCollisions
-		// Previous hook.
 		#define _ALS_DisableRemoteVehicleCollisions__
 		#define DisableRemoteVehicleCollisions__( DisableRemoteVehicleCollisions(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
 	#if defined _ALS_SetPlayerCheckpoint
-		// Previous hook.
 		#define _ALS_SetPlayerCheckpoint__
 		#define SetPlayerCheckpoint__( SetPlayerCheckpoint(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint;
 	#if defined _ALS_DisablePlayerCheckpoint
-		// Previous hook.
 		#define _ALS_DisablePlayerCheckpoint__
 		#define DisablePlayerCheckpoint__( DisablePlayerCheckpoint(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerRaceCheckpoint(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerRaceCheckpoint__(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
 	#if defined _ALS_SetPlayerRaceCheckpoint
-		// Previous hook.
 		#define _ALS_SetPlayerRaceCheckpoint__
 		#define SetPlayerRaceCheckpoint__( SetPlayerRaceCheckpoint(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DisablePlayerRaceCheckpoint__(playerid) = DisablePlayerRaceCheckpoint;
 	#if defined _ALS_DisablePlayerRaceCheckpoint
-		// Previous hook.
 		#define _ALS_DisablePlayerRaceCheckpoint__
 		#define DisablePlayerRaceCheckpoint__( DisablePlayerRaceCheckpoint(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerWorldBounds__(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds;
 	#if defined _ALS_SetPlayerWorldBounds
-		// Previous hook.
 		#define _ALS_SetPlayerWorldBounds__
 		#define SetPlayerWorldBounds__( SetPlayerWorldBounds(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerMarkerForPlayer(playerid, targetid, colour) = SetPlayerMarkerForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerMarkerForPlayer(playerid, targetid, colour) = SetPlayerMarkerForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerMarkerForPlayer__(playerid, targetid, colour) = SetPlayerMarkerForPlayer;
 	#if defined _ALS_SetPlayerMarkerForPlayer
-		// Previous hook.
 		#define _ALS_SetPlayerMarkerForPlayer__
 		#define SetPlayerMarkerForPlayer__( SetPlayerMarkerForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ShowPlayerNameTagForPlayer(playerid, targetid, show) = ShowPlayerNameTagForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ShowPlayerNameTagForPlayer(playerid, targetid, _FIXES_MAYBE_BOOL:show) = ShowPlayerNameTagForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ShowPlayerNameTagForPlayer__(playerid, targetid, bool:show) = ShowPlayerNameTagForPlayer;
 	#if defined _ALS_ShowPlayerNameTagForPlayer
-		// Previous hook.
 		#define _ALS_ShowPlayerNameTagForPlayer__
 		#define ShowPlayerNameTagForPlayer__( ShowPlayerNameTagForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerMapIcon(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerMapIcon(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerMapIcon__(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon;
 	#if defined _ALS_SetPlayerMapIcon
-		// Previous hook.
 		#define _ALS_SetPlayerMapIcon__
 		#define SetPlayerMapIcon__( SetPlayerMapIcon(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_RemovePlayerMapIcon(playerid, iconid) = RemovePlayerMapIcon;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_RemovePlayerMapIcon(playerid, iconid) = RemovePlayerMapIcon;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native RemovePlayerMapIcon__(playerid, iconid) = RemovePlayerMapIcon;
 	#if defined _ALS_RemovePlayerMapIcon
-		// Previous hook.
 		#define _ALS_RemovePlayerMapIcon__
 		#define RemovePlayerMapIcon__( RemovePlayerMapIcon(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 	#pragma deprecated Use `OnPlayerClickMap`.
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow) = AllowPlayerTeleport;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AllowPlayerTeleport__(playerid, bool:allow) = AllowPlayerTeleport;
 	#if defined _ALS_AllowPlayerTeleport
-		// Previous hook.
 		#define _ALS_AllowPlayerTeleport__
 		#define AllowPlayerTeleport__( AllowPlayerTeleport(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerCameraPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
 	#if defined _ALS_SetPlayerCameraPos
-		// Previous hook.
 		#define _ALS_SetPlayerCameraPos__
 		#define SetPlayerCameraPos__( SetPlayerCameraPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerCameraLookAt__(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
 	#if defined _ALS_SetPlayerCameraLookAt
-		// Previous hook.
 		#define _ALS_SetPlayerCameraLookAt__
 		#define SetPlayerCameraLookAt__( SetPlayerCameraLookAt(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetCameraBehindPlayer(playerid) = SetCameraBehindPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetCameraBehindPlayer(playerid) = SetCameraBehindPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetCameraBehindPlayer__(playerid) = SetCameraBehindPlayer;
 	#if defined _ALS_SetCameraBehindPlayer
-		// Previous hook.
 		#define _ALS_SetCameraBehindPlayer__
 		#define SetCameraBehindPlayer__( SetCameraBehindPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerCameraPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerCameraPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerCameraPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
 	#if defined _ALS_GetPlayerCameraPos
-		// Previous hook.
 		#define _ALS_GetPlayerCameraPos__
 		#define GetPlayerCameraPos__( GetPlayerCameraPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerCameraFrontVector(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerCameraFrontVector(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerCameraFrontVector__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
 	#if defined _ALS_GetPlayerCameraFrontVector
-		// Previous hook.
 		#define _ALS_GetPlayerCameraFrontVector__
 		#define GetPlayerCameraFrontVector__( GetPlayerCameraFrontVector(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native CAM_MODE:BAD_GetPlayerCameraMode(playerid) = GetPlayerCameraMode;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CAM_MODE:CST_GetPlayerCameraMode(playerid) = GetPlayerCameraMode;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CAM_MODE:GetPlayerCameraMode__(playerid) = GetPlayerCameraMode;
 	#if defined _ALS_GetPlayerCameraMode
-		// Previous hook.
 		#define _ALS_GetPlayerCameraMode__
 		#define GetPlayerCameraMode__( GetPlayerCameraMode(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_EnablePlayerCameraTarget(playerid, enable) = EnablePlayerCameraTarget;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_EnablePlayerCameraTarget(playerid, _FIXES_MAYBE_BOOL:enable) = EnablePlayerCameraTarget;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native EnablePlayerCameraTarget__(playerid, bool:enable) = EnablePlayerCameraTarget;
 	#if defined _ALS_EnablePlayerCameraTarget
-		// Previous hook.
 		#define _ALS_EnablePlayerCameraTarget__
 		#define EnablePlayerCameraTarget__( EnablePlayerCameraTarget(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerCameraTargetObject(playerid) = GetPlayerCameraTargetObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerCameraTargetObject(playerid) = GetPlayerCameraTargetObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerCameraTargetObject__(playerid) = GetPlayerCameraTargetObject;
 	#if defined _ALS_GetPlayerCameraTargetObject
-		// Previous hook.
 		#define _ALS_GetPlayerCameraTargetObject__
 		#define GetPlayerCameraTargetObject__( GetPlayerCameraTargetObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerCameraTargetVehicle(playerid) = GetPlayerCameraTargetVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerCameraTargetVehicle(playerid) = GetPlayerCameraTargetVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerCameraTargetVehicle__(playerid) = GetPlayerCameraTargetVehicle;
 	#if defined _ALS_GetPlayerCameraTargetVehicle
-		// Previous hook.
 		#define _ALS_GetPlayerCameraTargetVehicle__
 		#define GetPlayerCameraTargetVehicle__( GetPlayerCameraTargetVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerCameraTargetPlayer(playerid) = GetPlayerCameraTargetPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerCameraTargetPlayer(playerid) = GetPlayerCameraTargetPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerCameraTargetPlayer__(playerid) = GetPlayerCameraTargetPlayer;
 	#if defined _ALS_GetPlayerCameraTargetPlayer
-		// Previous hook.
 		#define _ALS_GetPlayerCameraTargetPlayer__
 		#define GetPlayerCameraTargetPlayer__( GetPlayerCameraTargetPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerCameraTargetActor(playerid) = GetPlayerCameraTargetActor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerCameraTargetActor(playerid) = GetPlayerCameraTargetActor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerCameraTargetActor__(playerid) = GetPlayerCameraTargetActor;
 	#if defined _ALS_GetPlayerCameraTargetActor
-		// Previous hook.
 		#define _ALS_GetPlayerCameraTargetActor__
 		#define GetPlayerCameraTargetActor__( GetPlayerCameraTargetActor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_GetPlayerCameraAspectRatio(playerid) = GetPlayerCameraAspectRatio;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_GetPlayerCameraAspectRatio(playerid) = GetPlayerCameraAspectRatio;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:GetPlayerCameraAspectRatio__(playerid) = GetPlayerCameraAspectRatio;
 	#if defined _ALS_GetPlayerCameraAspectRatio
-		// Previous hook.
 		#define _ALS_GetPlayerCameraAspectRatio__
 		#define GetPlayerCameraAspectRatio__( GetPlayerCameraAspectRatio(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_GetPlayerCameraZoom(playerid) = GetPlayerCameraZoom;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_GetPlayerCameraZoom(playerid) = GetPlayerCameraZoom;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:GetPlayerCameraZoom__(playerid) = GetPlayerCameraZoom;
 	#if defined _ALS_GetPlayerCameraZoom
-		// Previous hook.
 		#define _ALS_GetPlayerCameraZoom__
 		#define GetPlayerCameraZoom__( GetPlayerCameraZoom(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AttachCameraToObject(playerid, objectid) = AttachCameraToObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AttachCameraToObject(playerid, objectid) = AttachCameraToObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AttachCameraToObject__(playerid, objectid) = AttachCameraToObject;
 	#if defined _ALS_AttachCameraToObject
-		// Previous hook.
 		#define _ALS_AttachCameraToObject__
 		#define AttachCameraToObject__( AttachCameraToObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AttachCameraToPlayerObject(playerid, objectid) = AttachCameraToPlayerObject;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AttachCameraToPlayerObject(playerid, objectid) = AttachCameraToPlayerObject;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AttachCameraToPlayerObject__(playerid, objectid) = AttachCameraToPlayerObject;
 	#if defined _ALS_AttachCameraToPlayerObject
-		// Previous hook.
 		#define _ALS_AttachCameraToPlayerObject__
 		#define AttachCameraToPlayerObject__( AttachCameraToPlayerObject(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_InterpolateCameraPos(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_InterpolateCameraPos(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native InterpolateCameraPos__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos;
 	#if defined _ALS_InterpolateCameraPos
-		// Previous hook.
 		#define _ALS_InterpolateCameraPos__
 		#define InterpolateCameraPos__( InterpolateCameraPos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_InterpolateCameraLookAt(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_InterpolateCameraLookAt(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native InterpolateCameraLookAt__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt;
 	#if defined _ALS_InterpolateCameraLookAt
-		// Previous hook.
 		#define _ALS_InterpolateCameraLookAt__
 		#define InterpolateCameraLookAt__( InterpolateCameraLookAt(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsPlayerConnected(playerid) = IsPlayerConnected;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
 	#if defined _ALS_IsPlayerConnected
-		// Previous hook.
 		#define _ALS_IsPlayerConnected__
 		#define IsPlayerConnected__( IsPlayerConnected(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
 	#if defined _ALS_IsPlayerInVehicle
-		// Previous hook.
 		#define _ALS_IsPlayerInVehicle__
 		#define IsPlayerInVehicle__( IsPlayerInVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
 	#if defined _ALS_IsPlayerInAnyVehicle
-		// Previous hook.
 		#define _ALS_IsPlayerInAnyVehicle__
 		#define IsPlayerInAnyVehicle__( IsPlayerInAnyVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
 	#if defined _ALS_IsPlayerInCheckpoint
-		// Previous hook.
 		#define _ALS_IsPlayerInCheckpoint__
 		#define IsPlayerInCheckpoint__( IsPlayerInCheckpoint(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
 	#if defined _ALS_IsPlayerInRaceCheckpoint
-		// Previous hook.
 		#define _ALS_IsPlayerInRaceCheckpoint__
 		#define IsPlayerInRaceCheckpoint__( IsPlayerInRaceCheckpoint(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetPlayerVirtualWorld(playerid, virtualWorld) = SetPlayerVirtualWorld;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetPlayerVirtualWorld(playerid, virtualWorld) = SetPlayerVirtualWorld;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetPlayerVirtualWorld__(playerid, virtualWorld) = SetPlayerVirtualWorld;
 	#if defined _ALS_SetPlayerVirtualWorld
-		// Previous hook.
 		#define _ALS_SetPlayerVirtualWorld__
 		#define SetPlayerVirtualWorld__( SetPlayerVirtualWorld(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerVirtualWorld(playerid) = GetPlayerVirtualWorld;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerVirtualWorld(playerid) = GetPlayerVirtualWorld;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld;
 	#if defined _ALS_GetPlayerVirtualWorld
-		// Previous hook.
 		#define _ALS_GetPlayerVirtualWorld__
 		#define GetPlayerVirtualWorld__( GetPlayerVirtualWorld(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_EnableStuntBonusForPlayer(playerid, enable) = EnableStuntBonusForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_EnableStuntBonusForPlayer(playerid, _FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native EnableStuntBonusForPlayer__(playerid, bool:enable) = EnableStuntBonusForPlayer;
 	#if defined _ALS_EnableStuntBonusForPlayer
-		// Previous hook.
 		#define _ALS_EnableStuntBonusForPlayer__
 		#define EnableStuntBonusForPlayer__( EnableStuntBonusForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_EnableStuntBonusForAll(enable) = EnableStuntBonusForAll;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_EnableStuntBonusForAll(_FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForAll;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native EnableStuntBonusForAll__(bool:enable) = EnableStuntBonusForAll;
 	#if defined _ALS_EnableStuntBonusForAll
-		// Previous hook.
 		#define _ALS_EnableStuntBonusForAll__
 		#define EnableStuntBonusForAll__( EnableStuntBonusForAll(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TogglePlayerSpectating(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerSpectating;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TogglePlayerSpectating__(playerid, bool:toggle) = TogglePlayerSpectating;
 	#if defined _ALS_TogglePlayerSpectating
-		// Previous hook.
 		#define _ALS_TogglePlayerSpectating__
 		#define TogglePlayerSpectating__( TogglePlayerSpectating(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerSpectatePlayer(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerSpectatePlayer(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerSpectatePlayer__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer;
 	#if defined _ALS_PlayerSpectatePlayer
-		// Previous hook.
 		#define _ALS_PlayerSpectatePlayer__
 		#define PlayerSpectatePlayer__( PlayerSpectatePlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PlayerSpectateVehicle(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PlayerSpectateVehicle(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerSpectateVehicle__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle;
 	#if defined _ALS_PlayerSpectateVehicle
-		// Previous hook.
 		#define _ALS_PlayerSpectateVehicle__
 		#define PlayerSpectateVehicle__( PlayerSpectateVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, recordFile[]) = StartRecordingPlayerData;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, _FIXES_MAYBE_CONST recordFile[]) = StartRecordingPlayerData;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native StartRecordingPlayerData__(playerid, PLAYER_RECORDING_TYPE:recordType, const recordFile[]) = StartRecordingPlayerData;
 	#if defined _ALS_StartRecordingPlayerData
-		// Previous hook.
 		#define _ALS_StartRecordingPlayerData__
 		#define StartRecordingPlayerData__( StartRecordingPlayerData(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_StopRecordingPlayerData(playerid) = StopRecordingPlayerData;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_StopRecordingPlayerData(playerid) = StopRecordingPlayerData;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native StopRecordingPlayerData__(playerid) = StopRecordingPlayerData;
 	#if defined _ALS_StopRecordingPlayerData
-		// Previous hook.
 		#define _ALS_StopRecordingPlayerData__
 		#define StopRecordingPlayerData__( StopRecordingPlayerData(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SelectTextDraw(playerid, hoverColour) = SelectTextDraw;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SelectTextDraw(playerid, hoverColour) = SelectTextDraw;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SelectTextDraw__(playerid, hoverColour) = SelectTextDraw;
 	#if defined _ALS_SelectTextDraw
-		// Previous hook.
 		#define _ALS_SelectTextDraw__
 		#define SelectTextDraw__( SelectTextDraw(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_CancelSelectTextDraw(playerid) = CancelSelectTextDraw;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_CancelSelectTextDraw(playerid) = CancelSelectTextDraw;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CancelSelectTextDraw__(playerid) = CancelSelectTextDraw;
 	#if defined _ALS_CancelSelectTextDraw
-		// Previous hook.
 		#define _ALS_CancelSelectTextDraw__
 		#define CancelSelectTextDraw__( CancelSelectTextDraw(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_CreateExplosionForPlayer(playerid, Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosionForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_CreateExplosionForPlayer(playerid, Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosionForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CreateExplosionForPlayer__(playerid, Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosionForPlayer;
 	#if defined _ALS_CreateExplosionForPlayer
-		// Previous hook.
 		#define _ALS_CreateExplosionForPlayer__
 		#define CreateExplosionForPlayer__( CreateExplosionForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCount) = SendClientCheck;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCount) = SendClientCheck;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SendClientCheck__(playerid, type, memoryAddress, memoryOffset, byteCount) = SendClientCheck;
 	#if defined _ALS_SendClientCheck
-		// Previous hook.
 		#define _ALS_SendClientCheck__
 		#define SendClientCheck__( SendClientCheck(
 	#endif
@@ -18679,3866 +14567,1306 @@ _FIXES_STATIC_STOCK_CONST
 
 	*/
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_print(const string[]) = print;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_print(const string[]) = print;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native print__(const string[]) = print;
 	#if defined _ALS_print
-		// Previous hook.
 		#define _ALS_print__
 		#define print__( print(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_printf(const format[], {Float, _}:...) = printf;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_printf(const format[], {Float, _}:...) = printf;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native printf__(const format[], {Float, _}:...) = printf;
 	#if defined _ALS_printf
-		// Previous hook.
 		#define _ALS_printf__
 		#define printf__( printf(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_format(output[], len, const format[], {Float, _}:...) = format;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
 	#if defined _ALS_format
-		// Previous hook.
 		#define _ALS_format__
 		#define format__( format(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_Print(const string[]) = print;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_Print(const string[]) = print;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Print__(const string[]) = print;
 	#if defined _ALS_Print
-		// Previous hook.
 		#define _ALS_Print__
 		#define Print__( Print(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_PrintF(const format[], {Float, _}:...) = printf;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_PrintF(const format[], {Float, _}:...) = printf;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PrintF__(const format[], {Float, _}:...) = printf;
 	#if defined _ALS_PrintF
-		// Previous hook.
 		#define _ALS_PrintF__
 		#define PrintF__( PrintF(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_Format(output[], len, const format[], {Float, _}:...) = format;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_Format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
 	#if defined _ALS_Format
-		// Previous hook.
 		#define _ALS_Format__
 		#define Format__( Format(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SendClientMessage(playerid, colour, const message[]) = SendClientMessage;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SendClientMessage(playerid, colour, const message[]) = SendClientMessage;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SendClientMessage__(playerid, colour, const message[]) = SendClientMessage;
 	#if defined _ALS_SendClientMessage
-		// Previous hook.
 		#define _ALS_SendClientMessage__
 		#define SendClientMessage__( SendClientMessage(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SendClientMessageToAll(colour, const message[]) = SendClientMessageToAll;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SendClientMessageToAll(colour, const message[]) = SendClientMessageToAll;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SendClientMessageToAll__(colour, const message[]) = SendClientMessageToAll;
 	#if defined _ALS_SendClientMessageToAll
-		// Previous hook.
 		#define _ALS_SendClientMessageToAll__
 		#define SendClientMessageToAll__( SendClientMessageToAll(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SendPlayerMessageToPlayer(playerid, senderid, const message[]) = SendPlayerMessageToPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SendPlayerMessageToPlayer(playerid, senderid, const message[]) = SendPlayerMessageToPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SendPlayerMessageToPlayer__(playerid, senderid, const message[]) = SendPlayerMessageToPlayer;
 	#if defined _ALS_SendPlayerMessageToPlayer
-		// Previous hook.
 		#define _ALS_SendPlayerMessageToPlayer__
 		#define SendPlayerMessageToPlayer__( SendPlayerMessageToPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SendPlayerMessageToAll(senderid, const message[]) = SendPlayerMessageToAll;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SendPlayerMessageToAll(senderid, const message[]) = SendPlayerMessageToAll;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SendPlayerMessageToAll__(senderid, const message[]) = SendPlayerMessageToAll;
 	#if defined _ALS_SendPlayerMessageToAll
-		// Previous hook.
 		#define _ALS_SendPlayerMessageToAll__
 		#define SendPlayerMessageToAll__( SendPlayerMessageToAll(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SendDeathMessage(killer, killee, weapon) = SendDeathMessage;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SendDeathMessage(killer, killee, weapon) = SendDeathMessage;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SendDeathMessage__(killer, killee, weapon) = SendDeathMessage;
 	#if defined _ALS_SendDeathMessage
-		// Previous hook.
 		#define _ALS_SendDeathMessage__
 		#define SendDeathMessage__( SendDeathMessage(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SendDeathMessageToPlayer(playerid, killer, killee, weapon) = SendDeathMessageToPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SendDeathMessageToPlayer(playerid, killer, killee, weapon) = SendDeathMessageToPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SendDeathMessageToPlayer__(playerid, killer, killee, weapon) = SendDeathMessageToPlayer;
 	#if defined _ALS_SendDeathMessageToPlayer
-		// Previous hook.
 		#define _ALS_SendDeathMessageToPlayer__
 		#define SendDeathMessageToPlayer__( SendDeathMessageToPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GameTextForAll(const string[], time, style) = GameTextForAll;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GameTextForAll__(const string[], time, style) = GameTextForAll;
 	#if defined _ALS_GameTextForAll
-		// Previous hook.
 		#define _ALS_GameTextForAll__
 		#define GameTextForAll__( GameTextForAll(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GameTextForPlayer__(playerid, const string[], time, style) = GameTextForPlayer;
 	#if defined _ALS_GameTextForPlayer
-		// Previous hook.
 		#define _ALS_GameTextForPlayer__
 		#define GameTextForPlayer__( GameTextForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetTimer(functionName[], interval, repeating) = SetTimer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetTimer(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer;
 	#if defined _ALS_SetTimer
-		// Previous hook.
 		#define _ALS_SetTimer__
 		#define SetTimer__( SetTimer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetTimerEx(functionName[], interval, repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetTimerEx(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetTimerEx__(const functionName[], interval, bool:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
 	#if defined _ALS_SetTimerEx
-		// Previous hook.
 		#define _ALS_SetTimerEx__
 		#define SetTimerEx__( SetTimerEx(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_KillTimer(timerid) = KillTimer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_KillTimer(timerid) = KillTimer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native KillTimer__(timerid) = KillTimer;
 	#if defined _ALS_KillTimer
-		// Previous hook.
 		#define _ALS_KillTimer__
 		#define KillTimer__( KillTimer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetTickCount() = GetTickCount;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetTickCount() = GetTickCount;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetTickCount__() = GetTickCount;
 	#if defined _ALS_GetTickCount
-		// Previous hook.
 		#define _ALS_GetTickCount__
 		#define GetTickCount__( GetTickCount(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetMaxPlayers() = GetMaxPlayers;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetMaxPlayers() = GetMaxPlayers;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetMaxPlayers__() = GetMaxPlayers;
 	#if defined _ALS_GetMaxPlayers
-		// Previous hook.
 		#define _ALS_GetMaxPlayers__
 		#define GetMaxPlayers__( GetMaxPlayers(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_CallRemoteFunction(const function[], const format[] = "", {Float, _}:...) = CallRemoteFunction;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_CallRemoteFunction(const function[], const format[] = "", {Float, _}:...) = CallRemoteFunction;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CallRemoteFunction__(const function[], const format[] = "", {Float, _}:...) = CallRemoteFunction;
 	#if defined _ALS_CallRemoteFunction
-		// Previous hook.
 		#define _ALS_CallRemoteFunction__
 		#define CallRemoteFunction__( CallRemoteFunction(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_CallLocalFunction(const function[], const format[] = "", {Float, _}:...) = CallLocalFunction;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_CallLocalFunction(const function[], const format[] = "", {Float, _}:...) = CallLocalFunction;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CallLocalFunction__(const function[], const format[] = "", {Float, _}:...) = CallLocalFunction;
 	#if defined _ALS_CallLocalFunction
-		// Previous hook.
 		#define _ALS_CallLocalFunction__
 		#define CallLocalFunction__( CallLocalFunction(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_VectorSize(Float:x, Float:y, Float:z) = VectorSize;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_VectorSize(Float:x, Float:y, Float:z) = VectorSize;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:VectorSize__(Float:x, Float:y, Float:z) = VectorSize;
 	#if defined _ALS_VectorSize
-		// Previous hook.
 		#define _ALS_VectorSize__
 		#define VectorSize__( VectorSize(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_asin(Float:value) = asin;
 	#if FIX_camel_case
 		#pragma deprecated Use `ASin`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_asin(Float:value) = asin;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:asin__(Float:value) = asin;
 	#if defined _ALS_asin
-		// Previous hook.
 		#define _ALS_asin__
 		#define asin__( asin(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_acos(Float:value) = acos;
 	#if FIX_camel_case
 		#pragma deprecated Use `ACos`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_acos(Float:value) = acos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:acos__(Float:value) = acos;
 	#if defined _ALS_acos
-		// Previous hook.
 		#define _ALS_acos__
 		#define acos__( acos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_atan(Float:value) = atan;
 	#if FIX_camel_case
 		#pragma deprecated Use `ATan`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_atan(Float:value) = atan;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:atan__(Float:value) = atan;
 	#if defined _ALS_atan
-		// Previous hook.
 		#define _ALS_atan__
 		#define atan__( atan(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_atan2(Float:y, Float:x) = atan2;
 	#if FIX_camel_case
 		#pragma deprecated Use `ATan2`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_atan2(Float:y, Float:x) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:atan2__(Float:y, Float:x) = atan2;
 	#if defined _ALS_atan2
-		// Previous hook.
 		#define _ALS_atan2__
 		#define atan2__( atan2(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_ASin(Float:value) = asin;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_ASin(Float:value) = asin;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:ASin__(Float:value) = asin;
 	#if defined _ALS_ASin
-		// Previous hook.
 		#define _ALS_ASin__
 		#define ASin__( ASin(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_ACos(Float:value) = acos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_ACos(Float:value) = acos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:ACos__(Float:value) = acos;
 	#if defined _ALS_ACos
-		// Previous hook.
 		#define _ALS_ACos__
 		#define ACos__( ACos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_ATan(Float:value) = atan;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_ATan(Float:value) = atan;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:ATan__(Float:value) = atan;
 	#if defined _ALS_ATan
-		// Previous hook.
 		#define _ALS_ATan__
 		#define ATan__( ATan(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_ATan2(Float:y, Float:x) = atan2;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_ATan2(Float:y, Float:x) = atan2;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:ATan2__(Float:y, Float:x) = atan2;
 	#if defined _ALS_ATan2
-		// Previous hook.
 		#define _ALS_ATan2__
 		#define ATan2__( ATan2(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerPoolSize() = GetPlayerPoolSize;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerPoolSize__() = GetPlayerPoolSize;
 	#if defined _ALS_GetPlayerPoolSize
-		// Previous hook.
 		#define _ALS_GetPlayerPoolSize__
 		#define GetPlayerPoolSize__( GetPlayerPoolSize(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehiclePoolSize() = GetVehiclePoolSize;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehiclePoolSize() = GetVehiclePoolSize;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehiclePoolSize__() = GetVehiclePoolSize;
 	#if defined _ALS_GetVehiclePoolSize
-		// Previous hook.
 		#define _ALS_GetVehiclePoolSize__
 		#define GetVehiclePoolSize__( GetVehiclePoolSize(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetActorPoolSize() = GetActorPoolSize;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetActorPoolSize() = GetActorPoolSize;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetActorPoolSize__() = GetActorPoolSize;
 	#if defined _ALS_GetActorPoolSize
-		// Previous hook.
 		#define _ALS_GetActorPoolSize__
 		#define GetActorPoolSize__( GetActorPoolSize(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SHA256_PassHash(password[], salt[], output[], size) = SHA256_PassHash;
 	#pragma deprecated Use BCrypt for hashing passwords.
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SHA256_PassHash(_FIXES_MAYBE_CONST password[], _FIXES_MAYBE_CONST salt[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = SHA256_PassHash;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SHA256_PassHash__(const password[], const salt[], output[], size = sizeof (output)) = SHA256_PassHash;
 	#if defined _ALS_SHA256_PassHash
-		// Previous hook.
 		#define _ALS_SHA256_PassHash__
 		#define SHA256_PassHash__( SHA256_PassHash(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetSVarInt(svar[], value) = SetSVarInt;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetSVarInt(_FIXES_MAYBE_CONST svar[], value) = SetSVarInt;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetSVarInt__(const svar[], value) = SetSVarInt;
 	#if defined _ALS_SetSVarInt
-		// Previous hook.
 		#define _ALS_SetSVarInt__
 		#define SetSVarInt__( SetSVarInt(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetSVarInt(svar[]) = GetSVarInt;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetSVarInt(_FIXES_MAYBE_CONST svar[]) = GetSVarInt;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetSVarInt__(const svar[]) = GetSVarInt;
 	#if defined _ALS_GetSVarInt
-		// Previous hook.
 		#define _ALS_GetSVarInt__
 		#define GetSVarInt__( GetSVarInt(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetSVarString(svar[], value[]) = SetSVarString;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetSVarString(_FIXES_MAYBE_CONST svar[], _FIXES_MAYBE_CONST value[]) = SetSVarString;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetSVarString__(const svar[], const value[]) = SetSVarString;
 	#if defined _ALS_SetSVarString
-		// Previous hook.
 		#define _ALS_SetSVarString__
 		#define SetSVarString__( SetSVarString(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetSVarString(svar[], output[], len) = GetSVarString;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetSVarString(_FIXES_MAYBE_CONST svar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetSVarString;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetSVarString__(const svar[], output[], len = sizeof (output)) = GetSVarString;
 	#if defined _ALS_GetSVarString
-		// Previous hook.
 		#define _ALS_GetSVarString__
 		#define GetSVarString__( GetSVarString(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetSVarFloat(svar[], Float:value) = SetSVarFloat;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetSVarFloat(_FIXES_MAYBE_CONST svar[], Float:value) = SetSVarFloat;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetSVarFloat__(const svar[], Float:value) = SetSVarFloat;
 	#if defined _ALS_SetSVarFloat
-		// Previous hook.
 		#define _ALS_SetSVarFloat__
 		#define SetSVarFloat__( SetSVarFloat(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_GetSVarFloat(svar[]) = GetSVarFloat;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_GetSVarFloat(_FIXES_MAYBE_CONST svar[]) = GetSVarFloat;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:GetSVarFloat__(const svar[]) = GetSVarFloat;
 	#if defined _ALS_GetSVarFloat
-		// Previous hook.
 		#define _ALS_GetSVarFloat__
 		#define GetSVarFloat__( GetSVarFloat(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DeleteSVar(svar[]) = DeleteSVar;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DeleteSVar(_FIXES_MAYBE_CONST svar[]) = DeleteSVar;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DeleteSVar__(const svar[]) = DeleteSVar;
 	#if defined _ALS_DeleteSVar
-		// Previous hook.
 		#define _ALS_DeleteSVar__
 		#define DeleteSVar__( DeleteSVar(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetSVarsUpperIndex() = GetSVarsUpperIndex;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetSVarsUpperIndex() = GetSVarsUpperIndex;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetSVarsUpperIndex__() = GetSVarsUpperIndex;
 	#if defined _ALS_GetSVarsUpperIndex
-		// Previous hook.
 		#define _ALS_GetSVarsUpperIndex__
 		#define GetSVarsUpperIndex__( GetSVarsUpperIndex(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetSVarNameAtIndex(index, output[], size) = GetSVarNameAtIndex;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetSVarNameAtIndex(index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetSVarNameAtIndex;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetSVarNameAtIndex__(index, output[], size = sizeof (output)) = GetSVarNameAtIndex;
 	#if defined _ALS_GetSVarNameAtIndex
-		// Previous hook.
 		#define _ALS_GetSVarNameAtIndex__
 		#define GetSVarNameAtIndex__( GetSVarNameAtIndex(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native SERVER_VARTYPE:BAD_GetSVarType(svar[]) = GetSVarType;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native SERVER_VARTYPE:CST_GetSVarType(_FIXES_MAYBE_CONST svar[]) = GetSVarType;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SERVER_VARTYPE:GetSVarType__(const svar[]) = GetSVarType;
 	#if defined _ALS_GetSVarType
-		// Previous hook.
 		#define _ALS_GetSVarType__
 		#define GetSVarType__( GetSVarType(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetGameModeText(const string[]) = SetGameModeText;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetGameModeText(const string[]) = SetGameModeText;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetGameModeText__(const string[]) = SetGameModeText;
 	#if defined _ALS_SetGameModeText
-		// Previous hook.
 		#define _ALS_SetGameModeText__
 		#define SetGameModeText__( SetGameModeText(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetTeamCount(count) = SetTeamCount;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetTeamCount(count) = SetTeamCount;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetTeamCount__(count) = SetTeamCount;
 	#if defined _ALS_SetTeamCount
-		// Previous hook.
 		#define _ALS_SetTeamCount__
 		#define SetTeamCount__( SetTeamCount(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AddPlayerClass(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AddPlayerClass(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AddPlayerClass__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass;
 	#if defined _ALS_AddPlayerClass
-		// Previous hook.
 		#define _ALS_AddPlayerClass__
 		#define AddPlayerClass__( AddPlayerClass(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AddPlayerClassEx(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AddPlayerClassEx(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AddPlayerClassEx__(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx;
 	#if defined _ALS_AddPlayerClassEx
-		// Previous hook.
 		#define _ALS_AddPlayerClassEx__
 		#define AddPlayerClassEx__( AddPlayerClassEx(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AddStaticVehicle(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AddStaticVehicle(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AddStaticVehicle__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle;
 	#if defined _ALS_AddStaticVehicle
-		// Previous hook.
 		#define _ALS_AddStaticVehicle__
 		#define AddStaticVehicle__( AddStaticVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, addSiren = false) = AddStaticVehicleEx;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = AddStaticVehicleEx;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AddStaticVehicleEx__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, bool:addSiren = false) = AddStaticVehicleEx;
 	#if defined _ALS_AddStaticVehicleEx
-		// Previous hook.
 		#define _ALS_AddStaticVehicleEx__
 		#define AddStaticVehicleEx__( AddStaticVehicleEx(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AddStaticPickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AddStaticPickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AddStaticPickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup;
 	#if defined _ALS_AddStaticPickup
-		// Previous hook.
 		#define _ALS_AddStaticPickup__
 		#define AddStaticPickup__( AddStaticPickup(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_CreatePickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_CreatePickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CreatePickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup;
 	#if defined _ALS_CreatePickup
-		// Previous hook.
 		#define _ALS_CreatePickup__
 		#define CreatePickup__( CreatePickup(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DestroyPickup(pickup) = DestroyPickup;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DestroyPickup(pickup) = DestroyPickup;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DestroyPickup__(pickup) = DestroyPickup;
 	#if defined _ALS_DestroyPickup
-		// Previous hook.
 		#define _ALS_DestroyPickup__
 		#define DestroyPickup__( DestroyPickup(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ShowNameTags(show) = ShowNameTags;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ShowNameTags(_FIXES_MAYBE_BOOL:show) = ShowNameTags;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ShowNameTags__(bool:show) = ShowNameTags;
 	#if defined _ALS_ShowNameTags
-		// Previous hook.
 		#define _ALS_ShowNameTags__
 		#define ShowNameTags__( ShowNameTags(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ShowPlayerMarkers(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ShowPlayerMarkers(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ShowPlayerMarkers__(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
 	#if defined _ALS_ShowPlayerMarkers
-		// Previous hook.
 		#define _ALS_ShowPlayerMarkers__
 		#define ShowPlayerMarkers__( ShowPlayerMarkers(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GameModeExit() = GameModeExit;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GameModeExit() = GameModeExit;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GameModeExit__() = GameModeExit;
 	#if defined _ALS_GameModeExit
-		// Previous hook.
 		#define _ALS_GameModeExit__
 		#define GameModeExit__( GameModeExit(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetWorldTime(hour) = SetWorldTime;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetWorldTime(hour) = SetWorldTime;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetWorldTime__(hour) = SetWorldTime;
 	#if defined _ALS_SetWorldTime
-		// Previous hook.
 		#define _ALS_SetWorldTime__
 		#define SetWorldTime__( SetWorldTime(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetWeaponName(WEAPON:weaponid, const weapon[], len) = GetWeaponName;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetWeaponName(WEAPON:weaponid, _FIXES_NOT_CONST weapon[], _FIXES_MAYBE_SIZEOF(len, weapon)) = GetWeaponName;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetWeaponName__(WEAPON:weaponid, weapon[], len = sizeof (weapon)) = GetWeaponName;
 	#if defined _ALS_GetWeaponName
-		// Previous hook.
 		#define _ALS_GetWeaponName__
 		#define GetWeaponName__( GetWeaponName(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_EnableTirePopping(enable) = EnableTirePopping;
 	#pragma deprecated Use `OnVehicleDamageStatusUpdate`.
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_EnableTirePopping(_FIXES_MAYBE_BOOL:enable) = EnableTirePopping;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native EnableTirePopping__(bool:enable) = EnableTirePopping;
 	#if defined _ALS_EnableTirePopping
-		// Previous hook.
 		#define _ALS_EnableTirePopping__
 		#define EnableTirePopping__( EnableTirePopping(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_EnableVehicleFriendlyFire() = EnableVehicleFriendlyFire;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_EnableVehicleFriendlyFire() = EnableVehicleFriendlyFire;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native EnableVehicleFriendlyFire__() = EnableVehicleFriendlyFire;
 	#if defined _ALS_EnableVehicleFriendlyFire
-		// Previous hook.
 		#define _ALS_EnableVehicleFriendlyFire__
 		#define EnableVehicleFriendlyFire__( EnableVehicleFriendlyFire(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 	#pragma deprecated Use `OnPlayerInteriorChange`.
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow) = AllowInteriorWeapons;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AllowInteriorWeapons__(bool:allow) = AllowInteriorWeapons;
 	#if defined _ALS_AllowInteriorWeapons
-		// Previous hook.
 		#define _ALS_AllowInteriorWeapons__
 		#define AllowInteriorWeapons__( AllowInteriorWeapons(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetWeather(weatherid) = SetWeather;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetWeather(weatherid) = SetWeather;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetWeather__(weatherid) = SetWeather;
 	#if defined _ALS_SetWeather
-		// Previous hook.
 		#define _ALS_SetWeather__
 		#define SetWeather__( SetWeather(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_GetGravity() = GetGravity;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_GetGravity() = GetGravity;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:GetGravity__() = GetGravity;
 	#if defined _ALS_GetGravity
-		// Previous hook.
 		#define _ALS_GetGravity__
 		#define GetGravity__( GetGravity(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetGravity(Float:gravity) = SetGravity;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetGravity(Float:gravity) = SetGravity;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetGravity__(Float:gravity) = SetGravity;
 	#if defined _ALS_SetGravity
-		// Previous hook.
 		#define _ALS_SetGravity__
 		#define SetGravity__( SetGravity(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 	#pragma deprecated Use `OnPlayerClickMap`.
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow) = AllowAdminTeleport;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AllowAdminTeleport__(bool:allow) = AllowAdminTeleport;
 	#if defined _ALS_AllowAdminTeleport
-		// Previous hook.
 		#define _ALS_AllowAdminTeleport__
 		#define AllowAdminTeleport__( AllowAdminTeleport(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetDeathDropAmount(amount) = SetDeathDropAmount;
 	#pragma deprecated Use `CreatePickup`.
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetDeathDropAmount(amount) = SetDeathDropAmount;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetDeathDropAmount__(amount) = SetDeathDropAmount;
 	#if defined _ALS_SetDeathDropAmount
-		// Previous hook.
 		#define _ALS_SetDeathDropAmount__
 		#define SetDeathDropAmount__( SetDeathDropAmount(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_CreateExplosion(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_CreateExplosion(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CreateExplosion__(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion;
 	#if defined _ALS_CreateExplosion
-		// Previous hook.
 		#define _ALS_CreateExplosion__
 		#define CreateExplosion__( CreateExplosion(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_EnableZoneNames(enable) = EnableZoneNames;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_EnableZoneNames(_FIXES_MAYBE_BOOL:enable) = EnableZoneNames;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native EnableZoneNames__(bool:enable) = EnableZoneNames;
 	#if defined _ALS_EnableZoneNames
-		// Previous hook.
 		#define _ALS_EnableZoneNames__
 		#define EnableZoneNames__( EnableZoneNames(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_UsePlayerPedAnims() = UsePlayerPedAnims;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_UsePlayerPedAnims() = UsePlayerPedAnims;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native UsePlayerPedAnims__() = UsePlayerPedAnims;
 	#if defined _ALS_UsePlayerPedAnims
-		// Previous hook.
 		#define _ALS_UsePlayerPedAnims__
 		#define UsePlayerPedAnims__( UsePlayerPedAnims(
 	#endif
 
 	native DisableInteriorEnterExits();
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetNameTagDrawDistance(Float:distance) = SetNameTagDrawDistance;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetNameTagDrawDistance(Float:distance) = SetNameTagDrawDistance;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetNameTagDrawDistance__(Float:distance) = SetNameTagDrawDistance;
 	#if defined _ALS_SetNameTagDrawDistance
-		// Previous hook.
 		#define _ALS_SetNameTagDrawDistance__
 		#define SetNameTagDrawDistance__( SetNameTagDrawDistance(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DisableNameTagLOS() = DisableNameTagLOS;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DisableNameTagLOS() = DisableNameTagLOS;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DisableNameTagLOS__() = DisableNameTagLOS;
 	#if defined _ALS_DisableNameTagLOS
-		// Previous hook.
 		#define _ALS_DisableNameTagLOS__
 		#define DisableNameTagLOS__( DisableNameTagLOS(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_LimitGlobalChatRadius(Float:chatRadius) = LimitGlobalChatRadius;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_LimitGlobalChatRadius(Float:chatRadius) = LimitGlobalChatRadius;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native LimitGlobalChatRadius__(Float:chatRadius) = LimitGlobalChatRadius;
 	#if defined _ALS_LimitGlobalChatRadius
-		// Previous hook.
 		#define _ALS_LimitGlobalChatRadius__
 		#define LimitGlobalChatRadius__( LimitGlobalChatRadius(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_LimitPlayerMarkerRadius(Float:markerRadius) = LimitPlayerMarkerRadius;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_LimitPlayerMarkerRadius(Float:markerRadius) = LimitPlayerMarkerRadius;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native LimitPlayerMarkerRadius__(Float:markerRadius) = LimitPlayerMarkerRadius;
 	#if defined _ALS_LimitPlayerMarkerRadius
-		// Previous hook.
 		#define _ALS_LimitPlayerMarkerRadius__
 		#define LimitPlayerMarkerRadius__( LimitPlayerMarkerRadius(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ConnectNPC(name[], script[]) = ConnectNPC;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ConnectNPC(_FIXES_MAYBE_CONST name[], _FIXES_MAYBE_CONST script[]) = ConnectNPC;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ConnectNPC__(const name[], const script[]) = ConnectNPC;
 	#if defined _ALS_ConnectNPC
-		// Previous hook.
 		#define _ALS_ConnectNPC__
 		#define ConnectNPC__( ConnectNPC(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsPlayerNPC(playerid) = IsPlayerNPC;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsPlayerNPC(playerid) = IsPlayerNPC;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerNPC__(playerid) = IsPlayerNPC;
 	#if defined _ALS_IsPlayerNPC
-		// Previous hook.
 		#define _ALS_IsPlayerNPC__
 		#define IsPlayerNPC__( IsPlayerNPC(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AddCharModel(baseid, newid, dff[], textureLibrary[]) = AddCharModel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AddCharModel(baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddCharModel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AddCharModel__(baseid, newid, const dff[], const textureLibrary[]) = AddCharModel;
 	#if defined _ALS_AddCharModel
-		// Previous hook.
 		#define _ALS_AddCharModel__
 		#define AddCharModel__( AddCharModel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AddSimpleModel(virtualWorld, baseid, newid, dff[], textureLibrary[]) = AddSimpleModel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AddSimpleModel(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddSimpleModel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AddSimpleModel__(virtualWorld, baseid, newid, const dff[], const textureLibrary[]) = AddSimpleModel;
 	#if defined _ALS_AddSimpleModel
-		// Previous hook.
 		#define _ALS_AddSimpleModel__
 		#define AddSimpleModel__( AddSimpleModel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AddSimpleModelTimed(virtualWorld, baseid, newid, dff[], textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AddSimpleModelTimed(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AddSimpleModelTimed__(virtualWorld, baseid, newid, const dff[], const textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
 	#if defined _ALS_AddSimpleModelTimed
-		// Previous hook.
 		#define _ALS_AddSimpleModelTimed__
 		#define AddSimpleModelTimed__( AddSimpleModelTimed(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_FindModelFileNameFromCRC(crc, output[], size) = FindModelFileNameFromCRC;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_FindModelFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindModelFileNameFromCRC;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native FindModelFileNameFromCRC__(crc, output[], size = sizeof (output)) = FindModelFileNameFromCRC;
 	#if defined _ALS_FindModelFileNameFromCRC
-		// Previous hook.
 		#define _ALS_FindModelFileNameFromCRC__
 		#define FindModelFileNameFromCRC__( FindModelFileNameFromCRC(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_FindTextureFileNameFromCRC(crc, output[], size) = FindTextureFileNameFromCRC;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_FindTextureFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindTextureFileNameFromCRC;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native FindTextureFileNameFromCRC__(crc, output[], size = sizeof (output)) = FindTextureFileNameFromCRC;
 	#if defined _ALS_FindTextureFileNameFromCRC
-		// Previous hook.
 		#define _ALS_FindTextureFileNameFromCRC__
 		#define FindTextureFileNameFromCRC__( FindTextureFileNameFromCRC(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_RedirectDownload(playerid, url[]) = RedirectDownload;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_RedirectDownload(playerid, _FIXES_MAYBE_CONST url[]) = RedirectDownload;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native RedirectDownload__(playerid, const url[]) = RedirectDownload;
 	#if defined _ALS_RedirectDownload
-		// Previous hook.
 		#define _ALS_RedirectDownload__
 		#define RedirectDownload__( RedirectDownload(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsPlayerAdmin(playerid) = IsPlayerAdmin;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsPlayerAdmin(playerid) = IsPlayerAdmin;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
 	#if defined _ALS_IsPlayerAdmin
-		// Previous hook.
 		#define _ALS_IsPlayerAdmin__
 		#define IsPlayerAdmin__( IsPlayerAdmin(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_Kick(playerid) = Kick;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_Kick(playerid) = Kick;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Kick__(playerid) = Kick;
 	#if defined _ALS_Kick
-		// Previous hook.
 		#define _ALS_Kick__
 		#define Kick__( Kick(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_Ban(playerid) = Ban;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_Ban(playerid) = Ban;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Ban__(playerid) = Ban;
 	#if defined _ALS_Ban
-		// Previous hook.
 		#define _ALS_Ban__
 		#define Ban__( Ban(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_BanEx(playerid, const reason[]) = BanEx;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_BanEx(playerid, const reason[]) = BanEx;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native BanEx__(playerid, const reason[]) = BanEx;
 	#if defined _ALS_BanEx
-		// Previous hook.
 		#define _ALS_BanEx__
 		#define BanEx__( BanEx(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SendRconCommand(command[]) = SendRconCommand;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SendRconCommand(_FIXES_MAYBE_CONST command[]) = SendRconCommand;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SendRconCommand__(const command[]) = SendRconCommand;
 	#if defined _ALS_SendRconCommand
-		// Previous hook.
 		#define _ALS_SendRconCommand__
 		#define SendRconCommand__( SendRconCommand(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerNetworkStats(playerid, output[], size) = GetPlayerNetworkStats;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerNetworkStats(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPlayerNetworkStats;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerNetworkStats__(playerid, output[], size = sizeof (output)) = GetPlayerNetworkStats;
 	#if defined _ALS_GetPlayerNetworkStats
-		// Previous hook.
 		#define _ALS_GetPlayerNetworkStats__
 		#define GetPlayerNetworkStats__( GetPlayerNetworkStats(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetNetworkStats(output[], size) = GetNetworkStats;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetNetworkStats(output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetNetworkStats;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetNetworkStats__(output[], size = sizeof (output)) = GetNetworkStats;
 	#if defined _ALS_GetNetworkStats
-		// Previous hook.
 		#define _ALS_GetNetworkStats__
 		#define GetNetworkStats__( GetNetworkStats(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetPlayerVersion(playerid, const version[], len) = GetPlayerVersion;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetPlayerVersion(playerid, _FIXES_NOT_CONST version[], _FIXES_MAYBE_SIZEOF(len, version)) = GetPlayerVersion;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetPlayerVersion__(playerid, version[], len = sizeof (version)) = GetPlayerVersion;
 	#if defined _ALS_GetPlayerVersion
-		// Previous hook.
 		#define _ALS_GetPlayerVersion__
 		#define GetPlayerVersion__( GetPlayerVersion(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_BlockIpAddress(ipAddress[], timeMS) = BlockIpAddress;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_BlockIpAddress(_FIXES_MAYBE_CONST ipAddress[], timeMS) = BlockIpAddress;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native BlockIpAddress__(const ipAddress[], timeMS) = BlockIpAddress;
 	#if defined _ALS_BlockIpAddress
-		// Previous hook.
 		#define _ALS_BlockIpAddress__
 		#define BlockIpAddress__( BlockIpAddress(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_UnBlockIpAddress(ipAddress[]) = UnBlockIpAddress;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_UnBlockIpAddress(_FIXES_MAYBE_CONST ipAddress[]) = UnBlockIpAddress;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native UnBlockIpAddress__(const ipAddress[]) = UnBlockIpAddress;
 	#if defined _ALS_UnBlockIpAddress
-		// Previous hook.
 		#define _ALS_UnBlockIpAddress__
 		#define UnBlockIpAddress__( UnBlockIpAddress(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetServerVarAsString(const cvar[], buffer[], len) = GetServerVarAsString;
 	#pragma deprecated Use `GetConsoleVarAsString`.
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetServerVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetServerVarAsString;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetServerVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetServerVarAsString;
 	#if defined _ALS_GetServerVarAsString
-		// Previous hook.
 		#define _ALS_GetServerVarAsString__
 		#define GetServerVarAsString__( GetServerVarAsString(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetServerVarAsInt(const cvar[]) = GetServerVarAsInt;
 	#pragma deprecated Use `GetConsoleVarAsInt`.
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetServerVarAsInt(const cvar[]) = GetServerVarAsInt;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetServerVarAsInt__(const cvar[]) = GetServerVarAsInt;
 	#if defined _ALS_GetServerVarAsInt
-		// Previous hook.
 		#define _ALS_GetServerVarAsInt__
 		#define GetServerVarAsInt__( GetServerVarAsInt(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
 	#pragma deprecated Use `GetConsoleVarAsBool`.
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:GetServerVarAsBool__(const cvar[]) = GetServerVarAsBool;
 	#if defined _ALS_GetServerVarAsBool
-		// Previous hook.
 		#define _ALS_GetServerVarAsBool__
 		#define GetServerVarAsBool__( GetServerVarAsBool(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetConsoleVarAsString(const cvar[], buffer[], len) = GetConsoleVarAsString;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetConsoleVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetConsoleVarAsString;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetConsoleVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetConsoleVarAsString;
 	#if defined _ALS_GetConsoleVarAsString
-		// Previous hook.
 		#define _ALS_GetConsoleVarAsString__
 		#define GetConsoleVarAsString__( GetConsoleVarAsString(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetConsoleVarAsInt(const cvar[]) = GetConsoleVarAsInt;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetConsoleVarAsInt(const cvar[]) = GetConsoleVarAsInt;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetConsoleVarAsInt__(const cvar[]) = GetConsoleVarAsInt;
 	#if defined _ALS_GetConsoleVarAsInt
-		// Previous hook.
 		#define _ALS_GetConsoleVarAsInt__
 		#define GetConsoleVarAsInt__( GetConsoleVarAsInt(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:GetConsoleVarAsBool__(const cvar[]) = GetConsoleVarAsBool;
 	#if defined _ALS_GetConsoleVarAsBool
-		// Previous hook.
 		#define _ALS_GetConsoleVarAsBool__
 		#define GetConsoleVarAsBool__( GetConsoleVarAsBool(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetServerTickRate() = GetServerTickRate;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetServerTickRate() = GetServerTickRate;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetServerTickRate__() = GetServerTickRate;
 	#if defined _ALS_GetServerTickRate
-		// Previous hook.
 		#define _ALS_GetServerTickRate__
 		#define GetServerTickRate__( GetServerTickRate(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_NetStats_GetConnectedTime(playerid) = NetStats_GetConnectedTime;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_NetStats_GetConnectedTime(playerid) = NetStats_GetConnectedTime;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native NetStats_GetConnectedTime__(playerid) = NetStats_GetConnectedTime;
 	#if defined _ALS_NetStats_GetConnectedTime
-		// Previous hook.
 		#define _ALS_NetStats_GetConnectedTime__
 		#define NetStats_GetConnectedTime__( NetStats_GetConnectedTime(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_NetStats_MessagesReceived(playerid) = NetStats_MessagesReceived;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_NetStats_MessagesReceived(playerid) = NetStats_MessagesReceived;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native NetStats_MessagesReceived__(playerid) = NetStats_MessagesReceived;
 	#if defined _ALS_NetStats_MessagesReceived
-		// Previous hook.
 		#define _ALS_NetStats_MessagesReceived__
 		#define NetStats_MessagesReceived__( NetStats_MessagesReceived(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_NetStats_BytesReceived(playerid) = NetStats_BytesReceived;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_NetStats_BytesReceived(playerid) = NetStats_BytesReceived;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native NetStats_BytesReceived__(playerid) = NetStats_BytesReceived;
 	#if defined _ALS_NetStats_BytesReceived
-		// Previous hook.
 		#define _ALS_NetStats_BytesReceived__
 		#define NetStats_BytesReceived__( NetStats_BytesReceived(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_NetStats_MessagesSent(playerid) = NetStats_MessagesSent;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_NetStats_MessagesSent(playerid) = NetStats_MessagesSent;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native NetStats_MessagesSent__(playerid) = NetStats_MessagesSent;
 	#if defined _ALS_NetStats_MessagesSent
-		// Previous hook.
 		#define _ALS_NetStats_MessagesSent__
 		#define NetStats_MessagesSent__( NetStats_MessagesSent(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_NetStats_BytesSent(playerid) = NetStats_BytesSent;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_NetStats_BytesSent(playerid) = NetStats_BytesSent;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native NetStats_BytesSent__(playerid) = NetStats_BytesSent;
 	#if defined _ALS_NetStats_BytesSent
-		// Previous hook.
 		#define _ALS_NetStats_BytesSent__
 		#define NetStats_BytesSent__( NetStats_BytesSent(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_NetStats_MessagesRecvPerSecond(playerid) = NetStats_MessagesRecvPerSecond;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_NetStats_MessagesRecvPerSecond(playerid) = NetStats_MessagesRecvPerSecond;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native NetStats_MessagesRecvPerSecond__(playerid) = NetStats_MessagesRecvPerSecond;
 	#if defined _ALS_NetStats_MessagesRecvPerSecond
-		// Previous hook.
 		#define _ALS_NetStats_MessagesRecvPerSecond__
 		#define NetStats_MessagesRecvPerSecond__( NetStats_MessagesRecvPerSecond(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_NetStats_PacketLossPercent(playerid) = NetStats_PacketLossPercent;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_NetStats_PacketLossPercent(playerid) = NetStats_PacketLossPercent;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:NetStats_PacketLossPercent__(playerid) = NetStats_PacketLossPercent;
 	#if defined _ALS_NetStats_PacketLossPercent
-		// Previous hook.
 		#define _ALS_NetStats_PacketLossPercent__
 		#define NetStats_PacketLossPercent__( NetStats_PacketLossPercent(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_NetStats_ConnectionStatus(playerid) = NetStats_ConnectionStatus;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_NetStats_ConnectionStatus(playerid) = NetStats_ConnectionStatus;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native NetStats_ConnectionStatus__(playerid) = NetStats_ConnectionStatus;
 	#if defined _ALS_NetStats_ConnectionStatus
-		// Previous hook.
 		#define _ALS_NetStats_ConnectionStatus__
 		#define NetStats_ConnectionStatus__( NetStats_ConnectionStatus(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_NetStats_GetIpPort(playerid, output[], size) = NetStats_GetIpPort;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_NetStats_GetIpPort(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = NetStats_GetIpPort;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native NetStats_GetIpPort__(playerid, output[], size = sizeof (output)) = NetStats_GetIpPort;
 	#if defined _ALS_NetStats_GetIpPort
-		// Previous hook.
 		#define _ALS_NetStats_GetIpPort__
 		#define NetStats_GetIpPort__( NetStats_GetIpPort(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Menu:CST_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Menu:CreateMenu__(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
 	#if defined _ALS_CreateMenu
-		// Previous hook.
 		#define _ALS_CreateMenu__
 		#define CreateMenu__( CreateMenu(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DestroyMenu(Menu:menuid) = DestroyMenu;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DestroyMenu__(Menu:menuid) = DestroyMenu;
 	#if defined _ALS_DestroyMenu
-		// Previous hook.
 		#define _ALS_DestroyMenu__
 		#define DestroyMenu__( DestroyMenu(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AddMenuItem(Menu:menuid, column, const text[]) = AddMenuItem;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AddMenuItem(Menu:menuid, column, const text[]) = AddMenuItem;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AddMenuItem__(Menu:menuid, column, const text[]) = AddMenuItem;
 	#if defined _ALS_AddMenuItem
-		// Previous hook.
 		#define _ALS_AddMenuItem__
 		#define AddMenuItem__( AddMenuItem(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetMenuColumnHeader(Menu:menuid, column, const heading[]) = SetMenuColumnHeader;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetMenuColumnHeader(Menu:menuid, column, const heading[]) = SetMenuColumnHeader;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetMenuColumnHeader__(Menu:menuid, column, const heading[]) = SetMenuColumnHeader;
 	#if defined _ALS_SetMenuColumnHeader
-		// Previous hook.
 		#define _ALS_SetMenuColumnHeader__
 		#define SetMenuColumnHeader__( SetMenuColumnHeader(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer;
 	#if defined _ALS_ShowMenuForPlayer
-		// Previous hook.
 		#define _ALS_ShowMenuForPlayer__
 		#define ShowMenuForPlayer__( ShowMenuForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer;
 	#if defined _ALS_HideMenuForPlayer
-		// Previous hook.
 		#define _ALS_HideMenuForPlayer__
 		#define HideMenuForPlayer__( HideMenuForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsValidMenu(Menu:menuid) = IsValidMenu;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsValidMenu(Menu:menuid) = IsValidMenu;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsValidMenu__(Menu:menuid) = IsValidMenu;
 	#if defined _ALS_IsValidMenu
-		// Previous hook.
 		#define _ALS_IsValidMenu__
 		#define IsValidMenu__( IsValidMenu(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DisableMenu(Menu:menuid) = DisableMenu;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DisableMenu(Menu:menuid) = DisableMenu;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DisableMenu__(Menu:menuid) = DisableMenu;
 	#if defined _ALS_DisableMenu
-		// Previous hook.
 		#define _ALS_DisableMenu__
 		#define DisableMenu__( DisableMenu(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow;
 	#if defined _ALS_DisableMenuRow
-		// Previous hook.
 		#define _ALS_DisableMenuRow__
 		#define DisableMenuRow__( DisableMenuRow(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Menu:BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Menu:CST_GetPlayerMenu(playerid) = GetPlayerMenu;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu;
 	#if defined _ALS_GetPlayerMenu
-		// Previous hook.
 		#define _ALS_GetPlayerMenu__
 		#define GetPlayerMenu__( GetPlayerMenu(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Text:CST_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = TextDrawCreate;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Text:TextDrawCreate__(Float:x, Float:y, const text[]) = TextDrawCreate;
 	#if defined _ALS_TextDrawCreate
-		// Previous hook.
 		#define _ALS_TextDrawCreate__
 		#define TextDrawCreate__( TextDrawCreate(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawDestroy(Text:text) = TextDrawDestroy;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawDestroy(Text:text) = TextDrawDestroy;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawDestroy__(Text:text) = TextDrawDestroy;
 	#if defined _ALS_TextDrawDestroy
-		// Previous hook.
 		#define _ALS_TextDrawDestroy__
 		#define TextDrawDestroy__( TextDrawDestroy(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawLetterSize(Text:text, Float:width, Float:height) = TextDrawLetterSize;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawLetterSize(Text:text, Float:width, Float:height) = TextDrawLetterSize;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawLetterSize__(Text:text, Float:width, Float:height) = TextDrawLetterSize;
 	#if defined _ALS_TextDrawLetterSize
-		// Previous hook.
 		#define _ALS_TextDrawLetterSize__
 		#define TextDrawLetterSize__( TextDrawLetterSize(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawTextSize(Text:text, Float:width, Float:height) = TextDrawTextSize;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawTextSize(Text:text, Float:width, Float:height) = TextDrawTextSize;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawTextSize__(Text:text, Float:width, Float:height) = TextDrawTextSize;
 	#if defined _ALS_TextDrawTextSize
-		// Previous hook.
 		#define _ALS_TextDrawTextSize__
 		#define TextDrawTextSize__( TextDrawTextSize(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawAlignment(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawAlignment(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawAlignment__(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment;
 	#if defined _ALS_TextDrawAlignment
-		// Previous hook.
 		#define _ALS_TextDrawAlignment__
 		#define TextDrawAlignment__( TextDrawAlignment(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawColor(Text:text, colour) = TextDrawColor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawColor(Text:text, colour) = TextDrawColor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawColor__(Text:text, colour) = TextDrawColor;
 	#if defined _ALS_TextDrawColor
-		// Previous hook.
 		#define _ALS_TextDrawColor__
 		#define TextDrawColor__( TextDrawColor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawUseBox(Text:text, use) = TextDrawUseBox;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawUseBox(Text:text, _FIXES_MAYBE_BOOL:use) = TextDrawUseBox;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawUseBox__(Text:text, bool:use) = TextDrawUseBox;
 	#if defined _ALS_TextDrawUseBox
-		// Previous hook.
 		#define _ALS_TextDrawUseBox__
 		#define TextDrawUseBox__( TextDrawUseBox(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawBoxColor(Text:text, colour) = TextDrawBoxColor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawBoxColor(Text:text, colour) = TextDrawBoxColor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawBoxColor__(Text:text, colour) = TextDrawBoxColor;
 	#if defined _ALS_TextDrawBoxColor
-		// Previous hook.
 		#define _ALS_TextDrawBoxColor__
 		#define TextDrawBoxColor__( TextDrawBoxColor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawSetShadow(Text:text, size) = TextDrawSetShadow;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawSetShadow(Text:text, size) = TextDrawSetShadow;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawSetShadow__(Text:text, size) = TextDrawSetShadow;
 	#if defined _ALS_TextDrawSetShadow
-		// Previous hook.
 		#define _ALS_TextDrawSetShadow__
 		#define TextDrawSetShadow__( TextDrawSetShadow(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawSetOutline(Text:text, size) = TextDrawSetOutline;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawSetOutline(Text:text, size) = TextDrawSetOutline;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawSetOutline__(Text:text, size) = TextDrawSetOutline;
 	#if defined _ALS_TextDrawSetOutline
-		// Previous hook.
 		#define _ALS_TextDrawSetOutline__
 		#define TextDrawSetOutline__( TextDrawSetOutline(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawBackgroundColor(Text:text, colour) = TextDrawBackgroundColor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawBackgroundColor(Text:text, colour) = TextDrawBackgroundColor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawBackgroundColor__(Text:text, colour) = TextDrawBackgroundColor;
 	#if defined _ALS_TextDrawBackgroundColor
-		// Previous hook.
 		#define _ALS_TextDrawBackgroundColor__
 		#define TextDrawBackgroundColor__( TextDrawBackgroundColor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawFont(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawFont(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawFont__(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
 	#if defined _ALS_TextDrawFont
-		// Previous hook.
 		#define _ALS_TextDrawFont__
 		#define TextDrawFont__( TextDrawFont(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawSetProportional(Text:text, set) = TextDrawSetProportional;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawSetProportional(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetProportional;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawSetProportional__(Text:text, bool:set) = TextDrawSetProportional;
 	#if defined _ALS_TextDrawSetProportional
-		// Previous hook.
 		#define _ALS_TextDrawSetProportional__
 		#define TextDrawSetProportional__( TextDrawSetProportional(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawSetSelectable(Text:text, set) = TextDrawSetSelectable;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawSetSelectable(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetSelectable;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawSetSelectable__(Text:text, bool:set) = TextDrawSetSelectable;
 	#if defined _ALS_TextDrawSetSelectable
-		// Previous hook.
 		#define _ALS_TextDrawSetSelectable__
 		#define TextDrawSetSelectable__( TextDrawSetSelectable(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawShowForPlayer(playerid, Text:text) = TextDrawShowForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawShowForPlayer(playerid, Text:text) = TextDrawShowForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawShowForPlayer__(playerid, Text:text) = TextDrawShowForPlayer;
 	#if defined _ALS_TextDrawShowForPlayer
-		// Previous hook.
 		#define _ALS_TextDrawShowForPlayer__
 		#define TextDrawShowForPlayer__( TextDrawShowForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawHideForPlayer(playerid, Text:text) = TextDrawHideForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawHideForPlayer(playerid, Text:text) = TextDrawHideForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawHideForPlayer__(playerid, Text:text) = TextDrawHideForPlayer;
 	#if defined _ALS_TextDrawHideForPlayer
-		// Previous hook.
 		#define _ALS_TextDrawHideForPlayer__
 		#define TextDrawHideForPlayer__( TextDrawHideForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawShowForAll(Text:text) = TextDrawShowForAll;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawShowForAll(Text:text) = TextDrawShowForAll;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawShowForAll__(Text:text) = TextDrawShowForAll;
 	#if defined _ALS_TextDrawShowForAll
-		// Previous hook.
 		#define _ALS_TextDrawShowForAll__
 		#define TextDrawShowForAll__( TextDrawShowForAll(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawHideForAll(Text:text) = TextDrawHideForAll;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawHideForAll(Text:text) = TextDrawHideForAll;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawHideForAll__(Text:text) = TextDrawHideForAll;
 	#if defined _ALS_TextDrawHideForAll
-		// Previous hook.
 		#define _ALS_TextDrawHideForAll__
 		#define TextDrawHideForAll__( TextDrawHideForAll(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[]) = TextDrawSetString;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawSetString__(Text:text, const string[]) = TextDrawSetString;
 	#if defined _ALS_TextDrawSetString
-		// Previous hook.
 		#define _ALS_TextDrawSetString__
 		#define TextDrawSetString__( TextDrawSetString(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawSetPreviewModel(Text:text, modelIndex) = TextDrawSetPreviewModel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawSetPreviewModel(Text:text, modelIndex) = TextDrawSetPreviewModel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawSetPreviewModel__(Text:text, modelIndex) = TextDrawSetPreviewModel;
 	#if defined _ALS_TextDrawSetPreviewModel
-		// Previous hook.
 		#define _ALS_TextDrawSetPreviewModel__
 		#define TextDrawSetPreviewModel__( TextDrawSetPreviewModel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawSetPreviewRot(Text:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = TextDrawSetPreviewRot;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawSetPreviewRot(Text:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = TextDrawSetPreviewRot;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawSetPreviewRot__(Text:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = TextDrawSetPreviewRot;
 	#if defined _ALS_TextDrawSetPreviewRot
-		// Previous hook.
 		#define _ALS_TextDrawSetPreviewRot__
 		#define TextDrawSetPreviewRot__( TextDrawSetPreviewRot(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_TextDrawSetPreviewVehCol(Text:text, colour1, colour2) = TextDrawSetPreviewVehCol;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_TextDrawSetPreviewVehCol(Text:text, colour1, colour2) = TextDrawSetPreviewVehCol;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native TextDrawSetPreviewVehCol__(Text:text, colour1, colour2) = TextDrawSetPreviewVehCol;
 	#if defined _ALS_TextDrawSetPreviewVehCol
-		// Previous hook.
 		#define _ALS_TextDrawSetPreviewVehCol__
 		#define TextDrawSetPreviewVehCol__( TextDrawSetPreviewVehCol(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GangZoneCreate(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZoneCreate;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GangZoneCreate(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZoneCreate;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GangZoneCreate__(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZoneCreate;
 	#if defined _ALS_GangZoneCreate
-		// Previous hook.
 		#define _ALS_GangZoneCreate__
 		#define GangZoneCreate__( GangZoneCreate(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GangZoneDestroy(zone) = GangZoneDestroy;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GangZoneDestroy(zone) = GangZoneDestroy;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GangZoneDestroy__(zone) = GangZoneDestroy;
 	#if defined _ALS_GangZoneDestroy
-		// Previous hook.
 		#define _ALS_GangZoneDestroy__
 		#define GangZoneDestroy__( GangZoneDestroy(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GangZoneShowForPlayer(playerid, zone, colour) = GangZoneShowForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GangZoneShowForPlayer(playerid, zone, colour) = GangZoneShowForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GangZoneShowForPlayer__(playerid, zone, colour) = GangZoneShowForPlayer;
 	#if defined _ALS_GangZoneShowForPlayer
-		// Previous hook.
 		#define _ALS_GangZoneShowForPlayer__
 		#define GangZoneShowForPlayer__( GangZoneShowForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GangZoneShowForAll(zone, colour) = GangZoneShowForAll;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GangZoneShowForAll(zone, colour) = GangZoneShowForAll;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GangZoneShowForAll__(zone, colour) = GangZoneShowForAll;
 	#if defined _ALS_GangZoneShowForAll
-		// Previous hook.
 		#define _ALS_GangZoneShowForAll__
 		#define GangZoneShowForAll__( GangZoneShowForAll(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GangZoneHideForPlayer(playerid, zone) = GangZoneHideForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GangZoneHideForPlayer(playerid, zone) = GangZoneHideForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GangZoneHideForPlayer__(playerid, zone) = GangZoneHideForPlayer;
 	#if defined _ALS_GangZoneHideForPlayer
-		// Previous hook.
 		#define _ALS_GangZoneHideForPlayer__
 		#define GangZoneHideForPlayer__( GangZoneHideForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GangZoneHideForAll(zone) = GangZoneHideForAll;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GangZoneHideForAll(zone) = GangZoneHideForAll;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GangZoneHideForAll__(zone) = GangZoneHideForAll;
 	#if defined _ALS_GangZoneHideForAll
-		// Previous hook.
 		#define _ALS_GangZoneHideForAll__
 		#define GangZoneHideForAll__( GangZoneHideForAll(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GangZoneFlashForPlayer(playerid, zone, flashColour) = GangZoneFlashForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GangZoneFlashForPlayer(playerid, zone, flashColour) = GangZoneFlashForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GangZoneFlashForPlayer__(playerid, zone, flashColour) = GangZoneFlashForPlayer;
 	#if defined _ALS_GangZoneFlashForPlayer
-		// Previous hook.
 		#define _ALS_GangZoneFlashForPlayer__
 		#define GangZoneFlashForPlayer__( GangZoneFlashForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GangZoneFlashForAll(zone, flashColour) = GangZoneFlashForAll;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GangZoneFlashForAll(zone, flashColour) = GangZoneFlashForAll;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GangZoneFlashForAll__(zone, flashColour) = GangZoneFlashForAll;
 	#if defined _ALS_GangZoneFlashForAll
-		// Previous hook.
 		#define _ALS_GangZoneFlashForAll__
 		#define GangZoneFlashForAll__( GangZoneFlashForAll(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GangZoneStopFlashForPlayer(playerid, zone) = GangZoneStopFlashForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GangZoneStopFlashForPlayer(playerid, zone) = GangZoneStopFlashForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GangZoneStopFlashForPlayer__(playerid, zone) = GangZoneStopFlashForPlayer;
 	#if defined _ALS_GangZoneStopFlashForPlayer
-		// Previous hook.
 		#define _ALS_GangZoneStopFlashForPlayer__
 		#define GangZoneStopFlashForPlayer__( GangZoneStopFlashForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GangZoneStopFlashForAll(zone) = GangZoneStopFlashForAll;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GangZoneStopFlashForAll(zone) = GangZoneStopFlashForAll;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GangZoneStopFlashForAll__(zone) = GangZoneStopFlashForAll;
 	#if defined _ALS_GangZoneStopFlashForAll
-		// Previous hook.
 		#define _ALS_GangZoneStopFlashForAll__
 		#define GangZoneStopFlashForAll__( GangZoneStopFlashForAll(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Text3D:BAD_Create3DTextLabel(text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, testLOS = false) = Create3DTextLabel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Text3D:CST_Create3DTextLabel(_FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = false) = Create3DTextLabel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Text3D:Create3DTextLabel__(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false) = Create3DTextLabel;
 	#if defined _ALS_Create3DTextLabel
-		// Previous hook.
 		#define _ALS_Create3DTextLabel__
 		#define Create3DTextLabel__( Create3DTextLabel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_Delete3DTextLabel(Text3D:textid) = Delete3DTextLabel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_Delete3DTextLabel(Text3D:textid) = Delete3DTextLabel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Delete3DTextLabel__(Text3D:textid) = Delete3DTextLabel;
 	#if defined _ALS_Delete3DTextLabel
-		// Previous hook.
 		#define _ALS_Delete3DTextLabel__
 		#define Delete3DTextLabel__( Delete3DTextLabel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_Attach3DTextLabelToPlayer(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_Attach3DTextLabelToPlayer(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Attach3DTextLabelToPlayer__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer;
 	#if defined _ALS_Attach3DTextLabelToPlayer
-		// Previous hook.
 		#define _ALS_Attach3DTextLabelToPlayer__
 		#define Attach3DTextLabelToPlayer__( Attach3DTextLabelToPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_Attach3DTextLabelToVehicle(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_Attach3DTextLabelToVehicle(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Attach3DTextLabelToVehicle__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle;
 	#if defined _ALS_Attach3DTextLabelToVehicle
-		// Previous hook.
 		#define _ALS_Attach3DTextLabelToVehicle__
 		#define Attach3DTextLabelToVehicle__( Attach3DTextLabelToVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_Update3DTextLabelText(Text3D:textid, colour, text[]) = Update3DTextLabelText;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_Update3DTextLabelText(Text3D:textid, colour, _FIXES_MAYBE_CONST text[]) = Update3DTextLabelText;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Update3DTextLabelText__(Text3D:textid, colour, const text[]) = Update3DTextLabelText;
 	#if defined _ALS_Update3DTextLabelText
-		// Previous hook.
 		#define _ALS_Update3DTextLabelText__
 		#define Update3DTextLabelText__( Update3DTextLabelText(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native PlayerText3D:BAD_CreatePlayer3DTextLabel(playerid, text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, testLOS = false) = CreatePlayer3DTextLabel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, _FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = false) = CreatePlayer3DTextLabel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native PlayerText3D:CreatePlayer3DTextLabel__(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false) = CreatePlayer3DTextLabel;
 	#if defined _ALS_CreatePlayer3DTextLabel
-		// Previous hook.
 		#define _ALS_CreatePlayer3DTextLabel__
 		#define CreatePlayer3DTextLabel__( CreatePlayer3DTextLabel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DeletePlayer3DTextLabel(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DeletePlayer3DTextLabel(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DeletePlayer3DTextLabel__(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel;
 	#if defined _ALS_DeletePlayer3DTextLabel
-		// Previous hook.
 		#define _ALS_DeletePlayer3DTextLabel__
 		#define DeletePlayer3DTextLabel__( DeletePlayer3DTextLabel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, text[]) = UpdatePlayer3DTextLabelText;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, _FIXES_MAYBE_CONST text[]) = UpdatePlayer3DTextLabelText;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText;
 	#if defined _ALS_UpdatePlayer3DTextLabelText
-		// Previous hook.
 		#define _ALS_UpdatePlayer3DTextLabelText__
 		#define UpdatePlayer3DTextLabelText__( UpdatePlayer3DTextLabelText(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, caption[], info[], button1[], button2[]) = ShowPlayerDialog;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST info[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[]) = ShowPlayerDialog;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ShowPlayerDialog__(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
 	#if defined _ALS_ShowPlayerDialog
-		// Previous hook.
 		#define _ALS_ShowPlayerDialog__
 		#define ShowPlayerDialog__( ShowPlayerDialog(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_gpci(playerid, serial[], len) = gpci;
 	#if FIX_camel_case
 		#pragma deprecated Use `GPCI`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_gpci(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native gpci__(playerid, serial[], len = sizeof (serial)) = gpci;
 	#if defined _ALS_gpci
-		// Previous hook.
 		#define _ALS_gpci__
 		#define gpci__( gpci(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GPCI(playerid, serial[], len) = gpci;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GPCI(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GPCI__(playerid, serial[], len = sizeof (serial)) = gpci;
 	#if defined _ALS_GPCI
-		// Previous hook.
 		#define _ALS_GPCI__
 		#define GPCI__( GPCI(
 	#endif
@@ -22553,920 +15881,344 @@ _FIXES_STATIC_STOCK_CONST
 
 	*/
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native DB:BAD_db_open(name[]) = db_open;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_Open`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native DB:CST_db_open(_FIXES_MAYBE_CONST name[]) = db_open;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DB:db_open__(const name[]) = db_open;
 	#if defined _ALS_db_open
-		// Previous hook.
 		#define _ALS_db_open__
 		#define db_open__( db_open(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native DB:BAD_DB_Open(name[]) = db_open;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native DB:CST_DB_Open(_FIXES_MAYBE_CONST name[]) = db_open;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DB:DB_Open__(const name[]) = db_open;
 	#if defined _ALS_DB_Open
-		// Previous hook.
 		#define _ALS_DB_Open__
 		#define DB_Open__( DB_Open(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_close(DB:db) = db_close;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_Close`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_db_close(DB:db) = db_close;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:db_close__(DB:db) = db_close;
 	#if defined _ALS_db_close
-		// Previous hook.
 		#define _ALS_db_close__
 		#define db_close__( db_close(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_Close(DB:db) = db_close;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_DB_Close(DB:db) = db_close;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:DB_Close__(DB:db) = db_close;
 	#if defined _ALS_DB_Close
-		// Previous hook.
 		#define _ALS_DB_Close__
 		#define DB_Close__( DB_Close(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native DBResult:BAD_db_query(DB:db, query[]) = db_query;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_Query`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native DBResult:CST_db_query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DBResult:db_query__(DB:db, const query[]) = db_query;
 	#if defined _ALS_db_query
-		// Previous hook.
 		#define _ALS_db_query__
 		#define db_query__( db_query(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native DBResult:BAD_DB_Query(DB:db, query[]) = db_query;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native DBResult:CST_DB_Query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DBResult:DB_Query__(DB:db, const query[]) = db_query;
 	#if defined _ALS_DB_Query
-		// Previous hook.
 		#define _ALS_DB_Query__
 		#define DB_Query__( DB_Query(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_free_result(DBResult:result) = db_free_result;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_FreeResult`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_db_free_result(DBResult:result) = db_free_result;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:db_free_result__(DBResult:result) = db_free_result;
 	#if defined _ALS_db_free_result
-		// Previous hook.
 		#define _ALS_db_free_result__
 		#define db_free_result__( db_free_result(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_FreeResult(DBResult:result) = db_free_result;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_DB_FreeResult(DBResult:result) = db_free_result;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:DB_FreeResult__(DBResult:result) = db_free_result;
 	#if defined _ALS_DB_FreeResult
-		// Previous hook.
 		#define _ALS_DB_FreeResult__
 		#define DB_FreeResult__( DB_FreeResult(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_num_rows(DBResult:result) = db_num_rows;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_NumRows`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_db_num_rows(DBResult:result) = db_num_rows;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native db_num_rows__(DBResult:result) = db_num_rows;
 	#if defined _ALS_db_num_rows
-		// Previous hook.
 		#define _ALS_db_num_rows__
 		#define db_num_rows__( db_num_rows(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_NumRows(DBResult:result) = db_num_rows;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DB_NumRows(DBResult:result) = db_num_rows;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DB_NumRows__(DBResult:result) = db_num_rows;
 	#if defined _ALS_DB_NumRows
-		// Previous hook.
 		#define _ALS_DB_NumRows__
 		#define DB_NumRows__( DB_NumRows(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_next_row(DBResult:result) = db_next_row;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_NextRow`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_db_next_row(DBResult:result) = db_next_row;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:db_next_row__(DBResult:result) = db_next_row;
 	#if defined _ALS_db_next_row
-		// Previous hook.
 		#define _ALS_db_next_row__
 		#define db_next_row__( db_next_row(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_NextRow(DBResult:result) = db_next_row;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_DB_NextRow(DBResult:result) = db_next_row;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:DB_NextRow__(DBResult:result) = db_next_row;
 	#if defined _ALS_DB_NextRow
-		// Previous hook.
 		#define _ALS_DB_NextRow__
 		#define DB_NextRow__( DB_NextRow(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_num_fields(DBResult:result) = db_num_fields;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_NumFields`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_db_num_fields(DBResult:result) = db_num_fields;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native db_num_fields__(DBResult:result) = db_num_fields;
 	#if defined _ALS_db_num_fields
-		// Previous hook.
 		#define _ALS_db_num_fields__
 		#define db_num_fields__( db_num_fields(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_NumFields(DBResult:result) = db_num_fields;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DB_NumFields(DBResult:result) = db_num_fields;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DB_NumFields__(DBResult:result) = db_num_fields;
 	#if defined _ALS_DB_NumFields
-		// Previous hook.
 		#define _ALS_DB_NumFields__
 		#define DB_NumFields__( DB_NumFields(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_field_name(DBResult:result, field, output[], size) = db_field_name;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_FieldName`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_db_field_name(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:db_field_name__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
 	#if defined _ALS_db_field_name
-		// Previous hook.
 		#define _ALS_db_field_name__
 		#define db_field_name__( db_field_name(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_FieldName(DBResult:result, field, output[], size) = db_field_name;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_DB_FieldName(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:DB_FieldName__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
 	#if defined _ALS_DB_FieldName
-		// Previous hook.
 		#define _ALS_DB_FieldName__
 		#define DB_FieldName__( DB_FieldName(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_get_field(DBResult:result, field, output[], size) = db_get_field;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_GetField`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_db_get_field(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:db_get_field__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
 	#if defined _ALS_db_get_field
-		// Previous hook.
 		#define _ALS_db_get_field__
 		#define db_get_field__( db_get_field(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_GetField(DBResult:result, field, output[], size) = db_get_field;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_DB_GetField(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:DB_GetField__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
 	#if defined _ALS_DB_GetField
-		// Previous hook.
 		#define _ALS_DB_GetField__
 		#define DB_GetField__( DB_GetField(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_get_field_int(DBResult:result, field = 0) = db_get_field_int;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_GetFieldInt`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_db_get_field_int(DBResult:result, field = 0) = db_get_field_int;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native db_get_field_int__(DBResult:result, field = 0) = db_get_field_int;
 	#if defined _ALS_db_get_field_int
-		// Previous hook.
 		#define _ALS_db_get_field_int__
 		#define db_get_field_int__( db_get_field_int(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_GetFieldInt(DBResult:result, field = 0) = db_get_field_int;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DB_GetFieldInt(DBResult:result, field = 0) = db_get_field_int;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DB_GetFieldInt__(DBResult:result, field = 0) = db_get_field_int;
 	#if defined _ALS_DB_GetFieldInt
-		// Previous hook.
 		#define _ALS_DB_GetFieldInt__
 		#define DB_GetFieldInt__( DB_GetFieldInt(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_db_get_field_float(DBResult:result, field = 0) = db_get_field_float;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_GetFieldFloat`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_db_get_field_float(DBResult:result, field = 0) = db_get_field_float;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:db_get_field_float__(DBResult:result, field = 0) = db_get_field_float;
 	#if defined _ALS_db_get_field_float
-		// Previous hook.
 		#define _ALS_db_get_field_float__
 		#define db_get_field_float__( db_get_field_float(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_DB_GetFieldFloat(DBResult:result, field = 0) = db_get_field_float;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_DB_GetFieldFloat(DBResult:result, field = 0) = db_get_field_float;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:DB_GetFieldFloat__(DBResult:result, field = 0) = db_get_field_float;
 	#if defined _ALS_DB_GetFieldFloat
-		// Previous hook.
 		#define _ALS_DB_GetFieldFloat__
 		#define DB_GetFieldFloat__( DB_GetFieldFloat(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_get_field_assoc(DBResult:result, field[], output[], size) = db_get_field_assoc;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_GetFieldAssoc`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_db_get_field_assoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:db_get_field_assoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
 	#if defined _ALS_db_get_field_assoc
-		// Previous hook.
 		#define _ALS_db_get_field_assoc__
 		#define db_get_field_assoc__( db_get_field_assoc(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_GetFieldAssoc(DBResult:result, field[], output[], size) = db_get_field_assoc;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_DB_GetFieldAssoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:DB_GetFieldAssoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
 	#if defined _ALS_DB_GetFieldAssoc
-		// Previous hook.
 		#define _ALS_DB_GetFieldAssoc__
 		#define DB_GetFieldAssoc__( DB_GetFieldAssoc(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_get_field_assoc_int(DBResult:result, field[]) = db_get_field_assoc_int;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_GetFieldAssocInt`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_db_get_field_assoc_int(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native db_get_field_assoc_int__(DBResult:result, const field[]) = db_get_field_assoc_int;
 	#if defined _ALS_db_get_field_assoc_int
-		// Previous hook.
 		#define _ALS_db_get_field_assoc_int__
 		#define db_get_field_assoc_int__( db_get_field_assoc_int(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_GetFieldAssocInt(DBResult:result, field[]) = db_get_field_assoc_int;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DB_GetFieldAssocInt(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DB_GetFieldAssocInt__(DBResult:result, const field[]) = db_get_field_assoc_int;
 	#if defined _ALS_DB_GetFieldAssocInt
-		// Previous hook.
 		#define _ALS_DB_GetFieldAssocInt__
 		#define DB_GetFieldAssocInt__( DB_GetFieldAssocInt(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_db_get_field_assoc_float(DBResult:result, field[]) = db_get_field_assoc_float;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_GetFieldAssocFloat`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_db_get_field_assoc_float(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:db_get_field_assoc_float__(DBResult:result, const field[]) = db_get_field_assoc_float;
 	#if defined _ALS_db_get_field_assoc_float
-		// Previous hook.
 		#define _ALS_db_get_field_assoc_float__
 		#define db_get_field_assoc_float__( db_get_field_assoc_float(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_DB_GetFieldAssocFloat(DBResult:result, field[]) = db_get_field_assoc_float;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_DB_GetFieldAssocFloat(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:DB_GetFieldAssocFloat__(DBResult:result, const field[]) = db_get_field_assoc_float;
 	#if defined _ALS_DB_GetFieldAssocFloat
-		// Previous hook.
 		#define _ALS_DB_GetFieldAssocFloat__
 		#define DB_GetFieldAssocFloat__( DB_GetFieldAssocFloat(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_get_mem_handle(DB:db) = db_get_mem_handle;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_GetMemHandle`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_db_get_mem_handle(DB:db) = db_get_mem_handle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native db_get_mem_handle__(DB:db) = db_get_mem_handle;
 	#if defined _ALS_db_get_mem_handle
-		// Previous hook.
 		#define _ALS_db_get_mem_handle__
 		#define db_get_mem_handle__( db_get_mem_handle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_GetMemHandle(DB:db) = db_get_mem_handle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DB_GetMemHandle(DB:db) = db_get_mem_handle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DB_GetMemHandle__(DB:db) = db_get_mem_handle;
 	#if defined _ALS_DB_GetMemHandle
-		// Previous hook.
 		#define _ALS_DB_GetMemHandle__
 		#define DB_GetMemHandle__( DB_GetMemHandle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_get_result_mem_handle(DBResult:result) = db_get_result_mem_handle;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_GetResultMemHandle`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_db_get_result_mem_handle(DBResult:result) = db_get_result_mem_handle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native db_get_result_mem_handle__(DBResult:result) = db_get_result_mem_handle;
 	#if defined _ALS_db_get_result_mem_handle
-		// Previous hook.
 		#define _ALS_db_get_result_mem_handle__
 		#define db_get_result_mem_handle__( db_get_result_mem_handle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_GetResultMemHandle(DBResult:result) = db_get_result_mem_handle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DB_GetResultMemHandle(DBResult:result) = db_get_result_mem_handle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DB_GetResultMemHandle__(DBResult:result) = db_get_result_mem_handle;
 	#if defined _ALS_DB_GetResultMemHandle
-		// Previous hook.
 		#define _ALS_DB_GetResultMemHandle__
 		#define DB_GetResultMemHandle__( DB_GetResultMemHandle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_debug_openfiles() = db_debug_openfiles;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_DebugOpenFiles`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_db_debug_openfiles() = db_debug_openfiles;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native db_debug_openfiles__() = db_debug_openfiles;
 	#if defined _ALS_db_debug_openfiles
-		// Previous hook.
 		#define _ALS_db_debug_openfiles__
 		#define db_debug_openfiles__( db_debug_openfiles(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_DebugOpenFiles() = db_debug_openfiles;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DB_DebugOpenFiles() = db_debug_openfiles;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DB_DebugOpenFiles__() = db_debug_openfiles;
 	#if defined _ALS_DB_DebugOpenFiles
-		// Previous hook.
 		#define _ALS_DB_DebugOpenFiles__
 		#define DB_DebugOpenFiles__( DB_DebugOpenFiles(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_db_debug_openresults() = db_debug_openresults;
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_DebugOpenResults`.
 	#endif
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_db_debug_openresults() = db_debug_openresults;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native db_debug_openresults__() = db_debug_openresults;
 	#if defined _ALS_db_debug_openresults
-		// Previous hook.
 		#define _ALS_db_debug_openresults__
 		#define db_debug_openresults__( db_debug_openresults(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DB_DebugOpenResults() = db_debug_openresults;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DB_DebugOpenResults() = db_debug_openresults;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DB_DebugOpenResults__() = db_debug_openresults;
 	#if defined _ALS_DB_DebugOpenResults
-		// Previous hook.
 		#define _ALS_DB_DebugOpenResults__
 		#define DB_DebugOpenResults__( DB_DebugOpenResults(
 	#endif
@@ -23481,1058 +16233,354 @@ _FIXES_STATIC_STOCK_CONST
 
 	*/
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, addSiren = false) = CreateVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = CreateVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false) = CreateVehicle;
 	#if defined _ALS_CreateVehicle
-		// Previous hook.
 		#define _ALS_CreateVehicle__
 		#define CreateVehicle__( CreateVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DestroyVehicle(vehicleid) = DestroyVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DestroyVehicle(vehicleid) = DestroyVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DestroyVehicle__(vehicleid) = DestroyVehicle;
 	#if defined _ALS_DestroyVehicle
-		// Previous hook.
 		#define _ALS_DestroyVehicle__
 		#define DestroyVehicle__( DestroyVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn;
 	#if defined _ALS_IsVehicleStreamedIn
-		// Previous hook.
 		#define _ALS_IsVehicleStreamedIn__
 		#define IsVehicleStreamedIn__( IsVehicleStreamedIn(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehiclePos(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehiclePos(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
 	#if defined _ALS_GetVehiclePos
-		// Previous hook.
 		#define _ALS_GetVehiclePos__
 		#define GetVehiclePos__( GetVehiclePos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 	#if defined _ALS_SetVehiclePos
-		// Previous hook.
 		#define _ALS_SetVehiclePos__
 		#define SetVehiclePos__( SetVehiclePos(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleZAngle(vehicleid, &Float:angle) = GetVehicleZAngle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleZAngle(vehicleid, &Float:angle) = GetVehicleZAngle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleZAngle__(vehicleid, &Float:angle) = GetVehicleZAngle;
 	#if defined _ALS_GetVehicleZAngle
-		// Previous hook.
 		#define _ALS_GetVehicleZAngle__
 		#define GetVehicleZAngle__( GetVehicleZAngle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleRotationQuat(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleRotationQuat(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleRotationQuat__(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat;
 	#if defined _ALS_GetVehicleRotationQuat
-		// Previous hook.
 		#define _ALS_GetVehicleRotationQuat__
 		#define GetVehicleRotationQuat__( GetVehicleRotationQuat(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native Float:BAD_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native Float:CST_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native Float:GetVehicleDistanceFromPoint__(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
 	#if defined _ALS_GetVehicleDistanceFromPoint
-		// Previous hook.
 		#define _ALS_GetVehicleDistanceFromPoint__
 		#define GetVehicleDistanceFromPoint__( GetVehicleDistanceFromPoint(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehicleZAngle(vehicleid, Float:angle) = SetVehicleZAngle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehicleZAngle(vehicleid, Float:angle) = SetVehicleZAngle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehicleZAngle__(vehicleid, Float:angle) = SetVehicleZAngle;
 	#if defined _ALS_SetVehicleZAngle
-		// Previous hook.
 		#define _ALS_SetVehicleZAngle__
 		#define SetVehicleZAngle__( SetVehicleZAngle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehicleParamsForPlayer(vehicleid, playerid, objective, doors) = SetVehicleParamsForPlayer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehicleParamsForPlayer(vehicleid, playerid, objective, doors) = SetVehicleParamsForPlayer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehicleParamsForPlayer__(vehicleid, playerid, objective, doors) = SetVehicleParamsForPlayer;
 	#if defined _ALS_SetVehicleParamsForPlayer
-		// Previous hook.
 		#define _ALS_SetVehicleParamsForPlayer__
 		#define SetVehicleParamsForPlayer__( SetVehicleParamsForPlayer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ManualVehicleEngineAndLights() = ManualVehicleEngineAndLights;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ManualVehicleEngineAndLights() = ManualVehicleEngineAndLights;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ManualVehicleEngineAndLights__() = ManualVehicleEngineAndLights;
 	#if defined _ALS_ManualVehicleEngineAndLights
-		// Previous hook.
 		#define _ALS_ManualVehicleEngineAndLights__
 		#define ManualVehicleEngineAndLights__( ManualVehicleEngineAndLights(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehicleParamsEx__(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
 	#if defined _ALS_SetVehicleParamsEx
-		// Previous hook.
 		#define _ALS_SetVehicleParamsEx__
 		#define SetVehicleParamsEx__( SetVehicleParamsEx(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleParamsEx__(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
 	#if defined _ALS_GetVehicleParamsEx
-		// Previous hook.
 		#define _ALS_GetVehicleParamsEx__
 		#define GetVehicleParamsEx__( GetVehicleParamsEx(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleParamsSirenState(vehicleid) = GetVehicleParamsSirenState;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleParamsSirenState(vehicleid) = GetVehicleParamsSirenState;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleParamsSirenState__(vehicleid) = GetVehicleParamsSirenState;
 	#if defined _ALS_GetVehicleParamsSirenState
-		// Previous hook.
 		#define _ALS_GetVehicleParamsSirenState__
 		#define GetVehicleParamsSirenState__( GetVehicleParamsSirenState(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehicleParamsCarDoors(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarDoors;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehicleParamsCarDoors(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarDoors;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehicleParamsCarDoors__(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarDoors;
 	#if defined _ALS_SetVehicleParamsCarDoors
-		// Previous hook.
 		#define _ALS_SetVehicleParamsCarDoors__
 		#define SetVehicleParamsCarDoors__( SetVehicleParamsCarDoors(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleParamsCarDoors(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarDoors;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleParamsCarDoors(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarDoors;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleParamsCarDoors__(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarDoors;
 	#if defined _ALS_GetVehicleParamsCarDoors
-		// Previous hook.
 		#define _ALS_GetVehicleParamsCarDoors__
 		#define GetVehicleParamsCarDoors__( GetVehicleParamsCarDoors(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehicleParamsCarWindows(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarWindows;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehicleParamsCarWindows(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarWindows;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehicleParamsCarWindows__(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarWindows;
 	#if defined _ALS_SetVehicleParamsCarWindows
-		// Previous hook.
 		#define _ALS_SetVehicleParamsCarWindows__
 		#define SetVehicleParamsCarWindows__( SetVehicleParamsCarWindows(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleParamsCarWindows(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarWindows;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleParamsCarWindows(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarWindows;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleParamsCarWindows__(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarWindows;
 	#if defined _ALS_GetVehicleParamsCarWindows
-		// Previous hook.
 		#define _ALS_GetVehicleParamsCarWindows__
 		#define GetVehicleParamsCarWindows__( GetVehicleParamsCarWindows(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehicleToRespawn__(vehicleid) = SetVehicleToRespawn;
 	#if defined _ALS_SetVehicleToRespawn
-		// Previous hook.
 		#define _ALS_SetVehicleToRespawn__
 		#define SetVehicleToRespawn__( SetVehicleToRespawn(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_LinkVehicleToInterior(vehicleid, interiorid) = LinkVehicleToInterior;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_LinkVehicleToInterior(vehicleid, interiorid) = LinkVehicleToInterior;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native LinkVehicleToInterior__(vehicleid, interiorid) = LinkVehicleToInterior;
 	#if defined _ALS_LinkVehicleToInterior
-		// Previous hook.
 		#define _ALS_LinkVehicleToInterior__
 		#define LinkVehicleToInterior__( LinkVehicleToInterior(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AddVehicleComponent__(vehicleid, componentid) = AddVehicleComponent;
 	#if defined _ALS_AddVehicleComponent
-		// Previous hook.
 		#define _ALS_AddVehicleComponent__
 		#define AddVehicleComponent__( AddVehicleComponent(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleComponent;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleComponent;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native RemoveVehicleComponent__(vehicleid, componentid) = RemoveVehicleComponent;
 	#if defined _ALS_RemoveVehicleComponent
-		// Previous hook.
 		#define _ALS_RemoveVehicleComponent__
 		#define RemoveVehicleComponent__( RemoveVehicleComponent(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ChangeVehicleColor(vehicleid, colour1, colour2) = ChangeVehicleColor;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ChangeVehicleColor(vehicleid, colour1, colour2) = ChangeVehicleColor;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ChangeVehicleColor__(vehicleid, colour1, colour2) = ChangeVehicleColor;
 	#if defined _ALS_ChangeVehicleColor
-		// Previous hook.
 		#define _ALS_ChangeVehicleColor__
 		#define ChangeVehicleColor__( ChangeVehicleColor(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_ChangeVehiclePaintjob(vehicleid, paintjobid) = ChangeVehiclePaintjob;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_ChangeVehiclePaintjob(vehicleid, paintjobid) = ChangeVehiclePaintjob;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native ChangeVehiclePaintjob__(vehicleid, paintjobid) = ChangeVehiclePaintjob;
 	#if defined _ALS_ChangeVehiclePaintjob
-		// Previous hook.
 		#define _ALS_ChangeVehiclePaintjob__
 		#define ChangeVehiclePaintjob__( ChangeVehiclePaintjob(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehicleHealth(vehicleid, Float:health) = SetVehicleHealth;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehicleHealth(vehicleid, Float:health) = SetVehicleHealth;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehicleHealth__(vehicleid, Float:health) = SetVehicleHealth;
 	#if defined _ALS_SetVehicleHealth
-		// Previous hook.
 		#define _ALS_SetVehicleHealth__
 		#define SetVehicleHealth__( SetVehicleHealth(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleHealth(vehicleid, &Float:health) = GetVehicleHealth;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleHealth(vehicleid, &Float:health) = GetVehicleHealth;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleHealth__(vehicleid, &Float:health) = GetVehicleHealth;
 	#if defined _ALS_GetVehicleHealth
-		// Previous hook.
 		#define _ALS_GetVehicleHealth__
 		#define GetVehicleHealth__( GetVehicleHealth(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native AttachTrailerToVehicle__(trailerid, vehicleid) = AttachTrailerToVehicle;
 	#if defined _ALS_AttachTrailerToVehicle
-		// Previous hook.
 		#define _ALS_AttachTrailerToVehicle__
 		#define AttachTrailerToVehicle__( AttachTrailerToVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_DetachTrailerFromVehicle(vehicleid) = DetachTrailerFromVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_DetachTrailerFromVehicle(vehicleid) = DetachTrailerFromVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle;
 	#if defined _ALS_DetachTrailerFromVehicle
-		// Previous hook.
 		#define _ALS_DetachTrailerFromVehicle__
 		#define DetachTrailerFromVehicle__( DetachTrailerFromVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
 	#if defined _ALS_IsTrailerAttachedToVehicle
-		// Previous hook.
 		#define _ALS_IsTrailerAttachedToVehicle__
 		#define IsTrailerAttachedToVehicle__( IsTrailerAttachedToVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleTrailer(vehicleid) = GetVehicleTrailer;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleTrailer(vehicleid) = GetVehicleTrailer;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer;
 	#if defined _ALS_GetVehicleTrailer
-		// Previous hook.
 		#define _ALS_GetVehicleTrailer__
 		#define GetVehicleTrailer__( GetVehicleTrailer(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehicleNumberPlate(vehicleid, numberPlate[]) = SetVehicleNumberPlate;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehicleNumberPlate(vehicleid, _FIXES_MAYBE_CONST numberPlate[]) = SetVehicleNumberPlate;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehicleNumberPlate__(vehicleid, const numberPlate[]) = SetVehicleNumberPlate;
 	#if defined _ALS_SetVehicleNumberPlate
-		// Previous hook.
 		#define _ALS_SetVehicleNumberPlate__
 		#define SetVehicleNumberPlate__( SetVehicleNumberPlate(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleModel(vehicleid) = GetVehicleModel;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleModel(vehicleid) = GetVehicleModel;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleModel__(vehicleid) = GetVehicleModel;
 	#if defined _ALS_GetVehicleModel
-		// Previous hook.
 		#define _ALS_GetVehicleModel__
 		#define GetVehicleModel__( GetVehicleModel(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleComponentInSlot(vehicleid, CARMODTYPE:slot) = GetVehicleComponentInSlot;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleComponentInSlot(vehicleid, CARMODTYPE:slot) = GetVehicleComponentInSlot;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleComponentInSlot__(vehicleid, CARMODTYPE:slot) = GetVehicleComponentInSlot;
 	#if defined _ALS_GetVehicleComponentInSlot
-		// Previous hook.
 		#define _ALS_GetVehicleComponentInSlot__
 		#define GetVehicleComponentInSlot__( GetVehicleComponentInSlot(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native CARMODTYPE:BAD_GetVehicleComponentType(component) = GetVehicleComponentType;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CARMODTYPE:CST_GetVehicleComponentType(component) = GetVehicleComponentType;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native CARMODTYPE:GetVehicleComponentType__(component) = GetVehicleComponentType;
 	#if defined _ALS_GetVehicleComponentType
-		// Previous hook.
 		#define _ALS_GetVehicleComponentType__
 		#define GetVehicleComponentType__( GetVehicleComponentType(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_RepairVehicle(vehicleid) = RepairVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_RepairVehicle(vehicleid) = RepairVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native RepairVehicle__(vehicleid) = RepairVehicle;
 	#if defined _ALS_RepairVehicle
-		// Previous hook.
 		#define _ALS_RepairVehicle__
 		#define RepairVehicle__( RepairVehicle(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleVelocity(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicleVelocity;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleVelocity(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicleVelocity;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleVelocity__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicleVelocity;
 	#if defined _ALS_GetVehicleVelocity
-		// Previous hook.
 		#define _ALS_GetVehicleVelocity__
 		#define GetVehicleVelocity__( GetVehicleVelocity(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehicleVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVelocity;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehicleVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVelocity;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehicleVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVelocity;
 	#if defined _ALS_SetVehicleVelocity
-		// Previous hook.
 		#define _ALS_SetVehicleVelocity__
 		#define SetVehicleVelocity__( SetVehicleVelocity(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehicleAngularVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleAngularVelocity;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehicleAngularVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleAngularVelocity;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehicleAngularVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVehicleAngularVelocity;
 	#if defined _ALS_SetVehicleAngularVelocity
-		// Previous hook.
 		#define _ALS_SetVehicleAngularVelocity__
 		#define SetVehicleAngularVelocity__( SetVehicleAngularVelocity(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleDamageStatus(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleDamageStatus(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleDamageStatus__(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus;
 	#if defined _ALS_GetVehicleDamageStatus
-		// Previous hook.
 		#define _ALS_GetVehicleDamageStatus__
 		#define GetVehicleDamageStatus__( GetVehicleDamageStatus(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native UpdateVehicleDamageStatus__(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus;
 	#if defined _ALS_UpdateVehicleDamageStatus
-		// Previous hook.
 		#define _ALS_UpdateVehicleDamageStatus__
 		#define UpdateVehicleDamageStatus__( UpdateVehicleDamageStatus(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleModelInfo(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleModelInfo(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleModelInfo__(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo;
 	#if defined _ALS_GetVehicleModelInfo
-		// Previous hook.
 		#define _ALS_GetVehicleModelInfo__
 		#define GetVehicleModelInfo__( GetVehicleModelInfo(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_SetVehicleVirtualWorld(vehicleid, virtualWorld) = SetVehicleVirtualWorld;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_SetVehicleVirtualWorld(vehicleid, virtualWorld) = SetVehicleVirtualWorld;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native SetVehicleVirtualWorld__(vehicleid, virtualWorld) = SetVehicleVirtualWorld;
 	#if defined _ALS_SetVehicleVirtualWorld
-		// Previous hook.
 		#define _ALS_SetVehicleVirtualWorld__
 		#define SetVehicleVirtualWorld__( SetVehicleVirtualWorld(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_GetVehicleVirtualWorld(vehicleid) = GetVehicleVirtualWorld;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native CST_GetVehicleVirtualWorld(vehicleid) = GetVehicleVirtualWorld;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld;
 	#if defined _ALS_GetVehicleVirtualWorld
-		// Previous hook.
 		#define _ALS_GetVehicleVirtualWorld__
 		#define GetVehicleVirtualWorld__( GetVehicleVirtualWorld(
 	#endif
 
-	/**
-	 * <remarks>
-	 *   The original declaration as in the basic SA:MP includes.
-	 * </remarks>
-	 */
 	native BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
-	/**
-	 * <remarks>
-	 *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
-	 * </remarks>
-	 */
 	native _FIXES_MAYBE_BOOL:CST_IsValidVehicle(vehicleid) = IsValidVehicle;
-	/**
-	 * <remarks>
-	 *   The best declaration with all fixes aways applied.
-	 * </remarks>
-	 */
 	native bool:IsValidVehicle__(vehicleid) = IsValidVehicle;
 	#if defined _ALS_IsValidVehicle
-		// Previous hook.
 		#define _ALS_IsValidVehicle__
 		#define IsValidVehicle__( IsValidVehicle(
 	#endif
