@@ -14,19 +14,19 @@
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_CreateActor(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_CreateActor(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CreateActor__(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor;
 #define _ALS_CreateActor
@@ -38,19 +38,19 @@ native CreateActor__(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateAc
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DestroyActor(actorid) = DestroyActor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DestroyActor(actorid) = DestroyActor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DestroyActor__(actorid) = DestroyActor;
 #define _ALS_DestroyActor
@@ -62,19 +62,19 @@ native DestroyActor__(actorid) = DestroyActor;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn;
 #define _ALS_IsActorStreamedIn
@@ -86,19 +86,19 @@ native bool:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetActorVirtualWorld(actorid, virtualWorld) = SetActorVirtualWorld;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetActorVirtualWorld(actorid, virtualWorld) = SetActorVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetActorVirtualWorld__(actorid, virtualWorld) = SetActorVirtualWorld;
 #define _ALS_SetActorVirtualWorld
@@ -110,19 +110,19 @@ native SetActorVirtualWorld__(actorid, virtualWorld) = SetActorVirtualWorld;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetActorVirtualWorld(actorid) = GetActorVirtualWorld;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetActorVirtualWorld(actorid) = GetActorVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld;
 #define _ALS_GetActorVirtualWorld
@@ -134,19 +134,19 @@ native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ApplyActorAnimation(actorid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time) = ApplyActorAnimation;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ApplyActorAnimation__(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time) = ApplyActorAnimation;
 #define _ALS_ApplyActorAnimation
@@ -158,19 +158,19 @@ native ApplyActorAnimation__(actorid, const animationLibrary[], const animationN
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ClearActorAnimations(actorid) = ClearActorAnimations;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ClearActorAnimations(actorid) = ClearActorAnimations;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ClearActorAnimations__(actorid) = ClearActorAnimations;
 #define _ALS_ClearActorAnimations
@@ -182,19 +182,19 @@ native ClearActorAnimations__(actorid) = ClearActorAnimations;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetActorPos(actorid, Float:x, Float:y, Float:z) = SetActorPos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetActorPos(actorid, Float:x, Float:y, Float:z) = SetActorPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetActorPos__(actorid, Float:x, Float:y, Float:z) = SetActorPos;
 #define _ALS_SetActorPos
@@ -206,19 +206,19 @@ native SetActorPos__(actorid, Float:x, Float:y, Float:z) = SetActorPos;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetActorPos(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetActorPos(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetActorPos__(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
 #define _ALS_GetActorPos
@@ -230,19 +230,19 @@ native GetActorPos__(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetActorFacingAngle(actorid, Float:angle) = SetActorFacingAngle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetActorFacingAngle(actorid, Float:angle) = SetActorFacingAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetActorFacingAngle__(actorid, Float:angle) = SetActorFacingAngle;
 #define _ALS_SetActorFacingAngle
@@ -254,19 +254,19 @@ native SetActorFacingAngle__(actorid, Float:angle) = SetActorFacingAngle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetActorFacingAngle(actorid, &Float:angle) = GetActorFacingAngle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetActorFacingAngle(actorid, &Float:angle) = GetActorFacingAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetActorFacingAngle__(actorid, &Float:angle) = GetActorFacingAngle;
 #define _ALS_GetActorFacingAngle
@@ -278,19 +278,19 @@ native GetActorFacingAngle__(actorid, &Float:angle) = GetActorFacingAngle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetActorHealth(actorid, Float:health) = SetActorHealth;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetActorHealth(actorid, Float:health) = SetActorHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetActorHealth__(actorid, Float:health) = SetActorHealth;
 #define _ALS_SetActorHealth
@@ -302,19 +302,19 @@ native SetActorHealth__(actorid, Float:health) = SetActorHealth;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetActorHealth(actorid, &Float:health) = GetActorHealth;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetActorHealth(actorid, &Float:health) = GetActorHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetActorHealth__(actorid, &Float:health) = GetActorHealth;
 #define _ALS_GetActorHealth
@@ -326,19 +326,19 @@ native GetActorHealth__(actorid, &Float:health) = GetActorHealth;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetActorInvulnerable(actorid, invulnerable = true) = SetActorInvulnerable;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetActorInvulnerable(actorid, _FIXES_MAYBE_BOOL:invulnerable = true) = SetActorInvulnerable;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetActorInvulnerable__(actorid, bool:invulnerable = true) = SetActorInvulnerable;
 #define _ALS_SetActorInvulnerable
@@ -350,19 +350,19 @@ native SetActorInvulnerable__(actorid, bool:invulnerable = true) = SetActorInvul
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsActorInvulnerable(actorid) = IsActorInvulnerable;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsActorInvulnerable(actorid) = IsActorInvulnerable;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
 #define _ALS_IsActorInvulnerable
@@ -374,19 +374,19 @@ native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsValidActor(actorid) = IsValidActor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsValidActor(actorid) = IsValidActor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsValidActor__(actorid) = IsValidActor;
 #define _ALS_IsValidActor
@@ -408,19 +408,19 @@ native bool:IsValidActor__(actorid) = IsValidActor;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_HTTP(index, HTTP_METHOD:method, url[], data[], callback[]) = HTTP;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_HTTP(index, HTTP_METHOD:method, _FIXES_MAYBE_CONST url[], _FIXES_MAYBE_CONST data[], _FIXES_MAYBE_CONST callback[]) = HTTP;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native HTTP__(index, HTTP_METHOD:method, const url[], const data[], const callback[]) = HTTP;
 #define _ALS_HTTP
@@ -443,19 +443,19 @@ native HTTP__(index, HTTP_METHOD:method, const url[], const data[], const callba
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_CreateObject(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_CreateObject(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CreateObject__(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject;
 #define _ALS_CreateObject
@@ -467,19 +467,19 @@ native CreateObject__(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AttachObjectToVehicle(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AttachObjectToVehicle(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AttachObjectToVehicle__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle;
 #define _ALS_AttachObjectToVehicle
@@ -491,19 +491,19 @@ native AttachObjectToVehicle__(objectid, parentid, Float:offsetX, Float:offsetY,
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, syncRotation = true) = AttachObjectToObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, _FIXES_MAYBE_BOOL:syncRotation = true) = AttachObjectToObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AttachObjectToObject__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, bool:syncRotation = true) = AttachObjectToObject;
 #define _ALS_AttachObjectToObject
@@ -515,19 +515,19 @@ native AttachObjectToObject__(objectid, parentid, Float:offsetX, Float:offsetY, 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AttachObjectToPlayer(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AttachObjectToPlayer(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AttachObjectToPlayer__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer;
 #define _ALS_AttachObjectToPlayer
@@ -539,19 +539,19 @@ native AttachObjectToPlayer__(objectid, parentid, Float:offsetX, Float:offsetY, 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetObjectPos(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetObjectPos(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetObjectPos__(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
 #define _ALS_SetObjectPos
@@ -563,19 +563,19 @@ native SetObjectPos__(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetObjectPos(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetObjectPos(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetObjectPos__(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
 #define _ALS_GetObjectPos
@@ -587,19 +587,19 @@ native GetObjectPos__(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetObjectRot(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectRot;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetObjectRot(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetObjectRot__(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectRot;
 #define _ALS_SetObjectRot
@@ -611,19 +611,19 @@ native SetObjectRot__(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectR
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetObjectRot(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetObjectRot(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetObjectRot__(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot;
 #define _ALS_GetObjectRot
@@ -635,19 +635,19 @@ native GetObjectRot__(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObje
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetObjectModel(objectid) = GetObjectModel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetObjectModel(objectid) = GetObjectModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetObjectModel__(objectid) = GetObjectModel;
 #define _ALS_GetObjectModel
@@ -659,19 +659,19 @@ native GetObjectModel__(objectid) = GetObjectModel;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetObjectNoCameraCol(objectid) = SetObjectNoCameraCol;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetObjectNoCameraCol(objectid) = SetObjectNoCameraCol;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol;
 #define _ALS_SetObjectNoCameraCol
@@ -683,19 +683,19 @@ native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsValidObject(objectid) = IsValidObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsValidObject(objectid) = IsValidObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsValidObject__(objectid) = IsValidObject;
 #define _ALS_IsValidObject
@@ -707,19 +707,19 @@ native bool:IsValidObject__(objectid) = IsValidObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DestroyObject(objectid) = DestroyObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DestroyObject(objectid) = DestroyObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DestroyObject__(objectid) = DestroyObject;
 #define _ALS_DestroyObject
@@ -731,19 +731,19 @@ native DestroyObject__(objectid) = DestroyObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_MoveObject(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_MoveObject(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native MoveObject__(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject;
 #define _ALS_MoveObject
@@ -755,19 +755,19 @@ native MoveObject__(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_StopObject(objectid) = StopObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_StopObject(objectid) = StopObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native StopObject__(objectid) = StopObject;
 #define _ALS_StopObject
@@ -779,19 +779,19 @@ native StopObject__(objectid) = StopObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsObjectMoving(objectid) = IsObjectMoving;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsObjectMoving(objectid) = IsObjectMoving;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsObjectMoving__(objectid) = IsObjectMoving;
 #define _ALS_IsObjectMoving
@@ -803,19 +803,19 @@ native bool:IsObjectMoving__(objectid) = IsObjectMoving;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_EditObject(playerid, objectid) = EditObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_EditObject(playerid, objectid) = EditObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native EditObject__(playerid, objectid) = EditObject;
 #define _ALS_EditObject
@@ -827,19 +827,19 @@ native EditObject__(playerid, objectid) = EditObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_EditPlayerObject(playerid, objectid) = EditPlayerObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_EditPlayerObject(playerid, objectid) = EditPlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native EditPlayerObject__(playerid, objectid) = EditPlayerObject;
 #define _ALS_EditPlayerObject
@@ -851,19 +851,19 @@ native EditPlayerObject__(playerid, objectid) = EditPlayerObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SelectObject(playerid) = SelectObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SelectObject(playerid) = SelectObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SelectObject__(playerid) = SelectObject;
 #define _ALS_SelectObject
@@ -875,19 +875,19 @@ native SelectObject__(playerid) = SelectObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_CancelEdit(playerid) = CancelEdit;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_CancelEdit(playerid) = CancelEdit;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CancelEdit__(playerid) = CancelEdit;
 #define _ALS_CancelEdit
@@ -899,19 +899,19 @@ native CancelEdit__(playerid) = CancelEdit;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_CreatePlayerObject(playerid, modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreatePlayerObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_CreatePlayerObject(playerid, modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreatePlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CreatePlayerObject__(playerid, modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreatePlayerObject;
 #define _ALS_CreatePlayerObject
@@ -923,19 +923,19 @@ native CreatePlayerObject__(playerid, modelid, Float:x, Float:y, Float:z, Float:
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AttachPlayerObjectToVehicle(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AttachPlayerObjectToVehicle(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AttachPlayerObjectToVehicle__(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToVehicle;
 #define _ALS_AttachPlayerObjectToVehicle
@@ -947,19 +947,19 @@ native AttachPlayerObjectToVehicle__(playerid, objectid, parentid, Float:offsetX
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerObjectPos(playerid, objectid, Float:x, Float:y, Float:z) = SetPlayerObjectPos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerObjectPos(playerid, objectid, Float:x, Float:y, Float:z) = SetPlayerObjectPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerObjectPos__(playerid, objectid, Float:x, Float:y, Float:z) = SetPlayerObjectPos;
 #define _ALS_SetPlayerObjectPos
@@ -971,19 +971,19 @@ native SetPlayerObjectPos__(playerid, objectid, Float:x, Float:y, Float:z) = Set
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerObjectPos(playerid, objectid, &Float:x, &Float:y, &Float:z) = GetPlayerObjectPos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerObjectPos(playerid, objectid, &Float:x, &Float:y, &Float:z) = GetPlayerObjectPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerObjectPos__(playerid, objectid, &Float:x, &Float:y, &Float:z) = GetPlayerObjectPos;
 #define _ALS_GetPlayerObjectPos
@@ -995,19 +995,19 @@ native GetPlayerObjectPos__(playerid, objectid, &Float:x, &Float:y, &Float:z) = 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerObjectRot(playerid, objectid, Float:rotX, Float:rotY, Float:rotZ) = SetPlayerObjectRot;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerObjectRot(playerid, objectid, Float:rotX, Float:rotY, Float:rotZ) = SetPlayerObjectRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerObjectRot__(playerid, objectid, Float:rotX, Float:rotY, Float:rotZ) = SetPlayerObjectRot;
 #define _ALS_SetPlayerObjectRot
@@ -1019,19 +1019,19 @@ native SetPlayerObjectRot__(playerid, objectid, Float:rotX, Float:rotY, Float:ro
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerObjectRot(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerObjectRot(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerObjectRot__(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot;
 #define _ALS_GetPlayerObjectRot
@@ -1043,19 +1043,19 @@ native GetPlayerObjectRot__(playerid, objectid, &Float:rotX, &Float:rotY, &Float
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerObjectModel(playerid, objectid) = GetPlayerObjectModel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerObjectModel(playerid, objectid) = GetPlayerObjectModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerObjectModel__(playerid, objectid) = GetPlayerObjectModel;
 #define _ALS_GetPlayerObjectModel
@@ -1067,19 +1067,19 @@ native GetPlayerObjectModel__(playerid, objectid) = GetPlayerObjectModel;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerObjectNoCameraCol(playerid, objectid) = SetPlayerObjectNoCameraCol;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerObjectNoCameraCol(playerid, objectid) = SetPlayerObjectNoCameraCol;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCameraCol;
 #define _ALS_SetPlayerObjectNoCameraCol
@@ -1091,19 +1091,19 @@ native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCamer
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
 #define _ALS_IsValidPlayerObject
@@ -1115,19 +1115,19 @@ native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DestroyPlayerObject(playerid, objectid) = DestroyPlayerObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DestroyPlayerObject(playerid, objectid) = DestroyPlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DestroyPlayerObject__(playerid, objectid) = DestroyPlayerObject;
 #define _ALS_DestroyPlayerObject
@@ -1139,19 +1139,19 @@ native DestroyPlayerObject__(playerid, objectid) = DestroyPlayerObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_MovePlayerObject(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_MovePlayerObject(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native MovePlayerObject__(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject;
 #define _ALS_MovePlayerObject
@@ -1163,19 +1163,19 @@ native MovePlayerObject__(playerid, objectid, Float:x, Float:y, Float:z, Float:s
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_StopPlayerObject(playerid, objectid) = StopPlayerObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_StopPlayerObject(playerid, objectid) = StopPlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native StopPlayerObject__(playerid, objectid) = StopPlayerObject;
 #define _ALS_StopPlayerObject
@@ -1187,19 +1187,19 @@ native StopPlayerObject__(playerid, objectid) = StopPlayerObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
 #define _ALS_IsPlayerObjectMoving
@@ -1211,19 +1211,19 @@ native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AttachPlayerObjectToPlayer(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AttachPlayerObjectToPlayer(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AttachPlayerObjectToPlayer__(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer;
 #define _ALS_AttachPlayerObjectToPlayer
@@ -1235,19 +1235,19 @@ native AttachPlayerObjectToPlayer__(playerid, objectid, parentid, Float:offsetX,
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetObjectMaterial(objectid, materialIndex, modelid, textureLibrary[], textureName[], materialColour = 0) = SetObjectMaterial;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetObjectMaterial(objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetObjectMaterial;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetObjectMaterial__(objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetObjectMaterial;
 #define _ALS_SetObjectMaterial
@@ -1259,19 +1259,19 @@ native SetObjectMaterial__(objectid, materialIndex, modelid, const textureLibrar
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, textureLibrary[], textureName[], materialColour = 0) = SetPlayerObjectMaterial;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetPlayerObjectMaterial;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerObjectMaterial__(playerid, objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetPlayerObjectMaterial;
 #define _ALS_SetPlayerObjectMaterial
@@ -1283,19 +1283,19 @@ native SetPlayerObjectMaterial__(playerid, objectid, materialIndex, modelid, con
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetObjectMaterialText(objectid, text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, fontFace[] = "Arial", fontSize = 24, bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetObjectMaterialText(objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetObjectMaterialText__(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
 #define _ALS_SetObjectMaterialText
@@ -1307,19 +1307,19 @@ native SetObjectMaterialText__(objectid, const text[], materialIndex = 0, OBJECT
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerObjectMaterialText(playerid, objectid, text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, fontFace[] = "Arial", fontSize = 24, bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerObjectMaterialText(playerid, objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerObjectMaterialText__(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
 #define _ALS_SetPlayerObjectMaterialText
@@ -1331,19 +1331,19 @@ native SetPlayerObjectMaterialText__(playerid, objectid, const text[], materialI
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetObjectsDefaultCameraCol(disable) = SetObjectsDefaultCameraCol;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetObjectsDefaultCameraCol(_FIXES_MAYBE_BOOL:disable) = SetObjectsDefaultCameraCol;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetObjectsDefaultCameraCol__(bool:disable) = SetObjectsDefaultCameraCol;
 #define _ALS_SetObjectsDefaultCameraCol
@@ -1365,19 +1365,19 @@ native SetObjectsDefaultCameraCol__(bool:disable) = SetObjectsDefaultCameraCol;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetSpawnInfo__(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo;
 #define _ALS_SetSpawnInfo
@@ -1389,19 +1389,19 @@ native SetSpawnInfo__(playerid, team, skin, Float:x, Float:y, Float:z, Float:rot
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SpawnPlayer(playerid) = SpawnPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SpawnPlayer__(playerid) = SpawnPlayer;
 #define _ALS_SpawnPlayer
@@ -1413,19 +1413,19 @@ native SpawnPlayer__(playerid) = SpawnPlayer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 #define _ALS_SetPlayerPos
@@ -1437,19 +1437,19 @@ native SetPlayerPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerPosFindZ__(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
 #define _ALS_SetPlayerPosFindZ
@@ -1461,19 +1461,19 @@ native SetPlayerPosFindZ__(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFi
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 #define _ALS_GetPlayerPos
@@ -1485,19 +1485,19 @@ native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerFacingAngle(playerid, Float:ang) = SetPlayerFacingAngle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerFacingAngle(playerid, Float:ang) = SetPlayerFacingAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerFacingAngle__(playerid, Float:ang) = SetPlayerFacingAngle;
 #define _ALS_SetPlayerFacingAngle
@@ -1509,19 +1509,19 @@ native SetPlayerFacingAngle__(playerid, Float:ang) = SetPlayerFacingAngle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerFacingAngle(playerid, &Float:ang) = GetPlayerFacingAngle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerFacingAngle(playerid, &Float:ang) = GetPlayerFacingAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
 #define _ALS_GetPlayerFacingAngle
@@ -1533,19 +1533,19 @@ native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 #define _ALS_IsPlayerInRangeOfPoint
@@ -1557,19 +1557,19 @@ native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Fl
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:GetPlayerDistanceFromPoint__(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
 #define _ALS_GetPlayerDistanceFromPoint
@@ -1581,19 +1581,19 @@ native Float:GetPlayerDistanceFromPoint__(playerid, Float:x, Float:y, Float:z) =
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsPlayerStreamedIn__(targetid, playerid) = IsPlayerStreamedIn;
 #define _ALS_IsPlayerStreamedIn
@@ -1605,19 +1605,19 @@ native bool:IsPlayerStreamedIn__(targetid, playerid) = IsPlayerStreamedIn;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerInterior__(playerid, interiorid) = SetPlayerInterior;
 #define _ALS_SetPlayerInterior
@@ -1629,19 +1629,19 @@ native SetPlayerInterior__(playerid, interiorid) = SetPlayerInterior;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerInterior(playerid) = GetPlayerInterior;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerInterior__(playerid) = GetPlayerInterior;
 #define _ALS_GetPlayerInterior
@@ -1653,19 +1653,19 @@ native GetPlayerInterior__(playerid) = GetPlayerInterior;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerHealth(playerid, Float:health) = SetPlayerHealth;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerHealth(playerid, Float:health) = SetPlayerHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerHealth__(playerid, Float:health) = SetPlayerHealth;
 #define _ALS_SetPlayerHealth
@@ -1677,19 +1677,19 @@ native SetPlayerHealth__(playerid, Float:health) = SetPlayerHealth;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerHealth(playerid, &Float:health) = GetPlayerHealth;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerHealth(playerid, &Float:health) = GetPlayerHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerHealth__(playerid, &Float:health) = GetPlayerHealth;
 #define _ALS_GetPlayerHealth
@@ -1701,19 +1701,19 @@ native GetPlayerHealth__(playerid, &Float:health) = GetPlayerHealth;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerArmour(playerid, Float:armour) = SetPlayerArmour;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerArmour(playerid, Float:armour) = SetPlayerArmour;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerArmour__(playerid, Float:armour) = SetPlayerArmour;
 #define _ALS_SetPlayerArmour
@@ -1725,19 +1725,19 @@ native SetPlayerArmour__(playerid, Float:armour) = SetPlayerArmour;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerArmour(playerid, &Float:armour) = GetPlayerArmour;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerArmour(playerid, &Float:armour) = GetPlayerArmour;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerArmour__(playerid, &Float:armour) = GetPlayerArmour;
 #define _ALS_GetPlayerArmour
@@ -1749,19 +1749,19 @@ native GetPlayerArmour__(playerid, &Float:armour) = GetPlayerArmour;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerAmmo(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerAmmo(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerAmmo__(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
 #define _ALS_SetPlayerAmmo
@@ -1773,19 +1773,19 @@ native SetPlayerAmmo__(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerAmmo(playerid) = GetPlayerAmmo;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerAmmo(playerid) = GetPlayerAmmo;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerAmmo__(playerid) = GetPlayerAmmo;
 #define _ALS_GetPlayerAmmo
@@ -1797,19 +1797,19 @@ native GetPlayerAmmo__(playerid) = GetPlayerAmmo;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native WEAPONSTATE:BAD_GetPlayerWeaponState(playerid) = GetPlayerWeaponState;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native WEAPONSTATE:FIXES_GetPlayerWeaponState(playerid) = GetPlayerWeaponState;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native WEAPONSTATE:GetPlayerWeaponState__(playerid) = GetPlayerWeaponState;
 #define _ALS_GetPlayerWeaponState
@@ -1821,19 +1821,19 @@ native WEAPONSTATE:GetPlayerWeaponState__(playerid) = GetPlayerWeaponState;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerTargetPlayer(playerid) = GetPlayerTargetPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerTargetPlayer(playerid) = GetPlayerTargetPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerTargetPlayer__(playerid) = GetPlayerTargetPlayer;
 #define _ALS_GetPlayerTargetPlayer
@@ -1845,19 +1845,19 @@ native GetPlayerTargetPlayer__(playerid) = GetPlayerTargetPlayer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerTargetActor(playerid) = GetPlayerTargetActor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerTargetActor(playerid) = GetPlayerTargetActor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerTargetActor__(playerid) = GetPlayerTargetActor;
 #define _ALS_GetPlayerTargetActor
@@ -1869,19 +1869,19 @@ native GetPlayerTargetActor__(playerid) = GetPlayerTargetActor;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerTeam(playerid, teamid) = SetPlayerTeam;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerTeam(playerid, teamid) = SetPlayerTeam;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerTeam__(playerid, teamid) = SetPlayerTeam;
 #define _ALS_SetPlayerTeam
@@ -1893,19 +1893,19 @@ native SetPlayerTeam__(playerid, teamid) = SetPlayerTeam;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerTeam(playerid) = GetPlayerTeam;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerTeam(playerid) = GetPlayerTeam;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerTeam__(playerid) = GetPlayerTeam;
 #define _ALS_GetPlayerTeam
@@ -1917,19 +1917,19 @@ native GetPlayerTeam__(playerid) = GetPlayerTeam;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerScore(playerid, score) = SetPlayerScore;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerScore(playerid, score) = SetPlayerScore;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerScore__(playerid, score) = SetPlayerScore;
 #define _ALS_SetPlayerScore
@@ -1941,19 +1941,19 @@ native SetPlayerScore__(playerid, score) = SetPlayerScore;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerScore(playerid) = GetPlayerScore;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerScore(playerid) = GetPlayerScore;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerScore__(playerid) = GetPlayerScore;
 #define _ALS_GetPlayerScore
@@ -1965,19 +1965,19 @@ native GetPlayerScore__(playerid) = GetPlayerScore;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerDrunkLevel(playerid) = GetPlayerDrunkLevel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerDrunkLevel(playerid) = GetPlayerDrunkLevel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerDrunkLevel__(playerid) = GetPlayerDrunkLevel;
 #define _ALS_GetPlayerDrunkLevel
@@ -1989,19 +1989,19 @@ native GetPlayerDrunkLevel__(playerid) = GetPlayerDrunkLevel;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerDrunkLevel(playerid, level) = SetPlayerDrunkLevel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerDrunkLevel(playerid, level) = SetPlayerDrunkLevel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerDrunkLevel__(playerid, level) = SetPlayerDrunkLevel;
 #define _ALS_SetPlayerDrunkLevel
@@ -2013,19 +2013,19 @@ native SetPlayerDrunkLevel__(playerid, level) = SetPlayerDrunkLevel;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerColor(playerid, colour) = SetPlayerColor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerColor(playerid, colour) = SetPlayerColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerColor__(playerid, colour) = SetPlayerColor;
 #define _ALS_SetPlayerColor
@@ -2037,19 +2037,19 @@ native SetPlayerColor__(playerid, colour) = SetPlayerColor;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerColor(playerid) = GetPlayerColor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerColor(playerid) = GetPlayerColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerColor__(playerid) = GetPlayerColor;
 #define _ALS_GetPlayerColor
@@ -2061,19 +2061,19 @@ native GetPlayerColor__(playerid) = GetPlayerColor;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerSkin__(playerid, skinid) = SetPlayerSkin;
 #define _ALS_SetPlayerSkin
@@ -2085,19 +2085,19 @@ native SetPlayerSkin__(playerid, skinid) = SetPlayerSkin;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerSkin(playerid) = GetPlayerSkin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerSkin__(playerid) = GetPlayerSkin;
 #define _ALS_GetPlayerSkin
@@ -2109,19 +2109,19 @@ native GetPlayerSkin__(playerid) = GetPlayerSkin;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerCustomSkin(playerid) = GetPlayerCustomSkin;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerCustomSkin(playerid) = GetPlayerCustomSkin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerCustomSkin__(playerid) = GetPlayerCustomSkin;
 #define _ALS_GetPlayerCustomSkin
@@ -2133,19 +2133,19 @@ native GetPlayerCustomSkin__(playerid) = GetPlayerCustomSkin;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GivePlayerWeapon(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GivePlayerWeapon(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GivePlayerWeapon__(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
 #define _ALS_GivePlayerWeapon
@@ -2157,19 +2157,19 @@ native GivePlayerWeapon__(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ResetPlayerWeapons__(playerid) = ResetPlayerWeapons;
 #define _ALS_ResetPlayerWeapons
@@ -2181,19 +2181,19 @@ native ResetPlayerWeapons__(playerid) = ResetPlayerWeapons;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerArmedWeapon(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerArmedWeapon(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerArmedWeapon__(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon;
 #define _ALS_SetPlayerArmedWeapon
@@ -2205,19 +2205,19 @@ native SetPlayerArmedWeapon__(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerWeaponData(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerWeaponData(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerWeaponData__(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData;
 #define _ALS_GetPlayerWeaponData
@@ -2229,19 +2229,19 @@ native GetPlayerWeaponData__(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayer
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GivePlayerMoney(playerid, money) = GivePlayerMoney;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GivePlayerMoney(playerid, money) = GivePlayerMoney;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GivePlayerMoney__(playerid, money) = GivePlayerMoney;
 #define _ALS_GivePlayerMoney
@@ -2253,19 +2253,19 @@ native GivePlayerMoney__(playerid, money) = GivePlayerMoney;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ResetPlayerMoney(playerid) = ResetPlayerMoney;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ResetPlayerMoney(playerid) = ResetPlayerMoney;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ResetPlayerMoney__(playerid) = ResetPlayerMoney;
 #define _ALS_ResetPlayerMoney
@@ -2277,19 +2277,19 @@ native ResetPlayerMoney__(playerid) = ResetPlayerMoney;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerName(playerid, name[]) = SetPlayerName;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerName(playerid, _FIXES_MAYBE_CONST name[]) = SetPlayerName;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerName__(playerid, const name[]) = SetPlayerName;
 #define _ALS_SetPlayerName
@@ -2301,19 +2301,19 @@ native SetPlayerName__(playerid, const name[]) = SetPlayerName;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerMoney(playerid) = GetPlayerMoney;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerMoney(playerid) = GetPlayerMoney;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerMoney__(playerid) = GetPlayerMoney;
 #define _ALS_GetPlayerMoney
@@ -2325,19 +2325,19 @@ native GetPlayerMoney__(playerid) = GetPlayerMoney;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native PLAYER_STATE:BAD_GetPlayerState(playerid) = GetPlayerState;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native PLAYER_STATE:FIXES_GetPlayerState(playerid) = GetPlayerState;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState;
 #define _ALS_GetPlayerState
@@ -2349,19 +2349,19 @@ native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerIp(playerid, ip[], len) = GetPlayerIp;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerIp(playerid, ip[], _FIXES_MAYBE_SIZEOF(len, ip)) = GetPlayerIp;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerIp__(playerid, ip[], len = sizeof (ip)) = GetPlayerIp;
 #define _ALS_GetPlayerIp
@@ -2373,19 +2373,19 @@ native GetPlayerIp__(playerid, ip[], len = sizeof (ip)) = GetPlayerIp;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerPing(playerid) = GetPlayerPing;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerPing(playerid) = GetPlayerPing;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerPing__(playerid) = GetPlayerPing;
 #define _ALS_GetPlayerPing
@@ -2397,19 +2397,19 @@ native GetPlayerPing__(playerid) = GetPlayerPing;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native WEAPON:BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native WEAPON:FIXES_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native WEAPON:GetPlayerWeapon__(playerid) = GetPlayerWeapon;
 #define _ALS_GetPlayerWeapon
@@ -2421,19 +2421,19 @@ native WEAPON:GetPlayerWeapon__(playerid) = GetPlayerWeapon;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 #define _ALS_GetPlayerKeys
@@ -2445,19 +2445,19 @@ native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPl
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerName(playerid, const name[], len) = GetPlayerName;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerName(playerid, _FIXES_NOT_CONST name[], _FIXES_MAYBE_SIZEOF(len, name)) = GetPlayerName;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName;
 #define _ALS_GetPlayerName
@@ -2469,19 +2469,19 @@ native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime;
 #define _ALS_SetPlayerTime
@@ -2493,19 +2493,19 @@ native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerTime(playerid, &hour, &minute) = GetPlayerTime;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerTime(playerid, &hour, &minute) = GetPlayerTime;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerTime__(playerid, &hour, &minute) = GetPlayerTime;
 #define _ALS_GetPlayerTime
@@ -2517,19 +2517,19 @@ native GetPlayerTime__(playerid, &hour, &minute) = GetPlayerTime;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerClock;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TogglePlayerClock__(playerid, bool:toggle) = TogglePlayerClock;
 #define _ALS_TogglePlayerClock
@@ -2541,19 +2541,19 @@ native TogglePlayerClock__(playerid, bool:toggle) = TogglePlayerClock;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerWeather__(playerid, weather) = SetPlayerWeather;
 #define _ALS_SetPlayerWeather
@@ -2565,19 +2565,19 @@ native SetPlayerWeather__(playerid, weather) = SetPlayerWeather;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ForceClassSelection(playerid) = ForceClassSelection;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ForceClassSelection(playerid) = ForceClassSelection;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ForceClassSelection__(playerid) = ForceClassSelection;
 #define _ALS_ForceClassSelection
@@ -2589,19 +2589,19 @@ native ForceClassSelection__(playerid) = ForceClassSelection;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerWantedLevel(playerid, level) = SetPlayerWantedLevel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerWantedLevel(playerid, level) = SetPlayerWantedLevel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerWantedLevel__(playerid, level) = SetPlayerWantedLevel;
 #define _ALS_SetPlayerWantedLevel
@@ -2613,19 +2613,19 @@ native SetPlayerWantedLevel__(playerid, level) = SetPlayerWantedLevel;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerWantedLevel(playerid) = GetPlayerWantedLevel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerWantedLevel(playerid) = GetPlayerWantedLevel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerWantedLevel__(playerid) = GetPlayerWantedLevel;
 #define _ALS_GetPlayerWantedLevel
@@ -2637,19 +2637,19 @@ native GetPlayerWantedLevel__(playerid) = GetPlayerWantedLevel;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerFightingStyle(playerid, FIGHT_STYLE:style) = SetPlayerFightingStyle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerFightingStyle(playerid, FIGHT_STYLE:style) = SetPlayerFightingStyle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerFightingStyle__(playerid, FIGHT_STYLE:style) = SetPlayerFightingStyle;
 #define _ALS_SetPlayerFightingStyle
@@ -2661,19 +2661,19 @@ native SetPlayerFightingStyle__(playerid, FIGHT_STYLE:style) = SetPlayerFighting
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native FIGHT_STYLE:BAD_GetPlayerFightingStyle(playerid) = GetPlayerFightingStyle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIGHT_STYLE:FIXES_GetPlayerFightingStyle(playerid) = GetPlayerFightingStyle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native FIGHT_STYLE:GetPlayerFightingStyle__(playerid) = GetPlayerFightingStyle;
 #define _ALS_GetPlayerFightingStyle
@@ -2685,19 +2685,19 @@ native FIGHT_STYLE:GetPlayerFightingStyle__(playerid) = GetPlayerFightingStyle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerVelocity(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerVelocity(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerVelocity__(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity;
 #define _ALS_SetPlayerVelocity
@@ -2709,19 +2709,19 @@ native SetPlayerVelocity__(playerid, Float:x, Float:y, Float:z) = SetPlayerVeloc
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerVelocity(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerVelocity(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerVelocity__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity;
 #define _ALS_GetPlayerVelocity
@@ -2733,19 +2733,19 @@ native GetPlayerVelocity__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVe
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayCrimeReportForPlayer(playerid, suspectid, crime) = PlayCrimeReportForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayCrimeReportForPlayer(playerid, suspectid, crime) = PlayCrimeReportForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayCrimeReportForPlayer__(playerid, suspectid, crime) = PlayCrimeReportForPlayer;
 #define _ALS_PlayCrimeReportForPlayer
@@ -2757,19 +2757,19 @@ native PlayCrimeReportForPlayer__(playerid, suspectid, crime) = PlayCrimeReportF
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayAudioStreamForPlayer(playerid, url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = false) = PlayAudioStreamForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayAudioStreamForPlayer(playerid, _FIXES_MAYBE_CONST url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, _FIXES_MAYBE_BOOL:usepos = false) = PlayAudioStreamForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayAudioStreamForPlayer__(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, bool:usepos = false) = PlayAudioStreamForPlayer;
 #define _ALS_PlayAudioStreamForPlayer
@@ -2781,19 +2781,19 @@ native PlayAudioStreamForPlayer__(playerid, const url[], Float:posX = 0.0, Float
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_StopAudioStreamForPlayer(playerid) = StopAudioStreamForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_StopAudioStreamForPlayer(playerid) = StopAudioStreamForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native StopAudioStreamForPlayer__(playerid) = StopAudioStreamForPlayer;
 #define _ALS_StopAudioStreamForPlayer
@@ -2805,19 +2805,19 @@ native StopAudioStreamForPlayer__(playerid) = StopAudioStreamForPlayer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerShopName(playerid, shopName[]) = SetPlayerShopName;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerShopName(playerid, _FIXES_MAYBE_CONST shopName[]) = SetPlayerShopName;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerShopName__(playerid, const shopName[]) = SetPlayerShopName;
 #define _ALS_SetPlayerShopName
@@ -2829,19 +2829,19 @@ native SetPlayerShopName__(playerid, const shopName[]) = SetPlayerShopName;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerSkillLevel(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerSkillLevel(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerSkillLevel__(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel;
 #define _ALS_SetPlayerSkillLevel
@@ -2853,19 +2853,19 @@ native SetPlayerSkillLevel__(playerid, WEAPONSKILL:skill, level) = SetPlayerSkil
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerSurfingVehicleID(playerid) = GetPlayerSurfingVehicleID;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerSurfingVehicleID(playerid) = GetPlayerSurfingVehicleID;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerSurfingVehicleID__(playerid) = GetPlayerSurfingVehicleID;
 #define _ALS_GetPlayerSurfingVehicleID
@@ -2877,19 +2877,19 @@ native GetPlayerSurfingVehicleID__(playerid) = GetPlayerSurfingVehicleID;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerSurfingObjectID(playerid) = GetPlayerSurfingObjectID;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerSurfingObjectID(playerid) = GetPlayerSurfingObjectID;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerSurfingObjectID__(playerid) = GetPlayerSurfingObjectID;
 #define _ALS_GetPlayerSurfingObjectID
@@ -2901,19 +2901,19 @@ native GetPlayerSurfingObjectID__(playerid) = GetPlayerSurfingObjectID;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_RemoveBuildingForPlayer(playerid, modelid, Float:centerX, Float:centerY, Float:centerZ, Float:radius) = RemoveBuildingForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_RemoveBuildingForPlayer(playerid, modelid, Float:centerX, Float:centerY, Float:centerZ, Float:radius) = RemoveBuildingForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native RemoveBuildingForPlayer__(playerid, modelid, Float:centerX, Float:centerY, Float:centerZ, Float:radius) = RemoveBuildingForPlayer;
 #define _ALS_RemoveBuildingForPlayer
@@ -2925,19 +2925,19 @@ native RemoveBuildingForPlayer__(playerid, modelid, Float:centerX, Float:centerY
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerLastShotVectors(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerLastShotVectors(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerLastShotVectors__(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
 #define _ALS_GetPlayerLastShotVectors
@@ -2949,19 +2949,19 @@ native GetPlayerLastShotVectors__(playerid, &Float:originX, &Float:originY, &Flo
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
 #define _ALS_SetPlayerAttachedObject
@@ -2973,19 +2973,19 @@ native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:offsetX =
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject;
 #define _ALS_RemovePlayerAttachedObject
@@ -2997,19 +2997,19 @@ native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObjec
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsPlayerAttachedObjectSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 #define _ALS_IsPlayerAttachedObjectSlotUsed
@@ -3021,19 +3021,19 @@ native bool:IsPlayerAttachedObjectSlotUsed__(playerid, index) = IsPlayerAttached
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_EditAttachedObject(playerid, index) = EditAttachedObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_EditAttachedObject(playerid, index) = EditAttachedObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native EditAttachedObject__(playerid, index) = EditAttachedObject;
 #define _ALS_EditAttachedObject
@@ -3045,19 +3045,19 @@ native EditAttachedObject__(playerid, index) = EditAttachedObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = CreatePlayerTextDraw;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
 #define _ALS_CreatePlayerTextDraw
@@ -3069,19 +3069,19 @@ native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawDestroy(playerid, PlayerText:text) = PlayerTextDrawDestroy;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawDestroy(playerid, PlayerText:text) = PlayerTextDrawDestroy;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy;
 #define _ALS_PlayerTextDrawDestroy
@@ -3093,19 +3093,19 @@ native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestro
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawLetterSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawLetterSize;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawLetterSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawLetterSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawLetterSize__(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawLetterSize;
 #define _ALS_PlayerTextDrawLetterSize
@@ -3117,19 +3117,19 @@ native PlayerTextDrawLetterSize__(playerid, PlayerText:text, Float:width, Float:
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawTextSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawTextSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawTextSize__(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize;
 #define _ALS_PlayerTextDrawTextSize
@@ -3141,19 +3141,19 @@ native PlayerTextDrawTextSize__(playerid, PlayerText:text, Float:width, Float:he
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawAlignment(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawAlignment(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawAlignment__(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment;
 #define _ALS_PlayerTextDrawAlignment
@@ -3165,19 +3165,19 @@ native PlayerTextDrawAlignment__(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alig
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawColor(playerid, PlayerText:text, colour) = PlayerTextDrawColor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawColor(playerid, PlayerText:text, colour) = PlayerTextDrawColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawColor__(playerid, PlayerText:text, colour) = PlayerTextDrawColor;
 #define _ALS_PlayerTextDrawColor
@@ -3189,19 +3189,19 @@ native PlayerTextDrawColor__(playerid, PlayerText:text, colour) = PlayerTextDraw
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawUseBox(playerid, PlayerText:text, use) = PlayerTextDrawUseBox;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawUseBox(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:use) = PlayerTextDrawUseBox;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawUseBox__(playerid, PlayerText:text, bool:use) = PlayerTextDrawUseBox;
 #define _ALS_PlayerTextDrawUseBox
@@ -3213,19 +3213,19 @@ native PlayerTextDrawUseBox__(playerid, PlayerText:text, bool:use) = PlayerTextD
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawBoxColor(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawBoxColor(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawBoxColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor;
 #define _ALS_PlayerTextDrawBoxColor
@@ -3237,19 +3237,19 @@ native PlayerTextDrawBoxColor__(playerid, PlayerText:text, colour) = PlayerTextD
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawSetShadow(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawSetShadow(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawSetShadow__(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
 #define _ALS_PlayerTextDrawSetShadow
@@ -3261,19 +3261,19 @@ native PlayerTextDrawSetShadow__(playerid, PlayerText:text, size) = PlayerTextDr
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawSetOutline(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawSetOutline(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawSetOutline__(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
 #define _ALS_PlayerTextDrawSetOutline
@@ -3285,19 +3285,19 @@ native PlayerTextDrawSetOutline__(playerid, PlayerText:text, size) = PlayerTextD
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawBackgroundColor(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawBackgroundColor(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawBackgroundColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor;
 #define _ALS_PlayerTextDrawBackgroundColor
@@ -3309,19 +3309,19 @@ native PlayerTextDrawBackgroundColor__(playerid, PlayerText:text, colour) = Play
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawFont(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawFont(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawFont__(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont;
 #define _ALS_PlayerTextDrawFont
@@ -3333,19 +3333,19 @@ native PlayerTextDrawFont__(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = Pl
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawSetProportional(playerid, PlayerText:text, set) = PlayerTextDrawSetProportional;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawSetProportional(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetProportional;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawSetProportional__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetProportional;
 #define _ALS_PlayerTextDrawSetProportional
@@ -3357,19 +3357,19 @@ native PlayerTextDrawSetProportional__(playerid, PlayerText:text, bool:set) = Pl
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawSetSelectable(playerid, PlayerText:text, set) = PlayerTextDrawSetSelectable;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawSetSelectable(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetSelectable;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetSelectable;
 #define _ALS_PlayerTextDrawSetSelectable
@@ -3381,19 +3381,19 @@ native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, bool:set) = Play
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawShow(playerid, PlayerText:text) = PlayerTextDrawShow;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawShow(playerid, PlayerText:text) = PlayerTextDrawShow;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawShow__(playerid, PlayerText:text) = PlayerTextDrawShow;
 #define _ALS_PlayerTextDrawShow
@@ -3405,19 +3405,19 @@ native PlayerTextDrawShow__(playerid, PlayerText:text) = PlayerTextDrawShow;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawHide(playerid, PlayerText:text) = PlayerTextDrawHide;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawHide(playerid, PlayerText:text) = PlayerTextDrawHide;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawHide__(playerid, PlayerText:text) = PlayerTextDrawHide;
 #define _ALS_PlayerTextDrawHide
@@ -3429,19 +3429,19 @@ native PlayerTextDrawHide__(playerid, PlayerText:text) = PlayerTextDrawHide;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[]) = PlayerTextDrawSetString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawSetString__(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
 #define _ALS_PlayerTextDrawSetString
@@ -3453,19 +3453,19 @@ native PlayerTextDrawSetString__(playerid, PlayerText:text, const string[]) = Pl
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawSetPreviewModel(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawSetPreviewModel(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawSetPreviewModel__(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel;
 #define _ALS_PlayerTextDrawSetPreviewModel
@@ -3477,19 +3477,19 @@ native PlayerTextDrawSetPreviewModel__(playerid, PlayerText:text, modelIndex) = 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawSetPreviewRot(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawSetPreviewRot(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawSetPreviewRot__(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot;
 #define _ALS_PlayerTextDrawSetPreviewRot
@@ -3501,19 +3501,19 @@ native PlayerTextDrawSetPreviewRot__(playerid, PlayerText:text, Float:rotX, Floa
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerTextDrawSetPreviewVehCol(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerTextDrawSetPreviewVehCol(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerTextDrawSetPreviewVehCol__(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
 #define _ALS_PlayerTextDrawSetPreviewVehCol
@@ -3525,19 +3525,19 @@ native PlayerTextDrawSetPreviewVehCol__(playerid, PlayerText:text, colour1, colo
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPVarInt(playerid, pvar[], value) = SetPVarInt;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[], value) = SetPVarInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPVarInt__(playerid, const pvar[], value) = SetPVarInt;
 #define _ALS_SetPVarInt
@@ -3549,19 +3549,19 @@ native SetPVarInt__(playerid, const pvar[], value) = SetPVarInt;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPVarInt(playerid, pvar[]) = GetPVarInt;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPVarInt__(playerid, const pvar[]) = GetPVarInt;
 #define _ALS_GetPVarInt
@@ -3573,19 +3573,19 @@ native GetPVarInt__(playerid, const pvar[]) = GetPVarInt;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPVarString(playerid, pvar[], value[]) = SetPVarString;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], _FIXES_MAYBE_CONST value[]) = SetPVarString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPVarString__(playerid, const pvar[], const value[]) = SetPVarString;
 #define _ALS_SetPVarString
@@ -3597,19 +3597,19 @@ native SetPVarString__(playerid, const pvar[], const value[]) = SetPVarString;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPVarString(playerid, pvar[], output[], len) = GetPVarString;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetPVarString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPVarString__(playerid, const pvar[], output[], len = sizeof (output)) = GetPVarString;
 #define _ALS_GetPVarString
@@ -3621,19 +3621,19 @@ native GetPVarString__(playerid, const pvar[], output[], len = sizeof (output)) 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPVarFloat(playerid, pvar[], Float:value) = SetPVarFloat;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[], Float:value) = SetPVarFloat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPVarFloat__(playerid, const pvar[], Float:value) = SetPVarFloat;
 #define _ALS_SetPVarFloat
@@ -3645,19 +3645,19 @@ native SetPVarFloat__(playerid, const pvar[], Float:value) = SetPVarFloat;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_GetPVarFloat(playerid, pvar[]) = GetPVarFloat;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_GetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarFloat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:GetPVarFloat__(playerid, const pvar[]) = GetPVarFloat;
 #define _ALS_GetPVarFloat
@@ -3669,19 +3669,19 @@ native Float:GetPVarFloat__(playerid, const pvar[]) = GetPVarFloat;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DeletePVar(playerid, pvar[]) = DeletePVar;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DeletePVar(playerid, _FIXES_MAYBE_CONST pvar[]) = DeletePVar;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DeletePVar__(playerid, const pvar[]) = DeletePVar;
 #define _ALS_DeletePVar
@@ -3693,19 +3693,19 @@ native DeletePVar__(playerid, const pvar[]) = DeletePVar;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPVarsUpperIndex(playerid) = GetPVarsUpperIndex;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPVarsUpperIndex(playerid) = GetPVarsUpperIndex;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPVarsUpperIndex__(playerid) = GetPVarsUpperIndex;
 #define _ALS_GetPVarsUpperIndex
@@ -3717,19 +3717,19 @@ native GetPVarsUpperIndex__(playerid) = GetPVarsUpperIndex;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPVarNameAtIndex(playerid, index, output[], size) = GetPVarNameAtIndex;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPVarNameAtIndex(playerid, index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPVarNameAtIndex;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPVarNameAtIndex__(playerid, index, output[], size = sizeof (output)) = GetPVarNameAtIndex;
 #define _ALS_GetPVarNameAtIndex
@@ -3741,19 +3741,19 @@ native GetPVarNameAtIndex__(playerid, index, output[], size = sizeof (output)) =
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native PLAYER_VARTYPE:BAD_GetPVarType(playerid, pvar[]) = GetPVarType;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native PLAYER_VARTYPE:FIXES_GetPVarType(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarType;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PLAYER_VARTYPE:GetPVarType__(playerid, const pvar[]) = GetPVarType;
 #define _ALS_GetPVarType
@@ -3765,19 +3765,19 @@ native PLAYER_VARTYPE:GetPVarType__(playerid, const pvar[]) = GetPVarType;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerChatBubble(playerid, text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerChatBubble(playerid, _FIXES_MAYBE_CONST text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerChatBubble__(playerid, const text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
 #define _ALS_SetPlayerChatBubble
@@ -3789,19 +3789,19 @@ native SetPlayerChatBubble__(playerid, const text[], colour, Float:drawDistance,
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PutPlayerInVehicle__(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 #define _ALS_PutPlayerInVehicle
@@ -3813,19 +3813,19 @@ native PutPlayerInVehicle__(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerVehicleID(playerid) = GetPlayerVehicleID;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerVehicleID(playerid) = GetPlayerVehicleID;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
 #define _ALS_GetPlayerVehicleID
@@ -3837,19 +3837,19 @@ native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerVehicleSeat(playerid) = GetPlayerVehicleSeat;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerVehicleSeat(playerid) = GetPlayerVehicleSeat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerVehicleSeat__(playerid) = GetPlayerVehicleSeat;
 #define _ALS_GetPlayerVehicleSeat
@@ -3861,19 +3861,19 @@ native GetPlayerVehicleSeat__(playerid) = GetPlayerVehicleSeat;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_RemovePlayerFromVehicle(playerid) = RemovePlayerFromVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_RemovePlayerFromVehicle(playerid) = RemovePlayerFromVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native RemovePlayerFromVehicle__(playerid) = RemovePlayerFromVehicle;
 #define _ALS_RemovePlayerFromVehicle
@@ -3885,19 +3885,19 @@ native RemovePlayerFromVehicle__(playerid) = RemovePlayerFromVehicle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerControllable;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TogglePlayerControllable__(playerid, bool:toggle) = TogglePlayerControllable;
 #define _ALS_TogglePlayerControllable
@@ -3909,19 +3909,19 @@ native TogglePlayerControllable__(playerid, bool:toggle) = TogglePlayerControlla
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerPlaySound(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerPlaySound(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerPlaySound__(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
 #define _ALS_PlayerPlaySound
@@ -3933,19 +3933,19 @@ native PlayerPlaySound__(playerid, soundid, Float:x, Float:y, Float:z) = PlayerP
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ApplyAnimation(playerid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ApplyAnimation__(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
 #define _ALS_ApplyAnimation
@@ -3957,19 +3957,19 @@ native ApplyAnimation__(playerid, const animationLibrary[], const animationName[
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ClearAnimations(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = ClearAnimations;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ClearAnimations(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = ClearAnimations;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ClearAnimations__(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = ClearAnimations;
 #define _ALS_ClearAnimations
@@ -3981,19 +3981,19 @@ native ClearAnimations__(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = ClearAnim
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerAnimationIndex(playerid) = GetPlayerAnimationIndex;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerAnimationIndex(playerid) = GetPlayerAnimationIndex;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerAnimationIndex__(playerid) = GetPlayerAnimationIndex;
 #define _ALS_GetPlayerAnimationIndex
@@ -4005,19 +4005,19 @@ native GetPlayerAnimationIndex__(playerid) = GetPlayerAnimationIndex;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetAnimationName(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], len2) = GetAnimationName;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetAnimationName(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], _FIXES_MAYBE_SIZEOF(len2, animationName)) = GetAnimationName;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetAnimationName__(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], len2 = sizeof (animationName)) = GetAnimationName;
 #define _ALS_GetAnimationName
@@ -4029,19 +4029,19 @@ native GetAnimationName__(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, a
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native SPECIAL_ACTION:BAD_GetPlayerSpecialAction(playerid) = GetPlayerSpecialAction;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native SPECIAL_ACTION:FIXES_GetPlayerSpecialAction(playerid) = GetPlayerSpecialAction;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
 #define _ALS_GetPlayerSpecialAction
@@ -4053,19 +4053,19 @@ native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialActio
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerSpecialAction(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerSpecialAction(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerSpecialAction__(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
 #define _ALS_SetPlayerSpecialAction
@@ -4077,19 +4077,19 @@ native SetPlayerSpecialAction__(playerid, SPECIAL_ACTION:actionid) = SetPlayerSp
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DisableRemoteVehicleCollisions(playerid, disable) = DisableRemoteVehicleCollisions;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DisableRemoteVehicleCollisions(playerid, _FIXES_MAYBE_BOOL:disable) = DisableRemoteVehicleCollisions;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DisableRemoteVehicleCollisions__(playerid, bool:disable) = DisableRemoteVehicleCollisions;
 #define _ALS_DisableRemoteVehicleCollisions
@@ -4101,19 +4101,19 @@ native DisableRemoteVehicleCollisions__(playerid, bool:disable) = DisableRemoteV
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
 #define _ALS_SetPlayerCheckpoint
@@ -4125,19 +4125,19 @@ native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint;
 #define _ALS_DisablePlayerCheckpoint
@@ -4149,19 +4149,19 @@ native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerRaceCheckpoint(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerRaceCheckpoint__(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
 #define _ALS_SetPlayerRaceCheckpoint
@@ -4173,19 +4173,19 @@ native SetPlayerRaceCheckpoint__(playerid, type, Float:centerX, Float:centerY, F
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DisablePlayerRaceCheckpoint__(playerid) = DisablePlayerRaceCheckpoint;
 #define _ALS_DisablePlayerRaceCheckpoint
@@ -4197,19 +4197,19 @@ native DisablePlayerRaceCheckpoint__(playerid) = DisablePlayerRaceCheckpoint;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerWorldBounds__(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds;
 #define _ALS_SetPlayerWorldBounds
@@ -4221,19 +4221,19 @@ native SetPlayerWorldBounds__(playerid, Float:maxX, Float:minX, Float:maxY, Floa
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerMarkerForPlayer(playerid, targetid, colour) = SetPlayerMarkerForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerMarkerForPlayer(playerid, targetid, colour) = SetPlayerMarkerForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerMarkerForPlayer__(playerid, targetid, colour) = SetPlayerMarkerForPlayer;
 #define _ALS_SetPlayerMarkerForPlayer
@@ -4245,19 +4245,19 @@ native SetPlayerMarkerForPlayer__(playerid, targetid, colour) = SetPlayerMarkerF
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ShowPlayerNameTagForPlayer(playerid, targetid, show) = ShowPlayerNameTagForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ShowPlayerNameTagForPlayer(playerid, targetid, _FIXES_MAYBE_BOOL:show) = ShowPlayerNameTagForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ShowPlayerNameTagForPlayer__(playerid, targetid, bool:show) = ShowPlayerNameTagForPlayer;
 #define _ALS_ShowPlayerNameTagForPlayer
@@ -4269,19 +4269,19 @@ native ShowPlayerNameTagForPlayer__(playerid, targetid, bool:show) = ShowPlayerN
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerMapIcon(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerMapIcon(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerMapIcon__(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon;
 #define _ALS_SetPlayerMapIcon
@@ -4293,19 +4293,19 @@ native SetPlayerMapIcon__(playerid, iconid, Float:x, Float:y, Float:z, markerTyp
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_RemovePlayerMapIcon(playerid, iconid) = RemovePlayerMapIcon;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_RemovePlayerMapIcon(playerid, iconid) = RemovePlayerMapIcon;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native RemovePlayerMapIcon__(playerid, iconid) = RemovePlayerMapIcon;
 #define _ALS_RemovePlayerMapIcon
@@ -4317,20 +4317,20 @@ native RemovePlayerMapIcon__(playerid, iconid) = RemovePlayerMapIcon;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 #pragma deprecated Use `OnPlayerClickMap`.
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow) = AllowPlayerTeleport;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AllowPlayerTeleport__(playerid, bool:allow) = AllowPlayerTeleport;
 #define _ALS_AllowPlayerTeleport
@@ -4342,19 +4342,19 @@ native AllowPlayerTeleport__(playerid, bool:allow) = AllowPlayerTeleport;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerCameraPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
 #define _ALS_SetPlayerCameraPos
@@ -4366,19 +4366,19 @@ native SetPlayerCameraPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerCame
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerCameraLookAt__(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
 #define _ALS_SetPlayerCameraLookAt
@@ -4390,19 +4390,19 @@ native SetPlayerCameraLookAt__(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetCameraBehindPlayer(playerid) = SetCameraBehindPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetCameraBehindPlayer(playerid) = SetCameraBehindPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetCameraBehindPlayer__(playerid) = SetCameraBehindPlayer;
 #define _ALS_SetCameraBehindPlayer
@@ -4414,19 +4414,19 @@ native SetCameraBehindPlayer__(playerid) = SetCameraBehindPlayer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerCameraPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerCameraPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerCameraPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
 #define _ALS_GetPlayerCameraPos
@@ -4438,19 +4438,19 @@ native GetPlayerCameraPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerC
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerCameraFrontVector(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerCameraFrontVector(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerCameraFrontVector__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
 #define _ALS_GetPlayerCameraFrontVector
@@ -4462,19 +4462,19 @@ native GetPlayerCameraFrontVector__(playerid, &Float:x, &Float:y, &Float:z) = Ge
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native CAM_MODE:BAD_GetPlayerCameraMode(playerid) = GetPlayerCameraMode;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native CAM_MODE:FIXES_GetPlayerCameraMode(playerid) = GetPlayerCameraMode;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CAM_MODE:GetPlayerCameraMode__(playerid) = GetPlayerCameraMode;
 #define _ALS_GetPlayerCameraMode
@@ -4486,19 +4486,19 @@ native CAM_MODE:GetPlayerCameraMode__(playerid) = GetPlayerCameraMode;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_EnablePlayerCameraTarget(playerid, enable) = EnablePlayerCameraTarget;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_EnablePlayerCameraTarget(playerid, _FIXES_MAYBE_BOOL:enable) = EnablePlayerCameraTarget;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native EnablePlayerCameraTarget__(playerid, bool:enable) = EnablePlayerCameraTarget;
 #define _ALS_EnablePlayerCameraTarget
@@ -4510,19 +4510,19 @@ native EnablePlayerCameraTarget__(playerid, bool:enable) = EnablePlayerCameraTar
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerCameraTargetObject(playerid) = GetPlayerCameraTargetObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerCameraTargetObject(playerid) = GetPlayerCameraTargetObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerCameraTargetObject__(playerid) = GetPlayerCameraTargetObject;
 #define _ALS_GetPlayerCameraTargetObject
@@ -4534,19 +4534,19 @@ native GetPlayerCameraTargetObject__(playerid) = GetPlayerCameraTargetObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerCameraTargetVehicle(playerid) = GetPlayerCameraTargetVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerCameraTargetVehicle(playerid) = GetPlayerCameraTargetVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerCameraTargetVehicle__(playerid) = GetPlayerCameraTargetVehicle;
 #define _ALS_GetPlayerCameraTargetVehicle
@@ -4558,19 +4558,19 @@ native GetPlayerCameraTargetVehicle__(playerid) = GetPlayerCameraTargetVehicle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerCameraTargetPlayer(playerid) = GetPlayerCameraTargetPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerCameraTargetPlayer(playerid) = GetPlayerCameraTargetPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerCameraTargetPlayer__(playerid) = GetPlayerCameraTargetPlayer;
 #define _ALS_GetPlayerCameraTargetPlayer
@@ -4582,19 +4582,19 @@ native GetPlayerCameraTargetPlayer__(playerid) = GetPlayerCameraTargetPlayer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerCameraTargetActor(playerid) = GetPlayerCameraTargetActor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerCameraTargetActor(playerid) = GetPlayerCameraTargetActor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerCameraTargetActor__(playerid) = GetPlayerCameraTargetActor;
 #define _ALS_GetPlayerCameraTargetActor
@@ -4606,19 +4606,19 @@ native GetPlayerCameraTargetActor__(playerid) = GetPlayerCameraTargetActor;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_GetPlayerCameraAspectRatio(playerid) = GetPlayerCameraAspectRatio;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_GetPlayerCameraAspectRatio(playerid) = GetPlayerCameraAspectRatio;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:GetPlayerCameraAspectRatio__(playerid) = GetPlayerCameraAspectRatio;
 #define _ALS_GetPlayerCameraAspectRatio
@@ -4630,19 +4630,19 @@ native Float:GetPlayerCameraAspectRatio__(playerid) = GetPlayerCameraAspectRatio
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_GetPlayerCameraZoom(playerid) = GetPlayerCameraZoom;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_GetPlayerCameraZoom(playerid) = GetPlayerCameraZoom;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:GetPlayerCameraZoom__(playerid) = GetPlayerCameraZoom;
 #define _ALS_GetPlayerCameraZoom
@@ -4654,19 +4654,19 @@ native Float:GetPlayerCameraZoom__(playerid) = GetPlayerCameraZoom;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AttachCameraToObject(playerid, objectid) = AttachCameraToObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AttachCameraToObject(playerid, objectid) = AttachCameraToObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AttachCameraToObject__(playerid, objectid) = AttachCameraToObject;
 #define _ALS_AttachCameraToObject
@@ -4678,19 +4678,19 @@ native AttachCameraToObject__(playerid, objectid) = AttachCameraToObject;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AttachCameraToPlayerObject(playerid, objectid) = AttachCameraToPlayerObject;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AttachCameraToPlayerObject(playerid, objectid) = AttachCameraToPlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AttachCameraToPlayerObject__(playerid, objectid) = AttachCameraToPlayerObject;
 #define _ALS_AttachCameraToPlayerObject
@@ -4702,19 +4702,19 @@ native AttachCameraToPlayerObject__(playerid, objectid) = AttachCameraToPlayerOb
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_InterpolateCameraPos(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_InterpolateCameraPos(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native InterpolateCameraPos__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos;
 #define _ALS_InterpolateCameraPos
@@ -4726,19 +4726,19 @@ native InterpolateCameraPos__(playerid, Float:fromX, Float:fromY, Float:fromZ, F
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_InterpolateCameraLookAt(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_InterpolateCameraLookAt(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native InterpolateCameraLookAt__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt;
 #define _ALS_InterpolateCameraLookAt
@@ -4750,19 +4750,19 @@ native InterpolateCameraLookAt__(playerid, Float:fromX, Float:fromY, Float:fromZ
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerConnected(playerid) = IsPlayerConnected;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
 #define _ALS_IsPlayerConnected
@@ -4774,19 +4774,19 @@ native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
 #define _ALS_IsPlayerInVehicle
@@ -4798,19 +4798,19 @@ native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
 #define _ALS_IsPlayerInAnyVehicle
@@ -4822,19 +4822,19 @@ native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
 #define _ALS_IsPlayerInCheckpoint
@@ -4846,19 +4846,19 @@ native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
 #define _ALS_IsPlayerInRaceCheckpoint
@@ -4870,19 +4870,19 @@ native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetPlayerVirtualWorld(playerid, virtualWorld) = SetPlayerVirtualWorld;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetPlayerVirtualWorld(playerid, virtualWorld) = SetPlayerVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetPlayerVirtualWorld__(playerid, virtualWorld) = SetPlayerVirtualWorld;
 #define _ALS_SetPlayerVirtualWorld
@@ -4894,19 +4894,19 @@ native SetPlayerVirtualWorld__(playerid, virtualWorld) = SetPlayerVirtualWorld;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerVirtualWorld(playerid) = GetPlayerVirtualWorld;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerVirtualWorld(playerid) = GetPlayerVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld;
 #define _ALS_GetPlayerVirtualWorld
@@ -4918,19 +4918,19 @@ native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_EnableStuntBonusForPlayer(playerid, enable) = EnableStuntBonusForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_EnableStuntBonusForPlayer(playerid, _FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native EnableStuntBonusForPlayer__(playerid, bool:enable) = EnableStuntBonusForPlayer;
 #define _ALS_EnableStuntBonusForPlayer
@@ -4942,19 +4942,19 @@ native EnableStuntBonusForPlayer__(playerid, bool:enable) = EnableStuntBonusForP
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_EnableStuntBonusForAll(enable) = EnableStuntBonusForAll;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_EnableStuntBonusForAll(_FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native EnableStuntBonusForAll__(bool:enable) = EnableStuntBonusForAll;
 #define _ALS_EnableStuntBonusForAll
@@ -4966,19 +4966,19 @@ native EnableStuntBonusForAll__(bool:enable) = EnableStuntBonusForAll;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TogglePlayerSpectating(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerSpectating;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TogglePlayerSpectating__(playerid, bool:toggle) = TogglePlayerSpectating;
 #define _ALS_TogglePlayerSpectating
@@ -4990,19 +4990,19 @@ native TogglePlayerSpectating__(playerid, bool:toggle) = TogglePlayerSpectating;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerSpectatePlayer(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerSpectatePlayer(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerSpectatePlayer__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer;
 #define _ALS_PlayerSpectatePlayer
@@ -5014,19 +5014,19 @@ native PlayerSpectatePlayer__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PlayerSpectateVehicle(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PlayerSpectateVehicle(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerSpectateVehicle__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle;
 #define _ALS_PlayerSpectateVehicle
@@ -5038,19 +5038,19 @@ native PlayerSpectateVehicle__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, recordFile[]) = StartRecordingPlayerData;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, _FIXES_MAYBE_CONST recordFile[]) = StartRecordingPlayerData;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native StartRecordingPlayerData__(playerid, PLAYER_RECORDING_TYPE:recordType, const recordFile[]) = StartRecordingPlayerData;
 #define _ALS_StartRecordingPlayerData
@@ -5062,19 +5062,19 @@ native StartRecordingPlayerData__(playerid, PLAYER_RECORDING_TYPE:recordType, co
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_StopRecordingPlayerData(playerid) = StopRecordingPlayerData;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_StopRecordingPlayerData(playerid) = StopRecordingPlayerData;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native StopRecordingPlayerData__(playerid) = StopRecordingPlayerData;
 #define _ALS_StopRecordingPlayerData
@@ -5086,19 +5086,19 @@ native StopRecordingPlayerData__(playerid) = StopRecordingPlayerData;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SelectTextDraw(playerid, hoverColour) = SelectTextDraw;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SelectTextDraw(playerid, hoverColour) = SelectTextDraw;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SelectTextDraw__(playerid, hoverColour) = SelectTextDraw;
 #define _ALS_SelectTextDraw
@@ -5110,19 +5110,19 @@ native SelectTextDraw__(playerid, hoverColour) = SelectTextDraw;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_CancelSelectTextDraw(playerid) = CancelSelectTextDraw;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_CancelSelectTextDraw(playerid) = CancelSelectTextDraw;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CancelSelectTextDraw__(playerid) = CancelSelectTextDraw;
 #define _ALS_CancelSelectTextDraw
@@ -5134,19 +5134,19 @@ native CancelSelectTextDraw__(playerid) = CancelSelectTextDraw;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_CreateExplosionForPlayer(playerid, Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosionForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_CreateExplosionForPlayer(playerid, Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosionForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CreateExplosionForPlayer__(playerid, Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosionForPlayer;
 #define _ALS_CreateExplosionForPlayer
@@ -5158,19 +5158,19 @@ native CreateExplosionForPlayer__(playerid, Float:x, Float:y, Float:z, type, Flo
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCount) = SendClientCheck;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCount) = SendClientCheck;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SendClientCheck__(playerid, type, memoryAddress, memoryOffset, byteCount) = SendClientCheck;
 #define _ALS_SendClientCheck
@@ -5192,19 +5192,19 @@ native SendClientCheck__(playerid, type, memoryAddress, memoryOffset, byteCount)
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_print(const string[]) = print;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_print(const string[]) = print;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native print__(const string[]) = print;
 #define _ALS_print
@@ -5216,19 +5216,19 @@ native print__(const string[]) = print;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_printf(const format[], {Float, _}:...) = printf;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_printf(const format[], {Float, _}:...) = printf;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native printf__(const format[], {Float, _}:...) = printf;
 #define _ALS_printf
@@ -5240,19 +5240,19 @@ native printf__(const format[], {Float, _}:...) = printf;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_format(output[], len, const format[], {Float, _}:...) = format;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
 #define _ALS_format
@@ -5264,19 +5264,19 @@ native format__(output[], len = sizeof (output), const format[], {Float, _}:...)
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_Print(const string[]) = print;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_Print(const string[]) = print;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Print__(const string[]) = print;
 #define _ALS_Print
@@ -5288,19 +5288,19 @@ native Print__(const string[]) = print;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_PrintF(const format[], {Float, _}:...) = printf;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_PrintF(const format[], {Float, _}:...) = printf;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PrintF__(const format[], {Float, _}:...) = printf;
 #define _ALS_PrintF
@@ -5312,19 +5312,19 @@ native PrintF__(const format[], {Float, _}:...) = printf;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_Format(output[], len, const format[], {Float, _}:...) = format;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_Format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
 #define _ALS_Format
@@ -5336,19 +5336,19 @@ native Format__(output[], len = sizeof (output), const format[], {Float, _}:...)
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SendClientMessage(playerid, colour, const message[]) = SendClientMessage;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SendClientMessage(playerid, colour, const message[]) = SendClientMessage;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SendClientMessage__(playerid, colour, const message[]) = SendClientMessage;
 #define _ALS_SendClientMessage
@@ -5360,19 +5360,19 @@ native SendClientMessage__(playerid, colour, const message[]) = SendClientMessag
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SendClientMessageToAll(colour, const message[]) = SendClientMessageToAll;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SendClientMessageToAll(colour, const message[]) = SendClientMessageToAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SendClientMessageToAll__(colour, const message[]) = SendClientMessageToAll;
 #define _ALS_SendClientMessageToAll
@@ -5384,19 +5384,19 @@ native SendClientMessageToAll__(colour, const message[]) = SendClientMessageToAl
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SendPlayerMessageToPlayer(playerid, senderid, const message[]) = SendPlayerMessageToPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SendPlayerMessageToPlayer(playerid, senderid, const message[]) = SendPlayerMessageToPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SendPlayerMessageToPlayer__(playerid, senderid, const message[]) = SendPlayerMessageToPlayer;
 #define _ALS_SendPlayerMessageToPlayer
@@ -5408,19 +5408,19 @@ native SendPlayerMessageToPlayer__(playerid, senderid, const message[]) = SendPl
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SendPlayerMessageToAll(senderid, const message[]) = SendPlayerMessageToAll;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SendPlayerMessageToAll(senderid, const message[]) = SendPlayerMessageToAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SendPlayerMessageToAll__(senderid, const message[]) = SendPlayerMessageToAll;
 #define _ALS_SendPlayerMessageToAll
@@ -5432,19 +5432,19 @@ native SendPlayerMessageToAll__(senderid, const message[]) = SendPlayerMessageTo
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SendDeathMessage(killer, killee, weapon) = SendDeathMessage;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SendDeathMessage(killer, killee, weapon) = SendDeathMessage;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SendDeathMessage__(killer, killee, weapon) = SendDeathMessage;
 #define _ALS_SendDeathMessage
@@ -5456,19 +5456,19 @@ native SendDeathMessage__(killer, killee, weapon) = SendDeathMessage;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SendDeathMessageToPlayer(playerid, killer, killee, weapon) = SendDeathMessageToPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SendDeathMessageToPlayer(playerid, killer, killee, weapon) = SendDeathMessageToPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SendDeathMessageToPlayer__(playerid, killer, killee, weapon) = SendDeathMessageToPlayer;
 #define _ALS_SendDeathMessageToPlayer
@@ -5480,19 +5480,19 @@ native SendDeathMessageToPlayer__(playerid, killer, killee, weapon) = SendDeathM
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GameTextForAll(const string[], time, style) = GameTextForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GameTextForAll__(const string[], time, style) = GameTextForAll;
 #define _ALS_GameTextForAll
@@ -5504,19 +5504,19 @@ native GameTextForAll__(const string[], time, style) = GameTextForAll;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GameTextForPlayer__(playerid, const string[], time, style) = GameTextForPlayer;
 #define _ALS_GameTextForPlayer
@@ -5528,19 +5528,19 @@ native GameTextForPlayer__(playerid, const string[], time, style) = GameTextForP
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetTimer(functionName[], interval, repeating) = SetTimer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetTimer(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer;
 #define _ALS_SetTimer
@@ -5552,19 +5552,19 @@ native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetTimerEx(functionName[], interval, repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetTimerEx(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetTimerEx__(const functionName[], interval, bool:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
 #define _ALS_SetTimerEx
@@ -5576,19 +5576,19 @@ native SetTimerEx__(const functionName[], interval, bool:repeating, const format
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_KillTimer(timerid) = KillTimer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_KillTimer(timerid) = KillTimer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native KillTimer__(timerid) = KillTimer;
 #define _ALS_KillTimer
@@ -5600,19 +5600,19 @@ native KillTimer__(timerid) = KillTimer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetTickCount() = GetTickCount;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetTickCount() = GetTickCount;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetTickCount__() = GetTickCount;
 #define _ALS_GetTickCount
@@ -5624,19 +5624,19 @@ native GetTickCount__() = GetTickCount;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetMaxPlayers() = GetMaxPlayers;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetMaxPlayers() = GetMaxPlayers;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetMaxPlayers__() = GetMaxPlayers;
 #define _ALS_GetMaxPlayers
@@ -5648,19 +5648,19 @@ native GetMaxPlayers__() = GetMaxPlayers;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_CallRemoteFunction(const function[], const format[] = "", {Float, _}:...) = CallRemoteFunction;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_CallRemoteFunction(const function[], const format[] = "", {Float, _}:...) = CallRemoteFunction;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CallRemoteFunction__(const function[], const format[] = "", {Float, _}:...) = CallRemoteFunction;
 #define _ALS_CallRemoteFunction
@@ -5672,19 +5672,19 @@ native CallRemoteFunction__(const function[], const format[] = "", {Float, _}:..
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_CallLocalFunction(const function[], const format[] = "", {Float, _}:...) = CallLocalFunction;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_CallLocalFunction(const function[], const format[] = "", {Float, _}:...) = CallLocalFunction;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CallLocalFunction__(const function[], const format[] = "", {Float, _}:...) = CallLocalFunction;
 #define _ALS_CallLocalFunction
@@ -5696,19 +5696,19 @@ native CallLocalFunction__(const function[], const format[] = "", {Float, _}:...
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_VectorSize(Float:x, Float:y, Float:z) = VectorSize;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_VectorSize(Float:x, Float:y, Float:z) = VectorSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:VectorSize__(Float:x, Float:y, Float:z) = VectorSize;
 #define _ALS_VectorSize
@@ -5720,7 +5720,7 @@ native Float:VectorSize__(Float:x, Float:y, Float:z) = VectorSize;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_asin(Float:value) = asin;
 #if FIX_camel_case
@@ -5729,13 +5729,13 @@ native Float:BAD_asin(Float:value) = asin;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_asin(Float:value) = asin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:asin__(Float:value) = asin;
 #define _ALS_asin
@@ -5747,7 +5747,7 @@ native Float:asin__(Float:value) = asin;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_acos(Float:value) = acos;
 #if FIX_camel_case
@@ -5756,13 +5756,13 @@ native Float:BAD_acos(Float:value) = acos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_acos(Float:value) = acos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:acos__(Float:value) = acos;
 #define _ALS_acos
@@ -5774,7 +5774,7 @@ native Float:acos__(Float:value) = acos;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_atan(Float:value) = atan;
 #if FIX_camel_case
@@ -5783,13 +5783,13 @@ native Float:BAD_atan(Float:value) = atan;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_atan(Float:value) = atan;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:atan__(Float:value) = atan;
 #define _ALS_atan
@@ -5801,7 +5801,7 @@ native Float:atan__(Float:value) = atan;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_atan2(Float:y, Float:x) = atan2;
 #if FIX_camel_case
@@ -5810,13 +5810,13 @@ native Float:BAD_atan2(Float:y, Float:x) = atan2;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_atan2(Float:y, Float:x) = atan2;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:atan2__(Float:y, Float:x) = atan2;
 #define _ALS_atan2
@@ -5828,19 +5828,19 @@ native Float:atan2__(Float:y, Float:x) = atan2;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_ASin(Float:value) = asin;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_ASin(Float:value) = asin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:ASin__(Float:value) = asin;
 #define _ALS_ASin
@@ -5852,19 +5852,19 @@ native Float:ASin__(Float:value) = asin;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_ACos(Float:value) = acos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_ACos(Float:value) = acos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:ACos__(Float:value) = acos;
 #define _ALS_ACos
@@ -5876,19 +5876,19 @@ native Float:ACos__(Float:value) = acos;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_ATan(Float:value) = atan;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_ATan(Float:value) = atan;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:ATan__(Float:value) = atan;
 #define _ALS_ATan
@@ -5900,19 +5900,19 @@ native Float:ATan__(Float:value) = atan;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_ATan2(Float:y, Float:x) = atan2;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_ATan2(Float:y, Float:x) = atan2;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:ATan2__(Float:y, Float:x) = atan2;
 #define _ALS_ATan2
@@ -5924,19 +5924,19 @@ native Float:ATan2__(Float:y, Float:x) = atan2;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerPoolSize() = GetPlayerPoolSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerPoolSize__() = GetPlayerPoolSize;
 #define _ALS_GetPlayerPoolSize
@@ -5948,19 +5948,19 @@ native GetPlayerPoolSize__() = GetPlayerPoolSize;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehiclePoolSize() = GetVehiclePoolSize;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehiclePoolSize() = GetVehiclePoolSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehiclePoolSize__() = GetVehiclePoolSize;
 #define _ALS_GetVehiclePoolSize
@@ -5972,19 +5972,19 @@ native GetVehiclePoolSize__() = GetVehiclePoolSize;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetActorPoolSize() = GetActorPoolSize;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetActorPoolSize() = GetActorPoolSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetActorPoolSize__() = GetActorPoolSize;
 #define _ALS_GetActorPoolSize
@@ -5996,20 +5996,20 @@ native GetActorPoolSize__() = GetActorPoolSize;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SHA256_PassHash(password[], salt[], output[], size) = SHA256_PassHash;
 #pragma deprecated Use BCrypt for hashing passwords.
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SHA256_PassHash(_FIXES_MAYBE_CONST password[], _FIXES_MAYBE_CONST salt[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = SHA256_PassHash;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SHA256_PassHash__(const password[], const salt[], output[], size = sizeof (output)) = SHA256_PassHash;
 #define _ALS_SHA256_PassHash
@@ -6021,19 +6021,19 @@ native SHA256_PassHash__(const password[], const salt[], output[], size = sizeof
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetSVarInt(svar[], value) = SetSVarInt;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetSVarInt(_FIXES_MAYBE_CONST svar[], value) = SetSVarInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetSVarInt__(const svar[], value) = SetSVarInt;
 #define _ALS_SetSVarInt
@@ -6045,19 +6045,19 @@ native SetSVarInt__(const svar[], value) = SetSVarInt;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetSVarInt(svar[]) = GetSVarInt;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetSVarInt(_FIXES_MAYBE_CONST svar[]) = GetSVarInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetSVarInt__(const svar[]) = GetSVarInt;
 #define _ALS_GetSVarInt
@@ -6069,19 +6069,19 @@ native GetSVarInt__(const svar[]) = GetSVarInt;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetSVarString(svar[], value[]) = SetSVarString;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetSVarString(_FIXES_MAYBE_CONST svar[], _FIXES_MAYBE_CONST value[]) = SetSVarString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetSVarString__(const svar[], const value[]) = SetSVarString;
 #define _ALS_SetSVarString
@@ -6093,19 +6093,19 @@ native SetSVarString__(const svar[], const value[]) = SetSVarString;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetSVarString(svar[], output[], len) = GetSVarString;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetSVarString(_FIXES_MAYBE_CONST svar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetSVarString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetSVarString__(const svar[], output[], len = sizeof (output)) = GetSVarString;
 #define _ALS_GetSVarString
@@ -6117,19 +6117,19 @@ native GetSVarString__(const svar[], output[], len = sizeof (output)) = GetSVarS
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetSVarFloat(svar[], Float:value) = SetSVarFloat;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetSVarFloat(_FIXES_MAYBE_CONST svar[], Float:value) = SetSVarFloat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetSVarFloat__(const svar[], Float:value) = SetSVarFloat;
 #define _ALS_SetSVarFloat
@@ -6141,19 +6141,19 @@ native SetSVarFloat__(const svar[], Float:value) = SetSVarFloat;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_GetSVarFloat(svar[]) = GetSVarFloat;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_GetSVarFloat(_FIXES_MAYBE_CONST svar[]) = GetSVarFloat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:GetSVarFloat__(const svar[]) = GetSVarFloat;
 #define _ALS_GetSVarFloat
@@ -6165,19 +6165,19 @@ native Float:GetSVarFloat__(const svar[]) = GetSVarFloat;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DeleteSVar(svar[]) = DeleteSVar;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DeleteSVar(_FIXES_MAYBE_CONST svar[]) = DeleteSVar;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DeleteSVar__(const svar[]) = DeleteSVar;
 #define _ALS_DeleteSVar
@@ -6189,19 +6189,19 @@ native DeleteSVar__(const svar[]) = DeleteSVar;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetSVarsUpperIndex() = GetSVarsUpperIndex;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetSVarsUpperIndex() = GetSVarsUpperIndex;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetSVarsUpperIndex__() = GetSVarsUpperIndex;
 #define _ALS_GetSVarsUpperIndex
@@ -6213,19 +6213,19 @@ native GetSVarsUpperIndex__() = GetSVarsUpperIndex;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetSVarNameAtIndex(index, output[], size) = GetSVarNameAtIndex;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetSVarNameAtIndex(index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetSVarNameAtIndex;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetSVarNameAtIndex__(index, output[], size = sizeof (output)) = GetSVarNameAtIndex;
 #define _ALS_GetSVarNameAtIndex
@@ -6237,19 +6237,19 @@ native GetSVarNameAtIndex__(index, output[], size = sizeof (output)) = GetSVarNa
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native SERVER_VARTYPE:BAD_GetSVarType(svar[]) = GetSVarType;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native SERVER_VARTYPE:FIXES_GetSVarType(_FIXES_MAYBE_CONST svar[]) = GetSVarType;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SERVER_VARTYPE:GetSVarType__(const svar[]) = GetSVarType;
 #define _ALS_GetSVarType
@@ -6261,19 +6261,19 @@ native SERVER_VARTYPE:GetSVarType__(const svar[]) = GetSVarType;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetGameModeText(const string[]) = SetGameModeText;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetGameModeText(const string[]) = SetGameModeText;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetGameModeText__(const string[]) = SetGameModeText;
 #define _ALS_SetGameModeText
@@ -6285,19 +6285,19 @@ native SetGameModeText__(const string[]) = SetGameModeText;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetTeamCount(count) = SetTeamCount;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetTeamCount(count) = SetTeamCount;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetTeamCount__(count) = SetTeamCount;
 #define _ALS_SetTeamCount
@@ -6309,19 +6309,19 @@ native SetTeamCount__(count) = SetTeamCount;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AddPlayerClass(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AddPlayerClass(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AddPlayerClass__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass;
 #define _ALS_AddPlayerClass
@@ -6333,19 +6333,19 @@ native AddPlayerClass__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AddPlayerClassEx(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AddPlayerClassEx(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AddPlayerClassEx__(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx;
 #define _ALS_AddPlayerClassEx
@@ -6357,19 +6357,19 @@ native AddPlayerClassEx__(teamid, modelid, Float:spawnX, Float:spawnY, Float:spa
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AddStaticVehicle(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AddStaticVehicle(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AddStaticVehicle__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle;
 #define _ALS_AddStaticVehicle
@@ -6381,19 +6381,19 @@ native AddStaticVehicle__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Flo
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, addSiren = false) = AddStaticVehicleEx;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = AddStaticVehicleEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AddStaticVehicleEx__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, bool:addSiren = false) = AddStaticVehicleEx;
 #define _ALS_AddStaticVehicleEx
@@ -6405,19 +6405,19 @@ native AddStaticVehicleEx__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, F
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AddStaticPickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AddStaticPickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AddStaticPickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup;
 #define _ALS_AddStaticPickup
@@ -6429,19 +6429,19 @@ native AddStaticPickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_CreatePickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_CreatePickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CreatePickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup;
 #define _ALS_CreatePickup
@@ -6453,19 +6453,19 @@ native CreatePickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DestroyPickup(pickup) = DestroyPickup;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DestroyPickup(pickup) = DestroyPickup;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DestroyPickup__(pickup) = DestroyPickup;
 #define _ALS_DestroyPickup
@@ -6477,19 +6477,19 @@ native DestroyPickup__(pickup) = DestroyPickup;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ShowNameTags(show) = ShowNameTags;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ShowNameTags(_FIXES_MAYBE_BOOL:show) = ShowNameTags;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ShowNameTags__(bool:show) = ShowNameTags;
 #define _ALS_ShowNameTags
@@ -6501,19 +6501,19 @@ native ShowNameTags__(bool:show) = ShowNameTags;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ShowPlayerMarkers(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ShowPlayerMarkers(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ShowPlayerMarkers__(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
 #define _ALS_ShowPlayerMarkers
@@ -6525,19 +6525,19 @@ native ShowPlayerMarkers__(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GameModeExit() = GameModeExit;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GameModeExit() = GameModeExit;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GameModeExit__() = GameModeExit;
 #define _ALS_GameModeExit
@@ -6549,19 +6549,19 @@ native GameModeExit__() = GameModeExit;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetWorldTime(hour) = SetWorldTime;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetWorldTime(hour) = SetWorldTime;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetWorldTime__(hour) = SetWorldTime;
 #define _ALS_SetWorldTime
@@ -6573,19 +6573,19 @@ native SetWorldTime__(hour) = SetWorldTime;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetWeaponName(WEAPON:weaponid, const weapon[], len) = GetWeaponName;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetWeaponName(WEAPON:weaponid, _FIXES_NOT_CONST weapon[], _FIXES_MAYBE_SIZEOF(len, weapon)) = GetWeaponName;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetWeaponName__(WEAPON:weaponid, weapon[], len = sizeof (weapon)) = GetWeaponName;
 #define _ALS_GetWeaponName
@@ -6597,20 +6597,20 @@ native GetWeaponName__(WEAPON:weaponid, weapon[], len = sizeof (weapon)) = GetWe
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_EnableTirePopping(enable) = EnableTirePopping;
 #pragma deprecated Use `OnVehicleDamageStatusUpdate`.
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_EnableTirePopping(_FIXES_MAYBE_BOOL:enable) = EnableTirePopping;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native EnableTirePopping__(bool:enable) = EnableTirePopping;
 #define _ALS_EnableTirePopping
@@ -6622,19 +6622,19 @@ native EnableTirePopping__(bool:enable) = EnableTirePopping;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_EnableVehicleFriendlyFire() = EnableVehicleFriendlyFire;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_EnableVehicleFriendlyFire() = EnableVehicleFriendlyFire;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native EnableVehicleFriendlyFire__() = EnableVehicleFriendlyFire;
 #define _ALS_EnableVehicleFriendlyFire
@@ -6646,20 +6646,20 @@ native EnableVehicleFriendlyFire__() = EnableVehicleFriendlyFire;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 #pragma deprecated Use `OnPlayerInteriorChange`.
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow) = AllowInteriorWeapons;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AllowInteriorWeapons__(bool:allow) = AllowInteriorWeapons;
 #define _ALS_AllowInteriorWeapons
@@ -6671,19 +6671,19 @@ native AllowInteriorWeapons__(bool:allow) = AllowInteriorWeapons;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetWeather(weatherid) = SetWeather;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetWeather(weatherid) = SetWeather;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetWeather__(weatherid) = SetWeather;
 #define _ALS_SetWeather
@@ -6695,19 +6695,19 @@ native SetWeather__(weatherid) = SetWeather;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_GetGravity() = GetGravity;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_GetGravity() = GetGravity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:GetGravity__() = GetGravity;
 #define _ALS_GetGravity
@@ -6719,19 +6719,19 @@ native Float:GetGravity__() = GetGravity;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetGravity(Float:gravity) = SetGravity;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetGravity(Float:gravity) = SetGravity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetGravity__(Float:gravity) = SetGravity;
 #define _ALS_SetGravity
@@ -6743,20 +6743,20 @@ native SetGravity__(Float:gravity) = SetGravity;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 #pragma deprecated Use `OnPlayerClickMap`.
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow) = AllowAdminTeleport;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AllowAdminTeleport__(bool:allow) = AllowAdminTeleport;
 #define _ALS_AllowAdminTeleport
@@ -6768,20 +6768,20 @@ native AllowAdminTeleport__(bool:allow) = AllowAdminTeleport;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetDeathDropAmount(amount) = SetDeathDropAmount;
 #pragma deprecated Use `CreatePickup`.
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetDeathDropAmount(amount) = SetDeathDropAmount;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetDeathDropAmount__(amount) = SetDeathDropAmount;
 #define _ALS_SetDeathDropAmount
@@ -6793,19 +6793,19 @@ native SetDeathDropAmount__(amount) = SetDeathDropAmount;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_CreateExplosion(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_CreateExplosion(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CreateExplosion__(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion;
 #define _ALS_CreateExplosion
@@ -6817,19 +6817,19 @@ native CreateExplosion__(Float:x, Float:y, Float:z, type, Float:radius) = Create
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_EnableZoneNames(enable) = EnableZoneNames;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_EnableZoneNames(_FIXES_MAYBE_BOOL:enable) = EnableZoneNames;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native EnableZoneNames__(bool:enable) = EnableZoneNames;
 #define _ALS_EnableZoneNames
@@ -6841,19 +6841,19 @@ native EnableZoneNames__(bool:enable) = EnableZoneNames;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_UsePlayerPedAnims() = UsePlayerPedAnims;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_UsePlayerPedAnims() = UsePlayerPedAnims;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native UsePlayerPedAnims__() = UsePlayerPedAnims;
 #define _ALS_UsePlayerPedAnims
@@ -6866,19 +6866,19 @@ native DisableInteriorEnterExits();
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetNameTagDrawDistance(Float:distance) = SetNameTagDrawDistance;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetNameTagDrawDistance(Float:distance) = SetNameTagDrawDistance;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetNameTagDrawDistance__(Float:distance) = SetNameTagDrawDistance;
 #define _ALS_SetNameTagDrawDistance
@@ -6890,19 +6890,19 @@ native SetNameTagDrawDistance__(Float:distance) = SetNameTagDrawDistance;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DisableNameTagLOS() = DisableNameTagLOS;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DisableNameTagLOS() = DisableNameTagLOS;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DisableNameTagLOS__() = DisableNameTagLOS;
 #define _ALS_DisableNameTagLOS
@@ -6914,19 +6914,19 @@ native DisableNameTagLOS__() = DisableNameTagLOS;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_LimitGlobalChatRadius(Float:chatRadius) = LimitGlobalChatRadius;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_LimitGlobalChatRadius(Float:chatRadius) = LimitGlobalChatRadius;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native LimitGlobalChatRadius__(Float:chatRadius) = LimitGlobalChatRadius;
 #define _ALS_LimitGlobalChatRadius
@@ -6938,19 +6938,19 @@ native LimitGlobalChatRadius__(Float:chatRadius) = LimitGlobalChatRadius;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_LimitPlayerMarkerRadius(Float:markerRadius) = LimitPlayerMarkerRadius;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_LimitPlayerMarkerRadius(Float:markerRadius) = LimitPlayerMarkerRadius;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native LimitPlayerMarkerRadius__(Float:markerRadius) = LimitPlayerMarkerRadius;
 #define _ALS_LimitPlayerMarkerRadius
@@ -6962,19 +6962,19 @@ native LimitPlayerMarkerRadius__(Float:markerRadius) = LimitPlayerMarkerRadius;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ConnectNPC(name[], script[]) = ConnectNPC;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ConnectNPC(_FIXES_MAYBE_CONST name[], _FIXES_MAYBE_CONST script[]) = ConnectNPC;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ConnectNPC__(const name[], const script[]) = ConnectNPC;
 #define _ALS_ConnectNPC
@@ -6986,19 +6986,19 @@ native ConnectNPC__(const name[], const script[]) = ConnectNPC;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsPlayerNPC(playerid) = IsPlayerNPC;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerNPC(playerid) = IsPlayerNPC;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsPlayerNPC__(playerid) = IsPlayerNPC;
 #define _ALS_IsPlayerNPC
@@ -7010,19 +7010,19 @@ native bool:IsPlayerNPC__(playerid) = IsPlayerNPC;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AddCharModel(baseid, newid, dff[], textureLibrary[]) = AddCharModel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AddCharModel(baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddCharModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AddCharModel__(baseid, newid, const dff[], const textureLibrary[]) = AddCharModel;
 #define _ALS_AddCharModel
@@ -7034,19 +7034,19 @@ native AddCharModel__(baseid, newid, const dff[], const textureLibrary[]) = AddC
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AddSimpleModel(virtualWorld, baseid, newid, dff[], textureLibrary[]) = AddSimpleModel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AddSimpleModel(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddSimpleModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AddSimpleModel__(virtualWorld, baseid, newid, const dff[], const textureLibrary[]) = AddSimpleModel;
 #define _ALS_AddSimpleModel
@@ -7058,19 +7058,19 @@ native AddSimpleModel__(virtualWorld, baseid, newid, const dff[], const textureL
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AddSimpleModelTimed(virtualWorld, baseid, newid, dff[], textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AddSimpleModelTimed(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AddSimpleModelTimed__(virtualWorld, baseid, newid, const dff[], const textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
 #define _ALS_AddSimpleModelTimed
@@ -7082,19 +7082,19 @@ native AddSimpleModelTimed__(virtualWorld, baseid, newid, const dff[], const tex
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_FindModelFileNameFromCRC(crc, output[], size) = FindModelFileNameFromCRC;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_FindModelFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindModelFileNameFromCRC;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native FindModelFileNameFromCRC__(crc, output[], size = sizeof (output)) = FindModelFileNameFromCRC;
 #define _ALS_FindModelFileNameFromCRC
@@ -7106,19 +7106,19 @@ native FindModelFileNameFromCRC__(crc, output[], size = sizeof (output)) = FindM
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_FindTextureFileNameFromCRC(crc, output[], size) = FindTextureFileNameFromCRC;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_FindTextureFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindTextureFileNameFromCRC;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native FindTextureFileNameFromCRC__(crc, output[], size = sizeof (output)) = FindTextureFileNameFromCRC;
 #define _ALS_FindTextureFileNameFromCRC
@@ -7130,19 +7130,19 @@ native FindTextureFileNameFromCRC__(crc, output[], size = sizeof (output)) = Fin
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_RedirectDownload(playerid, url[]) = RedirectDownload;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_RedirectDownload(playerid, _FIXES_MAYBE_CONST url[]) = RedirectDownload;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native RedirectDownload__(playerid, const url[]) = RedirectDownload;
 #define _ALS_RedirectDownload
@@ -7154,19 +7154,19 @@ native RedirectDownload__(playerid, const url[]) = RedirectDownload;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsPlayerAdmin(playerid) = IsPlayerAdmin;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerAdmin(playerid) = IsPlayerAdmin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
 #define _ALS_IsPlayerAdmin
@@ -7178,19 +7178,19 @@ native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_Kick(playerid) = Kick;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_Kick(playerid) = Kick;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Kick__(playerid) = Kick;
 #define _ALS_Kick
@@ -7202,19 +7202,19 @@ native Kick__(playerid) = Kick;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_Ban(playerid) = Ban;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_Ban(playerid) = Ban;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Ban__(playerid) = Ban;
 #define _ALS_Ban
@@ -7226,19 +7226,19 @@ native Ban__(playerid) = Ban;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_BanEx(playerid, const reason[]) = BanEx;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_BanEx(playerid, const reason[]) = BanEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native BanEx__(playerid, const reason[]) = BanEx;
 #define _ALS_BanEx
@@ -7250,19 +7250,19 @@ native BanEx__(playerid, const reason[]) = BanEx;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SendRconCommand(command[]) = SendRconCommand;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SendRconCommand(_FIXES_MAYBE_CONST command[]) = SendRconCommand;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SendRconCommand__(const command[]) = SendRconCommand;
 #define _ALS_SendRconCommand
@@ -7274,19 +7274,19 @@ native SendRconCommand__(const command[]) = SendRconCommand;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerNetworkStats(playerid, output[], size) = GetPlayerNetworkStats;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerNetworkStats(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPlayerNetworkStats;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerNetworkStats__(playerid, output[], size = sizeof (output)) = GetPlayerNetworkStats;
 #define _ALS_GetPlayerNetworkStats
@@ -7298,19 +7298,19 @@ native GetPlayerNetworkStats__(playerid, output[], size = sizeof (output)) = Get
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetNetworkStats(output[], size) = GetNetworkStats;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetNetworkStats(output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetNetworkStats;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetNetworkStats__(output[], size = sizeof (output)) = GetNetworkStats;
 #define _ALS_GetNetworkStats
@@ -7322,19 +7322,19 @@ native GetNetworkStats__(output[], size = sizeof (output)) = GetNetworkStats;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetPlayerVersion(playerid, const version[], len) = GetPlayerVersion;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetPlayerVersion(playerid, _FIXES_NOT_CONST version[], _FIXES_MAYBE_SIZEOF(len, version)) = GetPlayerVersion;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetPlayerVersion__(playerid, version[], len = sizeof (version)) = GetPlayerVersion;
 #define _ALS_GetPlayerVersion
@@ -7346,19 +7346,19 @@ native GetPlayerVersion__(playerid, version[], len = sizeof (version)) = GetPlay
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_BlockIpAddress(ipAddress[], timeMS) = BlockIpAddress;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_BlockIpAddress(_FIXES_MAYBE_CONST ipAddress[], timeMS) = BlockIpAddress;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native BlockIpAddress__(const ipAddress[], timeMS) = BlockIpAddress;
 #define _ALS_BlockIpAddress
@@ -7370,19 +7370,19 @@ native BlockIpAddress__(const ipAddress[], timeMS) = BlockIpAddress;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_UnBlockIpAddress(ipAddress[]) = UnBlockIpAddress;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_UnBlockIpAddress(_FIXES_MAYBE_CONST ipAddress[]) = UnBlockIpAddress;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native UnBlockIpAddress__(const ipAddress[]) = UnBlockIpAddress;
 #define _ALS_UnBlockIpAddress
@@ -7394,20 +7394,20 @@ native UnBlockIpAddress__(const ipAddress[]) = UnBlockIpAddress;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetServerVarAsString(const cvar[], buffer[], len) = GetServerVarAsString;
 #pragma deprecated Use `GetConsoleVarAsString`.
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetServerVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetServerVarAsString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetServerVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetServerVarAsString;
 #define _ALS_GetServerVarAsString
@@ -7419,20 +7419,20 @@ native GetServerVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = G
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetServerVarAsInt(const cvar[]) = GetServerVarAsInt;
 #pragma deprecated Use `GetConsoleVarAsInt`.
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetServerVarAsInt(const cvar[]) = GetServerVarAsInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetServerVarAsInt__(const cvar[]) = GetServerVarAsInt;
 #define _ALS_GetServerVarAsInt
@@ -7444,20 +7444,20 @@ native GetServerVarAsInt__(const cvar[]) = GetServerVarAsInt;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
 #pragma deprecated Use `GetConsoleVarAsBool`.
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:GetServerVarAsBool__(const cvar[]) = GetServerVarAsBool;
 #define _ALS_GetServerVarAsBool
@@ -7469,19 +7469,19 @@ native bool:GetServerVarAsBool__(const cvar[]) = GetServerVarAsBool;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetConsoleVarAsString(const cvar[], buffer[], len) = GetConsoleVarAsString;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetConsoleVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetConsoleVarAsString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetConsoleVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetConsoleVarAsString;
 #define _ALS_GetConsoleVarAsString
@@ -7493,19 +7493,19 @@ native GetConsoleVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetConsoleVarAsInt(const cvar[]) = GetConsoleVarAsInt;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetConsoleVarAsInt(const cvar[]) = GetConsoleVarAsInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetConsoleVarAsInt__(const cvar[]) = GetConsoleVarAsInt;
 #define _ALS_GetConsoleVarAsInt
@@ -7517,19 +7517,19 @@ native GetConsoleVarAsInt__(const cvar[]) = GetConsoleVarAsInt;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:GetConsoleVarAsBool__(const cvar[]) = GetConsoleVarAsBool;
 #define _ALS_GetConsoleVarAsBool
@@ -7541,19 +7541,19 @@ native bool:GetConsoleVarAsBool__(const cvar[]) = GetConsoleVarAsBool;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetServerTickRate() = GetServerTickRate;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetServerTickRate() = GetServerTickRate;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetServerTickRate__() = GetServerTickRate;
 #define _ALS_GetServerTickRate
@@ -7565,19 +7565,19 @@ native GetServerTickRate__() = GetServerTickRate;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_NetStats_GetConnectedTime(playerid) = NetStats_GetConnectedTime;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_NetStats_GetConnectedTime(playerid) = NetStats_GetConnectedTime;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native NetStats_GetConnectedTime__(playerid) = NetStats_GetConnectedTime;
 #define _ALS_NetStats_GetConnectedTime
@@ -7589,19 +7589,19 @@ native NetStats_GetConnectedTime__(playerid) = NetStats_GetConnectedTime;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_NetStats_MessagesReceived(playerid) = NetStats_MessagesReceived;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_NetStats_MessagesReceived(playerid) = NetStats_MessagesReceived;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native NetStats_MessagesReceived__(playerid) = NetStats_MessagesReceived;
 #define _ALS_NetStats_MessagesReceived
@@ -7613,19 +7613,19 @@ native NetStats_MessagesReceived__(playerid) = NetStats_MessagesReceived;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_NetStats_BytesReceived(playerid) = NetStats_BytesReceived;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_NetStats_BytesReceived(playerid) = NetStats_BytesReceived;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native NetStats_BytesReceived__(playerid) = NetStats_BytesReceived;
 #define _ALS_NetStats_BytesReceived
@@ -7637,19 +7637,19 @@ native NetStats_BytesReceived__(playerid) = NetStats_BytesReceived;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_NetStats_MessagesSent(playerid) = NetStats_MessagesSent;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_NetStats_MessagesSent(playerid) = NetStats_MessagesSent;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native NetStats_MessagesSent__(playerid) = NetStats_MessagesSent;
 #define _ALS_NetStats_MessagesSent
@@ -7661,19 +7661,19 @@ native NetStats_MessagesSent__(playerid) = NetStats_MessagesSent;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_NetStats_BytesSent(playerid) = NetStats_BytesSent;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_NetStats_BytesSent(playerid) = NetStats_BytesSent;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native NetStats_BytesSent__(playerid) = NetStats_BytesSent;
 #define _ALS_NetStats_BytesSent
@@ -7685,19 +7685,19 @@ native NetStats_BytesSent__(playerid) = NetStats_BytesSent;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_NetStats_MessagesRecvPerSecond(playerid) = NetStats_MessagesRecvPerSecond;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_NetStats_MessagesRecvPerSecond(playerid) = NetStats_MessagesRecvPerSecond;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native NetStats_MessagesRecvPerSecond__(playerid) = NetStats_MessagesRecvPerSecond;
 #define _ALS_NetStats_MessagesRecvPerSecond
@@ -7709,19 +7709,19 @@ native NetStats_MessagesRecvPerSecond__(playerid) = NetStats_MessagesRecvPerSeco
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_NetStats_PacketLossPercent(playerid) = NetStats_PacketLossPercent;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_NetStats_PacketLossPercent(playerid) = NetStats_PacketLossPercent;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:NetStats_PacketLossPercent__(playerid) = NetStats_PacketLossPercent;
 #define _ALS_NetStats_PacketLossPercent
@@ -7733,19 +7733,19 @@ native Float:NetStats_PacketLossPercent__(playerid) = NetStats_PacketLossPercent
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_NetStats_ConnectionStatus(playerid) = NetStats_ConnectionStatus;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_NetStats_ConnectionStatus(playerid) = NetStats_ConnectionStatus;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native NetStats_ConnectionStatus__(playerid) = NetStats_ConnectionStatus;
 #define _ALS_NetStats_ConnectionStatus
@@ -7757,19 +7757,19 @@ native NetStats_ConnectionStatus__(playerid) = NetStats_ConnectionStatus;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_NetStats_GetIpPort(playerid, output[], size) = NetStats_GetIpPort;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_NetStats_GetIpPort(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = NetStats_GetIpPort;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native NetStats_GetIpPort__(playerid, output[], size = sizeof (output)) = NetStats_GetIpPort;
 #define _ALS_NetStats_GetIpPort
@@ -7781,19 +7781,19 @@ native NetStats_GetIpPort__(playerid, output[], size = sizeof (output)) = NetSta
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Menu:FIXES_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Menu:CreateMenu__(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
 #define _ALS_CreateMenu
@@ -7805,19 +7805,19 @@ native Menu:CreateMenu__(const title[], columns, Float:x, Float:y, Float:col1wid
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DestroyMenu(Menu:menuid) = DestroyMenu;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DestroyMenu__(Menu:menuid) = DestroyMenu;
 #define _ALS_DestroyMenu
@@ -7829,19 +7829,19 @@ native DestroyMenu__(Menu:menuid) = DestroyMenu;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AddMenuItem(Menu:menuid, column, const text[]) = AddMenuItem;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AddMenuItem(Menu:menuid, column, const text[]) = AddMenuItem;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AddMenuItem__(Menu:menuid, column, const text[]) = AddMenuItem;
 #define _ALS_AddMenuItem
@@ -7853,19 +7853,19 @@ native AddMenuItem__(Menu:menuid, column, const text[]) = AddMenuItem;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetMenuColumnHeader(Menu:menuid, column, const heading[]) = SetMenuColumnHeader;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetMenuColumnHeader(Menu:menuid, column, const heading[]) = SetMenuColumnHeader;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetMenuColumnHeader__(Menu:menuid, column, const heading[]) = SetMenuColumnHeader;
 #define _ALS_SetMenuColumnHeader
@@ -7877,19 +7877,19 @@ native SetMenuColumnHeader__(Menu:menuid, column, const heading[]) = SetMenuColu
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer;
 #define _ALS_ShowMenuForPlayer
@@ -7901,19 +7901,19 @@ native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer;
 #define _ALS_HideMenuForPlayer
@@ -7925,19 +7925,19 @@ native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsValidMenu(Menu:menuid) = IsValidMenu;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsValidMenu(Menu:menuid) = IsValidMenu;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsValidMenu__(Menu:menuid) = IsValidMenu;
 #define _ALS_IsValidMenu
@@ -7949,19 +7949,19 @@ native bool:IsValidMenu__(Menu:menuid) = IsValidMenu;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DisableMenu(Menu:menuid) = DisableMenu;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DisableMenu__(Menu:menuid) = DisableMenu;
 #define _ALS_DisableMenu
@@ -7973,19 +7973,19 @@ native DisableMenu__(Menu:menuid) = DisableMenu;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow;
 #define _ALS_DisableMenuRow
@@ -7997,19 +7997,19 @@ native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Menu:BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Menu:FIXES_GetPlayerMenu(playerid) = GetPlayerMenu;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu;
 #define _ALS_GetPlayerMenu
@@ -8021,19 +8021,19 @@ native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = TextDrawCreate;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Text:TextDrawCreate__(Float:x, Float:y, const text[]) = TextDrawCreate;
 #define _ALS_TextDrawCreate
@@ -8045,19 +8045,19 @@ native Text:TextDrawCreate__(Float:x, Float:y, const text[]) = TextDrawCreate;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawDestroy(Text:text) = TextDrawDestroy;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawDestroy(Text:text) = TextDrawDestroy;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawDestroy__(Text:text) = TextDrawDestroy;
 #define _ALS_TextDrawDestroy
@@ -8069,19 +8069,19 @@ native TextDrawDestroy__(Text:text) = TextDrawDestroy;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawLetterSize(Text:text, Float:width, Float:height) = TextDrawLetterSize;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawLetterSize(Text:text, Float:width, Float:height) = TextDrawLetterSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawLetterSize__(Text:text, Float:width, Float:height) = TextDrawLetterSize;
 #define _ALS_TextDrawLetterSize
@@ -8093,19 +8093,19 @@ native TextDrawLetterSize__(Text:text, Float:width, Float:height) = TextDrawLett
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawTextSize(Text:text, Float:width, Float:height) = TextDrawTextSize;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawTextSize(Text:text, Float:width, Float:height) = TextDrawTextSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawTextSize__(Text:text, Float:width, Float:height) = TextDrawTextSize;
 #define _ALS_TextDrawTextSize
@@ -8117,19 +8117,19 @@ native TextDrawTextSize__(Text:text, Float:width, Float:height) = TextDrawTextSi
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawAlignment(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawAlignment(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawAlignment__(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment;
 #define _ALS_TextDrawAlignment
@@ -8141,19 +8141,19 @@ native TextDrawAlignment__(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlign
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawColor(Text:text, colour) = TextDrawColor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawColor(Text:text, colour) = TextDrawColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawColor__(Text:text, colour) = TextDrawColor;
 #define _ALS_TextDrawColor
@@ -8165,19 +8165,19 @@ native TextDrawColor__(Text:text, colour) = TextDrawColor;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawUseBox(Text:text, use) = TextDrawUseBox;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawUseBox(Text:text, _FIXES_MAYBE_BOOL:use) = TextDrawUseBox;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawUseBox__(Text:text, bool:use) = TextDrawUseBox;
 #define _ALS_TextDrawUseBox
@@ -8189,19 +8189,19 @@ native TextDrawUseBox__(Text:text, bool:use) = TextDrawUseBox;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawBoxColor(Text:text, colour) = TextDrawBoxColor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawBoxColor(Text:text, colour) = TextDrawBoxColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawBoxColor__(Text:text, colour) = TextDrawBoxColor;
 #define _ALS_TextDrawBoxColor
@@ -8213,19 +8213,19 @@ native TextDrawBoxColor__(Text:text, colour) = TextDrawBoxColor;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawSetShadow(Text:text, size) = TextDrawSetShadow;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawSetShadow(Text:text, size) = TextDrawSetShadow;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawSetShadow__(Text:text, size) = TextDrawSetShadow;
 #define _ALS_TextDrawSetShadow
@@ -8237,19 +8237,19 @@ native TextDrawSetShadow__(Text:text, size) = TextDrawSetShadow;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawSetOutline(Text:text, size) = TextDrawSetOutline;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawSetOutline(Text:text, size) = TextDrawSetOutline;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawSetOutline__(Text:text, size) = TextDrawSetOutline;
 #define _ALS_TextDrawSetOutline
@@ -8261,19 +8261,19 @@ native TextDrawSetOutline__(Text:text, size) = TextDrawSetOutline;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawBackgroundColor(Text:text, colour) = TextDrawBackgroundColor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawBackgroundColor(Text:text, colour) = TextDrawBackgroundColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawBackgroundColor__(Text:text, colour) = TextDrawBackgroundColor;
 #define _ALS_TextDrawBackgroundColor
@@ -8285,19 +8285,19 @@ native TextDrawBackgroundColor__(Text:text, colour) = TextDrawBackgroundColor;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawFont(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawFont(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawFont__(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
 #define _ALS_TextDrawFont
@@ -8309,19 +8309,19 @@ native TextDrawFont__(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawSetProportional(Text:text, set) = TextDrawSetProportional;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawSetProportional(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetProportional;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawSetProportional__(Text:text, bool:set) = TextDrawSetProportional;
 #define _ALS_TextDrawSetProportional
@@ -8333,19 +8333,19 @@ native TextDrawSetProportional__(Text:text, bool:set) = TextDrawSetProportional;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawSetSelectable(Text:text, set) = TextDrawSetSelectable;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawSetSelectable(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetSelectable;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawSetSelectable__(Text:text, bool:set) = TextDrawSetSelectable;
 #define _ALS_TextDrawSetSelectable
@@ -8357,19 +8357,19 @@ native TextDrawSetSelectable__(Text:text, bool:set) = TextDrawSetSelectable;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawShowForPlayer(playerid, Text:text) = TextDrawShowForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawShowForPlayer(playerid, Text:text) = TextDrawShowForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawShowForPlayer__(playerid, Text:text) = TextDrawShowForPlayer;
 #define _ALS_TextDrawShowForPlayer
@@ -8381,19 +8381,19 @@ native TextDrawShowForPlayer__(playerid, Text:text) = TextDrawShowForPlayer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawHideForPlayer(playerid, Text:text) = TextDrawHideForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawHideForPlayer(playerid, Text:text) = TextDrawHideForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawHideForPlayer__(playerid, Text:text) = TextDrawHideForPlayer;
 #define _ALS_TextDrawHideForPlayer
@@ -8405,19 +8405,19 @@ native TextDrawHideForPlayer__(playerid, Text:text) = TextDrawHideForPlayer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawShowForAll(Text:text) = TextDrawShowForAll;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawShowForAll(Text:text) = TextDrawShowForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawShowForAll__(Text:text) = TextDrawShowForAll;
 #define _ALS_TextDrawShowForAll
@@ -8429,19 +8429,19 @@ native TextDrawShowForAll__(Text:text) = TextDrawShowForAll;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawHideForAll(Text:text) = TextDrawHideForAll;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawHideForAll(Text:text) = TextDrawHideForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawHideForAll__(Text:text) = TextDrawHideForAll;
 #define _ALS_TextDrawHideForAll
@@ -8453,19 +8453,19 @@ native TextDrawHideForAll__(Text:text) = TextDrawHideForAll;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[]) = TextDrawSetString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawSetString__(Text:text, const string[]) = TextDrawSetString;
 #define _ALS_TextDrawSetString
@@ -8477,19 +8477,19 @@ native TextDrawSetString__(Text:text, const string[]) = TextDrawSetString;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawSetPreviewModel(Text:text, modelIndex) = TextDrawSetPreviewModel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawSetPreviewModel(Text:text, modelIndex) = TextDrawSetPreviewModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawSetPreviewModel__(Text:text, modelIndex) = TextDrawSetPreviewModel;
 #define _ALS_TextDrawSetPreviewModel
@@ -8501,19 +8501,19 @@ native TextDrawSetPreviewModel__(Text:text, modelIndex) = TextDrawSetPreviewMode
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawSetPreviewRot(Text:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = TextDrawSetPreviewRot;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawSetPreviewRot(Text:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = TextDrawSetPreviewRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawSetPreviewRot__(Text:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = TextDrawSetPreviewRot;
 #define _ALS_TextDrawSetPreviewRot
@@ -8525,19 +8525,19 @@ native TextDrawSetPreviewRot__(Text:text, Float:rotX, Float:rotY, Float:rotZ, Fl
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_TextDrawSetPreviewVehCol(Text:text, colour1, colour2) = TextDrawSetPreviewVehCol;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_TextDrawSetPreviewVehCol(Text:text, colour1, colour2) = TextDrawSetPreviewVehCol;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native TextDrawSetPreviewVehCol__(Text:text, colour1, colour2) = TextDrawSetPreviewVehCol;
 #define _ALS_TextDrawSetPreviewVehCol
@@ -8549,19 +8549,19 @@ native TextDrawSetPreviewVehCol__(Text:text, colour1, colour2) = TextDrawSetPrev
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GangZoneCreate(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZoneCreate;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GangZoneCreate(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZoneCreate;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GangZoneCreate__(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZoneCreate;
 #define _ALS_GangZoneCreate
@@ -8573,19 +8573,19 @@ native GangZoneCreate__(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZo
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GangZoneDestroy(zone) = GangZoneDestroy;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GangZoneDestroy(zone) = GangZoneDestroy;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GangZoneDestroy__(zone) = GangZoneDestroy;
 #define _ALS_GangZoneDestroy
@@ -8597,19 +8597,19 @@ native GangZoneDestroy__(zone) = GangZoneDestroy;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GangZoneShowForPlayer(playerid, zone, colour) = GangZoneShowForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GangZoneShowForPlayer(playerid, zone, colour) = GangZoneShowForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GangZoneShowForPlayer__(playerid, zone, colour) = GangZoneShowForPlayer;
 #define _ALS_GangZoneShowForPlayer
@@ -8621,19 +8621,19 @@ native GangZoneShowForPlayer__(playerid, zone, colour) = GangZoneShowForPlayer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GangZoneShowForAll(zone, colour) = GangZoneShowForAll;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GangZoneShowForAll(zone, colour) = GangZoneShowForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GangZoneShowForAll__(zone, colour) = GangZoneShowForAll;
 #define _ALS_GangZoneShowForAll
@@ -8645,19 +8645,19 @@ native GangZoneShowForAll__(zone, colour) = GangZoneShowForAll;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GangZoneHideForPlayer(playerid, zone) = GangZoneHideForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GangZoneHideForPlayer(playerid, zone) = GangZoneHideForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GangZoneHideForPlayer__(playerid, zone) = GangZoneHideForPlayer;
 #define _ALS_GangZoneHideForPlayer
@@ -8669,19 +8669,19 @@ native GangZoneHideForPlayer__(playerid, zone) = GangZoneHideForPlayer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GangZoneHideForAll(zone) = GangZoneHideForAll;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GangZoneHideForAll(zone) = GangZoneHideForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GangZoneHideForAll__(zone) = GangZoneHideForAll;
 #define _ALS_GangZoneHideForAll
@@ -8693,19 +8693,19 @@ native GangZoneHideForAll__(zone) = GangZoneHideForAll;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GangZoneFlashForPlayer(playerid, zone, flashColour) = GangZoneFlashForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GangZoneFlashForPlayer(playerid, zone, flashColour) = GangZoneFlashForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GangZoneFlashForPlayer__(playerid, zone, flashColour) = GangZoneFlashForPlayer;
 #define _ALS_GangZoneFlashForPlayer
@@ -8717,19 +8717,19 @@ native GangZoneFlashForPlayer__(playerid, zone, flashColour) = GangZoneFlashForP
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GangZoneFlashForAll(zone, flashColour) = GangZoneFlashForAll;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GangZoneFlashForAll(zone, flashColour) = GangZoneFlashForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GangZoneFlashForAll__(zone, flashColour) = GangZoneFlashForAll;
 #define _ALS_GangZoneFlashForAll
@@ -8741,19 +8741,19 @@ native GangZoneFlashForAll__(zone, flashColour) = GangZoneFlashForAll;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GangZoneStopFlashForPlayer(playerid, zone) = GangZoneStopFlashForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GangZoneStopFlashForPlayer(playerid, zone) = GangZoneStopFlashForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GangZoneStopFlashForPlayer__(playerid, zone) = GangZoneStopFlashForPlayer;
 #define _ALS_GangZoneStopFlashForPlayer
@@ -8765,19 +8765,19 @@ native GangZoneStopFlashForPlayer__(playerid, zone) = GangZoneStopFlashForPlayer
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GangZoneStopFlashForAll(zone) = GangZoneStopFlashForAll;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GangZoneStopFlashForAll(zone) = GangZoneStopFlashForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GangZoneStopFlashForAll__(zone) = GangZoneStopFlashForAll;
 #define _ALS_GangZoneStopFlashForAll
@@ -8789,19 +8789,19 @@ native GangZoneStopFlashForAll__(zone) = GangZoneStopFlashForAll;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Text3D:BAD_Create3DTextLabel(text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, testLOS = false) = Create3DTextLabel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Text3D:FIXES_Create3DTextLabel(_FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = false) = Create3DTextLabel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Text3D:Create3DTextLabel__(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false) = Create3DTextLabel;
 #define _ALS_Create3DTextLabel
@@ -8813,19 +8813,19 @@ native Text3D:Create3DTextLabel__(const text[], colour, Float:x, Float:y, Float:
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_Delete3DTextLabel(Text3D:textid) = Delete3DTextLabel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_Delete3DTextLabel(Text3D:textid) = Delete3DTextLabel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Delete3DTextLabel__(Text3D:textid) = Delete3DTextLabel;
 #define _ALS_Delete3DTextLabel
@@ -8837,19 +8837,19 @@ native Delete3DTextLabel__(Text3D:textid) = Delete3DTextLabel;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_Attach3DTextLabelToPlayer(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_Attach3DTextLabelToPlayer(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Attach3DTextLabelToPlayer__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer;
 #define _ALS_Attach3DTextLabelToPlayer
@@ -8861,19 +8861,19 @@ native Attach3DTextLabelToPlayer__(Text3D:textid, parentid, Float:offsetX, Float
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_Attach3DTextLabelToVehicle(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_Attach3DTextLabelToVehicle(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Attach3DTextLabelToVehicle__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle;
 #define _ALS_Attach3DTextLabelToVehicle
@@ -8885,19 +8885,19 @@ native Attach3DTextLabelToVehicle__(Text3D:textid, parentid, Float:offsetX, Floa
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_Update3DTextLabelText(Text3D:textid, colour, text[]) = Update3DTextLabelText;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_Update3DTextLabelText(Text3D:textid, colour, _FIXES_MAYBE_CONST text[]) = Update3DTextLabelText;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Update3DTextLabelText__(Text3D:textid, colour, const text[]) = Update3DTextLabelText;
 #define _ALS_Update3DTextLabelText
@@ -8909,19 +8909,19 @@ native Update3DTextLabelText__(Text3D:textid, colour, const text[]) = Update3DTe
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native PlayerText3D:BAD_CreatePlayer3DTextLabel(playerid, text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, testLOS = false) = CreatePlayer3DTextLabel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native PlayerText3D:FIXES_CreatePlayer3DTextLabel(playerid, _FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = false) = CreatePlayer3DTextLabel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native PlayerText3D:CreatePlayer3DTextLabel__(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false) = CreatePlayer3DTextLabel;
 #define _ALS_CreatePlayer3DTextLabel
@@ -8933,19 +8933,19 @@ native PlayerText3D:CreatePlayer3DTextLabel__(playerid, const text[], colour, Fl
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DeletePlayer3DTextLabel(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DeletePlayer3DTextLabel(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DeletePlayer3DTextLabel__(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel;
 #define _ALS_DeletePlayer3DTextLabel
@@ -8957,19 +8957,19 @@ native DeletePlayer3DTextLabel__(playerid, PlayerText3D:textid) = DeletePlayer3D
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, text[]) = UpdatePlayer3DTextLabelText;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, _FIXES_MAYBE_CONST text[]) = UpdatePlayer3DTextLabelText;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText;
 #define _ALS_UpdatePlayer3DTextLabelText
@@ -8981,19 +8981,19 @@ native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:textid, colour, cons
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, caption[], info[], button1[], button2[]) = ShowPlayerDialog;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST info[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[]) = ShowPlayerDialog;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ShowPlayerDialog__(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
 #define _ALS_ShowPlayerDialog
@@ -9005,7 +9005,7 @@ native ShowPlayerDialog__(playerid, dialogid, DIALOG_STYLE:style, const caption[
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_gpci(playerid, serial[], len) = gpci;
 #if FIX_camel_case
@@ -9014,13 +9014,13 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_gpci(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native gpci__(playerid, serial[], len = sizeof (serial)) = gpci;
 #define _ALS_gpci
@@ -9032,19 +9032,19 @@ native gpci__(playerid, serial[], len = sizeof (serial)) = gpci;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GPCI(playerid, serial[], len) = gpci;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GPCI(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GPCI__(playerid, serial[], len = sizeof (serial)) = gpci;
 #define _ALS_GPCI
@@ -9066,7 +9066,7 @@ native GPCI__(playerid, serial[], len = sizeof (serial)) = gpci;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native DB:BAD_db_open(name[]) = db_open;
 #if FIX_camel_case
@@ -9075,13 +9075,13 @@ native DB:BAD_db_open(name[]) = db_open;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native DB:FIXES_db_open(_FIXES_MAYBE_CONST name[]) = db_open;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DB:db_open__(const name[]) = db_open;
 #define _ALS_db_open
@@ -9093,19 +9093,19 @@ native DB:db_open__(const name[]) = db_open;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native DB:BAD_DB_Open(name[]) = db_open;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native DB:FIXES_DB_Open(_FIXES_MAYBE_CONST name[]) = db_open;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DB:DB_Open__(const name[]) = db_open;
 #define _ALS_DB_Open
@@ -9117,7 +9117,7 @@ native DB:DB_Open__(const name[]) = db_open;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_close(DB:db) = db_close;
 #if FIX_camel_case
@@ -9126,13 +9126,13 @@ native BAD_db_close(DB:db) = db_close;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_db_close(DB:db) = db_close;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:db_close__(DB:db) = db_close;
 #define _ALS_db_close
@@ -9144,19 +9144,19 @@ native bool:db_close__(DB:db) = db_close;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_Close(DB:db) = db_close;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_DB_Close(DB:db) = db_close;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:DB_Close__(DB:db) = db_close;
 #define _ALS_DB_Close
@@ -9168,7 +9168,7 @@ native bool:DB_Close__(DB:db) = db_close;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native DBResult:BAD_db_query(DB:db, query[]) = db_query;
 #if FIX_camel_case
@@ -9177,13 +9177,13 @@ native DBResult:BAD_db_query(DB:db, query[]) = db_query;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native DBResult:FIXES_db_query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DBResult:db_query__(DB:db, const query[]) = db_query;
 #define _ALS_db_query
@@ -9195,19 +9195,19 @@ native DBResult:db_query__(DB:db, const query[]) = db_query;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native DBResult:BAD_DB_Query(DB:db, query[]) = db_query;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native DBResult:FIXES_DB_Query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DBResult:DB_Query__(DB:db, const query[]) = db_query;
 #define _ALS_DB_Query
@@ -9219,7 +9219,7 @@ native DBResult:DB_Query__(DB:db, const query[]) = db_query;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_free_result(DBResult:result) = db_free_result;
 #if FIX_camel_case
@@ -9228,13 +9228,13 @@ native BAD_db_free_result(DBResult:result) = db_free_result;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_db_free_result(DBResult:result) = db_free_result;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:db_free_result__(DBResult:result) = db_free_result;
 #define _ALS_db_free_result
@@ -9246,19 +9246,19 @@ native bool:db_free_result__(DBResult:result) = db_free_result;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_FreeResult(DBResult:result) = db_free_result;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_DB_FreeResult(DBResult:result) = db_free_result;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:DB_FreeResult__(DBResult:result) = db_free_result;
 #define _ALS_DB_FreeResult
@@ -9270,7 +9270,7 @@ native bool:DB_FreeResult__(DBResult:result) = db_free_result;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_num_rows(DBResult:result) = db_num_rows;
 #if FIX_camel_case
@@ -9279,13 +9279,13 @@ native BAD_db_num_rows(DBResult:result) = db_num_rows;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_db_num_rows(DBResult:result) = db_num_rows;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native db_num_rows__(DBResult:result) = db_num_rows;
 #define _ALS_db_num_rows
@@ -9297,19 +9297,19 @@ native db_num_rows__(DBResult:result) = db_num_rows;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_NumRows(DBResult:result) = db_num_rows;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DB_NumRows(DBResult:result) = db_num_rows;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DB_NumRows__(DBResult:result) = db_num_rows;
 #define _ALS_DB_NumRows
@@ -9321,7 +9321,7 @@ native DB_NumRows__(DBResult:result) = db_num_rows;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_next_row(DBResult:result) = db_next_row;
 #if FIX_camel_case
@@ -9330,13 +9330,13 @@ native BAD_db_next_row(DBResult:result) = db_next_row;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_db_next_row(DBResult:result) = db_next_row;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:db_next_row__(DBResult:result) = db_next_row;
 #define _ALS_db_next_row
@@ -9348,19 +9348,19 @@ native bool:db_next_row__(DBResult:result) = db_next_row;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_NextRow(DBResult:result) = db_next_row;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_DB_NextRow(DBResult:result) = db_next_row;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:DB_NextRow__(DBResult:result) = db_next_row;
 #define _ALS_DB_NextRow
@@ -9372,7 +9372,7 @@ native bool:DB_NextRow__(DBResult:result) = db_next_row;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_num_fields(DBResult:result) = db_num_fields;
 #if FIX_camel_case
@@ -9381,13 +9381,13 @@ native BAD_db_num_fields(DBResult:result) = db_num_fields;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_db_num_fields(DBResult:result) = db_num_fields;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native db_num_fields__(DBResult:result) = db_num_fields;
 #define _ALS_db_num_fields
@@ -9399,19 +9399,19 @@ native db_num_fields__(DBResult:result) = db_num_fields;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_NumFields(DBResult:result) = db_num_fields;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DB_NumFields(DBResult:result) = db_num_fields;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DB_NumFields__(DBResult:result) = db_num_fields;
 #define _ALS_DB_NumFields
@@ -9423,7 +9423,7 @@ native DB_NumFields__(DBResult:result) = db_num_fields;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_field_name(DBResult:result, field, output[], size) = db_field_name;
 #if FIX_camel_case
@@ -9432,13 +9432,13 @@ native BAD_db_field_name(DBResult:result, field, output[], size) = db_field_name
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_db_field_name(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:db_field_name__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
 #define _ALS_db_field_name
@@ -9450,19 +9450,19 @@ native bool:db_field_name__(DBResult:result, field, output[], size = sizeof (out
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_FieldName(DBResult:result, field, output[], size) = db_field_name;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_DB_FieldName(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:DB_FieldName__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
 #define _ALS_DB_FieldName
@@ -9474,7 +9474,7 @@ native bool:DB_FieldName__(DBResult:result, field, output[], size = sizeof (outp
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_get_field(DBResult:result, field, output[], size) = db_get_field;
 #if FIX_camel_case
@@ -9483,13 +9483,13 @@ native BAD_db_get_field(DBResult:result, field, output[], size) = db_get_field;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_db_get_field(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:db_get_field__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
 #define _ALS_db_get_field
@@ -9501,19 +9501,19 @@ native bool:db_get_field__(DBResult:result, field, output[], size = sizeof (outp
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_GetField(DBResult:result, field, output[], size) = db_get_field;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_DB_GetField(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:DB_GetField__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
 #define _ALS_DB_GetField
@@ -9525,7 +9525,7 @@ native bool:DB_GetField__(DBResult:result, field, output[], size = sizeof (outpu
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_get_field_int(DBResult:result, field = 0) = db_get_field_int;
 #if FIX_camel_case
@@ -9534,13 +9534,13 @@ native BAD_db_get_field_int(DBResult:result, field = 0) = db_get_field_int;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_db_get_field_int(DBResult:result, field = 0) = db_get_field_int;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native db_get_field_int__(DBResult:result, field = 0) = db_get_field_int;
 #define _ALS_db_get_field_int
@@ -9552,19 +9552,19 @@ native db_get_field_int__(DBResult:result, field = 0) = db_get_field_int;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_GetFieldInt(DBResult:result, field = 0) = db_get_field_int;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DB_GetFieldInt(DBResult:result, field = 0) = db_get_field_int;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DB_GetFieldInt__(DBResult:result, field = 0) = db_get_field_int;
 #define _ALS_DB_GetFieldInt
@@ -9576,7 +9576,7 @@ native DB_GetFieldInt__(DBResult:result, field = 0) = db_get_field_int;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_db_get_field_float(DBResult:result, field = 0) = db_get_field_float;
 #if FIX_camel_case
@@ -9585,13 +9585,13 @@ native Float:BAD_db_get_field_float(DBResult:result, field = 0) = db_get_field_f
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_db_get_field_float(DBResult:result, field = 0) = db_get_field_float;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:db_get_field_float__(DBResult:result, field = 0) = db_get_field_float;
 #define _ALS_db_get_field_float
@@ -9603,19 +9603,19 @@ native Float:db_get_field_float__(DBResult:result, field = 0) = db_get_field_flo
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_DB_GetFieldFloat(DBResult:result, field = 0) = db_get_field_float;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_DB_GetFieldFloat(DBResult:result, field = 0) = db_get_field_float;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:DB_GetFieldFloat__(DBResult:result, field = 0) = db_get_field_float;
 #define _ALS_DB_GetFieldFloat
@@ -9627,7 +9627,7 @@ native Float:DB_GetFieldFloat__(DBResult:result, field = 0) = db_get_field_float
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_get_field_assoc(DBResult:result, field[], output[], size) = db_get_field_assoc;
 #if FIX_camel_case
@@ -9636,13 +9636,13 @@ native BAD_db_get_field_assoc(DBResult:result, field[], output[], size) = db_get
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_db_get_field_assoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:db_get_field_assoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
 #define _ALS_db_get_field_assoc
@@ -9654,19 +9654,19 @@ native bool:db_get_field_assoc__(DBResult:result, const field[], output[], size 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_GetFieldAssoc(DBResult:result, field[], output[], size) = db_get_field_assoc;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_DB_GetFieldAssoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:DB_GetFieldAssoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
 #define _ALS_DB_GetFieldAssoc
@@ -9678,7 +9678,7 @@ native bool:DB_GetFieldAssoc__(DBResult:result, const field[], output[], size = 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_get_field_assoc_int(DBResult:result, field[]) = db_get_field_assoc_int;
 #if FIX_camel_case
@@ -9687,13 +9687,13 @@ native BAD_db_get_field_assoc_int(DBResult:result, field[]) = db_get_field_assoc
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_db_get_field_assoc_int(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native db_get_field_assoc_int__(DBResult:result, const field[]) = db_get_field_assoc_int;
 #define _ALS_db_get_field_assoc_int
@@ -9705,19 +9705,19 @@ native db_get_field_assoc_int__(DBResult:result, const field[]) = db_get_field_a
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_GetFieldAssocInt(DBResult:result, field[]) = db_get_field_assoc_int;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DB_GetFieldAssocInt(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DB_GetFieldAssocInt__(DBResult:result, const field[]) = db_get_field_assoc_int;
 #define _ALS_DB_GetFieldAssocInt
@@ -9729,7 +9729,7 @@ native DB_GetFieldAssocInt__(DBResult:result, const field[]) = db_get_field_asso
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_db_get_field_assoc_float(DBResult:result, field[]) = db_get_field_assoc_float;
 #if FIX_camel_case
@@ -9738,13 +9738,13 @@ native Float:BAD_db_get_field_assoc_float(DBResult:result, field[]) = db_get_fie
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_db_get_field_assoc_float(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:db_get_field_assoc_float__(DBResult:result, const field[]) = db_get_field_assoc_float;
 #define _ALS_db_get_field_assoc_float
@@ -9756,19 +9756,19 @@ native Float:db_get_field_assoc_float__(DBResult:result, const field[]) = db_get
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_DB_GetFieldAssocFloat(DBResult:result, field[]) = db_get_field_assoc_float;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_DB_GetFieldAssocFloat(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:DB_GetFieldAssocFloat__(DBResult:result, const field[]) = db_get_field_assoc_float;
 #define _ALS_DB_GetFieldAssocFloat
@@ -9780,7 +9780,7 @@ native Float:DB_GetFieldAssocFloat__(DBResult:result, const field[]) = db_get_fi
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_get_mem_handle(DB:db) = db_get_mem_handle;
 #if FIX_camel_case
@@ -9789,13 +9789,13 @@ native BAD_db_get_mem_handle(DB:db) = db_get_mem_handle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_db_get_mem_handle(DB:db) = db_get_mem_handle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native db_get_mem_handle__(DB:db) = db_get_mem_handle;
 #define _ALS_db_get_mem_handle
@@ -9807,19 +9807,19 @@ native db_get_mem_handle__(DB:db) = db_get_mem_handle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_GetMemHandle(DB:db) = db_get_mem_handle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DB_GetMemHandle(DB:db) = db_get_mem_handle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DB_GetMemHandle__(DB:db) = db_get_mem_handle;
 #define _ALS_DB_GetMemHandle
@@ -9831,7 +9831,7 @@ native DB_GetMemHandle__(DB:db) = db_get_mem_handle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_get_result_mem_handle(DBResult:result) = db_get_result_mem_handle;
 #if FIX_camel_case
@@ -9840,13 +9840,13 @@ native BAD_db_get_result_mem_handle(DBResult:result) = db_get_result_mem_handle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_db_get_result_mem_handle(DBResult:result) = db_get_result_mem_handle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native db_get_result_mem_handle__(DBResult:result) = db_get_result_mem_handle;
 #define _ALS_db_get_result_mem_handle
@@ -9858,19 +9858,19 @@ native db_get_result_mem_handle__(DBResult:result) = db_get_result_mem_handle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_GetResultMemHandle(DBResult:result) = db_get_result_mem_handle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DB_GetResultMemHandle(DBResult:result) = db_get_result_mem_handle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DB_GetResultMemHandle__(DBResult:result) = db_get_result_mem_handle;
 #define _ALS_DB_GetResultMemHandle
@@ -9882,7 +9882,7 @@ native DB_GetResultMemHandle__(DBResult:result) = db_get_result_mem_handle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_debug_openfiles() = db_debug_openfiles;
 #if FIX_camel_case
@@ -9891,13 +9891,13 @@ native BAD_db_debug_openfiles() = db_debug_openfiles;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_db_debug_openfiles() = db_debug_openfiles;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native db_debug_openfiles__() = db_debug_openfiles;
 #define _ALS_db_debug_openfiles
@@ -9909,19 +9909,19 @@ native db_debug_openfiles__() = db_debug_openfiles;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_DebugOpenFiles() = db_debug_openfiles;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DB_DebugOpenFiles() = db_debug_openfiles;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DB_DebugOpenFiles__() = db_debug_openfiles;
 #define _ALS_DB_DebugOpenFiles
@@ -9933,7 +9933,7 @@ native DB_DebugOpenFiles__() = db_debug_openfiles;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_db_debug_openresults() = db_debug_openresults;
 #if FIX_camel_case
@@ -9942,13 +9942,13 @@ native BAD_db_debug_openresults() = db_debug_openresults;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_db_debug_openresults() = db_debug_openresults;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native db_debug_openresults__() = db_debug_openresults;
 #define _ALS_db_debug_openresults
@@ -9960,19 +9960,19 @@ native db_debug_openresults__() = db_debug_openresults;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DB_DebugOpenResults() = db_debug_openresults;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DB_DebugOpenResults() = db_debug_openresults;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DB_DebugOpenResults__() = db_debug_openresults;
 #define _ALS_DB_DebugOpenResults
@@ -9994,19 +9994,19 @@ native DB_DebugOpenResults__() = db_debug_openresults;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, addSiren = false) = CreateVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = CreateVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false) = CreateVehicle;
 #define _ALS_CreateVehicle
@@ -10018,19 +10018,19 @@ native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colou
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DestroyVehicle(vehicleid) = DestroyVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DestroyVehicle(vehicleid) = DestroyVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DestroyVehicle__(vehicleid) = DestroyVehicle;
 #define _ALS_DestroyVehicle
@@ -10042,19 +10042,19 @@ native DestroyVehicle__(vehicleid) = DestroyVehicle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn;
 #define _ALS_IsVehicleStreamedIn
@@ -10066,19 +10066,19 @@ native bool:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehiclePos(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehiclePos(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
 #define _ALS_GetVehiclePos
@@ -10090,19 +10090,19 @@ native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 #define _ALS_SetVehiclePos
@@ -10114,19 +10114,19 @@ native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleZAngle(vehicleid, &Float:angle) = GetVehicleZAngle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleZAngle(vehicleid, &Float:angle) = GetVehicleZAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleZAngle__(vehicleid, &Float:angle) = GetVehicleZAngle;
 #define _ALS_GetVehicleZAngle
@@ -10138,19 +10138,19 @@ native GetVehicleZAngle__(vehicleid, &Float:angle) = GetVehicleZAngle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleRotationQuat(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleRotationQuat(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleRotationQuat__(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat;
 #define _ALS_GetVehicleRotationQuat
@@ -10162,19 +10162,19 @@ native GetVehicleRotationQuat__(vehicleid, &Float:w, &Float:x, &Float:y, &Float:
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native Float:BAD_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native Float:FIXES_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native Float:GetVehicleDistanceFromPoint__(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
 #define _ALS_GetVehicleDistanceFromPoint
@@ -10186,19 +10186,19 @@ native Float:GetVehicleDistanceFromPoint__(vehicleid, Float:x, Float:y, Float:z)
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehicleZAngle(vehicleid, Float:angle) = SetVehicleZAngle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehicleZAngle(vehicleid, Float:angle) = SetVehicleZAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehicleZAngle__(vehicleid, Float:angle) = SetVehicleZAngle;
 #define _ALS_SetVehicleZAngle
@@ -10210,19 +10210,19 @@ native SetVehicleZAngle__(vehicleid, Float:angle) = SetVehicleZAngle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehicleParamsForPlayer(vehicleid, playerid, objective, doors) = SetVehicleParamsForPlayer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehicleParamsForPlayer(vehicleid, playerid, objective, doors) = SetVehicleParamsForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehicleParamsForPlayer__(vehicleid, playerid, objective, doors) = SetVehicleParamsForPlayer;
 #define _ALS_SetVehicleParamsForPlayer
@@ -10234,19 +10234,19 @@ native SetVehicleParamsForPlayer__(vehicleid, playerid, objective, doors) = SetV
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ManualVehicleEngineAndLights() = ManualVehicleEngineAndLights;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ManualVehicleEngineAndLights() = ManualVehicleEngineAndLights;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ManualVehicleEngineAndLights__() = ManualVehicleEngineAndLights;
 #define _ALS_ManualVehicleEngineAndLights
@@ -10258,19 +10258,19 @@ native ManualVehicleEngineAndLights__() = ManualVehicleEngineAndLights;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehicleParamsEx__(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
 #define _ALS_SetVehicleParamsEx
@@ -10282,19 +10282,19 @@ native SetVehicleParamsEx__(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lig
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleParamsEx__(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
 #define _ALS_GetVehicleParamsEx
@@ -10306,19 +10306,19 @@ native GetVehicleParamsEx__(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:l
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleParamsSirenState(vehicleid) = GetVehicleParamsSirenState;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleParamsSirenState(vehicleid) = GetVehicleParamsSirenState;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleParamsSirenState__(vehicleid) = GetVehicleParamsSirenState;
 #define _ALS_GetVehicleParamsSirenState
@@ -10330,19 +10330,19 @@ native GetVehicleParamsSirenState__(vehicleid) = GetVehicleParamsSirenState;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehicleParamsCarDoors(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarDoors;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehicleParamsCarDoors(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarDoors;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehicleParamsCarDoors__(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarDoors;
 #define _ALS_SetVehicleParamsCarDoors
@@ -10354,19 +10354,19 @@ native SetVehicleParamsCarDoors__(vehicleid, frontLeft, frontRight, rearLeft, re
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleParamsCarDoors(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarDoors;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleParamsCarDoors(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarDoors;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleParamsCarDoors__(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarDoors;
 #define _ALS_GetVehicleParamsCarDoors
@@ -10378,19 +10378,19 @@ native GetVehicleParamsCarDoors__(vehicleid, &frontLeft, &frontRight, &rearLeft,
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehicleParamsCarWindows(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarWindows;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehicleParamsCarWindows(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarWindows;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehicleParamsCarWindows__(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarWindows;
 #define _ALS_SetVehicleParamsCarWindows
@@ -10402,19 +10402,19 @@ native SetVehicleParamsCarWindows__(vehicleid, frontLeft, frontRight, rearLeft, 
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleParamsCarWindows(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarWindows;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleParamsCarWindows(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarWindows;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleParamsCarWindows__(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarWindows;
 #define _ALS_GetVehicleParamsCarWindows
@@ -10426,19 +10426,19 @@ native GetVehicleParamsCarWindows__(vehicleid, &frontLeft, &frontRight, &rearLef
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehicleToRespawn__(vehicleid) = SetVehicleToRespawn;
 #define _ALS_SetVehicleToRespawn
@@ -10450,19 +10450,19 @@ native SetVehicleToRespawn__(vehicleid) = SetVehicleToRespawn;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_LinkVehicleToInterior(vehicleid, interiorid) = LinkVehicleToInterior;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_LinkVehicleToInterior(vehicleid, interiorid) = LinkVehicleToInterior;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native LinkVehicleToInterior__(vehicleid, interiorid) = LinkVehicleToInterior;
 #define _ALS_LinkVehicleToInterior
@@ -10474,19 +10474,19 @@ native LinkVehicleToInterior__(vehicleid, interiorid) = LinkVehicleToInterior;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AddVehicleComponent__(vehicleid, componentid) = AddVehicleComponent;
 #define _ALS_AddVehicleComponent
@@ -10498,19 +10498,19 @@ native AddVehicleComponent__(vehicleid, componentid) = AddVehicleComponent;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleComponent;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleComponent;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native RemoveVehicleComponent__(vehicleid, componentid) = RemoveVehicleComponent;
 #define _ALS_RemoveVehicleComponent
@@ -10522,19 +10522,19 @@ native RemoveVehicleComponent__(vehicleid, componentid) = RemoveVehicleComponent
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ChangeVehicleColor(vehicleid, colour1, colour2) = ChangeVehicleColor;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ChangeVehicleColor(vehicleid, colour1, colour2) = ChangeVehicleColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ChangeVehicleColor__(vehicleid, colour1, colour2) = ChangeVehicleColor;
 #define _ALS_ChangeVehicleColor
@@ -10546,19 +10546,19 @@ native ChangeVehicleColor__(vehicleid, colour1, colour2) = ChangeVehicleColor;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_ChangeVehiclePaintjob(vehicleid, paintjobid) = ChangeVehiclePaintjob;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_ChangeVehiclePaintjob(vehicleid, paintjobid) = ChangeVehiclePaintjob;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native ChangeVehiclePaintjob__(vehicleid, paintjobid) = ChangeVehiclePaintjob;
 #define _ALS_ChangeVehiclePaintjob
@@ -10570,19 +10570,19 @@ native ChangeVehiclePaintjob__(vehicleid, paintjobid) = ChangeVehiclePaintjob;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehicleHealth(vehicleid, Float:health) = SetVehicleHealth;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehicleHealth(vehicleid, Float:health) = SetVehicleHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehicleHealth__(vehicleid, Float:health) = SetVehicleHealth;
 #define _ALS_SetVehicleHealth
@@ -10594,19 +10594,19 @@ native SetVehicleHealth__(vehicleid, Float:health) = SetVehicleHealth;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleHealth(vehicleid, &Float:health) = GetVehicleHealth;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleHealth(vehicleid, &Float:health) = GetVehicleHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleHealth__(vehicleid, &Float:health) = GetVehicleHealth;
 #define _ALS_GetVehicleHealth
@@ -10618,19 +10618,19 @@ native GetVehicleHealth__(vehicleid, &Float:health) = GetVehicleHealth;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native AttachTrailerToVehicle__(trailerid, vehicleid) = AttachTrailerToVehicle;
 #define _ALS_AttachTrailerToVehicle
@@ -10642,19 +10642,19 @@ native AttachTrailerToVehicle__(trailerid, vehicleid) = AttachTrailerToVehicle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_DetachTrailerFromVehicle(vehicleid) = DetachTrailerFromVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_DetachTrailerFromVehicle(vehicleid) = DetachTrailerFromVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle;
 #define _ALS_DetachTrailerFromVehicle
@@ -10666,19 +10666,19 @@ native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
 #define _ALS_IsTrailerAttachedToVehicle
@@ -10690,19 +10690,19 @@ native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleTrailer(vehicleid) = GetVehicleTrailer;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleTrailer(vehicleid) = GetVehicleTrailer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer;
 #define _ALS_GetVehicleTrailer
@@ -10714,19 +10714,19 @@ native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehicleNumberPlate(vehicleid, numberPlate[]) = SetVehicleNumberPlate;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehicleNumberPlate(vehicleid, _FIXES_MAYBE_CONST numberPlate[]) = SetVehicleNumberPlate;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehicleNumberPlate__(vehicleid, const numberPlate[]) = SetVehicleNumberPlate;
 #define _ALS_SetVehicleNumberPlate
@@ -10738,19 +10738,19 @@ native SetVehicleNumberPlate__(vehicleid, const numberPlate[]) = SetVehicleNumbe
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleModel(vehicleid) = GetVehicleModel;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleModel(vehicleid) = GetVehicleModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleModel__(vehicleid) = GetVehicleModel;
 #define _ALS_GetVehicleModel
@@ -10762,19 +10762,19 @@ native GetVehicleModel__(vehicleid) = GetVehicleModel;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleComponentInSlot(vehicleid, CARMODTYPE:slot) = GetVehicleComponentInSlot;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleComponentInSlot(vehicleid, CARMODTYPE:slot) = GetVehicleComponentInSlot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleComponentInSlot__(vehicleid, CARMODTYPE:slot) = GetVehicleComponentInSlot;
 #define _ALS_GetVehicleComponentInSlot
@@ -10786,19 +10786,19 @@ native GetVehicleComponentInSlot__(vehicleid, CARMODTYPE:slot) = GetVehicleCompo
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native CARMODTYPE:BAD_GetVehicleComponentType(component) = GetVehicleComponentType;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native CARMODTYPE:FIXES_GetVehicleComponentType(component) = GetVehicleComponentType;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native CARMODTYPE:GetVehicleComponentType__(component) = GetVehicleComponentType;
 #define _ALS_GetVehicleComponentType
@@ -10810,19 +10810,19 @@ native CARMODTYPE:GetVehicleComponentType__(component) = GetVehicleComponentType
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_RepairVehicle(vehicleid) = RepairVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_RepairVehicle(vehicleid) = RepairVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native RepairVehicle__(vehicleid) = RepairVehicle;
 #define _ALS_RepairVehicle
@@ -10834,19 +10834,19 @@ native RepairVehicle__(vehicleid) = RepairVehicle;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleVelocity(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicleVelocity;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleVelocity(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicleVelocity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleVelocity__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicleVelocity;
 #define _ALS_GetVehicleVelocity
@@ -10858,19 +10858,19 @@ native GetVehicleVelocity__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicl
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehicleVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVelocity;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehicleVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVelocity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehicleVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVelocity;
 #define _ALS_SetVehicleVelocity
@@ -10882,19 +10882,19 @@ native SetVehicleVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVe
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehicleAngularVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleAngularVelocity;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehicleAngularVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleAngularVelocity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehicleAngularVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVehicleAngularVelocity;
 #define _ALS_SetVehicleAngularVelocity
@@ -10906,19 +10906,19 @@ native SetVehicleAngularVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVe
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleDamageStatus(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleDamageStatus(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleDamageStatus__(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus;
 #define _ALS_GetVehicleDamageStatus
@@ -10930,19 +10930,19 @@ native GetVehicleDamageStatus__(vehicleid, &panels, &doors, &lights, &tires) = G
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native UpdateVehicleDamageStatus__(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus;
 #define _ALS_UpdateVehicleDamageStatus
@@ -10954,19 +10954,19 @@ native UpdateVehicleDamageStatus__(vehicleid, panels, doors, lights, tires) = Up
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleModelInfo(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleModelInfo(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleModelInfo__(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo;
 #define _ALS_GetVehicleModelInfo
@@ -10978,19 +10978,19 @@ native GetVehicleModelInfo__(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_SetVehicleVirtualWorld(vehicleid, virtualWorld) = SetVehicleVirtualWorld;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_SetVehicleVirtualWorld(vehicleid, virtualWorld) = SetVehicleVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native SetVehicleVirtualWorld__(vehicleid, virtualWorld) = SetVehicleVirtualWorld;
 #define _ALS_SetVehicleVirtualWorld
@@ -11002,19 +11002,19 @@ native SetVehicleVirtualWorld__(vehicleid, virtualWorld) = SetVehicleVirtualWorl
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_GetVehicleVirtualWorld(vehicleid) = GetVehicleVirtualWorld;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native FIXES_GetVehicleVirtualWorld(vehicleid) = GetVehicleVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld;
 #define _ALS_GetVehicleVirtualWorld
@@ -11026,19 +11026,19 @@ native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld;
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
- * </remarks>.
+ * </remarks>
  */
 native BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
 /**
  * <remarks>
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
- * </remarks>.
+ * </remarks>
  */
 native _FIXES_MAYBE_BOOL:FIXES_IsValidVehicle(vehicleid) = IsValidVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
- * </remarks>.
+ * </remarks>
  */
 native bool:IsValidVehicle__(vehicleid) = IsValidVehicle;
 #define _ALS_IsValidVehicle
