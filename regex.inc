@@ -14,3 +14,4 @@ native (\w+:)?(\w+)(.*)\);\n
 
 #if defined _ALS_\2\n\t#error _ALS_\2 defined\n#endif\nnative \1BAD_\2\3\) = \2;\nnative \1FIXES_\2\3\) = \2;\nnative \1\2__\3\) = \2;\n#define _ALS_\2\n#define \2( FIXES_\2(\n\n
 
+/**\n * <remarks>The original declaration as in the basic SA:MP includes.</remarks>.\n */\n
