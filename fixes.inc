@@ -13393,17 +13393,11 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
  * <fixes>defaults</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_format
-	#error _ALS_format defined
-#endif
-
-#if FIX_defaults
+#if FIX_defaults && _FIXES_SAMP && !defined _ALS_format
 	native FIXES_format(output[], len = sizeof (output), const format[], {Float,_}:...) = format;
 
-	#if _FIXES_SAMP
-		#define _ALS_format
-		#define format( FIXES_format(
-	#endif
+	#define _ALS_format
+	#define format( FIXES_format(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_format);
 #endif
@@ -13412,18 +13406,12 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
  * <fixes>defaults</fixes>
  */
 
-#if FIX_defaults && !FIX_const
-	#if _FIXES_SAMP && defined _ALS_SHA256_PassHash
-		#error _ALS_SHA256_PassHash defined
-	#endif
-
+#if FIX_defaults && !FIX_const && _FIXES_SAMP
 	#pragma deprecated Use BCrypt or better for hashing passwords.
 	native FIXES_SHA256_PassHash(password[], salt[], output[], len = sizeof (output)) = SHA256_PassHash;
 
-	#if _FIXES_SAMP
-		#define _ALS_SHA256_PassHash
-		#define SHA256_PassHash( FIXES_SHA256_PassHash(
-	#endif
+	#define _ALS_SHA256_PassHash
+	#define SHA256_PassHash( FIXES_SHA256_PassHash(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_SHA256_PassHashDefault);
 #endif
@@ -13432,8 +13420,8 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
  * <fixes>defaults</fixes>
  */
 
-#if FIX_defaults && !FIX_const
-	#if _FIXES_SAMP && defined _ALS_GetPlayerVersion
+#if FIX_defaults && _FIXES_SAMP && !FIX_const
+	#if defined _ALS_GetPlayerVersion
 		#error _ALS_GetPlayerVersion defined
 	#endif
 
@@ -13464,13 +13452,11 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
  * <fixes>defaults</fixes>
  */
 
-#if FIX_defaults && !FIX_const && !FIX_GetSVarString
+#if FIX_defaults && _FIXES_SAMP && !FIX_const && !FIX_GetSVarString
 	native FIXES_GetSVarString(svar[], output[], len = sizeof (output)) = GetSVarString;
 
-	#if _FIXES_SAMP
-		#define _ALS_GetSVarString
-		#define GetSVarString( FIXES_GetSVarString(
-	#endif
+	#define _ALS_GetSVarString
+	#define GetSVarString( FIXES_GetSVarString(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetSVarStringDefault);
 #endif
@@ -13479,17 +13465,11 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
  * <fixes>defaults</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_GetSVarNameAtIndex
-	#error _ALS_GetSVarNameAtIndex defined
-#endif
-
-#if FIX_defaults
+#if FIX_defaults && _FIXES_SAMP && !defined _ALS_GetSVarNameAtIndex
 	native FIXES_GetSVarNameAtIndex(index, output[], len = sizeof (output)) = GetSVarNameAtIndex;
 
-	#if _FIXES_SAMP
-		#define _ALS_GetSVarNameAtIndex
-		#define GetSVarNameAtIndex( FIXES_GetSVarNameAtIndex(
-	#endif
+	#define _ALS_GetSVarNameAtIndex
+	#define GetSVarNameAtIndex( FIXES_GetSVarNameAtIndex(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetSVarNameAtIndex);
 #endif
@@ -13498,17 +13478,11 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
  * <fixes>defaults</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_GetPlayerNetworkStats
-	#error _ALS_GetPlayerNetworkStats defined
-#endif
-
-#if FIX_defaults
+#if FIX_defaults && _FIXES_SAMP && !defined _ALS_GetPlayerNetworkStats
 	native FIXES_GetPlayerNetworkStats(playerid, output[], len = sizeof (output)) = GetPlayerNetworkStats;
 
-	#if _FIXES_SAMP
-		#define _ALS_GetPlayerNetworkStats
-		#define GetPlayerNetworkStats( FIXES_GetPlayerNetworkStats(
-	#endif
+	#define _ALS_GetPlayerNetworkStats
+	#define GetPlayerNetworkStats( FIXES_GetPlayerNetworkStats(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerNetworkStats);
 #endif
@@ -13517,17 +13491,11 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
  * <fixes>defaults</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_GetNetworkStats
-	#error _ALS_GetNetworkStats defined
-#endif
-
-#if FIX_defaults
+#if FIX_defaults && _FIXES_SAMP && !defined _ALS_GetNetworkStats
 	native FIXES_GetNetworkStats(output[], len = sizeof (output)) = GetNetworkStats;
 
-	#if _FIXES_SAMP
-		#define _ALS_GetNetworkStats
-		#define GetNetworkStats( FIXES_GetNetworkStats(
-	#endif
+	#define _ALS_GetNetworkStats
+	#define GetNetworkStats( FIXES_GetNetworkStats(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetNetworkStats);
 #endif
@@ -13554,14 +13522,12 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>defaults</fixes>
  */
 
-#if FIX_defaults && !FIX_GetConsoleVarAsString.
-	#pragma deprecated Use `GetConsoleVarAsString`
+#if FIX_defaults && FIXES_SAMP && !FIX_GetConsoleVarAsString
+	#pragma deprecated Use `GetConsoleVarAsString`.
 	native FIXES_GetServerVarAsString(const cvar[], value[], len = sizeof (value)) = GetServerVarAsString;
 
-	#if _FIXES_SAMP
-		#define _ALS_GetServerVarAsString
-		#define GetServerVarAsString( FIXES_GetServerVarAsString(
-	#endif
+	#define _ALS_GetServerVarAsString
+	#define GetServerVarAsString( FIXES_GetServerVarAsString(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsStringDef);
 #endif
@@ -13570,13 +13536,11 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>defaults</fixes>
  */
 
-#if FIX_defaults && !FIX_GetConsoleVarAsString.
+#if FIX_defaults && _FIXES_SAMP && !FIX_GetConsoleVarAsString
 	native FIXES_GetConsoleVarAsString(const cvar[], value[], len = sizeof (value)) = GetConsoleVarAsString;
 
-	#if _FIXES_SAMP
-		#define _ALS_GetConsoleVarAsString
-		#define GetConsoleVarAsString( FIXES_GetConsoleVarAsString(
-	#endif
+	#define _ALS_GetConsoleVarAsString
+	#define GetConsoleVarAsString( FIXES_GetConsoleVarAsString(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetConsoleVarAsStringDef);
 #endif
@@ -13585,11 +13549,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>defaults</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_NetStats_GetIpPort
-	#error _ALS_NetStats_GetIpPort defined
-#endif
-
-#if FIX_defaults
+#if FIX_defaults && _FIXES_SAMP && !defined _ALS_NetStats_GetIpPort
 	native FIXES_NetStats_GetIpPort(playerid, output[], len = sizeof (output)) = NetStats_GetIpPort;
 
 	#if _FIXES_SAMP
@@ -13604,17 +13564,11 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>defaults</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_GetPlayerIp
-	#error _ALS_GetPlayerIp defined
-#endif
-
-#if FIX_defaults
+#if FIX_defaults && _FIXES_SAMP && !defined _ALS_GetPlayerIp
 	native FIXES_GetPlayerIp(playerid, ip[], len = sizeof (ip)) = GetPlayerIp;
 
-	#if _FIXES_SAMP
-		#define _ALS_GetPlayerIp
-		#define GetPlayerIp( FIXES_GetPlayerIp(
-	#endif
+	#define _ALS_GetPlayerIp
+	#define GetPlayerIp( FIXES_GetPlayerIp(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerIpDefault);
 #endif
@@ -13623,17 +13577,11 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>defaults</fixes>
  */
 
-#if FIX_defaults && !FIX_const && !FIX_GetPVarString
-	#if _FIXES_SAMP && defined _ALS_GetPVarString
-		#error _ALS_GetPVarString defined
-	#endif
-
+#if FIX_defaults && !FIX_const && !FIX_GetPVarString && _FIXES_SAMP && !defined _ALS_GetPVarString
 	native FIXES_GetPVarString(playerid, pvar[], value[], len = sizeof (value)) = GetPVarString;
 
-	#if _FIXES_SAMP
-		#define _ALS_GetPVarString
-		#define GetPVarString( FIXES_GetPVarString(
-	#endif
+	#define _ALS_GetPVarString
+	#define GetPVarString( FIXES_GetPVarString(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetPVarStringDefault);
 #endif
@@ -13642,17 +13590,11 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>defaults</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_GetPVarNameAtIndex
-	#error _ALS_GetPVarNameAtIndex defined
-#endif
-
-#if FIX_defaults
+#if FIX_defaults && _FIXES_SAMP && !defined _ALS_GetPVarNameAtIndex
 	native FIXES_GetPVarNameAtIndex(playerid, index, name[], len = sizeof (name)) = GetPVarNameAtIndex;
 
-	#if _FIXES_SAMP
-		#define _ALS_GetPVarNameAtIndex
-		#define GetPVarNameAtIndex( FIXES_GetPVarNameAtIndex(
-	#endif
+	#define _ALS_GetPVarNameAtIndex
+	#define GetPVarNameAtIndex( FIXES_GetPVarNameAtIndex(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetPVarNameAtIndexDefault);
 #endif
@@ -13660,18 +13602,11 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 /**
  * <fixes>defaults</fixes>
  */
-
-#if _FIXES_SAMP && defined _ALS_GetAnimationName
-	#error _ALS_GetAnimationName defined
-#endif
-
-#if FIX_defaults
+#if FIX_defaults && _FIXES_SAMP && !defined _ALS_GetAnimationName
 	native FIXES_GetAnimationName(index, animationLibrary[], len1 = sizeof (animationLibrary), animationName[], len2 = sizeof (animationName)) = GetAnimationName;
 
-	#if _FIXES_SAMP
-		#define _ALS_GetAnimationName
-		#define GetAnimationName( FIXES_GetAnimationName(
-	#endif
+	#define _ALS_GetAnimationName
+	#define GetAnimationName( FIXES_GetAnimationName(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_GetAnimationNameDefault);
 #endif
@@ -13680,17 +13615,11 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>defaults</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_db_field_name
-	#error _ALS_db_field_name defined
-#endif
+#if FIX_defaults && _FIXES_SAMP && !defined _ALS_db_field_name
+	native _FIXES_MAYBE_BOOL:FIXES_db_field_name(DBResult:dbResult, field, result[], len = sizeof (result)) = db_field_name;
 
-#if FIX_defaults
-	native FIXES_db_field_name(DBResult:dbResult, field, result[], len = sizeof (result)) = db_field_name;
-
-	#if _FIXES_SAMP
-		#define _ALS_db_field_name
-		#define db_field_name( FIXES_db_field_name(
-	#endif
+	#define _ALS_db_field_name
+	#define db_field_name( FIXES_db_field_name(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_db_field_name);
 #endif
@@ -13699,17 +13628,11 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>defaults</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_db_get_field
-	#error _ALS_db_get_field defined
-#endif
+#if FIX_defaults && _FIXES_SAMP && !defined _ALS_db_get_field
+	native _FIXES_MAYBE_BOOL:FIXES_db_get_field(DBResult:dbResult, field, result[], len = sizeof (result)) = db_get_field;
 
-#if FIX_defaults
-	native FIXES_db_get_field(DBResult:dbResult, field, result[], len = sizeof (result)) = db_get_field;
-
-	#if _FIXES_SAMP
-		#define _ALS_db_get_field
-		#define db_get_field( FIXES_db_get_field(
-	#endif
+	#define _ALS_db_get_field
+	#define db_get_field( FIXES_db_get_field(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_db_get_field);
 #endif
@@ -13718,17 +13641,11 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>defaults</fixes>
  */
 
-#if _FIXES_SAMP && defined _ALS_db_get_field_assoc
-	#error _ALS_db_get_field_assoc defined
-#endif
+#if FIX_defaults && _FIXES_SAMP && !defined _ALS_db_get_field_assoc
+	native _FIXES_MAYBE_BOOL:FIXES_db_get_field_assoc(DBResult:dbresult, const field[], result[], len = sizeof (result)) = db_get_field_assoc;
 
-#if FIX_defaults
-	native FIXES_db_get_field_assoc(DBResult:dbresult, const field[], result[], len = sizeof (result)) = db_get_field_assoc;
-
-	#if _FIXES_SAMP
-		#define _ALS_db_get_field_assoc
-		#define db_get_field_assoc( FIXES_db_get_field_assoc(
-	#endif
+	#define _ALS_db_get_field_assoc
+	#define db_get_field_assoc( FIXES_db_get_field_assoc(
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_db_get_field_assoc);
 #endif
