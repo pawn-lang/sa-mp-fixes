@@ -1,6 +1,12 @@
-//
-// a_actor
-//
+/*
+
+     █████           █████   ██████ ████████  ██████  ██████
+    ██   ██         ██   ██ ██         ██    ██    ██ ██   ██
+    ███████         ███████ ██         ██    ██    ██ ██████
+    ██   ██         ██   ██ ██         ██    ██    ██ ██   ██
+    ██   ██ ███████ ██   ██  ██████    ██     ██████  ██   ██
+
+*/
 
 #if defined _ALS_CreateActor
 	#error _ALS_CreateActor defined
@@ -146,9 +152,15 @@ native bool:IsValidActor__(actorid) = IsValidActor;
 #define _ALS_IsValidActor
 #define IsValidActor( FIXES_IsValidActor(
 
-//
-// a_http
-//
+/*
+
+     █████          ██   ██ ████████ ████████ ██████
+    ██   ██         ██   ██    ██       ██    ██   ██
+    ███████         ███████    ██       ██    ██████
+    ██   ██         ██   ██    ██       ██    ██
+    ██   ██ ███████ ██   ██    ██       ██    ██
+
+*/
 
 #if defined _ALS_HTTP
 	#error _ALS_HTTP defined
@@ -159,9 +171,16 @@ native HTTP__(index, HTTP_METHOD:method, const url[], const data[], const callba
 #define _ALS_HTTP
 #define HTTP( FIXES_HTTP(
 
-//
-// a_objects
-//
+/*
+
+
+     █████           ██████  ██████       ██ ███████  ██████ ████████ ███████
+    ██   ██         ██    ██ ██   ██      ██ ██      ██         ██    ██
+    ███████         ██    ██ ██████       ██ █████   ██         ██    ███████
+    ██   ██         ██    ██ ██   ██ ██   ██ ██      ██         ██         ██
+    ██   ██ ███████  ██████  ██████   █████  ███████  ██████    ██    ███████
+
+*/
 
 #if defined _ALS_CreateObject
 	#error _ALS_CreateObject defined
@@ -505,9 +524,15 @@ native SetObjectsDefaultCameraCol__(bool:disable) = SetObjectsDefaultCameraCol;
 #define _ALS_SetObjectsDefaultCameraCol
 #define SetObjectsDefaultCameraCol( FIXES_SetObjectsDefaultCameraCol(
 
-//
-// a_players
-//
+/*
+
+     █████          ██████  ██       █████  ██    ██ ███████ ██████  ███████
+    ██   ██         ██   ██ ██      ██   ██  ██  ██  ██      ██   ██ ██
+    ███████         ██████  ██      ███████   ████   █████   ██████  ███████
+    ██   ██         ██      ██      ██   ██    ██    ██      ██   ██      ██
+    ██   ██ ███████ ██      ███████ ██   ██    ██    ███████ ██   ██ ███████
+
+*/
 
 #if defined _ALS_SetSpawnInfo
 	#error _ALS_SetSpawnInfo defined
@@ -1941,9 +1966,15 @@ native SendClientCheck__(playerid, type, memoryAddress, memoryOffset, byteCount)
 #define _ALS_SendClientCheck
 #define SendClientCheck( FIXES_SendClientCheck(
 
-//
-// a_samp
-//
+/*
+
+     █████          ███████  █████  ███    ███ ██████
+    ██   ██         ██      ██   ██ ████  ████ ██   ██
+    ███████         ███████ ███████ ██ ████ ██ ██████
+    ██   ██              ██ ██   ██ ██  ██  ██ ██
+    ██   ██ ███████ ███████ ██   ██ ██      ██ ██
+
+*/
 
 #if defined _ALS_print
 	#error _ALS_print defined
@@ -3409,9 +3440,15 @@ native GPCI__(playerid, serial[], len = sizeof (serial)) = gpci;
 #define _ALS_GPCI
 #define GPCI( FIXES_GPCI(
 
-//
-// a_sampdb
-//
+/*
+
+     █████          ███████  █████  ███    ███ ██████  ██████  ██████
+    ██   ██         ██      ██   ██ ████  ████ ██   ██ ██   ██ ██   ██
+    ███████         ███████ ███████ ██ ████ ██ ██████  ██   ██ ██████
+    ██   ██              ██ ██   ██ ██  ██  ██ ██      ██   ██ ██   ██
+    ██   ██ ███████ ███████ ██   ██ ██      ██ ██      ██████  ██████
+
+*/
 
 #if defined _ALS_db_open
 	#error _ALS_db_open defined
@@ -3791,9 +3828,15 @@ native DB_DebugOpenResults__() = db_debug_openresults;
 #define _ALS_DB_DebugOpenResults
 #define DB_DebugOpenResults( FIXES_DB_DebugOpenResults(
 
-//
-// a_vehicles
-//
+/*
+
+     █████          ██    ██ ███████ ██   ██ ██  ██████ ██      ███████ ███████
+    ██   ██         ██    ██ ██      ██   ██ ██ ██      ██      ██      ██
+    ███████         ██    ██ █████   ███████ ██ ██      ██      █████   ███████
+    ██   ██          ██  ██  ██      ██   ██ ██ ██      ██      ██           ██
+    ██   ██ ███████   ████   ███████ ██   ██ ██  ██████ ███████ ███████ ███████
+
+*/
 
 #if defined _ALS_CreateVehicle
 	#error _ALS_CreateVehicle defined
