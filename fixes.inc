@@ -12094,7 +12094,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
-	native _FIXES_MAYBE_BOOL:CST_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
+	native bool:CST_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
 	native bool:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn;
 	#if defined _ALS_IsActorStreamedIn
 		#define _ALS_IsActorStreamedIn__
@@ -12190,7 +12190,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsActorInvulnerable(actorid) = IsActorInvulnerable;
-	native _FIXES_MAYBE_BOOL:CST_IsActorInvulnerable(actorid) = IsActorInvulnerable;
+	native bool:CST_IsActorInvulnerable(actorid) = IsActorInvulnerable;
 	native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
 	#if defined _ALS_IsActorInvulnerable
 		#define _ALS_IsActorInvulnerable__
@@ -12198,7 +12198,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsValidActor(actorid) = IsValidActor;
-	native _FIXES_MAYBE_BOOL:CST_IsValidActor(actorid) = IsValidActor;
+	native bool:CST_IsValidActor(actorid) = IsValidActor;
 	native bool:IsValidActor__(actorid) = IsValidActor;
 	#if defined _ALS_IsValidActor
 		#define _ALS_IsValidActor__
@@ -12328,7 +12328,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsValidObject(objectid) = IsValidObject;
-	native _FIXES_MAYBE_BOOL:CST_IsValidObject(objectid) = IsValidObject;
+	native bool:CST_IsValidObject(objectid) = IsValidObject;
 	native bool:IsValidObject__(objectid) = IsValidObject;
 	#if defined _ALS_IsValidObject
 		#define _ALS_IsValidObject__
@@ -12360,7 +12360,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsObjectMoving(objectid) = IsObjectMoving;
-	native _FIXES_MAYBE_BOOL:CST_IsObjectMoving(objectid) = IsObjectMoving;
+	native bool:CST_IsObjectMoving(objectid) = IsObjectMoving;
 	native bool:IsObjectMoving__(objectid) = IsObjectMoving;
 	#if defined _ALS_IsObjectMoving
 		#define _ALS_IsObjectMoving__
@@ -12464,7 +12464,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
-	native _FIXES_MAYBE_BOOL:CST_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
+	native bool:CST_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
 	native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
 	#if defined _ALS_IsValidPlayerObject
 		#define _ALS_IsValidPlayerObject__
@@ -12496,7 +12496,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
-	native _FIXES_MAYBE_BOOL:CST_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
+	native bool:CST_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
 	native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
 	#if defined _ALS_IsPlayerObjectMoving
 		#define _ALS_IsPlayerObjectMoving__
@@ -12618,7 +12618,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
-	native _FIXES_MAYBE_BOOL:CST_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
+	native bool:CST_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 	native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 	#if defined _ALS_IsPlayerInRangeOfPoint
 		#define _ALS_IsPlayerInRangeOfPoint__
@@ -12634,7 +12634,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
-	native _FIXES_MAYBE_BOOL:CST_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
+	native bool:CST_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
 	native bool:IsPlayerStreamedIn__(targetid, playerid) = IsPlayerStreamedIn;
 	#if defined _ALS_IsPlayerStreamedIn
 		#define _ALS_IsPlayerStreamedIn__
@@ -13117,7 +13117,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
-	native _FIXES_MAYBE_BOOL:CST_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+	native bool:CST_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 	native bool:IsPlayerAttachedObjectSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 	#if defined _ALS_IsPlayerAttachedObjectSlotUsed
 		#define _ALS_IsPlayerAttachedObjectSlotUsed__
@@ -13702,7 +13702,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
-	native _FIXES_MAYBE_BOOL:CST_IsPlayerConnected(playerid) = IsPlayerConnected;
+	native bool:CST_IsPlayerConnected(playerid) = IsPlayerConnected;
 	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
 	#if defined _ALS_IsPlayerConnected
 		#define _ALS_IsPlayerConnected__
@@ -13710,7 +13710,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
-	native _FIXES_MAYBE_BOOL:CST_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
+	native bool:CST_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
 	native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
 	#if defined _ALS_IsPlayerInVehicle
 		#define _ALS_IsPlayerInVehicle__
@@ -13718,7 +13718,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
-	native _FIXES_MAYBE_BOOL:CST_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
+	native bool:CST_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
 	native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
 	#if defined _ALS_IsPlayerInAnyVehicle
 		#define _ALS_IsPlayerInAnyVehicle__
@@ -13726,7 +13726,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
-	native _FIXES_MAYBE_BOOL:CST_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
+	native bool:CST_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
 	native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
 	#if defined _ALS_IsPlayerInCheckpoint
 		#define _ALS_IsPlayerInCheckpoint__
@@ -13734,7 +13734,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
-	native _FIXES_MAYBE_BOOL:CST_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
+	native bool:CST_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
 	native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
 	#if defined _ALS_IsPlayerInRaceCheckpoint
 		#define _ALS_IsPlayerInRaceCheckpoint__
@@ -14466,7 +14466,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsPlayerNPC(playerid) = IsPlayerNPC;
-	native _FIXES_MAYBE_BOOL:CST_IsPlayerNPC(playerid) = IsPlayerNPC;
+	native bool:CST_IsPlayerNPC(playerid) = IsPlayerNPC;
 	native bool:IsPlayerNPC__(playerid) = IsPlayerNPC;
 	#if defined _ALS_IsPlayerNPC
 		#define _ALS_IsPlayerNPC__
@@ -14522,7 +14522,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsPlayerAdmin(playerid) = IsPlayerAdmin;
-	native _FIXES_MAYBE_BOOL:CST_IsPlayerAdmin(playerid) = IsPlayerAdmin;
+	native bool:CST_IsPlayerAdmin(playerid) = IsPlayerAdmin;
 	native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
 	#if defined _ALS_IsPlayerAdmin
 		#define _ALS_IsPlayerAdmin__
@@ -14621,7 +14621,7 @@ _FIXES_STATIC_STOCK_CONST
 
 	native BAD_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
 	#pragma deprecated Use `GetConsoleVarAsBool`.
-	native _FIXES_MAYBE_BOOL:CST_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
+	native bool:CST_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
 	native bool:GetServerVarAsBool__(const cvar[]) = GetServerVarAsBool;
 	#if defined _ALS_GetServerVarAsBool
 		#define _ALS_GetServerVarAsBool__
@@ -14645,7 +14645,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
-	native _FIXES_MAYBE_BOOL:CST_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
+	native bool:CST_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
 	native bool:GetConsoleVarAsBool__(const cvar[]) = GetConsoleVarAsBool;
 	#if defined _ALS_GetConsoleVarAsBool
 		#define _ALS_GetConsoleVarAsBool__
@@ -14781,7 +14781,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsValidMenu(Menu:menuid) = IsValidMenu;
-	native _FIXES_MAYBE_BOOL:CST_IsValidMenu(Menu:menuid) = IsValidMenu;
+	native bool:CST_IsValidMenu(Menu:menuid) = IsValidMenu;
 	native bool:IsValidMenu__(Menu:menuid) = IsValidMenu;
 	#if defined _ALS_IsValidMenu
 		#define _ALS_IsValidMenu__
@@ -15192,7 +15192,7 @@ _FIXES_STATIC_STOCK_CONST
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_Close`.
 	#endif
-	native _FIXES_MAYBE_BOOL:CST_db_close(DB:db) = db_close;
+	native bool:CST_db_close(DB:db) = db_close;
 	native bool:db_close__(DB:db) = db_close;
 	#if defined _ALS_db_close
 		#define _ALS_db_close__
@@ -15200,7 +15200,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_DB_Close(DB:db) = db_close;
-	native _FIXES_MAYBE_BOOL:CST_DB_Close(DB:db) = db_close;
+	native bool:CST_DB_Close(DB:db) = db_close;
 	native bool:DB_Close__(DB:db) = db_close;
 	#if defined _ALS_DB_Close
 		#define _ALS_DB_Close__
@@ -15230,7 +15230,7 @@ _FIXES_STATIC_STOCK_CONST
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_FreeResult`.
 	#endif
-	native _FIXES_MAYBE_BOOL:CST_db_free_result(DBResult:result) = db_free_result;
+	native bool:CST_db_free_result(DBResult:result) = db_free_result;
 	native bool:db_free_result__(DBResult:result) = db_free_result;
 	#if defined _ALS_db_free_result
 		#define _ALS_db_free_result__
@@ -15238,7 +15238,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_DB_FreeResult(DBResult:result) = db_free_result;
-	native _FIXES_MAYBE_BOOL:CST_DB_FreeResult(DBResult:result) = db_free_result;
+	native bool:CST_DB_FreeResult(DBResult:result) = db_free_result;
 	native bool:DB_FreeResult__(DBResult:result) = db_free_result;
 	#if defined _ALS_DB_FreeResult
 		#define _ALS_DB_FreeResult__
@@ -15268,7 +15268,7 @@ _FIXES_STATIC_STOCK_CONST
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_NextRow`.
 	#endif
-	native _FIXES_MAYBE_BOOL:CST_db_next_row(DBResult:result) = db_next_row;
+	native bool:CST_db_next_row(DBResult:result) = db_next_row;
 	native bool:db_next_row__(DBResult:result) = db_next_row;
 	#if defined _ALS_db_next_row
 		#define _ALS_db_next_row__
@@ -15276,7 +15276,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_DB_NextRow(DBResult:result) = db_next_row;
-	native _FIXES_MAYBE_BOOL:CST_DB_NextRow(DBResult:result) = db_next_row;
+	native bool:CST_DB_NextRow(DBResult:result) = db_next_row;
 	native bool:DB_NextRow__(DBResult:result) = db_next_row;
 	#if defined _ALS_DB_NextRow
 		#define _ALS_DB_NextRow__
@@ -15306,7 +15306,7 @@ _FIXES_STATIC_STOCK_CONST
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_FieldName`.
 	#endif
-	native _FIXES_MAYBE_BOOL:CST_db_field_name(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
+	native bool:CST_db_field_name(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
 	native bool:db_field_name__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
 	#if defined _ALS_db_field_name
 		#define _ALS_db_field_name__
@@ -15314,7 +15314,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_DB_FieldName(DBResult:result, field, output[], size) = db_field_name;
-	native _FIXES_MAYBE_BOOL:CST_DB_FieldName(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
+	native bool:CST_DB_FieldName(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
 	native bool:DB_FieldName__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
 	#if defined _ALS_DB_FieldName
 		#define _ALS_DB_FieldName__
@@ -15325,7 +15325,7 @@ _FIXES_STATIC_STOCK_CONST
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_GetField`.
 	#endif
-	native _FIXES_MAYBE_BOOL:CST_db_get_field(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
+	native bool:CST_db_get_field(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
 	native bool:db_get_field__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
 	#if defined _ALS_db_get_field
 		#define _ALS_db_get_field__
@@ -15333,7 +15333,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_DB_GetField(DBResult:result, field, output[], size) = db_get_field;
-	native _FIXES_MAYBE_BOOL:CST_DB_GetField(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
+	native bool:CST_DB_GetField(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
 	native bool:DB_GetField__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
 	#if defined _ALS_DB_GetField
 		#define _ALS_DB_GetField__
@@ -15382,7 +15382,7 @@ _FIXES_STATIC_STOCK_CONST
 	#if FIX_camel_case
 		#pragma deprecated Use `DB_GetFieldAssoc`.
 	#endif
-	native _FIXES_MAYBE_BOOL:CST_db_get_field_assoc(DBResult:result, const field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
+	native bool:CST_db_get_field_assoc(DBResult:result, const field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
 	native bool:db_get_field_assoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
 	#if defined _ALS_db_get_field_assoc
 		#define _ALS_db_get_field_assoc__
@@ -15390,7 +15390,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_DB_GetFieldAssoc(DBResult:result, field[], output[], size) = db_get_field_assoc;
-	native _FIXES_MAYBE_BOOL:CST_DB_GetFieldAssoc(DBResult:result, const field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
+	native bool:CST_DB_GetFieldAssoc(DBResult:result, const field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
 	native bool:DB_GetFieldAssoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
 	#if defined _ALS_DB_GetFieldAssoc
 		#define _ALS_DB_GetFieldAssoc__
@@ -15538,7 +15538,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
-	native _FIXES_MAYBE_BOOL:CST_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
+	native bool:CST_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
 	native bool:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn;
 	#if defined _ALS_IsVehicleStreamedIn
 		#define _ALS_IsVehicleStreamedIn__
@@ -15746,7 +15746,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
-	native _FIXES_MAYBE_BOOL:CST_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
+	native bool:CST_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
 	native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
 	#if defined _ALS_IsTrailerAttachedToVehicle
 		#define _ALS_IsTrailerAttachedToVehicle__
@@ -15866,7 +15866,7 @@ _FIXES_STATIC_STOCK_CONST
 	#endif
 
 	native BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
-	native _FIXES_MAYBE_BOOL:CST_IsValidVehicle(vehicleid) = IsValidVehicle;
+	native bool:CST_IsValidVehicle(vehicleid) = IsValidVehicle;
 	native bool:IsValidVehicle__(vehicleid) = IsValidVehicle;
 	#if defined _ALS_IsValidVehicle
 		#define _ALS_IsValidVehicle__
@@ -17613,20 +17613,20 @@ static stock _FIXES_CountFilterscripts()
  * <fixes>LocalNPCNatives</fixes>
  */
 
-#if FIX_LocalNPCNatives
-	stock FIXES_SetTimerExNPC(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[], {Float,_}:...)
+#if !FIX_LocalNPCNatives
+	static
+#endif
+	stock FIXES_SetTimerExNPC(const functionName[], interval, bool:repeating, const format[], {Float,_}:...)
 	{
 	}
 
-	#if _FIXES_SAMP
-		#define _ALS_SetTimerEx
-		#define SetTimerEx( FIXES_SetTimerExNPC(
+#if FIX_LocalNPCNatives
+	#define CST_SetTimerEx(%0,%1,%2,%3) FIXES_SetTimerExNPC(%0,%1,_FIXES_TO_BOOL(%2),%3)
+	#if defined _ALS_SetTimerEx__
+		#undef SetTimerEx__
 	#endif
-
 	#define _ALS_SetTimerEx__
 	#define SetTimerEx__( FIXES_SetTimerExNPC(
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetTimerExNPC);
 #endif
 
 /**
@@ -20252,9 +20252,9 @@ public OnJITCompile()
 
 #if FIX_TogglePlayerControllable
 	#if FIXES_Single
-		stock FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle)
+		stock FIXES_TogglePlayerControllable(playerid, bool:toggle)
 		{
-			if (TogglePlayerControllable__(playerid, _FIXES_MAYBE_BOOL:toggle))
+			if (TogglePlayerControllable__(playerid, bool:toggle))
 			{
 				if (toggle)
 				{
@@ -20271,12 +20271,12 @@ public OnJITCompile()
 	#else
 		forward _FIXES_TogglePlayerControllable(playerid, bool:toggle);
 
-		stock FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle)
+		stock FIXES_TogglePlayerControllable(playerid, bool:toggle)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
-					CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, _FIXES_TO_BOOL(toggle)),
+					CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			return 0;
@@ -20299,11 +20299,10 @@ public OnJITCompile()
 		}
 	#endif
 
-	#if _FIXES_SAMP
-		#define _ALS_TogglePlayerControllable
-		#define TogglePlayerControllable( FIXES_TogglePlayerControllable(
+	#define CST_TogglePlayerControllable(%0,%1) FIXES_TogglePlayerControllable(%0,_FIXES_TO_BOOL(%1))
+	#if defined _ALS_TogglePlayerControllable__
+		#undef TogglePlayerControllable__
 	#endif
-
 	#define _ALS_TogglePlayerControllable__
 	#define TogglePlayerControllable__( FIXES_TogglePlayerControllable(
 #else
@@ -20415,25 +20414,25 @@ public OnJITCompile()
 #if !FIX_SetTimer
 	static
 #endif
-	stock FIXES_SetTimer(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating)
+	stock FIXES_SetTimer(const functionName[], interval, bool:repeating)
 	{
 		#if FIXES_CorrectInvalidTimerID
 			new
-				timerid = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating));
+				timerid = SetTimer__(functionName, interval, repeating);
 			if (timerid)
 			{
 				return timerid;
 			}
 			// Got a timer ID of 0, which is actually valid.  Start a new one.
 			return
-				interval = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating)),
+				interval = SetTimer__(functionName, interval, repeating),
 				// Kill the old version, AFTER creating a new one so the ID
 				// can't be reused.
 				KillTimer__(timerid),
 				interval;
 		#else
 			new
-				timer1 = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating));
+				timer1 = SetTimer__(functionName, interval, repeating);
 			if (timer1 && ~timer1) // timer1 != 0 && timer1 != -1
 			{
 				return timer1;
@@ -20442,7 +20441,7 @@ public OnJITCompile()
 			// because someone started a rumour that that's the invalid ID.  Make
 			// a new version.
 			new
-				timer2 = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating));
+				timer2 = SetTimer__(functionName, interval, repeating);
 			if (timer2 && ~timer2)
 			{
 				// Kill the old version, AFTER creating a new one so the ID can't be
@@ -20454,7 +20453,7 @@ public OnJITCompile()
 			// It is possible to have both created timers return invalid values,
 			// since there are two.
 			return
-				interval = SetTimer__(functionName, interval, _FIXES_TO_BOOL(repeating)),
+				interval = SetTimer__(functionName, interval, repeating),
 				KillTimer__(timer2),
 				KillTimer__(timer1),
 				interval;
@@ -20462,6 +20461,10 @@ public OnJITCompile()
 	}
 
 #if FIX_SetTimer
+	#define CST_SetTimer(%0,%1,%2) FIXES_SetTimer(%0,%1,_FIXES_TO_BOOL(%2))
+	#if defined _ALS_SetTimer__
+		#undef SetTimer__
+	#endif
 	#define _ALS_SetTimer__
 	#define SetTimer__( FIXES_SetTimer(
 #endif
@@ -20473,7 +20476,7 @@ public OnJITCompile()
 #if !FIX_SetTimer || _FIXES_NPC
 	static
 #endif
-	stock FIXES_SetTimerEx(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[], {Float,_}:...)
+	stock FIXES_SetTimerEx(const functionName[], interval, bool:repeating, const format[], {Float,_}:...)
 	{
 			#pragma unused functionName, interval, repeating, format
 
@@ -20553,16 +20556,18 @@ public OnJITCompile()
 			return sTimer1;
 	}
 
-#if FIX_SetTimer && !_FIXES_NPC
-	#if _FIXES_SAMP
-		#if defined _ALS_SetTimerEx
-			#undef SetTimerEx
-		#else
-			#define _ALS_SetTimerEx
-		#endif
-		#define SetTimerEx( FIXES_SetTimerEx(
+#if FIX_SetTimer
+	#if FIX_bool_tags
+		#define CST_SetTimerEx( FIXES_SetTimerEx(
+	#else
+		// This is awkward because `format` may be optional but we can't use a
+		// `NEW_` wrapper function due to the variable arguments.
+		#define _FIXES_UNWRAP_ARGS:!!(%2,%3)) %2),%3)
+		#define CST_SetTimerEx(%0,%1,%2) FIXES_SetTimerEx(%0,%1,bool:_FIXES_UNWRAP_ARGS:!!(%2))
 	#endif
-
+	#if defined _ALS_SetTimerEx__
+		#undef SetTimerEx__
+	#endif
 	#define _ALS_SetTimerEx__
 	#define SetTimerEx__( FIXES_SetTimerEx(
 #endif
@@ -22654,7 +22659,7 @@ public OnJITCompile()
 
 #if FIX_AllowInteriorWeapons
 	#if FIXES_Single
-		stock bool:FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow)
+		stock bool:FIXES_AllowInteriorWeapons(bool:allow)
 		{
 			if (allow)
 			{
@@ -22675,14 +22680,14 @@ public OnJITCompile()
 					}
 				}
 			}
-			return _FIXES_TO_BOOL(allow);
+			return allow;
 		}
 	#else
-		stock bool:FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow)
+		stock bool:FIXES_AllowInteriorWeapons(allow)
 		{
 			return
-				CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, _FIXES_TO_BOOL(allow)),
-				_FIXES_TO_BOOL(allow);
+				CallRemoteFunction__(FIXES_gscAllowInteriorWeapons, FIXES_gscSpec@i, allow),
+				allow;
 		}
 
 		forward bool:_FIXES_AllowInteriorWeapons(bool:allow);
@@ -22712,11 +22717,10 @@ public OnJITCompile()
 		}
 	#endif
 
-	#if _FIXES_SAMP
-		#define _ALS_AllowInteriorWeapons
-		#define AllowInteriorWeapons( FIXES_AllowInteriorWeapons(
+	#define CST_AllowInteriorWeapons(%0) FIXES_AllowInteriorWeapons(_FIXES_TO_BOOL(%0))
+	#if defined _ALS_AllowInteriorWeapons__
+		#undef AllowInteriorWeapons__
 	#endif
-
 	#define _ALS_AllowInteriorWeapons__
 	#define AllowInteriorWeapons__( FIXES_AllowInteriorWeapons(
 #else
@@ -22834,7 +22838,7 @@ public OnJITCompile()
 
 #if FIX_AllowTeleport
 	#if FIXES_Single
-		stock bool:FIXES_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow)
+		stock bool:FIXES_AllowPlayerTeleport(playerid, bool:allow)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
@@ -22851,23 +22855,22 @@ public OnJITCompile()
 			return false;
 		}
 	#else
-		stock bool:FIXES_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow)
+		stock bool:FIXES_AllowPlayerTeleport(playerid, bool:allow)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
-					CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, playerid, _FIXES_TO_BOOL(allow)),
+					CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, playerid, allow),
 					true;
 			}
 			return false;
 		}
 	#endif
 
-	#if _FIXES_SAMP
-		#define _ALS_AllowPlayerTeleport
-		#define AllowPlayerTeleport( FIXES_AllowPlayerTeleport(
+	#define CST_AllowPlayerTeleport(%0,%1) FIXES_AllowPlayerTeleport(%0,_FIXES_TO_BOOL(%1))
+	#if defined _ALS_AllowPlayerTeleport__
+		#undef AllowPlayerTeleport__
 	#endif
-
 	#define _ALS_AllowPlayerTeleport__
 	#define AllowPlayerTeleport__( FIXES_AllowPlayerTeleport(
 #else
@@ -22880,7 +22883,7 @@ public OnJITCompile()
 
 #if FIX_AllowTeleport
 	#if FIXES_Single
-		stock bool:FIXES_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow)
+		stock bool:FIXES_AllowAdminTeleport(bool:allow)
 		{
 			if (allow)
 			{
@@ -22890,22 +22893,21 @@ public OnJITCompile()
 			{
 				FIXES_gsSettings &= ~e_FIXES_SETTINGS_ADMIN_TELEPORT;
 			}
-			return _FIXES_TO_BOOL(allow);
+			return allow;
 		}
 	#else
-		stock bool:FIXES_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow)
+		stock bool:FIXES_AllowAdminTeleport(bool:allow)
 		{
 			return
-				CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, INVALID_PLAYER_ID, _FIXES_TO_BOOL(allow)),
-				_FIXES_TO_BOOL(allow);
+				CallRemoteFunction__(FIXES_gscAllowTeleport, FIXES_gscSpec@ii, INVALID_PLAYER_ID, allow),
+				allow;
 		}
 	#endif
 
-	#if _FIXES_SAMP
-		#define _ALS_AllowAdminTeleport
-		#define AllowAdminTeleport( FIXES_AllowAdminTeleport(
+	#define CST_AllowAdminTeleport(%0) FIXES_AllowAdminTeleport(_FIXES_TO_BOOL(%0))
+	#if defined _ALS_AllowAdminTeleport__
+		#undef AllowAdminTeleport__
 	#endif
-
 	#define _ALS_AllowAdminTeleport__
 	#define AllowAdminTeleport__( FIXES_AllowAdminTeleport(
 #else
@@ -22917,7 +22919,7 @@ public OnJITCompile()
  */
 
 #if FIX_AllowTeleport && !defined FILTERSCRIPT && !FIXES_Single
-	public _FIXES_AllowTeleport(playerid, allow)
+	public _FIXES_AllowTeleport(playerid, bool:allow)
 	{
 		if (!_FIXES_gIsFilterscript)
 		{
@@ -23176,7 +23178,7 @@ public OnJITCompile()
  */
 
 #if FIX_OnVehicleSpawn
-	stock FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false)
+	stock FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false)
 	{
 		#if !FIXES_Single
 			_FIXES_IS_IN_CHARGE()
@@ -23188,7 +23190,7 @@ public OnJITCompile()
 							if (colour2 == -1)
 							{
 								_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 								if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 								{
 									FIXES_gsBackupVehicleColour{modelid} = 0,
@@ -23203,7 +23205,7 @@ public OnJITCompile()
 							{
 								// Random temp var.
 								_FIXES_GetRandomCarColPair(modelid, colour1, FIXES_gsTrimChr),
-								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+								modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 								if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 								{
 									FIXES_gsBackupVehicleColour{modelid} = colour2,
@@ -23219,7 +23221,7 @@ public OnJITCompile()
 						{
 							// Random temp var.
 							_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, colour2),
-							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsBackupVehicleColour{modelid} = colour1,
@@ -23232,7 +23234,7 @@ public OnJITCompile()
 						}
 						else
 						{
-							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsBackupVehicleColour{modelid} = 0,
@@ -23247,7 +23249,7 @@ public OnJITCompile()
 						if (colour1 == -1 && colour2 == -1)
 						{
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -23269,7 +23271,7 @@ public OnJITCompile()
 							print(      "***                    If you want to fix this issue, fix your code."),
 							print(FIXES_gscThreeStars),
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -23279,7 +23281,7 @@ public OnJITCompile()
 					#endif
 						else
 						{
-							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+							modelid = CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] &= ~(1 << (modelid & 31));
@@ -23298,16 +23300,24 @@ public OnJITCompile()
 			}
 			else
 			{
-				return CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+				return CreateVehicle__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 			}
 		#endif
 	}
 
-	#if _FIXES_SAMP
-		#define _ALS_CreateVehicle
-		#define CreateVehicle( FIXES_CreateVehicle(
+	#if FIX_bool_tags
+		#define CST_CreateVehicle( FIXES_CreateVehicle(
+	#else
+		stock NEW_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, addSiren = false)
+		{
+			return FIXES_CreateVehicle(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, !!addSiren);
+		}
+		#define CST_CreateVehicle( NEW_CreateVehicle(
 	#endif
 
+	#if defined _ALS_CreateVehicle__
+		#undef CreateVehicle__
+	#endif
 	#define _ALS_CreateVehicle__
 	#define CreateVehicle__( FIXES_CreateVehicle(
 #else
@@ -23325,7 +23335,7 @@ public OnJITCompile()
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
-			setproperty(5, FIXES_gscReturnProperty, FIXES_CreateVehicle(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren));
+			setproperty(5, FIXES_gscReturnProperty, FIXES_CreateVehicle(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren));
 		}
 	}
 #else
@@ -23337,7 +23347,7 @@ public OnJITCompile()
  */
 
 #if FIX_OnVehicleSpawn
-	stock FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false)
+	stock FIXES_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false)
 	{
 		#if !FIXES_Single
 			_FIXES_IS_IN_CHARGE()
@@ -23349,7 +23359,7 @@ public OnJITCompile()
 							if (colour2 == -1)
 							{
 								_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren	);
 								if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 								{
 									FIXES_gsBackupVehicleColour{modelid} = 0,
@@ -23364,7 +23374,7 @@ public OnJITCompile()
 							{
 								// Random temp var.
 								_FIXES_GetRandomCarColPair(modelid, colour1, FIXES_gsTrimChr),
-								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+								modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 								if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 								{
 									FIXES_gsBackupVehicleColour{modelid} = colour2,
@@ -23380,7 +23390,7 @@ public OnJITCompile()
 						{
 							// Random temp var.
 							_FIXES_GetRandomCarColPair(modelid, FIXES_gsTrimChr, colour2),
-							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsBackupVehicleColour{modelid} = colour1,
@@ -23393,7 +23403,7 @@ public OnJITCompile()
 						}
 						else
 						{
-							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsBackupVehicleColour{modelid} = 0,
@@ -23408,7 +23418,7 @@ public OnJITCompile()
 						if (colour1 == -1 && colour2 == -1)
 						{
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -23431,7 +23441,7 @@ public OnJITCompile()
 							print(      "***                    If you want to fix this issue, fix your code."),
 							print(FIXES_gscThreeStars),
 							_FIXES_GetRandomCarColPair(modelid, colour1, colour2),
-							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] |= 1 << (modelid & 31);
@@ -23441,7 +23451,7 @@ public OnJITCompile()
 					#endif
 						else
 						{
-							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+							modelid = AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 							if (_FIXES_IN_RANGE(modelid, 1, MAX_VEHICLES + 1))
 							{
 								FIXES_gsRandomVehicleColour[modelid >>> 5] &= ~(1 << (modelid & 31));
@@ -23453,23 +23463,31 @@ public OnJITCompile()
 		#if !FIXES_Single
 			else if (~colour1 && ~colour2)
 			{
-				return AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren));
+				return AddStaticVehicleEx__(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren);
 			}
 			else
 			{
 				return
 					setproperty(5, FIXES_gscReturnProperty, INVALID_VEHICLE_ID),
-					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_TO_BOOL(addSiren)),
+					CallRemoteFunction(FIXES_gscAddStaticVehicleEx, FIXES_gscSpec@iffffiiii, modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 		#endif
 	}
 
-	#if _FIXES_SAMP
-		#define _ALS_AddStaticVehicleEx
-		#define AddStaticVehicleEx( FIXES_AddStaticVehicleEx(
+	#if FIX_bool_tags
+		#define CST_AddStaticVehicleEx( FIXES_AddStaticVehicleEx(
+	#else
+		stock NEW_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, addSiren = false)
+		{
+			return FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, !!addSiren);
+		}
+		#define CST_AddStaticVehicleEx( NEW_AddStaticVehicleEx(
 	#endif
 
+	#if defined _ALS_AddStaticVehicleEx__
+		#undef AddStaticVehicleEx__
+	#endif
 	#define _ALS_AddStaticVehicleEx__
 	#define AddStaticVehicleEx__( FIXES_AddStaticVehicleEx(
 #else
@@ -23487,7 +23505,7 @@ public OnJITCompile()
 	{
 		_FIXES_IS_IN_CHARGE()
 		{
-			setproperty(5, FIXES_gscReturnProperty, FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren));
+			setproperty(5, FIXES_gscReturnProperty, FIXES_AddStaticVehicleEx(modelid, x, y, z, rotation, colour1, colour2, respawnDelay, addSiren));
 		}
 	}
 #else
@@ -24106,7 +24124,7 @@ public OnJITCompile()
  */
 
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
-	stock FIXES_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE)
+	stock FIXES_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE)
 	{
 		new
 			libraryIndex = _FIXES_GetAnimLibIndex(animationLibrary);
@@ -24114,23 +24132,27 @@ public OnJITCompile()
 		if (~libraryIndex) // != -1
 		{
 			#if FIX_ApplyAnimation_2
-				_FIXES_ApplyAnimationDelay(playerid, libraryIndex, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time, forceSync);
+				_FIXES_ApplyAnimationDelay(playerid, libraryIndex, animationName, delta, loop, lockX, lockY, freeze, time, forceSync);
 			#endif
-				return ApplyAnimation__(playerid, animationLibrary, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time, forceSync);
+				return ApplyAnimation__(playerid, animationLibrary, animationName, delta, loop, lockX, lockY, freeze, time, forceSync);
 		}
 
 		return 0;
 	}
 
-	#if _FIXES_SAMP
-		#if defined _ALS_ApplyAnimation
-			#undef ApplyAnimation
-		#else
-			#define _ALS_ApplyAnimation
-		#endif
-		#define ApplyAnimation( FIXES_ApplyAnimation(
+	#if FIX_bool_tags
+		#define CST_ApplyAnimation( FIXES_ApplyAnimation(
+	#else
+		stock NEW_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, loop, lockX, lockY, freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE)
+		{
+			return FIXES_ApplyAnimation(playerid, animationLibrary, animationName, Float:delta, !!loop, !!lockX, !!lockY, !!freeze, time, forceSync);
+		}
+		#define CST_ApplyAnimation( NEW_ApplyAnimation(
 	#endif
 
+	#if defined _ALS_ApplyAnimation__
+		#undef ApplyAnimation__
+	#endif
 	#define _ALS_ApplyAnimation__
 	#define ApplyAnimation__( FIXES_ApplyAnimation(
 #else
@@ -24183,7 +24205,7 @@ public OnJITCompile()
  */
 
 #if FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
-	stock FIXES_ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time)
+	stock FIXES_ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time)
 	{
 		new
 			libraryIndex = _FIXES_GetAnimLibIndex(animationLibrary);
@@ -24191,23 +24213,27 @@ public OnJITCompile()
 		if (~libraryIndex) // != -1
 		{
 			#if FIX_ApplyActorAnimation_2
-				_FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time);
+				_FIXES_ApplyActorAnimationDelay(actorid, libraryIndex, animationName, delta, loop, lockX, lockY, freeze, time);
 			#endif
-				return ApplyActorAnimation__(actorid, animationLibrary, animationName, delta, _FIXES_TO_BOOL(loop), _FIXES_TO_BOOL(lockX), _FIXES_TO_BOOL(lockY), _FIXES_TO_BOOL(freeze), time);
+				return ApplyActorAnimation__(actorid, animationLibrary, animationName, delta, loop, lockX, lockY, freeze, time);
 		}
 
 		return 0;
 	}
 
-	#if _FIXES_SAMP
-		#if defined _ALS_ApplyActorAnimation
-			#undef ApplyActorAnimation
-		#else
-			#define _ALS_ApplyActorAnimation
-		#endif
-		#define ApplyActorAnimation( FIXES_ApplyActorAnimation(
+	#if FIX_bool_tags
+		#define CST_ApplyActorAnimation( FIXES_ApplyActorAnimation(
+	#else
+		stock NEW_ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, loop, lockX, lockY, freeze, time)
+		{
+			return FIXES_ApplyActorAnimation(actorid, animationLibrary, animationName, Float:delta, !!loop, !!lockX, !!lockY, !!freeze, time);
+		}
+		#define CST_ApplyActorAnimation( NEW_ApplyActorAnimation(
 	#endif
 
+	#if defined _ALS_ApplyActorAnimation__
+		#undef ApplyActorAnimation__
+	#endif
 	#define _ALS_ApplyActorAnimation__
 	#define ApplyActorAnimation__( FIXES_ApplyActorAnimation(
 #else
@@ -24910,7 +24936,7 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
  */
 
 #if FIX_SetPlayerCamera
-	stock FIXES_TogglePlayerSpectating(playerid, _FIXES_MAYBE_BOOL:toggle)
+	stock FIXES_TogglePlayerSpectating(playerid, bool:toggle)
 	{
 		if (_FIXES_IS_VALID_PLAYER(playerid))
 		{
@@ -24930,16 +24956,15 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 					DeletePVar__(playerid, FIXES_pvarPlayerSpectate);
 				#endif
 			}
-			return TogglePlayerSpectating__(playerid, _FIXES_TO_BOOL(toggle));
+			return TogglePlayerSpectating__(playerid, toggle);
 		}
 		return 0;
 	}
 
-	#if _FIXES_SAMP
-		#define _ALS_TogglePlayerSpectating
-		#define TogglePlayerSpectating( FIXES_TogglePlayerSpectating(
+	#define CST_TogglePlayerSpectating(%0,%1) FIXES_TogglePlayerSpectating(%0,_FIXES_TO_BOOL(%1))
+	#if defined _ALS_TogglePlayerSpectating__
+		#undef TogglePlayerSpectating__
 	#endif
-
 	#define _ALS_TogglePlayerSpectating__
 	#define TogglePlayerSpectating__( FIXES_TogglePlayerSpectating(
 #else
@@ -25374,9 +25399,9 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 
 #if FIX_GetPlayerWeather || (FIX_API && !_FIXES_NPC)
 	#if FIXES_Single
-		stock FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle)
+		stock FIXES_TogglePlayerClock(playerid, bool:toggle)
 		{
-			if (TogglePlayerClock__(playerid, _FIXES_TO_BOOL(toggle)))
+			if (TogglePlayerClock__(playerid, toggle))
 			{
 				if (toggle)
 				{
@@ -25393,12 +25418,12 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 	#else
 		forward _FIXES_TogglePlayerClock(playerid, bool:toggle);
 
-		stock FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle)
+		stock FIXES_TogglePlayerClock(playerid, bool:toggle)
 		{
 			if (_FIXES_IS_VALID_PLAYER(playerid))
 			{
 				return
-					CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, _FIXES_TO_BOOL(toggle)),
+					CallRemoteFunction__(FIXES_gscTogglePlayerControl, FIXES_gscSpec@ii, playerid, toggle),
 					getproperty(5, FIXES_gscReturnProperty);
 			}
 			return 0;
@@ -25421,11 +25446,10 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 		}
 	#endif
 
-	#if _FIXES_SAMP
-		#define _ALS_TogglePlayerClock
-		#define TogglePlayerClock( FIXES_TogglePlayerClock(
+	#define CST_TogglePlayerClock(%0,%1) FIXES_TogglePlayerClock(%0,_FIXES_TO_BOOL(%1))
+	#if defined _ALS_TogglePlayerClock__
+		#undef TogglePlayerClock__
 	#endif
-
 	#define _ALS_TogglePlayerClock__
 	#define TogglePlayerClock__( FIXES_TogglePlayerClock(
 #else
