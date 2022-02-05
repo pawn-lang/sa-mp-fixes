@@ -329,6 +329,8 @@
 	#warning Option `FIX_GetPlayerKeys` must now be explicit.
 #elseif _FIXES_WARNING == 138
 	#warning Option `FIX_FORCE_SYNC` must now be explicit.
+#elseif _FIXES_WARNING == 139
+	#warning Option `address_naught` must now be explicit.
 #else
 	#error `_fixes_options.inc` included, but `_FIXES_WARNING` is not set to a valid warning message.
 #endif

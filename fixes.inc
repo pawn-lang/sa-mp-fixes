@@ -7188,6 +7188,43 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_FORCE_SYNC                       (0)
 #endif
 
+/**
+ * <fix name="address_naught">
+ *     <problem>
+ *         When there are internal code errors that result in the wrong address
+ *         being written to, more often than not that write clobbers whatever
+ *         value is in address naught (<c>0x00000000</c>).
+ *     </problem>
+ *     <solution>
+ *         While we can't stop all the bad address writes there are two things
+ *         we can do.  Put a dummy variable right at the start of the script so
+ *         that these bad writes don't break something else, and enable address
+ *         naught write detection in crashdetect.
+ *     </solution>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_address_naught
+	#define _FIXES_WARNING 139
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_address_naught = _FIXES_DEFAULT;
+	#define FIX_address_naught                   _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_address_naught)
+	#undef FIX_address_naught
+	static stock FIX_address_naught = 2;
+	#define FIX_address_naught                   (2)
+#elseif FIX_address_naught
+	#undef FIX_address_naught
+	static stock FIX_address_naught = 1;
+	#define FIX_address_naught                   (1)
+#else
+	#undef FIX_address_naught
+	static stock FIX_address_naught = 0;
+	#define FIX_address_naught                   (0)
+#endif
+
 /*
 
     88b           d88
@@ -8935,6 +8972,22 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
 
 /**
  * <remarks>
+ * _FIXES_IncludeStates
+ *
+ * Define the "_ALS" states used by hooks.
+ * </remarks>
+ */
+
+static stock _FIXES_IncludeStates() <_ALS : _ALS_x0, _ALS : _ALS_x1, _ALS : _ALS_x2, _ALS : _ALS_x3>
+{
+}
+
+static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
+{
+}
+
+/**
+ * <remarks>
  * Ensure natives used be various fixes are included in the AMX.  Done before
  * anything else, and using multiple lines, to try and mitigate the effects of
  * ALS (these MUST include the original natives, not hooks).
@@ -8957,22 +9010,6 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
 			(0);
 	}
 #endif
-
-/**
- * <remarks>
- * _FIXES_IncludeStates
- *
- * Define the "_ALS" states used by hooks.
- * </remarks>
- */
-
-static stock _FIXES_IncludeStates() <_ALS : _ALS_x0, _ALS : _ALS_x1, _ALS : _ALS_x2, _ALS : _ALS_x3>
-{
-}
-
-static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
-{
-}
 
 /*
 
@@ -9767,6 +9804,18 @@ _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
     88
 
 */
+
+/**
+ * <remarks>
+ * A variable declared very first, to get address 0.
+ * </remarks>
+ */
+#if FIX_address_naught
+	public
+		FIXES_address_naught;
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_address_naught);
+#endif
 
 public
 	/**
@@ -13792,6 +13841,48 @@ static stock _FIXES_DetermineOS()
 	#define _FIXES_DetermineOS();
 #endif
 
+/**
+ * <remarks>
+ * Check that <c>FIXES_address_naught</c> is actually at address naught.
+ * </remarks>
+ * <fixes>address_naught</fixes>
+ */
+
+#if _FIXES_NEW_COMPILER
+	#pragma warning push
+	#pragma warning disable 238
+#endif
+
+static stock _FIXES_CheckAddressNaught(const &maybeAddressNaught)
+{
+	// DO NOT write to the variable in this function.  Uses `const &` again to
+	// enforce this.  There is a special version of crashdetect that will
+	// detect writes to address naught, as they often indicate a problem.  So if
+	// this code were to write to `maybeAddressNaught` here, which is (maybe)
+	// legitimately at address naught, it would trigger that error.
+	new
+		address;
+	#emit LOAD.S.pri   maybeAddressNaught
+	#emit STOR.S.pri   address
+	if (address)
+	{
+		// Not 0.
+		print("\7\7\7*** fixes.inc warning: `FIXES_address_naught` is not at address naught "),
+		print(      "***                    (`0x00000000`).  The mode will still run, but any invalid"),
+		print(      "***                    writes may clobber real data.");
+	}
+}
+
+#if _FIXES_NEW_COMPILER
+	#pragma warning pop
+#endif
+
+#if !FIX_address_naught
+	// Disable this call when not using the fix, but without putting the
+	// assembly in a conditional block.
+	#define _FIXES_CheckAddressNaught(%0);
+#endif
+
 /*
  * _FIXES_Bernstein()
  *
@@ -15789,6 +15880,7 @@ public OnJITCompile()
 	state _ALS : _ALS_go;
 	_FIXES_gIsJIT = true;
 	_FIXES_DetermineOS();
+	_FIXES_CheckAddressNaught(FIXES_address_naught);
 
 	#if defined On_JITCompile
 		return On_JITCompile();
@@ -15830,6 +15922,7 @@ public OnJITCompile()
 		state _ALS : _ALS_go;
 		_FIXES_gIsFilterscript = false;
 		_FIXES_DetermineOS();
+		_FIXES_CheckAddressNaught(FIXES_address_naught);
 		_FIXES_CheckServerRoot();
 		_FIXES_GetStreamerVersion();
 
@@ -15883,6 +15976,7 @@ public OnJITCompile()
 
 			_FIXES_gIsFilterscript = true;
 			_FIXES_DetermineOS();
+			_FIXES_CheckAddressNaught(FIXES_address_naught);
 			_FIXES_CheckServerRoot();
 			_FIXES_GetStreamerVersion();
 		#if FIX_OnRconCommand || FIX_OnClientCheckResponse
@@ -15906,6 +16000,7 @@ public OnJITCompile()
 					break;
 				}
 			}
+			printf("FIXES Script ID: %d", @_);
 
 		#if FIXES_Single && !FIXES_NoSingleMsg
 			// Check this really IS the only script running.
@@ -16020,6 +16115,7 @@ public OnJITCompile()
 	{
 		state _ALS : _ALS_go;
 		_FIXES_DetermineOS();
+		_FIXES_CheckAddressNaught(FIXES_address_naught);
 
 		// =============================
 		//  BEGIN: AllowInteriorWeapons
@@ -16089,6 +16185,7 @@ public OnJITCompile()
 						break;
 					}
 				}
+				printf("FIXES Script ID: %d", @_);
 
 			#if FIXES_Single && !FIXES_NoSingleMsg
 				if (getproperty(5, FIXES_gscSingleProperty))
