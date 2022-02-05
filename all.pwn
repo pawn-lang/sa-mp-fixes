@@ -26,7 +26,7 @@ native BAD_CreateActor(modelid, Float:x, Float:y, Float:z, Float:angle) = Create
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_CreateActor(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor;
+native CST_CreateActor(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -50,7 +50,7 @@ native BAD_DestroyActor(actorid) = DestroyActor;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DestroyActor(actorid) = DestroyActor;
+native CST_DestroyActor(actorid) = DestroyActor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -74,7 +74,7 @@ native BAD_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
+native _FIXES_MAYBE_BOOL:CST_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -98,7 +98,7 @@ native BAD_SetActorVirtualWorld(actorid, virtualWorld) = SetActorVirtualWorld;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetActorVirtualWorld(actorid, virtualWorld) = SetActorVirtualWorld;
+native CST_SetActorVirtualWorld(actorid, virtualWorld) = SetActorVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -122,7 +122,7 @@ native BAD_GetActorVirtualWorld(actorid) = GetActorVirtualWorld;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetActorVirtualWorld(actorid) = GetActorVirtualWorld;
+native CST_GetActorVirtualWorld(actorid) = GetActorVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -146,7 +146,7 @@ native BAD_ApplyActorAnimation(actorid, animationLibrary[], animationName[], Flo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation;
+native CST_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -170,7 +170,7 @@ native BAD_ClearActorAnimations(actorid) = ClearActorAnimations;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ClearActorAnimations(actorid) = ClearActorAnimations;
+native CST_ClearActorAnimations(actorid) = ClearActorAnimations;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -194,7 +194,7 @@ native BAD_SetActorPos(actorid, Float:x, Float:y, Float:z) = SetActorPos;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetActorPos(actorid, Float:x, Float:y, Float:z) = SetActorPos;
+native CST_SetActorPos(actorid, Float:x, Float:y, Float:z) = SetActorPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -218,7 +218,7 @@ native BAD_GetActorPos(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetActorPos(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
+native CST_GetActorPos(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -242,7 +242,7 @@ native BAD_SetActorFacingAngle(actorid, Float:angle) = SetActorFacingAngle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetActorFacingAngle(actorid, Float:angle) = SetActorFacingAngle;
+native CST_SetActorFacingAngle(actorid, Float:angle) = SetActorFacingAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -266,7 +266,7 @@ native BAD_GetActorFacingAngle(actorid, &Float:angle) = GetActorFacingAngle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetActorFacingAngle(actorid, &Float:angle) = GetActorFacingAngle;
+native CST_GetActorFacingAngle(actorid, &Float:angle) = GetActorFacingAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -290,7 +290,7 @@ native BAD_SetActorHealth(actorid, Float:health) = SetActorHealth;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetActorHealth(actorid, Float:health) = SetActorHealth;
+native CST_SetActorHealth(actorid, Float:health) = SetActorHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -314,7 +314,7 @@ native BAD_GetActorHealth(actorid, &Float:health) = GetActorHealth;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetActorHealth(actorid, &Float:health) = GetActorHealth;
+native CST_GetActorHealth(actorid, &Float:health) = GetActorHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -338,7 +338,7 @@ native BAD_SetActorInvulnerable(actorid, invulnerable = true) = SetActorInvulner
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetActorInvulnerable(actorid, _FIXES_MAYBE_BOOL:invulnerable = true) = SetActorInvulnerable;
+native CST_SetActorInvulnerable(actorid, _FIXES_MAYBE_BOOL:invulnerable = true) = SetActorInvulnerable;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -362,7 +362,7 @@ native BAD_IsActorInvulnerable(actorid) = IsActorInvulnerable;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsActorInvulnerable(actorid) = IsActorInvulnerable;
+native _FIXES_MAYBE_BOOL:CST_IsActorInvulnerable(actorid) = IsActorInvulnerable;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -386,7 +386,7 @@ native BAD_IsValidActor(actorid) = IsValidActor;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsValidActor(actorid) = IsValidActor;
+native _FIXES_MAYBE_BOOL:CST_IsValidActor(actorid) = IsValidActor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -420,7 +420,7 @@ native BAD_HTTP(index, HTTP_METHOD:method, url[], data[], callback[]) = HTTP;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_HTTP(index, HTTP_METHOD:method, _FIXES_MAYBE_CONST url[], _FIXES_MAYBE_CONST data[], _FIXES_MAYBE_CONST callback[]) = HTTP;
+native CST_HTTP(index, HTTP_METHOD:method, _FIXES_MAYBE_CONST url[], _FIXES_MAYBE_CONST data[], _FIXES_MAYBE_CONST callback[]) = HTTP;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -455,7 +455,7 @@ native BAD_CreateObject(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:ro
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_CreateObject(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject;
+native CST_CreateObject(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -479,7 +479,7 @@ native BAD_AttachObjectToVehicle(objectid, parentid, Float:offsetX, Float:offset
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AttachObjectToVehicle(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle;
+native CST_AttachObjectToVehicle(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -503,7 +503,7 @@ native BAD_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, _FIXES_MAYBE_BOOL:syncRotation = true) = AttachObjectToObject;
+native CST_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, _FIXES_MAYBE_BOOL:syncRotation = true) = AttachObjectToObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -527,7 +527,7 @@ native BAD_AttachObjectToPlayer(objectid, parentid, Float:offsetX, Float:offsetY
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AttachObjectToPlayer(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer;
+native CST_AttachObjectToPlayer(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -551,7 +551,7 @@ native BAD_SetObjectPos(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetObjectPos(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
+native CST_SetObjectPos(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -575,7 +575,7 @@ native BAD_GetObjectPos(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetObjectPos(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
+native CST_GetObjectPos(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -599,7 +599,7 @@ native BAD_SetObjectRot(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjec
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetObjectRot(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectRot;
+native CST_SetObjectRot(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -623,7 +623,7 @@ native BAD_GetObjectRot(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetOb
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetObjectRot(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot;
+native CST_GetObjectRot(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -647,7 +647,7 @@ native BAD_GetObjectModel(objectid) = GetObjectModel;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetObjectModel(objectid) = GetObjectModel;
+native CST_GetObjectModel(objectid) = GetObjectModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -671,7 +671,7 @@ native BAD_SetObjectNoCameraCol(objectid) = SetObjectNoCameraCol;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetObjectNoCameraCol(objectid) = SetObjectNoCameraCol;
+native CST_SetObjectNoCameraCol(objectid) = SetObjectNoCameraCol;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -695,7 +695,7 @@ native BAD_IsValidObject(objectid) = IsValidObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsValidObject(objectid) = IsValidObject;
+native _FIXES_MAYBE_BOOL:CST_IsValidObject(objectid) = IsValidObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -719,7 +719,7 @@ native BAD_DestroyObject(objectid) = DestroyObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DestroyObject(objectid) = DestroyObject;
+native CST_DestroyObject(objectid) = DestroyObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -743,7 +743,7 @@ native BAD_MoveObject(objectid, Float:x, Float:y, Float:z, Float:speed, Float:ro
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_MoveObject(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject;
+native CST_MoveObject(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -767,7 +767,7 @@ native BAD_StopObject(objectid) = StopObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_StopObject(objectid) = StopObject;
+native CST_StopObject(objectid) = StopObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -791,7 +791,7 @@ native BAD_IsObjectMoving(objectid) = IsObjectMoving;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsObjectMoving(objectid) = IsObjectMoving;
+native _FIXES_MAYBE_BOOL:CST_IsObjectMoving(objectid) = IsObjectMoving;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -815,7 +815,7 @@ native BAD_EditObject(playerid, objectid) = EditObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_EditObject(playerid, objectid) = EditObject;
+native CST_EditObject(playerid, objectid) = EditObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -839,7 +839,7 @@ native BAD_EditPlayerObject(playerid, objectid) = EditPlayerObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_EditPlayerObject(playerid, objectid) = EditPlayerObject;
+native CST_EditPlayerObject(playerid, objectid) = EditPlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -863,7 +863,7 @@ native BAD_SelectObject(playerid) = SelectObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SelectObject(playerid) = SelectObject;
+native CST_SelectObject(playerid) = SelectObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -887,7 +887,7 @@ native BAD_CancelEdit(playerid) = CancelEdit;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_CancelEdit(playerid) = CancelEdit;
+native CST_CancelEdit(playerid) = CancelEdit;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -911,7 +911,7 @@ native BAD_CreatePlayerObject(playerid, modelid, Float:x, Float:y, Float:z, Floa
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_CreatePlayerObject(playerid, modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreatePlayerObject;
+native CST_CreatePlayerObject(playerid, modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreatePlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -935,7 +935,7 @@ native BAD_AttachPlayerObjectToVehicle(playerid, objectid, parentid, Float:offse
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AttachPlayerObjectToVehicle(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToVehicle;
+native CST_AttachPlayerObjectToVehicle(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -959,7 +959,7 @@ native BAD_SetPlayerObjectPos(playerid, objectid, Float:x, Float:y, Float:z) = S
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerObjectPos(playerid, objectid, Float:x, Float:y, Float:z) = SetPlayerObjectPos;
+native CST_SetPlayerObjectPos(playerid, objectid, Float:x, Float:y, Float:z) = SetPlayerObjectPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -983,7 +983,7 @@ native BAD_GetPlayerObjectPos(playerid, objectid, &Float:x, &Float:y, &Float:z) 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerObjectPos(playerid, objectid, &Float:x, &Float:y, &Float:z) = GetPlayerObjectPos;
+native CST_GetPlayerObjectPos(playerid, objectid, &Float:x, &Float:y, &Float:z) = GetPlayerObjectPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1007,7 +1007,7 @@ native BAD_SetPlayerObjectRot(playerid, objectid, Float:rotX, Float:rotY, Float:
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerObjectRot(playerid, objectid, Float:rotX, Float:rotY, Float:rotZ) = SetPlayerObjectRot;
+native CST_SetPlayerObjectRot(playerid, objectid, Float:rotX, Float:rotY, Float:rotZ) = SetPlayerObjectRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1031,7 +1031,7 @@ native BAD_GetPlayerObjectRot(playerid, objectid, &Float:rotX, &Float:rotY, &Flo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerObjectRot(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot;
+native CST_GetPlayerObjectRot(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1055,7 +1055,7 @@ native BAD_GetPlayerObjectModel(playerid, objectid) = GetPlayerObjectModel;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerObjectModel(playerid, objectid) = GetPlayerObjectModel;
+native CST_GetPlayerObjectModel(playerid, objectid) = GetPlayerObjectModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1079,7 +1079,7 @@ native BAD_SetPlayerObjectNoCameraCol(playerid, objectid) = SetPlayerObjectNoCam
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerObjectNoCameraCol(playerid, objectid) = SetPlayerObjectNoCameraCol;
+native CST_SetPlayerObjectNoCameraCol(playerid, objectid) = SetPlayerObjectNoCameraCol;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1103,7 +1103,7 @@ native BAD_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
+native _FIXES_MAYBE_BOOL:CST_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1127,7 +1127,7 @@ native BAD_DestroyPlayerObject(playerid, objectid) = DestroyPlayerObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DestroyPlayerObject(playerid, objectid) = DestroyPlayerObject;
+native CST_DestroyPlayerObject(playerid, objectid) = DestroyPlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1151,7 +1151,7 @@ native BAD_MovePlayerObject(playerid, objectid, Float:x, Float:y, Float:z, Float
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_MovePlayerObject(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject;
+native CST_MovePlayerObject(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1175,7 +1175,7 @@ native BAD_StopPlayerObject(playerid, objectid) = StopPlayerObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_StopPlayerObject(playerid, objectid) = StopPlayerObject;
+native CST_StopPlayerObject(playerid, objectid) = StopPlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1199,7 +1199,7 @@ native BAD_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
+native _FIXES_MAYBE_BOOL:CST_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1223,7 +1223,7 @@ native BAD_AttachPlayerObjectToPlayer(playerid, objectid, parentid, Float:offset
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AttachPlayerObjectToPlayer(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer;
+native CST_AttachPlayerObjectToPlayer(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1247,7 +1247,7 @@ native BAD_SetObjectMaterial(objectid, materialIndex, modelid, textureLibrary[],
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetObjectMaterial(objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetObjectMaterial;
+native CST_SetObjectMaterial(objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetObjectMaterial;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1271,7 +1271,7 @@ native BAD_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, t
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetPlayerObjectMaterial;
+native CST_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetPlayerObjectMaterial;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1295,7 +1295,7 @@ native BAD_SetObjectMaterialText(objectid, text[], materialIndex = 0, OBJECT_MAT
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetObjectMaterialText(objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
+native CST_SetObjectMaterialText(objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1319,7 +1319,7 @@ native BAD_SetPlayerObjectMaterialText(playerid, objectid, text[], materialIndex
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerObjectMaterialText(playerid, objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
+native CST_SetPlayerObjectMaterialText(playerid, objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1343,7 +1343,7 @@ native BAD_SetObjectsDefaultCameraCol(disable) = SetObjectsDefaultCameraCol;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetObjectsDefaultCameraCol(_FIXES_MAYBE_BOOL:disable) = SetObjectsDefaultCameraCol;
+native CST_SetObjectsDefaultCameraCol(_FIXES_MAYBE_BOOL:disable) = SetObjectsDefaultCameraCol;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1377,7 +1377,7 @@ native BAD_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float:r
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo;
+native CST_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1401,7 +1401,7 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SpawnPlayer(playerid) = SpawnPlayer;
+native CST_SpawnPlayer(playerid) = SpawnPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1425,7 +1425,7 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
+native CST_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1449,7 +1449,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
+native CST_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1473,7 +1473,7 @@ native BAD_GetPlayerPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
+native CST_GetPlayerPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1497,7 +1497,7 @@ native BAD_SetPlayerFacingAngle(playerid, Float:ang) = SetPlayerFacingAngle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerFacingAngle(playerid, Float:ang) = SetPlayerFacingAngle;
+native CST_SetPlayerFacingAngle(playerid, Float:ang) = SetPlayerFacingAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1521,7 +1521,7 @@ native BAD_GetPlayerFacingAngle(playerid, &Float:ang) = GetPlayerFacingAngle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerFacingAngle(playerid, &Float:ang) = GetPlayerFacingAngle;
+native CST_GetPlayerFacingAngle(playerid, &Float:ang) = GetPlayerFacingAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1545,7 +1545,7 @@ native BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
+native _FIXES_MAYBE_BOOL:CST_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1569,7 +1569,7 @@ native Float:BAD_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z)
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
+native Float:CST_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1593,7 +1593,7 @@ native BAD_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
+native _FIXES_MAYBE_BOOL:CST_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1617,7 +1617,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
+native CST_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1641,7 +1641,7 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerInterior(playerid) = GetPlayerInterior;
+native CST_GetPlayerInterior(playerid) = GetPlayerInterior;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1665,7 +1665,7 @@ native BAD_SetPlayerHealth(playerid, Float:health) = SetPlayerHealth;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerHealth(playerid, Float:health) = SetPlayerHealth;
+native CST_SetPlayerHealth(playerid, Float:health) = SetPlayerHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1689,7 +1689,7 @@ native BAD_GetPlayerHealth(playerid, &Float:health) = GetPlayerHealth;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerHealth(playerid, &Float:health) = GetPlayerHealth;
+native CST_GetPlayerHealth(playerid, &Float:health) = GetPlayerHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1713,7 +1713,7 @@ native BAD_SetPlayerArmour(playerid, Float:armour) = SetPlayerArmour;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerArmour(playerid, Float:armour) = SetPlayerArmour;
+native CST_SetPlayerArmour(playerid, Float:armour) = SetPlayerArmour;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1737,7 +1737,7 @@ native BAD_GetPlayerArmour(playerid, &Float:armour) = GetPlayerArmour;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerArmour(playerid, &Float:armour) = GetPlayerArmour;
+native CST_GetPlayerArmour(playerid, &Float:armour) = GetPlayerArmour;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1761,7 +1761,7 @@ native BAD_SetPlayerAmmo(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerAmmo(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
+native CST_SetPlayerAmmo(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1785,7 +1785,7 @@ native BAD_GetPlayerAmmo(playerid) = GetPlayerAmmo;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerAmmo(playerid) = GetPlayerAmmo;
+native CST_GetPlayerAmmo(playerid) = GetPlayerAmmo;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1809,7 +1809,7 @@ native WEAPONSTATE:BAD_GetPlayerWeaponState(playerid) = GetPlayerWeaponState;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native WEAPONSTATE:FIXES_GetPlayerWeaponState(playerid) = GetPlayerWeaponState;
+native WEAPONSTATE:CST_GetPlayerWeaponState(playerid) = GetPlayerWeaponState;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1833,7 +1833,7 @@ native BAD_GetPlayerTargetPlayer(playerid) = GetPlayerTargetPlayer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerTargetPlayer(playerid) = GetPlayerTargetPlayer;
+native CST_GetPlayerTargetPlayer(playerid) = GetPlayerTargetPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1857,7 +1857,7 @@ native BAD_GetPlayerTargetActor(playerid) = GetPlayerTargetActor;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerTargetActor(playerid) = GetPlayerTargetActor;
+native CST_GetPlayerTargetActor(playerid) = GetPlayerTargetActor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1881,7 +1881,7 @@ native BAD_SetPlayerTeam(playerid, teamid) = SetPlayerTeam;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerTeam(playerid, teamid) = SetPlayerTeam;
+native CST_SetPlayerTeam(playerid, teamid) = SetPlayerTeam;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1905,7 +1905,7 @@ native BAD_GetPlayerTeam(playerid) = GetPlayerTeam;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerTeam(playerid) = GetPlayerTeam;
+native CST_GetPlayerTeam(playerid) = GetPlayerTeam;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1929,7 +1929,7 @@ native BAD_SetPlayerScore(playerid, score) = SetPlayerScore;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerScore(playerid, score) = SetPlayerScore;
+native CST_SetPlayerScore(playerid, score) = SetPlayerScore;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1953,7 +1953,7 @@ native BAD_GetPlayerScore(playerid) = GetPlayerScore;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerScore(playerid) = GetPlayerScore;
+native CST_GetPlayerScore(playerid) = GetPlayerScore;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -1977,7 +1977,7 @@ native BAD_GetPlayerDrunkLevel(playerid) = GetPlayerDrunkLevel;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerDrunkLevel(playerid) = GetPlayerDrunkLevel;
+native CST_GetPlayerDrunkLevel(playerid) = GetPlayerDrunkLevel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2001,7 +2001,7 @@ native BAD_SetPlayerDrunkLevel(playerid, level) = SetPlayerDrunkLevel;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerDrunkLevel(playerid, level) = SetPlayerDrunkLevel;
+native CST_SetPlayerDrunkLevel(playerid, level) = SetPlayerDrunkLevel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2025,7 +2025,7 @@ native BAD_SetPlayerColor(playerid, colour) = SetPlayerColor;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerColor(playerid, colour) = SetPlayerColor;
+native CST_SetPlayerColor(playerid, colour) = SetPlayerColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2049,7 +2049,7 @@ native BAD_GetPlayerColor(playerid) = GetPlayerColor;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerColor(playerid) = GetPlayerColor;
+native CST_GetPlayerColor(playerid) = GetPlayerColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2073,7 +2073,7 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
+native CST_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2097,7 +2097,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerSkin(playerid) = GetPlayerSkin;
+native CST_GetPlayerSkin(playerid) = GetPlayerSkin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2121,7 +2121,7 @@ native BAD_GetPlayerCustomSkin(playerid) = GetPlayerCustomSkin;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerCustomSkin(playerid) = GetPlayerCustomSkin;
+native CST_GetPlayerCustomSkin(playerid) = GetPlayerCustomSkin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2145,7 +2145,7 @@ native BAD_GivePlayerWeapon(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GivePlayerWeapon(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
+native CST_GivePlayerWeapon(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2169,7 +2169,7 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
+native CST_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2193,7 +2193,7 @@ native BAD_SetPlayerArmedWeapon(playerid, WEAPON:weaponid) = SetPlayerArmedWeapo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerArmedWeapon(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon;
+native CST_SetPlayerArmedWeapon(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2217,7 +2217,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &WEAPON:weapons, &ammo) = GetPlay
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerWeaponData(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData;
+native CST_GetPlayerWeaponData(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2241,7 +2241,7 @@ native BAD_GivePlayerMoney(playerid, money) = GivePlayerMoney;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GivePlayerMoney(playerid, money) = GivePlayerMoney;
+native CST_GivePlayerMoney(playerid, money) = GivePlayerMoney;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2265,7 +2265,7 @@ native BAD_ResetPlayerMoney(playerid) = ResetPlayerMoney;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ResetPlayerMoney(playerid) = ResetPlayerMoney;
+native CST_ResetPlayerMoney(playerid) = ResetPlayerMoney;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2289,7 +2289,7 @@ native BAD_SetPlayerName(playerid, name[]) = SetPlayerName;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerName(playerid, _FIXES_MAYBE_CONST name[]) = SetPlayerName;
+native CST_SetPlayerName(playerid, _FIXES_MAYBE_CONST name[]) = SetPlayerName;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2313,7 +2313,7 @@ native BAD_GetPlayerMoney(playerid) = GetPlayerMoney;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerMoney(playerid) = GetPlayerMoney;
+native CST_GetPlayerMoney(playerid) = GetPlayerMoney;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2337,7 +2337,7 @@ native PLAYER_STATE:BAD_GetPlayerState(playerid) = GetPlayerState;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native PLAYER_STATE:FIXES_GetPlayerState(playerid) = GetPlayerState;
+native PLAYER_STATE:CST_GetPlayerState(playerid) = GetPlayerState;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2361,7 +2361,7 @@ native BAD_GetPlayerIp(playerid, ip[], len) = GetPlayerIp;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerIp(playerid, ip[], _FIXES_MAYBE_SIZEOF(len, ip)) = GetPlayerIp;
+native CST_GetPlayerIp(playerid, ip[], _FIXES_MAYBE_SIZEOF(len, ip)) = GetPlayerIp;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2385,7 +2385,7 @@ native BAD_GetPlayerPing(playerid) = GetPlayerPing;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerPing(playerid) = GetPlayerPing;
+native CST_GetPlayerPing(playerid) = GetPlayerPing;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2409,7 +2409,7 @@ native WEAPON:BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native WEAPON:FIXES_GetPlayerWeapon(playerid) = GetPlayerWeapon;
+native WEAPON:CST_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2433,7 +2433,7 @@ native BAD_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = Get
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
+native CST_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2457,7 +2457,7 @@ native BAD_GetPlayerName(playerid, const name[], len) = GetPlayerName;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerName(playerid, _FIXES_NOT_CONST name[], _FIXES_MAYBE_SIZEOF(len, name)) = GetPlayerName;
+native CST_GetPlayerName(playerid, _FIXES_NOT_CONST name[], _FIXES_MAYBE_SIZEOF(len, name)) = GetPlayerName;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2481,7 +2481,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
+native CST_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2505,7 +2505,7 @@ native BAD_GetPlayerTime(playerid, &hour, &minute) = GetPlayerTime;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerTime(playerid, &hour, &minute) = GetPlayerTime;
+native CST_GetPlayerTime(playerid, &hour, &minute) = GetPlayerTime;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2529,7 +2529,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerClock;
+native CST_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerClock;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2553,7 +2553,7 @@ native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
+native CST_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2577,7 +2577,7 @@ native BAD_ForceClassSelection(playerid) = ForceClassSelection;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ForceClassSelection(playerid) = ForceClassSelection;
+native CST_ForceClassSelection(playerid) = ForceClassSelection;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2601,7 +2601,7 @@ native BAD_SetPlayerWantedLevel(playerid, level) = SetPlayerWantedLevel;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerWantedLevel(playerid, level) = SetPlayerWantedLevel;
+native CST_SetPlayerWantedLevel(playerid, level) = SetPlayerWantedLevel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2625,7 +2625,7 @@ native BAD_GetPlayerWantedLevel(playerid) = GetPlayerWantedLevel;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerWantedLevel(playerid) = GetPlayerWantedLevel;
+native CST_GetPlayerWantedLevel(playerid) = GetPlayerWantedLevel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2649,7 +2649,7 @@ native BAD_SetPlayerFightingStyle(playerid, FIGHT_STYLE:style) = SetPlayerFighti
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerFightingStyle(playerid, FIGHT_STYLE:style) = SetPlayerFightingStyle;
+native CST_SetPlayerFightingStyle(playerid, FIGHT_STYLE:style) = SetPlayerFightingStyle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2673,7 +2673,7 @@ native FIGHT_STYLE:BAD_GetPlayerFightingStyle(playerid) = GetPlayerFightingStyle
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIGHT_STYLE:FIXES_GetPlayerFightingStyle(playerid) = GetPlayerFightingStyle;
+native FIGHT_STYLE:CST_GetPlayerFightingStyle(playerid) = GetPlayerFightingStyle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2697,7 +2697,7 @@ native BAD_SetPlayerVelocity(playerid, Float:x, Float:y, Float:z) = SetPlayerVel
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerVelocity(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity;
+native CST_SetPlayerVelocity(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2721,7 +2721,7 @@ native BAD_GetPlayerVelocity(playerid, &Float:x, &Float:y, &Float:z) = GetPlayer
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerVelocity(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity;
+native CST_GetPlayerVelocity(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2745,7 +2745,7 @@ native BAD_PlayCrimeReportForPlayer(playerid, suspectid, crime) = PlayCrimeRepor
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayCrimeReportForPlayer(playerid, suspectid, crime) = PlayCrimeReportForPlayer;
+native CST_PlayCrimeReportForPlayer(playerid, suspectid, crime) = PlayCrimeReportForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2769,7 +2769,7 @@ native BAD_PlayAudioStreamForPlayer(playerid, url[], Float:posX = 0.0, Float:pos
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayAudioStreamForPlayer(playerid, _FIXES_MAYBE_CONST url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, _FIXES_MAYBE_BOOL:usepos = false) = PlayAudioStreamForPlayer;
+native CST_PlayAudioStreamForPlayer(playerid, _FIXES_MAYBE_CONST url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, _FIXES_MAYBE_BOOL:usepos = false) = PlayAudioStreamForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2793,7 +2793,7 @@ native BAD_StopAudioStreamForPlayer(playerid) = StopAudioStreamForPlayer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_StopAudioStreamForPlayer(playerid) = StopAudioStreamForPlayer;
+native CST_StopAudioStreamForPlayer(playerid) = StopAudioStreamForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2817,7 +2817,7 @@ native BAD_SetPlayerShopName(playerid, shopName[]) = SetPlayerShopName;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerShopName(playerid, _FIXES_MAYBE_CONST shopName[]) = SetPlayerShopName;
+native CST_SetPlayerShopName(playerid, _FIXES_MAYBE_CONST shopName[]) = SetPlayerShopName;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2841,7 +2841,7 @@ native BAD_SetPlayerSkillLevel(playerid, WEAPONSKILL:skill, level) = SetPlayerSk
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerSkillLevel(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel;
+native CST_SetPlayerSkillLevel(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2865,7 +2865,7 @@ native BAD_GetPlayerSurfingVehicleID(playerid) = GetPlayerSurfingVehicleID;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerSurfingVehicleID(playerid) = GetPlayerSurfingVehicleID;
+native CST_GetPlayerSurfingVehicleID(playerid) = GetPlayerSurfingVehicleID;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2889,7 +2889,7 @@ native BAD_GetPlayerSurfingObjectID(playerid) = GetPlayerSurfingObjectID;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerSurfingObjectID(playerid) = GetPlayerSurfingObjectID;
+native CST_GetPlayerSurfingObjectID(playerid) = GetPlayerSurfingObjectID;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2913,7 +2913,7 @@ native BAD_RemoveBuildingForPlayer(playerid, modelid, Float:centerX, Float:cente
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_RemoveBuildingForPlayer(playerid, modelid, Float:centerX, Float:centerY, Float:centerZ, Float:radius) = RemoveBuildingForPlayer;
+native CST_RemoveBuildingForPlayer(playerid, modelid, Float:centerX, Float:centerY, Float:centerZ, Float:radius) = RemoveBuildingForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2937,7 +2937,7 @@ native BAD_GetPlayerLastShotVectors(playerid, &Float:originX, &Float:originY, &F
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerLastShotVectors(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
+native CST_GetPlayerLastShotVectors(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2961,7 +2961,7 @@ native BAD_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:offsetX
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
+native CST_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -2985,7 +2985,7 @@ native BAD_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObj
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObject;
+native CST_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3009,7 +3009,7 @@ native BAD_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObj
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+native _FIXES_MAYBE_BOOL:CST_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3033,7 +3033,7 @@ native BAD_EditAttachedObject(playerid, index) = EditAttachedObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_EditAttachedObject(playerid, index) = EditAttachedObject;
+native CST_EditAttachedObject(playerid, index) = EditAttachedObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3057,7 +3057,7 @@ native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) =
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = CreatePlayerTextDraw;
+native PlayerText:CST_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = CreatePlayerTextDraw;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3081,7 +3081,7 @@ native BAD_PlayerTextDrawDestroy(playerid, PlayerText:text) = PlayerTextDrawDest
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawDestroy(playerid, PlayerText:text) = PlayerTextDrawDestroy;
+native CST_PlayerTextDrawDestroy(playerid, PlayerText:text) = PlayerTextDrawDestroy;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3105,7 +3105,7 @@ native BAD_PlayerTextDrawLetterSize(playerid, PlayerText:text, Float:width, Floa
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawLetterSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawLetterSize;
+native CST_PlayerTextDrawLetterSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawLetterSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3129,7 +3129,7 @@ native BAD_PlayerTextDrawTextSize(playerid, PlayerText:text, Float:width, Float:
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawTextSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize;
+native CST_PlayerTextDrawTextSize(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3153,7 +3153,7 @@ native BAD_PlayerTextDrawAlignment(playerid, PlayerText:text, TEXT_DRAW_ALIGN:al
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawAlignment(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment;
+native CST_PlayerTextDrawAlignment(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3177,7 +3177,7 @@ native BAD_PlayerTextDrawColor(playerid, PlayerText:text, colour) = PlayerTextDr
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawColor(playerid, PlayerText:text, colour) = PlayerTextDrawColor;
+native CST_PlayerTextDrawColor(playerid, PlayerText:text, colour) = PlayerTextDrawColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3201,7 +3201,7 @@ native BAD_PlayerTextDrawUseBox(playerid, PlayerText:text, use) = PlayerTextDraw
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawUseBox(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:use) = PlayerTextDrawUseBox;
+native CST_PlayerTextDrawUseBox(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:use) = PlayerTextDrawUseBox;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3225,7 +3225,7 @@ native BAD_PlayerTextDrawBoxColor(playerid, PlayerText:text, colour) = PlayerTex
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawBoxColor(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor;
+native CST_PlayerTextDrawBoxColor(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3249,7 +3249,7 @@ native BAD_PlayerTextDrawSetShadow(playerid, PlayerText:text, size) = PlayerText
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawSetShadow(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
+native CST_PlayerTextDrawSetShadow(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3273,7 +3273,7 @@ native BAD_PlayerTextDrawSetOutline(playerid, PlayerText:text, size) = PlayerTex
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawSetOutline(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
+native CST_PlayerTextDrawSetOutline(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3297,7 +3297,7 @@ native BAD_PlayerTextDrawBackgroundColor(playerid, PlayerText:text, colour) = Pl
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawBackgroundColor(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor;
+native CST_PlayerTextDrawBackgroundColor(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3321,7 +3321,7 @@ native BAD_PlayerTextDrawFont(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawFont(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont;
+native CST_PlayerTextDrawFont(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3345,7 +3345,7 @@ native BAD_PlayerTextDrawSetProportional(playerid, PlayerText:text, set) = Playe
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawSetProportional(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetProportional;
+native CST_PlayerTextDrawSetProportional(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetProportional;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3369,7 +3369,7 @@ native BAD_PlayerTextDrawSetSelectable(playerid, PlayerText:text, set) = PlayerT
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawSetSelectable(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetSelectable;
+native CST_PlayerTextDrawSetSelectable(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetSelectable;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3393,7 +3393,7 @@ native BAD_PlayerTextDrawShow(playerid, PlayerText:text) = PlayerTextDrawShow;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawShow(playerid, PlayerText:text) = PlayerTextDrawShow;
+native CST_PlayerTextDrawShow(playerid, PlayerText:text) = PlayerTextDrawShow;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3417,7 +3417,7 @@ native BAD_PlayerTextDrawHide(playerid, PlayerText:text) = PlayerTextDrawHide;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawHide(playerid, PlayerText:text) = PlayerTextDrawHide;
+native CST_PlayerTextDrawHide(playerid, PlayerText:text) = PlayerTextDrawHide;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3441,7 +3441,7 @@ native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = Player
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[]) = PlayerTextDrawSetString;
+native CST_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[]) = PlayerTextDrawSetString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3465,7 +3465,7 @@ native BAD_PlayerTextDrawSetPreviewModel(playerid, PlayerText:text, modelIndex) 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawSetPreviewModel(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel;
+native CST_PlayerTextDrawSetPreviewModel(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3489,7 +3489,7 @@ native BAD_PlayerTextDrawSetPreviewRot(playerid, PlayerText:text, Float:rotX, Fl
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawSetPreviewRot(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot;
+native CST_PlayerTextDrawSetPreviewRot(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3513,7 +3513,7 @@ native BAD_PlayerTextDrawSetPreviewVehCol(playerid, PlayerText:text, colour1, co
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerTextDrawSetPreviewVehCol(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
+native CST_PlayerTextDrawSetPreviewVehCol(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3537,7 +3537,7 @@ native BAD_SetPVarInt(playerid, pvar[], value) = SetPVarInt;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[], value) = SetPVarInt;
+native CST_SetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[], value) = SetPVarInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3561,7 +3561,7 @@ native BAD_GetPVarInt(playerid, pvar[]) = GetPVarInt;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarInt;
+native CST_GetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3585,7 +3585,7 @@ native BAD_SetPVarString(playerid, pvar[], value[]) = SetPVarString;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], _FIXES_MAYBE_CONST value[]) = SetPVarString;
+native CST_SetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], _FIXES_MAYBE_CONST value[]) = SetPVarString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3609,7 +3609,7 @@ native BAD_GetPVarString(playerid, pvar[], output[], len) = GetPVarString;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetPVarString;
+native CST_GetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetPVarString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3633,7 +3633,7 @@ native BAD_SetPVarFloat(playerid, pvar[], Float:value) = SetPVarFloat;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[], Float:value) = SetPVarFloat;
+native CST_SetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[], Float:value) = SetPVarFloat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3657,7 +3657,7 @@ native Float:BAD_GetPVarFloat(playerid, pvar[]) = GetPVarFloat;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_GetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarFloat;
+native Float:CST_GetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarFloat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3681,7 +3681,7 @@ native BAD_DeletePVar(playerid, pvar[]) = DeletePVar;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DeletePVar(playerid, _FIXES_MAYBE_CONST pvar[]) = DeletePVar;
+native CST_DeletePVar(playerid, _FIXES_MAYBE_CONST pvar[]) = DeletePVar;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3705,7 +3705,7 @@ native BAD_GetPVarsUpperIndex(playerid) = GetPVarsUpperIndex;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPVarsUpperIndex(playerid) = GetPVarsUpperIndex;
+native CST_GetPVarsUpperIndex(playerid) = GetPVarsUpperIndex;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3729,7 +3729,7 @@ native BAD_GetPVarNameAtIndex(playerid, index, output[], size) = GetPVarNameAtIn
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPVarNameAtIndex(playerid, index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPVarNameAtIndex;
+native CST_GetPVarNameAtIndex(playerid, index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPVarNameAtIndex;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3753,7 +3753,7 @@ native PLAYER_VARTYPE:BAD_GetPVarType(playerid, pvar[]) = GetPVarType;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native PLAYER_VARTYPE:FIXES_GetPVarType(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarType;
+native PLAYER_VARTYPE:CST_GetPVarType(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarType;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3777,7 +3777,7 @@ native BAD_SetPlayerChatBubble(playerid, text[], colour, Float:drawDistance, exp
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerChatBubble(playerid, _FIXES_MAYBE_CONST text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
+native CST_SetPlayerChatBubble(playerid, _FIXES_MAYBE_CONST text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3801,7 +3801,7 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
+native CST_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3825,7 +3825,7 @@ native BAD_GetPlayerVehicleID(playerid) = GetPlayerVehicleID;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerVehicleID(playerid) = GetPlayerVehicleID;
+native CST_GetPlayerVehicleID(playerid) = GetPlayerVehicleID;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3849,7 +3849,7 @@ native BAD_GetPlayerVehicleSeat(playerid) = GetPlayerVehicleSeat;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerVehicleSeat(playerid) = GetPlayerVehicleSeat;
+native CST_GetPlayerVehicleSeat(playerid) = GetPlayerVehicleSeat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3873,7 +3873,7 @@ native BAD_RemovePlayerFromVehicle(playerid) = RemovePlayerFromVehicle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_RemovePlayerFromVehicle(playerid) = RemovePlayerFromVehicle;
+native CST_RemovePlayerFromVehicle(playerid) = RemovePlayerFromVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3897,7 +3897,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerControllable;
+native CST_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerControllable;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3921,7 +3921,7 @@ native BAD_PlayerPlaySound(playerid, soundid, Float:x, Float:y, Float:z) = Playe
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerPlaySound(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
+native CST_PlayerPlaySound(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3945,7 +3945,7 @@ native BAD_ApplyAnimation(playerid, animationLibrary[], animationName[], Float:d
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
+native CST_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3969,7 +3969,7 @@ native BAD_ClearAnimations(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = ClearAn
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ClearAnimations(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = ClearAnimations;
+native CST_ClearAnimations(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = ClearAnimations;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -3993,7 +3993,7 @@ native BAD_GetPlayerAnimationIndex(playerid) = GetPlayerAnimationIndex;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerAnimationIndex(playerid) = GetPlayerAnimationIndex;
+native CST_GetPlayerAnimationIndex(playerid) = GetPlayerAnimationIndex;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4017,7 +4017,7 @@ native BAD_GetAnimationName(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1,
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetAnimationName(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], _FIXES_MAYBE_SIZEOF(len2, animationName)) = GetAnimationName;
+native CST_GetAnimationName(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], _FIXES_MAYBE_SIZEOF(len2, animationName)) = GetAnimationName;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4041,7 +4041,7 @@ native SPECIAL_ACTION:BAD_GetPlayerSpecialAction(playerid) = GetPlayerSpecialAct
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native SPECIAL_ACTION:FIXES_GetPlayerSpecialAction(playerid) = GetPlayerSpecialAction;
+native SPECIAL_ACTION:CST_GetPlayerSpecialAction(playerid) = GetPlayerSpecialAction;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4065,7 +4065,7 @@ native BAD_SetPlayerSpecialAction(playerid, SPECIAL_ACTION:actionid) = SetPlayer
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerSpecialAction(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
+native CST_SetPlayerSpecialAction(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4089,7 +4089,7 @@ native BAD_DisableRemoteVehicleCollisions(playerid, disable) = DisableRemoteVehi
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DisableRemoteVehicleCollisions(playerid, _FIXES_MAYBE_BOOL:disable) = DisableRemoteVehicleCollisions;
+native CST_DisableRemoteVehicleCollisions(playerid, _FIXES_MAYBE_BOOL:disable) = DisableRemoteVehicleCollisions;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4113,7 +4113,7 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
+native CST_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4137,7 +4137,7 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
+native CST_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4161,7 +4161,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:centerX, Float:centerY,
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerRaceCheckpoint(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
+native CST_SetPlayerRaceCheckpoint(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4185,7 +4185,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
+native CST_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4209,7 +4209,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, Fl
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds;
+native CST_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4233,7 +4233,7 @@ native BAD_SetPlayerMarkerForPlayer(playerid, targetid, colour) = SetPlayerMarke
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerMarkerForPlayer(playerid, targetid, colour) = SetPlayerMarkerForPlayer;
+native CST_SetPlayerMarkerForPlayer(playerid, targetid, colour) = SetPlayerMarkerForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4257,7 +4257,7 @@ native BAD_ShowPlayerNameTagForPlayer(playerid, targetid, show) = ShowPlayerName
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ShowPlayerNameTagForPlayer(playerid, targetid, _FIXES_MAYBE_BOOL:show) = ShowPlayerNameTagForPlayer;
+native CST_ShowPlayerNameTagForPlayer(playerid, targetid, _FIXES_MAYBE_BOOL:show) = ShowPlayerNameTagForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4281,7 +4281,7 @@ native BAD_SetPlayerMapIcon(playerid, iconid, Float:x, Float:y, Float:z, markerT
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerMapIcon(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon;
+native CST_SetPlayerMapIcon(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4305,7 +4305,7 @@ native BAD_RemovePlayerMapIcon(playerid, iconid) = RemovePlayerMapIcon;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_RemovePlayerMapIcon(playerid, iconid) = RemovePlayerMapIcon;
+native CST_RemovePlayerMapIcon(playerid, iconid) = RemovePlayerMapIcon;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4330,7 +4330,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow) = AllowPlayerTeleport;
+native CST_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow) = AllowPlayerTeleport;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4354,7 +4354,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
+native CST_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4378,7 +4378,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, CAM_MOVE:c
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
+native CST_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4402,7 +4402,7 @@ native BAD_SetCameraBehindPlayer(playerid) = SetCameraBehindPlayer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetCameraBehindPlayer(playerid) = SetCameraBehindPlayer;
+native CST_SetCameraBehindPlayer(playerid) = SetCameraBehindPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4426,7 +4426,7 @@ native BAD_GetPlayerCameraPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlaye
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerCameraPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
+native CST_GetPlayerCameraPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4450,7 +4450,7 @@ native BAD_GetPlayerCameraFrontVector(playerid, &Float:x, &Float:y, &Float:z) = 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerCameraFrontVector(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
+native CST_GetPlayerCameraFrontVector(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4474,7 +4474,7 @@ native CAM_MODE:BAD_GetPlayerCameraMode(playerid) = GetPlayerCameraMode;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native CAM_MODE:FIXES_GetPlayerCameraMode(playerid) = GetPlayerCameraMode;
+native CAM_MODE:CST_GetPlayerCameraMode(playerid) = GetPlayerCameraMode;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4498,7 +4498,7 @@ native BAD_EnablePlayerCameraTarget(playerid, enable) = EnablePlayerCameraTarget
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_EnablePlayerCameraTarget(playerid, _FIXES_MAYBE_BOOL:enable) = EnablePlayerCameraTarget;
+native CST_EnablePlayerCameraTarget(playerid, _FIXES_MAYBE_BOOL:enable) = EnablePlayerCameraTarget;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4522,7 +4522,7 @@ native BAD_GetPlayerCameraTargetObject(playerid) = GetPlayerCameraTargetObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerCameraTargetObject(playerid) = GetPlayerCameraTargetObject;
+native CST_GetPlayerCameraTargetObject(playerid) = GetPlayerCameraTargetObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4546,7 +4546,7 @@ native BAD_GetPlayerCameraTargetVehicle(playerid) = GetPlayerCameraTargetVehicle
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerCameraTargetVehicle(playerid) = GetPlayerCameraTargetVehicle;
+native CST_GetPlayerCameraTargetVehicle(playerid) = GetPlayerCameraTargetVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4570,7 +4570,7 @@ native BAD_GetPlayerCameraTargetPlayer(playerid) = GetPlayerCameraTargetPlayer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerCameraTargetPlayer(playerid) = GetPlayerCameraTargetPlayer;
+native CST_GetPlayerCameraTargetPlayer(playerid) = GetPlayerCameraTargetPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4594,7 +4594,7 @@ native BAD_GetPlayerCameraTargetActor(playerid) = GetPlayerCameraTargetActor;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerCameraTargetActor(playerid) = GetPlayerCameraTargetActor;
+native CST_GetPlayerCameraTargetActor(playerid) = GetPlayerCameraTargetActor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4618,7 +4618,7 @@ native Float:BAD_GetPlayerCameraAspectRatio(playerid) = GetPlayerCameraAspectRat
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_GetPlayerCameraAspectRatio(playerid) = GetPlayerCameraAspectRatio;
+native Float:CST_GetPlayerCameraAspectRatio(playerid) = GetPlayerCameraAspectRatio;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4642,7 +4642,7 @@ native Float:BAD_GetPlayerCameraZoom(playerid) = GetPlayerCameraZoom;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_GetPlayerCameraZoom(playerid) = GetPlayerCameraZoom;
+native Float:CST_GetPlayerCameraZoom(playerid) = GetPlayerCameraZoom;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4666,7 +4666,7 @@ native BAD_AttachCameraToObject(playerid, objectid) = AttachCameraToObject;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AttachCameraToObject(playerid, objectid) = AttachCameraToObject;
+native CST_AttachCameraToObject(playerid, objectid) = AttachCameraToObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4690,7 +4690,7 @@ native BAD_AttachCameraToPlayerObject(playerid, objectid) = AttachCameraToPlayer
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AttachCameraToPlayerObject(playerid, objectid) = AttachCameraToPlayerObject;
+native CST_AttachCameraToPlayerObject(playerid, objectid) = AttachCameraToPlayerObject;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4714,7 +4714,7 @@ native BAD_InterpolateCameraPos(playerid, Float:fromX, Float:fromY, Float:fromZ,
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_InterpolateCameraPos(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos;
+native CST_InterpolateCameraPos(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4738,7 +4738,7 @@ native BAD_InterpolateCameraLookAt(playerid, Float:fromX, Float:fromY, Float:fro
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_InterpolateCameraLookAt(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt;
+native CST_InterpolateCameraLookAt(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4762,7 +4762,7 @@ native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsPlayerConnected(playerid) = IsPlayerConnected;
+native _FIXES_MAYBE_BOOL:CST_IsPlayerConnected(playerid) = IsPlayerConnected;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4786,7 +4786,7 @@ native BAD_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
+native _FIXES_MAYBE_BOOL:CST_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4810,7 +4810,7 @@ native BAD_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
+native _FIXES_MAYBE_BOOL:CST_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4834,7 +4834,7 @@ native BAD_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
+native _FIXES_MAYBE_BOOL:CST_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4858,7 +4858,7 @@ native BAD_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
+native _FIXES_MAYBE_BOOL:CST_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4882,7 +4882,7 @@ native BAD_SetPlayerVirtualWorld(playerid, virtualWorld) = SetPlayerVirtualWorld
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetPlayerVirtualWorld(playerid, virtualWorld) = SetPlayerVirtualWorld;
+native CST_SetPlayerVirtualWorld(playerid, virtualWorld) = SetPlayerVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4906,7 +4906,7 @@ native BAD_GetPlayerVirtualWorld(playerid) = GetPlayerVirtualWorld;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerVirtualWorld(playerid) = GetPlayerVirtualWorld;
+native CST_GetPlayerVirtualWorld(playerid) = GetPlayerVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4930,7 +4930,7 @@ native BAD_EnableStuntBonusForPlayer(playerid, enable) = EnableStuntBonusForPlay
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_EnableStuntBonusForPlayer(playerid, _FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForPlayer;
+native CST_EnableStuntBonusForPlayer(playerid, _FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4954,7 +4954,7 @@ native BAD_EnableStuntBonusForAll(enable) = EnableStuntBonusForAll;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_EnableStuntBonusForAll(_FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForAll;
+native CST_EnableStuntBonusForAll(_FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -4978,7 +4978,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TogglePlayerSpectating(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerSpectating;
+native CST_TogglePlayerSpectating(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerSpectating;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5002,7 +5002,7 @@ native BAD_PlayerSpectatePlayer(playerid, targetid, SPECTATE_MODE:mode = SPECTAT
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerSpectatePlayer(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer;
+native CST_PlayerSpectatePlayer(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5026,7 +5026,7 @@ native BAD_PlayerSpectateVehicle(playerid, targetid, SPECTATE_MODE:mode = SPECTA
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PlayerSpectateVehicle(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle;
+native CST_PlayerSpectateVehicle(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5050,7 +5050,7 @@ native BAD_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, _FIXES_MAYBE_CONST recordFile[]) = StartRecordingPlayerData;
+native CST_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, _FIXES_MAYBE_CONST recordFile[]) = StartRecordingPlayerData;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5074,7 +5074,7 @@ native BAD_StopRecordingPlayerData(playerid) = StopRecordingPlayerData;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_StopRecordingPlayerData(playerid) = StopRecordingPlayerData;
+native CST_StopRecordingPlayerData(playerid) = StopRecordingPlayerData;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5098,7 +5098,7 @@ native BAD_SelectTextDraw(playerid, hoverColour) = SelectTextDraw;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SelectTextDraw(playerid, hoverColour) = SelectTextDraw;
+native CST_SelectTextDraw(playerid, hoverColour) = SelectTextDraw;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5122,7 +5122,7 @@ native BAD_CancelSelectTextDraw(playerid) = CancelSelectTextDraw;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_CancelSelectTextDraw(playerid) = CancelSelectTextDraw;
+native CST_CancelSelectTextDraw(playerid) = CancelSelectTextDraw;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5146,7 +5146,7 @@ native BAD_CreateExplosionForPlayer(playerid, Float:x, Float:y, Float:z, type, F
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_CreateExplosionForPlayer(playerid, Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosionForPlayer;
+native CST_CreateExplosionForPlayer(playerid, Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosionForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5170,7 +5170,7 @@ native BAD_SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCoun
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCount) = SendClientCheck;
+native CST_SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCount) = SendClientCheck;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5204,7 +5204,7 @@ native BAD_print(const string[]) = print;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_print(const string[]) = print;
+native CST_print(const string[]) = print;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5228,7 +5228,7 @@ native BAD_printf(const format[], {Float, _}:...) = printf;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_printf(const format[], {Float, _}:...) = printf;
+native CST_printf(const format[], {Float, _}:...) = printf;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5252,7 +5252,7 @@ native BAD_format(output[], len, const format[], {Float, _}:...) = format;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
+native CST_format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5276,7 +5276,7 @@ native BAD_Print(const string[]) = print;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_Print(const string[]) = print;
+native CST_Print(const string[]) = print;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5300,7 +5300,7 @@ native BAD_PrintF(const format[], {Float, _}:...) = printf;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_PrintF(const format[], {Float, _}:...) = printf;
+native CST_PrintF(const format[], {Float, _}:...) = printf;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5324,7 +5324,7 @@ native BAD_Format(output[], len, const format[], {Float, _}:...) = format;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_Format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
+native CST_Format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5348,7 +5348,7 @@ native BAD_SendClientMessage(playerid, colour, const message[]) = SendClientMess
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SendClientMessage(playerid, colour, const message[]) = SendClientMessage;
+native CST_SendClientMessage(playerid, colour, const message[]) = SendClientMessage;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5372,7 +5372,7 @@ native BAD_SendClientMessageToAll(colour, const message[]) = SendClientMessageTo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SendClientMessageToAll(colour, const message[]) = SendClientMessageToAll;
+native CST_SendClientMessageToAll(colour, const message[]) = SendClientMessageToAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5396,7 +5396,7 @@ native BAD_SendPlayerMessageToPlayer(playerid, senderid, const message[]) = Send
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SendPlayerMessageToPlayer(playerid, senderid, const message[]) = SendPlayerMessageToPlayer;
+native CST_SendPlayerMessageToPlayer(playerid, senderid, const message[]) = SendPlayerMessageToPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5420,7 +5420,7 @@ native BAD_SendPlayerMessageToAll(senderid, const message[]) = SendPlayerMessage
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SendPlayerMessageToAll(senderid, const message[]) = SendPlayerMessageToAll;
+native CST_SendPlayerMessageToAll(senderid, const message[]) = SendPlayerMessageToAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5444,7 +5444,7 @@ native BAD_SendDeathMessage(killer, killee, weapon) = SendDeathMessage;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SendDeathMessage(killer, killee, weapon) = SendDeathMessage;
+native CST_SendDeathMessage(killer, killee, weapon) = SendDeathMessage;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5468,7 +5468,7 @@ native BAD_SendDeathMessageToPlayer(playerid, killer, killee, weapon) = SendDeat
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SendDeathMessageToPlayer(playerid, killer, killee, weapon) = SendDeathMessageToPlayer;
+native CST_SendDeathMessageToPlayer(playerid, killer, killee, weapon) = SendDeathMessageToPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5492,7 +5492,7 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GameTextForAll(const string[], time, style) = GameTextForAll;
+native CST_GameTextForAll(const string[], time, style) = GameTextForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5516,7 +5516,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
+native CST_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5540,7 +5540,7 @@ native BAD_SetTimer(functionName[], interval, repeating) = SetTimer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetTimer(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
+native CST_SetTimer(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5564,7 +5564,7 @@ native BAD_SetTimerEx(functionName[], interval, repeating, const format[] = "", 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetTimerEx(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
+native CST_SetTimerEx(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5588,7 +5588,7 @@ native BAD_KillTimer(timerid) = KillTimer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_KillTimer(timerid) = KillTimer;
+native CST_KillTimer(timerid) = KillTimer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5612,7 +5612,7 @@ native BAD_GetTickCount() = GetTickCount;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetTickCount() = GetTickCount;
+native CST_GetTickCount() = GetTickCount;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5636,7 +5636,7 @@ native BAD_GetMaxPlayers() = GetMaxPlayers;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetMaxPlayers() = GetMaxPlayers;
+native CST_GetMaxPlayers() = GetMaxPlayers;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5660,7 +5660,7 @@ native BAD_CallRemoteFunction(const function[], const format[] = "", {Float, _}:
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_CallRemoteFunction(const function[], const format[] = "", {Float, _}:...) = CallRemoteFunction;
+native CST_CallRemoteFunction(const function[], const format[] = "", {Float, _}:...) = CallRemoteFunction;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5684,7 +5684,7 @@ native BAD_CallLocalFunction(const function[], const format[] = "", {Float, _}:.
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_CallLocalFunction(const function[], const format[] = "", {Float, _}:...) = CallLocalFunction;
+native CST_CallLocalFunction(const function[], const format[] = "", {Float, _}:...) = CallLocalFunction;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5708,7 +5708,7 @@ native Float:BAD_VectorSize(Float:x, Float:y, Float:z) = VectorSize;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_VectorSize(Float:x, Float:y, Float:z) = VectorSize;
+native Float:CST_VectorSize(Float:x, Float:y, Float:z) = VectorSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5735,7 +5735,7 @@ native Float:BAD_asin(Float:value) = asin;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_asin(Float:value) = asin;
+native Float:CST_asin(Float:value) = asin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5762,7 +5762,7 @@ native Float:BAD_acos(Float:value) = acos;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_acos(Float:value) = acos;
+native Float:CST_acos(Float:value) = acos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5789,7 +5789,7 @@ native Float:BAD_atan(Float:value) = atan;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_atan(Float:value) = atan;
+native Float:CST_atan(Float:value) = atan;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5816,7 +5816,7 @@ native Float:BAD_atan2(Float:y, Float:x) = atan2;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_atan2(Float:y, Float:x) = atan2;
+native Float:CST_atan2(Float:y, Float:x) = atan2;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5840,7 +5840,7 @@ native Float:BAD_ASin(Float:value) = asin;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_ASin(Float:value) = asin;
+native Float:CST_ASin(Float:value) = asin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5864,7 +5864,7 @@ native Float:BAD_ACos(Float:value) = acos;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_ACos(Float:value) = acos;
+native Float:CST_ACos(Float:value) = acos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5888,7 +5888,7 @@ native Float:BAD_ATan(Float:value) = atan;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_ATan(Float:value) = atan;
+native Float:CST_ATan(Float:value) = atan;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5912,7 +5912,7 @@ native Float:BAD_ATan2(Float:y, Float:x) = atan2;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_ATan2(Float:y, Float:x) = atan2;
+native Float:CST_ATan2(Float:y, Float:x) = atan2;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5936,7 +5936,7 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerPoolSize() = GetPlayerPoolSize;
+native CST_GetPlayerPoolSize() = GetPlayerPoolSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5960,7 +5960,7 @@ native BAD_GetVehiclePoolSize() = GetVehiclePoolSize;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehiclePoolSize() = GetVehiclePoolSize;
+native CST_GetVehiclePoolSize() = GetVehiclePoolSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -5984,7 +5984,7 @@ native BAD_GetActorPoolSize() = GetActorPoolSize;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetActorPoolSize() = GetActorPoolSize;
+native CST_GetActorPoolSize() = GetActorPoolSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6009,7 +6009,7 @@ native BAD_SHA256_PassHash(password[], salt[], output[], size) = SHA256_PassHash
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SHA256_PassHash(_FIXES_MAYBE_CONST password[], _FIXES_MAYBE_CONST salt[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = SHA256_PassHash;
+native CST_SHA256_PassHash(_FIXES_MAYBE_CONST password[], _FIXES_MAYBE_CONST salt[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = SHA256_PassHash;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6033,7 +6033,7 @@ native BAD_SetSVarInt(svar[], value) = SetSVarInt;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetSVarInt(_FIXES_MAYBE_CONST svar[], value) = SetSVarInt;
+native CST_SetSVarInt(_FIXES_MAYBE_CONST svar[], value) = SetSVarInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6057,7 +6057,7 @@ native BAD_GetSVarInt(svar[]) = GetSVarInt;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetSVarInt(_FIXES_MAYBE_CONST svar[]) = GetSVarInt;
+native CST_GetSVarInt(_FIXES_MAYBE_CONST svar[]) = GetSVarInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6081,7 +6081,7 @@ native BAD_SetSVarString(svar[], value[]) = SetSVarString;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetSVarString(_FIXES_MAYBE_CONST svar[], _FIXES_MAYBE_CONST value[]) = SetSVarString;
+native CST_SetSVarString(_FIXES_MAYBE_CONST svar[], _FIXES_MAYBE_CONST value[]) = SetSVarString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6105,7 +6105,7 @@ native BAD_GetSVarString(svar[], output[], len) = GetSVarString;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetSVarString(_FIXES_MAYBE_CONST svar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetSVarString;
+native CST_GetSVarString(_FIXES_MAYBE_CONST svar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetSVarString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6129,7 +6129,7 @@ native BAD_SetSVarFloat(svar[], Float:value) = SetSVarFloat;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetSVarFloat(_FIXES_MAYBE_CONST svar[], Float:value) = SetSVarFloat;
+native CST_SetSVarFloat(_FIXES_MAYBE_CONST svar[], Float:value) = SetSVarFloat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6153,7 +6153,7 @@ native Float:BAD_GetSVarFloat(svar[]) = GetSVarFloat;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_GetSVarFloat(_FIXES_MAYBE_CONST svar[]) = GetSVarFloat;
+native Float:CST_GetSVarFloat(_FIXES_MAYBE_CONST svar[]) = GetSVarFloat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6177,7 +6177,7 @@ native BAD_DeleteSVar(svar[]) = DeleteSVar;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DeleteSVar(_FIXES_MAYBE_CONST svar[]) = DeleteSVar;
+native CST_DeleteSVar(_FIXES_MAYBE_CONST svar[]) = DeleteSVar;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6201,7 +6201,7 @@ native BAD_GetSVarsUpperIndex() = GetSVarsUpperIndex;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetSVarsUpperIndex() = GetSVarsUpperIndex;
+native CST_GetSVarsUpperIndex() = GetSVarsUpperIndex;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6225,7 +6225,7 @@ native BAD_GetSVarNameAtIndex(index, output[], size) = GetSVarNameAtIndex;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetSVarNameAtIndex(index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetSVarNameAtIndex;
+native CST_GetSVarNameAtIndex(index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetSVarNameAtIndex;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6249,7 +6249,7 @@ native SERVER_VARTYPE:BAD_GetSVarType(svar[]) = GetSVarType;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native SERVER_VARTYPE:FIXES_GetSVarType(_FIXES_MAYBE_CONST svar[]) = GetSVarType;
+native SERVER_VARTYPE:CST_GetSVarType(_FIXES_MAYBE_CONST svar[]) = GetSVarType;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6273,7 +6273,7 @@ native BAD_SetGameModeText(const string[]) = SetGameModeText;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetGameModeText(const string[]) = SetGameModeText;
+native CST_SetGameModeText(const string[]) = SetGameModeText;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6297,7 +6297,7 @@ native BAD_SetTeamCount(count) = SetTeamCount;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetTeamCount(count) = SetTeamCount;
+native CST_SetTeamCount(count) = SetTeamCount;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6321,7 +6321,7 @@ native BAD_AddPlayerClass(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Flo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AddPlayerClass(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass;
+native CST_AddPlayerClass(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6345,7 +6345,7 @@ native BAD_AddPlayerClassEx(teamid, modelid, Float:spawnX, Float:spawnY, Float:s
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AddPlayerClassEx(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx;
+native CST_AddPlayerClassEx(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6369,7 +6369,7 @@ native BAD_AddStaticVehicle(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, F
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AddStaticVehicle(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle;
+native CST_AddStaticVehicle(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6393,7 +6393,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ,
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = AddStaticVehicleEx;
+native CST_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = AddStaticVehicleEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6417,7 +6417,7 @@ native BAD_AddStaticPickup(model, type, Float:x, Float:y, Float:z, virtualWorld 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AddStaticPickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup;
+native CST_AddStaticPickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6441,7 +6441,7 @@ native BAD_CreatePickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_CreatePickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup;
+native CST_CreatePickup(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6465,7 +6465,7 @@ native BAD_DestroyPickup(pickup) = DestroyPickup;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DestroyPickup(pickup) = DestroyPickup;
+native CST_DestroyPickup(pickup) = DestroyPickup;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6489,7 +6489,7 @@ native BAD_ShowNameTags(show) = ShowNameTags;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ShowNameTags(_FIXES_MAYBE_BOOL:show) = ShowNameTags;
+native CST_ShowNameTags(_FIXES_MAYBE_BOOL:show) = ShowNameTags;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6513,7 +6513,7 @@ native BAD_ShowPlayerMarkers(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ShowPlayerMarkers(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
+native CST_ShowPlayerMarkers(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6537,7 +6537,7 @@ native BAD_GameModeExit() = GameModeExit;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GameModeExit() = GameModeExit;
+native CST_GameModeExit() = GameModeExit;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6561,7 +6561,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetWorldTime(hour) = SetWorldTime;
+native CST_SetWorldTime(hour) = SetWorldTime;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6585,7 +6585,7 @@ native BAD_GetWeaponName(WEAPON:weaponid, const weapon[], len) = GetWeaponName;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetWeaponName(WEAPON:weaponid, _FIXES_NOT_CONST weapon[], _FIXES_MAYBE_SIZEOF(len, weapon)) = GetWeaponName;
+native CST_GetWeaponName(WEAPON:weaponid, _FIXES_NOT_CONST weapon[], _FIXES_MAYBE_SIZEOF(len, weapon)) = GetWeaponName;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6610,7 +6610,7 @@ native BAD_EnableTirePopping(enable) = EnableTirePopping;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_EnableTirePopping(_FIXES_MAYBE_BOOL:enable) = EnableTirePopping;
+native CST_EnableTirePopping(_FIXES_MAYBE_BOOL:enable) = EnableTirePopping;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6634,7 +6634,7 @@ native BAD_EnableVehicleFriendlyFire() = EnableVehicleFriendlyFire;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_EnableVehicleFriendlyFire() = EnableVehicleFriendlyFire;
+native CST_EnableVehicleFriendlyFire() = EnableVehicleFriendlyFire;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6659,7 +6659,7 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow) = AllowInteriorWeapons;
+native CST_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow) = AllowInteriorWeapons;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6683,7 +6683,7 @@ native BAD_SetWeather(weatherid) = SetWeather;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetWeather(weatherid) = SetWeather;
+native CST_SetWeather(weatherid) = SetWeather;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6707,7 +6707,7 @@ native Float:BAD_GetGravity() = GetGravity;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_GetGravity() = GetGravity;
+native Float:CST_GetGravity() = GetGravity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6731,7 +6731,7 @@ native BAD_SetGravity(Float:gravity) = SetGravity;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetGravity(Float:gravity) = SetGravity;
+native CST_SetGravity(Float:gravity) = SetGravity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6756,7 +6756,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow) = AllowAdminTeleport;
+native CST_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow) = AllowAdminTeleport;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6781,7 +6781,7 @@ native BAD_SetDeathDropAmount(amount) = SetDeathDropAmount;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetDeathDropAmount(amount) = SetDeathDropAmount;
+native CST_SetDeathDropAmount(amount) = SetDeathDropAmount;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6805,7 +6805,7 @@ native BAD_CreateExplosion(Float:x, Float:y, Float:z, type, Float:radius) = Crea
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_CreateExplosion(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion;
+native CST_CreateExplosion(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6829,7 +6829,7 @@ native BAD_EnableZoneNames(enable) = EnableZoneNames;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_EnableZoneNames(_FIXES_MAYBE_BOOL:enable) = EnableZoneNames;
+native CST_EnableZoneNames(_FIXES_MAYBE_BOOL:enable) = EnableZoneNames;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6853,7 +6853,7 @@ native BAD_UsePlayerPedAnims() = UsePlayerPedAnims;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_UsePlayerPedAnims() = UsePlayerPedAnims;
+native CST_UsePlayerPedAnims() = UsePlayerPedAnims;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6878,7 +6878,7 @@ native BAD_SetNameTagDrawDistance(Float:distance) = SetNameTagDrawDistance;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetNameTagDrawDistance(Float:distance) = SetNameTagDrawDistance;
+native CST_SetNameTagDrawDistance(Float:distance) = SetNameTagDrawDistance;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6902,7 +6902,7 @@ native BAD_DisableNameTagLOS() = DisableNameTagLOS;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DisableNameTagLOS() = DisableNameTagLOS;
+native CST_DisableNameTagLOS() = DisableNameTagLOS;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6926,7 +6926,7 @@ native BAD_LimitGlobalChatRadius(Float:chatRadius) = LimitGlobalChatRadius;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_LimitGlobalChatRadius(Float:chatRadius) = LimitGlobalChatRadius;
+native CST_LimitGlobalChatRadius(Float:chatRadius) = LimitGlobalChatRadius;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6950,7 +6950,7 @@ native BAD_LimitPlayerMarkerRadius(Float:markerRadius) = LimitPlayerMarkerRadius
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_LimitPlayerMarkerRadius(Float:markerRadius) = LimitPlayerMarkerRadius;
+native CST_LimitPlayerMarkerRadius(Float:markerRadius) = LimitPlayerMarkerRadius;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6974,7 +6974,7 @@ native BAD_ConnectNPC(name[], script[]) = ConnectNPC;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ConnectNPC(_FIXES_MAYBE_CONST name[], _FIXES_MAYBE_CONST script[]) = ConnectNPC;
+native CST_ConnectNPC(_FIXES_MAYBE_CONST name[], _FIXES_MAYBE_CONST script[]) = ConnectNPC;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -6998,7 +6998,7 @@ native BAD_IsPlayerNPC(playerid) = IsPlayerNPC;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsPlayerNPC(playerid) = IsPlayerNPC;
+native _FIXES_MAYBE_BOOL:CST_IsPlayerNPC(playerid) = IsPlayerNPC;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7022,7 +7022,7 @@ native BAD_AddCharModel(baseid, newid, dff[], textureLibrary[]) = AddCharModel;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AddCharModel(baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddCharModel;
+native CST_AddCharModel(baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddCharModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7046,7 +7046,7 @@ native BAD_AddSimpleModel(virtualWorld, baseid, newid, dff[], textureLibrary[]) 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AddSimpleModel(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddSimpleModel;
+native CST_AddSimpleModel(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddSimpleModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7070,7 +7070,7 @@ native BAD_AddSimpleModelTimed(virtualWorld, baseid, newid, dff[], textureLibrar
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AddSimpleModelTimed(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
+native CST_AddSimpleModelTimed(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7094,7 +7094,7 @@ native BAD_FindModelFileNameFromCRC(crc, output[], size) = FindModelFileNameFrom
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_FindModelFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindModelFileNameFromCRC;
+native CST_FindModelFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindModelFileNameFromCRC;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7118,7 +7118,7 @@ native BAD_FindTextureFileNameFromCRC(crc, output[], size) = FindTextureFileName
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_FindTextureFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindTextureFileNameFromCRC;
+native CST_FindTextureFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindTextureFileNameFromCRC;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7142,7 +7142,7 @@ native BAD_RedirectDownload(playerid, url[]) = RedirectDownload;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_RedirectDownload(playerid, _FIXES_MAYBE_CONST url[]) = RedirectDownload;
+native CST_RedirectDownload(playerid, _FIXES_MAYBE_CONST url[]) = RedirectDownload;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7166,7 +7166,7 @@ native BAD_IsPlayerAdmin(playerid) = IsPlayerAdmin;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsPlayerAdmin(playerid) = IsPlayerAdmin;
+native _FIXES_MAYBE_BOOL:CST_IsPlayerAdmin(playerid) = IsPlayerAdmin;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7190,7 +7190,7 @@ native BAD_Kick(playerid) = Kick;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_Kick(playerid) = Kick;
+native CST_Kick(playerid) = Kick;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7214,7 +7214,7 @@ native BAD_Ban(playerid) = Ban;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_Ban(playerid) = Ban;
+native CST_Ban(playerid) = Ban;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7238,7 +7238,7 @@ native BAD_BanEx(playerid, const reason[]) = BanEx;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_BanEx(playerid, const reason[]) = BanEx;
+native CST_BanEx(playerid, const reason[]) = BanEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7262,7 +7262,7 @@ native BAD_SendRconCommand(command[]) = SendRconCommand;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SendRconCommand(_FIXES_MAYBE_CONST command[]) = SendRconCommand;
+native CST_SendRconCommand(_FIXES_MAYBE_CONST command[]) = SendRconCommand;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7286,7 +7286,7 @@ native BAD_GetPlayerNetworkStats(playerid, output[], size) = GetPlayerNetworkSta
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerNetworkStats(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPlayerNetworkStats;
+native CST_GetPlayerNetworkStats(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPlayerNetworkStats;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7310,7 +7310,7 @@ native BAD_GetNetworkStats(output[], size) = GetNetworkStats;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetNetworkStats(output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetNetworkStats;
+native CST_GetNetworkStats(output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetNetworkStats;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7334,7 +7334,7 @@ native BAD_GetPlayerVersion(playerid, const version[], len) = GetPlayerVersion;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetPlayerVersion(playerid, _FIXES_NOT_CONST version[], _FIXES_MAYBE_SIZEOF(len, version)) = GetPlayerVersion;
+native CST_GetPlayerVersion(playerid, _FIXES_NOT_CONST version[], _FIXES_MAYBE_SIZEOF(len, version)) = GetPlayerVersion;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7358,7 +7358,7 @@ native BAD_BlockIpAddress(ipAddress[], timeMS) = BlockIpAddress;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_BlockIpAddress(_FIXES_MAYBE_CONST ipAddress[], timeMS) = BlockIpAddress;
+native CST_BlockIpAddress(_FIXES_MAYBE_CONST ipAddress[], timeMS) = BlockIpAddress;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7382,7 +7382,7 @@ native BAD_UnBlockIpAddress(ipAddress[]) = UnBlockIpAddress;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_UnBlockIpAddress(_FIXES_MAYBE_CONST ipAddress[]) = UnBlockIpAddress;
+native CST_UnBlockIpAddress(_FIXES_MAYBE_CONST ipAddress[]) = UnBlockIpAddress;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7407,7 +7407,7 @@ native BAD_GetServerVarAsString(const cvar[], buffer[], len) = GetServerVarAsStr
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetServerVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetServerVarAsString;
+native CST_GetServerVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetServerVarAsString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7432,7 +7432,7 @@ native BAD_GetServerVarAsInt(const cvar[]) = GetServerVarAsInt;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetServerVarAsInt(const cvar[]) = GetServerVarAsInt;
+native CST_GetServerVarAsInt(const cvar[]) = GetServerVarAsInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7457,7 +7457,7 @@ native BAD_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
+native _FIXES_MAYBE_BOOL:CST_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7481,7 +7481,7 @@ native BAD_GetConsoleVarAsString(const cvar[], buffer[], len) = GetConsoleVarAsS
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetConsoleVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetConsoleVarAsString;
+native CST_GetConsoleVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetConsoleVarAsString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7505,7 +7505,7 @@ native BAD_GetConsoleVarAsInt(const cvar[]) = GetConsoleVarAsInt;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetConsoleVarAsInt(const cvar[]) = GetConsoleVarAsInt;
+native CST_GetConsoleVarAsInt(const cvar[]) = GetConsoleVarAsInt;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7529,7 +7529,7 @@ native BAD_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
+native _FIXES_MAYBE_BOOL:CST_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7553,7 +7553,7 @@ native BAD_GetServerTickRate() = GetServerTickRate;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetServerTickRate() = GetServerTickRate;
+native CST_GetServerTickRate() = GetServerTickRate;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7577,7 +7577,7 @@ native BAD_NetStats_GetConnectedTime(playerid) = NetStats_GetConnectedTime;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_NetStats_GetConnectedTime(playerid) = NetStats_GetConnectedTime;
+native CST_NetStats_GetConnectedTime(playerid) = NetStats_GetConnectedTime;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7601,7 +7601,7 @@ native BAD_NetStats_MessagesReceived(playerid) = NetStats_MessagesReceived;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_NetStats_MessagesReceived(playerid) = NetStats_MessagesReceived;
+native CST_NetStats_MessagesReceived(playerid) = NetStats_MessagesReceived;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7625,7 +7625,7 @@ native BAD_NetStats_BytesReceived(playerid) = NetStats_BytesReceived;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_NetStats_BytesReceived(playerid) = NetStats_BytesReceived;
+native CST_NetStats_BytesReceived(playerid) = NetStats_BytesReceived;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7649,7 +7649,7 @@ native BAD_NetStats_MessagesSent(playerid) = NetStats_MessagesSent;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_NetStats_MessagesSent(playerid) = NetStats_MessagesSent;
+native CST_NetStats_MessagesSent(playerid) = NetStats_MessagesSent;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7673,7 +7673,7 @@ native BAD_NetStats_BytesSent(playerid) = NetStats_BytesSent;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_NetStats_BytesSent(playerid) = NetStats_BytesSent;
+native CST_NetStats_BytesSent(playerid) = NetStats_BytesSent;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7697,7 +7697,7 @@ native BAD_NetStats_MessagesRecvPerSecond(playerid) = NetStats_MessagesRecvPerSe
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_NetStats_MessagesRecvPerSecond(playerid) = NetStats_MessagesRecvPerSecond;
+native CST_NetStats_MessagesRecvPerSecond(playerid) = NetStats_MessagesRecvPerSecond;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7721,7 +7721,7 @@ native Float:BAD_NetStats_PacketLossPercent(playerid) = NetStats_PacketLossPerce
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_NetStats_PacketLossPercent(playerid) = NetStats_PacketLossPercent;
+native Float:CST_NetStats_PacketLossPercent(playerid) = NetStats_PacketLossPercent;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7745,7 +7745,7 @@ native BAD_NetStats_ConnectionStatus(playerid) = NetStats_ConnectionStatus;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_NetStats_ConnectionStatus(playerid) = NetStats_ConnectionStatus;
+native CST_NetStats_ConnectionStatus(playerid) = NetStats_ConnectionStatus;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7769,7 +7769,7 @@ native BAD_NetStats_GetIpPort(playerid, output[], size) = NetStats_GetIpPort;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_NetStats_GetIpPort(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = NetStats_GetIpPort;
+native CST_NetStats_GetIpPort(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = NetStats_GetIpPort;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7793,7 +7793,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Menu:FIXES_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
+native Menu:CST_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7817,7 +7817,7 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DestroyMenu(Menu:menuid) = DestroyMenu;
+native CST_DestroyMenu(Menu:menuid) = DestroyMenu;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7841,7 +7841,7 @@ native BAD_AddMenuItem(Menu:menuid, column, const text[]) = AddMenuItem;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AddMenuItem(Menu:menuid, column, const text[]) = AddMenuItem;
+native CST_AddMenuItem(Menu:menuid, column, const text[]) = AddMenuItem;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7865,7 +7865,7 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const heading[]) = SetMenuCo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetMenuColumnHeader(Menu:menuid, column, const heading[]) = SetMenuColumnHeader;
+native CST_SetMenuColumnHeader(Menu:menuid, column, const heading[]) = SetMenuColumnHeader;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7889,7 +7889,7 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
+native CST_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7913,7 +7913,7 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
+native CST_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7937,7 +7937,7 @@ native BAD_IsValidMenu(Menu:menuid) = IsValidMenu;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsValidMenu(Menu:menuid) = IsValidMenu;
+native _FIXES_MAYBE_BOOL:CST_IsValidMenu(Menu:menuid) = IsValidMenu;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7961,7 +7961,7 @@ native BAD_DisableMenu(Menu:menuid) = DisableMenu;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DisableMenu(Menu:menuid) = DisableMenu;
+native CST_DisableMenu(Menu:menuid) = DisableMenu;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -7985,7 +7985,7 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
+native CST_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8009,7 +8009,7 @@ native Menu:BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Menu:FIXES_GetPlayerMenu(playerid) = GetPlayerMenu;
+native Menu:CST_GetPlayerMenu(playerid) = GetPlayerMenu;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8033,7 +8033,7 @@ native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = TextDrawCreate;
+native Text:CST_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = TextDrawCreate;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8057,7 +8057,7 @@ native BAD_TextDrawDestroy(Text:text) = TextDrawDestroy;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawDestroy(Text:text) = TextDrawDestroy;
+native CST_TextDrawDestroy(Text:text) = TextDrawDestroy;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8081,7 +8081,7 @@ native BAD_TextDrawLetterSize(Text:text, Float:width, Float:height) = TextDrawLe
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawLetterSize(Text:text, Float:width, Float:height) = TextDrawLetterSize;
+native CST_TextDrawLetterSize(Text:text, Float:width, Float:height) = TextDrawLetterSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8105,7 +8105,7 @@ native BAD_TextDrawTextSize(Text:text, Float:width, Float:height) = TextDrawText
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawTextSize(Text:text, Float:width, Float:height) = TextDrawTextSize;
+native CST_TextDrawTextSize(Text:text, Float:width, Float:height) = TextDrawTextSize;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8129,7 +8129,7 @@ native BAD_TextDrawAlignment(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAli
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawAlignment(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment;
+native CST_TextDrawAlignment(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8153,7 +8153,7 @@ native BAD_TextDrawColor(Text:text, colour) = TextDrawColor;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawColor(Text:text, colour) = TextDrawColor;
+native CST_TextDrawColor(Text:text, colour) = TextDrawColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8177,7 +8177,7 @@ native BAD_TextDrawUseBox(Text:text, use) = TextDrawUseBox;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawUseBox(Text:text, _FIXES_MAYBE_BOOL:use) = TextDrawUseBox;
+native CST_TextDrawUseBox(Text:text, _FIXES_MAYBE_BOOL:use) = TextDrawUseBox;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8201,7 +8201,7 @@ native BAD_TextDrawBoxColor(Text:text, colour) = TextDrawBoxColor;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawBoxColor(Text:text, colour) = TextDrawBoxColor;
+native CST_TextDrawBoxColor(Text:text, colour) = TextDrawBoxColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8225,7 +8225,7 @@ native BAD_TextDrawSetShadow(Text:text, size) = TextDrawSetShadow;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawSetShadow(Text:text, size) = TextDrawSetShadow;
+native CST_TextDrawSetShadow(Text:text, size) = TextDrawSetShadow;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8249,7 +8249,7 @@ native BAD_TextDrawSetOutline(Text:text, size) = TextDrawSetOutline;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawSetOutline(Text:text, size) = TextDrawSetOutline;
+native CST_TextDrawSetOutline(Text:text, size) = TextDrawSetOutline;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8273,7 +8273,7 @@ native BAD_TextDrawBackgroundColor(Text:text, colour) = TextDrawBackgroundColor;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawBackgroundColor(Text:text, colour) = TextDrawBackgroundColor;
+native CST_TextDrawBackgroundColor(Text:text, colour) = TextDrawBackgroundColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8297,7 +8297,7 @@ native BAD_TextDrawFont(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawFont(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
+native CST_TextDrawFont(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8321,7 +8321,7 @@ native BAD_TextDrawSetProportional(Text:text, set) = TextDrawSetProportional;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawSetProportional(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetProportional;
+native CST_TextDrawSetProportional(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetProportional;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8345,7 +8345,7 @@ native BAD_TextDrawSetSelectable(Text:text, set) = TextDrawSetSelectable;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawSetSelectable(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetSelectable;
+native CST_TextDrawSetSelectable(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetSelectable;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8369,7 +8369,7 @@ native BAD_TextDrawShowForPlayer(playerid, Text:text) = TextDrawShowForPlayer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawShowForPlayer(playerid, Text:text) = TextDrawShowForPlayer;
+native CST_TextDrawShowForPlayer(playerid, Text:text) = TextDrawShowForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8393,7 +8393,7 @@ native BAD_TextDrawHideForPlayer(playerid, Text:text) = TextDrawHideForPlayer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawHideForPlayer(playerid, Text:text) = TextDrawHideForPlayer;
+native CST_TextDrawHideForPlayer(playerid, Text:text) = TextDrawHideForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8417,7 +8417,7 @@ native BAD_TextDrawShowForAll(Text:text) = TextDrawShowForAll;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawShowForAll(Text:text) = TextDrawShowForAll;
+native CST_TextDrawShowForAll(Text:text) = TextDrawShowForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8441,7 +8441,7 @@ native BAD_TextDrawHideForAll(Text:text) = TextDrawHideForAll;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawHideForAll(Text:text) = TextDrawHideForAll;
+native CST_TextDrawHideForAll(Text:text) = TextDrawHideForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8465,7 +8465,7 @@ native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[]) = TextDrawSetString;
+native CST_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[]) = TextDrawSetString;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8489,7 +8489,7 @@ native BAD_TextDrawSetPreviewModel(Text:text, modelIndex) = TextDrawSetPreviewMo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawSetPreviewModel(Text:text, modelIndex) = TextDrawSetPreviewModel;
+native CST_TextDrawSetPreviewModel(Text:text, modelIndex) = TextDrawSetPreviewModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8513,7 +8513,7 @@ native BAD_TextDrawSetPreviewRot(Text:text, Float:rotX, Float:rotY, Float:rotZ, 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawSetPreviewRot(Text:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = TextDrawSetPreviewRot;
+native CST_TextDrawSetPreviewRot(Text:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = TextDrawSetPreviewRot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8537,7 +8537,7 @@ native BAD_TextDrawSetPreviewVehCol(Text:text, colour1, colour2) = TextDrawSetPr
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_TextDrawSetPreviewVehCol(Text:text, colour1, colour2) = TextDrawSetPreviewVehCol;
+native CST_TextDrawSetPreviewVehCol(Text:text, colour1, colour2) = TextDrawSetPreviewVehCol;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8561,7 +8561,7 @@ native BAD_GangZoneCreate(Float:minX, Float:minY, Float:maxX, Float:maxY) = Gang
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GangZoneCreate(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZoneCreate;
+native CST_GangZoneCreate(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZoneCreate;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8585,7 +8585,7 @@ native BAD_GangZoneDestroy(zone) = GangZoneDestroy;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GangZoneDestroy(zone) = GangZoneDestroy;
+native CST_GangZoneDestroy(zone) = GangZoneDestroy;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8609,7 +8609,7 @@ native BAD_GangZoneShowForPlayer(playerid, zone, colour) = GangZoneShowForPlayer
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GangZoneShowForPlayer(playerid, zone, colour) = GangZoneShowForPlayer;
+native CST_GangZoneShowForPlayer(playerid, zone, colour) = GangZoneShowForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8633,7 +8633,7 @@ native BAD_GangZoneShowForAll(zone, colour) = GangZoneShowForAll;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GangZoneShowForAll(zone, colour) = GangZoneShowForAll;
+native CST_GangZoneShowForAll(zone, colour) = GangZoneShowForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8657,7 +8657,7 @@ native BAD_GangZoneHideForPlayer(playerid, zone) = GangZoneHideForPlayer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GangZoneHideForPlayer(playerid, zone) = GangZoneHideForPlayer;
+native CST_GangZoneHideForPlayer(playerid, zone) = GangZoneHideForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8681,7 +8681,7 @@ native BAD_GangZoneHideForAll(zone) = GangZoneHideForAll;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GangZoneHideForAll(zone) = GangZoneHideForAll;
+native CST_GangZoneHideForAll(zone) = GangZoneHideForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8705,7 +8705,7 @@ native BAD_GangZoneFlashForPlayer(playerid, zone, flashColour) = GangZoneFlashFo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GangZoneFlashForPlayer(playerid, zone, flashColour) = GangZoneFlashForPlayer;
+native CST_GangZoneFlashForPlayer(playerid, zone, flashColour) = GangZoneFlashForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8729,7 +8729,7 @@ native BAD_GangZoneFlashForAll(zone, flashColour) = GangZoneFlashForAll;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GangZoneFlashForAll(zone, flashColour) = GangZoneFlashForAll;
+native CST_GangZoneFlashForAll(zone, flashColour) = GangZoneFlashForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8753,7 +8753,7 @@ native BAD_GangZoneStopFlashForPlayer(playerid, zone) = GangZoneStopFlashForPlay
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GangZoneStopFlashForPlayer(playerid, zone) = GangZoneStopFlashForPlayer;
+native CST_GangZoneStopFlashForPlayer(playerid, zone) = GangZoneStopFlashForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8777,7 +8777,7 @@ native BAD_GangZoneStopFlashForAll(zone) = GangZoneStopFlashForAll;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GangZoneStopFlashForAll(zone) = GangZoneStopFlashForAll;
+native CST_GangZoneStopFlashForAll(zone) = GangZoneStopFlashForAll;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8801,7 +8801,7 @@ native Text3D:BAD_Create3DTextLabel(text[], colour, Float:x, Float:y, Float:z, F
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Text3D:FIXES_Create3DTextLabel(_FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = false) = Create3DTextLabel;
+native Text3D:CST_Create3DTextLabel(_FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = false) = Create3DTextLabel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8825,7 +8825,7 @@ native BAD_Delete3DTextLabel(Text3D:textid) = Delete3DTextLabel;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_Delete3DTextLabel(Text3D:textid) = Delete3DTextLabel;
+native CST_Delete3DTextLabel(Text3D:textid) = Delete3DTextLabel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8849,7 +8849,7 @@ native BAD_Attach3DTextLabelToPlayer(Text3D:textid, parentid, Float:offsetX, Flo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_Attach3DTextLabelToPlayer(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer;
+native CST_Attach3DTextLabelToPlayer(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8873,7 +8873,7 @@ native BAD_Attach3DTextLabelToVehicle(Text3D:textid, parentid, Float:offsetX, Fl
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_Attach3DTextLabelToVehicle(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle;
+native CST_Attach3DTextLabelToVehicle(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8897,7 +8897,7 @@ native BAD_Update3DTextLabelText(Text3D:textid, colour, text[]) = Update3DTextLa
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_Update3DTextLabelText(Text3D:textid, colour, _FIXES_MAYBE_CONST text[]) = Update3DTextLabelText;
+native CST_Update3DTextLabelText(Text3D:textid, colour, _FIXES_MAYBE_CONST text[]) = Update3DTextLabelText;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8921,7 +8921,7 @@ native PlayerText3D:BAD_CreatePlayer3DTextLabel(playerid, text[], colour, Float:
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native PlayerText3D:FIXES_CreatePlayer3DTextLabel(playerid, _FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = false) = CreatePlayer3DTextLabel;
+native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, _FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = false) = CreatePlayer3DTextLabel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8945,7 +8945,7 @@ native BAD_DeletePlayer3DTextLabel(playerid, PlayerText3D:textid) = DeletePlayer
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DeletePlayer3DTextLabel(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel;
+native CST_DeletePlayer3DTextLabel(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8969,7 +8969,7 @@ native BAD_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, te
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, _FIXES_MAYBE_CONST text[]) = UpdatePlayer3DTextLabelText;
+native CST_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, _FIXES_MAYBE_CONST text[]) = UpdatePlayer3DTextLabelText;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -8993,7 +8993,7 @@ native BAD_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, caption[], i
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST info[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[]) = ShowPlayerDialog;
+native CST_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST info[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[]) = ShowPlayerDialog;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9020,7 +9020,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_gpci(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
+native CST_gpci(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9044,7 +9044,7 @@ native BAD_GPCI(playerid, serial[], len) = gpci;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GPCI(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
+native CST_GPCI(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9081,7 +9081,7 @@ native DB:BAD_db_open(name[]) = db_open;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native DB:FIXES_db_open(_FIXES_MAYBE_CONST name[]) = db_open;
+native DB:CST_db_open(_FIXES_MAYBE_CONST name[]) = db_open;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9105,7 +9105,7 @@ native DB:BAD_DB_Open(name[]) = db_open;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native DB:FIXES_DB_Open(_FIXES_MAYBE_CONST name[]) = db_open;
+native DB:CST_DB_Open(_FIXES_MAYBE_CONST name[]) = db_open;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9132,7 +9132,7 @@ native BAD_db_close(DB:db) = db_close;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_db_close(DB:db) = db_close;
+native _FIXES_MAYBE_BOOL:CST_db_close(DB:db) = db_close;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9156,7 +9156,7 @@ native BAD_DB_Close(DB:db) = db_close;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_DB_Close(DB:db) = db_close;
+native _FIXES_MAYBE_BOOL:CST_DB_Close(DB:db) = db_close;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9183,7 +9183,7 @@ native DBResult:BAD_db_query(DB:db, query[]) = db_query;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native DBResult:FIXES_db_query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
+native DBResult:CST_db_query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9207,7 +9207,7 @@ native DBResult:BAD_DB_Query(DB:db, query[]) = db_query;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native DBResult:FIXES_DB_Query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
+native DBResult:CST_DB_Query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9234,7 +9234,7 @@ native BAD_db_free_result(DBResult:result) = db_free_result;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_db_free_result(DBResult:result) = db_free_result;
+native _FIXES_MAYBE_BOOL:CST_db_free_result(DBResult:result) = db_free_result;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9258,7 +9258,7 @@ native BAD_DB_FreeResult(DBResult:result) = db_free_result;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_DB_FreeResult(DBResult:result) = db_free_result;
+native _FIXES_MAYBE_BOOL:CST_DB_FreeResult(DBResult:result) = db_free_result;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9285,7 +9285,7 @@ native BAD_db_num_rows(DBResult:result) = db_num_rows;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_db_num_rows(DBResult:result) = db_num_rows;
+native CST_db_num_rows(DBResult:result) = db_num_rows;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9309,7 +9309,7 @@ native BAD_DB_NumRows(DBResult:result) = db_num_rows;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DB_NumRows(DBResult:result) = db_num_rows;
+native CST_DB_NumRows(DBResult:result) = db_num_rows;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9336,7 +9336,7 @@ native BAD_db_next_row(DBResult:result) = db_next_row;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_db_next_row(DBResult:result) = db_next_row;
+native _FIXES_MAYBE_BOOL:CST_db_next_row(DBResult:result) = db_next_row;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9360,7 +9360,7 @@ native BAD_DB_NextRow(DBResult:result) = db_next_row;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_DB_NextRow(DBResult:result) = db_next_row;
+native _FIXES_MAYBE_BOOL:CST_DB_NextRow(DBResult:result) = db_next_row;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9387,7 +9387,7 @@ native BAD_db_num_fields(DBResult:result) = db_num_fields;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_db_num_fields(DBResult:result) = db_num_fields;
+native CST_db_num_fields(DBResult:result) = db_num_fields;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9411,7 +9411,7 @@ native BAD_DB_NumFields(DBResult:result) = db_num_fields;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DB_NumFields(DBResult:result) = db_num_fields;
+native CST_DB_NumFields(DBResult:result) = db_num_fields;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9438,7 +9438,7 @@ native BAD_db_field_name(DBResult:result, field, output[], size) = db_field_name
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_db_field_name(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
+native _FIXES_MAYBE_BOOL:CST_db_field_name(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9462,7 +9462,7 @@ native BAD_DB_FieldName(DBResult:result, field, output[], size) = db_field_name;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_DB_FieldName(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
+native _FIXES_MAYBE_BOOL:CST_DB_FieldName(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9489,7 +9489,7 @@ native BAD_db_get_field(DBResult:result, field, output[], size) = db_get_field;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_db_get_field(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
+native _FIXES_MAYBE_BOOL:CST_db_get_field(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9513,7 +9513,7 @@ native BAD_DB_GetField(DBResult:result, field, output[], size) = db_get_field;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_DB_GetField(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
+native _FIXES_MAYBE_BOOL:CST_DB_GetField(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9540,7 +9540,7 @@ native BAD_db_get_field_int(DBResult:result, field = 0) = db_get_field_int;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_db_get_field_int(DBResult:result, field = 0) = db_get_field_int;
+native CST_db_get_field_int(DBResult:result, field = 0) = db_get_field_int;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9564,7 +9564,7 @@ native BAD_DB_GetFieldInt(DBResult:result, field = 0) = db_get_field_int;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DB_GetFieldInt(DBResult:result, field = 0) = db_get_field_int;
+native CST_DB_GetFieldInt(DBResult:result, field = 0) = db_get_field_int;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9591,7 +9591,7 @@ native Float:BAD_db_get_field_float(DBResult:result, field = 0) = db_get_field_f
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_db_get_field_float(DBResult:result, field = 0) = db_get_field_float;
+native Float:CST_db_get_field_float(DBResult:result, field = 0) = db_get_field_float;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9615,7 +9615,7 @@ native Float:BAD_DB_GetFieldFloat(DBResult:result, field = 0) = db_get_field_flo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_DB_GetFieldFloat(DBResult:result, field = 0) = db_get_field_float;
+native Float:CST_DB_GetFieldFloat(DBResult:result, field = 0) = db_get_field_float;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9642,7 +9642,7 @@ native BAD_db_get_field_assoc(DBResult:result, field[], output[], size) = db_get
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_db_get_field_assoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
+native _FIXES_MAYBE_BOOL:CST_db_get_field_assoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9666,7 +9666,7 @@ native BAD_DB_GetFieldAssoc(DBResult:result, field[], output[], size) = db_get_f
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_DB_GetFieldAssoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
+native _FIXES_MAYBE_BOOL:CST_DB_GetFieldAssoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9693,7 +9693,7 @@ native BAD_db_get_field_assoc_int(DBResult:result, field[]) = db_get_field_assoc
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_db_get_field_assoc_int(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
+native CST_db_get_field_assoc_int(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9717,7 +9717,7 @@ native BAD_DB_GetFieldAssocInt(DBResult:result, field[]) = db_get_field_assoc_in
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DB_GetFieldAssocInt(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
+native CST_DB_GetFieldAssocInt(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9744,7 +9744,7 @@ native Float:BAD_db_get_field_assoc_float(DBResult:result, field[]) = db_get_fie
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_db_get_field_assoc_float(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
+native Float:CST_db_get_field_assoc_float(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9768,7 +9768,7 @@ native Float:BAD_DB_GetFieldAssocFloat(DBResult:result, field[]) = db_get_field_
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_DB_GetFieldAssocFloat(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
+native Float:CST_DB_GetFieldAssocFloat(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9795,7 +9795,7 @@ native BAD_db_get_mem_handle(DB:db) = db_get_mem_handle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_db_get_mem_handle(DB:db) = db_get_mem_handle;
+native CST_db_get_mem_handle(DB:db) = db_get_mem_handle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9819,7 +9819,7 @@ native BAD_DB_GetMemHandle(DB:db) = db_get_mem_handle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DB_GetMemHandle(DB:db) = db_get_mem_handle;
+native CST_DB_GetMemHandle(DB:db) = db_get_mem_handle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9846,7 +9846,7 @@ native BAD_db_get_result_mem_handle(DBResult:result) = db_get_result_mem_handle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_db_get_result_mem_handle(DBResult:result) = db_get_result_mem_handle;
+native CST_db_get_result_mem_handle(DBResult:result) = db_get_result_mem_handle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9870,7 +9870,7 @@ native BAD_DB_GetResultMemHandle(DBResult:result) = db_get_result_mem_handle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DB_GetResultMemHandle(DBResult:result) = db_get_result_mem_handle;
+native CST_DB_GetResultMemHandle(DBResult:result) = db_get_result_mem_handle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9897,7 +9897,7 @@ native BAD_db_debug_openfiles() = db_debug_openfiles;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_db_debug_openfiles() = db_debug_openfiles;
+native CST_db_debug_openfiles() = db_debug_openfiles;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9921,7 +9921,7 @@ native BAD_DB_DebugOpenFiles() = db_debug_openfiles;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DB_DebugOpenFiles() = db_debug_openfiles;
+native CST_DB_DebugOpenFiles() = db_debug_openfiles;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9948,7 +9948,7 @@ native BAD_db_debug_openresults() = db_debug_openresults;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_db_debug_openresults() = db_debug_openresults;
+native CST_db_debug_openresults() = db_debug_openresults;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -9972,7 +9972,7 @@ native BAD_DB_DebugOpenResults() = db_debug_openresults;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DB_DebugOpenResults() = db_debug_openresults;
+native CST_DB_DebugOpenResults() = db_debug_openresults;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10006,7 +10006,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = CreateVehicle;
+native CST_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = CreateVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10030,7 +10030,7 @@ native BAD_DestroyVehicle(vehicleid) = DestroyVehicle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DestroyVehicle(vehicleid) = DestroyVehicle;
+native CST_DestroyVehicle(vehicleid) = DestroyVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10054,7 +10054,7 @@ native BAD_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
+native _FIXES_MAYBE_BOOL:CST_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10078,7 +10078,7 @@ native BAD_GetVehiclePos(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehiclePos(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
+native CST_GetVehiclePos(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10102,7 +10102,7 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
+native CST_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10126,7 +10126,7 @@ native BAD_GetVehicleZAngle(vehicleid, &Float:angle) = GetVehicleZAngle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleZAngle(vehicleid, &Float:angle) = GetVehicleZAngle;
+native CST_GetVehicleZAngle(vehicleid, &Float:angle) = GetVehicleZAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10150,7 +10150,7 @@ native BAD_GetVehicleRotationQuat(vehicleid, &Float:w, &Float:x, &Float:y, &Floa
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleRotationQuat(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat;
+native CST_GetVehicleRotationQuat(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10174,7 +10174,7 @@ native Float:BAD_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native Float:FIXES_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
+native Float:CST_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10198,7 +10198,7 @@ native BAD_SetVehicleZAngle(vehicleid, Float:angle) = SetVehicleZAngle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehicleZAngle(vehicleid, Float:angle) = SetVehicleZAngle;
+native CST_SetVehicleZAngle(vehicleid, Float:angle) = SetVehicleZAngle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10222,7 +10222,7 @@ native BAD_SetVehicleParamsForPlayer(vehicleid, playerid, objective, doors) = Se
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehicleParamsForPlayer(vehicleid, playerid, objective, doors) = SetVehicleParamsForPlayer;
+native CST_SetVehicleParamsForPlayer(vehicleid, playerid, objective, doors) = SetVehicleParamsForPlayer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10246,7 +10246,7 @@ native BAD_ManualVehicleEngineAndLights() = ManualVehicleEngineAndLights;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ManualVehicleEngineAndLights() = ManualVehicleEngineAndLights;
+native CST_ManualVehicleEngineAndLights() = ManualVehicleEngineAndLights;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10270,7 +10270,7 @@ native BAD_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:l
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
+native CST_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10294,7 +10294,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
+native CST_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10318,7 +10318,7 @@ native BAD_GetVehicleParamsSirenState(vehicleid) = GetVehicleParamsSirenState;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleParamsSirenState(vehicleid) = GetVehicleParamsSirenState;
+native CST_GetVehicleParamsSirenState(vehicleid) = GetVehicleParamsSirenState;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10342,7 +10342,7 @@ native BAD_SetVehicleParamsCarDoors(vehicleid, frontLeft, frontRight, rearLeft, 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehicleParamsCarDoors(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarDoors;
+native CST_SetVehicleParamsCarDoors(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarDoors;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10366,7 +10366,7 @@ native BAD_GetVehicleParamsCarDoors(vehicleid, &frontLeft, &frontRight, &rearLef
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleParamsCarDoors(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarDoors;
+native CST_GetVehicleParamsCarDoors(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarDoors;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10390,7 +10390,7 @@ native BAD_SetVehicleParamsCarWindows(vehicleid, frontLeft, frontRight, rearLeft
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehicleParamsCarWindows(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarWindows;
+native CST_SetVehicleParamsCarWindows(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarWindows;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10414,7 +10414,7 @@ native BAD_GetVehicleParamsCarWindows(vehicleid, &frontLeft, &frontRight, &rearL
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleParamsCarWindows(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarWindows;
+native CST_GetVehicleParamsCarWindows(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarWindows;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10438,7 +10438,7 @@ native BAD_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
+native CST_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10462,7 +10462,7 @@ native BAD_LinkVehicleToInterior(vehicleid, interiorid) = LinkVehicleToInterior;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_LinkVehicleToInterior(vehicleid, interiorid) = LinkVehicleToInterior;
+native CST_LinkVehicleToInterior(vehicleid, interiorid) = LinkVehicleToInterior;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10486,7 +10486,7 @@ native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
+native CST_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10510,7 +10510,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleComponent;
+native CST_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleComponent;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10534,7 +10534,7 @@ native BAD_ChangeVehicleColor(vehicleid, colour1, colour2) = ChangeVehicleColor;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ChangeVehicleColor(vehicleid, colour1, colour2) = ChangeVehicleColor;
+native CST_ChangeVehicleColor(vehicleid, colour1, colour2) = ChangeVehicleColor;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10558,7 +10558,7 @@ native BAD_ChangeVehiclePaintjob(vehicleid, paintjobid) = ChangeVehiclePaintjob;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_ChangeVehiclePaintjob(vehicleid, paintjobid) = ChangeVehiclePaintjob;
+native CST_ChangeVehiclePaintjob(vehicleid, paintjobid) = ChangeVehiclePaintjob;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10582,7 +10582,7 @@ native BAD_SetVehicleHealth(vehicleid, Float:health) = SetVehicleHealth;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehicleHealth(vehicleid, Float:health) = SetVehicleHealth;
+native CST_SetVehicleHealth(vehicleid, Float:health) = SetVehicleHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10606,7 +10606,7 @@ native BAD_GetVehicleHealth(vehicleid, &Float:health) = GetVehicleHealth;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleHealth(vehicleid, &Float:health) = GetVehicleHealth;
+native CST_GetVehicleHealth(vehicleid, &Float:health) = GetVehicleHealth;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10630,7 +10630,7 @@ native BAD_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle;
+native CST_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10654,7 +10654,7 @@ native BAD_DetachTrailerFromVehicle(vehicleid) = DetachTrailerFromVehicle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_DetachTrailerFromVehicle(vehicleid) = DetachTrailerFromVehicle;
+native CST_DetachTrailerFromVehicle(vehicleid) = DetachTrailerFromVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10678,7 +10678,7 @@ native BAD_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
+native _FIXES_MAYBE_BOOL:CST_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10702,7 +10702,7 @@ native BAD_GetVehicleTrailer(vehicleid) = GetVehicleTrailer;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleTrailer(vehicleid) = GetVehicleTrailer;
+native CST_GetVehicleTrailer(vehicleid) = GetVehicleTrailer;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10726,7 +10726,7 @@ native BAD_SetVehicleNumberPlate(vehicleid, numberPlate[]) = SetVehicleNumberPla
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehicleNumberPlate(vehicleid, _FIXES_MAYBE_CONST numberPlate[]) = SetVehicleNumberPlate;
+native CST_SetVehicleNumberPlate(vehicleid, _FIXES_MAYBE_CONST numberPlate[]) = SetVehicleNumberPlate;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10750,7 +10750,7 @@ native BAD_GetVehicleModel(vehicleid) = GetVehicleModel;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleModel(vehicleid) = GetVehicleModel;
+native CST_GetVehicleModel(vehicleid) = GetVehicleModel;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10774,7 +10774,7 @@ native BAD_GetVehicleComponentInSlot(vehicleid, CARMODTYPE:slot) = GetVehicleCom
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleComponentInSlot(vehicleid, CARMODTYPE:slot) = GetVehicleComponentInSlot;
+native CST_GetVehicleComponentInSlot(vehicleid, CARMODTYPE:slot) = GetVehicleComponentInSlot;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10798,7 +10798,7 @@ native CARMODTYPE:BAD_GetVehicleComponentType(component) = GetVehicleComponentTy
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native CARMODTYPE:FIXES_GetVehicleComponentType(component) = GetVehicleComponentType;
+native CARMODTYPE:CST_GetVehicleComponentType(component) = GetVehicleComponentType;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10822,7 +10822,7 @@ native BAD_RepairVehicle(vehicleid) = RepairVehicle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_RepairVehicle(vehicleid) = RepairVehicle;
+native CST_RepairVehicle(vehicleid) = RepairVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10846,7 +10846,7 @@ native BAD_GetVehicleVelocity(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehi
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleVelocity(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicleVelocity;
+native CST_GetVehicleVelocity(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicleVelocity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10870,7 +10870,7 @@ native BAD_SetVehicleVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicle
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehicleVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVelocity;
+native CST_SetVehicleVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVelocity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10894,7 +10894,7 @@ native BAD_SetVehicleAngularVelocity(vehicleid, Float:x, Float:y, Float:z) = Set
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehicleAngularVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleAngularVelocity;
+native CST_SetVehicleAngularVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehicleAngularVelocity;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10918,7 +10918,7 @@ native BAD_GetVehicleDamageStatus(vehicleid, &panels, &doors, &lights, &tires) =
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleDamageStatus(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus;
+native CST_GetVehicleDamageStatus(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10942,7 +10942,7 @@ native BAD_UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, tires) = 
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus;
+native CST_UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10966,7 +10966,7 @@ native BAD_GetVehicleModelInfo(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleModelInfo(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo;
+native CST_GetVehicleModelInfo(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -10990,7 +10990,7 @@ native BAD_SetVehicleVirtualWorld(vehicleid, virtualWorld) = SetVehicleVirtualWo
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_SetVehicleVirtualWorld(vehicleid, virtualWorld) = SetVehicleVirtualWorld;
+native CST_SetVehicleVirtualWorld(vehicleid, virtualWorld) = SetVehicleVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -11014,7 +11014,7 @@ native BAD_GetVehicleVirtualWorld(vehicleid) = GetVehicleVirtualWorld;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native FIXES_GetVehicleVirtualWorld(vehicleid) = GetVehicleVirtualWorld;
+native CST_GetVehicleVirtualWorld(vehicleid) = GetVehicleVirtualWorld;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -11038,7 +11038,7 @@ native BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
-native _FIXES_MAYBE_BOOL:FIXES_IsValidVehicle(vehicleid) = IsValidVehicle;
+native _FIXES_MAYBE_BOOL:CST_IsValidVehicle(vehicleid) = IsValidVehicle;
 /**
  * <remarks>
  *   The best declaration with all fixes aways applied.
@@ -11073,97 +11073,97 @@ main()
 		#undef CreateActor
 	#endif
 	#define _ALS_CreateActor
-	#define CreateActor( FIXES_CreateActor(
+	#define CreateActor( CST_CreateActor(
 
 	#if defined _ALS_DestroyActor
 		#undef DestroyActor
 	#endif
 	#define _ALS_DestroyActor
-	#define DestroyActor( FIXES_DestroyActor(
+	#define DestroyActor( CST_DestroyActor(
 
 	#if defined _ALS_IsActorStreamedIn
 		#undef IsActorStreamedIn
 	#endif
 	#define _ALS_IsActorStreamedIn
-	#define IsActorStreamedIn( FIXES_IsActorStreamedIn(
+	#define IsActorStreamedIn( CST_IsActorStreamedIn(
 
 	#if defined _ALS_SetActorVirtualWorld
 		#undef SetActorVirtualWorld
 	#endif
 	#define _ALS_SetActorVirtualWorld
-	#define SetActorVirtualWorld( FIXES_SetActorVirtualWorld(
+	#define SetActorVirtualWorld( CST_SetActorVirtualWorld(
 
 	#if defined _ALS_GetActorVirtualWorld
 		#undef GetActorVirtualWorld
 	#endif
 	#define _ALS_GetActorVirtualWorld
-	#define GetActorVirtualWorld( FIXES_GetActorVirtualWorld(
+	#define GetActorVirtualWorld( CST_GetActorVirtualWorld(
 
 	#if defined _ALS_ApplyActorAnimation
 		#undef ApplyActorAnimation
 	#endif
 	#define _ALS_ApplyActorAnimation
-	#define ApplyActorAnimation( FIXES_ApplyActorAnimation(
+	#define ApplyActorAnimation( CST_ApplyActorAnimation(
 
 	#if defined _ALS_ClearActorAnimations
 		#undef ClearActorAnimations
 	#endif
 	#define _ALS_ClearActorAnimations
-	#define ClearActorAnimations( FIXES_ClearActorAnimations(
+	#define ClearActorAnimations( CST_ClearActorAnimations(
 
 	#if defined _ALS_SetActorPos
 		#undef SetActorPos
 	#endif
 	#define _ALS_SetActorPos
-	#define SetActorPos( FIXES_SetActorPos(
+	#define SetActorPos( CST_SetActorPos(
 
 	#if defined _ALS_GetActorPos
 		#undef GetActorPos
 	#endif
 	#define _ALS_GetActorPos
-	#define GetActorPos( FIXES_GetActorPos(
+	#define GetActorPos( CST_GetActorPos(
 
 	#if defined _ALS_SetActorFacingAngle
 		#undef SetActorFacingAngle
 	#endif
 	#define _ALS_SetActorFacingAngle
-	#define SetActorFacingAngle( FIXES_SetActorFacingAngle(
+	#define SetActorFacingAngle( CST_SetActorFacingAngle(
 
 	#if defined _ALS_GetActorFacingAngle
 		#undef GetActorFacingAngle
 	#endif
 	#define _ALS_GetActorFacingAngle
-	#define GetActorFacingAngle( FIXES_GetActorFacingAngle(
+	#define GetActorFacingAngle( CST_GetActorFacingAngle(
 
 	#if defined _ALS_SetActorHealth
 		#undef SetActorHealth
 	#endif
 	#define _ALS_SetActorHealth
-	#define SetActorHealth( FIXES_SetActorHealth(
+	#define SetActorHealth( CST_SetActorHealth(
 
 	#if defined _ALS_GetActorHealth
 		#undef GetActorHealth
 	#endif
 	#define _ALS_GetActorHealth
-	#define GetActorHealth( FIXES_GetActorHealth(
+	#define GetActorHealth( CST_GetActorHealth(
 
 	#if defined _ALS_SetActorInvulnerable
 		#undef SetActorInvulnerable
 	#endif
 	#define _ALS_SetActorInvulnerable
-	#define SetActorInvulnerable( FIXES_SetActorInvulnerable(
+	#define SetActorInvulnerable( CST_SetActorInvulnerable(
 
 	#if defined _ALS_IsActorInvulnerable
 		#undef IsActorInvulnerable
 	#endif
 	#define _ALS_IsActorInvulnerable
-	#define IsActorInvulnerable( FIXES_IsActorInvulnerable(
+	#define IsActorInvulnerable( CST_IsActorInvulnerable(
 
 	#if defined _ALS_IsValidActor
 		#undef IsValidActor
 	#endif
 	#define _ALS_IsValidActor
-	#define IsValidActor( FIXES_IsValidActor(
+	#define IsValidActor( CST_IsValidActor(
 #endif
 
 /*
@@ -11181,7 +11181,7 @@ main()
 		#undef HTTP
 	#endif
 	#define _ALS_HTTP
-	#define HTTP( FIXES_HTTP(
+	#define HTTP( CST_HTTP(
 #endif
 
 /*
@@ -11199,229 +11199,229 @@ main()
 		#undef CreateObject
 	#endif
 	#define _ALS_CreateObject
-	#define CreateObject( FIXES_CreateObject(
+	#define CreateObject( CST_CreateObject(
 
 	#if defined _ALS_AttachObjectToVehicle
 		#undef AttachObjectToVehicle
 	#endif
 	#define _ALS_AttachObjectToVehicle
-	#define AttachObjectToVehicle( FIXES_AttachObjectToVehicle(
+	#define AttachObjectToVehicle( CST_AttachObjectToVehicle(
 
 	#if defined _ALS_AttachObjectToObject
 		#undef AttachObjectToObject
 	#endif
 	#define _ALS_AttachObjectToObject
-	#define AttachObjectToObject( FIXES_AttachObjectToObject(
+	#define AttachObjectToObject( CST_AttachObjectToObject(
 
 	#if defined _ALS_AttachObjectToPlayer
 		#undef AttachObjectToPlayer
 	#endif
 	#define _ALS_AttachObjectToPlayer
-	#define AttachObjectToPlayer( FIXES_AttachObjectToPlayer(
+	#define AttachObjectToPlayer( CST_AttachObjectToPlayer(
 
 	#if defined _ALS_SetObjectPos
 		#undef SetObjectPos
 	#endif
 	#define _ALS_SetObjectPos
-	#define SetObjectPos( FIXES_SetObjectPos(
+	#define SetObjectPos( CST_SetObjectPos(
 
 	#if defined _ALS_GetObjectPos
 		#undef GetObjectPos
 	#endif
 	#define _ALS_GetObjectPos
-	#define GetObjectPos( FIXES_GetObjectPos(
+	#define GetObjectPos( CST_GetObjectPos(
 
 	#if defined _ALS_SetObjectRot
 		#undef SetObjectRot
 	#endif
 	#define _ALS_SetObjectRot
-	#define SetObjectRot( FIXES_SetObjectRot(
+	#define SetObjectRot( CST_SetObjectRot(
 
 	#if defined _ALS_GetObjectRot
 		#undef GetObjectRot
 	#endif
 	#define _ALS_GetObjectRot
-	#define GetObjectRot( FIXES_GetObjectRot(
+	#define GetObjectRot( CST_GetObjectRot(
 
 	#if defined _ALS_GetObjectModel
 		#undef GetObjectModel
 	#endif
 	#define _ALS_GetObjectModel
-	#define GetObjectModel( FIXES_GetObjectModel(
+	#define GetObjectModel( CST_GetObjectModel(
 
 	#if defined _ALS_SetObjectNoCameraCol
 		#undef SetObjectNoCameraCol
 	#endif
 	#define _ALS_SetObjectNoCameraCol
-	#define SetObjectNoCameraCol( FIXES_SetObjectNoCameraCol(
+	#define SetObjectNoCameraCol( CST_SetObjectNoCameraCol(
 
 	#if defined _ALS_IsValidObject
 		#undef IsValidObject
 	#endif
 	#define _ALS_IsValidObject
-	#define IsValidObject( FIXES_IsValidObject(
+	#define IsValidObject( CST_IsValidObject(
 
 	#if defined _ALS_DestroyObject
 		#undef DestroyObject
 	#endif
 	#define _ALS_DestroyObject
-	#define DestroyObject( FIXES_DestroyObject(
+	#define DestroyObject( CST_DestroyObject(
 
 	#if defined _ALS_MoveObject
 		#undef MoveObject
 	#endif
 	#define _ALS_MoveObject
-	#define MoveObject( FIXES_MoveObject(
+	#define MoveObject( CST_MoveObject(
 
 	#if defined _ALS_StopObject
 		#undef StopObject
 	#endif
 	#define _ALS_StopObject
-	#define StopObject( FIXES_StopObject(
+	#define StopObject( CST_StopObject(
 
 	#if defined _ALS_IsObjectMoving
 		#undef IsObjectMoving
 	#endif
 	#define _ALS_IsObjectMoving
-	#define IsObjectMoving( FIXES_IsObjectMoving(
+	#define IsObjectMoving( CST_IsObjectMoving(
 
 	#if defined _ALS_EditObject
 		#undef EditObject
 	#endif
 	#define _ALS_EditObject
-	#define EditObject( FIXES_EditObject(
+	#define EditObject( CST_EditObject(
 
 	#if defined _ALS_EditPlayerObject
 		#undef EditPlayerObject
 	#endif
 	#define _ALS_EditPlayerObject
-	#define EditPlayerObject( FIXES_EditPlayerObject(
+	#define EditPlayerObject( CST_EditPlayerObject(
 
 	#if defined _ALS_SelectObject
 		#undef SelectObject
 	#endif
 	#define _ALS_SelectObject
-	#define SelectObject( FIXES_SelectObject(
+	#define SelectObject( CST_SelectObject(
 
 	#if defined _ALS_CancelEdit
 		#undef CancelEdit
 	#endif
 	#define _ALS_CancelEdit
-	#define CancelEdit( FIXES_CancelEdit(
+	#define CancelEdit( CST_CancelEdit(
 
 	#if defined _ALS_CreatePlayerObject
 		#undef CreatePlayerObject
 	#endif
 	#define _ALS_CreatePlayerObject
-	#define CreatePlayerObject( FIXES_CreatePlayerObject(
+	#define CreatePlayerObject( CST_CreatePlayerObject(
 
 	#if defined _ALS_AttachPlayerObjectToVehicle
 		#undef AttachPlayerObjectToVehicle
 	#endif
 	#define _ALS_AttachPlayerObjectToVehicle
-	#define AttachPlayerObjectToVehicle( FIXES_AttachPlayerObjectToVehicle(
+	#define AttachPlayerObjectToVehicle( CST_AttachPlayerObjectToVehicle(
 
 	#if defined _ALS_SetPlayerObjectPos
 		#undef SetPlayerObjectPos
 	#endif
 	#define _ALS_SetPlayerObjectPos
-	#define SetPlayerObjectPos( FIXES_SetPlayerObjectPos(
+	#define SetPlayerObjectPos( CST_SetPlayerObjectPos(
 
 	#if defined _ALS_GetPlayerObjectPos
 		#undef GetPlayerObjectPos
 	#endif
 	#define _ALS_GetPlayerObjectPos
-	#define GetPlayerObjectPos( FIXES_GetPlayerObjectPos(
+	#define GetPlayerObjectPos( CST_GetPlayerObjectPos(
 
 	#if defined _ALS_SetPlayerObjectRot
 		#undef SetPlayerObjectRot
 	#endif
 	#define _ALS_SetPlayerObjectRot
-	#define SetPlayerObjectRot( FIXES_SetPlayerObjectRot(
+	#define SetPlayerObjectRot( CST_SetPlayerObjectRot(
 
 	#if defined _ALS_GetPlayerObjectRot
 		#undef GetPlayerObjectRot
 	#endif
 	#define _ALS_GetPlayerObjectRot
-	#define GetPlayerObjectRot( FIXES_GetPlayerObjectRot(
+	#define GetPlayerObjectRot( CST_GetPlayerObjectRot(
 
 	#if defined _ALS_GetPlayerObjectModel
 		#undef GetPlayerObjectModel
 	#endif
 	#define _ALS_GetPlayerObjectModel
-	#define GetPlayerObjectModel( FIXES_GetPlayerObjectModel(
+	#define GetPlayerObjectModel( CST_GetPlayerObjectModel(
 
 	#if defined _ALS_SetPlayerObjectNoCameraCol
 		#undef SetPlayerObjectNoCameraCol
 	#endif
 	#define _ALS_SetPlayerObjectNoCameraCol
-	#define SetPlayerObjectNoCameraCol( FIXES_SetPlayerObjectNoCameraCol(
+	#define SetPlayerObjectNoCameraCol( CST_SetPlayerObjectNoCameraCol(
 
 	#if defined _ALS_IsValidPlayerObject
 		#undef IsValidPlayerObject
 	#endif
 	#define _ALS_IsValidPlayerObject
-	#define IsValidPlayerObject( FIXES_IsValidPlayerObject(
+	#define IsValidPlayerObject( CST_IsValidPlayerObject(
 
 	#if defined _ALS_DestroyPlayerObject
 		#undef DestroyPlayerObject
 	#endif
 	#define _ALS_DestroyPlayerObject
-	#define DestroyPlayerObject( FIXES_DestroyPlayerObject(
+	#define DestroyPlayerObject( CST_DestroyPlayerObject(
 
 	#if defined _ALS_MovePlayerObject
 		#undef MovePlayerObject
 	#endif
 	#define _ALS_MovePlayerObject
-	#define MovePlayerObject( FIXES_MovePlayerObject(
+	#define MovePlayerObject( CST_MovePlayerObject(
 
 	#if defined _ALS_StopPlayerObject
 		#undef StopPlayerObject
 	#endif
 	#define _ALS_StopPlayerObject
-	#define StopPlayerObject( FIXES_StopPlayerObject(
+	#define StopPlayerObject( CST_StopPlayerObject(
 
 	#if defined _ALS_IsPlayerObjectMoving
 		#undef IsPlayerObjectMoving
 	#endif
 	#define _ALS_IsPlayerObjectMoving
-	#define IsPlayerObjectMoving( FIXES_IsPlayerObjectMoving(
+	#define IsPlayerObjectMoving( CST_IsPlayerObjectMoving(
 
 	#if defined _ALS_AttachPlayerObjectToPlayer
 		#undef AttachPlayerObjectToPlayer
 	#endif
 	#define _ALS_AttachPlayerObjectToPlayer
-	#define AttachPlayerObjectToPlayer( FIXES_AttachPlayerObjectToPlayer(
+	#define AttachPlayerObjectToPlayer( CST_AttachPlayerObjectToPlayer(
 
 	#if defined _ALS_SetObjectMaterial
 		#undef SetObjectMaterial
 	#endif
 	#define _ALS_SetObjectMaterial
-	#define SetObjectMaterial( FIXES_SetObjectMaterial(
+	#define SetObjectMaterial( CST_SetObjectMaterial(
 
 	#if defined _ALS_SetPlayerObjectMaterial
 		#undef SetPlayerObjectMaterial
 	#endif
 	#define _ALS_SetPlayerObjectMaterial
-	#define SetPlayerObjectMaterial( FIXES_SetPlayerObjectMaterial(
+	#define SetPlayerObjectMaterial( CST_SetPlayerObjectMaterial(
 
 	#if defined _ALS_SetObjectMaterialText
 		#undef SetObjectMaterialText
 	#endif
 	#define _ALS_SetObjectMaterialText
-	#define SetObjectMaterialText( FIXES_SetObjectMaterialText(
+	#define SetObjectMaterialText( CST_SetObjectMaterialText(
 
 	#if defined _ALS_SetPlayerObjectMaterialText
 		#undef SetPlayerObjectMaterialText
 	#endif
 	#define _ALS_SetPlayerObjectMaterialText
-	#define SetPlayerObjectMaterialText( FIXES_SetPlayerObjectMaterialText(
+	#define SetPlayerObjectMaterialText( CST_SetPlayerObjectMaterialText(
 
 	#if defined _ALS_SetObjectsDefaultCameraCol
 		#undef SetObjectsDefaultCameraCol
 	#endif
 	#define _ALS_SetObjectsDefaultCameraCol
-	#define SetObjectsDefaultCameraCol( FIXES_SetObjectsDefaultCameraCol(
+	#define SetObjectsDefaultCameraCol( CST_SetObjectsDefaultCameraCol(
 #endif
 
 /*
@@ -11439,955 +11439,955 @@ main()
 		#undef SetSpawnInfo
 	#endif
 	#define _ALS_SetSpawnInfo
-	#define SetSpawnInfo( FIXES_SetSpawnInfo(
+	#define SetSpawnInfo( CST_SetSpawnInfo(
 
 	#if defined _ALS_SpawnPlayer
 		#undef SpawnPlayer
 	#endif
 	#define _ALS_SpawnPlayer
-	#define SpawnPlayer( FIXES_SpawnPlayer(
+	#define SpawnPlayer( CST_SpawnPlayer(
 
 	#if defined _ALS_SetPlayerPos
 		#undef SetPlayerPos
 	#endif
 	#define _ALS_SetPlayerPos
-	#define SetPlayerPos( FIXES_SetPlayerPos(
+	#define SetPlayerPos( CST_SetPlayerPos(
 
 	#if defined _ALS_SetPlayerPosFindZ
 		#undef SetPlayerPosFindZ
 	#endif
 	#define _ALS_SetPlayerPosFindZ
-	#define SetPlayerPosFindZ( FIXES_SetPlayerPosFindZ(
+	#define SetPlayerPosFindZ( CST_SetPlayerPosFindZ(
 
 	#if defined _ALS_GetPlayerPos
 		#undef GetPlayerPos
 	#endif
 	#define _ALS_GetPlayerPos
-	#define GetPlayerPos( FIXES_GetPlayerPos(
+	#define GetPlayerPos( CST_GetPlayerPos(
 
 	#if defined _ALS_SetPlayerFacingAngle
 		#undef SetPlayerFacingAngle
 	#endif
 	#define _ALS_SetPlayerFacingAngle
-	#define SetPlayerFacingAngle( FIXES_SetPlayerFacingAngle(
+	#define SetPlayerFacingAngle( CST_SetPlayerFacingAngle(
 
 	#if defined _ALS_GetPlayerFacingAngle
 		#undef GetPlayerFacingAngle
 	#endif
 	#define _ALS_GetPlayerFacingAngle
-	#define GetPlayerFacingAngle( FIXES_GetPlayerFacingAngle(
+	#define GetPlayerFacingAngle( CST_GetPlayerFacingAngle(
 
 	#if defined _ALS_IsPlayerInRangeOfPoint
 		#undef IsPlayerInRangeOfPoint
 	#endif
 	#define _ALS_IsPlayerInRangeOfPoint
-	#define IsPlayerInRangeOfPoint( FIXES_IsPlayerInRangeOfPoint(
+	#define IsPlayerInRangeOfPoint( CST_IsPlayerInRangeOfPoint(
 
 	#if defined _ALS_GetPlayerDistanceFromPoint
 		#undef GetPlayerDistanceFromPoint
 	#endif
 	#define _ALS_GetPlayerDistanceFromPoint
-	#define GetPlayerDistanceFromPoint( FIXES_GetPlayerDistanceFromPoint(
+	#define GetPlayerDistanceFromPoint( CST_GetPlayerDistanceFromPoint(
 
 	#if defined _ALS_IsPlayerStreamedIn
 		#undef IsPlayerStreamedIn
 	#endif
 	#define _ALS_IsPlayerStreamedIn
-	#define IsPlayerStreamedIn( FIXES_IsPlayerStreamedIn(
+	#define IsPlayerStreamedIn( CST_IsPlayerStreamedIn(
 
 	#if defined _ALS_SetPlayerInterior
 		#undef SetPlayerInterior
 	#endif
 	#define _ALS_SetPlayerInterior
-	#define SetPlayerInterior( FIXES_SetPlayerInterior(
+	#define SetPlayerInterior( CST_SetPlayerInterior(
 
 	#if defined _ALS_GetPlayerInterior
 		#undef GetPlayerInterior
 	#endif
 	#define _ALS_GetPlayerInterior
-	#define GetPlayerInterior( FIXES_GetPlayerInterior(
+	#define GetPlayerInterior( CST_GetPlayerInterior(
 
 	#if defined _ALS_SetPlayerHealth
 		#undef SetPlayerHealth
 	#endif
 	#define _ALS_SetPlayerHealth
-	#define SetPlayerHealth( FIXES_SetPlayerHealth(
+	#define SetPlayerHealth( CST_SetPlayerHealth(
 
 	#if defined _ALS_GetPlayerHealth
 		#undef GetPlayerHealth
 	#endif
 	#define _ALS_GetPlayerHealth
-	#define GetPlayerHealth( FIXES_GetPlayerHealth(
+	#define GetPlayerHealth( CST_GetPlayerHealth(
 
 	#if defined _ALS_SetPlayerArmour
 		#undef SetPlayerArmour
 	#endif
 	#define _ALS_SetPlayerArmour
-	#define SetPlayerArmour( FIXES_SetPlayerArmour(
+	#define SetPlayerArmour( CST_SetPlayerArmour(
 
 	#if defined _ALS_GetPlayerArmour
 		#undef GetPlayerArmour
 	#endif
 	#define _ALS_GetPlayerArmour
-	#define GetPlayerArmour( FIXES_GetPlayerArmour(
+	#define GetPlayerArmour( CST_GetPlayerArmour(
 
 	#if defined _ALS_SetPlayerAmmo
 		#undef SetPlayerAmmo
 	#endif
 	#define _ALS_SetPlayerAmmo
-	#define SetPlayerAmmo( FIXES_SetPlayerAmmo(
+	#define SetPlayerAmmo( CST_SetPlayerAmmo(
 
 	#if defined _ALS_GetPlayerAmmo
 		#undef GetPlayerAmmo
 	#endif
 	#define _ALS_GetPlayerAmmo
-	#define GetPlayerAmmo( FIXES_GetPlayerAmmo(
+	#define GetPlayerAmmo( CST_GetPlayerAmmo(
 
 	#if defined _ALS_GetPlayerWeaponState
 		#undef GetPlayerWeaponState
 	#endif
 	#define _ALS_GetPlayerWeaponState
-	#define GetPlayerWeaponState( FIXES_GetPlayerWeaponState(
+	#define GetPlayerWeaponState( CST_GetPlayerWeaponState(
 
 	#if defined _ALS_GetPlayerTargetPlayer
 		#undef GetPlayerTargetPlayer
 	#endif
 	#define _ALS_GetPlayerTargetPlayer
-	#define GetPlayerTargetPlayer( FIXES_GetPlayerTargetPlayer(
+	#define GetPlayerTargetPlayer( CST_GetPlayerTargetPlayer(
 
 	#if defined _ALS_GetPlayerTargetActor
 		#undef GetPlayerTargetActor
 	#endif
 	#define _ALS_GetPlayerTargetActor
-	#define GetPlayerTargetActor( FIXES_GetPlayerTargetActor(
+	#define GetPlayerTargetActor( CST_GetPlayerTargetActor(
 
 	#if defined _ALS_SetPlayerTeam
 		#undef SetPlayerTeam
 	#endif
 	#define _ALS_SetPlayerTeam
-	#define SetPlayerTeam( FIXES_SetPlayerTeam(
+	#define SetPlayerTeam( CST_SetPlayerTeam(
 
 	#if defined _ALS_GetPlayerTeam
 		#undef GetPlayerTeam
 	#endif
 	#define _ALS_GetPlayerTeam
-	#define GetPlayerTeam( FIXES_GetPlayerTeam(
+	#define GetPlayerTeam( CST_GetPlayerTeam(
 
 	#if defined _ALS_SetPlayerScore
 		#undef SetPlayerScore
 	#endif
 	#define _ALS_SetPlayerScore
-	#define SetPlayerScore( FIXES_SetPlayerScore(
+	#define SetPlayerScore( CST_SetPlayerScore(
 
 	#if defined _ALS_GetPlayerScore
 		#undef GetPlayerScore
 	#endif
 	#define _ALS_GetPlayerScore
-	#define GetPlayerScore( FIXES_GetPlayerScore(
+	#define GetPlayerScore( CST_GetPlayerScore(
 
 	#if defined _ALS_GetPlayerDrunkLevel
 		#undef GetPlayerDrunkLevel
 	#endif
 	#define _ALS_GetPlayerDrunkLevel
-	#define GetPlayerDrunkLevel( FIXES_GetPlayerDrunkLevel(
+	#define GetPlayerDrunkLevel( CST_GetPlayerDrunkLevel(
 
 	#if defined _ALS_SetPlayerDrunkLevel
 		#undef SetPlayerDrunkLevel
 	#endif
 	#define _ALS_SetPlayerDrunkLevel
-	#define SetPlayerDrunkLevel( FIXES_SetPlayerDrunkLevel(
+	#define SetPlayerDrunkLevel( CST_SetPlayerDrunkLevel(
 
 	#if defined _ALS_SetPlayerColor
 		#undef SetPlayerColor
 	#endif
 	#define _ALS_SetPlayerColor
-	#define SetPlayerColor( FIXES_SetPlayerColor(
+	#define SetPlayerColor( CST_SetPlayerColor(
 
 	#if defined _ALS_GetPlayerColor
 		#undef GetPlayerColor
 	#endif
 	#define _ALS_GetPlayerColor
-	#define GetPlayerColor( FIXES_GetPlayerColor(
+	#define GetPlayerColor( CST_GetPlayerColor(
 
 	#if defined _ALS_SetPlayerSkin
 		#undef SetPlayerSkin
 	#endif
 	#define _ALS_SetPlayerSkin
-	#define SetPlayerSkin( FIXES_SetPlayerSkin(
+	#define SetPlayerSkin( CST_SetPlayerSkin(
 
 	#if defined _ALS_GetPlayerSkin
 		#undef GetPlayerSkin
 	#endif
 	#define _ALS_GetPlayerSkin
-	#define GetPlayerSkin( FIXES_GetPlayerSkin(
+	#define GetPlayerSkin( CST_GetPlayerSkin(
 
 	#if defined _ALS_GetPlayerCustomSkin
 		#undef GetPlayerCustomSkin
 	#endif
 	#define _ALS_GetPlayerCustomSkin
-	#define GetPlayerCustomSkin( FIXES_GetPlayerCustomSkin(
+	#define GetPlayerCustomSkin( CST_GetPlayerCustomSkin(
 
 	#if defined _ALS_GivePlayerWeapon
 		#undef GivePlayerWeapon
 	#endif
 	#define _ALS_GivePlayerWeapon
-	#define GivePlayerWeapon( FIXES_GivePlayerWeapon(
+	#define GivePlayerWeapon( CST_GivePlayerWeapon(
 
 	#if defined _ALS_ResetPlayerWeapons
 		#undef ResetPlayerWeapons
 	#endif
 	#define _ALS_ResetPlayerWeapons
-	#define ResetPlayerWeapons( FIXES_ResetPlayerWeapons(
+	#define ResetPlayerWeapons( CST_ResetPlayerWeapons(
 
 	#if defined _ALS_SetPlayerArmedWeapon
 		#undef SetPlayerArmedWeapon
 	#endif
 	#define _ALS_SetPlayerArmedWeapon
-	#define SetPlayerArmedWeapon( FIXES_SetPlayerArmedWeapon(
+	#define SetPlayerArmedWeapon( CST_SetPlayerArmedWeapon(
 
 	#if defined _ALS_GetPlayerWeaponData
 		#undef GetPlayerWeaponData
 	#endif
 	#define _ALS_GetPlayerWeaponData
-	#define GetPlayerWeaponData( FIXES_GetPlayerWeaponData(
+	#define GetPlayerWeaponData( CST_GetPlayerWeaponData(
 
 	#if defined _ALS_GivePlayerMoney
 		#undef GivePlayerMoney
 	#endif
 	#define _ALS_GivePlayerMoney
-	#define GivePlayerMoney( FIXES_GivePlayerMoney(
+	#define GivePlayerMoney( CST_GivePlayerMoney(
 
 	#if defined _ALS_ResetPlayerMoney
 		#undef ResetPlayerMoney
 	#endif
 	#define _ALS_ResetPlayerMoney
-	#define ResetPlayerMoney( FIXES_ResetPlayerMoney(
+	#define ResetPlayerMoney( CST_ResetPlayerMoney(
 
 	#if defined _ALS_SetPlayerName
 		#undef SetPlayerName
 	#endif
 	#define _ALS_SetPlayerName
-	#define SetPlayerName( FIXES_SetPlayerName(
+	#define SetPlayerName( CST_SetPlayerName(
 
 	#if defined _ALS_GetPlayerMoney
 		#undef GetPlayerMoney
 	#endif
 	#define _ALS_GetPlayerMoney
-	#define GetPlayerMoney( FIXES_GetPlayerMoney(
+	#define GetPlayerMoney( CST_GetPlayerMoney(
 
 	#if defined _ALS_GetPlayerState
 		#undef GetPlayerState
 	#endif
 	#define _ALS_GetPlayerState
-	#define GetPlayerState( FIXES_GetPlayerState(
+	#define GetPlayerState( CST_GetPlayerState(
 
 	#if defined _ALS_GetPlayerIp
 		#undef GetPlayerIp
 	#endif
 	#define _ALS_GetPlayerIp
-	#define GetPlayerIp( FIXES_GetPlayerIp(
+	#define GetPlayerIp( CST_GetPlayerIp(
 
 	#if defined _ALS_GetPlayerPing
 		#undef GetPlayerPing
 	#endif
 	#define _ALS_GetPlayerPing
-	#define GetPlayerPing( FIXES_GetPlayerPing(
+	#define GetPlayerPing( CST_GetPlayerPing(
 
 	#if defined _ALS_GetPlayerWeapon
 		#undef GetPlayerWeapon
 	#endif
 	#define _ALS_GetPlayerWeapon
-	#define GetPlayerWeapon( FIXES_GetPlayerWeapon(
+	#define GetPlayerWeapon( CST_GetPlayerWeapon(
 
 	#if defined _ALS_GetPlayerKeys
 		#undef GetPlayerKeys
 	#endif
 	#define _ALS_GetPlayerKeys
-	#define GetPlayerKeys( FIXES_GetPlayerKeys(
+	#define GetPlayerKeys( CST_GetPlayerKeys(
 
 	#if defined _ALS_GetPlayerName
 		#undef GetPlayerName
 	#endif
 	#define _ALS_GetPlayerName
-	#define GetPlayerName( FIXES_GetPlayerName(
+	#define GetPlayerName( CST_GetPlayerName(
 
 	#if defined _ALS_SetPlayerTime
 		#undef SetPlayerTime
 	#endif
 	#define _ALS_SetPlayerTime
-	#define SetPlayerTime( FIXES_SetPlayerTime(
+	#define SetPlayerTime( CST_SetPlayerTime(
 
 	#if defined _ALS_GetPlayerTime
 		#undef GetPlayerTime
 	#endif
 	#define _ALS_GetPlayerTime
-	#define GetPlayerTime( FIXES_GetPlayerTime(
+	#define GetPlayerTime( CST_GetPlayerTime(
 
 	#if defined _ALS_TogglePlayerClock
 		#undef TogglePlayerClock
 	#endif
 	#define _ALS_TogglePlayerClock
-	#define TogglePlayerClock( FIXES_TogglePlayerClock(
+	#define TogglePlayerClock( CST_TogglePlayerClock(
 
 	#if defined _ALS_SetPlayerWeather
 		#undef SetPlayerWeather
 	#endif
 	#define _ALS_SetPlayerWeather
-	#define SetPlayerWeather( FIXES_SetPlayerWeather(
+	#define SetPlayerWeather( CST_SetPlayerWeather(
 
 	#if defined _ALS_ForceClassSelection
 		#undef ForceClassSelection
 	#endif
 	#define _ALS_ForceClassSelection
-	#define ForceClassSelection( FIXES_ForceClassSelection(
+	#define ForceClassSelection( CST_ForceClassSelection(
 
 	#if defined _ALS_SetPlayerWantedLevel
 		#undef SetPlayerWantedLevel
 	#endif
 	#define _ALS_SetPlayerWantedLevel
-	#define SetPlayerWantedLevel( FIXES_SetPlayerWantedLevel(
+	#define SetPlayerWantedLevel( CST_SetPlayerWantedLevel(
 
 	#if defined _ALS_GetPlayerWantedLevel
 		#undef GetPlayerWantedLevel
 	#endif
 	#define _ALS_GetPlayerWantedLevel
-	#define GetPlayerWantedLevel( FIXES_GetPlayerWantedLevel(
+	#define GetPlayerWantedLevel( CST_GetPlayerWantedLevel(
 
 	#if defined _ALS_SetPlayerFightingStyle
 		#undef SetPlayerFightingStyle
 	#endif
 	#define _ALS_SetPlayerFightingStyle
-	#define SetPlayerFightingStyle( FIXES_SetPlayerFightingStyle(
+	#define SetPlayerFightingStyle( CST_SetPlayerFightingStyle(
 
 	#if defined _ALS_GetPlayerFightingStyle
 		#undef GetPlayerFightingStyle
 	#endif
 	#define _ALS_GetPlayerFightingStyle
-	#define GetPlayerFightingStyle( FIXES_GetPlayerFightingStyle(
+	#define GetPlayerFightingStyle( CST_GetPlayerFightingStyle(
 
 	#if defined _ALS_SetPlayerVelocity
 		#undef SetPlayerVelocity
 	#endif
 	#define _ALS_SetPlayerVelocity
-	#define SetPlayerVelocity( FIXES_SetPlayerVelocity(
+	#define SetPlayerVelocity( CST_SetPlayerVelocity(
 
 	#if defined _ALS_GetPlayerVelocity
 		#undef GetPlayerVelocity
 	#endif
 	#define _ALS_GetPlayerVelocity
-	#define GetPlayerVelocity( FIXES_GetPlayerVelocity(
+	#define GetPlayerVelocity( CST_GetPlayerVelocity(
 
 	#if defined _ALS_PlayCrimeReportForPlayer
 		#undef PlayCrimeReportForPlayer
 	#endif
 	#define _ALS_PlayCrimeReportForPlayer
-	#define PlayCrimeReportForPlayer( FIXES_PlayCrimeReportForPlayer(
+	#define PlayCrimeReportForPlayer( CST_PlayCrimeReportForPlayer(
 
 	#if defined _ALS_PlayAudioStreamForPlayer
 		#undef PlayAudioStreamForPlayer
 	#endif
 	#define _ALS_PlayAudioStreamForPlayer
-	#define PlayAudioStreamForPlayer( FIXES_PlayAudioStreamForPlayer(
+	#define PlayAudioStreamForPlayer( CST_PlayAudioStreamForPlayer(
 
 	#if defined _ALS_StopAudioStreamForPlayer
 		#undef StopAudioStreamForPlayer
 	#endif
 	#define _ALS_StopAudioStreamForPlayer
-	#define StopAudioStreamForPlayer( FIXES_StopAudioStreamForPlayer(
+	#define StopAudioStreamForPlayer( CST_StopAudioStreamForPlayer(
 
 	#if defined _ALS_SetPlayerShopName
 		#undef SetPlayerShopName
 	#endif
 	#define _ALS_SetPlayerShopName
-	#define SetPlayerShopName( FIXES_SetPlayerShopName(
+	#define SetPlayerShopName( CST_SetPlayerShopName(
 
 	#if defined _ALS_SetPlayerSkillLevel
 		#undef SetPlayerSkillLevel
 	#endif
 	#define _ALS_SetPlayerSkillLevel
-	#define SetPlayerSkillLevel( FIXES_SetPlayerSkillLevel(
+	#define SetPlayerSkillLevel( CST_SetPlayerSkillLevel(
 
 	#if defined _ALS_GetPlayerSurfingVehicleID
 		#undef GetPlayerSurfingVehicleID
 	#endif
 	#define _ALS_GetPlayerSurfingVehicleID
-	#define GetPlayerSurfingVehicleID( FIXES_GetPlayerSurfingVehicleID(
+	#define GetPlayerSurfingVehicleID( CST_GetPlayerSurfingVehicleID(
 
 	#if defined _ALS_GetPlayerSurfingObjectID
 		#undef GetPlayerSurfingObjectID
 	#endif
 	#define _ALS_GetPlayerSurfingObjectID
-	#define GetPlayerSurfingObjectID( FIXES_GetPlayerSurfingObjectID(
+	#define GetPlayerSurfingObjectID( CST_GetPlayerSurfingObjectID(
 
 	#if defined _ALS_RemoveBuildingForPlayer
 		#undef RemoveBuildingForPlayer
 	#endif
 	#define _ALS_RemoveBuildingForPlayer
-	#define RemoveBuildingForPlayer( FIXES_RemoveBuildingForPlayer(
+	#define RemoveBuildingForPlayer( CST_RemoveBuildingForPlayer(
 
 	#if defined _ALS_GetPlayerLastShotVectors
 		#undef GetPlayerLastShotVectors
 	#endif
 	#define _ALS_GetPlayerLastShotVectors
-	#define GetPlayerLastShotVectors( FIXES_GetPlayerLastShotVectors(
+	#define GetPlayerLastShotVectors( CST_GetPlayerLastShotVectors(
 
 	#if defined _ALS_SetPlayerAttachedObject
 		#undef SetPlayerAttachedObject
 	#endif
 	#define _ALS_SetPlayerAttachedObject
-	#define SetPlayerAttachedObject( FIXES_SetPlayerAttachedObject(
+	#define SetPlayerAttachedObject( CST_SetPlayerAttachedObject(
 
 	#if defined _ALS_RemovePlayerAttachedObject
 		#undef RemovePlayerAttachedObject
 	#endif
 	#define _ALS_RemovePlayerAttachedObject
-	#define RemovePlayerAttachedObject( FIXES_RemovePlayerAttachedObject(
+	#define RemovePlayerAttachedObject( CST_RemovePlayerAttachedObject(
 
 	#if defined _ALS_IsPlayerAttachedObjectSlotUsed
 		#undef IsPlayerAttachedObjectSlotUsed
 	#endif
 	#define _ALS_IsPlayerAttachedObjectSlotUsed
-	#define IsPlayerAttachedObjectSlotUsed( FIXES_IsPlayerAttachedObjectSlotUsed(
+	#define IsPlayerAttachedObjectSlotUsed( CST_IsPlayerAttachedObjectSlotUsed(
 
 	#if defined _ALS_EditAttachedObject
 		#undef EditAttachedObject
 	#endif
 	#define _ALS_EditAttachedObject
-	#define EditAttachedObject( FIXES_EditAttachedObject(
+	#define EditAttachedObject( CST_EditAttachedObject(
 
 	#if defined _ALS_CreatePlayerTextDraw
 		#undef CreatePlayerTextDraw
 	#endif
 	#define _ALS_CreatePlayerTextDraw
-	#define CreatePlayerTextDraw( FIXES_CreatePlayerTextDraw(
+	#define CreatePlayerTextDraw( CST_CreatePlayerTextDraw(
 
 	#if defined _ALS_PlayerTextDrawDestroy
 		#undef PlayerTextDrawDestroy
 	#endif
 	#define _ALS_PlayerTextDrawDestroy
-	#define PlayerTextDrawDestroy( FIXES_PlayerTextDrawDestroy(
+	#define PlayerTextDrawDestroy( CST_PlayerTextDrawDestroy(
 
 	#if defined _ALS_PlayerTextDrawLetterSize
 		#undef PlayerTextDrawLetterSize
 	#endif
 	#define _ALS_PlayerTextDrawLetterSize
-	#define PlayerTextDrawLetterSize( FIXES_PlayerTextDrawLetterSize(
+	#define PlayerTextDrawLetterSize( CST_PlayerTextDrawLetterSize(
 
 	#if defined _ALS_PlayerTextDrawTextSize
 		#undef PlayerTextDrawTextSize
 	#endif
 	#define _ALS_PlayerTextDrawTextSize
-	#define PlayerTextDrawTextSize( FIXES_PlayerTextDrawTextSize(
+	#define PlayerTextDrawTextSize( CST_PlayerTextDrawTextSize(
 
 	#if defined _ALS_PlayerTextDrawAlignment
 		#undef PlayerTextDrawAlignment
 	#endif
 	#define _ALS_PlayerTextDrawAlignment
-	#define PlayerTextDrawAlignment( FIXES_PlayerTextDrawAlignment(
+	#define PlayerTextDrawAlignment( CST_PlayerTextDrawAlignment(
 
 	#if defined _ALS_PlayerTextDrawColor
 		#undef PlayerTextDrawColor
 	#endif
 	#define _ALS_PlayerTextDrawColor
-	#define PlayerTextDrawColor( FIXES_PlayerTextDrawColor(
+	#define PlayerTextDrawColor( CST_PlayerTextDrawColor(
 
 	#if defined _ALS_PlayerTextDrawUseBox
 		#undef PlayerTextDrawUseBox
 	#endif
 	#define _ALS_PlayerTextDrawUseBox
-	#define PlayerTextDrawUseBox( FIXES_PlayerTextDrawUseBox(
+	#define PlayerTextDrawUseBox( CST_PlayerTextDrawUseBox(
 
 	#if defined _ALS_PlayerTextDrawBoxColor
 		#undef PlayerTextDrawBoxColor
 	#endif
 	#define _ALS_PlayerTextDrawBoxColor
-	#define PlayerTextDrawBoxColor( FIXES_PlayerTextDrawBoxColor(
+	#define PlayerTextDrawBoxColor( CST_PlayerTextDrawBoxColor(
 
 	#if defined _ALS_PlayerTextDrawSetShadow
 		#undef PlayerTextDrawSetShadow
 	#endif
 	#define _ALS_PlayerTextDrawSetShadow
-	#define PlayerTextDrawSetShadow( FIXES_PlayerTextDrawSetShadow(
+	#define PlayerTextDrawSetShadow( CST_PlayerTextDrawSetShadow(
 
 	#if defined _ALS_PlayerTextDrawSetOutline
 		#undef PlayerTextDrawSetOutline
 	#endif
 	#define _ALS_PlayerTextDrawSetOutline
-	#define PlayerTextDrawSetOutline( FIXES_PlayerTextDrawSetOutline(
+	#define PlayerTextDrawSetOutline( CST_PlayerTextDrawSetOutline(
 
 	#if defined _ALS_PlayerTextDrawBackgroundColor
 		#undef PlayerTextDrawBackgroundColor
 	#endif
 	#define _ALS_PlayerTextDrawBackgroundColor
-	#define PlayerTextDrawBackgroundColor( FIXES_PlayerTextDrawBackgroundColor(
+	#define PlayerTextDrawBackgroundColor( CST_PlayerTextDrawBackgroundColor(
 
 	#if defined _ALS_PlayerTextDrawFont
 		#undef PlayerTextDrawFont
 	#endif
 	#define _ALS_PlayerTextDrawFont
-	#define PlayerTextDrawFont( FIXES_PlayerTextDrawFont(
+	#define PlayerTextDrawFont( CST_PlayerTextDrawFont(
 
 	#if defined _ALS_PlayerTextDrawSetProportional
 		#undef PlayerTextDrawSetProportional
 	#endif
 	#define _ALS_PlayerTextDrawSetProportional
-	#define PlayerTextDrawSetProportional( FIXES_PlayerTextDrawSetProportional(
+	#define PlayerTextDrawSetProportional( CST_PlayerTextDrawSetProportional(
 
 	#if defined _ALS_PlayerTextDrawSetSelectable
 		#undef PlayerTextDrawSetSelectable
 	#endif
 	#define _ALS_PlayerTextDrawSetSelectable
-	#define PlayerTextDrawSetSelectable( FIXES_PlayerTextDrawSetSelectable(
+	#define PlayerTextDrawSetSelectable( CST_PlayerTextDrawSetSelectable(
 
 	#if defined _ALS_PlayerTextDrawShow
 		#undef PlayerTextDrawShow
 	#endif
 	#define _ALS_PlayerTextDrawShow
-	#define PlayerTextDrawShow( FIXES_PlayerTextDrawShow(
+	#define PlayerTextDrawShow( CST_PlayerTextDrawShow(
 
 	#if defined _ALS_PlayerTextDrawHide
 		#undef PlayerTextDrawHide
 	#endif
 	#define _ALS_PlayerTextDrawHide
-	#define PlayerTextDrawHide( FIXES_PlayerTextDrawHide(
+	#define PlayerTextDrawHide( CST_PlayerTextDrawHide(
 
 	#if defined _ALS_PlayerTextDrawSetString
 		#undef PlayerTextDrawSetString
 	#endif
 	#define _ALS_PlayerTextDrawSetString
-	#define PlayerTextDrawSetString( FIXES_PlayerTextDrawSetString(
+	#define PlayerTextDrawSetString( CST_PlayerTextDrawSetString(
 
 	#if defined _ALS_PlayerTextDrawSetPreviewModel
 		#undef PlayerTextDrawSetPreviewModel
 	#endif
 	#define _ALS_PlayerTextDrawSetPreviewModel
-	#define PlayerTextDrawSetPreviewModel( FIXES_PlayerTextDrawSetPreviewModel(
+	#define PlayerTextDrawSetPreviewModel( CST_PlayerTextDrawSetPreviewModel(
 
 	#if defined _ALS_PlayerTextDrawSetPreviewRot
 		#undef PlayerTextDrawSetPreviewRot
 	#endif
 	#define _ALS_PlayerTextDrawSetPreviewRot
-	#define PlayerTextDrawSetPreviewRot( FIXES_PlayerTextDrawSetPreviewRot(
+	#define PlayerTextDrawSetPreviewRot( CST_PlayerTextDrawSetPreviewRot(
 
 	#if defined _ALS_PlayerTextDrawSetPreviewVehCol
 		#undef PlayerTextDrawSetPreviewVehCol
 	#endif
 	#define _ALS_PlayerTextDrawSetPreviewVehCol
-	#define PlayerTextDrawSetPreviewVehCol( FIXES_PlayerTextDrawSetPreviewVehCol(
+	#define PlayerTextDrawSetPreviewVehCol( CST_PlayerTextDrawSetPreviewVehCol(
 
 	#if defined _ALS_SetPVarInt
 		#undef SetPVarInt
 	#endif
 	#define _ALS_SetPVarInt
-	#define SetPVarInt( FIXES_SetPVarInt(
+	#define SetPVarInt( CST_SetPVarInt(
 
 	#if defined _ALS_GetPVarInt
 		#undef GetPVarInt
 	#endif
 	#define _ALS_GetPVarInt
-	#define GetPVarInt( FIXES_GetPVarInt(
+	#define GetPVarInt( CST_GetPVarInt(
 
 	#if defined _ALS_SetPVarString
 		#undef SetPVarString
 	#endif
 	#define _ALS_SetPVarString
-	#define SetPVarString( FIXES_SetPVarString(
+	#define SetPVarString( CST_SetPVarString(
 
 	#if defined _ALS_GetPVarString
 		#undef GetPVarString
 	#endif
 	#define _ALS_GetPVarString
-	#define GetPVarString( FIXES_GetPVarString(
+	#define GetPVarString( CST_GetPVarString(
 
 	#if defined _ALS_SetPVarFloat
 		#undef SetPVarFloat
 	#endif
 	#define _ALS_SetPVarFloat
-	#define SetPVarFloat( FIXES_SetPVarFloat(
+	#define SetPVarFloat( CST_SetPVarFloat(
 
 	#if defined _ALS_GetPVarFloat
 		#undef GetPVarFloat
 	#endif
 	#define _ALS_GetPVarFloat
-	#define GetPVarFloat( FIXES_GetPVarFloat(
+	#define GetPVarFloat( CST_GetPVarFloat(
 
 	#if defined _ALS_DeletePVar
 		#undef DeletePVar
 	#endif
 	#define _ALS_DeletePVar
-	#define DeletePVar( FIXES_DeletePVar(
+	#define DeletePVar( CST_DeletePVar(
 
 	#if defined _ALS_GetPVarsUpperIndex
 		#undef GetPVarsUpperIndex
 	#endif
 	#define _ALS_GetPVarsUpperIndex
-	#define GetPVarsUpperIndex( FIXES_GetPVarsUpperIndex(
+	#define GetPVarsUpperIndex( CST_GetPVarsUpperIndex(
 
 	#if defined _ALS_GetPVarNameAtIndex
 		#undef GetPVarNameAtIndex
 	#endif
 	#define _ALS_GetPVarNameAtIndex
-	#define GetPVarNameAtIndex( FIXES_GetPVarNameAtIndex(
+	#define GetPVarNameAtIndex( CST_GetPVarNameAtIndex(
 
 	#if defined _ALS_GetPVarType
 		#undef GetPVarType
 	#endif
 	#define _ALS_GetPVarType
-	#define GetPVarType( FIXES_GetPVarType(
+	#define GetPVarType( CST_GetPVarType(
 
 	#if defined _ALS_SetPlayerChatBubble
 		#undef SetPlayerChatBubble
 	#endif
 	#define _ALS_SetPlayerChatBubble
-	#define SetPlayerChatBubble( FIXES_SetPlayerChatBubble(
+	#define SetPlayerChatBubble( CST_SetPlayerChatBubble(
 
 	#if defined _ALS_PutPlayerInVehicle
 		#undef PutPlayerInVehicle
 	#endif
 	#define _ALS_PutPlayerInVehicle
-	#define PutPlayerInVehicle( FIXES_PutPlayerInVehicle(
+	#define PutPlayerInVehicle( CST_PutPlayerInVehicle(
 
 	#if defined _ALS_GetPlayerVehicleID
 		#undef GetPlayerVehicleID
 	#endif
 	#define _ALS_GetPlayerVehicleID
-	#define GetPlayerVehicleID( FIXES_GetPlayerVehicleID(
+	#define GetPlayerVehicleID( CST_GetPlayerVehicleID(
 
 	#if defined _ALS_GetPlayerVehicleSeat
 		#undef GetPlayerVehicleSeat
 	#endif
 	#define _ALS_GetPlayerVehicleSeat
-	#define GetPlayerVehicleSeat( FIXES_GetPlayerVehicleSeat(
+	#define GetPlayerVehicleSeat( CST_GetPlayerVehicleSeat(
 
 	#if defined _ALS_RemovePlayerFromVehicle
 		#undef RemovePlayerFromVehicle
 	#endif
 	#define _ALS_RemovePlayerFromVehicle
-	#define RemovePlayerFromVehicle( FIXES_RemovePlayerFromVehicle(
+	#define RemovePlayerFromVehicle( CST_RemovePlayerFromVehicle(
 
 	#if defined _ALS_TogglePlayerControllable
 		#undef TogglePlayerControllable
 	#endif
 	#define _ALS_TogglePlayerControllable
-	#define TogglePlayerControllable( FIXES_TogglePlayerControllable(
+	#define TogglePlayerControllable( CST_TogglePlayerControllable(
 
 	#if defined _ALS_PlayerPlaySound
 		#undef PlayerPlaySound
 	#endif
 	#define _ALS_PlayerPlaySound
-	#define PlayerPlaySound( FIXES_PlayerPlaySound(
+	#define PlayerPlaySound( CST_PlayerPlaySound(
 
 	#if defined _ALS_ApplyAnimation
 		#undef ApplyAnimation
 	#endif
 	#define _ALS_ApplyAnimation
-	#define ApplyAnimation( FIXES_ApplyAnimation(
+	#define ApplyAnimation( CST_ApplyAnimation(
 
 	#if defined _ALS_ClearAnimations
 		#undef ClearAnimations
 	#endif
 	#define _ALS_ClearAnimations
-	#define ClearAnimations( FIXES_ClearAnimations(
+	#define ClearAnimations( CST_ClearAnimations(
 
 	#if defined _ALS_GetPlayerAnimationIndex
 		#undef GetPlayerAnimationIndex
 	#endif
 	#define _ALS_GetPlayerAnimationIndex
-	#define GetPlayerAnimationIndex( FIXES_GetPlayerAnimationIndex(
+	#define GetPlayerAnimationIndex( CST_GetPlayerAnimationIndex(
 
 	#if defined _ALS_GetAnimationName
 		#undef GetAnimationName
 	#endif
 	#define _ALS_GetAnimationName
-	#define GetAnimationName( FIXES_GetAnimationName(
+	#define GetAnimationName( CST_GetAnimationName(
 
 	#if defined _ALS_GetPlayerSpecialAction
 		#undef GetPlayerSpecialAction
 	#endif
 	#define _ALS_GetPlayerSpecialAction
-	#define GetPlayerSpecialAction( FIXES_GetPlayerSpecialAction(
+	#define GetPlayerSpecialAction( CST_GetPlayerSpecialAction(
 
 	#if defined _ALS_SetPlayerSpecialAction
 		#undef SetPlayerSpecialAction
 	#endif
 	#define _ALS_SetPlayerSpecialAction
-	#define SetPlayerSpecialAction( FIXES_SetPlayerSpecialAction(
+	#define SetPlayerSpecialAction( CST_SetPlayerSpecialAction(
 
 	#if defined _ALS_DisableRemoteVehicleCollisions
 		#undef DisableRemoteVehicleCollisions
 	#endif
 	#define _ALS_DisableRemoteVehicleCollisions
-	#define DisableRemoteVehicleCollisions( FIXES_DisableRemoteVehicleCollisions(
+	#define DisableRemoteVehicleCollisions( CST_DisableRemoteVehicleCollisions(
 
 	#if defined _ALS_SetPlayerCheckpoint
 		#undef SetPlayerCheckpoint
 	#endif
 	#define _ALS_SetPlayerCheckpoint
-	#define SetPlayerCheckpoint( FIXES_SetPlayerCheckpoint(
+	#define SetPlayerCheckpoint( CST_SetPlayerCheckpoint(
 
 	#if defined _ALS_DisablePlayerCheckpoint
 		#undef DisablePlayerCheckpoint
 	#endif
 	#define _ALS_DisablePlayerCheckpoint
-	#define DisablePlayerCheckpoint( FIXES_DisablePlayerCheckpoint(
+	#define DisablePlayerCheckpoint( CST_DisablePlayerCheckpoint(
 
 	#if defined _ALS_SetPlayerRaceCheckpoint
 		#undef SetPlayerRaceCheckpoint
 	#endif
 	#define _ALS_SetPlayerRaceCheckpoint
-	#define SetPlayerRaceCheckpoint( FIXES_SetPlayerRaceCheckpoint(
+	#define SetPlayerRaceCheckpoint( CST_SetPlayerRaceCheckpoint(
 
 	#if defined _ALS_DisablePlayerRaceCheckpoint
 		#undef DisablePlayerRaceCheckpoint
 	#endif
 	#define _ALS_DisablePlayerRaceCheckpoint
-	#define DisablePlayerRaceCheckpoint( FIXES_DisablePlayerRaceCheckpoint(
+	#define DisablePlayerRaceCheckpoint( CST_DisablePlayerRaceCheckpoint(
 
 	#if defined _ALS_SetPlayerWorldBounds
 		#undef SetPlayerWorldBounds
 	#endif
 	#define _ALS_SetPlayerWorldBounds
-	#define SetPlayerWorldBounds( FIXES_SetPlayerWorldBounds(
+	#define SetPlayerWorldBounds( CST_SetPlayerWorldBounds(
 
 	#if defined _ALS_SetPlayerMarkerForPlayer
 		#undef SetPlayerMarkerForPlayer
 	#endif
 	#define _ALS_SetPlayerMarkerForPlayer
-	#define SetPlayerMarkerForPlayer( FIXES_SetPlayerMarkerForPlayer(
+	#define SetPlayerMarkerForPlayer( CST_SetPlayerMarkerForPlayer(
 
 	#if defined _ALS_ShowPlayerNameTagForPlayer
 		#undef ShowPlayerNameTagForPlayer
 	#endif
 	#define _ALS_ShowPlayerNameTagForPlayer
-	#define ShowPlayerNameTagForPlayer( FIXES_ShowPlayerNameTagForPlayer(
+	#define ShowPlayerNameTagForPlayer( CST_ShowPlayerNameTagForPlayer(
 
 	#if defined _ALS_SetPlayerMapIcon
 		#undef SetPlayerMapIcon
 	#endif
 	#define _ALS_SetPlayerMapIcon
-	#define SetPlayerMapIcon( FIXES_SetPlayerMapIcon(
+	#define SetPlayerMapIcon( CST_SetPlayerMapIcon(
 
 	#if defined _ALS_RemovePlayerMapIcon
 		#undef RemovePlayerMapIcon
 	#endif
 	#define _ALS_RemovePlayerMapIcon
-	#define RemovePlayerMapIcon( FIXES_RemovePlayerMapIcon(
+	#define RemovePlayerMapIcon( CST_RemovePlayerMapIcon(
 
 	#if defined _ALS_AllowPlayerTeleport
 		#undef AllowPlayerTeleport
 	#endif
 	#define _ALS_AllowPlayerTeleport
-	#define AllowPlayerTeleport( FIXES_AllowPlayerTeleport(
+	#define AllowPlayerTeleport( CST_AllowPlayerTeleport(
 
 	#if defined _ALS_SetPlayerCameraPos
 		#undef SetPlayerCameraPos
 	#endif
 	#define _ALS_SetPlayerCameraPos
-	#define SetPlayerCameraPos( FIXES_SetPlayerCameraPos(
+	#define SetPlayerCameraPos( CST_SetPlayerCameraPos(
 
 	#if defined _ALS_SetPlayerCameraLookAt
 		#undef SetPlayerCameraLookAt
 	#endif
 	#define _ALS_SetPlayerCameraLookAt
-	#define SetPlayerCameraLookAt( FIXES_SetPlayerCameraLookAt(
+	#define SetPlayerCameraLookAt( CST_SetPlayerCameraLookAt(
 
 	#if defined _ALS_SetCameraBehindPlayer
 		#undef SetCameraBehindPlayer
 	#endif
 	#define _ALS_SetCameraBehindPlayer
-	#define SetCameraBehindPlayer( FIXES_SetCameraBehindPlayer(
+	#define SetCameraBehindPlayer( CST_SetCameraBehindPlayer(
 
 	#if defined _ALS_GetPlayerCameraPos
 		#undef GetPlayerCameraPos
 	#endif
 	#define _ALS_GetPlayerCameraPos
-	#define GetPlayerCameraPos( FIXES_GetPlayerCameraPos(
+	#define GetPlayerCameraPos( CST_GetPlayerCameraPos(
 
 	#if defined _ALS_GetPlayerCameraFrontVector
 		#undef GetPlayerCameraFrontVector
 	#endif
 	#define _ALS_GetPlayerCameraFrontVector
-	#define GetPlayerCameraFrontVector( FIXES_GetPlayerCameraFrontVector(
+	#define GetPlayerCameraFrontVector( CST_GetPlayerCameraFrontVector(
 
 	#if defined _ALS_GetPlayerCameraMode
 		#undef GetPlayerCameraMode
 	#endif
 	#define _ALS_GetPlayerCameraMode
-	#define GetPlayerCameraMode( FIXES_GetPlayerCameraMode(
+	#define GetPlayerCameraMode( CST_GetPlayerCameraMode(
 
 	#if defined _ALS_EnablePlayerCameraTarget
 		#undef EnablePlayerCameraTarget
 	#endif
 	#define _ALS_EnablePlayerCameraTarget
-	#define EnablePlayerCameraTarget( FIXES_EnablePlayerCameraTarget(
+	#define EnablePlayerCameraTarget( CST_EnablePlayerCameraTarget(
 
 	#if defined _ALS_GetPlayerCameraTargetObject
 		#undef GetPlayerCameraTargetObject
 	#endif
 	#define _ALS_GetPlayerCameraTargetObject
-	#define GetPlayerCameraTargetObject( FIXES_GetPlayerCameraTargetObject(
+	#define GetPlayerCameraTargetObject( CST_GetPlayerCameraTargetObject(
 
 	#if defined _ALS_GetPlayerCameraTargetVehicle
 		#undef GetPlayerCameraTargetVehicle
 	#endif
 	#define _ALS_GetPlayerCameraTargetVehicle
-	#define GetPlayerCameraTargetVehicle( FIXES_GetPlayerCameraTargetVehicle(
+	#define GetPlayerCameraTargetVehicle( CST_GetPlayerCameraTargetVehicle(
 
 	#if defined _ALS_GetPlayerCameraTargetPlayer
 		#undef GetPlayerCameraTargetPlayer
 	#endif
 	#define _ALS_GetPlayerCameraTargetPlayer
-	#define GetPlayerCameraTargetPlayer( FIXES_GetPlayerCameraTargetPlayer(
+	#define GetPlayerCameraTargetPlayer( CST_GetPlayerCameraTargetPlayer(
 
 	#if defined _ALS_GetPlayerCameraTargetActor
 		#undef GetPlayerCameraTargetActor
 	#endif
 	#define _ALS_GetPlayerCameraTargetActor
-	#define GetPlayerCameraTargetActor( FIXES_GetPlayerCameraTargetActor(
+	#define GetPlayerCameraTargetActor( CST_GetPlayerCameraTargetActor(
 
 	#if defined _ALS_GetPlayerCameraAspectRatio
 		#undef GetPlayerCameraAspectRatio
 	#endif
 	#define _ALS_GetPlayerCameraAspectRatio
-	#define GetPlayerCameraAspectRatio( FIXES_GetPlayerCameraAspectRatio(
+	#define GetPlayerCameraAspectRatio( CST_GetPlayerCameraAspectRatio(
 
 	#if defined _ALS_GetPlayerCameraZoom
 		#undef GetPlayerCameraZoom
 	#endif
 	#define _ALS_GetPlayerCameraZoom
-	#define GetPlayerCameraZoom( FIXES_GetPlayerCameraZoom(
+	#define GetPlayerCameraZoom( CST_GetPlayerCameraZoom(
 
 	#if defined _ALS_AttachCameraToObject
 		#undef AttachCameraToObject
 	#endif
 	#define _ALS_AttachCameraToObject
-	#define AttachCameraToObject( FIXES_AttachCameraToObject(
+	#define AttachCameraToObject( CST_AttachCameraToObject(
 
 	#if defined _ALS_AttachCameraToPlayerObject
 		#undef AttachCameraToPlayerObject
 	#endif
 	#define _ALS_AttachCameraToPlayerObject
-	#define AttachCameraToPlayerObject( FIXES_AttachCameraToPlayerObject(
+	#define AttachCameraToPlayerObject( CST_AttachCameraToPlayerObject(
 
 	#if defined _ALS_InterpolateCameraPos
 		#undef InterpolateCameraPos
 	#endif
 	#define _ALS_InterpolateCameraPos
-	#define InterpolateCameraPos( FIXES_InterpolateCameraPos(
+	#define InterpolateCameraPos( CST_InterpolateCameraPos(
 
 	#if defined _ALS_InterpolateCameraLookAt
 		#undef InterpolateCameraLookAt
 	#endif
 	#define _ALS_InterpolateCameraLookAt
-	#define InterpolateCameraLookAt( FIXES_InterpolateCameraLookAt(
+	#define InterpolateCameraLookAt( CST_InterpolateCameraLookAt(
 
 	#if defined _ALS_IsPlayerConnected
 		#undef IsPlayerConnected
 	#endif
 	#define _ALS_IsPlayerConnected
-	#define IsPlayerConnected( FIXES_IsPlayerConnected(
+	#define IsPlayerConnected( CST_IsPlayerConnected(
 
 	#if defined _ALS_IsPlayerInVehicle
 		#undef IsPlayerInVehicle
 	#endif
 	#define _ALS_IsPlayerInVehicle
-	#define IsPlayerInVehicle( FIXES_IsPlayerInVehicle(
+	#define IsPlayerInVehicle( CST_IsPlayerInVehicle(
 
 	#if defined _ALS_IsPlayerInAnyVehicle
 		#undef IsPlayerInAnyVehicle
 	#endif
 	#define _ALS_IsPlayerInAnyVehicle
-	#define IsPlayerInAnyVehicle( FIXES_IsPlayerInAnyVehicle(
+	#define IsPlayerInAnyVehicle( CST_IsPlayerInAnyVehicle(
 
 	#if defined _ALS_IsPlayerInCheckpoint
 		#undef IsPlayerInCheckpoint
 	#endif
 	#define _ALS_IsPlayerInCheckpoint
-	#define IsPlayerInCheckpoint( FIXES_IsPlayerInCheckpoint(
+	#define IsPlayerInCheckpoint( CST_IsPlayerInCheckpoint(
 
 	#if defined _ALS_IsPlayerInRaceCheckpoint
 		#undef IsPlayerInRaceCheckpoint
 	#endif
 	#define _ALS_IsPlayerInRaceCheckpoint
-	#define IsPlayerInRaceCheckpoint( FIXES_IsPlayerInRaceCheckpoint(
+	#define IsPlayerInRaceCheckpoint( CST_IsPlayerInRaceCheckpoint(
 
 	#if defined _ALS_SetPlayerVirtualWorld
 		#undef SetPlayerVirtualWorld
 	#endif
 	#define _ALS_SetPlayerVirtualWorld
-	#define SetPlayerVirtualWorld( FIXES_SetPlayerVirtualWorld(
+	#define SetPlayerVirtualWorld( CST_SetPlayerVirtualWorld(
 
 	#if defined _ALS_GetPlayerVirtualWorld
 		#undef GetPlayerVirtualWorld
 	#endif
 	#define _ALS_GetPlayerVirtualWorld
-	#define GetPlayerVirtualWorld( FIXES_GetPlayerVirtualWorld(
+	#define GetPlayerVirtualWorld( CST_GetPlayerVirtualWorld(
 
 	#if defined _ALS_EnableStuntBonusForPlayer
 		#undef EnableStuntBonusForPlayer
 	#endif
 	#define _ALS_EnableStuntBonusForPlayer
-	#define EnableStuntBonusForPlayer( FIXES_EnableStuntBonusForPlayer(
+	#define EnableStuntBonusForPlayer( CST_EnableStuntBonusForPlayer(
 
 	#if defined _ALS_EnableStuntBonusForAll
 		#undef EnableStuntBonusForAll
 	#endif
 	#define _ALS_EnableStuntBonusForAll
-	#define EnableStuntBonusForAll( FIXES_EnableStuntBonusForAll(
+	#define EnableStuntBonusForAll( CST_EnableStuntBonusForAll(
 
 	#if defined _ALS_TogglePlayerSpectating
 		#undef TogglePlayerSpectating
 	#endif
 	#define _ALS_TogglePlayerSpectating
-	#define TogglePlayerSpectating( FIXES_TogglePlayerSpectating(
+	#define TogglePlayerSpectating( CST_TogglePlayerSpectating(
 
 	#if defined _ALS_PlayerSpectatePlayer
 		#undef PlayerSpectatePlayer
 	#endif
 	#define _ALS_PlayerSpectatePlayer
-	#define PlayerSpectatePlayer( FIXES_PlayerSpectatePlayer(
+	#define PlayerSpectatePlayer( CST_PlayerSpectatePlayer(
 
 	#if defined _ALS_PlayerSpectateVehicle
 		#undef PlayerSpectateVehicle
 	#endif
 	#define _ALS_PlayerSpectateVehicle
-	#define PlayerSpectateVehicle( FIXES_PlayerSpectateVehicle(
+	#define PlayerSpectateVehicle( CST_PlayerSpectateVehicle(
 
 	#if defined _ALS_StartRecordingPlayerData
 		#undef StartRecordingPlayerData
 	#endif
 	#define _ALS_StartRecordingPlayerData
-	#define StartRecordingPlayerData( FIXES_StartRecordingPlayerData(
+	#define StartRecordingPlayerData( CST_StartRecordingPlayerData(
 
 	#if defined _ALS_StopRecordingPlayerData
 		#undef StopRecordingPlayerData
 	#endif
 	#define _ALS_StopRecordingPlayerData
-	#define StopRecordingPlayerData( FIXES_StopRecordingPlayerData(
+	#define StopRecordingPlayerData( CST_StopRecordingPlayerData(
 
 	#if defined _ALS_SelectTextDraw
 		#undef SelectTextDraw
 	#endif
 	#define _ALS_SelectTextDraw
-	#define SelectTextDraw( FIXES_SelectTextDraw(
+	#define SelectTextDraw( CST_SelectTextDraw(
 
 	#if defined _ALS_CancelSelectTextDraw
 		#undef CancelSelectTextDraw
 	#endif
 	#define _ALS_CancelSelectTextDraw
-	#define CancelSelectTextDraw( FIXES_CancelSelectTextDraw(
+	#define CancelSelectTextDraw( CST_CancelSelectTextDraw(
 
 	#if defined _ALS_CreateExplosionForPlayer
 		#undef CreateExplosionForPlayer
 	#endif
 	#define _ALS_CreateExplosionForPlayer
-	#define CreateExplosionForPlayer( FIXES_CreateExplosionForPlayer(
+	#define CreateExplosionForPlayer( CST_CreateExplosionForPlayer(
 
 	#if defined _ALS_SendClientCheck
 		#undef SendClientCheck
 	#endif
 	#define _ALS_SendClientCheck
-	#define SendClientCheck( FIXES_SendClientCheck(
+	#define SendClientCheck( CST_SendClientCheck(
 #endif
 
 /*
@@ -12405,961 +12405,961 @@ main()
 		#undef print
 	#endif
 	#define _ALS_print
-	#define print( FIXES_print(
+	#define print( CST_print(
 
 	#if defined _ALS_printf
 		#undef printf
 	#endif
 	#define _ALS_printf
-	#define printf( FIXES_printf(
+	#define printf( CST_printf(
 
 	#if defined _ALS_format
 		#undef format
 	#endif
 	#define _ALS_format
-	#define format( FIXES_format(
+	#define format( CST_format(
 
 	#if defined _ALS_Print
 		#undef Print
 	#endif
 	#define _ALS_Print
-	#define Print( FIXES_Print(
+	#define Print( CST_Print(
 
 	#if defined _ALS_PrintF
 		#undef PrintF
 	#endif
 	#define _ALS_PrintF
-	#define PrintF( FIXES_PrintF(
+	#define PrintF( CST_PrintF(
 
 	#if defined _ALS_Format
 		#undef Format
 	#endif
 	#define _ALS_Format
-	#define Format( FIXES_Format(
+	#define Format( CST_Format(
 
 	#if defined _ALS_SendClientMessage
 		#undef SendClientMessage
 	#endif
 	#define _ALS_SendClientMessage
-	#define SendClientMessage( FIXES_SendClientMessage(
+	#define SendClientMessage( CST_SendClientMessage(
 
 	#if defined _ALS_SendClientMessageToAll
 		#undef SendClientMessageToAll
 	#endif
 	#define _ALS_SendClientMessageToAll
-	#define SendClientMessageToAll( FIXES_SendClientMessageToAll(
+	#define SendClientMessageToAll( CST_SendClientMessageToAll(
 
 	#if defined _ALS_SendPlayerMessageToPlayer
 		#undef SendPlayerMessageToPlayer
 	#endif
 	#define _ALS_SendPlayerMessageToPlayer
-	#define SendPlayerMessageToPlayer( FIXES_SendPlayerMessageToPlayer(
+	#define SendPlayerMessageToPlayer( CST_SendPlayerMessageToPlayer(
 
 	#if defined _ALS_SendPlayerMessageToAll
 		#undef SendPlayerMessageToAll
 	#endif
 	#define _ALS_SendPlayerMessageToAll
-	#define SendPlayerMessageToAll( FIXES_SendPlayerMessageToAll(
+	#define SendPlayerMessageToAll( CST_SendPlayerMessageToAll(
 
 	#if defined _ALS_SendDeathMessage
 		#undef SendDeathMessage
 	#endif
 	#define _ALS_SendDeathMessage
-	#define SendDeathMessage( FIXES_SendDeathMessage(
+	#define SendDeathMessage( CST_SendDeathMessage(
 
 	#if defined _ALS_SendDeathMessageToPlayer
 		#undef SendDeathMessageToPlayer
 	#endif
 	#define _ALS_SendDeathMessageToPlayer
-	#define SendDeathMessageToPlayer( FIXES_SendDeathMessageToPlayer(
+	#define SendDeathMessageToPlayer( CST_SendDeathMessageToPlayer(
 
 	#if defined _ALS_GameTextForAll
 		#undef GameTextForAll
 	#endif
 	#define _ALS_GameTextForAll
-	#define GameTextForAll( FIXES_GameTextForAll(
+	#define GameTextForAll( CST_GameTextForAll(
 
 	#if defined _ALS_GameTextForPlayer
 		#undef GameTextForPlayer
 	#endif
 	#define _ALS_GameTextForPlayer
-	#define GameTextForPlayer( FIXES_GameTextForPlayer(
+	#define GameTextForPlayer( CST_GameTextForPlayer(
 
 	#if defined _ALS_SetTimer
 		#undef SetTimer
 	#endif
 	#define _ALS_SetTimer
-	#define SetTimer( FIXES_SetTimer(
+	#define SetTimer( CST_SetTimer(
 
 	#if defined _ALS_SetTimerEx
 		#undef SetTimerEx
 	#endif
 	#define _ALS_SetTimerEx
-	#define SetTimerEx( FIXES_SetTimerEx(
+	#define SetTimerEx( CST_SetTimerEx(
 
 	#if defined _ALS_KillTimer
 		#undef KillTimer
 	#endif
 	#define _ALS_KillTimer
-	#define KillTimer( FIXES_KillTimer(
+	#define KillTimer( CST_KillTimer(
 
 	#if defined _ALS_GetTickCount
 		#undef GetTickCount
 	#endif
 	#define _ALS_GetTickCount
-	#define GetTickCount( FIXES_GetTickCount(
+	#define GetTickCount( CST_GetTickCount(
 
 	#if defined _ALS_GetMaxPlayers
 		#undef GetMaxPlayers
 	#endif
 	#define _ALS_GetMaxPlayers
-	#define GetMaxPlayers( FIXES_GetMaxPlayers(
+	#define GetMaxPlayers( CST_GetMaxPlayers(
 
 	#if defined _ALS_CallRemoteFunction
 		#undef CallRemoteFunction
 	#endif
 	#define _ALS_CallRemoteFunction
-	#define CallRemoteFunction( FIXES_CallRemoteFunction(
+	#define CallRemoteFunction( CST_CallRemoteFunction(
 
 	#if defined _ALS_CallLocalFunction
 		#undef CallLocalFunction
 	#endif
 	#define _ALS_CallLocalFunction
-	#define CallLocalFunction( FIXES_CallLocalFunction(
+	#define CallLocalFunction( CST_CallLocalFunction(
 
 	#if defined _ALS_VectorSize
 		#undef VectorSize
 	#endif
 	#define _ALS_VectorSize
-	#define VectorSize( FIXES_VectorSize(
+	#define VectorSize( CST_VectorSize(
 
 	#if defined _ALS_asin
 		#undef asin
 	#endif
 	#define _ALS_asin
-	#define asin( FIXES_asin(
+	#define asin( CST_asin(
 
 	#if defined _ALS_acos
 		#undef acos
 	#endif
 	#define _ALS_acos
-	#define acos( FIXES_acos(
+	#define acos( CST_acos(
 
 	#if defined _ALS_atan
 		#undef atan
 	#endif
 	#define _ALS_atan
-	#define atan( FIXES_atan(
+	#define atan( CST_atan(
 
 	#if defined _ALS_atan2
 		#undef atan2
 	#endif
 	#define _ALS_atan2
-	#define atan2( FIXES_atan2(
+	#define atan2( CST_atan2(
 
 	#if defined _ALS_ASin
 		#undef ASin
 	#endif
 	#define _ALS_ASin
-	#define ASin( FIXES_ASin(
+	#define ASin( CST_ASin(
 
 	#if defined _ALS_ACos
 		#undef ACos
 	#endif
 	#define _ALS_ACos
-	#define ACos( FIXES_ACos(
+	#define ACos( CST_ACos(
 
 	#if defined _ALS_ATan
 		#undef ATan
 	#endif
 	#define _ALS_ATan
-	#define ATan( FIXES_ATan(
+	#define ATan( CST_ATan(
 
 	#if defined _ALS_ATan2
 		#undef ATan2
 	#endif
 	#define _ALS_ATan2
-	#define ATan2( FIXES_ATan2(
+	#define ATan2( CST_ATan2(
 
 	#if defined _ALS_GetPlayerPoolSize
 		#undef GetPlayerPoolSize
 	#endif
 	#define _ALS_GetPlayerPoolSize
-	#define GetPlayerPoolSize( FIXES_GetPlayerPoolSize(
+	#define GetPlayerPoolSize( CST_GetPlayerPoolSize(
 
 	#if defined _ALS_GetVehiclePoolSize
 		#undef GetVehiclePoolSize
 	#endif
 	#define _ALS_GetVehiclePoolSize
-	#define GetVehiclePoolSize( FIXES_GetVehiclePoolSize(
+	#define GetVehiclePoolSize( CST_GetVehiclePoolSize(
 
 	#if defined _ALS_GetActorPoolSize
 		#undef GetActorPoolSize
 	#endif
 	#define _ALS_GetActorPoolSize
-	#define GetActorPoolSize( FIXES_GetActorPoolSize(
+	#define GetActorPoolSize( CST_GetActorPoolSize(
 
 	#if defined _ALS_SHA256_PassHash
 		#undef SHA256_PassHash
 	#endif
 	#define _ALS_SHA256_PassHash
-	#define SHA256_PassHash( FIXES_SHA256_PassHash(
+	#define SHA256_PassHash( CST_SHA256_PassHash(
 
 	#if defined _ALS_SetSVarInt
 		#undef SetSVarInt
 	#endif
 	#define _ALS_SetSVarInt
-	#define SetSVarInt( FIXES_SetSVarInt(
+	#define SetSVarInt( CST_SetSVarInt(
 
 	#if defined _ALS_GetSVarInt
 		#undef GetSVarInt
 	#endif
 	#define _ALS_GetSVarInt
-	#define GetSVarInt( FIXES_GetSVarInt(
+	#define GetSVarInt( CST_GetSVarInt(
 
 	#if defined _ALS_SetSVarString
 		#undef SetSVarString
 	#endif
 	#define _ALS_SetSVarString
-	#define SetSVarString( FIXES_SetSVarString(
+	#define SetSVarString( CST_SetSVarString(
 
 	#if defined _ALS_GetSVarString
 		#undef GetSVarString
 	#endif
 	#define _ALS_GetSVarString
-	#define GetSVarString( FIXES_GetSVarString(
+	#define GetSVarString( CST_GetSVarString(
 
 	#if defined _ALS_SetSVarFloat
 		#undef SetSVarFloat
 	#endif
 	#define _ALS_SetSVarFloat
-	#define SetSVarFloat( FIXES_SetSVarFloat(
+	#define SetSVarFloat( CST_SetSVarFloat(
 
 	#if defined _ALS_GetSVarFloat
 		#undef GetSVarFloat
 	#endif
 	#define _ALS_GetSVarFloat
-	#define GetSVarFloat( FIXES_GetSVarFloat(
+	#define GetSVarFloat( CST_GetSVarFloat(
 
 	#if defined _ALS_DeleteSVar
 		#undef DeleteSVar
 	#endif
 	#define _ALS_DeleteSVar
-	#define DeleteSVar( FIXES_DeleteSVar(
+	#define DeleteSVar( CST_DeleteSVar(
 
 	#if defined _ALS_GetSVarsUpperIndex
 		#undef GetSVarsUpperIndex
 	#endif
 	#define _ALS_GetSVarsUpperIndex
-	#define GetSVarsUpperIndex( FIXES_GetSVarsUpperIndex(
+	#define GetSVarsUpperIndex( CST_GetSVarsUpperIndex(
 
 	#if defined _ALS_GetSVarNameAtIndex
 		#undef GetSVarNameAtIndex
 	#endif
 	#define _ALS_GetSVarNameAtIndex
-	#define GetSVarNameAtIndex( FIXES_GetSVarNameAtIndex(
+	#define GetSVarNameAtIndex( CST_GetSVarNameAtIndex(
 
 	#if defined _ALS_GetSVarType
 		#undef GetSVarType
 	#endif
 	#define _ALS_GetSVarType
-	#define GetSVarType( FIXES_GetSVarType(
+	#define GetSVarType( CST_GetSVarType(
 
 	#if defined _ALS_SetGameModeText
 		#undef SetGameModeText
 	#endif
 	#define _ALS_SetGameModeText
-	#define SetGameModeText( FIXES_SetGameModeText(
+	#define SetGameModeText( CST_SetGameModeText(
 
 	#if defined _ALS_SetTeamCount
 		#undef SetTeamCount
 	#endif
 	#define _ALS_SetTeamCount
-	#define SetTeamCount( FIXES_SetTeamCount(
+	#define SetTeamCount( CST_SetTeamCount(
 
 	#if defined _ALS_AddPlayerClass
 		#undef AddPlayerClass
 	#endif
 	#define _ALS_AddPlayerClass
-	#define AddPlayerClass( FIXES_AddPlayerClass(
+	#define AddPlayerClass( CST_AddPlayerClass(
 
 	#if defined _ALS_AddPlayerClassEx
 		#undef AddPlayerClassEx
 	#endif
 	#define _ALS_AddPlayerClassEx
-	#define AddPlayerClassEx( FIXES_AddPlayerClassEx(
+	#define AddPlayerClassEx( CST_AddPlayerClassEx(
 
 	#if defined _ALS_AddStaticVehicle
 		#undef AddStaticVehicle
 	#endif
 	#define _ALS_AddStaticVehicle
-	#define AddStaticVehicle( FIXES_AddStaticVehicle(
+	#define AddStaticVehicle( CST_AddStaticVehicle(
 
 	#if defined _ALS_AddStaticVehicleEx
 		#undef AddStaticVehicleEx
 	#endif
 	#define _ALS_AddStaticVehicleEx
-	#define AddStaticVehicleEx( FIXES_AddStaticVehicleEx(
+	#define AddStaticVehicleEx( CST_AddStaticVehicleEx(
 
 	#if defined _ALS_AddStaticPickup
 		#undef AddStaticPickup
 	#endif
 	#define _ALS_AddStaticPickup
-	#define AddStaticPickup( FIXES_AddStaticPickup(
+	#define AddStaticPickup( CST_AddStaticPickup(
 
 	#if defined _ALS_CreatePickup
 		#undef CreatePickup
 	#endif
 	#define _ALS_CreatePickup
-	#define CreatePickup( FIXES_CreatePickup(
+	#define CreatePickup( CST_CreatePickup(
 
 	#if defined _ALS_DestroyPickup
 		#undef DestroyPickup
 	#endif
 	#define _ALS_DestroyPickup
-	#define DestroyPickup( FIXES_DestroyPickup(
+	#define DestroyPickup( CST_DestroyPickup(
 
 	#if defined _ALS_ShowNameTags
 		#undef ShowNameTags
 	#endif
 	#define _ALS_ShowNameTags
-	#define ShowNameTags( FIXES_ShowNameTags(
+	#define ShowNameTags( CST_ShowNameTags(
 
 	#if defined _ALS_ShowPlayerMarkers
 		#undef ShowPlayerMarkers
 	#endif
 	#define _ALS_ShowPlayerMarkers
-	#define ShowPlayerMarkers( FIXES_ShowPlayerMarkers(
+	#define ShowPlayerMarkers( CST_ShowPlayerMarkers(
 
 	#if defined _ALS_GameModeExit
 		#undef GameModeExit
 	#endif
 	#define _ALS_GameModeExit
-	#define GameModeExit( FIXES_GameModeExit(
+	#define GameModeExit( CST_GameModeExit(
 
 	#if defined _ALS_SetWorldTime
 		#undef SetWorldTime
 	#endif
 	#define _ALS_SetWorldTime
-	#define SetWorldTime( FIXES_SetWorldTime(
+	#define SetWorldTime( CST_SetWorldTime(
 
 	#if defined _ALS_GetWeaponName
 		#undef GetWeaponName
 	#endif
 	#define _ALS_GetWeaponName
-	#define GetWeaponName( FIXES_GetWeaponName(
+	#define GetWeaponName( CST_GetWeaponName(
 
 	#if defined _ALS_EnableTirePopping
 		#undef EnableTirePopping
 	#endif
 	#define _ALS_EnableTirePopping
-	#define EnableTirePopping( FIXES_EnableTirePopping(
+	#define EnableTirePopping( CST_EnableTirePopping(
 
 	#if defined _ALS_EnableVehicleFriendlyFire
 		#undef EnableVehicleFriendlyFire
 	#endif
 	#define _ALS_EnableVehicleFriendlyFire
-	#define EnableVehicleFriendlyFire( FIXES_EnableVehicleFriendlyFire(
+	#define EnableVehicleFriendlyFire( CST_EnableVehicleFriendlyFire(
 
 	#if defined _ALS_AllowInteriorWeapons
 		#undef AllowInteriorWeapons
 	#endif
 	#define _ALS_AllowInteriorWeapons
-	#define AllowInteriorWeapons( FIXES_AllowInteriorWeapons(
+	#define AllowInteriorWeapons( CST_AllowInteriorWeapons(
 
 	#if defined _ALS_SetWeather
 		#undef SetWeather
 	#endif
 	#define _ALS_SetWeather
-	#define SetWeather( FIXES_SetWeather(
+	#define SetWeather( CST_SetWeather(
 
 	#if defined _ALS_GetGravity
 		#undef GetGravity
 	#endif
 	#define _ALS_GetGravity
-	#define GetGravity( FIXES_GetGravity(
+	#define GetGravity( CST_GetGravity(
 
 	#if defined _ALS_SetGravity
 		#undef SetGravity
 	#endif
 	#define _ALS_SetGravity
-	#define SetGravity( FIXES_SetGravity(
+	#define SetGravity( CST_SetGravity(
 
 	#if defined _ALS_AllowAdminTeleport
 		#undef AllowAdminTeleport
 	#endif
 	#define _ALS_AllowAdminTeleport
-	#define AllowAdminTeleport( FIXES_AllowAdminTeleport(
+	#define AllowAdminTeleport( CST_AllowAdminTeleport(
 
 	#if defined _ALS_SetDeathDropAmount
 		#undef SetDeathDropAmount
 	#endif
 	#define _ALS_SetDeathDropAmount
-	#define SetDeathDropAmount( FIXES_SetDeathDropAmount(
+	#define SetDeathDropAmount( CST_SetDeathDropAmount(
 
 	#if defined _ALS_CreateExplosion
 		#undef CreateExplosion
 	#endif
 	#define _ALS_CreateExplosion
-	#define CreateExplosion( FIXES_CreateExplosion(
+	#define CreateExplosion( CST_CreateExplosion(
 
 	#if defined _ALS_EnableZoneNames
 		#undef EnableZoneNames
 	#endif
 	#define _ALS_EnableZoneNames
-	#define EnableZoneNames( FIXES_EnableZoneNames(
+	#define EnableZoneNames( CST_EnableZoneNames(
 
 	#if defined _ALS_UsePlayerPedAnims
 		#undef UsePlayerPedAnims
 	#endif
 	#define _ALS_UsePlayerPedAnims
-	#define UsePlayerPedAnims( FIXES_UsePlayerPedAnims(
+	#define UsePlayerPedAnims( CST_UsePlayerPedAnims(
 
 	#if defined _ALS_SetNameTagDrawDistance
 		#undef SetNameTagDrawDistance
 	#endif
 	#define _ALS_SetNameTagDrawDistance
-	#define SetNameTagDrawDistance( FIXES_SetNameTagDrawDistance(
+	#define SetNameTagDrawDistance( CST_SetNameTagDrawDistance(
 
 	#if defined _ALS_DisableNameTagLOS
 		#undef DisableNameTagLOS
 	#endif
 	#define _ALS_DisableNameTagLOS
-	#define DisableNameTagLOS( FIXES_DisableNameTagLOS(
+	#define DisableNameTagLOS( CST_DisableNameTagLOS(
 
 	#if defined _ALS_LimitGlobalChatRadius
 		#undef LimitGlobalChatRadius
 	#endif
 	#define _ALS_LimitGlobalChatRadius
-	#define LimitGlobalChatRadius( FIXES_LimitGlobalChatRadius(
+	#define LimitGlobalChatRadius( CST_LimitGlobalChatRadius(
 
 	#if defined _ALS_LimitPlayerMarkerRadius
 		#undef LimitPlayerMarkerRadius
 	#endif
 	#define _ALS_LimitPlayerMarkerRadius
-	#define LimitPlayerMarkerRadius( FIXES_LimitPlayerMarkerRadius(
+	#define LimitPlayerMarkerRadius( CST_LimitPlayerMarkerRadius(
 
 	#if defined _ALS_ConnectNPC
 		#undef ConnectNPC
 	#endif
 	#define _ALS_ConnectNPC
-	#define ConnectNPC( FIXES_ConnectNPC(
+	#define ConnectNPC( CST_ConnectNPC(
 
 	#if defined _ALS_IsPlayerNPC
 		#undef IsPlayerNPC
 	#endif
 	#define _ALS_IsPlayerNPC
-	#define IsPlayerNPC( FIXES_IsPlayerNPC(
+	#define IsPlayerNPC( CST_IsPlayerNPC(
 
 	#if defined _ALS_AddCharModel
 		#undef AddCharModel
 	#endif
 	#define _ALS_AddCharModel
-	#define AddCharModel( FIXES_AddCharModel(
+	#define AddCharModel( CST_AddCharModel(
 
 	#if defined _ALS_AddSimpleModel
 		#undef AddSimpleModel
 	#endif
 	#define _ALS_AddSimpleModel
-	#define AddSimpleModel( FIXES_AddSimpleModel(
+	#define AddSimpleModel( CST_AddSimpleModel(
 
 	#if defined _ALS_AddSimpleModelTimed
 		#undef AddSimpleModelTimed
 	#endif
 	#define _ALS_AddSimpleModelTimed
-	#define AddSimpleModelTimed( FIXES_AddSimpleModelTimed(
+	#define AddSimpleModelTimed( CST_AddSimpleModelTimed(
 
 	#if defined _ALS_FindModelFileNameFromCRC
 		#undef FindModelFileNameFromCRC
 	#endif
 	#define _ALS_FindModelFileNameFromCRC
-	#define FindModelFileNameFromCRC( FIXES_FindModelFileNameFromCRC(
+	#define FindModelFileNameFromCRC( CST_FindModelFileNameFromCRC(
 
 	#if defined _ALS_FindTextureFileNameFromCRC
 		#undef FindTextureFileNameFromCRC
 	#endif
 	#define _ALS_FindTextureFileNameFromCRC
-	#define FindTextureFileNameFromCRC( FIXES_FindTextureFileNameFromCRC(
+	#define FindTextureFileNameFromCRC( CST_FindTextureFileNameFromCRC(
 
 	#if defined _ALS_RedirectDownload
 		#undef RedirectDownload
 	#endif
 	#define _ALS_RedirectDownload
-	#define RedirectDownload( FIXES_RedirectDownload(
+	#define RedirectDownload( CST_RedirectDownload(
 
 	#if defined _ALS_IsPlayerAdmin
 		#undef IsPlayerAdmin
 	#endif
 	#define _ALS_IsPlayerAdmin
-	#define IsPlayerAdmin( FIXES_IsPlayerAdmin(
+	#define IsPlayerAdmin( CST_IsPlayerAdmin(
 
 	#if defined _ALS_Kick
 		#undef Kick
 	#endif
 	#define _ALS_Kick
-	#define Kick( FIXES_Kick(
+	#define Kick( CST_Kick(
 
 	#if defined _ALS_Ban
 		#undef Ban
 	#endif
 	#define _ALS_Ban
-	#define Ban( FIXES_Ban(
+	#define Ban( CST_Ban(
 
 	#if defined _ALS_BanEx
 		#undef BanEx
 	#endif
 	#define _ALS_BanEx
-	#define BanEx( FIXES_BanEx(
+	#define BanEx( CST_BanEx(
 
 	#if defined _ALS_SendRconCommand
 		#undef SendRconCommand
 	#endif
 	#define _ALS_SendRconCommand
-	#define SendRconCommand( FIXES_SendRconCommand(
+	#define SendRconCommand( CST_SendRconCommand(
 
 	#if defined _ALS_GetPlayerNetworkStats
 		#undef GetPlayerNetworkStats
 	#endif
 	#define _ALS_GetPlayerNetworkStats
-	#define GetPlayerNetworkStats( FIXES_GetPlayerNetworkStats(
+	#define GetPlayerNetworkStats( CST_GetPlayerNetworkStats(
 
 	#if defined _ALS_GetNetworkStats
 		#undef GetNetworkStats
 	#endif
 	#define _ALS_GetNetworkStats
-	#define GetNetworkStats( FIXES_GetNetworkStats(
+	#define GetNetworkStats( CST_GetNetworkStats(
 
 	#if defined _ALS_GetPlayerVersion
 		#undef GetPlayerVersion
 	#endif
 	#define _ALS_GetPlayerVersion
-	#define GetPlayerVersion( FIXES_GetPlayerVersion(
+	#define GetPlayerVersion( CST_GetPlayerVersion(
 
 	#if defined _ALS_BlockIpAddress
 		#undef BlockIpAddress
 	#endif
 	#define _ALS_BlockIpAddress
-	#define BlockIpAddress( FIXES_BlockIpAddress(
+	#define BlockIpAddress( CST_BlockIpAddress(
 
 	#if defined _ALS_UnBlockIpAddress
 		#undef UnBlockIpAddress
 	#endif
 	#define _ALS_UnBlockIpAddress
-	#define UnBlockIpAddress( FIXES_UnBlockIpAddress(
+	#define UnBlockIpAddress( CST_UnBlockIpAddress(
 
 	#if defined _ALS_GetServerVarAsString
 		#undef GetServerVarAsString
 	#endif
 	#define _ALS_GetServerVarAsString
-	#define GetServerVarAsString( FIXES_GetServerVarAsString(
+	#define GetServerVarAsString( CST_GetServerVarAsString(
 
 	#if defined _ALS_GetServerVarAsInt
 		#undef GetServerVarAsInt
 	#endif
 	#define _ALS_GetServerVarAsInt
-	#define GetServerVarAsInt( FIXES_GetServerVarAsInt(
+	#define GetServerVarAsInt( CST_GetServerVarAsInt(
 
 	#if defined _ALS_GetServerVarAsBool
 		#undef GetServerVarAsBool
 	#endif
 	#define _ALS_GetServerVarAsBool
-	#define GetServerVarAsBool( FIXES_GetServerVarAsBool(
+	#define GetServerVarAsBool( CST_GetServerVarAsBool(
 
 	#if defined _ALS_GetConsoleVarAsString
 		#undef GetConsoleVarAsString
 	#endif
 	#define _ALS_GetConsoleVarAsString
-	#define GetConsoleVarAsString( FIXES_GetConsoleVarAsString(
+	#define GetConsoleVarAsString( CST_GetConsoleVarAsString(
 
 	#if defined _ALS_GetConsoleVarAsInt
 		#undef GetConsoleVarAsInt
 	#endif
 	#define _ALS_GetConsoleVarAsInt
-	#define GetConsoleVarAsInt( FIXES_GetConsoleVarAsInt(
+	#define GetConsoleVarAsInt( CST_GetConsoleVarAsInt(
 
 	#if defined _ALS_GetConsoleVarAsBool
 		#undef GetConsoleVarAsBool
 	#endif
 	#define _ALS_GetConsoleVarAsBool
-	#define GetConsoleVarAsBool( FIXES_GetConsoleVarAsBool(
+	#define GetConsoleVarAsBool( CST_GetConsoleVarAsBool(
 
 	#if defined _ALS_GetServerTickRate
 		#undef GetServerTickRate
 	#endif
 	#define _ALS_GetServerTickRate
-	#define GetServerTickRate( FIXES_GetServerTickRate(
+	#define GetServerTickRate( CST_GetServerTickRate(
 
 	#if defined _ALS_NetStats_GetConnectedTime
 		#undef NetStats_GetConnectedTime
 	#endif
 	#define _ALS_NetStats_GetConnectedTime
-	#define NetStats_GetConnectedTime( FIXES_NetStats_GetConnectedTime(
+	#define NetStats_GetConnectedTime( CST_NetStats_GetConnectedTime(
 
 	#if defined _ALS_NetStats_MessagesReceived
 		#undef NetStats_MessagesReceived
 	#endif
 	#define _ALS_NetStats_MessagesReceived
-	#define NetStats_MessagesReceived( FIXES_NetStats_MessagesReceived(
+	#define NetStats_MessagesReceived( CST_NetStats_MessagesReceived(
 
 	#if defined _ALS_NetStats_BytesReceived
 		#undef NetStats_BytesReceived
 	#endif
 	#define _ALS_NetStats_BytesReceived
-	#define NetStats_BytesReceived( FIXES_NetStats_BytesReceived(
+	#define NetStats_BytesReceived( CST_NetStats_BytesReceived(
 
 	#if defined _ALS_NetStats_MessagesSent
 		#undef NetStats_MessagesSent
 	#endif
 	#define _ALS_NetStats_MessagesSent
-	#define NetStats_MessagesSent( FIXES_NetStats_MessagesSent(
+	#define NetStats_MessagesSent( CST_NetStats_MessagesSent(
 
 	#if defined _ALS_NetStats_BytesSent
 		#undef NetStats_BytesSent
 	#endif
 	#define _ALS_NetStats_BytesSent
-	#define NetStats_BytesSent( FIXES_NetStats_BytesSent(
+	#define NetStats_BytesSent( CST_NetStats_BytesSent(
 
 	#if defined _ALS_NetStats_MessagesRecvPerSecond
 		#undef NetStats_MessagesRecvPerSecond
 	#endif
 	#define _ALS_NetStats_MessagesRecvPerSecond
-	#define NetStats_MessagesRecvPerSecond( FIXES_NetStats_MessagesRecvPerSecond(
+	#define NetStats_MessagesRecvPerSecond( CST_NetStats_MessagesRecvPerSecond(
 
 	#if defined _ALS_NetStats_PacketLossPercent
 		#undef NetStats_PacketLossPercent
 	#endif
 	#define _ALS_NetStats_PacketLossPercent
-	#define NetStats_PacketLossPercent( FIXES_NetStats_PacketLossPercent(
+	#define NetStats_PacketLossPercent( CST_NetStats_PacketLossPercent(
 
 	#if defined _ALS_NetStats_ConnectionStatus
 		#undef NetStats_ConnectionStatus
 	#endif
 	#define _ALS_NetStats_ConnectionStatus
-	#define NetStats_ConnectionStatus( FIXES_NetStats_ConnectionStatus(
+	#define NetStats_ConnectionStatus( CST_NetStats_ConnectionStatus(
 
 	#if defined _ALS_NetStats_GetIpPort
 		#undef NetStats_GetIpPort
 	#endif
 	#define _ALS_NetStats_GetIpPort
-	#define NetStats_GetIpPort( FIXES_NetStats_GetIpPort(
+	#define NetStats_GetIpPort( CST_NetStats_GetIpPort(
 
 	#if defined _ALS_CreateMenu
 		#undef CreateMenu
 	#endif
 	#define _ALS_CreateMenu
-	#define CreateMenu( FIXES_CreateMenu(
+	#define CreateMenu( CST_CreateMenu(
 
 	#if defined _ALS_DestroyMenu
 		#undef DestroyMenu
 	#endif
 	#define _ALS_DestroyMenu
-	#define DestroyMenu( FIXES_DestroyMenu(
+	#define DestroyMenu( CST_DestroyMenu(
 
 	#if defined _ALS_AddMenuItem
 		#undef AddMenuItem
 	#endif
 	#define _ALS_AddMenuItem
-	#define AddMenuItem( FIXES_AddMenuItem(
+	#define AddMenuItem( CST_AddMenuItem(
 
 	#if defined _ALS_SetMenuColumnHeader
 		#undef SetMenuColumnHeader
 	#endif
 	#define _ALS_SetMenuColumnHeader
-	#define SetMenuColumnHeader( FIXES_SetMenuColumnHeader(
+	#define SetMenuColumnHeader( CST_SetMenuColumnHeader(
 
 	#if defined _ALS_ShowMenuForPlayer
 		#undef ShowMenuForPlayer
 	#endif
 	#define _ALS_ShowMenuForPlayer
-	#define ShowMenuForPlayer( FIXES_ShowMenuForPlayer(
+	#define ShowMenuForPlayer( CST_ShowMenuForPlayer(
 
 	#if defined _ALS_HideMenuForPlayer
 		#undef HideMenuForPlayer
 	#endif
 	#define _ALS_HideMenuForPlayer
-	#define HideMenuForPlayer( FIXES_HideMenuForPlayer(
+	#define HideMenuForPlayer( CST_HideMenuForPlayer(
 
 	#if defined _ALS_IsValidMenu
 		#undef IsValidMenu
 	#endif
 	#define _ALS_IsValidMenu
-	#define IsValidMenu( FIXES_IsValidMenu(
+	#define IsValidMenu( CST_IsValidMenu(
 
 	#if defined _ALS_DisableMenu
 		#undef DisableMenu
 	#endif
 	#define _ALS_DisableMenu
-	#define DisableMenu( FIXES_DisableMenu(
+	#define DisableMenu( CST_DisableMenu(
 
 	#if defined _ALS_DisableMenuRow
 		#undef DisableMenuRow
 	#endif
 	#define _ALS_DisableMenuRow
-	#define DisableMenuRow( FIXES_DisableMenuRow(
+	#define DisableMenuRow( CST_DisableMenuRow(
 
 	#if defined _ALS_GetPlayerMenu
 		#undef GetPlayerMenu
 	#endif
 	#define _ALS_GetPlayerMenu
-	#define GetPlayerMenu( FIXES_GetPlayerMenu(
+	#define GetPlayerMenu( CST_GetPlayerMenu(
 
 	#if defined _ALS_TextDrawCreate
 		#undef TextDrawCreate
 	#endif
 	#define _ALS_TextDrawCreate
-	#define TextDrawCreate( FIXES_TextDrawCreate(
+	#define TextDrawCreate( CST_TextDrawCreate(
 
 	#if defined _ALS_TextDrawDestroy
 		#undef TextDrawDestroy
 	#endif
 	#define _ALS_TextDrawDestroy
-	#define TextDrawDestroy( FIXES_TextDrawDestroy(
+	#define TextDrawDestroy( CST_TextDrawDestroy(
 
 	#if defined _ALS_TextDrawLetterSize
 		#undef TextDrawLetterSize
 	#endif
 	#define _ALS_TextDrawLetterSize
-	#define TextDrawLetterSize( FIXES_TextDrawLetterSize(
+	#define TextDrawLetterSize( CST_TextDrawLetterSize(
 
 	#if defined _ALS_TextDrawTextSize
 		#undef TextDrawTextSize
 	#endif
 	#define _ALS_TextDrawTextSize
-	#define TextDrawTextSize( FIXES_TextDrawTextSize(
+	#define TextDrawTextSize( CST_TextDrawTextSize(
 
 	#if defined _ALS_TextDrawAlignment
 		#undef TextDrawAlignment
 	#endif
 	#define _ALS_TextDrawAlignment
-	#define TextDrawAlignment( FIXES_TextDrawAlignment(
+	#define TextDrawAlignment( CST_TextDrawAlignment(
 
 	#if defined _ALS_TextDrawColor
 		#undef TextDrawColor
 	#endif
 	#define _ALS_TextDrawColor
-	#define TextDrawColor( FIXES_TextDrawColor(
+	#define TextDrawColor( CST_TextDrawColor(
 
 	#if defined _ALS_TextDrawUseBox
 		#undef TextDrawUseBox
 	#endif
 	#define _ALS_TextDrawUseBox
-	#define TextDrawUseBox( FIXES_TextDrawUseBox(
+	#define TextDrawUseBox( CST_TextDrawUseBox(
 
 	#if defined _ALS_TextDrawBoxColor
 		#undef TextDrawBoxColor
 	#endif
 	#define _ALS_TextDrawBoxColor
-	#define TextDrawBoxColor( FIXES_TextDrawBoxColor(
+	#define TextDrawBoxColor( CST_TextDrawBoxColor(
 
 	#if defined _ALS_TextDrawSetShadow
 		#undef TextDrawSetShadow
 	#endif
 	#define _ALS_TextDrawSetShadow
-	#define TextDrawSetShadow( FIXES_TextDrawSetShadow(
+	#define TextDrawSetShadow( CST_TextDrawSetShadow(
 
 	#if defined _ALS_TextDrawSetOutline
 		#undef TextDrawSetOutline
 	#endif
 	#define _ALS_TextDrawSetOutline
-	#define TextDrawSetOutline( FIXES_TextDrawSetOutline(
+	#define TextDrawSetOutline( CST_TextDrawSetOutline(
 
 	#if defined _ALS_TextDrawBackgroundColor
 		#undef TextDrawBackgroundColor
 	#endif
 	#define _ALS_TextDrawBackgroundColor
-	#define TextDrawBackgroundColor( FIXES_TextDrawBackgroundColor(
+	#define TextDrawBackgroundColor( CST_TextDrawBackgroundColor(
 
 	#if defined _ALS_TextDrawFont
 		#undef TextDrawFont
 	#endif
 	#define _ALS_TextDrawFont
-	#define TextDrawFont( FIXES_TextDrawFont(
+	#define TextDrawFont( CST_TextDrawFont(
 
 	#if defined _ALS_TextDrawSetProportional
 		#undef TextDrawSetProportional
 	#endif
 	#define _ALS_TextDrawSetProportional
-	#define TextDrawSetProportional( FIXES_TextDrawSetProportional(
+	#define TextDrawSetProportional( CST_TextDrawSetProportional(
 
 	#if defined _ALS_TextDrawSetSelectable
 		#undef TextDrawSetSelectable
 	#endif
 	#define _ALS_TextDrawSetSelectable
-	#define TextDrawSetSelectable( FIXES_TextDrawSetSelectable(
+	#define TextDrawSetSelectable( CST_TextDrawSetSelectable(
 
 	#if defined _ALS_TextDrawShowForPlayer
 		#undef TextDrawShowForPlayer
 	#endif
 	#define _ALS_TextDrawShowForPlayer
-	#define TextDrawShowForPlayer( FIXES_TextDrawShowForPlayer(
+	#define TextDrawShowForPlayer( CST_TextDrawShowForPlayer(
 
 	#if defined _ALS_TextDrawHideForPlayer
 		#undef TextDrawHideForPlayer
 	#endif
 	#define _ALS_TextDrawHideForPlayer
-	#define TextDrawHideForPlayer( FIXES_TextDrawHideForPlayer(
+	#define TextDrawHideForPlayer( CST_TextDrawHideForPlayer(
 
 	#if defined _ALS_TextDrawShowForAll
 		#undef TextDrawShowForAll
 	#endif
 	#define _ALS_TextDrawShowForAll
-	#define TextDrawShowForAll( FIXES_TextDrawShowForAll(
+	#define TextDrawShowForAll( CST_TextDrawShowForAll(
 
 	#if defined _ALS_TextDrawHideForAll
 		#undef TextDrawHideForAll
 	#endif
 	#define _ALS_TextDrawHideForAll
-	#define TextDrawHideForAll( FIXES_TextDrawHideForAll(
+	#define TextDrawHideForAll( CST_TextDrawHideForAll(
 
 	#if defined _ALS_TextDrawSetString
 		#undef TextDrawSetString
 	#endif
 	#define _ALS_TextDrawSetString
-	#define TextDrawSetString( FIXES_TextDrawSetString(
+	#define TextDrawSetString( CST_TextDrawSetString(
 
 	#if defined _ALS_TextDrawSetPreviewModel
 		#undef TextDrawSetPreviewModel
 	#endif
 	#define _ALS_TextDrawSetPreviewModel
-	#define TextDrawSetPreviewModel( FIXES_TextDrawSetPreviewModel(
+	#define TextDrawSetPreviewModel( CST_TextDrawSetPreviewModel(
 
 	#if defined _ALS_TextDrawSetPreviewRot
 		#undef TextDrawSetPreviewRot
 	#endif
 	#define _ALS_TextDrawSetPreviewRot
-	#define TextDrawSetPreviewRot( FIXES_TextDrawSetPreviewRot(
+	#define TextDrawSetPreviewRot( CST_TextDrawSetPreviewRot(
 
 	#if defined _ALS_TextDrawSetPreviewVehCol
 		#undef TextDrawSetPreviewVehCol
 	#endif
 	#define _ALS_TextDrawSetPreviewVehCol
-	#define TextDrawSetPreviewVehCol( FIXES_TextDrawSetPreviewVehCol(
+	#define TextDrawSetPreviewVehCol( CST_TextDrawSetPreviewVehCol(
 
 	#if defined _ALS_GangZoneCreate
 		#undef GangZoneCreate
 	#endif
 	#define _ALS_GangZoneCreate
-	#define GangZoneCreate( FIXES_GangZoneCreate(
+	#define GangZoneCreate( CST_GangZoneCreate(
 
 	#if defined _ALS_GangZoneDestroy
 		#undef GangZoneDestroy
 	#endif
 	#define _ALS_GangZoneDestroy
-	#define GangZoneDestroy( FIXES_GangZoneDestroy(
+	#define GangZoneDestroy( CST_GangZoneDestroy(
 
 	#if defined _ALS_GangZoneShowForPlayer
 		#undef GangZoneShowForPlayer
 	#endif
 	#define _ALS_GangZoneShowForPlayer
-	#define GangZoneShowForPlayer( FIXES_GangZoneShowForPlayer(
+	#define GangZoneShowForPlayer( CST_GangZoneShowForPlayer(
 
 	#if defined _ALS_GangZoneShowForAll
 		#undef GangZoneShowForAll
 	#endif
 	#define _ALS_GangZoneShowForAll
-	#define GangZoneShowForAll( FIXES_GangZoneShowForAll(
+	#define GangZoneShowForAll( CST_GangZoneShowForAll(
 
 	#if defined _ALS_GangZoneHideForPlayer
 		#undef GangZoneHideForPlayer
 	#endif
 	#define _ALS_GangZoneHideForPlayer
-	#define GangZoneHideForPlayer( FIXES_GangZoneHideForPlayer(
+	#define GangZoneHideForPlayer( CST_GangZoneHideForPlayer(
 
 	#if defined _ALS_GangZoneHideForAll
 		#undef GangZoneHideForAll
 	#endif
 	#define _ALS_GangZoneHideForAll
-	#define GangZoneHideForAll( FIXES_GangZoneHideForAll(
+	#define GangZoneHideForAll( CST_GangZoneHideForAll(
 
 	#if defined _ALS_GangZoneFlashForPlayer
 		#undef GangZoneFlashForPlayer
 	#endif
 	#define _ALS_GangZoneFlashForPlayer
-	#define GangZoneFlashForPlayer( FIXES_GangZoneFlashForPlayer(
+	#define GangZoneFlashForPlayer( CST_GangZoneFlashForPlayer(
 
 	#if defined _ALS_GangZoneFlashForAll
 		#undef GangZoneFlashForAll
 	#endif
 	#define _ALS_GangZoneFlashForAll
-	#define GangZoneFlashForAll( FIXES_GangZoneFlashForAll(
+	#define GangZoneFlashForAll( CST_GangZoneFlashForAll(
 
 	#if defined _ALS_GangZoneStopFlashForPlayer
 		#undef GangZoneStopFlashForPlayer
 	#endif
 	#define _ALS_GangZoneStopFlashForPlayer
-	#define GangZoneStopFlashForPlayer( FIXES_GangZoneStopFlashForPlayer(
+	#define GangZoneStopFlashForPlayer( CST_GangZoneStopFlashForPlayer(
 
 	#if defined _ALS_GangZoneStopFlashForAll
 		#undef GangZoneStopFlashForAll
 	#endif
 	#define _ALS_GangZoneStopFlashForAll
-	#define GangZoneStopFlashForAll( FIXES_GangZoneStopFlashForAll(
+	#define GangZoneStopFlashForAll( CST_GangZoneStopFlashForAll(
 
 	#if defined _ALS_Create3DTextLabel
 		#undef Create3DTextLabel
 	#endif
 	#define _ALS_Create3DTextLabel
-	#define Create3DTextLabel( FIXES_Create3DTextLabel(
+	#define Create3DTextLabel( CST_Create3DTextLabel(
 
 	#if defined _ALS_Delete3DTextLabel
 		#undef Delete3DTextLabel
 	#endif
 	#define _ALS_Delete3DTextLabel
-	#define Delete3DTextLabel( FIXES_Delete3DTextLabel(
+	#define Delete3DTextLabel( CST_Delete3DTextLabel(
 
 	#if defined _ALS_Attach3DTextLabelToPlayer
 		#undef Attach3DTextLabelToPlayer
 	#endif
 	#define _ALS_Attach3DTextLabelToPlayer
-	#define Attach3DTextLabelToPlayer( FIXES_Attach3DTextLabelToPlayer(
+	#define Attach3DTextLabelToPlayer( CST_Attach3DTextLabelToPlayer(
 
 	#if defined _ALS_Attach3DTextLabelToVehicle
 		#undef Attach3DTextLabelToVehicle
 	#endif
 	#define _ALS_Attach3DTextLabelToVehicle
-	#define Attach3DTextLabelToVehicle( FIXES_Attach3DTextLabelToVehicle(
+	#define Attach3DTextLabelToVehicle( CST_Attach3DTextLabelToVehicle(
 
 	#if defined _ALS_Update3DTextLabelText
 		#undef Update3DTextLabelText
 	#endif
 	#define _ALS_Update3DTextLabelText
-	#define Update3DTextLabelText( FIXES_Update3DTextLabelText(
+	#define Update3DTextLabelText( CST_Update3DTextLabelText(
 
 	#if defined _ALS_CreatePlayer3DTextLabel
 		#undef CreatePlayer3DTextLabel
 	#endif
 	#define _ALS_CreatePlayer3DTextLabel
-	#define CreatePlayer3DTextLabel( FIXES_CreatePlayer3DTextLabel(
+	#define CreatePlayer3DTextLabel( CST_CreatePlayer3DTextLabel(
 
 	#if defined _ALS_DeletePlayer3DTextLabel
 		#undef DeletePlayer3DTextLabel
 	#endif
 	#define _ALS_DeletePlayer3DTextLabel
-	#define DeletePlayer3DTextLabel( FIXES_DeletePlayer3DTextLabel(
+	#define DeletePlayer3DTextLabel( CST_DeletePlayer3DTextLabel(
 
 	#if defined _ALS_UpdatePlayer3DTextLabelText
 		#undef UpdatePlayer3DTextLabelText
 	#endif
 	#define _ALS_UpdatePlayer3DTextLabelText
-	#define UpdatePlayer3DTextLabelText( FIXES_UpdatePlayer3DTextLabelText(
+	#define UpdatePlayer3DTextLabelText( CST_UpdatePlayer3DTextLabelText(
 
 	#if defined _ALS_ShowPlayerDialog
 		#undef ShowPlayerDialog
 	#endif
 	#define _ALS_ShowPlayerDialog
-	#define ShowPlayerDialog( FIXES_ShowPlayerDialog(
+	#define ShowPlayerDialog( CST_ShowPlayerDialog(
 
 	#if defined _ALS_gpci
 		#undef gpci
 	#endif
 	#define _ALS_gpci
-	#define gpci( FIXES_gpci(
+	#define gpci( CST_gpci(
 
 	#if defined _ALS_GPCI
 		#undef GPCI
 	#endif
 	#define _ALS_GPCI
-	#define GPCI( FIXES_GPCI(
+	#define GPCI( CST_GPCI(
 #endif
 
 /*
@@ -13377,217 +13377,217 @@ main()
 		#undef db_open
 	#endif
 	#define _ALS_db_open
-	#define db_open( FIXES_db_open(
+	#define db_open( CST_db_open(
 
 	#if defined _ALS_DB_Open
 		#undef DB_Open
 	#endif
 	#define _ALS_DB_Open
-	#define DB_Open( FIXES_DB_Open(
+	#define DB_Open( CST_DB_Open(
 
 	#if defined _ALS_db_close
 		#undef db_close
 	#endif
 	#define _ALS_db_close
-	#define db_close( FIXES_db_close(
+	#define db_close( CST_db_close(
 
 	#if defined _ALS_DB_Close
 		#undef DB_Close
 	#endif
 	#define _ALS_DB_Close
-	#define DB_Close( FIXES_DB_Close(
+	#define DB_Close( CST_DB_Close(
 
 	#if defined _ALS_db_query
 		#undef db_query
 	#endif
 	#define _ALS_db_query
-	#define db_query( FIXES_db_query(
+	#define db_query( CST_db_query(
 
 	#if defined _ALS_DB_Query
 		#undef DB_Query
 	#endif
 	#define _ALS_DB_Query
-	#define DB_Query( FIXES_DB_Query(
+	#define DB_Query( CST_DB_Query(
 
 	#if defined _ALS_db_free_result
 		#undef db_free_result
 	#endif
 	#define _ALS_db_free_result
-	#define db_free_result( FIXES_db_free_result(
+	#define db_free_result( CST_db_free_result(
 
 	#if defined _ALS_DB_FreeResult
 		#undef DB_FreeResult
 	#endif
 	#define _ALS_DB_FreeResult
-	#define DB_FreeResult( FIXES_DB_FreeResult(
+	#define DB_FreeResult( CST_DB_FreeResult(
 
 	#if defined _ALS_db_num_rows
 		#undef db_num_rows
 	#endif
 	#define _ALS_db_num_rows
-	#define db_num_rows( FIXES_db_num_rows(
+	#define db_num_rows( CST_db_num_rows(
 
 	#if defined _ALS_DB_NumRows
 		#undef DB_NumRows
 	#endif
 	#define _ALS_DB_NumRows
-	#define DB_NumRows( FIXES_DB_NumRows(
+	#define DB_NumRows( CST_DB_NumRows(
 
 	#if defined _ALS_db_next_row
 		#undef db_next_row
 	#endif
 	#define _ALS_db_next_row
-	#define db_next_row( FIXES_db_next_row(
+	#define db_next_row( CST_db_next_row(
 
 	#if defined _ALS_DB_NextRow
 		#undef DB_NextRow
 	#endif
 	#define _ALS_DB_NextRow
-	#define DB_NextRow( FIXES_DB_NextRow(
+	#define DB_NextRow( CST_DB_NextRow(
 
 	#if defined _ALS_db_num_fields
 		#undef db_num_fields
 	#endif
 	#define _ALS_db_num_fields
-	#define db_num_fields( FIXES_db_num_fields(
+	#define db_num_fields( CST_db_num_fields(
 
 	#if defined _ALS_DB_NumFields
 		#undef DB_NumFields
 	#endif
 	#define _ALS_DB_NumFields
-	#define DB_NumFields( FIXES_DB_NumFields(
+	#define DB_NumFields( CST_DB_NumFields(
 
 	#if defined _ALS_db_field_name
 		#undef db_field_name
 	#endif
 	#define _ALS_db_field_name
-	#define db_field_name( FIXES_db_field_name(
+	#define db_field_name( CST_db_field_name(
 
 	#if defined _ALS_DB_FieldName
 		#undef DB_FieldName
 	#endif
 	#define _ALS_DB_FieldName
-	#define DB_FieldName( FIXES_DB_FieldName(
+	#define DB_FieldName( CST_DB_FieldName(
 
 	#if defined _ALS_db_get_field
 		#undef db_get_field
 	#endif
 	#define _ALS_db_get_field
-	#define db_get_field( FIXES_db_get_field(
+	#define db_get_field( CST_db_get_field(
 
 	#if defined _ALS_DB_GetField
 		#undef DB_GetField
 	#endif
 	#define _ALS_DB_GetField
-	#define DB_GetField( FIXES_DB_GetField(
+	#define DB_GetField( CST_DB_GetField(
 
 	#if defined _ALS_db_get_field_int
 		#undef db_get_field_int
 	#endif
 	#define _ALS_db_get_field_int
-	#define db_get_field_int( FIXES_db_get_field_int(
+	#define db_get_field_int( CST_db_get_field_int(
 
 	#if defined _ALS_DB_GetFieldInt
 		#undef DB_GetFieldInt
 	#endif
 	#define _ALS_DB_GetFieldInt
-	#define DB_GetFieldInt( FIXES_DB_GetFieldInt(
+	#define DB_GetFieldInt( CST_DB_GetFieldInt(
 
 	#if defined _ALS_db_get_field_float
 		#undef db_get_field_float
 	#endif
 	#define _ALS_db_get_field_float
-	#define db_get_field_float( FIXES_db_get_field_float(
+	#define db_get_field_float( CST_db_get_field_float(
 
 	#if defined _ALS_DB_GetFieldFloat
 		#undef DB_GetFieldFloat
 	#endif
 	#define _ALS_DB_GetFieldFloat
-	#define DB_GetFieldFloat( FIXES_DB_GetFieldFloat(
+	#define DB_GetFieldFloat( CST_DB_GetFieldFloat(
 
 	#if defined _ALS_db_get_field_assoc
 		#undef db_get_field_assoc
 	#endif
 	#define _ALS_db_get_field_assoc
-	#define db_get_field_assoc( FIXES_db_get_field_assoc(
+	#define db_get_field_assoc( CST_db_get_field_assoc(
 
 	#if defined _ALS_DB_GetFieldAssoc
 		#undef DB_GetFieldAssoc
 	#endif
 	#define _ALS_DB_GetFieldAssoc
-	#define DB_GetFieldAssoc( FIXES_DB_GetFieldAssoc(
+	#define DB_GetFieldAssoc( CST_DB_GetFieldAssoc(
 
 	#if defined _ALS_db_get_field_assoc_int
 		#undef db_get_field_assoc_int
 	#endif
 	#define _ALS_db_get_field_assoc_int
-	#define db_get_field_assoc_int( FIXES_db_get_field_assoc_int(
+	#define db_get_field_assoc_int( CST_db_get_field_assoc_int(
 
 	#if defined _ALS_DB_GetFieldAssocInt
 		#undef DB_GetFieldAssocInt
 	#endif
 	#define _ALS_DB_GetFieldAssocInt
-	#define DB_GetFieldAssocInt( FIXES_DB_GetFieldAssocInt(
+	#define DB_GetFieldAssocInt( CST_DB_GetFieldAssocInt(
 
 	#if defined _ALS_db_get_field_assoc_float
 		#undef db_get_field_assoc_float
 	#endif
 	#define _ALS_db_get_field_assoc_float
-	#define db_get_field_assoc_float( FIXES_db_get_field_assoc_float(
+	#define db_get_field_assoc_float( CST_db_get_field_assoc_float(
 
 	#if defined _ALS_DB_GetFieldAssocFloat
 		#undef DB_GetFieldAssocFloat
 	#endif
 	#define _ALS_DB_GetFieldAssocFloat
-	#define DB_GetFieldAssocFloat( FIXES_DB_GetFieldAssocFloat(
+	#define DB_GetFieldAssocFloat( CST_DB_GetFieldAssocFloat(
 
 	#if defined _ALS_db_get_mem_handle
 		#undef db_get_mem_handle
 	#endif
 	#define _ALS_db_get_mem_handle
-	#define db_get_mem_handle( FIXES_db_get_mem_handle(
+	#define db_get_mem_handle( CST_db_get_mem_handle(
 
 	#if defined _ALS_DB_GetMemHandle
 		#undef DB_GetMemHandle
 	#endif
 	#define _ALS_DB_GetMemHandle
-	#define DB_GetMemHandle( FIXES_DB_GetMemHandle(
+	#define DB_GetMemHandle( CST_DB_GetMemHandle(
 
 	#if defined _ALS_db_get_result_mem_handle
 		#undef db_get_result_mem_handle
 	#endif
 	#define _ALS_db_get_result_mem_handle
-	#define db_get_result_mem_handle( FIXES_db_get_result_mem_handle(
+	#define db_get_result_mem_handle( CST_db_get_result_mem_handle(
 
 	#if defined _ALS_DB_GetResultMemHandle
 		#undef DB_GetResultMemHandle
 	#endif
 	#define _ALS_DB_GetResultMemHandle
-	#define DB_GetResultMemHandle( FIXES_DB_GetResultMemHandle(
+	#define DB_GetResultMemHandle( CST_DB_GetResultMemHandle(
 
 	#if defined _ALS_db_debug_openfiles
 		#undef db_debug_openfiles
 	#endif
 	#define _ALS_db_debug_openfiles
-	#define db_debug_openfiles( FIXES_db_debug_openfiles(
+	#define db_debug_openfiles( CST_db_debug_openfiles(
 
 	#if defined _ALS_DB_DebugOpenFiles
 		#undef DB_DebugOpenFiles
 	#endif
 	#define _ALS_DB_DebugOpenFiles
-	#define DB_DebugOpenFiles( FIXES_DB_DebugOpenFiles(
+	#define DB_DebugOpenFiles( CST_DB_DebugOpenFiles(
 
 	#if defined _ALS_db_debug_openresults
 		#undef db_debug_openresults
 	#endif
 	#define _ALS_db_debug_openresults
-	#define db_debug_openresults( FIXES_db_debug_openresults(
+	#define db_debug_openresults( CST_db_debug_openresults(
 
 	#if defined _ALS_DB_DebugOpenResults
 		#undef DB_DebugOpenResults
 	#endif
 	#define _ALS_DB_DebugOpenResults
-	#define DB_DebugOpenResults( FIXES_DB_DebugOpenResults(
+	#define DB_DebugOpenResults( CST_DB_DebugOpenResults(
 #endif
 
 /*
@@ -13605,264 +13605,264 @@ main()
 		#undef CreateVehicle
 	#endif
 	#define _ALS_CreateVehicle
-	#define CreateVehicle( FIXES_CreateVehicle(
+	#define CreateVehicle( CST_CreateVehicle(
 
 	#if defined _ALS_DestroyVehicle
 		#undef DestroyVehicle
 	#endif
 	#define _ALS_DestroyVehicle
-	#define DestroyVehicle( FIXES_DestroyVehicle(
+	#define DestroyVehicle( CST_DestroyVehicle(
 
 	#if defined _ALS_IsVehicleStreamedIn
 		#undef IsVehicleStreamedIn
 	#endif
 	#define _ALS_IsVehicleStreamedIn
-	#define IsVehicleStreamedIn( FIXES_IsVehicleStreamedIn(
+	#define IsVehicleStreamedIn( CST_IsVehicleStreamedIn(
 
 	#if defined _ALS_GetVehiclePos
 		#undef GetVehiclePos
 	#endif
 	#define _ALS_GetVehiclePos
-	#define GetVehiclePos( FIXES_GetVehiclePos(
+	#define GetVehiclePos( CST_GetVehiclePos(
 
 	#if defined _ALS_SetVehiclePos
 		#undef SetVehiclePos
 	#endif
 	#define _ALS_SetVehiclePos
-	#define SetVehiclePos( FIXES_SetVehiclePos(
+	#define SetVehiclePos( CST_SetVehiclePos(
 
 	#if defined _ALS_GetVehicleZAngle
 		#undef GetVehicleZAngle
 	#endif
 	#define _ALS_GetVehicleZAngle
-	#define GetVehicleZAngle( FIXES_GetVehicleZAngle(
+	#define GetVehicleZAngle( CST_GetVehicleZAngle(
 
 	#if defined _ALS_GetVehicleRotationQuat
 		#undef GetVehicleRotationQuat
 	#endif
 	#define _ALS_GetVehicleRotationQuat
-	#define GetVehicleRotationQuat( FIXES_GetVehicleRotationQuat(
+	#define GetVehicleRotationQuat( CST_GetVehicleRotationQuat(
 
 	#if defined _ALS_GetVehicleDistanceFromPoint
 		#undef GetVehicleDistanceFromPoint
 	#endif
 	#define _ALS_GetVehicleDistanceFromPoint
-	#define GetVehicleDistanceFromPoint( FIXES_GetVehicleDistanceFromPoint(
+	#define GetVehicleDistanceFromPoint( CST_GetVehicleDistanceFromPoint(
 
 	#if defined _ALS_SetVehicleZAngle
 		#undef SetVehicleZAngle
 	#endif
 	#define _ALS_SetVehicleZAngle
-	#define SetVehicleZAngle( FIXES_SetVehicleZAngle(
+	#define SetVehicleZAngle( CST_SetVehicleZAngle(
 
 	#if defined _ALS_SetVehicleParamsForPlayer
 		#undef SetVehicleParamsForPlayer
 	#endif
 	#define _ALS_SetVehicleParamsForPlayer
-	#define SetVehicleParamsForPlayer( FIXES_SetVehicleParamsForPlayer(
+	#define SetVehicleParamsForPlayer( CST_SetVehicleParamsForPlayer(
 
 	#if defined _ALS_ManualVehicleEngineAndLights
 		#undef ManualVehicleEngineAndLights
 	#endif
 	#define _ALS_ManualVehicleEngineAndLights
-	#define ManualVehicleEngineAndLights( FIXES_ManualVehicleEngineAndLights(
+	#define ManualVehicleEngineAndLights( CST_ManualVehicleEngineAndLights(
 
 	#if defined _ALS_SetVehicleParamsEx
 		#undef SetVehicleParamsEx
 	#endif
 	#define _ALS_SetVehicleParamsEx
-	#define SetVehicleParamsEx( FIXES_SetVehicleParamsEx(
+	#define SetVehicleParamsEx( CST_SetVehicleParamsEx(
 
 	#if defined _ALS_GetVehicleParamsEx
 		#undef GetVehicleParamsEx
 	#endif
 	#define _ALS_GetVehicleParamsEx
-	#define GetVehicleParamsEx( FIXES_GetVehicleParamsEx(
+	#define GetVehicleParamsEx( CST_GetVehicleParamsEx(
 
 	#if defined _ALS_GetVehicleParamsSirenState
 		#undef GetVehicleParamsSirenState
 	#endif
 	#define _ALS_GetVehicleParamsSirenState
-	#define GetVehicleParamsSirenState( FIXES_GetVehicleParamsSirenState(
+	#define GetVehicleParamsSirenState( CST_GetVehicleParamsSirenState(
 
 	#if defined _ALS_SetVehicleParamsCarDoors
 		#undef SetVehicleParamsCarDoors
 	#endif
 	#define _ALS_SetVehicleParamsCarDoors
-	#define SetVehicleParamsCarDoors( FIXES_SetVehicleParamsCarDoors(
+	#define SetVehicleParamsCarDoors( CST_SetVehicleParamsCarDoors(
 
 	#if defined _ALS_GetVehicleParamsCarDoors
 		#undef GetVehicleParamsCarDoors
 	#endif
 	#define _ALS_GetVehicleParamsCarDoors
-	#define GetVehicleParamsCarDoors( FIXES_GetVehicleParamsCarDoors(
+	#define GetVehicleParamsCarDoors( CST_GetVehicleParamsCarDoors(
 
 	#if defined _ALS_SetVehicleParamsCarWindows
 		#undef SetVehicleParamsCarWindows
 	#endif
 	#define _ALS_SetVehicleParamsCarWindows
-	#define SetVehicleParamsCarWindows( FIXES_SetVehicleParamsCarWindows(
+	#define SetVehicleParamsCarWindows( CST_SetVehicleParamsCarWindows(
 
 	#if defined _ALS_GetVehicleParamsCarWindows
 		#undef GetVehicleParamsCarWindows
 	#endif
 	#define _ALS_GetVehicleParamsCarWindows
-	#define GetVehicleParamsCarWindows( FIXES_GetVehicleParamsCarWindows(
+	#define GetVehicleParamsCarWindows( CST_GetVehicleParamsCarWindows(
 
 	#if defined _ALS_SetVehicleToRespawn
 		#undef SetVehicleToRespawn
 	#endif
 	#define _ALS_SetVehicleToRespawn
-	#define SetVehicleToRespawn( FIXES_SetVehicleToRespawn(
+	#define SetVehicleToRespawn( CST_SetVehicleToRespawn(
 
 	#if defined _ALS_LinkVehicleToInterior
 		#undef LinkVehicleToInterior
 	#endif
 	#define _ALS_LinkVehicleToInterior
-	#define LinkVehicleToInterior( FIXES_LinkVehicleToInterior(
+	#define LinkVehicleToInterior( CST_LinkVehicleToInterior(
 
 	#if defined _ALS_AddVehicleComponent
 		#undef AddVehicleComponent
 	#endif
 	#define _ALS_AddVehicleComponent
-	#define AddVehicleComponent( FIXES_AddVehicleComponent(
+	#define AddVehicleComponent( CST_AddVehicleComponent(
 
 	#if defined _ALS_RemoveVehicleComponent
 		#undef RemoveVehicleComponent
 	#endif
 	#define _ALS_RemoveVehicleComponent
-	#define RemoveVehicleComponent( FIXES_RemoveVehicleComponent(
+	#define RemoveVehicleComponent( CST_RemoveVehicleComponent(
 
 	#if defined _ALS_ChangeVehicleColor
 		#undef ChangeVehicleColor
 	#endif
 	#define _ALS_ChangeVehicleColor
-	#define ChangeVehicleColor( FIXES_ChangeVehicleColor(
+	#define ChangeVehicleColor( CST_ChangeVehicleColor(
 
 	#if defined _ALS_ChangeVehiclePaintjob
 		#undef ChangeVehiclePaintjob
 	#endif
 	#define _ALS_ChangeVehiclePaintjob
-	#define ChangeVehiclePaintjob( FIXES_ChangeVehiclePaintjob(
+	#define ChangeVehiclePaintjob( CST_ChangeVehiclePaintjob(
 
 	#if defined _ALS_SetVehicleHealth
 		#undef SetVehicleHealth
 	#endif
 	#define _ALS_SetVehicleHealth
-	#define SetVehicleHealth( FIXES_SetVehicleHealth(
+	#define SetVehicleHealth( CST_SetVehicleHealth(
 
 	#if defined _ALS_GetVehicleHealth
 		#undef GetVehicleHealth
 	#endif
 	#define _ALS_GetVehicleHealth
-	#define GetVehicleHealth( FIXES_GetVehicleHealth(
+	#define GetVehicleHealth( CST_GetVehicleHealth(
 
 	#if defined _ALS_AttachTrailerToVehicle
 		#undef AttachTrailerToVehicle
 	#endif
 	#define _ALS_AttachTrailerToVehicle
-	#define AttachTrailerToVehicle( FIXES_AttachTrailerToVehicle(
+	#define AttachTrailerToVehicle( CST_AttachTrailerToVehicle(
 
 	#if defined _ALS_DetachTrailerFromVehicle
 		#undef DetachTrailerFromVehicle
 	#endif
 	#define _ALS_DetachTrailerFromVehicle
-	#define DetachTrailerFromVehicle( FIXES_DetachTrailerFromVehicle(
+	#define DetachTrailerFromVehicle( CST_DetachTrailerFromVehicle(
 
 	#if defined _ALS_IsTrailerAttachedToVehicle
 		#undef IsTrailerAttachedToVehicle
 	#endif
 	#define _ALS_IsTrailerAttachedToVehicle
-	#define IsTrailerAttachedToVehicle( FIXES_IsTrailerAttachedToVehicle(
+	#define IsTrailerAttachedToVehicle( CST_IsTrailerAttachedToVehicle(
 
 	#if defined _ALS_GetVehicleTrailer
 		#undef GetVehicleTrailer
 	#endif
 	#define _ALS_GetVehicleTrailer
-	#define GetVehicleTrailer( FIXES_GetVehicleTrailer(
+	#define GetVehicleTrailer( CST_GetVehicleTrailer(
 
 	#if defined _ALS_SetVehicleNumberPlate
 		#undef SetVehicleNumberPlate
 	#endif
 	#define _ALS_SetVehicleNumberPlate
-	#define SetVehicleNumberPlate( FIXES_SetVehicleNumberPlate(
+	#define SetVehicleNumberPlate( CST_SetVehicleNumberPlate(
 
 	#if defined _ALS_GetVehicleModel
 		#undef GetVehicleModel
 	#endif
 	#define _ALS_GetVehicleModel
-	#define GetVehicleModel( FIXES_GetVehicleModel(
+	#define GetVehicleModel( CST_GetVehicleModel(
 
 	#if defined _ALS_GetVehicleComponentInSlot
 		#undef GetVehicleComponentInSlot
 	#endif
 	#define _ALS_GetVehicleComponentInSlot
-	#define GetVehicleComponentInSlot( FIXES_GetVehicleComponentInSlot(
+	#define GetVehicleComponentInSlot( CST_GetVehicleComponentInSlot(
 
 	#if defined _ALS_GetVehicleComponentType
 		#undef GetVehicleComponentType
 	#endif
 	#define _ALS_GetVehicleComponentType
-	#define GetVehicleComponentType( FIXES_GetVehicleComponentType(
+	#define GetVehicleComponentType( CST_GetVehicleComponentType(
 
 	#if defined _ALS_RepairVehicle
 		#undef RepairVehicle
 	#endif
 	#define _ALS_RepairVehicle
-	#define RepairVehicle( FIXES_RepairVehicle(
+	#define RepairVehicle( CST_RepairVehicle(
 
 	#if defined _ALS_GetVehicleVelocity
 		#undef GetVehicleVelocity
 	#endif
 	#define _ALS_GetVehicleVelocity
-	#define GetVehicleVelocity( FIXES_GetVehicleVelocity(
+	#define GetVehicleVelocity( CST_GetVehicleVelocity(
 
 	#if defined _ALS_SetVehicleVelocity
 		#undef SetVehicleVelocity
 	#endif
 	#define _ALS_SetVehicleVelocity
-	#define SetVehicleVelocity( FIXES_SetVehicleVelocity(
+	#define SetVehicleVelocity( CST_SetVehicleVelocity(
 
 	#if defined _ALS_SetVehicleAngularVelocity
 		#undef SetVehicleAngularVelocity
 	#endif
 	#define _ALS_SetVehicleAngularVelocity
-	#define SetVehicleAngularVelocity( FIXES_SetVehicleAngularVelocity(
+	#define SetVehicleAngularVelocity( CST_SetVehicleAngularVelocity(
 
 	#if defined _ALS_GetVehicleDamageStatus
 		#undef GetVehicleDamageStatus
 	#endif
 	#define _ALS_GetVehicleDamageStatus
-	#define GetVehicleDamageStatus( FIXES_GetVehicleDamageStatus(
+	#define GetVehicleDamageStatus( CST_GetVehicleDamageStatus(
 
 	#if defined _ALS_UpdateVehicleDamageStatus
 		#undef UpdateVehicleDamageStatus
 	#endif
 	#define _ALS_UpdateVehicleDamageStatus
-	#define UpdateVehicleDamageStatus( FIXES_UpdateVehicleDamageStatus(
+	#define UpdateVehicleDamageStatus( CST_UpdateVehicleDamageStatus(
 
 	#if defined _ALS_GetVehicleModelInfo
 		#undef GetVehicleModelInfo
 	#endif
 	#define _ALS_GetVehicleModelInfo
-	#define GetVehicleModelInfo( FIXES_GetVehicleModelInfo(
+	#define GetVehicleModelInfo( CST_GetVehicleModelInfo(
 
 	#if defined _ALS_SetVehicleVirtualWorld
 		#undef SetVehicleVirtualWorld
 	#endif
 	#define _ALS_SetVehicleVirtualWorld
-	#define SetVehicleVirtualWorld( FIXES_SetVehicleVirtualWorld(
+	#define SetVehicleVirtualWorld( CST_SetVehicleVirtualWorld(
 
 	#if defined _ALS_GetVehicleVirtualWorld
 		#undef GetVehicleVirtualWorld
 	#endif
 	#define _ALS_GetVehicleVirtualWorld
-	#define GetVehicleVirtualWorld( FIXES_GetVehicleVirtualWorld(
+	#define GetVehicleVirtualWorld( CST_GetVehicleVirtualWorld(
 
 	#if defined _ALS_IsValidVehicle
 		#undef IsValidVehicle
 	#endif
 	#define _ALS_IsValidVehicle
-	#define IsValidVehicle( FIXES_IsValidVehicle(
+	#define IsValidVehicle( CST_IsValidVehicle(
 #endif
 
