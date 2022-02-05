@@ -17895,12 +17895,6 @@ static stock _FIXES_CountFilterscripts()
  * <fixes>IsPlayerConnected</fixes>
  */
 
-native bool:BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
-
-/**
- * <fixes>IsPlayerConnected</fixes>
- */
-
 #if FIX_IsPlayerConnected
 	stock bool:FIXES_IsPlayerConnected(playerid)
 	{
@@ -18086,7 +18080,7 @@ public OnJITCompile()
 		#if FIX_OnPlayerConnect || _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 			for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
 			{
-				if (BAD_IsPlayerConnected(playerid))
+				if (IsPlayerConnected__(playerid))
 				{
 					// No "defined" checks - if you don't want this fix because
 					// you don't have an "OnPlayerConnect", just don't use it!
@@ -21202,8 +21196,6 @@ public OnJITCompile()
 /**
  * <fixes>Menus</fixes>
  */
-
-native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
 
 #if _FIX_Menus || (FIX_API && !_FIXES_NPC)
 	stock Menu:FIXES_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0)
@@ -25541,11 +25533,11 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 	_FIXES_FUNC_PAWNDOC(FIXES_SetWorldTime(time));
 	#if _FIXES_SAMP
 		#define _ALS_SetWorldTime
-		#define SetWorldTime(%0) BAD_SetWorldTime((_FIXES_gsWorldTime=(%0)))
+		#define SetWorldTime(%0) SetWorldTime__((_FIXES_gsWorldTime=(%0)))
 	#endif
 	
 	#define _ALS_SetWorldTime__
-	#define SetWorldTime__(%0) BAD_SetWorldTime((_FIXES_gsWorldTime=(%0)))
+	#define SetWorldTime__(%0) SetWorldTime__((_FIXES_gsWorldTime=(%0)))
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_SetWorldTime);
 #endif
