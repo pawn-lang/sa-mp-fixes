@@ -18320,7 +18320,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnClientCheckResponse
-		#undef ClientCheckResponse
+		#undef OnClientCheckResponse
 	#endif
 	#define _ALS_OnClientCheckResponse
 
@@ -18361,7 +18361,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnRconCommand
-		#undef RconCommand
+		#undef OnRconCommand
 	#endif
 	#define _ALS_OnRconCommand
 
@@ -18418,7 +18418,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnGameModeExit
-		#undef GameModeExit
+		#undef OnGameModeExit
 	#endif
 	#define _ALS_OnGameModeExit
 
@@ -18507,7 +18507,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnFilterScriptExit
-		#undef FilterScriptExit
+		#undef OnFilterScriptExit
 	#endif
 	#define _ALS_OnFilterScriptExit
 
@@ -18796,7 +18796,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerConnect
-		#undef PlayerConnect
+		#undef OnPlayerConnect
 	#endif
 	#define _ALS_OnPlayerConnect
 
@@ -18937,7 +18937,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerDisconnect
-		#undef PlayerDisconnect
+		#undef OnPlayerDisconnect
 	#endif
 	#define _ALS_OnPlayerDisconnect
 
@@ -19055,7 +19055,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerDeath
-		#undef PlayerDeath
+		#undef OnPlayerDeath
 	#endif
 	#define _ALS_OnPlayerDeath
 
@@ -19251,7 +19251,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerRequestClass
-		#undef PlayerRequestClass
+		#undef OnPlayerRequestClass
 	#endif
 	#define _ALS_OnPlayerRequestClass
 
@@ -19412,7 +19412,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerSpawn
-		#undef PlayerSpawn
+		#undef OnPlayerSpawn
 	#endif
 	#define _ALS_OnPlayerSpawn
 
@@ -19586,7 +19586,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnVehicleMod
-		#undef VehicleMod
+		#undef OnVehicleMod
 	#endif
 	#define _ALS_OnVehicleMod
 
@@ -19776,7 +19776,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerCommandText
-		#undef PlayerCommandText
+		#undef OnPlayerCommandText
 	#endif
 	#define _ALS_OnPlayerCommandText
 
@@ -19819,7 +19819,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerText
-		#undef PlayerText
+		#undef OnPlayerText
 	#endif
 	#define _ALS_OnPlayerText
 
@@ -20061,7 +20061,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerUpdate
-		#undef PlayerUpdate
+		#undef OnPlayerUpdate
 	#endif
 	#define _ALS_OnPlayerUpdate
 
@@ -20390,7 +20390,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerInteriorChange
-		#undef PlayerInteriorChange
+		#undef OnPlayerInteriorChange
 	#endif
 	#define _ALS_OnPlayerInteriorChange
 
@@ -20462,15 +20462,6 @@ public OnJITCompile()
 	}
 
 #if FIX_SetTimer
-	#if _FIXES_SAMP
-		#if defined _ALS_SetTimer
-			#undef SetTimer
-		#else
-			#define _ALS_SetTimer
-		#endif
-		#define SetTimer( FIXES_SetTimer(
-	#endif
-
 	#define _ALS_SetTimer__
 	#define SetTimer__( FIXES_SetTimer(
 #endif
@@ -20683,7 +20674,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerKeyStateChange
-		#undef PlayerKeyStateChange
+		#undef OnPlayerKeyStateChange
 	#endif
 	#define _ALS_OnPlayerKeyStateChange
 
@@ -20834,7 +20825,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerEnterVehicle
-		#undef PlayerEnterVehicle
+		#undef OnPlayerEnterVehicle
 	#endif
 	#define _ALS_OnPlayerEnterVehicle
 
@@ -20879,7 +20870,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerExitVehicle
-		#undef PlayerExitVehicle
+		#undef OnPlayerExitVehicle
 	#endif
 	#define _ALS_OnPlayerExitVehicle
 
@@ -21074,7 +21065,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerSelectedMenuRow
-		#undef PlayerSelectedMenuRow
+		#undef OnPlayerSelectedMenuRow
 	#endif
 	#define _ALS_OnPlayerSelectedMenuRow
 
@@ -21164,7 +21155,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerExitedMenu
-		#undef PlayerExitedMenu
+		#undef OnPlayerExitedMenu
 	#endif
 	#define _ALS_OnPlayerExitedMenu
 
@@ -21757,7 +21748,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerStateChange
-		#undef PlayerStateChange
+		#undef OnPlayerStateChange
 	#endif
 	#define _ALS_OnPlayerStateChange
 
@@ -22819,7 +22810,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnPlayerClickMap
-		#undef PlayerClickMap
+		#undef OnPlayerClickMap
 	#endif
 	#define _ALS_OnPlayerClickMap
 
@@ -23162,7 +23153,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnDialogResponse
-		#undef DialogResponse
+		#undef OnDialogResponse
 	#endif
 	#define _ALS_OnDialogResponse
 
@@ -23602,7 +23593,7 @@ public OnJITCompile()
 	}
 
 	#if defined _ALS_OnVehicleSpawn
-		#undef VehicleSpawn
+		#undef OnVehicleSpawn
 	#endif
 	#define _ALS_OnVehicleSpawn
 
@@ -24784,7 +24775,7 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 
 // Uses a little trick to consume part of the line and thus not match
 // our hooked version.
-#if _FIXES_SAMP && defined _ALS_sleep
+#if defined _ALS_sleep
 	#undef sleep
 #endif
 #define BAD_sleep%0\n%9 sleep%0
