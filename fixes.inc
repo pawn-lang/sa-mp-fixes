@@ -7188,6 +7188,79 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_FORCE_SYNC                       (0)
 #endif
 
+/**
+ * <fix name="address_naught">
+ *     <problem>
+ *         When there are internal code errors that result in the wrong address
+ *         being written to, more often than not that write clobbers whatever
+ *         value is in address naught (<c>0x00000000</c>).
+ *     </problem>
+ *     <solution>
+ *         While we can't stop all the bad address writes there are two things
+ *         we can do.  Put a dummy variable right at the start of the script so
+ *         that these bad writes don't break something else, and enable address
+ *         naught write detection in crashdetect.
+ *     </solution>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ * </fix>
+ */
+
+//#if !defined FIX_address_naught
+//	#define _FIXES_WARNING 139
+//	#tryinclude "_fixes_options"
+//	#undef _FIXES_WARNING
+//	static _FIXES_OPTION FIX_address_naught = _FIXES_DEFAULT;
+//	#define FIX_address_naught                   _FIXES_DEFAULT
+//#elseif _FIXES_IS_UNSET(FIX_address_naught)
+//	#undef FIX_address_naught
+//	static stock FIX_address_naught = 2;
+//	#define FIX_address_naught                   (2)
+//#elseif FIX_address_naught
+//	#undef FIX_address_naught
+//	static stock FIX_address_naught = 1;
+//	#define FIX_address_naught                   (1)
+//#else
+//	#undef FIX_address_naught
+//	static stock FIX_address_naught = 0;
+//	#define FIX_address_naught                   (0)
+//#endif
+#if defined FIX_address_naught
+	#undef FIX_address_naught
+#endif
+#define FIX_address_naught (0)
+
+/**
+ * <fix name="camel_case">
+ *     <problem>
+ *         Some natives don't correctly use <c>CamelCase</c>.
+ *     </problem>
+ *     <solution>
+ *         Redefine them and deprecate the old versions.
+ *     </solution>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_camel_case
+	#define _FIXES_WARNING 140
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_camel_case = _FIXES_DEFAULT;
+	#define FIX_camel_case                       _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_camel_case)
+	#undef FIX_camel_case
+	static stock FIX_camel_case = 2;
+	#define FIX_camel_case                       (2)
+#elseif FIX_camel_case
+	#undef FIX_camel_case
+	static stock FIX_camel_case = 1;
+	#define FIX_camel_case                       (1)
+#else
+	#undef FIX_camel_case
+	static stock FIX_camel_case = 0;
+	#define FIX_camel_case                       (0)
+#endif
+
 /*
 
     88b           d88
@@ -7547,12 +7620,40 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_CONST);
 
 /**
  * <remarks>
+ * Either <c>const</c> or nothing, depending on the value of <c>FIX_deconst</c>,
+ * so we can remove <c>const</c> as required on the new compiler.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_NOT_CONST);
+#if FIX_deconst
+	#define _FIXES_NOT_CONST
+#else
+	#define _FIXES_NOT_CONST const
+#endif
+
+/**
+ * <remarks>
+ * Create a <c>length = sizeof (array)</c> default functin parameter when
+ * <c>FIX_defaults</c> is on, or just <c>length</c> otherwise.
+ * </remarks>
+ */
+
+_FIXES_FUNC_PAWNDOC(_FIXES_MAYBE_SIZEOF(length, array));
+#if FIX_defaults
+	#define _FIXES_MAYBE_SIZEOF(%0,%1) %0 = sizeof (%1)
+#else
+	#define _FIXES_MAYBE_SIZEOF(%0,%1) %0
+#endif
+
+/**
+ * <remarks>
  * Convert a non-zero value to <c>true</c>, and <c>0</c> to <c>false</c> when
  * <c>FIX_bool_tags</c> is off.  Otherwise do nothing.
  * </remarks>
  */
 
-_FIXES_FUNC_PAWNDOC(_FIXES_TO_BOOL);
+_FIXES_FUNC_PAWNDOC(_FIXES_TO_BOOL(intOrBool));
 #if FIX_bool_tags
 	#define _FIXES_TO_BOOL(%0) ((%0))
 #else
@@ -13391,6 +13492,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 
 /**
  * <fixes>defaults</fixes>
+ * <fixes>camel_case</fixes>
  */
 
 #if _FIXES_SAMP && defined _ALS_format
@@ -13398,11 +13500,43 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 #if FIX_defaults
+	#if FIX_camel_case
+		#pragma deprecated Use `Format`.
+	#endif
 	native FIXES_format(output[], len = sizeof (output), const format[], {Float,_}:...) = format;
 
 	#if _FIXES_SAMP
 		#define _ALS_format
 		#define format( FIXES_format(
+	#endif
+#elseif FIX_camel_case
+	#if FIX_camel_case
+		#pragma deprecated Use `Format`.
+	#endif
+	native FIXES_format(output[], len, const format[], {Float,_}:...) = format;
+
+	#if _FIXES_SAMP
+		#define _ALS_format
+		#define format( FIXES_format(
+	#endif
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_format);
+#endif
+
+/**
+ * <fixes>camel_case</fixes>
+ */
+
+#if FIX_camel_case
+	#if FIX_defaults
+		native FIXES_Format(output[], len = sizeof (output), const format[], {Float,_}:...) = format;
+	#else
+		native FIXES_Format(output[], len, const format[], {Float,_}:...) = format;
+	#endif
+
+	#if _FIXES_SAMP
+		#define _ALS_Format
+		#define Format( FIXES_Format(
 	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_format);
@@ -25507,9 +25641,12 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #undef _FIXES_STATIC_STOCK
 #undef _FIXES_STREAMER_ALL_TAGS
 #undef _FIXES_TO_BOOL
+#undef _FIXES_NOT_CONST
+#undef _FIXES_MAYBE_CONST
 #undef _FIXES_MAYBE_BOOL
 #undef _FIXES_MAYBE_TRUE
 #undef _FIXES_MAYBE_FALSE
+#undef _FIXES_MAYBE_SIZEOF
 #if !FIXES_NoYSI
 	#undef _FIXES_FORWARD
 #endif
