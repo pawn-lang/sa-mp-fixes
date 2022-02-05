@@ -45,99 +45,53 @@
 	#error `_fixes_settings.inc` included, but `_FIXES_WARNING` is not defined to select a warning message.
 #endif
 
+// Actually show the warnings.
+#pragma warning push
+#pragma warning enable 237
+
 // The caller always undefines `_FIXES_WARNING` after trying to include this
 // file, as it needs to be undefined whether the include worked or not.  Thus we
 // can't also undefine it in here, as the sensible option would seem to be, as
 // then it will be undefined twice in some situations.
 #if _FIXES_WARNING == 1
 	#warning Setting `FIXES_ExplicitSettings`, to make all settings explicit, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 2
+#elseif _FIXES_WARNING == 2
 	#warning Setting `FIXES_EnableAll`, to enable all fixes, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 3
+#elseif _FIXES_WARNING == 3
 	#warning Setting `FIXES_EnableDeprecated`, to enable fixes for fixed bugs, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 4
+#elseif _FIXES_WARNING == 4
 	#warning Setting `FIXES_DefaultDisabled`, to disable all fixes by default, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 5
+#elseif _FIXES_WARNING == 5
 	#warning Setting `FIXES_ExplicitOptions`, to make all fixes explicit, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 6
+#elseif _FIXES_WARNING == 6
 	#warning Setting `FIXES_SilentKick`, to kick users without any message, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 7
+#elseif _FIXES_WARNING == 7
 	#warning Setting `FIXES_Debug`, to enable debug mode, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 8
+#elseif _FIXES_WARNING == 8
 	#warning Setting `FIXES_Single`, to enable single script mode, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 9
+#elseif _FIXES_WARNING == 9
 	#warning Setting `FIXES_NoSingleMsg`, to disable the single mode warning message, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 10
+#elseif _FIXES_WARNING == 10
 	#warning Setting `FIXES_NoServerVarMsg`, to disable the config access warning message, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 11
+#elseif _FIXES_WARNING == 11
 	#warning Setting `FIXES_NoGetMaxPlayersMsg`, to disable the `MAX_PLAYERS` warning message, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 12
+#elseif _FIXES_WARNING == 12
 	#warning Setting `FIXES_NoPawndoc`, to disable all fixes.inc pawndoc output, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 13
+#elseif _FIXES_WARNING == 13
 	#warning Setting `FIXES_CorrectInvalidTimerID`, to specify that you know invalid timers are `0`, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 14
+#elseif _FIXES_WARNING == 14
 	#warning Setting `FIXES_NoYSI`, to optimise the code when YSI isn't used, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 15
+#elseif _FIXES_WARNING == 15
 	#warning Setting `FIXES_OneRandomVehicleColour`, to allow only one random vehicle colour, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 16
+#elseif _FIXES_WARNING == 16
 	#warning Setting `FIXES_NoVehicleColourMsg`, to disable the vehicle colours warning, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 17
+#elseif _FIXES_WARNING == 17
 	#warning Setting `FIXES_CountFilterscripts`, to count loaded filterscripts, must now be explicit.
-	#endinput
-#endif
-
-#if _FIXES_WARNING == 18
+#elseif _FIXES_WARNING == 18
 	#warning Setting `FIXES_NoFilterscriptsMsg`, to hide the filterscripts error information, must now be explicit.
-	#endinput
+#else
+	#error `_fixes_settings.inc` included, but `_FIXES_WARNING` is not set to a valid warning message.
 #endif
 
-#error `_fixes_settings.inc` included, but `_FIXES_WARNING` is not set to a valid warning message.
+#pragma warning pop
 
