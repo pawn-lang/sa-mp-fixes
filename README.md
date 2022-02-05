@@ -174,7 +174,7 @@ SetPlayerPos | Using this function on skydiving players kills them. | Remove the
 GetPlayerAmmo | Returns erroneous values over 32767 and under -32768 due to overflow. | Prevent setting or adding ammo above 32767 and setting or removing ammo below 0. | [Freaksken](https://github.com/WoutProvost) | |
 JIT | Can't easily determine if the script is JIT compiled. | Provide "IS_JIT" to the script for tests. | [Y_Less](https://github.com/Y-Less) | |
 OS | Can't easily determine what OS the script is running on. | Provide "IS_WINDOWS" and "IS_LINUX" to the script for tests. | [Y_Less](https://github.com/Y-Less) | |
-const | Some SA-MP natives don't use "const" when they could. | Redefine the natives. | [Y_Less](https://github.com/Y-Less) | |
+const | Some SA-MP natives don't use "const" when they could.  Disabled - adding <c>const</c> to natives is backwards-compatible.  | Redefine the natives. | [Y_Less](https://github.com/Y-Less) | |
 VEHICLES | The vehicle models IDs are not defined by default. | Define them. | [stuntman](https://github.com/IstuntmanI) | |
 GetPlayerWeather | This function doesn't exist. | Add it. | [IstuntmanI](https://github.com/IstuntmanI/) [ziggi](https://github.com/ziggi/) | | **Disabled By Default**
 GetWeather | This function doesn't exist. | Add it. | [IstuntmanI](https://github.com/IstuntmanI/) [ziggi](https://github.com/ziggi/) | | **Disabled By Default**

@@ -5302,21 +5302,25 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_ENABLED(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_const
-	#define _FIXES_WARNING 105
-	#tryinclude "_fixes_options"
-	#undef _FIXES_WARNING
-	static _FIXES_OPTION FIX_const = _FIXES_DEFAULT;
-	#define FIX_const                            _FIXES_DEFAULT
-#elseif _FIXES_IS_ENABLED(FIX_const)
+//#if !defined FIX_const
+//	#define _FIXES_WARNING 105
+//	#tryinclude "_fixes_options"
+//	#undef _FIXES_WARNING
+//	static _FIXES_OPTION FIX_const = _FIXES_DEFAULT;
+//	#define FIX_const                            _FIXES_DEFAULT
+//#elseif _FIXES_IS_ENABLED(FIX_const)
+//	#undef FIX_const
+//	static stock FIX_const = 1;
+//	#define FIX_const                            (1)
+//#else
+//	#undef FIX_const
+//	static stock FIX_const = 0;
+//	#define FIX_const                            (0)
+//#endif
+#if defined FIX_const
 	#undef FIX_const
-	static stock FIX_const = 1;
-	#define FIX_const                            (1)
-#else
-	#undef FIX_const
-	static stock FIX_const = 0;
-	#define FIX_const                            (0)
 #endif
+#define FIX_const (0)
 
 /**
  * <fix name="VEHICLES">
