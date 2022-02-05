@@ -305,11 +305,7 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
  *                 static _FIXES_OPTION FIX_NameOfFixHere = _FIXES_DEFAULT;      <br /><indent /><indent />
  *                 #define FIX_NameOfFixHere                _FIXES_DEFAULT      <br /><indent />
  *             #endif                                                           <br />
- *         #elseif _FIXES_IS_UNSET(FIX_NameOfFixHere)                           <br /><indent />
- *             #undef FIX_NameOfFixHere                                         <br /><indent />
- *             static stock FIX_NameOfFixHere = 2;                              <br /><indent />
- *             #define FIX_NameOfFixHere                    (2)                 <br />
- *         #elseif FIX_NameOfFixHere                                            <br /><indent />
+ *         #elseif _FIXES_IS_ENABLED(FIX_NameOfFixHere)                         <br /><indent />
  *             #undef FIX_NameOfFixHere                                         <br /><indent />
  *             static stock FIX_NameOfFixHere = 1;                              <br /><indent />
  *             #define FIX_NameOfFixHere                    (1)                 <br />
@@ -27648,6 +27644,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #undef _FIXES_ATTACHMENTS
 #undef _FIXES_FOREACH
 #undef _FIXES_IS_UNSET
+#undef _FIXES_IS_ENABLED
 #undef _FIXES_IS_IN_CHARGE
 #undef _FIXES_IS_VALID_PLAYER
 #undef _FIXES_IN_RANGE
