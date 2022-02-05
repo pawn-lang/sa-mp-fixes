@@ -23,9 +23,9 @@ native DestroyActor__(actorid) = DestroyActor;
 #if defined _ALS_IsActorStreamedIn
 	#error _ALS_IsActorStreamedIn defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
+native BAD_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
 native _FIXES_MAYBE_BOOL:FIXES_IsActorStreamedIn(actorid, playerid) = IsActorStreamedIn;
-native _FIXES_MAYBE_BOOL:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn;
+native bool:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn;
 #define _ALS_IsActorStreamedIn
 #define IsActorStreamedIn( FIXES_IsActorStreamedIn(
 
@@ -50,9 +50,9 @@ native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld;
 #if defined _ALS_ApplyActorAnimation
 	#error _ALS_ApplyActorAnimation defined
 #endif
-native BAD_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation;
+native BAD_ApplyActorAnimation(actorid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time) = ApplyActorAnimation;
 native FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation;
-native ApplyActorAnimation__(actorid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation;
+native ApplyActorAnimation__(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time) = ApplyActorAnimation;
 #define _ALS_ApplyActorAnimation
 #define ApplyActorAnimation( FIXES_ApplyActorAnimation(
 
@@ -122,27 +122,27 @@ native GetActorHealth__(actorid, &Float:health) = GetActorHealth;
 #if defined _ALS_SetActorInvulnerable
 	#error _ALS_SetActorInvulnerable defined
 #endif
-native BAD_SetActorInvulnerable(actorid, _FIXES_MAYBE_BOOL:invulnerable = true) = SetActorInvulnerable;
+native BAD_SetActorInvulnerable(actorid, invulnerable = true) = SetActorInvulnerable;
 native FIXES_SetActorInvulnerable(actorid, _FIXES_MAYBE_BOOL:invulnerable = true) = SetActorInvulnerable;
-native SetActorInvulnerable__(actorid, _FIXES_MAYBE_BOOL:invulnerable = true) = SetActorInvulnerable;
+native SetActorInvulnerable__(actorid, bool:invulnerable = true) = SetActorInvulnerable;
 #define _ALS_SetActorInvulnerable
 #define SetActorInvulnerable( FIXES_SetActorInvulnerable(
 
 #if defined _ALS_IsActorInvulnerable
 	#error _ALS_IsActorInvulnerable defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsActorInvulnerable(actorid) = IsActorInvulnerable;
+native BAD_IsActorInvulnerable(actorid) = IsActorInvulnerable;
 native _FIXES_MAYBE_BOOL:FIXES_IsActorInvulnerable(actorid) = IsActorInvulnerable;
-native _FIXES_MAYBE_BOOL:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
+native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
 #define _ALS_IsActorInvulnerable
 #define IsActorInvulnerable( FIXES_IsActorInvulnerable(
 
 #if defined _ALS_IsValidActor
 	#error _ALS_IsValidActor defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsValidActor(actorid) = IsValidActor;
+native BAD_IsValidActor(actorid) = IsValidActor;
 native _FIXES_MAYBE_BOOL:FIXES_IsValidActor(actorid) = IsValidActor;
-native _FIXES_MAYBE_BOOL:IsValidActor__(actorid) = IsValidActor;
+native bool:IsValidActor__(actorid) = IsValidActor;
 #define _ALS_IsValidActor
 #define IsValidActor( FIXES_IsValidActor(
 
@@ -153,9 +153,9 @@ native _FIXES_MAYBE_BOOL:IsValidActor__(actorid) = IsValidActor;
 #if defined _ALS_HTTP
 	#error _ALS_HTTP defined
 #endif
-native BAD_HTTP(index, HTTP_METHOD:method, _FIXES_MAYBE_CONST url[], _FIXES_MAYBE_CONST data[], _FIXES_MAYBE_CONST callback[]) = HTTP;
+native BAD_HTTP(index, HTTP_METHOD:method, url[], data[], callback[]) = HTTP;
 native FIXES_HTTP(index, HTTP_METHOD:method, _FIXES_MAYBE_CONST url[], _FIXES_MAYBE_CONST data[], _FIXES_MAYBE_CONST callback[]) = HTTP;
-native HTTP__(index, HTTP_METHOD:method, _FIXES_MAYBE_CONST url[], _FIXES_MAYBE_CONST data[], _FIXES_MAYBE_CONST callback[]) = HTTP;
+native HTTP__(index, HTTP_METHOD:method, const url[], const data[], const callback[]) = HTTP;
 #define _ALS_HTTP
 #define HTTP( FIXES_HTTP(
 
@@ -184,9 +184,9 @@ native AttachObjectToVehicle__(objectid, parentid, Float:offsetX, Float:offsetY,
 #if defined _ALS_AttachObjectToObject
 	#error _ALS_AttachObjectToObject defined
 #endif
-native BAD_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, _FIXES_MAYBE_BOOL:syncRotation = true) = AttachObjectToObject;
+native BAD_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, syncRotation = true) = AttachObjectToObject;
 native FIXES_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, _FIXES_MAYBE_BOOL:syncRotation = true) = AttachObjectToObject;
-native AttachObjectToObject__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, _FIXES_MAYBE_BOOL:syncRotation = true) = AttachObjectToObject;
+native AttachObjectToObject__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, bool:syncRotation = true) = AttachObjectToObject;
 #define _ALS_AttachObjectToObject
 #define AttachObjectToObject( FIXES_AttachObjectToObject(
 
@@ -256,9 +256,9 @@ native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol;
 #if defined _ALS_IsValidObject
 	#error _ALS_IsValidObject defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsValidObject(objectid) = IsValidObject;
+native BAD_IsValidObject(objectid) = IsValidObject;
 native _FIXES_MAYBE_BOOL:FIXES_IsValidObject(objectid) = IsValidObject;
-native _FIXES_MAYBE_BOOL:IsValidObject__(objectid) = IsValidObject;
+native bool:IsValidObject__(objectid) = IsValidObject;
 #define _ALS_IsValidObject
 #define IsValidObject( FIXES_IsValidObject(
 
@@ -292,9 +292,9 @@ native StopObject__(objectid) = StopObject;
 #if defined _ALS_IsObjectMoving
 	#error _ALS_IsObjectMoving defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsObjectMoving(objectid) = IsObjectMoving;
+native BAD_IsObjectMoving(objectid) = IsObjectMoving;
 native _FIXES_MAYBE_BOOL:FIXES_IsObjectMoving(objectid) = IsObjectMoving;
-native _FIXES_MAYBE_BOOL:IsObjectMoving__(objectid) = IsObjectMoving;
+native bool:IsObjectMoving__(objectid) = IsObjectMoving;
 #define _ALS_IsObjectMoving
 #define IsObjectMoving( FIXES_IsObjectMoving(
 
@@ -409,9 +409,9 @@ native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCamer
 #if defined _ALS_IsValidPlayerObject
 	#error _ALS_IsValidPlayerObject defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
+native BAD_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
 native _FIXES_MAYBE_BOOL:FIXES_IsValidPlayerObject(playerid, objectid) = IsValidPlayerObject;
-native _FIXES_MAYBE_BOOL:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
+native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
 #define _ALS_IsValidPlayerObject
 #define IsValidPlayerObject( FIXES_IsValidPlayerObject(
 
@@ -445,9 +445,9 @@ native StopPlayerObject__(playerid, objectid) = StopPlayerObject;
 #if defined _ALS_IsPlayerObjectMoving
 	#error _ALS_IsPlayerObjectMoving defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
+native BAD_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerObjectMoving(playerid, objectid) = IsPlayerObjectMoving;
-native _FIXES_MAYBE_BOOL:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
+native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
 #define _ALS_IsPlayerObjectMoving
 #define IsPlayerObjectMoving( FIXES_IsPlayerObjectMoving(
 
@@ -463,45 +463,45 @@ native AttachPlayerObjectToPlayer__(playerid, objectid, parentid, Float:offsetX,
 #if defined _ALS_SetObjectMaterial
 	#error _ALS_SetObjectMaterial defined
 #endif
-native BAD_SetObjectMaterial(objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetObjectMaterial;
+native BAD_SetObjectMaterial(objectid, materialIndex, modelid, textureLibrary[], textureName[], materialColour = 0) = SetObjectMaterial;
 native FIXES_SetObjectMaterial(objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetObjectMaterial;
-native SetObjectMaterial__(objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetObjectMaterial;
+native SetObjectMaterial__(objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetObjectMaterial;
 #define _ALS_SetObjectMaterial
 #define SetObjectMaterial( FIXES_SetObjectMaterial(
 
 #if defined _ALS_SetPlayerObjectMaterial
 	#error _ALS_SetPlayerObjectMaterial defined
 #endif
-native BAD_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetPlayerObjectMaterial;
+native BAD_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, textureLibrary[], textureName[], materialColour = 0) = SetPlayerObjectMaterial;
 native FIXES_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetPlayerObjectMaterial;
-native SetPlayerObjectMaterial__(playerid, objectid, materialIndex, modelid, _FIXES_MAYBE_CONST textureLibrary[], _FIXES_MAYBE_CONST textureName[], materialColour = 0) = SetPlayerObjectMaterial;
+native SetPlayerObjectMaterial__(playerid, objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetPlayerObjectMaterial;
 #define _ALS_SetPlayerObjectMaterial
 #define SetPlayerObjectMaterial( FIXES_SetPlayerObjectMaterial(
 
 #if defined _ALS_SetObjectMaterialText
 	#error _ALS_SetObjectMaterialText defined
 #endif
-native BAD_SetObjectMaterialText(objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
+native BAD_SetObjectMaterialText(objectid, text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, fontFace[] = "Arial", fontSize = 24, bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
 native FIXES_SetObjectMaterialText(objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
-native SetObjectMaterialText__(objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
+native SetObjectMaterialText__(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
 #define _ALS_SetObjectMaterialText
 #define SetObjectMaterialText( FIXES_SetObjectMaterialText(
 
 #if defined _ALS_SetPlayerObjectMaterialText
 	#error _ALS_SetPlayerObjectMaterialText defined
 #endif
-native BAD_SetPlayerObjectMaterialText(playerid, objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
+native BAD_SetPlayerObjectMaterialText(playerid, objectid, text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, fontFace[] = "Arial", fontSize = 24, bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
 native FIXES_SetPlayerObjectMaterialText(playerid, objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
-native SetPlayerObjectMaterialText__(playerid, objectid, _FIXES_MAYBE_CONST text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, _FIXES_MAYBE_CONST fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
+native SetPlayerObjectMaterialText__(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
 #define _ALS_SetPlayerObjectMaterialText
 #define SetPlayerObjectMaterialText( FIXES_SetPlayerObjectMaterialText(
 
 #if defined _ALS_SetObjectsDefaultCameraCol
 	#error _ALS_SetObjectsDefaultCameraCol defined
 #endif
-native BAD_SetObjectsDefaultCameraCol(_FIXES_MAYBE_BOOL:disable) = SetObjectsDefaultCameraCol;
+native BAD_SetObjectsDefaultCameraCol(disable) = SetObjectsDefaultCameraCol;
 native FIXES_SetObjectsDefaultCameraCol(_FIXES_MAYBE_BOOL:disable) = SetObjectsDefaultCameraCol;
-native SetObjectsDefaultCameraCol__(_FIXES_MAYBE_BOOL:disable) = SetObjectsDefaultCameraCol;
+native SetObjectsDefaultCameraCol__(bool:disable) = SetObjectsDefaultCameraCol;
 #define _ALS_SetObjectsDefaultCameraCol
 #define SetObjectsDefaultCameraCol( FIXES_SetObjectsDefaultCameraCol(
 
@@ -575,9 +575,9 @@ native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
 #if defined _ALS_IsPlayerInRangeOfPoint
 	#error _ALS_IsPlayerInRangeOfPoint defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
+native BAD_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInRangeOfPoint(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
-native _FIXES_MAYBE_BOOL:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
+native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
 #define _ALS_IsPlayerInRangeOfPoint
 #define IsPlayerInRangeOfPoint( FIXES_IsPlayerInRangeOfPoint(
 
@@ -593,9 +593,9 @@ native Float:GetPlayerDistanceFromPoint__(playerid, Float:x, Float:y, Float:z) =
 #if defined _ALS_IsPlayerStreamedIn
 	#error _ALS_IsPlayerStreamedIn defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
+native BAD_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerStreamedIn(targetid, playerid) = IsPlayerStreamedIn;
-native _FIXES_MAYBE_BOOL:IsPlayerStreamedIn__(targetid, playerid) = IsPlayerStreamedIn;
+native bool:IsPlayerStreamedIn__(targetid, playerid) = IsPlayerStreamedIn;
 #define _ALS_IsPlayerStreamedIn
 #define IsPlayerStreamedIn( FIXES_IsPlayerStreamedIn(
 
@@ -854,9 +854,9 @@ native ResetPlayerMoney__(playerid) = ResetPlayerMoney;
 #if defined _ALS_SetPlayerName
 	#error _ALS_SetPlayerName defined
 #endif
-native BAD_SetPlayerName(playerid, _FIXES_MAYBE_CONST name[]) = SetPlayerName;
+native BAD_SetPlayerName(playerid, name[]) = SetPlayerName;
 native FIXES_SetPlayerName(playerid, _FIXES_MAYBE_CONST name[]) = SetPlayerName;
-native SetPlayerName__(playerid, _FIXES_MAYBE_CONST name[]) = SetPlayerName;
+native SetPlayerName__(playerid, const name[]) = SetPlayerName;
 #define _ALS_SetPlayerName
 #define SetPlayerName( FIXES_SetPlayerName(
 
@@ -881,9 +881,9 @@ native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState;
 #if defined _ALS_GetPlayerIp
 	#error _ALS_GetPlayerIp defined
 #endif
-native BAD_GetPlayerIp(playerid, ip[], _FIXES_MAYBE_SIZEOF(len, ip)) = GetPlayerIp;
+native BAD_GetPlayerIp(playerid, ip[], len) = GetPlayerIp;
 native FIXES_GetPlayerIp(playerid, ip[], _FIXES_MAYBE_SIZEOF(len, ip)) = GetPlayerIp;
-native GetPlayerIp__(playerid, ip[], _FIXES_MAYBE_SIZEOF(len, ip)) = GetPlayerIp;
+native GetPlayerIp__(playerid, ip[], len = sizeof (ip)) = GetPlayerIp;
 #define _ALS_GetPlayerIp
 #define GetPlayerIp( FIXES_GetPlayerIp(
 
@@ -917,9 +917,9 @@ native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPl
 #if defined _ALS_GetPlayerName
 	#error _ALS_GetPlayerName defined
 #endif
-native BAD_GetPlayerName(playerid, _FIXES_NOT_CONST name[], _FIXES_MAYBE_SIZEOF(len, name)) = GetPlayerName;
+native BAD_GetPlayerName(playerid, const name[], len) = GetPlayerName;
 native FIXES_GetPlayerName(playerid, _FIXES_NOT_CONST name[], _FIXES_MAYBE_SIZEOF(len, name)) = GetPlayerName;
-native GetPlayerName__(playerid, _FIXES_NOT_CONST name[], _FIXES_MAYBE_SIZEOF(len, name)) = GetPlayerName;
+native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName;
 #define _ALS_GetPlayerName
 #define GetPlayerName( FIXES_GetPlayerName(
 
@@ -944,9 +944,9 @@ native GetPlayerTime__(playerid, &hour, &minute) = GetPlayerTime;
 #if defined _ALS_TogglePlayerClock
 	#error _ALS_TogglePlayerClock defined
 #endif
-native BAD_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerClock;
+native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 native FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerClock;
-native TogglePlayerClock__(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerClock;
+native TogglePlayerClock__(playerid, bool:toggle) = TogglePlayerClock;
 #define _ALS_TogglePlayerClock
 #define TogglePlayerClock( FIXES_TogglePlayerClock(
 
@@ -1034,9 +1034,9 @@ native PlayCrimeReportForPlayer__(playerid, suspectid, crime) = PlayCrimeReportF
 #if defined _ALS_PlayAudioStreamForPlayer
 	#error _ALS_PlayAudioStreamForPlayer defined
 #endif
-native BAD_PlayAudioStreamForPlayer(playerid, _FIXES_MAYBE_CONST url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, _FIXES_MAYBE_BOOL:usepos = false) = PlayAudioStreamForPlayer;
+native BAD_PlayAudioStreamForPlayer(playerid, url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = false) = PlayAudioStreamForPlayer;
 native FIXES_PlayAudioStreamForPlayer(playerid, _FIXES_MAYBE_CONST url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, _FIXES_MAYBE_BOOL:usepos = false) = PlayAudioStreamForPlayer;
-native PlayAudioStreamForPlayer__(playerid, _FIXES_MAYBE_CONST url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, _FIXES_MAYBE_BOOL:usepos = false) = PlayAudioStreamForPlayer;
+native PlayAudioStreamForPlayer__(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, bool:usepos = false) = PlayAudioStreamForPlayer;
 #define _ALS_PlayAudioStreamForPlayer
 #define PlayAudioStreamForPlayer( FIXES_PlayAudioStreamForPlayer(
 
@@ -1052,9 +1052,9 @@ native StopAudioStreamForPlayer__(playerid) = StopAudioStreamForPlayer;
 #if defined _ALS_SetPlayerShopName
 	#error _ALS_SetPlayerShopName defined
 #endif
-native BAD_SetPlayerShopName(playerid, _FIXES_MAYBE_CONST shopName[]) = SetPlayerShopName;
+native BAD_SetPlayerShopName(playerid, shopName[]) = SetPlayerShopName;
 native FIXES_SetPlayerShopName(playerid, _FIXES_MAYBE_CONST shopName[]) = SetPlayerShopName;
-native SetPlayerShopName__(playerid, _FIXES_MAYBE_CONST shopName[]) = SetPlayerShopName;
+native SetPlayerShopName__(playerid, const shopName[]) = SetPlayerShopName;
 #define _ALS_SetPlayerShopName
 #define SetPlayerShopName( FIXES_SetPlayerShopName(
 
@@ -1124,9 +1124,9 @@ native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObjec
 #if defined _ALS_IsPlayerAttachedObjectSlotUsed
 	#error _ALS_IsPlayerAttachedObjectSlotUsed defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+native BAD_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerAttachedObjectSlotUsed(playerid, index) = IsPlayerAttachedObjectSlotUsed;
-native _FIXES_MAYBE_BOOL:IsPlayerAttachedObjectSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
+native bool:IsPlayerAttachedObjectSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
 #define _ALS_IsPlayerAttachedObjectSlotUsed
 #define IsPlayerAttachedObjectSlotUsed( FIXES_IsPlayerAttachedObjectSlotUsed(
 
@@ -1142,9 +1142,9 @@ native EditAttachedObject__(playerid, index) = EditAttachedObject;
 #if defined _ALS_CreatePlayerTextDraw
 	#error _ALS_CreatePlayerTextDraw defined
 #endif
-native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = CreatePlayerTextDraw;
+native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw;
 native PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = CreatePlayerTextDraw;
-native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = CreatePlayerTextDraw;
+native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
 #define _ALS_CreatePlayerTextDraw
 #define CreatePlayerTextDraw( FIXES_CreatePlayerTextDraw(
 
@@ -1196,9 +1196,9 @@ native PlayerTextDrawColor__(playerid, PlayerText:text, colour) = PlayerTextDraw
 #if defined _ALS_PlayerTextDrawUseBox
 	#error _ALS_PlayerTextDrawUseBox defined
 #endif
-native BAD_PlayerTextDrawUseBox(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:use) = PlayerTextDrawUseBox;
+native BAD_PlayerTextDrawUseBox(playerid, PlayerText:text, use) = PlayerTextDrawUseBox;
 native FIXES_PlayerTextDrawUseBox(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:use) = PlayerTextDrawUseBox;
-native PlayerTextDrawUseBox__(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:use) = PlayerTextDrawUseBox;
+native PlayerTextDrawUseBox__(playerid, PlayerText:text, bool:use) = PlayerTextDrawUseBox;
 #define _ALS_PlayerTextDrawUseBox
 #define PlayerTextDrawUseBox( FIXES_PlayerTextDrawUseBox(
 
@@ -1250,18 +1250,18 @@ native PlayerTextDrawFont__(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = Pl
 #if defined _ALS_PlayerTextDrawSetProportional
 	#error _ALS_PlayerTextDrawSetProportional defined
 #endif
-native BAD_PlayerTextDrawSetProportional(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetProportional;
+native BAD_PlayerTextDrawSetProportional(playerid, PlayerText:text, set) = PlayerTextDrawSetProportional;
 native FIXES_PlayerTextDrawSetProportional(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetProportional;
-native PlayerTextDrawSetProportional__(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetProportional;
+native PlayerTextDrawSetProportional__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetProportional;
 #define _ALS_PlayerTextDrawSetProportional
 #define PlayerTextDrawSetProportional( FIXES_PlayerTextDrawSetProportional(
 
 #if defined _ALS_PlayerTextDrawSetSelectable
 	#error _ALS_PlayerTextDrawSetSelectable defined
 #endif
-native BAD_PlayerTextDrawSetSelectable(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetSelectable;
+native BAD_PlayerTextDrawSetSelectable(playerid, PlayerText:text, set) = PlayerTextDrawSetSelectable;
 native FIXES_PlayerTextDrawSetSelectable(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetSelectable;
-native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:set) = PlayerTextDrawSetSelectable;
+native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetSelectable;
 #define _ALS_PlayerTextDrawSetSelectable
 #define PlayerTextDrawSetSelectable( FIXES_PlayerTextDrawSetSelectable(
 
@@ -1286,9 +1286,9 @@ native PlayerTextDrawHide__(playerid, PlayerText:text) = PlayerTextDrawHide;
 #if defined _ALS_PlayerTextDrawSetString
 	#error _ALS_PlayerTextDrawSetString defined
 #endif
-native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[]) = PlayerTextDrawSetString;
+native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString;
 native FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[]) = PlayerTextDrawSetString;
-native PlayerTextDrawSetString__(playerid, PlayerText:text, _FIXES_MAYBE_CONST string[]) = PlayerTextDrawSetString;
+native PlayerTextDrawSetString__(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
 #define _ALS_PlayerTextDrawSetString
 #define PlayerTextDrawSetString( FIXES_PlayerTextDrawSetString(
 
@@ -1322,63 +1322,63 @@ native PlayerTextDrawSetPreviewVehCol__(playerid, PlayerText:text, colour1, colo
 #if defined _ALS_SetPVarInt
 	#error _ALS_SetPVarInt defined
 #endif
-native BAD_SetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[], value) = SetPVarInt;
+native BAD_SetPVarInt(playerid, pvar[], value) = SetPVarInt;
 native FIXES_SetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[], value) = SetPVarInt;
-native SetPVarInt__(playerid, _FIXES_MAYBE_CONST pvar[], value) = SetPVarInt;
+native SetPVarInt__(playerid, const pvar[], value) = SetPVarInt;
 #define _ALS_SetPVarInt
 #define SetPVarInt( FIXES_SetPVarInt(
 
 #if defined _ALS_GetPVarInt
 	#error _ALS_GetPVarInt defined
 #endif
-native BAD_GetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarInt;
+native BAD_GetPVarInt(playerid, pvar[]) = GetPVarInt;
 native FIXES_GetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarInt;
-native GetPVarInt__(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarInt;
+native GetPVarInt__(playerid, const pvar[]) = GetPVarInt;
 #define _ALS_GetPVarInt
 #define GetPVarInt( FIXES_GetPVarInt(
 
 #if defined _ALS_SetPVarString
 	#error _ALS_SetPVarString defined
 #endif
-native BAD_SetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], _FIXES_MAYBE_CONST value[]) = SetPVarString;
+native BAD_SetPVarString(playerid, pvar[], value[]) = SetPVarString;
 native FIXES_SetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], _FIXES_MAYBE_CONST value[]) = SetPVarString;
-native SetPVarString__(playerid, _FIXES_MAYBE_CONST pvar[], _FIXES_MAYBE_CONST value[]) = SetPVarString;
+native SetPVarString__(playerid, const pvar[], const value[]) = SetPVarString;
 #define _ALS_SetPVarString
 #define SetPVarString( FIXES_SetPVarString(
 
 #if defined _ALS_GetPVarString
 	#error _ALS_GetPVarString defined
 #endif
-native BAD_GetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetPVarString;
+native BAD_GetPVarString(playerid, pvar[], output[], len) = GetPVarString;
 native FIXES_GetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetPVarString;
-native GetPVarString__(playerid, _FIXES_MAYBE_CONST pvar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetPVarString;
+native GetPVarString__(playerid, const pvar[], output[], len = sizeof (output)) = GetPVarString;
 #define _ALS_GetPVarString
 #define GetPVarString( FIXES_GetPVarString(
 
 #if defined _ALS_SetPVarFloat
 	#error _ALS_SetPVarFloat defined
 #endif
-native BAD_SetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[], Float:value) = SetPVarFloat;
+native BAD_SetPVarFloat(playerid, pvar[], Float:value) = SetPVarFloat;
 native FIXES_SetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[], Float:value) = SetPVarFloat;
-native SetPVarFloat__(playerid, _FIXES_MAYBE_CONST pvar[], Float:value) = SetPVarFloat;
+native SetPVarFloat__(playerid, const pvar[], Float:value) = SetPVarFloat;
 #define _ALS_SetPVarFloat
 #define SetPVarFloat( FIXES_SetPVarFloat(
 
 #if defined _ALS_GetPVarFloat
 	#error _ALS_GetPVarFloat defined
 #endif
-native Float:BAD_GetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarFloat;
+native Float:BAD_GetPVarFloat(playerid, pvar[]) = GetPVarFloat;
 native Float:FIXES_GetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarFloat;
-native Float:GetPVarFloat__(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarFloat;
+native Float:GetPVarFloat__(playerid, const pvar[]) = GetPVarFloat;
 #define _ALS_GetPVarFloat
 #define GetPVarFloat( FIXES_GetPVarFloat(
 
 #if defined _ALS_DeletePVar
 	#error _ALS_DeletePVar defined
 #endif
-native BAD_DeletePVar(playerid, _FIXES_MAYBE_CONST pvar[]) = DeletePVar;
+native BAD_DeletePVar(playerid, pvar[]) = DeletePVar;
 native FIXES_DeletePVar(playerid, _FIXES_MAYBE_CONST pvar[]) = DeletePVar;
-native DeletePVar__(playerid, _FIXES_MAYBE_CONST pvar[]) = DeletePVar;
+native DeletePVar__(playerid, const pvar[]) = DeletePVar;
 #define _ALS_DeletePVar
 #define DeletePVar( FIXES_DeletePVar(
 
@@ -1394,27 +1394,27 @@ native GetPVarsUpperIndex__(playerid) = GetPVarsUpperIndex;
 #if defined _ALS_GetPVarNameAtIndex
 	#error _ALS_GetPVarNameAtIndex defined
 #endif
-native BAD_GetPVarNameAtIndex(playerid, index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPVarNameAtIndex;
+native BAD_GetPVarNameAtIndex(playerid, index, output[], size) = GetPVarNameAtIndex;
 native FIXES_GetPVarNameAtIndex(playerid, index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPVarNameAtIndex;
-native GetPVarNameAtIndex__(playerid, index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPVarNameAtIndex;
+native GetPVarNameAtIndex__(playerid, index, output[], size = sizeof (output)) = GetPVarNameAtIndex;
 #define _ALS_GetPVarNameAtIndex
 #define GetPVarNameAtIndex( FIXES_GetPVarNameAtIndex(
 
 #if defined _ALS_GetPVarType
 	#error _ALS_GetPVarType defined
 #endif
-native PLAYER_VARTYPE:BAD_GetPVarType(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarType;
+native PLAYER_VARTYPE:BAD_GetPVarType(playerid, pvar[]) = GetPVarType;
 native PLAYER_VARTYPE:FIXES_GetPVarType(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarType;
-native PLAYER_VARTYPE:GetPVarType__(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarType;
+native PLAYER_VARTYPE:GetPVarType__(playerid, const pvar[]) = GetPVarType;
 #define _ALS_GetPVarType
 #define GetPVarType( FIXES_GetPVarType(
 
 #if defined _ALS_SetPlayerChatBubble
 	#error _ALS_SetPlayerChatBubble defined
 #endif
-native BAD_SetPlayerChatBubble(playerid, _FIXES_MAYBE_CONST text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
+native BAD_SetPlayerChatBubble(playerid, text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
 native FIXES_SetPlayerChatBubble(playerid, _FIXES_MAYBE_CONST text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
-native SetPlayerChatBubble__(playerid, _FIXES_MAYBE_CONST text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
+native SetPlayerChatBubble__(playerid, const text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
 #define _ALS_SetPlayerChatBubble
 #define SetPlayerChatBubble( FIXES_SetPlayerChatBubble(
 
@@ -1457,9 +1457,9 @@ native RemovePlayerFromVehicle__(playerid) = RemovePlayerFromVehicle;
 #if defined _ALS_TogglePlayerControllable
 	#error _ALS_TogglePlayerControllable defined
 #endif
-native BAD_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerControllable;
+native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable;
 native FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerControllable;
-native TogglePlayerControllable__(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerControllable;
+native TogglePlayerControllable__(playerid, bool:toggle) = TogglePlayerControllable;
 #define _ALS_TogglePlayerControllable
 #define TogglePlayerControllable( FIXES_TogglePlayerControllable(
 
@@ -1475,9 +1475,9 @@ native PlayerPlaySound__(playerid, soundid, Float:x, Float:y, Float:z) = PlayerP
 #if defined _ALS_ApplyAnimation
 	#error _ALS_ApplyAnimation defined
 #endif
-native BAD_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
+native BAD_ApplyAnimation(playerid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
 native FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
-native ApplyAnimation__(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FIXES_MAYBE_CONST animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
+native ApplyAnimation__(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
 #define _ALS_ApplyAnimation
 #define ApplyAnimation( FIXES_ApplyAnimation(
 
@@ -1502,9 +1502,9 @@ native GetPlayerAnimationIndex__(playerid) = GetPlayerAnimationIndex;
 #if defined _ALS_GetAnimationName
 	#error _ALS_GetAnimationName defined
 #endif
-native BAD_GetAnimationName(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], _FIXES_MAYBE_SIZEOF(len2, animationName)) = GetAnimationName;
+native BAD_GetAnimationName(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], len2) = GetAnimationName;
 native FIXES_GetAnimationName(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], _FIXES_MAYBE_SIZEOF(len2, animationName)) = GetAnimationName;
-native GetAnimationName__(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], _FIXES_MAYBE_SIZEOF(len2, animationName)) = GetAnimationName;
+native GetAnimationName__(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], len2 = sizeof (animationName)) = GetAnimationName;
 #define _ALS_GetAnimationName
 #define GetAnimationName( FIXES_GetAnimationName(
 
@@ -1529,9 +1529,9 @@ native SetPlayerSpecialAction__(playerid, SPECIAL_ACTION:actionid) = SetPlayerSp
 #if defined _ALS_DisableRemoteVehicleCollisions
 	#error _ALS_DisableRemoteVehicleCollisions defined
 #endif
-native BAD_DisableRemoteVehicleCollisions(playerid, _FIXES_MAYBE_BOOL:disable) = DisableRemoteVehicleCollisions;
+native BAD_DisableRemoteVehicleCollisions(playerid, disable) = DisableRemoteVehicleCollisions;
 native FIXES_DisableRemoteVehicleCollisions(playerid, _FIXES_MAYBE_BOOL:disable) = DisableRemoteVehicleCollisions;
-native DisableRemoteVehicleCollisions__(playerid, _FIXES_MAYBE_BOOL:disable) = DisableRemoteVehicleCollisions;
+native DisableRemoteVehicleCollisions__(playerid, bool:disable) = DisableRemoteVehicleCollisions;
 #define _ALS_DisableRemoteVehicleCollisions
 #define DisableRemoteVehicleCollisions( FIXES_DisableRemoteVehicleCollisions(
 
@@ -1592,9 +1592,9 @@ native SetPlayerMarkerForPlayer__(playerid, targetid, colour) = SetPlayerMarkerF
 #if defined _ALS_ShowPlayerNameTagForPlayer
 	#error _ALS_ShowPlayerNameTagForPlayer defined
 #endif
-native BAD_ShowPlayerNameTagForPlayer(playerid, targetid, _FIXES_MAYBE_BOOL:show) = ShowPlayerNameTagForPlayer;
+native BAD_ShowPlayerNameTagForPlayer(playerid, targetid, show) = ShowPlayerNameTagForPlayer;
 native FIXES_ShowPlayerNameTagForPlayer(playerid, targetid, _FIXES_MAYBE_BOOL:show) = ShowPlayerNameTagForPlayer;
-native ShowPlayerNameTagForPlayer__(playerid, targetid, _FIXES_MAYBE_BOOL:show) = ShowPlayerNameTagForPlayer;
+native ShowPlayerNameTagForPlayer__(playerid, targetid, bool:show) = ShowPlayerNameTagForPlayer;
 #define _ALS_ShowPlayerNameTagForPlayer
 #define ShowPlayerNameTagForPlayer( FIXES_ShowPlayerNameTagForPlayer(
 
@@ -1619,10 +1619,10 @@ native RemovePlayerMapIcon__(playerid, iconid) = RemovePlayerMapIcon;
 #if defined _ALS_AllowPlayerTeleport
 	#error _ALS_AllowPlayerTeleport defined
 #endif
-native BAD_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow) = AllowPlayerTeleport;
+native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 #pragma deprecated Use `OnPlayerClickMap`.
 native FIXES_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow) = AllowPlayerTeleport;
-native AllowPlayerTeleport__(playerid, _FIXES_MAYBE_BOOL:allow) = AllowPlayerTeleport;
+native AllowPlayerTeleport__(playerid, bool:allow) = AllowPlayerTeleport;
 #define _ALS_AllowPlayerTeleport
 #define AllowPlayerTeleport( FIXES_AllowPlayerTeleport(
 
@@ -1683,9 +1683,9 @@ native CAM_MODE:GetPlayerCameraMode__(playerid) = GetPlayerCameraMode;
 #if defined _ALS_EnablePlayerCameraTarget
 	#error _ALS_EnablePlayerCameraTarget defined
 #endif
-native BAD_EnablePlayerCameraTarget(playerid, _FIXES_MAYBE_BOOL:enable) = EnablePlayerCameraTarget;
+native BAD_EnablePlayerCameraTarget(playerid, enable) = EnablePlayerCameraTarget;
 native FIXES_EnablePlayerCameraTarget(playerid, _FIXES_MAYBE_BOOL:enable) = EnablePlayerCameraTarget;
-native EnablePlayerCameraTarget__(playerid, _FIXES_MAYBE_BOOL:enable) = EnablePlayerCameraTarget;
+native EnablePlayerCameraTarget__(playerid, bool:enable) = EnablePlayerCameraTarget;
 #define _ALS_EnablePlayerCameraTarget
 #define EnablePlayerCameraTarget( FIXES_EnablePlayerCameraTarget(
 
@@ -1782,45 +1782,45 @@ native InterpolateCameraLookAt__(playerid, Float:fromX, Float:fromY, Float:fromZ
 #if defined _ALS_IsPlayerConnected
 	#error _ALS_IsPlayerConnected defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
+native BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerConnected(playerid) = IsPlayerConnected;
-native _FIXES_MAYBE_BOOL:IsPlayerConnected__(playerid) = IsPlayerConnected;
+native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
 #define _ALS_IsPlayerConnected
 #define IsPlayerConnected( FIXES_IsPlayerConnected(
 
 #if defined _ALS_IsPlayerInVehicle
 	#error _ALS_IsPlayerInVehicle defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
+native BAD_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInVehicle(playerid, vehicleid) = IsPlayerInVehicle;
-native _FIXES_MAYBE_BOOL:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
+native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
 #define _ALS_IsPlayerInVehicle
 #define IsPlayerInVehicle( FIXES_IsPlayerInVehicle(
 
 #if defined _ALS_IsPlayerInAnyVehicle
 	#error _ALS_IsPlayerInAnyVehicle defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
+native BAD_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVehicle;
-native _FIXES_MAYBE_BOOL:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
+native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
 #define _ALS_IsPlayerInAnyVehicle
 #define IsPlayerInAnyVehicle( FIXES_IsPlayerInAnyVehicle(
 
 #if defined _ALS_IsPlayerInCheckpoint
 	#error _ALS_IsPlayerInCheckpoint defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
+native BAD_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckpoint;
-native _FIXES_MAYBE_BOOL:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
+native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
 #define _ALS_IsPlayerInCheckpoint
 #define IsPlayerInCheckpoint( FIXES_IsPlayerInCheckpoint(
 
 #if defined _ALS_IsPlayerInRaceCheckpoint
 	#error _ALS_IsPlayerInRaceCheckpoint defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
+native BAD_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRaceCheckpoint;
-native _FIXES_MAYBE_BOOL:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
+native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
 #define _ALS_IsPlayerInRaceCheckpoint
 #define IsPlayerInRaceCheckpoint( FIXES_IsPlayerInRaceCheckpoint(
 
@@ -1845,27 +1845,27 @@ native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld;
 #if defined _ALS_EnableStuntBonusForPlayer
 	#error _ALS_EnableStuntBonusForPlayer defined
 #endif
-native BAD_EnableStuntBonusForPlayer(playerid, _FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForPlayer;
+native BAD_EnableStuntBonusForPlayer(playerid, enable) = EnableStuntBonusForPlayer;
 native FIXES_EnableStuntBonusForPlayer(playerid, _FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForPlayer;
-native EnableStuntBonusForPlayer__(playerid, _FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForPlayer;
+native EnableStuntBonusForPlayer__(playerid, bool:enable) = EnableStuntBonusForPlayer;
 #define _ALS_EnableStuntBonusForPlayer
 #define EnableStuntBonusForPlayer( FIXES_EnableStuntBonusForPlayer(
 
 #if defined _ALS_EnableStuntBonusForAll
 	#error _ALS_EnableStuntBonusForAll defined
 #endif
-native BAD_EnableStuntBonusForAll(_FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForAll;
+native BAD_EnableStuntBonusForAll(enable) = EnableStuntBonusForAll;
 native FIXES_EnableStuntBonusForAll(_FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForAll;
-native EnableStuntBonusForAll__(_FIXES_MAYBE_BOOL:enable) = EnableStuntBonusForAll;
+native EnableStuntBonusForAll__(bool:enable) = EnableStuntBonusForAll;
 #define _ALS_EnableStuntBonusForAll
 #define EnableStuntBonusForAll( FIXES_EnableStuntBonusForAll(
 
 #if defined _ALS_TogglePlayerSpectating
 	#error _ALS_TogglePlayerSpectating defined
 #endif
-native BAD_TogglePlayerSpectating(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerSpectating;
+native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 native FIXES_TogglePlayerSpectating(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerSpectating;
-native TogglePlayerSpectating__(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlayerSpectating;
+native TogglePlayerSpectating__(playerid, bool:toggle) = TogglePlayerSpectating;
 #define _ALS_TogglePlayerSpectating
 #define TogglePlayerSpectating( FIXES_TogglePlayerSpectating(
 
@@ -1890,9 +1890,9 @@ native PlayerSpectateVehicle__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE
 #if defined _ALS_StartRecordingPlayerData
 	#error _ALS_StartRecordingPlayerData defined
 #endif
-native BAD_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, _FIXES_MAYBE_CONST recordFile[]) = StartRecordingPlayerData;
+native BAD_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, recordFile[]) = StartRecordingPlayerData;
 native FIXES_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, _FIXES_MAYBE_CONST recordFile[]) = StartRecordingPlayerData;
-native StartRecordingPlayerData__(playerid, PLAYER_RECORDING_TYPE:recordType, _FIXES_MAYBE_CONST recordFile[]) = StartRecordingPlayerData;
+native StartRecordingPlayerData__(playerid, PLAYER_RECORDING_TYPE:recordType, const recordFile[]) = StartRecordingPlayerData;
 #define _ALS_StartRecordingPlayerData
 #define StartRecordingPlayerData( FIXES_StartRecordingPlayerData(
 
@@ -1966,9 +1966,9 @@ native printf__(const format[], {Float, _}:...) = printf;
 #if defined _ALS_format
 	#error _ALS_format defined
 #endif
-native BAD_format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
+native BAD_format(output[], len, const format[], {Float, _}:...) = format;
 native FIXES_format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
-native format__(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
+native format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
 #define _ALS_format
 #define format( FIXES_format(
 
@@ -1993,9 +1993,9 @@ native PrintF__(const format[], {Float, _}:...) = printf;
 #if defined _ALS_Format
 	#error _ALS_Format defined
 #endif
-native BAD_Format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
+native BAD_Format(output[], len, const format[], {Float, _}:...) = format;
 native FIXES_Format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
-native Format__(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], {Float, _}:...) = format;
+native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
 #define _ALS_Format
 #define Format( FIXES_Format(
 
@@ -2074,18 +2074,18 @@ native GameTextForPlayer__(playerid, const string[], time, style) = GameTextForP
 #if defined _ALS_SetTimer
 	#error _ALS_SetTimer defined
 #endif
-native BAD_SetTimer(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
+native BAD_SetTimer(functionName[], interval, repeating) = SetTimer;
 native FIXES_SetTimer(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
-native SetTimer__(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer;
+native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer;
 #define _ALS_SetTimer
 #define SetTimer( FIXES_SetTimer(
 
 #if defined _ALS_SetTimerEx
 	#error _ALS_SetTimerEx defined
 #endif
-native BAD_SetTimerEx(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
+native BAD_SetTimerEx(functionName[], interval, repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
 native FIXES_SetTimerEx(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
-native SetTimerEx__(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
+native SetTimerEx__(const functionName[], interval, bool:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
 #define _ALS_SetTimerEx
 #define SetTimerEx( FIXES_SetTimerEx(
 
@@ -2257,73 +2257,73 @@ native GetActorPoolSize__() = GetActorPoolSize;
 #if defined _ALS_SHA256_PassHash
 	#error _ALS_SHA256_PassHash defined
 #endif
-native BAD_SHA256_PassHash(_FIXES_MAYBE_CONST password[], _FIXES_MAYBE_CONST salt[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = SHA256_PassHash;
+native BAD_SHA256_PassHash(password[], salt[], output[], size) = SHA256_PassHash;
 #pragma deprecated Use BCrypt for hashing passwords.
 native FIXES_SHA256_PassHash(_FIXES_MAYBE_CONST password[], _FIXES_MAYBE_CONST salt[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = SHA256_PassHash;
-native SHA256_PassHash__(_FIXES_MAYBE_CONST password[], _FIXES_MAYBE_CONST salt[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = SHA256_PassHash;
+native SHA256_PassHash__(const password[], const salt[], output[], size = sizeof (output)) = SHA256_PassHash;
 #define _ALS_SHA256_PassHash
 #define SHA256_PassHash( FIXES_SHA256_PassHash(
 
 #if defined _ALS_SetSVarInt
 	#error _ALS_SetSVarInt defined
 #endif
-native BAD_SetSVarInt(_FIXES_MAYBE_CONST svar[], value) = SetSVarInt;
+native BAD_SetSVarInt(svar[], value) = SetSVarInt;
 native FIXES_SetSVarInt(_FIXES_MAYBE_CONST svar[], value) = SetSVarInt;
-native SetSVarInt__(_FIXES_MAYBE_CONST svar[], value) = SetSVarInt;
+native SetSVarInt__(const svar[], value) = SetSVarInt;
 #define _ALS_SetSVarInt
 #define SetSVarInt( FIXES_SetSVarInt(
 
 #if defined _ALS_GetSVarInt
 	#error _ALS_GetSVarInt defined
 #endif
-native BAD_GetSVarInt(_FIXES_MAYBE_CONST svar[]) = GetSVarInt;
+native BAD_GetSVarInt(svar[]) = GetSVarInt;
 native FIXES_GetSVarInt(_FIXES_MAYBE_CONST svar[]) = GetSVarInt;
-native GetSVarInt__(_FIXES_MAYBE_CONST svar[]) = GetSVarInt;
+native GetSVarInt__(const svar[]) = GetSVarInt;
 #define _ALS_GetSVarInt
 #define GetSVarInt( FIXES_GetSVarInt(
 
 #if defined _ALS_SetSVarString
 	#error _ALS_SetSVarString defined
 #endif
-native BAD_SetSVarString(_FIXES_MAYBE_CONST svar[], _FIXES_MAYBE_CONST value[]) = SetSVarString;
+native BAD_SetSVarString(svar[], value[]) = SetSVarString;
 native FIXES_SetSVarString(_FIXES_MAYBE_CONST svar[], _FIXES_MAYBE_CONST value[]) = SetSVarString;
-native SetSVarString__(_FIXES_MAYBE_CONST svar[], _FIXES_MAYBE_CONST value[]) = SetSVarString;
+native SetSVarString__(const svar[], const value[]) = SetSVarString;
 #define _ALS_SetSVarString
 #define SetSVarString( FIXES_SetSVarString(
 
 #if defined _ALS_GetSVarString
 	#error _ALS_GetSVarString defined
 #endif
-native BAD_GetSVarString(_FIXES_MAYBE_CONST svar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetSVarString;
+native BAD_GetSVarString(svar[], output[], len) = GetSVarString;
 native FIXES_GetSVarString(_FIXES_MAYBE_CONST svar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetSVarString;
-native GetSVarString__(_FIXES_MAYBE_CONST svar[], output[], _FIXES_MAYBE_SIZEOF(len, output)) = GetSVarString;
+native GetSVarString__(const svar[], output[], len = sizeof (output)) = GetSVarString;
 #define _ALS_GetSVarString
 #define GetSVarString( FIXES_GetSVarString(
 
 #if defined _ALS_SetSVarFloat
 	#error _ALS_SetSVarFloat defined
 #endif
-native BAD_SetSVarFloat(_FIXES_MAYBE_CONST svar[], Float:value) = SetSVarFloat;
+native BAD_SetSVarFloat(svar[], Float:value) = SetSVarFloat;
 native FIXES_SetSVarFloat(_FIXES_MAYBE_CONST svar[], Float:value) = SetSVarFloat;
-native SetSVarFloat__(_FIXES_MAYBE_CONST svar[], Float:value) = SetSVarFloat;
+native SetSVarFloat__(const svar[], Float:value) = SetSVarFloat;
 #define _ALS_SetSVarFloat
 #define SetSVarFloat( FIXES_SetSVarFloat(
 
 #if defined _ALS_GetSVarFloat
 	#error _ALS_GetSVarFloat defined
 #endif
-native Float:BAD_GetSVarFloat(_FIXES_MAYBE_CONST svar[]) = GetSVarFloat;
+native Float:BAD_GetSVarFloat(svar[]) = GetSVarFloat;
 native Float:FIXES_GetSVarFloat(_FIXES_MAYBE_CONST svar[]) = GetSVarFloat;
-native Float:GetSVarFloat__(_FIXES_MAYBE_CONST svar[]) = GetSVarFloat;
+native Float:GetSVarFloat__(const svar[]) = GetSVarFloat;
 #define _ALS_GetSVarFloat
 #define GetSVarFloat( FIXES_GetSVarFloat(
 
 #if defined _ALS_DeleteSVar
 	#error _ALS_DeleteSVar defined
 #endif
-native BAD_DeleteSVar(_FIXES_MAYBE_CONST svar[]) = DeleteSVar;
+native BAD_DeleteSVar(svar[]) = DeleteSVar;
 native FIXES_DeleteSVar(_FIXES_MAYBE_CONST svar[]) = DeleteSVar;
-native DeleteSVar__(_FIXES_MAYBE_CONST svar[]) = DeleteSVar;
+native DeleteSVar__(const svar[]) = DeleteSVar;
 #define _ALS_DeleteSVar
 #define DeleteSVar( FIXES_DeleteSVar(
 
@@ -2339,18 +2339,18 @@ native GetSVarsUpperIndex__() = GetSVarsUpperIndex;
 #if defined _ALS_GetSVarNameAtIndex
 	#error _ALS_GetSVarNameAtIndex defined
 #endif
-native BAD_GetSVarNameAtIndex(index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetSVarNameAtIndex;
+native BAD_GetSVarNameAtIndex(index, output[], size) = GetSVarNameAtIndex;
 native FIXES_GetSVarNameAtIndex(index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetSVarNameAtIndex;
-native GetSVarNameAtIndex__(index, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetSVarNameAtIndex;
+native GetSVarNameAtIndex__(index, output[], size = sizeof (output)) = GetSVarNameAtIndex;
 #define _ALS_GetSVarNameAtIndex
 #define GetSVarNameAtIndex( FIXES_GetSVarNameAtIndex(
 
 #if defined _ALS_GetSVarType
 	#error _ALS_GetSVarType defined
 #endif
-native SERVER_VARTYPE:BAD_GetSVarType(_FIXES_MAYBE_CONST svar[]) = GetSVarType;
+native SERVER_VARTYPE:BAD_GetSVarType(svar[]) = GetSVarType;
 native SERVER_VARTYPE:FIXES_GetSVarType(_FIXES_MAYBE_CONST svar[]) = GetSVarType;
-native SERVER_VARTYPE:GetSVarType__(_FIXES_MAYBE_CONST svar[]) = GetSVarType;
+native SERVER_VARTYPE:GetSVarType__(const svar[]) = GetSVarType;
 #define _ALS_GetSVarType
 #define GetSVarType( FIXES_GetSVarType(
 
@@ -2402,9 +2402,9 @@ native AddStaticVehicle__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Flo
 #if defined _ALS_AddStaticVehicleEx
 	#error _ALS_AddStaticVehicleEx defined
 #endif
-native BAD_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = AddStaticVehicleEx;
+native BAD_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, addSiren = false) = AddStaticVehicleEx;
 native FIXES_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = AddStaticVehicleEx;
-native AddStaticVehicleEx__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = AddStaticVehicleEx;
+native AddStaticVehicleEx__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, bool:addSiren = false) = AddStaticVehicleEx;
 #define _ALS_AddStaticVehicleEx
 #define AddStaticVehicleEx( FIXES_AddStaticVehicleEx(
 
@@ -2438,9 +2438,9 @@ native DestroyPickup__(pickup) = DestroyPickup;
 #if defined _ALS_ShowNameTags
 	#error _ALS_ShowNameTags defined
 #endif
-native BAD_ShowNameTags(_FIXES_MAYBE_BOOL:show) = ShowNameTags;
+native BAD_ShowNameTags(show) = ShowNameTags;
 native FIXES_ShowNameTags(_FIXES_MAYBE_BOOL:show) = ShowNameTags;
-native ShowNameTags__(_FIXES_MAYBE_BOOL:show) = ShowNameTags;
+native ShowNameTags__(bool:show) = ShowNameTags;
 #define _ALS_ShowNameTags
 #define ShowNameTags( FIXES_ShowNameTags(
 
@@ -2474,19 +2474,19 @@ native SetWorldTime__(hour) = SetWorldTime;
 #if defined _ALS_GetWeaponName
 	#error _ALS_GetWeaponName defined
 #endif
-native BAD_GetWeaponName(WEAPON:weaponid, _FIXES_NOT_CONST weapon[], _FIXES_MAYBE_SIZEOF(len, weapon)) = GetWeaponName;
+native BAD_GetWeaponName(WEAPON:weaponid, const weapon[], len) = GetWeaponName;
 native FIXES_GetWeaponName(WEAPON:weaponid, _FIXES_NOT_CONST weapon[], _FIXES_MAYBE_SIZEOF(len, weapon)) = GetWeaponName;
-native GetWeaponName__(WEAPON:weaponid, _FIXES_NOT_CONST weapon[], _FIXES_MAYBE_SIZEOF(len, weapon)) = GetWeaponName;
+native GetWeaponName__(WEAPON:weaponid, weapon[], len = sizeof (weapon)) = GetWeaponName;
 #define _ALS_GetWeaponName
 #define GetWeaponName( FIXES_GetWeaponName(
 
 #if defined _ALS_EnableTirePopping
 	#error _ALS_EnableTirePopping defined
 #endif
-native BAD_EnableTirePopping(_FIXES_MAYBE_BOOL:enable) = EnableTirePopping;
+native BAD_EnableTirePopping(enable) = EnableTirePopping;
 #pragma deprecated Use `OnVehicleDamageStatusUpdate`.
 native FIXES_EnableTirePopping(_FIXES_MAYBE_BOOL:enable) = EnableTirePopping;
-native EnableTirePopping__(_FIXES_MAYBE_BOOL:enable) = EnableTirePopping;
+native EnableTirePopping__(bool:enable) = EnableTirePopping;
 #define _ALS_EnableTirePopping
 #define EnableTirePopping( FIXES_EnableTirePopping(
 
@@ -2502,10 +2502,10 @@ native EnableVehicleFriendlyFire__() = EnableVehicleFriendlyFire;
 #if defined _ALS_AllowInteriorWeapons
 	#error _ALS_AllowInteriorWeapons defined
 #endif
-native BAD_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow) = AllowInteriorWeapons;
+native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 #pragma deprecated Use `OnPlayerInteriorChange`.
 native FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow) = AllowInteriorWeapons;
-native AllowInteriorWeapons__(_FIXES_MAYBE_BOOL:allow) = AllowInteriorWeapons;
+native AllowInteriorWeapons__(bool:allow) = AllowInteriorWeapons;
 #define _ALS_AllowInteriorWeapons
 #define AllowInteriorWeapons( FIXES_AllowInteriorWeapons(
 
@@ -2539,10 +2539,10 @@ native SetGravity__(Float:gravity) = SetGravity;
 #if defined _ALS_AllowAdminTeleport
 	#error _ALS_AllowAdminTeleport defined
 #endif
-native BAD_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow) = AllowAdminTeleport;
+native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 #pragma deprecated Use `OnPlayerClickMap`.
 native FIXES_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow) = AllowAdminTeleport;
-native AllowAdminTeleport__(_FIXES_MAYBE_BOOL:allow) = AllowAdminTeleport;
+native AllowAdminTeleport__(bool:allow) = AllowAdminTeleport;
 #define _ALS_AllowAdminTeleport
 #define AllowAdminTeleport( FIXES_AllowAdminTeleport(
 
@@ -2568,9 +2568,9 @@ native CreateExplosion__(Float:x, Float:y, Float:z, type, Float:radius) = Create
 #if defined _ALS_EnableZoneNames
 	#error _ALS_EnableZoneNames defined
 #endif
-native BAD_EnableZoneNames(_FIXES_MAYBE_BOOL:enable) = EnableZoneNames;
+native BAD_EnableZoneNames(enable) = EnableZoneNames;
 native FIXES_EnableZoneNames(_FIXES_MAYBE_BOOL:enable) = EnableZoneNames;
-native EnableZoneNames__(_FIXES_MAYBE_BOOL:enable) = EnableZoneNames;
+native EnableZoneNames__(bool:enable) = EnableZoneNames;
 #define _ALS_EnableZoneNames
 #define EnableZoneNames( FIXES_EnableZoneNames(
 
@@ -2623,81 +2623,81 @@ native LimitPlayerMarkerRadius__(Float:markerRadius) = LimitPlayerMarkerRadius;
 #if defined _ALS_ConnectNPC
 	#error _ALS_ConnectNPC defined
 #endif
-native BAD_ConnectNPC(_FIXES_MAYBE_CONST name[], _FIXES_MAYBE_CONST script[]) = ConnectNPC;
+native BAD_ConnectNPC(name[], script[]) = ConnectNPC;
 native FIXES_ConnectNPC(_FIXES_MAYBE_CONST name[], _FIXES_MAYBE_CONST script[]) = ConnectNPC;
-native ConnectNPC__(_FIXES_MAYBE_CONST name[], _FIXES_MAYBE_CONST script[]) = ConnectNPC;
+native ConnectNPC__(const name[], const script[]) = ConnectNPC;
 #define _ALS_ConnectNPC
 #define ConnectNPC( FIXES_ConnectNPC(
 
 #if defined _ALS_IsPlayerNPC
 	#error _ALS_IsPlayerNPC defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsPlayerNPC(playerid) = IsPlayerNPC;
+native BAD_IsPlayerNPC(playerid) = IsPlayerNPC;
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerNPC(playerid) = IsPlayerNPC;
-native _FIXES_MAYBE_BOOL:IsPlayerNPC__(playerid) = IsPlayerNPC;
+native bool:IsPlayerNPC__(playerid) = IsPlayerNPC;
 #define _ALS_IsPlayerNPC
 #define IsPlayerNPC( FIXES_IsPlayerNPC(
 
 #if defined _ALS_AddCharModel
 	#error _ALS_AddCharModel defined
 #endif
-native BAD_AddCharModel(baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddCharModel;
+native BAD_AddCharModel(baseid, newid, dff[], textureLibrary[]) = AddCharModel;
 native FIXES_AddCharModel(baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddCharModel;
-native AddCharModel__(baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddCharModel;
+native AddCharModel__(baseid, newid, const dff[], const textureLibrary[]) = AddCharModel;
 #define _ALS_AddCharModel
 #define AddCharModel( FIXES_AddCharModel(
 
 #if defined _ALS_AddSimpleModel
 	#error _ALS_AddSimpleModel defined
 #endif
-native BAD_AddSimpleModel(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddSimpleModel;
+native BAD_AddSimpleModel(virtualWorld, baseid, newid, dff[], textureLibrary[]) = AddSimpleModel;
 native FIXES_AddSimpleModel(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddSimpleModel;
-native AddSimpleModel__(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[]) = AddSimpleModel;
+native AddSimpleModel__(virtualWorld, baseid, newid, const dff[], const textureLibrary[]) = AddSimpleModel;
 #define _ALS_AddSimpleModel
 #define AddSimpleModel( FIXES_AddSimpleModel(
 
 #if defined _ALS_AddSimpleModelTimed
 	#error _ALS_AddSimpleModelTimed defined
 #endif
-native BAD_AddSimpleModelTimed(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
+native BAD_AddSimpleModelTimed(virtualWorld, baseid, newid, dff[], textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
 native FIXES_AddSimpleModelTimed(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
-native AddSimpleModelTimed__(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_CONST textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
+native AddSimpleModelTimed__(virtualWorld, baseid, newid, const dff[], const textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
 #define _ALS_AddSimpleModelTimed
 #define AddSimpleModelTimed( FIXES_AddSimpleModelTimed(
 
 #if defined _ALS_FindModelFileNameFromCRC
 	#error _ALS_FindModelFileNameFromCRC defined
 #endif
-native BAD_FindModelFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindModelFileNameFromCRC;
+native BAD_FindModelFileNameFromCRC(crc, output[], size) = FindModelFileNameFromCRC;
 native FIXES_FindModelFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindModelFileNameFromCRC;
-native FindModelFileNameFromCRC__(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindModelFileNameFromCRC;
+native FindModelFileNameFromCRC__(crc, output[], size = sizeof (output)) = FindModelFileNameFromCRC;
 #define _ALS_FindModelFileNameFromCRC
 #define FindModelFileNameFromCRC( FIXES_FindModelFileNameFromCRC(
 
 #if defined _ALS_FindTextureFileNameFromCRC
 	#error _ALS_FindTextureFileNameFromCRC defined
 #endif
-native BAD_FindTextureFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindTextureFileNameFromCRC;
+native BAD_FindTextureFileNameFromCRC(crc, output[], size) = FindTextureFileNameFromCRC;
 native FIXES_FindTextureFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindTextureFileNameFromCRC;
-native FindTextureFileNameFromCRC__(crc, output[], _FIXES_MAYBE_SIZEOF(size, output)) = FindTextureFileNameFromCRC;
+native FindTextureFileNameFromCRC__(crc, output[], size = sizeof (output)) = FindTextureFileNameFromCRC;
 #define _ALS_FindTextureFileNameFromCRC
 #define FindTextureFileNameFromCRC( FIXES_FindTextureFileNameFromCRC(
 
 #if defined _ALS_RedirectDownload
 	#error _ALS_RedirectDownload defined
 #endif
-native BAD_RedirectDownload(playerid, _FIXES_MAYBE_CONST url[]) = RedirectDownload;
+native BAD_RedirectDownload(playerid, url[]) = RedirectDownload;
 native FIXES_RedirectDownload(playerid, _FIXES_MAYBE_CONST url[]) = RedirectDownload;
-native RedirectDownload__(playerid, _FIXES_MAYBE_CONST url[]) = RedirectDownload;
+native RedirectDownload__(playerid, const url[]) = RedirectDownload;
 #define _ALS_RedirectDownload
 #define RedirectDownload( FIXES_RedirectDownload(
 
 #if defined _ALS_IsPlayerAdmin
 	#error _ALS_IsPlayerAdmin defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsPlayerAdmin(playerid) = IsPlayerAdmin;
+native BAD_IsPlayerAdmin(playerid) = IsPlayerAdmin;
 native _FIXES_MAYBE_BOOL:FIXES_IsPlayerAdmin(playerid) = IsPlayerAdmin;
-native _FIXES_MAYBE_BOOL:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
+native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
 #define _ALS_IsPlayerAdmin
 #define IsPlayerAdmin( FIXES_IsPlayerAdmin(
 
@@ -2731,64 +2731,64 @@ native BanEx__(playerid, const reason[]) = BanEx;
 #if defined _ALS_SendRconCommand
 	#error _ALS_SendRconCommand defined
 #endif
-native BAD_SendRconCommand(_FIXES_MAYBE_CONST command[]) = SendRconCommand;
+native BAD_SendRconCommand(command[]) = SendRconCommand;
 native FIXES_SendRconCommand(_FIXES_MAYBE_CONST command[]) = SendRconCommand;
-native SendRconCommand__(_FIXES_MAYBE_CONST command[]) = SendRconCommand;
+native SendRconCommand__(const command[]) = SendRconCommand;
 #define _ALS_SendRconCommand
 #define SendRconCommand( FIXES_SendRconCommand(
 
 #if defined _ALS_GetPlayerNetworkStats
 	#error _ALS_GetPlayerNetworkStats defined
 #endif
-native BAD_GetPlayerNetworkStats(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPlayerNetworkStats;
+native BAD_GetPlayerNetworkStats(playerid, output[], size) = GetPlayerNetworkStats;
 native FIXES_GetPlayerNetworkStats(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPlayerNetworkStats;
-native GetPlayerNetworkStats__(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetPlayerNetworkStats;
+native GetPlayerNetworkStats__(playerid, output[], size = sizeof (output)) = GetPlayerNetworkStats;
 #define _ALS_GetPlayerNetworkStats
 #define GetPlayerNetworkStats( FIXES_GetPlayerNetworkStats(
 
 #if defined _ALS_GetNetworkStats
 	#error _ALS_GetNetworkStats defined
 #endif
-native BAD_GetNetworkStats(output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetNetworkStats;
+native BAD_GetNetworkStats(output[], size) = GetNetworkStats;
 native FIXES_GetNetworkStats(output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetNetworkStats;
-native GetNetworkStats__(output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetNetworkStats;
+native GetNetworkStats__(output[], size = sizeof (output)) = GetNetworkStats;
 #define _ALS_GetNetworkStats
 #define GetNetworkStats( FIXES_GetNetworkStats(
 
 #if defined _ALS_GetPlayerVersion
 	#error _ALS_GetPlayerVersion defined
 #endif
-native BAD_GetPlayerVersion(playerid, _FIXES_NOT_CONST version[], _FIXES_MAYBE_SIZEOF(len, version)) = GetPlayerVersion;
+native BAD_GetPlayerVersion(playerid, const version[], len) = GetPlayerVersion;
 native FIXES_GetPlayerVersion(playerid, _FIXES_NOT_CONST version[], _FIXES_MAYBE_SIZEOF(len, version)) = GetPlayerVersion;
-native GetPlayerVersion__(playerid, _FIXES_NOT_CONST version[], _FIXES_MAYBE_SIZEOF(len, version)) = GetPlayerVersion;
+native GetPlayerVersion__(playerid, version[], len = sizeof (version)) = GetPlayerVersion;
 #define _ALS_GetPlayerVersion
 #define GetPlayerVersion( FIXES_GetPlayerVersion(
 
 #if defined _ALS_BlockIpAddress
 	#error _ALS_BlockIpAddress defined
 #endif
-native BAD_BlockIpAddress(_FIXES_MAYBE_CONST ipAddress[], timeMS) = BlockIpAddress;
+native BAD_BlockIpAddress(ipAddress[], timeMS) = BlockIpAddress;
 native FIXES_BlockIpAddress(_FIXES_MAYBE_CONST ipAddress[], timeMS) = BlockIpAddress;
-native BlockIpAddress__(_FIXES_MAYBE_CONST ipAddress[], timeMS) = BlockIpAddress;
+native BlockIpAddress__(const ipAddress[], timeMS) = BlockIpAddress;
 #define _ALS_BlockIpAddress
 #define BlockIpAddress( FIXES_BlockIpAddress(
 
 #if defined _ALS_UnBlockIpAddress
 	#error _ALS_UnBlockIpAddress defined
 #endif
-native BAD_UnBlockIpAddress(_FIXES_MAYBE_CONST ipAddress[]) = UnBlockIpAddress;
+native BAD_UnBlockIpAddress(ipAddress[]) = UnBlockIpAddress;
 native FIXES_UnBlockIpAddress(_FIXES_MAYBE_CONST ipAddress[]) = UnBlockIpAddress;
-native UnBlockIpAddress__(_FIXES_MAYBE_CONST ipAddress[]) = UnBlockIpAddress;
+native UnBlockIpAddress__(const ipAddress[]) = UnBlockIpAddress;
 #define _ALS_UnBlockIpAddress
 #define UnBlockIpAddress( FIXES_UnBlockIpAddress(
 
 #if defined _ALS_GetServerVarAsString
 	#error _ALS_GetServerVarAsString defined
 #endif
-native BAD_GetServerVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetServerVarAsString;
+native BAD_GetServerVarAsString(const cvar[], buffer[], len) = GetServerVarAsString;
 #pragma deprecated Use `GetConsoleVarAsString`.
 native FIXES_GetServerVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetServerVarAsString;
-native GetServerVarAsString__(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetServerVarAsString;
+native GetServerVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetServerVarAsString;
 #define _ALS_GetServerVarAsString
 #define GetServerVarAsString( FIXES_GetServerVarAsString(
 
@@ -2805,19 +2805,19 @@ native GetServerVarAsInt__(const cvar[]) = GetServerVarAsInt;
 #if defined _ALS_GetServerVarAsBool
 	#error _ALS_GetServerVarAsBool defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
+native BAD_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
 #pragma deprecated Use `GetConsoleVarAsBool`.
 native _FIXES_MAYBE_BOOL:FIXES_GetServerVarAsBool(const cvar[]) = GetServerVarAsBool;
-native _FIXES_MAYBE_BOOL:GetServerVarAsBool__(const cvar[]) = GetServerVarAsBool;
+native bool:GetServerVarAsBool__(const cvar[]) = GetServerVarAsBool;
 #define _ALS_GetServerVarAsBool
 #define GetServerVarAsBool( FIXES_GetServerVarAsBool(
 
 #if defined _ALS_GetConsoleVarAsString
 	#error _ALS_GetConsoleVarAsString defined
 #endif
-native BAD_GetConsoleVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetConsoleVarAsString;
+native BAD_GetConsoleVarAsString(const cvar[], buffer[], len) = GetConsoleVarAsString;
 native FIXES_GetConsoleVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetConsoleVarAsString;
-native GetConsoleVarAsString__(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(len, buffer)) = GetConsoleVarAsString;
+native GetConsoleVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetConsoleVarAsString;
 #define _ALS_GetConsoleVarAsString
 #define GetConsoleVarAsString( FIXES_GetConsoleVarAsString(
 
@@ -2833,9 +2833,9 @@ native GetConsoleVarAsInt__(const cvar[]) = GetConsoleVarAsInt;
 #if defined _ALS_GetConsoleVarAsBool
 	#error _ALS_GetConsoleVarAsBool defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
+native BAD_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
 native _FIXES_MAYBE_BOOL:FIXES_GetConsoleVarAsBool(const cvar[]) = GetConsoleVarAsBool;
-native _FIXES_MAYBE_BOOL:GetConsoleVarAsBool__(const cvar[]) = GetConsoleVarAsBool;
+native bool:GetConsoleVarAsBool__(const cvar[]) = GetConsoleVarAsBool;
 #define _ALS_GetConsoleVarAsBool
 #define GetConsoleVarAsBool( FIXES_GetConsoleVarAsBool(
 
@@ -2923,9 +2923,9 @@ native NetStats_ConnectionStatus__(playerid) = NetStats_ConnectionStatus;
 #if defined _ALS_NetStats_GetIpPort
 	#error _ALS_NetStats_GetIpPort defined
 #endif
-native BAD_NetStats_GetIpPort(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = NetStats_GetIpPort;
+native BAD_NetStats_GetIpPort(playerid, output[], size) = NetStats_GetIpPort;
 native FIXES_NetStats_GetIpPort(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = NetStats_GetIpPort;
-native NetStats_GetIpPort__(playerid, output[], _FIXES_MAYBE_SIZEOF(size, output)) = NetStats_GetIpPort;
+native NetStats_GetIpPort__(playerid, output[], size = sizeof (output)) = NetStats_GetIpPort;
 #define _ALS_NetStats_GetIpPort
 #define NetStats_GetIpPort( FIXES_NetStats_GetIpPort(
 
@@ -2986,9 +2986,9 @@ native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer;
 #if defined _ALS_IsValidMenu
 	#error _ALS_IsValidMenu defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsValidMenu(Menu:menuid) = IsValidMenu;
+native BAD_IsValidMenu(Menu:menuid) = IsValidMenu;
 native _FIXES_MAYBE_BOOL:FIXES_IsValidMenu(Menu:menuid) = IsValidMenu;
-native _FIXES_MAYBE_BOOL:IsValidMenu__(Menu:menuid) = IsValidMenu;
+native bool:IsValidMenu__(Menu:menuid) = IsValidMenu;
 #define _ALS_IsValidMenu
 #define IsValidMenu( FIXES_IsValidMenu(
 
@@ -3022,9 +3022,9 @@ native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu;
 #if defined _ALS_TextDrawCreate
 	#error _ALS_TextDrawCreate defined
 #endif
-native Text:BAD_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = TextDrawCreate;
+native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 native Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = TextDrawCreate;
-native Text:TextDrawCreate__(Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = TextDrawCreate;
+native Text:TextDrawCreate__(Float:x, Float:y, const text[]) = TextDrawCreate;
 #define _ALS_TextDrawCreate
 #define TextDrawCreate( FIXES_TextDrawCreate(
 
@@ -3076,9 +3076,9 @@ native TextDrawColor__(Text:text, colour) = TextDrawColor;
 #if defined _ALS_TextDrawUseBox
 	#error _ALS_TextDrawUseBox defined
 #endif
-native BAD_TextDrawUseBox(Text:text, _FIXES_MAYBE_BOOL:use) = TextDrawUseBox;
+native BAD_TextDrawUseBox(Text:text, use) = TextDrawUseBox;
 native FIXES_TextDrawUseBox(Text:text, _FIXES_MAYBE_BOOL:use) = TextDrawUseBox;
-native TextDrawUseBox__(Text:text, _FIXES_MAYBE_BOOL:use) = TextDrawUseBox;
+native TextDrawUseBox__(Text:text, bool:use) = TextDrawUseBox;
 #define _ALS_TextDrawUseBox
 #define TextDrawUseBox( FIXES_TextDrawUseBox(
 
@@ -3130,18 +3130,18 @@ native TextDrawFont__(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
 #if defined _ALS_TextDrawSetProportional
 	#error _ALS_TextDrawSetProportional defined
 #endif
-native BAD_TextDrawSetProportional(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetProportional;
+native BAD_TextDrawSetProportional(Text:text, set) = TextDrawSetProportional;
 native FIXES_TextDrawSetProportional(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetProportional;
-native TextDrawSetProportional__(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetProportional;
+native TextDrawSetProportional__(Text:text, bool:set) = TextDrawSetProportional;
 #define _ALS_TextDrawSetProportional
 #define TextDrawSetProportional( FIXES_TextDrawSetProportional(
 
 #if defined _ALS_TextDrawSetSelectable
 	#error _ALS_TextDrawSetSelectable defined
 #endif
-native BAD_TextDrawSetSelectable(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetSelectable;
+native BAD_TextDrawSetSelectable(Text:text, set) = TextDrawSetSelectable;
 native FIXES_TextDrawSetSelectable(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetSelectable;
-native TextDrawSetSelectable__(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawSetSelectable;
+native TextDrawSetSelectable__(Text:text, bool:set) = TextDrawSetSelectable;
 #define _ALS_TextDrawSetSelectable
 #define TextDrawSetSelectable( FIXES_TextDrawSetSelectable(
 
@@ -3184,9 +3184,9 @@ native TextDrawHideForAll__(Text:text) = TextDrawHideForAll;
 #if defined _ALS_TextDrawSetString
 	#error _ALS_TextDrawSetString defined
 #endif
-native BAD_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[]) = TextDrawSetString;
+native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 native FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[]) = TextDrawSetString;
-native TextDrawSetString__(Text:text, _FIXES_MAYBE_CONST string[]) = TextDrawSetString;
+native TextDrawSetString__(Text:text, const string[]) = TextDrawSetString;
 #define _ALS_TextDrawSetString
 #define TextDrawSetString( FIXES_TextDrawSetString(
 
@@ -3310,9 +3310,9 @@ native GangZoneStopFlashForAll__(zone) = GangZoneStopFlashForAll;
 #if defined _ALS_Create3DTextLabel
 	#error _ALS_Create3DTextLabel defined
 #endif
-native Text3D:BAD_Create3DTextLabel(_FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = false) = Create3DTextLabel;
+native Text3D:BAD_Create3DTextLabel(text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, testLOS = false) = Create3DTextLabel;
 native Text3D:FIXES_Create3DTextLabel(_FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = false) = Create3DTextLabel;
-native Text3D:Create3DTextLabel__(_FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = false) = Create3DTextLabel;
+native Text3D:Create3DTextLabel__(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false) = Create3DTextLabel;
 #define _ALS_Create3DTextLabel
 #define Create3DTextLabel( FIXES_Create3DTextLabel(
 
@@ -3346,18 +3346,18 @@ native Attach3DTextLabelToVehicle__(Text3D:textid, parentid, Float:offsetX, Floa
 #if defined _ALS_Update3DTextLabelText
 	#error _ALS_Update3DTextLabelText defined
 #endif
-native BAD_Update3DTextLabelText(Text3D:textid, colour, _FIXES_MAYBE_CONST text[]) = Update3DTextLabelText;
+native BAD_Update3DTextLabelText(Text3D:textid, colour, text[]) = Update3DTextLabelText;
 native FIXES_Update3DTextLabelText(Text3D:textid, colour, _FIXES_MAYBE_CONST text[]) = Update3DTextLabelText;
-native Update3DTextLabelText__(Text3D:textid, colour, _FIXES_MAYBE_CONST text[]) = Update3DTextLabelText;
+native Update3DTextLabelText__(Text3D:textid, colour, const text[]) = Update3DTextLabelText;
 #define _ALS_Update3DTextLabelText
 #define Update3DTextLabelText( FIXES_Update3DTextLabelText(
 
 #if defined _ALS_CreatePlayer3DTextLabel
 	#error _ALS_CreatePlayer3DTextLabel defined
 #endif
-native PlayerText3D:BAD_CreatePlayer3DTextLabel(playerid, _FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = false) = CreatePlayer3DTextLabel;
+native PlayerText3D:BAD_CreatePlayer3DTextLabel(playerid, text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, testLOS = false) = CreatePlayer3DTextLabel;
 native PlayerText3D:FIXES_CreatePlayer3DTextLabel(playerid, _FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = false) = CreatePlayer3DTextLabel;
-native PlayerText3D:CreatePlayer3DTextLabel__(playerid, _FIXES_MAYBE_CONST text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = false) = CreatePlayer3DTextLabel;
+native PlayerText3D:CreatePlayer3DTextLabel__(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false) = CreatePlayer3DTextLabel;
 #define _ALS_CreatePlayer3DTextLabel
 #define CreatePlayer3DTextLabel( FIXES_CreatePlayer3DTextLabel(
 
@@ -3373,39 +3373,39 @@ native DeletePlayer3DTextLabel__(playerid, PlayerText3D:textid) = DeletePlayer3D
 #if defined _ALS_UpdatePlayer3DTextLabelText
 	#error _ALS_UpdatePlayer3DTextLabelText defined
 #endif
-native BAD_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, _FIXES_MAYBE_CONST text[]) = UpdatePlayer3DTextLabelText;
+native BAD_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, text[]) = UpdatePlayer3DTextLabelText;
 native FIXES_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, _FIXES_MAYBE_CONST text[]) = UpdatePlayer3DTextLabelText;
-native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:textid, colour, _FIXES_MAYBE_CONST text[]) = UpdatePlayer3DTextLabelText;
+native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText;
 #define _ALS_UpdatePlayer3DTextLabelText
 #define UpdatePlayer3DTextLabelText( FIXES_UpdatePlayer3DTextLabelText(
 
 #if defined _ALS_ShowPlayerDialog
 	#error _ALS_ShowPlayerDialog defined
 #endif
-native BAD_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST info[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[]) = ShowPlayerDialog;
+native BAD_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, caption[], info[], button1[], button2[]) = ShowPlayerDialog;
 native FIXES_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST info[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[]) = ShowPlayerDialog;
-native ShowPlayerDialog__(playerid, dialogid, DIALOG_STYLE:style, _FIXES_MAYBE_CONST caption[], _FIXES_MAYBE_CONST info[], _FIXES_MAYBE_CONST button1[], _FIXES_MAYBE_CONST button2[]) = ShowPlayerDialog;
+native ShowPlayerDialog__(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
 #define _ALS_ShowPlayerDialog
 #define ShowPlayerDialog( FIXES_ShowPlayerDialog(
 
 #if defined _ALS_gpci
 	#error _ALS_gpci defined
 #endif
-native BAD_gpci(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
+native BAD_gpci(playerid, serial[], len) = gpci;
 #if FIX_camel_case
 	#pragma deprecated Use `GPCI`.
 #endif
 native FIXES_gpci(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
-native gpci__(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
+native gpci__(playerid, serial[], len = sizeof (serial)) = gpci;
 #define _ALS_gpci
 #define gpci( FIXES_gpci(
 
 #if defined _ALS_GPCI
 	#error _ALS_GPCI defined
 #endif
-native BAD_GPCI(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
+native BAD_GPCI(playerid, serial[], len) = gpci;
 native FIXES_GPCI(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
-native GPCI__(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
+native GPCI__(playerid, serial[], len = sizeof (serial)) = gpci;
 #define _ALS_GPCI
 #define GPCI( FIXES_GPCI(
 
@@ -3416,84 +3416,84 @@ native GPCI__(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
 #if defined _ALS_db_open
 	#error _ALS_db_open defined
 #endif
-native DB:BAD_db_open(_FIXES_MAYBE_CONST name[]) = db_open;
+native DB:BAD_db_open(name[]) = db_open;
 #if FIX_camel_case
 	#pragma deprecated Use `DB_Open`.
 #endif
 native DB:FIXES_db_open(_FIXES_MAYBE_CONST name[]) = db_open;
-native DB:db_open__(_FIXES_MAYBE_CONST name[]) = db_open;
+native DB:db_open__(const name[]) = db_open;
 #define _ALS_db_open
 #define db_open( FIXES_db_open(
 
 #if defined _ALS_DB_Open
 	#error _ALS_DB_Open defined
 #endif
-native DB:BAD_DB_Open(_FIXES_MAYBE_CONST name[]) = db_open;
+native DB:BAD_DB_Open(name[]) = db_open;
 native DB:FIXES_DB_Open(_FIXES_MAYBE_CONST name[]) = db_open;
-native DB:DB_Open__(_FIXES_MAYBE_CONST name[]) = db_open;
+native DB:DB_Open__(const name[]) = db_open;
 #define _ALS_DB_Open
 #define DB_Open( FIXES_DB_Open(
 
 #if defined _ALS_db_close
 	#error _ALS_db_close defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_db_close(DB:db) = db_close;
+native BAD_db_close(DB:db) = db_close;
 #if FIX_camel_case
 	#pragma deprecated Use `DB_Close`.
 #endif
 native _FIXES_MAYBE_BOOL:FIXES_db_close(DB:db) = db_close;
-native _FIXES_MAYBE_BOOL:db_close__(DB:db) = db_close;
+native bool:db_close__(DB:db) = db_close;
 #define _ALS_db_close
 #define db_close( FIXES_db_close(
 
 #if defined _ALS_DB_Close
 	#error _ALS_DB_Close defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_DB_Close(DB:db) = db_close;
+native BAD_DB_Close(DB:db) = db_close;
 native _FIXES_MAYBE_BOOL:FIXES_DB_Close(DB:db) = db_close;
-native _FIXES_MAYBE_BOOL:DB_Close__(DB:db) = db_close;
+native bool:DB_Close__(DB:db) = db_close;
 #define _ALS_DB_Close
 #define DB_Close( FIXES_DB_Close(
 
 #if defined _ALS_db_query
 	#error _ALS_db_query defined
 #endif
-native DBResult:BAD_db_query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
+native DBResult:BAD_db_query(DB:db, query[]) = db_query;
 #if FIX_camel_case
 	#pragma deprecated Use `DB_Query`.
 #endif
 native DBResult:FIXES_db_query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
-native DBResult:db_query__(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
+native DBResult:db_query__(DB:db, const query[]) = db_query;
 #define _ALS_db_query
 #define db_query( FIXES_db_query(
 
 #if defined _ALS_DB_Query
 	#error _ALS_DB_Query defined
 #endif
-native DBResult:BAD_DB_Query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
+native DBResult:BAD_DB_Query(DB:db, query[]) = db_query;
 native DBResult:FIXES_DB_Query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
-native DBResult:DB_Query__(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
+native DBResult:DB_Query__(DB:db, const query[]) = db_query;
 #define _ALS_DB_Query
 #define DB_Query( FIXES_DB_Query(
 
 #if defined _ALS_db_free_result
 	#error _ALS_db_free_result defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_db_free_result(DBResult:result) = db_free_result;
+native BAD_db_free_result(DBResult:result) = db_free_result;
 #if FIX_camel_case
 	#pragma deprecated Use `DB_FreeResult`.
 #endif
 native _FIXES_MAYBE_BOOL:FIXES_db_free_result(DBResult:result) = db_free_result;
-native _FIXES_MAYBE_BOOL:db_free_result__(DBResult:result) = db_free_result;
+native bool:db_free_result__(DBResult:result) = db_free_result;
 #define _ALS_db_free_result
 #define db_free_result( FIXES_db_free_result(
 
 #if defined _ALS_DB_FreeResult
 	#error _ALS_DB_FreeResult defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_DB_FreeResult(DBResult:result) = db_free_result;
+native BAD_DB_FreeResult(DBResult:result) = db_free_result;
 native _FIXES_MAYBE_BOOL:FIXES_DB_FreeResult(DBResult:result) = db_free_result;
-native _FIXES_MAYBE_BOOL:DB_FreeResult__(DBResult:result) = db_free_result;
+native bool:DB_FreeResult__(DBResult:result) = db_free_result;
 #define _ALS_DB_FreeResult
 #define DB_FreeResult( FIXES_DB_FreeResult(
 
@@ -3521,21 +3521,21 @@ native DB_NumRows__(DBResult:result) = db_num_rows;
 #if defined _ALS_db_next_row
 	#error _ALS_db_next_row defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_db_next_row(DBResult:result) = db_next_row;
+native BAD_db_next_row(DBResult:result) = db_next_row;
 #if FIX_camel_case
 	#pragma deprecated Use `DB_NextRow`.
 #endif
 native _FIXES_MAYBE_BOOL:FIXES_db_next_row(DBResult:result) = db_next_row;
-native _FIXES_MAYBE_BOOL:db_next_row__(DBResult:result) = db_next_row;
+native bool:db_next_row__(DBResult:result) = db_next_row;
 #define _ALS_db_next_row
 #define db_next_row( FIXES_db_next_row(
 
 #if defined _ALS_DB_NextRow
 	#error _ALS_DB_NextRow defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_DB_NextRow(DBResult:result) = db_next_row;
+native BAD_DB_NextRow(DBResult:result) = db_next_row;
 native _FIXES_MAYBE_BOOL:FIXES_DB_NextRow(DBResult:result) = db_next_row;
-native _FIXES_MAYBE_BOOL:DB_NextRow__(DBResult:result) = db_next_row;
+native bool:DB_NextRow__(DBResult:result) = db_next_row;
 #define _ALS_DB_NextRow
 #define DB_NextRow( FIXES_DB_NextRow(
 
@@ -3563,42 +3563,42 @@ native DB_NumFields__(DBResult:result) = db_num_fields;
 #if defined _ALS_db_field_name
 	#error _ALS_db_field_name defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_db_field_name(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
+native BAD_db_field_name(DBResult:result, field, output[], size) = db_field_name;
 #if FIX_camel_case
 	#pragma deprecated Use `DB_FieldName`.
 #endif
 native _FIXES_MAYBE_BOOL:FIXES_db_field_name(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
-native _FIXES_MAYBE_BOOL:db_field_name__(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
+native bool:db_field_name__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
 #define _ALS_db_field_name
 #define db_field_name( FIXES_db_field_name(
 
 #if defined _ALS_DB_FieldName
 	#error _ALS_DB_FieldName defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_DB_FieldName(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
+native BAD_DB_FieldName(DBResult:result, field, output[], size) = db_field_name;
 native _FIXES_MAYBE_BOOL:FIXES_DB_FieldName(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
-native _FIXES_MAYBE_BOOL:DB_FieldName__(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_field_name;
+native bool:DB_FieldName__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
 #define _ALS_DB_FieldName
 #define DB_FieldName( FIXES_DB_FieldName(
 
 #if defined _ALS_db_get_field
 	#error _ALS_db_get_field defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_db_get_field(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
+native BAD_db_get_field(DBResult:result, field, output[], size) = db_get_field;
 #if FIX_camel_case
 	#pragma deprecated Use `DB_GetField`.
 #endif
 native _FIXES_MAYBE_BOOL:FIXES_db_get_field(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
-native _FIXES_MAYBE_BOOL:db_get_field__(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
+native bool:db_get_field__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
 #define _ALS_db_get_field
 #define db_get_field( FIXES_db_get_field(
 
 #if defined _ALS_DB_GetField
 	#error _ALS_DB_GetField defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_DB_GetField(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
+native BAD_DB_GetField(DBResult:result, field, output[], size) = db_get_field;
 native _FIXES_MAYBE_BOOL:FIXES_DB_GetField(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
-native _FIXES_MAYBE_BOOL:DB_GetField__(DBResult:result, field, output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field;
+native bool:DB_GetField__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
 #define _ALS_DB_GetField
 #define DB_GetField( FIXES_DB_GetField(
 
@@ -3647,63 +3647,63 @@ native Float:DB_GetFieldFloat__(DBResult:result, field = 0) = db_get_field_float
 #if defined _ALS_db_get_field_assoc
 	#error _ALS_db_get_field_assoc defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_db_get_field_assoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
+native BAD_db_get_field_assoc(DBResult:result, field[], output[], size) = db_get_field_assoc;
 #if FIX_camel_case
 	#pragma deprecated Use `DB_GetFieldAssoc`.
 #endif
 native _FIXES_MAYBE_BOOL:FIXES_db_get_field_assoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
-native _FIXES_MAYBE_BOOL:db_get_field_assoc__(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
+native bool:db_get_field_assoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
 #define _ALS_db_get_field_assoc
 #define db_get_field_assoc( FIXES_db_get_field_assoc(
 
 #if defined _ALS_DB_GetFieldAssoc
 	#error _ALS_DB_GetFieldAssoc defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_DB_GetFieldAssoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
+native BAD_DB_GetFieldAssoc(DBResult:result, field[], output[], size) = db_get_field_assoc;
 native _FIXES_MAYBE_BOOL:FIXES_DB_GetFieldAssoc(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
-native _FIXES_MAYBE_BOOL:DB_GetFieldAssoc__(DBResult:result, _FIXES_MAYBE_CONST field[], output[], _FIXES_MAYBE_SIZEOF(size, output)) = db_get_field_assoc;
+native bool:DB_GetFieldAssoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
 #define _ALS_DB_GetFieldAssoc
 #define DB_GetFieldAssoc( FIXES_DB_GetFieldAssoc(
 
 #if defined _ALS_db_get_field_assoc_int
 	#error _ALS_db_get_field_assoc_int defined
 #endif
-native BAD_db_get_field_assoc_int(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
+native BAD_db_get_field_assoc_int(DBResult:result, field[]) = db_get_field_assoc_int;
 #if FIX_camel_case
 	#pragma deprecated Use `DB_GetFieldAssocInt`.
 #endif
 native FIXES_db_get_field_assoc_int(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
-native db_get_field_assoc_int__(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
+native db_get_field_assoc_int__(DBResult:result, const field[]) = db_get_field_assoc_int;
 #define _ALS_db_get_field_assoc_int
 #define db_get_field_assoc_int( FIXES_db_get_field_assoc_int(
 
 #if defined _ALS_DB_GetFieldAssocInt
 	#error _ALS_DB_GetFieldAssocInt defined
 #endif
-native BAD_DB_GetFieldAssocInt(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
+native BAD_DB_GetFieldAssocInt(DBResult:result, field[]) = db_get_field_assoc_int;
 native FIXES_DB_GetFieldAssocInt(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
-native DB_GetFieldAssocInt__(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_int;
+native DB_GetFieldAssocInt__(DBResult:result, const field[]) = db_get_field_assoc_int;
 #define _ALS_DB_GetFieldAssocInt
 #define DB_GetFieldAssocInt( FIXES_DB_GetFieldAssocInt(
 
 #if defined _ALS_db_get_field_assoc_float
 	#error _ALS_db_get_field_assoc_float defined
 #endif
-native Float:BAD_db_get_field_assoc_float(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
+native Float:BAD_db_get_field_assoc_float(DBResult:result, field[]) = db_get_field_assoc_float;
 #if FIX_camel_case
 	#pragma deprecated Use `DB_GetFieldAssocFloat`.
 #endif
 native Float:FIXES_db_get_field_assoc_float(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
-native Float:db_get_field_assoc_float__(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
+native Float:db_get_field_assoc_float__(DBResult:result, const field[]) = db_get_field_assoc_float;
 #define _ALS_db_get_field_assoc_float
 #define db_get_field_assoc_float( FIXES_db_get_field_assoc_float(
 
 #if defined _ALS_DB_GetFieldAssocFloat
 	#error _ALS_DB_GetFieldAssocFloat defined
 #endif
-native Float:BAD_DB_GetFieldAssocFloat(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
+native Float:BAD_DB_GetFieldAssocFloat(DBResult:result, field[]) = db_get_field_assoc_float;
 native Float:FIXES_DB_GetFieldAssocFloat(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
-native Float:DB_GetFieldAssocFloat__(DBResult:result, _FIXES_MAYBE_CONST field[]) = db_get_field_assoc_float;
+native Float:DB_GetFieldAssocFloat__(DBResult:result, const field[]) = db_get_field_assoc_float;
 #define _ALS_DB_GetFieldAssocFloat
 #define DB_GetFieldAssocFloat( FIXES_DB_GetFieldAssocFloat(
 
@@ -3798,9 +3798,9 @@ native DB_DebugOpenResults__() = db_debug_openresults;
 #if defined _ALS_CreateVehicle
 	#error _ALS_CreateVehicle defined
 #endif
-native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = CreateVehicle;
+native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, addSiren = false) = CreateVehicle;
 native FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = CreateVehicle;
-native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, _FIXES_MAYBE_BOOL:addSiren = false) = CreateVehicle;
+native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false) = CreateVehicle;
 #define _ALS_CreateVehicle
 #define CreateVehicle( FIXES_CreateVehicle(
 
@@ -3816,9 +3816,9 @@ native DestroyVehicle__(vehicleid) = DestroyVehicle;
 #if defined _ALS_IsVehicleStreamedIn
 	#error _ALS_IsVehicleStreamedIn defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
+native BAD_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
 native _FIXES_MAYBE_BOOL:FIXES_IsVehicleStreamedIn(vehicleid, playerid) = IsVehicleStreamedIn;
-native _FIXES_MAYBE_BOOL:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn;
+native bool:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn;
 #define _ALS_IsVehicleStreamedIn
 #define IsVehicleStreamedIn( FIXES_IsVehicleStreamedIn(
 
@@ -4050,9 +4050,9 @@ native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle;
 #if defined _ALS_IsTrailerAttachedToVehicle
 	#error _ALS_IsTrailerAttachedToVehicle defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
+native BAD_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
 native _FIXES_MAYBE_BOOL:FIXES_IsTrailerAttachedToVehicle(vehicleid) = IsTrailerAttachedToVehicle;
-native _FIXES_MAYBE_BOOL:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
+native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
 #define _ALS_IsTrailerAttachedToVehicle
 #define IsTrailerAttachedToVehicle( FIXES_IsTrailerAttachedToVehicle(
 
@@ -4068,9 +4068,9 @@ native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer;
 #if defined _ALS_SetVehicleNumberPlate
 	#error _ALS_SetVehicleNumberPlate defined
 #endif
-native BAD_SetVehicleNumberPlate(vehicleid, _FIXES_MAYBE_CONST numberPlate[]) = SetVehicleNumberPlate;
+native BAD_SetVehicleNumberPlate(vehicleid, numberPlate[]) = SetVehicleNumberPlate;
 native FIXES_SetVehicleNumberPlate(vehicleid, _FIXES_MAYBE_CONST numberPlate[]) = SetVehicleNumberPlate;
-native SetVehicleNumberPlate__(vehicleid, _FIXES_MAYBE_CONST numberPlate[]) = SetVehicleNumberPlate;
+native SetVehicleNumberPlate__(vehicleid, const numberPlate[]) = SetVehicleNumberPlate;
 #define _ALS_SetVehicleNumberPlate
 #define SetVehicleNumberPlate( FIXES_SetVehicleNumberPlate(
 
@@ -4185,9 +4185,9 @@ native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld;
 #if defined _ALS_IsValidVehicle
 	#error _ALS_IsValidVehicle defined
 #endif
-native _FIXES_MAYBE_BOOL:BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
+native BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
 native _FIXES_MAYBE_BOOL:FIXES_IsValidVehicle(vehicleid) = IsValidVehicle;
-native _FIXES_MAYBE_BOOL:IsValidVehicle__(vehicleid) = IsValidVehicle;
+native bool:IsValidVehicle__(vehicleid) = IsValidVehicle;
 #define _ALS_IsValidVehicle
 #define IsValidVehicle( FIXES_IsValidVehicle(
 
