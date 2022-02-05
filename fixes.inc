@@ -7015,7 +7015,7 @@ _FIXES_CONST_PAWNDOC(true);
  */
 
 _FIXES_CONST_PAWNDOC(_FIXES_OLD_DECLS);
-#if FIX_defaults && FIX_const && FIX_bool_tags
+#if FIX_defaults && FIX_bool_tags
 	#define _FIXES_OLD_DECLS (0)
 #else
 	#define _FIXES_OLD_DECLS (1)
@@ -22524,16 +22524,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
 
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Disable warning 214: possibly a "const" array argument was intended.
-		// This code is nominally const-correct, but that can be disabled with
-		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
-		// this code, despite the fact that they are actually not present
-		// normally.
-		#pragma warning push
-		#pragma warning disable 214
-	#endif
-
 	stock PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, const text[])
 	{
 		#if FIX_CreatePlayerTextDraw_2
@@ -22545,11 +22535,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 			return PlayerText:y;
 		#endif
 	}
-
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Re-enable `const` warnings.
-		#pragma warning push
-	#endif
 
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
@@ -22586,16 +22571,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
 
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Disable warning 214: possibly a "const" array argument was intended.
-		// This code is nominally const-correct, but that can be disabled with
-		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
-		// this code, despite the fact that they are actually not present
-		// normally.
-		#pragma warning push
-		#pragma warning disable 214
-	#endif
-
 	stock FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, const string[])
 	{
 		#if FIX_PlayerTextDrawSetString_2
@@ -22607,11 +22582,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 			return playerid;
 		#endif
 	}
-
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Re-enable `const` warnings.
-		#pragma warning push
-	#endif
 
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
@@ -22648,16 +22618,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
 
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Disable warning 214: possibly a "const" array argument was intended.
-		// This code is nominally const-correct, but that can be disabled with
-		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
-		// this code, despite the fact that they are actually not present
-		// normally.
-		#pragma warning push
-		#pragma warning disable 214
-	#endif
-
 	stock Text:FIXES_TextDrawCreate(Float:x, Float:y, const text[])
 	{
 		#if FIX_TextDrawCreate_2
@@ -22669,11 +22629,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 			return Text:x;
 		#endif
 	}
-
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Re-enable `const` warnings.
-		#pragma warning push
-	#endif
 
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
@@ -22710,16 +22665,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 		#define _FIXES_RETURN_STRING(%0) return _FIXES_PASS_STRING(%0)
 	#endif
 
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Disable warning 214: possibly a "const" array argument was intended.
-		// This code is nominally const-correct, but that can be disabled with
-		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
-		// this code, despite the fact that they are actually not present
-		// normally.
-		#pragma warning push
-		#pragma warning disable 214
-	#endif
-
 	stock FIXES_TextDrawSetString(Text:text, const string[])
 	{
 		#if FIX_TextDrawSetString_2
@@ -22731,11 +22676,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 			return _:text;
 		#endif
 	}
-
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Re-enable `const` warnings.
-		#pragma warning push
-	#endif
 
 	#undef _FIXES_PASS_STRING
 	#undef _FIXES_RETURN_STRING
@@ -23151,16 +23091,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
  */
 
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog || FIX_BypassDialog
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Disable warning 214: possibly a "const" array argument was intended.
-		// This code is nominally const-correct, but that can be disabled with
-		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
-		// this code, despite the fact that they are actually not present
-		// normally.
-		#pragma warning push
-		#pragma warning disable 214
-	#endif
-
 	stock FIXES_ShowPlayerDialog(playerid, dialog, DIALOG_STYLE:style, const title[], const caption[], const button1[], const button2[])
 	{
 		#if FIX_OnDialogResponse || FIX_GetPlayerDialog
@@ -23181,11 +23111,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 		return 0;
 		#endif
 	}
-
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Re-enable `const` warnings.
-		#pragma warning push
-	#endif
 
 	#if _FIXES_SAMP
 		#if defined _ALS_ShowPlayerDialog
@@ -24228,16 +24153,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
  */
 
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Disable warning 214: possibly a "const" array argument was intended.
-		// This code is nominally const-correct, but that can be disabled with
-		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
-		// this code, despite the fact that they are actually not present
-		// normally.
-		#pragma warning push
-		#pragma warning disable 214
-	#endif
-
 	stock FIXES_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE)
 	{
 		new
@@ -24253,11 +24168,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 
 		return 0;
 	}
-
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Re-enable `const` warnings.
-		#pragma warning push
-	#endif
 
 	#if _FIXES_SAMP
 		#if defined _ALS_ApplyAnimation
@@ -24320,16 +24230,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
  */
 
 #if FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Disable warning 214: possibly a "const" array argument was intended.
-		// This code is nominally const-correct, but that can be disabled with
-		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
-		// this code, despite the fact that they are actually not present
-		// normally.
-		#pragma warning push
-		#pragma warning disable 214
-	#endif
-
 	stock FIXES_ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time)
 	{
 		new
@@ -24345,11 +24245,6 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 
 		return 0;
 	}
-
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Re-enable `const` warnings.
-		#pragma warning push
-	#endif
 
 	#if _FIXES_SAMP
 		#if defined _ALS_ApplyActorAnimation
@@ -25201,16 +25096,6 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
  */
 
 #if FIX_GetPVarString
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Disable warning 214: possibly a "const" array argument was intended.
-		// This code is nominally const-correct, but that can be disabled with
-		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
-		// this code, despite the fact that they are actually not present
-		// normally.
-		#pragma warning push
-		#pragma warning disable 214
-	#endif
-
 	stock FIXES_GetPVarString(playerid, const pvar[], value[], len = sizeof (value))
 	{
 		len = GetPVarString__(playerid, pvar, value, len);
@@ -25218,11 +25103,6 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 		do {} while ((value[++i] &= 0xFF) != '\0');
 		return len;
 	}
-
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Re-enable `const` warnings.
-		#pragma warning push
-	#endif
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetPVarString
@@ -25244,16 +25124,6 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
  */
 
 #if FIX_GetSVarString
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Disable warning 214: possibly a "const" array argument was intended.
-		// This code is nominally const-correct, but that can be disabled with
-		// `FIX_const 0`;  When it is disabled a lot more warnings appear in
-		// this code, despite the fact that they are actually not present
-		// normally.
-		#pragma warning push
-		#pragma warning disable 214
-	#endif
-
 	stock FIXES_GetSVarString(const svar[], value[], len = sizeof (value))
 	{
 		len = GetSVarString__(svar, value, len);
@@ -25261,11 +25131,6 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 		do {} while ((value[++i] &= 0xFF) != '\0');
 		return len;
 	}
-
-	#if _FIXES_NEW_COMPILER && !FIX_const
-		// Re-enable `const` warnings.
-		#pragma warning push
-	#endif
 
 	#if _FIXES_SAMP
 		#if defined _ALS_GetSVarString
