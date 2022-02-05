@@ -15,9 +15,6 @@
 
 */
 
-#if defined _ALS_CreateActor
-	#error _ALS_CreateActor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -36,14 +33,12 @@ native FIXES_CreateActor(modelid, Float:x, Float:y, Float:z, Float:angle) = Crea
  * </remarks>
  */
 native CreateActor__(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor;
-#if _FIXES_SAMP
-	#define _ALS_CreateActor
-	#define CreateActor( FIXES_CreateActor(
+#if defined _ALS_CreateActor
+	// Previous hook.
+	#define _ALS_CreateActor__
+	#define CreateActor__( CreateActor(
 #endif
 
-#if defined _ALS_DestroyActor
-	#error _ALS_DestroyActor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -62,14 +57,12 @@ native FIXES_DestroyActor(actorid) = DestroyActor;
  * </remarks>
  */
 native DestroyActor__(actorid) = DestroyActor;
-#if _FIXES_SAMP
-	#define _ALS_DestroyActor
-	#define DestroyActor( FIXES_DestroyActor(
+#if defined _ALS_DestroyActor
+	// Previous hook.
+	#define _ALS_DestroyActor__
+	#define DestroyActor__( DestroyActor(
 #endif
 
-#if defined _ALS_IsActorStreamedIn
-	#error _ALS_IsActorStreamedIn defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -88,14 +81,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsActorStreamedIn(actorid, playerid) = IsActorStr
  * </remarks>
  */
 native bool:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn;
-#if _FIXES_SAMP
-	#define _ALS_IsActorStreamedIn
-	#define IsActorStreamedIn( FIXES_IsActorStreamedIn(
+#if defined _ALS_IsActorStreamedIn
+	// Previous hook.
+	#define _ALS_IsActorStreamedIn__
+	#define IsActorStreamedIn__( IsActorStreamedIn(
 #endif
 
-#if defined _ALS_SetActorVirtualWorld
-	#error _ALS_SetActorVirtualWorld defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -114,14 +105,12 @@ native FIXES_SetActorVirtualWorld(actorid, virtualWorld) = SetActorVirtualWorld;
  * </remarks>
  */
 native SetActorVirtualWorld__(actorid, virtualWorld) = SetActorVirtualWorld;
-#if _FIXES_SAMP
-	#define _ALS_SetActorVirtualWorld
-	#define SetActorVirtualWorld( FIXES_SetActorVirtualWorld(
+#if defined _ALS_SetActorVirtualWorld
+	// Previous hook.
+	#define _ALS_SetActorVirtualWorld__
+	#define SetActorVirtualWorld__( SetActorVirtualWorld(
 #endif
 
-#if defined _ALS_GetActorVirtualWorld
-	#error _ALS_GetActorVirtualWorld defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -140,14 +129,12 @@ native FIXES_GetActorVirtualWorld(actorid) = GetActorVirtualWorld;
  * </remarks>
  */
 native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld;
-#if _FIXES_SAMP
-	#define _ALS_GetActorVirtualWorld
-	#define GetActorVirtualWorld( FIXES_GetActorVirtualWorld(
+#if defined _ALS_GetActorVirtualWorld
+	// Previous hook.
+	#define _ALS_GetActorVirtualWorld__
+	#define GetActorVirtualWorld__( GetActorVirtualWorld(
 #endif
 
-#if defined _ALS_ApplyActorAnimation
-	#error _ALS_ApplyActorAnimation defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -166,14 +153,12 @@ native FIXES_ApplyActorAnimation(actorid, _FIXES_MAYBE_CONST animationLibrary[],
  * </remarks>
  */
 native ApplyActorAnimation__(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time) = ApplyActorAnimation;
-#if _FIXES_SAMP
-	#define _ALS_ApplyActorAnimation
-	#define ApplyActorAnimation( FIXES_ApplyActorAnimation(
+#if defined _ALS_ApplyActorAnimation
+	// Previous hook.
+	#define _ALS_ApplyActorAnimation__
+	#define ApplyActorAnimation__( ApplyActorAnimation(
 #endif
 
-#if defined _ALS_ClearActorAnimations
-	#error _ALS_ClearActorAnimations defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -192,14 +177,12 @@ native FIXES_ClearActorAnimations(actorid) = ClearActorAnimations;
  * </remarks>
  */
 native ClearActorAnimations__(actorid) = ClearActorAnimations;
-#if _FIXES_SAMP
-	#define _ALS_ClearActorAnimations
-	#define ClearActorAnimations( FIXES_ClearActorAnimations(
+#if defined _ALS_ClearActorAnimations
+	// Previous hook.
+	#define _ALS_ClearActorAnimations__
+	#define ClearActorAnimations__( ClearActorAnimations(
 #endif
 
-#if defined _ALS_SetActorPos
-	#error _ALS_SetActorPos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -218,14 +201,12 @@ native FIXES_SetActorPos(actorid, Float:x, Float:y, Float:z) = SetActorPos;
  * </remarks>
  */
 native SetActorPos__(actorid, Float:x, Float:y, Float:z) = SetActorPos;
-#if _FIXES_SAMP
-	#define _ALS_SetActorPos
-	#define SetActorPos( FIXES_SetActorPos(
+#if defined _ALS_SetActorPos
+	// Previous hook.
+	#define _ALS_SetActorPos__
+	#define SetActorPos__( SetActorPos(
 #endif
 
-#if defined _ALS_GetActorPos
-	#error _ALS_GetActorPos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -244,14 +225,12 @@ native FIXES_GetActorPos(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
  * </remarks>
  */
 native GetActorPos__(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos;
-#if _FIXES_SAMP
-	#define _ALS_GetActorPos
-	#define GetActorPos( FIXES_GetActorPos(
+#if defined _ALS_GetActorPos
+	// Previous hook.
+	#define _ALS_GetActorPos__
+	#define GetActorPos__( GetActorPos(
 #endif
 
-#if defined _ALS_SetActorFacingAngle
-	#error _ALS_SetActorFacingAngle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -270,14 +249,12 @@ native FIXES_SetActorFacingAngle(actorid, Float:angle) = SetActorFacingAngle;
  * </remarks>
  */
 native SetActorFacingAngle__(actorid, Float:angle) = SetActorFacingAngle;
-#if _FIXES_SAMP
-	#define _ALS_SetActorFacingAngle
-	#define SetActorFacingAngle( FIXES_SetActorFacingAngle(
+#if defined _ALS_SetActorFacingAngle
+	// Previous hook.
+	#define _ALS_SetActorFacingAngle__
+	#define SetActorFacingAngle__( SetActorFacingAngle(
 #endif
 
-#if defined _ALS_GetActorFacingAngle
-	#error _ALS_GetActorFacingAngle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -296,14 +273,12 @@ native FIXES_GetActorFacingAngle(actorid, &Float:angle) = GetActorFacingAngle;
  * </remarks>
  */
 native GetActorFacingAngle__(actorid, &Float:angle) = GetActorFacingAngle;
-#if _FIXES_SAMP
-	#define _ALS_GetActorFacingAngle
-	#define GetActorFacingAngle( FIXES_GetActorFacingAngle(
+#if defined _ALS_GetActorFacingAngle
+	// Previous hook.
+	#define _ALS_GetActorFacingAngle__
+	#define GetActorFacingAngle__( GetActorFacingAngle(
 #endif
 
-#if defined _ALS_SetActorHealth
-	#error _ALS_SetActorHealth defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -322,14 +297,12 @@ native FIXES_SetActorHealth(actorid, Float:health) = SetActorHealth;
  * </remarks>
  */
 native SetActorHealth__(actorid, Float:health) = SetActorHealth;
-#if _FIXES_SAMP
-	#define _ALS_SetActorHealth
-	#define SetActorHealth( FIXES_SetActorHealth(
+#if defined _ALS_SetActorHealth
+	// Previous hook.
+	#define _ALS_SetActorHealth__
+	#define SetActorHealth__( SetActorHealth(
 #endif
 
-#if defined _ALS_GetActorHealth
-	#error _ALS_GetActorHealth defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -348,14 +321,12 @@ native FIXES_GetActorHealth(actorid, &Float:health) = GetActorHealth;
  * </remarks>
  */
 native GetActorHealth__(actorid, &Float:health) = GetActorHealth;
-#if _FIXES_SAMP
-	#define _ALS_GetActorHealth
-	#define GetActorHealth( FIXES_GetActorHealth(
+#if defined _ALS_GetActorHealth
+	// Previous hook.
+	#define _ALS_GetActorHealth__
+	#define GetActorHealth__( GetActorHealth(
 #endif
 
-#if defined _ALS_SetActorInvulnerable
-	#error _ALS_SetActorInvulnerable defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -374,14 +345,12 @@ native FIXES_SetActorInvulnerable(actorid, _FIXES_MAYBE_BOOL:invulnerable = true
  * </remarks>
  */
 native SetActorInvulnerable__(actorid, bool:invulnerable = true) = SetActorInvulnerable;
-#if _FIXES_SAMP
-	#define _ALS_SetActorInvulnerable
-	#define SetActorInvulnerable( FIXES_SetActorInvulnerable(
+#if defined _ALS_SetActorInvulnerable
+	// Previous hook.
+	#define _ALS_SetActorInvulnerable__
+	#define SetActorInvulnerable__( SetActorInvulnerable(
 #endif
 
-#if defined _ALS_IsActorInvulnerable
-	#error _ALS_IsActorInvulnerable defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -400,14 +369,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsActorInvulnerable(actorid) = IsActorInvulnerabl
  * </remarks>
  */
 native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
-#if _FIXES_SAMP
-	#define _ALS_IsActorInvulnerable
-	#define IsActorInvulnerable( FIXES_IsActorInvulnerable(
+#if defined _ALS_IsActorInvulnerable
+	// Previous hook.
+	#define _ALS_IsActorInvulnerable__
+	#define IsActorInvulnerable__( IsActorInvulnerable(
 #endif
 
-#if defined _ALS_IsValidActor
-	#error _ALS_IsValidActor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -426,9 +393,10 @@ native _FIXES_MAYBE_BOOL:FIXES_IsValidActor(actorid) = IsValidActor;
  * </remarks>
  */
 native bool:IsValidActor__(actorid) = IsValidActor;
-#if _FIXES_SAMP
-	#define _ALS_IsValidActor
-	#define IsValidActor( FIXES_IsValidActor(
+#if defined _ALS_IsValidActor
+	// Previous hook.
+	#define _ALS_IsValidActor__
+	#define IsValidActor__( IsValidActor(
 #endif
 
 /*
@@ -441,9 +409,6 @@ native bool:IsValidActor__(actorid) = IsValidActor;
 
 */
 
-#if defined _ALS_HTTP
-	#error _ALS_HTTP defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -462,9 +427,10 @@ native FIXES_HTTP(index, HTTP_METHOD:method, _FIXES_MAYBE_CONST url[], _FIXES_MA
  * </remarks>
  */
 native HTTP__(index, HTTP_METHOD:method, const url[], const data[], const callback[]) = HTTP;
-#if _FIXES_SAMP
-	#define _ALS_HTTP
-	#define HTTP( FIXES_HTTP(
+#if defined _ALS_HTTP
+	// Previous hook.
+	#define _ALS_HTTP__
+	#define HTTP__( HTTP(
 #endif
 
 /*
@@ -478,9 +444,6 @@ native HTTP__(index, HTTP_METHOD:method, const url[], const data[], const callba
 
 */
 
-#if defined _ALS_CreateObject
-	#error _ALS_CreateObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -499,14 +462,12 @@ native FIXES_CreateObject(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:
  * </remarks>
  */
 native CreateObject__(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject;
-#if _FIXES_SAMP
-	#define _ALS_CreateObject
-	#define CreateObject( FIXES_CreateObject(
+#if defined _ALS_CreateObject
+	// Previous hook.
+	#define _ALS_CreateObject__
+	#define CreateObject__( CreateObject(
 #endif
 
-#if defined _ALS_AttachObjectToVehicle
-	#error _ALS_AttachObjectToVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -525,14 +486,12 @@ native FIXES_AttachObjectToVehicle(objectid, parentid, Float:offsetX, Float:offs
  * </remarks>
  */
 native AttachObjectToVehicle__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle;
-#if _FIXES_SAMP
-	#define _ALS_AttachObjectToVehicle
-	#define AttachObjectToVehicle( FIXES_AttachObjectToVehicle(
+#if defined _ALS_AttachObjectToVehicle
+	// Previous hook.
+	#define _ALS_AttachObjectToVehicle__
+	#define AttachObjectToVehicle__( AttachObjectToVehicle(
 #endif
 
-#if defined _ALS_AttachObjectToObject
-	#error _ALS_AttachObjectToObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -551,14 +510,12 @@ native FIXES_AttachObjectToObject(objectid, parentid, Float:offsetX, Float:offse
  * </remarks>
  */
 native AttachObjectToObject__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, bool:syncRotation = true) = AttachObjectToObject;
-#if _FIXES_SAMP
-	#define _ALS_AttachObjectToObject
-	#define AttachObjectToObject( FIXES_AttachObjectToObject(
+#if defined _ALS_AttachObjectToObject
+	// Previous hook.
+	#define _ALS_AttachObjectToObject__
+	#define AttachObjectToObject__( AttachObjectToObject(
 #endif
 
-#if defined _ALS_AttachObjectToPlayer
-	#error _ALS_AttachObjectToPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -577,14 +534,12 @@ native FIXES_AttachObjectToPlayer(objectid, parentid, Float:offsetX, Float:offse
  * </remarks>
  */
 native AttachObjectToPlayer__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer;
-#if _FIXES_SAMP
-	#define _ALS_AttachObjectToPlayer
-	#define AttachObjectToPlayer( FIXES_AttachObjectToPlayer(
+#if defined _ALS_AttachObjectToPlayer
+	// Previous hook.
+	#define _ALS_AttachObjectToPlayer__
+	#define AttachObjectToPlayer__( AttachObjectToPlayer(
 #endif
 
-#if defined _ALS_SetObjectPos
-	#error _ALS_SetObjectPos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -603,14 +558,12 @@ native FIXES_SetObjectPos(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
  * </remarks>
  */
 native SetObjectPos__(objectid, Float:x, Float:y, Float:z) = SetObjectPos;
-#if _FIXES_SAMP
-	#define _ALS_SetObjectPos
-	#define SetObjectPos( FIXES_SetObjectPos(
+#if defined _ALS_SetObjectPos
+	// Previous hook.
+	#define _ALS_SetObjectPos__
+	#define SetObjectPos__( SetObjectPos(
 #endif
 
-#if defined _ALS_GetObjectPos
-	#error _ALS_GetObjectPos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -629,14 +582,12 @@ native FIXES_GetObjectPos(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos
  * </remarks>
  */
 native GetObjectPos__(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos;
-#if _FIXES_SAMP
-	#define _ALS_GetObjectPos
-	#define GetObjectPos( FIXES_GetObjectPos(
+#if defined _ALS_GetObjectPos
+	// Previous hook.
+	#define _ALS_GetObjectPos__
+	#define GetObjectPos__( GetObjectPos(
 #endif
 
-#if defined _ALS_SetObjectRot
-	#error _ALS_SetObjectRot defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -655,14 +606,12 @@ native FIXES_SetObjectRot(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObj
  * </remarks>
  */
 native SetObjectRot__(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectRot;
-#if _FIXES_SAMP
-	#define _ALS_SetObjectRot
-	#define SetObjectRot( FIXES_SetObjectRot(
+#if defined _ALS_SetObjectRot
+	// Previous hook.
+	#define _ALS_SetObjectRot__
+	#define SetObjectRot__( SetObjectRot(
 #endif
 
-#if defined _ALS_GetObjectRot
-	#error _ALS_GetObjectRot defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -681,14 +630,12 @@ native FIXES_GetObjectRot(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = Get
  * </remarks>
  */
 native GetObjectRot__(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot;
-#if _FIXES_SAMP
-	#define _ALS_GetObjectRot
-	#define GetObjectRot( FIXES_GetObjectRot(
+#if defined _ALS_GetObjectRot
+	// Previous hook.
+	#define _ALS_GetObjectRot__
+	#define GetObjectRot__( GetObjectRot(
 #endif
 
-#if defined _ALS_GetObjectModel
-	#error _ALS_GetObjectModel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -707,14 +654,12 @@ native FIXES_GetObjectModel(objectid) = GetObjectModel;
  * </remarks>
  */
 native GetObjectModel__(objectid) = GetObjectModel;
-#if _FIXES_SAMP
-	#define _ALS_GetObjectModel
-	#define GetObjectModel( FIXES_GetObjectModel(
+#if defined _ALS_GetObjectModel
+	// Previous hook.
+	#define _ALS_GetObjectModel__
+	#define GetObjectModel__( GetObjectModel(
 #endif
 
-#if defined _ALS_SetObjectNoCameraCol
-	#error _ALS_SetObjectNoCameraCol defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -733,14 +678,12 @@ native FIXES_SetObjectNoCameraCol(objectid) = SetObjectNoCameraCol;
  * </remarks>
  */
 native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol;
-#if _FIXES_SAMP
-	#define _ALS_SetObjectNoCameraCol
-	#define SetObjectNoCameraCol( FIXES_SetObjectNoCameraCol(
+#if defined _ALS_SetObjectNoCameraCol
+	// Previous hook.
+	#define _ALS_SetObjectNoCameraCol__
+	#define SetObjectNoCameraCol__( SetObjectNoCameraCol(
 #endif
 
-#if defined _ALS_IsValidObject
-	#error _ALS_IsValidObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -759,14 +702,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsValidObject(objectid) = IsValidObject;
  * </remarks>
  */
 native bool:IsValidObject__(objectid) = IsValidObject;
-#if _FIXES_SAMP
-	#define _ALS_IsValidObject
-	#define IsValidObject( FIXES_IsValidObject(
+#if defined _ALS_IsValidObject
+	// Previous hook.
+	#define _ALS_IsValidObject__
+	#define IsValidObject__( IsValidObject(
 #endif
 
-#if defined _ALS_DestroyObject
-	#error _ALS_DestroyObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -785,14 +726,12 @@ native FIXES_DestroyObject(objectid) = DestroyObject;
  * </remarks>
  */
 native DestroyObject__(objectid) = DestroyObject;
-#if _FIXES_SAMP
-	#define _ALS_DestroyObject
-	#define DestroyObject( FIXES_DestroyObject(
+#if defined _ALS_DestroyObject
+	// Previous hook.
+	#define _ALS_DestroyObject__
+	#define DestroyObject__( DestroyObject(
 #endif
 
-#if defined _ALS_MoveObject
-	#error _ALS_MoveObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -811,14 +750,12 @@ native FIXES_MoveObject(objectid, Float:x, Float:y, Float:z, Float:speed, Float:
  * </remarks>
  */
 native MoveObject__(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject;
-#if _FIXES_SAMP
-	#define _ALS_MoveObject
-	#define MoveObject( FIXES_MoveObject(
+#if defined _ALS_MoveObject
+	// Previous hook.
+	#define _ALS_MoveObject__
+	#define MoveObject__( MoveObject(
 #endif
 
-#if defined _ALS_StopObject
-	#error _ALS_StopObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -837,14 +774,12 @@ native FIXES_StopObject(objectid) = StopObject;
  * </remarks>
  */
 native StopObject__(objectid) = StopObject;
-#if _FIXES_SAMP
-	#define _ALS_StopObject
-	#define StopObject( FIXES_StopObject(
+#if defined _ALS_StopObject
+	// Previous hook.
+	#define _ALS_StopObject__
+	#define StopObject__( StopObject(
 #endif
 
-#if defined _ALS_IsObjectMoving
-	#error _ALS_IsObjectMoving defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -863,14 +798,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsObjectMoving(objectid) = IsObjectMoving;
  * </remarks>
  */
 native bool:IsObjectMoving__(objectid) = IsObjectMoving;
-#if _FIXES_SAMP
-	#define _ALS_IsObjectMoving
-	#define IsObjectMoving( FIXES_IsObjectMoving(
+#if defined _ALS_IsObjectMoving
+	// Previous hook.
+	#define _ALS_IsObjectMoving__
+	#define IsObjectMoving__( IsObjectMoving(
 #endif
 
-#if defined _ALS_EditObject
-	#error _ALS_EditObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -889,14 +822,12 @@ native FIXES_EditObject(playerid, objectid) = EditObject;
  * </remarks>
  */
 native EditObject__(playerid, objectid) = EditObject;
-#if _FIXES_SAMP
-	#define _ALS_EditObject
-	#define EditObject( FIXES_EditObject(
+#if defined _ALS_EditObject
+	// Previous hook.
+	#define _ALS_EditObject__
+	#define EditObject__( EditObject(
 #endif
 
-#if defined _ALS_EditPlayerObject
-	#error _ALS_EditPlayerObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -915,14 +846,12 @@ native FIXES_EditPlayerObject(playerid, objectid) = EditPlayerObject;
  * </remarks>
  */
 native EditPlayerObject__(playerid, objectid) = EditPlayerObject;
-#if _FIXES_SAMP
-	#define _ALS_EditPlayerObject
-	#define EditPlayerObject( FIXES_EditPlayerObject(
+#if defined _ALS_EditPlayerObject
+	// Previous hook.
+	#define _ALS_EditPlayerObject__
+	#define EditPlayerObject__( EditPlayerObject(
 #endif
 
-#if defined _ALS_SelectObject
-	#error _ALS_SelectObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -941,14 +870,12 @@ native FIXES_SelectObject(playerid) = SelectObject;
  * </remarks>
  */
 native SelectObject__(playerid) = SelectObject;
-#if _FIXES_SAMP
-	#define _ALS_SelectObject
-	#define SelectObject( FIXES_SelectObject(
+#if defined _ALS_SelectObject
+	// Previous hook.
+	#define _ALS_SelectObject__
+	#define SelectObject__( SelectObject(
 #endif
 
-#if defined _ALS_CancelEdit
-	#error _ALS_CancelEdit defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -967,14 +894,12 @@ native FIXES_CancelEdit(playerid) = CancelEdit;
  * </remarks>
  */
 native CancelEdit__(playerid) = CancelEdit;
-#if _FIXES_SAMP
-	#define _ALS_CancelEdit
-	#define CancelEdit( FIXES_CancelEdit(
+#if defined _ALS_CancelEdit
+	// Previous hook.
+	#define _ALS_CancelEdit__
+	#define CancelEdit__( CancelEdit(
 #endif
 
-#if defined _ALS_CreatePlayerObject
-	#error _ALS_CreatePlayerObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -993,14 +918,12 @@ native FIXES_CreatePlayerObject(playerid, modelid, Float:x, Float:y, Float:z, Fl
  * </remarks>
  */
 native CreatePlayerObject__(playerid, modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreatePlayerObject;
-#if _FIXES_SAMP
-	#define _ALS_CreatePlayerObject
-	#define CreatePlayerObject( FIXES_CreatePlayerObject(
+#if defined _ALS_CreatePlayerObject
+	// Previous hook.
+	#define _ALS_CreatePlayerObject__
+	#define CreatePlayerObject__( CreatePlayerObject(
 #endif
 
-#if defined _ALS_AttachPlayerObjectToVehicle
-	#error _ALS_AttachPlayerObjectToVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1019,14 +942,12 @@ native FIXES_AttachPlayerObjectToVehicle(playerid, objectid, parentid, Float:off
  * </remarks>
  */
 native AttachPlayerObjectToVehicle__(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToVehicle;
-#if _FIXES_SAMP
-	#define _ALS_AttachPlayerObjectToVehicle
-	#define AttachPlayerObjectToVehicle( FIXES_AttachPlayerObjectToVehicle(
+#if defined _ALS_AttachPlayerObjectToVehicle
+	// Previous hook.
+	#define _ALS_AttachPlayerObjectToVehicle__
+	#define AttachPlayerObjectToVehicle__( AttachPlayerObjectToVehicle(
 #endif
 
-#if defined _ALS_SetPlayerObjectPos
-	#error _ALS_SetPlayerObjectPos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1045,14 +966,12 @@ native FIXES_SetPlayerObjectPos(playerid, objectid, Float:x, Float:y, Float:z) =
  * </remarks>
  */
 native SetPlayerObjectPos__(playerid, objectid, Float:x, Float:y, Float:z) = SetPlayerObjectPos;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerObjectPos
-	#define SetPlayerObjectPos( FIXES_SetPlayerObjectPos(
+#if defined _ALS_SetPlayerObjectPos
+	// Previous hook.
+	#define _ALS_SetPlayerObjectPos__
+	#define SetPlayerObjectPos__( SetPlayerObjectPos(
 #endif
 
-#if defined _ALS_GetPlayerObjectPos
-	#error _ALS_GetPlayerObjectPos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1071,14 +990,12 @@ native FIXES_GetPlayerObjectPos(playerid, objectid, &Float:x, &Float:y, &Float:z
  * </remarks>
  */
 native GetPlayerObjectPos__(playerid, objectid, &Float:x, &Float:y, &Float:z) = GetPlayerObjectPos;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerObjectPos
-	#define GetPlayerObjectPos( FIXES_GetPlayerObjectPos(
+#if defined _ALS_GetPlayerObjectPos
+	// Previous hook.
+	#define _ALS_GetPlayerObjectPos__
+	#define GetPlayerObjectPos__( GetPlayerObjectPos(
 #endif
 
-#if defined _ALS_SetPlayerObjectRot
-	#error _ALS_SetPlayerObjectRot defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1097,14 +1014,12 @@ native FIXES_SetPlayerObjectRot(playerid, objectid, Float:rotX, Float:rotY, Floa
  * </remarks>
  */
 native SetPlayerObjectRot__(playerid, objectid, Float:rotX, Float:rotY, Float:rotZ) = SetPlayerObjectRot;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerObjectRot
-	#define SetPlayerObjectRot( FIXES_SetPlayerObjectRot(
+#if defined _ALS_SetPlayerObjectRot
+	// Previous hook.
+	#define _ALS_SetPlayerObjectRot__
+	#define SetPlayerObjectRot__( SetPlayerObjectRot(
 #endif
 
-#if defined _ALS_GetPlayerObjectRot
-	#error _ALS_GetPlayerObjectRot defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1123,14 +1038,12 @@ native FIXES_GetPlayerObjectRot(playerid, objectid, &Float:rotX, &Float:rotY, &F
  * </remarks>
  */
 native GetPlayerObjectRot__(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerObjectRot
-	#define GetPlayerObjectRot( FIXES_GetPlayerObjectRot(
+#if defined _ALS_GetPlayerObjectRot
+	// Previous hook.
+	#define _ALS_GetPlayerObjectRot__
+	#define GetPlayerObjectRot__( GetPlayerObjectRot(
 #endif
 
-#if defined _ALS_GetPlayerObjectModel
-	#error _ALS_GetPlayerObjectModel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1149,14 +1062,12 @@ native FIXES_GetPlayerObjectModel(playerid, objectid) = GetPlayerObjectModel;
  * </remarks>
  */
 native GetPlayerObjectModel__(playerid, objectid) = GetPlayerObjectModel;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerObjectModel
-	#define GetPlayerObjectModel( FIXES_GetPlayerObjectModel(
+#if defined _ALS_GetPlayerObjectModel
+	// Previous hook.
+	#define _ALS_GetPlayerObjectModel__
+	#define GetPlayerObjectModel__( GetPlayerObjectModel(
 #endif
 
-#if defined _ALS_SetPlayerObjectNoCameraCol
-	#error _ALS_SetPlayerObjectNoCameraCol defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1175,14 +1086,12 @@ native FIXES_SetPlayerObjectNoCameraCol(playerid, objectid) = SetPlayerObjectNoC
  * </remarks>
  */
 native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCameraCol;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerObjectNoCameraCol
-	#define SetPlayerObjectNoCameraCol( FIXES_SetPlayerObjectNoCameraCol(
+#if defined _ALS_SetPlayerObjectNoCameraCol
+	// Previous hook.
+	#define _ALS_SetPlayerObjectNoCameraCol__
+	#define SetPlayerObjectNoCameraCol__( SetPlayerObjectNoCameraCol(
 #endif
 
-#if defined _ALS_IsValidPlayerObject
-	#error _ALS_IsValidPlayerObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1201,14 +1110,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsValidPlayerObject(playerid, objectid) = IsValid
  * </remarks>
  */
 native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject;
-#if _FIXES_SAMP
-	#define _ALS_IsValidPlayerObject
-	#define IsValidPlayerObject( FIXES_IsValidPlayerObject(
+#if defined _ALS_IsValidPlayerObject
+	// Previous hook.
+	#define _ALS_IsValidPlayerObject__
+	#define IsValidPlayerObject__( IsValidPlayerObject(
 #endif
 
-#if defined _ALS_DestroyPlayerObject
-	#error _ALS_DestroyPlayerObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1227,14 +1134,12 @@ native FIXES_DestroyPlayerObject(playerid, objectid) = DestroyPlayerObject;
  * </remarks>
  */
 native DestroyPlayerObject__(playerid, objectid) = DestroyPlayerObject;
-#if _FIXES_SAMP
-	#define _ALS_DestroyPlayerObject
-	#define DestroyPlayerObject( FIXES_DestroyPlayerObject(
+#if defined _ALS_DestroyPlayerObject
+	// Previous hook.
+	#define _ALS_DestroyPlayerObject__
+	#define DestroyPlayerObject__( DestroyPlayerObject(
 #endif
 
-#if defined _ALS_MovePlayerObject
-	#error _ALS_MovePlayerObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1253,14 +1158,12 @@ native FIXES_MovePlayerObject(playerid, objectid, Float:x, Float:y, Float:z, Flo
  * </remarks>
  */
 native MovePlayerObject__(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject;
-#if _FIXES_SAMP
-	#define _ALS_MovePlayerObject
-	#define MovePlayerObject( FIXES_MovePlayerObject(
+#if defined _ALS_MovePlayerObject
+	// Previous hook.
+	#define _ALS_MovePlayerObject__
+	#define MovePlayerObject__( MovePlayerObject(
 #endif
 
-#if defined _ALS_StopPlayerObject
-	#error _ALS_StopPlayerObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1279,14 +1182,12 @@ native FIXES_StopPlayerObject(playerid, objectid) = StopPlayerObject;
  * </remarks>
  */
 native StopPlayerObject__(playerid, objectid) = StopPlayerObject;
-#if _FIXES_SAMP
-	#define _ALS_StopPlayerObject
-	#define StopPlayerObject( FIXES_StopPlayerObject(
+#if defined _ALS_StopPlayerObject
+	// Previous hook.
+	#define _ALS_StopPlayerObject__
+	#define StopPlayerObject__( StopPlayerObject(
 #endif
 
-#if defined _ALS_IsPlayerObjectMoving
-	#error _ALS_IsPlayerObjectMoving defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1305,14 +1206,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsPlayerObjectMoving(playerid, objectid) = IsPlay
  * </remarks>
  */
 native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving;
-#if _FIXES_SAMP
-	#define _ALS_IsPlayerObjectMoving
-	#define IsPlayerObjectMoving( FIXES_IsPlayerObjectMoving(
+#if defined _ALS_IsPlayerObjectMoving
+	// Previous hook.
+	#define _ALS_IsPlayerObjectMoving__
+	#define IsPlayerObjectMoving__( IsPlayerObjectMoving(
 #endif
 
-#if defined _ALS_AttachPlayerObjectToPlayer
-	#error _ALS_AttachPlayerObjectToPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1331,14 +1230,12 @@ native FIXES_AttachPlayerObjectToPlayer(playerid, objectid, parentid, Float:offs
  * </remarks>
  */
 native AttachPlayerObjectToPlayer__(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer;
-#if _FIXES_SAMP
-	#define _ALS_AttachPlayerObjectToPlayer
-	#define AttachPlayerObjectToPlayer( FIXES_AttachPlayerObjectToPlayer(
+#if defined _ALS_AttachPlayerObjectToPlayer
+	// Previous hook.
+	#define _ALS_AttachPlayerObjectToPlayer__
+	#define AttachPlayerObjectToPlayer__( AttachPlayerObjectToPlayer(
 #endif
 
-#if defined _ALS_SetObjectMaterial
-	#error _ALS_SetObjectMaterial defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1357,14 +1254,12 @@ native FIXES_SetObjectMaterial(objectid, materialIndex, modelid, _FIXES_MAYBE_CO
  * </remarks>
  */
 native SetObjectMaterial__(objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetObjectMaterial;
-#if _FIXES_SAMP
-	#define _ALS_SetObjectMaterial
-	#define SetObjectMaterial( FIXES_SetObjectMaterial(
+#if defined _ALS_SetObjectMaterial
+	// Previous hook.
+	#define _ALS_SetObjectMaterial__
+	#define SetObjectMaterial__( SetObjectMaterial(
 #endif
 
-#if defined _ALS_SetPlayerObjectMaterial
-	#error _ALS_SetPlayerObjectMaterial defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1383,14 +1278,12 @@ native FIXES_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid,
  * </remarks>
  */
 native SetPlayerObjectMaterial__(playerid, objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetPlayerObjectMaterial;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerObjectMaterial
-	#define SetPlayerObjectMaterial( FIXES_SetPlayerObjectMaterial(
+#if defined _ALS_SetPlayerObjectMaterial
+	// Previous hook.
+	#define _ALS_SetPlayerObjectMaterial__
+	#define SetPlayerObjectMaterial__( SetPlayerObjectMaterial(
 #endif
 
-#if defined _ALS_SetObjectMaterialText
-	#error _ALS_SetObjectMaterialText defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1409,14 +1302,12 @@ native FIXES_SetObjectMaterialText(objectid, _FIXES_MAYBE_CONST text[], material
  * </remarks>
  */
 native SetObjectMaterialText__(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
-#if _FIXES_SAMP
-	#define _ALS_SetObjectMaterialText
-	#define SetObjectMaterialText( FIXES_SetObjectMaterialText(
+#if defined _ALS_SetObjectMaterialText
+	// Previous hook.
+	#define _ALS_SetObjectMaterialText__
+	#define SetObjectMaterialText__( SetObjectMaterialText(
 #endif
 
-#if defined _ALS_SetPlayerObjectMaterialText
-	#error _ALS_SetPlayerObjectMaterialText defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1435,14 +1326,12 @@ native FIXES_SetPlayerObjectMaterialText(playerid, objectid, _FIXES_MAYBE_CONST 
  * </remarks>
  */
 native SetPlayerObjectMaterialText__(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerObjectMaterialText
-	#define SetPlayerObjectMaterialText( FIXES_SetPlayerObjectMaterialText(
+#if defined _ALS_SetPlayerObjectMaterialText
+	// Previous hook.
+	#define _ALS_SetPlayerObjectMaterialText__
+	#define SetPlayerObjectMaterialText__( SetPlayerObjectMaterialText(
 #endif
 
-#if defined _ALS_SetObjectsDefaultCameraCol
-	#error _ALS_SetObjectsDefaultCameraCol defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1461,9 +1350,10 @@ native FIXES_SetObjectsDefaultCameraCol(_FIXES_MAYBE_BOOL:disable) = SetObjectsD
  * </remarks>
  */
 native SetObjectsDefaultCameraCol__(bool:disable) = SetObjectsDefaultCameraCol;
-#if _FIXES_SAMP
-	#define _ALS_SetObjectsDefaultCameraCol
-	#define SetObjectsDefaultCameraCol( FIXES_SetObjectsDefaultCameraCol(
+#if defined _ALS_SetObjectsDefaultCameraCol
+	// Previous hook.
+	#define _ALS_SetObjectsDefaultCameraCol__
+	#define SetObjectsDefaultCameraCol__( SetObjectsDefaultCameraCol(
 #endif
 
 /*
@@ -1476,9 +1366,6 @@ native SetObjectsDefaultCameraCol__(bool:disable) = SetObjectsDefaultCameraCol;
 
 */
 
-#if defined _ALS_SetSpawnInfo
-	#error _ALS_SetSpawnInfo defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1497,14 +1384,12 @@ native FIXES_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float
  * </remarks>
  */
 native SetSpawnInfo__(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo;
-#if _FIXES_SAMP
-	#define _ALS_SetSpawnInfo
-	#define SetSpawnInfo( FIXES_SetSpawnInfo(
+#if defined _ALS_SetSpawnInfo
+	// Previous hook.
+	#define _ALS_SetSpawnInfo__
+	#define SetSpawnInfo__( SetSpawnInfo(
 #endif
 
-#if defined _ALS_SpawnPlayer
-	#error _ALS_SpawnPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1523,14 +1408,12 @@ native FIXES_SpawnPlayer(playerid) = SpawnPlayer;
  * </remarks>
  */
 native SpawnPlayer__(playerid) = SpawnPlayer;
-#if _FIXES_SAMP
-	#define _ALS_SpawnPlayer
-	#define SpawnPlayer( FIXES_SpawnPlayer(
+#if defined _ALS_SpawnPlayer
+	// Previous hook.
+	#define _ALS_SpawnPlayer__
+	#define SpawnPlayer__( SpawnPlayer(
 #endif
 
-#if defined _ALS_SetPlayerPos
-	#error _ALS_SetPlayerPos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1549,14 +1432,12 @@ native FIXES_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
  * </remarks>
  */
 native SetPlayerPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerPos
-	#define SetPlayerPos( FIXES_SetPlayerPos(
+#if defined _ALS_SetPlayerPos
+	// Previous hook.
+	#define _ALS_SetPlayerPos__
+	#define SetPlayerPos__( SetPlayerPos(
 #endif
 
-#if defined _ALS_SetPlayerPosFindZ
-	#error _ALS_SetPlayerPosFindZ defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1575,14 +1456,12 @@ native FIXES_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerP
  * </remarks>
  */
 native SetPlayerPosFindZ__(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerPosFindZ
-	#define SetPlayerPosFindZ( FIXES_SetPlayerPosFindZ(
+#if defined _ALS_SetPlayerPosFindZ
+	// Previous hook.
+	#define _ALS_SetPlayerPosFindZ__
+	#define SetPlayerPosFindZ__( SetPlayerPosFindZ(
 #endif
 
-#if defined _ALS_GetPlayerPos
-	#error _ALS_GetPlayerPos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1601,14 +1480,12 @@ native FIXES_GetPlayerPos(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos
  * </remarks>
  */
 native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerPos
-	#define GetPlayerPos( FIXES_GetPlayerPos(
+#if defined _ALS_GetPlayerPos
+	// Previous hook.
+	#define _ALS_GetPlayerPos__
+	#define GetPlayerPos__( GetPlayerPos(
 #endif
 
-#if defined _ALS_SetPlayerFacingAngle
-	#error _ALS_SetPlayerFacingAngle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1627,14 +1504,12 @@ native FIXES_SetPlayerFacingAngle(playerid, Float:ang) = SetPlayerFacingAngle;
  * </remarks>
  */
 native SetPlayerFacingAngle__(playerid, Float:ang) = SetPlayerFacingAngle;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerFacingAngle
-	#define SetPlayerFacingAngle( FIXES_SetPlayerFacingAngle(
+#if defined _ALS_SetPlayerFacingAngle
+	// Previous hook.
+	#define _ALS_SetPlayerFacingAngle__
+	#define SetPlayerFacingAngle__( SetPlayerFacingAngle(
 #endif
 
-#if defined _ALS_GetPlayerFacingAngle
-	#error _ALS_GetPlayerFacingAngle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1653,14 +1528,12 @@ native FIXES_GetPlayerFacingAngle(playerid, &Float:ang) = GetPlayerFacingAngle;
  * </remarks>
  */
 native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerFacingAngle
-	#define GetPlayerFacingAngle( FIXES_GetPlayerFacingAngle(
+#if defined _ALS_GetPlayerFacingAngle
+	// Previous hook.
+	#define _ALS_GetPlayerFacingAngle__
+	#define GetPlayerFacingAngle__( GetPlayerFacingAngle(
 #endif
 
-#if defined _ALS_IsPlayerInRangeOfPoint
-	#error _ALS_IsPlayerInRangeOfPoint defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1679,14 +1552,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInRangeOfPoint(playerid, Float:range, Flo
  * </remarks>
  */
 native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint;
-#if _FIXES_SAMP
-	#define _ALS_IsPlayerInRangeOfPoint
-	#define IsPlayerInRangeOfPoint( FIXES_IsPlayerInRangeOfPoint(
+#if defined _ALS_IsPlayerInRangeOfPoint
+	// Previous hook.
+	#define _ALS_IsPlayerInRangeOfPoint__
+	#define IsPlayerInRangeOfPoint__( IsPlayerInRangeOfPoint(
 #endif
 
-#if defined _ALS_GetPlayerDistanceFromPoint
-	#error _ALS_GetPlayerDistanceFromPoint defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1705,14 +1576,12 @@ native Float:FIXES_GetPlayerDistanceFromPoint(playerid, Float:x, Float:y, Float:
  * </remarks>
  */
 native Float:GetPlayerDistanceFromPoint__(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerDistanceFromPoint
-	#define GetPlayerDistanceFromPoint( FIXES_GetPlayerDistanceFromPoint(
+#if defined _ALS_GetPlayerDistanceFromPoint
+	// Previous hook.
+	#define _ALS_GetPlayerDistanceFromPoint__
+	#define GetPlayerDistanceFromPoint__( GetPlayerDistanceFromPoint(
 #endif
 
-#if defined _ALS_IsPlayerStreamedIn
-	#error _ALS_IsPlayerStreamedIn defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1731,14 +1600,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsPlayerStreamedIn(targetid, playerid) = IsPlayer
  * </remarks>
  */
 native bool:IsPlayerStreamedIn__(targetid, playerid) = IsPlayerStreamedIn;
-#if _FIXES_SAMP
-	#define _ALS_IsPlayerStreamedIn
-	#define IsPlayerStreamedIn( FIXES_IsPlayerStreamedIn(
+#if defined _ALS_IsPlayerStreamedIn
+	// Previous hook.
+	#define _ALS_IsPlayerStreamedIn__
+	#define IsPlayerStreamedIn__( IsPlayerStreamedIn(
 #endif
 
-#if defined _ALS_SetPlayerInterior
-	#error _ALS_SetPlayerInterior defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1757,14 +1624,12 @@ native FIXES_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
  * </remarks>
  */
 native SetPlayerInterior__(playerid, interiorid) = SetPlayerInterior;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerInterior
-	#define SetPlayerInterior( FIXES_SetPlayerInterior(
+#if defined _ALS_SetPlayerInterior
+	// Previous hook.
+	#define _ALS_SetPlayerInterior__
+	#define SetPlayerInterior__( SetPlayerInterior(
 #endif
 
-#if defined _ALS_GetPlayerInterior
-	#error _ALS_GetPlayerInterior defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1783,14 +1648,12 @@ native FIXES_GetPlayerInterior(playerid) = GetPlayerInterior;
  * </remarks>
  */
 native GetPlayerInterior__(playerid) = GetPlayerInterior;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerInterior
-	#define GetPlayerInterior( FIXES_GetPlayerInterior(
+#if defined _ALS_GetPlayerInterior
+	// Previous hook.
+	#define _ALS_GetPlayerInterior__
+	#define GetPlayerInterior__( GetPlayerInterior(
 #endif
 
-#if defined _ALS_SetPlayerHealth
-	#error _ALS_SetPlayerHealth defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1809,14 +1672,12 @@ native FIXES_SetPlayerHealth(playerid, Float:health) = SetPlayerHealth;
  * </remarks>
  */
 native SetPlayerHealth__(playerid, Float:health) = SetPlayerHealth;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerHealth
-	#define SetPlayerHealth( FIXES_SetPlayerHealth(
+#if defined _ALS_SetPlayerHealth
+	// Previous hook.
+	#define _ALS_SetPlayerHealth__
+	#define SetPlayerHealth__( SetPlayerHealth(
 #endif
 
-#if defined _ALS_GetPlayerHealth
-	#error _ALS_GetPlayerHealth defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1835,14 +1696,12 @@ native FIXES_GetPlayerHealth(playerid, &Float:health) = GetPlayerHealth;
  * </remarks>
  */
 native GetPlayerHealth__(playerid, &Float:health) = GetPlayerHealth;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerHealth
-	#define GetPlayerHealth( FIXES_GetPlayerHealth(
+#if defined _ALS_GetPlayerHealth
+	// Previous hook.
+	#define _ALS_GetPlayerHealth__
+	#define GetPlayerHealth__( GetPlayerHealth(
 #endif
 
-#if defined _ALS_SetPlayerArmour
-	#error _ALS_SetPlayerArmour defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1861,14 +1720,12 @@ native FIXES_SetPlayerArmour(playerid, Float:armour) = SetPlayerArmour;
  * </remarks>
  */
 native SetPlayerArmour__(playerid, Float:armour) = SetPlayerArmour;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerArmour
-	#define SetPlayerArmour( FIXES_SetPlayerArmour(
+#if defined _ALS_SetPlayerArmour
+	// Previous hook.
+	#define _ALS_SetPlayerArmour__
+	#define SetPlayerArmour__( SetPlayerArmour(
 #endif
 
-#if defined _ALS_GetPlayerArmour
-	#error _ALS_GetPlayerArmour defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1887,14 +1744,12 @@ native FIXES_GetPlayerArmour(playerid, &Float:armour) = GetPlayerArmour;
  * </remarks>
  */
 native GetPlayerArmour__(playerid, &Float:armour) = GetPlayerArmour;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerArmour
-	#define GetPlayerArmour( FIXES_GetPlayerArmour(
+#if defined _ALS_GetPlayerArmour
+	// Previous hook.
+	#define _ALS_GetPlayerArmour__
+	#define GetPlayerArmour__( GetPlayerArmour(
 #endif
 
-#if defined _ALS_SetPlayerAmmo
-	#error _ALS_SetPlayerAmmo defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1913,14 +1768,12 @@ native FIXES_SetPlayerAmmo(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
  * </remarks>
  */
 native SetPlayerAmmo__(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerAmmo
-	#define SetPlayerAmmo( FIXES_SetPlayerAmmo(
+#if defined _ALS_SetPlayerAmmo
+	// Previous hook.
+	#define _ALS_SetPlayerAmmo__
+	#define SetPlayerAmmo__( SetPlayerAmmo(
 #endif
 
-#if defined _ALS_GetPlayerAmmo
-	#error _ALS_GetPlayerAmmo defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1939,14 +1792,12 @@ native FIXES_GetPlayerAmmo(playerid) = GetPlayerAmmo;
  * </remarks>
  */
 native GetPlayerAmmo__(playerid) = GetPlayerAmmo;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerAmmo
-	#define GetPlayerAmmo( FIXES_GetPlayerAmmo(
+#if defined _ALS_GetPlayerAmmo
+	// Previous hook.
+	#define _ALS_GetPlayerAmmo__
+	#define GetPlayerAmmo__( GetPlayerAmmo(
 #endif
 
-#if defined _ALS_GetPlayerWeaponState
-	#error _ALS_GetPlayerWeaponState defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1965,14 +1816,12 @@ native WEAPONSTATE:FIXES_GetPlayerWeaponState(playerid) = GetPlayerWeaponState;
  * </remarks>
  */
 native WEAPONSTATE:GetPlayerWeaponState__(playerid) = GetPlayerWeaponState;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerWeaponState
-	#define GetPlayerWeaponState( FIXES_GetPlayerWeaponState(
+#if defined _ALS_GetPlayerWeaponState
+	// Previous hook.
+	#define _ALS_GetPlayerWeaponState__
+	#define GetPlayerWeaponState__( GetPlayerWeaponState(
 #endif
 
-#if defined _ALS_GetPlayerTargetPlayer
-	#error _ALS_GetPlayerTargetPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -1991,14 +1840,12 @@ native FIXES_GetPlayerTargetPlayer(playerid) = GetPlayerTargetPlayer;
  * </remarks>
  */
 native GetPlayerTargetPlayer__(playerid) = GetPlayerTargetPlayer;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerTargetPlayer
-	#define GetPlayerTargetPlayer( FIXES_GetPlayerTargetPlayer(
+#if defined _ALS_GetPlayerTargetPlayer
+	// Previous hook.
+	#define _ALS_GetPlayerTargetPlayer__
+	#define GetPlayerTargetPlayer__( GetPlayerTargetPlayer(
 #endif
 
-#if defined _ALS_GetPlayerTargetActor
-	#error _ALS_GetPlayerTargetActor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2017,14 +1864,12 @@ native FIXES_GetPlayerTargetActor(playerid) = GetPlayerTargetActor;
  * </remarks>
  */
 native GetPlayerTargetActor__(playerid) = GetPlayerTargetActor;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerTargetActor
-	#define GetPlayerTargetActor( FIXES_GetPlayerTargetActor(
+#if defined _ALS_GetPlayerTargetActor
+	// Previous hook.
+	#define _ALS_GetPlayerTargetActor__
+	#define GetPlayerTargetActor__( GetPlayerTargetActor(
 #endif
 
-#if defined _ALS_SetPlayerTeam
-	#error _ALS_SetPlayerTeam defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2043,14 +1888,12 @@ native FIXES_SetPlayerTeam(playerid, teamid) = SetPlayerTeam;
  * </remarks>
  */
 native SetPlayerTeam__(playerid, teamid) = SetPlayerTeam;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerTeam
-	#define SetPlayerTeam( FIXES_SetPlayerTeam(
+#if defined _ALS_SetPlayerTeam
+	// Previous hook.
+	#define _ALS_SetPlayerTeam__
+	#define SetPlayerTeam__( SetPlayerTeam(
 #endif
 
-#if defined _ALS_GetPlayerTeam
-	#error _ALS_GetPlayerTeam defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2069,14 +1912,12 @@ native FIXES_GetPlayerTeam(playerid) = GetPlayerTeam;
  * </remarks>
  */
 native GetPlayerTeam__(playerid) = GetPlayerTeam;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerTeam
-	#define GetPlayerTeam( FIXES_GetPlayerTeam(
+#if defined _ALS_GetPlayerTeam
+	// Previous hook.
+	#define _ALS_GetPlayerTeam__
+	#define GetPlayerTeam__( GetPlayerTeam(
 #endif
 
-#if defined _ALS_SetPlayerScore
-	#error _ALS_SetPlayerScore defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2095,14 +1936,12 @@ native FIXES_SetPlayerScore(playerid, score) = SetPlayerScore;
  * </remarks>
  */
 native SetPlayerScore__(playerid, score) = SetPlayerScore;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerScore
-	#define SetPlayerScore( FIXES_SetPlayerScore(
+#if defined _ALS_SetPlayerScore
+	// Previous hook.
+	#define _ALS_SetPlayerScore__
+	#define SetPlayerScore__( SetPlayerScore(
 #endif
 
-#if defined _ALS_GetPlayerScore
-	#error _ALS_GetPlayerScore defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2121,14 +1960,12 @@ native FIXES_GetPlayerScore(playerid) = GetPlayerScore;
  * </remarks>
  */
 native GetPlayerScore__(playerid) = GetPlayerScore;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerScore
-	#define GetPlayerScore( FIXES_GetPlayerScore(
+#if defined _ALS_GetPlayerScore
+	// Previous hook.
+	#define _ALS_GetPlayerScore__
+	#define GetPlayerScore__( GetPlayerScore(
 #endif
 
-#if defined _ALS_GetPlayerDrunkLevel
-	#error _ALS_GetPlayerDrunkLevel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2147,14 +1984,12 @@ native FIXES_GetPlayerDrunkLevel(playerid) = GetPlayerDrunkLevel;
  * </remarks>
  */
 native GetPlayerDrunkLevel__(playerid) = GetPlayerDrunkLevel;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerDrunkLevel
-	#define GetPlayerDrunkLevel( FIXES_GetPlayerDrunkLevel(
+#if defined _ALS_GetPlayerDrunkLevel
+	// Previous hook.
+	#define _ALS_GetPlayerDrunkLevel__
+	#define GetPlayerDrunkLevel__( GetPlayerDrunkLevel(
 #endif
 
-#if defined _ALS_SetPlayerDrunkLevel
-	#error _ALS_SetPlayerDrunkLevel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2173,14 +2008,12 @@ native FIXES_SetPlayerDrunkLevel(playerid, level) = SetPlayerDrunkLevel;
  * </remarks>
  */
 native SetPlayerDrunkLevel__(playerid, level) = SetPlayerDrunkLevel;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerDrunkLevel
-	#define SetPlayerDrunkLevel( FIXES_SetPlayerDrunkLevel(
+#if defined _ALS_SetPlayerDrunkLevel
+	// Previous hook.
+	#define _ALS_SetPlayerDrunkLevel__
+	#define SetPlayerDrunkLevel__( SetPlayerDrunkLevel(
 #endif
 
-#if defined _ALS_SetPlayerColor
-	#error _ALS_SetPlayerColor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2199,14 +2032,12 @@ native FIXES_SetPlayerColor(playerid, colour) = SetPlayerColor;
  * </remarks>
  */
 native SetPlayerColor__(playerid, colour) = SetPlayerColor;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerColor
-	#define SetPlayerColor( FIXES_SetPlayerColor(
+#if defined _ALS_SetPlayerColor
+	// Previous hook.
+	#define _ALS_SetPlayerColor__
+	#define SetPlayerColor__( SetPlayerColor(
 #endif
 
-#if defined _ALS_GetPlayerColor
-	#error _ALS_GetPlayerColor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2225,14 +2056,12 @@ native FIXES_GetPlayerColor(playerid) = GetPlayerColor;
  * </remarks>
  */
 native GetPlayerColor__(playerid) = GetPlayerColor;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerColor
-	#define GetPlayerColor( FIXES_GetPlayerColor(
+#if defined _ALS_GetPlayerColor
+	// Previous hook.
+	#define _ALS_GetPlayerColor__
+	#define GetPlayerColor__( GetPlayerColor(
 #endif
 
-#if defined _ALS_SetPlayerSkin
-	#error _ALS_SetPlayerSkin defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2251,14 +2080,12 @@ native FIXES_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
  * </remarks>
  */
 native SetPlayerSkin__(playerid, skinid) = SetPlayerSkin;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerSkin
-	#define SetPlayerSkin( FIXES_SetPlayerSkin(
+#if defined _ALS_SetPlayerSkin
+	// Previous hook.
+	#define _ALS_SetPlayerSkin__
+	#define SetPlayerSkin__( SetPlayerSkin(
 #endif
 
-#if defined _ALS_GetPlayerSkin
-	#error _ALS_GetPlayerSkin defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2277,14 +2104,12 @@ native FIXES_GetPlayerSkin(playerid) = GetPlayerSkin;
  * </remarks>
  */
 native GetPlayerSkin__(playerid) = GetPlayerSkin;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerSkin
-	#define GetPlayerSkin( FIXES_GetPlayerSkin(
+#if defined _ALS_GetPlayerSkin
+	// Previous hook.
+	#define _ALS_GetPlayerSkin__
+	#define GetPlayerSkin__( GetPlayerSkin(
 #endif
 
-#if defined _ALS_GetPlayerCustomSkin
-	#error _ALS_GetPlayerCustomSkin defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2303,14 +2128,12 @@ native FIXES_GetPlayerCustomSkin(playerid) = GetPlayerCustomSkin;
  * </remarks>
  */
 native GetPlayerCustomSkin__(playerid) = GetPlayerCustomSkin;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerCustomSkin
-	#define GetPlayerCustomSkin( FIXES_GetPlayerCustomSkin(
+#if defined _ALS_GetPlayerCustomSkin
+	// Previous hook.
+	#define _ALS_GetPlayerCustomSkin__
+	#define GetPlayerCustomSkin__( GetPlayerCustomSkin(
 #endif
 
-#if defined _ALS_GivePlayerWeapon
-	#error _ALS_GivePlayerWeapon defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2329,14 +2152,12 @@ native FIXES_GivePlayerWeapon(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapo
  * </remarks>
  */
 native GivePlayerWeapon__(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon;
-#if _FIXES_SAMP
-	#define _ALS_GivePlayerWeapon
-	#define GivePlayerWeapon( FIXES_GivePlayerWeapon(
+#if defined _ALS_GivePlayerWeapon
+	// Previous hook.
+	#define _ALS_GivePlayerWeapon__
+	#define GivePlayerWeapon__( GivePlayerWeapon(
 #endif
 
-#if defined _ALS_ResetPlayerWeapons
-	#error _ALS_ResetPlayerWeapons defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2355,14 +2176,12 @@ native FIXES_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
  * </remarks>
  */
 native ResetPlayerWeapons__(playerid) = ResetPlayerWeapons;
-#if _FIXES_SAMP
-	#define _ALS_ResetPlayerWeapons
-	#define ResetPlayerWeapons( FIXES_ResetPlayerWeapons(
+#if defined _ALS_ResetPlayerWeapons
+	// Previous hook.
+	#define _ALS_ResetPlayerWeapons__
+	#define ResetPlayerWeapons__( ResetPlayerWeapons(
 #endif
 
-#if defined _ALS_SetPlayerArmedWeapon
-	#error _ALS_SetPlayerArmedWeapon defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2381,14 +2200,12 @@ native FIXES_SetPlayerArmedWeapon(playerid, WEAPON:weaponid) = SetPlayerArmedWea
  * </remarks>
  */
 native SetPlayerArmedWeapon__(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerArmedWeapon
-	#define SetPlayerArmedWeapon( FIXES_SetPlayerArmedWeapon(
+#if defined _ALS_SetPlayerArmedWeapon
+	// Previous hook.
+	#define _ALS_SetPlayerArmedWeapon__
+	#define SetPlayerArmedWeapon__( SetPlayerArmedWeapon(
 #endif
 
-#if defined _ALS_GetPlayerWeaponData
-	#error _ALS_GetPlayerWeaponData defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2407,14 +2224,12 @@ native FIXES_GetPlayerWeaponData(playerid, slot, &WEAPON:weapons, &ammo) = GetPl
  * </remarks>
  */
 native GetPlayerWeaponData__(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerWeaponData
-	#define GetPlayerWeaponData( FIXES_GetPlayerWeaponData(
+#if defined _ALS_GetPlayerWeaponData
+	// Previous hook.
+	#define _ALS_GetPlayerWeaponData__
+	#define GetPlayerWeaponData__( GetPlayerWeaponData(
 #endif
 
-#if defined _ALS_GivePlayerMoney
-	#error _ALS_GivePlayerMoney defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2433,14 +2248,12 @@ native FIXES_GivePlayerMoney(playerid, money) = GivePlayerMoney;
  * </remarks>
  */
 native GivePlayerMoney__(playerid, money) = GivePlayerMoney;
-#if _FIXES_SAMP
-	#define _ALS_GivePlayerMoney
-	#define GivePlayerMoney( FIXES_GivePlayerMoney(
+#if defined _ALS_GivePlayerMoney
+	// Previous hook.
+	#define _ALS_GivePlayerMoney__
+	#define GivePlayerMoney__( GivePlayerMoney(
 #endif
 
-#if defined _ALS_ResetPlayerMoney
-	#error _ALS_ResetPlayerMoney defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2459,14 +2272,12 @@ native FIXES_ResetPlayerMoney(playerid) = ResetPlayerMoney;
  * </remarks>
  */
 native ResetPlayerMoney__(playerid) = ResetPlayerMoney;
-#if _FIXES_SAMP
-	#define _ALS_ResetPlayerMoney
-	#define ResetPlayerMoney( FIXES_ResetPlayerMoney(
+#if defined _ALS_ResetPlayerMoney
+	// Previous hook.
+	#define _ALS_ResetPlayerMoney__
+	#define ResetPlayerMoney__( ResetPlayerMoney(
 #endif
 
-#if defined _ALS_SetPlayerName
-	#error _ALS_SetPlayerName defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2485,14 +2296,12 @@ native FIXES_SetPlayerName(playerid, _FIXES_MAYBE_CONST name[]) = SetPlayerName;
  * </remarks>
  */
 native SetPlayerName__(playerid, const name[]) = SetPlayerName;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerName
-	#define SetPlayerName( FIXES_SetPlayerName(
+#if defined _ALS_SetPlayerName
+	// Previous hook.
+	#define _ALS_SetPlayerName__
+	#define SetPlayerName__( SetPlayerName(
 #endif
 
-#if defined _ALS_GetPlayerMoney
-	#error _ALS_GetPlayerMoney defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2511,14 +2320,12 @@ native FIXES_GetPlayerMoney(playerid) = GetPlayerMoney;
  * </remarks>
  */
 native GetPlayerMoney__(playerid) = GetPlayerMoney;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerMoney
-	#define GetPlayerMoney( FIXES_GetPlayerMoney(
+#if defined _ALS_GetPlayerMoney
+	// Previous hook.
+	#define _ALS_GetPlayerMoney__
+	#define GetPlayerMoney__( GetPlayerMoney(
 #endif
 
-#if defined _ALS_GetPlayerState
-	#error _ALS_GetPlayerState defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2537,14 +2344,12 @@ native PLAYER_STATE:FIXES_GetPlayerState(playerid) = GetPlayerState;
  * </remarks>
  */
 native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerState
-	#define GetPlayerState( FIXES_GetPlayerState(
+#if defined _ALS_GetPlayerState
+	// Previous hook.
+	#define _ALS_GetPlayerState__
+	#define GetPlayerState__( GetPlayerState(
 #endif
 
-#if defined _ALS_GetPlayerIp
-	#error _ALS_GetPlayerIp defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2563,14 +2368,12 @@ native FIXES_GetPlayerIp(playerid, ip[], _FIXES_MAYBE_SIZEOF(len, ip)) = GetPlay
  * </remarks>
  */
 native GetPlayerIp__(playerid, ip[], len = sizeof (ip)) = GetPlayerIp;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerIp
-	#define GetPlayerIp( FIXES_GetPlayerIp(
+#if defined _ALS_GetPlayerIp
+	// Previous hook.
+	#define _ALS_GetPlayerIp__
+	#define GetPlayerIp__( GetPlayerIp(
 #endif
 
-#if defined _ALS_GetPlayerPing
-	#error _ALS_GetPlayerPing defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2589,14 +2392,12 @@ native FIXES_GetPlayerPing(playerid) = GetPlayerPing;
  * </remarks>
  */
 native GetPlayerPing__(playerid) = GetPlayerPing;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerPing
-	#define GetPlayerPing( FIXES_GetPlayerPing(
+#if defined _ALS_GetPlayerPing
+	// Previous hook.
+	#define _ALS_GetPlayerPing__
+	#define GetPlayerPing__( GetPlayerPing(
 #endif
 
-#if defined _ALS_GetPlayerWeapon
-	#error _ALS_GetPlayerWeapon defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2615,14 +2416,12 @@ native WEAPON:FIXES_GetPlayerWeapon(playerid) = GetPlayerWeapon;
  * </remarks>
  */
 native WEAPON:GetPlayerWeapon__(playerid) = GetPlayerWeapon;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerWeapon
-	#define GetPlayerWeapon( FIXES_GetPlayerWeapon(
+#if defined _ALS_GetPlayerWeapon
+	// Previous hook.
+	#define _ALS_GetPlayerWeapon__
+	#define GetPlayerWeapon__( GetPlayerWeapon(
 #endif
 
-#if defined _ALS_GetPlayerKeys
-	#error _ALS_GetPlayerKeys defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2641,14 +2440,12 @@ native FIXES_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = G
  * </remarks>
  */
 native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerKeys
-	#define GetPlayerKeys( FIXES_GetPlayerKeys(
+#if defined _ALS_GetPlayerKeys
+	// Previous hook.
+	#define _ALS_GetPlayerKeys__
+	#define GetPlayerKeys__( GetPlayerKeys(
 #endif
 
-#if defined _ALS_GetPlayerName
-	#error _ALS_GetPlayerName defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2667,14 +2464,12 @@ native FIXES_GetPlayerName(playerid, _FIXES_NOT_CONST name[], _FIXES_MAYBE_SIZEO
  * </remarks>
  */
 native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerName
-	#define GetPlayerName( FIXES_GetPlayerName(
+#if defined _ALS_GetPlayerName
+	// Previous hook.
+	#define _ALS_GetPlayerName__
+	#define GetPlayerName__( GetPlayerName(
 #endif
 
-#if defined _ALS_SetPlayerTime
-	#error _ALS_SetPlayerTime defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2693,14 +2488,12 @@ native FIXES_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
  * </remarks>
  */
 native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerTime
-	#define SetPlayerTime( FIXES_SetPlayerTime(
+#if defined _ALS_SetPlayerTime
+	// Previous hook.
+	#define _ALS_SetPlayerTime__
+	#define SetPlayerTime__( SetPlayerTime(
 #endif
 
-#if defined _ALS_GetPlayerTime
-	#error _ALS_GetPlayerTime defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2719,14 +2512,12 @@ native FIXES_GetPlayerTime(playerid, &hour, &minute) = GetPlayerTime;
  * </remarks>
  */
 native GetPlayerTime__(playerid, &hour, &minute) = GetPlayerTime;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerTime
-	#define GetPlayerTime( FIXES_GetPlayerTime(
+#if defined _ALS_GetPlayerTime
+	// Previous hook.
+	#define _ALS_GetPlayerTime__
+	#define GetPlayerTime__( GetPlayerTime(
 #endif
 
-#if defined _ALS_TogglePlayerClock
-	#error _ALS_TogglePlayerClock defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2745,14 +2536,12 @@ native FIXES_TogglePlayerClock(playerid, _FIXES_MAYBE_BOOL:toggle) = TogglePlaye
  * </remarks>
  */
 native TogglePlayerClock__(playerid, bool:toggle) = TogglePlayerClock;
-#if _FIXES_SAMP
-	#define _ALS_TogglePlayerClock
-	#define TogglePlayerClock( FIXES_TogglePlayerClock(
+#if defined _ALS_TogglePlayerClock
+	// Previous hook.
+	#define _ALS_TogglePlayerClock__
+	#define TogglePlayerClock__( TogglePlayerClock(
 #endif
 
-#if defined _ALS_SetPlayerWeather
-	#error _ALS_SetPlayerWeather defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2771,14 +2560,12 @@ native FIXES_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
  * </remarks>
  */
 native SetPlayerWeather__(playerid, weather) = SetPlayerWeather;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerWeather
-	#define SetPlayerWeather( FIXES_SetPlayerWeather(
+#if defined _ALS_SetPlayerWeather
+	// Previous hook.
+	#define _ALS_SetPlayerWeather__
+	#define SetPlayerWeather__( SetPlayerWeather(
 #endif
 
-#if defined _ALS_ForceClassSelection
-	#error _ALS_ForceClassSelection defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2797,14 +2584,12 @@ native FIXES_ForceClassSelection(playerid) = ForceClassSelection;
  * </remarks>
  */
 native ForceClassSelection__(playerid) = ForceClassSelection;
-#if _FIXES_SAMP
-	#define _ALS_ForceClassSelection
-	#define ForceClassSelection( FIXES_ForceClassSelection(
+#if defined _ALS_ForceClassSelection
+	// Previous hook.
+	#define _ALS_ForceClassSelection__
+	#define ForceClassSelection__( ForceClassSelection(
 #endif
 
-#if defined _ALS_SetPlayerWantedLevel
-	#error _ALS_SetPlayerWantedLevel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2823,14 +2608,12 @@ native FIXES_SetPlayerWantedLevel(playerid, level) = SetPlayerWantedLevel;
  * </remarks>
  */
 native SetPlayerWantedLevel__(playerid, level) = SetPlayerWantedLevel;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerWantedLevel
-	#define SetPlayerWantedLevel( FIXES_SetPlayerWantedLevel(
+#if defined _ALS_SetPlayerWantedLevel
+	// Previous hook.
+	#define _ALS_SetPlayerWantedLevel__
+	#define SetPlayerWantedLevel__( SetPlayerWantedLevel(
 #endif
 
-#if defined _ALS_GetPlayerWantedLevel
-	#error _ALS_GetPlayerWantedLevel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2849,14 +2632,12 @@ native FIXES_GetPlayerWantedLevel(playerid) = GetPlayerWantedLevel;
  * </remarks>
  */
 native GetPlayerWantedLevel__(playerid) = GetPlayerWantedLevel;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerWantedLevel
-	#define GetPlayerWantedLevel( FIXES_GetPlayerWantedLevel(
+#if defined _ALS_GetPlayerWantedLevel
+	// Previous hook.
+	#define _ALS_GetPlayerWantedLevel__
+	#define GetPlayerWantedLevel__( GetPlayerWantedLevel(
 #endif
 
-#if defined _ALS_SetPlayerFightingStyle
-	#error _ALS_SetPlayerFightingStyle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2875,14 +2656,12 @@ native FIXES_SetPlayerFightingStyle(playerid, FIGHT_STYLE:style) = SetPlayerFigh
  * </remarks>
  */
 native SetPlayerFightingStyle__(playerid, FIGHT_STYLE:style) = SetPlayerFightingStyle;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerFightingStyle
-	#define SetPlayerFightingStyle( FIXES_SetPlayerFightingStyle(
+#if defined _ALS_SetPlayerFightingStyle
+	// Previous hook.
+	#define _ALS_SetPlayerFightingStyle__
+	#define SetPlayerFightingStyle__( SetPlayerFightingStyle(
 #endif
 
-#if defined _ALS_GetPlayerFightingStyle
-	#error _ALS_GetPlayerFightingStyle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2901,14 +2680,12 @@ native FIGHT_STYLE:FIXES_GetPlayerFightingStyle(playerid) = GetPlayerFightingSty
  * </remarks>
  */
 native FIGHT_STYLE:GetPlayerFightingStyle__(playerid) = GetPlayerFightingStyle;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerFightingStyle
-	#define GetPlayerFightingStyle( FIXES_GetPlayerFightingStyle(
+#if defined _ALS_GetPlayerFightingStyle
+	// Previous hook.
+	#define _ALS_GetPlayerFightingStyle__
+	#define GetPlayerFightingStyle__( GetPlayerFightingStyle(
 #endif
 
-#if defined _ALS_SetPlayerVelocity
-	#error _ALS_SetPlayerVelocity defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2927,14 +2704,12 @@ native FIXES_SetPlayerVelocity(playerid, Float:x, Float:y, Float:z) = SetPlayerV
  * </remarks>
  */
 native SetPlayerVelocity__(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerVelocity
-	#define SetPlayerVelocity( FIXES_SetPlayerVelocity(
+#if defined _ALS_SetPlayerVelocity
+	// Previous hook.
+	#define _ALS_SetPlayerVelocity__
+	#define SetPlayerVelocity__( SetPlayerVelocity(
 #endif
 
-#if defined _ALS_GetPlayerVelocity
-	#error _ALS_GetPlayerVelocity defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2953,14 +2728,12 @@ native FIXES_GetPlayerVelocity(playerid, &Float:x, &Float:y, &Float:z) = GetPlay
  * </remarks>
  */
 native GetPlayerVelocity__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerVelocity
-	#define GetPlayerVelocity( FIXES_GetPlayerVelocity(
+#if defined _ALS_GetPlayerVelocity
+	// Previous hook.
+	#define _ALS_GetPlayerVelocity__
+	#define GetPlayerVelocity__( GetPlayerVelocity(
 #endif
 
-#if defined _ALS_PlayCrimeReportForPlayer
-	#error _ALS_PlayCrimeReportForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2979,14 +2752,12 @@ native FIXES_PlayCrimeReportForPlayer(playerid, suspectid, crime) = PlayCrimeRep
  * </remarks>
  */
 native PlayCrimeReportForPlayer__(playerid, suspectid, crime) = PlayCrimeReportForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_PlayCrimeReportForPlayer
-	#define PlayCrimeReportForPlayer( FIXES_PlayCrimeReportForPlayer(
+#if defined _ALS_PlayCrimeReportForPlayer
+	// Previous hook.
+	#define _ALS_PlayCrimeReportForPlayer__
+	#define PlayCrimeReportForPlayer__( PlayCrimeReportForPlayer(
 #endif
 
-#if defined _ALS_PlayAudioStreamForPlayer
-	#error _ALS_PlayAudioStreamForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3005,14 +2776,12 @@ native FIXES_PlayAudioStreamForPlayer(playerid, _FIXES_MAYBE_CONST url[], Float:
  * </remarks>
  */
 native PlayAudioStreamForPlayer__(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, bool:usepos = false) = PlayAudioStreamForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_PlayAudioStreamForPlayer
-	#define PlayAudioStreamForPlayer( FIXES_PlayAudioStreamForPlayer(
+#if defined _ALS_PlayAudioStreamForPlayer
+	// Previous hook.
+	#define _ALS_PlayAudioStreamForPlayer__
+	#define PlayAudioStreamForPlayer__( PlayAudioStreamForPlayer(
 #endif
 
-#if defined _ALS_StopAudioStreamForPlayer
-	#error _ALS_StopAudioStreamForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3031,14 +2800,12 @@ native FIXES_StopAudioStreamForPlayer(playerid) = StopAudioStreamForPlayer;
  * </remarks>
  */
 native StopAudioStreamForPlayer__(playerid) = StopAudioStreamForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_StopAudioStreamForPlayer
-	#define StopAudioStreamForPlayer( FIXES_StopAudioStreamForPlayer(
+#if defined _ALS_StopAudioStreamForPlayer
+	// Previous hook.
+	#define _ALS_StopAudioStreamForPlayer__
+	#define StopAudioStreamForPlayer__( StopAudioStreamForPlayer(
 #endif
 
-#if defined _ALS_SetPlayerShopName
-	#error _ALS_SetPlayerShopName defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3057,14 +2824,12 @@ native FIXES_SetPlayerShopName(playerid, _FIXES_MAYBE_CONST shopName[]) = SetPla
  * </remarks>
  */
 native SetPlayerShopName__(playerid, const shopName[]) = SetPlayerShopName;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerShopName
-	#define SetPlayerShopName( FIXES_SetPlayerShopName(
+#if defined _ALS_SetPlayerShopName
+	// Previous hook.
+	#define _ALS_SetPlayerShopName__
+	#define SetPlayerShopName__( SetPlayerShopName(
 #endif
 
-#if defined _ALS_SetPlayerSkillLevel
-	#error _ALS_SetPlayerSkillLevel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3083,14 +2848,12 @@ native FIXES_SetPlayerSkillLevel(playerid, WEAPONSKILL:skill, level) = SetPlayer
  * </remarks>
  */
 native SetPlayerSkillLevel__(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerSkillLevel
-	#define SetPlayerSkillLevel( FIXES_SetPlayerSkillLevel(
+#if defined _ALS_SetPlayerSkillLevel
+	// Previous hook.
+	#define _ALS_SetPlayerSkillLevel__
+	#define SetPlayerSkillLevel__( SetPlayerSkillLevel(
 #endif
 
-#if defined _ALS_GetPlayerSurfingVehicleID
-	#error _ALS_GetPlayerSurfingVehicleID defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3109,14 +2872,12 @@ native FIXES_GetPlayerSurfingVehicleID(playerid) = GetPlayerSurfingVehicleID;
  * </remarks>
  */
 native GetPlayerSurfingVehicleID__(playerid) = GetPlayerSurfingVehicleID;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerSurfingVehicleID
-	#define GetPlayerSurfingVehicleID( FIXES_GetPlayerSurfingVehicleID(
+#if defined _ALS_GetPlayerSurfingVehicleID
+	// Previous hook.
+	#define _ALS_GetPlayerSurfingVehicleID__
+	#define GetPlayerSurfingVehicleID__( GetPlayerSurfingVehicleID(
 #endif
 
-#if defined _ALS_GetPlayerSurfingObjectID
-	#error _ALS_GetPlayerSurfingObjectID defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3135,14 +2896,12 @@ native FIXES_GetPlayerSurfingObjectID(playerid) = GetPlayerSurfingObjectID;
  * </remarks>
  */
 native GetPlayerSurfingObjectID__(playerid) = GetPlayerSurfingObjectID;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerSurfingObjectID
-	#define GetPlayerSurfingObjectID( FIXES_GetPlayerSurfingObjectID(
+#if defined _ALS_GetPlayerSurfingObjectID
+	// Previous hook.
+	#define _ALS_GetPlayerSurfingObjectID__
+	#define GetPlayerSurfingObjectID__( GetPlayerSurfingObjectID(
 #endif
 
-#if defined _ALS_RemoveBuildingForPlayer
-	#error _ALS_RemoveBuildingForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3161,14 +2920,12 @@ native FIXES_RemoveBuildingForPlayer(playerid, modelid, Float:centerX, Float:cen
  * </remarks>
  */
 native RemoveBuildingForPlayer__(playerid, modelid, Float:centerX, Float:centerY, Float:centerZ, Float:radius) = RemoveBuildingForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_RemoveBuildingForPlayer
-	#define RemoveBuildingForPlayer( FIXES_RemoveBuildingForPlayer(
+#if defined _ALS_RemoveBuildingForPlayer
+	// Previous hook.
+	#define _ALS_RemoveBuildingForPlayer__
+	#define RemoveBuildingForPlayer__( RemoveBuildingForPlayer(
 #endif
 
-#if defined _ALS_GetPlayerLastShotVectors
-	#error _ALS_GetPlayerLastShotVectors defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3187,14 +2944,12 @@ native FIXES_GetPlayerLastShotVectors(playerid, &Float:originX, &Float:originY, 
  * </remarks>
  */
 native GetPlayerLastShotVectors__(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerLastShotVectors
-	#define GetPlayerLastShotVectors( FIXES_GetPlayerLastShotVectors(
+#if defined _ALS_GetPlayerLastShotVectors
+	// Previous hook.
+	#define _ALS_GetPlayerLastShotVectors__
+	#define GetPlayerLastShotVectors__( GetPlayerLastShotVectors(
 #endif
 
-#if defined _ALS_SetPlayerAttachedObject
-	#error _ALS_SetPlayerAttachedObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3213,14 +2968,12 @@ native FIXES_SetPlayerAttachedObject(playerid, index, modelid, bone, Float:offse
  * </remarks>
  */
 native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerAttachedObject
-	#define SetPlayerAttachedObject( FIXES_SetPlayerAttachedObject(
+#if defined _ALS_SetPlayerAttachedObject
+	// Previous hook.
+	#define _ALS_SetPlayerAttachedObject__
+	#define SetPlayerAttachedObject__( SetPlayerAttachedObject(
 #endif
 
-#if defined _ALS_RemovePlayerAttachedObject
-	#error _ALS_RemovePlayerAttachedObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3239,14 +2992,12 @@ native FIXES_RemovePlayerAttachedObject(playerid, index) = RemovePlayerAttachedO
  * </remarks>
  */
 native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject;
-#if _FIXES_SAMP
-	#define _ALS_RemovePlayerAttachedObject
-	#define RemovePlayerAttachedObject( FIXES_RemovePlayerAttachedObject(
+#if defined _ALS_RemovePlayerAttachedObject
+	// Previous hook.
+	#define _ALS_RemovePlayerAttachedObject__
+	#define RemovePlayerAttachedObject__( RemovePlayerAttachedObject(
 #endif
 
-#if defined _ALS_IsPlayerAttachedObjectSlotUsed
-	#error _ALS_IsPlayerAttachedObjectSlotUsed defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3265,14 +3016,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsPlayerAttachedObjectSlotUsed(playerid, index) =
  * </remarks>
  */
 native bool:IsPlayerAttachedObjectSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed;
-#if _FIXES_SAMP
-	#define _ALS_IsPlayerAttachedObjectSlotUsed
-	#define IsPlayerAttachedObjectSlotUsed( FIXES_IsPlayerAttachedObjectSlotUsed(
+#if defined _ALS_IsPlayerAttachedObjectSlotUsed
+	// Previous hook.
+	#define _ALS_IsPlayerAttachedObjectSlotUsed__
+	#define IsPlayerAttachedObjectSlotUsed__( IsPlayerAttachedObjectSlotUsed(
 #endif
 
-#if defined _ALS_EditAttachedObject
-	#error _ALS_EditAttachedObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3291,14 +3040,12 @@ native FIXES_EditAttachedObject(playerid, index) = EditAttachedObject;
  * </remarks>
  */
 native EditAttachedObject__(playerid, index) = EditAttachedObject;
-#if _FIXES_SAMP
-	#define _ALS_EditAttachedObject
-	#define EditAttachedObject( FIXES_EditAttachedObject(
+#if defined _ALS_EditAttachedObject
+	// Previous hook.
+	#define _ALS_EditAttachedObject__
+	#define EditAttachedObject__( EditAttachedObject(
 #endif
 
-#if defined _ALS_CreatePlayerTextDraw
-	#error _ALS_CreatePlayerTextDraw defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3317,14 +3064,12 @@ native PlayerText:FIXES_CreatePlayerTextDraw(playerid, Float:x, Float:y, _FIXES_
  * </remarks>
  */
 native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw;
-#if _FIXES_SAMP
-	#define _ALS_CreatePlayerTextDraw
-	#define CreatePlayerTextDraw( FIXES_CreatePlayerTextDraw(
+#if defined _ALS_CreatePlayerTextDraw
+	// Previous hook.
+	#define _ALS_CreatePlayerTextDraw__
+	#define CreatePlayerTextDraw__( CreatePlayerTextDraw(
 #endif
 
-#if defined _ALS_PlayerTextDrawDestroy
-	#error _ALS_PlayerTextDrawDestroy defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3343,14 +3088,12 @@ native FIXES_PlayerTextDrawDestroy(playerid, PlayerText:text) = PlayerTextDrawDe
  * </remarks>
  */
 native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawDestroy
-	#define PlayerTextDrawDestroy( FIXES_PlayerTextDrawDestroy(
+#if defined _ALS_PlayerTextDrawDestroy
+	// Previous hook.
+	#define _ALS_PlayerTextDrawDestroy__
+	#define PlayerTextDrawDestroy__( PlayerTextDrawDestroy(
 #endif
 
-#if defined _ALS_PlayerTextDrawLetterSize
-	#error _ALS_PlayerTextDrawLetterSize defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3369,14 +3112,12 @@ native FIXES_PlayerTextDrawLetterSize(playerid, PlayerText:text, Float:width, Fl
  * </remarks>
  */
 native PlayerTextDrawLetterSize__(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawLetterSize;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawLetterSize
-	#define PlayerTextDrawLetterSize( FIXES_PlayerTextDrawLetterSize(
+#if defined _ALS_PlayerTextDrawLetterSize
+	// Previous hook.
+	#define _ALS_PlayerTextDrawLetterSize__
+	#define PlayerTextDrawLetterSize__( PlayerTextDrawLetterSize(
 #endif
 
-#if defined _ALS_PlayerTextDrawTextSize
-	#error _ALS_PlayerTextDrawTextSize defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3395,14 +3136,12 @@ native FIXES_PlayerTextDrawTextSize(playerid, PlayerText:text, Float:width, Floa
  * </remarks>
  */
 native PlayerTextDrawTextSize__(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawTextSize
-	#define PlayerTextDrawTextSize( FIXES_PlayerTextDrawTextSize(
+#if defined _ALS_PlayerTextDrawTextSize
+	// Previous hook.
+	#define _ALS_PlayerTextDrawTextSize__
+	#define PlayerTextDrawTextSize__( PlayerTextDrawTextSize(
 #endif
 
-#if defined _ALS_PlayerTextDrawAlignment
-	#error _ALS_PlayerTextDrawAlignment defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3421,14 +3160,12 @@ native FIXES_PlayerTextDrawAlignment(playerid, PlayerText:text, TEXT_DRAW_ALIGN:
  * </remarks>
  */
 native PlayerTextDrawAlignment__(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawAlignment
-	#define PlayerTextDrawAlignment( FIXES_PlayerTextDrawAlignment(
+#if defined _ALS_PlayerTextDrawAlignment
+	// Previous hook.
+	#define _ALS_PlayerTextDrawAlignment__
+	#define PlayerTextDrawAlignment__( PlayerTextDrawAlignment(
 #endif
 
-#if defined _ALS_PlayerTextDrawColor
-	#error _ALS_PlayerTextDrawColor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3447,14 +3184,12 @@ native FIXES_PlayerTextDrawColor(playerid, PlayerText:text, colour) = PlayerText
  * </remarks>
  */
 native PlayerTextDrawColor__(playerid, PlayerText:text, colour) = PlayerTextDrawColor;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawColor
-	#define PlayerTextDrawColor( FIXES_PlayerTextDrawColor(
+#if defined _ALS_PlayerTextDrawColor
+	// Previous hook.
+	#define _ALS_PlayerTextDrawColor__
+	#define PlayerTextDrawColor__( PlayerTextDrawColor(
 #endif
 
-#if defined _ALS_PlayerTextDrawUseBox
-	#error _ALS_PlayerTextDrawUseBox defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3473,14 +3208,12 @@ native FIXES_PlayerTextDrawUseBox(playerid, PlayerText:text, _FIXES_MAYBE_BOOL:u
  * </remarks>
  */
 native PlayerTextDrawUseBox__(playerid, PlayerText:text, bool:use) = PlayerTextDrawUseBox;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawUseBox
-	#define PlayerTextDrawUseBox( FIXES_PlayerTextDrawUseBox(
+#if defined _ALS_PlayerTextDrawUseBox
+	// Previous hook.
+	#define _ALS_PlayerTextDrawUseBox__
+	#define PlayerTextDrawUseBox__( PlayerTextDrawUseBox(
 #endif
 
-#if defined _ALS_PlayerTextDrawBoxColor
-	#error _ALS_PlayerTextDrawBoxColor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3499,14 +3232,12 @@ native FIXES_PlayerTextDrawBoxColor(playerid, PlayerText:text, colour) = PlayerT
  * </remarks>
  */
 native PlayerTextDrawBoxColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawBoxColor
-	#define PlayerTextDrawBoxColor( FIXES_PlayerTextDrawBoxColor(
+#if defined _ALS_PlayerTextDrawBoxColor
+	// Previous hook.
+	#define _ALS_PlayerTextDrawBoxColor__
+	#define PlayerTextDrawBoxColor__( PlayerTextDrawBoxColor(
 #endif
 
-#if defined _ALS_PlayerTextDrawSetShadow
-	#error _ALS_PlayerTextDrawSetShadow defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3525,14 +3256,12 @@ native FIXES_PlayerTextDrawSetShadow(playerid, PlayerText:text, size) = PlayerTe
  * </remarks>
  */
 native PlayerTextDrawSetShadow__(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawSetShadow
-	#define PlayerTextDrawSetShadow( FIXES_PlayerTextDrawSetShadow(
+#if defined _ALS_PlayerTextDrawSetShadow
+	// Previous hook.
+	#define _ALS_PlayerTextDrawSetShadow__
+	#define PlayerTextDrawSetShadow__( PlayerTextDrawSetShadow(
 #endif
 
-#if defined _ALS_PlayerTextDrawSetOutline
-	#error _ALS_PlayerTextDrawSetOutline defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3551,14 +3280,12 @@ native FIXES_PlayerTextDrawSetOutline(playerid, PlayerText:text, size) = PlayerT
  * </remarks>
  */
 native PlayerTextDrawSetOutline__(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawSetOutline
-	#define PlayerTextDrawSetOutline( FIXES_PlayerTextDrawSetOutline(
+#if defined _ALS_PlayerTextDrawSetOutline
+	// Previous hook.
+	#define _ALS_PlayerTextDrawSetOutline__
+	#define PlayerTextDrawSetOutline__( PlayerTextDrawSetOutline(
 #endif
 
-#if defined _ALS_PlayerTextDrawBackgroundColor
-	#error _ALS_PlayerTextDrawBackgroundColor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3577,14 +3304,12 @@ native FIXES_PlayerTextDrawBackgroundColor(playerid, PlayerText:text, colour) = 
  * </remarks>
  */
 native PlayerTextDrawBackgroundColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawBackgroundColor
-	#define PlayerTextDrawBackgroundColor( FIXES_PlayerTextDrawBackgroundColor(
+#if defined _ALS_PlayerTextDrawBackgroundColor
+	// Previous hook.
+	#define _ALS_PlayerTextDrawBackgroundColor__
+	#define PlayerTextDrawBackgroundColor__( PlayerTextDrawBackgroundColor(
 #endif
 
-#if defined _ALS_PlayerTextDrawFont
-	#error _ALS_PlayerTextDrawFont defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3603,14 +3328,12 @@ native FIXES_PlayerTextDrawFont(playerid, PlayerText:text, TEXT_DRAW_FONT:font) 
  * </remarks>
  */
 native PlayerTextDrawFont__(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawFont
-	#define PlayerTextDrawFont( FIXES_PlayerTextDrawFont(
+#if defined _ALS_PlayerTextDrawFont
+	// Previous hook.
+	#define _ALS_PlayerTextDrawFont__
+	#define PlayerTextDrawFont__( PlayerTextDrawFont(
 #endif
 
-#if defined _ALS_PlayerTextDrawSetProportional
-	#error _ALS_PlayerTextDrawSetProportional defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3629,14 +3352,12 @@ native FIXES_PlayerTextDrawSetProportional(playerid, PlayerText:text, _FIXES_MAY
  * </remarks>
  */
 native PlayerTextDrawSetProportional__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetProportional;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawSetProportional
-	#define PlayerTextDrawSetProportional( FIXES_PlayerTextDrawSetProportional(
+#if defined _ALS_PlayerTextDrawSetProportional
+	// Previous hook.
+	#define _ALS_PlayerTextDrawSetProportional__
+	#define PlayerTextDrawSetProportional__( PlayerTextDrawSetProportional(
 #endif
 
-#if defined _ALS_PlayerTextDrawSetSelectable
-	#error _ALS_PlayerTextDrawSetSelectable defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3655,14 +3376,12 @@ native FIXES_PlayerTextDrawSetSelectable(playerid, PlayerText:text, _FIXES_MAYBE
  * </remarks>
  */
 native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetSelectable;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawSetSelectable
-	#define PlayerTextDrawSetSelectable( FIXES_PlayerTextDrawSetSelectable(
+#if defined _ALS_PlayerTextDrawSetSelectable
+	// Previous hook.
+	#define _ALS_PlayerTextDrawSetSelectable__
+	#define PlayerTextDrawSetSelectable__( PlayerTextDrawSetSelectable(
 #endif
 
-#if defined _ALS_PlayerTextDrawShow
-	#error _ALS_PlayerTextDrawShow defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3681,14 +3400,12 @@ native FIXES_PlayerTextDrawShow(playerid, PlayerText:text) = PlayerTextDrawShow;
  * </remarks>
  */
 native PlayerTextDrawShow__(playerid, PlayerText:text) = PlayerTextDrawShow;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawShow
-	#define PlayerTextDrawShow( FIXES_PlayerTextDrawShow(
+#if defined _ALS_PlayerTextDrawShow
+	// Previous hook.
+	#define _ALS_PlayerTextDrawShow__
+	#define PlayerTextDrawShow__( PlayerTextDrawShow(
 #endif
 
-#if defined _ALS_PlayerTextDrawHide
-	#error _ALS_PlayerTextDrawHide defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3707,14 +3424,12 @@ native FIXES_PlayerTextDrawHide(playerid, PlayerText:text) = PlayerTextDrawHide;
  * </remarks>
  */
 native PlayerTextDrawHide__(playerid, PlayerText:text) = PlayerTextDrawHide;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawHide
-	#define PlayerTextDrawHide( FIXES_PlayerTextDrawHide(
+#if defined _ALS_PlayerTextDrawHide
+	// Previous hook.
+	#define _ALS_PlayerTextDrawHide__
+	#define PlayerTextDrawHide__( PlayerTextDrawHide(
 #endif
 
-#if defined _ALS_PlayerTextDrawSetString
-	#error _ALS_PlayerTextDrawSetString defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3733,14 +3448,12 @@ native FIXES_PlayerTextDrawSetString(playerid, PlayerText:text, _FIXES_MAYBE_CON
  * </remarks>
  */
 native PlayerTextDrawSetString__(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawSetString
-	#define PlayerTextDrawSetString( FIXES_PlayerTextDrawSetString(
+#if defined _ALS_PlayerTextDrawSetString
+	// Previous hook.
+	#define _ALS_PlayerTextDrawSetString__
+	#define PlayerTextDrawSetString__( PlayerTextDrawSetString(
 #endif
 
-#if defined _ALS_PlayerTextDrawSetPreviewModel
-	#error _ALS_PlayerTextDrawSetPreviewModel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3759,14 +3472,12 @@ native FIXES_PlayerTextDrawSetPreviewModel(playerid, PlayerText:text, modelIndex
  * </remarks>
  */
 native PlayerTextDrawSetPreviewModel__(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawSetPreviewModel
-	#define PlayerTextDrawSetPreviewModel( FIXES_PlayerTextDrawSetPreviewModel(
+#if defined _ALS_PlayerTextDrawSetPreviewModel
+	// Previous hook.
+	#define _ALS_PlayerTextDrawSetPreviewModel__
+	#define PlayerTextDrawSetPreviewModel__( PlayerTextDrawSetPreviewModel(
 #endif
 
-#if defined _ALS_PlayerTextDrawSetPreviewRot
-	#error _ALS_PlayerTextDrawSetPreviewRot defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3785,14 +3496,12 @@ native FIXES_PlayerTextDrawSetPreviewRot(playerid, PlayerText:text, Float:rotX, 
  * </remarks>
  */
 native PlayerTextDrawSetPreviewRot__(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawSetPreviewRot
-	#define PlayerTextDrawSetPreviewRot( FIXES_PlayerTextDrawSetPreviewRot(
+#if defined _ALS_PlayerTextDrawSetPreviewRot
+	// Previous hook.
+	#define _ALS_PlayerTextDrawSetPreviewRot__
+	#define PlayerTextDrawSetPreviewRot__( PlayerTextDrawSetPreviewRot(
 #endif
 
-#if defined _ALS_PlayerTextDrawSetPreviewVehCol
-	#error _ALS_PlayerTextDrawSetPreviewVehCol defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3811,14 +3520,12 @@ native FIXES_PlayerTextDrawSetPreviewVehCol(playerid, PlayerText:text, colour1, 
  * </remarks>
  */
 native PlayerTextDrawSetPreviewVehCol__(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol;
-#if _FIXES_SAMP
-	#define _ALS_PlayerTextDrawSetPreviewVehCol
-	#define PlayerTextDrawSetPreviewVehCol( FIXES_PlayerTextDrawSetPreviewVehCol(
+#if defined _ALS_PlayerTextDrawSetPreviewVehCol
+	// Previous hook.
+	#define _ALS_PlayerTextDrawSetPreviewVehCol__
+	#define PlayerTextDrawSetPreviewVehCol__( PlayerTextDrawSetPreviewVehCol(
 #endif
 
-#if defined _ALS_SetPVarInt
-	#error _ALS_SetPVarInt defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3837,14 +3544,12 @@ native FIXES_SetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[], value) = SetPVarInt
  * </remarks>
  */
 native SetPVarInt__(playerid, const pvar[], value) = SetPVarInt;
-#if _FIXES_SAMP
-	#define _ALS_SetPVarInt
-	#define SetPVarInt( FIXES_SetPVarInt(
+#if defined _ALS_SetPVarInt
+	// Previous hook.
+	#define _ALS_SetPVarInt__
+	#define SetPVarInt__( SetPVarInt(
 #endif
 
-#if defined _ALS_GetPVarInt
-	#error _ALS_GetPVarInt defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3863,14 +3568,12 @@ native FIXES_GetPVarInt(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarInt;
  * </remarks>
  */
 native GetPVarInt__(playerid, const pvar[]) = GetPVarInt;
-#if _FIXES_SAMP
-	#define _ALS_GetPVarInt
-	#define GetPVarInt( FIXES_GetPVarInt(
+#if defined _ALS_GetPVarInt
+	// Previous hook.
+	#define _ALS_GetPVarInt__
+	#define GetPVarInt__( GetPVarInt(
 #endif
 
-#if defined _ALS_SetPVarString
-	#error _ALS_SetPVarString defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3889,14 +3592,12 @@ native FIXES_SetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], _FIXES_MAYBE_CON
  * </remarks>
  */
 native SetPVarString__(playerid, const pvar[], const value[]) = SetPVarString;
-#if _FIXES_SAMP
-	#define _ALS_SetPVarString
-	#define SetPVarString( FIXES_SetPVarString(
+#if defined _ALS_SetPVarString
+	// Previous hook.
+	#define _ALS_SetPVarString__
+	#define SetPVarString__( SetPVarString(
 #endif
 
-#if defined _ALS_GetPVarString
-	#error _ALS_GetPVarString defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3915,14 +3616,12 @@ native FIXES_GetPVarString(playerid, _FIXES_MAYBE_CONST pvar[], output[], _FIXES
  * </remarks>
  */
 native GetPVarString__(playerid, const pvar[], output[], len = sizeof (output)) = GetPVarString;
-#if _FIXES_SAMP
-	#define _ALS_GetPVarString
-	#define GetPVarString( FIXES_GetPVarString(
+#if defined _ALS_GetPVarString
+	// Previous hook.
+	#define _ALS_GetPVarString__
+	#define GetPVarString__( GetPVarString(
 #endif
 
-#if defined _ALS_SetPVarFloat
-	#error _ALS_SetPVarFloat defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3941,14 +3640,12 @@ native FIXES_SetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[], Float:value) = Se
  * </remarks>
  */
 native SetPVarFloat__(playerid, const pvar[], Float:value) = SetPVarFloat;
-#if _FIXES_SAMP
-	#define _ALS_SetPVarFloat
-	#define SetPVarFloat( FIXES_SetPVarFloat(
+#if defined _ALS_SetPVarFloat
+	// Previous hook.
+	#define _ALS_SetPVarFloat__
+	#define SetPVarFloat__( SetPVarFloat(
 #endif
 
-#if defined _ALS_GetPVarFloat
-	#error _ALS_GetPVarFloat defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3967,14 +3664,12 @@ native Float:FIXES_GetPVarFloat(playerid, _FIXES_MAYBE_CONST pvar[]) = GetPVarFl
  * </remarks>
  */
 native Float:GetPVarFloat__(playerid, const pvar[]) = GetPVarFloat;
-#if _FIXES_SAMP
-	#define _ALS_GetPVarFloat
-	#define GetPVarFloat( FIXES_GetPVarFloat(
+#if defined _ALS_GetPVarFloat
+	// Previous hook.
+	#define _ALS_GetPVarFloat__
+	#define GetPVarFloat__( GetPVarFloat(
 #endif
 
-#if defined _ALS_DeletePVar
-	#error _ALS_DeletePVar defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -3993,14 +3688,12 @@ native FIXES_DeletePVar(playerid, _FIXES_MAYBE_CONST pvar[]) = DeletePVar;
  * </remarks>
  */
 native DeletePVar__(playerid, const pvar[]) = DeletePVar;
-#if _FIXES_SAMP
-	#define _ALS_DeletePVar
-	#define DeletePVar( FIXES_DeletePVar(
+#if defined _ALS_DeletePVar
+	// Previous hook.
+	#define _ALS_DeletePVar__
+	#define DeletePVar__( DeletePVar(
 #endif
 
-#if defined _ALS_GetPVarsUpperIndex
-	#error _ALS_GetPVarsUpperIndex defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4019,14 +3712,12 @@ native FIXES_GetPVarsUpperIndex(playerid) = GetPVarsUpperIndex;
  * </remarks>
  */
 native GetPVarsUpperIndex__(playerid) = GetPVarsUpperIndex;
-#if _FIXES_SAMP
-	#define _ALS_GetPVarsUpperIndex
-	#define GetPVarsUpperIndex( FIXES_GetPVarsUpperIndex(
+#if defined _ALS_GetPVarsUpperIndex
+	// Previous hook.
+	#define _ALS_GetPVarsUpperIndex__
+	#define GetPVarsUpperIndex__( GetPVarsUpperIndex(
 #endif
 
-#if defined _ALS_GetPVarNameAtIndex
-	#error _ALS_GetPVarNameAtIndex defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4045,14 +3736,12 @@ native FIXES_GetPVarNameAtIndex(playerid, index, output[], _FIXES_MAYBE_SIZEOF(s
  * </remarks>
  */
 native GetPVarNameAtIndex__(playerid, index, output[], size = sizeof (output)) = GetPVarNameAtIndex;
-#if _FIXES_SAMP
-	#define _ALS_GetPVarNameAtIndex
-	#define GetPVarNameAtIndex( FIXES_GetPVarNameAtIndex(
+#if defined _ALS_GetPVarNameAtIndex
+	// Previous hook.
+	#define _ALS_GetPVarNameAtIndex__
+	#define GetPVarNameAtIndex__( GetPVarNameAtIndex(
 #endif
 
-#if defined _ALS_GetPVarType
-	#error _ALS_GetPVarType defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4071,14 +3760,12 @@ native PLAYER_VARTYPE:FIXES_GetPVarType(playerid, _FIXES_MAYBE_CONST pvar[]) = G
  * </remarks>
  */
 native PLAYER_VARTYPE:GetPVarType__(playerid, const pvar[]) = GetPVarType;
-#if _FIXES_SAMP
-	#define _ALS_GetPVarType
-	#define GetPVarType( FIXES_GetPVarType(
+#if defined _ALS_GetPVarType
+	// Previous hook.
+	#define _ALS_GetPVarType__
+	#define GetPVarType__( GetPVarType(
 #endif
 
-#if defined _ALS_SetPlayerChatBubble
-	#error _ALS_SetPlayerChatBubble defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4097,14 +3784,12 @@ native FIXES_SetPlayerChatBubble(playerid, _FIXES_MAYBE_CONST text[], colour, Fl
  * </remarks>
  */
 native SetPlayerChatBubble__(playerid, const text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerChatBubble
-	#define SetPlayerChatBubble( FIXES_SetPlayerChatBubble(
+#if defined _ALS_SetPlayerChatBubble
+	// Previous hook.
+	#define _ALS_SetPlayerChatBubble__
+	#define SetPlayerChatBubble__( SetPlayerChatBubble(
 #endif
 
-#if defined _ALS_PutPlayerInVehicle
-	#error _ALS_PutPlayerInVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4123,14 +3808,12 @@ native FIXES_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicl
  * </remarks>
  */
 native PutPlayerInVehicle__(playerid, vehicleid, seatid) = PutPlayerInVehicle;
-#if _FIXES_SAMP
-	#define _ALS_PutPlayerInVehicle
-	#define PutPlayerInVehicle( FIXES_PutPlayerInVehicle(
+#if defined _ALS_PutPlayerInVehicle
+	// Previous hook.
+	#define _ALS_PutPlayerInVehicle__
+	#define PutPlayerInVehicle__( PutPlayerInVehicle(
 #endif
 
-#if defined _ALS_GetPlayerVehicleID
-	#error _ALS_GetPlayerVehicleID defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4149,14 +3832,12 @@ native FIXES_GetPlayerVehicleID(playerid) = GetPlayerVehicleID;
  * </remarks>
  */
 native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerVehicleID
-	#define GetPlayerVehicleID( FIXES_GetPlayerVehicleID(
+#if defined _ALS_GetPlayerVehicleID
+	// Previous hook.
+	#define _ALS_GetPlayerVehicleID__
+	#define GetPlayerVehicleID__( GetPlayerVehicleID(
 #endif
 
-#if defined _ALS_GetPlayerVehicleSeat
-	#error _ALS_GetPlayerVehicleSeat defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4175,14 +3856,12 @@ native FIXES_GetPlayerVehicleSeat(playerid) = GetPlayerVehicleSeat;
  * </remarks>
  */
 native GetPlayerVehicleSeat__(playerid) = GetPlayerVehicleSeat;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerVehicleSeat
-	#define GetPlayerVehicleSeat( FIXES_GetPlayerVehicleSeat(
+#if defined _ALS_GetPlayerVehicleSeat
+	// Previous hook.
+	#define _ALS_GetPlayerVehicleSeat__
+	#define GetPlayerVehicleSeat__( GetPlayerVehicleSeat(
 #endif
 
-#if defined _ALS_RemovePlayerFromVehicle
-	#error _ALS_RemovePlayerFromVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4201,14 +3880,12 @@ native FIXES_RemovePlayerFromVehicle(playerid) = RemovePlayerFromVehicle;
  * </remarks>
  */
 native RemovePlayerFromVehicle__(playerid) = RemovePlayerFromVehicle;
-#if _FIXES_SAMP
-	#define _ALS_RemovePlayerFromVehicle
-	#define RemovePlayerFromVehicle( FIXES_RemovePlayerFromVehicle(
+#if defined _ALS_RemovePlayerFromVehicle
+	// Previous hook.
+	#define _ALS_RemovePlayerFromVehicle__
+	#define RemovePlayerFromVehicle__( RemovePlayerFromVehicle(
 #endif
 
-#if defined _ALS_TogglePlayerControllable
-	#error _ALS_TogglePlayerControllable defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4227,14 +3904,12 @@ native FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle) = Togg
  * </remarks>
  */
 native TogglePlayerControllable__(playerid, bool:toggle) = TogglePlayerControllable;
-#if _FIXES_SAMP
-	#define _ALS_TogglePlayerControllable
-	#define TogglePlayerControllable( FIXES_TogglePlayerControllable(
+#if defined _ALS_TogglePlayerControllable
+	// Previous hook.
+	#define _ALS_TogglePlayerControllable__
+	#define TogglePlayerControllable__( TogglePlayerControllable(
 #endif
 
-#if defined _ALS_PlayerPlaySound
-	#error _ALS_PlayerPlaySound defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4253,14 +3928,12 @@ native FIXES_PlayerPlaySound(playerid, soundid, Float:x, Float:y, Float:z) = Pla
  * </remarks>
  */
 native PlayerPlaySound__(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound;
-#if _FIXES_SAMP
-	#define _ALS_PlayerPlaySound
-	#define PlayerPlaySound( FIXES_PlayerPlaySound(
+#if defined _ALS_PlayerPlaySound
+	// Previous hook.
+	#define _ALS_PlayerPlaySound__
+	#define PlayerPlaySound__( PlayerPlaySound(
 #endif
 
-#if defined _ALS_ApplyAnimation
-	#error _ALS_ApplyAnimation defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4279,14 +3952,12 @@ native FIXES_ApplyAnimation(playerid, _FIXES_MAYBE_CONST animationLibrary[], _FI
  * </remarks>
  */
 native ApplyAnimation__(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync = SYNC_NONE) = ApplyAnimation;
-#if _FIXES_SAMP
-	#define _ALS_ApplyAnimation
-	#define ApplyAnimation( FIXES_ApplyAnimation(
+#if defined _ALS_ApplyAnimation
+	// Previous hook.
+	#define _ALS_ApplyAnimation__
+	#define ApplyAnimation__( ApplyAnimation(
 #endif
 
-#if defined _ALS_ClearAnimations
-	#error _ALS_ClearAnimations defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4305,14 +3976,12 @@ native FIXES_ClearAnimations(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = Clear
  * </remarks>
  */
 native ClearAnimations__(playerid, FORCE_SYNC:forceSync = SYNC_NONE) = ClearAnimations;
-#if _FIXES_SAMP
-	#define _ALS_ClearAnimations
-	#define ClearAnimations( FIXES_ClearAnimations(
+#if defined _ALS_ClearAnimations
+	// Previous hook.
+	#define _ALS_ClearAnimations__
+	#define ClearAnimations__( ClearAnimations(
 #endif
 
-#if defined _ALS_GetPlayerAnimationIndex
-	#error _ALS_GetPlayerAnimationIndex defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4331,14 +4000,12 @@ native FIXES_GetPlayerAnimationIndex(playerid) = GetPlayerAnimationIndex;
  * </remarks>
  */
 native GetPlayerAnimationIndex__(playerid) = GetPlayerAnimationIndex;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerAnimationIndex
-	#define GetPlayerAnimationIndex( FIXES_GetPlayerAnimationIndex(
+#if defined _ALS_GetPlayerAnimationIndex
+	// Previous hook.
+	#define _ALS_GetPlayerAnimationIndex__
+	#define GetPlayerAnimationIndex__( GetPlayerAnimationIndex(
 #endif
 
-#if defined _ALS_GetAnimationName
-	#error _ALS_GetAnimationName defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4357,14 +4024,12 @@ native FIXES_GetAnimationName(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len
  * </remarks>
  */
 native GetAnimationName__(index, animationLibrary[], _FIXES_MAYBE_SIZEOF(len1, animationLibrary), animationName[], len2 = sizeof (animationName)) = GetAnimationName;
-#if _FIXES_SAMP
-	#define _ALS_GetAnimationName
-	#define GetAnimationName( FIXES_GetAnimationName(
+#if defined _ALS_GetAnimationName
+	// Previous hook.
+	#define _ALS_GetAnimationName__
+	#define GetAnimationName__( GetAnimationName(
 #endif
 
-#if defined _ALS_GetPlayerSpecialAction
-	#error _ALS_GetPlayerSpecialAction defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4383,14 +4048,12 @@ native SPECIAL_ACTION:FIXES_GetPlayerSpecialAction(playerid) = GetPlayerSpecialA
  * </remarks>
  */
 native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerSpecialAction
-	#define GetPlayerSpecialAction( FIXES_GetPlayerSpecialAction(
+#if defined _ALS_GetPlayerSpecialAction
+	// Previous hook.
+	#define _ALS_GetPlayerSpecialAction__
+	#define GetPlayerSpecialAction__( GetPlayerSpecialAction(
 #endif
 
-#if defined _ALS_SetPlayerSpecialAction
-	#error _ALS_SetPlayerSpecialAction defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4409,14 +4072,12 @@ native FIXES_SetPlayerSpecialAction(playerid, SPECIAL_ACTION:actionid) = SetPlay
  * </remarks>
  */
 native SetPlayerSpecialAction__(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerSpecialAction
-	#define SetPlayerSpecialAction( FIXES_SetPlayerSpecialAction(
+#if defined _ALS_SetPlayerSpecialAction
+	// Previous hook.
+	#define _ALS_SetPlayerSpecialAction__
+	#define SetPlayerSpecialAction__( SetPlayerSpecialAction(
 #endif
 
-#if defined _ALS_DisableRemoteVehicleCollisions
-	#error _ALS_DisableRemoteVehicleCollisions defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4435,14 +4096,12 @@ native FIXES_DisableRemoteVehicleCollisions(playerid, _FIXES_MAYBE_BOOL:disable)
  * </remarks>
  */
 native DisableRemoteVehicleCollisions__(playerid, bool:disable) = DisableRemoteVehicleCollisions;
-#if _FIXES_SAMP
-	#define _ALS_DisableRemoteVehicleCollisions
-	#define DisableRemoteVehicleCollisions( FIXES_DisableRemoteVehicleCollisions(
+#if defined _ALS_DisableRemoteVehicleCollisions
+	// Previous hook.
+	#define _ALS_DisableRemoteVehicleCollisions__
+	#define DisableRemoteVehicleCollisions__( DisableRemoteVehicleCollisions(
 #endif
 
-#if defined _ALS_SetPlayerCheckpoint
-	#error _ALS_SetPlayerCheckpoint defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4461,14 +4120,12 @@ native FIXES_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size
  * </remarks>
  */
 native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerCheckpoint
-	#define SetPlayerCheckpoint( FIXES_SetPlayerCheckpoint(
+#if defined _ALS_SetPlayerCheckpoint
+	// Previous hook.
+	#define _ALS_SetPlayerCheckpoint__
+	#define SetPlayerCheckpoint__( SetPlayerCheckpoint(
 #endif
 
-#if defined _ALS_DisablePlayerCheckpoint
-	#error _ALS_DisablePlayerCheckpoint defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4487,14 +4144,12 @@ native FIXES_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
  * </remarks>
  */
 native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint;
-#if _FIXES_SAMP
-	#define _ALS_DisablePlayerCheckpoint
-	#define DisablePlayerCheckpoint( FIXES_DisablePlayerCheckpoint(
+#if defined _ALS_DisablePlayerCheckpoint
+	// Previous hook.
+	#define _ALS_DisablePlayerCheckpoint__
+	#define DisablePlayerCheckpoint__( DisablePlayerCheckpoint(
 #endif
 
-#if defined _ALS_SetPlayerRaceCheckpoint
-	#error _ALS_SetPlayerRaceCheckpoint defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4513,14 +4168,12 @@ native FIXES_SetPlayerRaceCheckpoint(playerid, type, Float:centerX, Float:center
  * </remarks>
  */
 native SetPlayerRaceCheckpoint__(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerRaceCheckpoint
-	#define SetPlayerRaceCheckpoint( FIXES_SetPlayerRaceCheckpoint(
+#if defined _ALS_SetPlayerRaceCheckpoint
+	// Previous hook.
+	#define _ALS_SetPlayerRaceCheckpoint__
+	#define SetPlayerRaceCheckpoint__( SetPlayerRaceCheckpoint(
 #endif
 
-#if defined _ALS_DisablePlayerRaceCheckpoint
-	#error _ALS_DisablePlayerRaceCheckpoint defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4539,14 +4192,12 @@ native FIXES_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint
  * </remarks>
  */
 native DisablePlayerRaceCheckpoint__(playerid) = DisablePlayerRaceCheckpoint;
-#if _FIXES_SAMP
-	#define _ALS_DisablePlayerRaceCheckpoint
-	#define DisablePlayerRaceCheckpoint( FIXES_DisablePlayerRaceCheckpoint(
+#if defined _ALS_DisablePlayerRaceCheckpoint
+	// Previous hook.
+	#define _ALS_DisablePlayerRaceCheckpoint__
+	#define DisablePlayerRaceCheckpoint__( DisablePlayerRaceCheckpoint(
 #endif
 
-#if defined _ALS_SetPlayerWorldBounds
-	#error _ALS_SetPlayerWorldBounds defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4565,14 +4216,12 @@ native FIXES_SetPlayerWorldBounds(playerid, Float:maxX, Float:minX, Float:maxY, 
  * </remarks>
  */
 native SetPlayerWorldBounds__(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerWorldBounds
-	#define SetPlayerWorldBounds( FIXES_SetPlayerWorldBounds(
+#if defined _ALS_SetPlayerWorldBounds
+	// Previous hook.
+	#define _ALS_SetPlayerWorldBounds__
+	#define SetPlayerWorldBounds__( SetPlayerWorldBounds(
 #endif
 
-#if defined _ALS_SetPlayerMarkerForPlayer
-	#error _ALS_SetPlayerMarkerForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4591,14 +4240,12 @@ native FIXES_SetPlayerMarkerForPlayer(playerid, targetid, colour) = SetPlayerMar
  * </remarks>
  */
 native SetPlayerMarkerForPlayer__(playerid, targetid, colour) = SetPlayerMarkerForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerMarkerForPlayer
-	#define SetPlayerMarkerForPlayer( FIXES_SetPlayerMarkerForPlayer(
+#if defined _ALS_SetPlayerMarkerForPlayer
+	// Previous hook.
+	#define _ALS_SetPlayerMarkerForPlayer__
+	#define SetPlayerMarkerForPlayer__( SetPlayerMarkerForPlayer(
 #endif
 
-#if defined _ALS_ShowPlayerNameTagForPlayer
-	#error _ALS_ShowPlayerNameTagForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4617,14 +4264,12 @@ native FIXES_ShowPlayerNameTagForPlayer(playerid, targetid, _FIXES_MAYBE_BOOL:sh
  * </remarks>
  */
 native ShowPlayerNameTagForPlayer__(playerid, targetid, bool:show) = ShowPlayerNameTagForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_ShowPlayerNameTagForPlayer
-	#define ShowPlayerNameTagForPlayer( FIXES_ShowPlayerNameTagForPlayer(
+#if defined _ALS_ShowPlayerNameTagForPlayer
+	// Previous hook.
+	#define _ALS_ShowPlayerNameTagForPlayer__
+	#define ShowPlayerNameTagForPlayer__( ShowPlayerNameTagForPlayer(
 #endif
 
-#if defined _ALS_SetPlayerMapIcon
-	#error _ALS_SetPlayerMapIcon defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4643,14 +4288,12 @@ native FIXES_SetPlayerMapIcon(playerid, iconid, Float:x, Float:y, Float:z, marke
  * </remarks>
  */
 native SetPlayerMapIcon__(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerMapIcon
-	#define SetPlayerMapIcon( FIXES_SetPlayerMapIcon(
+#if defined _ALS_SetPlayerMapIcon
+	// Previous hook.
+	#define _ALS_SetPlayerMapIcon__
+	#define SetPlayerMapIcon__( SetPlayerMapIcon(
 #endif
 
-#if defined _ALS_RemovePlayerMapIcon
-	#error _ALS_RemovePlayerMapIcon defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4669,14 +4312,12 @@ native FIXES_RemovePlayerMapIcon(playerid, iconid) = RemovePlayerMapIcon;
  * </remarks>
  */
 native RemovePlayerMapIcon__(playerid, iconid) = RemovePlayerMapIcon;
-#if _FIXES_SAMP
-	#define _ALS_RemovePlayerMapIcon
-	#define RemovePlayerMapIcon( FIXES_RemovePlayerMapIcon(
+#if defined _ALS_RemovePlayerMapIcon
+	// Previous hook.
+	#define _ALS_RemovePlayerMapIcon__
+	#define RemovePlayerMapIcon__( RemovePlayerMapIcon(
 #endif
 
-#if defined _ALS_AllowPlayerTeleport
-	#error _ALS_AllowPlayerTeleport defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4696,14 +4337,12 @@ native FIXES_AllowPlayerTeleport(playerid, _FIXES_MAYBE_BOOL:allow) = AllowPlaye
  * </remarks>
  */
 native AllowPlayerTeleport__(playerid, bool:allow) = AllowPlayerTeleport;
-#if _FIXES_SAMP
-	#define _ALS_AllowPlayerTeleport
-	#define AllowPlayerTeleport( FIXES_AllowPlayerTeleport(
+#if defined _ALS_AllowPlayerTeleport
+	// Previous hook.
+	#define _ALS_AllowPlayerTeleport__
+	#define AllowPlayerTeleport__( AllowPlayerTeleport(
 #endif
 
-#if defined _ALS_SetPlayerCameraPos
-	#error _ALS_SetPlayerCameraPos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4722,14 +4361,12 @@ native FIXES_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayer
  * </remarks>
  */
 native SetPlayerCameraPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerCameraPos
-	#define SetPlayerCameraPos( FIXES_SetPlayerCameraPos(
+#if defined _ALS_SetPlayerCameraPos
+	// Previous hook.
+	#define _ALS_SetPlayerCameraPos__
+	#define SetPlayerCameraPos__( SetPlayerCameraPos(
 #endif
 
-#if defined _ALS_SetPlayerCameraLookAt
-	#error _ALS_SetPlayerCameraLookAt defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4748,14 +4385,12 @@ native FIXES_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, CAM_MOVE
  * </remarks>
  */
 native SetPlayerCameraLookAt__(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerCameraLookAt
-	#define SetPlayerCameraLookAt( FIXES_SetPlayerCameraLookAt(
+#if defined _ALS_SetPlayerCameraLookAt
+	// Previous hook.
+	#define _ALS_SetPlayerCameraLookAt__
+	#define SetPlayerCameraLookAt__( SetPlayerCameraLookAt(
 #endif
 
-#if defined _ALS_SetCameraBehindPlayer
-	#error _ALS_SetCameraBehindPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4774,14 +4409,12 @@ native FIXES_SetCameraBehindPlayer(playerid) = SetCameraBehindPlayer;
  * </remarks>
  */
 native SetCameraBehindPlayer__(playerid) = SetCameraBehindPlayer;
-#if _FIXES_SAMP
-	#define _ALS_SetCameraBehindPlayer
-	#define SetCameraBehindPlayer( FIXES_SetCameraBehindPlayer(
+#if defined _ALS_SetCameraBehindPlayer
+	// Previous hook.
+	#define _ALS_SetCameraBehindPlayer__
+	#define SetCameraBehindPlayer__( SetCameraBehindPlayer(
 #endif
 
-#if defined _ALS_GetPlayerCameraPos
-	#error _ALS_GetPlayerCameraPos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4800,14 +4433,12 @@ native FIXES_GetPlayerCameraPos(playerid, &Float:x, &Float:y, &Float:z) = GetPla
  * </remarks>
  */
 native GetPlayerCameraPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerCameraPos
-	#define GetPlayerCameraPos( FIXES_GetPlayerCameraPos(
+#if defined _ALS_GetPlayerCameraPos
+	// Previous hook.
+	#define _ALS_GetPlayerCameraPos__
+	#define GetPlayerCameraPos__( GetPlayerCameraPos(
 #endif
 
-#if defined _ALS_GetPlayerCameraFrontVector
-	#error _ALS_GetPlayerCameraFrontVector defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4826,14 +4457,12 @@ native FIXES_GetPlayerCameraFrontVector(playerid, &Float:x, &Float:y, &Float:z) 
  * </remarks>
  */
 native GetPlayerCameraFrontVector__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerCameraFrontVector
-	#define GetPlayerCameraFrontVector( FIXES_GetPlayerCameraFrontVector(
+#if defined _ALS_GetPlayerCameraFrontVector
+	// Previous hook.
+	#define _ALS_GetPlayerCameraFrontVector__
+	#define GetPlayerCameraFrontVector__( GetPlayerCameraFrontVector(
 #endif
 
-#if defined _ALS_GetPlayerCameraMode
-	#error _ALS_GetPlayerCameraMode defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4852,14 +4481,12 @@ native CAM_MODE:FIXES_GetPlayerCameraMode(playerid) = GetPlayerCameraMode;
  * </remarks>
  */
 native CAM_MODE:GetPlayerCameraMode__(playerid) = GetPlayerCameraMode;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerCameraMode
-	#define GetPlayerCameraMode( FIXES_GetPlayerCameraMode(
+#if defined _ALS_GetPlayerCameraMode
+	// Previous hook.
+	#define _ALS_GetPlayerCameraMode__
+	#define GetPlayerCameraMode__( GetPlayerCameraMode(
 #endif
 
-#if defined _ALS_EnablePlayerCameraTarget
-	#error _ALS_EnablePlayerCameraTarget defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4878,14 +4505,12 @@ native FIXES_EnablePlayerCameraTarget(playerid, _FIXES_MAYBE_BOOL:enable) = Enab
  * </remarks>
  */
 native EnablePlayerCameraTarget__(playerid, bool:enable) = EnablePlayerCameraTarget;
-#if _FIXES_SAMP
-	#define _ALS_EnablePlayerCameraTarget
-	#define EnablePlayerCameraTarget( FIXES_EnablePlayerCameraTarget(
+#if defined _ALS_EnablePlayerCameraTarget
+	// Previous hook.
+	#define _ALS_EnablePlayerCameraTarget__
+	#define EnablePlayerCameraTarget__( EnablePlayerCameraTarget(
 #endif
 
-#if defined _ALS_GetPlayerCameraTargetObject
-	#error _ALS_GetPlayerCameraTargetObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4904,14 +4529,12 @@ native FIXES_GetPlayerCameraTargetObject(playerid) = GetPlayerCameraTargetObject
  * </remarks>
  */
 native GetPlayerCameraTargetObject__(playerid) = GetPlayerCameraTargetObject;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerCameraTargetObject
-	#define GetPlayerCameraTargetObject( FIXES_GetPlayerCameraTargetObject(
+#if defined _ALS_GetPlayerCameraTargetObject
+	// Previous hook.
+	#define _ALS_GetPlayerCameraTargetObject__
+	#define GetPlayerCameraTargetObject__( GetPlayerCameraTargetObject(
 #endif
 
-#if defined _ALS_GetPlayerCameraTargetVehicle
-	#error _ALS_GetPlayerCameraTargetVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4930,14 +4553,12 @@ native FIXES_GetPlayerCameraTargetVehicle(playerid) = GetPlayerCameraTargetVehic
  * </remarks>
  */
 native GetPlayerCameraTargetVehicle__(playerid) = GetPlayerCameraTargetVehicle;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerCameraTargetVehicle
-	#define GetPlayerCameraTargetVehicle( FIXES_GetPlayerCameraTargetVehicle(
+#if defined _ALS_GetPlayerCameraTargetVehicle
+	// Previous hook.
+	#define _ALS_GetPlayerCameraTargetVehicle__
+	#define GetPlayerCameraTargetVehicle__( GetPlayerCameraTargetVehicle(
 #endif
 
-#if defined _ALS_GetPlayerCameraTargetPlayer
-	#error _ALS_GetPlayerCameraTargetPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4956,14 +4577,12 @@ native FIXES_GetPlayerCameraTargetPlayer(playerid) = GetPlayerCameraTargetPlayer
  * </remarks>
  */
 native GetPlayerCameraTargetPlayer__(playerid) = GetPlayerCameraTargetPlayer;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerCameraTargetPlayer
-	#define GetPlayerCameraTargetPlayer( FIXES_GetPlayerCameraTargetPlayer(
+#if defined _ALS_GetPlayerCameraTargetPlayer
+	// Previous hook.
+	#define _ALS_GetPlayerCameraTargetPlayer__
+	#define GetPlayerCameraTargetPlayer__( GetPlayerCameraTargetPlayer(
 #endif
 
-#if defined _ALS_GetPlayerCameraTargetActor
-	#error _ALS_GetPlayerCameraTargetActor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -4982,14 +4601,12 @@ native FIXES_GetPlayerCameraTargetActor(playerid) = GetPlayerCameraTargetActor;
  * </remarks>
  */
 native GetPlayerCameraTargetActor__(playerid) = GetPlayerCameraTargetActor;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerCameraTargetActor
-	#define GetPlayerCameraTargetActor( FIXES_GetPlayerCameraTargetActor(
+#if defined _ALS_GetPlayerCameraTargetActor
+	// Previous hook.
+	#define _ALS_GetPlayerCameraTargetActor__
+	#define GetPlayerCameraTargetActor__( GetPlayerCameraTargetActor(
 #endif
 
-#if defined _ALS_GetPlayerCameraAspectRatio
-	#error _ALS_GetPlayerCameraAspectRatio defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5008,14 +4625,12 @@ native Float:FIXES_GetPlayerCameraAspectRatio(playerid) = GetPlayerCameraAspectR
  * </remarks>
  */
 native Float:GetPlayerCameraAspectRatio__(playerid) = GetPlayerCameraAspectRatio;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerCameraAspectRatio
-	#define GetPlayerCameraAspectRatio( FIXES_GetPlayerCameraAspectRatio(
+#if defined _ALS_GetPlayerCameraAspectRatio
+	// Previous hook.
+	#define _ALS_GetPlayerCameraAspectRatio__
+	#define GetPlayerCameraAspectRatio__( GetPlayerCameraAspectRatio(
 #endif
 
-#if defined _ALS_GetPlayerCameraZoom
-	#error _ALS_GetPlayerCameraZoom defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5034,14 +4649,12 @@ native Float:FIXES_GetPlayerCameraZoom(playerid) = GetPlayerCameraZoom;
  * </remarks>
  */
 native Float:GetPlayerCameraZoom__(playerid) = GetPlayerCameraZoom;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerCameraZoom
-	#define GetPlayerCameraZoom( FIXES_GetPlayerCameraZoom(
+#if defined _ALS_GetPlayerCameraZoom
+	// Previous hook.
+	#define _ALS_GetPlayerCameraZoom__
+	#define GetPlayerCameraZoom__( GetPlayerCameraZoom(
 #endif
 
-#if defined _ALS_AttachCameraToObject
-	#error _ALS_AttachCameraToObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5060,14 +4673,12 @@ native FIXES_AttachCameraToObject(playerid, objectid) = AttachCameraToObject;
  * </remarks>
  */
 native AttachCameraToObject__(playerid, objectid) = AttachCameraToObject;
-#if _FIXES_SAMP
-	#define _ALS_AttachCameraToObject
-	#define AttachCameraToObject( FIXES_AttachCameraToObject(
+#if defined _ALS_AttachCameraToObject
+	// Previous hook.
+	#define _ALS_AttachCameraToObject__
+	#define AttachCameraToObject__( AttachCameraToObject(
 #endif
 
-#if defined _ALS_AttachCameraToPlayerObject
-	#error _ALS_AttachCameraToPlayerObject defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5086,14 +4697,12 @@ native FIXES_AttachCameraToPlayerObject(playerid, objectid) = AttachCameraToPlay
  * </remarks>
  */
 native AttachCameraToPlayerObject__(playerid, objectid) = AttachCameraToPlayerObject;
-#if _FIXES_SAMP
-	#define _ALS_AttachCameraToPlayerObject
-	#define AttachCameraToPlayerObject( FIXES_AttachCameraToPlayerObject(
+#if defined _ALS_AttachCameraToPlayerObject
+	// Previous hook.
+	#define _ALS_AttachCameraToPlayerObject__
+	#define AttachCameraToPlayerObject__( AttachCameraToPlayerObject(
 #endif
 
-#if defined _ALS_InterpolateCameraPos
-	#error _ALS_InterpolateCameraPos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5112,14 +4721,12 @@ native FIXES_InterpolateCameraPos(playerid, Float:fromX, Float:fromY, Float:from
  * </remarks>
  */
 native InterpolateCameraPos__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos;
-#if _FIXES_SAMP
-	#define _ALS_InterpolateCameraPos
-	#define InterpolateCameraPos( FIXES_InterpolateCameraPos(
+#if defined _ALS_InterpolateCameraPos
+	// Previous hook.
+	#define _ALS_InterpolateCameraPos__
+	#define InterpolateCameraPos__( InterpolateCameraPos(
 #endif
 
-#if defined _ALS_InterpolateCameraLookAt
-	#error _ALS_InterpolateCameraLookAt defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5138,14 +4745,12 @@ native FIXES_InterpolateCameraLookAt(playerid, Float:fromX, Float:fromY, Float:f
  * </remarks>
  */
 native InterpolateCameraLookAt__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt;
-#if _FIXES_SAMP
-	#define _ALS_InterpolateCameraLookAt
-	#define InterpolateCameraLookAt( FIXES_InterpolateCameraLookAt(
+#if defined _ALS_InterpolateCameraLookAt
+	// Previous hook.
+	#define _ALS_InterpolateCameraLookAt__
+	#define InterpolateCameraLookAt__( InterpolateCameraLookAt(
 #endif
 
-#if defined _ALS_IsPlayerConnected
-	#error _ALS_IsPlayerConnected defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5164,14 +4769,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsPlayerConnected(playerid) = IsPlayerConnected;
  * </remarks>
  */
 native bool:IsPlayerConnected__(playerid) = IsPlayerConnected;
-#if _FIXES_SAMP
-	#define _ALS_IsPlayerConnected
-	#define IsPlayerConnected( FIXES_IsPlayerConnected(
+#if defined _ALS_IsPlayerConnected
+	// Previous hook.
+	#define _ALS_IsPlayerConnected__
+	#define IsPlayerConnected__( IsPlayerConnected(
 #endif
 
-#if defined _ALS_IsPlayerInVehicle
-	#error _ALS_IsPlayerInVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5190,14 +4793,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInVehicle(playerid, vehicleid) = IsPlayer
  * </remarks>
  */
 native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle;
-#if _FIXES_SAMP
-	#define _ALS_IsPlayerInVehicle
-	#define IsPlayerInVehicle( FIXES_IsPlayerInVehicle(
+#if defined _ALS_IsPlayerInVehicle
+	// Previous hook.
+	#define _ALS_IsPlayerInVehicle__
+	#define IsPlayerInVehicle__( IsPlayerInVehicle(
 #endif
 
-#if defined _ALS_IsPlayerInAnyVehicle
-	#error _ALS_IsPlayerInAnyVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5216,14 +4817,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInAnyVehicle(playerid) = IsPlayerInAnyVeh
  * </remarks>
  */
 native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle;
-#if _FIXES_SAMP
-	#define _ALS_IsPlayerInAnyVehicle
-	#define IsPlayerInAnyVehicle( FIXES_IsPlayerInAnyVehicle(
+#if defined _ALS_IsPlayerInAnyVehicle
+	// Previous hook.
+	#define _ALS_IsPlayerInAnyVehicle__
+	#define IsPlayerInAnyVehicle__( IsPlayerInAnyVehicle(
 #endif
 
-#if defined _ALS_IsPlayerInCheckpoint
-	#error _ALS_IsPlayerInCheckpoint defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5242,14 +4841,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInCheckpoint(playerid) = IsPlayerInCheckp
  * </remarks>
  */
 native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint;
-#if _FIXES_SAMP
-	#define _ALS_IsPlayerInCheckpoint
-	#define IsPlayerInCheckpoint( FIXES_IsPlayerInCheckpoint(
+#if defined _ALS_IsPlayerInCheckpoint
+	// Previous hook.
+	#define _ALS_IsPlayerInCheckpoint__
+	#define IsPlayerInCheckpoint__( IsPlayerInCheckpoint(
 #endif
 
-#if defined _ALS_IsPlayerInRaceCheckpoint
-	#error _ALS_IsPlayerInRaceCheckpoint defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5268,14 +4865,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsPlayerInRaceCheckpoint(playerid) = IsPlayerInRa
  * </remarks>
  */
 native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint;
-#if _FIXES_SAMP
-	#define _ALS_IsPlayerInRaceCheckpoint
-	#define IsPlayerInRaceCheckpoint( FIXES_IsPlayerInRaceCheckpoint(
+#if defined _ALS_IsPlayerInRaceCheckpoint
+	// Previous hook.
+	#define _ALS_IsPlayerInRaceCheckpoint__
+	#define IsPlayerInRaceCheckpoint__( IsPlayerInRaceCheckpoint(
 #endif
 
-#if defined _ALS_SetPlayerVirtualWorld
-	#error _ALS_SetPlayerVirtualWorld defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5294,14 +4889,12 @@ native FIXES_SetPlayerVirtualWorld(playerid, virtualWorld) = SetPlayerVirtualWor
  * </remarks>
  */
 native SetPlayerVirtualWorld__(playerid, virtualWorld) = SetPlayerVirtualWorld;
-#if _FIXES_SAMP
-	#define _ALS_SetPlayerVirtualWorld
-	#define SetPlayerVirtualWorld( FIXES_SetPlayerVirtualWorld(
+#if defined _ALS_SetPlayerVirtualWorld
+	// Previous hook.
+	#define _ALS_SetPlayerVirtualWorld__
+	#define SetPlayerVirtualWorld__( SetPlayerVirtualWorld(
 #endif
 
-#if defined _ALS_GetPlayerVirtualWorld
-	#error _ALS_GetPlayerVirtualWorld defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5320,14 +4913,12 @@ native FIXES_GetPlayerVirtualWorld(playerid) = GetPlayerVirtualWorld;
  * </remarks>
  */
 native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerVirtualWorld
-	#define GetPlayerVirtualWorld( FIXES_GetPlayerVirtualWorld(
+#if defined _ALS_GetPlayerVirtualWorld
+	// Previous hook.
+	#define _ALS_GetPlayerVirtualWorld__
+	#define GetPlayerVirtualWorld__( GetPlayerVirtualWorld(
 #endif
 
-#if defined _ALS_EnableStuntBonusForPlayer
-	#error _ALS_EnableStuntBonusForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5346,14 +4937,12 @@ native FIXES_EnableStuntBonusForPlayer(playerid, _FIXES_MAYBE_BOOL:enable) = Ena
  * </remarks>
  */
 native EnableStuntBonusForPlayer__(playerid, bool:enable) = EnableStuntBonusForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_EnableStuntBonusForPlayer
-	#define EnableStuntBonusForPlayer( FIXES_EnableStuntBonusForPlayer(
+#if defined _ALS_EnableStuntBonusForPlayer
+	// Previous hook.
+	#define _ALS_EnableStuntBonusForPlayer__
+	#define EnableStuntBonusForPlayer__( EnableStuntBonusForPlayer(
 #endif
 
-#if defined _ALS_EnableStuntBonusForAll
-	#error _ALS_EnableStuntBonusForAll defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5372,14 +4961,12 @@ native FIXES_EnableStuntBonusForAll(_FIXES_MAYBE_BOOL:enable) = EnableStuntBonus
  * </remarks>
  */
 native EnableStuntBonusForAll__(bool:enable) = EnableStuntBonusForAll;
-#if _FIXES_SAMP
-	#define _ALS_EnableStuntBonusForAll
-	#define EnableStuntBonusForAll( FIXES_EnableStuntBonusForAll(
+#if defined _ALS_EnableStuntBonusForAll
+	// Previous hook.
+	#define _ALS_EnableStuntBonusForAll__
+	#define EnableStuntBonusForAll__( EnableStuntBonusForAll(
 #endif
 
-#if defined _ALS_TogglePlayerSpectating
-	#error _ALS_TogglePlayerSpectating defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5398,14 +4985,12 @@ native FIXES_TogglePlayerSpectating(playerid, _FIXES_MAYBE_BOOL:toggle) = Toggle
  * </remarks>
  */
 native TogglePlayerSpectating__(playerid, bool:toggle) = TogglePlayerSpectating;
-#if _FIXES_SAMP
-	#define _ALS_TogglePlayerSpectating
-	#define TogglePlayerSpectating( FIXES_TogglePlayerSpectating(
+#if defined _ALS_TogglePlayerSpectating
+	// Previous hook.
+	#define _ALS_TogglePlayerSpectating__
+	#define TogglePlayerSpectating__( TogglePlayerSpectating(
 #endif
 
-#if defined _ALS_PlayerSpectatePlayer
-	#error _ALS_PlayerSpectatePlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5424,14 +5009,12 @@ native FIXES_PlayerSpectatePlayer(playerid, targetid, SPECTATE_MODE:mode = SPECT
  * </remarks>
  */
 native PlayerSpectatePlayer__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer;
-#if _FIXES_SAMP
-	#define _ALS_PlayerSpectatePlayer
-	#define PlayerSpectatePlayer( FIXES_PlayerSpectatePlayer(
+#if defined _ALS_PlayerSpectatePlayer
+	// Previous hook.
+	#define _ALS_PlayerSpectatePlayer__
+	#define PlayerSpectatePlayer__( PlayerSpectatePlayer(
 #endif
 
-#if defined _ALS_PlayerSpectateVehicle
-	#error _ALS_PlayerSpectateVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5450,14 +5033,12 @@ native FIXES_PlayerSpectateVehicle(playerid, targetid, SPECTATE_MODE:mode = SPEC
  * </remarks>
  */
 native PlayerSpectateVehicle__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle;
-#if _FIXES_SAMP
-	#define _ALS_PlayerSpectateVehicle
-	#define PlayerSpectateVehicle( FIXES_PlayerSpectateVehicle(
+#if defined _ALS_PlayerSpectateVehicle
+	// Previous hook.
+	#define _ALS_PlayerSpectateVehicle__
+	#define PlayerSpectateVehicle__( PlayerSpectateVehicle(
 #endif
 
-#if defined _ALS_StartRecordingPlayerData
-	#error _ALS_StartRecordingPlayerData defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5476,14 +5057,12 @@ native FIXES_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType
  * </remarks>
  */
 native StartRecordingPlayerData__(playerid, PLAYER_RECORDING_TYPE:recordType, const recordFile[]) = StartRecordingPlayerData;
-#if _FIXES_SAMP
-	#define _ALS_StartRecordingPlayerData
-	#define StartRecordingPlayerData( FIXES_StartRecordingPlayerData(
+#if defined _ALS_StartRecordingPlayerData
+	// Previous hook.
+	#define _ALS_StartRecordingPlayerData__
+	#define StartRecordingPlayerData__( StartRecordingPlayerData(
 #endif
 
-#if defined _ALS_StopRecordingPlayerData
-	#error _ALS_StopRecordingPlayerData defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5502,14 +5081,12 @@ native FIXES_StopRecordingPlayerData(playerid) = StopRecordingPlayerData;
  * </remarks>
  */
 native StopRecordingPlayerData__(playerid) = StopRecordingPlayerData;
-#if _FIXES_SAMP
-	#define _ALS_StopRecordingPlayerData
-	#define StopRecordingPlayerData( FIXES_StopRecordingPlayerData(
+#if defined _ALS_StopRecordingPlayerData
+	// Previous hook.
+	#define _ALS_StopRecordingPlayerData__
+	#define StopRecordingPlayerData__( StopRecordingPlayerData(
 #endif
 
-#if defined _ALS_SelectTextDraw
-	#error _ALS_SelectTextDraw defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5528,14 +5105,12 @@ native FIXES_SelectTextDraw(playerid, hoverColour) = SelectTextDraw;
  * </remarks>
  */
 native SelectTextDraw__(playerid, hoverColour) = SelectTextDraw;
-#if _FIXES_SAMP
-	#define _ALS_SelectTextDraw
-	#define SelectTextDraw( FIXES_SelectTextDraw(
+#if defined _ALS_SelectTextDraw
+	// Previous hook.
+	#define _ALS_SelectTextDraw__
+	#define SelectTextDraw__( SelectTextDraw(
 #endif
 
-#if defined _ALS_CancelSelectTextDraw
-	#error _ALS_CancelSelectTextDraw defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5554,14 +5129,12 @@ native FIXES_CancelSelectTextDraw(playerid) = CancelSelectTextDraw;
  * </remarks>
  */
 native CancelSelectTextDraw__(playerid) = CancelSelectTextDraw;
-#if _FIXES_SAMP
-	#define _ALS_CancelSelectTextDraw
-	#define CancelSelectTextDraw( FIXES_CancelSelectTextDraw(
+#if defined _ALS_CancelSelectTextDraw
+	// Previous hook.
+	#define _ALS_CancelSelectTextDraw__
+	#define CancelSelectTextDraw__( CancelSelectTextDraw(
 #endif
 
-#if defined _ALS_CreateExplosionForPlayer
-	#error _ALS_CreateExplosionForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5580,14 +5153,12 @@ native FIXES_CreateExplosionForPlayer(playerid, Float:x, Float:y, Float:z, type,
  * </remarks>
  */
 native CreateExplosionForPlayer__(playerid, Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosionForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_CreateExplosionForPlayer
-	#define CreateExplosionForPlayer( FIXES_CreateExplosionForPlayer(
+#if defined _ALS_CreateExplosionForPlayer
+	// Previous hook.
+	#define _ALS_CreateExplosionForPlayer__
+	#define CreateExplosionForPlayer__( CreateExplosionForPlayer(
 #endif
 
-#if defined _ALS_SendClientCheck
-	#error _ALS_SendClientCheck defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5606,9 +5177,10 @@ native FIXES_SendClientCheck(playerid, type, memoryAddress, memoryOffset, byteCo
  * </remarks>
  */
 native SendClientCheck__(playerid, type, memoryAddress, memoryOffset, byteCount) = SendClientCheck;
-#if _FIXES_SAMP
-	#define _ALS_SendClientCheck
-	#define SendClientCheck( FIXES_SendClientCheck(
+#if defined _ALS_SendClientCheck
+	// Previous hook.
+	#define _ALS_SendClientCheck__
+	#define SendClientCheck__( SendClientCheck(
 #endif
 
 /*
@@ -5621,9 +5193,6 @@ native SendClientCheck__(playerid, type, memoryAddress, memoryOffset, byteCount)
 
 */
 
-#if defined _ALS_print
-	#error _ALS_print defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5642,14 +5211,12 @@ native FIXES_print(const string[]) = print;
  * </remarks>
  */
 native print__(const string[]) = print;
-#if _FIXES_SAMP
-	#define _ALS_print
-	#define print( FIXES_print(
+#if defined _ALS_print
+	// Previous hook.
+	#define _ALS_print__
+	#define print__( print(
 #endif
 
-#if defined _ALS_printf
-	#error _ALS_printf defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5668,14 +5235,12 @@ native FIXES_printf(const format[], {Float, _}:...) = printf;
  * </remarks>
  */
 native printf__(const format[], {Float, _}:...) = printf;
-#if _FIXES_SAMP
-	#define _ALS_printf
-	#define printf( FIXES_printf(
+#if defined _ALS_printf
+	// Previous hook.
+	#define _ALS_printf__
+	#define printf__( printf(
 #endif
 
-#if defined _ALS_format
-	#error _ALS_format defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5694,14 +5259,12 @@ native FIXES_format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], 
  * </remarks>
  */
 native format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
-#if _FIXES_SAMP
-	#define _ALS_format
-	#define format( FIXES_format(
+#if defined _ALS_format
+	// Previous hook.
+	#define _ALS_format__
+	#define format__( format(
 #endif
 
-#if defined _ALS_Print
-	#error _ALS_Print defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5720,14 +5283,12 @@ native FIXES_Print(const string[]) = print;
  * </remarks>
  */
 native Print__(const string[]) = print;
-#if _FIXES_SAMP
-	#define _ALS_Print
-	#define Print( FIXES_Print(
+#if defined _ALS_Print
+	// Previous hook.
+	#define _ALS_Print__
+	#define Print__( Print(
 #endif
 
-#if defined _ALS_PrintF
-	#error _ALS_PrintF defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5746,14 +5307,12 @@ native FIXES_PrintF(const format[], {Float, _}:...) = printf;
  * </remarks>
  */
 native PrintF__(const format[], {Float, _}:...) = printf;
-#if _FIXES_SAMP
-	#define _ALS_PrintF
-	#define PrintF( FIXES_PrintF(
+#if defined _ALS_PrintF
+	// Previous hook.
+	#define _ALS_PrintF__
+	#define PrintF__( PrintF(
 #endif
 
-#if defined _ALS_Format
-	#error _ALS_Format defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5772,14 +5331,12 @@ native FIXES_Format(output[], _FIXES_MAYBE_SIZEOF(len, output), const format[], 
  * </remarks>
  */
 native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
-#if _FIXES_SAMP
-	#define _ALS_Format
-	#define Format( FIXES_Format(
+#if defined _ALS_Format
+	// Previous hook.
+	#define _ALS_Format__
+	#define Format__( Format(
 #endif
 
-#if defined _ALS_SendClientMessage
-	#error _ALS_SendClientMessage defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5798,14 +5355,12 @@ native FIXES_SendClientMessage(playerid, colour, const message[]) = SendClientMe
  * </remarks>
  */
 native SendClientMessage__(playerid, colour, const message[]) = SendClientMessage;
-#if _FIXES_SAMP
-	#define _ALS_SendClientMessage
-	#define SendClientMessage( FIXES_SendClientMessage(
+#if defined _ALS_SendClientMessage
+	// Previous hook.
+	#define _ALS_SendClientMessage__
+	#define SendClientMessage__( SendClientMessage(
 #endif
 
-#if defined _ALS_SendClientMessageToAll
-	#error _ALS_SendClientMessageToAll defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5824,14 +5379,12 @@ native FIXES_SendClientMessageToAll(colour, const message[]) = SendClientMessage
  * </remarks>
  */
 native SendClientMessageToAll__(colour, const message[]) = SendClientMessageToAll;
-#if _FIXES_SAMP
-	#define _ALS_SendClientMessageToAll
-	#define SendClientMessageToAll( FIXES_SendClientMessageToAll(
+#if defined _ALS_SendClientMessageToAll
+	// Previous hook.
+	#define _ALS_SendClientMessageToAll__
+	#define SendClientMessageToAll__( SendClientMessageToAll(
 #endif
 
-#if defined _ALS_SendPlayerMessageToPlayer
-	#error _ALS_SendPlayerMessageToPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5850,14 +5403,12 @@ native FIXES_SendPlayerMessageToPlayer(playerid, senderid, const message[]) = Se
  * </remarks>
  */
 native SendPlayerMessageToPlayer__(playerid, senderid, const message[]) = SendPlayerMessageToPlayer;
-#if _FIXES_SAMP
-	#define _ALS_SendPlayerMessageToPlayer
-	#define SendPlayerMessageToPlayer( FIXES_SendPlayerMessageToPlayer(
+#if defined _ALS_SendPlayerMessageToPlayer
+	// Previous hook.
+	#define _ALS_SendPlayerMessageToPlayer__
+	#define SendPlayerMessageToPlayer__( SendPlayerMessageToPlayer(
 #endif
 
-#if defined _ALS_SendPlayerMessageToAll
-	#error _ALS_SendPlayerMessageToAll defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5876,14 +5427,12 @@ native FIXES_SendPlayerMessageToAll(senderid, const message[]) = SendPlayerMessa
  * </remarks>
  */
 native SendPlayerMessageToAll__(senderid, const message[]) = SendPlayerMessageToAll;
-#if _FIXES_SAMP
-	#define _ALS_SendPlayerMessageToAll
-	#define SendPlayerMessageToAll( FIXES_SendPlayerMessageToAll(
+#if defined _ALS_SendPlayerMessageToAll
+	// Previous hook.
+	#define _ALS_SendPlayerMessageToAll__
+	#define SendPlayerMessageToAll__( SendPlayerMessageToAll(
 #endif
 
-#if defined _ALS_SendDeathMessage
-	#error _ALS_SendDeathMessage defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5902,14 +5451,12 @@ native FIXES_SendDeathMessage(killer, killee, weapon) = SendDeathMessage;
  * </remarks>
  */
 native SendDeathMessage__(killer, killee, weapon) = SendDeathMessage;
-#if _FIXES_SAMP
-	#define _ALS_SendDeathMessage
-	#define SendDeathMessage( FIXES_SendDeathMessage(
+#if defined _ALS_SendDeathMessage
+	// Previous hook.
+	#define _ALS_SendDeathMessage__
+	#define SendDeathMessage__( SendDeathMessage(
 #endif
 
-#if defined _ALS_SendDeathMessageToPlayer
-	#error _ALS_SendDeathMessageToPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5928,14 +5475,12 @@ native FIXES_SendDeathMessageToPlayer(playerid, killer, killee, weapon) = SendDe
  * </remarks>
  */
 native SendDeathMessageToPlayer__(playerid, killer, killee, weapon) = SendDeathMessageToPlayer;
-#if _FIXES_SAMP
-	#define _ALS_SendDeathMessageToPlayer
-	#define SendDeathMessageToPlayer( FIXES_SendDeathMessageToPlayer(
+#if defined _ALS_SendDeathMessageToPlayer
+	// Previous hook.
+	#define _ALS_SendDeathMessageToPlayer__
+	#define SendDeathMessageToPlayer__( SendDeathMessageToPlayer(
 #endif
 
-#if defined _ALS_GameTextForAll
-	#error _ALS_GameTextForAll defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5954,14 +5499,12 @@ native FIXES_GameTextForAll(const string[], time, style) = GameTextForAll;
  * </remarks>
  */
 native GameTextForAll__(const string[], time, style) = GameTextForAll;
-#if _FIXES_SAMP
-	#define _ALS_GameTextForAll
-	#define GameTextForAll( FIXES_GameTextForAll(
+#if defined _ALS_GameTextForAll
+	// Previous hook.
+	#define _ALS_GameTextForAll__
+	#define GameTextForAll__( GameTextForAll(
 #endif
 
-#if defined _ALS_GameTextForPlayer
-	#error _ALS_GameTextForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -5980,14 +5523,12 @@ native FIXES_GameTextForPlayer(playerid, const string[], time, style) = GameText
  * </remarks>
  */
 native GameTextForPlayer__(playerid, const string[], time, style) = GameTextForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_GameTextForPlayer
-	#define GameTextForPlayer( FIXES_GameTextForPlayer(
+#if defined _ALS_GameTextForPlayer
+	// Previous hook.
+	#define _ALS_GameTextForPlayer__
+	#define GameTextForPlayer__( GameTextForPlayer(
 #endif
 
-#if defined _ALS_SetTimer
-	#error _ALS_SetTimer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6006,14 +5547,12 @@ native FIXES_SetTimer(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYBE_
  * </remarks>
  */
 native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer;
-#if _FIXES_SAMP
-	#define _ALS_SetTimer
-	#define SetTimer( FIXES_SetTimer(
+#if defined _ALS_SetTimer
+	// Previous hook.
+	#define _ALS_SetTimer__
+	#define SetTimer__( SetTimer(
 #endif
 
-#if defined _ALS_SetTimerEx
-	#error _ALS_SetTimerEx defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6032,14 +5571,12 @@ native FIXES_SetTimerEx(_FIXES_MAYBE_CONST functionName[], interval, _FIXES_MAYB
  * </remarks>
  */
 native SetTimerEx__(const functionName[], interval, bool:repeating, const format[] = "", {Float, _}:...) = SetTimerEx;
-#if _FIXES_SAMP
-	#define _ALS_SetTimerEx
-	#define SetTimerEx( FIXES_SetTimerEx(
+#if defined _ALS_SetTimerEx
+	// Previous hook.
+	#define _ALS_SetTimerEx__
+	#define SetTimerEx__( SetTimerEx(
 #endif
 
-#if defined _ALS_KillTimer
-	#error _ALS_KillTimer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6058,14 +5595,12 @@ native FIXES_KillTimer(timerid) = KillTimer;
  * </remarks>
  */
 native KillTimer__(timerid) = KillTimer;
-#if _FIXES_SAMP
-	#define _ALS_KillTimer
-	#define KillTimer( FIXES_KillTimer(
+#if defined _ALS_KillTimer
+	// Previous hook.
+	#define _ALS_KillTimer__
+	#define KillTimer__( KillTimer(
 #endif
 
-#if defined _ALS_GetTickCount
-	#error _ALS_GetTickCount defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6084,14 +5619,12 @@ native FIXES_GetTickCount() = GetTickCount;
  * </remarks>
  */
 native GetTickCount__() = GetTickCount;
-#if _FIXES_SAMP
-	#define _ALS_GetTickCount
-	#define GetTickCount( FIXES_GetTickCount(
+#if defined _ALS_GetTickCount
+	// Previous hook.
+	#define _ALS_GetTickCount__
+	#define GetTickCount__( GetTickCount(
 #endif
 
-#if defined _ALS_GetMaxPlayers
-	#error _ALS_GetMaxPlayers defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6110,14 +5643,12 @@ native FIXES_GetMaxPlayers() = GetMaxPlayers;
  * </remarks>
  */
 native GetMaxPlayers__() = GetMaxPlayers;
-#if _FIXES_SAMP
-	#define _ALS_GetMaxPlayers
-	#define GetMaxPlayers( FIXES_GetMaxPlayers(
+#if defined _ALS_GetMaxPlayers
+	// Previous hook.
+	#define _ALS_GetMaxPlayers__
+	#define GetMaxPlayers__( GetMaxPlayers(
 #endif
 
-#if defined _ALS_CallRemoteFunction
-	#error _ALS_CallRemoteFunction defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6136,14 +5667,12 @@ native FIXES_CallRemoteFunction(const function[], const format[] = "", {Float, _
  * </remarks>
  */
 native CallRemoteFunction__(const function[], const format[] = "", {Float, _}:...) = CallRemoteFunction;
-#if _FIXES_SAMP
-	#define _ALS_CallRemoteFunction
-	#define CallRemoteFunction( FIXES_CallRemoteFunction(
+#if defined _ALS_CallRemoteFunction
+	// Previous hook.
+	#define _ALS_CallRemoteFunction__
+	#define CallRemoteFunction__( CallRemoteFunction(
 #endif
 
-#if defined _ALS_CallLocalFunction
-	#error _ALS_CallLocalFunction defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6162,14 +5691,12 @@ native FIXES_CallLocalFunction(const function[], const format[] = "", {Float, _}
  * </remarks>
  */
 native CallLocalFunction__(const function[], const format[] = "", {Float, _}:...) = CallLocalFunction;
-#if _FIXES_SAMP
-	#define _ALS_CallLocalFunction
-	#define CallLocalFunction( FIXES_CallLocalFunction(
+#if defined _ALS_CallLocalFunction
+	// Previous hook.
+	#define _ALS_CallLocalFunction__
+	#define CallLocalFunction__( CallLocalFunction(
 #endif
 
-#if defined _ALS_VectorSize
-	#error _ALS_VectorSize defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6188,14 +5715,12 @@ native Float:FIXES_VectorSize(Float:x, Float:y, Float:z) = VectorSize;
  * </remarks>
  */
 native Float:VectorSize__(Float:x, Float:y, Float:z) = VectorSize;
-#if _FIXES_SAMP
-	#define _ALS_VectorSize
-	#define VectorSize( FIXES_VectorSize(
+#if defined _ALS_VectorSize
+	// Previous hook.
+	#define _ALS_VectorSize__
+	#define VectorSize__( VectorSize(
 #endif
 
-#if defined _ALS_asin
-	#error _ALS_asin defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6217,14 +5742,12 @@ native Float:FIXES_asin(Float:value) = asin;
  * </remarks>
  */
 native Float:asin__(Float:value) = asin;
-#if _FIXES_SAMP
-	#define _ALS_asin
-	#define asin( FIXES_asin(
+#if defined _ALS_asin
+	// Previous hook.
+	#define _ALS_asin__
+	#define asin__( asin(
 #endif
 
-#if defined _ALS_acos
-	#error _ALS_acos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6246,14 +5769,12 @@ native Float:FIXES_acos(Float:value) = acos;
  * </remarks>
  */
 native Float:acos__(Float:value) = acos;
-#if _FIXES_SAMP
-	#define _ALS_acos
-	#define acos( FIXES_acos(
+#if defined _ALS_acos
+	// Previous hook.
+	#define _ALS_acos__
+	#define acos__( acos(
 #endif
 
-#if defined _ALS_atan
-	#error _ALS_atan defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6275,14 +5796,12 @@ native Float:FIXES_atan(Float:value) = atan;
  * </remarks>
  */
 native Float:atan__(Float:value) = atan;
-#if _FIXES_SAMP
-	#define _ALS_atan
-	#define atan( FIXES_atan(
+#if defined _ALS_atan
+	// Previous hook.
+	#define _ALS_atan__
+	#define atan__( atan(
 #endif
 
-#if defined _ALS_atan2
-	#error _ALS_atan2 defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6304,14 +5823,12 @@ native Float:FIXES_atan2(Float:y, Float:x) = atan2;
  * </remarks>
  */
 native Float:atan2__(Float:y, Float:x) = atan2;
-#if _FIXES_SAMP
-	#define _ALS_atan2
-	#define atan2( FIXES_atan2(
+#if defined _ALS_atan2
+	// Previous hook.
+	#define _ALS_atan2__
+	#define atan2__( atan2(
 #endif
 
-#if defined _ALS_ASin
-	#error _ALS_ASin defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6330,14 +5847,12 @@ native Float:FIXES_ASin(Float:value) = asin;
  * </remarks>
  */
 native Float:ASin__(Float:value) = asin;
-#if _FIXES_SAMP
-	#define _ALS_ASin
-	#define ASin( FIXES_ASin(
+#if defined _ALS_ASin
+	// Previous hook.
+	#define _ALS_ASin__
+	#define ASin__( ASin(
 #endif
 
-#if defined _ALS_ACos
-	#error _ALS_ACos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6356,14 +5871,12 @@ native Float:FIXES_ACos(Float:value) = acos;
  * </remarks>
  */
 native Float:ACos__(Float:value) = acos;
-#if _FIXES_SAMP
-	#define _ALS_ACos
-	#define ACos( FIXES_ACos(
+#if defined _ALS_ACos
+	// Previous hook.
+	#define _ALS_ACos__
+	#define ACos__( ACos(
 #endif
 
-#if defined _ALS_ATan
-	#error _ALS_ATan defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6382,14 +5895,12 @@ native Float:FIXES_ATan(Float:value) = atan;
  * </remarks>
  */
 native Float:ATan__(Float:value) = atan;
-#if _FIXES_SAMP
-	#define _ALS_ATan
-	#define ATan( FIXES_ATan(
+#if defined _ALS_ATan
+	// Previous hook.
+	#define _ALS_ATan__
+	#define ATan__( ATan(
 #endif
 
-#if defined _ALS_ATan2
-	#error _ALS_ATan2 defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6408,14 +5919,12 @@ native Float:FIXES_ATan2(Float:y, Float:x) = atan2;
  * </remarks>
  */
 native Float:ATan2__(Float:y, Float:x) = atan2;
-#if _FIXES_SAMP
-	#define _ALS_ATan2
-	#define ATan2( FIXES_ATan2(
+#if defined _ALS_ATan2
+	// Previous hook.
+	#define _ALS_ATan2__
+	#define ATan2__( ATan2(
 #endif
 
-#if defined _ALS_GetPlayerPoolSize
-	#error _ALS_GetPlayerPoolSize defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6434,14 +5943,12 @@ native FIXES_GetPlayerPoolSize() = GetPlayerPoolSize;
  * </remarks>
  */
 native GetPlayerPoolSize__() = GetPlayerPoolSize;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerPoolSize
-	#define GetPlayerPoolSize( FIXES_GetPlayerPoolSize(
+#if defined _ALS_GetPlayerPoolSize
+	// Previous hook.
+	#define _ALS_GetPlayerPoolSize__
+	#define GetPlayerPoolSize__( GetPlayerPoolSize(
 #endif
 
-#if defined _ALS_GetVehiclePoolSize
-	#error _ALS_GetVehiclePoolSize defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6460,14 +5967,12 @@ native FIXES_GetVehiclePoolSize() = GetVehiclePoolSize;
  * </remarks>
  */
 native GetVehiclePoolSize__() = GetVehiclePoolSize;
-#if _FIXES_SAMP
-	#define _ALS_GetVehiclePoolSize
-	#define GetVehiclePoolSize( FIXES_GetVehiclePoolSize(
+#if defined _ALS_GetVehiclePoolSize
+	// Previous hook.
+	#define _ALS_GetVehiclePoolSize__
+	#define GetVehiclePoolSize__( GetVehiclePoolSize(
 #endif
 
-#if defined _ALS_GetActorPoolSize
-	#error _ALS_GetActorPoolSize defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6486,14 +5991,12 @@ native FIXES_GetActorPoolSize() = GetActorPoolSize;
  * </remarks>
  */
 native GetActorPoolSize__() = GetActorPoolSize;
-#if _FIXES_SAMP
-	#define _ALS_GetActorPoolSize
-	#define GetActorPoolSize( FIXES_GetActorPoolSize(
+#if defined _ALS_GetActorPoolSize
+	// Previous hook.
+	#define _ALS_GetActorPoolSize__
+	#define GetActorPoolSize__( GetActorPoolSize(
 #endif
 
-#if defined _ALS_SHA256_PassHash
-	#error _ALS_SHA256_PassHash defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6513,14 +6016,12 @@ native FIXES_SHA256_PassHash(_FIXES_MAYBE_CONST password[], _FIXES_MAYBE_CONST s
  * </remarks>
  */
 native SHA256_PassHash__(const password[], const salt[], output[], size = sizeof (output)) = SHA256_PassHash;
-#if _FIXES_SAMP
-	#define _ALS_SHA256_PassHash
-	#define SHA256_PassHash( FIXES_SHA256_PassHash(
+#if defined _ALS_SHA256_PassHash
+	// Previous hook.
+	#define _ALS_SHA256_PassHash__
+	#define SHA256_PassHash__( SHA256_PassHash(
 #endif
 
-#if defined _ALS_SetSVarInt
-	#error _ALS_SetSVarInt defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6539,14 +6040,12 @@ native FIXES_SetSVarInt(_FIXES_MAYBE_CONST svar[], value) = SetSVarInt;
  * </remarks>
  */
 native SetSVarInt__(const svar[], value) = SetSVarInt;
-#if _FIXES_SAMP
-	#define _ALS_SetSVarInt
-	#define SetSVarInt( FIXES_SetSVarInt(
+#if defined _ALS_SetSVarInt
+	// Previous hook.
+	#define _ALS_SetSVarInt__
+	#define SetSVarInt__( SetSVarInt(
 #endif
 
-#if defined _ALS_GetSVarInt
-	#error _ALS_GetSVarInt defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6565,14 +6064,12 @@ native FIXES_GetSVarInt(_FIXES_MAYBE_CONST svar[]) = GetSVarInt;
  * </remarks>
  */
 native GetSVarInt__(const svar[]) = GetSVarInt;
-#if _FIXES_SAMP
-	#define _ALS_GetSVarInt
-	#define GetSVarInt( FIXES_GetSVarInt(
+#if defined _ALS_GetSVarInt
+	// Previous hook.
+	#define _ALS_GetSVarInt__
+	#define GetSVarInt__( GetSVarInt(
 #endif
 
-#if defined _ALS_SetSVarString
-	#error _ALS_SetSVarString defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6591,14 +6088,12 @@ native FIXES_SetSVarString(_FIXES_MAYBE_CONST svar[], _FIXES_MAYBE_CONST value[]
  * </remarks>
  */
 native SetSVarString__(const svar[], const value[]) = SetSVarString;
-#if _FIXES_SAMP
-	#define _ALS_SetSVarString
-	#define SetSVarString( FIXES_SetSVarString(
+#if defined _ALS_SetSVarString
+	// Previous hook.
+	#define _ALS_SetSVarString__
+	#define SetSVarString__( SetSVarString(
 #endif
 
-#if defined _ALS_GetSVarString
-	#error _ALS_GetSVarString defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6617,14 +6112,12 @@ native FIXES_GetSVarString(_FIXES_MAYBE_CONST svar[], output[], _FIXES_MAYBE_SIZ
  * </remarks>
  */
 native GetSVarString__(const svar[], output[], len = sizeof (output)) = GetSVarString;
-#if _FIXES_SAMP
-	#define _ALS_GetSVarString
-	#define GetSVarString( FIXES_GetSVarString(
+#if defined _ALS_GetSVarString
+	// Previous hook.
+	#define _ALS_GetSVarString__
+	#define GetSVarString__( GetSVarString(
 #endif
 
-#if defined _ALS_SetSVarFloat
-	#error _ALS_SetSVarFloat defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6643,14 +6136,12 @@ native FIXES_SetSVarFloat(_FIXES_MAYBE_CONST svar[], Float:value) = SetSVarFloat
  * </remarks>
  */
 native SetSVarFloat__(const svar[], Float:value) = SetSVarFloat;
-#if _FIXES_SAMP
-	#define _ALS_SetSVarFloat
-	#define SetSVarFloat( FIXES_SetSVarFloat(
+#if defined _ALS_SetSVarFloat
+	// Previous hook.
+	#define _ALS_SetSVarFloat__
+	#define SetSVarFloat__( SetSVarFloat(
 #endif
 
-#if defined _ALS_GetSVarFloat
-	#error _ALS_GetSVarFloat defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6669,14 +6160,12 @@ native Float:FIXES_GetSVarFloat(_FIXES_MAYBE_CONST svar[]) = GetSVarFloat;
  * </remarks>
  */
 native Float:GetSVarFloat__(const svar[]) = GetSVarFloat;
-#if _FIXES_SAMP
-	#define _ALS_GetSVarFloat
-	#define GetSVarFloat( FIXES_GetSVarFloat(
+#if defined _ALS_GetSVarFloat
+	// Previous hook.
+	#define _ALS_GetSVarFloat__
+	#define GetSVarFloat__( GetSVarFloat(
 #endif
 
-#if defined _ALS_DeleteSVar
-	#error _ALS_DeleteSVar defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6695,14 +6184,12 @@ native FIXES_DeleteSVar(_FIXES_MAYBE_CONST svar[]) = DeleteSVar;
  * </remarks>
  */
 native DeleteSVar__(const svar[]) = DeleteSVar;
-#if _FIXES_SAMP
-	#define _ALS_DeleteSVar
-	#define DeleteSVar( FIXES_DeleteSVar(
+#if defined _ALS_DeleteSVar
+	// Previous hook.
+	#define _ALS_DeleteSVar__
+	#define DeleteSVar__( DeleteSVar(
 #endif
 
-#if defined _ALS_GetSVarsUpperIndex
-	#error _ALS_GetSVarsUpperIndex defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6721,14 +6208,12 @@ native FIXES_GetSVarsUpperIndex() = GetSVarsUpperIndex;
  * </remarks>
  */
 native GetSVarsUpperIndex__() = GetSVarsUpperIndex;
-#if _FIXES_SAMP
-	#define _ALS_GetSVarsUpperIndex
-	#define GetSVarsUpperIndex( FIXES_GetSVarsUpperIndex(
+#if defined _ALS_GetSVarsUpperIndex
+	// Previous hook.
+	#define _ALS_GetSVarsUpperIndex__
+	#define GetSVarsUpperIndex__( GetSVarsUpperIndex(
 #endif
 
-#if defined _ALS_GetSVarNameAtIndex
-	#error _ALS_GetSVarNameAtIndex defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6747,14 +6232,12 @@ native FIXES_GetSVarNameAtIndex(index, output[], _FIXES_MAYBE_SIZEOF(size, outpu
  * </remarks>
  */
 native GetSVarNameAtIndex__(index, output[], size = sizeof (output)) = GetSVarNameAtIndex;
-#if _FIXES_SAMP
-	#define _ALS_GetSVarNameAtIndex
-	#define GetSVarNameAtIndex( FIXES_GetSVarNameAtIndex(
+#if defined _ALS_GetSVarNameAtIndex
+	// Previous hook.
+	#define _ALS_GetSVarNameAtIndex__
+	#define GetSVarNameAtIndex__( GetSVarNameAtIndex(
 #endif
 
-#if defined _ALS_GetSVarType
-	#error _ALS_GetSVarType defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6773,14 +6256,12 @@ native SERVER_VARTYPE:FIXES_GetSVarType(_FIXES_MAYBE_CONST svar[]) = GetSVarType
  * </remarks>
  */
 native SERVER_VARTYPE:GetSVarType__(const svar[]) = GetSVarType;
-#if _FIXES_SAMP
-	#define _ALS_GetSVarType
-	#define GetSVarType( FIXES_GetSVarType(
+#if defined _ALS_GetSVarType
+	// Previous hook.
+	#define _ALS_GetSVarType__
+	#define GetSVarType__( GetSVarType(
 #endif
 
-#if defined _ALS_SetGameModeText
-	#error _ALS_SetGameModeText defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6799,14 +6280,12 @@ native FIXES_SetGameModeText(const string[]) = SetGameModeText;
  * </remarks>
  */
 native SetGameModeText__(const string[]) = SetGameModeText;
-#if _FIXES_SAMP
-	#define _ALS_SetGameModeText
-	#define SetGameModeText( FIXES_SetGameModeText(
+#if defined _ALS_SetGameModeText
+	// Previous hook.
+	#define _ALS_SetGameModeText__
+	#define SetGameModeText__( SetGameModeText(
 #endif
 
-#if defined _ALS_SetTeamCount
-	#error _ALS_SetTeamCount defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6825,14 +6304,12 @@ native FIXES_SetTeamCount(count) = SetTeamCount;
  * </remarks>
  */
 native SetTeamCount__(count) = SetTeamCount;
-#if _FIXES_SAMP
-	#define _ALS_SetTeamCount
-	#define SetTeamCount( FIXES_SetTeamCount(
+#if defined _ALS_SetTeamCount
+	// Previous hook.
+	#define _ALS_SetTeamCount__
+	#define SetTeamCount__( SetTeamCount(
 #endif
 
-#if defined _ALS_AddPlayerClass
-	#error _ALS_AddPlayerClass defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6851,14 +6328,12 @@ native FIXES_AddPlayerClass(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, F
  * </remarks>
  */
 native AddPlayerClass__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass;
-#if _FIXES_SAMP
-	#define _ALS_AddPlayerClass
-	#define AddPlayerClass( FIXES_AddPlayerClass(
+#if defined _ALS_AddPlayerClass
+	// Previous hook.
+	#define _ALS_AddPlayerClass__
+	#define AddPlayerClass__( AddPlayerClass(
 #endif
 
-#if defined _ALS_AddPlayerClassEx
-	#error _ALS_AddPlayerClassEx defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6877,14 +6352,12 @@ native FIXES_AddPlayerClassEx(teamid, modelid, Float:spawnX, Float:spawnY, Float
  * </remarks>
  */
 native AddPlayerClassEx__(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx;
-#if _FIXES_SAMP
-	#define _ALS_AddPlayerClassEx
-	#define AddPlayerClassEx( FIXES_AddPlayerClassEx(
+#if defined _ALS_AddPlayerClassEx
+	// Previous hook.
+	#define _ALS_AddPlayerClassEx__
+	#define AddPlayerClassEx__( AddPlayerClassEx(
 #endif
 
-#if defined _ALS_AddStaticVehicle
-	#error _ALS_AddStaticVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6903,14 +6376,12 @@ native FIXES_AddStaticVehicle(modelid, Float:spawnX, Float:spawnY, Float:spawnZ,
  * </remarks>
  */
 native AddStaticVehicle__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle;
-#if _FIXES_SAMP
-	#define _ALS_AddStaticVehicle
-	#define AddStaticVehicle( FIXES_AddStaticVehicle(
+#if defined _ALS_AddStaticVehicle
+	// Previous hook.
+	#define _ALS_AddStaticVehicle__
+	#define AddStaticVehicle__( AddStaticVehicle(
 #endif
 
-#if defined _ALS_AddStaticVehicleEx
-	#error _ALS_AddStaticVehicleEx defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6929,14 +6400,12 @@ native FIXES_AddStaticVehicleEx(modelid, Float:spawnX, Float:spawnY, Float:spawn
  * </remarks>
  */
 native AddStaticVehicleEx__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, bool:addSiren = false) = AddStaticVehicleEx;
-#if _FIXES_SAMP
-	#define _ALS_AddStaticVehicleEx
-	#define AddStaticVehicleEx( FIXES_AddStaticVehicleEx(
+#if defined _ALS_AddStaticVehicleEx
+	// Previous hook.
+	#define _ALS_AddStaticVehicleEx__
+	#define AddStaticVehicleEx__( AddStaticVehicleEx(
 #endif
 
-#if defined _ALS_AddStaticPickup
-	#error _ALS_AddStaticPickup defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6955,14 +6424,12 @@ native FIXES_AddStaticPickup(model, type, Float:x, Float:y, Float:z, virtualWorl
  * </remarks>
  */
 native AddStaticPickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup;
-#if _FIXES_SAMP
-	#define _ALS_AddStaticPickup
-	#define AddStaticPickup( FIXES_AddStaticPickup(
+#if defined _ALS_AddStaticPickup
+	// Previous hook.
+	#define _ALS_AddStaticPickup__
+	#define AddStaticPickup__( AddStaticPickup(
 #endif
 
-#if defined _ALS_CreatePickup
-	#error _ALS_CreatePickup defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -6981,14 +6448,12 @@ native FIXES_CreatePickup(model, type, Float:x, Float:y, Float:z, virtualWorld =
  * </remarks>
  */
 native CreatePickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup;
-#if _FIXES_SAMP
-	#define _ALS_CreatePickup
-	#define CreatePickup( FIXES_CreatePickup(
+#if defined _ALS_CreatePickup
+	// Previous hook.
+	#define _ALS_CreatePickup__
+	#define CreatePickup__( CreatePickup(
 #endif
 
-#if defined _ALS_DestroyPickup
-	#error _ALS_DestroyPickup defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7007,14 +6472,12 @@ native FIXES_DestroyPickup(pickup) = DestroyPickup;
  * </remarks>
  */
 native DestroyPickup__(pickup) = DestroyPickup;
-#if _FIXES_SAMP
-	#define _ALS_DestroyPickup
-	#define DestroyPickup( FIXES_DestroyPickup(
+#if defined _ALS_DestroyPickup
+	// Previous hook.
+	#define _ALS_DestroyPickup__
+	#define DestroyPickup__( DestroyPickup(
 #endif
 
-#if defined _ALS_ShowNameTags
-	#error _ALS_ShowNameTags defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7033,14 +6496,12 @@ native FIXES_ShowNameTags(_FIXES_MAYBE_BOOL:show) = ShowNameTags;
  * </remarks>
  */
 native ShowNameTags__(bool:show) = ShowNameTags;
-#if _FIXES_SAMP
-	#define _ALS_ShowNameTags
-	#define ShowNameTags( FIXES_ShowNameTags(
+#if defined _ALS_ShowNameTags
+	// Previous hook.
+	#define _ALS_ShowNameTags__
+	#define ShowNameTags__( ShowNameTags(
 #endif
 
-#if defined _ALS_ShowPlayerMarkers
-	#error _ALS_ShowPlayerMarkers defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7059,14 +6520,12 @@ native FIXES_ShowPlayerMarkers(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
  * </remarks>
  */
 native ShowPlayerMarkers__(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers;
-#if _FIXES_SAMP
-	#define _ALS_ShowPlayerMarkers
-	#define ShowPlayerMarkers( FIXES_ShowPlayerMarkers(
+#if defined _ALS_ShowPlayerMarkers
+	// Previous hook.
+	#define _ALS_ShowPlayerMarkers__
+	#define ShowPlayerMarkers__( ShowPlayerMarkers(
 #endif
 
-#if defined _ALS_GameModeExit
-	#error _ALS_GameModeExit defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7085,14 +6544,12 @@ native FIXES_GameModeExit() = GameModeExit;
  * </remarks>
  */
 native GameModeExit__() = GameModeExit;
-#if _FIXES_SAMP
-	#define _ALS_GameModeExit
-	#define GameModeExit( FIXES_GameModeExit(
+#if defined _ALS_GameModeExit
+	// Previous hook.
+	#define _ALS_GameModeExit__
+	#define GameModeExit__( GameModeExit(
 #endif
 
-#if defined _ALS_SetWorldTime
-	#error _ALS_SetWorldTime defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7111,14 +6568,12 @@ native FIXES_SetWorldTime(hour) = SetWorldTime;
  * </remarks>
  */
 native SetWorldTime__(hour) = SetWorldTime;
-#if _FIXES_SAMP
-	#define _ALS_SetWorldTime
-	#define SetWorldTime( FIXES_SetWorldTime(
+#if defined _ALS_SetWorldTime
+	// Previous hook.
+	#define _ALS_SetWorldTime__
+	#define SetWorldTime__( SetWorldTime(
 #endif
 
-#if defined _ALS_GetWeaponName
-	#error _ALS_GetWeaponName defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7137,14 +6592,12 @@ native FIXES_GetWeaponName(WEAPON:weaponid, _FIXES_NOT_CONST weapon[], _FIXES_MA
  * </remarks>
  */
 native GetWeaponName__(WEAPON:weaponid, weapon[], len = sizeof (weapon)) = GetWeaponName;
-#if _FIXES_SAMP
-	#define _ALS_GetWeaponName
-	#define GetWeaponName( FIXES_GetWeaponName(
+#if defined _ALS_GetWeaponName
+	// Previous hook.
+	#define _ALS_GetWeaponName__
+	#define GetWeaponName__( GetWeaponName(
 #endif
 
-#if defined _ALS_EnableTirePopping
-	#error _ALS_EnableTirePopping defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7164,14 +6617,12 @@ native FIXES_EnableTirePopping(_FIXES_MAYBE_BOOL:enable) = EnableTirePopping;
  * </remarks>
  */
 native EnableTirePopping__(bool:enable) = EnableTirePopping;
-#if _FIXES_SAMP
-	#define _ALS_EnableTirePopping
-	#define EnableTirePopping( FIXES_EnableTirePopping(
+#if defined _ALS_EnableTirePopping
+	// Previous hook.
+	#define _ALS_EnableTirePopping__
+	#define EnableTirePopping__( EnableTirePopping(
 #endif
 
-#if defined _ALS_EnableVehicleFriendlyFire
-	#error _ALS_EnableVehicleFriendlyFire defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7190,14 +6641,12 @@ native FIXES_EnableVehicleFriendlyFire() = EnableVehicleFriendlyFire;
  * </remarks>
  */
 native EnableVehicleFriendlyFire__() = EnableVehicleFriendlyFire;
-#if _FIXES_SAMP
-	#define _ALS_EnableVehicleFriendlyFire
-	#define EnableVehicleFriendlyFire( FIXES_EnableVehicleFriendlyFire(
+#if defined _ALS_EnableVehicleFriendlyFire
+	// Previous hook.
+	#define _ALS_EnableVehicleFriendlyFire__
+	#define EnableVehicleFriendlyFire__( EnableVehicleFriendlyFire(
 #endif
 
-#if defined _ALS_AllowInteriorWeapons
-	#error _ALS_AllowInteriorWeapons defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7217,14 +6666,12 @@ native FIXES_AllowInteriorWeapons(_FIXES_MAYBE_BOOL:allow) = AllowInteriorWeapon
  * </remarks>
  */
 native AllowInteriorWeapons__(bool:allow) = AllowInteriorWeapons;
-#if _FIXES_SAMP
-	#define _ALS_AllowInteriorWeapons
-	#define AllowInteriorWeapons( FIXES_AllowInteriorWeapons(
+#if defined _ALS_AllowInteriorWeapons
+	// Previous hook.
+	#define _ALS_AllowInteriorWeapons__
+	#define AllowInteriorWeapons__( AllowInteriorWeapons(
 #endif
 
-#if defined _ALS_SetWeather
-	#error _ALS_SetWeather defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7243,14 +6690,12 @@ native FIXES_SetWeather(weatherid) = SetWeather;
  * </remarks>
  */
 native SetWeather__(weatherid) = SetWeather;
-#if _FIXES_SAMP
-	#define _ALS_SetWeather
-	#define SetWeather( FIXES_SetWeather(
+#if defined _ALS_SetWeather
+	// Previous hook.
+	#define _ALS_SetWeather__
+	#define SetWeather__( SetWeather(
 #endif
 
-#if defined _ALS_GetGravity
-	#error _ALS_GetGravity defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7269,14 +6714,12 @@ native Float:FIXES_GetGravity() = GetGravity;
  * </remarks>
  */
 native Float:GetGravity__() = GetGravity;
-#if _FIXES_SAMP
-	#define _ALS_GetGravity
-	#define GetGravity( FIXES_GetGravity(
+#if defined _ALS_GetGravity
+	// Previous hook.
+	#define _ALS_GetGravity__
+	#define GetGravity__( GetGravity(
 #endif
 
-#if defined _ALS_SetGravity
-	#error _ALS_SetGravity defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7295,14 +6738,12 @@ native FIXES_SetGravity(Float:gravity) = SetGravity;
  * </remarks>
  */
 native SetGravity__(Float:gravity) = SetGravity;
-#if _FIXES_SAMP
-	#define _ALS_SetGravity
-	#define SetGravity( FIXES_SetGravity(
+#if defined _ALS_SetGravity
+	// Previous hook.
+	#define _ALS_SetGravity__
+	#define SetGravity__( SetGravity(
 #endif
 
-#if defined _ALS_AllowAdminTeleport
-	#error _ALS_AllowAdminTeleport defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7322,14 +6763,12 @@ native FIXES_AllowAdminTeleport(_FIXES_MAYBE_BOOL:allow) = AllowAdminTeleport;
  * </remarks>
  */
 native AllowAdminTeleport__(bool:allow) = AllowAdminTeleport;
-#if _FIXES_SAMP
-	#define _ALS_AllowAdminTeleport
-	#define AllowAdminTeleport( FIXES_AllowAdminTeleport(
+#if defined _ALS_AllowAdminTeleport
+	// Previous hook.
+	#define _ALS_AllowAdminTeleport__
+	#define AllowAdminTeleport__( AllowAdminTeleport(
 #endif
 
-#if defined _ALS_SetDeathDropAmount
-	#error _ALS_SetDeathDropAmount defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7349,14 +6788,12 @@ native FIXES_SetDeathDropAmount(amount) = SetDeathDropAmount;
  * </remarks>
  */
 native SetDeathDropAmount__(amount) = SetDeathDropAmount;
-#if _FIXES_SAMP
-	#define _ALS_SetDeathDropAmount
-	#define SetDeathDropAmount( FIXES_SetDeathDropAmount(
+#if defined _ALS_SetDeathDropAmount
+	// Previous hook.
+	#define _ALS_SetDeathDropAmount__
+	#define SetDeathDropAmount__( SetDeathDropAmount(
 #endif
 
-#if defined _ALS_CreateExplosion
-	#error _ALS_CreateExplosion defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7375,14 +6812,12 @@ native FIXES_CreateExplosion(Float:x, Float:y, Float:z, type, Float:radius) = Cr
  * </remarks>
  */
 native CreateExplosion__(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion;
-#if _FIXES_SAMP
-	#define _ALS_CreateExplosion
-	#define CreateExplosion( FIXES_CreateExplosion(
+#if defined _ALS_CreateExplosion
+	// Previous hook.
+	#define _ALS_CreateExplosion__
+	#define CreateExplosion__( CreateExplosion(
 #endif
 
-#if defined _ALS_EnableZoneNames
-	#error _ALS_EnableZoneNames defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7401,14 +6836,12 @@ native FIXES_EnableZoneNames(_FIXES_MAYBE_BOOL:enable) = EnableZoneNames;
  * </remarks>
  */
 native EnableZoneNames__(bool:enable) = EnableZoneNames;
-#if _FIXES_SAMP
-	#define _ALS_EnableZoneNames
-	#define EnableZoneNames( FIXES_EnableZoneNames(
+#if defined _ALS_EnableZoneNames
+	// Previous hook.
+	#define _ALS_EnableZoneNames__
+	#define EnableZoneNames__( EnableZoneNames(
 #endif
 
-#if defined _ALS_UsePlayerPedAnims
-	#error _ALS_UsePlayerPedAnims defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7427,15 +6860,13 @@ native FIXES_UsePlayerPedAnims() = UsePlayerPedAnims;
  * </remarks>
  */
 native UsePlayerPedAnims__() = UsePlayerPedAnims;
-#if _FIXES_SAMP
-	#define _ALS_UsePlayerPedAnims
-	#define UsePlayerPedAnims( FIXES_UsePlayerPedAnims(
+#if defined _ALS_UsePlayerPedAnims
+	// Previous hook.
+	#define _ALS_UsePlayerPedAnims__
+	#define UsePlayerPedAnims__( UsePlayerPedAnims(
 #endif
 
 native DisableInteriorEnterExits();
-#if defined _ALS_SetNameTagDrawDistance
-	#error _ALS_SetNameTagDrawDistance defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7454,14 +6885,12 @@ native FIXES_SetNameTagDrawDistance(Float:distance) = SetNameTagDrawDistance;
  * </remarks>
  */
 native SetNameTagDrawDistance__(Float:distance) = SetNameTagDrawDistance;
-#if _FIXES_SAMP
-	#define _ALS_SetNameTagDrawDistance
-	#define SetNameTagDrawDistance( FIXES_SetNameTagDrawDistance(
+#if defined _ALS_SetNameTagDrawDistance
+	// Previous hook.
+	#define _ALS_SetNameTagDrawDistance__
+	#define SetNameTagDrawDistance__( SetNameTagDrawDistance(
 #endif
 
-#if defined _ALS_DisableNameTagLOS
-	#error _ALS_DisableNameTagLOS defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7480,14 +6909,12 @@ native FIXES_DisableNameTagLOS() = DisableNameTagLOS;
  * </remarks>
  */
 native DisableNameTagLOS__() = DisableNameTagLOS;
-#if _FIXES_SAMP
-	#define _ALS_DisableNameTagLOS
-	#define DisableNameTagLOS( FIXES_DisableNameTagLOS(
+#if defined _ALS_DisableNameTagLOS
+	// Previous hook.
+	#define _ALS_DisableNameTagLOS__
+	#define DisableNameTagLOS__( DisableNameTagLOS(
 #endif
 
-#if defined _ALS_LimitGlobalChatRadius
-	#error _ALS_LimitGlobalChatRadius defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7506,14 +6933,12 @@ native FIXES_LimitGlobalChatRadius(Float:chatRadius) = LimitGlobalChatRadius;
  * </remarks>
  */
 native LimitGlobalChatRadius__(Float:chatRadius) = LimitGlobalChatRadius;
-#if _FIXES_SAMP
-	#define _ALS_LimitGlobalChatRadius
-	#define LimitGlobalChatRadius( FIXES_LimitGlobalChatRadius(
+#if defined _ALS_LimitGlobalChatRadius
+	// Previous hook.
+	#define _ALS_LimitGlobalChatRadius__
+	#define LimitGlobalChatRadius__( LimitGlobalChatRadius(
 #endif
 
-#if defined _ALS_LimitPlayerMarkerRadius
-	#error _ALS_LimitPlayerMarkerRadius defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7532,14 +6957,12 @@ native FIXES_LimitPlayerMarkerRadius(Float:markerRadius) = LimitPlayerMarkerRadi
  * </remarks>
  */
 native LimitPlayerMarkerRadius__(Float:markerRadius) = LimitPlayerMarkerRadius;
-#if _FIXES_SAMP
-	#define _ALS_LimitPlayerMarkerRadius
-	#define LimitPlayerMarkerRadius( FIXES_LimitPlayerMarkerRadius(
+#if defined _ALS_LimitPlayerMarkerRadius
+	// Previous hook.
+	#define _ALS_LimitPlayerMarkerRadius__
+	#define LimitPlayerMarkerRadius__( LimitPlayerMarkerRadius(
 #endif
 
-#if defined _ALS_ConnectNPC
-	#error _ALS_ConnectNPC defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7558,14 +6981,12 @@ native FIXES_ConnectNPC(_FIXES_MAYBE_CONST name[], _FIXES_MAYBE_CONST script[]) 
  * </remarks>
  */
 native ConnectNPC__(const name[], const script[]) = ConnectNPC;
-#if _FIXES_SAMP
-	#define _ALS_ConnectNPC
-	#define ConnectNPC( FIXES_ConnectNPC(
+#if defined _ALS_ConnectNPC
+	// Previous hook.
+	#define _ALS_ConnectNPC__
+	#define ConnectNPC__( ConnectNPC(
 #endif
 
-#if defined _ALS_IsPlayerNPC
-	#error _ALS_IsPlayerNPC defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7584,14 +7005,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsPlayerNPC(playerid) = IsPlayerNPC;
  * </remarks>
  */
 native bool:IsPlayerNPC__(playerid) = IsPlayerNPC;
-#if _FIXES_SAMP
-	#define _ALS_IsPlayerNPC
-	#define IsPlayerNPC( FIXES_IsPlayerNPC(
+#if defined _ALS_IsPlayerNPC
+	// Previous hook.
+	#define _ALS_IsPlayerNPC__
+	#define IsPlayerNPC__( IsPlayerNPC(
 #endif
 
-#if defined _ALS_AddCharModel
-	#error _ALS_AddCharModel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7610,14 +7029,12 @@ native FIXES_AddCharModel(baseid, newid, _FIXES_MAYBE_CONST dff[], _FIXES_MAYBE_
  * </remarks>
  */
 native AddCharModel__(baseid, newid, const dff[], const textureLibrary[]) = AddCharModel;
-#if _FIXES_SAMP
-	#define _ALS_AddCharModel
-	#define AddCharModel( FIXES_AddCharModel(
+#if defined _ALS_AddCharModel
+	// Previous hook.
+	#define _ALS_AddCharModel__
+	#define AddCharModel__( AddCharModel(
 #endif
 
-#if defined _ALS_AddSimpleModel
-	#error _ALS_AddSimpleModel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7636,14 +7053,12 @@ native FIXES_AddSimpleModel(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST dff[
  * </remarks>
  */
 native AddSimpleModel__(virtualWorld, baseid, newid, const dff[], const textureLibrary[]) = AddSimpleModel;
-#if _FIXES_SAMP
-	#define _ALS_AddSimpleModel
-	#define AddSimpleModel( FIXES_AddSimpleModel(
+#if defined _ALS_AddSimpleModel
+	// Previous hook.
+	#define _ALS_AddSimpleModel__
+	#define AddSimpleModel__( AddSimpleModel(
 #endif
 
-#if defined _ALS_AddSimpleModelTimed
-	#error _ALS_AddSimpleModelTimed defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7662,14 +7077,12 @@ native FIXES_AddSimpleModelTimed(virtualWorld, baseid, newid, _FIXES_MAYBE_CONST
  * </remarks>
  */
 native AddSimpleModelTimed__(virtualWorld, baseid, newid, const dff[], const textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed;
-#if _FIXES_SAMP
-	#define _ALS_AddSimpleModelTimed
-	#define AddSimpleModelTimed( FIXES_AddSimpleModelTimed(
+#if defined _ALS_AddSimpleModelTimed
+	// Previous hook.
+	#define _ALS_AddSimpleModelTimed__
+	#define AddSimpleModelTimed__( AddSimpleModelTimed(
 #endif
 
-#if defined _ALS_FindModelFileNameFromCRC
-	#error _ALS_FindModelFileNameFromCRC defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7688,14 +7101,12 @@ native FIXES_FindModelFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size, o
  * </remarks>
  */
 native FindModelFileNameFromCRC__(crc, output[], size = sizeof (output)) = FindModelFileNameFromCRC;
-#if _FIXES_SAMP
-	#define _ALS_FindModelFileNameFromCRC
-	#define FindModelFileNameFromCRC( FIXES_FindModelFileNameFromCRC(
+#if defined _ALS_FindModelFileNameFromCRC
+	// Previous hook.
+	#define _ALS_FindModelFileNameFromCRC__
+	#define FindModelFileNameFromCRC__( FindModelFileNameFromCRC(
 #endif
 
-#if defined _ALS_FindTextureFileNameFromCRC
-	#error _ALS_FindTextureFileNameFromCRC defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7714,14 +7125,12 @@ native FIXES_FindTextureFileNameFromCRC(crc, output[], _FIXES_MAYBE_SIZEOF(size,
  * </remarks>
  */
 native FindTextureFileNameFromCRC__(crc, output[], size = sizeof (output)) = FindTextureFileNameFromCRC;
-#if _FIXES_SAMP
-	#define _ALS_FindTextureFileNameFromCRC
-	#define FindTextureFileNameFromCRC( FIXES_FindTextureFileNameFromCRC(
+#if defined _ALS_FindTextureFileNameFromCRC
+	// Previous hook.
+	#define _ALS_FindTextureFileNameFromCRC__
+	#define FindTextureFileNameFromCRC__( FindTextureFileNameFromCRC(
 #endif
 
-#if defined _ALS_RedirectDownload
-	#error _ALS_RedirectDownload defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7740,14 +7149,12 @@ native FIXES_RedirectDownload(playerid, _FIXES_MAYBE_CONST url[]) = RedirectDown
  * </remarks>
  */
 native RedirectDownload__(playerid, const url[]) = RedirectDownload;
-#if _FIXES_SAMP
-	#define _ALS_RedirectDownload
-	#define RedirectDownload( FIXES_RedirectDownload(
+#if defined _ALS_RedirectDownload
+	// Previous hook.
+	#define _ALS_RedirectDownload__
+	#define RedirectDownload__( RedirectDownload(
 #endif
 
-#if defined _ALS_IsPlayerAdmin
-	#error _ALS_IsPlayerAdmin defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7766,14 +7173,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsPlayerAdmin(playerid) = IsPlayerAdmin;
  * </remarks>
  */
 native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin;
-#if _FIXES_SAMP
-	#define _ALS_IsPlayerAdmin
-	#define IsPlayerAdmin( FIXES_IsPlayerAdmin(
+#if defined _ALS_IsPlayerAdmin
+	// Previous hook.
+	#define _ALS_IsPlayerAdmin__
+	#define IsPlayerAdmin__( IsPlayerAdmin(
 #endif
 
-#if defined _ALS_Kick
-	#error _ALS_Kick defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7792,14 +7197,12 @@ native FIXES_Kick(playerid) = Kick;
  * </remarks>
  */
 native Kick__(playerid) = Kick;
-#if _FIXES_SAMP
-	#define _ALS_Kick
-	#define Kick( FIXES_Kick(
+#if defined _ALS_Kick
+	// Previous hook.
+	#define _ALS_Kick__
+	#define Kick__( Kick(
 #endif
 
-#if defined _ALS_Ban
-	#error _ALS_Ban defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7818,14 +7221,12 @@ native FIXES_Ban(playerid) = Ban;
  * </remarks>
  */
 native Ban__(playerid) = Ban;
-#if _FIXES_SAMP
-	#define _ALS_Ban
-	#define Ban( FIXES_Ban(
+#if defined _ALS_Ban
+	// Previous hook.
+	#define _ALS_Ban__
+	#define Ban__( Ban(
 #endif
 
-#if defined _ALS_BanEx
-	#error _ALS_BanEx defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7844,14 +7245,12 @@ native FIXES_BanEx(playerid, const reason[]) = BanEx;
  * </remarks>
  */
 native BanEx__(playerid, const reason[]) = BanEx;
-#if _FIXES_SAMP
-	#define _ALS_BanEx
-	#define BanEx( FIXES_BanEx(
+#if defined _ALS_BanEx
+	// Previous hook.
+	#define _ALS_BanEx__
+	#define BanEx__( BanEx(
 #endif
 
-#if defined _ALS_SendRconCommand
-	#error _ALS_SendRconCommand defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7870,14 +7269,12 @@ native FIXES_SendRconCommand(_FIXES_MAYBE_CONST command[]) = SendRconCommand;
  * </remarks>
  */
 native SendRconCommand__(const command[]) = SendRconCommand;
-#if _FIXES_SAMP
-	#define _ALS_SendRconCommand
-	#define SendRconCommand( FIXES_SendRconCommand(
+#if defined _ALS_SendRconCommand
+	// Previous hook.
+	#define _ALS_SendRconCommand__
+	#define SendRconCommand__( SendRconCommand(
 #endif
 
-#if defined _ALS_GetPlayerNetworkStats
-	#error _ALS_GetPlayerNetworkStats defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7896,14 +7293,12 @@ native FIXES_GetPlayerNetworkStats(playerid, output[], _FIXES_MAYBE_SIZEOF(size,
  * </remarks>
  */
 native GetPlayerNetworkStats__(playerid, output[], size = sizeof (output)) = GetPlayerNetworkStats;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerNetworkStats
-	#define GetPlayerNetworkStats( FIXES_GetPlayerNetworkStats(
+#if defined _ALS_GetPlayerNetworkStats
+	// Previous hook.
+	#define _ALS_GetPlayerNetworkStats__
+	#define GetPlayerNetworkStats__( GetPlayerNetworkStats(
 #endif
 
-#if defined _ALS_GetNetworkStats
-	#error _ALS_GetNetworkStats defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7922,14 +7317,12 @@ native FIXES_GetNetworkStats(output[], _FIXES_MAYBE_SIZEOF(size, output)) = GetN
  * </remarks>
  */
 native GetNetworkStats__(output[], size = sizeof (output)) = GetNetworkStats;
-#if _FIXES_SAMP
-	#define _ALS_GetNetworkStats
-	#define GetNetworkStats( FIXES_GetNetworkStats(
+#if defined _ALS_GetNetworkStats
+	// Previous hook.
+	#define _ALS_GetNetworkStats__
+	#define GetNetworkStats__( GetNetworkStats(
 #endif
 
-#if defined _ALS_GetPlayerVersion
-	#error _ALS_GetPlayerVersion defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7948,14 +7341,12 @@ native FIXES_GetPlayerVersion(playerid, _FIXES_NOT_CONST version[], _FIXES_MAYBE
  * </remarks>
  */
 native GetPlayerVersion__(playerid, version[], len = sizeof (version)) = GetPlayerVersion;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerVersion
-	#define GetPlayerVersion( FIXES_GetPlayerVersion(
+#if defined _ALS_GetPlayerVersion
+	// Previous hook.
+	#define _ALS_GetPlayerVersion__
+	#define GetPlayerVersion__( GetPlayerVersion(
 #endif
 
-#if defined _ALS_BlockIpAddress
-	#error _ALS_BlockIpAddress defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -7974,14 +7365,12 @@ native FIXES_BlockIpAddress(_FIXES_MAYBE_CONST ipAddress[], timeMS) = BlockIpAdd
  * </remarks>
  */
 native BlockIpAddress__(const ipAddress[], timeMS) = BlockIpAddress;
-#if _FIXES_SAMP
-	#define _ALS_BlockIpAddress
-	#define BlockIpAddress( FIXES_BlockIpAddress(
+#if defined _ALS_BlockIpAddress
+	// Previous hook.
+	#define _ALS_BlockIpAddress__
+	#define BlockIpAddress__( BlockIpAddress(
 #endif
 
-#if defined _ALS_UnBlockIpAddress
-	#error _ALS_UnBlockIpAddress defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8000,14 +7389,12 @@ native FIXES_UnBlockIpAddress(_FIXES_MAYBE_CONST ipAddress[]) = UnBlockIpAddress
  * </remarks>
  */
 native UnBlockIpAddress__(const ipAddress[]) = UnBlockIpAddress;
-#if _FIXES_SAMP
-	#define _ALS_UnBlockIpAddress
-	#define UnBlockIpAddress( FIXES_UnBlockIpAddress(
+#if defined _ALS_UnBlockIpAddress
+	// Previous hook.
+	#define _ALS_UnBlockIpAddress__
+	#define UnBlockIpAddress__( UnBlockIpAddress(
 #endif
 
-#if defined _ALS_GetServerVarAsString
-	#error _ALS_GetServerVarAsString defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8027,14 +7414,12 @@ native FIXES_GetServerVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(le
  * </remarks>
  */
 native GetServerVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetServerVarAsString;
-#if _FIXES_SAMP
-	#define _ALS_GetServerVarAsString
-	#define GetServerVarAsString( FIXES_GetServerVarAsString(
+#if defined _ALS_GetServerVarAsString
+	// Previous hook.
+	#define _ALS_GetServerVarAsString__
+	#define GetServerVarAsString__( GetServerVarAsString(
 #endif
 
-#if defined _ALS_GetServerVarAsInt
-	#error _ALS_GetServerVarAsInt defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8054,14 +7439,12 @@ native FIXES_GetServerVarAsInt(const cvar[]) = GetServerVarAsInt;
  * </remarks>
  */
 native GetServerVarAsInt__(const cvar[]) = GetServerVarAsInt;
-#if _FIXES_SAMP
-	#define _ALS_GetServerVarAsInt
-	#define GetServerVarAsInt( FIXES_GetServerVarAsInt(
+#if defined _ALS_GetServerVarAsInt
+	// Previous hook.
+	#define _ALS_GetServerVarAsInt__
+	#define GetServerVarAsInt__( GetServerVarAsInt(
 #endif
 
-#if defined _ALS_GetServerVarAsBool
-	#error _ALS_GetServerVarAsBool defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8081,14 +7464,12 @@ native _FIXES_MAYBE_BOOL:FIXES_GetServerVarAsBool(const cvar[]) = GetServerVarAs
  * </remarks>
  */
 native bool:GetServerVarAsBool__(const cvar[]) = GetServerVarAsBool;
-#if _FIXES_SAMP
-	#define _ALS_GetServerVarAsBool
-	#define GetServerVarAsBool( FIXES_GetServerVarAsBool(
+#if defined _ALS_GetServerVarAsBool
+	// Previous hook.
+	#define _ALS_GetServerVarAsBool__
+	#define GetServerVarAsBool__( GetServerVarAsBool(
 #endif
 
-#if defined _ALS_GetConsoleVarAsString
-	#error _ALS_GetConsoleVarAsString defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8107,14 +7488,12 @@ native FIXES_GetConsoleVarAsString(const cvar[], buffer[], _FIXES_MAYBE_SIZEOF(l
  * </remarks>
  */
 native GetConsoleVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetConsoleVarAsString;
-#if _FIXES_SAMP
-	#define _ALS_GetConsoleVarAsString
-	#define GetConsoleVarAsString( FIXES_GetConsoleVarAsString(
+#if defined _ALS_GetConsoleVarAsString
+	// Previous hook.
+	#define _ALS_GetConsoleVarAsString__
+	#define GetConsoleVarAsString__( GetConsoleVarAsString(
 #endif
 
-#if defined _ALS_GetConsoleVarAsInt
-	#error _ALS_GetConsoleVarAsInt defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8133,14 +7512,12 @@ native FIXES_GetConsoleVarAsInt(const cvar[]) = GetConsoleVarAsInt;
  * </remarks>
  */
 native GetConsoleVarAsInt__(const cvar[]) = GetConsoleVarAsInt;
-#if _FIXES_SAMP
-	#define _ALS_GetConsoleVarAsInt
-	#define GetConsoleVarAsInt( FIXES_GetConsoleVarAsInt(
+#if defined _ALS_GetConsoleVarAsInt
+	// Previous hook.
+	#define _ALS_GetConsoleVarAsInt__
+	#define GetConsoleVarAsInt__( GetConsoleVarAsInt(
 #endif
 
-#if defined _ALS_GetConsoleVarAsBool
-	#error _ALS_GetConsoleVarAsBool defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8159,14 +7536,12 @@ native _FIXES_MAYBE_BOOL:FIXES_GetConsoleVarAsBool(const cvar[]) = GetConsoleVar
  * </remarks>
  */
 native bool:GetConsoleVarAsBool__(const cvar[]) = GetConsoleVarAsBool;
-#if _FIXES_SAMP
-	#define _ALS_GetConsoleVarAsBool
-	#define GetConsoleVarAsBool( FIXES_GetConsoleVarAsBool(
+#if defined _ALS_GetConsoleVarAsBool
+	// Previous hook.
+	#define _ALS_GetConsoleVarAsBool__
+	#define GetConsoleVarAsBool__( GetConsoleVarAsBool(
 #endif
 
-#if defined _ALS_GetServerTickRate
-	#error _ALS_GetServerTickRate defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8185,14 +7560,12 @@ native FIXES_GetServerTickRate() = GetServerTickRate;
  * </remarks>
  */
 native GetServerTickRate__() = GetServerTickRate;
-#if _FIXES_SAMP
-	#define _ALS_GetServerTickRate
-	#define GetServerTickRate( FIXES_GetServerTickRate(
+#if defined _ALS_GetServerTickRate
+	// Previous hook.
+	#define _ALS_GetServerTickRate__
+	#define GetServerTickRate__( GetServerTickRate(
 #endif
 
-#if defined _ALS_NetStats_GetConnectedTime
-	#error _ALS_NetStats_GetConnectedTime defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8211,14 +7584,12 @@ native FIXES_NetStats_GetConnectedTime(playerid) = NetStats_GetConnectedTime;
  * </remarks>
  */
 native NetStats_GetConnectedTime__(playerid) = NetStats_GetConnectedTime;
-#if _FIXES_SAMP
-	#define _ALS_NetStats_GetConnectedTime
-	#define NetStats_GetConnectedTime( FIXES_NetStats_GetConnectedTime(
+#if defined _ALS_NetStats_GetConnectedTime
+	// Previous hook.
+	#define _ALS_NetStats_GetConnectedTime__
+	#define NetStats_GetConnectedTime__( NetStats_GetConnectedTime(
 #endif
 
-#if defined _ALS_NetStats_MessagesReceived
-	#error _ALS_NetStats_MessagesReceived defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8237,14 +7608,12 @@ native FIXES_NetStats_MessagesReceived(playerid) = NetStats_MessagesReceived;
  * </remarks>
  */
 native NetStats_MessagesReceived__(playerid) = NetStats_MessagesReceived;
-#if _FIXES_SAMP
-	#define _ALS_NetStats_MessagesReceived
-	#define NetStats_MessagesReceived( FIXES_NetStats_MessagesReceived(
+#if defined _ALS_NetStats_MessagesReceived
+	// Previous hook.
+	#define _ALS_NetStats_MessagesReceived__
+	#define NetStats_MessagesReceived__( NetStats_MessagesReceived(
 #endif
 
-#if defined _ALS_NetStats_BytesReceived
-	#error _ALS_NetStats_BytesReceived defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8263,14 +7632,12 @@ native FIXES_NetStats_BytesReceived(playerid) = NetStats_BytesReceived;
  * </remarks>
  */
 native NetStats_BytesReceived__(playerid) = NetStats_BytesReceived;
-#if _FIXES_SAMP
-	#define _ALS_NetStats_BytesReceived
-	#define NetStats_BytesReceived( FIXES_NetStats_BytesReceived(
+#if defined _ALS_NetStats_BytesReceived
+	// Previous hook.
+	#define _ALS_NetStats_BytesReceived__
+	#define NetStats_BytesReceived__( NetStats_BytesReceived(
 #endif
 
-#if defined _ALS_NetStats_MessagesSent
-	#error _ALS_NetStats_MessagesSent defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8289,14 +7656,12 @@ native FIXES_NetStats_MessagesSent(playerid) = NetStats_MessagesSent;
  * </remarks>
  */
 native NetStats_MessagesSent__(playerid) = NetStats_MessagesSent;
-#if _FIXES_SAMP
-	#define _ALS_NetStats_MessagesSent
-	#define NetStats_MessagesSent( FIXES_NetStats_MessagesSent(
+#if defined _ALS_NetStats_MessagesSent
+	// Previous hook.
+	#define _ALS_NetStats_MessagesSent__
+	#define NetStats_MessagesSent__( NetStats_MessagesSent(
 #endif
 
-#if defined _ALS_NetStats_BytesSent
-	#error _ALS_NetStats_BytesSent defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8315,14 +7680,12 @@ native FIXES_NetStats_BytesSent(playerid) = NetStats_BytesSent;
  * </remarks>
  */
 native NetStats_BytesSent__(playerid) = NetStats_BytesSent;
-#if _FIXES_SAMP
-	#define _ALS_NetStats_BytesSent
-	#define NetStats_BytesSent( FIXES_NetStats_BytesSent(
+#if defined _ALS_NetStats_BytesSent
+	// Previous hook.
+	#define _ALS_NetStats_BytesSent__
+	#define NetStats_BytesSent__( NetStats_BytesSent(
 #endif
 
-#if defined _ALS_NetStats_MessagesRecvPerSecond
-	#error _ALS_NetStats_MessagesRecvPerSecond defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8341,14 +7704,12 @@ native FIXES_NetStats_MessagesRecvPerSecond(playerid) = NetStats_MessagesRecvPer
  * </remarks>
  */
 native NetStats_MessagesRecvPerSecond__(playerid) = NetStats_MessagesRecvPerSecond;
-#if _FIXES_SAMP
-	#define _ALS_NetStats_MessagesRecvPerSecond
-	#define NetStats_MessagesRecvPerSecond( FIXES_NetStats_MessagesRecvPerSecond(
+#if defined _ALS_NetStats_MessagesRecvPerSecond
+	// Previous hook.
+	#define _ALS_NetStats_MessagesRecvPerSecond__
+	#define NetStats_MessagesRecvPerSecond__( NetStats_MessagesRecvPerSecond(
 #endif
 
-#if defined _ALS_NetStats_PacketLossPercent
-	#error _ALS_NetStats_PacketLossPercent defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8367,14 +7728,12 @@ native Float:FIXES_NetStats_PacketLossPercent(playerid) = NetStats_PacketLossPer
  * </remarks>
  */
 native Float:NetStats_PacketLossPercent__(playerid) = NetStats_PacketLossPercent;
-#if _FIXES_SAMP
-	#define _ALS_NetStats_PacketLossPercent
-	#define NetStats_PacketLossPercent( FIXES_NetStats_PacketLossPercent(
+#if defined _ALS_NetStats_PacketLossPercent
+	// Previous hook.
+	#define _ALS_NetStats_PacketLossPercent__
+	#define NetStats_PacketLossPercent__( NetStats_PacketLossPercent(
 #endif
 
-#if defined _ALS_NetStats_ConnectionStatus
-	#error _ALS_NetStats_ConnectionStatus defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8393,14 +7752,12 @@ native FIXES_NetStats_ConnectionStatus(playerid) = NetStats_ConnectionStatus;
  * </remarks>
  */
 native NetStats_ConnectionStatus__(playerid) = NetStats_ConnectionStatus;
-#if _FIXES_SAMP
-	#define _ALS_NetStats_ConnectionStatus
-	#define NetStats_ConnectionStatus( FIXES_NetStats_ConnectionStatus(
+#if defined _ALS_NetStats_ConnectionStatus
+	// Previous hook.
+	#define _ALS_NetStats_ConnectionStatus__
+	#define NetStats_ConnectionStatus__( NetStats_ConnectionStatus(
 #endif
 
-#if defined _ALS_NetStats_GetIpPort
-	#error _ALS_NetStats_GetIpPort defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8419,14 +7776,12 @@ native FIXES_NetStats_GetIpPort(playerid, output[], _FIXES_MAYBE_SIZEOF(size, ou
  * </remarks>
  */
 native NetStats_GetIpPort__(playerid, output[], size = sizeof (output)) = NetStats_GetIpPort;
-#if _FIXES_SAMP
-	#define _ALS_NetStats_GetIpPort
-	#define NetStats_GetIpPort( FIXES_NetStats_GetIpPort(
+#if defined _ALS_NetStats_GetIpPort
+	// Previous hook.
+	#define _ALS_NetStats_GetIpPort__
+	#define NetStats_GetIpPort__( NetStats_GetIpPort(
 #endif
 
-#if defined _ALS_CreateMenu
-	#error _ALS_CreateMenu defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8445,14 +7800,12 @@ native Menu:FIXES_CreateMenu(const title[], columns, Float:x, Float:y, Float:col
  * </remarks>
  */
 native Menu:CreateMenu__(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu;
-#if _FIXES_SAMP
-	#define _ALS_CreateMenu
-	#define CreateMenu( FIXES_CreateMenu(
+#if defined _ALS_CreateMenu
+	// Previous hook.
+	#define _ALS_CreateMenu__
+	#define CreateMenu__( CreateMenu(
 #endif
 
-#if defined _ALS_DestroyMenu
-	#error _ALS_DestroyMenu defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8471,14 +7824,12 @@ native FIXES_DestroyMenu(Menu:menuid) = DestroyMenu;
  * </remarks>
  */
 native DestroyMenu__(Menu:menuid) = DestroyMenu;
-#if _FIXES_SAMP
-	#define _ALS_DestroyMenu
-	#define DestroyMenu( FIXES_DestroyMenu(
+#if defined _ALS_DestroyMenu
+	// Previous hook.
+	#define _ALS_DestroyMenu__
+	#define DestroyMenu__( DestroyMenu(
 #endif
 
-#if defined _ALS_AddMenuItem
-	#error _ALS_AddMenuItem defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8497,14 +7848,12 @@ native FIXES_AddMenuItem(Menu:menuid, column, const text[]) = AddMenuItem;
  * </remarks>
  */
 native AddMenuItem__(Menu:menuid, column, const text[]) = AddMenuItem;
-#if _FIXES_SAMP
-	#define _ALS_AddMenuItem
-	#define AddMenuItem( FIXES_AddMenuItem(
+#if defined _ALS_AddMenuItem
+	// Previous hook.
+	#define _ALS_AddMenuItem__
+	#define AddMenuItem__( AddMenuItem(
 #endif
 
-#if defined _ALS_SetMenuColumnHeader
-	#error _ALS_SetMenuColumnHeader defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8523,14 +7872,12 @@ native FIXES_SetMenuColumnHeader(Menu:menuid, column, const heading[]) = SetMenu
  * </remarks>
  */
 native SetMenuColumnHeader__(Menu:menuid, column, const heading[]) = SetMenuColumnHeader;
-#if _FIXES_SAMP
-	#define _ALS_SetMenuColumnHeader
-	#define SetMenuColumnHeader( FIXES_SetMenuColumnHeader(
+#if defined _ALS_SetMenuColumnHeader
+	// Previous hook.
+	#define _ALS_SetMenuColumnHeader__
+	#define SetMenuColumnHeader__( SetMenuColumnHeader(
 #endif
 
-#if defined _ALS_ShowMenuForPlayer
-	#error _ALS_ShowMenuForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8549,14 +7896,12 @@ native FIXES_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
  * </remarks>
  */
 native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_ShowMenuForPlayer
-	#define ShowMenuForPlayer( FIXES_ShowMenuForPlayer(
+#if defined _ALS_ShowMenuForPlayer
+	// Previous hook.
+	#define _ALS_ShowMenuForPlayer__
+	#define ShowMenuForPlayer__( ShowMenuForPlayer(
 #endif
 
-#if defined _ALS_HideMenuForPlayer
-	#error _ALS_HideMenuForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8575,14 +7920,12 @@ native FIXES_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
  * </remarks>
  */
 native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_HideMenuForPlayer
-	#define HideMenuForPlayer( FIXES_HideMenuForPlayer(
+#if defined _ALS_HideMenuForPlayer
+	// Previous hook.
+	#define _ALS_HideMenuForPlayer__
+	#define HideMenuForPlayer__( HideMenuForPlayer(
 #endif
 
-#if defined _ALS_IsValidMenu
-	#error _ALS_IsValidMenu defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8601,14 +7944,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsValidMenu(Menu:menuid) = IsValidMenu;
  * </remarks>
  */
 native bool:IsValidMenu__(Menu:menuid) = IsValidMenu;
-#if _FIXES_SAMP
-	#define _ALS_IsValidMenu
-	#define IsValidMenu( FIXES_IsValidMenu(
+#if defined _ALS_IsValidMenu
+	// Previous hook.
+	#define _ALS_IsValidMenu__
+	#define IsValidMenu__( IsValidMenu(
 #endif
 
-#if defined _ALS_DisableMenu
-	#error _ALS_DisableMenu defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8627,14 +7968,12 @@ native FIXES_DisableMenu(Menu:menuid) = DisableMenu;
  * </remarks>
  */
 native DisableMenu__(Menu:menuid) = DisableMenu;
-#if _FIXES_SAMP
-	#define _ALS_DisableMenu
-	#define DisableMenu( FIXES_DisableMenu(
+#if defined _ALS_DisableMenu
+	// Previous hook.
+	#define _ALS_DisableMenu__
+	#define DisableMenu__( DisableMenu(
 #endif
 
-#if defined _ALS_DisableMenuRow
-	#error _ALS_DisableMenuRow defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8653,14 +7992,12 @@ native FIXES_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
  * </remarks>
  */
 native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow;
-#if _FIXES_SAMP
-	#define _ALS_DisableMenuRow
-	#define DisableMenuRow( FIXES_DisableMenuRow(
+#if defined _ALS_DisableMenuRow
+	// Previous hook.
+	#define _ALS_DisableMenuRow__
+	#define DisableMenuRow__( DisableMenuRow(
 #endif
 
-#if defined _ALS_GetPlayerMenu
-	#error _ALS_GetPlayerMenu defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8679,14 +8016,12 @@ native Menu:FIXES_GetPlayerMenu(playerid) = GetPlayerMenu;
  * </remarks>
  */
 native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu;
-#if _FIXES_SAMP
-	#define _ALS_GetPlayerMenu
-	#define GetPlayerMenu( FIXES_GetPlayerMenu(
+#if defined _ALS_GetPlayerMenu
+	// Previous hook.
+	#define _ALS_GetPlayerMenu__
+	#define GetPlayerMenu__( GetPlayerMenu(
 #endif
 
-#if defined _ALS_TextDrawCreate
-	#error _ALS_TextDrawCreate defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8705,14 +8040,12 @@ native Text:FIXES_TextDrawCreate(Float:x, Float:y, _FIXES_MAYBE_CONST text[]) = 
  * </remarks>
  */
 native Text:TextDrawCreate__(Float:x, Float:y, const text[]) = TextDrawCreate;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawCreate
-	#define TextDrawCreate( FIXES_TextDrawCreate(
+#if defined _ALS_TextDrawCreate
+	// Previous hook.
+	#define _ALS_TextDrawCreate__
+	#define TextDrawCreate__( TextDrawCreate(
 #endif
 
-#if defined _ALS_TextDrawDestroy
-	#error _ALS_TextDrawDestroy defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8731,14 +8064,12 @@ native FIXES_TextDrawDestroy(Text:text) = TextDrawDestroy;
  * </remarks>
  */
 native TextDrawDestroy__(Text:text) = TextDrawDestroy;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawDestroy
-	#define TextDrawDestroy( FIXES_TextDrawDestroy(
+#if defined _ALS_TextDrawDestroy
+	// Previous hook.
+	#define _ALS_TextDrawDestroy__
+	#define TextDrawDestroy__( TextDrawDestroy(
 #endif
 
-#if defined _ALS_TextDrawLetterSize
-	#error _ALS_TextDrawLetterSize defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8757,14 +8088,12 @@ native FIXES_TextDrawLetterSize(Text:text, Float:width, Float:height) = TextDraw
  * </remarks>
  */
 native TextDrawLetterSize__(Text:text, Float:width, Float:height) = TextDrawLetterSize;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawLetterSize
-	#define TextDrawLetterSize( FIXES_TextDrawLetterSize(
+#if defined _ALS_TextDrawLetterSize
+	// Previous hook.
+	#define _ALS_TextDrawLetterSize__
+	#define TextDrawLetterSize__( TextDrawLetterSize(
 #endif
 
-#if defined _ALS_TextDrawTextSize
-	#error _ALS_TextDrawTextSize defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8783,14 +8112,12 @@ native FIXES_TextDrawTextSize(Text:text, Float:width, Float:height) = TextDrawTe
  * </remarks>
  */
 native TextDrawTextSize__(Text:text, Float:width, Float:height) = TextDrawTextSize;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawTextSize
-	#define TextDrawTextSize( FIXES_TextDrawTextSize(
+#if defined _ALS_TextDrawTextSize
+	// Previous hook.
+	#define _ALS_TextDrawTextSize__
+	#define TextDrawTextSize__( TextDrawTextSize(
 #endif
 
-#if defined _ALS_TextDrawAlignment
-	#error _ALS_TextDrawAlignment defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8809,14 +8136,12 @@ native FIXES_TextDrawAlignment(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawA
  * </remarks>
  */
 native TextDrawAlignment__(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawAlignment
-	#define TextDrawAlignment( FIXES_TextDrawAlignment(
+#if defined _ALS_TextDrawAlignment
+	// Previous hook.
+	#define _ALS_TextDrawAlignment__
+	#define TextDrawAlignment__( TextDrawAlignment(
 #endif
 
-#if defined _ALS_TextDrawColor
-	#error _ALS_TextDrawColor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8835,14 +8160,12 @@ native FIXES_TextDrawColor(Text:text, colour) = TextDrawColor;
  * </remarks>
  */
 native TextDrawColor__(Text:text, colour) = TextDrawColor;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawColor
-	#define TextDrawColor( FIXES_TextDrawColor(
+#if defined _ALS_TextDrawColor
+	// Previous hook.
+	#define _ALS_TextDrawColor__
+	#define TextDrawColor__( TextDrawColor(
 #endif
 
-#if defined _ALS_TextDrawUseBox
-	#error _ALS_TextDrawUseBox defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8861,14 +8184,12 @@ native FIXES_TextDrawUseBox(Text:text, _FIXES_MAYBE_BOOL:use) = TextDrawUseBox;
  * </remarks>
  */
 native TextDrawUseBox__(Text:text, bool:use) = TextDrawUseBox;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawUseBox
-	#define TextDrawUseBox( FIXES_TextDrawUseBox(
+#if defined _ALS_TextDrawUseBox
+	// Previous hook.
+	#define _ALS_TextDrawUseBox__
+	#define TextDrawUseBox__( TextDrawUseBox(
 #endif
 
-#if defined _ALS_TextDrawBoxColor
-	#error _ALS_TextDrawBoxColor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8887,14 +8208,12 @@ native FIXES_TextDrawBoxColor(Text:text, colour) = TextDrawBoxColor;
  * </remarks>
  */
 native TextDrawBoxColor__(Text:text, colour) = TextDrawBoxColor;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawBoxColor
-	#define TextDrawBoxColor( FIXES_TextDrawBoxColor(
+#if defined _ALS_TextDrawBoxColor
+	// Previous hook.
+	#define _ALS_TextDrawBoxColor__
+	#define TextDrawBoxColor__( TextDrawBoxColor(
 #endif
 
-#if defined _ALS_TextDrawSetShadow
-	#error _ALS_TextDrawSetShadow defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8913,14 +8232,12 @@ native FIXES_TextDrawSetShadow(Text:text, size) = TextDrawSetShadow;
  * </remarks>
  */
 native TextDrawSetShadow__(Text:text, size) = TextDrawSetShadow;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawSetShadow
-	#define TextDrawSetShadow( FIXES_TextDrawSetShadow(
+#if defined _ALS_TextDrawSetShadow
+	// Previous hook.
+	#define _ALS_TextDrawSetShadow__
+	#define TextDrawSetShadow__( TextDrawSetShadow(
 #endif
 
-#if defined _ALS_TextDrawSetOutline
-	#error _ALS_TextDrawSetOutline defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8939,14 +8256,12 @@ native FIXES_TextDrawSetOutline(Text:text, size) = TextDrawSetOutline;
  * </remarks>
  */
 native TextDrawSetOutline__(Text:text, size) = TextDrawSetOutline;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawSetOutline
-	#define TextDrawSetOutline( FIXES_TextDrawSetOutline(
+#if defined _ALS_TextDrawSetOutline
+	// Previous hook.
+	#define _ALS_TextDrawSetOutline__
+	#define TextDrawSetOutline__( TextDrawSetOutline(
 #endif
 
-#if defined _ALS_TextDrawBackgroundColor
-	#error _ALS_TextDrawBackgroundColor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8965,14 +8280,12 @@ native FIXES_TextDrawBackgroundColor(Text:text, colour) = TextDrawBackgroundColo
  * </remarks>
  */
 native TextDrawBackgroundColor__(Text:text, colour) = TextDrawBackgroundColor;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawBackgroundColor
-	#define TextDrawBackgroundColor( FIXES_TextDrawBackgroundColor(
+#if defined _ALS_TextDrawBackgroundColor
+	// Previous hook.
+	#define _ALS_TextDrawBackgroundColor__
+	#define TextDrawBackgroundColor__( TextDrawBackgroundColor(
 #endif
 
-#if defined _ALS_TextDrawFont
-	#error _ALS_TextDrawFont defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -8991,14 +8304,12 @@ native FIXES_TextDrawFont(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
  * </remarks>
  */
 native TextDrawFont__(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawFont
-	#define TextDrawFont( FIXES_TextDrawFont(
+#if defined _ALS_TextDrawFont
+	// Previous hook.
+	#define _ALS_TextDrawFont__
+	#define TextDrawFont__( TextDrawFont(
 #endif
 
-#if defined _ALS_TextDrawSetProportional
-	#error _ALS_TextDrawSetProportional defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9017,14 +8328,12 @@ native FIXES_TextDrawSetProportional(Text:text, _FIXES_MAYBE_BOOL:set) = TextDra
  * </remarks>
  */
 native TextDrawSetProportional__(Text:text, bool:set) = TextDrawSetProportional;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawSetProportional
-	#define TextDrawSetProportional( FIXES_TextDrawSetProportional(
+#if defined _ALS_TextDrawSetProportional
+	// Previous hook.
+	#define _ALS_TextDrawSetProportional__
+	#define TextDrawSetProportional__( TextDrawSetProportional(
 #endif
 
-#if defined _ALS_TextDrawSetSelectable
-	#error _ALS_TextDrawSetSelectable defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9043,14 +8352,12 @@ native FIXES_TextDrawSetSelectable(Text:text, _FIXES_MAYBE_BOOL:set) = TextDrawS
  * </remarks>
  */
 native TextDrawSetSelectable__(Text:text, bool:set) = TextDrawSetSelectable;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawSetSelectable
-	#define TextDrawSetSelectable( FIXES_TextDrawSetSelectable(
+#if defined _ALS_TextDrawSetSelectable
+	// Previous hook.
+	#define _ALS_TextDrawSetSelectable__
+	#define TextDrawSetSelectable__( TextDrawSetSelectable(
 #endif
 
-#if defined _ALS_TextDrawShowForPlayer
-	#error _ALS_TextDrawShowForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9069,14 +8376,12 @@ native FIXES_TextDrawShowForPlayer(playerid, Text:text) = TextDrawShowForPlayer;
  * </remarks>
  */
 native TextDrawShowForPlayer__(playerid, Text:text) = TextDrawShowForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawShowForPlayer
-	#define TextDrawShowForPlayer( FIXES_TextDrawShowForPlayer(
+#if defined _ALS_TextDrawShowForPlayer
+	// Previous hook.
+	#define _ALS_TextDrawShowForPlayer__
+	#define TextDrawShowForPlayer__( TextDrawShowForPlayer(
 #endif
 
-#if defined _ALS_TextDrawHideForPlayer
-	#error _ALS_TextDrawHideForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9095,14 +8400,12 @@ native FIXES_TextDrawHideForPlayer(playerid, Text:text) = TextDrawHideForPlayer;
  * </remarks>
  */
 native TextDrawHideForPlayer__(playerid, Text:text) = TextDrawHideForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawHideForPlayer
-	#define TextDrawHideForPlayer( FIXES_TextDrawHideForPlayer(
+#if defined _ALS_TextDrawHideForPlayer
+	// Previous hook.
+	#define _ALS_TextDrawHideForPlayer__
+	#define TextDrawHideForPlayer__( TextDrawHideForPlayer(
 #endif
 
-#if defined _ALS_TextDrawShowForAll
-	#error _ALS_TextDrawShowForAll defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9121,14 +8424,12 @@ native FIXES_TextDrawShowForAll(Text:text) = TextDrawShowForAll;
  * </remarks>
  */
 native TextDrawShowForAll__(Text:text) = TextDrawShowForAll;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawShowForAll
-	#define TextDrawShowForAll( FIXES_TextDrawShowForAll(
+#if defined _ALS_TextDrawShowForAll
+	// Previous hook.
+	#define _ALS_TextDrawShowForAll__
+	#define TextDrawShowForAll__( TextDrawShowForAll(
 #endif
 
-#if defined _ALS_TextDrawHideForAll
-	#error _ALS_TextDrawHideForAll defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9147,14 +8448,12 @@ native FIXES_TextDrawHideForAll(Text:text) = TextDrawHideForAll;
  * </remarks>
  */
 native TextDrawHideForAll__(Text:text) = TextDrawHideForAll;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawHideForAll
-	#define TextDrawHideForAll( FIXES_TextDrawHideForAll(
+#if defined _ALS_TextDrawHideForAll
+	// Previous hook.
+	#define _ALS_TextDrawHideForAll__
+	#define TextDrawHideForAll__( TextDrawHideForAll(
 #endif
 
-#if defined _ALS_TextDrawSetString
-	#error _ALS_TextDrawSetString defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9173,14 +8472,12 @@ native FIXES_TextDrawSetString(Text:text, _FIXES_MAYBE_CONST string[]) = TextDra
  * </remarks>
  */
 native TextDrawSetString__(Text:text, const string[]) = TextDrawSetString;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawSetString
-	#define TextDrawSetString( FIXES_TextDrawSetString(
+#if defined _ALS_TextDrawSetString
+	// Previous hook.
+	#define _ALS_TextDrawSetString__
+	#define TextDrawSetString__( TextDrawSetString(
 #endif
 
-#if defined _ALS_TextDrawSetPreviewModel
-	#error _ALS_TextDrawSetPreviewModel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9199,14 +8496,12 @@ native FIXES_TextDrawSetPreviewModel(Text:text, modelIndex) = TextDrawSetPreview
  * </remarks>
  */
 native TextDrawSetPreviewModel__(Text:text, modelIndex) = TextDrawSetPreviewModel;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawSetPreviewModel
-	#define TextDrawSetPreviewModel( FIXES_TextDrawSetPreviewModel(
+#if defined _ALS_TextDrawSetPreviewModel
+	// Previous hook.
+	#define _ALS_TextDrawSetPreviewModel__
+	#define TextDrawSetPreviewModel__( TextDrawSetPreviewModel(
 #endif
 
-#if defined _ALS_TextDrawSetPreviewRot
-	#error _ALS_TextDrawSetPreviewRot defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9225,14 +8520,12 @@ native FIXES_TextDrawSetPreviewRot(Text:text, Float:rotX, Float:rotY, Float:rotZ
  * </remarks>
  */
 native TextDrawSetPreviewRot__(Text:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = TextDrawSetPreviewRot;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawSetPreviewRot
-	#define TextDrawSetPreviewRot( FIXES_TextDrawSetPreviewRot(
+#if defined _ALS_TextDrawSetPreviewRot
+	// Previous hook.
+	#define _ALS_TextDrawSetPreviewRot__
+	#define TextDrawSetPreviewRot__( TextDrawSetPreviewRot(
 #endif
 
-#if defined _ALS_TextDrawSetPreviewVehCol
-	#error _ALS_TextDrawSetPreviewVehCol defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9251,14 +8544,12 @@ native FIXES_TextDrawSetPreviewVehCol(Text:text, colour1, colour2) = TextDrawSet
  * </remarks>
  */
 native TextDrawSetPreviewVehCol__(Text:text, colour1, colour2) = TextDrawSetPreviewVehCol;
-#if _FIXES_SAMP
-	#define _ALS_TextDrawSetPreviewVehCol
-	#define TextDrawSetPreviewVehCol( FIXES_TextDrawSetPreviewVehCol(
+#if defined _ALS_TextDrawSetPreviewVehCol
+	// Previous hook.
+	#define _ALS_TextDrawSetPreviewVehCol__
+	#define TextDrawSetPreviewVehCol__( TextDrawSetPreviewVehCol(
 #endif
 
-#if defined _ALS_GangZoneCreate
-	#error _ALS_GangZoneCreate defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9277,14 +8568,12 @@ native FIXES_GangZoneCreate(Float:minX, Float:minY, Float:maxX, Float:maxY) = Ga
  * </remarks>
  */
 native GangZoneCreate__(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZoneCreate;
-#if _FIXES_SAMP
-	#define _ALS_GangZoneCreate
-	#define GangZoneCreate( FIXES_GangZoneCreate(
+#if defined _ALS_GangZoneCreate
+	// Previous hook.
+	#define _ALS_GangZoneCreate__
+	#define GangZoneCreate__( GangZoneCreate(
 #endif
 
-#if defined _ALS_GangZoneDestroy
-	#error _ALS_GangZoneDestroy defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9303,14 +8592,12 @@ native FIXES_GangZoneDestroy(zone) = GangZoneDestroy;
  * </remarks>
  */
 native GangZoneDestroy__(zone) = GangZoneDestroy;
-#if _FIXES_SAMP
-	#define _ALS_GangZoneDestroy
-	#define GangZoneDestroy( FIXES_GangZoneDestroy(
+#if defined _ALS_GangZoneDestroy
+	// Previous hook.
+	#define _ALS_GangZoneDestroy__
+	#define GangZoneDestroy__( GangZoneDestroy(
 #endif
 
-#if defined _ALS_GangZoneShowForPlayer
-	#error _ALS_GangZoneShowForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9329,14 +8616,12 @@ native FIXES_GangZoneShowForPlayer(playerid, zone, colour) = GangZoneShowForPlay
  * </remarks>
  */
 native GangZoneShowForPlayer__(playerid, zone, colour) = GangZoneShowForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_GangZoneShowForPlayer
-	#define GangZoneShowForPlayer( FIXES_GangZoneShowForPlayer(
+#if defined _ALS_GangZoneShowForPlayer
+	// Previous hook.
+	#define _ALS_GangZoneShowForPlayer__
+	#define GangZoneShowForPlayer__( GangZoneShowForPlayer(
 #endif
 
-#if defined _ALS_GangZoneShowForAll
-	#error _ALS_GangZoneShowForAll defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9355,14 +8640,12 @@ native FIXES_GangZoneShowForAll(zone, colour) = GangZoneShowForAll;
  * </remarks>
  */
 native GangZoneShowForAll__(zone, colour) = GangZoneShowForAll;
-#if _FIXES_SAMP
-	#define _ALS_GangZoneShowForAll
-	#define GangZoneShowForAll( FIXES_GangZoneShowForAll(
+#if defined _ALS_GangZoneShowForAll
+	// Previous hook.
+	#define _ALS_GangZoneShowForAll__
+	#define GangZoneShowForAll__( GangZoneShowForAll(
 #endif
 
-#if defined _ALS_GangZoneHideForPlayer
-	#error _ALS_GangZoneHideForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9381,14 +8664,12 @@ native FIXES_GangZoneHideForPlayer(playerid, zone) = GangZoneHideForPlayer;
  * </remarks>
  */
 native GangZoneHideForPlayer__(playerid, zone) = GangZoneHideForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_GangZoneHideForPlayer
-	#define GangZoneHideForPlayer( FIXES_GangZoneHideForPlayer(
+#if defined _ALS_GangZoneHideForPlayer
+	// Previous hook.
+	#define _ALS_GangZoneHideForPlayer__
+	#define GangZoneHideForPlayer__( GangZoneHideForPlayer(
 #endif
 
-#if defined _ALS_GangZoneHideForAll
-	#error _ALS_GangZoneHideForAll defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9407,14 +8688,12 @@ native FIXES_GangZoneHideForAll(zone) = GangZoneHideForAll;
  * </remarks>
  */
 native GangZoneHideForAll__(zone) = GangZoneHideForAll;
-#if _FIXES_SAMP
-	#define _ALS_GangZoneHideForAll
-	#define GangZoneHideForAll( FIXES_GangZoneHideForAll(
+#if defined _ALS_GangZoneHideForAll
+	// Previous hook.
+	#define _ALS_GangZoneHideForAll__
+	#define GangZoneHideForAll__( GangZoneHideForAll(
 #endif
 
-#if defined _ALS_GangZoneFlashForPlayer
-	#error _ALS_GangZoneFlashForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9433,14 +8712,12 @@ native FIXES_GangZoneFlashForPlayer(playerid, zone, flashColour) = GangZoneFlash
  * </remarks>
  */
 native GangZoneFlashForPlayer__(playerid, zone, flashColour) = GangZoneFlashForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_GangZoneFlashForPlayer
-	#define GangZoneFlashForPlayer( FIXES_GangZoneFlashForPlayer(
+#if defined _ALS_GangZoneFlashForPlayer
+	// Previous hook.
+	#define _ALS_GangZoneFlashForPlayer__
+	#define GangZoneFlashForPlayer__( GangZoneFlashForPlayer(
 #endif
 
-#if defined _ALS_GangZoneFlashForAll
-	#error _ALS_GangZoneFlashForAll defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9459,14 +8736,12 @@ native FIXES_GangZoneFlashForAll(zone, flashColour) = GangZoneFlashForAll;
  * </remarks>
  */
 native GangZoneFlashForAll__(zone, flashColour) = GangZoneFlashForAll;
-#if _FIXES_SAMP
-	#define _ALS_GangZoneFlashForAll
-	#define GangZoneFlashForAll( FIXES_GangZoneFlashForAll(
+#if defined _ALS_GangZoneFlashForAll
+	// Previous hook.
+	#define _ALS_GangZoneFlashForAll__
+	#define GangZoneFlashForAll__( GangZoneFlashForAll(
 #endif
 
-#if defined _ALS_GangZoneStopFlashForPlayer
-	#error _ALS_GangZoneStopFlashForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9485,14 +8760,12 @@ native FIXES_GangZoneStopFlashForPlayer(playerid, zone) = GangZoneStopFlashForPl
  * </remarks>
  */
 native GangZoneStopFlashForPlayer__(playerid, zone) = GangZoneStopFlashForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_GangZoneStopFlashForPlayer
-	#define GangZoneStopFlashForPlayer( FIXES_GangZoneStopFlashForPlayer(
+#if defined _ALS_GangZoneStopFlashForPlayer
+	// Previous hook.
+	#define _ALS_GangZoneStopFlashForPlayer__
+	#define GangZoneStopFlashForPlayer__( GangZoneStopFlashForPlayer(
 #endif
 
-#if defined _ALS_GangZoneStopFlashForAll
-	#error _ALS_GangZoneStopFlashForAll defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9511,14 +8784,12 @@ native FIXES_GangZoneStopFlashForAll(zone) = GangZoneStopFlashForAll;
  * </remarks>
  */
 native GangZoneStopFlashForAll__(zone) = GangZoneStopFlashForAll;
-#if _FIXES_SAMP
-	#define _ALS_GangZoneStopFlashForAll
-	#define GangZoneStopFlashForAll( FIXES_GangZoneStopFlashForAll(
+#if defined _ALS_GangZoneStopFlashForAll
+	// Previous hook.
+	#define _ALS_GangZoneStopFlashForAll__
+	#define GangZoneStopFlashForAll__( GangZoneStopFlashForAll(
 #endif
 
-#if defined _ALS_Create3DTextLabel
-	#error _ALS_Create3DTextLabel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9537,14 +8808,12 @@ native Text3D:FIXES_Create3DTextLabel(_FIXES_MAYBE_CONST text[], colour, Float:x
  * </remarks>
  */
 native Text3D:Create3DTextLabel__(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false) = Create3DTextLabel;
-#if _FIXES_SAMP
-	#define _ALS_Create3DTextLabel
-	#define Create3DTextLabel( FIXES_Create3DTextLabel(
+#if defined _ALS_Create3DTextLabel
+	// Previous hook.
+	#define _ALS_Create3DTextLabel__
+	#define Create3DTextLabel__( Create3DTextLabel(
 #endif
 
-#if defined _ALS_Delete3DTextLabel
-	#error _ALS_Delete3DTextLabel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9563,14 +8832,12 @@ native FIXES_Delete3DTextLabel(Text3D:textid) = Delete3DTextLabel;
  * </remarks>
  */
 native Delete3DTextLabel__(Text3D:textid) = Delete3DTextLabel;
-#if _FIXES_SAMP
-	#define _ALS_Delete3DTextLabel
-	#define Delete3DTextLabel( FIXES_Delete3DTextLabel(
+#if defined _ALS_Delete3DTextLabel
+	// Previous hook.
+	#define _ALS_Delete3DTextLabel__
+	#define Delete3DTextLabel__( Delete3DTextLabel(
 #endif
 
-#if defined _ALS_Attach3DTextLabelToPlayer
-	#error _ALS_Attach3DTextLabelToPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9589,14 +8856,12 @@ native FIXES_Attach3DTextLabelToPlayer(Text3D:textid, parentid, Float:offsetX, F
  * </remarks>
  */
 native Attach3DTextLabelToPlayer__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer;
-#if _FIXES_SAMP
-	#define _ALS_Attach3DTextLabelToPlayer
-	#define Attach3DTextLabelToPlayer( FIXES_Attach3DTextLabelToPlayer(
+#if defined _ALS_Attach3DTextLabelToPlayer
+	// Previous hook.
+	#define _ALS_Attach3DTextLabelToPlayer__
+	#define Attach3DTextLabelToPlayer__( Attach3DTextLabelToPlayer(
 #endif
 
-#if defined _ALS_Attach3DTextLabelToVehicle
-	#error _ALS_Attach3DTextLabelToVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9615,14 +8880,12 @@ native FIXES_Attach3DTextLabelToVehicle(Text3D:textid, parentid, Float:offsetX, 
  * </remarks>
  */
 native Attach3DTextLabelToVehicle__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle;
-#if _FIXES_SAMP
-	#define _ALS_Attach3DTextLabelToVehicle
-	#define Attach3DTextLabelToVehicle( FIXES_Attach3DTextLabelToVehicle(
+#if defined _ALS_Attach3DTextLabelToVehicle
+	// Previous hook.
+	#define _ALS_Attach3DTextLabelToVehicle__
+	#define Attach3DTextLabelToVehicle__( Attach3DTextLabelToVehicle(
 #endif
 
-#if defined _ALS_Update3DTextLabelText
-	#error _ALS_Update3DTextLabelText defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9641,14 +8904,12 @@ native FIXES_Update3DTextLabelText(Text3D:textid, colour, _FIXES_MAYBE_CONST tex
  * </remarks>
  */
 native Update3DTextLabelText__(Text3D:textid, colour, const text[]) = Update3DTextLabelText;
-#if _FIXES_SAMP
-	#define _ALS_Update3DTextLabelText
-	#define Update3DTextLabelText( FIXES_Update3DTextLabelText(
+#if defined _ALS_Update3DTextLabelText
+	// Previous hook.
+	#define _ALS_Update3DTextLabelText__
+	#define Update3DTextLabelText__( Update3DTextLabelText(
 #endif
 
-#if defined _ALS_CreatePlayer3DTextLabel
-	#error _ALS_CreatePlayer3DTextLabel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9667,14 +8928,12 @@ native PlayerText3D:FIXES_CreatePlayer3DTextLabel(playerid, _FIXES_MAYBE_CONST t
  * </remarks>
  */
 native PlayerText3D:CreatePlayer3DTextLabel__(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false) = CreatePlayer3DTextLabel;
-#if _FIXES_SAMP
-	#define _ALS_CreatePlayer3DTextLabel
-	#define CreatePlayer3DTextLabel( FIXES_CreatePlayer3DTextLabel(
+#if defined _ALS_CreatePlayer3DTextLabel
+	// Previous hook.
+	#define _ALS_CreatePlayer3DTextLabel__
+	#define CreatePlayer3DTextLabel__( CreatePlayer3DTextLabel(
 #endif
 
-#if defined _ALS_DeletePlayer3DTextLabel
-	#error _ALS_DeletePlayer3DTextLabel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9693,14 +8952,12 @@ native FIXES_DeletePlayer3DTextLabel(playerid, PlayerText3D:textid) = DeletePlay
  * </remarks>
  */
 native DeletePlayer3DTextLabel__(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel;
-#if _FIXES_SAMP
-	#define _ALS_DeletePlayer3DTextLabel
-	#define DeletePlayer3DTextLabel( FIXES_DeletePlayer3DTextLabel(
+#if defined _ALS_DeletePlayer3DTextLabel
+	// Previous hook.
+	#define _ALS_DeletePlayer3DTextLabel__
+	#define DeletePlayer3DTextLabel__( DeletePlayer3DTextLabel(
 #endif
 
-#if defined _ALS_UpdatePlayer3DTextLabelText
-	#error _ALS_UpdatePlayer3DTextLabelText defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9719,14 +8976,12 @@ native FIXES_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, 
  * </remarks>
  */
 native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText;
-#if _FIXES_SAMP
-	#define _ALS_UpdatePlayer3DTextLabelText
-	#define UpdatePlayer3DTextLabelText( FIXES_UpdatePlayer3DTextLabelText(
+#if defined _ALS_UpdatePlayer3DTextLabelText
+	// Previous hook.
+	#define _ALS_UpdatePlayer3DTextLabelText__
+	#define UpdatePlayer3DTextLabelText__( UpdatePlayer3DTextLabelText(
 #endif
 
-#if defined _ALS_ShowPlayerDialog
-	#error _ALS_ShowPlayerDialog defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9745,14 +9000,12 @@ native FIXES_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, _FIXES_MAY
  * </remarks>
  */
 native ShowPlayerDialog__(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
-#if _FIXES_SAMP
-	#define _ALS_ShowPlayerDialog
-	#define ShowPlayerDialog( FIXES_ShowPlayerDialog(
+#if defined _ALS_ShowPlayerDialog
+	// Previous hook.
+	#define _ALS_ShowPlayerDialog__
+	#define ShowPlayerDialog__( ShowPlayerDialog(
 #endif
 
-#if defined _ALS_gpci
-	#error _ALS_gpci defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9774,14 +9027,12 @@ native FIXES_gpci(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
  * </remarks>
  */
 native gpci__(playerid, serial[], len = sizeof (serial)) = gpci;
-#if _FIXES_SAMP
-	#define _ALS_gpci
-	#define gpci( FIXES_gpci(
+#if defined _ALS_gpci
+	// Previous hook.
+	#define _ALS_gpci__
+	#define gpci__( gpci(
 #endif
 
-#if defined _ALS_GPCI
-	#error _ALS_GPCI defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9800,9 +9051,10 @@ native FIXES_GPCI(playerid, serial[], _FIXES_MAYBE_SIZEOF(len, serial)) = gpci;
  * </remarks>
  */
 native GPCI__(playerid, serial[], len = sizeof (serial)) = gpci;
-#if _FIXES_SAMP
-	#define _ALS_GPCI
-	#define GPCI( FIXES_GPCI(
+#if defined _ALS_GPCI
+	// Previous hook.
+	#define _ALS_GPCI__
+	#define GPCI__( GPCI(
 #endif
 
 /*
@@ -9815,9 +9067,6 @@ native GPCI__(playerid, serial[], len = sizeof (serial)) = gpci;
 
 */
 
-#if defined _ALS_db_open
-	#error _ALS_db_open defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9839,14 +9088,12 @@ native DB:FIXES_db_open(_FIXES_MAYBE_CONST name[]) = db_open;
  * </remarks>
  */
 native DB:db_open__(const name[]) = db_open;
-#if _FIXES_SAMP
-	#define _ALS_db_open
-	#define db_open( FIXES_db_open(
+#if defined _ALS_db_open
+	// Previous hook.
+	#define _ALS_db_open__
+	#define db_open__( db_open(
 #endif
 
-#if defined _ALS_DB_Open
-	#error _ALS_DB_Open defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9865,14 +9112,12 @@ native DB:FIXES_DB_Open(_FIXES_MAYBE_CONST name[]) = db_open;
  * </remarks>
  */
 native DB:DB_Open__(const name[]) = db_open;
-#if _FIXES_SAMP
-	#define _ALS_DB_Open
-	#define DB_Open( FIXES_DB_Open(
+#if defined _ALS_DB_Open
+	// Previous hook.
+	#define _ALS_DB_Open__
+	#define DB_Open__( DB_Open(
 #endif
 
-#if defined _ALS_db_close
-	#error _ALS_db_close defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9894,14 +9139,12 @@ native _FIXES_MAYBE_BOOL:FIXES_db_close(DB:db) = db_close;
  * </remarks>
  */
 native bool:db_close__(DB:db) = db_close;
-#if _FIXES_SAMP
-	#define _ALS_db_close
-	#define db_close( FIXES_db_close(
+#if defined _ALS_db_close
+	// Previous hook.
+	#define _ALS_db_close__
+	#define db_close__( db_close(
 #endif
 
-#if defined _ALS_DB_Close
-	#error _ALS_DB_Close defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9920,14 +9163,12 @@ native _FIXES_MAYBE_BOOL:FIXES_DB_Close(DB:db) = db_close;
  * </remarks>
  */
 native bool:DB_Close__(DB:db) = db_close;
-#if _FIXES_SAMP
-	#define _ALS_DB_Close
-	#define DB_Close( FIXES_DB_Close(
+#if defined _ALS_DB_Close
+	// Previous hook.
+	#define _ALS_DB_Close__
+	#define DB_Close__( DB_Close(
 #endif
 
-#if defined _ALS_db_query
-	#error _ALS_db_query defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9949,14 +9190,12 @@ native DBResult:FIXES_db_query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
  * </remarks>
  */
 native DBResult:db_query__(DB:db, const query[]) = db_query;
-#if _FIXES_SAMP
-	#define _ALS_db_query
-	#define db_query( FIXES_db_query(
+#if defined _ALS_db_query
+	// Previous hook.
+	#define _ALS_db_query__
+	#define db_query__( db_query(
 #endif
 
-#if defined _ALS_DB_Query
-	#error _ALS_DB_Query defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -9975,14 +9214,12 @@ native DBResult:FIXES_DB_Query(DB:db, _FIXES_MAYBE_CONST query[]) = db_query;
  * </remarks>
  */
 native DBResult:DB_Query__(DB:db, const query[]) = db_query;
-#if _FIXES_SAMP
-	#define _ALS_DB_Query
-	#define DB_Query( FIXES_DB_Query(
+#if defined _ALS_DB_Query
+	// Previous hook.
+	#define _ALS_DB_Query__
+	#define DB_Query__( DB_Query(
 #endif
 
-#if defined _ALS_db_free_result
-	#error _ALS_db_free_result defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10004,14 +9241,12 @@ native _FIXES_MAYBE_BOOL:FIXES_db_free_result(DBResult:result) = db_free_result;
  * </remarks>
  */
 native bool:db_free_result__(DBResult:result) = db_free_result;
-#if _FIXES_SAMP
-	#define _ALS_db_free_result
-	#define db_free_result( FIXES_db_free_result(
+#if defined _ALS_db_free_result
+	// Previous hook.
+	#define _ALS_db_free_result__
+	#define db_free_result__( db_free_result(
 #endif
 
-#if defined _ALS_DB_FreeResult
-	#error _ALS_DB_FreeResult defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10030,14 +9265,12 @@ native _FIXES_MAYBE_BOOL:FIXES_DB_FreeResult(DBResult:result) = db_free_result;
  * </remarks>
  */
 native bool:DB_FreeResult__(DBResult:result) = db_free_result;
-#if _FIXES_SAMP
-	#define _ALS_DB_FreeResult
-	#define DB_FreeResult( FIXES_DB_FreeResult(
+#if defined _ALS_DB_FreeResult
+	// Previous hook.
+	#define _ALS_DB_FreeResult__
+	#define DB_FreeResult__( DB_FreeResult(
 #endif
 
-#if defined _ALS_db_num_rows
-	#error _ALS_db_num_rows defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10059,14 +9292,12 @@ native FIXES_db_num_rows(DBResult:result) = db_num_rows;
  * </remarks>
  */
 native db_num_rows__(DBResult:result) = db_num_rows;
-#if _FIXES_SAMP
-	#define _ALS_db_num_rows
-	#define db_num_rows( FIXES_db_num_rows(
+#if defined _ALS_db_num_rows
+	// Previous hook.
+	#define _ALS_db_num_rows__
+	#define db_num_rows__( db_num_rows(
 #endif
 
-#if defined _ALS_DB_NumRows
-	#error _ALS_DB_NumRows defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10085,14 +9316,12 @@ native FIXES_DB_NumRows(DBResult:result) = db_num_rows;
  * </remarks>
  */
 native DB_NumRows__(DBResult:result) = db_num_rows;
-#if _FIXES_SAMP
-	#define _ALS_DB_NumRows
-	#define DB_NumRows( FIXES_DB_NumRows(
+#if defined _ALS_DB_NumRows
+	// Previous hook.
+	#define _ALS_DB_NumRows__
+	#define DB_NumRows__( DB_NumRows(
 #endif
 
-#if defined _ALS_db_next_row
-	#error _ALS_db_next_row defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10114,14 +9343,12 @@ native _FIXES_MAYBE_BOOL:FIXES_db_next_row(DBResult:result) = db_next_row;
  * </remarks>
  */
 native bool:db_next_row__(DBResult:result) = db_next_row;
-#if _FIXES_SAMP
-	#define _ALS_db_next_row
-	#define db_next_row( FIXES_db_next_row(
+#if defined _ALS_db_next_row
+	// Previous hook.
+	#define _ALS_db_next_row__
+	#define db_next_row__( db_next_row(
 #endif
 
-#if defined _ALS_DB_NextRow
-	#error _ALS_DB_NextRow defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10140,14 +9367,12 @@ native _FIXES_MAYBE_BOOL:FIXES_DB_NextRow(DBResult:result) = db_next_row;
  * </remarks>
  */
 native bool:DB_NextRow__(DBResult:result) = db_next_row;
-#if _FIXES_SAMP
-	#define _ALS_DB_NextRow
-	#define DB_NextRow( FIXES_DB_NextRow(
+#if defined _ALS_DB_NextRow
+	// Previous hook.
+	#define _ALS_DB_NextRow__
+	#define DB_NextRow__( DB_NextRow(
 #endif
 
-#if defined _ALS_db_num_fields
-	#error _ALS_db_num_fields defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10169,14 +9394,12 @@ native FIXES_db_num_fields(DBResult:result) = db_num_fields;
  * </remarks>
  */
 native db_num_fields__(DBResult:result) = db_num_fields;
-#if _FIXES_SAMP
-	#define _ALS_db_num_fields
-	#define db_num_fields( FIXES_db_num_fields(
+#if defined _ALS_db_num_fields
+	// Previous hook.
+	#define _ALS_db_num_fields__
+	#define db_num_fields__( db_num_fields(
 #endif
 
-#if defined _ALS_DB_NumFields
-	#error _ALS_DB_NumFields defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10195,14 +9418,12 @@ native FIXES_DB_NumFields(DBResult:result) = db_num_fields;
  * </remarks>
  */
 native DB_NumFields__(DBResult:result) = db_num_fields;
-#if _FIXES_SAMP
-	#define _ALS_DB_NumFields
-	#define DB_NumFields( FIXES_DB_NumFields(
+#if defined _ALS_DB_NumFields
+	// Previous hook.
+	#define _ALS_DB_NumFields__
+	#define DB_NumFields__( DB_NumFields(
 #endif
 
-#if defined _ALS_db_field_name
-	#error _ALS_db_field_name defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10224,14 +9445,12 @@ native _FIXES_MAYBE_BOOL:FIXES_db_field_name(DBResult:result, field, output[], _
  * </remarks>
  */
 native bool:db_field_name__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
-#if _FIXES_SAMP
-	#define _ALS_db_field_name
-	#define db_field_name( FIXES_db_field_name(
+#if defined _ALS_db_field_name
+	// Previous hook.
+	#define _ALS_db_field_name__
+	#define db_field_name__( db_field_name(
 #endif
 
-#if defined _ALS_DB_FieldName
-	#error _ALS_DB_FieldName defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10250,14 +9469,12 @@ native _FIXES_MAYBE_BOOL:FIXES_DB_FieldName(DBResult:result, field, output[], _F
  * </remarks>
  */
 native bool:DB_FieldName__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
-#if _FIXES_SAMP
-	#define _ALS_DB_FieldName
-	#define DB_FieldName( FIXES_DB_FieldName(
+#if defined _ALS_DB_FieldName
+	// Previous hook.
+	#define _ALS_DB_FieldName__
+	#define DB_FieldName__( DB_FieldName(
 #endif
 
-#if defined _ALS_db_get_field
-	#error _ALS_db_get_field defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10279,14 +9496,12 @@ native _FIXES_MAYBE_BOOL:FIXES_db_get_field(DBResult:result, field, output[], _F
  * </remarks>
  */
 native bool:db_get_field__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
-#if _FIXES_SAMP
-	#define _ALS_db_get_field
-	#define db_get_field( FIXES_db_get_field(
+#if defined _ALS_db_get_field
+	// Previous hook.
+	#define _ALS_db_get_field__
+	#define db_get_field__( db_get_field(
 #endif
 
-#if defined _ALS_DB_GetField
-	#error _ALS_DB_GetField defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10305,14 +9520,12 @@ native _FIXES_MAYBE_BOOL:FIXES_DB_GetField(DBResult:result, field, output[], _FI
  * </remarks>
  */
 native bool:DB_GetField__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
-#if _FIXES_SAMP
-	#define _ALS_DB_GetField
-	#define DB_GetField( FIXES_DB_GetField(
+#if defined _ALS_DB_GetField
+	// Previous hook.
+	#define _ALS_DB_GetField__
+	#define DB_GetField__( DB_GetField(
 #endif
 
-#if defined _ALS_db_get_field_int
-	#error _ALS_db_get_field_int defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10334,14 +9547,12 @@ native FIXES_db_get_field_int(DBResult:result, field = 0) = db_get_field_int;
  * </remarks>
  */
 native db_get_field_int__(DBResult:result, field = 0) = db_get_field_int;
-#if _FIXES_SAMP
-	#define _ALS_db_get_field_int
-	#define db_get_field_int( FIXES_db_get_field_int(
+#if defined _ALS_db_get_field_int
+	// Previous hook.
+	#define _ALS_db_get_field_int__
+	#define db_get_field_int__( db_get_field_int(
 #endif
 
-#if defined _ALS_DB_GetFieldInt
-	#error _ALS_DB_GetFieldInt defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10360,14 +9571,12 @@ native FIXES_DB_GetFieldInt(DBResult:result, field = 0) = db_get_field_int;
  * </remarks>
  */
 native DB_GetFieldInt__(DBResult:result, field = 0) = db_get_field_int;
-#if _FIXES_SAMP
-	#define _ALS_DB_GetFieldInt
-	#define DB_GetFieldInt( FIXES_DB_GetFieldInt(
+#if defined _ALS_DB_GetFieldInt
+	// Previous hook.
+	#define _ALS_DB_GetFieldInt__
+	#define DB_GetFieldInt__( DB_GetFieldInt(
 #endif
 
-#if defined _ALS_db_get_field_float
-	#error _ALS_db_get_field_float defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10389,14 +9598,12 @@ native Float:FIXES_db_get_field_float(DBResult:result, field = 0) = db_get_field
  * </remarks>
  */
 native Float:db_get_field_float__(DBResult:result, field = 0) = db_get_field_float;
-#if _FIXES_SAMP
-	#define _ALS_db_get_field_float
-	#define db_get_field_float( FIXES_db_get_field_float(
+#if defined _ALS_db_get_field_float
+	// Previous hook.
+	#define _ALS_db_get_field_float__
+	#define db_get_field_float__( db_get_field_float(
 #endif
 
-#if defined _ALS_DB_GetFieldFloat
-	#error _ALS_DB_GetFieldFloat defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10415,14 +9622,12 @@ native Float:FIXES_DB_GetFieldFloat(DBResult:result, field = 0) = db_get_field_f
  * </remarks>
  */
 native Float:DB_GetFieldFloat__(DBResult:result, field = 0) = db_get_field_float;
-#if _FIXES_SAMP
-	#define _ALS_DB_GetFieldFloat
-	#define DB_GetFieldFloat( FIXES_DB_GetFieldFloat(
+#if defined _ALS_DB_GetFieldFloat
+	// Previous hook.
+	#define _ALS_DB_GetFieldFloat__
+	#define DB_GetFieldFloat__( DB_GetFieldFloat(
 #endif
 
-#if defined _ALS_db_get_field_assoc
-	#error _ALS_db_get_field_assoc defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10444,14 +9649,12 @@ native _FIXES_MAYBE_BOOL:FIXES_db_get_field_assoc(DBResult:result, _FIXES_MAYBE_
  * </remarks>
  */
 native bool:db_get_field_assoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
-#if _FIXES_SAMP
-	#define _ALS_db_get_field_assoc
-	#define db_get_field_assoc( FIXES_db_get_field_assoc(
+#if defined _ALS_db_get_field_assoc
+	// Previous hook.
+	#define _ALS_db_get_field_assoc__
+	#define db_get_field_assoc__( db_get_field_assoc(
 #endif
 
-#if defined _ALS_DB_GetFieldAssoc
-	#error _ALS_DB_GetFieldAssoc defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10470,14 +9673,12 @@ native _FIXES_MAYBE_BOOL:FIXES_DB_GetFieldAssoc(DBResult:result, _FIXES_MAYBE_CO
  * </remarks>
  */
 native bool:DB_GetFieldAssoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
-#if _FIXES_SAMP
-	#define _ALS_DB_GetFieldAssoc
-	#define DB_GetFieldAssoc( FIXES_DB_GetFieldAssoc(
+#if defined _ALS_DB_GetFieldAssoc
+	// Previous hook.
+	#define _ALS_DB_GetFieldAssoc__
+	#define DB_GetFieldAssoc__( DB_GetFieldAssoc(
 #endif
 
-#if defined _ALS_db_get_field_assoc_int
-	#error _ALS_db_get_field_assoc_int defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10499,14 +9700,12 @@ native FIXES_db_get_field_assoc_int(DBResult:result, _FIXES_MAYBE_CONST field[])
  * </remarks>
  */
 native db_get_field_assoc_int__(DBResult:result, const field[]) = db_get_field_assoc_int;
-#if _FIXES_SAMP
-	#define _ALS_db_get_field_assoc_int
-	#define db_get_field_assoc_int( FIXES_db_get_field_assoc_int(
+#if defined _ALS_db_get_field_assoc_int
+	// Previous hook.
+	#define _ALS_db_get_field_assoc_int__
+	#define db_get_field_assoc_int__( db_get_field_assoc_int(
 #endif
 
-#if defined _ALS_DB_GetFieldAssocInt
-	#error _ALS_DB_GetFieldAssocInt defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10525,14 +9724,12 @@ native FIXES_DB_GetFieldAssocInt(DBResult:result, _FIXES_MAYBE_CONST field[]) = 
  * </remarks>
  */
 native DB_GetFieldAssocInt__(DBResult:result, const field[]) = db_get_field_assoc_int;
-#if _FIXES_SAMP
-	#define _ALS_DB_GetFieldAssocInt
-	#define DB_GetFieldAssocInt( FIXES_DB_GetFieldAssocInt(
+#if defined _ALS_DB_GetFieldAssocInt
+	// Previous hook.
+	#define _ALS_DB_GetFieldAssocInt__
+	#define DB_GetFieldAssocInt__( DB_GetFieldAssocInt(
 #endif
 
-#if defined _ALS_db_get_field_assoc_float
-	#error _ALS_db_get_field_assoc_float defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10554,14 +9751,12 @@ native Float:FIXES_db_get_field_assoc_float(DBResult:result, _FIXES_MAYBE_CONST 
  * </remarks>
  */
 native Float:db_get_field_assoc_float__(DBResult:result, const field[]) = db_get_field_assoc_float;
-#if _FIXES_SAMP
-	#define _ALS_db_get_field_assoc_float
-	#define db_get_field_assoc_float( FIXES_db_get_field_assoc_float(
+#if defined _ALS_db_get_field_assoc_float
+	// Previous hook.
+	#define _ALS_db_get_field_assoc_float__
+	#define db_get_field_assoc_float__( db_get_field_assoc_float(
 #endif
 
-#if defined _ALS_DB_GetFieldAssocFloat
-	#error _ALS_DB_GetFieldAssocFloat defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10580,14 +9775,12 @@ native Float:FIXES_DB_GetFieldAssocFloat(DBResult:result, _FIXES_MAYBE_CONST fie
  * </remarks>
  */
 native Float:DB_GetFieldAssocFloat__(DBResult:result, const field[]) = db_get_field_assoc_float;
-#if _FIXES_SAMP
-	#define _ALS_DB_GetFieldAssocFloat
-	#define DB_GetFieldAssocFloat( FIXES_DB_GetFieldAssocFloat(
+#if defined _ALS_DB_GetFieldAssocFloat
+	// Previous hook.
+	#define _ALS_DB_GetFieldAssocFloat__
+	#define DB_GetFieldAssocFloat__( DB_GetFieldAssocFloat(
 #endif
 
-#if defined _ALS_db_get_mem_handle
-	#error _ALS_db_get_mem_handle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10609,14 +9802,12 @@ native FIXES_db_get_mem_handle(DB:db) = db_get_mem_handle;
  * </remarks>
  */
 native db_get_mem_handle__(DB:db) = db_get_mem_handle;
-#if _FIXES_SAMP
-	#define _ALS_db_get_mem_handle
-	#define db_get_mem_handle( FIXES_db_get_mem_handle(
+#if defined _ALS_db_get_mem_handle
+	// Previous hook.
+	#define _ALS_db_get_mem_handle__
+	#define db_get_mem_handle__( db_get_mem_handle(
 #endif
 
-#if defined _ALS_DB_GetMemHandle
-	#error _ALS_DB_GetMemHandle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10635,14 +9826,12 @@ native FIXES_DB_GetMemHandle(DB:db) = db_get_mem_handle;
  * </remarks>
  */
 native DB_GetMemHandle__(DB:db) = db_get_mem_handle;
-#if _FIXES_SAMP
-	#define _ALS_DB_GetMemHandle
-	#define DB_GetMemHandle( FIXES_DB_GetMemHandle(
+#if defined _ALS_DB_GetMemHandle
+	// Previous hook.
+	#define _ALS_DB_GetMemHandle__
+	#define DB_GetMemHandle__( DB_GetMemHandle(
 #endif
 
-#if defined _ALS_db_get_result_mem_handle
-	#error _ALS_db_get_result_mem_handle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10664,14 +9853,12 @@ native FIXES_db_get_result_mem_handle(DBResult:result) = db_get_result_mem_handl
  * </remarks>
  */
 native db_get_result_mem_handle__(DBResult:result) = db_get_result_mem_handle;
-#if _FIXES_SAMP
-	#define _ALS_db_get_result_mem_handle
-	#define db_get_result_mem_handle( FIXES_db_get_result_mem_handle(
+#if defined _ALS_db_get_result_mem_handle
+	// Previous hook.
+	#define _ALS_db_get_result_mem_handle__
+	#define db_get_result_mem_handle__( db_get_result_mem_handle(
 #endif
 
-#if defined _ALS_DB_GetResultMemHandle
-	#error _ALS_DB_GetResultMemHandle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10690,14 +9877,12 @@ native FIXES_DB_GetResultMemHandle(DBResult:result) = db_get_result_mem_handle;
  * </remarks>
  */
 native DB_GetResultMemHandle__(DBResult:result) = db_get_result_mem_handle;
-#if _FIXES_SAMP
-	#define _ALS_DB_GetResultMemHandle
-	#define DB_GetResultMemHandle( FIXES_DB_GetResultMemHandle(
+#if defined _ALS_DB_GetResultMemHandle
+	// Previous hook.
+	#define _ALS_DB_GetResultMemHandle__
+	#define DB_GetResultMemHandle__( DB_GetResultMemHandle(
 #endif
 
-#if defined _ALS_db_debug_openfiles
-	#error _ALS_db_debug_openfiles defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10719,14 +9904,12 @@ native FIXES_db_debug_openfiles() = db_debug_openfiles;
  * </remarks>
  */
 native db_debug_openfiles__() = db_debug_openfiles;
-#if _FIXES_SAMP
-	#define _ALS_db_debug_openfiles
-	#define db_debug_openfiles( FIXES_db_debug_openfiles(
+#if defined _ALS_db_debug_openfiles
+	// Previous hook.
+	#define _ALS_db_debug_openfiles__
+	#define db_debug_openfiles__( db_debug_openfiles(
 #endif
 
-#if defined _ALS_DB_DebugOpenFiles
-	#error _ALS_DB_DebugOpenFiles defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10745,14 +9928,12 @@ native FIXES_DB_DebugOpenFiles() = db_debug_openfiles;
  * </remarks>
  */
 native DB_DebugOpenFiles__() = db_debug_openfiles;
-#if _FIXES_SAMP
-	#define _ALS_DB_DebugOpenFiles
-	#define DB_DebugOpenFiles( FIXES_DB_DebugOpenFiles(
+#if defined _ALS_DB_DebugOpenFiles
+	// Previous hook.
+	#define _ALS_DB_DebugOpenFiles__
+	#define DB_DebugOpenFiles__( DB_DebugOpenFiles(
 #endif
 
-#if defined _ALS_db_debug_openresults
-	#error _ALS_db_debug_openresults defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10774,14 +9955,12 @@ native FIXES_db_debug_openresults() = db_debug_openresults;
  * </remarks>
  */
 native db_debug_openresults__() = db_debug_openresults;
-#if _FIXES_SAMP
-	#define _ALS_db_debug_openresults
-	#define db_debug_openresults( FIXES_db_debug_openresults(
+#if defined _ALS_db_debug_openresults
+	// Previous hook.
+	#define _ALS_db_debug_openresults__
+	#define db_debug_openresults__( db_debug_openresults(
 #endif
 
-#if defined _ALS_DB_DebugOpenResults
-	#error _ALS_DB_DebugOpenResults defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10800,9 +9979,10 @@ native FIXES_DB_DebugOpenResults() = db_debug_openresults;
  * </remarks>
  */
 native DB_DebugOpenResults__() = db_debug_openresults;
-#if _FIXES_SAMP
-	#define _ALS_DB_DebugOpenResults
-	#define DB_DebugOpenResults( FIXES_DB_DebugOpenResults(
+#if defined _ALS_DB_DebugOpenResults
+	// Previous hook.
+	#define _ALS_DB_DebugOpenResults__
+	#define DB_DebugOpenResults__( DB_DebugOpenResults(
 #endif
 
 /*
@@ -10815,9 +9995,6 @@ native DB_DebugOpenResults__() = db_debug_openresults;
 
 */
 
-#if defined _ALS_CreateVehicle
-	#error _ALS_CreateVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10836,14 +10013,12 @@ native FIXES_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, c
  * </remarks>
  */
 native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false) = CreateVehicle;
-#if _FIXES_SAMP
-	#define _ALS_CreateVehicle
-	#define CreateVehicle( FIXES_CreateVehicle(
+#if defined _ALS_CreateVehicle
+	// Previous hook.
+	#define _ALS_CreateVehicle__
+	#define CreateVehicle__( CreateVehicle(
 #endif
 
-#if defined _ALS_DestroyVehicle
-	#error _ALS_DestroyVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10862,14 +10037,12 @@ native FIXES_DestroyVehicle(vehicleid) = DestroyVehicle;
  * </remarks>
  */
 native DestroyVehicle__(vehicleid) = DestroyVehicle;
-#if _FIXES_SAMP
-	#define _ALS_DestroyVehicle
-	#define DestroyVehicle( FIXES_DestroyVehicle(
+#if defined _ALS_DestroyVehicle
+	// Previous hook.
+	#define _ALS_DestroyVehicle__
+	#define DestroyVehicle__( DestroyVehicle(
 #endif
 
-#if defined _ALS_IsVehicleStreamedIn
-	#error _ALS_IsVehicleStreamedIn defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10888,14 +10061,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsVehicleStreamedIn(vehicleid, playerid) = IsVehi
  * </remarks>
  */
 native bool:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn;
-#if _FIXES_SAMP
-	#define _ALS_IsVehicleStreamedIn
-	#define IsVehicleStreamedIn( FIXES_IsVehicleStreamedIn(
+#if defined _ALS_IsVehicleStreamedIn
+	// Previous hook.
+	#define _ALS_IsVehicleStreamedIn__
+	#define IsVehicleStreamedIn__( IsVehicleStreamedIn(
 #endif
 
-#if defined _ALS_GetVehiclePos
-	#error _ALS_GetVehiclePos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10914,14 +10085,12 @@ native FIXES_GetVehiclePos(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicle
  * </remarks>
  */
 native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos;
-#if _FIXES_SAMP
-	#define _ALS_GetVehiclePos
-	#define GetVehiclePos( FIXES_GetVehiclePos(
+#if defined _ALS_GetVehiclePos
+	// Previous hook.
+	#define _ALS_GetVehiclePos__
+	#define GetVehiclePos__( GetVehiclePos(
 #endif
 
-#if defined _ALS_SetVehiclePos
-	#error _ALS_SetVehiclePos defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10940,14 +10109,12 @@ native FIXES_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos
  * </remarks>
  */
 native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
-#if _FIXES_SAMP
-	#define _ALS_SetVehiclePos
-	#define SetVehiclePos( FIXES_SetVehiclePos(
+#if defined _ALS_SetVehiclePos
+	// Previous hook.
+	#define _ALS_SetVehiclePos__
+	#define SetVehiclePos__( SetVehiclePos(
 #endif
 
-#if defined _ALS_GetVehicleZAngle
-	#error _ALS_GetVehicleZAngle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10966,14 +10133,12 @@ native FIXES_GetVehicleZAngle(vehicleid, &Float:angle) = GetVehicleZAngle;
  * </remarks>
  */
 native GetVehicleZAngle__(vehicleid, &Float:angle) = GetVehicleZAngle;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleZAngle
-	#define GetVehicleZAngle( FIXES_GetVehicleZAngle(
+#if defined _ALS_GetVehicleZAngle
+	// Previous hook.
+	#define _ALS_GetVehicleZAngle__
+	#define GetVehicleZAngle__( GetVehicleZAngle(
 #endif
 
-#if defined _ALS_GetVehicleRotationQuat
-	#error _ALS_GetVehicleRotationQuat defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -10992,14 +10157,12 @@ native FIXES_GetVehicleRotationQuat(vehicleid, &Float:w, &Float:x, &Float:y, &Fl
  * </remarks>
  */
 native GetVehicleRotationQuat__(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleRotationQuat
-	#define GetVehicleRotationQuat( FIXES_GetVehicleRotationQuat(
+#if defined _ALS_GetVehicleRotationQuat
+	// Previous hook.
+	#define _ALS_GetVehicleRotationQuat__
+	#define GetVehicleRotationQuat__( GetVehicleRotationQuat(
 #endif
 
-#if defined _ALS_GetVehicleDistanceFromPoint
-	#error _ALS_GetVehicleDistanceFromPoint defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11018,14 +10181,12 @@ native Float:FIXES_GetVehicleDistanceFromPoint(vehicleid, Float:x, Float:y, Floa
  * </remarks>
  */
 native Float:GetVehicleDistanceFromPoint__(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleDistanceFromPoint
-	#define GetVehicleDistanceFromPoint( FIXES_GetVehicleDistanceFromPoint(
+#if defined _ALS_GetVehicleDistanceFromPoint
+	// Previous hook.
+	#define _ALS_GetVehicleDistanceFromPoint__
+	#define GetVehicleDistanceFromPoint__( GetVehicleDistanceFromPoint(
 #endif
 
-#if defined _ALS_SetVehicleZAngle
-	#error _ALS_SetVehicleZAngle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11044,14 +10205,12 @@ native FIXES_SetVehicleZAngle(vehicleid, Float:angle) = SetVehicleZAngle;
  * </remarks>
  */
 native SetVehicleZAngle__(vehicleid, Float:angle) = SetVehicleZAngle;
-#if _FIXES_SAMP
-	#define _ALS_SetVehicleZAngle
-	#define SetVehicleZAngle( FIXES_SetVehicleZAngle(
+#if defined _ALS_SetVehicleZAngle
+	// Previous hook.
+	#define _ALS_SetVehicleZAngle__
+	#define SetVehicleZAngle__( SetVehicleZAngle(
 #endif
 
-#if defined _ALS_SetVehicleParamsForPlayer
-	#error _ALS_SetVehicleParamsForPlayer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11070,14 +10229,12 @@ native FIXES_SetVehicleParamsForPlayer(vehicleid, playerid, objective, doors) = 
  * </remarks>
  */
 native SetVehicleParamsForPlayer__(vehicleid, playerid, objective, doors) = SetVehicleParamsForPlayer;
-#if _FIXES_SAMP
-	#define _ALS_SetVehicleParamsForPlayer
-	#define SetVehicleParamsForPlayer( FIXES_SetVehicleParamsForPlayer(
+#if defined _ALS_SetVehicleParamsForPlayer
+	// Previous hook.
+	#define _ALS_SetVehicleParamsForPlayer__
+	#define SetVehicleParamsForPlayer__( SetVehicleParamsForPlayer(
 #endif
 
-#if defined _ALS_ManualVehicleEngineAndLights
-	#error _ALS_ManualVehicleEngineAndLights defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11096,14 +10253,12 @@ native FIXES_ManualVehicleEngineAndLights() = ManualVehicleEngineAndLights;
  * </remarks>
  */
 native ManualVehicleEngineAndLights__() = ManualVehicleEngineAndLights;
-#if _FIXES_SAMP
-	#define _ALS_ManualVehicleEngineAndLights
-	#define ManualVehicleEngineAndLights( FIXES_ManualVehicleEngineAndLights(
+#if defined _ALS_ManualVehicleEngineAndLights
+	// Previous hook.
+	#define _ALS_ManualVehicleEngineAndLights__
+	#define ManualVehicleEngineAndLights__( ManualVehicleEngineAndLights(
 #endif
 
-#if defined _ALS_SetVehicleParamsEx
-	#error _ALS_SetVehicleParamsEx defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11122,14 +10277,12 @@ native FIXES_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS
  * </remarks>
  */
 native SetVehicleParamsEx__(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
-#if _FIXES_SAMP
-	#define _ALS_SetVehicleParamsEx
-	#define SetVehicleParamsEx( FIXES_SetVehicleParamsEx(
+#if defined _ALS_SetVehicleParamsEx
+	// Previous hook.
+	#define _ALS_SetVehicleParamsEx__
+	#define SetVehicleParamsEx__( SetVehicleParamsEx(
 #endif
 
-#if defined _ALS_GetVehicleParamsEx
-	#error _ALS_GetVehicleParamsEx defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11148,14 +10301,12 @@ native FIXES_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARA
  * </remarks>
  */
 native GetVehicleParamsEx__(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleParamsEx
-	#define GetVehicleParamsEx( FIXES_GetVehicleParamsEx(
+#if defined _ALS_GetVehicleParamsEx
+	// Previous hook.
+	#define _ALS_GetVehicleParamsEx__
+	#define GetVehicleParamsEx__( GetVehicleParamsEx(
 #endif
 
-#if defined _ALS_GetVehicleParamsSirenState
-	#error _ALS_GetVehicleParamsSirenState defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11174,14 +10325,12 @@ native FIXES_GetVehicleParamsSirenState(vehicleid) = GetVehicleParamsSirenState;
  * </remarks>
  */
 native GetVehicleParamsSirenState__(vehicleid) = GetVehicleParamsSirenState;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleParamsSirenState
-	#define GetVehicleParamsSirenState( FIXES_GetVehicleParamsSirenState(
+#if defined _ALS_GetVehicleParamsSirenState
+	// Previous hook.
+	#define _ALS_GetVehicleParamsSirenState__
+	#define GetVehicleParamsSirenState__( GetVehicleParamsSirenState(
 #endif
 
-#if defined _ALS_SetVehicleParamsCarDoors
-	#error _ALS_SetVehicleParamsCarDoors defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11200,14 +10349,12 @@ native FIXES_SetVehicleParamsCarDoors(vehicleid, frontLeft, frontRight, rearLeft
  * </remarks>
  */
 native SetVehicleParamsCarDoors__(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarDoors;
-#if _FIXES_SAMP
-	#define _ALS_SetVehicleParamsCarDoors
-	#define SetVehicleParamsCarDoors( FIXES_SetVehicleParamsCarDoors(
+#if defined _ALS_SetVehicleParamsCarDoors
+	// Previous hook.
+	#define _ALS_SetVehicleParamsCarDoors__
+	#define SetVehicleParamsCarDoors__( SetVehicleParamsCarDoors(
 #endif
 
-#if defined _ALS_GetVehicleParamsCarDoors
-	#error _ALS_GetVehicleParamsCarDoors defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11226,14 +10373,12 @@ native FIXES_GetVehicleParamsCarDoors(vehicleid, &frontLeft, &frontRight, &rearL
  * </remarks>
  */
 native GetVehicleParamsCarDoors__(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarDoors;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleParamsCarDoors
-	#define GetVehicleParamsCarDoors( FIXES_GetVehicleParamsCarDoors(
+#if defined _ALS_GetVehicleParamsCarDoors
+	// Previous hook.
+	#define _ALS_GetVehicleParamsCarDoors__
+	#define GetVehicleParamsCarDoors__( GetVehicleParamsCarDoors(
 #endif
 
-#if defined _ALS_SetVehicleParamsCarWindows
-	#error _ALS_SetVehicleParamsCarWindows defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11252,14 +10397,12 @@ native FIXES_SetVehicleParamsCarWindows(vehicleid, frontLeft, frontRight, rearLe
  * </remarks>
  */
 native SetVehicleParamsCarWindows__(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarWindows;
-#if _FIXES_SAMP
-	#define _ALS_SetVehicleParamsCarWindows
-	#define SetVehicleParamsCarWindows( FIXES_SetVehicleParamsCarWindows(
+#if defined _ALS_SetVehicleParamsCarWindows
+	// Previous hook.
+	#define _ALS_SetVehicleParamsCarWindows__
+	#define SetVehicleParamsCarWindows__( SetVehicleParamsCarWindows(
 #endif
 
-#if defined _ALS_GetVehicleParamsCarWindows
-	#error _ALS_GetVehicleParamsCarWindows defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11278,14 +10421,12 @@ native FIXES_GetVehicleParamsCarWindows(vehicleid, &frontLeft, &frontRight, &rea
  * </remarks>
  */
 native GetVehicleParamsCarWindows__(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarWindows;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleParamsCarWindows
-	#define GetVehicleParamsCarWindows( FIXES_GetVehicleParamsCarWindows(
+#if defined _ALS_GetVehicleParamsCarWindows
+	// Previous hook.
+	#define _ALS_GetVehicleParamsCarWindows__
+	#define GetVehicleParamsCarWindows__( GetVehicleParamsCarWindows(
 #endif
 
-#if defined _ALS_SetVehicleToRespawn
-	#error _ALS_SetVehicleToRespawn defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11304,14 +10445,12 @@ native FIXES_SetVehicleToRespawn(vehicleid) = SetVehicleToRespawn;
  * </remarks>
  */
 native SetVehicleToRespawn__(vehicleid) = SetVehicleToRespawn;
-#if _FIXES_SAMP
-	#define _ALS_SetVehicleToRespawn
-	#define SetVehicleToRespawn( FIXES_SetVehicleToRespawn(
+#if defined _ALS_SetVehicleToRespawn
+	// Previous hook.
+	#define _ALS_SetVehicleToRespawn__
+	#define SetVehicleToRespawn__( SetVehicleToRespawn(
 #endif
 
-#if defined _ALS_LinkVehicleToInterior
-	#error _ALS_LinkVehicleToInterior defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11330,14 +10469,12 @@ native FIXES_LinkVehicleToInterior(vehicleid, interiorid) = LinkVehicleToInterio
  * </remarks>
  */
 native LinkVehicleToInterior__(vehicleid, interiorid) = LinkVehicleToInterior;
-#if _FIXES_SAMP
-	#define _ALS_LinkVehicleToInterior
-	#define LinkVehicleToInterior( FIXES_LinkVehicleToInterior(
+#if defined _ALS_LinkVehicleToInterior
+	// Previous hook.
+	#define _ALS_LinkVehicleToInterior__
+	#define LinkVehicleToInterior__( LinkVehicleToInterior(
 #endif
 
-#if defined _ALS_AddVehicleComponent
-	#error _ALS_AddVehicleComponent defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11356,14 +10493,12 @@ native FIXES_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
  * </remarks>
  */
 native AddVehicleComponent__(vehicleid, componentid) = AddVehicleComponent;
-#if _FIXES_SAMP
-	#define _ALS_AddVehicleComponent
-	#define AddVehicleComponent( FIXES_AddVehicleComponent(
+#if defined _ALS_AddVehicleComponent
+	// Previous hook.
+	#define _ALS_AddVehicleComponent__
+	#define AddVehicleComponent__( AddVehicleComponent(
 #endif
 
-#if defined _ALS_RemoveVehicleComponent
-	#error _ALS_RemoveVehicleComponent defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11382,14 +10517,12 @@ native FIXES_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompo
  * </remarks>
  */
 native RemoveVehicleComponent__(vehicleid, componentid) = RemoveVehicleComponent;
-#if _FIXES_SAMP
-	#define _ALS_RemoveVehicleComponent
-	#define RemoveVehicleComponent( FIXES_RemoveVehicleComponent(
+#if defined _ALS_RemoveVehicleComponent
+	// Previous hook.
+	#define _ALS_RemoveVehicleComponent__
+	#define RemoveVehicleComponent__( RemoveVehicleComponent(
 #endif
 
-#if defined _ALS_ChangeVehicleColor
-	#error _ALS_ChangeVehicleColor defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11408,14 +10541,12 @@ native FIXES_ChangeVehicleColor(vehicleid, colour1, colour2) = ChangeVehicleColo
  * </remarks>
  */
 native ChangeVehicleColor__(vehicleid, colour1, colour2) = ChangeVehicleColor;
-#if _FIXES_SAMP
-	#define _ALS_ChangeVehicleColor
-	#define ChangeVehicleColor( FIXES_ChangeVehicleColor(
+#if defined _ALS_ChangeVehicleColor
+	// Previous hook.
+	#define _ALS_ChangeVehicleColor__
+	#define ChangeVehicleColor__( ChangeVehicleColor(
 #endif
 
-#if defined _ALS_ChangeVehiclePaintjob
-	#error _ALS_ChangeVehiclePaintjob defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11434,14 +10565,12 @@ native FIXES_ChangeVehiclePaintjob(vehicleid, paintjobid) = ChangeVehiclePaintjo
  * </remarks>
  */
 native ChangeVehiclePaintjob__(vehicleid, paintjobid) = ChangeVehiclePaintjob;
-#if _FIXES_SAMP
-	#define _ALS_ChangeVehiclePaintjob
-	#define ChangeVehiclePaintjob( FIXES_ChangeVehiclePaintjob(
+#if defined _ALS_ChangeVehiclePaintjob
+	// Previous hook.
+	#define _ALS_ChangeVehiclePaintjob__
+	#define ChangeVehiclePaintjob__( ChangeVehiclePaintjob(
 #endif
 
-#if defined _ALS_SetVehicleHealth
-	#error _ALS_SetVehicleHealth defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11460,14 +10589,12 @@ native FIXES_SetVehicleHealth(vehicleid, Float:health) = SetVehicleHealth;
  * </remarks>
  */
 native SetVehicleHealth__(vehicleid, Float:health) = SetVehicleHealth;
-#if _FIXES_SAMP
-	#define _ALS_SetVehicleHealth
-	#define SetVehicleHealth( FIXES_SetVehicleHealth(
+#if defined _ALS_SetVehicleHealth
+	// Previous hook.
+	#define _ALS_SetVehicleHealth__
+	#define SetVehicleHealth__( SetVehicleHealth(
 #endif
 
-#if defined _ALS_GetVehicleHealth
-	#error _ALS_GetVehicleHealth defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11486,14 +10613,12 @@ native FIXES_GetVehicleHealth(vehicleid, &Float:health) = GetVehicleHealth;
  * </remarks>
  */
 native GetVehicleHealth__(vehicleid, &Float:health) = GetVehicleHealth;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleHealth
-	#define GetVehicleHealth( FIXES_GetVehicleHealth(
+#if defined _ALS_GetVehicleHealth
+	// Previous hook.
+	#define _ALS_GetVehicleHealth__
+	#define GetVehicleHealth__( GetVehicleHealth(
 #endif
 
-#if defined _ALS_AttachTrailerToVehicle
-	#error _ALS_AttachTrailerToVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11512,14 +10637,12 @@ native FIXES_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehic
  * </remarks>
  */
 native AttachTrailerToVehicle__(trailerid, vehicleid) = AttachTrailerToVehicle;
-#if _FIXES_SAMP
-	#define _ALS_AttachTrailerToVehicle
-	#define AttachTrailerToVehicle( FIXES_AttachTrailerToVehicle(
+#if defined _ALS_AttachTrailerToVehicle
+	// Previous hook.
+	#define _ALS_AttachTrailerToVehicle__
+	#define AttachTrailerToVehicle__( AttachTrailerToVehicle(
 #endif
 
-#if defined _ALS_DetachTrailerFromVehicle
-	#error _ALS_DetachTrailerFromVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11538,14 +10661,12 @@ native FIXES_DetachTrailerFromVehicle(vehicleid) = DetachTrailerFromVehicle;
  * </remarks>
  */
 native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle;
-#if _FIXES_SAMP
-	#define _ALS_DetachTrailerFromVehicle
-	#define DetachTrailerFromVehicle( FIXES_DetachTrailerFromVehicle(
+#if defined _ALS_DetachTrailerFromVehicle
+	// Previous hook.
+	#define _ALS_DetachTrailerFromVehicle__
+	#define DetachTrailerFromVehicle__( DetachTrailerFromVehicle(
 #endif
 
-#if defined _ALS_IsTrailerAttachedToVehicle
-	#error _ALS_IsTrailerAttachedToVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11564,14 +10685,12 @@ native _FIXES_MAYBE_BOOL:FIXES_IsTrailerAttachedToVehicle(vehicleid) = IsTrailer
  * </remarks>
  */
 native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle;
-#if _FIXES_SAMP
-	#define _ALS_IsTrailerAttachedToVehicle
-	#define IsTrailerAttachedToVehicle( FIXES_IsTrailerAttachedToVehicle(
+#if defined _ALS_IsTrailerAttachedToVehicle
+	// Previous hook.
+	#define _ALS_IsTrailerAttachedToVehicle__
+	#define IsTrailerAttachedToVehicle__( IsTrailerAttachedToVehicle(
 #endif
 
-#if defined _ALS_GetVehicleTrailer
-	#error _ALS_GetVehicleTrailer defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11590,14 +10709,12 @@ native FIXES_GetVehicleTrailer(vehicleid) = GetVehicleTrailer;
  * </remarks>
  */
 native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleTrailer
-	#define GetVehicleTrailer( FIXES_GetVehicleTrailer(
+#if defined _ALS_GetVehicleTrailer
+	// Previous hook.
+	#define _ALS_GetVehicleTrailer__
+	#define GetVehicleTrailer__( GetVehicleTrailer(
 #endif
 
-#if defined _ALS_SetVehicleNumberPlate
-	#error _ALS_SetVehicleNumberPlate defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11616,14 +10733,12 @@ native FIXES_SetVehicleNumberPlate(vehicleid, _FIXES_MAYBE_CONST numberPlate[]) 
  * </remarks>
  */
 native SetVehicleNumberPlate__(vehicleid, const numberPlate[]) = SetVehicleNumberPlate;
-#if _FIXES_SAMP
-	#define _ALS_SetVehicleNumberPlate
-	#define SetVehicleNumberPlate( FIXES_SetVehicleNumberPlate(
+#if defined _ALS_SetVehicleNumberPlate
+	// Previous hook.
+	#define _ALS_SetVehicleNumberPlate__
+	#define SetVehicleNumberPlate__( SetVehicleNumberPlate(
 #endif
 
-#if defined _ALS_GetVehicleModel
-	#error _ALS_GetVehicleModel defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11642,14 +10757,12 @@ native FIXES_GetVehicleModel(vehicleid) = GetVehicleModel;
  * </remarks>
  */
 native GetVehicleModel__(vehicleid) = GetVehicleModel;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleModel
-	#define GetVehicleModel( FIXES_GetVehicleModel(
+#if defined _ALS_GetVehicleModel
+	// Previous hook.
+	#define _ALS_GetVehicleModel__
+	#define GetVehicleModel__( GetVehicleModel(
 #endif
 
-#if defined _ALS_GetVehicleComponentInSlot
-	#error _ALS_GetVehicleComponentInSlot defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11668,14 +10781,12 @@ native FIXES_GetVehicleComponentInSlot(vehicleid, CARMODTYPE:slot) = GetVehicleC
  * </remarks>
  */
 native GetVehicleComponentInSlot__(vehicleid, CARMODTYPE:slot) = GetVehicleComponentInSlot;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleComponentInSlot
-	#define GetVehicleComponentInSlot( FIXES_GetVehicleComponentInSlot(
+#if defined _ALS_GetVehicleComponentInSlot
+	// Previous hook.
+	#define _ALS_GetVehicleComponentInSlot__
+	#define GetVehicleComponentInSlot__( GetVehicleComponentInSlot(
 #endif
 
-#if defined _ALS_GetVehicleComponentType
-	#error _ALS_GetVehicleComponentType defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11694,14 +10805,12 @@ native CARMODTYPE:FIXES_GetVehicleComponentType(component) = GetVehicleComponent
  * </remarks>
  */
 native CARMODTYPE:GetVehicleComponentType__(component) = GetVehicleComponentType;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleComponentType
-	#define GetVehicleComponentType( FIXES_GetVehicleComponentType(
+#if defined _ALS_GetVehicleComponentType
+	// Previous hook.
+	#define _ALS_GetVehicleComponentType__
+	#define GetVehicleComponentType__( GetVehicleComponentType(
 #endif
 
-#if defined _ALS_RepairVehicle
-	#error _ALS_RepairVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11720,14 +10829,12 @@ native FIXES_RepairVehicle(vehicleid) = RepairVehicle;
  * </remarks>
  */
 native RepairVehicle__(vehicleid) = RepairVehicle;
-#if _FIXES_SAMP
-	#define _ALS_RepairVehicle
-	#define RepairVehicle( FIXES_RepairVehicle(
+#if defined _ALS_RepairVehicle
+	// Previous hook.
+	#define _ALS_RepairVehicle__
+	#define RepairVehicle__( RepairVehicle(
 #endif
 
-#if defined _ALS_GetVehicleVelocity
-	#error _ALS_GetVehicleVelocity defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11746,14 +10853,12 @@ native FIXES_GetVehicleVelocity(vehicleid, &Float:x, &Float:y, &Float:z) = GetVe
  * </remarks>
  */
 native GetVehicleVelocity__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicleVelocity;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleVelocity
-	#define GetVehicleVelocity( FIXES_GetVehicleVelocity(
+#if defined _ALS_GetVehicleVelocity
+	// Previous hook.
+	#define _ALS_GetVehicleVelocity__
+	#define GetVehicleVelocity__( GetVehicleVelocity(
 #endif
 
-#if defined _ALS_SetVehicleVelocity
-	#error _ALS_SetVehicleVelocity defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11772,14 +10877,12 @@ native FIXES_SetVehicleVelocity(vehicleid, Float:x, Float:y, Float:z) = SetVehic
  * </remarks>
  */
 native SetVehicleVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVelocity;
-#if _FIXES_SAMP
-	#define _ALS_SetVehicleVelocity
-	#define SetVehicleVelocity( FIXES_SetVehicleVelocity(
+#if defined _ALS_SetVehicleVelocity
+	// Previous hook.
+	#define _ALS_SetVehicleVelocity__
+	#define SetVehicleVelocity__( SetVehicleVelocity(
 #endif
 
-#if defined _ALS_SetVehicleAngularVelocity
-	#error _ALS_SetVehicleAngularVelocity defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11798,14 +10901,12 @@ native FIXES_SetVehicleAngularVelocity(vehicleid, Float:x, Float:y, Float:z) = S
  * </remarks>
  */
 native SetVehicleAngularVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVehicleAngularVelocity;
-#if _FIXES_SAMP
-	#define _ALS_SetVehicleAngularVelocity
-	#define SetVehicleAngularVelocity( FIXES_SetVehicleAngularVelocity(
+#if defined _ALS_SetVehicleAngularVelocity
+	// Previous hook.
+	#define _ALS_SetVehicleAngularVelocity__
+	#define SetVehicleAngularVelocity__( SetVehicleAngularVelocity(
 #endif
 
-#if defined _ALS_GetVehicleDamageStatus
-	#error _ALS_GetVehicleDamageStatus defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11824,14 +10925,12 @@ native FIXES_GetVehicleDamageStatus(vehicleid, &panels, &doors, &lights, &tires)
  * </remarks>
  */
 native GetVehicleDamageStatus__(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleDamageStatus
-	#define GetVehicleDamageStatus( FIXES_GetVehicleDamageStatus(
+#if defined _ALS_GetVehicleDamageStatus
+	// Previous hook.
+	#define _ALS_GetVehicleDamageStatus__
+	#define GetVehicleDamageStatus__( GetVehicleDamageStatus(
 #endif
 
-#if defined _ALS_UpdateVehicleDamageStatus
-	#error _ALS_UpdateVehicleDamageStatus defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11850,14 +10949,12 @@ native FIXES_UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, tires) 
  * </remarks>
  */
 native UpdateVehicleDamageStatus__(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus;
-#if _FIXES_SAMP
-	#define _ALS_UpdateVehicleDamageStatus
-	#define UpdateVehicleDamageStatus( FIXES_UpdateVehicleDamageStatus(
+#if defined _ALS_UpdateVehicleDamageStatus
+	// Previous hook.
+	#define _ALS_UpdateVehicleDamageStatus__
+	#define UpdateVehicleDamageStatus__( UpdateVehicleDamageStatus(
 #endif
 
-#if defined _ALS_GetVehicleModelInfo
-	#error _ALS_GetVehicleModelInfo defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11876,14 +10973,12 @@ native FIXES_GetVehicleModelInfo(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Flo
  * </remarks>
  */
 native GetVehicleModelInfo__(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleModelInfo
-	#define GetVehicleModelInfo( FIXES_GetVehicleModelInfo(
+#if defined _ALS_GetVehicleModelInfo
+	// Previous hook.
+	#define _ALS_GetVehicleModelInfo__
+	#define GetVehicleModelInfo__( GetVehicleModelInfo(
 #endif
 
-#if defined _ALS_SetVehicleVirtualWorld
-	#error _ALS_SetVehicleVirtualWorld defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11902,14 +10997,12 @@ native FIXES_SetVehicleVirtualWorld(vehicleid, virtualWorld) = SetVehicleVirtual
  * </remarks>
  */
 native SetVehicleVirtualWorld__(vehicleid, virtualWorld) = SetVehicleVirtualWorld;
-#if _FIXES_SAMP
-	#define _ALS_SetVehicleVirtualWorld
-	#define SetVehicleVirtualWorld( FIXES_SetVehicleVirtualWorld(
+#if defined _ALS_SetVehicleVirtualWorld
+	// Previous hook.
+	#define _ALS_SetVehicleVirtualWorld__
+	#define SetVehicleVirtualWorld__( SetVehicleVirtualWorld(
 #endif
 
-#if defined _ALS_GetVehicleVirtualWorld
-	#error _ALS_GetVehicleVirtualWorld defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11928,14 +11021,12 @@ native FIXES_GetVehicleVirtualWorld(vehicleid) = GetVehicleVirtualWorld;
  * </remarks>
  */
 native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld;
-#if _FIXES_SAMP
-	#define _ALS_GetVehicleVirtualWorld
-	#define GetVehicleVirtualWorld( FIXES_GetVehicleVirtualWorld(
+#if defined _ALS_GetVehicleVirtualWorld
+	// Previous hook.
+	#define _ALS_GetVehicleVirtualWorld__
+	#define GetVehicleVirtualWorld__( GetVehicleVirtualWorld(
 #endif
 
-#if defined _ALS_IsValidVehicle
-	#error _ALS_IsValidVehicle defined
-#endif
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -11954,9 +11045,10 @@ native _FIXES_MAYBE_BOOL:FIXES_IsValidVehicle(vehicleid) = IsValidVehicle;
  * </remarks>
  */
 native bool:IsValidVehicle__(vehicleid) = IsValidVehicle;
-#if _FIXES_SAMP
-	#define _ALS_IsValidVehicle
-	#define IsValidVehicle( FIXES_IsValidVehicle(
+#if defined _ALS_IsValidVehicle
+	// Previous hook.
+	#define _ALS_IsValidVehicle__
+	#define IsValidVehicle__( IsValidVehicle(
 #endif
 
 main()
@@ -11966,5 +11058,2811 @@ main()
 	print("----------------------------------\n");
 }
 
+/*
 
+	 ¦¦¦¦¦           ¦¦¦¦¦   ¦¦¦¦¦¦ ¦¦¦¦¦¦¦¦  ¦¦¦¦¦¦  ¦¦¦¦¦¦
+	¦¦   ¦¦         ¦¦   ¦¦ ¦¦         ¦¦    ¦¦    ¦¦ ¦¦   ¦¦
+	¦¦¦¦¦¦¦         ¦¦¦¦¦¦¦ ¦¦         ¦¦    ¦¦    ¦¦ ¦¦¦¦¦¦
+	¦¦   ¦¦         ¦¦   ¦¦ ¦¦         ¦¦    ¦¦    ¦¦ ¦¦   ¦¦
+	¦¦   ¦¦ ¦¦¦¦¦¦¦ ¦¦   ¦¦  ¦¦¦¦¦¦    ¦¦     ¦¦¦¦¦¦  ¦¦   ¦¦
+
+*/
+
+#if _FIXES_SAMP
+	#if defined _ALS_CreateActor
+		#undef CreateActor
+	#endif
+	#define _ALS_CreateActor
+	#define CreateActor( FIXES_CreateActor(
+
+	#if defined _ALS_DestroyActor
+		#undef DestroyActor
+	#endif
+	#define _ALS_DestroyActor
+	#define DestroyActor( FIXES_DestroyActor(
+
+	#if defined _ALS_IsActorStreamedIn
+		#undef IsActorStreamedIn
+	#endif
+	#define _ALS_IsActorStreamedIn
+	#define IsActorStreamedIn( FIXES_IsActorStreamedIn(
+
+	#if defined _ALS_SetActorVirtualWorld
+		#undef SetActorVirtualWorld
+	#endif
+	#define _ALS_SetActorVirtualWorld
+	#define SetActorVirtualWorld( FIXES_SetActorVirtualWorld(
+
+	#if defined _ALS_GetActorVirtualWorld
+		#undef GetActorVirtualWorld
+	#endif
+	#define _ALS_GetActorVirtualWorld
+	#define GetActorVirtualWorld( FIXES_GetActorVirtualWorld(
+
+	#if defined _ALS_ApplyActorAnimation
+		#undef ApplyActorAnimation
+	#endif
+	#define _ALS_ApplyActorAnimation
+	#define ApplyActorAnimation( FIXES_ApplyActorAnimation(
+
+	#if defined _ALS_ClearActorAnimations
+		#undef ClearActorAnimations
+	#endif
+	#define _ALS_ClearActorAnimations
+	#define ClearActorAnimations( FIXES_ClearActorAnimations(
+
+	#if defined _ALS_SetActorPos
+		#undef SetActorPos
+	#endif
+	#define _ALS_SetActorPos
+	#define SetActorPos( FIXES_SetActorPos(
+
+	#if defined _ALS_GetActorPos
+		#undef GetActorPos
+	#endif
+	#define _ALS_GetActorPos
+	#define GetActorPos( FIXES_GetActorPos(
+
+	#if defined _ALS_SetActorFacingAngle
+		#undef SetActorFacingAngle
+	#endif
+	#define _ALS_SetActorFacingAngle
+	#define SetActorFacingAngle( FIXES_SetActorFacingAngle(
+
+	#if defined _ALS_GetActorFacingAngle
+		#undef GetActorFacingAngle
+	#endif
+	#define _ALS_GetActorFacingAngle
+	#define GetActorFacingAngle( FIXES_GetActorFacingAngle(
+
+	#if defined _ALS_SetActorHealth
+		#undef SetActorHealth
+	#endif
+	#define _ALS_SetActorHealth
+	#define SetActorHealth( FIXES_SetActorHealth(
+
+	#if defined _ALS_GetActorHealth
+		#undef GetActorHealth
+	#endif
+	#define _ALS_GetActorHealth
+	#define GetActorHealth( FIXES_GetActorHealth(
+
+	#if defined _ALS_SetActorInvulnerable
+		#undef SetActorInvulnerable
+	#endif
+	#define _ALS_SetActorInvulnerable
+	#define SetActorInvulnerable( FIXES_SetActorInvulnerable(
+
+	#if defined _ALS_IsActorInvulnerable
+		#undef IsActorInvulnerable
+	#endif
+	#define _ALS_IsActorInvulnerable
+	#define IsActorInvulnerable( FIXES_IsActorInvulnerable(
+
+	#if defined _ALS_IsValidActor
+		#undef IsValidActor
+	#endif
+	#define _ALS_IsValidActor
+	#define IsValidActor( FIXES_IsValidActor(
+#endif
+
+/*
+
+	 ¦¦¦¦¦          ¦¦   ¦¦ ¦¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦¦ ¦¦¦¦¦¦
+	¦¦   ¦¦         ¦¦   ¦¦    ¦¦       ¦¦    ¦¦   ¦¦
+	¦¦¦¦¦¦¦         ¦¦¦¦¦¦¦    ¦¦       ¦¦    ¦¦¦¦¦¦
+	¦¦   ¦¦         ¦¦   ¦¦    ¦¦       ¦¦    ¦¦
+	¦¦   ¦¦ ¦¦¦¦¦¦¦ ¦¦   ¦¦    ¦¦       ¦¦    ¦¦
+
+*/
+
+#if _FIXES_SAMP
+	#if defined _ALS_HTTP
+		#undef HTTP
+	#endif
+	#define _ALS_HTTP
+	#define HTTP( FIXES_HTTP(
+#endif
+
+/*
+
+	 ¦¦¦¦¦           ¦¦¦¦¦¦  ¦¦¦¦¦¦       ¦¦ ¦¦¦¦¦¦¦  ¦¦¦¦¦¦ ¦¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦
+	¦¦   ¦¦         ¦¦    ¦¦ ¦¦   ¦¦      ¦¦ ¦¦      ¦¦         ¦¦    ¦¦
+	¦¦¦¦¦¦¦         ¦¦    ¦¦ ¦¦¦¦¦¦       ¦¦ ¦¦¦¦¦   ¦¦         ¦¦    ¦¦¦¦¦¦¦
+	¦¦   ¦¦         ¦¦    ¦¦ ¦¦   ¦¦ ¦¦   ¦¦ ¦¦      ¦¦         ¦¦         ¦¦
+	¦¦   ¦¦ ¦¦¦¦¦¦¦  ¦¦¦¦¦¦  ¦¦¦¦¦¦   ¦¦¦¦¦  ¦¦¦¦¦¦¦  ¦¦¦¦¦¦    ¦¦    ¦¦¦¦¦¦¦
+
+*/
+
+#if _FIXES_SAMP
+	#if defined _ALS_CreateObject
+		#undef CreateObject
+	#endif
+	#define _ALS_CreateObject
+	#define CreateObject( FIXES_CreateObject(
+
+	#if defined _ALS_AttachObjectToVehicle
+		#undef AttachObjectToVehicle
+	#endif
+	#define _ALS_AttachObjectToVehicle
+	#define AttachObjectToVehicle( FIXES_AttachObjectToVehicle(
+
+	#if defined _ALS_AttachObjectToObject
+		#undef AttachObjectToObject
+	#endif
+	#define _ALS_AttachObjectToObject
+	#define AttachObjectToObject( FIXES_AttachObjectToObject(
+
+	#if defined _ALS_AttachObjectToPlayer
+		#undef AttachObjectToPlayer
+	#endif
+	#define _ALS_AttachObjectToPlayer
+	#define AttachObjectToPlayer( FIXES_AttachObjectToPlayer(
+
+	#if defined _ALS_SetObjectPos
+		#undef SetObjectPos
+	#endif
+	#define _ALS_SetObjectPos
+	#define SetObjectPos( FIXES_SetObjectPos(
+
+	#if defined _ALS_GetObjectPos
+		#undef GetObjectPos
+	#endif
+	#define _ALS_GetObjectPos
+	#define GetObjectPos( FIXES_GetObjectPos(
+
+	#if defined _ALS_SetObjectRot
+		#undef SetObjectRot
+	#endif
+	#define _ALS_SetObjectRot
+	#define SetObjectRot( FIXES_SetObjectRot(
+
+	#if defined _ALS_GetObjectRot
+		#undef GetObjectRot
+	#endif
+	#define _ALS_GetObjectRot
+	#define GetObjectRot( FIXES_GetObjectRot(
+
+	#if defined _ALS_GetObjectModel
+		#undef GetObjectModel
+	#endif
+	#define _ALS_GetObjectModel
+	#define GetObjectModel( FIXES_GetObjectModel(
+
+	#if defined _ALS_SetObjectNoCameraCol
+		#undef SetObjectNoCameraCol
+	#endif
+	#define _ALS_SetObjectNoCameraCol
+	#define SetObjectNoCameraCol( FIXES_SetObjectNoCameraCol(
+
+	#if defined _ALS_IsValidObject
+		#undef IsValidObject
+	#endif
+	#define _ALS_IsValidObject
+	#define IsValidObject( FIXES_IsValidObject(
+
+	#if defined _ALS_DestroyObject
+		#undef DestroyObject
+	#endif
+	#define _ALS_DestroyObject
+	#define DestroyObject( FIXES_DestroyObject(
+
+	#if defined _ALS_MoveObject
+		#undef MoveObject
+	#endif
+	#define _ALS_MoveObject
+	#define MoveObject( FIXES_MoveObject(
+
+	#if defined _ALS_StopObject
+		#undef StopObject
+	#endif
+	#define _ALS_StopObject
+	#define StopObject( FIXES_StopObject(
+
+	#if defined _ALS_IsObjectMoving
+		#undef IsObjectMoving
+	#endif
+	#define _ALS_IsObjectMoving
+	#define IsObjectMoving( FIXES_IsObjectMoving(
+
+	#if defined _ALS_EditObject
+		#undef EditObject
+	#endif
+	#define _ALS_EditObject
+	#define EditObject( FIXES_EditObject(
+
+	#if defined _ALS_EditPlayerObject
+		#undef EditPlayerObject
+	#endif
+	#define _ALS_EditPlayerObject
+	#define EditPlayerObject( FIXES_EditPlayerObject(
+
+	#if defined _ALS_SelectObject
+		#undef SelectObject
+	#endif
+	#define _ALS_SelectObject
+	#define SelectObject( FIXES_SelectObject(
+
+	#if defined _ALS_CancelEdit
+		#undef CancelEdit
+	#endif
+	#define _ALS_CancelEdit
+	#define CancelEdit( FIXES_CancelEdit(
+
+	#if defined _ALS_CreatePlayerObject
+		#undef CreatePlayerObject
+	#endif
+	#define _ALS_CreatePlayerObject
+	#define CreatePlayerObject( FIXES_CreatePlayerObject(
+
+	#if defined _ALS_AttachPlayerObjectToVehicle
+		#undef AttachPlayerObjectToVehicle
+	#endif
+	#define _ALS_AttachPlayerObjectToVehicle
+	#define AttachPlayerObjectToVehicle( FIXES_AttachPlayerObjectToVehicle(
+
+	#if defined _ALS_SetPlayerObjectPos
+		#undef SetPlayerObjectPos
+	#endif
+	#define _ALS_SetPlayerObjectPos
+	#define SetPlayerObjectPos( FIXES_SetPlayerObjectPos(
+
+	#if defined _ALS_GetPlayerObjectPos
+		#undef GetPlayerObjectPos
+	#endif
+	#define _ALS_GetPlayerObjectPos
+	#define GetPlayerObjectPos( FIXES_GetPlayerObjectPos(
+
+	#if defined _ALS_SetPlayerObjectRot
+		#undef SetPlayerObjectRot
+	#endif
+	#define _ALS_SetPlayerObjectRot
+	#define SetPlayerObjectRot( FIXES_SetPlayerObjectRot(
+
+	#if defined _ALS_GetPlayerObjectRot
+		#undef GetPlayerObjectRot
+	#endif
+	#define _ALS_GetPlayerObjectRot
+	#define GetPlayerObjectRot( FIXES_GetPlayerObjectRot(
+
+	#if defined _ALS_GetPlayerObjectModel
+		#undef GetPlayerObjectModel
+	#endif
+	#define _ALS_GetPlayerObjectModel
+	#define GetPlayerObjectModel( FIXES_GetPlayerObjectModel(
+
+	#if defined _ALS_SetPlayerObjectNoCameraCol
+		#undef SetPlayerObjectNoCameraCol
+	#endif
+	#define _ALS_SetPlayerObjectNoCameraCol
+	#define SetPlayerObjectNoCameraCol( FIXES_SetPlayerObjectNoCameraCol(
+
+	#if defined _ALS_IsValidPlayerObject
+		#undef IsValidPlayerObject
+	#endif
+	#define _ALS_IsValidPlayerObject
+	#define IsValidPlayerObject( FIXES_IsValidPlayerObject(
+
+	#if defined _ALS_DestroyPlayerObject
+		#undef DestroyPlayerObject
+	#endif
+	#define _ALS_DestroyPlayerObject
+	#define DestroyPlayerObject( FIXES_DestroyPlayerObject(
+
+	#if defined _ALS_MovePlayerObject
+		#undef MovePlayerObject
+	#endif
+	#define _ALS_MovePlayerObject
+	#define MovePlayerObject( FIXES_MovePlayerObject(
+
+	#if defined _ALS_StopPlayerObject
+		#undef StopPlayerObject
+	#endif
+	#define _ALS_StopPlayerObject
+	#define StopPlayerObject( FIXES_StopPlayerObject(
+
+	#if defined _ALS_IsPlayerObjectMoving
+		#undef IsPlayerObjectMoving
+	#endif
+	#define _ALS_IsPlayerObjectMoving
+	#define IsPlayerObjectMoving( FIXES_IsPlayerObjectMoving(
+
+	#if defined _ALS_AttachPlayerObjectToPlayer
+		#undef AttachPlayerObjectToPlayer
+	#endif
+	#define _ALS_AttachPlayerObjectToPlayer
+	#define AttachPlayerObjectToPlayer( FIXES_AttachPlayerObjectToPlayer(
+
+	#if defined _ALS_SetObjectMaterial
+		#undef SetObjectMaterial
+	#endif
+	#define _ALS_SetObjectMaterial
+	#define SetObjectMaterial( FIXES_SetObjectMaterial(
+
+	#if defined _ALS_SetPlayerObjectMaterial
+		#undef SetPlayerObjectMaterial
+	#endif
+	#define _ALS_SetPlayerObjectMaterial
+	#define SetPlayerObjectMaterial( FIXES_SetPlayerObjectMaterial(
+
+	#if defined _ALS_SetObjectMaterialText
+		#undef SetObjectMaterialText
+	#endif
+	#define _ALS_SetObjectMaterialText
+	#define SetObjectMaterialText( FIXES_SetObjectMaterialText(
+
+	#if defined _ALS_SetPlayerObjectMaterialText
+		#undef SetPlayerObjectMaterialText
+	#endif
+	#define _ALS_SetPlayerObjectMaterialText
+	#define SetPlayerObjectMaterialText( FIXES_SetPlayerObjectMaterialText(
+
+	#if defined _ALS_SetObjectsDefaultCameraCol
+		#undef SetObjectsDefaultCameraCol
+	#endif
+	#define _ALS_SetObjectsDefaultCameraCol
+	#define SetObjectsDefaultCameraCol( FIXES_SetObjectsDefaultCameraCol(
+#endif
+
+/*
+
+	 ¦¦¦¦¦          ¦¦¦¦¦¦  ¦¦       ¦¦¦¦¦  ¦¦    ¦¦ ¦¦¦¦¦¦¦ ¦¦¦¦¦¦  ¦¦¦¦¦¦¦
+	¦¦   ¦¦         ¦¦   ¦¦ ¦¦      ¦¦   ¦¦  ¦¦  ¦¦  ¦¦      ¦¦   ¦¦ ¦¦
+	¦¦¦¦¦¦¦         ¦¦¦¦¦¦  ¦¦      ¦¦¦¦¦¦¦   ¦¦¦¦   ¦¦¦¦¦   ¦¦¦¦¦¦  ¦¦¦¦¦¦¦
+	¦¦   ¦¦         ¦¦      ¦¦      ¦¦   ¦¦    ¦¦    ¦¦      ¦¦   ¦¦      ¦¦
+	¦¦   ¦¦ ¦¦¦¦¦¦¦ ¦¦      ¦¦¦¦¦¦¦ ¦¦   ¦¦    ¦¦    ¦¦¦¦¦¦¦ ¦¦   ¦¦ ¦¦¦¦¦¦¦
+
+*/
+
+#if _FIXES_SAMP
+	#if defined _ALS_SetSpawnInfo
+		#undef SetSpawnInfo
+	#endif
+	#define _ALS_SetSpawnInfo
+	#define SetSpawnInfo( FIXES_SetSpawnInfo(
+
+	#if defined _ALS_SpawnPlayer
+		#undef SpawnPlayer
+	#endif
+	#define _ALS_SpawnPlayer
+	#define SpawnPlayer( FIXES_SpawnPlayer(
+
+	#if defined _ALS_SetPlayerPos
+		#undef SetPlayerPos
+	#endif
+	#define _ALS_SetPlayerPos
+	#define SetPlayerPos( FIXES_SetPlayerPos(
+
+	#if defined _ALS_SetPlayerPosFindZ
+		#undef SetPlayerPosFindZ
+	#endif
+	#define _ALS_SetPlayerPosFindZ
+	#define SetPlayerPosFindZ( FIXES_SetPlayerPosFindZ(
+
+	#if defined _ALS_GetPlayerPos
+		#undef GetPlayerPos
+	#endif
+	#define _ALS_GetPlayerPos
+	#define GetPlayerPos( FIXES_GetPlayerPos(
+
+	#if defined _ALS_SetPlayerFacingAngle
+		#undef SetPlayerFacingAngle
+	#endif
+	#define _ALS_SetPlayerFacingAngle
+	#define SetPlayerFacingAngle( FIXES_SetPlayerFacingAngle(
+
+	#if defined _ALS_GetPlayerFacingAngle
+		#undef GetPlayerFacingAngle
+	#endif
+	#define _ALS_GetPlayerFacingAngle
+	#define GetPlayerFacingAngle( FIXES_GetPlayerFacingAngle(
+
+	#if defined _ALS_IsPlayerInRangeOfPoint
+		#undef IsPlayerInRangeOfPoint
+	#endif
+	#define _ALS_IsPlayerInRangeOfPoint
+	#define IsPlayerInRangeOfPoint( FIXES_IsPlayerInRangeOfPoint(
+
+	#if defined _ALS_GetPlayerDistanceFromPoint
+		#undef GetPlayerDistanceFromPoint
+	#endif
+	#define _ALS_GetPlayerDistanceFromPoint
+	#define GetPlayerDistanceFromPoint( FIXES_GetPlayerDistanceFromPoint(
+
+	#if defined _ALS_IsPlayerStreamedIn
+		#undef IsPlayerStreamedIn
+	#endif
+	#define _ALS_IsPlayerStreamedIn
+	#define IsPlayerStreamedIn( FIXES_IsPlayerStreamedIn(
+
+	#if defined _ALS_SetPlayerInterior
+		#undef SetPlayerInterior
+	#endif
+	#define _ALS_SetPlayerInterior
+	#define SetPlayerInterior( FIXES_SetPlayerInterior(
+
+	#if defined _ALS_GetPlayerInterior
+		#undef GetPlayerInterior
+	#endif
+	#define _ALS_GetPlayerInterior
+	#define GetPlayerInterior( FIXES_GetPlayerInterior(
+
+	#if defined _ALS_SetPlayerHealth
+		#undef SetPlayerHealth
+	#endif
+	#define _ALS_SetPlayerHealth
+	#define SetPlayerHealth( FIXES_SetPlayerHealth(
+
+	#if defined _ALS_GetPlayerHealth
+		#undef GetPlayerHealth
+	#endif
+	#define _ALS_GetPlayerHealth
+	#define GetPlayerHealth( FIXES_GetPlayerHealth(
+
+	#if defined _ALS_SetPlayerArmour
+		#undef SetPlayerArmour
+	#endif
+	#define _ALS_SetPlayerArmour
+	#define SetPlayerArmour( FIXES_SetPlayerArmour(
+
+	#if defined _ALS_GetPlayerArmour
+		#undef GetPlayerArmour
+	#endif
+	#define _ALS_GetPlayerArmour
+	#define GetPlayerArmour( FIXES_GetPlayerArmour(
+
+	#if defined _ALS_SetPlayerAmmo
+		#undef SetPlayerAmmo
+	#endif
+	#define _ALS_SetPlayerAmmo
+	#define SetPlayerAmmo( FIXES_SetPlayerAmmo(
+
+	#if defined _ALS_GetPlayerAmmo
+		#undef GetPlayerAmmo
+	#endif
+	#define _ALS_GetPlayerAmmo
+	#define GetPlayerAmmo( FIXES_GetPlayerAmmo(
+
+	#if defined _ALS_GetPlayerWeaponState
+		#undef GetPlayerWeaponState
+	#endif
+	#define _ALS_GetPlayerWeaponState
+	#define GetPlayerWeaponState( FIXES_GetPlayerWeaponState(
+
+	#if defined _ALS_GetPlayerTargetPlayer
+		#undef GetPlayerTargetPlayer
+	#endif
+	#define _ALS_GetPlayerTargetPlayer
+	#define GetPlayerTargetPlayer( FIXES_GetPlayerTargetPlayer(
+
+	#if defined _ALS_GetPlayerTargetActor
+		#undef GetPlayerTargetActor
+	#endif
+	#define _ALS_GetPlayerTargetActor
+	#define GetPlayerTargetActor( FIXES_GetPlayerTargetActor(
+
+	#if defined _ALS_SetPlayerTeam
+		#undef SetPlayerTeam
+	#endif
+	#define _ALS_SetPlayerTeam
+	#define SetPlayerTeam( FIXES_SetPlayerTeam(
+
+	#if defined _ALS_GetPlayerTeam
+		#undef GetPlayerTeam
+	#endif
+	#define _ALS_GetPlayerTeam
+	#define GetPlayerTeam( FIXES_GetPlayerTeam(
+
+	#if defined _ALS_SetPlayerScore
+		#undef SetPlayerScore
+	#endif
+	#define _ALS_SetPlayerScore
+	#define SetPlayerScore( FIXES_SetPlayerScore(
+
+	#if defined _ALS_GetPlayerScore
+		#undef GetPlayerScore
+	#endif
+	#define _ALS_GetPlayerScore
+	#define GetPlayerScore( FIXES_GetPlayerScore(
+
+	#if defined _ALS_GetPlayerDrunkLevel
+		#undef GetPlayerDrunkLevel
+	#endif
+	#define _ALS_GetPlayerDrunkLevel
+	#define GetPlayerDrunkLevel( FIXES_GetPlayerDrunkLevel(
+
+	#if defined _ALS_SetPlayerDrunkLevel
+		#undef SetPlayerDrunkLevel
+	#endif
+	#define _ALS_SetPlayerDrunkLevel
+	#define SetPlayerDrunkLevel( FIXES_SetPlayerDrunkLevel(
+
+	#if defined _ALS_SetPlayerColor
+		#undef SetPlayerColor
+	#endif
+	#define _ALS_SetPlayerColor
+	#define SetPlayerColor( FIXES_SetPlayerColor(
+
+	#if defined _ALS_GetPlayerColor
+		#undef GetPlayerColor
+	#endif
+	#define _ALS_GetPlayerColor
+	#define GetPlayerColor( FIXES_GetPlayerColor(
+
+	#if defined _ALS_SetPlayerSkin
+		#undef SetPlayerSkin
+	#endif
+	#define _ALS_SetPlayerSkin
+	#define SetPlayerSkin( FIXES_SetPlayerSkin(
+
+	#if defined _ALS_GetPlayerSkin
+		#undef GetPlayerSkin
+	#endif
+	#define _ALS_GetPlayerSkin
+	#define GetPlayerSkin( FIXES_GetPlayerSkin(
+
+	#if defined _ALS_GetPlayerCustomSkin
+		#undef GetPlayerCustomSkin
+	#endif
+	#define _ALS_GetPlayerCustomSkin
+	#define GetPlayerCustomSkin( FIXES_GetPlayerCustomSkin(
+
+	#if defined _ALS_GivePlayerWeapon
+		#undef GivePlayerWeapon
+	#endif
+	#define _ALS_GivePlayerWeapon
+	#define GivePlayerWeapon( FIXES_GivePlayerWeapon(
+
+	#if defined _ALS_ResetPlayerWeapons
+		#undef ResetPlayerWeapons
+	#endif
+	#define _ALS_ResetPlayerWeapons
+	#define ResetPlayerWeapons( FIXES_ResetPlayerWeapons(
+
+	#if defined _ALS_SetPlayerArmedWeapon
+		#undef SetPlayerArmedWeapon
+	#endif
+	#define _ALS_SetPlayerArmedWeapon
+	#define SetPlayerArmedWeapon( FIXES_SetPlayerArmedWeapon(
+
+	#if defined _ALS_GetPlayerWeaponData
+		#undef GetPlayerWeaponData
+	#endif
+	#define _ALS_GetPlayerWeaponData
+	#define GetPlayerWeaponData( FIXES_GetPlayerWeaponData(
+
+	#if defined _ALS_GivePlayerMoney
+		#undef GivePlayerMoney
+	#endif
+	#define _ALS_GivePlayerMoney
+	#define GivePlayerMoney( FIXES_GivePlayerMoney(
+
+	#if defined _ALS_ResetPlayerMoney
+		#undef ResetPlayerMoney
+	#endif
+	#define _ALS_ResetPlayerMoney
+	#define ResetPlayerMoney( FIXES_ResetPlayerMoney(
+
+	#if defined _ALS_SetPlayerName
+		#undef SetPlayerName
+	#endif
+	#define _ALS_SetPlayerName
+	#define SetPlayerName( FIXES_SetPlayerName(
+
+	#if defined _ALS_GetPlayerMoney
+		#undef GetPlayerMoney
+	#endif
+	#define _ALS_GetPlayerMoney
+	#define GetPlayerMoney( FIXES_GetPlayerMoney(
+
+	#if defined _ALS_GetPlayerState
+		#undef GetPlayerState
+	#endif
+	#define _ALS_GetPlayerState
+	#define GetPlayerState( FIXES_GetPlayerState(
+
+	#if defined _ALS_GetPlayerIp
+		#undef GetPlayerIp
+	#endif
+	#define _ALS_GetPlayerIp
+	#define GetPlayerIp( FIXES_GetPlayerIp(
+
+	#if defined _ALS_GetPlayerPing
+		#undef GetPlayerPing
+	#endif
+	#define _ALS_GetPlayerPing
+	#define GetPlayerPing( FIXES_GetPlayerPing(
+
+	#if defined _ALS_GetPlayerWeapon
+		#undef GetPlayerWeapon
+	#endif
+	#define _ALS_GetPlayerWeapon
+	#define GetPlayerWeapon( FIXES_GetPlayerWeapon(
+
+	#if defined _ALS_GetPlayerKeys
+		#undef GetPlayerKeys
+	#endif
+	#define _ALS_GetPlayerKeys
+	#define GetPlayerKeys( FIXES_GetPlayerKeys(
+
+	#if defined _ALS_GetPlayerName
+		#undef GetPlayerName
+	#endif
+	#define _ALS_GetPlayerName
+	#define GetPlayerName( FIXES_GetPlayerName(
+
+	#if defined _ALS_SetPlayerTime
+		#undef SetPlayerTime
+	#endif
+	#define _ALS_SetPlayerTime
+	#define SetPlayerTime( FIXES_SetPlayerTime(
+
+	#if defined _ALS_GetPlayerTime
+		#undef GetPlayerTime
+	#endif
+	#define _ALS_GetPlayerTime
+	#define GetPlayerTime( FIXES_GetPlayerTime(
+
+	#if defined _ALS_TogglePlayerClock
+		#undef TogglePlayerClock
+	#endif
+	#define _ALS_TogglePlayerClock
+	#define TogglePlayerClock( FIXES_TogglePlayerClock(
+
+	#if defined _ALS_SetPlayerWeather
+		#undef SetPlayerWeather
+	#endif
+	#define _ALS_SetPlayerWeather
+	#define SetPlayerWeather( FIXES_SetPlayerWeather(
+
+	#if defined _ALS_ForceClassSelection
+		#undef ForceClassSelection
+	#endif
+	#define _ALS_ForceClassSelection
+	#define ForceClassSelection( FIXES_ForceClassSelection(
+
+	#if defined _ALS_SetPlayerWantedLevel
+		#undef SetPlayerWantedLevel
+	#endif
+	#define _ALS_SetPlayerWantedLevel
+	#define SetPlayerWantedLevel( FIXES_SetPlayerWantedLevel(
+
+	#if defined _ALS_GetPlayerWantedLevel
+		#undef GetPlayerWantedLevel
+	#endif
+	#define _ALS_GetPlayerWantedLevel
+	#define GetPlayerWantedLevel( FIXES_GetPlayerWantedLevel(
+
+	#if defined _ALS_SetPlayerFightingStyle
+		#undef SetPlayerFightingStyle
+	#endif
+	#define _ALS_SetPlayerFightingStyle
+	#define SetPlayerFightingStyle( FIXES_SetPlayerFightingStyle(
+
+	#if defined _ALS_GetPlayerFightingStyle
+		#undef GetPlayerFightingStyle
+	#endif
+	#define _ALS_GetPlayerFightingStyle
+	#define GetPlayerFightingStyle( FIXES_GetPlayerFightingStyle(
+
+	#if defined _ALS_SetPlayerVelocity
+		#undef SetPlayerVelocity
+	#endif
+	#define _ALS_SetPlayerVelocity
+	#define SetPlayerVelocity( FIXES_SetPlayerVelocity(
+
+	#if defined _ALS_GetPlayerVelocity
+		#undef GetPlayerVelocity
+	#endif
+	#define _ALS_GetPlayerVelocity
+	#define GetPlayerVelocity( FIXES_GetPlayerVelocity(
+
+	#if defined _ALS_PlayCrimeReportForPlayer
+		#undef PlayCrimeReportForPlayer
+	#endif
+	#define _ALS_PlayCrimeReportForPlayer
+	#define PlayCrimeReportForPlayer( FIXES_PlayCrimeReportForPlayer(
+
+	#if defined _ALS_PlayAudioStreamForPlayer
+		#undef PlayAudioStreamForPlayer
+	#endif
+	#define _ALS_PlayAudioStreamForPlayer
+	#define PlayAudioStreamForPlayer( FIXES_PlayAudioStreamForPlayer(
+
+	#if defined _ALS_StopAudioStreamForPlayer
+		#undef StopAudioStreamForPlayer
+	#endif
+	#define _ALS_StopAudioStreamForPlayer
+	#define StopAudioStreamForPlayer( FIXES_StopAudioStreamForPlayer(
+
+	#if defined _ALS_SetPlayerShopName
+		#undef SetPlayerShopName
+	#endif
+	#define _ALS_SetPlayerShopName
+	#define SetPlayerShopName( FIXES_SetPlayerShopName(
+
+	#if defined _ALS_SetPlayerSkillLevel
+		#undef SetPlayerSkillLevel
+	#endif
+	#define _ALS_SetPlayerSkillLevel
+	#define SetPlayerSkillLevel( FIXES_SetPlayerSkillLevel(
+
+	#if defined _ALS_GetPlayerSurfingVehicleID
+		#undef GetPlayerSurfingVehicleID
+	#endif
+	#define _ALS_GetPlayerSurfingVehicleID
+	#define GetPlayerSurfingVehicleID( FIXES_GetPlayerSurfingVehicleID(
+
+	#if defined _ALS_GetPlayerSurfingObjectID
+		#undef GetPlayerSurfingObjectID
+	#endif
+	#define _ALS_GetPlayerSurfingObjectID
+	#define GetPlayerSurfingObjectID( FIXES_GetPlayerSurfingObjectID(
+
+	#if defined _ALS_RemoveBuildingForPlayer
+		#undef RemoveBuildingForPlayer
+	#endif
+	#define _ALS_RemoveBuildingForPlayer
+	#define RemoveBuildingForPlayer( FIXES_RemoveBuildingForPlayer(
+
+	#if defined _ALS_GetPlayerLastShotVectors
+		#undef GetPlayerLastShotVectors
+	#endif
+	#define _ALS_GetPlayerLastShotVectors
+	#define GetPlayerLastShotVectors( FIXES_GetPlayerLastShotVectors(
+
+	#if defined _ALS_SetPlayerAttachedObject
+		#undef SetPlayerAttachedObject
+	#endif
+	#define _ALS_SetPlayerAttachedObject
+	#define SetPlayerAttachedObject( FIXES_SetPlayerAttachedObject(
+
+	#if defined _ALS_RemovePlayerAttachedObject
+		#undef RemovePlayerAttachedObject
+	#endif
+	#define _ALS_RemovePlayerAttachedObject
+	#define RemovePlayerAttachedObject( FIXES_RemovePlayerAttachedObject(
+
+	#if defined _ALS_IsPlayerAttachedObjectSlotUsed
+		#undef IsPlayerAttachedObjectSlotUsed
+	#endif
+	#define _ALS_IsPlayerAttachedObjectSlotUsed
+	#define IsPlayerAttachedObjectSlotUsed( FIXES_IsPlayerAttachedObjectSlotUsed(
+
+	#if defined _ALS_EditAttachedObject
+		#undef EditAttachedObject
+	#endif
+	#define _ALS_EditAttachedObject
+	#define EditAttachedObject( FIXES_EditAttachedObject(
+
+	#if defined _ALS_CreatePlayerTextDraw
+		#undef CreatePlayerTextDraw
+	#endif
+	#define _ALS_CreatePlayerTextDraw
+	#define CreatePlayerTextDraw( FIXES_CreatePlayerTextDraw(
+
+	#if defined _ALS_PlayerTextDrawDestroy
+		#undef PlayerTextDrawDestroy
+	#endif
+	#define _ALS_PlayerTextDrawDestroy
+	#define PlayerTextDrawDestroy( FIXES_PlayerTextDrawDestroy(
+
+	#if defined _ALS_PlayerTextDrawLetterSize
+		#undef PlayerTextDrawLetterSize
+	#endif
+	#define _ALS_PlayerTextDrawLetterSize
+	#define PlayerTextDrawLetterSize( FIXES_PlayerTextDrawLetterSize(
+
+	#if defined _ALS_PlayerTextDrawTextSize
+		#undef PlayerTextDrawTextSize
+	#endif
+	#define _ALS_PlayerTextDrawTextSize
+	#define PlayerTextDrawTextSize( FIXES_PlayerTextDrawTextSize(
+
+	#if defined _ALS_PlayerTextDrawAlignment
+		#undef PlayerTextDrawAlignment
+	#endif
+	#define _ALS_PlayerTextDrawAlignment
+	#define PlayerTextDrawAlignment( FIXES_PlayerTextDrawAlignment(
+
+	#if defined _ALS_PlayerTextDrawColor
+		#undef PlayerTextDrawColor
+	#endif
+	#define _ALS_PlayerTextDrawColor
+	#define PlayerTextDrawColor( FIXES_PlayerTextDrawColor(
+
+	#if defined _ALS_PlayerTextDrawUseBox
+		#undef PlayerTextDrawUseBox
+	#endif
+	#define _ALS_PlayerTextDrawUseBox
+	#define PlayerTextDrawUseBox( FIXES_PlayerTextDrawUseBox(
+
+	#if defined _ALS_PlayerTextDrawBoxColor
+		#undef PlayerTextDrawBoxColor
+	#endif
+	#define _ALS_PlayerTextDrawBoxColor
+	#define PlayerTextDrawBoxColor( FIXES_PlayerTextDrawBoxColor(
+
+	#if defined _ALS_PlayerTextDrawSetShadow
+		#undef PlayerTextDrawSetShadow
+	#endif
+	#define _ALS_PlayerTextDrawSetShadow
+	#define PlayerTextDrawSetShadow( FIXES_PlayerTextDrawSetShadow(
+
+	#if defined _ALS_PlayerTextDrawSetOutline
+		#undef PlayerTextDrawSetOutline
+	#endif
+	#define _ALS_PlayerTextDrawSetOutline
+	#define PlayerTextDrawSetOutline( FIXES_PlayerTextDrawSetOutline(
+
+	#if defined _ALS_PlayerTextDrawBackgroundColor
+		#undef PlayerTextDrawBackgroundColor
+	#endif
+	#define _ALS_PlayerTextDrawBackgroundColor
+	#define PlayerTextDrawBackgroundColor( FIXES_PlayerTextDrawBackgroundColor(
+
+	#if defined _ALS_PlayerTextDrawFont
+		#undef PlayerTextDrawFont
+	#endif
+	#define _ALS_PlayerTextDrawFont
+	#define PlayerTextDrawFont( FIXES_PlayerTextDrawFont(
+
+	#if defined _ALS_PlayerTextDrawSetProportional
+		#undef PlayerTextDrawSetProportional
+	#endif
+	#define _ALS_PlayerTextDrawSetProportional
+	#define PlayerTextDrawSetProportional( FIXES_PlayerTextDrawSetProportional(
+
+	#if defined _ALS_PlayerTextDrawSetSelectable
+		#undef PlayerTextDrawSetSelectable
+	#endif
+	#define _ALS_PlayerTextDrawSetSelectable
+	#define PlayerTextDrawSetSelectable( FIXES_PlayerTextDrawSetSelectable(
+
+	#if defined _ALS_PlayerTextDrawShow
+		#undef PlayerTextDrawShow
+	#endif
+	#define _ALS_PlayerTextDrawShow
+	#define PlayerTextDrawShow( FIXES_PlayerTextDrawShow(
+
+	#if defined _ALS_PlayerTextDrawHide
+		#undef PlayerTextDrawHide
+	#endif
+	#define _ALS_PlayerTextDrawHide
+	#define PlayerTextDrawHide( FIXES_PlayerTextDrawHide(
+
+	#if defined _ALS_PlayerTextDrawSetString
+		#undef PlayerTextDrawSetString
+	#endif
+	#define _ALS_PlayerTextDrawSetString
+	#define PlayerTextDrawSetString( FIXES_PlayerTextDrawSetString(
+
+	#if defined _ALS_PlayerTextDrawSetPreviewModel
+		#undef PlayerTextDrawSetPreviewModel
+	#endif
+	#define _ALS_PlayerTextDrawSetPreviewModel
+	#define PlayerTextDrawSetPreviewModel( FIXES_PlayerTextDrawSetPreviewModel(
+
+	#if defined _ALS_PlayerTextDrawSetPreviewRot
+		#undef PlayerTextDrawSetPreviewRot
+	#endif
+	#define _ALS_PlayerTextDrawSetPreviewRot
+	#define PlayerTextDrawSetPreviewRot( FIXES_PlayerTextDrawSetPreviewRot(
+
+	#if defined _ALS_PlayerTextDrawSetPreviewVehCol
+		#undef PlayerTextDrawSetPreviewVehCol
+	#endif
+	#define _ALS_PlayerTextDrawSetPreviewVehCol
+	#define PlayerTextDrawSetPreviewVehCol( FIXES_PlayerTextDrawSetPreviewVehCol(
+
+	#if defined _ALS_SetPVarInt
+		#undef SetPVarInt
+	#endif
+	#define _ALS_SetPVarInt
+	#define SetPVarInt( FIXES_SetPVarInt(
+
+	#if defined _ALS_GetPVarInt
+		#undef GetPVarInt
+	#endif
+	#define _ALS_GetPVarInt
+	#define GetPVarInt( FIXES_GetPVarInt(
+
+	#if defined _ALS_SetPVarString
+		#undef SetPVarString
+	#endif
+	#define _ALS_SetPVarString
+	#define SetPVarString( FIXES_SetPVarString(
+
+	#if defined _ALS_GetPVarString
+		#undef GetPVarString
+	#endif
+	#define _ALS_GetPVarString
+	#define GetPVarString( FIXES_GetPVarString(
+
+	#if defined _ALS_SetPVarFloat
+		#undef SetPVarFloat
+	#endif
+	#define _ALS_SetPVarFloat
+	#define SetPVarFloat( FIXES_SetPVarFloat(
+
+	#if defined _ALS_GetPVarFloat
+		#undef GetPVarFloat
+	#endif
+	#define _ALS_GetPVarFloat
+	#define GetPVarFloat( FIXES_GetPVarFloat(
+
+	#if defined _ALS_DeletePVar
+		#undef DeletePVar
+	#endif
+	#define _ALS_DeletePVar
+	#define DeletePVar( FIXES_DeletePVar(
+
+	#if defined _ALS_GetPVarsUpperIndex
+		#undef GetPVarsUpperIndex
+	#endif
+	#define _ALS_GetPVarsUpperIndex
+	#define GetPVarsUpperIndex( FIXES_GetPVarsUpperIndex(
+
+	#if defined _ALS_GetPVarNameAtIndex
+		#undef GetPVarNameAtIndex
+	#endif
+	#define _ALS_GetPVarNameAtIndex
+	#define GetPVarNameAtIndex( FIXES_GetPVarNameAtIndex(
+
+	#if defined _ALS_GetPVarType
+		#undef GetPVarType
+	#endif
+	#define _ALS_GetPVarType
+	#define GetPVarType( FIXES_GetPVarType(
+
+	#if defined _ALS_SetPlayerChatBubble
+		#undef SetPlayerChatBubble
+	#endif
+	#define _ALS_SetPlayerChatBubble
+	#define SetPlayerChatBubble( FIXES_SetPlayerChatBubble(
+
+	#if defined _ALS_PutPlayerInVehicle
+		#undef PutPlayerInVehicle
+	#endif
+	#define _ALS_PutPlayerInVehicle
+	#define PutPlayerInVehicle( FIXES_PutPlayerInVehicle(
+
+	#if defined _ALS_GetPlayerVehicleID
+		#undef GetPlayerVehicleID
+	#endif
+	#define _ALS_GetPlayerVehicleID
+	#define GetPlayerVehicleID( FIXES_GetPlayerVehicleID(
+
+	#if defined _ALS_GetPlayerVehicleSeat
+		#undef GetPlayerVehicleSeat
+	#endif
+	#define _ALS_GetPlayerVehicleSeat
+	#define GetPlayerVehicleSeat( FIXES_GetPlayerVehicleSeat(
+
+	#if defined _ALS_RemovePlayerFromVehicle
+		#undef RemovePlayerFromVehicle
+	#endif
+	#define _ALS_RemovePlayerFromVehicle
+	#define RemovePlayerFromVehicle( FIXES_RemovePlayerFromVehicle(
+
+	#if defined _ALS_TogglePlayerControllable
+		#undef TogglePlayerControllable
+	#endif
+	#define _ALS_TogglePlayerControllable
+	#define TogglePlayerControllable( FIXES_TogglePlayerControllable(
+
+	#if defined _ALS_PlayerPlaySound
+		#undef PlayerPlaySound
+	#endif
+	#define _ALS_PlayerPlaySound
+	#define PlayerPlaySound( FIXES_PlayerPlaySound(
+
+	#if defined _ALS_ApplyAnimation
+		#undef ApplyAnimation
+	#endif
+	#define _ALS_ApplyAnimation
+	#define ApplyAnimation( FIXES_ApplyAnimation(
+
+	#if defined _ALS_ClearAnimations
+		#undef ClearAnimations
+	#endif
+	#define _ALS_ClearAnimations
+	#define ClearAnimations( FIXES_ClearAnimations(
+
+	#if defined _ALS_GetPlayerAnimationIndex
+		#undef GetPlayerAnimationIndex
+	#endif
+	#define _ALS_GetPlayerAnimationIndex
+	#define GetPlayerAnimationIndex( FIXES_GetPlayerAnimationIndex(
+
+	#if defined _ALS_GetAnimationName
+		#undef GetAnimationName
+	#endif
+	#define _ALS_GetAnimationName
+	#define GetAnimationName( FIXES_GetAnimationName(
+
+	#if defined _ALS_GetPlayerSpecialAction
+		#undef GetPlayerSpecialAction
+	#endif
+	#define _ALS_GetPlayerSpecialAction
+	#define GetPlayerSpecialAction( FIXES_GetPlayerSpecialAction(
+
+	#if defined _ALS_SetPlayerSpecialAction
+		#undef SetPlayerSpecialAction
+	#endif
+	#define _ALS_SetPlayerSpecialAction
+	#define SetPlayerSpecialAction( FIXES_SetPlayerSpecialAction(
+
+	#if defined _ALS_DisableRemoteVehicleCollisions
+		#undef DisableRemoteVehicleCollisions
+	#endif
+	#define _ALS_DisableRemoteVehicleCollisions
+	#define DisableRemoteVehicleCollisions( FIXES_DisableRemoteVehicleCollisions(
+
+	#if defined _ALS_SetPlayerCheckpoint
+		#undef SetPlayerCheckpoint
+	#endif
+	#define _ALS_SetPlayerCheckpoint
+	#define SetPlayerCheckpoint( FIXES_SetPlayerCheckpoint(
+
+	#if defined _ALS_DisablePlayerCheckpoint
+		#undef DisablePlayerCheckpoint
+	#endif
+	#define _ALS_DisablePlayerCheckpoint
+	#define DisablePlayerCheckpoint( FIXES_DisablePlayerCheckpoint(
+
+	#if defined _ALS_SetPlayerRaceCheckpoint
+		#undef SetPlayerRaceCheckpoint
+	#endif
+	#define _ALS_SetPlayerRaceCheckpoint
+	#define SetPlayerRaceCheckpoint( FIXES_SetPlayerRaceCheckpoint(
+
+	#if defined _ALS_DisablePlayerRaceCheckpoint
+		#undef DisablePlayerRaceCheckpoint
+	#endif
+	#define _ALS_DisablePlayerRaceCheckpoint
+	#define DisablePlayerRaceCheckpoint( FIXES_DisablePlayerRaceCheckpoint(
+
+	#if defined _ALS_SetPlayerWorldBounds
+		#undef SetPlayerWorldBounds
+	#endif
+	#define _ALS_SetPlayerWorldBounds
+	#define SetPlayerWorldBounds( FIXES_SetPlayerWorldBounds(
+
+	#if defined _ALS_SetPlayerMarkerForPlayer
+		#undef SetPlayerMarkerForPlayer
+	#endif
+	#define _ALS_SetPlayerMarkerForPlayer
+	#define SetPlayerMarkerForPlayer( FIXES_SetPlayerMarkerForPlayer(
+
+	#if defined _ALS_ShowPlayerNameTagForPlayer
+		#undef ShowPlayerNameTagForPlayer
+	#endif
+	#define _ALS_ShowPlayerNameTagForPlayer
+	#define ShowPlayerNameTagForPlayer( FIXES_ShowPlayerNameTagForPlayer(
+
+	#if defined _ALS_SetPlayerMapIcon
+		#undef SetPlayerMapIcon
+	#endif
+	#define _ALS_SetPlayerMapIcon
+	#define SetPlayerMapIcon( FIXES_SetPlayerMapIcon(
+
+	#if defined _ALS_RemovePlayerMapIcon
+		#undef RemovePlayerMapIcon
+	#endif
+	#define _ALS_RemovePlayerMapIcon
+	#define RemovePlayerMapIcon( FIXES_RemovePlayerMapIcon(
+
+	#if defined _ALS_AllowPlayerTeleport
+		#undef AllowPlayerTeleport
+	#endif
+	#define _ALS_AllowPlayerTeleport
+	#define AllowPlayerTeleport( FIXES_AllowPlayerTeleport(
+
+	#if defined _ALS_SetPlayerCameraPos
+		#undef SetPlayerCameraPos
+	#endif
+	#define _ALS_SetPlayerCameraPos
+	#define SetPlayerCameraPos( FIXES_SetPlayerCameraPos(
+
+	#if defined _ALS_SetPlayerCameraLookAt
+		#undef SetPlayerCameraLookAt
+	#endif
+	#define _ALS_SetPlayerCameraLookAt
+	#define SetPlayerCameraLookAt( FIXES_SetPlayerCameraLookAt(
+
+	#if defined _ALS_SetCameraBehindPlayer
+		#undef SetCameraBehindPlayer
+	#endif
+	#define _ALS_SetCameraBehindPlayer
+	#define SetCameraBehindPlayer( FIXES_SetCameraBehindPlayer(
+
+	#if defined _ALS_GetPlayerCameraPos
+		#undef GetPlayerCameraPos
+	#endif
+	#define _ALS_GetPlayerCameraPos
+	#define GetPlayerCameraPos( FIXES_GetPlayerCameraPos(
+
+	#if defined _ALS_GetPlayerCameraFrontVector
+		#undef GetPlayerCameraFrontVector
+	#endif
+	#define _ALS_GetPlayerCameraFrontVector
+	#define GetPlayerCameraFrontVector( FIXES_GetPlayerCameraFrontVector(
+
+	#if defined _ALS_GetPlayerCameraMode
+		#undef GetPlayerCameraMode
+	#endif
+	#define _ALS_GetPlayerCameraMode
+	#define GetPlayerCameraMode( FIXES_GetPlayerCameraMode(
+
+	#if defined _ALS_EnablePlayerCameraTarget
+		#undef EnablePlayerCameraTarget
+	#endif
+	#define _ALS_EnablePlayerCameraTarget
+	#define EnablePlayerCameraTarget( FIXES_EnablePlayerCameraTarget(
+
+	#if defined _ALS_GetPlayerCameraTargetObject
+		#undef GetPlayerCameraTargetObject
+	#endif
+	#define _ALS_GetPlayerCameraTargetObject
+	#define GetPlayerCameraTargetObject( FIXES_GetPlayerCameraTargetObject(
+
+	#if defined _ALS_GetPlayerCameraTargetVehicle
+		#undef GetPlayerCameraTargetVehicle
+	#endif
+	#define _ALS_GetPlayerCameraTargetVehicle
+	#define GetPlayerCameraTargetVehicle( FIXES_GetPlayerCameraTargetVehicle(
+
+	#if defined _ALS_GetPlayerCameraTargetPlayer
+		#undef GetPlayerCameraTargetPlayer
+	#endif
+	#define _ALS_GetPlayerCameraTargetPlayer
+	#define GetPlayerCameraTargetPlayer( FIXES_GetPlayerCameraTargetPlayer(
+
+	#if defined _ALS_GetPlayerCameraTargetActor
+		#undef GetPlayerCameraTargetActor
+	#endif
+	#define _ALS_GetPlayerCameraTargetActor
+	#define GetPlayerCameraTargetActor( FIXES_GetPlayerCameraTargetActor(
+
+	#if defined _ALS_GetPlayerCameraAspectRatio
+		#undef GetPlayerCameraAspectRatio
+	#endif
+	#define _ALS_GetPlayerCameraAspectRatio
+	#define GetPlayerCameraAspectRatio( FIXES_GetPlayerCameraAspectRatio(
+
+	#if defined _ALS_GetPlayerCameraZoom
+		#undef GetPlayerCameraZoom
+	#endif
+	#define _ALS_GetPlayerCameraZoom
+	#define GetPlayerCameraZoom( FIXES_GetPlayerCameraZoom(
+
+	#if defined _ALS_AttachCameraToObject
+		#undef AttachCameraToObject
+	#endif
+	#define _ALS_AttachCameraToObject
+	#define AttachCameraToObject( FIXES_AttachCameraToObject(
+
+	#if defined _ALS_AttachCameraToPlayerObject
+		#undef AttachCameraToPlayerObject
+	#endif
+	#define _ALS_AttachCameraToPlayerObject
+	#define AttachCameraToPlayerObject( FIXES_AttachCameraToPlayerObject(
+
+	#if defined _ALS_InterpolateCameraPos
+		#undef InterpolateCameraPos
+	#endif
+	#define _ALS_InterpolateCameraPos
+	#define InterpolateCameraPos( FIXES_InterpolateCameraPos(
+
+	#if defined _ALS_InterpolateCameraLookAt
+		#undef InterpolateCameraLookAt
+	#endif
+	#define _ALS_InterpolateCameraLookAt
+	#define InterpolateCameraLookAt( FIXES_InterpolateCameraLookAt(
+
+	#if defined _ALS_IsPlayerConnected
+		#undef IsPlayerConnected
+	#endif
+	#define _ALS_IsPlayerConnected
+	#define IsPlayerConnected( FIXES_IsPlayerConnected(
+
+	#if defined _ALS_IsPlayerInVehicle
+		#undef IsPlayerInVehicle
+	#endif
+	#define _ALS_IsPlayerInVehicle
+	#define IsPlayerInVehicle( FIXES_IsPlayerInVehicle(
+
+	#if defined _ALS_IsPlayerInAnyVehicle
+		#undef IsPlayerInAnyVehicle
+	#endif
+	#define _ALS_IsPlayerInAnyVehicle
+	#define IsPlayerInAnyVehicle( FIXES_IsPlayerInAnyVehicle(
+
+	#if defined _ALS_IsPlayerInCheckpoint
+		#undef IsPlayerInCheckpoint
+	#endif
+	#define _ALS_IsPlayerInCheckpoint
+	#define IsPlayerInCheckpoint( FIXES_IsPlayerInCheckpoint(
+
+	#if defined _ALS_IsPlayerInRaceCheckpoint
+		#undef IsPlayerInRaceCheckpoint
+	#endif
+	#define _ALS_IsPlayerInRaceCheckpoint
+	#define IsPlayerInRaceCheckpoint( FIXES_IsPlayerInRaceCheckpoint(
+
+	#if defined _ALS_SetPlayerVirtualWorld
+		#undef SetPlayerVirtualWorld
+	#endif
+	#define _ALS_SetPlayerVirtualWorld
+	#define SetPlayerVirtualWorld( FIXES_SetPlayerVirtualWorld(
+
+	#if defined _ALS_GetPlayerVirtualWorld
+		#undef GetPlayerVirtualWorld
+	#endif
+	#define _ALS_GetPlayerVirtualWorld
+	#define GetPlayerVirtualWorld( FIXES_GetPlayerVirtualWorld(
+
+	#if defined _ALS_EnableStuntBonusForPlayer
+		#undef EnableStuntBonusForPlayer
+	#endif
+	#define _ALS_EnableStuntBonusForPlayer
+	#define EnableStuntBonusForPlayer( FIXES_EnableStuntBonusForPlayer(
+
+	#if defined _ALS_EnableStuntBonusForAll
+		#undef EnableStuntBonusForAll
+	#endif
+	#define _ALS_EnableStuntBonusForAll
+	#define EnableStuntBonusForAll( FIXES_EnableStuntBonusForAll(
+
+	#if defined _ALS_TogglePlayerSpectating
+		#undef TogglePlayerSpectating
+	#endif
+	#define _ALS_TogglePlayerSpectating
+	#define TogglePlayerSpectating( FIXES_TogglePlayerSpectating(
+
+	#if defined _ALS_PlayerSpectatePlayer
+		#undef PlayerSpectatePlayer
+	#endif
+	#define _ALS_PlayerSpectatePlayer
+	#define PlayerSpectatePlayer( FIXES_PlayerSpectatePlayer(
+
+	#if defined _ALS_PlayerSpectateVehicle
+		#undef PlayerSpectateVehicle
+	#endif
+	#define _ALS_PlayerSpectateVehicle
+	#define PlayerSpectateVehicle( FIXES_PlayerSpectateVehicle(
+
+	#if defined _ALS_StartRecordingPlayerData
+		#undef StartRecordingPlayerData
+	#endif
+	#define _ALS_StartRecordingPlayerData
+	#define StartRecordingPlayerData( FIXES_StartRecordingPlayerData(
+
+	#if defined _ALS_StopRecordingPlayerData
+		#undef StopRecordingPlayerData
+	#endif
+	#define _ALS_StopRecordingPlayerData
+	#define StopRecordingPlayerData( FIXES_StopRecordingPlayerData(
+
+	#if defined _ALS_SelectTextDraw
+		#undef SelectTextDraw
+	#endif
+	#define _ALS_SelectTextDraw
+	#define SelectTextDraw( FIXES_SelectTextDraw(
+
+	#if defined _ALS_CancelSelectTextDraw
+		#undef CancelSelectTextDraw
+	#endif
+	#define _ALS_CancelSelectTextDraw
+	#define CancelSelectTextDraw( FIXES_CancelSelectTextDraw(
+
+	#if defined _ALS_CreateExplosionForPlayer
+		#undef CreateExplosionForPlayer
+	#endif
+	#define _ALS_CreateExplosionForPlayer
+	#define CreateExplosionForPlayer( FIXES_CreateExplosionForPlayer(
+
+	#if defined _ALS_SendClientCheck
+		#undef SendClientCheck
+	#endif
+	#define _ALS_SendClientCheck
+	#define SendClientCheck( FIXES_SendClientCheck(
+#endif
+
+/*
+
+	 ¦¦¦¦¦          ¦¦¦¦¦¦¦  ¦¦¦¦¦  ¦¦¦    ¦¦¦ ¦¦¦¦¦¦
+	¦¦   ¦¦         ¦¦      ¦¦   ¦¦ ¦¦¦¦  ¦¦¦¦ ¦¦   ¦¦
+	¦¦¦¦¦¦¦         ¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦ ¦¦ ¦¦¦¦ ¦¦ ¦¦¦¦¦¦
+	¦¦   ¦¦              ¦¦ ¦¦   ¦¦ ¦¦  ¦¦  ¦¦ ¦¦
+	¦¦   ¦¦ ¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦ ¦¦   ¦¦ ¦¦      ¦¦ ¦¦
+
+*/
+
+#if _FIXES_SAMP
+	#if defined _ALS_print
+		#undef print
+	#endif
+	#define _ALS_print
+	#define print( FIXES_print(
+
+	#if defined _ALS_printf
+		#undef printf
+	#endif
+	#define _ALS_printf
+	#define printf( FIXES_printf(
+
+	#if defined _ALS_format
+		#undef format
+	#endif
+	#define _ALS_format
+	#define format( FIXES_format(
+
+	#if defined _ALS_Print
+		#undef Print
+	#endif
+	#define _ALS_Print
+	#define Print( FIXES_Print(
+
+	#if defined _ALS_PrintF
+		#undef PrintF
+	#endif
+	#define _ALS_PrintF
+	#define PrintF( FIXES_PrintF(
+
+	#if defined _ALS_Format
+		#undef Format
+	#endif
+	#define _ALS_Format
+	#define Format( FIXES_Format(
+
+	#if defined _ALS_SendClientMessage
+		#undef SendClientMessage
+	#endif
+	#define _ALS_SendClientMessage
+	#define SendClientMessage( FIXES_SendClientMessage(
+
+	#if defined _ALS_SendClientMessageToAll
+		#undef SendClientMessageToAll
+	#endif
+	#define _ALS_SendClientMessageToAll
+	#define SendClientMessageToAll( FIXES_SendClientMessageToAll(
+
+	#if defined _ALS_SendPlayerMessageToPlayer
+		#undef SendPlayerMessageToPlayer
+	#endif
+	#define _ALS_SendPlayerMessageToPlayer
+	#define SendPlayerMessageToPlayer( FIXES_SendPlayerMessageToPlayer(
+
+	#if defined _ALS_SendPlayerMessageToAll
+		#undef SendPlayerMessageToAll
+	#endif
+	#define _ALS_SendPlayerMessageToAll
+	#define SendPlayerMessageToAll( FIXES_SendPlayerMessageToAll(
+
+	#if defined _ALS_SendDeathMessage
+		#undef SendDeathMessage
+	#endif
+	#define _ALS_SendDeathMessage
+	#define SendDeathMessage( FIXES_SendDeathMessage(
+
+	#if defined _ALS_SendDeathMessageToPlayer
+		#undef SendDeathMessageToPlayer
+	#endif
+	#define _ALS_SendDeathMessageToPlayer
+	#define SendDeathMessageToPlayer( FIXES_SendDeathMessageToPlayer(
+
+	#if defined _ALS_GameTextForAll
+		#undef GameTextForAll
+	#endif
+	#define _ALS_GameTextForAll
+	#define GameTextForAll( FIXES_GameTextForAll(
+
+	#if defined _ALS_GameTextForPlayer
+		#undef GameTextForPlayer
+	#endif
+	#define _ALS_GameTextForPlayer
+	#define GameTextForPlayer( FIXES_GameTextForPlayer(
+
+	#if defined _ALS_SetTimer
+		#undef SetTimer
+	#endif
+	#define _ALS_SetTimer
+	#define SetTimer( FIXES_SetTimer(
+
+	#if defined _ALS_SetTimerEx
+		#undef SetTimerEx
+	#endif
+	#define _ALS_SetTimerEx
+	#define SetTimerEx( FIXES_SetTimerEx(
+
+	#if defined _ALS_KillTimer
+		#undef KillTimer
+	#endif
+	#define _ALS_KillTimer
+	#define KillTimer( FIXES_KillTimer(
+
+	#if defined _ALS_GetTickCount
+		#undef GetTickCount
+	#endif
+	#define _ALS_GetTickCount
+	#define GetTickCount( FIXES_GetTickCount(
+
+	#if defined _ALS_GetMaxPlayers
+		#undef GetMaxPlayers
+	#endif
+	#define _ALS_GetMaxPlayers
+	#define GetMaxPlayers( FIXES_GetMaxPlayers(
+
+	#if defined _ALS_CallRemoteFunction
+		#undef CallRemoteFunction
+	#endif
+	#define _ALS_CallRemoteFunction
+	#define CallRemoteFunction( FIXES_CallRemoteFunction(
+
+	#if defined _ALS_CallLocalFunction
+		#undef CallLocalFunction
+	#endif
+	#define _ALS_CallLocalFunction
+	#define CallLocalFunction( FIXES_CallLocalFunction(
+
+	#if defined _ALS_VectorSize
+		#undef VectorSize
+	#endif
+	#define _ALS_VectorSize
+	#define VectorSize( FIXES_VectorSize(
+
+	#if defined _ALS_asin
+		#undef asin
+	#endif
+	#define _ALS_asin
+	#define asin( FIXES_asin(
+
+	#if defined _ALS_acos
+		#undef acos
+	#endif
+	#define _ALS_acos
+	#define acos( FIXES_acos(
+
+	#if defined _ALS_atan
+		#undef atan
+	#endif
+	#define _ALS_atan
+	#define atan( FIXES_atan(
+
+	#if defined _ALS_atan2
+		#undef atan2
+	#endif
+	#define _ALS_atan2
+	#define atan2( FIXES_atan2(
+
+	#if defined _ALS_ASin
+		#undef ASin
+	#endif
+	#define _ALS_ASin
+	#define ASin( FIXES_ASin(
+
+	#if defined _ALS_ACos
+		#undef ACos
+	#endif
+	#define _ALS_ACos
+	#define ACos( FIXES_ACos(
+
+	#if defined _ALS_ATan
+		#undef ATan
+	#endif
+	#define _ALS_ATan
+	#define ATan( FIXES_ATan(
+
+	#if defined _ALS_ATan2
+		#undef ATan2
+	#endif
+	#define _ALS_ATan2
+	#define ATan2( FIXES_ATan2(
+
+	#if defined _ALS_GetPlayerPoolSize
+		#undef GetPlayerPoolSize
+	#endif
+	#define _ALS_GetPlayerPoolSize
+	#define GetPlayerPoolSize( FIXES_GetPlayerPoolSize(
+
+	#if defined _ALS_GetVehiclePoolSize
+		#undef GetVehiclePoolSize
+	#endif
+	#define _ALS_GetVehiclePoolSize
+	#define GetVehiclePoolSize( FIXES_GetVehiclePoolSize(
+
+	#if defined _ALS_GetActorPoolSize
+		#undef GetActorPoolSize
+	#endif
+	#define _ALS_GetActorPoolSize
+	#define GetActorPoolSize( FIXES_GetActorPoolSize(
+
+	#if defined _ALS_SHA256_PassHash
+		#undef SHA256_PassHash
+	#endif
+	#define _ALS_SHA256_PassHash
+	#define SHA256_PassHash( FIXES_SHA256_PassHash(
+
+	#if defined _ALS_SetSVarInt
+		#undef SetSVarInt
+	#endif
+	#define _ALS_SetSVarInt
+	#define SetSVarInt( FIXES_SetSVarInt(
+
+	#if defined _ALS_GetSVarInt
+		#undef GetSVarInt
+	#endif
+	#define _ALS_GetSVarInt
+	#define GetSVarInt( FIXES_GetSVarInt(
+
+	#if defined _ALS_SetSVarString
+		#undef SetSVarString
+	#endif
+	#define _ALS_SetSVarString
+	#define SetSVarString( FIXES_SetSVarString(
+
+	#if defined _ALS_GetSVarString
+		#undef GetSVarString
+	#endif
+	#define _ALS_GetSVarString
+	#define GetSVarString( FIXES_GetSVarString(
+
+	#if defined _ALS_SetSVarFloat
+		#undef SetSVarFloat
+	#endif
+	#define _ALS_SetSVarFloat
+	#define SetSVarFloat( FIXES_SetSVarFloat(
+
+	#if defined _ALS_GetSVarFloat
+		#undef GetSVarFloat
+	#endif
+	#define _ALS_GetSVarFloat
+	#define GetSVarFloat( FIXES_GetSVarFloat(
+
+	#if defined _ALS_DeleteSVar
+		#undef DeleteSVar
+	#endif
+	#define _ALS_DeleteSVar
+	#define DeleteSVar( FIXES_DeleteSVar(
+
+	#if defined _ALS_GetSVarsUpperIndex
+		#undef GetSVarsUpperIndex
+	#endif
+	#define _ALS_GetSVarsUpperIndex
+	#define GetSVarsUpperIndex( FIXES_GetSVarsUpperIndex(
+
+	#if defined _ALS_GetSVarNameAtIndex
+		#undef GetSVarNameAtIndex
+	#endif
+	#define _ALS_GetSVarNameAtIndex
+	#define GetSVarNameAtIndex( FIXES_GetSVarNameAtIndex(
+
+	#if defined _ALS_GetSVarType
+		#undef GetSVarType
+	#endif
+	#define _ALS_GetSVarType
+	#define GetSVarType( FIXES_GetSVarType(
+
+	#if defined _ALS_SetGameModeText
+		#undef SetGameModeText
+	#endif
+	#define _ALS_SetGameModeText
+	#define SetGameModeText( FIXES_SetGameModeText(
+
+	#if defined _ALS_SetTeamCount
+		#undef SetTeamCount
+	#endif
+	#define _ALS_SetTeamCount
+	#define SetTeamCount( FIXES_SetTeamCount(
+
+	#if defined _ALS_AddPlayerClass
+		#undef AddPlayerClass
+	#endif
+	#define _ALS_AddPlayerClass
+	#define AddPlayerClass( FIXES_AddPlayerClass(
+
+	#if defined _ALS_AddPlayerClassEx
+		#undef AddPlayerClassEx
+	#endif
+	#define _ALS_AddPlayerClassEx
+	#define AddPlayerClassEx( FIXES_AddPlayerClassEx(
+
+	#if defined _ALS_AddStaticVehicle
+		#undef AddStaticVehicle
+	#endif
+	#define _ALS_AddStaticVehicle
+	#define AddStaticVehicle( FIXES_AddStaticVehicle(
+
+	#if defined _ALS_AddStaticVehicleEx
+		#undef AddStaticVehicleEx
+	#endif
+	#define _ALS_AddStaticVehicleEx
+	#define AddStaticVehicleEx( FIXES_AddStaticVehicleEx(
+
+	#if defined _ALS_AddStaticPickup
+		#undef AddStaticPickup
+	#endif
+	#define _ALS_AddStaticPickup
+	#define AddStaticPickup( FIXES_AddStaticPickup(
+
+	#if defined _ALS_CreatePickup
+		#undef CreatePickup
+	#endif
+	#define _ALS_CreatePickup
+	#define CreatePickup( FIXES_CreatePickup(
+
+	#if defined _ALS_DestroyPickup
+		#undef DestroyPickup
+	#endif
+	#define _ALS_DestroyPickup
+	#define DestroyPickup( FIXES_DestroyPickup(
+
+	#if defined _ALS_ShowNameTags
+		#undef ShowNameTags
+	#endif
+	#define _ALS_ShowNameTags
+	#define ShowNameTags( FIXES_ShowNameTags(
+
+	#if defined _ALS_ShowPlayerMarkers
+		#undef ShowPlayerMarkers
+	#endif
+	#define _ALS_ShowPlayerMarkers
+	#define ShowPlayerMarkers( FIXES_ShowPlayerMarkers(
+
+	#if defined _ALS_GameModeExit
+		#undef GameModeExit
+	#endif
+	#define _ALS_GameModeExit
+	#define GameModeExit( FIXES_GameModeExit(
+
+	#if defined _ALS_SetWorldTime
+		#undef SetWorldTime
+	#endif
+	#define _ALS_SetWorldTime
+	#define SetWorldTime( FIXES_SetWorldTime(
+
+	#if defined _ALS_GetWeaponName
+		#undef GetWeaponName
+	#endif
+	#define _ALS_GetWeaponName
+	#define GetWeaponName( FIXES_GetWeaponName(
+
+	#if defined _ALS_EnableTirePopping
+		#undef EnableTirePopping
+	#endif
+	#define _ALS_EnableTirePopping
+	#define EnableTirePopping( FIXES_EnableTirePopping(
+
+	#if defined _ALS_EnableVehicleFriendlyFire
+		#undef EnableVehicleFriendlyFire
+	#endif
+	#define _ALS_EnableVehicleFriendlyFire
+	#define EnableVehicleFriendlyFire( FIXES_EnableVehicleFriendlyFire(
+
+	#if defined _ALS_AllowInteriorWeapons
+		#undef AllowInteriorWeapons
+	#endif
+	#define _ALS_AllowInteriorWeapons
+	#define AllowInteriorWeapons( FIXES_AllowInteriorWeapons(
+
+	#if defined _ALS_SetWeather
+		#undef SetWeather
+	#endif
+	#define _ALS_SetWeather
+	#define SetWeather( FIXES_SetWeather(
+
+	#if defined _ALS_GetGravity
+		#undef GetGravity
+	#endif
+	#define _ALS_GetGravity
+	#define GetGravity( FIXES_GetGravity(
+
+	#if defined _ALS_SetGravity
+		#undef SetGravity
+	#endif
+	#define _ALS_SetGravity
+	#define SetGravity( FIXES_SetGravity(
+
+	#if defined _ALS_AllowAdminTeleport
+		#undef AllowAdminTeleport
+	#endif
+	#define _ALS_AllowAdminTeleport
+	#define AllowAdminTeleport( FIXES_AllowAdminTeleport(
+
+	#if defined _ALS_SetDeathDropAmount
+		#undef SetDeathDropAmount
+	#endif
+	#define _ALS_SetDeathDropAmount
+	#define SetDeathDropAmount( FIXES_SetDeathDropAmount(
+
+	#if defined _ALS_CreateExplosion
+		#undef CreateExplosion
+	#endif
+	#define _ALS_CreateExplosion
+	#define CreateExplosion( FIXES_CreateExplosion(
+
+	#if defined _ALS_EnableZoneNames
+		#undef EnableZoneNames
+	#endif
+	#define _ALS_EnableZoneNames
+	#define EnableZoneNames( FIXES_EnableZoneNames(
+
+	#if defined _ALS_UsePlayerPedAnims
+		#undef UsePlayerPedAnims
+	#endif
+	#define _ALS_UsePlayerPedAnims
+	#define UsePlayerPedAnims( FIXES_UsePlayerPedAnims(
+
+	#if defined _ALS_SetNameTagDrawDistance
+		#undef SetNameTagDrawDistance
+	#endif
+	#define _ALS_SetNameTagDrawDistance
+	#define SetNameTagDrawDistance( FIXES_SetNameTagDrawDistance(
+
+	#if defined _ALS_DisableNameTagLOS
+		#undef DisableNameTagLOS
+	#endif
+	#define _ALS_DisableNameTagLOS
+	#define DisableNameTagLOS( FIXES_DisableNameTagLOS(
+
+	#if defined _ALS_LimitGlobalChatRadius
+		#undef LimitGlobalChatRadius
+	#endif
+	#define _ALS_LimitGlobalChatRadius
+	#define LimitGlobalChatRadius( FIXES_LimitGlobalChatRadius(
+
+	#if defined _ALS_LimitPlayerMarkerRadius
+		#undef LimitPlayerMarkerRadius
+	#endif
+	#define _ALS_LimitPlayerMarkerRadius
+	#define LimitPlayerMarkerRadius( FIXES_LimitPlayerMarkerRadius(
+
+	#if defined _ALS_ConnectNPC
+		#undef ConnectNPC
+	#endif
+	#define _ALS_ConnectNPC
+	#define ConnectNPC( FIXES_ConnectNPC(
+
+	#if defined _ALS_IsPlayerNPC
+		#undef IsPlayerNPC
+	#endif
+	#define _ALS_IsPlayerNPC
+	#define IsPlayerNPC( FIXES_IsPlayerNPC(
+
+	#if defined _ALS_AddCharModel
+		#undef AddCharModel
+	#endif
+	#define _ALS_AddCharModel
+	#define AddCharModel( FIXES_AddCharModel(
+
+	#if defined _ALS_AddSimpleModel
+		#undef AddSimpleModel
+	#endif
+	#define _ALS_AddSimpleModel
+	#define AddSimpleModel( FIXES_AddSimpleModel(
+
+	#if defined _ALS_AddSimpleModelTimed
+		#undef AddSimpleModelTimed
+	#endif
+	#define _ALS_AddSimpleModelTimed
+	#define AddSimpleModelTimed( FIXES_AddSimpleModelTimed(
+
+	#if defined _ALS_FindModelFileNameFromCRC
+		#undef FindModelFileNameFromCRC
+	#endif
+	#define _ALS_FindModelFileNameFromCRC
+	#define FindModelFileNameFromCRC( FIXES_FindModelFileNameFromCRC(
+
+	#if defined _ALS_FindTextureFileNameFromCRC
+		#undef FindTextureFileNameFromCRC
+	#endif
+	#define _ALS_FindTextureFileNameFromCRC
+	#define FindTextureFileNameFromCRC( FIXES_FindTextureFileNameFromCRC(
+
+	#if defined _ALS_RedirectDownload
+		#undef RedirectDownload
+	#endif
+	#define _ALS_RedirectDownload
+	#define RedirectDownload( FIXES_RedirectDownload(
+
+	#if defined _ALS_IsPlayerAdmin
+		#undef IsPlayerAdmin
+	#endif
+	#define _ALS_IsPlayerAdmin
+	#define IsPlayerAdmin( FIXES_IsPlayerAdmin(
+
+	#if defined _ALS_Kick
+		#undef Kick
+	#endif
+	#define _ALS_Kick
+	#define Kick( FIXES_Kick(
+
+	#if defined _ALS_Ban
+		#undef Ban
+	#endif
+	#define _ALS_Ban
+	#define Ban( FIXES_Ban(
+
+	#if defined _ALS_BanEx
+		#undef BanEx
+	#endif
+	#define _ALS_BanEx
+	#define BanEx( FIXES_BanEx(
+
+	#if defined _ALS_SendRconCommand
+		#undef SendRconCommand
+	#endif
+	#define _ALS_SendRconCommand
+	#define SendRconCommand( FIXES_SendRconCommand(
+
+	#if defined _ALS_GetPlayerNetworkStats
+		#undef GetPlayerNetworkStats
+	#endif
+	#define _ALS_GetPlayerNetworkStats
+	#define GetPlayerNetworkStats( FIXES_GetPlayerNetworkStats(
+
+	#if defined _ALS_GetNetworkStats
+		#undef GetNetworkStats
+	#endif
+	#define _ALS_GetNetworkStats
+	#define GetNetworkStats( FIXES_GetNetworkStats(
+
+	#if defined _ALS_GetPlayerVersion
+		#undef GetPlayerVersion
+	#endif
+	#define _ALS_GetPlayerVersion
+	#define GetPlayerVersion( FIXES_GetPlayerVersion(
+
+	#if defined _ALS_BlockIpAddress
+		#undef BlockIpAddress
+	#endif
+	#define _ALS_BlockIpAddress
+	#define BlockIpAddress( FIXES_BlockIpAddress(
+
+	#if defined _ALS_UnBlockIpAddress
+		#undef UnBlockIpAddress
+	#endif
+	#define _ALS_UnBlockIpAddress
+	#define UnBlockIpAddress( FIXES_UnBlockIpAddress(
+
+	#if defined _ALS_GetServerVarAsString
+		#undef GetServerVarAsString
+	#endif
+	#define _ALS_GetServerVarAsString
+	#define GetServerVarAsString( FIXES_GetServerVarAsString(
+
+	#if defined _ALS_GetServerVarAsInt
+		#undef GetServerVarAsInt
+	#endif
+	#define _ALS_GetServerVarAsInt
+	#define GetServerVarAsInt( FIXES_GetServerVarAsInt(
+
+	#if defined _ALS_GetServerVarAsBool
+		#undef GetServerVarAsBool
+	#endif
+	#define _ALS_GetServerVarAsBool
+	#define GetServerVarAsBool( FIXES_GetServerVarAsBool(
+
+	#if defined _ALS_GetConsoleVarAsString
+		#undef GetConsoleVarAsString
+	#endif
+	#define _ALS_GetConsoleVarAsString
+	#define GetConsoleVarAsString( FIXES_GetConsoleVarAsString(
+
+	#if defined _ALS_GetConsoleVarAsInt
+		#undef GetConsoleVarAsInt
+	#endif
+	#define _ALS_GetConsoleVarAsInt
+	#define GetConsoleVarAsInt( FIXES_GetConsoleVarAsInt(
+
+	#if defined _ALS_GetConsoleVarAsBool
+		#undef GetConsoleVarAsBool
+	#endif
+	#define _ALS_GetConsoleVarAsBool
+	#define GetConsoleVarAsBool( FIXES_GetConsoleVarAsBool(
+
+	#if defined _ALS_GetServerTickRate
+		#undef GetServerTickRate
+	#endif
+	#define _ALS_GetServerTickRate
+	#define GetServerTickRate( FIXES_GetServerTickRate(
+
+	#if defined _ALS_NetStats_GetConnectedTime
+		#undef NetStats_GetConnectedTime
+	#endif
+	#define _ALS_NetStats_GetConnectedTime
+	#define NetStats_GetConnectedTime( FIXES_NetStats_GetConnectedTime(
+
+	#if defined _ALS_NetStats_MessagesReceived
+		#undef NetStats_MessagesReceived
+	#endif
+	#define _ALS_NetStats_MessagesReceived
+	#define NetStats_MessagesReceived( FIXES_NetStats_MessagesReceived(
+
+	#if defined _ALS_NetStats_BytesReceived
+		#undef NetStats_BytesReceived
+	#endif
+	#define _ALS_NetStats_BytesReceived
+	#define NetStats_BytesReceived( FIXES_NetStats_BytesReceived(
+
+	#if defined _ALS_NetStats_MessagesSent
+		#undef NetStats_MessagesSent
+	#endif
+	#define _ALS_NetStats_MessagesSent
+	#define NetStats_MessagesSent( FIXES_NetStats_MessagesSent(
+
+	#if defined _ALS_NetStats_BytesSent
+		#undef NetStats_BytesSent
+	#endif
+	#define _ALS_NetStats_BytesSent
+	#define NetStats_BytesSent( FIXES_NetStats_BytesSent(
+
+	#if defined _ALS_NetStats_MessagesRecvPerSecond
+		#undef NetStats_MessagesRecvPerSecond
+	#endif
+	#define _ALS_NetStats_MessagesRecvPerSecond
+	#define NetStats_MessagesRecvPerSecond( FIXES_NetStats_MessagesRecvPerSecond(
+
+	#if defined _ALS_NetStats_PacketLossPercent
+		#undef NetStats_PacketLossPercent
+	#endif
+	#define _ALS_NetStats_PacketLossPercent
+	#define NetStats_PacketLossPercent( FIXES_NetStats_PacketLossPercent(
+
+	#if defined _ALS_NetStats_ConnectionStatus
+		#undef NetStats_ConnectionStatus
+	#endif
+	#define _ALS_NetStats_ConnectionStatus
+	#define NetStats_ConnectionStatus( FIXES_NetStats_ConnectionStatus(
+
+	#if defined _ALS_NetStats_GetIpPort
+		#undef NetStats_GetIpPort
+	#endif
+	#define _ALS_NetStats_GetIpPort
+	#define NetStats_GetIpPort( FIXES_NetStats_GetIpPort(
+
+	#if defined _ALS_CreateMenu
+		#undef CreateMenu
+	#endif
+	#define _ALS_CreateMenu
+	#define CreateMenu( FIXES_CreateMenu(
+
+	#if defined _ALS_DestroyMenu
+		#undef DestroyMenu
+	#endif
+	#define _ALS_DestroyMenu
+	#define DestroyMenu( FIXES_DestroyMenu(
+
+	#if defined _ALS_AddMenuItem
+		#undef AddMenuItem
+	#endif
+	#define _ALS_AddMenuItem
+	#define AddMenuItem( FIXES_AddMenuItem(
+
+	#if defined _ALS_SetMenuColumnHeader
+		#undef SetMenuColumnHeader
+	#endif
+	#define _ALS_SetMenuColumnHeader
+	#define SetMenuColumnHeader( FIXES_SetMenuColumnHeader(
+
+	#if defined _ALS_ShowMenuForPlayer
+		#undef ShowMenuForPlayer
+	#endif
+	#define _ALS_ShowMenuForPlayer
+	#define ShowMenuForPlayer( FIXES_ShowMenuForPlayer(
+
+	#if defined _ALS_HideMenuForPlayer
+		#undef HideMenuForPlayer
+	#endif
+	#define _ALS_HideMenuForPlayer
+	#define HideMenuForPlayer( FIXES_HideMenuForPlayer(
+
+	#if defined _ALS_IsValidMenu
+		#undef IsValidMenu
+	#endif
+	#define _ALS_IsValidMenu
+	#define IsValidMenu( FIXES_IsValidMenu(
+
+	#if defined _ALS_DisableMenu
+		#undef DisableMenu
+	#endif
+	#define _ALS_DisableMenu
+	#define DisableMenu( FIXES_DisableMenu(
+
+	#if defined _ALS_DisableMenuRow
+		#undef DisableMenuRow
+	#endif
+	#define _ALS_DisableMenuRow
+	#define DisableMenuRow( FIXES_DisableMenuRow(
+
+	#if defined _ALS_GetPlayerMenu
+		#undef GetPlayerMenu
+	#endif
+	#define _ALS_GetPlayerMenu
+	#define GetPlayerMenu( FIXES_GetPlayerMenu(
+
+	#if defined _ALS_TextDrawCreate
+		#undef TextDrawCreate
+	#endif
+	#define _ALS_TextDrawCreate
+	#define TextDrawCreate( FIXES_TextDrawCreate(
+
+	#if defined _ALS_TextDrawDestroy
+		#undef TextDrawDestroy
+	#endif
+	#define _ALS_TextDrawDestroy
+	#define TextDrawDestroy( FIXES_TextDrawDestroy(
+
+	#if defined _ALS_TextDrawLetterSize
+		#undef TextDrawLetterSize
+	#endif
+	#define _ALS_TextDrawLetterSize
+	#define TextDrawLetterSize( FIXES_TextDrawLetterSize(
+
+	#if defined _ALS_TextDrawTextSize
+		#undef TextDrawTextSize
+	#endif
+	#define _ALS_TextDrawTextSize
+	#define TextDrawTextSize( FIXES_TextDrawTextSize(
+
+	#if defined _ALS_TextDrawAlignment
+		#undef TextDrawAlignment
+	#endif
+	#define _ALS_TextDrawAlignment
+	#define TextDrawAlignment( FIXES_TextDrawAlignment(
+
+	#if defined _ALS_TextDrawColor
+		#undef TextDrawColor
+	#endif
+	#define _ALS_TextDrawColor
+	#define TextDrawColor( FIXES_TextDrawColor(
+
+	#if defined _ALS_TextDrawUseBox
+		#undef TextDrawUseBox
+	#endif
+	#define _ALS_TextDrawUseBox
+	#define TextDrawUseBox( FIXES_TextDrawUseBox(
+
+	#if defined _ALS_TextDrawBoxColor
+		#undef TextDrawBoxColor
+	#endif
+	#define _ALS_TextDrawBoxColor
+	#define TextDrawBoxColor( FIXES_TextDrawBoxColor(
+
+	#if defined _ALS_TextDrawSetShadow
+		#undef TextDrawSetShadow
+	#endif
+	#define _ALS_TextDrawSetShadow
+	#define TextDrawSetShadow( FIXES_TextDrawSetShadow(
+
+	#if defined _ALS_TextDrawSetOutline
+		#undef TextDrawSetOutline
+	#endif
+	#define _ALS_TextDrawSetOutline
+	#define TextDrawSetOutline( FIXES_TextDrawSetOutline(
+
+	#if defined _ALS_TextDrawBackgroundColor
+		#undef TextDrawBackgroundColor
+	#endif
+	#define _ALS_TextDrawBackgroundColor
+	#define TextDrawBackgroundColor( FIXES_TextDrawBackgroundColor(
+
+	#if defined _ALS_TextDrawFont
+		#undef TextDrawFont
+	#endif
+	#define _ALS_TextDrawFont
+	#define TextDrawFont( FIXES_TextDrawFont(
+
+	#if defined _ALS_TextDrawSetProportional
+		#undef TextDrawSetProportional
+	#endif
+	#define _ALS_TextDrawSetProportional
+	#define TextDrawSetProportional( FIXES_TextDrawSetProportional(
+
+	#if defined _ALS_TextDrawSetSelectable
+		#undef TextDrawSetSelectable
+	#endif
+	#define _ALS_TextDrawSetSelectable
+	#define TextDrawSetSelectable( FIXES_TextDrawSetSelectable(
+
+	#if defined _ALS_TextDrawShowForPlayer
+		#undef TextDrawShowForPlayer
+	#endif
+	#define _ALS_TextDrawShowForPlayer
+	#define TextDrawShowForPlayer( FIXES_TextDrawShowForPlayer(
+
+	#if defined _ALS_TextDrawHideForPlayer
+		#undef TextDrawHideForPlayer
+	#endif
+	#define _ALS_TextDrawHideForPlayer
+	#define TextDrawHideForPlayer( FIXES_TextDrawHideForPlayer(
+
+	#if defined _ALS_TextDrawShowForAll
+		#undef TextDrawShowForAll
+	#endif
+	#define _ALS_TextDrawShowForAll
+	#define TextDrawShowForAll( FIXES_TextDrawShowForAll(
+
+	#if defined _ALS_TextDrawHideForAll
+		#undef TextDrawHideForAll
+	#endif
+	#define _ALS_TextDrawHideForAll
+	#define TextDrawHideForAll( FIXES_TextDrawHideForAll(
+
+	#if defined _ALS_TextDrawSetString
+		#undef TextDrawSetString
+	#endif
+	#define _ALS_TextDrawSetString
+	#define TextDrawSetString( FIXES_TextDrawSetString(
+
+	#if defined _ALS_TextDrawSetPreviewModel
+		#undef TextDrawSetPreviewModel
+	#endif
+	#define _ALS_TextDrawSetPreviewModel
+	#define TextDrawSetPreviewModel( FIXES_TextDrawSetPreviewModel(
+
+	#if defined _ALS_TextDrawSetPreviewRot
+		#undef TextDrawSetPreviewRot
+	#endif
+	#define _ALS_TextDrawSetPreviewRot
+	#define TextDrawSetPreviewRot( FIXES_TextDrawSetPreviewRot(
+
+	#if defined _ALS_TextDrawSetPreviewVehCol
+		#undef TextDrawSetPreviewVehCol
+	#endif
+	#define _ALS_TextDrawSetPreviewVehCol
+	#define TextDrawSetPreviewVehCol( FIXES_TextDrawSetPreviewVehCol(
+
+	#if defined _ALS_GangZoneCreate
+		#undef GangZoneCreate
+	#endif
+	#define _ALS_GangZoneCreate
+	#define GangZoneCreate( FIXES_GangZoneCreate(
+
+	#if defined _ALS_GangZoneDestroy
+		#undef GangZoneDestroy
+	#endif
+	#define _ALS_GangZoneDestroy
+	#define GangZoneDestroy( FIXES_GangZoneDestroy(
+
+	#if defined _ALS_GangZoneShowForPlayer
+		#undef GangZoneShowForPlayer
+	#endif
+	#define _ALS_GangZoneShowForPlayer
+	#define GangZoneShowForPlayer( FIXES_GangZoneShowForPlayer(
+
+	#if defined _ALS_GangZoneShowForAll
+		#undef GangZoneShowForAll
+	#endif
+	#define _ALS_GangZoneShowForAll
+	#define GangZoneShowForAll( FIXES_GangZoneShowForAll(
+
+	#if defined _ALS_GangZoneHideForPlayer
+		#undef GangZoneHideForPlayer
+	#endif
+	#define _ALS_GangZoneHideForPlayer
+	#define GangZoneHideForPlayer( FIXES_GangZoneHideForPlayer(
+
+	#if defined _ALS_GangZoneHideForAll
+		#undef GangZoneHideForAll
+	#endif
+	#define _ALS_GangZoneHideForAll
+	#define GangZoneHideForAll( FIXES_GangZoneHideForAll(
+
+	#if defined _ALS_GangZoneFlashForPlayer
+		#undef GangZoneFlashForPlayer
+	#endif
+	#define _ALS_GangZoneFlashForPlayer
+	#define GangZoneFlashForPlayer( FIXES_GangZoneFlashForPlayer(
+
+	#if defined _ALS_GangZoneFlashForAll
+		#undef GangZoneFlashForAll
+	#endif
+	#define _ALS_GangZoneFlashForAll
+	#define GangZoneFlashForAll( FIXES_GangZoneFlashForAll(
+
+	#if defined _ALS_GangZoneStopFlashForPlayer
+		#undef GangZoneStopFlashForPlayer
+	#endif
+	#define _ALS_GangZoneStopFlashForPlayer
+	#define GangZoneStopFlashForPlayer( FIXES_GangZoneStopFlashForPlayer(
+
+	#if defined _ALS_GangZoneStopFlashForAll
+		#undef GangZoneStopFlashForAll
+	#endif
+	#define _ALS_GangZoneStopFlashForAll
+	#define GangZoneStopFlashForAll( FIXES_GangZoneStopFlashForAll(
+
+	#if defined _ALS_Create3DTextLabel
+		#undef Create3DTextLabel
+	#endif
+	#define _ALS_Create3DTextLabel
+	#define Create3DTextLabel( FIXES_Create3DTextLabel(
+
+	#if defined _ALS_Delete3DTextLabel
+		#undef Delete3DTextLabel
+	#endif
+	#define _ALS_Delete3DTextLabel
+	#define Delete3DTextLabel( FIXES_Delete3DTextLabel(
+
+	#if defined _ALS_Attach3DTextLabelToPlayer
+		#undef Attach3DTextLabelToPlayer
+	#endif
+	#define _ALS_Attach3DTextLabelToPlayer
+	#define Attach3DTextLabelToPlayer( FIXES_Attach3DTextLabelToPlayer(
+
+	#if defined _ALS_Attach3DTextLabelToVehicle
+		#undef Attach3DTextLabelToVehicle
+	#endif
+	#define _ALS_Attach3DTextLabelToVehicle
+	#define Attach3DTextLabelToVehicle( FIXES_Attach3DTextLabelToVehicle(
+
+	#if defined _ALS_Update3DTextLabelText
+		#undef Update3DTextLabelText
+	#endif
+	#define _ALS_Update3DTextLabelText
+	#define Update3DTextLabelText( FIXES_Update3DTextLabelText(
+
+	#if defined _ALS_CreatePlayer3DTextLabel
+		#undef CreatePlayer3DTextLabel
+	#endif
+	#define _ALS_CreatePlayer3DTextLabel
+	#define CreatePlayer3DTextLabel( FIXES_CreatePlayer3DTextLabel(
+
+	#if defined _ALS_DeletePlayer3DTextLabel
+		#undef DeletePlayer3DTextLabel
+	#endif
+	#define _ALS_DeletePlayer3DTextLabel
+	#define DeletePlayer3DTextLabel( FIXES_DeletePlayer3DTextLabel(
+
+	#if defined _ALS_UpdatePlayer3DTextLabelText
+		#undef UpdatePlayer3DTextLabelText
+	#endif
+	#define _ALS_UpdatePlayer3DTextLabelText
+	#define UpdatePlayer3DTextLabelText( FIXES_UpdatePlayer3DTextLabelText(
+
+	#if defined _ALS_ShowPlayerDialog
+		#undef ShowPlayerDialog
+	#endif
+	#define _ALS_ShowPlayerDialog
+	#define ShowPlayerDialog( FIXES_ShowPlayerDialog(
+
+	#if defined _ALS_gpci
+		#undef gpci
+	#endif
+	#define _ALS_gpci
+	#define gpci( FIXES_gpci(
+
+	#if defined _ALS_GPCI
+		#undef GPCI
+	#endif
+	#define _ALS_GPCI
+	#define GPCI( FIXES_GPCI(
+#endif
+
+/*
+
+	 ¦¦¦¦¦          ¦¦¦¦¦¦¦  ¦¦¦¦¦  ¦¦¦    ¦¦¦ ¦¦¦¦¦¦  ¦¦¦¦¦¦  ¦¦¦¦¦¦
+	¦¦   ¦¦         ¦¦      ¦¦   ¦¦ ¦¦¦¦  ¦¦¦¦ ¦¦   ¦¦ ¦¦   ¦¦ ¦¦   ¦¦
+	¦¦¦¦¦¦¦         ¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦ ¦¦ ¦¦¦¦ ¦¦ ¦¦¦¦¦¦  ¦¦   ¦¦ ¦¦¦¦¦¦
+	¦¦   ¦¦              ¦¦ ¦¦   ¦¦ ¦¦  ¦¦  ¦¦ ¦¦      ¦¦   ¦¦ ¦¦   ¦¦
+	¦¦   ¦¦ ¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦ ¦¦   ¦¦ ¦¦      ¦¦ ¦¦      ¦¦¦¦¦¦  ¦¦¦¦¦¦
+
+*/
+
+#if _FIXES_SAMP
+	#if defined _ALS_db_open
+		#undef db_open
+	#endif
+	#define _ALS_db_open
+	#define db_open( FIXES_db_open(
+
+	#if defined _ALS_DB_Open
+		#undef DB_Open
+	#endif
+	#define _ALS_DB_Open
+	#define DB_Open( FIXES_DB_Open(
+
+	#if defined _ALS_db_close
+		#undef db_close
+	#endif
+	#define _ALS_db_close
+	#define db_close( FIXES_db_close(
+
+	#if defined _ALS_DB_Close
+		#undef DB_Close
+	#endif
+	#define _ALS_DB_Close
+	#define DB_Close( FIXES_DB_Close(
+
+	#if defined _ALS_db_query
+		#undef db_query
+	#endif
+	#define _ALS_db_query
+	#define db_query( FIXES_db_query(
+
+	#if defined _ALS_DB_Query
+		#undef DB_Query
+	#endif
+	#define _ALS_DB_Query
+	#define DB_Query( FIXES_DB_Query(
+
+	#if defined _ALS_db_free_result
+		#undef db_free_result
+	#endif
+	#define _ALS_db_free_result
+	#define db_free_result( FIXES_db_free_result(
+
+	#if defined _ALS_DB_FreeResult
+		#undef DB_FreeResult
+	#endif
+	#define _ALS_DB_FreeResult
+	#define DB_FreeResult( FIXES_DB_FreeResult(
+
+	#if defined _ALS_db_num_rows
+		#undef db_num_rows
+	#endif
+	#define _ALS_db_num_rows
+	#define db_num_rows( FIXES_db_num_rows(
+
+	#if defined _ALS_DB_NumRows
+		#undef DB_NumRows
+	#endif
+	#define _ALS_DB_NumRows
+	#define DB_NumRows( FIXES_DB_NumRows(
+
+	#if defined _ALS_db_next_row
+		#undef db_next_row
+	#endif
+	#define _ALS_db_next_row
+	#define db_next_row( FIXES_db_next_row(
+
+	#if defined _ALS_DB_NextRow
+		#undef DB_NextRow
+	#endif
+	#define _ALS_DB_NextRow
+	#define DB_NextRow( FIXES_DB_NextRow(
+
+	#if defined _ALS_db_num_fields
+		#undef db_num_fields
+	#endif
+	#define _ALS_db_num_fields
+	#define db_num_fields( FIXES_db_num_fields(
+
+	#if defined _ALS_DB_NumFields
+		#undef DB_NumFields
+	#endif
+	#define _ALS_DB_NumFields
+	#define DB_NumFields( FIXES_DB_NumFields(
+
+	#if defined _ALS_db_field_name
+		#undef db_field_name
+	#endif
+	#define _ALS_db_field_name
+	#define db_field_name( FIXES_db_field_name(
+
+	#if defined _ALS_DB_FieldName
+		#undef DB_FieldName
+	#endif
+	#define _ALS_DB_FieldName
+	#define DB_FieldName( FIXES_DB_FieldName(
+
+	#if defined _ALS_db_get_field
+		#undef db_get_field
+	#endif
+	#define _ALS_db_get_field
+	#define db_get_field( FIXES_db_get_field(
+
+	#if defined _ALS_DB_GetField
+		#undef DB_GetField
+	#endif
+	#define _ALS_DB_GetField
+	#define DB_GetField( FIXES_DB_GetField(
+
+	#if defined _ALS_db_get_field_int
+		#undef db_get_field_int
+	#endif
+	#define _ALS_db_get_field_int
+	#define db_get_field_int( FIXES_db_get_field_int(
+
+	#if defined _ALS_DB_GetFieldInt
+		#undef DB_GetFieldInt
+	#endif
+	#define _ALS_DB_GetFieldInt
+	#define DB_GetFieldInt( FIXES_DB_GetFieldInt(
+
+	#if defined _ALS_db_get_field_float
+		#undef db_get_field_float
+	#endif
+	#define _ALS_db_get_field_float
+	#define db_get_field_float( FIXES_db_get_field_float(
+
+	#if defined _ALS_DB_GetFieldFloat
+		#undef DB_GetFieldFloat
+	#endif
+	#define _ALS_DB_GetFieldFloat
+	#define DB_GetFieldFloat( FIXES_DB_GetFieldFloat(
+
+	#if defined _ALS_db_get_field_assoc
+		#undef db_get_field_assoc
+	#endif
+	#define _ALS_db_get_field_assoc
+	#define db_get_field_assoc( FIXES_db_get_field_assoc(
+
+	#if defined _ALS_DB_GetFieldAssoc
+		#undef DB_GetFieldAssoc
+	#endif
+	#define _ALS_DB_GetFieldAssoc
+	#define DB_GetFieldAssoc( FIXES_DB_GetFieldAssoc(
+
+	#if defined _ALS_db_get_field_assoc_int
+		#undef db_get_field_assoc_int
+	#endif
+	#define _ALS_db_get_field_assoc_int
+	#define db_get_field_assoc_int( FIXES_db_get_field_assoc_int(
+
+	#if defined _ALS_DB_GetFieldAssocInt
+		#undef DB_GetFieldAssocInt
+	#endif
+	#define _ALS_DB_GetFieldAssocInt
+	#define DB_GetFieldAssocInt( FIXES_DB_GetFieldAssocInt(
+
+	#if defined _ALS_db_get_field_assoc_float
+		#undef db_get_field_assoc_float
+	#endif
+	#define _ALS_db_get_field_assoc_float
+	#define db_get_field_assoc_float( FIXES_db_get_field_assoc_float(
+
+	#if defined _ALS_DB_GetFieldAssocFloat
+		#undef DB_GetFieldAssocFloat
+	#endif
+	#define _ALS_DB_GetFieldAssocFloat
+	#define DB_GetFieldAssocFloat( FIXES_DB_GetFieldAssocFloat(
+
+	#if defined _ALS_db_get_mem_handle
+		#undef db_get_mem_handle
+	#endif
+	#define _ALS_db_get_mem_handle
+	#define db_get_mem_handle( FIXES_db_get_mem_handle(
+
+	#if defined _ALS_DB_GetMemHandle
+		#undef DB_GetMemHandle
+	#endif
+	#define _ALS_DB_GetMemHandle
+	#define DB_GetMemHandle( FIXES_DB_GetMemHandle(
+
+	#if defined _ALS_db_get_result_mem_handle
+		#undef db_get_result_mem_handle
+	#endif
+	#define _ALS_db_get_result_mem_handle
+	#define db_get_result_mem_handle( FIXES_db_get_result_mem_handle(
+
+	#if defined _ALS_DB_GetResultMemHandle
+		#undef DB_GetResultMemHandle
+	#endif
+	#define _ALS_DB_GetResultMemHandle
+	#define DB_GetResultMemHandle( FIXES_DB_GetResultMemHandle(
+
+	#if defined _ALS_db_debug_openfiles
+		#undef db_debug_openfiles
+	#endif
+	#define _ALS_db_debug_openfiles
+	#define db_debug_openfiles( FIXES_db_debug_openfiles(
+
+	#if defined _ALS_DB_DebugOpenFiles
+		#undef DB_DebugOpenFiles
+	#endif
+	#define _ALS_DB_DebugOpenFiles
+	#define DB_DebugOpenFiles( FIXES_DB_DebugOpenFiles(
+
+	#if defined _ALS_db_debug_openresults
+		#undef db_debug_openresults
+	#endif
+	#define _ALS_db_debug_openresults
+	#define db_debug_openresults( FIXES_db_debug_openresults(
+
+	#if defined _ALS_DB_DebugOpenResults
+		#undef DB_DebugOpenResults
+	#endif
+	#define _ALS_DB_DebugOpenResults
+	#define DB_DebugOpenResults( FIXES_DB_DebugOpenResults(
+#endif
+
+/*
+
+	 ¦¦¦¦¦          ¦¦    ¦¦ ¦¦¦¦¦¦¦ ¦¦   ¦¦ ¦¦  ¦¦¦¦¦¦ ¦¦      ¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦
+	¦¦   ¦¦         ¦¦    ¦¦ ¦¦      ¦¦   ¦¦ ¦¦ ¦¦      ¦¦      ¦¦      ¦¦
+	¦¦¦¦¦¦¦         ¦¦    ¦¦ ¦¦¦¦¦   ¦¦¦¦¦¦¦ ¦¦ ¦¦      ¦¦      ¦¦¦¦¦   ¦¦¦¦¦¦¦
+	¦¦   ¦¦          ¦¦  ¦¦  ¦¦      ¦¦   ¦¦ ¦¦ ¦¦      ¦¦      ¦¦           ¦¦
+	¦¦   ¦¦ ¦¦¦¦¦¦¦   ¦¦¦¦   ¦¦¦¦¦¦¦ ¦¦   ¦¦ ¦¦  ¦¦¦¦¦¦ ¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦ ¦¦¦¦¦¦¦
+
+*/
+
+#if _FIXES_SAMP
+	#if defined _ALS_CreateVehicle
+		#undef CreateVehicle
+	#endif
+	#define _ALS_CreateVehicle
+	#define CreateVehicle( FIXES_CreateVehicle(
+
+	#if defined _ALS_DestroyVehicle
+		#undef DestroyVehicle
+	#endif
+	#define _ALS_DestroyVehicle
+	#define DestroyVehicle( FIXES_DestroyVehicle(
+
+	#if defined _ALS_IsVehicleStreamedIn
+		#undef IsVehicleStreamedIn
+	#endif
+	#define _ALS_IsVehicleStreamedIn
+	#define IsVehicleStreamedIn( FIXES_IsVehicleStreamedIn(
+
+	#if defined _ALS_GetVehiclePos
+		#undef GetVehiclePos
+	#endif
+	#define _ALS_GetVehiclePos
+	#define GetVehiclePos( FIXES_GetVehiclePos(
+
+	#if defined _ALS_SetVehiclePos
+		#undef SetVehiclePos
+	#endif
+	#define _ALS_SetVehiclePos
+	#define SetVehiclePos( FIXES_SetVehiclePos(
+
+	#if defined _ALS_GetVehicleZAngle
+		#undef GetVehicleZAngle
+	#endif
+	#define _ALS_GetVehicleZAngle
+	#define GetVehicleZAngle( FIXES_GetVehicleZAngle(
+
+	#if defined _ALS_GetVehicleRotationQuat
+		#undef GetVehicleRotationQuat
+	#endif
+	#define _ALS_GetVehicleRotationQuat
+	#define GetVehicleRotationQuat( FIXES_GetVehicleRotationQuat(
+
+	#if defined _ALS_GetVehicleDistanceFromPoint
+		#undef GetVehicleDistanceFromPoint
+	#endif
+	#define _ALS_GetVehicleDistanceFromPoint
+	#define GetVehicleDistanceFromPoint( FIXES_GetVehicleDistanceFromPoint(
+
+	#if defined _ALS_SetVehicleZAngle
+		#undef SetVehicleZAngle
+	#endif
+	#define _ALS_SetVehicleZAngle
+	#define SetVehicleZAngle( FIXES_SetVehicleZAngle(
+
+	#if defined _ALS_SetVehicleParamsForPlayer
+		#undef SetVehicleParamsForPlayer
+	#endif
+	#define _ALS_SetVehicleParamsForPlayer
+	#define SetVehicleParamsForPlayer( FIXES_SetVehicleParamsForPlayer(
+
+	#if defined _ALS_ManualVehicleEngineAndLights
+		#undef ManualVehicleEngineAndLights
+	#endif
+	#define _ALS_ManualVehicleEngineAndLights
+	#define ManualVehicleEngineAndLights( FIXES_ManualVehicleEngineAndLights(
+
+	#if defined _ALS_SetVehicleParamsEx
+		#undef SetVehicleParamsEx
+	#endif
+	#define _ALS_SetVehicleParamsEx
+	#define SetVehicleParamsEx( FIXES_SetVehicleParamsEx(
+
+	#if defined _ALS_GetVehicleParamsEx
+		#undef GetVehicleParamsEx
+	#endif
+	#define _ALS_GetVehicleParamsEx
+	#define GetVehicleParamsEx( FIXES_GetVehicleParamsEx(
+
+	#if defined _ALS_GetVehicleParamsSirenState
+		#undef GetVehicleParamsSirenState
+	#endif
+	#define _ALS_GetVehicleParamsSirenState
+	#define GetVehicleParamsSirenState( FIXES_GetVehicleParamsSirenState(
+
+	#if defined _ALS_SetVehicleParamsCarDoors
+		#undef SetVehicleParamsCarDoors
+	#endif
+	#define _ALS_SetVehicleParamsCarDoors
+	#define SetVehicleParamsCarDoors( FIXES_SetVehicleParamsCarDoors(
+
+	#if defined _ALS_GetVehicleParamsCarDoors
+		#undef GetVehicleParamsCarDoors
+	#endif
+	#define _ALS_GetVehicleParamsCarDoors
+	#define GetVehicleParamsCarDoors( FIXES_GetVehicleParamsCarDoors(
+
+	#if defined _ALS_SetVehicleParamsCarWindows
+		#undef SetVehicleParamsCarWindows
+	#endif
+	#define _ALS_SetVehicleParamsCarWindows
+	#define SetVehicleParamsCarWindows( FIXES_SetVehicleParamsCarWindows(
+
+	#if defined _ALS_GetVehicleParamsCarWindows
+		#undef GetVehicleParamsCarWindows
+	#endif
+	#define _ALS_GetVehicleParamsCarWindows
+	#define GetVehicleParamsCarWindows( FIXES_GetVehicleParamsCarWindows(
+
+	#if defined _ALS_SetVehicleToRespawn
+		#undef SetVehicleToRespawn
+	#endif
+	#define _ALS_SetVehicleToRespawn
+	#define SetVehicleToRespawn( FIXES_SetVehicleToRespawn(
+
+	#if defined _ALS_LinkVehicleToInterior
+		#undef LinkVehicleToInterior
+	#endif
+	#define _ALS_LinkVehicleToInterior
+	#define LinkVehicleToInterior( FIXES_LinkVehicleToInterior(
+
+	#if defined _ALS_AddVehicleComponent
+		#undef AddVehicleComponent
+	#endif
+	#define _ALS_AddVehicleComponent
+	#define AddVehicleComponent( FIXES_AddVehicleComponent(
+
+	#if defined _ALS_RemoveVehicleComponent
+		#undef RemoveVehicleComponent
+	#endif
+	#define _ALS_RemoveVehicleComponent
+	#define RemoveVehicleComponent( FIXES_RemoveVehicleComponent(
+
+	#if defined _ALS_ChangeVehicleColor
+		#undef ChangeVehicleColor
+	#endif
+	#define _ALS_ChangeVehicleColor
+	#define ChangeVehicleColor( FIXES_ChangeVehicleColor(
+
+	#if defined _ALS_ChangeVehiclePaintjob
+		#undef ChangeVehiclePaintjob
+	#endif
+	#define _ALS_ChangeVehiclePaintjob
+	#define ChangeVehiclePaintjob( FIXES_ChangeVehiclePaintjob(
+
+	#if defined _ALS_SetVehicleHealth
+		#undef SetVehicleHealth
+	#endif
+	#define _ALS_SetVehicleHealth
+	#define SetVehicleHealth( FIXES_SetVehicleHealth(
+
+	#if defined _ALS_GetVehicleHealth
+		#undef GetVehicleHealth
+	#endif
+	#define _ALS_GetVehicleHealth
+	#define GetVehicleHealth( FIXES_GetVehicleHealth(
+
+	#if defined _ALS_AttachTrailerToVehicle
+		#undef AttachTrailerToVehicle
+	#endif
+	#define _ALS_AttachTrailerToVehicle
+	#define AttachTrailerToVehicle( FIXES_AttachTrailerToVehicle(
+
+	#if defined _ALS_DetachTrailerFromVehicle
+		#undef DetachTrailerFromVehicle
+	#endif
+	#define _ALS_DetachTrailerFromVehicle
+	#define DetachTrailerFromVehicle( FIXES_DetachTrailerFromVehicle(
+
+	#if defined _ALS_IsTrailerAttachedToVehicle
+		#undef IsTrailerAttachedToVehicle
+	#endif
+	#define _ALS_IsTrailerAttachedToVehicle
+	#define IsTrailerAttachedToVehicle( FIXES_IsTrailerAttachedToVehicle(
+
+	#if defined _ALS_GetVehicleTrailer
+		#undef GetVehicleTrailer
+	#endif
+	#define _ALS_GetVehicleTrailer
+	#define GetVehicleTrailer( FIXES_GetVehicleTrailer(
+
+	#if defined _ALS_SetVehicleNumberPlate
+		#undef SetVehicleNumberPlate
+	#endif
+	#define _ALS_SetVehicleNumberPlate
+	#define SetVehicleNumberPlate( FIXES_SetVehicleNumberPlate(
+
+	#if defined _ALS_GetVehicleModel
+		#undef GetVehicleModel
+	#endif
+	#define _ALS_GetVehicleModel
+	#define GetVehicleModel( FIXES_GetVehicleModel(
+
+	#if defined _ALS_GetVehicleComponentInSlot
+		#undef GetVehicleComponentInSlot
+	#endif
+	#define _ALS_GetVehicleComponentInSlot
+	#define GetVehicleComponentInSlot( FIXES_GetVehicleComponentInSlot(
+
+	#if defined _ALS_GetVehicleComponentType
+		#undef GetVehicleComponentType
+	#endif
+	#define _ALS_GetVehicleComponentType
+	#define GetVehicleComponentType( FIXES_GetVehicleComponentType(
+
+	#if defined _ALS_RepairVehicle
+		#undef RepairVehicle
+	#endif
+	#define _ALS_RepairVehicle
+	#define RepairVehicle( FIXES_RepairVehicle(
+
+	#if defined _ALS_GetVehicleVelocity
+		#undef GetVehicleVelocity
+	#endif
+	#define _ALS_GetVehicleVelocity
+	#define GetVehicleVelocity( FIXES_GetVehicleVelocity(
+
+	#if defined _ALS_SetVehicleVelocity
+		#undef SetVehicleVelocity
+	#endif
+	#define _ALS_SetVehicleVelocity
+	#define SetVehicleVelocity( FIXES_SetVehicleVelocity(
+
+	#if defined _ALS_SetVehicleAngularVelocity
+		#undef SetVehicleAngularVelocity
+	#endif
+	#define _ALS_SetVehicleAngularVelocity
+	#define SetVehicleAngularVelocity( FIXES_SetVehicleAngularVelocity(
+
+	#if defined _ALS_GetVehicleDamageStatus
+		#undef GetVehicleDamageStatus
+	#endif
+	#define _ALS_GetVehicleDamageStatus
+	#define GetVehicleDamageStatus( FIXES_GetVehicleDamageStatus(
+
+	#if defined _ALS_UpdateVehicleDamageStatus
+		#undef UpdateVehicleDamageStatus
+	#endif
+	#define _ALS_UpdateVehicleDamageStatus
+	#define UpdateVehicleDamageStatus( FIXES_UpdateVehicleDamageStatus(
+
+	#if defined _ALS_GetVehicleModelInfo
+		#undef GetVehicleModelInfo
+	#endif
+	#define _ALS_GetVehicleModelInfo
+	#define GetVehicleModelInfo( FIXES_GetVehicleModelInfo(
+
+	#if defined _ALS_SetVehicleVirtualWorld
+		#undef SetVehicleVirtualWorld
+	#endif
+	#define _ALS_SetVehicleVirtualWorld
+	#define SetVehicleVirtualWorld( FIXES_SetVehicleVirtualWorld(
+
+	#if defined _ALS_GetVehicleVirtualWorld
+		#undef GetVehicleVirtualWorld
+	#endif
+	#define _ALS_GetVehicleVirtualWorld
+	#define GetVehicleVirtualWorld( FIXES_GetVehicleVirtualWorld(
+
+	#if defined _ALS_IsValidVehicle
+		#undef IsValidVehicle
+	#endif
+	#define _ALS_IsValidVehicle
+	#define IsValidVehicle( FIXES_IsValidVehicle(
+#endif
 
