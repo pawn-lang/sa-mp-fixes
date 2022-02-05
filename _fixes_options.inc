@@ -739,10 +739,5 @@
 	#endinput
 #endif
 
-#if _FIXES_WARNING == 139
-	#warning Option `address_naught` must now be explicit.
-	#endinput
-#endif
-
 #error `_fixes_options.inc` included, but `_FIXES_WARNING` is not set to a valid warning message.
 
