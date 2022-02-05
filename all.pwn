@@ -409,6 +409,19 @@ native bool:IsValidActor__(actorid) = IsValidActor;
 
 */
 
+// Try very hard to include it!  The first one should be enough.  Shame that
+// include has no include guard in it, making it harder to use with Zeex's
+// compiler.
+#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+	#tryinclude <a_http>
+#endif
+#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+	#tryinclude "a_http"
+#endif
+#if !defined HTTP_ERROR_MALFORMED_RESPONSE
+	#tryinclude "..\a_http"
+#endif
+
 /**
  * <remarks>
  *   The original declaration as in the basic SA:MP includes.
@@ -2433,6 +2446,9 @@ native BAD_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = Get
  *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
  * </remarks>
  */
+#if FIX_GetPlayerKeys
+	#pragma deprecated Use `GetPlayerActions`.
+#endif
 native CST_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 /**
  * <remarks>
@@ -2444,6 +2460,30 @@ native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPl
 	// Previous hook.
 	#define _ALS_GetPlayerKeys__
 	#define GetPlayerKeys__( GetPlayerKeys(
+#endif
+
+/**
+ * <remarks>
+ *   The original declaration as in the basic SA:MP includes.
+ * </remarks>
+ */
+native BAD_GetPlayerActions(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys;
+/**
+ * <remarks>
+ *   An optionally improved declaration with <c>const</c> and <c>bool:</c>.
+ * </remarks>
+ */
+native CST_GetPlayerActions(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys;
+/**
+ * <remarks>
+ *   The best declaration with all fixes aways applied.
+ * </remarks>
+ */
+native GetPlayerActions__(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys;
+#if defined _ALS_GetPlayerActions
+	// Previous hook.
+	#define _ALS_GetPlayerActions__
+	#define GetPlayerActions__( GetPlayerActions(
 #endif
 
 /**
@@ -11705,6 +11745,14 @@ main()
 	#define _ALS_GetPlayerKeys
 	#define GetPlayerKeys( CST_GetPlayerKeys(
 
+	#if FIX_GetPlayerKeys
+		#if defined _ALS_GetPlayerActions
+			#undef GetPlayerActions
+		#endif
+		#define _ALS_GetPlayerActions
+		#define GetPlayerActions( CST_GetPlayerActions(
+	#endif
+
 	#if defined _ALS_GetPlayerName
 		#undef GetPlayerName
 	#endif
@@ -12773,12 +12821,6 @@ main()
 	#define _ALS_SetWeather
 	#define SetWeather( CST_SetWeather(
 
-	#if defined _ALS_GetGravity
-		#undef GetGravity
-	#endif
-	#define _ALS_GetGravity
-	#define GetGravity( CST_GetGravity(
-
 	#if defined _ALS_SetGravity
 		#undef SetGravity
 	#endif
@@ -13348,18 +13390,6 @@ main()
 	#endif
 	#define _ALS_ShowPlayerDialog
 	#define ShowPlayerDialog( CST_ShowPlayerDialog(
-
-	#if defined _ALS_gpci
-		#undef gpci
-	#endif
-	#define _ALS_gpci
-	#define gpci( CST_gpci(
-
-	#if defined _ALS_GPCI
-		#undef GPCI
-	#endif
-	#define _ALS_GPCI
-	#define GPCI( CST_GPCI(
 #endif
 
 /*
@@ -13858,11 +13888,87 @@ main()
 	#endif
 	#define _ALS_GetVehicleVirtualWorld
 	#define GetVehicleVirtualWorld( CST_GetVehicleVirtualWorld(
+#endif
 
+/**
+ * <remarks>
+ * <c>IsValidVehicle</c>
+ *
+ * Because the default SA:MP includes missed this one.
+ * </remarks>
+ */
+
+#if _FIXES_SAMP && FIX_IsValidVehicle
+	_FIXES_FUNC_PAWNDOC(FIXES_IsValidVehicle(vehicleid));
 	#if defined _ALS_IsValidVehicle
 		#undef IsValidVehicle
 	#endif
 	#define _ALS_IsValidVehicle
 	#define IsValidVehicle( CST_IsValidVehicle(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_IsValidVehicle);
 #endif
+
+/**
+ * <remarks>
+ * <c>GetGravity</c>
+ *
+ * Because the default SA:MP includes missed this one.
+ * </remarks>
+ */
+
+#if _FIXES_SAMP && FIX_GetGravity
+	_FIXES_FUNC_PAWNDOC(FIXES_GetGravity());
+	#if defined _ALS_GetGravity
+		#undef GetGravity
+	#endif
+	#define _ALS_GetGravity
+	#define GetGravity( CST_GetGravity(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_GetGravity);
+#endif
+
+/**
+ * <remarks>
+ * <c>gpci</c>
+ *
+ * Because the default SA:MP includes missed this one.
+ * </remarks>
+ */
+
+#if _FIXES_SAMP && FIX_gpci
+	_FIXES_CONST_PAWNDOC(FIXES_gpci(playerid, serial[], len = sizeof (serial)));
+	#if defined _ALS_gpci
+		#undef gpci
+	#endif
+	#define _ALS_gpci
+	#define gpci( CST_gpci(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_gpci);
+#endif
+
+/**
+ * <remarks>
+ * <c>GPCI</c>
+ *
+ * Because the default SA:MP includes missed this one.
+ * </remarks>
+ */
+
+#if _FIXES_SAMP && FIX_gpci
+	_FIXES_CONST_PAWNDOC(FIXES_GPCI(playerid, serial[], len = sizeof (serial)));
+	#if defined _ALS_GPCI
+		#undef GPCI
+	#endif
+	#define _ALS_GPCI
+	#define GPCI( CST_GPCI(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_GPCI);
+#endif
+
+// Because a_http can be included multiple times (on one compiler),
+// ensure that multiple definitions don't break (too quickly - there's
+// nothing we can do if it gets included a load of times, but that's an
+// issue you would get with the new compiler anyway).
+#define CST_HTTP(%0,%1,%2[],%3[],%4[]); a_http_included_too_many_times(%0,%1,%2[],%3[],%4[]) = HTTP;
 
