@@ -25192,32 +25192,32 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	#endif
 	#if !defined _ALS_db_close
 		native bool:FIXES_db_close(DB:db) = db_close;
-		#define db_close( db_close__(
+		#define db_close( FIXES_db_close(
 		#define _ALS_db_close
 	#endif
 	#if !defined _ALS_db_free_result
 		native bool:FIXES_db_free_result(DBResult:result) = db_free_result;
-		#define db_free_result( db_free_result__(
+		#define db_free_result( FIXES_db_free_result(
 		#define _ALS_db_free_result
 	#endif
 	#if !defined _ALS_db_next_row
 		native bool:FIXES_db_next_row(DBResult:result) = db_next_row;
-		#define db_next_row( db_next_row__(
+		#define db_next_row( FIXES_db_next_row(
 		#define _ALS_db_next_row
 	#endif
 	#if !defined _ALS_db_field_name
 		native bool:FIXES_db_field_name(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
-		#define db_field_name( db_field_name__(
+		#define db_field_name( FIXES_db_field_name(
 		#define _ALS_db_field_name
 	#endif
 	#if !defined _ALS_db_get_field
 		native bool:FIXES_db_get_field(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
-		#define db_get_field( db_get_field__(
+		#define db_get_field( FIXES_db_get_field(
 		#define _ALS_db_get_field
 	#endif
 	#if !defined _ALS_db_get_field_assoc
 		native bool:FIXES_db_get_field_assoc(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
-		#define db_get_field_assoc( db_get_field_assoc__(
+		#define db_get_field_assoc( FIXES_db_get_field_assoc(
 		#define _ALS_db_get_field_assoc
 	#endif
 #endif
