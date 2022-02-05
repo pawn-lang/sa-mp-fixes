@@ -6538,7 +6538,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_ENABLED(const symbol[]));
 /**
  * <fix name="camel_case">
  *     <problem>
- *         Some natives don't correctly use <c>CamelCase</c>.
+ *         Some SA:MP API natives don't correctly use <c>CamelCase</c>.
  *     </problem>
  *     <solution>
  *         Redefine them and deprecate the old versions.

@@ -209,7 +209,7 @@ TEXT_DRAW_FONT | The fonts for `TextDrawFont` are not defined by default. | Defi
 GetPlayerKeys | `GetPlayerKeys` and `OnPlayerKeyStateChange` don't actually deal with "keys", but "actions".  The defines don't correspond to real keyboard inputs, but bound game commands.  This is one of the biggest sources of confusion, even amongst intermediate coders. | Rename the functions to use `Action` instead of `Key` and deprecate the old ones. | [Y_Less](https://github.com/Y-Less) | |
 FORCE_SYNC | The sync modes for `ApplyAnimation` are not defined by default. | Define them. | [Y_Less](https://github.com/Y-Less) | |
 address_naught | When there are internal code errors that result in the wrong address being written to, more often than not that write clobbers whatever value is in address naught (`0x00000000`).  Disabled. | While we can't stop all the bad address writes there are two things we can do.  Put a dummy variable right at the start of the script so that these bad writes don't break something else, and enable address naught write detection in crashdetect. | [Y_Less](https://github.com/Y-Less) | |
-camel_case | Some natives don't correctly use `CamelCase`. | Redefine them and deprecate the old versions. | [Y_Less](https://github.com/Y-Less) | |
+camel_case | Some SA:MP API natives don't correctly use `CamelCase`. | Redefine them and deprecate the old versions. | [Y_Less](https://github.com/Y-Less) | |
 
 A few fixes are disabled by default, to enable them all do:
 
