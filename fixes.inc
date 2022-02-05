@@ -7633,7 +7633,7 @@ const Text:MAX_TEXT_DRAWS__ = Text:MAX_TEXT_DRAWS;
  * </remarks>
  */
 
-#if defined FIX_limit_tags
+#if FIX_limit_tags
 	#undef MAX_TEXT_DRAWS
 	_FIXES_CONST_PAWNDOC(MAX_TEXT_DRAWS);
 	#define MAX_TEXT_DRAWS MAX_TEXT_DRAWS__
@@ -7658,7 +7658,7 @@ const PlayerText:MAX_PLAYER_TEXT_DRAWS__ = PlayerText:MAX_PLAYER_TEXT_DRAWS;
  * </remarks>
  */
 
-#if defined FIX_limit_tags
+#if FIX_limit_tags
 	#undef MAX_PLAYER_TEXT_DRAWS
 	_FIXES_CONST_PAWNDOC(MAX_PLAYER_TEXT_DRAWS);
 	#define MAX_PLAYER_TEXT_DRAWS MAX_PLAYER_TEXT_DRAWS__
@@ -7683,7 +7683,7 @@ const Menu:MAX_MENUS__ = Menu:MAX_MENUS;
  * </remarks>
  */
 
-#if defined FIX_limit_tags
+#if FIX_limit_tags
 	#undef MAX_MENUS
 	_FIXES_CONST_PAWNDOC(MAX_MENUS);
 	#define MAX_MENUS MAX_MENUS__
@@ -7708,7 +7708,7 @@ const Text3D:MAX_3DTEXT_GLOBAL__ = Text3D:MAX_3DTEXT_GLOBAL;
  * </remarks>
  */
 
-#if defined FIX_limit_tags
+#if FIX_limit_tags
 	#undef MAX_3DTEXT_GLOBAL
 	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_GLOBAL);
 	#define MAX_3DTEXT_GLOBAL MAX_3DTEXT_GLOBAL__
@@ -7733,7 +7733,7 @@ const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
  * </remarks>
  */
 
-#if defined FIX_limit_tags
+#if FIX_limit_tags
 	#undef MAX_3DTEXT_PLAYER
 	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_PLAYER);
 	#define MAX_3DTEXT_PLAYER MAX_3DTEXT_PLAYER__
@@ -7763,7 +7763,7 @@ const PlayerText:INVALID_PLAYER_TEXT_DRAW__ = PlayerText:INVALID_PLAYER_TEXT_DRA
  * </remarks>
  */
 
-#if defined FIX_limit_tags
+#if FIX_limit_tags
 	#undef INVALID_PLAYER_TEXT_DRAW
 	_FIXES_CONST_PAWNDOC(INVALID_PLAYER_TEXT_DRAW);
 	#define INVALID_PLAYER_TEXT_DRAW INVALID_PLAYER_TEXT_DRAW__
@@ -7792,7 +7792,7 @@ const PlayerText3D:INVALID_PLAYER_3DTEXT_ID__ = PlayerText3D:INVALID_PLAYER_3DTE
  * </remarks>
  */
 
-#if defined FIX_limit_tags
+#if FIX_limit_tags
 	#undef INVALID_PLAYER_3DTEXT_ID
 	_FIXES_CONST_PAWNDOC(INVALID_PLAYER_3DTEXT_ID);
 	#define INVALID_PLAYER_3DTEXT_ID INVALID_PLAYER_3DTEXT_ID__
@@ -7817,7 +7817,7 @@ const Text3D:INVALID_3DTEXT_ID__ = Text3D:INVALID_3DTEXT_ID;
  * </remarks>
  */
 
-#if defined FIX_limit_tags
+#if FIX_limit_tags
 	#undef INVALID_3DTEXT_ID
 	_FIXES_CONST_PAWNDOC(INVALID_3DTEXT_ID);
 	#define INVALID_3DTEXT_ID INVALID_3DTEXT_ID__
@@ -7842,7 +7842,7 @@ const Menu:INVALID_MENU__ = Menu:INVALID_MENU;
  * </remarks>
  */
 
-#if defined FIX_limit_tags
+#if FIX_limit_tags
 	#undef INVALID_MENU
 	_FIXES_CONST_PAWNDOC(INVALID_MENU);
 	#define INVALID_MENU INVALID_MENU__
@@ -7867,7 +7867,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * </remarks>
  */
 
-#if defined FIX_limit_tags
+#if FIX_limit_tags
 	#undef INVALID_TEXT_DRAW
 	_FIXES_CONST_PAWNDOC(INVALID_TEXT_DRAW);
 	#define INVALID_TEXT_DRAW INVALID_TEXT_DRAW__
@@ -12766,6 +12766,11 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	// Do nothing
 #elseif _FIXES_NPC
 	// Declare variants of all NPC natives.
+
+	//
+	// a_npc
+	//
+
 	native Print__(const string[]) = print;
 	native PrintF__(const format[], {Float, _}:...) = printf;
 	native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
@@ -12803,6 +12808,10 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native PauseRecordingPlayback__() = PauseRecordingPlayback;
 	native ResumeRecordingPlayback__() = ResumeRecordingPlayback;
 #else
+	//
+	// a_samp
+	//
+
 	native Print__(const string[]) = print;
 	native PrintF__(const format[], {Float, _}:...) = printf;
 	native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format;
@@ -12964,6 +12973,11 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText;
 	native ShowPlayerDialog__(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog;
 	native GPCI__(playerid, output[], size = sizeof (output)) = gpci;
+
+	//
+	// a_vehicles
+	//
+
 	native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false) = CreateVehicle;
 	native DestroyVehicle__(vehicleid) = DestroyVehicle;
 	native bool:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn;
@@ -13008,6 +13022,11 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native SetVehicleVirtualWorld__(vehicleid, virtualWorld) = SetVehicleVirtualWorld;
 	native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld;
 	native bool:IsValidVehicle__(vehicleid) = IsValidVehicle;
+
+	//
+	// a_sampdb
+	//
+
 	native DB:DB_Open__(const name[]) = db_open;
 	native bool:DB_Close__(DB:db) = db_close;
 	native DBResult:DB_Query__(DB:db, const query[]) = db_query;
@@ -13026,6 +13045,48 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native DB_GetResultMemHandle__(DBResult:result) = db_get_result_mem_handle;
 	native DB_DebugOpenFiles__() = db_debug_openfiles;
 	native DB_DebugOpenResults__() = db_debug_openresults;
+
+	#pragma deprecated Use `DB_Open`.
+	native DB:db_open__(const name[]) = db_open;
+	#pragma deprecated Use `DB_Close`.
+	native bool:db_close__(DB:db) = db_close;
+	#pragma deprecated Use `DB_Query`.
+	native DBResult:db_query__(DB:db, const query[]) = db_query;
+	#pragma deprecated Use `DB_FreeResult`.
+	native bool:db_free_result__(DBResult:result) = db_free_result;
+	#pragma deprecated Use `DB_NumRows`.
+	native db_num_rows__(DBResult:result) = db_num_rows;
+	#pragma deprecated Use `DB_NextRow`.
+	native bool:db_next_row__(DBResult:result) = db_next_row;
+	#pragma deprecated Use `DB_NumFields`.
+	native db_num_fields__(DBResult:result) = db_num_fields;
+	#pragma deprecated Use `DB_FieldName`.
+	native bool:db_field_name__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
+	#pragma deprecated Use `DB_GetField`.
+	native bool:db_get_field__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
+	#pragma deprecated Use `DB_GetFieldInt`.
+	native db_get_field_int__(DBResult:result, field = 0) = db_get_field_int;
+	#pragma deprecated Use `DB_GetFieldFloat`.
+	native Float:db_get_field_float__(DBResult:result, field = 0) = db_get_field_float;
+	#pragma deprecated Use `DB_GetFieldAssoc`.
+	native bool:db_get_field_assoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
+	#pragma deprecated Use `DB_GetFieldAssocInt`.
+	native db_get_field_assoc_int__(DBResult:result, const field[]) = db_get_field_assoc_int;
+	#pragma deprecated Use `DB_GetFieldAssocFloat`.
+	native Float:db_get_field_assoc_float__(DBResult:result, const field[]) = db_get_field_assoc_float;
+	#pragma deprecated Use `DB_GetMemHandle`.
+	native db_get_mem_handle__(DB:db) = db_get_mem_handle;
+	#pragma deprecated Use `DB_GetResultMemHandle`.
+	native db_get_result_mem_handle__(DBResult:result) = db_get_result_mem_handle;
+	#pragma deprecated Use `DB_DebugOpenFiles`.
+	native db_debug_openfiles__() = db_debug_openfiles;
+	#pragma deprecated Use `DB_DebugOpenResults`.
+	native db_debug_openresults__() = db_debug_openresults;
+
+	//
+	// a_actor
+	//
+
 	native CreateActor__(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor;
 	native DestroyActor__(actorid) = DestroyActor;
 	native bool:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn;
@@ -13042,7 +13103,17 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native SetActorInvulnerable__(actorid, bool:invulnerable = true) = SetActorInvulnerable;
 	native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable;
 	native bool:IsValidActor__(actorid) = IsValidActor;
+
+	//
+	// a_http
+	//
+
 	native HTTP__(index, HTTP_METHOD:method, const url[], const data[], const callback[]) = HTTP;
+
+	//
+	// a_objects
+	//
+
 	native CreateObject__(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject;
 	native AttachObjectToVehicle__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle;
 	native AttachObjectToObject__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, bool:syncRotation = true) = AttachObjectToObject;
@@ -13081,6 +13152,11 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	native SetObjectMaterialText__(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText;
 	native SetPlayerObjectMaterialText__(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText;
 	native SetObjectsDefaultCameraCol__(bool:disable) = SetObjectsDefaultCameraCol;
+
+	//
+	// a_players
+	//
+
 	native SetSpawnInfo__(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo;
 	native SpawnPlayer__(playerid) = SpawnPlayer;
 	native SetPlayerPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
@@ -13279,7 +13355,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
  * <fixes>deconst</fixes>
  */
 
-#if !defined FIX_GetWeaponName && !defined FIX_LocalNPCNatives
+#if !FIX_GetWeaponName && !FIX_LocalNPCNatives
 	#if FIX_deconst
 		#if _FIXES_SAMP && defined _ALS_GetWeaponName
 			#error _ALS_GetWeaponName defined
@@ -13388,7 +13464,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
  * <fixes>defaults</fixes>
  */
 
-#if FIX_defaults && !FIX_const && !defined FIX_GetSVarString
+#if FIX_defaults && !FIX_const && !FIX_GetSVarString
 	native FIXES_GetSVarString(svar[], output[], len = sizeof (output)) = GetSVarString;
 
 	#if _FIXES_SAMP
@@ -13478,7 +13554,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>defaults</fixes>
  */
 
-#if FIX_defaults && !defined FIX_GetConsoleVarAsString
+#if FIX_defaults && !FIX_GetConsoleVarAsString.
 	#pragma deprecated Use `GetConsoleVarAsString`
 	native FIXES_GetServerVarAsString(const cvar[], value[], len = sizeof (value)) = GetServerVarAsString;
 
@@ -13494,7 +13570,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  * <fixes>defaults</fixes>
  */
 
-#if FIX_defaults && !defined FIX_GetConsoleVarAsString
+#if FIX_defaults && !FIX_GetConsoleVarAsString.
 	native FIXES_GetConsoleVarAsString(const cvar[], value[], len = sizeof (value)) = GetConsoleVarAsString;
 
 	#if _FIXES_SAMP
@@ -13662,7 +13738,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  */
 
 #if FIX_GetPlayerKeys
-	#pragma deprecated Use `GetPlayerActions`
+	#pragma deprecated Use `GetPlayerActions`.
 	native FIXES_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 
 	#if _FIXES_SAMP
@@ -24547,7 +24623,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 	#define _ALS_GetConsoleVarAsString__
 	#define GetConsoleVarAsString__( FIXES_GetConsoleVarAsString(
 
-	#pragma deprecated Use `GetConsoleVarAsString`
+	#pragma deprecated Use `GetConsoleVarAsString`.
 	stock bool:FIXES_GetServerVarAsString(const cvar[], buffer[], len = sizeof (buffer))
 	{
 		return FIXES_GetConsoleVarAsString(cvar, buffer, len);
@@ -24713,7 +24789,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define _ALS_GetConsoleVarAsBool__
 	#define GetConsoleVarAsBool__( FIXES_GetConsoleVarAsBool(
 
-	#pragma deprecated Use `GetConsoleVarAsBool`
+	#pragma deprecated Use `GetConsoleVarAsBool`.
 	stock bool:FIXES_GetServerVarAsBool(const cvar[])
 	{
 		return FIXES_GetConsoleVarAsBool(cvar);
@@ -24766,7 +24842,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define _ALS_GetConsoleVarAsFloat__
 	#define GetConsoleVarAsFloat__( FIXES_GetConsoleVarAsFloat(
 
-	#pragma deprecated Use `GetConsoleVarAsFloat`
+	#pragma deprecated Use `GetConsoleVarAsFloat`.
 	stock Float:FIXES_GetServerVarAsFloat(const cvar[])
 	{
 		return FIXES_GetConsoleVarAsFloat(cvar);
@@ -25105,6 +25181,36 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	#if !defined _ALS_TogglePlayerSpectating
 		#define TogglePlayerSpectating( TogglePlayerSpectating__(
 		#define _ALS_TogglePlayerSpectating
+	#endif
+	#if !defined _ALS_db_close
+		native bool:FIXES_db_close(DB:db) = db_close;
+		#define db_close( db_close__(
+		#define _ALS_db_close
+	#endif
+	#if !defined _ALS_db_free_result
+		native bool:FIXES_db_free_result(DBResult:result) = db_free_result;
+		#define db_free_result( db_free_result__(
+		#define _ALS_db_free_result
+	#endif
+	#if !defined _ALS_db_next_row
+		native bool:FIXES_db_next_row(DBResult:result) = db_next_row;
+		#define db_next_row( db_next_row__(
+		#define _ALS_db_next_row
+	#endif
+	#if !defined _ALS_db_field_name
+		native bool:FIXES_db_field_name(DBResult:result, field, output[], size = sizeof (output)) = db_field_name;
+		#define db_field_name( db_field_name__(
+		#define _ALS_db_field_name
+	#endif
+	#if !defined _ALS_db_get_field
+		native bool:FIXES_db_get_field(DBResult:result, field, output[], size = sizeof (output)) = db_get_field;
+		#define db_get_field( db_get_field__(
+		#define _ALS_db_get_field
+	#endif
+	#if !defined _ALS_db_get_field_assoc
+		native bool:FIXES_db_get_field_assoc(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc;
+		#define db_get_field_assoc( db_get_field_assoc__(
+		#define _ALS_db_get_field_assoc
 	#endif
 #endif
 
