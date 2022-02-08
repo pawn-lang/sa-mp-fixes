@@ -7197,9 +7197,10 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  *     </problem>
  *     <solution>
  *         While we can't stop all the bad address writes there are two things
- *         we can do.  Put a dummy variable right at the start of the script so
- *         that these bad writes don't break something else, and enable address
- *         naught write detection in crashdetect.
+ *         we can do.  Enable the anonymous automata, which is always at address
+ *         naught, and never use it so that bad writes don't break something
+ *         else, and enable address naught write detection in crashdetect.  Note
+ *         that this will have to be disabled if you use the anonymous automata.
  *     </solution>
  *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
