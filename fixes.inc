@@ -8986,31 +8986,6 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 {
 }
 
-/**
- * <remarks>
- * Ensure natives used be various fixes are included in the AMX.  Done before
- * anything else, and using multiple lines, to try and mitigate the effects of
- * ALS (these MUST include the original natives, not hooks).
- * </remarks>
- */
-
-#if _FIXES_NEW_COMPILER
-	_FIXES_HIDE_PAWNDOC(_FIXES_IncludeNatives);
-#else
-	forward _FIXES_IncludeNatives();
-
-	public _FIXES_IncludeNatives()
-	{
-		static FIXES_glEmpty[] = "";
-		// Do not put this on one line - this prevents macro replacements.
-		SetTimerEx
-			(FIXES_glEmpty, 0, false, FIXES_glEmpty);
-		// Do not put this on one line - this prevents macro replacements.
-		KillTimer
-			(0);
-	}
-#endif
-
 /*
 
     88888888888
@@ -9804,18 +9779,6 @@ _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
     88
 
 */
-
-/**
- * <remarks>
- * A variable declared very first, to get address 0.
- * </remarks>
- */
-#if FIX_address_naught
-	public
-		FIXES_address_naught;
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_address_naught);
-#endif
 
 public
 	/**
@@ -13737,6 +13700,31 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerActions);
 #endif
 
+/**
+ * <remarks>
+ * Ensure natives used be various fixes are included in the AMX.  Done before
+ * anything else, and using multiple lines, to try and mitigate the effects of
+ * ALS (these MUST include the original natives, not hooks).
+ * </remarks>
+ */
+
+#if _FIXES_NEW_COMPILER
+	_FIXES_HIDE_PAWNDOC(_FIXES_IncludeNatives);
+#else
+	forward _FIXES_IncludeNatives();
+
+	public _FIXES_IncludeNatives()
+	{
+		static FIXES_glEmpty[] = "";
+		// Do not put this on one line - this prevents macro replacements.
+		SetTimerEx
+			(FIXES_glEmpty, 0, false, FIXES_glEmpty);
+		// Do not put this on one line - this prevents macro replacements.
+		KillTimer
+			(0);
+	}
+#endif
+
 /*
 
       ,ad8888ba,
@@ -13810,6 +13798,39 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 
 /**
  * <remarks>
+ * Define some states in the anonymous automata.
+ * </remarks>
+ * <fixes>address_naught</fixes>
+ */
+
+static stock _FIXES_CatchAddressNaught() <fix_address_naught>
+{
+	// Never set this state.  It merely causes the anonymous automata (which is
+	// always located at address naught) to be included in the AMX (so we can
+	// then not use it and keep it free to catch memory errors).
+	#emit HALT         0x2E786966 // "fix." (little-endian).
+}
+
+/**
+ * <remarks>
+ * Define some states in the anonymous automata.
+ * </remarks>
+ * <fixes>address_naught</fixes>
+ */
+
+static stock _FIXES_CatchAddressNaught() <>
+{
+	// Enable crashdetect catching address naught writes.
+	#emit CONST.pri    1
+	#emit SCTRL        0xFD
+}
+
+#if !FIX_address_naught
+	#define _FIXES_CatchAddressNaught();
+#endif
+
+/**
+ * <remarks>
  * Figure out what OS this is running on.
  * </remarks>
  * <fixes>IS_WINDOWS</fixes>
@@ -13839,48 +13860,6 @@ static stock _FIXES_DetermineOS()
 	// Disable this call when not using the fix, but without putting the
 	// assembly in a conditional block.
 	#define _FIXES_DetermineOS();
-#endif
-
-/**
- * <remarks>
- * Check that <c>FIXES_address_naught</c> is actually at address naught.
- * </remarks>
- * <fixes>address_naught</fixes>
- */
-
-#if _FIXES_NEW_COMPILER
-	#pragma warning push
-	#pragma warning disable 238
-#endif
-
-static stock _FIXES_CheckAddressNaught(const &maybeAddressNaught)
-{
-	// DO NOT write to the variable in this function.  Uses `const &` again to
-	// enforce this.  There is a special version of crashdetect that will
-	// detect writes to address naught, as they often indicate a problem.  So if
-	// this code were to write to `maybeAddressNaught` here, which is (maybe)
-	// legitimately at address naught, it would trigger that error.
-	new
-		address;
-	#emit LOAD.S.pri   maybeAddressNaught
-	#emit STOR.S.pri   address
-	if (address)
-	{
-		// Not 0.
-		print("\7\7\7*** fixes.inc warning: `FIXES_address_naught` is not at address naught "),
-		print(      "***                    (`0x00000000`).  The mode will still run, but any invalid"),
-		print(      "***                    writes may clobber real data.");
-	}
-}
-
-#if _FIXES_NEW_COMPILER
-	#pragma warning pop
-#endif
-
-#if !FIX_address_naught
-	// Disable this call when not using the fix, but without putting the
-	// assembly in a conditional block.
-	#define _FIXES_CheckAddressNaught(%0);
 #endif
 
 /*
@@ -15880,7 +15859,8 @@ public OnJITCompile()
 	state _ALS : _ALS_go;
 	_FIXES_gIsJIT = true;
 	_FIXES_DetermineOS();
-	_FIXES_CheckAddressNaught(FIXES_address_naught);
+	// Don't enable address naught catches here - you can't have JIT and
+	// crashdetect together.
 
 	#if defined On_JITCompile
 		return On_JITCompile();
@@ -15922,7 +15902,7 @@ public OnJITCompile()
 		state _ALS : _ALS_go;
 		_FIXES_gIsFilterscript = false;
 		_FIXES_DetermineOS();
-		_FIXES_CheckAddressNaught(FIXES_address_naught);
+		_FIXES_CatchAddressNaught();
 		_FIXES_CheckServerRoot();
 		_FIXES_GetStreamerVersion();
 
@@ -15976,7 +15956,7 @@ public OnJITCompile()
 
 			_FIXES_gIsFilterscript = true;
 			_FIXES_DetermineOS();
-			_FIXES_CheckAddressNaught(FIXES_address_naught);
+			_FIXES_CatchAddressNaught();
 			_FIXES_CheckServerRoot();
 			_FIXES_GetStreamerVersion();
 		#if FIX_OnRconCommand || FIX_OnClientCheckResponse
@@ -16115,7 +16095,7 @@ public OnJITCompile()
 	{
 		state _ALS : _ALS_go;
 		_FIXES_DetermineOS();
-		_FIXES_CheckAddressNaught(FIXES_address_naught);
+		_FIXES_CatchAddressNaught();
 
 		// =============================
 		//  BEGIN: AllowInteriorWeapons
