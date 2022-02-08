@@ -13821,8 +13821,8 @@ static stock _FIXES_CatchAddressNaught() <fix_address_naught>
 static stock _FIXES_CatchAddressNaught() <>
 {
 	// Enable crashdetect catching address naught writes.
-	#emit CONST.pri    1
-	#emit SCTRL        0xFD
+	#emit CONST.pri    192
+	#emit SCTRL        0xFF
 }
 
 #if !FIX_address_naught
