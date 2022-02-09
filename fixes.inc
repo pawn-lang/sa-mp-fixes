@@ -7229,7 +7229,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 /**
  * <fix name="main2">
  *     <problem>
- *         <c>main</c> isn't used in filterscripts.
+ *         <c>main</c> isn't called in filterscripts.
  *     </problem>
  *     <solution>
  *         Call it.
@@ -7238,7 +7238,13 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </fix>
  */
 
-#if !defined FIX_main2
+#if _FIXES_NPC
+	#if defined FIX_main2
+		#undef FIX_main2
+	#endif
+	static stock FIX_main2 = 0;
+	#define FIX_main2                            (0)
+#elseif !defined FIX_main2
 	#define _FIXES_WARNING 140
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
@@ -7256,6 +7262,44 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#undef FIX_main2
 	static stock FIX_main2 = 0;
 	#define FIX_main2                            (0)
+#endif
+
+/**
+ * <fix name="npcmodes">
+ *     <problem>
+ *         There's no way to specify NPC modes in <c>server.cfg</c>.
+ *     </problem>
+ *     <solution>
+ *         Read <c>npcmodes</c> from the file ONCE and load them automatically.
+ *     </solution>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ * </fix>
+ */
+
+#if _FIXES_NPC
+	#if defined FIX_npcmodes
+		#undef FIX_npcmodes
+	#endif
+	static stock FIX_npcmodes = 0;
+	#define FIX_npcmodes                         (0)
+#elseif !defined FIX_npcmodes
+	#define _FIXES_WARNING 141
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_npcmodes = _FIXES_DEFAULT;
+	#define FIX_npcmodes                         _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_npcmodes)
+	#undef FIX_npcmodes
+	static stock FIX_npcmodes = 2;
+	#define FIX_npcmodes                         (2)
+#elseif FIX_npcmodes
+	#undef FIX_npcmodes
+	static stock FIX_npcmodes = 1;
+	#define FIX_npcmodes                         (1)
+#else
+	#undef FIX_npcmodes
+	static stock FIX_npcmodes = 0;
+	#define FIX_npcmodes                         (0)
 #endif
 
 /*
@@ -24554,8 +24598,11 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
  * <fixes>GetServerVarAsString</fixes>
  */
 
-#if FIX_GetConsoleVarAsString || FIX_GetConsoleVarAsFloat || FIX_GetConsoleVarAsInt || FIX_GetConsoleVarAsBool
-	stock bool:FIXES_GetConsoleVarAsString(const cvar[], buffer[], len = sizeof (buffer))
+#if FIX_GetConsoleVarAsString || FIX_GetConsoleVarAsFloat || FIX_GetConsoleVarAsInt || FIX_GetConsoleVarAsBool || FIX_npcmodes
+	#if !FIX_GetConsoleVarAsString
+		static
+	#endif
+		stock bool:FIXES_GetConsoleVarAsString(const cvar[], buffer[], len = sizeof (buffer))
 	{
 		buffer[0] = '\0';
 		if (!FIXES_gsServerCFG)
@@ -24659,6 +24706,8 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 		}
 		return true;
 	}
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_GetConsoleVarAsString);
 #endif
 
 #if FIX_GetConsoleVarAsString
