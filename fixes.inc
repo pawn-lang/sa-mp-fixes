@@ -7226,6 +7226,38 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_address_naught                   (0)
 #endif
 
+/**
+ * <fix name="main2">
+ *     <problem>
+ *         <c>main</c> isn't used in filterscripts.
+ *     </problem>
+ *     <solution>
+ *         Call it.
+ *     </solution>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_main2
+	#define _FIXES_WARNING 140
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_main2 = _FIXES_DEFAULT;
+	#define FIX_main2                            _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_main2)
+	#undef FIX_main2
+	static stock FIX_main2 = 2;
+	#define FIX_main2                            (2)
+#elseif FIX_main2
+	#undef FIX_main2
+	static stock FIX_main2 = 1;
+	#define FIX_main2                            (1)
+#else
+	#undef FIX_main2
+	static stock FIX_main2 = 0;
+	#define FIX_main2                            (0)
+#endif
+
 /*
 
     88b           d88
@@ -16056,10 +16088,22 @@ public OnJITCompile()
 			FIXES_gsSettings &= ~e_FIXES_SETTINGS_NO_GAME_TEXT;
 		#endif
 
-		#if defined On_FilterScriptInit
-			return On_FilterScriptInit();
+		#if FIX_main2 && defined main
+			#if defined On_FilterScriptInit
+				new ret = On_FilterScriptInit();
+			#endif
+				main();
+			#if defined On_FilterScriptInit
+				return ret;
+			#else
+				return 1;
+			#endif
 		#else
-			return 1;
+			#if defined On_FilterScriptInit
+				return On_FilterScriptInit();
+			#else
+				return 1;
+			#endif
 		#endif
 	}
 
@@ -16898,6 +16942,7 @@ public OnJITCompile()
 
 /**
  * <fixes>main</fixes>
+ * <fixes>main2</fixes>
  */
 
 #if FIX_main

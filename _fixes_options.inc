@@ -330,7 +330,9 @@
 #elseif _FIXES_WARNING == 138
 	#warning Option `FIX_FORCE_SYNC` must now be explicit.
 #elseif _FIXES_WARNING == 139
-	#warning Option `address_naught` must now be explicit.
+	#warning Option `FIX_address_naught` must now be explicit.
+#elseif _FIXES_WARNING == 140
+	#warning Option `FIX_main2` must now be explicit.
 #else
 	#error `_fixes_options.inc` included, but `_FIXES_WARNING` is not set to a valid warning message.
 #endif
