@@ -7666,7 +7666,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_CONST);
  * </remarks>
  */
 
-_FIXES_FUNC_PAWNDOC(_FIXES_TO_BOOL);
+_FIXES_FUNC_PAWNDOC(_FIXES_TO_BOOL(value));
 #if FIX_bool_tags
 	#define _FIXES_TO_BOOL(%0) ((%0))
 #else
@@ -24513,6 +24513,7 @@ native BAD_SetWeather(weather) = SetWeather;
  */
 
 #if FIX_API
+	_FIXES_FUNC_PAWNDOC(FIXES_ResetWeather());
 	#if _FIXES_SAMP
 		#define _ALS_ResetWeather
 		#define ResetWeather() SetWeather(10)
