@@ -73,7 +73,7 @@
 <xsl:template match="member">
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,2) = 'T:'">
-			### enum `<xsl:value-of select="substring(@name,3)"/>`:<br />
+			<br />### enum `<xsl:value-of select="substring(@name,3)"/>`:<br />
 			<xsl:apply-templates select="summary"/>
 			<xsl:if test="remarks">
 				<br />#### Remarks<br />
@@ -104,8 +104,8 @@
 			</xsl:if>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'C:'">
-			### constant `<xsl:value-of select="substring(@name,3)"/>`:<br />
-			<br /><table><tr><td class="header inline">Value</td><td class="inline"><xsl:value-of select="@value"/></td></tr></table><br />
+			<br />### constant `<xsl:value-of select="substring(@name,3)"/>`:<br /><br />
+			| **Value** | `<xsl:value-of select="@value"/>:` |<br />
 			<xsl:apply-templates select="summary"/>
 			<xsl:apply-templates select="tagname"/>
 			<xsl:apply-templates select="size"/>
@@ -132,9 +132,9 @@
 			</xsl:if>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'M:'">
-			### function `<xsl:value-of select="substring(@name,3)"/>`:<br />
+			<br />### function `<xsl:value-of select="substring(@name,3)"/>`:<br />
 			<xsl:apply-templates select="summary"/>
-			<br />#### Syntax<br />```pawn<br /><xsl:value-of select="@syntax"/><br />```<br />
+			<br />#### Syntax<br /><br />```pawn<br /><xsl:value-of select="@syntax"/><br />```<br />
 			<xsl:if test="param">
 				<br /><xsl:apply-templates select="param"/><br />
 			</xsl:if>
@@ -178,7 +178,7 @@
 			</xsl:if>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'F:'">
-			### variable `<xsl:value-of select="substring(@name,3)"/>`:<br />
+			<br />### variable `<xsl:value-of select="substring(@name,3)"/>`:<br />
 			<xsl:apply-templates select="summary"/>
 			<xsl:apply-templates select="tagname"/>
 			<xsl:if test="remarks">
@@ -223,21 +223,15 @@
 </xsl:template>
 
 <xsl:template match="paraminfo">
-	<span class="paraminfo">&lt;<xsl:apply-templates/>&gt;</span>
+	`<xsl:apply-templates/>`
 </xsl:template>
 
 <xsl:template match="tagname">
-	<br /><table><tr>
-		<td class="header inline">Tag</td>
-		<td class="inline"><xsl:value-of select="@value"/></td>
-	</tr></table><br />
+	| **Tag** | `<xsl:value-of select="@value"/>:` |<br />
 </xsl:template>
 
 <xsl:template match="size">
-	<br /><table><tr>
-		<td class="header inline">Size</td>
-		<td class="inline"><xsl:value-of select="@value"/></td>
-	</tr></table><br />
+	| **Size** | `<xsl:value-of select="@value"/>:` |<br />
 </xsl:template>
 
 <xsl:template match="returns">
@@ -353,7 +347,7 @@
 </xsl:template>
 
 <xsl:template match="synonym">
-	* <span class="symbol"><code><xsl:value-of select="@name"/></code>:</span>Synonym for <a><xsl:attribute name="href">#<xsl:value-of select="@for"/></xsl:attribute><code><xsl:value-of select="@for"/></code></a><xsl:apply-templates/>.<br />
+	* <span class="symbol">`<xsl:value-of select="@name"/>`: Synonym for `<xsl:value-of select="@for"/>`<xsl:apply-templates/>.<br />
 </xsl:template>
 
 <xsl:template match="changelog">
@@ -367,11 +361,11 @@
 <xsl:template match="fix">
 	<a><xsl:attribute name="name">FIX_<xsl:value-of select="@name"/></xsl:attribute><h2><span style="float:right; padding-right:2px">fix</span><xsl:value-of select="@name"/></h2></a>
 	<xsl:if test="@fixed">
-		<br /><b>Fixed in <xsl:value-of select="@fixed"/></b><br />
+		<br />**Fixed in <xsl:value-of select="@fixed"/>**<br />
 	</xsl:if>
 	<xsl:if test="@disabled">
 		<xsl:if test="@disabled='true'">
-			<br /><b>Disabled By Default</b><br />
+			<br />**Disabled By Default**<br />
 		</xsl:if>
 	</xsl:if>
 
