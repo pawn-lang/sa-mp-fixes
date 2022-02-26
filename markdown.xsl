@@ -3,67 +3,67 @@
 <!-- Version: $Id: pawndoc.xsl 3612 2006-07-22 09:59:46Z thiadmer $ -->
 
 <xsl:template match="/">
-<HTML>
-<HEAD>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<TITLE><xsl:value-of select="doc/assembly/name" /></TITLE>
-<STYLE type="text/css">
-	BODY { FONT-FAMILY: "Verdana", sans-serif; FONT-SIZE: x-small; }
-	CODE { FONT-SIZE: small; }
-	DL { MARGIN-LEFT: 4em; DISPLAY: compact }
-	DT { FONT-WEIGHT: bold }
-	A:link { COLOR: #4e4887 }
-	A:visited { COLOR: #8080c8 }
-	A:active { COLOR: #f16043 }
-	A:hover { COLOR: #f16043 }
-	P { MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 0.5em; MARGIN-LEFT: 4em }
-	P.noindent { MARGIN-LEFT: 0em }
-	P.syntax { FONT-WEIGHT: bold }
-	HR.para { HEIGHT: 0; BORDER: 0; COLOR: transparent; BACKGROUND-COLOR: transparent; MARGIN-TOP: 0.5em; MARGIN-BOTTOM: 0; }
-	XMP { BACKGROUND-COLOR: #ddeeff; FONT-SIZE: x-small; MARGIN: 1em }
-	PRE { BACKGROUND-COLOR: #ddeeff; FONT-SIZE: x-small; MARGIN: 1em }
-	TABLE { BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none }
-	TABLE.param { BACKGROUND-COLOR: #ddeeff; }
-	TABLE.transition { BACKGROUND-COLOR: #ddeeff; }
-	TD { BACKGROUND-COLOR: #ddeeff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: x-small; MARGIN: 2px; PADDING-BOTTOM: 2px; PADDING-LEFT: 2px; PADDING-RIGHT: 2px; PADDING-TOP: 2px; TEXT-ALIGN: left }
-	TD.header { BACKGROUND-COLOR: transparent; FONT-WEIGHT: bold; COLOR: #4e4887; WIDTH: 3.3em; PADDING-LEFT: 0px; MARGIN-BOTTOM: 0.5em }
-	TD.inline { BACKGROUND-COLOR: transparent }
-	TD.param { FONT-WEIGHT: bold; FONT-STYLE: italic; PADDING-RIGHT: 20px; }
-	TD.transition { PADDING-RIGHT: 10px; }
-	TH { BACKGROUND-COLOR: #336699; COLOR: #ddeeff; BORDER-BOTTOM: medium none; BORDER-LEFT: medium none; BORDER-RIGHT: medium none; BORDER-TOP: medium none; FONT-SIZE: x-small; MARGIN: 2px; PADDING-BOTTOM: 2px; PADDING-LEFT: 4px; PADDING-RIGHT: 4px; PADDING-TOP: 2px; TEXT-ALIGN: left }
-	UL { MARGIN-TOP: 0.5em; }
-	LI.referrer { DISPLAY: inline; PADDING-RIGHT: 8px }
-	LI.dependency { DISPLAY: inline; PADDING-RIGHT: 8px }
-	LI.seealso { DISPLAY: inline; PADDING-RIGHT: 8px }
-	LI.attribute { DISPLAY: inline; PADDING-RIGHT: 8px }
-	LI.post { DISPLAY: inline; PADDING-RIGHT: 8px }
-	LI.author { DISPLAY: inline; PADDING-RIGHT: 8px }
-	LI.fixes { DISPLAY: inline; PADDING-RIGHT: 8px }
-	LI.see { DISPLAY: inline; PADDING-RIGHT: 8px }
-	LI.changelog { DISPLAY: inline; }
-	.symbol { PADDING-RIGHT: 8px }
-	OL { MARGIN-TOP: 0.5em; }
-	SPAN.paraminfo { FONT-WEIGHT:Bold; COLOR: #336699; }
-	H1 { COLOR: #4e4887; FONT-SIZE: x-large; MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 1em; PADDING-LEFT: 4px }
-	H2 { BORDER-RIGHT: #4e4887 8px solid; BORDER-TOP: #4e4887 2px solid; COLOR: #4e4887; MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 1em; }
-	H2.general { BORDER: none; }
-	H3 { COLOR: #4e4887; FONT-SIZE: x-small; MARGIN-BOTTOM: 0.5em }
-	H4 { COLOR: #4e4887; FONT-SIZE: x-small; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em; DISPLAY: inline; MARGIN: 50px 8px 0px 0px }
-	H5 { COLOR: #4e4887; FONT-SIZE: xx-small; MARGIN-BOTTOM: 0.5em }
-	H6 { COLOR: #4e4887; FONT-SIZE: xx-small; FONT-STYLE: italic; MARGIN-BOTTOM: 0.5em }
-	DIV.library { TEXT-ALIGN: center; BORDER-RIGHT: #4e4887 8px solid; BORDER-TOP: #4e4887 2px solid; COLOR: #4e4887; MARGIN-BOTTOM: 0.5em; MARGIN-TOP: 1em; }
-	H1.library { TEXT-ALIGN: center; COLOR: #4e4887; MARGIN-TOP: 0.3em; }
-	H2.library { TEXT-ALIGN: center; BORDER: none; }
-	PRE { BACKGROUND-COLOR: #ddeeff; FONT-SIZE: small; MARGIN: 1em }
-	DIV.member-header { display: none; }
-	DIV.members > .member-header:nth-child(1) { display: block; }
-</STYLE>
-</HEAD>
-<BODY>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title><xsl:value-of select="doc/assembly/name" /></title>
+<style type="text/css">
+	body { font-family: "verdana", sans-serif; font-size: x-small; }
+	code { font-size: small; }
+	dl { margin-left: 4em; display: compact; }
+	dt { font-weight: bold; }
+	a:link { color: #4e4887; }
+	a:visited { color: #8080c8; }
+	a:active { color: #f16043; }
+	a:hover { color: #f16043; }
+	p { margin-bottom: 0.5em; margin-top: 0.5em; margin-left: 4em; }
+	p.noindent { margin-left: 0em; }
+	p.syntax { font-weight: bold; }
+	hr.para { height: 0; border: 0; color: transparent; background-color: transparent; margin-top: 0.5em; margin-bottom: 0; }
+	xmp { background-color: #ddeeff; font-size: x-small; margin: 1em; }
+	pre { background-color: #ddeeff; font-size: x-small; margin: 1em; }
+	table { border-bottom: medium none; border-left: medium none; border-right: medium none; border-top: medium none; }
+	table.param { background-color: #ddeeff; }
+	table.transition { background-color: #ddeeff; }
+	td { background-color: #ddeeff; border-bottom: medium none; border-left: medium none; border-right: medium none; border-top: medium none; font-size: x-small; margin: 2px; padding-bottom: 2px; padding-left: 2px; padding-right: 2px; padding-top: 2px; text-align: left; }
+	td.header { background-color: transparent; font-weight: bold; color: #4e4887; width: 3.3em; padding-left: 0px; margin-bottom: 0.5em; }
+	td.inline { background-color: transparent; }
+	td.param { font-weight: bold; font-style: italic; padding-right: 20px; }
+	td.transition { padding-right: 10px; }
+	th { background-color: #336699; color: #ddeeff; border-bottom: medium none; border-left: medium none; border-right: medium none; border-top: medium none; font-size: x-small; margin: 2px; padding-bottom: 2px; padding-left: 4px; padding-right: 4px; padding-top: 2px; text-align: left; }
+	ul { margin-top: 0.5em; }
+	li.referrer { display: inline; padding-right: 8px; }
+	li.dependency { display: inline; padding-right: 8px; }
+	li.seealso { display: inline; padding-right: 8px; }
+	li.attribute { display: inline; padding-right: 8px; }
+	li.post { display: inline; padding-right: 8px; }
+	li.author { display: inline; padding-right: 8px; }
+	li.fixes { display: inline; padding-right: 8px; }
+	li.see { display: inline; padding-right: 8px; }
+	li.changelog { display: inline; }
+	.symbol { padding-right: 8px; }
+	ol { margin-top: 0.5em; }
+	span.paraminfo { font-weight:bold; color: #336699; }
+	h1 { color: #4e4887; font-size: x-large; margin-bottom: 0.5em; margin-top: 1em; padding-left: 4px; }
+	h2 { border-right: #4e4887 8px solid; border-top: #4e4887 2px solid; color: #4e4887; margin-bottom: 0.5em; margin-top: 1em; }
+	h2.general { border: none; }
+	h3 { color: #4e4887; font-size: x-small; margin-bottom: 0.5em; }
+	h4 { color: #4e4887; font-size: x-small; font-style: italic; margin-bottom: 0.5em; display: inline; margin: 50px 8px 0px 0px; }
+	h5 { color: #4e4887; font-size: xx-small; margin-bottom: 0.5em; }
+	h6 { color: #4e4887; font-size: xx-small; font-style: italic; margin-bottom: 0.5em; }
+	div.library { text-align: center; border-right: #4e4887 8px solid; border-top: #4e4887 2px solid; color: #4e4887; margin-bottom: 0.5em; margin-top: 1em; }
+	h1.library { text-align: center; color: #4e4887; margin-top: 0.3em; }
+	h2.library { text-align: center; border: none; }
+	pre { background-color: #ddeeff; font-size: small; margin: 1em; }
+	div.member-header { display: none; }
+	div.members > .member-header:nth-child(1) { display: block; }
+</style>
+</head>
+<body>
 	<!-- <h1><xsl:value-of select="doc/assembly/name" /></h1> -->
 	<xsl:apply-templates select="/doc/general" />
 
-	<DIV class="members">
+	<div class="members">
 		<xsl:apply-templates select="/doc/members/member" mode="rest">
 			<xsl:with-param name="type" select="'T:'" />
 			<xsl:with-param name="title" select="'Enums'" />
@@ -83,9 +83,9 @@
 			<xsl:with-param name="type" select="'M:'" />
 			<xsl:with-param name="title" select="'Functions'" />
 		</xsl:apply-templates>
-	</DIV>
-</BODY>
-</HTML>
+	</div>
+</body>
+</html>
 </xsl:template>
 
 <xsl:template match="general">
@@ -125,8 +125,8 @@
 	<xsl:param name="title" />
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,2) = 'T:'">
-			<DIV class="member-header"><br />## <xsl:value-of select="$title" /><br /></DIV>
-			<DIV class="member-content">
+			<div class="member-header"><br />## <xsl:value-of select="$title" /><br /></div>
+			<div class="member-content">
 				<br />### `<xsl:value-of select="substring(@name,3)" />`:<br />
 				<xsl:apply-templates select="summary" />
 				<xsl:if test="remarks">
@@ -156,11 +156,11 @@
 					<br />#### See Also<br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
-			</DIV>
+			</div>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'C:'">
-			<DIV class="member-header"><br />## <xsl:value-of select="$title" /><br /></DIV>
-			<DIV class="member-content">
+			<div class="member-header"><br />## <xsl:value-of select="$title" /><br /></div>
+			<div class="member-content">
 				<br />### `<xsl:value-of select="substring(@name,3)" />`:<br /><br />
 				| **Value** | `<xsl:value-of select="@value" />:` |<br />
 				<xsl:apply-templates select="summary" />
@@ -187,11 +187,11 @@
 					<br />#### See Also<br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
-			</DIV>
+			</div>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'M:'">
-			<DIV class="member-header"><br />## <xsl:value-of select="$title" /><br /></DIV>
-			<DIV class="member-content">
+			<div class="member-header"><br />## <xsl:value-of select="$title" /><br /></div>
+			<div class="member-content">
 				<br />### `<xsl:value-of select="substring(@name,3)" />`:<br />
 				<xsl:apply-templates select="summary" />
 				<br />#### Syntax<br /><br />```pawn<br /><xsl:value-of select="@syntax" /><br />```<br />
@@ -236,14 +236,14 @@
 					<br />#### See Also<br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
-			</DIV>
+			</div>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,6) = 'F:FIX_'">
 			<!-- This does nothing, just hides fixes from variables -->
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'F:'">
-			<DIV class="member-header"><br />## <xsl:value-of select="$title" /><br /></DIV>
-			<DIV class="member-content">
+			<div class="member-header"><br />## <xsl:value-of select="$title" /><br /></div>
+			<div class="member-content">
 				<br />### `<xsl:value-of select="substring(@name,3)" />`:<br />
 				<xsl:apply-templates select="summary" />
 				<xsl:apply-templates select="tagname" />
@@ -268,7 +268,7 @@
 					<br />#### See Also<br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
-			</DIV>
+			</div>
 		</xsl:when>
 	</xsl:choose>
 </xsl:template>
@@ -395,7 +395,7 @@
 		------------------------------------------<br />
 	</xsl:if>
 	<br /><xsl:apply-templates /><br />
-	<DIV class="members">
+	<div class="members">
 		<xsl:if test="@name = 'fixes.inc'">
 			<br />## Fixes<br />
 			<xsl:apply-templates select="/doc/members/member" mode="fixes" />
@@ -424,7 +424,7 @@
 			<xsl:with-param name="type" select="'M:'" />
 			<xsl:with-param name="title" select="'Functions'" />
 		</xsl:apply-templates>
-	</DIV>
+	</div>
 
 	<br /><br />__________________________________________<br /><br />
 </xsl:template>
