@@ -55,31 +55,35 @@
 	H1.library { TEXT-ALIGN: center; COLOR: #4e4887; MARGIN-TOP: 0.3em; }
 	H2.library { TEXT-ALIGN: center; BORDER: none; }
 	PRE { BACKGROUND-COLOR: #ddeeff; FONT-SIZE: small; MARGIN: 1em }
+	DIV.member-header { display: none; }
+	DIV.members > .member-header:nth-child(1) { display: block; }
 </STYLE>
 </HEAD>
 <BODY>
 	<!-- <h1><xsl:value-of select="doc/assembly/name" /></h1> -->
 	<xsl:apply-templates select="/doc/general" />
 
-	<br />## Enums<br />
-	<xsl:apply-templates select="/doc/members/member" mode="rest">
-		<xsl:with-param name="type" select="'T:'" />
-	</xsl:apply-templates>
+	<DIV class="members">
+		<xsl:apply-templates select="/doc/members/member" mode="rest">
+			<xsl:with-param name="type" select="'T:'" />
+			<xsl:with-param name="title" select="'Enums'" />
+		</xsl:apply-templates>
 
-	<br />## Constants<br />
-	<xsl:apply-templates select="/doc/members/member" mode="rest">
-		<xsl:with-param name="type" select="'C:'" />
-	</xsl:apply-templates>
+		<xsl:apply-templates select="/doc/members/member" mode="rest">
+			<xsl:with-param name="type" select="'C:'" />
+			<xsl:with-param name="title" select="'Constants'" />
+		</xsl:apply-templates>
 
-	<br />## Variables<br />
-	<xsl:apply-templates select="/doc/members/member" mode="rest">
-		<xsl:with-param name="type" select="'F:'" />
-	</xsl:apply-templates>
+		<xsl:apply-templates select="/doc/members/member" mode="rest">
+			<xsl:with-param name="type" select="'F:'" />
+			<xsl:with-param name="title" select="'Variables'" />
+		</xsl:apply-templates>
 
-	<br />## Functions<br />
-	<xsl:apply-templates select="/doc/members/member" mode="rest">
-		<xsl:with-param name="type" select="'M:'" />
-	</xsl:apply-templates>
+		<xsl:apply-templates select="/doc/members/member" mode="rest">
+			<xsl:with-param name="type" select="'M:'" />
+			<xsl:with-param name="title" select="'Functions'" />
+		</xsl:apply-templates>
+	</DIV>
 </BODY>
 </HTML>
 </xsl:template>
@@ -92,9 +96,10 @@
 <xsl:template match="member[library]" mode="library">
 	<xsl:param name="library" />
 	<xsl:param name="type" />
-	<xsl:if test="library = $library">
+	<xsl:param name="title" select="''" />
+	<xsl:if test="library = $library and substring(@name,1,2) = $type">
 		<xsl:apply-templates select="." mode="full">
-			<xsl:with-param name="type" select="$type" />
+			<xsl:with-param name="title" select="$title" />
 		</xsl:apply-templates>
 	</xsl:if>
 </xsl:template>
@@ -108,16 +113,20 @@
 
 <xsl:template match="member[not(library)]" mode="rest">
 	<xsl:param name="type" />
-	<xsl:apply-templates select="." mode="full">
-		<xsl:with-param name="type" select="$type" />
-	</xsl:apply-templates>
+	<xsl:param name="title" select="''" />
+	<xsl:if test="substring(@name,1,2) = $type">
+		<xsl:apply-templates select="." mode="full">
+			<xsl:with-param name="title" select="$title" />
+		</xsl:apply-templates>
+	</xsl:if>
 </xsl:template>
 
 <xsl:template match="member" mode="full">
-	<xsl:param name="type" />
-	<xsl:if test="substring(@name,1,2) = $type">
-		<xsl:choose>
-			<xsl:when test="substring(@name,1,2) = 'T:'">
+	<xsl:param name="title" />
+	<xsl:choose>
+		<xsl:when test="substring(@name,1,2) = 'T:'">
+			<DIV class="member-header"><br />## <xsl:value-of select="$title" /><br /></DIV>
+			<DIV class="member-content">
 				<br />### `<xsl:value-of select="substring(@name,3)" />`:<br />
 				<xsl:apply-templates select="summary" />
 				<xsl:if test="remarks">
@@ -147,8 +156,11 @@
 					<br />#### See Also<br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
-			</xsl:when>
-			<xsl:when test="substring(@name,1,2) = 'C:'">
+			</DIV>
+		</xsl:when>
+		<xsl:when test="substring(@name,1,2) = 'C:'">
+			<DIV class="member-header"><br />## <xsl:value-of select="$title" /><br /></DIV>
+			<DIV class="member-content">
 				<br />### `<xsl:value-of select="substring(@name,3)" />`:<br /><br />
 				| **Value** | `<xsl:value-of select="@value" />:` |<br />
 				<xsl:apply-templates select="summary" />
@@ -175,8 +187,11 @@
 					<br />#### See Also<br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
-			</xsl:when>
-			<xsl:when test="substring(@name,1,2) = 'M:'">
+			</DIV>
+		</xsl:when>
+		<xsl:when test="substring(@name,1,2) = 'M:'">
+			<DIV class="member-header"><br />## <xsl:value-of select="$title" /><br /></DIV>
+			<DIV class="member-content">
 				<br />### `<xsl:value-of select="substring(@name,3)" />`:<br />
 				<xsl:apply-templates select="summary" />
 				<br />#### Syntax<br /><br />```pawn<br /><xsl:value-of select="@syntax" /><br />```<br />
@@ -221,11 +236,14 @@
 					<br />#### See Also<br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
-			</xsl:when>
-			<xsl:when test="substring(@name,1,6) = 'F:FIX_'">
-				<!-- This does nothing, just hides fixes from variables -->
-			</xsl:when>
-			<xsl:when test="substring(@name,1,2) = 'F:'">
+			</DIV>
+		</xsl:when>
+		<xsl:when test="substring(@name,1,6) = 'F:FIX_'">
+			<!-- This does nothing, just hides fixes from variables -->
+		</xsl:when>
+		<xsl:when test="substring(@name,1,2) = 'F:'">
+			<DIV class="member-header"><br />## <xsl:value-of select="$title" /><br /></DIV>
+			<DIV class="member-content">
 				<br />### `<xsl:value-of select="substring(@name,3)" />`:<br />
 				<xsl:apply-templates select="summary" />
 				<xsl:apply-templates select="tagname" />
@@ -250,9 +268,9 @@
 					<br />#### See Also<br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
-			</xsl:when>
-		</xsl:choose>
-	</xsl:if>
+			</DIV>
+		</xsl:when>
+	</xsl:choose>
 </xsl:template>
 
 <!-- Show the list of fixes first -->
@@ -377,42 +395,36 @@
 		------------------------------------------<br />
 	</xsl:if>
 	<br /><xsl:apply-templates /><br />
-	<xsl:if test="@name = 'fixes.inc'">
-		<br />## Fixes<br />
-		<xsl:apply-templates select="/doc/members/member" mode="fixes" />
-	</xsl:if>
+	<DIV class="members">
+		<xsl:if test="@name = 'fixes.inc'">
+			<br />## Fixes<br />
+			<xsl:apply-templates select="/doc/members/member" mode="fixes" />
+		</xsl:if>
 
-	<xsl:if test="/doc/members/member[library = @name and substring(@name,1,2) = 'T:']">
-		<br />## Enums<br />
 		<xsl:apply-templates select="/doc/members/member" mode="library">
 			<xsl:with-param name="library" select="@name" />
 			<xsl:with-param name="type" select="'T:'" />
+			<xsl:with-param name="title" select="'Enums'" />
 		</xsl:apply-templates>
-	</xsl:if>
 
-	<xsl:if test="/doc/members/member[library = @name and substring(@name,1,2) = 'C:']">
-	<br />## Constants<br />
-	<xsl:apply-templates select="/doc/members/member" mode="library">
-		<xsl:with-param name="library" select="@name" />
-		<xsl:with-param name="type" select="'C:'" />
-	</xsl:apply-templates>
-	</xsl:if>
+		<xsl:apply-templates select="/doc/members/member" mode="library">
+			<xsl:with-param name="library" select="@name" />
+			<xsl:with-param name="type" select="'C:'" />
+			<xsl:with-param name="title" select="'Constants'" />
+		</xsl:apply-templates>
 
-	<xsl:if test="/doc/members/member[library = @name and substring(@name,1,2) = 'F:']">
-		<br />## Variables<br />
 		<xsl:apply-templates select="/doc/members/member" mode="library">
 			<xsl:with-param name="library" select="@name" />
 			<xsl:with-param name="type" select="'F:'" />
+			<xsl:with-param name="title" select="'Variables'" />
 		</xsl:apply-templates>
-	</xsl:if>
 
-	<xsl:if test="/doc/members/member[library = @name and substring(@name,1,2) = 'M:']">
-		<br />## Functions<br />
 		<xsl:apply-templates select="/doc/members/member" mode="library">
 			<xsl:with-param name="library" select="@name" />
 			<xsl:with-param name="type" select="'M:'" />
+			<xsl:with-param name="title" select="'Functions'" />
 		</xsl:apply-templates>
-	</xsl:if>
+	</DIV>
 
 	<br /><br />__________________________________________<br /><br />
 </xsl:template>
