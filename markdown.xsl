@@ -70,12 +70,12 @@
 	<xsl:apply-templates select="/doc/members/member" mode="rest">
 		<xsl:with-param name="type" select="'C:'" />
 	</xsl:apply-templates>
-	
+
 	<br />## Variables<br />
 	<xsl:apply-templates select="/doc/members/member" mode="rest">
 		<xsl:with-param name="type" select="'F:'" />
 	</xsl:apply-templates>
-	
+
 	<br />## Functions<br />
 	<xsl:apply-templates select="/doc/members/member" mode="rest">
 		<xsl:with-param name="type" select="'M:'" />
@@ -381,30 +381,38 @@
 		<br />## Fixes<br />
 		<xsl:apply-templates select="/doc/members/member" mode="fixes" />
 	</xsl:if>
-	
-	<br />## Enums<br />
-	<xsl:apply-templates select="/doc/members/member" mode="library">
-		<xsl:with-param name="library" select="@name" />
-		<xsl:with-param name="type" select="'T:'" />
-	</xsl:apply-templates>
 
+	<xsl:if test="/doc/members/member[library = @name and substring(@name,1,2) = 'T:']">
+		<br />## Enums<br />
+		<xsl:apply-templates select="/doc/members/member" mode="library">
+			<xsl:with-param name="library" select="@name" />
+			<xsl:with-param name="type" select="'T:'" />
+		</xsl:apply-templates>
+	</xsl:if>
+
+	<xsl:if test="/doc/members/member[library = @name and substring(@name,1,2) = 'C:']">
 	<br />## Constants<br />
 	<xsl:apply-templates select="/doc/members/member" mode="library">
 		<xsl:with-param name="library" select="@name" />
 		<xsl:with-param name="type" select="'C:'" />
 	</xsl:apply-templates>
-	
-	<br />## Variables<br />
-	<xsl:apply-templates select="/doc/members/member" mode="library">
-		<xsl:with-param name="library" select="@name" />
-		<xsl:with-param name="type" select="'F:'" />
-	</xsl:apply-templates>
-	
-	<br />## Functions<br />
-	<xsl:apply-templates select="/doc/members/member" mode="library">
-		<xsl:with-param name="library" select="@name" />
-		<xsl:with-param name="type" select="'M:'" />
-	</xsl:apply-templates>
+	</xsl:if>
+
+	<xsl:if test="/doc/members/member[library = @name and substring(@name,1,2) = 'F:']">
+		<br />## Variables<br />
+		<xsl:apply-templates select="/doc/members/member" mode="library">
+			<xsl:with-param name="library" select="@name" />
+			<xsl:with-param name="type" select="'F:'" />
+		</xsl:apply-templates>
+	</xsl:if>
+
+	<xsl:if test="/doc/members/member[library = @name and substring(@name,1,2) = 'M:']">
+		<br />## Functions<br />
+		<xsl:apply-templates select="/doc/members/member" mode="library">
+			<xsl:with-param name="library" select="@name" />
+			<xsl:with-param name="type" select="'M:'" />
+		</xsl:apply-templates>
+	</xsl:if>
 
 	<br /><br />__________________________________________<br /><br />
 </xsl:template>
