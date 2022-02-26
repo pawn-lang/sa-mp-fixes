@@ -323,10 +323,10 @@
 <xsl:template match="subsection"><br />### <xsl:apply-templates /><br /></xsl:template>
 
 <xsl:template match="library">
-	&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<xsl:value-of select="@name" /><br />
+	<xsl:value-of select="@name" /><br />
 	==========================================<br />
 	<xsl:if test="@description">
-		<br />&#160;&#160;&#160;&#160;<xsl:value-of select="@description" /><br />
+		<br /><xsl:value-of select="@description" /><br />
 		------------------------------------------<br />
 	</xsl:if>
 	<xsl:apply-templates />
