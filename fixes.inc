@@ -468,6 +468,7 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * True on the first pass of the compiler, and not on any others.  This is the
  * pass of the compiler in which functions are collected, so that later passes
@@ -487,6 +488,7 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Creates fake functions that Pawndoc comments can be attached to in the first
  * compilation phase, before the real macros are created.  Macros can't have
@@ -528,6 +530,7 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 _FIXES_FUNC_PAWNDOC(FUNC_PAWNDOC(const symbol[]));
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Creates fake constants that Pawndoc comments can be attached to in the first
  * compilation phase, before the real macros are created.  Macros can't have
@@ -562,6 +565,7 @@ _FIXES_FUNC_PAWNDOC(FUNC_PAWNDOC(const symbol[]));
 _FIXES_FUNC_PAWNDOC(CONST_PAWNDOC(const symbol[]));
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Create a <c>const</c> that is never used, which has pawndoc documentation
  * attached to it.  This seems to be the best way to prevent the documentation
@@ -581,6 +585,7 @@ _FIXES_FUNC_PAWNDOC(HIDE_PAWNDOC(const symbol[]));
 #define _FIXES_HIDE_PAWNDOC(%0); const %0 = 0;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * There's a bug with the pawndoc for enums.  They loose the documentation, or
  * get some other documentation unless they're immediately followed by another
@@ -594,6 +599,7 @@ _FIXES_FUNC_PAWNDOC(ENUM_PAWNDOC(const symbol[]));
 #define _FIXES_ENUM_PAWNDOC(%0); static stock %0:_@%0() { return %0; }
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Use this after all other pawndoc fixes to finish off the <c>PAWNDOC</c>
  * function in the current file.
@@ -609,6 +615,7 @@ _FIXES_FUNC_PAWNDOC(CLOSE_PAWNDOC());
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * <p>Test if something is defined, but without a value.  For example:</p>
  *
@@ -657,6 +664,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 */
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Require settings to be explicitly enabled or disabled, and show a warning for
  * every setting not mentioned.
@@ -695,6 +703,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Enable everything, even things that probably shouldn't be enabled.
  * </remarks>
@@ -721,6 +730,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Enable all deprecated fixes (those that are no longer needed because they
  * were fixed in later server revisions).  Might causes errors and conflicts
@@ -749,6 +759,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Disable all fixes by default, and require them to be individually enabled
  * with <c>#define FIX_&lt;name&gt; 1</c>.
@@ -781,6 +792,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Require fixes to be explicitly enabled or disabled, and show a warning for
  * every fix not mentioned.  Useful in combination with
@@ -820,6 +832,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * If this define is set to 1, then players will not be given a message when
  * they are kicked for cheats (mainly invalid vehicles and mods), instead they
@@ -848,6 +861,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * If this define is set to 1, then debug printing is turned on for any
  * functions which may use it.  Otherwise, the compiler entirely removes the
@@ -880,6 +894,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * If this define is set to 1, then the old style include is used, with no
  * support for multiple scripts running at the same time on the server.  You
@@ -911,6 +926,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Hide a message at mode start if <c>FIXES_Single</c> is set, but this is NOT
  * the only script running <emph>fixes.inc</emph>.  This will entirely disable
@@ -940,6 +956,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * If this define is set to 1, then the server will not give a message when
  * <see>GetServerVarAsString</see> and related functions are used without a
@@ -968,6 +985,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * If this define is set to 1, then the server will not give a message when
  * <see>GetMaxPlayers</see> doesn't match <c>MAX_PLAYERS</c>.
@@ -995,6 +1013,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * If this define is set to 1, then compiling with <c>-r</c> will attempt to
  * hide as many of the functions and variables in fixes.inc from the output XML
@@ -1025,6 +1044,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * You know that an invalid timer is ID <c>0</c>, not <c>-1</c>, so exclude the
  * excess code designed to warn about/detect people using <c>-1</c>.
@@ -1052,6 +1072,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * fixes.inc doesn't need YSI.  YSI doesn't need fixes.inc.  However, they are
  * both written to be aware of each other and adapt accordingly.  For example,
@@ -1086,6 +1107,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Most vehicles are created with two explicit colours (say <c>5, 6</c>) or two
  * random colours (<c>-1, -1</c>).  It is allowed, but rare, to create a vehicle
@@ -1127,6 +1149,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Hide a message at vehicle creation if <c>FIXES_OneRandomVehicleColour</c>
  * is set, but a vehicle is created with only one random colour.
@@ -1164,6 +1187,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Load several filterscripts until one fails, to determine the number of
  * previously loaded filterscripts.
@@ -1191,6 +1215,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Hide the message about loading filterscripts and the ignorable errors.
  * </remarks>
@@ -1236,6 +1261,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 // Controls multiple other fixes.
 /**
+ * <library>fixes.inc</library>
  * <fix name="API">
  *     <problem>
  *         fixes.inc isn't intended to extend the SA:MP API, but has a lot of
@@ -1272,6 +1298,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 // Controls multiple other fixes.
 /**
+ * <library>fixes.inc</library>
  * <fix name="Natives">
  *     <problem>
  *         Several natives are included by default, this enables or disables
@@ -1308,6 +1335,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerColour">
  *     <problem>
  *         Returns "0" if "SetPlayerColor" has never been called.
@@ -1356,6 +1384,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="FILTERSCRIPT">
  *     <problem>
  *         Despite the fact that is in every new script, many people dont'
@@ -1392,6 +1421,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SpawnPlayer">
  *     <problem>
  *         Kills the player if they are in a vehicle.
@@ -1431,6 +1461,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetPlayerName">
  *     <problem>
  *         Using "SetPlayerName" when the new name only differs from the old
@@ -1475,6 +1506,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerSkin">
  *     <problem>
  *         Returns the new skin after "SetSpawnInfo" is called but before the
@@ -1518,6 +1550,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetWeaponName" fixed="0.3.7">
  *     <problem>
  *         Returns nothing for 18, 44, and 45.
@@ -1558,6 +1591,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetPlayerWorldBounds">
  *     <problem>
  *         Aiming can bypass the edge.
@@ -1599,6 +1633,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="TogglePlayerControllable">
  *     <problem>
  *         Other players see you moving on the spot.
@@ -1652,6 +1687,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="HydraSniper">
  *     <problem>
  *         Entering military aircraft with a sniper rifle messes up views.
@@ -1694,6 +1730,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="IsPlayerInCheckpoint">
  *     <problem>
  *         Function returns an undefined value if it is called before any other
@@ -1734,6 +1771,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="IsPlayerInRaceCheckpoint">
  *     <problem>
  *         Function returns an undefined value if it is called before any other
@@ -1774,6 +1812,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerWeapon">
  *     <problem>
  *         Returns the old value after entering in a vehicle.
@@ -1819,6 +1858,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="PutPlayerInVehicle">
  *     <problem>
  *         If this is used on a passenger the driver of their old vehicle
@@ -1862,6 +1902,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="KEY_AIM">
  *     <problem>
  *         "KEY_AIM" isn't defined by default.
@@ -1906,6 +1947,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SPECIAL_ACTION_PISSING">
  *     <problem>
  *         "SPECIAL_ACTION_PISSING" isn't defined by default.
@@ -1950,6 +1992,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="IsValidVehicle">
  *     <problem>
  *         "IsValidVehicle" isn't defined by default.
@@ -2000,6 +2043,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetGravity">
  *     <problem>
  *         "GetGravity" isn't defined by default.
@@ -2051,6 +2095,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="gpci">
  *     <problem>
  *         "gpci" isn't defined by default.
@@ -2102,6 +2147,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="WEAPONS">
  *     <problem>
  *         Some weapons are not defined by default.
@@ -2146,6 +2192,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="BODYPARTS">
  *     <problem>
  *         The bodyparts to be used in OnPlayer(Take/Give)Damage are not defined
@@ -2191,6 +2238,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="CAMERAMODES">
  *     <problem>
  *         The camera modes for GetPlayerCameraMode are not defined by default.
@@ -2236,6 +2284,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="DriveBy">
  *     <problem>
  *         If you press KEY_CROUCH while you're passenger and if you are armed,
@@ -2277,6 +2326,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SilentTeleport">
  *     <problem>
  *         Player teleports silently while trying to enter a vehicle as that
@@ -2319,6 +2369,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetPlayerCheckpoint">
  *     <problem>
  *         If a checkpoint is already set it will use the size of that
@@ -2359,6 +2410,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetPlayerRaceCheckpoint">
  *     <problem>
  *         If a checkpoint is already set it will use the size of that
@@ -2399,6 +2451,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="TextDrawCreate">
  *     <problem>
  *         Crashes on a blank string.
@@ -2438,6 +2491,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="AttachTrailerToVehicle">
  *     <problem>
  *         When trailerid is equal to vehicleid and passenger is in vehicleid,
@@ -2478,6 +2532,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetVehicleComponentInSlot">
  *     <problem>
  *         The function GetVehicleComponentInSlot doesn't work for
@@ -2525,6 +2580,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="TextDrawCreate_2">
  *     <problem>
  *         If the last character in the text is a space (" "), the text will all
@@ -2566,6 +2622,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="TextDrawSetString">
  *     <problem>
  *         Crashes on a blank string and size greater than 1024.
@@ -2605,6 +2662,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="TextDrawSetString_2">
  *     <problem>
  *         If the last character in the text is a space (" "), the text will all
@@ -2646,6 +2704,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="AllowInteriorWeapons">
  *     <problem>
  *         Does nothing.
@@ -2687,6 +2746,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnPlayerEnterVehicle">
  *     <problem>
  *         Crashes other players when people enter an invalid seat.
@@ -2742,6 +2802,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnPlayerEnterVehicle_2">
  *     <problem>
  *         Crashes the server when hacks enter an invalid vehicle.
@@ -2782,6 +2843,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnPlayerEnterVehicle_3">
  *     <problem>
  *         No player animation when trying to enter the driver door of a locked
@@ -2825,6 +2887,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="AllowTeleport">
  *     <problem>
  *         0.3dRC9 removed "AllowPlayerTeleport" and "AllowAdminTeleport" in
@@ -2879,6 +2942,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetPlayerSpecialAction">
  *     <problem>
  *         Removing jetpacks from players by setting their special action to 0
@@ -2919,6 +2983,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="ClearAnimations">
  *     <problem>
  *         Use ClearAnimation while you are in a vehicle cause the player exit
@@ -2959,6 +3024,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="ClearAnimations_2">
  *     <problem>
  *         ClearAnimations doesn't do anything when the animation ends if we
@@ -2999,6 +3065,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GangZoneCreate">
  *     <problem>
  *         Gang zones bug on the main map for players at certain angles relative
@@ -3040,6 +3107,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnDialogResponse" fixed="0.3e RC6">
  *     <problem>
  *         Cheaters can spoof the dialogid they are using to respond to ones
@@ -3093,6 +3161,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerDialog" disabled="true">
  *     <problem>
  *         This function doesn't exist.  Fixed for hidden dialogs.
@@ -3145,6 +3214,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="PlayerDialogResponse">
  *     <problem>
  *         A player's dialog doesn't hide when the gamemode restarts, causing
@@ -3187,6 +3257,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetSpawnInfo">
  *     <problem>
  *         Kicks the player if "SpawnPlayer" is called before "SetSpawnInfo".
@@ -3238,6 +3309,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetSpawnInfo_2">
  *     <problem>
  *         Does not set the correct team after spawn.
@@ -3278,6 +3350,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetPlayerSkin">
  *     <problem>
  *         Breaks sitting on bikes.
@@ -3318,6 +3391,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="valstr">
  *     <problem>
  *         Crashes on large numbers.
@@ -3351,6 +3425,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="file_inc" disabled="true">
  *     <problem>
  *         Includes or excludes all the file function fixes together (can cause
@@ -3385,6 +3460,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="fclose">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -3415,6 +3491,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="fwrite">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -3445,6 +3522,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="fread">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -3475,6 +3553,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="fputchar">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -3505,6 +3584,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="fgetchar">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -3535,6 +3615,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="fblockwrite">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -3565,6 +3646,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="fblockread">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -3595,6 +3677,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="fseek">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -3625,6 +3708,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="flength">
  *     <problem>
  *         Crashes on an invalid handle.
@@ -3655,6 +3739,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetPlayerAttachedObject">
  *     <problem>
  *         Doesn't remove objects when the mode ends.
@@ -3694,6 +3779,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnPlayerDeath">
  *     <problem>
  *         Clients get stuck when they die with an animation applied.
@@ -3735,6 +3821,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="strins">
  *     <problem>
  *         Ignores the "maxlength" parameter causing possible crashes.
@@ -3769,6 +3856,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="IsPlayerConnected">
  *     <problem>
  *         Only uses the lower two bytes of a passed ID.
@@ -3802,6 +3890,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="TrainExit">
  *     <problem>
  *         When getting out of a train entered by "PutPlayerInVehicle", the
@@ -3844,6 +3933,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="Kick" fixed="0.3x">
  *     <problem>
  *         Calling "Kick" in "OnPlayerConnect" doesn't work properly.
@@ -3897,6 +3987,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnVehicleMod">
  *     <problem>
  *         Crashes other players when invalid mods are applied.
@@ -3938,6 +4029,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="random" disabled="true">
  *     <problem>
  *         Doesn't work with negative numbers.
@@ -3971,6 +4063,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="sleep">
  *     <problem>
  *         Leaks bytes from the stack.
@@ -4004,6 +4097,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="Menus">
  *     <problem>
  *         All menu function fixes are included separately for major overhead.
@@ -4044,6 +4138,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="AddMenuItem">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -4083,6 +4178,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetMenuColumnHeader">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -4122,6 +4218,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="ShowMenuForPlayer">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -4161,6 +4258,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="HideMenuForPlayer">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -4201,6 +4299,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerMenu">
  *     <problem>
  *         Returns previous menu when none is displayed.
@@ -4241,6 +4340,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="HideMenuForPlayer_2" disabled="true">
  *     <problem>
  *         Ignores the "menuid" parameter.
@@ -4282,6 +4382,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="DisableMenu">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -4321,6 +4422,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="DisableMenuRow">
  *     <problem>
  *         Crashes when passed an invalid menu ID.
@@ -4360,6 +4462,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerInterior">
  *     <problem>
  *         Always returns 0 for NPCs.
@@ -4401,6 +4504,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="ApplyAnimation">
  *     <problem>
  *         Passing an invalid animation library in ApplyAnimation causes a
@@ -4441,6 +4545,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="ApplyAnimation_2">
  *     <problem>
  *         First time a library is used, it does nothing.
@@ -4482,6 +4587,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="ApplyActorAnimation">
  *     <problem>
  *         Passing an invalid animation library in ApplyAnimation causes a
@@ -4523,6 +4629,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="ApplyActorAnimation_2">
  *     <problem>
  *         First time a library is used, it does nothing.
@@ -4565,6 +4672,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnPlayerSpawn">
  *     <problem>
  *         San Andreas deducts $100 from players.
@@ -4604,6 +4712,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GameText">
  *     <problem>
  *         Several styles do not display for the time specified.
@@ -4644,6 +4753,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="HideGameText">
  *     <problem>
  *         There is no "HideGameTextForXYZ" function.
@@ -4696,6 +4806,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerWorldBounds">
  *     <problem>
  *         There is no "GetPlayerWorldBounds" function.
@@ -4747,6 +4858,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="ClearPlayerWorldBounds">
  *     <problem>
  *         There is no "ClearPlayerWorldBounds" function.
@@ -4798,6 +4910,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GameTextStyles" disabled="true">
  *     <problem>
  *         San Andreas has fixed styles for area and vehicle names, but they are
@@ -4842,6 +4955,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnPlayerConnect">
  *     <problem>
  *         This function isn't called for players when a filterscript starts.
@@ -4881,6 +4995,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnPlayerDisconnect">
  *     <problem>
  *         This function isn't called for players when a filterscript ends.
@@ -4920,6 +5035,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="CreatePlayerTextDraw">
  *     <problem>
  *         Crashes on a blank string.
@@ -4960,6 +5076,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="CreatePlayerTextDraw_2">
  *     <problem>
  *         If the last character in the text is a space (" "), the text will all
@@ -5001,6 +5118,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="PlayerTextDrawSetString">
  *     <problem>
  *         Crashes on a blank string and size greater than 1024.
@@ -5041,6 +5159,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="PlayerTextDrawSetString_2">
  *     <problem>
  *         If the last character in the text is a space (" "), the text will all
@@ -5082,6 +5201,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetPlayerCamera">
  *     <problem>
  *         Using the camera functions directly after enabling spectator mode
@@ -5124,6 +5244,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetPlayerTime">
  *     <problem>
  *         Using this function under "OnPlayerConnect" doesn't work.
@@ -5163,6 +5284,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnPlayerRequestClass">
  *     <problem>
  *         Random blunts and bottles sometimes appear in class selection.
@@ -5202,6 +5324,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetPlayerColour">
  *     <problem>
  *         If used under OnPlayerConnect, the affecting player will not see the
@@ -5252,6 +5375,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="FileMaths">
  *     <problem>
  *         You can write gibberish like "File:a; ++a;".
@@ -5285,6 +5409,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerWeaponData">
  *     <problem>
  *         Old weapons with no ammo left are still returned.
@@ -5325,6 +5450,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="strcmp">
  *     <problem>
  *         Return 0 if anyone of the string is empty.
@@ -5358,6 +5484,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPVarString">
  *     <problem>
  *         Wrong symbol code for symbols with code 128 and above.
@@ -5401,6 +5528,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetSVarString">
  *     <problem>
  *         Wrong symbol code for symbols with code 128 and above.
@@ -5444,6 +5572,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="toupper">
  *     <problem>
  *         Not working on Linux for symbols with code 128 and above.
@@ -5478,6 +5607,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="tolower">
  *     <problem>
  *         Not working on Linux for symbols with code 128 and above.
@@ -5512,6 +5642,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="ispacked">
  *     <problem>
  *         Returns false when the string is packed and starts with a symbol
@@ -5547,6 +5678,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="PassengerSeating">
  *     <problem>
  *         Teleporting player to passenger seat after delay.
@@ -5587,6 +5719,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GogglesSync">
  *     <problem>
  *         Visual effects show for all players.
@@ -5626,6 +5759,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerPoolSize">
  *     <problem>
  *         Returns "0" even if there are no players on the server.
@@ -5665,6 +5799,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetPlayerPos">
  *     <problem>
  *         Using this function on skydiving players kills them.
@@ -5705,6 +5840,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerAmmo">
  *     <problem>
  *         Returns erroneous values over 32767 and under -32768 due to overflow.
@@ -5746,6 +5882,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="JIT">
  *     <problem>
  *         Can't easily determine if the script is JIT compiled.
@@ -5785,6 +5922,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OS">
  *     <problem>
  *         Can't easily determine what OS the script is running on.
@@ -5818,6 +5956,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="const">
  *     <problem>
  *         Some SA-MP natives don't use "const" when they could.
@@ -5851,6 +5990,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="VEHICLES">
  *     <problem>
  *         The vehicle models IDs are not defined by default.
@@ -5895,6 +6035,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerWeather" disabled="true">
  *     <problem>
  *         This function doesn't exist.
@@ -5947,6 +6088,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetWeather" disabled="true">
  *     <problem>
  *         This function doesn't exist.
@@ -5999,6 +6141,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetWorldTime" disabled="true">
  *     <problem>
  *         This function doesn't exist.
@@ -6050,6 +6193,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetConsoleVarAsString">
  *     <problem>
  *         Crashes on unknown string variables.
@@ -6094,6 +6238,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetConsoleVarAsInt">
  *     <problem>
  *         Crashes on unknown int variables.
@@ -6138,6 +6283,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetConsoleVarAsBool">
  *     <problem>
  *         Crashes on unknown boolean variables.
@@ -6182,6 +6328,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetConsoleVarAsFloat">
  *     <problem>
  *         Doesn't even exist.
@@ -6246,6 +6393,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="tabsize">
  *     <problem>
  *         Some people still use <c>tabsize 0</c>.
@@ -6280,6 +6428,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="Callbacks">
  *     <problem>
  *         Several callbacks only work in filterscripts first.
@@ -6319,6 +6468,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnRconCommand">
  *     <problem>
  *         Is not called in the gamemode unless first called in a filterscript.
@@ -6358,6 +6508,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnClientCheckResponse">
  *     <problem>
  *         Is not called in the gamemode ever.
@@ -6397,6 +6548,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetMaxPlayers">
  *     <problem>
  *         If this is > MAX_PLAYERS, can cause OOBs in code.
@@ -6430,6 +6582,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="BypassDialog">
  *     <problem>
  *         You can type commands and move while in dialogs.
@@ -6472,6 +6625,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="SetTimer">
  *     <problem>
  *         Valid timers can return ID 0.
@@ -6506,6 +6660,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="main">
  *     <problem>
  *         Gamemodes without this function give a console error.
@@ -6539,6 +6694,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="Pawndoc">
  *     <problem>
  *         Pawndoc comments aren't ignored inside <c>#if</c> blocks, nor used
@@ -6581,6 +6737,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="OnVehicleSpawn">
  *     <problem>
  *         Colour <c>-1</c> isn't synced.
@@ -6620,6 +6777,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="floatfract">
  *     <problem>
  *         Incorrect on negative numbers.
@@ -6654,6 +6812,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="strfind">
  *     <problem>
  *         The function is prone to OOB access when the search start index is
@@ -6689,6 +6848,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="strdel">
  *     <problem>
  *         The function is prone to OOB access when the index of the first
@@ -6724,6 +6884,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="LocalNPCNatives">
  *     <problem>
  *         Many natives aren't defined in the NPC includes.  Simple ones can be
@@ -6764,6 +6925,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="RemoteNPCNatives">
  *     <problem>
  *         Many natives aren't defined in the NPC includes.  Most need to be
@@ -6797,6 +6959,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="deconst">
  *     <problem>
  *         Un-const-correct - uses <c>const</c> but shouldn't.
@@ -6842,6 +7005,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="Streamer_HasIntData">
  *     <problem>
  *         Int data functions expect more parameters than they specify.
@@ -6882,6 +7046,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="Streamer_RemoveIntData">
  *     <problem>
  *         Int data functions expect more parameters than they specify.
@@ -6922,6 +7087,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="defaults">
  *     <problem>
  *         Many functions are missing default values for string lengths.
@@ -6954,6 +7120,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="limit_tags">
  *     <problem>
  *         Some limits, like `MAX_MENUS` are untagged, so can't be used properly.
@@ -6986,6 +7153,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="bool_tags">
  *     <problem>
  *         Many <c>true/false</c> parameters use <c>1/0</c> with no <c>bool:</c>
@@ -7019,6 +7187,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="TEXT_DRAW_ALIGN">
  *     <problem>
  *         The alignment modes for <c>TextDrawAlignment</c> are not defined by default.
@@ -7063,6 +7232,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="TEXT_DRAW_FONT">
  *     <problem>
  *         The fonts for <c>TextDrawFont</c> are not defined by default.
@@ -7107,6 +7277,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="GetPlayerKeys">
  *     <problem>
  *         <c>GetPlayerKeys</c> and <c>OnPlayerKeyStateChange</c> don't actually
@@ -7145,6 +7316,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="FORCE_SYNC">
  *     <problem>
  *         The sync modes for <c>ApplyAnimation</c> are not defined by default.
@@ -7189,6 +7361,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="address_naught">
  *     <problem>
  *         When there are internal code errors that result in the wrong address
@@ -7227,6 +7400,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="main2">
  *     <problem>
  *         <c>main</c> isn't called in filterscripts.
@@ -7265,6 +7439,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="npcmodes">
  *     <problem>
  *         There's no way to specify NPC modes in <c>server.cfg</c>.
@@ -7348,6 +7523,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Breaks <c>#pragma tabsize 0</c> in such a way that the compiler gives the
  * following error:
@@ -7416,6 +7592,7 @@ _FIXES_CONST_PAWNDOC(do_not_use_tabsize_0);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * fixes.inc exists
  * </remarks>
@@ -7425,6 +7602,7 @@ _FIXES_CONST_PAWNDOC(FIXES_EXISTS);
 #define FIXES_EXISTS
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The include is fully const-correct (and backwards-compatible).
  * </remarks>
@@ -7434,6 +7612,7 @@ _FIXES_CONST_PAWNDOC(FIXES_CONST_CORRECT);
 #define FIXES_CONST_CORRECT
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The include is fully tag-correct (and backwards-compatible), i.e. optionally
  * uses additional tags in callbacks such as `OnPlayerStateChange`.
@@ -7444,6 +7623,7 @@ _FIXES_CONST_PAWNDOC(FIXES_TAG_CORRECT);
 #define FIXES_TAG_CORRECT
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The include has methods of hiding unwanted pawndoc declarations.
  * </remarks>
@@ -7453,6 +7633,7 @@ _FIXES_CONST_PAWNDOC(FIXES_PAWNDOC);
 #define FIXES_PAWNDOC
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The include defines the pubic variable `@_`, which is a unique ID for the
  * current script.  This is also defined by YSI if it isn't defined here.
@@ -7463,6 +7644,7 @@ _FIXES_CONST_PAWNDOC(FIXES_ID);
 #define FIXES_ID
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The additional API functions (see above) were defined and can be used.
  * (<c>#if defined FIXES_API</c>).
@@ -7475,6 +7657,7 @@ _FIXES_CONST_PAWNDOC(FIXES_API);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * fixes.inc uses advanced state-based ALS hooks, not just regular ones.
  * </remarks>
@@ -7489,6 +7672,7 @@ _FIXES_CONST_PAWNDOC(FIXES_API);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * A special "printf" function only compiled when "FIXES_Debug" is set.
  * </remarks>
@@ -7498,6 +7682,7 @@ _FIXES_FUNC_PAWNDOC(FIXES_PRINTF(const str[], ...));
 #define _FIXES_PRINTF(%0); print(_FIXES_gIsFilterscript ? FIXES_gscPrintFFS : FIXES_gscPrintFGM),printf("*** " %0);
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Test to see if this script is in command or not (master).
  * </remarks>
@@ -7511,6 +7696,7 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_IN_CHARGE());
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Set a variable, which may be a property or an array, depending on compile-
  * time options.
@@ -7525,6 +7711,7 @@ _FIXES_FUNC_PAWNDOC(FIXES_SET(const var[], playerid, value));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Get a variable, which may be a property or an array, depending on compile-
  * time options.
@@ -7539,6 +7726,7 @@ _FIXES_FUNC_PAWNDOC(FIXES_GET(const var[], playerid));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Pretty standard.
  * </remarks>
@@ -7548,6 +7736,7 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_NULL(const string[]));
 #define _FIXES_IS_NULL(%0) ((%0[(%0[0])=='\1'])=='\0')
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Do a ceiling division of the first number by the second number.
  * </remarks>
@@ -7557,6 +7746,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_CEILDIV(a, b));
 #define _FIXES_CEILDIV(%0,%1) (((%0) + (%1) - 1) / (%1))
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * A new version of "foreach", but just for this library.
  * </remarks>
@@ -7566,6 +7756,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_FOREACH(iterator[], &playerid));
 #define _FIXES_FOREACH(%1,%0) for (new %0 = MAX_PLAYERS; (%0 = %1[%0]) != MAX_PLAYERS; )
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Checks if the first parameter is between the other two: %1 &lt;= %0 &lt;%2 (but
  * faster).
@@ -7576,6 +7767,7 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_IN_RANGE(min, value, max));
 #define _FIXES_IN_RANGE(%0,%1,%2) ((_:(%0) - (_:(%1) + cellmin)) < (_:(%2) - (_:(%1) + cellmin)))
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Checks if the first parameter is not between the other two:
  * <c>!(%1 &lt;= %0 &lt; %2)</c>(but faster).
@@ -7586,6 +7778,7 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_NO_RANGE(min, value, max));
 #define _FIXES_NO_RANGE(%0,%1,%2) (((%0) - ((%1) + cellmin)) >= ((%2) - ((%1) + cellmin)))
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Forwards a hooked callbacks, and defines the default state implementations.
  * </remarks>
@@ -7600,6 +7793,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_FORWARD(const function[], ...));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Check if the ID is in range of player IDs.
  * </remarks>
@@ -7609,6 +7803,7 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_VALID_PLAYER(playerid));
 #define _FIXES_IS_VALID_PLAYER(%0) _FIXES_IN_RANGE((%0), 0, MAX_PLAYERS)
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Always valid <c>IsPlayerConnected</c> check.
  * </remarks>
@@ -7618,6 +7813,7 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_PLAYER_CONNECTED(playerid));
 #define _FIXES_IS_PLAYER_CONNECTED(%0) (_FIXES_IS_VALID_PLAYER(%0) && IsPlayerConnected__(%0))
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Either <c>const</c> or <c>static stock const</c> depending on the value of
  * <c>FIXES_Debug</c>, so we can examine them externally.
@@ -7632,6 +7828,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK_CONST);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Either <c>new</c> or <c>static stock</c> depending on the value of
  * <c>FIXES_Debug</c>, so we can examine them externally.
@@ -7646,6 +7843,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Either <c>const</c> or nothing, depending on the value of <c>FIX_const</c>,
  * so we can add <c>const</c> as required on the new compiler.
@@ -7660,6 +7858,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_CONST);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Convert a non-zero value to <c>true</c>, and <c>0</c> to <c>false</c> when
  * <c>FIX_bool_tags</c> is off.  Otherwise do nothing.
@@ -7674,6 +7873,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_TO_BOOL(value));
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Either <c>bool</c> or <c>_</c>, depending on the value of
  * <c>FIX_bool_tags</c>, to reduce excessive warnings.
@@ -7688,6 +7888,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_BOOL);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Either <c>true</c> or <c>1</c>, depending on the value of
  * <c>FIX_bool_tags</c>, to reduce excessive warnings.
@@ -7702,6 +7903,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_TRUE);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Either <c>false</c> or <c>0</c>, depending on the value of
  * <c>FIX_bool_tags</c>, to reduce excessive warnings.
@@ -7731,6 +7933,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_FALSE);
 */
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7742,6 +7945,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_FALSE);
 const Text:MAX_TEXT_DRAWS__ = Text:MAX_TEXT_DRAWS;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7756,6 +7960,7 @@ const Text:MAX_TEXT_DRAWS__ = Text:MAX_TEXT_DRAWS;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7767,6 +7972,7 @@ const Text:MAX_TEXT_DRAWS__ = Text:MAX_TEXT_DRAWS;
 const PlayerText:MAX_PLAYER_TEXT_DRAWS__ = PlayerText:MAX_PLAYER_TEXT_DRAWS;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7781,6 +7987,7 @@ const PlayerText:MAX_PLAYER_TEXT_DRAWS__ = PlayerText:MAX_PLAYER_TEXT_DRAWS;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7792,6 +7999,7 @@ const PlayerText:MAX_PLAYER_TEXT_DRAWS__ = PlayerText:MAX_PLAYER_TEXT_DRAWS;
 const Menu:MAX_MENUS__ = Menu:MAX_MENUS;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7806,6 +8014,7 @@ const Menu:MAX_MENUS__ = Menu:MAX_MENUS;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7817,6 +8026,7 @@ const Menu:MAX_MENUS__ = Menu:MAX_MENUS;
 const Text3D:MAX_3DTEXT_GLOBAL__ = Text3D:MAX_3DTEXT_GLOBAL;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7831,6 +8041,7 @@ const Text3D:MAX_3DTEXT_GLOBAL__ = Text3D:MAX_3DTEXT_GLOBAL;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7842,6 +8053,7 @@ const Text3D:MAX_3DTEXT_GLOBAL__ = Text3D:MAX_3DTEXT_GLOBAL;
 const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7856,6 +8068,7 @@ const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7872,6 +8085,7 @@ const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
 const PlayerText:INVALID_PLAYER_TEXT_DRAW__ = PlayerText:INVALID_PLAYER_TEXT_DRAW;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7886,6 +8100,7 @@ const PlayerText:INVALID_PLAYER_TEXT_DRAW__ = PlayerText:INVALID_PLAYER_TEXT_DRA
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7901,6 +8116,7 @@ const PlayerText:INVALID_PLAYER_TEXT_DRAW__ = PlayerText:INVALID_PLAYER_TEXT_DRA
 const PlayerText3D:INVALID_PLAYER_3DTEXT_ID__ = PlayerText3D:INVALID_PLAYER_3DTEXT_ID;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7915,6 +8131,7 @@ const PlayerText3D:INVALID_PLAYER_3DTEXT_ID__ = PlayerText3D:INVALID_PLAYER_3DTE
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7926,6 +8143,7 @@ const PlayerText3D:INVALID_PLAYER_3DTEXT_ID__ = PlayerText3D:INVALID_PLAYER_3DTE
 const Text3D:INVALID_3DTEXT_ID__ = Text3D:INVALID_3DTEXT_ID;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7940,6 +8158,7 @@ const Text3D:INVALID_3DTEXT_ID__ = Text3D:INVALID_3DTEXT_ID;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7951,6 +8170,7 @@ const Text3D:INVALID_3DTEXT_ID__ = Text3D:INVALID_3DTEXT_ID;
 const Menu:INVALID_MENU__ = Menu:INVALID_MENU;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7965,6 +8185,7 @@ const Menu:INVALID_MENU__ = Menu:INVALID_MENU;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7976,6 +8197,7 @@ const Menu:INVALID_MENU__ = Menu:INVALID_MENU;
 const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * SA:MP limit with the correct tag added.
  * </remarks>
@@ -7990,6 +8212,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>ACTION:</c> is defined as <c>_:</c>
  * when enhanced tags are disabled, and <c>E_KEY:</c> when they are enabled.
@@ -8010,6 +8233,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Old <c>KEY:</c> tags for <c>GetPlayerKeys</c>, without the rename.
  * </remarks>
@@ -8027,6 +8251,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>VEHICLE_PARAMS:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_VEHICLE_PARAMS:</c> when
@@ -8046,6 +8271,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>PLAYER_STATE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_PLAYER_STATE:</c> when
@@ -8065,6 +8291,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>SPECIAL_ACTION:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_SPECIAL_ACTION:</c> when
@@ -8084,6 +8311,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>PLAYER_VARTYPE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_PLAYER_VARTYPE:</c> when
@@ -8103,6 +8331,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>BODY_PART:</c> is defined as <c>_:</c>
  * when enhanced tags are disabled, and <c>E_BODY_PART:</c> when they are
@@ -8122,6 +8351,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>CAM_MODE:</c> is defined as <c>_:</c>
  * when enhanced tags are disabled, and <c>E_CAM_MODE:</c> when they are
@@ -8141,6 +8371,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>VEHICLE:</c> is defined as <c>_:</c>
  * when enhanced tags are disabled, and <c>E_VEHICLE:</c> when they are enabled.
@@ -8160,6 +8391,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>CARMODTYPE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_CARMODTYPE:</c> when they
@@ -8179,6 +8411,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>WEAPON:</c> is defined as <c>_:</c>
  * when enhanced tags are disabled, and <c>E_WEAPON:</c> when they
@@ -8198,6 +8431,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>MAPICON:</c> is defined as <c>_:</c>
  * when enhanced tags are disabled, and <c>E_MAPICON:</c> when they
@@ -8217,6 +8451,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>CAM_MOVE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_CAMERA:</c> when they
@@ -8236,6 +8471,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>SPECTATE_MODE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_SPECTATE_MODE:</c> when
@@ -8255,6 +8491,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>PLAYER_RECORDING_TYPE:</c> is defined
  * as <c>_:</c> when enhanced tags are disabled, and
@@ -8274,6 +8511,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>VEHICLE_MODEL_INFO:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_VEHICLE_MODEL_INFO:</c>
@@ -8293,6 +8531,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>OBJECT_MATERIAL_SIZE:</c> is defined
  * as <c>_:</c> when enhanced tags are disabled, and
@@ -8312,6 +8551,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>OBJECT_MATERIAL_TEXT_ALIGN:</c> is
  * defined as <c>_:</c> when enhanced tags are disabled, and
@@ -8331,6 +8571,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>HTTP_METHOD:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_HTTP_METHOD:</c> when
@@ -8350,6 +8591,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>HTTP_ERROR:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_HTTP_ERROR:</c> when
@@ -8369,6 +8611,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>FIGHT_STYLE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_FIGHT_STYLE:</c> when
@@ -8388,6 +8631,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>WEAPONSKILL:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_WEAPONSKILL:</c> when
@@ -8407,6 +8651,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>WEAPONSTATE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_WEAPONSTATE:</c> when
@@ -8426,6 +8671,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>SELECT_OBJECT:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_SELECT_OBJECT:</c> when
@@ -8445,6 +8691,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>BULLET_HIT_TYPE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_BULLET_HIT_TYPE:</c> when
@@ -8464,6 +8711,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>DOWNLOAD_REQUEST:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_DOWNLOAD_REQUEST:</c>
@@ -8483,6 +8731,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>CLICK_SOURCE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_CLICK_SOURCE:</c> when
@@ -8502,6 +8751,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>EDIT_RESPONSE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_EDIT_RESPONSE:</c> when
@@ -8521,6 +8771,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>DIALOG_STYLE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_DIALOG_STYLE:</c> when
@@ -8540,6 +8791,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>TEXT_DRAW_FONT:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_TEXT_DRAW_FONT:</c> when
@@ -8559,6 +8811,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>TEXT_DRAW_ALIGN:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_TEXT_DRAW_ALIGN:</c> when
@@ -8578,6 +8831,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>SERVER_VARTYPE:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_SERVER_VARTYPE:</c> when
@@ -8597,6 +8851,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>FORCE_SYNC:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_FORCE_SYNC:</c> when they
@@ -8616,6 +8871,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The number of GameText styles recreated using TextDraw functions.  This is 7
  * by default, but can be extended to 16 if you want more default GTA styles.
@@ -8632,6 +8888,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Set when a player can't see a dialog.
  * </remarks>
@@ -8644,6 +8901,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 	#define INVALID_DIALOG_ID (-1)
 #endif
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The maximum number of actors that can exist.
  * </remarks>
@@ -8657,6 +8915,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The ID of an invalid actor.
  * </remarks>
@@ -8670,6 +8929,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The maximum number of per-player text draws that can be created.
  * </remarks>
@@ -8683,6 +8943,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The maximum number of global 3D texts that can be created.
  * </remarks>
@@ -8696,6 +8957,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The maximum number of per-player 3D texts that can be created.
  * </remarks>
@@ -8709,6 +8971,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The maximum number of pickups that can be created.
  * </remarks>
@@ -8722,6 +8985,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The ID of an invalid 3D text.
  * </remarks>
@@ -8735,6 +8999,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Default worldbound range.
  * </remarks>
@@ -8744,6 +9009,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MIN_WORLDBOUNDS);
 #define _FIXES_MIN_WORLDBOUNDS (-20000.0)
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Default worldbound range.
  * </remarks>
@@ -8753,6 +9019,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAX_WORLDBOUNDS);
 #define _FIXES_MAX_WORLDBOUNDS (20000.0)
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * IEEE 754 definition of infinity.
  * </remarks>
@@ -8762,6 +9029,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_INFINITY);
 #define _FIXES_INFINITY (Float:0x7F800000)
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * IEEE 754 definition of negative infinity.
  * </remarks>
@@ -8771,6 +9039,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_N_INFINITY);
 #define _FIXES_N_INFINITY (Float:0xFF800000)
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * The number of players whose attachment data (10-bits) can be stored in one
  * cell.
@@ -8781,6 +9050,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 #define _FIXES_ATTACHMENTS (cellbits / MAX_PLAYER_ATTACHED_OBJECTS)
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed this one.  Used internally via
  * <c>_FIXES_KEY_AIM</c>.
@@ -8796,6 +9066,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed this one.  Used internally via
  * <c>_FIXES_SPECIAL_ACTION_PISSING</c>.
@@ -8811,6 +9082,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Defines property offset used for vehicle components.
  * </remarks>
@@ -8820,6 +9092,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #define _FIXES_PROPERTY_OFFSET                   (CARMODTYPE:12)
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Defines additional component slots
  * </remarks>
@@ -8833,6 +9106,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Defines additional component slots
  * </remarks>
@@ -8846,6 +9120,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed some weapon names and aliases.
  * Used internally via <c>_FIXES_WEAPON_FIST</c>.
@@ -8861,6 +9136,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed some weapon names and aliases.
  * </remarks>
@@ -8874,6 +9150,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed some weapon names and aliases.
  * </remarks>
@@ -8887,6 +9164,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed some weapon names and aliases.
  * Used internally via <c>_FIXES_WEAPON_NIGHT_VIS_GOGGLES</c>.
@@ -8902,6 +9180,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed some weapon names and aliases.
  * Used internally via <c>_FIXES_WEAPON_THERMAL_GOGGLES</c>.
@@ -8917,6 +9196,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Maximum number of weapon slots.
  * </remarks>
@@ -8926,6 +9206,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS);
 #define _FIXES_WEAPON_SLOTS                      (13)
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Streamer plugin tags.
  * </remarks>
@@ -8935,6 +9216,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
 #define _FIXES_STREAMER_ALL_TAGS {DynamicObject,DynamicPickup,DynamicCP,DynamicRaceCP,DynamicMapIcon,DynamicText3D,Text3D,DynamicArea,DynamicActor,_}
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * <c>IS_JIT</c>
  *
@@ -8950,6 +9232,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * "FILTERSCRIPT" can't always be relied on to be set.  This is not a pre-
  * processor macro, but may be better than nothing (also used internally).
@@ -8964,6 +9247,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * True when the code is running on Windows.  NOT a pre-processor macro, since
  * the OS you are running the code on can't be determined at compile-time.
@@ -8978,6 +9262,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * True when the code is running on Linux.  NOT a pre-processor macro, since the
  * OS you are running the code on can't be determined at compile-time.
@@ -9011,6 +9296,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * A method of pre-hooking callbacks to still have them called before any ones
  * re-written by y_hooks.
@@ -9032,6 +9318,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Allows y_hooks to call things in the correct order when it exists.  Note that
  * this doesn't depend on y_hooks at all, it is merely detected by it.
@@ -9048,6 +9335,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * _FIXES_IncludeStates
  *
@@ -9079,6 +9367,7 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 */
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed these.
  * </remarks>
@@ -9102,6 +9391,7 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed these.
  * </remarks>
@@ -9124,6 +9414,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_ALIGN);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed these.
  * </remarks>
@@ -9158,6 +9449,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_FONT);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed these.
  * </remarks>
@@ -9193,6 +9485,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_FONT);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Sync modes for <c>ApplyAnimation</c> and <c>ClearAnimation</c>.
  * </remarks>
@@ -9214,6 +9507,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_FORCE_SYNC);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed these.
  * </remarks>
@@ -9741,6 +10035,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_FORCE_SYNC);
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * e_FIXES_BOOLS
  *
@@ -9779,6 +10074,7 @@ _FIXES_ENUM e_FIXES_BOOLS:(<<= 1)
 _FIXES_ENUM_PAWNDOC(e_FIXES_BOOLS);
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * e_FIXES_SETTINGS
  *
@@ -9804,6 +10100,7 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Renaming the <c>KEY_</c> definitions to <c>ACTION_</c> to reduce confusion.
  * </remarks>
@@ -9859,6 +10156,7 @@ _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
 
 public
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The unique ID of this script.
 	 * </remarks>
@@ -9889,6 +10187,7 @@ static
 #endif
 stock
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Runtime equivalent of "FILTERSCRIPT" for when it is not set by the user.
 	 * </remarks>
@@ -9900,6 +10199,7 @@ static
 #endif
 stock
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * True when the JIT plugin is being used.
 	 * </remarks>
@@ -9911,6 +10211,7 @@ static
 #endif
 stock
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * True on Windows, false on Linux.
 	 * </remarks>
@@ -9922,6 +10223,7 @@ static
 #endif
 stock
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * <c>maxplayers</c> server var value.
 	 * </remarks>
@@ -9933,6 +10235,7 @@ static
 #endif
 stock
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the current server world time (hours).
 	 * </remarks>
@@ -9959,6 +10262,7 @@ static
 #endif
 stock const
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * A single re-usable null string.  Const not static because it is used in
 	 * macros <c>HideGameTextForAll</c> and <c>HideGameTextForPlayer</c>.
@@ -9983,6 +10287,7 @@ stock const
 
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * A single re-usable space.  Static not const because it is used in this
 	 * file in functions that don't take <c>const</c> strings.
@@ -9992,6 +10297,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Only determine the OS once.
 	 * </remarks>
@@ -10000,6 +10306,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Collection of boolean values for players.
 	 * </remarks>
@@ -10008,6 +10315,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Handle to read from server.cfg.
 	 * </remarks>
@@ -10016,6 +10324,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the ID of the server weather.
 	 * </remarks>
@@ -10024,6 +10333,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * A collection of 1-bit options, compressed together to save space.
 	 * </remarks>
@@ -10032,6 +10342,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The position of the character right-trimmed from a "const" string.
 	 * </remarks>
@@ -10040,6 +10351,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The character right-trimmed from a "const" string.
 	 * </remarks>
@@ -10048,6 +10360,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Local copy of the streamer version, read from the public variable.
 	 * </remarks>
@@ -10057,6 +10370,7 @@ _FIXES_STATIC_STOCK
 #if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * A record of which players are connected to the server.  We ensure that
 	 * this only exists when required, since it depends on add and remove
@@ -10071,6 +10385,7 @@ _FIXES_STATIC_STOCK
 #if _FIX_Menus || (FIX_API && !_FIXES_NPC)
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * A record of which menus have and haven't been shown yet.
 	 * </remarks>
@@ -10083,6 +10398,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * A player's IP as a 32-bit integer.
 	 * </remarks>
@@ -10095,6 +10411,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnPlayerEnterVehicle_3
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the locked vehicle's id that the player
 	 * is currently trying to enter.
@@ -10108,6 +10425,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnPlayerEnterVehicle_3
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the server tick when the player started
 	 * trying to enter the locked vehicle.
@@ -10121,6 +10439,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnPlayerEnterVehicle_3
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Boolean: Stores if a certain vehicle is 'locked' or not.
 	 * </remarks>
@@ -10133,6 +10452,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetPlayerSkin
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The skin the player is currently using.
 	 * </remarks>
@@ -10145,6 +10465,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10168,6 +10489,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10191,6 +10513,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10214,6 +10537,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10237,6 +10561,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10260,6 +10585,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10283,6 +10609,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10306,6 +10633,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetPlayerWeapon
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the weapon set by "SetPlayerArmedWeapon" when in a vehicle.
 	 * </remarks>
@@ -10318,6 +10646,7 @@ _FIXES_STATIC_STOCK
 #if FIX_PutPlayerInVehicle
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * What vehicle the player is due to go in.
 	 * </remarks>
@@ -10330,6 +10659,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the true ID of the dialog the player is looking at to prevent
 	 * spoofing.
@@ -10343,6 +10673,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GetPlayerWeather
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the ID of the player weather.
 	 * </remarks>
@@ -10355,6 +10686,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetPlayerInterior
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The player's current interior.
 	 * </remarks>
@@ -10367,6 +10699,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnPlayerDeath
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The last animation a player used.
 	 * </remarks>
@@ -10379,6 +10712,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnPlayerSpawn
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * A player's cash before dying.
 	 * </remarks>
@@ -10391,6 +10725,7 @@ _FIXES_STATIC_STOCK
 #if FIX_DriveBy
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The weapon to set after re-enter to vehicle.
 	 * </remarks>
@@ -10403,6 +10738,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GetPlayerMenu
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The menu the player can currently see.
 	 * </remarks>
@@ -10415,6 +10751,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GameText
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The pre-defined TextDraw styles used to recreate the bugged GameText
 	 * styles for GameTextForAll.
@@ -10428,6 +10765,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GameText
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * A linked list of which players can see a certain GameText style.
 	 * </remarks>
@@ -10440,6 +10778,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GameText
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The predefined TextDraw styles used to recreate the bugged GameText
 	 * styles for GameTextForPlayer.
@@ -10453,6 +10792,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GameText
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The timers used to hide per-player GameText messages.
 	 * </remarks>
@@ -10465,6 +10805,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyAnimation_2
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used for storing the timer ID for deferring class selection animation
 	 * application.
@@ -10478,6 +10819,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyAnimation_2
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used for storing the animation name.
 	 * </remarks>
@@ -10490,6 +10832,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyAnimation_2
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Which animation libraries the player has synced.
 	 * </remarks>
@@ -10502,6 +10845,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyActorAnimation_2
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used for storing the timer ID for deferring class selection animation
 	 * application.
@@ -10515,6 +10859,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyActorAnimation_2
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used for storing the animation name.
 	 * </remarks>
@@ -10527,6 +10872,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyActorAnimation_2
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Which animation libraries the actor has synced.
 	 * </remarks>
@@ -10539,6 +10885,7 @@ _FIXES_STATIC_STOCK
 #if FIX_PassengerSeating
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The timers used to prevent players seating.
 	 * </remarks>
@@ -10551,6 +10898,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle's stereo used in GetVehicleComponent.
 	 * </remarks>
@@ -10563,6 +10911,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle's front bumper used in GetVehicleComponent.
 	 * </remarks>
@@ -10575,6 +10924,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle's rear bumper used in GetVehicleComponent.
 	 * </remarks>
@@ -10587,6 +10937,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle's front bullbar used in GetVehicleComponent.
 	 * </remarks>
@@ -10599,6 +10950,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle's rear bullbar used in GetVehicleComponent.
 	 * </remarks>
@@ -10611,6 +10963,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SilentTeleport
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The player id who is getting carjacked before the car teleports.
 	 * </remarks>
@@ -10623,6 +10976,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Is the first colour on a vehicle random?  Bit array of booleans.
 	 * </remarks>
@@ -10635,6 +10989,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Is the second colour on a vehicle random?  Bit array of booleans.
 	 * </remarks>
@@ -10647,6 +11002,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * If only one of the two vehicle colours is random we need to support
 	 * keeping the other one constant.  That means we need to remember one
@@ -10661,6 +11017,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnVehicleSpawn && !FIXES_OneRandomVehicleColour
 _FIXES_STATIC_STOCK
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Are the colours on a vehicle random?  Bit array of booleans.
 	 * </remarks>
@@ -10687,6 +11044,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the GameText hide timer function.
 	 * </remarks>
@@ -10694,6 +11052,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscHideGameTextTimer[] = "_FIXES_HideGameTextTimer",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the Drive-By timer function.
 	 * </remarks>
@@ -10701,6 +11060,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscDriveBy[] = "_FIXES_DriveBy",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetCamera timer function.
 	 * </remarks>
@@ -10708,6 +11068,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetCamera[] = "_FIXES_SetCamera",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetTime timer function.
 	 * </remarks>
@@ -10715,6 +11076,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetTime[] = "_FIXES_SetTime",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetColor timer function.
 	 * </remarks>
@@ -10722,6 +11084,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetColor[] = "_FIXES_SetColor",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetCheckpoint timer function.
 	 * </remarks>
@@ -10729,6 +11092,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetCheckpoint[] = "_FIXES_SetCheckpoint",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetCheckpoint timer function.
 	 * </remarks>
@@ -10736,6 +11100,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscPrintFFS[] = "* FIXES_PRINTF (FS):",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetCheckpoint timer function.
 	 * </remarks>
@@ -10743,6 +11108,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscPrintFGM[] = "* FIXES_PRINTF (GM):",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * <c>***</c>, for debug prints.
 	 * </remarks>
@@ -10750,6 +11116,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscThreeStars[] = "***",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetRaceCheckpoint timer function.
 	 * </remarks>
@@ -10757,6 +11124,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetRaceCheckpoint[] = "_FIXES_SetRaceCheckpoint",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the ID/existence determination function.
 	 * </remarks>
@@ -10764,6 +11132,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscDetermineID[] = "_FIXES_DetermineID",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * ".".
 	 * </remarks>
@@ -10771,6 +11140,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscDot[] = ".",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * <c>0</c> as a string.
 	 * </remarks>
@@ -10778,6 +11148,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gsc0[] = "0",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c></c>.
 	 * </remarks>
@@ -10785,6 +11156,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@[] = "",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>i</c>.
 	 * </remarks>
@@ -10792,6 +11164,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@i[] = "i",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>ii</c>.
 	 * </remarks>
@@ -10799,6 +11172,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@ii[] = "ii",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>ai</c>.
 	 * </remarks>
@@ -10806,6 +11180,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@ai[] = "ai",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>is</c>.
 	 * </remarks>
@@ -10813,6 +11188,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@is[] = "is",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iii</c>.
 	 * </remarks>
@@ -10820,6 +11196,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iii[] = "iii",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>isii</c>.
 	 * </remarks>
@@ -10827,6 +11204,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@isii[] = "isii",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>ifff</c>.
 	 * </remarks>
@@ -10834,6 +11212,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@ifff[] = "ifff",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iifff</c>.
 	 * </remarks>
@@ -10841,6 +11220,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iifff[] = "iifff",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iifffi</c>.
 	 * </remarks>
@@ -10848,6 +11228,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iifffi[] = "iifffi",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iifffffff</c>.
 	 * </remarks>
@@ -10855,6 +11236,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iifffffff[] = "iifffffff",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iffffiiii</c>.
 	 * </remarks>
@@ -10862,6 +11244,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iffffiiii[] = "iffffiiii",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iffff</c>.
 	 * </remarks>
@@ -10869,6 +11252,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iffff[] = "iffff",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iiiis</c>.
 	 * </remarks>
@@ -10876,6 +11260,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iiiis[] = "iiiis",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iiiii</c>.
 	 * </remarks>
@@ -10883,6 +11268,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iiiii[] = "iiiii",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iiiiii</c>.
 	 * </remarks>
@@ -10890,6 +11276,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iiiiii[] = "iiiiii",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The temporary name to give when renaming people.
 	 * </remarks>
@@ -10897,6 +11284,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscTempName[] = "FIXES_TEMP_NAME",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property to check for script ordering.
 	 * </remarks>
@@ -10904,6 +11292,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscOrderProperty[] = "FIXES_gscOrderProperty",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Call <symbolref name="_FIXES_DetermineOrderRemote" /> in the GM or not?
 	 * </remarks>
@@ -10911,6 +11300,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscNoGMProperty[] = "FIXES_gscNoGMProperty",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the ordering callback.
 	 * </remarks>
@@ -10918,6 +11308,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscDetermineOrder[] = "_FIXES_DetermineOrderRemote",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote set player menu function.
 	 * </remarks>
@@ -10925,6 +11316,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetPlayerMenu[] = "_FIXES_SetPlayerMenu",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote function to clear a player's menu set.
 	 * </remarks>
@@ -10932,6 +11324,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscClearPlayerMenu[] = "_FIXES_ClearPlayerMenu",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote allow teleport function.
 	 * </remarks>
@@ -10939,6 +11332,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscAllowTeleport[] = "_FIXES_AllowTeleport",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote vehicle entry function.
 	 * </remarks>
@@ -10946,6 +11340,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscPutPlayerInVehicle[] = "_FIXES_PutPlayerInVehicle",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote interior weapons function.
 	 * </remarks>
@@ -10953,6 +11348,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscAllowInteriorWeapons[] = "_FIXES_AllowInteriorWeapons",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote player toggle function.
 	 * </remarks>
@@ -10960,6 +11356,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscTogglePlayerControl[] = "_FIXES_TogglePlayerControllable",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote player clock function.
 	 * </remarks>
@@ -10967,6 +11364,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscTogglePlayerClock[] = "_FIXES_TogglePlayerClock",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote world bounds function.
 	 * </remarks>
@@ -10974,6 +11372,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetPlayerWorldBounds[] = "_FIXES_SetPlayerWorldBounds",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote add static vehicle function.
 	 * </remarks>
@@ -10981,6 +11380,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscAddStaticVehicleEx[] = "_FIXES_AddStaticVehicleEx",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote create vehicle function.
 	 * </remarks>
@@ -10988,6 +11388,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscCreateVehicle[] = "_FIXES_CreateVehicle",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote GameText show function.
 	 * </remarks>
@@ -10995,6 +11396,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscGameTextShow[] = "_FIXES_GameTextShow",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote block update function.
 	 * </remarks>
@@ -11002,6 +11404,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscBlockUpdate[] = "_FIXES_BlockUpdateRemote",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property for accurate returns.
 	 * </remarks>
@@ -11009,6 +11412,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscReturnProperty[] = "FIXES_gscReturnProperty",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property for checking this is the only running script with fixes in.
 	 * </remarks>
@@ -11016,6 +11420,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSingleProperty[] = "FIXES_gscSingleProperty",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property for a player's current menu.
 	 * </remarks>
@@ -11023,6 +11428,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property for a player's current menu.
 	 * </remarks>
@@ -11030,6 +11436,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscRconFixFS[] = "callbackfix.amx",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property AND command to check for RCON fix presence.
 	 * </remarks>
@@ -11037,6 +11444,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscOnClientCheckResponse[] = !"FIXES_OnClientCheckResponse",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * A function that doesn't exist for timer 0.  Its intended to be both
 	 * always invalid (you can't declare a function called just <c>_</c>), and
@@ -11046,6 +11454,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscFakeTimerFunc[] = !"_",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Error shown when multiple scripts are detected with <c>FIXES_SINGLE</c>.
 	 * </remarks>
@@ -11058,6 +11467,7 @@ _FIXES_STATIC_STOCK_CONST
 		"***",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Error shown when server.cfg can't be read from an NPC mode.
 	 * </remarks>
@@ -11066,6 +11476,7 @@ _FIXES_STATIC_STOCK_CONST
 		"*** fixes.inc warning: Could not get .cfg \"%s\" from NPC mode.",
 
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Error shown when server.cfg can't be read from an NPC mode.
 	 * </remarks>
@@ -11076,6 +11487,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * This variable records wether or not this player is brand new to the
 	 * server, and not just having "OnPlayerConnect" called due to a script
@@ -11091,6 +11503,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_GetPlayerWeapon
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current weapon.
 	 * </remarks>
@@ -11103,6 +11516,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_GetPlayerSkin
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current skin.
 	 * </remarks>
@@ -11115,6 +11529,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_SetPlayerCamera
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's spectator mode.
 	 * </remarks>
@@ -11127,6 +11542,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_Kick
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the kick timer function.
 	 * </remarks>
@@ -11139,6 +11555,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_Kick
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store a player's kick timer.
 	 * </remarks>
@@ -11151,6 +11568,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_OnDialogResponse || FIX_GetPlayerDialog
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current dialogid.
 	 * </remarks>
@@ -11163,6 +11581,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_GetPlayerWeather
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current weather.
 	 * </remarks>
@@ -11175,6 +11594,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_GetPlayerInterior
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * A player's current interior.
 	 * </remarks>
@@ -11187,6 +11607,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_OnDialogResponse
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used in OnDialogResponse to be able to get the correct ID in multiple
 	 * scripts while still correctly resetting the ID for future use.
@@ -11200,6 +11621,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_OnPlayerSpawn
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used in OnPlayerDeath to save a player's cash before death.
 	 * </remarks>
@@ -11212,6 +11634,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_SetPlayerCheckpoint
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's checkpoint state.
 	 * </remarks>
@@ -11224,6 +11647,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_SetPlayerRaceCheckpoint
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's race checkpoint state.
 	 * </remarks>
@@ -11236,6 +11660,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * All vehicle primary colours from carcols.dat.
 	 * </remarks>
@@ -11462,6 +11887,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * All vehicle secondary colours from carcols.dat.
 	 * </remarks>
@@ -11688,6 +12114,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle colours are in a flat array.  These are the offsets for each
 	 * model type.  N+1 so there's a final end-point.
@@ -11916,6 +12343,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the camper van.  The other two are the cement
@@ -11930,6 +12358,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the cement truck.  The other two are the camper
@@ -11944,6 +12373,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the squalo.  The other two are the camper van and
@@ -11958,6 +12388,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the camper van.  The other two are the cement
@@ -11972,6 +12403,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the cement truck.  The other two are the camper
@@ -11986,6 +12418,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the squalo.  The other two are the camper van and
@@ -12000,6 +12433,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.
 	 * </remarks>
@@ -12046,6 +12480,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_GetPlayerColour || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * There are only 100 colours used by default, with SA:MP looping through
 	 * them repeatedly.
@@ -12081,6 +12516,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnPlayerEnterVehicle || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * This is a compressed (4-bit) list of the maximum number of passengers in
 	 * any vehicle, confirmed by a number of sources. "F" (15) means invalid
@@ -12100,6 +12536,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleMod || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * This is a bit array of all the valid mods (-1000) for all vehicles (-400)
 	 * EXCEPT for vehicle 576 (Tornado), which has just TWO extra mods on it,
@@ -12336,6 +12773,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
 	 * </remarks>
@@ -12351,6 +12789,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
+ * <library>fixes.inc</library>
 	 * <remarks>
 	 * List of valid animation libraries.
 	 * </remarks>
@@ -12405,6 +12844,7 @@ _FIXES_STATIC_STOCK_CONST
 */
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Because the default SA:MP includes missed this one.
  * </remarks>
@@ -12418,6 +12858,7 @@ _FIXES_STATIC_STOCK_CONST
 native bool:BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * <c>GetGravity</c>
  *
@@ -12433,6 +12874,7 @@ native bool:BAD_IsValidVehicle(vehicleid) = IsValidVehicle;
 native Float:BAD_GetGravity() = GetGravity;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * <c>gpci</c>
  *
@@ -12448,6 +12890,7 @@ native Float:BAD_GetGravity() = GetGravity;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * <c>GPCI</c>
  *
@@ -12464,6 +12907,7 @@ native Float:BAD_GetGravity() = GetGravity;
 native BAD_gpci(playerid, serial[], len) = gpci;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * <c>const</c>
  *
@@ -13334,12 +13778,14 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetWeaponName</fixes>
  */
 
 native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>deconst</fixes>
  */
 
@@ -13365,6 +13811,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>deconst</fixes>
  */
 
@@ -13403,6 +13850,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13422,6 +13870,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13442,6 +13891,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13461,6 +13911,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetSVarString</fixes>
  */
 
@@ -13474,6 +13925,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13489,6 +13941,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13508,6 +13961,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13527,6 +13981,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13546,6 +14001,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetServerVarAsString</fixes>
  */
 
@@ -13555,6 +14011,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 native BAD_GetConsoleVarAsString(const varname[], buffer[], len) = GetConsoleVarAsString;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetServerVarAsString</fixes>
  */
 
@@ -13564,6 +14021,7 @@ native BAD_GetConsoleVarAsString(const varname[], buffer[], len) = GetConsoleVar
 native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAsString;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13580,6 +14038,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13595,6 +14054,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13614,6 +14074,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13633,6 +14094,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13652,6 +14114,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13671,6 +14134,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13690,6 +14154,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13709,6 +14174,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13728,6 +14194,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>defaults</fixes>
  */
 
@@ -13747,6 +14214,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerKeys</fixes>
  */
 
@@ -13763,6 +14231,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerKeys</fixes>
  */
 
@@ -13778,6 +14247,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Ensure natives used be various fixes are included in the AMX.  Done before
  * anything else, and using multiple lines, to try and mitigate the effects of
@@ -13818,6 +14288,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 */
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * File operators
  *
@@ -13874,6 +14345,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 */
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Define some states in the anonymous automata.
  * </remarks>
@@ -13889,6 +14361,7 @@ static stock _FIXES_CatchAddressNaught() <fix_address_naught>
 }
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Define some states in the anonymous automata.
  * </remarks>
@@ -13907,6 +14380,7 @@ static stock _FIXES_CatchAddressNaught() <>
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Figure out what OS this is running on.
  * </remarks>
@@ -13969,6 +14443,7 @@ static stock _FIXES_Bernstein(const name[])
 }
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Modify a constant reference and return the old value.
  * </remarks>
@@ -13994,6 +14469,7 @@ static stock _FIXES_ConstMod(const &target, chr)
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Removes whitespace from the right side of a string.  Modifies <c>const</c>
  * strings to make it appear that nothing changes, so needs some tricky playing
@@ -14015,6 +14491,7 @@ static stock _FIXES_RTrim(const string[])
 }
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Puts whitespace back on the right side of a string.  Makes certain functions
  * appear <c>const</c> because the string ends up the same as it started.
@@ -14027,6 +14504,7 @@ static stock _FIXES_UnTrim(const string[])
 }
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Add something to an internal linked list.
  * </remarks>
@@ -14052,6 +14530,7 @@ static stock _FIXES_AddInternal(array[], value, size)
 }
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Remove something from an internal linked list.
  * </remarks>
@@ -14076,6 +14555,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 }
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Figure out which script is called first by callbacks.
  * </remarks>
@@ -14098,6 +14578,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Figure out which the first filterscript to be called is so that it can do the
  * majority of the work.  More detail:  Several pieces of code for some fixes
@@ -14281,6 +14762,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Look up the streamer include version from the public variable by name.  This
  * avoids a hard dependency on the include, plus avoids a change to include
@@ -14391,6 +14873,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Check if files outside <c>scriptfiles</c> can be accessed via
  * <c>DANGEROUS_SERVER_ROOT</c>.
@@ -14450,6 +14933,7 @@ static stock _FIXES_RemoveInternal(array[], value, size)
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Check if <c>MAX_PLAYERS</c> equals <c>GetMaxPlayers</c>, for efficiency.
  * </remarks>
@@ -14491,6 +14975,7 @@ static stock _FIXES_CheckMaxPlayers()
 }
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Create the text draws used to replicate game texts.
  * </remarks>
@@ -14972,6 +15457,7 @@ static stock _FIXES_CheckMaxPlayers()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Destroy the text draws used to replicate game texts.
  * </remarks>
@@ -15030,6 +15516,7 @@ static stock _FIXES_CheckMaxPlayers()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyAnimation</fixes>
  * <fixes>ApplyAnimation_2</fixes>
  * <fixes>ApplyActorAnimation</fixes>
@@ -15079,6 +15566,7 @@ static stock _FIXES_CheckMaxPlayers()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnVehicleSpawn</fixes>
  * <fixes>API</fixes>
  */
@@ -15150,6 +15638,7 @@ static stock _FIXES_CheckMaxPlayers()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnRconCommand</fixes>
  * <fixes>OnClientCheckResponse</fixes>
  */
@@ -15173,6 +15662,7 @@ static stock _FIXES_CheckMaxPlayers()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnRconCommand</fixes>
  * <fixes>OnClientCheckResponse</fixes>
  */
@@ -15265,6 +15755,7 @@ static stock _FIXES_CheckMaxPlayers()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Set a property marking the current ID as in use.
  * </remarks>
@@ -15281,6 +15772,7 @@ public _FIXES_DetermineID()
 }
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Load many filterscripts until the server is full, then we can determine how
  * many were loaded previously (through a simple subtraction).
@@ -15436,6 +15928,7 @@ static stock _FIXES_CountFilterscripts()
 */
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>LocalNPCNatives</fixes>
  */
 
@@ -15547,6 +16040,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>LocalNPCNatives</fixes>
  */
 
@@ -15579,6 +16073,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>LocalNPCNatives</fixes>
  */
 
@@ -15603,6 +16098,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>LocalNPCNatives</fixes>
  */
 
@@ -15627,6 +16123,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>LocalNPCNatives</fixes>
  */
 
@@ -15652,6 +16149,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>LocalNPCNatives</fixes>
  */
 
@@ -15676,6 +16174,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>LocalNPCNatives</fixes>
  */
 
@@ -15795,6 +16294,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>LocalNPCNatives</fixes>
  */
 
@@ -15818,6 +16318,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>LocalNPCNatives</fixes>
  */
 
@@ -15841,6 +16342,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>LocalNPCNatives</fixes>
  */
 
@@ -15864,6 +16366,7 @@ static stock _FIXES_CountFilterscripts()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>LocalNPCNatives</fixes>
  */
 
@@ -15893,6 +16396,7 @@ static stock _FIXES_CountFilterscripts()
 */
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>IsPlayerConnected</fixes>
  */
 
@@ -15902,6 +16406,7 @@ static stock _FIXES_CountFilterscripts()
 native bool:BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>IsPlayerConnected</fixes>
  */
 
@@ -15923,6 +16428,7 @@ native bool:BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Set "IS_JIT" to true.
  * </remarks>
@@ -15963,6 +16469,7 @@ public OnJITCompile()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Set <symbolref name="IS_FILTERSCRIPT" /> to true as this callback is ONLY called if this script
  * is actually a FilterScript.  Then call <symbolref name="On_ScriptInit" />.
@@ -16169,6 +16676,7 @@ public OnJITCompile()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Call <symbolref name="On_ScriptInit" /> if this is not a FilterScript.
  * </remarks>
@@ -16311,6 +16819,7 @@ public OnJITCompile()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Allow <c>OnClientCheckResponse</c> to be called in gamemodes.
  * </remarks>
@@ -16368,6 +16877,7 @@ public OnJITCompile()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnRconCommand</fixes>
  */
 
@@ -16409,6 +16919,7 @@ public OnJITCompile()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Fast way of detecting not to retain any data.
  * </remarks>
@@ -16466,6 +16977,7 @@ public OnJITCompile()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Fast way of detecting not to retain any data.
  * </remarks>
@@ -16555,6 +17067,7 @@ public OnJITCompile()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Almost every fix uses this callback for initialisation.  It is only
  * explicitly referenced for those fixes where this is all the code.  The
@@ -16844,6 +17357,7 @@ public OnJITCompile()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerAttachedObject</fixes>
  * <fixes>IsPlayerAttachedObjectSlotUsed</fixes>
  * <fixes>Kick</fixes>
@@ -16985,6 +17499,7 @@ public OnJITCompile()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>main</fixes>
  * <fixes>main2</fixes>
  */
@@ -17021,6 +17536,7 @@ public OnJITCompile()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnPlayerDeath</fixes>
  * <fixes>OnPlayerSpawn</fixes>
  */
@@ -17104,6 +17620,7 @@ public OnJITCompile()
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SilentTeleport</fixes>
  */
 
@@ -17113,6 +17630,7 @@ public OnJITCompile()
 native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SilentTeleport</fixes>
  */
 
@@ -17150,6 +17668,7 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SpawnPlayer</fixes>
  * <fixes>OnPlayerSpawn</fixes>
  */
@@ -17160,6 +17679,7 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SpawnPlayer</fixes>
  * <fixes>OnPlayerSpawn</fixes>
  */
@@ -17214,6 +17734,7 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerName</fixes>
  */
 
@@ -17223,6 +17744,7 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerName</fixes>
  */
 
@@ -17269,6 +17791,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnPlayerRequestClass</fixes>
  */
 
@@ -17328,6 +17851,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerSkin</fixes>
  * <fixes>TogglePlayerControllable</fixes>
  * <fixes>GetPlayerInterior</fixes>
@@ -17489,6 +18013,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetVehicleComponentInSlot</fixes>
  */
 
@@ -17498,6 +18023,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlot;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetVehicleComponentInSlot</fixes>
  */
 
@@ -17526,6 +18052,7 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnVehicleMod</fixes>
  */
 
@@ -17672,6 +18199,7 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerSkin</fixes>
  * <fixes>SetPlayerSkin</fixes>
  */
@@ -17682,6 +18210,7 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerSkin</fixes>
  * <fixes>SetPlayerSkin</fixes>
  */
@@ -17771,6 +18300,7 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerSkin</fixes>
  */
 
@@ -17780,6 +18310,7 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerSkin</fixes>
  */
 
@@ -17801,6 +18332,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetWeaponName</fixes>
  */
 
@@ -17845,6 +18377,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>BypassDialog</fixes>
  */
 
@@ -17888,6 +18421,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>BypassDialog</fixes>
  */
 
@@ -17928,6 +18462,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerWorldBounds</fixes>
  * <fixes>TogglePlayerControllable</fixes>
  * <fixes>AllowInteriorWeapons</fixes>
@@ -18170,6 +18705,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * TODO: Modify this to remove aim animations when they get to the boundaries.
  * </remarks>
@@ -18182,6 +18718,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max, Float:y_min) = SetPlayerWorldBounds;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * TODO: Modify this to remove aim animations when they get to the boundaries.
  * </remarks>
@@ -18349,6 +18886,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>TogglePlayerControllable</fixes>
  */
 
@@ -18358,6 +18896,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>TogglePlayerControllable</fixes>
  */
 
@@ -18422,6 +18961,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AllowInteriorWeapons</fixes>
  * <fixes>GetPlayerInterior</fixes>
  */
@@ -18520,6 +19060,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetTimer</fixes>
  */
 
@@ -18538,6 +19079,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetTimer</fixes>
  */
 
@@ -18605,6 +19147,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetTimer</fixes>
  */
 
@@ -18706,6 +19249,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetTimer</fixes>
  */
 
@@ -18715,6 +19259,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 native BAD_KillTimer(timerid) = KillTimer;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetTimer</fixes>
  */
 
@@ -18754,6 +19299,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>DriveBy</fixes>
  */
 
@@ -18783,6 +19329,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>DriveBy</fixes>
  */
 
@@ -18867,6 +19414,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Declare the function to reset the car-jacked player id to invalid id.
  * </remarks>
@@ -18880,6 +19428,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnPlayerEnterVehicle_2</fixes>
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  * <fixes>PassengerSeating</fixes>
@@ -18991,6 +19540,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnPlayerEnterVehicle_2</fixes>
  */
 
@@ -19036,6 +19586,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Block a player from using <symbolref name="OnPlayerUpdate" /> at all.
  * </remarks>
@@ -19083,6 +19634,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Unblock a player's updates after they close a dialog.
  * </remarks>
@@ -19111,6 +19663,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Block a player from entering a vehicle after the animation for a locked
  * driver door
@@ -19144,6 +19697,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerMenu</fixes>
  */
 
@@ -19231,6 +19785,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerMenu</fixes>
  */
 
@@ -19321,6 +19876,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>Menus</fixes>
  */
 
@@ -19332,6 +19888,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>Menus</fixes>
  */
 
@@ -19376,6 +19933,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerMenu</fixes>
  */
 
@@ -19392,6 +19950,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerMenu</fixes>
  */
 
@@ -19408,6 +19967,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerMenu</fixes>
  */
 
@@ -19417,6 +19977,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerMenu</fixes>
  */
 
@@ -19478,6 +20039,7 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AddMenuItem</fixes>
  */
 
@@ -19487,6 +20049,7 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AddMenuItem</fixes>
  */
 
@@ -19508,6 +20071,7 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetMenuColumnHeader</fixes>
  */
 
@@ -19517,6 +20081,7 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetMenuColumnHeader;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetMenuColumnHeader</fixes>
  */
 
@@ -19538,6 +20103,7 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ShowMenuForPlayer</fixes>
  * <fixes>GetPlayerMenu</fixes>
  */
@@ -19548,6 +20114,7 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
 native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ShowMenuForPlayer</fixes>
  * <fixes>GetPlayerMenu</fixes>
  */
@@ -19589,6 +20156,7 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>HideMenuForPlayer</fixes>
  * <fixes>HideMenuForPlayer_2</fixes>
  * <fixes>GetPlayerMenu</fixes>
@@ -19600,6 +20168,7 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>HideMenuForPlayer</fixes>
  * <fixes>HideMenuForPlayer_2</fixes>
  * <fixes>GetPlayerMenu</fixes>
@@ -19650,6 +20219,7 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>DisableMenu</fixes>
  */
 
@@ -19659,6 +20229,7 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>DisableMenu</fixes>
  */
 
@@ -19684,6 +20255,7 @@ native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>DisableMenuRow</fixes>
  */
 
@@ -19693,6 +20265,7 @@ native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>DisableMenuRow</fixes>
  */
 
@@ -19714,6 +20287,7 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerMenu</fixes>
  */
 
@@ -19723,6 +20297,7 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerMenu</fixes>
  */
 
@@ -19744,6 +20319,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>HydraSniper</fixes>
  * <fixes>GetPlayerWeapon</fixes>
  * <fixes>PutPlayerInVehicle</fixes>
@@ -19994,6 +20570,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>HydraSniper</fixes>
  * <fixes>GetPlayerWeapon</fixes>
  * <fixes>GetPlayerAmmo</fixes>
@@ -20005,6 +20582,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>HydraSniper</fixes>
  * <fixes>GetPlayerWeapon</fixes>
  * <fixes>GetPlayerAmmo</fixes>
@@ -20064,6 +20642,7 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeapon</fixes>
  */
 
@@ -20074,6 +20653,7 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeapon</fixes>
  */
 
@@ -20099,6 +20679,7 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeapon</fixes>
  */
 
@@ -20108,6 +20689,7 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeapon</fixes>
  */
 
@@ -20152,6 +20734,7 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeapon</fixes>
  */
 
@@ -20161,6 +20744,7 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeapon</fixes>
  */
 
@@ -20188,6 +20772,7 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>PutPlayerInVehicle</fixes>
  */
 
@@ -20197,6 +20782,7 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>PutPlayerInVehicle</fixes>
  */
 
@@ -20356,6 +20942,7 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerCheckpoint</fixes>
  */
 
@@ -20385,6 +20972,7 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerCheckpoint</fixes>
  */
 
@@ -20394,6 +20982,7 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerCheckpoint</fixes>
  */
 
@@ -20423,6 +21012,7 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerCheckpoint</fixes>
  */
 
@@ -20432,6 +21022,7 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerCheckpoint</fixes>
  */
 
@@ -20459,6 +21050,7 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
 
@@ -20488,6 +21080,7 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
 
@@ -20497,6 +21090,7 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size) = SetPlayerRaceCheckpoint;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
 
@@ -20526,6 +21120,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
 
@@ -20535,6 +21130,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerRaceCheckpoint</fixes>
  */
 
@@ -20557,6 +21153,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Hides a GameText style for one or more players, and accounts for the fact
  * that they may have different messages being shown.
@@ -20610,6 +21207,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GameText</fixes>
  */
 
@@ -20625,6 +21223,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GameText</fixes>
  */
 
@@ -20658,6 +21257,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GameText</fixes>
  */
 
@@ -20667,6 +21267,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GameText</fixes>
  */
 
@@ -20708,6 +21309,7 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GameText</fixes>
  */
 
@@ -20717,6 +21319,7 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextForPlayer;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GameText</fixes>
  */
 
@@ -20757,6 +21360,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>HideGameText</fixes>
  */
 
@@ -20774,6 +21378,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>HideGameText</fixes>
  */
 
@@ -20791,6 +21396,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>CreatePlayerTextDraw</fixes>
  * <fixes>CreatePlayerTextDraw_2</fixes>
  */
@@ -20860,6 +21466,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>PlayerTextDrawSetString</fixes>
  * <fixes>PlayerTextDrawSetString_2</fixes>
  */
@@ -20874,6 +21481,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>PlayerTextDrawSetString</fixes>
  * <fixes>PlayerTextDrawSetString_2</fixes>
  */
@@ -20936,6 +21544,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>TextDrawCreate</fixes>
  * <fixes>TextDrawCreate_2</fixes>
  */
@@ -20950,6 +21559,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>TextDrawCreate</fixes>
  * <fixes>TextDrawCreate_2</fixes>
  */
@@ -21012,6 +21622,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>TextDrawSetString</fixes>
  * <fixes>TextDrawSetString_2</fixes>
  */
@@ -21026,6 +21637,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>TextDrawSetString</fixes>
  * <fixes>TextDrawSetString_2</fixes>
  */
@@ -21088,6 +21700,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AllowInteriorWeapons</fixes>
  */
 
@@ -21097,6 +21710,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AllowInteriorWeapons</fixes>
  */
 
@@ -21172,6 +21786,7 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerInterior</fixes>
  */
 
@@ -21181,6 +21796,7 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerInterior</fixes>
  */
 
@@ -21206,6 +21822,7 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerInterior</fixes>
  */
 
@@ -21215,6 +21832,7 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerInterior</fixes>
  */
 
@@ -21245,6 +21863,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AllowTeleport</fixes>
  */
 
@@ -21295,6 +21914,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AllowTeleport</fixes>
  */
 
@@ -21304,6 +21924,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AllowTeleport</fixes>
  */
 
@@ -21350,6 +21971,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AllowTeleport</fixes>
  */
 
@@ -21359,6 +21981,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AllowTeleport</fixes>
  */
 
@@ -21397,6 +22020,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AllowTeleport</fixes>
  */
 
@@ -21434,6 +22058,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerSpecialAction</fixes>
  */
 
@@ -21443,6 +22068,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerSpecialAction</fixes>
  */
 
@@ -21469,6 +22095,7 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ClearAnimations</fixes>
  */
 
@@ -21478,6 +22105,7 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ClearAnimations</fixes>
  */
 
@@ -21520,6 +22148,7 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GangZoneCreate</fixes>
  */
 
@@ -21529,6 +22158,7 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = GangZoneCreate;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GangZoneCreate</fixes>
  */
 
@@ -21550,6 +22180,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnDialogResponse</fixes>
  * <fixes>GetPlayerDialog</fixes>
  */
@@ -21564,6 +22195,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnDialogResponse</fixes>
  * <fixes>GetPlayerDialog</fixes>
  */
@@ -21621,6 +22253,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnDialogResponse</fixes>
  * <fixes>GetPlayerDialog</fixes>
  */
@@ -21712,6 +22345,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnVehicleSpawn</fixes>
  */
 
@@ -21721,6 +22355,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, addSiren = 0) = CreateVehicle;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnVehicleSpawn</fixes>
  */
 
@@ -21864,6 +22499,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnVehicleSpawn</fixes>
  */
 
@@ -21882,6 +22518,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnVehicleSpawn</fixes>
  */
 
@@ -21891,6 +22528,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, addSiren) = AddStaticVehicleEx;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnVehicleSpawn</fixes>
  */
 
@@ -22035,6 +22673,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnVehicleSpawn</fixes>
  */
 
@@ -22053,6 +22692,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnVehicleSpawn</fixes>
  */
 
@@ -22062,6 +22702,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 native BAD_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2) = AddStaticVehicle;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnVehicleSpawn</fixes>
  */
 
@@ -22099,6 +22740,7 @@ native BAD_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnVehicleSpawn</fixes>
  */
 
@@ -22179,6 +22821,7 @@ native BAD_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerDialog</fixes>
  */
 
@@ -22208,6 +22851,7 @@ native BAD_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>valstr</fixes>
  */
 
@@ -22217,6 +22861,7 @@ native BAD_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, 
 native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>valstr</fixes>
  */
 
@@ -22250,6 +22895,7 @@ native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fclose</fixes>
  */
 
@@ -22259,6 +22905,7 @@ native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 native BAD_fclose(File:handle) = fclose;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fclose</fixes>
  */
 
@@ -22280,6 +22927,7 @@ native BAD_fclose(File:handle) = fclose;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fwrite</fixes>
  */
 
@@ -22289,6 +22937,7 @@ native BAD_fclose(File:handle) = fclose;
 native BAD_fwrite(File:handle, const string[]) = fwrite;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fwrite</fixes>
  */
 
@@ -22310,6 +22959,7 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fread</fixes>
  */
 
@@ -22319,6 +22969,7 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = false) = fread;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fread</fixes>
  */
 
@@ -22340,6 +22991,7 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fputchar</fixes>
  */
 
@@ -22349,6 +23001,7 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fputchar</fixes>
  */
 
@@ -22370,6 +23023,7 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fgetchar</fixes>
  */
 
@@ -22379,6 +23033,7 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 native BAD_fgetchar(File:handle, bool:utf8 = true) = fgetchar;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fgetchar</fixes>
  */
 
@@ -22404,6 +23059,7 @@ native BAD_fgetchar(File:handle, bool:utf8 = true) = fgetchar;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fblockwrite</fixes>
  */
 
@@ -22413,6 +23069,7 @@ native BAD_fgetchar(File:handle, bool:utf8 = true) = fgetchar;
 native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fblockwrite;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fblockwrite</fixes>
  */
 
@@ -22434,6 +23091,7 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fblockread</fixes>
  */
 
@@ -22443,6 +23101,7 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
 native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockread;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fblockread</fixes>
  */
 
@@ -22464,6 +23123,7 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fseek</fixes>
  */
 
@@ -22473,6 +23133,7 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
 native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = fseek;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>fseek</fixes>
  */
 
@@ -22494,6 +23155,7 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>flength</fixes>
  */
 
@@ -22503,6 +23165,7 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
 native BAD_flength(File:handle) = flength;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>flength</fixes>
  */
 
@@ -22524,6 +23187,7 @@ native BAD_flength(File:handle) = flength;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>floatfract</fixes>
  */
 
@@ -22545,6 +23209,7 @@ native BAD_flength(File:handle) = flength;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>strfind</fixes>
  */
 
@@ -22566,6 +23231,7 @@ native BAD_flength(File:handle) = flength;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>strdel</fixes>
  */
 
@@ -22587,6 +23253,7 @@ native BAD_flength(File:handle) = flength;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>Kick</fixes>
  */
 
@@ -22596,6 +23263,7 @@ native BAD_flength(File:handle) = flength;
 native BAD_Kick(playerid) = Kick;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>Kick</fixes>
  */
 
@@ -22652,6 +23320,7 @@ native BAD_Kick(playerid) = Kick;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>strins</fixes>
  */
 
@@ -22661,6 +23330,7 @@ native BAD_Kick(playerid) = Kick;
 native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = strins;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>strins</fixes>
  */
 
@@ -22736,6 +23406,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyAnimation_2</fixes>
  */
 
@@ -22760,6 +23431,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyAnimation_2</fixes>
  */
 
@@ -22776,6 +23448,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyAnimation</fixes>
  * <fixes>ApplyAnimation_2</fixes>
  */
@@ -22790,6 +23463,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyAnimation</fixes>
  * <fixes>ApplyAnimation_2</fixes>
  */
@@ -22842,6 +23516,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyActorAnimation_2</fixes>
  */
 
@@ -22866,6 +23541,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyActorAnimation_2</fixes>
  */
 
@@ -22882,6 +23558,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyActorAnimation</fixes>
  * <fixes>ApplyActorAnimation_2</fixes>
  */
@@ -22896,6 +23573,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyActorAnimation</fixes>
  * <fixes>ApplyActorAnimation_2</fixes>
  */
@@ -22948,6 +23626,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyActorAnimation_2</fixes>
  */
 
@@ -22957,6 +23636,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:rotation) = CreateActor;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyActorAnimation_2</fixes>
  */
 
@@ -22989,6 +23669,7 @@ native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:rotation) = Cre
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyActorAnimation_2</fixes>
  */
 
@@ -22998,6 +23679,7 @@ native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:rotation) = Cre
 native BAD_DestroyActor(actorid) = DestroyActor;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ApplyActorAnimation_2</fixes>
  */
 
@@ -23025,6 +23707,7 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetVehicleComponentInSlot</fixes>
  */
 
@@ -23034,6 +23717,7 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 native BAD_DestroyVehicle(vehicleid) = DestroyVehicle;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetVehicleComponentInSlot</fixes>
  */
 
@@ -23072,6 +23756,7 @@ native BAD_DestroyVehicle(vehicleid) = DestroyVehicle;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetVehicleComponentInSlot</fixes>
  */
 
@@ -23081,6 +23766,7 @@ native BAD_DestroyVehicle(vehicleid) = DestroyVehicle;
 native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetVehicleComponentInSlot</fixes>
  */
 
@@ -23161,6 +23847,7 @@ native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetVehicleComponentInSlot</fixes>
  */
 
@@ -23170,6 +23857,7 @@ native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleComponent;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetVehicleComponentInSlot</fixes>
  */
 
@@ -23241,6 +23929,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetVehicleComponentInSlot</fixes>
  */
 
@@ -23326,6 +24015,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>AttachTrailerToVehicle</fixes>
  */
 
@@ -23357,6 +24047,7 @@ native BAD_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle
 
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
 
@@ -23366,6 +24057,7 @@ native BAD_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle
 native BAD_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
 
@@ -23388,6 +24080,7 @@ native BAD_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:l
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
 
@@ -23397,6 +24090,7 @@ native BAD_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:l
 native BAD_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
 
@@ -23429,6 +24123,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>OnPlayerEnterVehicle_3</fixes>
  */
 
@@ -23444,6 +24139,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>random</fixes>
  */
 
@@ -23453,6 +24149,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS
 native BAD_random(max) = random;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>random</fixes>
  */
 
@@ -23481,6 +24178,7 @@ native BAD_random(max) = random;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>streamer</fixes>
  */
 
@@ -23491,6 +24189,7 @@ native bool:_FIXES_Streamer_HasIntData_A(type, _FIXES_STREAMER_ALL_TAGS:id, data
 native bool:_FIXES_Streamer_HasIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_HasIntData;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>streamer</fixes>
  */
 
@@ -23530,6 +24229,7 @@ native bool:_FIXES_Streamer_HasIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>streamer</fixes>
  */
 
@@ -23540,6 +24240,7 @@ native bool:_FIXES_Streamer_RemoveIntData_A(type, _FIXES_STREAMER_ALL_TAGS:id, d
 native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data) = Streamer_RemoveIntData;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>streamer</fixes>
  */
 
@@ -23579,6 +24280,7 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>sleep</fixes>
  */
 
@@ -23617,6 +24319,7 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * _FIXES_SetCamera
  * </remarks>
@@ -23643,6 +24346,7 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerCamera</fixes>
  */
 
@@ -23652,6 +24356,7 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerCamera</fixes>
  */
 
@@ -23688,6 +24393,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerCamera</fixes>
  */
 
@@ -23697,6 +24403,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraLookAt;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerCamera</fixes>
  */
 
@@ -23733,6 +24440,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerCamera</fixes>
  */
 
@@ -23742,6 +24450,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerCamera</fixes>
  */
 
@@ -23783,6 +24492,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerTime</fixes>
  */
 
@@ -23792,6 +24502,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerTime</fixes>
  */
 
@@ -23828,6 +24539,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerColor</fixes>
  */
 
@@ -23837,6 +24549,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerColor</fixes>
  */
 
@@ -23873,6 +24586,7 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeaponData</fixes>
  */
 
@@ -23882,6 +24596,7 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeaponData;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeaponData</fixes>
  */
 
@@ -23908,6 +24623,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPVarString</fixes>
  */
 
@@ -23921,6 +24637,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPVarString</fixes>
  */
 
@@ -23964,6 +24681,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetSVarString</fixes>
  */
 
@@ -24007,6 +24725,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>toupper</fixes>
  */
 
@@ -24016,6 +24735,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 native BAD_toupper(c) = toupper;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>toupper</fixes>
  */
 
@@ -24045,6 +24765,7 @@ native BAD_toupper(c) = toupper;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>tolower</fixes>
  */
 
@@ -24054,6 +24775,7 @@ native BAD_toupper(c) = toupper;
 native BAD_tolower(c) = tolower;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>tolower</fixes>
  */
 
@@ -24083,6 +24805,7 @@ native BAD_tolower(c) = tolower;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ispacked</fixes>
  */
 
@@ -24092,6 +24815,7 @@ native BAD_tolower(c) = tolower;
 native bool:BAD_ispacked(const string[]) = ispacked;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>ispacked</fixes>
  */
 
@@ -24114,12 +24838,14 @@ native bool:BAD_ispacked(const string[]) = ispacked;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerPoolSize</fixes>
  */
 
 native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerPoolSize</fixes>
  */
 
@@ -24146,6 +24872,7 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerPos</fixes>
  * <fixes>TogglePlayerSpectating</fixes>
  */
@@ -24163,6 +24890,7 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerPos</fixes>
  * <fixes>TogglePlayerSpectating</fixes>
  */
@@ -24197,6 +24925,7 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerPos</fixes>
  * <fixes>TogglePlayerSpectating</fixes>
  */
@@ -24207,6 +24936,7 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerPos</fixes>
  * <fixes>TogglePlayerSpectating</fixes>
  */
@@ -24234,6 +24964,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>SetPlayerPos</fixes>
  */
 
@@ -24270,6 +25001,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerAmmo</fixes>
  */
 
@@ -24279,6 +25011,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerAmmo</fixes>
  */
 
@@ -24297,6 +25030,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeather</fixes>
  */
 
@@ -24326,6 +25060,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeather</fixes>
  */
 
@@ -24335,6 +25070,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeather</fixes>
  */
 
@@ -24361,6 +25097,7 @@ native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeather</fixes>
  */
 
@@ -24370,6 +25107,7 @@ native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeather</fixes>
  */
 
@@ -24434,6 +25172,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetWeather</fixes>
  */
 
@@ -24459,6 +25198,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeather</fixes>
  */
 
@@ -24468,6 +25208,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 native BAD_SetWeather(weather) = SetWeather;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetPlayerWeather</fixes>
  */
 
@@ -24509,6 +25250,7 @@ native BAD_SetWeather(weather) = SetWeather;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>API</fixes>
  */
 
@@ -24526,6 +25268,7 @@ native BAD_SetWeather(weather) = SetWeather;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetWorldTime</fixes>
  */
 
@@ -24535,6 +25278,7 @@ native BAD_SetWeather(weather) = SetWeather;
 native BAD_SetWorldTime(hour) = SetWorldTime;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetWorldTime</fixes>
  */
 
@@ -24552,6 +25296,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetWorldTime</fixes>
  */
 
@@ -24574,6 +25319,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetMaxPlayers</fixes>
  */
 
@@ -24596,6 +25342,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetServerVarAsString</fixes>
  */
 
@@ -24738,6 +25485,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetConsoleVarAsInt</fixes>
  */
 
@@ -24752,6 +25500,7 @@ native BAD_GetConsoleVarAsInt(const varname[]) = GetConsoleVarAsInt;
 native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetConsoleVarAsInt</fixes>
  */
 
@@ -24828,6 +25577,7 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetConsoleVarAsBool</fixes>
  */
 
@@ -24842,6 +25592,7 @@ native BAD_GetConsoleVarAsBool(const varname[]) = GetConsoleVarAsBool;
 native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetConsoleVarAsBool</fixes>
  */
 
@@ -24904,6 +25655,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>GetConsoleVarAsFloat</fixes>
  */
 
@@ -24957,6 +25709,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>strcmp</fixes>
  */
 
@@ -24966,6 +25719,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, length = cellmax) = strcmp;
 
 /**
+ * <library>fixes.inc</library>
  * <fixes>strcmp</fixes>
  */
 
@@ -25348,6 +26102,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 */
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Get the default colour for a given playerid.  They don't need to be
  * connected.  Relies on <c>FIX_GetPlayerColour</c>.  Provides an alias for
@@ -25383,6 +26138,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Get the number of seats in a given vehicle.
  * </remarks>
@@ -25413,6 +26169,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Check if a given vehicle can use a given mod component.
  * </remarks>
@@ -25451,6 +26208,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Check if a given animation library name is actually valid and in SA:MP.
  * </remarks>
@@ -25472,6 +26230,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Get random colours that are valid for the given vehicle model.
  * </remarks>
@@ -25493,6 +26252,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Convert a car colour index to a HEX colour (RGBA).
  * </remarks>
@@ -25528,6 +26288,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Does this player have the global clock enabled?
  * </remarks>
@@ -25551,6 +26312,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #endif
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  * Is this menu valid?
  * </remarks>
@@ -25625,6 +26387,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #endif
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		<c>PAWNDOC</c> is a fake function used throughout the code to invoke
@@ -25638,6 +26401,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 _FIXES_CLOSE_PAWNDOC();
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This function only exists to hide other functions.  It starts a massive
@@ -25667,6 +26431,7 @@ _FIXES_CLOSE_PAWNDOC();
 static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This function only exists to hide other functions.  It end a massive
@@ -25696,6 +26461,7 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
 static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This variable only exists to hide other variables.  It starts a massive
@@ -25725,6 +26491,7 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This variable only exists to hide other variables.  It end a massive
@@ -25754,6 +26521,7 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
 static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This variable only exists to hide other variables.  It starts a massive
@@ -25781,6 +26549,7 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 #endif
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This variable only exists to hide other variables.  It ends a massive
@@ -25808,6 +26577,7 @@ static stock FIXES_zzzzzzzzzzzzzzzzzzzzzzzzy;
 #endif
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This variable only exists to hide other variables.  It starts a massive
@@ -25824,6 +26594,7 @@ static stock FIXES_zzzzzzzzzzzzzzzzzzzzzzzzy;
 static stock FIX_;
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This variable only exists to hide other variables.  It ends a massive
@@ -25840,6 +26611,7 @@ static stock FIX_;
 static stock FIX_zzzzzzzzzzzzzzzzzzzzzzzzzzy;
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This enum only exists to hide other enums.  It starts a massive comment
@@ -25864,6 +26636,7 @@ enum e_FIXES()
 _FIXES_ENUM_PAWNDOC(e_FIXES);
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This enum only exists to hide other enums.  It ends a massive comment
@@ -25889,6 +26662,7 @@ enum e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz()
 _FIXES_ENUM_PAWNDOC(e_FIXESzzzzzzzzzzzzzzzzzzzzzz);
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This constant only exists to hide other consts.  It ends a massive
@@ -25905,6 +26679,7 @@ _FIXES_ENUM_PAWNDOC(e_FIXESzzzzzzzzzzzzzzzzzzzzzz);
 const e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz = e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz;
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This function only exists to hide other functions.  It ends a massive
@@ -25922,6 +26697,7 @@ const e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz = e_FIXESz
 static stock e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:FIXES_zzzzzzzzzzzzzzzzzzzzzzzzz() { return e_FIXES_zzzzzzzzzzzzzzzzzzzzzzz; }
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This constant only exists to hide other consts.  It starts a massive
@@ -25938,6 +26714,7 @@ static stock e_FIXESzzzzzzzzzzzzzzzzzzzzzzzz:FIXES_zzzzzzzzzzzzzzzzzzzzzzzzz() {
 const e_FIXES:e_FIXES_ = e_FIXES;
 
 /**
+	<library>fixes.inc</library>
 	<hidden />
 	<remarks>
 		This function only exists to hide other functions.  It starts a massive
@@ -25959,6 +26736,7 @@ static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
 // Fix inclusion template.
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="NameOfFixHere" disabled="false">
  *     <problem>
  *         A description of the problem.
@@ -25995,6 +26773,7 @@ static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
 // Non-NPC fix inclusion template.
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="NameOfFixHere" disabled="false">
  *     <problem>
  *         A description of the problem.
@@ -26037,6 +26816,7 @@ static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
 // Fix natively fixed inclusion template.
 
 /**
+ * <library>fixes.inc</library>
  * <fix name="NameOfFixHere" disabled="true" fixed="version">
  *     <problem>
  *         A description of the problem.
@@ -26085,6 +26865,7 @@ static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
 // Fix function template.
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>Information about fix here</remarks>
  * <fixes>NameOfFixHere</fixes>
  */
@@ -26095,6 +26876,7 @@ static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
 native BAD_NameOfFixHere(params) = NameOfFixHere;
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>Information about fix here</remarks>
  * <fixes>NameOfFixHere</fixes>
  */
@@ -26120,6 +26902,7 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 // Added API function template.
 
 /**
+ * <library>fixes.inc</library>
  * <remarks>
  *
  * </remarks>
