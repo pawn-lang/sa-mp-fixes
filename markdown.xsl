@@ -60,11 +60,6 @@
 <BODY>
 	<!-- <h1><xsl:value-of select="doc/assembly/name" /></h1> -->
 	<xsl:apply-templates select="doc/general" />
-	<br />## Fixes<br />
-	<xsl:apply-templates select="doc/members/member" mode="fixes" />
-	<xsl:apply-templates select="doc/members/member" mode="library">
-		<xsl:with-param name="library" select="'fixes.inc'" />
-	</xsl:apply-templates>
 	<xsl:apply-templates select="doc/members/member" mode="rest" />
 </BODY>
 </HTML>
@@ -346,6 +341,8 @@
 <xsl:template match="subsection"><br />### <xsl:apply-templates /><br /></xsl:template>
 
 <xsl:template match="library">
+	<br /><br />__________________________________________<br /><br />
+
 	<xsl:value-of select="@name" /><br />
 	==========================================<br />
 	<xsl:if test="@description">
@@ -353,6 +350,15 @@
 		------------------------------------------<br />
 	</xsl:if>
 	<xsl:apply-templates />
+	<xsl:if test="@name = 'fixes.inc'">
+		<br />## Fixes<br />
+		<xsl:apply-templates select="/doc/members/member" mode="fixes" />
+	</xsl:if>
+	<xsl:apply-templates select="/doc/members/member" mode="library">
+		<xsl:with-param name="library" select="@name" />
+	</xsl:apply-templates>
+
+	<br /><br />__________________________________________<br /><br />
 </xsl:template>
 
 <xsl:template match="br"><br /></xsl:template>
