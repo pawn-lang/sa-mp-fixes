@@ -62,7 +62,10 @@
 	<xsl:apply-templates select="doc/general" />
 	<br />## Fixes<br />
 	<xsl:apply-templates select="doc/members/member" mode="fixes" />
-	<xsl:apply-templates select="doc/members/member" />
+	<xsl:apply-templates select="doc/members/member" mode="library">
+		<xsl:with-param name="library" select="'fixes.inc'" />
+	</xsl:apply-templates>
+	<xsl:apply-templates select="doc/members/member" mode="rest" />
 </BODY>
 </HTML>
 </xsl:template>
@@ -71,8 +74,27 @@
     <xsl:apply-templates />
     <br />
 </xsl:template>
+<!--	<xsl:param name="library" select="''" /> -->
 
-<xsl:template match="member">
+<xsl:template match="member[library]" mode="library">
+	<xsl:param name="library" select="''" />
+	<xsl:if test="library = $library">
+		<xsl:apply-templates select="." mode="full" />
+	</xsl:if>
+</xsl:template>
+
+<xsl:template match="member[not(library)]" mode="library">
+</xsl:template>
+
+<!-- Clean up the rest of the members that have no "library" specifier -->
+<xsl:template match="member[library]" mode="rest">
+</xsl:template>
+
+<xsl:template match="member[not(library)]" mode="rest">
+	<xsl:apply-templates select="." mode="full" />
+</xsl:template>
+
+<xsl:template match="member" mode="full">
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,2) = 'T:'">
 			<br />### enum `<xsl:value-of select="substring(@name,3)" />`:<br />
@@ -211,6 +233,7 @@
 	</xsl:choose>
 </xsl:template>
 
+<!-- Show the list of fixes first -->
 <xsl:template match="member" mode="fixes">
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,6) = 'F:FIX_'">
