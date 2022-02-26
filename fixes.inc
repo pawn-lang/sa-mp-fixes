@@ -3,6 +3,12 @@
              fixes.inc - Community patch for buggy SA:MP functions.
             ========================================================
 */
+
+#if defined _INC_SAMP_Community_fixes
+	#endinput
+#endif
+#define _INC_SAMP_Community_fixes
+
 /**
  * <!--
  * <transition target[^/]+/>
@@ -385,11 +391,6 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 
 
 */
-
-#if defined _INC_SAMP_Community_fixes
-	#endinput
-#endif
-#define _INC_SAMP_Community_fixes
 
 #if !defined _inc_fixes
 	#define _inc_fixes
