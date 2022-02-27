@@ -14319,214 +14319,72 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 
 */
 
-/*
- * <remarks>
- * File operators.
- *
- * Forwards for operators that shouldn't exist, so they won't exist.
- * </remarks>
- */
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator++(File:a);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_00);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator--(File:a);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_01);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator-(File:a);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_02);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator+(File:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_03);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_04);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator+(File:a, _:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_05);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator-(File:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_06);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator-(_:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_07);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator-(File:a, _:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_08);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator*(File:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_09);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator*(File:a, _:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_10);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator/(File:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_11);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator/(_:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_12);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator/(File:a, _:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_13);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator%(File:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_14);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator%(_:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_15);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward File:operator%(File:a, _:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_16);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator<(File:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_17);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator<(_:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_18);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator<(File:a, _:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_19);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator<=(File:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_20);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator<=(_:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_21);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator<=(File:a, _:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_22);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator>(File:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_23);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator>(_:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_24);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator>(File:a, _:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_25);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator>=(File:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_26);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator>=(_:a, File:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_27);
-#endif
-
-/// <library>fixes.inc</library>
-#if FIX_FileMaths
-	forward bool:operator>=(File:a, _:b);
-#else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_28);
+///
+/// <remarks>
+/// File operators.
+///
+/// Forwards for operators that shouldn't exist, so they won't exist.
+/// </remarks>
+///
+#if FIX_FileMaths ///
+	/// <library>fixes.inc</library>
+	forward File:operator++(File:a); ///
+	/// <library>fixes.inc</library>
+	forward File:operator--(File:a); ///
+	/// <library>fixes.inc</library>
+	forward File:operator-(File:a); ///
+	/// <library>fixes.inc</library>
+	forward File:operator+(File:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator+(File:a, _:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator-(File:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator-(_:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator-(File:a, _:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator*(File:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator*(File:a, _:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator/(File:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator/(_:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator/(File:a, _:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator%(File:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator%(_:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward File:operator%(File:a, _:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator<(File:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator<(_:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator<(File:a, _:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator<=(File:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator<=(_:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator<=(File:a, _:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator>(File:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator>(_:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator>(File:a, _:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator>=(File:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator>=(_:a, File:b); ///
+	/// <library>fixes.inc</library>
+	forward bool:operator>=(File:a, _:b); ///
+#else ///
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS);
 #endif
 
 /*
