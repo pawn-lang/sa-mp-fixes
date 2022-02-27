@@ -57,7 +57,10 @@
 	pre { background-color: #ddeeff; font-size: small; margin: 1em; }
 	div.member-header { display: none; }
 	div.members > .member-header:nth-child(1) { display: block; }
-	.markdown-mode .markdown { }
+	.markdown-mode .markdown { display: auto; }
+	.render-mode .render { display: auto; }
+	.markdown-mode .render { display: none; }
+	.render-mode .markdown { display: none; }
 </style>
 </head>
 <body class="markdown-mode">
