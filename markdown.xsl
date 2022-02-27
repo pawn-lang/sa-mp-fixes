@@ -179,10 +179,12 @@
 				<br />
 				<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,3)" /></xsl:attribute><h2><span class="markdown">###&#160;</span><code><span class="markdown">`</span><xsl:value-of select="substring(@name,3)" /><span class="markdown">`</span></code>:</h2></a>
 				<br /><br />
-				| **Value** | <code><span class="markdown">`</span><xsl:value-of select="@value" />:<span class="markdown">`</span></code> |<br />
 				<xsl:apply-templates select="summary" />
 				<p class="noindent">
 					<table>
+						<tr>
+							<td class="inline markdown">|&#160;</td><td class="header inline"><b><span class="markdown">**</span>Value<span class="markdown">**</span></b></td><td class="inline markdown">&#160;|&#160;</td><td class="inline"><code><span class="markdown">`</span><xsl:value-of select="@value" /><span class="markdown">`</span></code></td><td class="inline markdown">&#160;|</td>
+						</tr>
 						<xsl:apply-templates select="tagname" />
 						<xsl:apply-templates select="size" />
 					</table>
@@ -321,7 +323,7 @@
 <xsl:template match="member" mode="submember">
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,2) = 'C:'">
-			<li>* <code><span class="markdown">`</span><xsl:value-of select="substring(@name,3)" /> = <xsl:value-of select="@value" /><span class="markdown">`</span></code></li>
+			<li><span class="markdown">*&#160;</span><code><span class="markdown">`</span><xsl:value-of select="substring(@name,3)" /> = <xsl:value-of select="@value" /><span class="markdown">`</span></code></li>
 		</xsl:when>
 	</xsl:choose>
 </xsl:template>
@@ -342,13 +344,13 @@
 
 <xsl:template match="tagname">
 	<tr>
-		<td class="inline markdown">|&#160;</td><th class="header inline">**Tag**</th><td class="inline markdown">&#160;|&#160;</td><td class="inline"><code><span class="markdown">`</span><xsl:value-of select="@value" />:<span class="markdown">`</span></code></td><td class="inline markdown">&#160;|</td>
+		<td class="inline markdown">|&#160;</td><td class="header inline"><b><span class="markdown">**</span>Tag<span class="markdown">**</span></b></td><td class="inline markdown">&#160;|&#160;</td><td class="inline"><code><span class="markdown">`</span><xsl:value-of select="@value" />:<span class="markdown">`</span></code></td><td class="inline markdown">&#160;|</td>
 	</tr>
 </xsl:template>
 
 <xsl:template match="size">
 	<tr>
-		<td class="inline markdown">|&#160;</td><th class="header inline">**Size**</th><td class="inline markdown">&#160;|&#160;</td><td class="inline"><code><span class="markdown">`</span><xsl:value-of select="@value" /><span class="markdown">`</span></code></td><td class="inline markdown">&#160;|</td>
+		<td class="inline markdown">|&#160;</td><td class="header inline"><b><span class="markdown">**</span>Size<span class="markdown">**</span></b></td><td class="inline markdown">&#160;|&#160;</td><td class="inline"><code><span class="markdown">`</span><xsl:value-of select="@value" /><span class="markdown">`</span></code></td><td class="inline markdown">&#160;|</td>
 	</tr>
 </xsl:template>
 
@@ -367,15 +369,15 @@
 </xsl:template>
 
 <xsl:template match="attribute">
-	<li class="attribute">* <code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code></li>
+	<li class="attribute"><span class="markdown">*&#160;</span><code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code></li>
 </xsl:template>
 
 <xsl:template match="referrer">
-	<li class="referrer">* <a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a></li>
+	<li class="referrer"><span class="markdown">*&#160;</span><a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a></li>
 </xsl:template>
 
 <xsl:template match="dependency">
-	<li class="dependency">* <a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a></li>
+	<li class="dependency"><span class="markdown">*&#160;</span><a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a></li>
 </xsl:template>
 
 <xsl:template match="stacksize">
@@ -401,7 +403,7 @@
 </xsl:template>
 
 <xsl:template match="seealso">
-	* <a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a><br />
+	<span class="markdown">*&#160;</span><a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a><br />
 </xsl:template>
 
 <xsl:template match="paramref">
@@ -493,11 +495,11 @@
 </xsl:template>
 
 <xsl:template match="symbol">
-	<li>* <a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a>:&#160;<xsl:apply-templates /></li>
+	<li><span class="markdown">*&#160;</span><a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a>:&#160;<xsl:apply-templates /></li>
 </xsl:template>
 
 <xsl:template match="synonym">
-	<li>* <code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code>: Synonym for <code><span class="markdown">`</span><xsl:value-of select="@for" /><span class="markdown">`</span></code><xsl:apply-templates />.</li>
+	<li><span class="markdown">*&#160;</span><code><span class="markdown">`</span><xsl:value-of select="@name" /><span class="markdown">`</span></code>: Synonym for <code><span class="markdown">`</span><xsl:value-of select="@for" /><span class="markdown">`</span></code><xsl:apply-templates />.</li>
 </xsl:template>
 
 <xsl:template match="changelog">
@@ -510,11 +512,11 @@
 
 <xsl:template match="fix">
 	<xsl:if test="@fixed">
-		<br />**Fixed in <xsl:value-of select="@fixed" />**<br />
+		<br /><b><span class="markdown">**</span>Fixed in <xsl:value-of select="@fixed" /><span class="markdown">**</span></b><br />
 	</xsl:if>
 	<xsl:if test="@disabled">
 		<xsl:if test="@disabled='true'">
-			<br />**Disabled By Default**<br />
+			<br /><b><span class="markdown">**</span>Disabled By Default<span class="markdown">**</span></b><br />
 		</xsl:if>
 	</xsl:if>
 
@@ -537,14 +539,14 @@
 </xsl:template>
 
 <xsl:template match="post">
-	<li class="post">* <a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:value-of select="@href" />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a></li>
+	<li class="post"><span class="markdown">*&#160;</span><a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:value-of select="@href" />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a></li>
 </xsl:template>
 <xsl:template match="see">
-	<li class="see">* <a><xsl:attribute name="href">#<xsl:apply-templates /></xsl:attribute><span class="link-text">[<code><span class="markdown">`</span><xsl:apply-templates /><span class="markdown">`</span></code>]</span><span class="link-href">(#<xsl:apply-templates />)</span></a></li>
+	<li class="see"><span class="markdown">*&#160;</span><a><xsl:attribute name="href">#<xsl:apply-templates /></xsl:attribute><span class="link-text">[<code><span class="markdown">`</span><xsl:apply-templates /><span class="markdown">`</span></code>]</span><span class="link-href">(#<xsl:apply-templates />)</span></a></li>
 </xsl:template>
 <xsl:template match="author">
-	<li class="author">
-	*   <xsl:choose>
+	<li class="author"><span class="markdown">*&#160;</span>
+	<xsl:choose>
 			<xsl:when test="@href">
 				<a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:apply-templates />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a>
 			</xsl:when>
@@ -564,7 +566,7 @@
 <xsl:template match="fixeslist"><xsl:apply-templates /></xsl:template>
 
 <xsl:template match="fixes">
-	<li class="fixes">* <a><xsl:attribute name="href">#FIX_<xsl:apply-templates /></xsl:attribute><span class="link-text">[<xsl:apply-templates />]</span><span class="link-href">(#FIX_<xsl:apply-templates />)</span></a></li>
+	<li class="fixes"><span class="markdown">*&#160;</span><a><xsl:attribute name="href">#FIX_<xsl:apply-templates /></xsl:attribute><span class="link-text">[<xsl:apply-templates />]</span><span class="link-href">(#FIX_<xsl:apply-templates />)</span></a></li>
 </xsl:template>
 
 </xsl:stylesheet>
