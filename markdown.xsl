@@ -286,7 +286,7 @@
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,6) = 'F:FIX_'">
 			<br />
-			<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,7)" /></xsl:attribute><h2>### <xsl:value-of select="substring(@name,7)" />:</h2></a>
+			<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,3)" /></xsl:attribute><h2>### <xsl:value-of select="substring(@name,7)" />:</h2></a>
 			<br />
 			<xsl:apply-templates select="fix" />
 		</xsl:when>
@@ -306,10 +306,7 @@
 </xsl:template>
 
 <xsl:template match="param">
-								  
 	| <code>`<xsl:value-of select="@name" />`</code> | <xsl:apply-templates /> |<br />
-			   
-
 </xsl:template>
 
 <xsl:template match="paraminfo">
@@ -317,17 +314,11 @@
 </xsl:template>
 
 <xsl:template match="tagname">
-														  
-				  
 	| **Tag** | <code>`<xsl:value-of select="@value" />:`</code> |<br />
-
 </xsl:template>
 
 <xsl:template match="size">
-														  
-				  
 	| **Size** | <code>`<xsl:value-of select="@value" />:`</code> |<br />
-
 </xsl:template>
 
 <xsl:template match="returns">
@@ -407,14 +398,12 @@
 <xsl:template match="library">
 	<br /><br />__________________________________________<hr /><br /><br />
 
-	   
 	<h1><xsl:value-of select="@name" /></h1>
 	<h1>==========================================</h1><br />
 	<xsl:if test="@description">
 		<br /><h1><xsl:value-of select="@description" /></h1>
 		<h1>------------------------------------------</h1><br />
 	</xsl:if>
-					  
 	<br /><xsl:apply-templates /><br />
 	<div class="members">
 		<xsl:if test="@name = 'fixes.inc'">
@@ -481,7 +470,6 @@
 <!-- fixes.inc -->
 
 <xsl:template match="fix">
-														 
 	<xsl:if test="@fixed">
 		<br />**Fixed in <xsl:value-of select="@fixed" />**<br />
 	</xsl:if>
@@ -516,7 +504,6 @@
 	* <a><xsl:attribute name="href">#<xsl:apply-templates /></xsl:attribute><span class="link-text">[<code>`<xsl:apply-templates />`</code>]</span><span class="link-href">(#<xsl:apply-templates />)</span></a><br />
 </xsl:template>
 <xsl:template match="author">
-						  
 	*   <xsl:choose>
 			<xsl:when test="@href">
 				<a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:apply-templates />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a>
