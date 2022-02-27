@@ -391,9 +391,9 @@
 
 <xsl:template match="para"><hr class="para" /><br /><xsl:apply-templates /><br /></xsl:template>
 
-<xsl:template match="section"><br /><h1 class="general">## <xsl:apply-templates /></h1><br /></xsl:template>
+<xsl:template match="section"><h1 class="general">## <xsl:apply-templates /></h1></xsl:template>
 
-<xsl:template match="subsection"><br /><h2 class="general">### <xsl:apply-templates /></h2><br /></xsl:template>
+<xsl:template match="subsection"><h2 class="general">### <xsl:apply-templates /></h2></xsl:template>
 
 <xsl:template match="library">
 	<br /><br />__________________________________________<hr /><br /><br />
@@ -454,16 +454,16 @@
 </xsl:template>
 
 <xsl:template match="symbol">
-	* <a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code>`<xsl:value-of select="@name" />`</code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a>:&#160;<xsl:apply-templates /><br />
+	<li>* <a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code>`<xsl:value-of select="@name" />`</code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a>:&#160;<xsl:apply-templates /></li>
 </xsl:template>
 
 <xsl:template match="synonym">
-	* <code>`<xsl:value-of select="@name" />`</code>: Synonym for <code>`<xsl:value-of select="@for" />`</code><xsl:apply-templates />.<br />
+	<li>* <code>`<xsl:value-of select="@name" />`</code>: Synonym for <code>`<xsl:value-of select="@for" />`</code><xsl:apply-templates />.</li>
 </xsl:template>
 
 <xsl:template match="changelog">
-	<br /><h3>#### <xsl:value-of select="@date" /></h3><br />
-	<xsl:apply-templates />
+	<li class="changelog"><h3 class="general">#### <xsl:value-of select="@date" /></h3>
+	<ul><xsl:apply-templates /></ul></li>
 </xsl:template>
 
 
@@ -498,12 +498,13 @@
 </xsl:template>
 
 <xsl:template match="post">
-	* <a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:value-of select="@href" />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a><br />
+	<li class="post">* <a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:value-of select="@href" />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a></li>
 </xsl:template>
 <xsl:template match="see">
-	* <a><xsl:attribute name="href">#<xsl:apply-templates /></xsl:attribute><span class="link-text">[<code>`<xsl:apply-templates />`</code>]</span><span class="link-href">(#<xsl:apply-templates />)</span></a><br />
+	<li class="see">* <a><xsl:attribute name="href">#<xsl:apply-templates /></xsl:attribute><span class="link-text">[<code>`<xsl:apply-templates />`</code>]</span><span class="link-href">(#<xsl:apply-templates />)</span></a></li>
 </xsl:template>
 <xsl:template match="author">
+	<li class="author">
 	*   <xsl:choose>
 			<xsl:when test="@href">
 				<a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:apply-templates />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a>
@@ -512,7 +513,7 @@
 				<xsl:apply-templates />
 			</xsl:otherwise>
 		</xsl:choose>
-	<br />
+	</li>
 </xsl:template>
 <xsl:template match="problem">
 	<br /><xsl:apply-templates /><br />
@@ -524,7 +525,7 @@
 <xsl:template match="fixeslist"><xsl:apply-templates /></xsl:template>
 
 <xsl:template match="fixes">
-	* <a><xsl:attribute name="href">#FIX_<xsl:apply-templates /></xsl:attribute><span class="link-text">[<xsl:apply-templates />]</span><span class="link-href">(#FIX_<xsl:apply-templates />)</span></a><br />
+	<li class="fixes">* <a><xsl:attribute name="href">#FIX_<xsl:apply-templates /></xsl:attribute><span class="link-text">[<xsl:apply-templates />]</span><span class="link-href">(#FIX_<xsl:apply-templates />)</span></a></li>
 </xsl:template>
 
 </xsl:stylesheet>
