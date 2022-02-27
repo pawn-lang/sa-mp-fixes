@@ -138,7 +138,7 @@
 				<xsl:if test="member">
 					<h3>#### Members</h3><br />
 					<blockquote>
-					<xsl:apply-templates select="member" mode="submember" />
+					<ul><xsl:apply-templates select="member" mode="submember" /></ul>
 					</blockquote>
 				</xsl:if>
 				<xsl:apply-templates select="example" />
@@ -168,8 +168,12 @@
 				<br /><br />
 				| **Value** | <code>`<xsl:value-of select="@value" />:`</code> |<br />
 				<xsl:apply-templates select="summary" />
-				<xsl:apply-templates select="tagname" />
-				<xsl:apply-templates select="size" />
+				<p class="noindent">
+					<table>
+						<xsl:apply-templates select="tagname" />
+						<xsl:apply-templates select="size" />
+					</table>
+				</p>
 				<xsl:if test="remarks">
 					<h3>#### Remarks</h3><br />
 					<xsl:apply-templates select="remarks" />
@@ -202,9 +206,13 @@
 				<xsl:apply-templates select="summary" />
 				<br /><h3>#### Syntax</h3><br /><br /><pre>```pawn<br /><xsl:value-of select="@syntax" /><br />```</pre><br />
 				<xsl:if test="param">
-					<br /><xsl:apply-templates select="param" /><br />
+					<p><table class="param"><xsl:apply-templates select="param" /></table></p>
 				</xsl:if>
-				<xsl:apply-templates select="tagname" />
+				<p class="noindent">
+					<table>
+						<xsl:apply-templates select="tagname" />
+					</table>
+				</p>
 				<xsl:apply-templates select="returns" />
 				<xsl:if test="remarks">
 					<h3>#### Remarks</h3>
@@ -239,8 +247,8 @@
 				</xsl:if>
 				<xsl:apply-templates select="stacksize" />
 				<xsl:if test="seealso">
-					<br /><h3>#### See Also</h3><br />
-					<br /><xsl:apply-templates select="seealso" /><br />
+					<h3>#### See Also</h3><br />
+					<ul><xsl:apply-templates select="seealso" /></ul>
 				</xsl:if>
 			</div>
 		</xsl:when>
@@ -254,7 +262,11 @@
 				<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,3)" /></xsl:attribute><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2></a>
 				<br />
 				<xsl:apply-templates select="summary" />
-				<xsl:apply-templates select="tagname" />
+				<p class="noindent">
+					<table>
+						<xsl:apply-templates select="tagname" />
+					</table>
+				</p>
 				<xsl:if test="remarks">
 					<h3>#### Remarks</h3><br />
 					<xsl:apply-templates select="remarks" />
@@ -296,7 +308,7 @@
 <xsl:template match="member" mode="submember">
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,2) = 'C:'">
-			* <code>`<xsl:value-of select="substring(@name,3)" /> = <xsl:value-of select="@value" />`</code><br />
+			<li>* <code>`<xsl:value-of select="substring(@name,3)" /> = <xsl:value-of select="@value" />`</code></li>
 		</xsl:when>
 	</xsl:choose>
 </xsl:template>
@@ -306,7 +318,9 @@
 </xsl:template>
 
 <xsl:template match="param">
-	| <code>`<xsl:value-of select="@name" />`</code> | <xsl:apply-templates /> |<br />
+	<tr>
+		<td class="inline">|&#160;</td><td class="param"><code>`<xsl:value-of select="@name" />`</code></td><td class="inline">&#160;|&#160;</td><td><xsl:apply-templates /></td><td class="inline">&#160;|</td>
+	</tr>
 </xsl:template>
 
 <xsl:template match="paraminfo">
@@ -314,11 +328,15 @@
 </xsl:template>
 
 <xsl:template match="tagname">
-	| **Tag** | <code>`<xsl:value-of select="@value" />:`</code> |<br />
+	<tr>
+		<td class="inline">|&#160;</td><th class="header inline">**Tag**</th><td class="inline">&#160;|&#160;</td><td class="inline"><code>`<xsl:value-of select="@value" />:`</code></td><td class="inline">&#160;|</td>
+	</tr>
 </xsl:template>
 
 <xsl:template match="size">
-	| **Size** | <code>`<xsl:value-of select="@value" />:`</code> |<br />
+	<tr>
+		<td class="inline">|&#160;</td><th class="header inline">**Size**</th><td class="inline">&#160;|&#160;</td><td class="inline"><code>`<xsl:value-of select="@value" />`</code></td><td class="inline">&#160;|</td>
+	</tr>
 </xsl:template>
 
 <xsl:template match="returns">
@@ -348,7 +366,7 @@
 </xsl:template>
 
 <xsl:template match="stacksize">
-	<h3>#### Estimated stack usage </h3>
+	<h3>#### Estimated stack usage</h3>
 	<p><xsl:value-of select="@value" /> cells</p><br />
 </xsl:template>
 
