@@ -319,7 +319,7 @@
 
 <xsl:template match="param">
 	<tr>
-		<td class="inline">|&#160;</td><td class="param"><code>`<xsl:value-of select="@name" />`</code></td><td class="inline">&#160;|&#160;</td><td><xsl:apply-templates /></td><td class="inline">&#160;|</td>
+		<td class="inline markdown">|&#160;</td><td class="param"><code>`<xsl:value-of select="@name" />`</code></td><td class="inline markdown">&#160;|&#160;</td><td><xsl:apply-templates /></td><td class="inline markdown">&#160;|</td>
 	</tr>
 </xsl:template>
 
@@ -329,13 +329,13 @@
 
 <xsl:template match="tagname">
 	<tr>
-		<td class="inline">|&#160;</td><th class="header inline">**Tag**</th><td class="inline">&#160;|&#160;</td><td class="inline"><code>`<xsl:value-of select="@value" />:`</code></td><td class="inline">&#160;|</td>
+		<td class="inline markdown">|&#160;</td><th class="header inline">**Tag**</th><td class="inline markdown">&#160;|&#160;</td><td class="inline"><code>`<xsl:value-of select="@value" />:`</code></td><td class="inline markdown">&#160;|</td>
 	</tr>
 </xsl:template>
 
 <xsl:template match="size">
 	<tr>
-		<td class="inline">|&#160;</td><th class="header inline">**Size**</th><td class="inline">&#160;|&#160;</td><td class="inline"><code>`<xsl:value-of select="@value" />`</code></td><td class="inline">&#160;|</td>
+		<td class="inline markdown">|&#160;</td><th class="header inline">**Size**</th><td class="inline markdown">&#160;|&#160;</td><td class="inline"><code>`<xsl:value-of select="@value" />`</code></td><td class="inline markdown">&#160;|</td>
 	</tr>
 </xsl:template>
 
