@@ -125,105 +125,105 @@
 	<xsl:param name="title" />
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,2) = 'T:'">
-			<div class="member-header"><br /><h2>## <xsl:value-of select="$title" /></h2><br /></div>
+			<div class="member-header"><br /><h1>## <xsl:value-of select="$title" /></h1><br /></div>
 			<div class="member-content">
-				<br /><h3>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h3><br />
+				<br /><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2><br />
 				<xsl:apply-templates select="summary" />
 				<xsl:if test="remarks">
-					<br /><h4>#### Remarks</h4><br />
+					<br /><h3>#### Remarks</h3><br />
 					<xsl:apply-templates select="remarks" />
 				</xsl:if>
 				<xsl:if test="member">
-					<br /><h4>#### Members</h4><br />
+					<br /><h3>#### Members</h3><br />
 					<blockquote>
 					<xsl:apply-templates select="member" mode="submember" />
 					</blockquote>
 				</xsl:if>
 				<xsl:apply-templates select="example" />
 				<xsl:if test="referrer">
-					<br /><h4>#### Used by</h4><br />
+					<br /><h3>#### Used by</h3><br />
 					<br /><xsl:apply-templates select="referrer" /><br />
 				</xsl:if>
 				<xsl:if test="fixes">
-					<br /><h4>#### Fixes</h4><br />
+					<br /><h3>#### Fixes</h3><br />
 					<br /><xsl:apply-templates select="fixes" /><br />
 				</xsl:if>
 				<xsl:if test="dependency">
-					<br /><h4>#### Depends on</h4><br />
+					<br /><h3>#### Depends on</h3><br />
 					<br /><xsl:apply-templates select="dependency" /><br />
 				</xsl:if>
 				<xsl:if test="seealso">
-					<br /><h4>#### See Also</h4><br />
+					<br /><h3>#### See Also</h3><br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
 			</div>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'C:'">
-			<div class="member-header"><br /><h2>## <xsl:value-of select="$title" /></h2><br /></div>
+			<div class="member-header"><br /><h1>## <xsl:value-of select="$title" /></h1><br /></div>
 			<div class="member-content">
-				<br /><h3>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h3><br /><br />
+				<br /><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2><br /><br />
 				| **Value** | <code>`<xsl:value-of select="@value" />:`</code> |<br />
 				<xsl:apply-templates select="summary" />
 				<xsl:apply-templates select="tagname" />
 				<xsl:apply-templates select="size" />
 				<xsl:if test="remarks">
-					<br /><h4>#### Remarks</h4><br />
+					<br /><h3>#### Remarks</h3><br />
 					<xsl:apply-templates select="remarks" />
 				</xsl:if>
 				<xsl:apply-templates select="example" />
 				<xsl:if test="referrer">
-					<br /><h4>#### Used by</h4><br />
+					<br /><h3>#### Used by</h3><br />
 					<br /><xsl:apply-templates select="referrer" /><br />
 				</xsl:if>
 				<xsl:if test="fixes">
-					<br /><h4>#### Fixes</h4><br />
+					<br /><h3>#### Fixes</h3><br />
 					<br /><xsl:apply-templates select="fixes" /><br />
 				</xsl:if>
 				<xsl:if test="dependency">
-					<br /><h4>#### Depends on</h4><br />
+					<br /><h3>#### Depends on</h3><br />
 					<br /><xsl:apply-templates select="dependency" /><br />
 				</xsl:if>
 				<xsl:if test="seealso">
-					<br /><h4>#### See Also</h4><br />
+					<br /><h3>#### See Also</h3><br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
 			</div>
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'M:'">
-			<div class="member-header"><br /><h2>## <xsl:value-of select="$title" /></h2><br /></div>
+			<div class="member-header"><br /><h1>## <xsl:value-of select="$title" /></h1><br /></div>
 			<div class="member-content">
-				<br /><h3>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h3><br />
+				<br /><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2><br />
 				<xsl:apply-templates select="summary" />
-				<br /><h4>#### Syntax</h4><br /><br /><pre>```pawn<br /><xsl:value-of select="@syntax" /><br />```</pre><br />
+				<br /><h3>#### Syntax</h3><br /><br /><pre>```pawn<br /><xsl:value-of select="@syntax" /><br />```</pre><br />
 				<xsl:if test="param">
 					<br /><xsl:apply-templates select="param" /><br />
 				</xsl:if>
 				<xsl:apply-templates select="tagname" />
 				<xsl:apply-templates select="returns" />
 				<xsl:if test="remarks">
-					<br /><h4>#### Remarks</h4><br />
+					<br /><h3>#### Remarks</h3><br />
 					<xsl:apply-templates select="remarks" />
 				</xsl:if>
 				<xsl:apply-templates select="example" />
 				<xsl:if test="referrer">
-					<br /><h4>#### Used by</h4><br />
+					<br /><h3>#### Used by</h3><br />
 					<br /><xsl:apply-templates select="referrer" /><br />
 				</xsl:if>
 				<xsl:if test="fixes">
-					<br /><h4>#### Fixes</h4><br />
+					<br /><h3>#### Fixes</h3><br />
 					<br /><xsl:apply-templates select="fixes" /><br />
 				</xsl:if>
 				<xsl:if test="dependency">
-					<br /><h4>#### Depends on</h4><br />
+					<br /><h3>#### Depends on</h3><br />
 					<br /><xsl:apply-templates select="dependency" /><br />
 				</xsl:if>
 				<xsl:if test="attribute">
-					<br /><h4>#### Attributes</h4><br />
+					<br /><h3>#### Attributes</h3><br />
 					<br /><xsl:apply-templates select="attribute" /><br />
 				</xsl:if>
 				<xsl:apply-templates select="automaton" />
 				<xsl:if test="transition">
-					<br /><h4>#### Transition table</h4><br />
+					<br /><h3>#### Transition table</h3><br />
 					<br />
 						<table class="transition">
 							<tr><th>Source</th><th>Target</th><th>Condition</th></tr>
@@ -233,7 +233,7 @@
 				</xsl:if>
 				<xsl:apply-templates select="stacksize" />
 				<xsl:if test="seealso">
-					<br /><h4>#### See Also</h4><br />
+					<br /><h3>#### See Also</h3><br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
 			</div>
@@ -242,30 +242,30 @@
 			<!-- This does nothing, just hides fixes from variables -->
 		</xsl:when>
 		<xsl:when test="substring(@name,1,2) = 'F:'">
-			<div class="member-header"><br /><h2>## <xsl:value-of select="$title" /></h2><br /></div>
+			<div class="member-header"><br /><h1>## <xsl:value-of select="$title" /></h1><br /></div>
 			<div class="member-content">
-				<br /><h3>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h3><br />
+				<br /><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2><br />
 				<xsl:apply-templates select="summary" />
 				<xsl:apply-templates select="tagname" />
 				<xsl:if test="remarks">
-					<br /><h4>#### Remarks</h4><br />
+					<br /><h3>#### Remarks</h3><br />
 					<xsl:apply-templates select="remarks" />
 				</xsl:if>
 				<xsl:apply-templates select="example" />
 				<xsl:if test="referrer">
-					<br /><h4>#### Used by</h4><br />
+					<br /><h3>#### Used by</h3><br />
 					<br /><xsl:apply-templates select="referrer" /><br />
 				</xsl:if>
 				<xsl:if test="fixes">
-					<br /><h4>#### Fixes</h4><br />
+					<br /><h3>#### Fixes</h3><br />
 					<br /><xsl:apply-templates select="fixes" /><br />
 				</xsl:if>
 				<xsl:if test="dependency">
-					<br /><h4>#### Depends on</h4><br />
+					<br /><h3>#### Depends on</h3><br />
 					<br /><xsl:apply-templates select="dependency" /><br />
 				</xsl:if>
 				<xsl:if test="seealso">
-					<br /><h4>#### See Also</h4><br />
+					<br /><h3>#### See Also</h3><br />
 					<br /><xsl:apply-templates select="seealso" /><br />
 				</xsl:if>
 			</div>
@@ -277,7 +277,7 @@
 <xsl:template match="member" mode="fixes">
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,6) = 'F:FIX_'">
-			<br /><h3>### <xsl:value-of select="substring(@name,7)" />:</h3><br />
+			<br /><h2>### <xsl:value-of select="substring(@name,7)" />:</h2><br />
 			<xsl:apply-templates select="fix" />
 		</xsl:when>
 	</xsl:choose>
@@ -312,7 +312,7 @@
 </xsl:template>
 
 <xsl:template match="returns">
-	<br /><h4>#### Returns</h4><br />
+	<br /><h3>#### Returns</h3><br />
 	<br /><xsl:apply-templates /><br />
 </xsl:template>
 
@@ -321,7 +321,7 @@
 </xsl:template>
 
 <xsl:template match="example">
-	<br /><h4>#### Example</h4><br />
+	<br /><h3>#### Example</h3><br />
 	<br /><xsl:apply-templates /><br />
 </xsl:template>
 
@@ -330,20 +330,20 @@
 </xsl:template>
 
 <xsl:template match="referrer">
-	* <a><xsl:attribute name="href">#<xsl:value-of select="@name"/></xsl:attribute>[<code>`<xsl:value-of select="@name" />`</code>](#<xsl:value-of select="@name" />)</a><br />
+	* <a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code>`<xsl:value-of select="@name" />`</code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a><br />
 </xsl:template>
 
 <xsl:template match="dependency">
-	* <a><xsl:attribute name="href">#<xsl:value-of select="@name"/></xsl:attribute>[<code>`<xsl:value-of select="@name" />`</code>](#<xsl:value-of select="@name" />)</a><br />
+	* <a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code>`<xsl:value-of select="@name" />`</code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a><br />
 </xsl:template>
 
 <xsl:template match="stacksize">
-	<br /><h4>#### Estimated stack usage </h4><br />
+	<br /><h3>#### Estimated stack usage </h3><br />
 	<br /><xsl:value-of select="@value" /> cells<br />
 </xsl:template>
 
 <xsl:template match="automaton">
-	<br /><h4>#### Automaton</h4><br />
+	<br /><h3>#### Automaton</h3><br />
 	<br /><xsl:value-of select="@name" /><br />
 </xsl:template>
 
@@ -360,7 +360,7 @@
 </xsl:template>
 
 <xsl:template match="seealso">
-	* <a><xsl:attribute name="href">#<xsl:value-of select="@name"/></xsl:attribute>[<code>`<xsl:value-of select="@name" />`</code>](#<xsl:value-of select="@name" />)</a><br />
+	* <a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code>`<xsl:value-of select="@name" />`</code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a><br />
 </xsl:template>
 
 <xsl:template match="paramref">
@@ -381,9 +381,9 @@
 
 <xsl:template match="para"><br /><xsl:apply-templates /><br /></xsl:template>
 
-<xsl:template match="section"><br /><h2>## <xsl:apply-templates /></h2><br /></xsl:template>
+<xsl:template match="section"><br /><h1>## <xsl:apply-templates /></h1><br /></xsl:template>
 
-<xsl:template match="subsection"><br /><h3>### <xsl:apply-templates /></h3><br /></xsl:template>
+<xsl:template match="subsection"><br /><h2>### <xsl:apply-templates /></h2><br /></xsl:template>
 
 <xsl:template match="library">
 	<br /><br />__________________________________________<hr /><br /><br />
@@ -391,13 +391,13 @@
 	<h1><xsl:value-of select="@name" /></h1>
 	<h1>==========================================</h1><br />
 	<xsl:if test="@description">
-		<br /><h2><xsl:value-of select="@description" /></h2>
-		<h2>------------------------------------------</h2><br />
+		<br /><h1><xsl:value-of select="@description" /></h1>
+		<h1>------------------------------------------</h1><br />
 	</xsl:if>
 	<br /><xsl:apply-templates /><br />
 	<div class="members">
 		<xsl:if test="@name = 'fixes.inc'">
-			<br /><h2>## Fixes</h2><br />
+			<br /><h1>## Fixes</h1><br />
 			<xsl:apply-templates select="/doc/members/member" mode="fixes" />
 		</xsl:if>
 
@@ -434,17 +434,17 @@
 
 <xsl:template match="a">
 	<xsl:choose>
-		<xsl:when test="node()"><a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute>[<xsl:apply-templates />](<xsl:value-of select="@href" />)</a></xsl:when>
-		<xsl:otherwise><a><xsl:attribute name="href"><xsl:value-of select="@href"/></xsl:attribute>[<xsl:value-of select="@href" />](<xsl:value-of select="@href" />)</a></xsl:otherwise>
+		<xsl:when test="node()"><a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:apply-templates />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a></xsl:when>
+		<xsl:otherwise><a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:value-of select="@href" />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a></xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
 
 <xsl:template match="symbolref">
-	<a><xsl:attribute name="href">#<xsl:value-of select="@name"/></xsl:attribute>[<code>`<xsl:value-of select="@name" />`</code>](#<xsl:value-of select="@name" />)</a>
+	<a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code>`<xsl:value-of select="@name" />`</code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a>
 </xsl:template>
 
 <xsl:template match="symbol">
-	* <a><xsl:attribute name="href">#<xsl:value-of select="@name"/></xsl:attribute>[<code>`<xsl:value-of select="@name" />`</code>](#<xsl:value-of select="@name" />)</a>:&#160;<xsl:apply-templates /><br />
+	* <a><xsl:attribute name="href">#<xsl:value-of select="@name" /></xsl:attribute><span class="link-text">[<code>`<xsl:value-of select="@name" />`</code>]</span><span class="link-href">(#<xsl:value-of select="@name" />)</span></a>:&#160;<xsl:apply-templates /><br />
 </xsl:template>
 
 <xsl:template match="synonym">
@@ -452,7 +452,7 @@
 </xsl:template>
 
 <xsl:template match="changelog">
-	<br /><h4>#### <xsl:value-of select="@date" /></h4><br />
+	<br /><h3>#### <xsl:value-of select="@date" /></h3><br />
 	<xsl:apply-templates />
 </xsl:template>
 
@@ -469,34 +469,34 @@
 		</xsl:if>
 	</xsl:if>
 
-	<br /><h4>#### Problem</h4><br />
+	<br /><h3>#### Problem</h3><br />
 	<xsl:apply-templates select="problem" />
-	<br /><h4>#### Solution</h4><br />
+	<br /><h3>#### Solution</h3><br />
 	<xsl:apply-templates select="solution" />
 	<xsl:if test="see">
-		<br /><h4>#### See</h4><br />
+		<br /><h3>#### See</h3><br />
 		<br /><xsl:apply-templates select="see" /><br />
 	</xsl:if>
 	<xsl:if test="author">
-		<br /><h4>#### Author</h4>(s)<br />
+		<br /><h3>#### Author</h3>(s)<br />
 		<br /><xsl:apply-templates select="author" /><br />
 	</xsl:if>
 	<xsl:if test="post">
-		<br /><h4>#### Post</h4>(s)<br />
+		<br /><h3>#### Post</h3>(s)<br />
 		<br /><xsl:apply-templates select="post" /><br />
 	</xsl:if>
 </xsl:template>
 
 <xsl:template match="post">
-	* <a><xsl:attribute name="href"><xsl:value-of select="@href"/></xsl:attribute>[<xsl:value-of select="@href" />](<xsl:value-of select="@href" />)</a><br />
+	* <a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:value-of select="@href" />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a><br />
 </xsl:template>
 <xsl:template match="see">
-	* <a><xsl:attribute name="href">#<xsl:apply-templates /></xsl:attribute>[<code>`<xsl:apply-templates />`</code>](#<xsl:apply-templates />)</a><br />
+	* <a><xsl:attribute name="href">#<xsl:apply-templates /></xsl:attribute><span class="link-text">[<code>`<xsl:apply-templates />`</code>]</span><span class="link-href">(#<xsl:apply-templates />)</span></a><br />
 </xsl:template>
 <xsl:template match="author">
 	*   <xsl:choose>
 			<xsl:when test="@href">
-				<a><xsl:attribute name="href"><xsl:value-of select="@href"/></xsl:attribute>[<xsl:apply-templates />](<xsl:value-of select="@href" />)</a>
+				<a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:apply-templates />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:apply-templates />
@@ -514,7 +514,7 @@
 <xsl:template match="fixeslist"><xsl:apply-templates /></xsl:template>
 
 <xsl:template match="fixes">
-	* <a><xsl:attribute name="href">#FIX_<xsl:apply-templates /></xsl:attribute>[<xsl:apply-templates />](#FIX_<xsl:apply-templates />)</a><br />
+	* <a><xsl:attribute name="href">#FIX_<xsl:apply-templates /></xsl:attribute><span class="link-text">[<xsl:apply-templates />]</span><span class="link-href">(#FIX_<xsl:apply-templates />)</span></a><br />
 </xsl:template>
 
 </xsl:stylesheet>
