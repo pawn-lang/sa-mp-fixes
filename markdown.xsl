@@ -121,6 +121,7 @@
 			// And change the default.
 			document.body.className = "render-mode";
 		}
+
 		function showMarkdown()
 		{
 			if (switcher == null)
@@ -545,7 +546,6 @@
 	<li class="changelog"><h3 class="general">#### <xsl:value-of select="@date" /></h3>
 	<ul><xsl:apply-templates /></ul></li>
 </xsl:template>
-
 
 <!-- fixes.inc -->
 
