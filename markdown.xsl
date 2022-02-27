@@ -54,6 +54,7 @@
 	div.library { text-align: center; border-right: #4e4887 8px solid; border-top: #4e4887 2px solid; color: #4e4887; margin-bottom: 0.5em; margin-top: 1em; }
 	h1.library { text-align: center; color: #4e4887; margin-top: 0.3em; }
 	h2.library { text-align: center; border: none; }
+	.license { text-align: center; border: none; }
 	pre { background-color: #ddeeff; font-size: small; margin: 1em; }
 	div.member-header { display: none; }
 	div.members > .member-header:nth-child(1) { display: block; }
@@ -61,6 +62,8 @@
 	.render-mode .render { display: auto; }
 	.markdown-mode .render { display: none; }
 	.render-mode .markdown { display: none; }
+	.library-divider:nth-child(1) { display: none; }
+	.library-divider hr { border-radius: 5px; border: 5px solid #4e4887; }
 </style>
 </head>
 <body class="render-mode">
@@ -418,12 +421,12 @@
 <xsl:template match="subsection"><h2 class="general"><span class="markdown">###&#160;</span><xsl:apply-templates /></h2></xsl:template>
 
 <xsl:template match="library">
-	<br /><br />__________________________________________<hr /><br /><br />
+	<div class="library-divider"><br /><br /><span class="markdown">__________________________________________</span><hr /><br /><br /></div>
 
 	<h1 class="library"><xsl:value-of select="@name" /></h1>
 	<h1 class="library markdown">==========================================</h1>
 	<xsl:if test="@description">
-		<br /><h2 class="library"><xsl:value-of select="@description" /></h2>
+		<h2 class="library"><xsl:value-of select="@description" /></h2>
 		<h2 class="library markdown">------------------------------------------</h2>
 	</xsl:if>
 	<br /><xsl:apply-templates /><br />
@@ -457,9 +460,9 @@
 			<xsl:with-param name="title" select="'Functions'" />
 		</xsl:apply-templates>
 	</div>
-
-	<br /><br />__________________________________________<hr /><br /><br />
 </xsl:template>
+
+<xsl:template match="license"><div class="license"><xsl:apply-templates /></div></xsl:template>
 
 <xsl:template match="br"><br /></xsl:template>
 <xsl:template match="indent">&#160;&#160;&#160;&#160;</xsl:template>
@@ -510,11 +513,11 @@
 		<br /><xsl:apply-templates select="see" /><br />
 	</xsl:if>
 	<xsl:if test="author">
-		<br /><h3><span class="markdown">####&#160;</span>Author</h3>(s)<br />
+		<br /><h3><span class="markdown">####&#160;</span>Author(s)</h3><br />
 		<br /><xsl:apply-templates select="author" /><br />
 	</xsl:if>
 	<xsl:if test="post">
-		<br /><h3><span class="markdown">####&#160;</span>Post</h3>(s)<br />
+		<br /><h3><span class="markdown">####&#160;</span>Post(s)</h3><br />
 		<br /><xsl:apply-templates select="post" /><br />
 	</xsl:if>
 </xsl:template>
