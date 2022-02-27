@@ -64,15 +64,14 @@
 	.render-mode .markdown { display: none; }
 	.markdown-mode .markdown { display: auto; }
 	.markdown-mode .render { display: none; }
-	.library-divider:nth-child(1) { display: none; }
 	.library-divider hr { border-radius: 5px; border: 5px solid #4e4887; }
 	.switcher { position: fixed; top: 0; right: 0; padding: 20px; background-color: #ddeeff; font-size: large; }
 	.switcher-hidden { display: none; }
 </style>
 </head>
 <body class="markdown-mode">
-	<!-- <h1><xsl:value-of select="doc/assembly/name" /></h1> -->
-	<xsl:apply-templates select="/doc/general" />
+	<h1 class="library"><xsl:value-of select="/doc/assembly/name" /></h1>
+	<h1 class="library markdown">==========================================</h1>
 
 	<div class="members">
 		<xsl:apply-templates select="/doc/members/member" mode="rest">
@@ -101,6 +100,8 @@
 			<xsl:with-param name="title" select="'Functions'" />
 		</xsl:apply-templates>
 	</div>
+
+	<xsl:apply-templates select="/doc/general" />
 
 	<div class="switcher-hidden" id="switcher-container">
 		<label for="markdown-switcher">
