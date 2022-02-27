@@ -9367,6 +9367,8 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 
 */
 
+///
+
 /**
  * <library>fixes.inc</library>
  * <remarks>
@@ -9391,6 +9393,8 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 	_FIXES_HIDE_PAWNDOC(FIXES___BODY_PART);
 #endif
 
+///
+
 /**
  * <library>fixes.inc</library>
  * <remarks>
@@ -9413,6 +9417,8 @@ _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_ALIGN);
 	#define TEXT_DRAW_ALIGN_CENTRE _FIXES_TEXT_DRAW_ALIGN_CENTRE
 	#define TEXT_DRAW_ALIGN_RIGHT _FIXES_TEXT_DRAW_ALIGN_RIGHT
 #endif
+
+///
 
 /**
  * <library>fixes.inc</library>
@@ -9448,6 +9454,8 @@ _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_FONT);
 		#define TEXT_DRAW_FONT_MODEL_PREVIEW _FIXES_TEXT_DRAW_FONT_MODEL
 	#endif
 #endif
+
+///
 
 /**
  * <library>fixes.inc</library>
@@ -9485,6 +9493,8 @@ _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_FONT);
 	#define _FIXES_CAMMODE_AIMWEAPONFROMCAR (CAM_MODE:55)
 #endif
 
+///
+
 /**
  * <library>fixes.inc</library>
  * <remarks>
@@ -9506,6 +9516,8 @@ _FIXES_ENUM_PAWNDOC(___FIXES_FORCE_SYNC);
 	#define SYNC_ALL _FIXES_FORCE_SYNC_ALL
 	#define SYNC_OTHER _FIXES_FORCE_SYNC_OTHER
 #endif
+
+///
 
 /**
  * <library>fixes.inc</library>
@@ -10035,6 +10047,8 @@ _FIXES_ENUM_PAWNDOC(___FIXES_FORCE_SYNC);
 	_FIXES_HIDE_PAWNDOC(FIXES___VEHICLE);
 #endif
 
+///
+
 /**
  * <library>fixes.inc</library>
  * <remarks>
@@ -10044,57 +10058,37 @@ _FIXES_ENUM_PAWNDOC(___FIXES_FORCE_SYNC);
  * in to one variable to reduce memory consumption.
  * </remarks>
  */
-_FIXES_ENUM e_FIXES_BOOLS:(<<= 1)
+_FIXES_ENUM e_FIXES_BOOLS (<<= 1)
 {
 	// Handy definition for nothing set.
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_NONE = 0,
 	// Does this player have worldbounds enabled?
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_UNCONTROLLABLE = 1,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_PUT_IN_VEHICLE,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_BLOCK,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_TELEPORT,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_CONNECTED,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_INTERIOR,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_PUT_IN_TRAIN,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_KICKED,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_ON_PLAYER_CONNECT,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_DRIVE_BY,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_FIRST_SPAWN,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_FIRST_CLASS,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_SPECTATING,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_DIED_TO_SPAWN,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_CP_DELAYED,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_RACE_CP_DELAYED,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_CLOCK_ENABLED,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_VEH_ENTER,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_VEH_ENTER_ANIM,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_DIALOG_BLOCK,
-	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_FORCE_BLOCK,
 }
 
 _FIXES_ENUM_PAWNDOC(e_FIXES_BOOLS);
+
+///
 
 /**
  * <library>fixes.inc</library>
@@ -10105,31 +10099,24 @@ _FIXES_ENUM_PAWNDOC(e_FIXES_BOOLS);
  * settings that are true/false.
  * </remarks>
  */
-_FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
+_FIXES_ENUM e_FIXES_SETTINGS (<<= 1)
 {
 	// Handy definition for nothing set.
 	e_FIXES_SETTINGS_NONE = 0,
-	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_INTERIOR = 1,
-	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_ADMIN_TELEPORT,
-	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_IN_CHARGE,
-	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_DROP_ALL_DATA,
-	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_MENU_SET,
-	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_ENDING,
-	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_ENDED,
-	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_NO_GAME_TEXT,
-	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_NO_RCON
 }
 
 _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
+
+///
 
 /**
  * <library>fixes.inc</library>
@@ -13395,7 +13382,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 /// underlying implementations.
 #if defined SAMP_BYPASS_NATIVES ///
 	/// Do nothing
-#elseif _FIXES_NPC
+#elseif _FIXES_NPC ///
 	/// Declare variants of all NPC natives.
 	/// <library>fixes.inc</library>
 	native Print__(const string[]) = print; ///
@@ -14362,7 +14349,16 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 	#endif
 
 	native BAD_GetPlayerName(playerid, const name[], len) = GetPlayerName;
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerName_1);
+#endif
 
+/**
+ * <library>fixes.inc</library>
+ * <fixes>deconst</fixes>
+ */
+
+#if FIX_deconst
 	#if FIX_defaults
 		native FIXES_GetPlayerName(playerid, name[], len = sizeof (name)) = GetPlayerName;
 	#else
@@ -14374,7 +14370,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 		#define GetPlayerName( FIXES_GetPlayerName(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerName);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerName_2);
 #endif
 
 /**
