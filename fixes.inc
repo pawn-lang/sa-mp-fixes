@@ -10047,28 +10047,50 @@ _FIXES_ENUM_PAWNDOC(___FIXES_FORCE_SYNC);
 _FIXES_ENUM e_FIXES_BOOLS:(<<= 1)
 {
 	// Handy definition for nothing set.
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_NONE = 0,
 	// Does this player have worldbounds enabled?
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_UNCONTROLLABLE = 1,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_PUT_IN_VEHICLE,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_BLOCK,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_TELEPORT,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_CONNECTED,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_INTERIOR,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_PUT_IN_TRAIN,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_KICKED,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_ON_PLAYER_CONNECT,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_DRIVE_BY,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_FIRST_SPAWN,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_FIRST_CLASS,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_SPECTATING,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_DIED_TO_SPAWN,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_CP_DELAYED,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_RACE_CP_DELAYED,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_CLOCK_ENABLED,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_VEH_ENTER,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_VEH_ENTER_ANIM,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_DIALOG_BLOCK,
+	/// <library>fixes.inc</library>
 	e_FIXES_BOOLS_FORCE_BLOCK,
 }
 
@@ -10087,14 +10109,23 @@ _FIXES_ENUM e_FIXES_SETTINGS:(<<= 1)
 {
 	// Handy definition for nothing set.
 	e_FIXES_SETTINGS_NONE = 0,
+	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_INTERIOR = 1,
+	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_ADMIN_TELEPORT,
+	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_IN_CHARGE,
+	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_DROP_ALL_DATA,
+	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_MENU_SET,
+	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_ENDING,
+	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_ENDED,
+	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_NO_GAME_TEXT,
+	/// <library>fixes.inc</library>
 	e_FIXES_SETTINGS_NO_RCON
 }
 
@@ -14288,46 +14319,214 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 
 */
 
-/**
- * <library>fixes.inc</library>
+/*
  * <remarks>
- * File operators
+ * File operators.
  *
  * Forwards for operators that shouldn't exist, so they won't exist.
  * </remarks>
  */
 
+/// <library>fixes.inc</library>
 #if FIX_FileMaths
 	forward File:operator++(File:a);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_00);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator--(File:a);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_01);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator-(File:a);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_02);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator+(File:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_03);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_04);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator+(File:a, _:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_05);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator-(File:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_06);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator-(_:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_07);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator-(File:a, _:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_08);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator*(File:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_09);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator*(File:a, _:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_10);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator/(File:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_11);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator/(_:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_12);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator/(File:a, _:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_13);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator%(File:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_14);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator%(_:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_15);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward File:operator%(File:a, _:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_16);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator<(File:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_17);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator<(_:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_18);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator<(File:a, _:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_19);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator<=(File:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_20);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator<=(_:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_21);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator<=(File:a, _:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_22);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator>(File:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_23);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator>(_:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_24);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator>(File:a, _:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_25);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator>=(File:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_26);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator>=(_:a, File:b);
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_27);
+#endif
+
+/// <library>fixes.inc</library>
+#if FIX_FileMaths
 	forward bool:operator>=(File:a, _:b);
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS);
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_28);
 #endif
 
 /*
