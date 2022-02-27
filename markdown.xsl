@@ -67,9 +67,10 @@
 	.library-divider:nth-child(1) { display: none; }
 	.library-divider hr { border-radius: 5px; border: 5px solid #4e4887; }
 	.switcher { position: fixed; top: 0; right: 0; padding: 20px; background-color: #ddeeff; font-size: large; }
+	.switcher-hidden { display: none; }
 </style>
 </head>
-<body class="render-mode">
+<body class="markdown-mode">
 	<!-- <h1><xsl:value-of select="doc/assembly/name" /></h1> -->
 	<xsl:apply-templates select="/doc/general" />
 
@@ -101,7 +102,7 @@
 		</xsl:apply-templates>
 	</div>
 
-	<div class="switcher">
+	<div class="switcher-hidden" id="switcher-container">
 		<label for="markdown-switcher">
 			<input type="checkbox" id="markdown-switcher" onchange="showMarkdown()" />
 			Show Markdown
@@ -109,11 +110,23 @@
 	</div>
 
 	<script type="text/javascript">
+		var container = document.getElementById("switcher-container");
 		var switcher = document.getElementById("markdown-switcher");
 
+		if (container != null)
+		{
+			// Show the dialog only if JS is available.
+			container.className = "switcher";
+
+			// And change the default.
+			document.body.className = "render-mode";
+		}
 		function showMarkdown()
 		{
-			if (switcher.checked)
+			if (switcher == null)
+			{
+			}
+			else if (switcher.checked)
 			{
 				document.body.className = "markdown-mode";
 			}
