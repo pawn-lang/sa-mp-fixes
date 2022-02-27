@@ -349,12 +349,12 @@
 
 <xsl:template match="stacksize">
 	<br /><h3>#### Estimated stack usage </h3><br />
-	<br /><xsl:value-of select="@value" /> cells<br />
+	<p><xsl:value-of select="@value" /> cells</p>
 </xsl:template>
 
 <xsl:template match="automaton">
 	<br /><h3>#### Automaton</h3><br />
-	<br /><xsl:value-of select="@name" /><br />
+	<p><xsl:value-of select="@name" /></p>
 </xsl:template>
 
 <xsl:template match="transition">
@@ -398,11 +398,11 @@
 <xsl:template match="library">
 	<br /><br />__________________________________________<hr /><br /><br />
 
-	<h1><xsl:value-of select="@name" /></h1>
-	<h1>==========================================</h1><br />
+	<h1 class="library"><xsl:value-of select="@name" /></h1>
+	<h1 class="library">==========================================</h1><br />
 	<xsl:if test="@description">
-		<br /><h1><xsl:value-of select="@description" /></h1>
-		<h1>------------------------------------------</h1><br />
+		<br /><h2 class="library"><xsl:value-of select="@description" /></h2>
+		<h2 class="library">------------------------------------------</h2><br />
 	</xsl:if>
 	<br /><xsl:apply-templates /><br />
 	<div class="members">
