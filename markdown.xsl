@@ -43,7 +43,7 @@
 	li.changelog { }
 	.symbol { padding-right: 8px; }
 	ol { margin-top: 0.5em; }
-	span.paraminfo { font-weight:bold; color: #336699; }
+	span.paraminfo { font-weight: bold; color: #336699; }
 	h1 { color: #4e4887; font-size: x-large; margin-bottom: 0.5em; margin-top: 1em; padding-left: 4px; }
 	h2 { border-right: #4e4887 8px solid; border-top: #4e4887 2px solid; color: #4e4887; margin-bottom: 0.5em; margin-top: 1em; }
 	h2.general { border: none; }
@@ -66,9 +66,10 @@
 	.markdown-mode .render { display: none; }
 	.library-divider:nth-child(1) { display: none; }
 	.library-divider hr { border-radius: 5px; border: 5px solid #4e4887; }
+	.switcher { position: fixed; top: 0; right: 0; padding: 20px; background-color: #ddeeff; font-size: large; }
 </style>
 </head>
-<body class="markdown-mode">
+<body class="render-mode">
 	<!-- <h1><xsl:value-of select="doc/assembly/name" /></h1> -->
 	<xsl:apply-templates select="/doc/general" />
 
@@ -99,6 +100,29 @@
 			<xsl:with-param name="title" select="'Functions'" />
 		</xsl:apply-templates>
 	</div>
+
+	<div class="switcher">
+		<label for="markdown-switcher">
+			<input type="checkbox" id="markdown-switcher" onchange="showMarkdown()" />
+			Show Markdown
+		</label>
+	</div>
+
+	<script type="text/javascript">
+		var switcher = document.getElementById("markdown-switcher");
+
+		function showMarkdown()
+		{
+			if (switcher.checked)
+			{
+				document.body.className = "markdown-mode";
+			}
+			else
+			{
+				document.body.className = "render-mode";
+			}
+		}
+	</script>
 </body>
 </html>
 </xsl:template>
