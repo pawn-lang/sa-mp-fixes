@@ -127,7 +127,9 @@
 		<xsl:when test="substring(@name,1,2) = 'T:'">
 			<div class="member-header"><br /><h1>## <xsl:value-of select="$title" /></h1><br /></div>
 			<div class="member-content">
-				<br /><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2><br />
+				<br />
+				<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,3)" /></xsl:attribute><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2></a>
+				<br />
 				<xsl:apply-templates select="summary" />
 				<xsl:if test="remarks">
 					<br /><h3>#### Remarks</h3><br />
@@ -161,7 +163,9 @@
 		<xsl:when test="substring(@name,1,2) = 'C:'">
 			<div class="member-header"><br /><h1>## <xsl:value-of select="$title" /></h1><br /></div>
 			<div class="member-content">
-				<br /><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2><br /><br />
+				<br />
+				<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,3)" /></xsl:attribute><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2></a>
+				<br /><br />
 				| **Value** | <code>`<xsl:value-of select="@value" />:`</code> |<br />
 				<xsl:apply-templates select="summary" />
 				<xsl:apply-templates select="tagname" />
@@ -192,7 +196,9 @@
 		<xsl:when test="substring(@name,1,2) = 'M:'">
 			<div class="member-header"><br /><h1>## <xsl:value-of select="$title" /></h1><br /></div>
 			<div class="member-content">
-				<br /><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2><br />
+				<br />
+				<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,3)" /></xsl:attribute><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2></a>
+				<br />
 				<xsl:apply-templates select="summary" />
 				<br /><h3>#### Syntax</h3><br /><br /><pre>```pawn<br /><xsl:value-of select="@syntax" /><br />```</pre><br />
 				<xsl:if test="param">
@@ -244,7 +250,9 @@
 		<xsl:when test="substring(@name,1,2) = 'F:'">
 			<div class="member-header"><br /><h1>## <xsl:value-of select="$title" /></h1><br /></div>
 			<div class="member-content">
-				<br /><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2><br />
+				<br />
+				<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,3)" /></xsl:attribute><h2>### <code>`<xsl:value-of select="substring(@name,3)" />`</code>:</h2></a>
+				<br />
 				<xsl:apply-templates select="summary" />
 				<xsl:apply-templates select="tagname" />
 				<xsl:if test="remarks">
@@ -277,7 +285,9 @@
 <xsl:template match="member" mode="fixes">
 	<xsl:choose>
 		<xsl:when test="substring(@name,1,6) = 'F:FIX_'">
-			<br /><h2>### <xsl:value-of select="substring(@name,7)" />:</h2><br />
+			<br />
+			<a><xsl:attribute name="name"><xsl:value-of select="substring(@name,7)" /></xsl:attribute><h2>### <xsl:value-of select="substring(@name,7)" />:</h2></a>
+			<br />
 			<xsl:apply-templates select="fix" />
 		</xsl:when>
 	</xsl:choose>
@@ -296,7 +306,10 @@
 </xsl:template>
 
 <xsl:template match="param">
+								  
 	| <code>`<xsl:value-of select="@name" />`</code> | <xsl:apply-templates /> |<br />
+			   
+
 </xsl:template>
 
 <xsl:template match="paraminfo">
@@ -304,11 +317,17 @@
 </xsl:template>
 
 <xsl:template match="tagname">
+														  
+				  
 	| **Tag** | <code>`<xsl:value-of select="@value" />:`</code> |<br />
+
 </xsl:template>
 
 <xsl:template match="size">
+														  
+				  
 	| **Size** | <code>`<xsl:value-of select="@value" />:`</code> |<br />
+
 </xsl:template>
 
 <xsl:template match="returns">
@@ -369,31 +388,33 @@
 
 <xsl:template match="c"><code>`<xsl:apply-templates />`</code></xsl:template>
 
-<xsl:template match="em">*<xsl:apply-templates />*</xsl:template>
+<xsl:template match="em"><em>*<xsl:apply-templates />*</em></xsl:template>
 
-<xsl:template match="ul"><br /><xsl:apply-templates /><br /></xsl:template>
+<xsl:template match="ul"><br /><ul><xsl:apply-templates /></ul><br /></xsl:template>
 
-<xsl:template match="ol">* <xsl:apply-templates /><br /></xsl:template>
+<xsl:template match="ol"><br /><ol><xsl:apply-templates /></ol><br /></xsl:template>
 
-<xsl:template match="li">* <xsl:apply-templates /><br /></xsl:template>
+<xsl:template match="li"><li>* <xsl:apply-templates /><br /></li></xsl:template>
 
-<xsl:template match="p"><br /><xsl:apply-templates /><br /></xsl:template>
+<xsl:template match="p"><hr class="para" /><br /><xsl:apply-templates /><br /></xsl:template>
 
-<xsl:template match="para"><br /><xsl:apply-templates /><br /></xsl:template>
+<xsl:template match="para"><hr class="para" /><br /><xsl:apply-templates /><br /></xsl:template>
 
-<xsl:template match="section"><br /><h1>## <xsl:apply-templates /></h1><br /></xsl:template>
+<xsl:template match="section"><br /><h1 class="general">## <xsl:apply-templates /></h1><br /></xsl:template>
 
-<xsl:template match="subsection"><br /><h2>### <xsl:apply-templates /></h2><br /></xsl:template>
+<xsl:template match="subsection"><br /><h2 class="general">### <xsl:apply-templates /></h2><br /></xsl:template>
 
 <xsl:template match="library">
 	<br /><br />__________________________________________<hr /><br /><br />
 
+	   
 	<h1><xsl:value-of select="@name" /></h1>
 	<h1>==========================================</h1><br />
 	<xsl:if test="@description">
 		<br /><h1><xsl:value-of select="@description" /></h1>
 		<h1>------------------------------------------</h1><br />
 	</xsl:if>
+					  
 	<br /><xsl:apply-templates /><br />
 	<div class="members">
 		<xsl:if test="@name = 'fixes.inc'">
@@ -460,6 +481,7 @@
 <!-- fixes.inc -->
 
 <xsl:template match="fix">
+														 
 	<xsl:if test="@fixed">
 		<br />**Fixed in <xsl:value-of select="@fixed" />**<br />
 	</xsl:if>
@@ -494,6 +516,7 @@
 	* <a><xsl:attribute name="href">#<xsl:apply-templates /></xsl:attribute><span class="link-text">[<code>`<xsl:apply-templates />`</code>]</span><span class="link-href">(#<xsl:apply-templates />)</span></a><br />
 </xsl:template>
 <xsl:template match="author">
+						  
 	*   <xsl:choose>
 			<xsl:when test="@href">
 				<a><xsl:attribute name="href"><xsl:value-of select="@href" /></xsl:attribute><span class="link-text">[<xsl:apply-templates />]</span><span class="link-href">(<xsl:value-of select="@href" />)</span></a>
