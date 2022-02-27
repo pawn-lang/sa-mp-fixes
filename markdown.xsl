@@ -235,7 +235,7 @@
 							<tr><th>Source</th><th>Target</th><th>Condition</th></tr>
 							<xsl:apply-templates select="transition" />
 						</table>
-					</p>
+					</p><br />
 				</xsl:if>
 				<xsl:apply-templates select="stacksize" />
 				<xsl:if test="seealso">
@@ -302,7 +302,7 @@
 </xsl:template>
 
 <xsl:template match="summary">
-	<p><xsl:apply-templates /></p>
+	<p><xsl:apply-templates /></p><br />
 </xsl:template>
 
 <xsl:template match="param">
@@ -323,16 +323,16 @@
 
 <xsl:template match="returns">
 	<h3>#### Returns</h3>
-	<p><xsl:apply-templates /></p>
+	<p><xsl:apply-templates /></p><br />
 </xsl:template>
 
 <xsl:template match="remarks">
-	<p><xsl:apply-templates /></p>
+	<p><xsl:apply-templates /></p><br />
 </xsl:template>
 
 <xsl:template match="example">
 	<h3>#### Example</h3>
-	<p><xsl:apply-templates /></p>
+	<p><xsl:apply-templates /></p><br />
 </xsl:template>
 
 <xsl:template match="attribute">
@@ -348,13 +348,13 @@
 </xsl:template>
 
 <xsl:template match="stacksize">
-	<br /><h3>#### Estimated stack usage </h3><br />
-	<p><xsl:value-of select="@value" /> cells</p>
+	<h3>#### Estimated stack usage </h3>
+	<p><xsl:value-of select="@value" /> cells</p><br />
 </xsl:template>
 
 <xsl:template match="automaton">
-	<br /><h3>#### Automaton</h3><br />
-	<p><xsl:value-of select="@name" /></p>
+	<h3>#### Automaton</h3>
+	<p><xsl:value-of select="@name" /></p><br />
 </xsl:template>
 
 <xsl:template match="transition">
@@ -516,10 +516,10 @@
 	</li>
 </xsl:template>
 <xsl:template match="problem">
-	<br /><xsl:apply-templates /><br />
+	<p><xsl:apply-templates /></p><br />
 </xsl:template>
 <xsl:template match="solution">
-	<br /><xsl:apply-templates /><br />
+	<p><xsl:apply-templates /></p><br />
 </xsl:template>
 
 <xsl:template match="fixeslist"><xsl:apply-templates /></xsl:template>
