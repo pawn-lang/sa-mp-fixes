@@ -63,7 +63,7 @@
 	.render-mode .markdown { display: none; }
 </style>
 </head>
-<body class="markdown-mode">
+<body class="render-mode">
 	<!-- <h1><xsl:value-of select="doc/assembly/name" /></h1> -->
 	<xsl:apply-templates select="/doc/general" />
 
@@ -401,30 +401,30 @@
 
 <xsl:template match="c"><code><span class="markdown">`</span><xsl:apply-templates /><span class="markdown">`</span></code></xsl:template>
 
-<xsl:template match="em"><em>*<xsl:apply-templates />*</em></xsl:template>
+<xsl:template match="em"><em><span class="markdown">*</span><xsl:apply-templates /><span class="markdown">*</span></em></xsl:template>
 
 <xsl:template match="ul"><br /><ul><xsl:apply-templates /></ul><br /></xsl:template>
 
 <xsl:template match="ol"><br /><ol><xsl:apply-templates /></ol><br /></xsl:template>
 
-<xsl:template match="li"><li>* <xsl:apply-templates /><br /></li></xsl:template>
+<xsl:template match="li"><li><span class="markdown">*&#160;</span><xsl:apply-templates /><br /></li></xsl:template>
 
 <xsl:template match="p"><hr class="para" /><br /><xsl:apply-templates /><br /></xsl:template>
 
 <xsl:template match="para"><hr class="para" /><br /><xsl:apply-templates /><br /></xsl:template>
 
-<xsl:template match="section"><h1 class="general">## <xsl:apply-templates /></h1></xsl:template>
+<xsl:template match="section"><h1 class="general"><span class="markdown">##&#160;</span><xsl:apply-templates /></h1></xsl:template>
 
-<xsl:template match="subsection"><h2 class="general">### <xsl:apply-templates /></h2></xsl:template>
+<xsl:template match="subsection"><h2 class="general"><span class="markdown">###&#160;</span><xsl:apply-templates /></h2></xsl:template>
 
 <xsl:template match="library">
 	<br /><br />__________________________________________<hr /><br /><br />
 
 	<h1 class="library"><xsl:value-of select="@name" /></h1>
-	<h1 class="library">==========================================</h1><br />
+	<h1 class="library markdown">==========================================</h1>
 	<xsl:if test="@description">
 		<br /><h2 class="library"><xsl:value-of select="@description" /></h2>
-		<h2 class="library">------------------------------------------</h2><br />
+		<h2 class="library markdown">------------------------------------------</h2>
 	</xsl:if>
 	<br /><xsl:apply-templates /><br />
 	<div class="members">
