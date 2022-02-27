@@ -75,17 +75,23 @@
 			<xsl:with-param name="type" select="'T:'" />
 			<xsl:with-param name="title" select="'Enums'" />
 		</xsl:apply-templates>
+	</div>
 
+	<div class="members">
 		<xsl:apply-templates select="/doc/members/member" mode="rest">
 			<xsl:with-param name="type" select="'C:'" />
 			<xsl:with-param name="title" select="'Constants'" />
 		</xsl:apply-templates>
+	</div>
 
+	<div class="members">
 		<xsl:apply-templates select="/doc/members/member" mode="rest">
 			<xsl:with-param name="type" select="'F:'" />
 			<xsl:with-param name="title" select="'Variables'" />
 		</xsl:apply-templates>
+	</div>
 
+	<div class="members">
 		<xsl:apply-templates select="/doc/members/member" mode="rest">
 			<xsl:with-param name="type" select="'M:'" />
 			<xsl:with-param name="title" select="'Functions'" />
@@ -430,30 +436,38 @@
 		<h2 class="library markdown">------------------------------------------</h2>
 	</xsl:if>
 	<br /><xsl:apply-templates /><br />
-	<div class="members">
-		<xsl:if test="@name = 'fixes.inc'">
+	<xsl:if test="@name = 'fixes.inc'">
+		<div class="members">
 			<br /><h1><span class="markdown">##&#160;</span>Fixes</h1><br />
 			<xsl:apply-templates select="/doc/members/member" mode="fixes" />
-		</xsl:if>
+		</div>
+	</xsl:if>
 
+	<div class="members">
 		<xsl:apply-templates select="/doc/members/member" mode="library">
 			<xsl:with-param name="library" select="@name" />
 			<xsl:with-param name="type" select="'T:'" />
 			<xsl:with-param name="title" select="'Enums'" />
 		</xsl:apply-templates>
+	</div>
 
+	<div class="members">
 		<xsl:apply-templates select="/doc/members/member" mode="library">
 			<xsl:with-param name="library" select="@name" />
 			<xsl:with-param name="type" select="'C:'" />
 			<xsl:with-param name="title" select="'Constants'" />
 		</xsl:apply-templates>
+	</div>
 
+	<div class="members">
 		<xsl:apply-templates select="/doc/members/member" mode="library">
 			<xsl:with-param name="library" select="@name" />
 			<xsl:with-param name="type" select="'F:'" />
 			<xsl:with-param name="title" select="'Variables'" />
 		</xsl:apply-templates>
+	</div>
 
+	<div class="members">
 		<xsl:apply-templates select="/doc/members/member" mode="library">
 			<xsl:with-param name="library" select="@name" />
 			<xsl:with-param name="type" select="'M:'" />
