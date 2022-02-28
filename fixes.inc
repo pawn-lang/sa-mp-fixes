@@ -53,7 +53,7 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 #endif
 /**
  * <library name="fixes.inc"
- *   description="Community patches for buggy SA:MP functions.">
+ *   summary="Community patches for buggy SA:MP functions.">
  *
  * <section>
  *             Introduction

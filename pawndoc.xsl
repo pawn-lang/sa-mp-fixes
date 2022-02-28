@@ -474,16 +474,16 @@
 
 	<h1 class="library"><xsl:value-of select="@name" /><xsl:if test="@version">v<xsl:value-of select="@version" /></xsl:if></h1>
 	<h1 class="library markdown">==========================================</h1>
-	<xsl:if test="@description">
-		<h2 class="library"><xsl:value-of select="@description" /></h2>
+	<xsl:if test="@summary">
+		<h2 class="library"><xsl:value-of select="@summary" /></h2>
 		<h2 class="library markdown">------------------------------------------</h2>
 	</xsl:if>
-	<xsl:if test="description">
-		<h2 class="library"><xsl:value-of select="description" /></h2>
-		<h2 class="library markdown">------------------------------------------</h2>
+	<xsl:if test="@license">
+		<div class="license"><xsl:value-of select="@license" /></div>
 	</xsl:if>
-	<xsl:if test="@copyright">
-		<div class="license"><xsl:value-of select="@copyright" /></div>
+	<xsl:if test="remarks">
+		<h2 class="library"><xsl:value-of select="remarks" /></h2>
+		<h2 class="library markdown">------------------------------------------</h2>
 	</xsl:if>
 	<br /><xsl:apply-templates /><br />
 	<xsl:if test="@name = 'fixes.inc'">
