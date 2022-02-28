@@ -482,8 +482,7 @@
 		<div class="license"><xsl:value-of select="@license" /></div>
 	</xsl:if>
 	<xsl:if test="remarks">
-		<h2 class="library"><xsl:value-of select="remarks" /></h2>
-		<h2 class="library markdown">------------------------------------------</h2>
+		<xsl:apply-templates select="remarks" />
 	</xsl:if>
 	<br /><xsl:apply-templates /><br />
 	<xsl:if test="@name = 'fixes.inc'">
