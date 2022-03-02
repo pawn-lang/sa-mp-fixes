@@ -51,9 +51,9 @@ const _HIDE_THE_FIXES_COMMENT_1 = 1;
 #if (__Pawn & 0x0F) >= 0x0A
 const _HIDE_THE_FIXES_COMMENT_2 = 2;
 #endif
+// Do not remove the spaces before `summary`.  The compiler crashes!
 /**
- * <library name="fixes.inc"
- *   summary="Community patches for buggy SA:MP functions.">
+ * <library name="fixes.inc"   summary="Community patches for buggy SA:MP functions.">
  *
  * <section>
  *             Introduction
@@ -26965,7 +26965,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #undef _FIXES_IS_PLAYER_CONNECTED
 #undef _FIXES_ENUM
 #undef FIXES_PRINTF
-#undef _FIXES_DEFAULT
+//#undef _FIXES_DEFAULT
 #undef _FIXES_OPTION
 #undef _FIXES_SETTING
 #undef _FIXES_IS_NULL
