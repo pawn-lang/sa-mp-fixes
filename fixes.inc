@@ -603,6 +603,9 @@ _FIXES_FUNC_PAWNDOC(HIDE_PAWNDOC(const symbol[]));
 _FIXES_FUNC_PAWNDOC(ENUM_PAWNDOC(const symbol[]));
 #define _FIXES_ENUM_PAWNDOC(%0); static stock %0:_@%0() { return %0; }
 
+// Consume excess spaces.
+#define _@%0\32; _@
+
 /**
  * <library>fixes.inc</library>
  * <remarks>
