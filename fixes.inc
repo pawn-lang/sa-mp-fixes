@@ -21,7 +21,9 @@ const _HIDE_THE_FIXES_COMMENT_1 = 1;
  * <!--
  * :::::::: README ::::::::
  *
- * To read the generated XML output, copy `pawndoc.xsl` to `pawno/xml/`.
+ * To read the generated XML output, copy `pawndoc.xsl` from
+ * `github.com/pawn-lang/pawndoc` to `xml/` inside your compiler directory
+ * (usually `pawno/xml/`).
  *
  * This information goes very close to the top of the generated XML
  * documentation (because of include dependency orders), but doesn't appear in
