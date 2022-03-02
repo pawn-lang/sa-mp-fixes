@@ -521,12 +521,16 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 
 #if _FIXES_FIRST_PASS
 	// First compiler pass only.
-	#define _FIXES_FUNC_PAWNDOC(%0(%1)); native %0(%1) = __PAWNDOC; stock PAWNDOC() <__PAWNDOC:%0> { (%0()); }
+	#define _FIXES_FUNC_PAWNDOC(%0(%1)); native %0(%1) = __PAWNDOC; stock PAWNDOC _FIXES_BRACKETS <__PAWNDOC:%0> { (%0()); }
 #else
 	#define _FIXES_FUNC_PAWNDOC(%0(%1));
 #endif
+
 // Strip tags from states.
 #define __PAWNDOC:%0:%1> __PAWNDOC:%1>
+
+// Defer macro expansion.
+#define _FIXES_BRACKETS ()
 
 _FIXES_FUNC_PAWNDOC(FUNC_PAWNDOC(const symbol[]));
 
@@ -26947,6 +26951,9 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	{
 	}
 #endif
+
+// Some compile-time safety.
+#define PAWNDOC() Dont_Call_PAWNDOC()
 
 // Clean up all internal defines.
 #undef _FIXES_CEILDIV
