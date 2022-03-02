@@ -304,7 +304,7 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
  *                 #if FIXES_EnableDeprecated                                   <br /><indent /><indent /><indent />
  *                     static _FIXES_OPTION FIX_NameOfFixHere = FIXES_EnableDeprecated; <br /><indent /><indent />
  *                 #else                                                        <br /><indent /><indent /><indent />
- *                     _FIXES_CONST_PAWNDOC(FIX_NameOfFixHere);                 <br /><indent /><indent />
+ *                     _FIXES_CONST_PAWNDOC(FIX_NameOfFixHere = FIXES_EnableDeprecated); <br /><indent /><indent />
  *                 #endif                                                       <br /><indent /><indent />
  *                 #define FIX_NameOfFixHere                FIXES_EnableDeprecated <br /><indent />
  *             #else                                                            <br /><indent /><indent />
@@ -521,7 +521,7 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 
 #if _FIXES_FIRST_PASS
 	// First compiler pass only.
-	#define _FIXES_FUNC_PAWNDOC(%0(%1)); native %0(%1) = __PAWNDOC; static stock PAWNDOC() <__PAWNDOC:%0> { (%0()); }
+	#define _FIXES_FUNC_PAWNDOC(%0(%1)); native %0(%1) = __PAWNDOC; stock PAWNDOC() <__PAWNDOC:%0> { (%0()); }
 #else
 	#define _FIXES_FUNC_PAWNDOC(%0(%1));
 #endif
@@ -548,8 +548,8 @@ _FIXES_FUNC_PAWNDOC(FUNC_PAWNDOC(const symbol[]));
  *         _FIXES_HIDE_PAWNDOC(SIMILAR_NAME);                                   <br />
  *     #else                                                                    <br /><indent />
  *         // Doesn't exist.  Document it and define it.                        <br /><indent />
- *         _FIXES_CONST_PAWNDOC(MACRO_NAME);                                    <br /><indent />
- *         #define MACRO_NAME(%0) (%0)                                          <br />
+ *         _FIXES_CONST_PAWNDOC(MACRO_NAME = 42);                               <br /><indent />
+ *         #define MACRO_NAME (42)                                              <br />
  *     #endif
  * </code>
  * <br />
@@ -558,7 +558,7 @@ _FIXES_FUNC_PAWNDOC(FUNC_PAWNDOC(const symbol[]));
 
 #if _FIXES_FIRST_PASS
 	// First compiler pass only.
-	#define _FIXES_CONST_PAWNDOC(%0); static stock %0 = 0;
+	#define _FIXES_CONST_PAWNDOC(%0=%1); static stock %0 = %1;
 #else
 	#define _FIXES_CONST_PAWNDOC(%0);
 #endif
@@ -598,22 +598,6 @@ _FIXES_FUNC_PAWNDOC(HIDE_PAWNDOC(const symbol[]));
 
 _FIXES_FUNC_PAWNDOC(ENUM_PAWNDOC(const symbol[]));
 #define _FIXES_ENUM_PAWNDOC(%0); static stock %0:_@%0() { return %0; }
-
-/**
- * <library>fixes.inc</library>
- * <remarks>
- * Use this after all other pawndoc fixes to finish off the <c>PAWNDOC</c>
- * function in the current file.
- * </remarks>
- */
-
-_FIXES_FUNC_PAWNDOC(CLOSE_PAWNDOC());
-#if _FIXES_FIRST_PASS
-	// First compiler pass only.
-	#define _FIXES_CLOSE_PAWNDOC(); static stock PAWNDOC() <__PAWNDOC:PAWNDOC> {} static stock PAWNDOC() <> {}
-#else
-	#define _FIXES_CLOSE_PAWNDOC();
-#endif
 
 /**
  * <library>fixes.inc</library>
@@ -1357,10 +1341,11 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_GetPlayerColour                  (0)
 #elseif !defined FIX_GetPlayerColour
 	#if defined FIX_GetPlayerColor
-		_FIXES_CONST_PAWNDOC(FIX_GetPlayerColour);
 		#if _FIXES_IS_UNSET(FIX_GetPlayerColor)
+			_FIXES_CONST_PAWNDOC(FIX_GetPlayerColour = 2);
 			#define FIX_GetPlayerColour          (2)
 		#else
+			_FIXES_CONST_PAWNDOC(FIX_GetPlayerColour = FIX_GetPlayerColor);
 			#define FIX_GetPlayerColour          (FIX_GetPlayerColor)
 		#endif
 	#else
@@ -1663,7 +1648,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_TogglePlayerControllable = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_TogglePlayerControllable);
+			_FIXES_CONST_PAWNDOC(FIX_TogglePlayerControllable = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_TogglePlayerControllable     FIXES_EnableDeprecated
 	#else
@@ -1923,7 +1908,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_KEY_AIM = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_KEY_AIM);
+			_FIXES_CONST_PAWNDOC(FIX_KEY_AIM = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_KEY_AIM                      FIXES_EnableDeprecated
 	#else
@@ -1968,7 +1953,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_SPECIAL_ACTION_PISSING = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_SPECIAL_ACTION_PISSING);
+			_FIXES_CONST_PAWNDOC(FIX_SPECIAL_ACTION_PISSING = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_SPECIAL_ACTION_PISSING       FIXES_EnableDeprecated
 	#else
@@ -2019,7 +2004,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_IsValidVehicle = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_IsValidVehicle);
+			_FIXES_CONST_PAWNDOC(FIX_IsValidVehicle = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_IsValidVehicle               FIXES_EnableDeprecated
 	#else
@@ -2071,7 +2056,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_GetGravity = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_GetGravity);
+			_FIXES_CONST_PAWNDOC(FIX_GetGravity = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_GetGravity                   FIXES_EnableDeprecated
 	#else
@@ -2123,7 +2108,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_gpci = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_gpci);
+			_FIXES_CONST_PAWNDOC(FIX_gpci = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_gpci                         FIXES_EnableDeprecated
 	#else
@@ -2168,7 +2153,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_WEAPONS = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_WEAPONS);
+			_FIXES_CONST_PAWNDOC(FIX_WEAPONS = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_WEAPONS                      FIXES_EnableDeprecated
 	#else
@@ -2214,7 +2199,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_BODYPARTS = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_BODYPARTS);
+			_FIXES_CONST_PAWNDOC(FIX_BODYPARTS = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_BODYPARTS                    FIXES_EnableDeprecated
 	#else
@@ -2260,7 +2245,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_CAMERAMODES = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_CAMERAMODES);
+			_FIXES_CONST_PAWNDOC(FIX_CAMERAMODES = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_CAMERAMODES                  FIXES_EnableDeprecated
 	#else
@@ -2778,7 +2763,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_OnPlayerEnterVehicle = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_OnPlayerEnterVehicle);
+			_FIXES_CONST_PAWNDOC(FIX_OnPlayerEnterVehicle = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_OnPlayerEnterVehicle         FIXES_EnableDeprecated
 	#else
@@ -2924,7 +2909,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_AllowTeleport = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_AllowTeleport);
+			_FIXES_CONST_PAWNDOC(FIX_AllowTeleport = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_AllowTeleport                FIXES_EnableDeprecated
 	#endif
@@ -3137,7 +3122,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_OnDialogResponse = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_OnDialogResponse);
+			_FIXES_CONST_PAWNDOC(FIX_OnDialogResponse = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_OnDialogResponse             FIXES_EnableDeprecated
 	#else
@@ -3190,7 +3175,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_GetPlayerDialog = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_GetPlayerDialog);
+			_FIXES_CONST_PAWNDOC(FIX_GetPlayerDialog = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_GetPlayerDialog              FIXES_EnableDeprecated
 	#else
@@ -3285,7 +3270,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_SetSpawnInfo = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_SetSpawnInfo);
+			_FIXES_CONST_PAWNDOC(FIX_SetSpawnInfo = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_SetSpawnInfo                 FIXES_EnableDeprecated
 	#else
@@ -3475,7 +3460,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_fclose
-	_FIXES_CONST_PAWNDOC(FIX_fclose);
+	_FIXES_CONST_PAWNDOC(FIX_fclose = (FIX_file_inc));
 	#define FIX_fclose                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fclose)
 	#undef FIX_fclose
@@ -3506,7 +3491,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_fwrite
-	_FIXES_CONST_PAWNDOC(FIX_fwrite);
+	_FIXES_CONST_PAWNDOC(FIX_fwrite = (FIX_file_inc));
 	#define FIX_fwrite                           (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fwrite)
 	#undef FIX_fwrite
@@ -3537,7 +3522,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_fread
-	_FIXES_CONST_PAWNDOC(FIX_fread);
+	_FIXES_CONST_PAWNDOC(FIX_fread = (FIX_file_inc));
 	#define FIX_fread                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fread)
 	#undef FIX_fread
@@ -3568,7 +3553,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_fputchar
-	_FIXES_CONST_PAWNDOC(FIX_fputchar);
+	_FIXES_CONST_PAWNDOC(FIX_fputchar = (FIX_file_inc));
 	#define FIX_fputchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fputchar)
 	#undef FIX_fputchar
@@ -3599,7 +3584,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_fgetchar
-	_FIXES_CONST_PAWNDOC(FIX_fgetchar);
+	_FIXES_CONST_PAWNDOC(FIX_fgetchar = (FIX_file_inc));
 	#define FIX_fgetchar                         (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fgetchar)
 	#undef FIX_fgetchar
@@ -3630,7 +3615,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_fblockwrite
-	_FIXES_CONST_PAWNDOC(FIX_fblockwrite);
+	_FIXES_CONST_PAWNDOC(FIX_fblockwrite = (FIX_file_inc));
 	#define FIX_fblockwrite                      (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockwrite)
 	#undef FIX_fblockwrite
@@ -3661,7 +3646,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_fblockread
-	_FIXES_CONST_PAWNDOC(FIX_fblockread);
+	_FIXES_CONST_PAWNDOC(FIX_fblockread = (FIX_file_inc));
 	#define FIX_fblockread                       (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fblockread)
 	#undef FIX_fblockread
@@ -3692,7 +3677,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_fseek
-	_FIXES_CONST_PAWNDOC(FIX_fseek);
+	_FIXES_CONST_PAWNDOC(FIX_fseek = (FIX_file_inc));
 	#define FIX_fseek                            (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_fseek)
 	#undef FIX_fseek
@@ -3723,7 +3708,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_flength
-	_FIXES_CONST_PAWNDOC(FIX_flength);
+	_FIXES_CONST_PAWNDOC(FIX_flength = (FIX_file_inc));
 	#define FIX_flength                          (FIX_file_inc)
 #elseif _FIXES_IS_UNSET(FIX_flength)
 	#undef FIX_flength
@@ -3963,7 +3948,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_Kick = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_Kick);
+			_FIXES_CONST_PAWNDOC(FIX_Kick = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_Kick                         FIXES_EnableDeprecated
 	#else
@@ -4782,7 +4767,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_HideGameText = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_HideGameText);
+			_FIXES_CONST_PAWNDOC(FIX_HideGameText = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_HideGameText                 FIXES_EnableDeprecated
 	#else
@@ -4834,7 +4819,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_GetPlayerWorldBounds = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_GetPlayerWorldBounds);
+			_FIXES_CONST_PAWNDOC(FIX_GetPlayerWorldBounds = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_GetPlayerWorldBounds         FIXES_EnableDeprecated
 	#else
@@ -4886,7 +4871,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_ClearPlayerWorldBounds = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_ClearPlayerWorldBounds);
+			_FIXES_CONST_PAWNDOC(FIX_ClearPlayerWorldBounds = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_ClearPlayerWorldBounds       FIXES_EnableDeprecated
 	#else
@@ -5348,10 +5333,11 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_SetPlayerColour                  (0)
 #elseif !defined FIX_SetPlayerColour
 	#if defined FIX_SetPlayerColor
-		_FIXES_CONST_PAWNDOC(FIX_SetPlayerColour);
 		#if _FIXES_IS_UNSET(FIX_SetPlayerColor)
+			_FIXES_CONST_PAWNDOC(FIX_SetPlayerColour = 2);
 			#define FIX_SetPlayerColour          (2)
 		#else
+			_FIXES_CONST_PAWNDOC(FIX_SetPlayerColour = FIX_SetPlayerColor);
 			#define FIX_SetPlayerColour          (FIX_SetPlayerColor)
 		#endif
 	#else
@@ -6011,7 +5997,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_VEHICLES = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_VEHICLES);
+			_FIXES_CONST_PAWNDOC(FIX_VEHICLES = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_VEHICLES                     FIXES_EnableDeprecated
 	#else
@@ -6064,7 +6050,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_GetPlayerWeather = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_GetPlayerWeather);
+			_FIXES_CONST_PAWNDOC(FIX_GetPlayerWeather = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_GetPlayerWeather             FIXES_EnableDeprecated
 	#else
@@ -6117,7 +6103,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_GetWeather = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_GetWeather);
+			_FIXES_CONST_PAWNDOC(FIX_GetWeather = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_GetWeather                   FIXES_EnableDeprecated
 	#else
@@ -6169,7 +6155,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_GetWorldTime = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_GetWorldTime);
+			_FIXES_CONST_PAWNDOC(FIX_GetWorldTime = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_GetWorldTime                 FIXES_EnableDeprecated
 	#else
@@ -6211,10 +6197,11 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 #if !defined FIX_GetConsoleVarAsString
 	#if defined FIX_GetServerVarAsString
-		_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsString);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsString)
+			_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsString = 2);
 			#define FIX_GetConsoleVarAsString    (2)
 		#else
+			_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsString = FIX_GetServerVarAsString);
 			#define FIX_GetConsoleVarAsString    (FIX_GetServerVarAsString)
 		#endif
 	#else
@@ -6256,10 +6243,11 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 #if !defined FIX_GetConsoleVarAsInt
 	#if defined FIX_GetServerVarAsInt
-		_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsInt);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsInt)
+			_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsInt = 2);
 			#define FIX_GetConsoleVarAsInt       (2)
 		#else
+			_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsInt = FIX_GetServerVarAsInt);
 			#define FIX_GetConsoleVarAsInt       (FIX_GetServerVarAsInt)
 		#endif
 	#else
@@ -6301,10 +6289,11 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 
 #if !defined FIX_GetConsoleVarAsBool
 	#if defined FIX_GetServerVarAsBool
-		_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsBool);
 		#if _FIXES_IS_UNSET(FIX_GetServerVarAsBool)
+			_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsBool = 2);
 			#define FIX_GetConsoleVarAsBool      (2)
 		#else
+			_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsBool = FIX_GetServerVarAsBool);
 			#define FIX_GetConsoleVarAsBool      (FIX_GetServerVarAsBool)
 		#endif
 	#else
@@ -6359,16 +6348,17 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 				#undef _FIXES_WARNING
 				static _FIXES_OPTION FIX_GetConsoleVarAsFloat = FIXES_EnableDeprecated;
 			#else
-				_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsFloat);
+				_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsFloat = FIXES_EnableDeprecated);
 			#endif
 			#define FIX_GetConsoleVarAsFloat     FIXES_EnableDeprecated
 		#endif
 	#else
 		#if defined FIX_GetServerVarAsFloat
-			_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsFloat);
 			#if _FIXES_IS_UNSET(FIX_GetServerVarAsFloat)
+				_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsFloat = 2);
 				#define FIX_GetConsoleVarAsFloat (2)
 			#else
+				_FIXES_CONST_PAWNDOC(FIX_GetConsoleVarAsFloat = FIX_GetServerVarAsFloat);
 				#define FIX_GetConsoleVarAsFloat (FIX_GetServerVarAsFloat)
 			#endif
 		#else
@@ -7208,7 +7198,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_TEXT_DRAW_ALIGN = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_TEXT_DRAW_ALIGN);
+			_FIXES_CONST_PAWNDOC(FIX_TEXT_DRAW_ALIGN = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_TEXT_DRAW_ALIGN              FIXES_EnableDeprecated
 	#else
@@ -7253,7 +7243,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_TEXT_DRAW_FONT = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_TEXT_DRAW_FONT);
+			_FIXES_CONST_PAWNDOC(FIX_TEXT_DRAW_FONT = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_TEXT_DRAW_FONT              FIXES_EnableDeprecated
 	#else
@@ -7337,7 +7327,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_FORCE_SYNC = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_FORCE_SYNC);
+			_FIXES_CONST_PAWNDOC(FIX_FORCE_SYNC = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_FORCE_SYNC                   FIXES_EnableDeprecated
 	#else
@@ -7519,10 +7509,6 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define ENUM_PAWNDOC _FIXES_ENUM_PAWNDOC
 #endif
 
-#if FIX_Pawndoc
-	#define CLOSE_PAWNDOC _FIXES_CLOSE_PAWNDOC
-#endif
-
 /**
  * <library>fixes.inc</library>
  * <remarks>
@@ -7587,7 +7573,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(do_not_use_tabsize_0);
+_FIXES_CONST_PAWNDOC(do_not_use_tabsize_0 = cellmin);
 #if FIX_tabsize
 	#define tabsize%00%0\10;%0 _DUMMY_do_not_use_tabsize_0
 #endif
@@ -7599,7 +7585,7 @@ _FIXES_CONST_PAWNDOC(do_not_use_tabsize_0);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(FIXES_EXISTS);
+_FIXES_CONST_PAWNDOC(FIXES_EXISTS = 1);
 #define FIXES_EXISTS
 
 /**
@@ -7609,7 +7595,7 @@ _FIXES_CONST_PAWNDOC(FIXES_EXISTS);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(FIXES_CONST_CORRECT);
+_FIXES_CONST_PAWNDOC(FIXES_CONST_CORRECT = 1);
 #define FIXES_CONST_CORRECT
 
 /**
@@ -7620,7 +7606,7 @@ _FIXES_CONST_PAWNDOC(FIXES_CONST_CORRECT);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(FIXES_TAG_CORRECT);
+_FIXES_CONST_PAWNDOC(FIXES_TAG_CORRECT = 1);
 #define FIXES_TAG_CORRECT
 
 /**
@@ -7630,7 +7616,7 @@ _FIXES_CONST_PAWNDOC(FIXES_TAG_CORRECT);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(FIXES_PAWNDOC);
+_FIXES_CONST_PAWNDOC(FIXES_PAWNDOC = 1);
 #define FIXES_PAWNDOC
 
 /**
@@ -7641,7 +7627,7 @@ _FIXES_CONST_PAWNDOC(FIXES_PAWNDOC);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(FIXES_ID);
+_FIXES_CONST_PAWNDOC(FIXES_ID = 1);
 #define FIXES_ID
 
 /**
@@ -7652,7 +7638,7 @@ _FIXES_CONST_PAWNDOC(FIXES_ID);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(FIXES_API);
+_FIXES_CONST_PAWNDOC(FIXES_API = 1);
 #if FIX_API
 	#define FIXES_API
 #endif
@@ -7667,7 +7653,7 @@ _FIXES_CONST_PAWNDOC(FIXES_API);
 #if FIXES_NoYSI
 	_FIXES_HIDE_PAWNDOC(FIXES_USES_STATE_HOOKS);
 #else
-	_FIXES_CONST_PAWNDOC(FIXES_USES_STATE_HOOKS);
+	_FIXES_CONST_PAWNDOC(FIXES_USES_STATE_HOOKS = 1);
 	#define FIXES_UseStateHooks
 	#define FIXES_USES_STATE_HOOKS
 #endif
@@ -7821,7 +7807,7 @@ _FIXES_FUNC_PAWNDOC(bool:_FIXES_IS_PLAYER_CONNECTED(playerid));
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK_CONST);
+_FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK_CONST = cellmin);
 #if FIXES_Debug
 	#define _FIXES_STATIC_STOCK_CONST const
 #else
@@ -7836,7 +7822,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK_CONST);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK);
+_FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK = cellmin);
 #if FIXES_Debug
 	#define _FIXES_STATIC_STOCK new
 #else
@@ -7851,7 +7837,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STATIC_STOCK);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_CONST);
+_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_CONST = cellmin);
 #if FIX_const
 	#define _FIXES_MAYBE_CONST const
 #else
@@ -7881,7 +7867,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_TO_BOOL(value));
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_BOOL);
+_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_BOOL = cellmin);
 #if FIX_bool_tags
 	#define _FIXES_MAYBE_BOOL bool
 #else
@@ -7896,7 +7882,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_BOOL);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_TRUE);
+_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_TRUE = 1);
 #if FIX_bool_tags
 	#define _FIXES_MAYBE_TRUE true
 #else
@@ -7911,7 +7897,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_TRUE);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_FALSE);
+_FIXES_CONST_PAWNDOC(_FIXES_MAYBE_FALSE = 0);
 #if FIX_bool_tags
 	#define _FIXES_MAYBE_FALSE false
 #else
@@ -7954,7 +7940,7 @@ const Text:MAX_TEXT_DRAWS__ = Text:MAX_TEXT_DRAWS;
 
 #if defined FIX_limit_tags
 	#undef MAX_TEXT_DRAWS
-	_FIXES_CONST_PAWNDOC(MAX_TEXT_DRAWS);
+	_FIXES_CONST_PAWNDOC(MAX_TEXT_DRAWS = MAX_TEXT_DRAWS__);
 	#define MAX_TEXT_DRAWS MAX_TEXT_DRAWS__
 #else
 	_FIXES_HIDE_PAWNDOC(MAX_TEXT_DRAWS);
@@ -7981,7 +7967,7 @@ const PlayerText:MAX_PLAYER_TEXT_DRAWS__ = PlayerText:MAX_PLAYER_TEXT_DRAWS;
 
 #if defined FIX_limit_tags
 	#undef MAX_PLAYER_TEXT_DRAWS
-	_FIXES_CONST_PAWNDOC(MAX_PLAYER_TEXT_DRAWS);
+	_FIXES_CONST_PAWNDOC(MAX_PLAYER_TEXT_DRAWS = MAX_PLAYER_TEXT_DRAWS__);
 	#define MAX_PLAYER_TEXT_DRAWS MAX_PLAYER_TEXT_DRAWS__
 #else
 	_FIXES_HIDE_PAWNDOC(MAX_PLAYER_TEXT_DRAWS);
@@ -8008,7 +7994,7 @@ const Menu:MAX_MENUS__ = Menu:MAX_MENUS;
 
 #if defined FIX_limit_tags
 	#undef MAX_MENUS
-	_FIXES_CONST_PAWNDOC(MAX_MENUS);
+	_FIXES_CONST_PAWNDOC(MAX_MENUS = MAX_MENUS__);
 	#define MAX_MENUS MAX_MENUS__
 #else
 	_FIXES_HIDE_PAWNDOC(MAX_MENUS);
@@ -8035,7 +8021,7 @@ const Text3D:MAX_3DTEXT_GLOBAL__ = Text3D:MAX_3DTEXT_GLOBAL;
 
 #if defined FIX_limit_tags
 	#undef MAX_3DTEXT_GLOBAL
-	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_GLOBAL);
+	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_GLOBAL = MAX_3DTEXT_GLOBAL__);
 	#define MAX_3DTEXT_GLOBAL MAX_3DTEXT_GLOBAL__
 #else
 	_FIXES_HIDE_PAWNDOC(MAX_3DTEXT_GLOBAL);
@@ -8062,7 +8048,7 @@ const PlayerText3D:MAX_3DTEXT_PLAYER__ = PlayerText3D:MAX_3DTEXT_PLAYER;
 
 #if defined FIX_limit_tags
 	#undef MAX_3DTEXT_PLAYER
-	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_PLAYER);
+	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_PLAYER = MAX_3DTEXT_PLAYER__);
 	#define MAX_3DTEXT_PLAYER MAX_3DTEXT_PLAYER__
 #else
 	_FIXES_HIDE_PAWNDOC(MAX_3DTEXT_PLAYER);
@@ -8094,7 +8080,7 @@ const PlayerText:INVALID_PLAYER_TEXT_DRAW__ = PlayerText:INVALID_PLAYER_TEXT_DRA
 
 #if defined FIX_limit_tags
 	#undef INVALID_PLAYER_TEXT_DRAW
-	_FIXES_CONST_PAWNDOC(INVALID_PLAYER_TEXT_DRAW);
+	_FIXES_CONST_PAWNDOC(INVALID_PLAYER_TEXT_DRAW = INVALID_PLAYER_TEXT_DRAW__);
 	#define INVALID_PLAYER_TEXT_DRAW INVALID_PLAYER_TEXT_DRAW__
 #else
 	_FIXES_HIDE_PAWNDOC(INVALID_PLAYER_TEXT_DRAW);
@@ -8125,7 +8111,7 @@ const PlayerText3D:INVALID_PLAYER_3DTEXT_ID__ = PlayerText3D:INVALID_PLAYER_3DTE
 
 #if defined FIX_limit_tags
 	#undef INVALID_PLAYER_3DTEXT_ID
-	_FIXES_CONST_PAWNDOC(INVALID_PLAYER_3DTEXT_ID);
+	_FIXES_CONST_PAWNDOC(INVALID_PLAYER_3DTEXT_ID = INVALID_PLAYER_3DTEXT_ID__);
 	#define INVALID_PLAYER_3DTEXT_ID INVALID_PLAYER_3DTEXT_ID__
 #else
 	_FIXES_HIDE_PAWNDOC(INVALID_PLAYER_3DTEXT_ID);
@@ -8152,7 +8138,7 @@ const Text3D:INVALID_3DTEXT_ID__ = Text3D:INVALID_3DTEXT_ID;
 
 #if defined FIX_limit_tags
 	#undef INVALID_3DTEXT_ID
-	_FIXES_CONST_PAWNDOC(INVALID_3DTEXT_ID);
+	_FIXES_CONST_PAWNDOC(INVALID_3DTEXT_ID = INVALID_3DTEXT_ID__);
 	#define INVALID_3DTEXT_ID INVALID_3DTEXT_ID__
 #else
 	_FIXES_HIDE_PAWNDOC(INVALID_3DTEXT_ID);
@@ -8179,7 +8165,7 @@ const Menu:INVALID_MENU__ = Menu:INVALID_MENU;
 
 #if defined FIX_limit_tags
 	#undef INVALID_MENU
-	_FIXES_CONST_PAWNDOC(INVALID_MENU);
+	_FIXES_CONST_PAWNDOC(INVALID_MENU = INVALID_MENU__);
 	#define INVALID_MENU INVALID_MENU__
 #else
 	_FIXES_HIDE_PAWNDOC(INVALID_MENU);
@@ -8206,7 +8192,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 
 #if defined FIX_limit_tags
 	#undef INVALID_TEXT_DRAW
-	_FIXES_CONST_PAWNDOC(INVALID_TEXT_DRAW);
+	_FIXES_CONST_PAWNDOC(INVALID_TEXT_DRAW = INVALID_TEXT_DRAW__);
 	#define INVALID_TEXT_DRAW INVALID_TEXT_DRAW__
 #else
 	_FIXES_HIDE_PAWNDOC(INVALID_TEXT_DRAW);
@@ -8223,7 +8209,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined ACTION
 	_FIXES_HIDE_PAWNDOC(FIXES_ACTION);
 #elseif FIX_GetPlayerKeys
-	_FIXES_CONST_PAWNDOC(ACTION);
+	_FIXES_CONST_PAWNDOC(ACTION = cellmin);
 	#if defined __TAG
 		#define ACTION: __TAG(ACTION):
 	#else
@@ -8243,7 +8229,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined KEY
 	_FIXES_HIDE_PAWNDOC(FIXES_KEY);
 #else
-	_FIXES_CONST_PAWNDOC(KEY);
+	_FIXES_CONST_PAWNDOC(KEY = cellmin);
 	#if defined __TAG
 		#define KEY: __TAG(KEY):
 	#else
@@ -8263,7 +8249,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined VEHICLE_PARAMS
 	_FIXES_HIDE_PAWNDOC(FIXES_VEHICLE_PARAMS);
 #else
-	_FIXES_CONST_PAWNDOC(VEHICLE_PARAMS);
+	_FIXES_CONST_PAWNDOC(VEHICLE_PARAMS = cellmin);
 	#if defined __TAG
 		#define VEHICLE_PARAMS: __TAG(VEHICLE_PARAMS):
 	#else
@@ -8283,7 +8269,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined PLAYER_STATE
 	_FIXES_HIDE_PAWNDOC(FIXES_PLAYER_STATE);
 #else
-	_FIXES_CONST_PAWNDOC(PLAYER_STATE);
+	_FIXES_CONST_PAWNDOC(PLAYER_STATE = cellmin);
 	#if defined __TAG
 		#define PLAYER_STATE: __TAG(PLAYER_STATE):
 	#else
@@ -8303,7 +8289,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined SPECIAL_ACTION
 	_FIXES_HIDE_PAWNDOC(FIXES_SPECIAL_ACTION);
 #else
-	_FIXES_CONST_PAWNDOC(SPECIAL_ACTION);
+	_FIXES_CONST_PAWNDOC(SPECIAL_ACTION = cellmin);
 	#if defined __TAG
 		#define SPECIAL_ACTION: __TAG(SPECIAL_ACTION):
 	#else
@@ -8323,7 +8309,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined PLAYER_VARTYPE
 	_FIXES_HIDE_PAWNDOC(FIXES_PLAYER_VARTYPE);
 #else
-	_FIXES_CONST_PAWNDOC(PLAYER_VARTYPE);
+	_FIXES_CONST_PAWNDOC(PLAYER_VARTYPE = cellmin);
 	#if defined __TAG
 		#define PLAYER_VARTYPE: __TAG(PLAYER_VARTYPE):
 	#else
@@ -8343,7 +8329,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined BODY_PART
 	_FIXES_HIDE_PAWNDOC(FIXES_BODY_PART);
 #else
-	_FIXES_CONST_PAWNDOC(BODY_PART);
+	_FIXES_CONST_PAWNDOC(BODY_PART = cellmin);
 	#if defined __TAG
 		#define BODY_PART: __TAG(BODY_PART):
 	#else
@@ -8363,7 +8349,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined CAM_MODE
 	_FIXES_HIDE_PAWNDOC(FIXES_CAM_MODE);
 #else
-	_FIXES_CONST_PAWNDOC(CAM_MODE);
+	_FIXES_CONST_PAWNDOC(CAM_MODE = cellmin);
 	#if defined __TAG
 		#define CAM_MODE: __TAG(CAM_MODE):
 	#else
@@ -8382,7 +8368,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined VEHICLE
 	_FIXES_HIDE_PAWNDOC(FIXES_VEHICLE);
 #else
-	_FIXES_CONST_PAWNDOC(VEHICLE);
+	_FIXES_CONST_PAWNDOC(VEHICLE = cellmin);
 	// `__TAG(VEHICLE):` is not currently in the enhanced SA:MP includes.
 	//#if defined __TAG
 	//	#define VEHICLE: __TAG(VEHICLE):
@@ -8403,7 +8389,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined CARMODTYPE
 	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE);
 #else
-	_FIXES_CONST_PAWNDOC(CARMODTYPE);
+	_FIXES_CONST_PAWNDOC(CARMODTYPE = cellmin);
 	#if defined __TAG
 		#define CARMODTYPE: __TAG(CARMODTYPE):
 	#else
@@ -8423,7 +8409,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined WEAPON
 	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON);
 #else
-	_FIXES_CONST_PAWNDOC(WEAPON);
+	_FIXES_CONST_PAWNDOC(WEAPON = cellmin);
 	#if defined __TAG
 		#define WEAPON: __TAG(WEAPON):
 	#else
@@ -8443,7 +8429,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined MAPICON
 	_FIXES_HIDE_PAWNDOC(FIXES_MAPICON);
 #else
-	_FIXES_CONST_PAWNDOC(MAPICON);
+	_FIXES_CONST_PAWNDOC(MAPICON = cellmin);
 	#if defined __TAG
 		#define MAPICON: __TAG(MAPICON):
 	#else
@@ -8463,7 +8449,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined CAM_MOVE
 	_FIXES_HIDE_PAWNDOC(FIXES_CAM_MOVE);
 #else
-	_FIXES_CONST_PAWNDOC(CAM_MOVE);
+	_FIXES_CONST_PAWNDOC(CAM_MOVE = cellmin);
 	#if defined __TAG
 		#define CAM_MOVE: __TAG(CAM_MOVE):
 	#else
@@ -8483,7 +8469,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined SPECTATE_MODE
 	_FIXES_HIDE_PAWNDOC(FIXES_SPECTATE_MODE);
 #else
-	_FIXES_CONST_PAWNDOC(SPECTATE_MODE);
+	_FIXES_CONST_PAWNDOC(SPECTATE_MODE = cellmin);
 	#if defined __TAG
 		#define SPECTATE_MODE: __TAG(SPECTATE_MODE):
 	#else
@@ -8503,7 +8489,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined PLAYER_RECORDING_TYPE
 	_FIXES_HIDE_PAWNDOC(FIXES_PLAYER_RECORDING_TYPE);
 #else
-	_FIXES_CONST_PAWNDOC(PLAYER_RECORDING_TYPE);
+	_FIXES_CONST_PAWNDOC(PLAYER_RECORDING_TYPE = cellmin);
 	#if defined __TAG
 		#define PLAYER_RECORDING_TYPE: __TAG(PLAYER_RECORDING_TYPE):
 	#else
@@ -8523,7 +8509,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined VEHICLE_MODEL_INFO
 	_FIXES_HIDE_PAWNDOC(FIXES_VEHICLE_MODEL_INFO);
 #else
-	_FIXES_CONST_PAWNDOC(VEHICLE_MODEL_INFO);
+	_FIXES_CONST_PAWNDOC(VEHICLE_MODEL_INFO = cellmin);
 	#if defined __TAG
 		#define VEHICLE_MODEL_INFO: __TAG(VEHICLE_MODEL_INFO):
 	#else
@@ -8543,7 +8529,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined OBJECT_MATERIAL_SIZE
 	_FIXES_HIDE_PAWNDOC(FIXES_OBJECT_MATERIAL_SIZE);
 #else
-	_FIXES_CONST_PAWNDOC(OBJECT_MATERIAL_SIZE);
+	_FIXES_CONST_PAWNDOC(OBJECT_MATERIAL_SIZE = cellmin);
 	#if defined __TAG
 		#define OBJECT_MATERIAL_SIZE: __TAG(OBJECT_MATERIAL_SIZE):
 	#else
@@ -8563,7 +8549,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined OBJECT_MATERIAL_TEXT_ALIGN
 	_FIXES_HIDE_PAWNDOC(FIXES_OBJECT_MATERIAL_TEXT_ALN);
 #else
-	_FIXES_CONST_PAWNDOC(OBJECT_MATERIAL_TEXT_ALIGN);
+	_FIXES_CONST_PAWNDOC(OBJECT_MATERIAL_TEXT_ALIGN = cellmin);
 	#if defined __TAG
 		#define OBJECT_MATERIAL_TEXT_ALIGN: __TAG(OBJECT_MATERIAL_TEXT_ALIGN):
 	#else
@@ -8583,7 +8569,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined HTTP_METHOD
 	_FIXES_HIDE_PAWNDOC(FIXES_HTTP_METHOD);
 #else
-	_FIXES_CONST_PAWNDOC(HTTP_METHOD);
+	_FIXES_CONST_PAWNDOC(HTTP_METHOD = cellmin);
 	#if defined __TAG
 		#define HTTP_METHOD: __TAG(HTTP_METHOD):
 	#else
@@ -8603,7 +8589,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined HTTP_ERROR
 	_FIXES_HIDE_PAWNDOC(FIXES_HTTP_ERROR);
 #else
-	_FIXES_CONST_PAWNDOC(HTTP_ERROR);
+	_FIXES_CONST_PAWNDOC(HTTP_ERROR = cellmin);
 	#if defined __TAG
 		#define HTTP_ERROR: __TAG(HTTP_ERROR):
 	#else
@@ -8623,7 +8609,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined FIGHT_STYLE
 	_FIXES_HIDE_PAWNDOC(FIXES_FIGHT_STYLE);
 #else
-	_FIXES_CONST_PAWNDOC(FIGHT_STYLE);
+	_FIXES_CONST_PAWNDOC(FIGHT_STYLE = cellmin);
 	#if defined __TAG
 		#define FIGHT_STYLE: __TAG(FIGHT_STYLE):
 	#else
@@ -8643,7 +8629,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined WEAPONSKILL
 	_FIXES_HIDE_PAWNDOC(FIXES_WEAPONSKILL);
 #else
-	_FIXES_CONST_PAWNDOC(WEAPONSKILL);
+	_FIXES_CONST_PAWNDOC(WEAPONSKILL = cellmin);
 	#if defined __TAG
 		#define WEAPONSKILL: __TAG(WEAPONSKILL):
 	#else
@@ -8663,7 +8649,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined WEAPONSTATE
 	_FIXES_HIDE_PAWNDOC(FIXES_WEAPONSTATE);
 #else
-	_FIXES_CONST_PAWNDOC(WEAPONSTATE);
+	_FIXES_CONST_PAWNDOC(WEAPONSTATE = cellmin);
 	#if defined __TAG
 		#define WEAPONSTATE: __TAG(WEAPONSTATE):
 	#else
@@ -8683,7 +8669,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined SELECT_OBJECT
 	_FIXES_HIDE_PAWNDOC(FIXES_SELECT_OBJECT);
 #else
-	_FIXES_CONST_PAWNDOC(SELECT_OBJECT);
+	_FIXES_CONST_PAWNDOC(SELECT_OBJECT = cellmin);
 	#if defined __TAG
 		#define SELECT_OBJECT: __TAG(SELECT_OBJECT):
 	#else
@@ -8703,7 +8689,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined BULLET_HIT_TYPE
 	_FIXES_HIDE_PAWNDOC(FIXES_BULLET_HIT_TYPE);
 #else
-	_FIXES_CONST_PAWNDOC(BULLET_HIT_TYPE);
+	_FIXES_CONST_PAWNDOC(BULLET_HIT_TYPE = cellmin);
 	#if defined __TAG
 		#define BULLET_HIT_TYPE: __TAG(BULLET_HIT_TYPE):
 	#else
@@ -8723,7 +8709,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined DOWNLOAD_REQUEST
 	_FIXES_HIDE_PAWNDOC(FIXES_DOWNLOAD_REQUEST);
 #else
-	_FIXES_CONST_PAWNDOC(DOWNLOAD_REQUEST);
+	_FIXES_CONST_PAWNDOC(DOWNLOAD_REQUEST = cellmin);
 	#if defined __TAG
 		#define DOWNLOAD_REQUEST: __TAG(DOWNLOAD_REQUEST):
 	#else
@@ -8743,7 +8729,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined CLICK_SOURCE
 	_FIXES_HIDE_PAWNDOC(FIXES_CLICK_SOURCE);
 #else
-	_FIXES_CONST_PAWNDOC(CLICK_SOURCE);
+	_FIXES_CONST_PAWNDOC(CLICK_SOURCE = cellmin);
 	#if defined __TAG
 		#define CLICK_SOURCE: __TAG(CLICK_SOURCE):
 	#else
@@ -8763,7 +8749,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined EDIT_RESPONSE
 	_FIXES_HIDE_PAWNDOC(FIXES_EDIT_RESPONSE);
 #else
-	_FIXES_CONST_PAWNDOC(EDIT_RESPONSE);
+	_FIXES_CONST_PAWNDOC(EDIT_RESPONSE = cellmin);
 	#if defined __TAG
 		#define EDIT_RESPONSE: __TAG(EDIT_RESPONSE):
 	#else
@@ -8783,7 +8769,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined DIALOG_STYLE
 	_FIXES_HIDE_PAWNDOC(FIXES_DIALOG_STYLE);
 #else
-	_FIXES_CONST_PAWNDOC(DIALOG_STYLE);
+	_FIXES_CONST_PAWNDOC(DIALOG_STYLE = cellmin);
 	#if defined __TAG
 		#define DIALOG_STYLE: __TAG(DIALOG_STYLE):
 	#else
@@ -8803,7 +8789,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined TEXT_DRAW_FONT
 	_FIXES_HIDE_PAWNDOC(FIXES_TEXT_DRAW_FONT);
 #else
-	_FIXES_CONST_PAWNDOC(TEXT_DRAW_FONT);
+	_FIXES_CONST_PAWNDOC(TEXT_DRAW_FONT = cellmin);
 	#if defined __TAG
 		#define TEXT_DRAW_FONT: __TAG(TEXT_DRAW_FONT):
 	#else
@@ -8823,7 +8809,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined TEXT_DRAW_ALIGN
 	_FIXES_HIDE_PAWNDOC(FIXES_TEXT_DRAW_ALIGN);
 #else
-	_FIXES_CONST_PAWNDOC(TEXT_DRAW_ALIGN);
+	_FIXES_CONST_PAWNDOC(TEXT_DRAW_ALIGN = cellmin);
 	#if defined __TAG
 		#define TEXT_DRAW_ALIGN: __TAG(TEXT_DRAW_ALIGN):
 	#else
@@ -8843,7 +8829,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined SERVER_VARTYPE
 	_FIXES_HIDE_PAWNDOC(FIXES_SERVER_VARTYPE);
 #else
-	_FIXES_CONST_PAWNDOC(SERVER_VARTYPE);
+	_FIXES_CONST_PAWNDOC(SERVER_VARTYPE = cellmin);
 	#if defined __TAG
 		#define SERVER_VARTYPE: __TAG(SERVER_VARTYPE):
 	#else
@@ -8863,7 +8849,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 #if defined FORCE_SYNC
 	_FIXES_HIDE_PAWNDOC(FIXES_FORCE_SYNC);
 #else
-	_FIXES_CONST_PAWNDOC(FORCE_SYNC);
+	_FIXES_CONST_PAWNDOC(FORCE_SYNC = cellmin);
 	#if defined __TAG
 		#define FORCE_SYNC: __TAG(FORCE_SYNC):
 	#else
@@ -8879,7 +8865,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
+_FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT = cellmin);
 #if FIX_GameText
 	#if FIX_GameTextStyles
 		#define FIXES_GT_STYLE_COUNT (16)
@@ -8898,7 +8884,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #if defined INVALID_DIALOG_ID
 	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_DIALOG_ID);
 #else
-	_FIXES_CONST_PAWNDOC(INVALID_DIALOG_ID);
+	_FIXES_CONST_PAWNDOC(INVALID_DIALOG_ID = (-1));
 	#define INVALID_DIALOG_ID (-1)
 #endif
 /**
@@ -8911,7 +8897,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #if defined MAX_ACTORS
 	_FIXES_HIDE_PAWNDOC(FIXES_MAX_ACTORS);
 #else
-	_FIXES_CONST_PAWNDOC(MAX_ACTORS);
+	_FIXES_CONST_PAWNDOC(MAX_ACTORS = (1000));
 	#define MAX_ACTORS (1000)
 #endif
 
@@ -8925,7 +8911,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #if defined INVALID_ACTOR_ID
 	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_ACTOR_ID);
 #else
-	_FIXES_CONST_PAWNDOC(INVALID_ACTOR_ID);
+	_FIXES_CONST_PAWNDOC(INVALID_ACTOR_ID = (0xFFFF));
 	#define INVALID_ACTOR_ID (0xFFFF)
 #endif
 
@@ -8939,7 +8925,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #if defined MAX_PLAYER_TEXT_DRAWS
 	_FIXES_HIDE_PAWNDOC(FIXES_MAX_PLAYER_TEXT_DRAWS);
 #else
-	_FIXES_CONST_PAWNDOC(MAX_PLAYER_TEXT_DRAWS);
+	_FIXES_CONST_PAWNDOC(MAX_PLAYER_TEXT_DRAWS = (256));
 	#define MAX_PLAYER_TEXT_DRAWS (256)
 #endif
 
@@ -8953,7 +8939,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #if defined MAX_3DTEXT_GLOBAL
 	_FIXES_HIDE_PAWNDOC(FIXES_MAX_3DTEXT_GLOBAL);
 #else
-	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_GLOBAL);
+	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_GLOBAL = (1024));
 	#define MAX_3DTEXT_GLOBAL (1024)
 #endif
 
@@ -8967,7 +8953,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #if defined MAX_3DTEXT_PLAYER
 	_FIXES_HIDE_PAWNDOC(FIXES_MAX_3DTEXT_PLAYER);
 #else
-	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_PLAYER);
+	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_PLAYER = (1024));
 	#define MAX_3DTEXT_PLAYER (1024)
 #endif
 
@@ -8981,7 +8967,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #if defined MAX_PICKUPS
 	_FIXES_HIDE_PAWNDOC(FIXES_MAX_PICKUPS);
 #else
-	_FIXES_CONST_PAWNDOC(MAX_PICKUPS);
+	_FIXES_CONST_PAWNDOC(MAX_PICKUPS = (4096));
 	#define MAX_PICKUPS (4096)
 #endif
 
@@ -8995,7 +8981,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
 #if defined INVALID_3DTEXT_ID
 	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_3DTEXT_ID);
 #else
-	_FIXES_CONST_PAWNDOC(INVALID_3DTEXT_ID);
+	_FIXES_CONST_PAWNDOC(INVALID_3DTEXT_ID = (0xFFFF));
 	#define INVALID_3DTEXT_ID (0xFFFF)
 #endif
 
@@ -9006,7 +8992,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_MIN_WORLDBOUNDS);
+_FIXES_CONST_PAWNDOC(_FIXES_MIN_WORLDBOUNDS = (-20000.0));
 #define _FIXES_MIN_WORLDBOUNDS (-20000.0)
 
 /**
@@ -9016,7 +9002,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MIN_WORLDBOUNDS);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_MAX_WORLDBOUNDS);
+_FIXES_CONST_PAWNDOC(_FIXES_MAX_WORLDBOUNDS = (20000.0));
 #define _FIXES_MAX_WORLDBOUNDS (20000.0)
 
 /**
@@ -9026,7 +9012,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAX_WORLDBOUNDS);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_INFINITY);
+_FIXES_CONST_PAWNDOC(Float:_FIXES_INFINITY = (Float:0x7F800000));
 #define _FIXES_INFINITY (Float:0x7F800000)
 
 /**
@@ -9036,7 +9022,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_INFINITY);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_N_INFINITY);
+_FIXES_CONST_PAWNDOC(Float:_FIXES_N_INFINITY = (Float:0xFF800000));
 #define _FIXES_N_INFINITY (Float:0xFF800000)
 
 /**
@@ -9047,7 +9033,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_N_INFINITY);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
+_FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS = (cellbits / MAX_PLAYER_ATTACHED_OBJECTS));
 #define _FIXES_ATTACHMENTS (cellbits / MAX_PLAYER_ATTACHED_OBJECTS)
 
 /**
@@ -9062,7 +9048,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 #if defined KEY_AIM
 	_FIXES_HIDE_PAWNDOC(FIXES_KEY_AIM);
 #else
-	_FIXES_CONST_PAWNDOC(KEY_AIM);
+	_FIXES_CONST_PAWNDOC(ACTION:KEY_AIM = _FIXES_KEY_AIM);
 	#define KEY_AIM                              _FIXES_KEY_AIM
 #endif
 
@@ -9078,7 +9064,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
 #if defined SPECIAL_ACTION_PISSING
 	_FIXES_HIDE_PAWNDOC(FIXES_SPECIAL_ACTION_PISSING);
 #else
-	_FIXES_CONST_PAWNDOC(SPECIAL_ACTION_PISSING);
+	_FIXES_CONST_PAWNDOC(SPECIAL_ACTION:SPECIAL_ACTION_PISSING = _FIXES_SPECIAL_ACTION_PISSING);
 	#define SPECIAL_ACTION_PISSING               _FIXES_SPECIAL_ACTION_PISSING
 #endif
 
@@ -9089,7 +9075,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
+_FIXES_CONST_PAWNDOC(CARMODTYPE:_FIXES_PROPERTY_OFFSET = (CARMODTYPE:12));
 #define _FIXES_PROPERTY_OFFSET                   (CARMODTYPE:12)
 
 /**
@@ -9102,7 +9088,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #if defined CARMODTYPE_FRONT_BULLBAR
 	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_FRONT_BULLBAR);
 #else
-	_FIXES_CONST_PAWNDOC(CARMODTYPE_FRONT_BULLBAR);
+	_FIXES_CONST_PAWNDOC(CARMODTYPE:CARMODTYPE_FRONT_BULLBAR = (CARMODTYPE:14));
 	#define CARMODTYPE_FRONT_BULLBAR             (CARMODTYPE:14)
 #endif
 
@@ -9116,7 +9102,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #if defined CARMODTYPE_REAR_BULLBAR
 	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_REAR_BULLBAR);
 #else
-	_FIXES_CONST_PAWNDOC(CARMODTYPE_REAR_BULLBAR);
+	_FIXES_CONST_PAWNDOC(CARMODTYPE:CARMODTYPE_REAR_BULLBAR = (CARMODTYPE:15));
 	#define CARMODTYPE_REAR_BULLBAR              (CARMODTYPE:15)
 #endif
 
@@ -9132,7 +9118,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #if defined WEAPON_FIST
 	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_FIST);
 #else
-	_FIXES_CONST_PAWNDOC(WEAPON_FIST);
+	_FIXES_CONST_PAWNDOC(WEAPON:WEAPON_FIST = _FIXES_WEAPON_FIST);
 	#define WEAPON_FIST                          _FIXES_WEAPON_FIST
 #endif
 
@@ -9146,7 +9132,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #if defined WEAPON_NIGHTSTICK
 	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_NIGHTSTICK);
 #else
-	_FIXES_CONST_PAWNDOC(WEAPON_NIGHTSTICK);
+	_FIXES_CONST_PAWNDOC(WEAPON:WEAPON_NIGHTSTICK = WEAPON_NITESTICK);
 	#define WEAPON_NIGHTSTICK                    WEAPON_NITESTICK
 #endif
 
@@ -9160,7 +9146,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #if defined WEAPON_MOLOTOV
 	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_MOLOTOV);
 #else
-	_FIXES_CONST_PAWNDOC(WEAPON_MOLOTOV);
+	_FIXES_CONST_PAWNDOC(WEAPON:WEAPON_MOLOTOV = WEAPON_MOLTOV);
 	#define WEAPON_MOLOTOV                       WEAPON_MOLTOV
 #endif
 
@@ -9176,7 +9162,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #if defined WEAPON_NIGHT_VIS_GOGGLES
 	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_NIGHT_VIS_GOGGLES);
 #else
-	_FIXES_CONST_PAWNDOC(WEAPON_NIGHT_VIS_GOGGLES);
+	_FIXES_CONST_PAWNDOC(WEAPON:WEAPON_NIGHT_VIS_GOGGLES = _FIXES_WEAPON_NIGHT_VIS_GOGGLES);
 	#define WEAPON_NIGHT_VIS_GOGGLES             _FIXES_WEAPON_NIGHT_VIS_GOGGLES
 #endif
 
@@ -9192,7 +9178,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
 #if defined WEAPON_THERMAL_GOGGLES
 	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_THERMAL_GOGGLES);
 #else
-	_FIXES_CONST_PAWNDOC(WEAPON_THERMAL_GOGGLES);
+	_FIXES_CONST_PAWNDOC(WEAPON:WEAPON_THERMAL_GOGGLES = _FIXES_WEAPON_THERMAL_GOGGLES);
 	#define WEAPON_THERMAL_GOGGLES               _FIXES_WEAPON_THERMAL_GOGGLES
 #endif
 
@@ -9203,7 +9189,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_PROPERTY_OFFSET);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS);
+_FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS = (13));
 #define _FIXES_WEAPON_SLOTS                      (13)
 
 /**
@@ -9213,7 +9199,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_WEAPON_SLOTS);
  * </remarks>
  */
 
-_FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
+_FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS = 0);
 #define _FIXES_STREAMER_ALL_TAGS {DynamicObject,DynamicPickup,DynamicCP,DynamicRaceCP,DynamicMapIcon,DynamicText3D,Text3D,DynamicArea,DynamicActor,_}
 
 /**
@@ -9226,7 +9212,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
  */
 
 #if FIX_JIT
-	_FIXES_CONST_PAWNDOC(IS_JIT);
+	_FIXES_CONST_PAWNDOC(IS_JIT = (_FIXES_gIsJIT));
 	#define IS_JIT (_FIXES_gIsJIT)
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_IS_JIT);
@@ -9241,7 +9227,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
  */
 
 #if FIX_FILTERSCRIPT
-	_FIXES_CONST_PAWNDOC(IS_FILTERSCRIPT);
+	_FIXES_CONST_PAWNDOC(IS_FILTERSCRIPT = (_FIXES_gIsFilterscript));
 	#define IS_FILTERSCRIPT (_FIXES_gIsFilterscript)
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_IS_FILTERSCRIPT);
@@ -9256,7 +9242,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
  */
 
 #if FIX_OS
-	_FIXES_CONST_PAWNDOC(IS_WINDOWS);
+	_FIXES_CONST_PAWNDOC(IS_WINDOWS = (_FIXES_gIsWindows));
 	#define IS_WINDOWS (_FIXES_gIsWindows)
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_IS_WINDOWS);
@@ -9271,7 +9257,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS);
  */
 
 #if FIX_OS
-	_FIXES_CONST_PAWNDOC(IS_LINUX);
+	_FIXES_CONST_PAWNDOC(IS_LINUX = (!_FIXES_gIsWindows));
 	#define IS_LINUX (!_FIXES_gIsWindows)
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_IS_LINUX);
@@ -26939,6 +26925,29 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 
 */
 
+/**
+	<library>fixes.inc</library>
+	<hidden />
+	<remarks>
+		<c>PAWNDOC</c> is a fake function used throughout the code to invoke
+		natives that don't exist so we can attach pawndoc output to them and
+		have it show up in the XML output.  This is one function spread all over
+		the place using automata - one state per fake function.  This is so we
+		don't have dozens of auxiliary functions in the output, and so those
+		functions don't need unique names.
+	</remarks>
+*/
+#if _FIXES_FIRST_PASS
+	// First compiler pass only.
+	static stock PAWNDOC() <__PAWNDOC:PAWNDOC>
+	{
+	}
+
+	static stock PAWNDOC() <>
+	{
+	}
+#endif
+
 // Clean up all internal defines.
 #undef _FIXES_CEILDIV
 #undef _FIXES_INFINITY
@@ -26974,20 +26983,6 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #if !FIXES_NoYSI
 	#undef _FIXES_FORWARD
 #endif
-
-/**
-	<library>fixes.inc</library>
-	<hidden />
-	<remarks>
-		<c>PAWNDOC</c> is a fake function used throughout the code to invoke
-		natives that don't exist so we can attach pawndoc output to them and
-		have it show up in the XML output.  This is one function spread all over
-		the place using automata - one state per fake function.  This is so we
-		don't have dozens of auxiliary functions in the output, and so those
-		functions don't need unique names.
-	</remarks>
-*/
-_FIXES_CLOSE_PAWNDOC();
 
 /**
 	<library>fixes.inc</library>
@@ -27427,7 +27422,7 @@ static stock e_FIXES:FIXESZZZZZZZZZZZZZZZZZZZZZZZZZZ() { return e_FIXES_; }
 			#undef _FIXES_WARNING
 			static _FIXES_OPTION FIX_NameOfFixHere = FIXES_EnableDeprecated;
 		#else
-			_FIXES_CONST_PAWNDOC(FIX_NameOfFixHere);
+			_FIXES_CONST_PAWNDOC(FIX_NameOfFixHere = FIXES_EnableDeprecated);
 		#endif
 		#define FIX_NameOfFixHere                FIXES_EnableDeprecated
 	#else
