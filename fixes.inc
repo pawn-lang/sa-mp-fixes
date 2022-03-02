@@ -563,7 +563,7 @@ _FIXES_FUNC_PAWNDOC(FUNC_PAWNDOC(const symbol[]));
 	#define _FIXES_CONST_PAWNDOC(%0);
 #endif
 
-_FIXES_FUNC_PAWNDOC(CONST_PAWNDOC(const symbol[]));
+_FIXES_FUNC_PAWNDOC(CONST_PAWNDOC(const symbol[] = 0));
 
 /**
  * <library>fixes.inc</library>
@@ -26939,11 +26939,11 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 */
 #if _FIXES_FIRST_PASS
 	// First compiler pass only.
-	static stock PAWNDOC() <__PAWNDOC:PAWNDOC>
+	stock PAWNDOC() <__PAWNDOC:PAWNDOC>
 	{
 	}
 
-	static stock PAWNDOC() <>
+	stock PAWNDOC() <>
 	{
 	}
 #endif
