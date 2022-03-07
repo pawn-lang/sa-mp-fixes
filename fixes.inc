@@ -9367,7 +9367,7 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 
 */
 
-///
+/// <p/>
 
 /**
  * <library>fixes.inc</library>
@@ -9393,7 +9393,7 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 	_FIXES_HIDE_PAWNDOC(FIXES___BODY_PART);
 #endif
 
-///
+/// <p/>
 
 /**
  * <library>fixes.inc</library>
@@ -9418,7 +9418,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_ALIGN);
 	#define TEXT_DRAW_ALIGN_RIGHT _FIXES_TEXT_DRAW_ALIGN_RIGHT
 #endif
 
-///
+/// <p/>
 
 /**
  * <library>fixes.inc</library>
@@ -9455,7 +9455,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_FONT);
 	#endif
 #endif
 
-///
+/// <p/>
 
 /**
  * <library>fixes.inc</library>
@@ -9493,7 +9493,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_FONT);
 	#define _FIXES_CAMMODE_AIMWEAPONFROMCAR (CAM_MODE:55)
 #endif
 
-///
+/// <p/>
 
 /**
  * <library>fixes.inc</library>
@@ -9517,7 +9517,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_FORCE_SYNC);
 	#define SYNC_OTHER _FIXES_FORCE_SYNC_OTHER
 #endif
 
-///
+/// <p/>
 
 /**
  * <library>fixes.inc</library>
@@ -10047,7 +10047,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_FORCE_SYNC);
 	_FIXES_HIDE_PAWNDOC(FIXES___VEHICLE);
 #endif
 
-///
+/// <p/>
 
 /**
  * <library>fixes.inc</library>
@@ -10088,7 +10088,7 @@ _FIXES_ENUM e_FIXES_BOOLS (<<= 1)
 
 _FIXES_ENUM_PAWNDOC(e_FIXES_BOOLS);
 
-///
+/// <p/>
 
 /**
  * <library>fixes.inc</library>
@@ -10116,7 +10116,7 @@ _FIXES_ENUM e_FIXES_SETTINGS (<<= 1)
 
 _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
 
-///
+/// <p/>
 
 /**
  * <library>fixes.inc</library>
