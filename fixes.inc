@@ -12925,454 +12925,454 @@ native Float:BAD_GetGravity() = GetGravity;
 
 native BAD_gpci(playerid, serial[], len) = gpci;
 
-///
+/// <p/>
 /// <remarks>
 /// <c>const</c>
-///
+/// <p/>
 /// Better const-correctness on native functions.
 /// </remarks>
-///
-#if FIX_const ///
-	#if _FIXES_NPC ///
+/// <p/>
+#if FIX_const /// <p/>
+	#if _FIXES_NPC /// <p/>
 		/// a_npc 
-		#if _FIXES_SAMP && defined _ALS_SetTimer ///
-			#error _ALS_SetTimer defined ///
-		#endif ///
+		#if _FIXES_SAMP && defined _ALS_SetTimer /// <p/>
+			#error _ALS_SetTimer defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetTimer(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer; ///
+		native CST_SetTimer(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer; /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_SetTimer(functionName[], interval, repeating) = SetTimer; ///
-		#define _ALS_SetTimer ///
-		#define SetTimer( CST_SetTimer( ///
-		#if _FIXES_SAMP && defined _ALS_SendChat ///
-			#error _ALS_SendChat defined ///
-		#endif ///
+		native BAD_SetTimer(functionName[], interval, repeating) = SetTimer; /// <p/>
+		#define _ALS_SetTimer /// <p/>
+		#define SetTimer( CST_SetTimer( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SendChat /// <p/>
+			#error _ALS_SendChat defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SendChat(const message[]) = SendChat; ///
+		native CST_SendChat(const message[]) = SendChat; /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_SendChat(message[]) = SendChat; ///
-		#define _ALS_SendChat ///
-		#define SendChat( CST_SendChat( ///
-		#if _FIXES_SAMP && defined _ALS_SendCommand ///
-			#error _ALS_SendCommand defined ///
-		#endif ///
+		native BAD_SendChat(message[]) = SendChat; /// <p/>
+		#define _ALS_SendChat /// <p/>
+		#define SendChat( CST_SendChat( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SendCommand /// <p/>
+			#error _ALS_SendCommand defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SendCommand(const command[]) = SendCommand; ///
+		native CST_SendCommand(const command[]) = SendCommand; /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_SendCommand(command[]) = SendCommand; ///
-		#define _ALS_SendCommand ///
-		#define SendCommand( CST_SendCommand( ///
-		#if _FIXES_SAMP && defined _ALS_StartRecordingPlayback ///
-			#error _ALS_StartRecordingPlayback defined ///
-		#endif ///
+		native BAD_SendCommand(command[]) = SendCommand; /// <p/>
+		#define _ALS_SendCommand /// <p/>
+		#define SendCommand( CST_SendCommand( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_StartRecordingPlayback /// <p/>
+			#error _ALS_StartRecordingPlayback defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_StartRecordingPlayback(PLAYER_RECORDING_TYPE:playbackType, const recordFile[]) = StartRecordingPlayback; ///
+		native CST_StartRecordingPlayback(PLAYER_RECORDING_TYPE:playbackType, const recordFile[]) = StartRecordingPlayback; /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_StartRecordingPlayback(playbackType, recordFile[]) = StartRecordingPlayback; ///
-		#define _ALS_StartRecordingPlayback ///
-		#define StartRecordingPlayback( CST_( ///
-	#else ///
+		native BAD_StartRecordingPlayback(playbackType, recordFile[]) = StartRecordingPlayback; /// <p/>
+		#define _ALS_StartRecordingPlayback /// <p/>
+		#define StartRecordingPlayback( CST_( /// <p/>
+	#else /// <p/>
 		/// a_actor 
-		#if _FIXES_SAMP && defined _ALS_ApplyActorAnimation ///
-			#error _ALS_ApplyActorAnimation defined ///
-		#endif ///
+		#if _FIXES_SAMP && defined _ALS_ApplyActorAnimation /// <p/>
+			#error _ALS_ApplyActorAnimation defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation; ///
+		native CST_ApplyActorAnimation(actorid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time) = ApplyActorAnimation; /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_ApplyActorAnimation(actorid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time) = ApplyActorAnimation; ///
-		#define _ALS_ApplyActorAnimation ///
-		#define ApplyActorAnimation( CST_ApplyActorAnimation( ///
+		native BAD_ApplyActorAnimation(actorid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time) = ApplyActorAnimation; /// <p/>
+		#define _ALS_ApplyActorAnimation /// <p/>
+		#define ApplyActorAnimation( CST_ApplyActorAnimation( /// <p/>
 		/// a_http 
 		/// Try very hard to include it!  The first one should be enough.  Shame that 
 		/// include has no include guard in it, making it harder to use with Zeex's 
 		/// compiler. 
-		#if !defined HTTP_ERROR_MALFORMED_RESPONSE ///
-			#tryinclude <a_http> ///
-		#endif ///
-		#if !defined HTTP_ERROR_MALFORMED_RESPONSE ///
-			#tryinclude "a_http" ///
-		#endif ///
-		#if !defined HTTP_ERROR_MALFORMED_RESPONSE ///
-			#tryinclude "..\a_http" ///
-		#endif ///
-		#if defined HTTP_ERROR_MALFORMED_RESPONSE ///
-			#if _FIXES_SAMP && defined _ALS_HTTP ///
-				#error _ALS_HTTP defined ///
-			#endif ///
+		#if !defined HTTP_ERROR_MALFORMED_RESPONSE /// <p/>
+			#tryinclude <a_http> /// <p/>
+		#endif /// <p/>
+		#if !defined HTTP_ERROR_MALFORMED_RESPONSE /// <p/>
+			#tryinclude "a_http" /// <p/>
+		#endif /// <p/>
+		#if !defined HTTP_ERROR_MALFORMED_RESPONSE /// <p/>
+			#tryinclude "..\a_http" /// <p/>
+		#endif /// <p/>
+		#if defined HTTP_ERROR_MALFORMED_RESPONSE /// <p/>
+			#if _FIXES_SAMP && defined _ALS_HTTP /// <p/>
+				#error _ALS_HTTP defined /// <p/>
+			#endif /// <p/>
 			/// <library>fixes.inc</library>
-			native CST_HTTP(index, HTTP_METHOD:method, const url[], const data[], const callback[]) = HTTP; ///
-			#define _ALS_HTTP ///
-			#define HTTP( CST_HTTP( ///
+			native CST_HTTP(index, HTTP_METHOD:method, const url[], const data[], const callback[]) = HTTP; /// <p/>
+			#define _ALS_HTTP /// <p/>
+			#define HTTP( CST_HTTP( /// <p/>
 			/// Because a_http can be included multiple times (on one compiler),
 			/// ensure that multiple definitions don't break (too quickly - there's
 			/// nothing we can do if it gets included a load of times, but that's an
 			/// issue you would get with the new compiler anyway).
-			#define CST_HTTP(%0,%1,%2[],%3[],%4[]); a_http_included_too_many_times(%0,%1,%2[],%3[],%4[]) = HTTP; ///
-		#endif ///
-		///
+			#define CST_HTTP(%0,%1,%2[],%3[],%4[]); a_http_included_too_many_times(%0,%1,%2[],%3[],%4[]) = HTTP; /// <p/>
+		#endif /// <p/>
+		/// <p/>
 		/// a_objects 
-		#if _FIXES_SAMP && defined _ALS_SetObjectMaterial ///
-			#error _ALS_SetObjectMaterial defined ///
-		#endif ///
+		#if _FIXES_SAMP && defined _ALS_SetObjectMaterial /// <p/>
+			#error _ALS_SetObjectMaterial defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetObjectMaterial(objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetObjectMaterial; ///
-		#define _ALS_SetObjectMaterial ///
-		#define SetObjectMaterial( CST_SetObjectMaterial( ///
-		#if _FIXES_SAMP && defined _ALS_SetPlayerObjectMaterial ///
-			#error _ALS_SetPlayerObjectMaterial defined ///
-		#endif ///
+		native CST_SetObjectMaterial(objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetObjectMaterial; /// <p/>
+		#define _ALS_SetObjectMaterial /// <p/>
+		#define SetObjectMaterial( CST_SetObjectMaterial( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetPlayerObjectMaterial /// <p/>
+			#error _ALS_SetPlayerObjectMaterial defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetPlayerObjectMaterial; ///
-		#define _ALS_SetPlayerObjectMaterial ///
-		#define SetPlayerObjectMaterial( CST_SetPlayerObjectMaterial( ///
-		#if _FIXES_SAMP && defined _ALS_SetObjectMaterialText ///
-			#error _ALS_SetObjectMaterialText defined ///
-		#endif ///
+		native CST_SetPlayerObjectMaterial(playerid, objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetPlayerObjectMaterial; /// <p/>
+		#define _ALS_SetPlayerObjectMaterial /// <p/>
+		#define SetPlayerObjectMaterial( CST_SetPlayerObjectMaterial( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetObjectMaterialText /// <p/>
+			#error _ALS_SetObjectMaterialText defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetObjectMaterialText(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = _FIXES_MAYBE_TRUE, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText; ///
-		#define _ALS_SetObjectMaterialText ///
-		#define SetObjectMaterialText( CST_SetObjectMaterialText( ///
-		#if _FIXES_SAMP && defined _ALS_SetPlayerObjMaterialText ///
-			#error _ALS_SetPlayerObjMaterialText defined ///
-		#endif ///
+		native CST_SetObjectMaterialText(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = _FIXES_MAYBE_TRUE, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText; /// <p/>
+		#define _ALS_SetObjectMaterialText /// <p/>
+		#define SetObjectMaterialText( CST_SetObjectMaterialText( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetPlayerObjMaterialText /// <p/>
+			#error _ALS_SetPlayerObjMaterialText defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = _FIXES_MAYBE_TRUE, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText; ///
-		#define _ALS_SetPlayerObjMaterialText ///
-		#define SetPlayerObjectMaterialText( CST_SetPlayerObjectMaterialText( ///
-		///
+		native CST_SetPlayerObjectMaterialText(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, _FIXES_MAYBE_BOOL:bold = _FIXES_MAYBE_TRUE, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText; /// <p/>
+		#define _ALS_SetPlayerObjMaterialText /// <p/>
+		#define SetPlayerObjectMaterialText( CST_SetPlayerObjectMaterialText( /// <p/>
+		/// <p/>
 		/// a_players 
-		#if _FIXES_SAMP && defined _ALS_PlayAudioStreamForPlayer ///
-			#error _ALS_PlayAudioStreamForPlayer defined ///
-		#endif ///
+		#if _FIXES_SAMP && defined _ALS_PlayAudioStreamForPlayer /// <p/>
+			#error _ALS_PlayAudioStreamForPlayer defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_PlayAudioStreamForPlayer(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0) = PlayAudioStreamForPlayer; ///
-		#define _ALS_PlayAudioStreamForPlayer ///
-		#define PlayAudioStreamForPlayer( CST_PlayAudioStreamForPlayer( ///
-		#if _FIXES_SAMP && defined _ALS_SetPlayerShopName ///
-			#error _ALS_SetPlayerShopName defined ///
-		#endif ///
+		native CST_PlayAudioStreamForPlayer(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, usepos = 0) = PlayAudioStreamForPlayer; /// <p/>
+		#define _ALS_PlayAudioStreamForPlayer /// <p/>
+		#define PlayAudioStreamForPlayer( CST_PlayAudioStreamForPlayer( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetPlayerShopName /// <p/>
+			#error _ALS_SetPlayerShopName defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetPlayerShopName(playerid, const shopName[]) = SetPlayerShopName; ///
-		#define _ALS_SetPlayerShopName ///
-		#define SetPlayerShopName( CST_SetPlayerShopName( ///
-		#if _FIXES_SAMP && defined _ALS_CreatePlayerTextDraw ///
-			#error _ALS_CreatePlayerTextDraw defined ///
-		#endif ///
+		native CST_SetPlayerShopName(playerid, const shopName[]) = SetPlayerShopName; /// <p/>
+		#define _ALS_SetPlayerShopName /// <p/>
+		#define SetPlayerShopName( CST_SetPlayerShopName( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_CreatePlayerTextDraw /// <p/>
+			#error _ALS_CreatePlayerTextDraw defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native PlayerText:CST_CreatePlayerTextDraw(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw; ///
+		native PlayerText:CST_CreatePlayerTextDraw(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw; /// <p/>
 		/// <library>fixes.inc</library>
-		native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw; ///
-		#define _ALS_CreatePlayerTextDraw ///
-		#define CreatePlayerTextDraw( CST_CreatePlayerTextDraw( ///
-		#if _FIXES_SAMP && defined _ALS_PlayerTextDrawSetString ///
-			#error _ALS_PlayerTextDrawSetString defined ///
-		#endif ///
+		native PlayerText:BAD_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]) = CreatePlayerTextDraw; /// <p/>
+		#define _ALS_CreatePlayerTextDraw /// <p/>
+		#define CreatePlayerTextDraw( CST_CreatePlayerTextDraw( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_PlayerTextDrawSetString /// <p/>
+			#error _ALS_PlayerTextDrawSetString defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_PlayerTextDrawSetString(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString; ///
+		native CST_PlayerTextDrawSetString(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString; /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString; ///
-		#define _ALS_PlayerTextDrawSetString ///
-		#define PlayerTextDrawSetString( CST_PlayerTextDrawSetString( ///
-		#if _FIXES_SAMP && defined _ALS_SetPVarInt ///
-			#error _ALS_SetPVarInt defined ///
-		#endif ///
+		native BAD_PlayerTextDrawSetString(playerid, PlayerText:text, string[]) = PlayerTextDrawSetString; /// <p/>
+		#define _ALS_PlayerTextDrawSetString /// <p/>
+		#define PlayerTextDrawSetString( CST_PlayerTextDrawSetString( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetPVarInt /// <p/>
+			#error _ALS_SetPVarInt defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetPVarInt(playerid, const pvar[], value) = SetPVarInt; ///
-		#define _ALS_SetPVarInt ///
-		#define SetPVarInt( CST_SetPVarInt( ///
-		#if _FIXES_SAMP && defined _ALS_GetPVarInt ///
-			#error _ALS_GetPVarInt defined ///
-		#endif ///
+		native CST_SetPVarInt(playerid, const pvar[], value) = SetPVarInt; /// <p/>
+		#define _ALS_SetPVarInt /// <p/>
+		#define SetPVarInt( CST_SetPVarInt( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_GetPVarInt /// <p/>
+			#error _ALS_GetPVarInt defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_GetPVarInt(playerid, const pvar[]) = GetPVarInt; ///
-		#define _ALS_GetPVarInt ///
-		#define GetPVarInt( CST_GetPVarInt( ///
-		#if _FIXES_SAMP && defined _ALS_SetPVarString ///
-			#error _ALS_SetPVarString defined ///
-		#endif ///
+		native CST_GetPVarInt(playerid, const pvar[]) = GetPVarInt; /// <p/>
+		#define _ALS_GetPVarInt /// <p/>
+		#define GetPVarInt( CST_GetPVarInt( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetPVarString /// <p/>
+			#error _ALS_SetPVarString defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetPVarString(playerid, const pvar[], const value[]) = SetPVarString; ///
-		#define _ALS_SetPVarString ///
-		#define SetPVarString( CST_SetPVarString( ///
-		#if _FIXES_SAMP && defined _ALS_GetPVarString ///
-			#error _ALS_GetPVarString defined ///
-		#endif ///
-		#if FIX_defaults ///
+		native CST_SetPVarString(playerid, const pvar[], const value[]) = SetPVarString; /// <p/>
+		#define _ALS_SetPVarString /// <p/>
+		#define SetPVarString( CST_SetPVarString( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_GetPVarString /// <p/>
+			#error _ALS_GetPVarString defined /// <p/>
+		#endif /// <p/>
+		#if FIX_defaults /// <p/>
 			/// <library>fixes.inc</library>
-			native CST_GetPVarString(playerid, const pvar[], output[], len = sizeof (output)) = GetPVarString; ///
-		#else ///
+			native CST_GetPVarString(playerid, const pvar[], output[], len = sizeof (output)) = GetPVarString; /// <p/>
+		#else /// <p/>
 			/// <library>fixes.inc</library>
-			native CST_GetPVarString(playerid, const pvar[], output[], len) = GetPVarString; ///
-		#endif ///
+			native CST_GetPVarString(playerid, const pvar[], output[], len) = GetPVarString; /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_GetPVarString(playerid, pvar[], output[], len) = GetPVarString; ///
-		#define _ALS_GetPVarString ///
-		#define GetPVarString( CST_GetPVarString( ///
-		#if _FIXES_SAMP && defined _ALS_SetPVarFloat ///
-			#error _ALS_SetPVarFloat defined ///
-		#endif ///
+		native BAD_GetPVarString(playerid, pvar[], output[], len) = GetPVarString; /// <p/>
+		#define _ALS_GetPVarString /// <p/>
+		#define GetPVarString( CST_GetPVarString( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetPVarFloat /// <p/>
+			#error _ALS_SetPVarFloat defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetPVarFloat(playerid, const pvar[], Float:value) = SetPVarFloat; ///
-		#define _ALS_SetPVarFloat ///
-		#define SetPVarFloat( CST_SetPVarFloat( ///
-		#if _FIXES_SAMP && defined _ALS_GetPVarFloat ///
-			#error _ALS_GetPVarFloat defined ///
-		#endif ///
+		native CST_SetPVarFloat(playerid, const pvar[], Float:value) = SetPVarFloat; /// <p/>
+		#define _ALS_SetPVarFloat /// <p/>
+		#define SetPVarFloat( CST_SetPVarFloat( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_GetPVarFloat /// <p/>
+			#error _ALS_GetPVarFloat defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native Float:CST_GetPVarFloat(playerid, const pvar[]) = GetPVarFloat; ///
-		#define _ALS_GetPVarFloat ///
-		#define GetPVarFloat( CST_GetPVarFloat( ///
-		#if _FIXES_SAMP && defined _ALS_DeletePVar ///
-			#error _ALS_DeletePVar defined ///
-		#endif ///
+		native Float:CST_GetPVarFloat(playerid, const pvar[]) = GetPVarFloat; /// <p/>
+		#define _ALS_GetPVarFloat /// <p/>
+		#define GetPVarFloat( CST_GetPVarFloat( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_DeletePVar /// <p/>
+			#error _ALS_DeletePVar defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_DeletePVar(playerid, const pvar[]) = DeletePVar; ///
-		#define _ALS_DeletePVar ///
-		#define DeletePVar( CST_DeletePVar( ///
-		#if _FIXES_SAMP && defined _ALS_GetPVarType ///
-			#error _ALS_GetPVarType defined ///
-		#endif ///
+		native CST_DeletePVar(playerid, const pvar[]) = DeletePVar; /// <p/>
+		#define _ALS_DeletePVar /// <p/>
+		#define DeletePVar( CST_DeletePVar( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_GetPVarType /// <p/>
+			#error _ALS_GetPVarType defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native PLAYER_VARTYPE:CST_GetPVarType(playerid, const pvar[]) = GetPVarType; ///
-		#define _ALS_GetPVarType ///
-		#define GetPVarType( CST_GetPVarType( ///
-		#if _FIXES_SAMP && defined _ALS_SetPlayerChatBubble ///
-			#error _ALS_SetPlayerChatBubble defined ///
-		#endif ///
+		native PLAYER_VARTYPE:CST_GetPVarType(playerid, const pvar[]) = GetPVarType; /// <p/>
+		#define _ALS_GetPVarType /// <p/>
+		#define GetPVarType( CST_GetPVarType( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetPlayerChatBubble /// <p/>
+			#error _ALS_SetPlayerChatBubble defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetPlayerChatBubble(playerid, const text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble; ///
-		#define _ALS_SetPlayerChatBubble ///
-		#define SetPlayerChatBubble( CST_SetPlayerChatBubble( ///
-		#if _FIXES_SAMP && defined _ALS_ApplyAnimation ///
-			#error _ALS_ApplyAnimation defined ///
-		#endif ///
+		native CST_SetPlayerChatBubble(playerid, const text[], colour, Float:drawDistance, expireTime) = SetPlayerChatBubble; /// <p/>
+		#define _ALS_SetPlayerChatBubble /// <p/>
+		#define SetPlayerChatBubble( CST_SetPlayerChatBubble( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_ApplyAnimation /// <p/>
+			#error _ALS_ApplyAnimation defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE) = ApplyAnimation; ///
+		native CST_ApplyAnimation(playerid, const animationLibrary[], const animationName[], Float:delta, _FIXES_MAYBE_BOOL:loop, _FIXES_MAYBE_BOOL:lockX, _FIXES_MAYBE_BOOL:lockY, _FIXES_MAYBE_BOOL:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE) = ApplyAnimation; /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_ApplyAnimation(playerid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time, forceSync = 0) = ApplyAnimation; ///
-		#define _ALS_ApplyAnimation ///
-		#define ApplyAnimation( CST_ApplyAnimation( ///
-		#if _FIXES_SAMP && defined _ALS_StartRecordingPlayerData ///
-			#error _ALS_StartRecordingPlayerData defined ///
-		#endif ///
+		native BAD_ApplyAnimation(playerid, animationLibrary[], animationName[], Float:delta, loop, lockX, lockY, freeze, time, forceSync = 0) = ApplyAnimation; /// <p/>
+		#define _ALS_ApplyAnimation /// <p/>
+		#define ApplyAnimation( CST_ApplyAnimation( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_StartRecordingPlayerData /// <p/>
+			#error _ALS_StartRecordingPlayerData defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, const recordFile[]) = StartRecordingPlayerData; ///
-		#define _ALS_StartRecordingPlayerData ///
-		#define StartRecordingPlayerData( CST_StartRecordingPlayerData( ///
-		///
+		native CST_StartRecordingPlayerData(playerid, PLAYER_RECORDING_TYPE:recordType, const recordFile[]) = StartRecordingPlayerData; /// <p/>
+		#define _ALS_StartRecordingPlayerData /// <p/>
+		#define StartRecordingPlayerData( CST_StartRecordingPlayerData( /// <p/>
+		/// <p/>
 		/// a_samp 
-		#if _FIXES_SAMP && defined _ALS_SetTimer ///
-			#error _ALS_SetTimer defined ///
-		#endif ///
+		#if _FIXES_SAMP && defined _ALS_SetTimer /// <p/>
+			#error _ALS_SetTimer defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetTimer(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer; ///
+		native CST_SetTimer(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating) = SetTimer; /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_SetTimer(functionName[], interval, repeating) = SetTimer; ///
-		#define _ALS_SetTimer ///
-		#define SetTimer( CST_SetTimer( ///
-		#if _FIXES_SAMP && defined _ALS_SetTimerEx ///
-			#error _ALS_SetTimerEx defined ///
-		#endif ///
+		native BAD_SetTimer(functionName[], interval, repeating) = SetTimer; /// <p/>
+		#define _ALS_SetTimer /// <p/>
+		#define SetTimer( CST_SetTimer( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetTimerEx /// <p/>
+			#error _ALS_SetTimerEx defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetTimerEx(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[], {Float,_}:...) = SetTimerEx; ///
+		native CST_SetTimerEx(const functionName[], interval, _FIXES_MAYBE_BOOL:repeating, const format[], {Float,_}:...) = SetTimerEx; /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_SetTimerEx(functionName[], interval, repeating, format[], {Float,_}:...) = SetTimerEx; ///
-		#define _ALS_SetTimerEx ///
-		#define SetTimerEx( CST_SetTimerEx( ///
-		#if _FIXES_SAMP && defined _ALS_SHA256_PassHash ///
-			#error _ALS_SHA256_PassHash defined ///
-		#endif ///
-		#if FIX_defaults ///
-			#pragma deprecated Use BCrypt or better for hashing passwords. ///
+		native BAD_SetTimerEx(functionName[], interval, repeating, format[], {Float,_}:...) = SetTimerEx; /// <p/>
+		#define _ALS_SetTimerEx /// <p/>
+		#define SetTimerEx( CST_SetTimerEx( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SHA256_PassHash /// <p/>
+			#error _ALS_SHA256_PassHash defined /// <p/>
+		#endif /// <p/>
+		#if FIX_defaults /// <p/>
+			#pragma deprecated Use BCrypt or better for hashing passwords. /// <p/>
 			/// <library>fixes.inc</library>
-			native CST_SHA256_PassHash(const password[], const salt[], output[], len = sizeof (output)) = SHA256_PassHash; ///
-		#else ///
-			#pragma deprecated Use BCrypt or better for hashing passwords. ///
+			native CST_SHA256_PassHash(const password[], const salt[], output[], len = sizeof (output)) = SHA256_PassHash; /// <p/>
+		#else /// <p/>
+			#pragma deprecated Use BCrypt or better for hashing passwords. /// <p/>
 			/// <library>fixes.inc</library>
-			native CST_SHA256_PassHash(const password[], const salt[], output[], len) = SHA256_PassHash; ///
-		#endif ///
+			native CST_SHA256_PassHash(const password[], const salt[], output[], len) = SHA256_PassHash; /// <p/>
+		#endif /// <p/>
 		#define _ALS_SHA256_PassHash /// SHA256 for password hashing 
-		#define SHA256_PassHash( CST_SHA256_PassHash( ///
-		#if _FIXES_SAMP && defined _ALS_SetSVarInt ///
-			#error _ALS_SetSVarInt defined ///
-		#endif ///
+		#define SHA256_PassHash( CST_SHA256_PassHash( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetSVarInt /// <p/>
+			#error _ALS_SetSVarInt defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetSVarInt(const svar[], value) = SetSVarInt; ///
-		#define _ALS_SetSVarInt ///
-		#define SetSVarInt( CST_SetSVarInt( ///
-		#if _FIXES_SAMP && defined _ALS_GetSVarInt ///
-			#error _ALS_GetSVarInt defined ///
-		#endif ///
+		native CST_SetSVarInt(const svar[], value) = SetSVarInt; /// <p/>
+		#define _ALS_SetSVarInt /// <p/>
+		#define SetSVarInt( CST_SetSVarInt( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_GetSVarInt /// <p/>
+			#error _ALS_GetSVarInt defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_GetSVarInt(const svar[]) = GetSVarInt; ///
-		#define _ALS_GetSVarInt ///
-		#define GetSVarInt( CST_GetSVarInt( ///
-		#if _FIXES_SAMP && defined _ALS_SetSVarString ///
-			#error _ALS_SetSVarString defined ///
-		#endif ///
+		native CST_GetSVarInt(const svar[]) = GetSVarInt; /// <p/>
+		#define _ALS_GetSVarInt /// <p/>
+		#define GetSVarInt( CST_GetSVarInt( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetSVarString /// <p/>
+			#error _ALS_SetSVarString defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetSVarString(const svar[], const value[]) = SetSVarString; ///
-		#define _ALS_SetSVarString ///
-		#define SetSVarString( CST_SetSVarString( ///
-		#if _FIXES_SAMP && defined _ALS_GetSVarString ///
-			#error _ALS_GetSVarString defined ///
-		#endif ///
-		#if FIX_defaults ///
+		native CST_SetSVarString(const svar[], const value[]) = SetSVarString; /// <p/>
+		#define _ALS_SetSVarString /// <p/>
+		#define SetSVarString( CST_SetSVarString( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_GetSVarString /// <p/>
+			#error _ALS_GetSVarString defined /// <p/>
+		#endif /// <p/>
+		#if FIX_defaults /// <p/>
 			/// <library>fixes.inc</library>
-			native CST_GetSVarString(const svar[], output[], len = sizeof (output)) = GetSVarString; ///
-		#else ///
+			native CST_GetSVarString(const svar[], output[], len = sizeof (output)) = GetSVarString; /// <p/>
+		#else /// <p/>
 			/// <library>fixes.inc</library>
-			native CST_GetSVarString(const svar[], output[], len) = GetSVarString; ///
-		#endif ///
+			native CST_GetSVarString(const svar[], output[], len) = GetSVarString; /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_GetSVarString(svar[], output[], len) = GetSVarString; ///
-		#define _ALS_GetSVarString ///
-		#define GetSVarString( CST_GetSVarString( ///
-		#if _FIXES_SAMP && defined _ALS_SetSVarFloat ///
-			#error _ALS_SetSVarFloat defined ///
-		#endif ///
+		native BAD_GetSVarString(svar[], output[], len) = GetSVarString; /// <p/>
+		#define _ALS_GetSVarString /// <p/>
+		#define GetSVarString( CST_GetSVarString( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SetSVarFloat /// <p/>
+			#error _ALS_SetSVarFloat defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetSVarFloat(const svar[], Float:value) = SetSVarFloat; ///
-		#define _ALS_SetSVarFloat ///
-		#define SetSVarFloat( CST_SetSVarFloat( ///
-		#if _FIXES_SAMP && defined _ALS_GetSVarFloat ///
-			#error _ALS_GetSVarFloat defined ///
-		#endif ///
+		native CST_SetSVarFloat(const svar[], Float:value) = SetSVarFloat; /// <p/>
+		#define _ALS_SetSVarFloat /// <p/>
+		#define SetSVarFloat( CST_SetSVarFloat( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_GetSVarFloat /// <p/>
+			#error _ALS_GetSVarFloat defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native Float:CST_GetSVarFloat(const svar[]) = GetSVarFloat; ///
-		#define _ALS_GetSVarFloat ///
-		#define GetSVarFloat( CST_GetSVarFloat( ///
-		#if _FIXES_SAMP && defined _ALS_DeleteSVar ///
-			#error _ALS_DeleteSVar defined ///
-		#endif ///
+		native Float:CST_GetSVarFloat(const svar[]) = GetSVarFloat; /// <p/>
+		#define _ALS_GetSVarFloat /// <p/>
+		#define GetSVarFloat( CST_GetSVarFloat( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_DeleteSVar /// <p/>
+			#error _ALS_DeleteSVar defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_DeleteSVar(const svar[]) = DeleteSVar; ///
-		#define _ALS_DeleteSVar ///
-		#define DeleteSVar( CST_DeleteSVar( ///
-		#if _FIXES_SAMP && defined _ALS_GetSVarType ///
-			#error _ALS_GetSVarType defined ///
-		#endif ///
+		native CST_DeleteSVar(const svar[]) = DeleteSVar; /// <p/>
+		#define _ALS_DeleteSVar /// <p/>
+		#define DeleteSVar( CST_DeleteSVar( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_GetSVarType /// <p/>
+			#error _ALS_GetSVarType defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native SERVER_VARTYPE:CST_GetSVarType(const svar[]) = GetSVarType; ///
-		#define _ALS_GetSVarType ///
-		#define GetSVarType( CST_GetSVarType( ///
-		#if _FIXES_SAMP && defined _ALS_ConnectNPC ///
-			#error _ALS_ConnectNPC defined ///
-		#endif ///
+		native SERVER_VARTYPE:CST_GetSVarType(const svar[]) = GetSVarType; /// <p/>
+		#define _ALS_GetSVarType /// <p/>
+		#define GetSVarType( CST_GetSVarType( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_ConnectNPC /// <p/>
+			#error _ALS_ConnectNPC defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_ConnectNPC(const name[], const script[]) = ConnectNPC; ///
-		#define _ALS_ConnectNPC ///
-		#define ConnectNPC( CST_ConnectNPC( ///
-		#if _FIXES_SAMP && defined _ALS_SendRconCommand ///
-			#error _ALS_SendRconCommand defined ///
-		#endif ///
+		native CST_ConnectNPC(const name[], const script[]) = ConnectNPC; /// <p/>
+		#define _ALS_ConnectNPC /// <p/>
+		#define ConnectNPC( CST_ConnectNPC( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_SendRconCommand /// <p/>
+			#error _ALS_SendRconCommand defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SendRconCommand(const command[]) = SendRconCommand; ///
-		#define _ALS_SendRconCommand ///
-		#define SendRconCommand( CST_SendRconCommand( ///
-		#if _FIXES_SAMP && defined _ALS_GetPlayerVersion ///
-			#error _ALS_GetPlayerVersion defined ///
-		#endif ///
+		native CST_SendRconCommand(const command[]) = SendRconCommand; /// <p/>
+		#define _ALS_SendRconCommand /// <p/>
+		#define SendRconCommand( CST_SendRconCommand( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_GetPlayerVersion /// <p/>
+			#error _ALS_GetPlayerVersion defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_GetPlayerVersion(playerid, version[], len = sizeof (version)) = GetPlayerVersion; ///
-		#define _ALS_GetPlayerVersion ///
-		#define GetPlayerVersion( CST_GetPlayerVersion( ///
-		#if _FIXES_SAMP && defined _ALS_BlockIpAddress ///
-			#error _ALS_BlockIpAddress defined ///
-		#endif ///
+		native CST_GetPlayerVersion(playerid, version[], len = sizeof (version)) = GetPlayerVersion; /// <p/>
+		#define _ALS_GetPlayerVersion /// <p/>
+		#define GetPlayerVersion( CST_GetPlayerVersion( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_BlockIpAddress /// <p/>
+			#error _ALS_BlockIpAddress defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_BlockIpAddress(const ipAddress[], timeMS) = BlockIpAddress; ///
-		#define _ALS_BlockIpAddress ///
-		#define BlockIpAddress( CST_BlockIpAddress( ///
-		#if _FIXES_SAMP && defined _ALS_UnBlockIpAddress ///
-			#error _ALS_UnBlockIpAddress defined ///
-		#endif ///
+		native CST_BlockIpAddress(const ipAddress[], timeMS) = BlockIpAddress; /// <p/>
+		#define _ALS_BlockIpAddress /// <p/>
+		#define BlockIpAddress( CST_BlockIpAddress( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_UnBlockIpAddress /// <p/>
+			#error _ALS_UnBlockIpAddress defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_UnBlockIpAddress(const ipAddress[]) = UnBlockIpAddress; ///
-		#define _ALS_UnBlockIpAddress ///
-		#define UnBlockIpAddress( CST_UnBlockIpAddress( ///
-		#if _FIXES_SAMP && defined _ALS_TextDrawCreate ///
-			#error _ALS_TextDrawCreate defined ///
-		#endif ///
+		native CST_UnBlockIpAddress(const ipAddress[]) = UnBlockIpAddress; /// <p/>
+		#define _ALS_UnBlockIpAddress /// <p/>
+		#define UnBlockIpAddress( CST_UnBlockIpAddress( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_TextDrawCreate /// <p/>
+			#error _ALS_TextDrawCreate defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native Text:CST_TextDrawCreate(Float:x, Float:y, const text[]) = TextDrawCreate; ///
+		native Text:CST_TextDrawCreate(Float:x, Float:y, const text[]) = TextDrawCreate; /// <p/>
 		/// <library>fixes.inc</library>
-		native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate; ///
-		#define _ALS_TextDrawCreate ///
-		#define TextDrawCreate( CST_TextDrawCreate( ///
-		#if _FIXES_SAMP && defined _ALS_TextDrawSetString ///
-			#error _ALS_TextDrawSetString defined ///
-		#endif ///
+		native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate; /// <p/>
+		#define _ALS_TextDrawCreate /// <p/>
+		#define TextDrawCreate( CST_TextDrawCreate( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_TextDrawSetString /// <p/>
+			#error _ALS_TextDrawSetString defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_TextDrawSetString(Text:text, const string[]) = TextDrawSetString; ///
+		native CST_TextDrawSetString(Text:text, const string[]) = TextDrawSetString; /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString; ///
-		#define _ALS_TextDrawSetString ///
-		#define TextDrawSetString( CST_TextDrawSetString( ///
-		#if _FIXES_SAMP && defined _ALS_Create3DTextLabel ///
-			#error _ALS_Create3DTextLabel defined ///
-		#endif ///
+		native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString; /// <p/>
+		#define _ALS_TextDrawSetString /// <p/>
+		#define TextDrawSetString( CST_TextDrawSetString( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_Create3DTextLabel /// <p/>
+			#error _ALS_Create3DTextLabel defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native Text3D:CST_Create3DTextLabel(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = _FIXES_MAYBE_FALSE) = Create3DTextLabel; ///
-		#define _ALS_Create3DTextLabel ///
-		#define Create3DTextLabel( CST_Create3DTextLabel( ///
-		#if _FIXES_SAMP && defined _ALS_Update3DTextLabelText ///
-			#error _ALS_Update3DTextLabelText defined ///
-		#endif ///
+		native Text3D:CST_Create3DTextLabel(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, _FIXES_MAYBE_BOOL:testLOS = _FIXES_MAYBE_FALSE) = Create3DTextLabel; /// <p/>
+		#define _ALS_Create3DTextLabel /// <p/>
+		#define Create3DTextLabel( CST_Create3DTextLabel( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_Update3DTextLabelText /// <p/>
+			#error _ALS_Update3DTextLabelText defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_Update3DTextLabelText(Text3D:textid, colour, const text[]) = Update3DTextLabelText; ///
-		#define _ALS_Update3DTextLabelText ///
-		#define Update3DTextLabelText( CST_Update3DTextLabelText( ///
-		#if _FIXES_SAMP && defined _ALS_CreatePlayer3DTextLabel ///
-			#error _ALS_CreatePlayer3DTextLabel defined ///
-		#endif ///
+		native CST_Update3DTextLabelText(Text3D:textid, colour, const text[]) = Update3DTextLabelText; /// <p/>
+		#define _ALS_Update3DTextLabelText /// <p/>
+		#define Update3DTextLabelText( CST_Update3DTextLabelText( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_CreatePlayer3DTextLabel /// <p/>
+			#error _ALS_CreatePlayer3DTextLabel defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = _FIXES_MAYBE_FALSE) = CreatePlayer3DTextLabel; ///
-		#define _ALS_CreatePlayer3DTextLabel ///
-		#define CreatePlayer3DTextLabel( CST_CreatePlayer3DTextLabel( ///
-		#if _FIXES_SAMP && defined _ALS_UpdPlayer3DTextLabelText ///
-			#error _ALS_UpdPlayer3DTextLabelText defined ///
-		#endif ///
+		native PlayerText3D:CST_CreatePlayer3DTextLabel(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, _FIXES_MAYBE_BOOL:testLOS = _FIXES_MAYBE_FALSE) = CreatePlayer3DTextLabel; /// <p/>
+		#define _ALS_CreatePlayer3DTextLabel /// <p/>
+		#define CreatePlayer3DTextLabel( CST_CreatePlayer3DTextLabel( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_UpdPlayer3DTextLabelText /// <p/>
+			#error _ALS_UpdPlayer3DTextLabelText defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText; ///
-		#define _ALS_UpdPlayer3DTextLabelText ///
-		#define UpdatePlayer3DTextLabelText( CST_UpdatePlayer3DTextLabelText( ///
-		#if _FIXES_SAMP && defined _ALS_ShowPlayerDialog ///
-			#error _ALS_ShowPlayerDialog defined ///
-		#endif ///
+		native CST_UpdatePlayer3DTextLabelText(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText; /// <p/>
+		#define _ALS_UpdPlayer3DTextLabelText /// <p/>
+		#define UpdatePlayer3DTextLabelText( CST_UpdatePlayer3DTextLabelText( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_ShowPlayerDialog /// <p/>
+			#error _ALS_ShowPlayerDialog defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog; ///
+		native CST_ShowPlayerDialog(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog; /// <p/>
 		/// <library>fixes.inc</library>
-		native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog; ///
-		#define _ALS_ShowPlayerDialog ///
-		#define ShowPlayerDialog( CST_ShowPlayerDialog( ///
-		///
+		native BAD_ShowPlayerDialog(playerid, dialog, style, title[], caption[], button1[], button2[]) = ShowPlayerDialog; /// <p/>
+		#define _ALS_ShowPlayerDialog /// <p/>
+		#define ShowPlayerDialog( CST_ShowPlayerDialog( /// <p/>
+		/// <p/>
 		/// a_sampdb 
-		#if _FIXES_SAMP && defined _ALS_db_open ///
-			#error _ALS_db_open defined ///
-		#endif ///
+		#if _FIXES_SAMP && defined _ALS_db_open /// <p/>
+			#error _ALS_db_open defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native DB:CST_db_open(const name[]) = db_open; ///
-		#define _ALS_db_open ///
-		#define db_open( CST_db_open( ///
-		#if _FIXES_SAMP && defined _ALS_db_query ///
-			#error _ALS_db_query defined ///
-		#endif ///
+		native DB:CST_db_open(const name[]) = db_open; /// <p/>
+		#define _ALS_db_open /// <p/>
+		#define db_open( CST_db_open( /// <p/>
+		#if _FIXES_SAMP && defined _ALS_db_query /// <p/>
+			#error _ALS_db_query defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native DBResult:CST_db_query(DB:db, const query[]) = db_query; ///
-		#define _ALS_db_query ///
-		#define db_query( CST_db_query( ///
-		///
+		native DBResult:CST_db_query(DB:db, const query[]) = db_query; /// <p/>
+		#define _ALS_db_query /// <p/>
+		#define db_query( CST_db_query( /// <p/>
+		/// <p/>
 		/// a_vehicles 
-		#if _FIXES_SAMP && defined _ALS_SetVehicleNumberPlate ///
-			#error _ALS_SetVehicleNumberPlate defined ///
-		#endif ///
+		#if _FIXES_SAMP && defined _ALS_SetVehicleNumberPlate /// <p/>
+			#error _ALS_SetVehicleNumberPlate defined /// <p/>
+		#endif /// <p/>
 		/// <library>fixes.inc</library>
-		native CST_SetVehicleNumberPlate(vehicleid, const numberPlate[]) = SetVehicleNumberPlate; ///
-		#define _ALS_SetVehicleNumberPlate ///
-		#define SetVehicleNumberPlate( CST_SetVehicleNumberPlate( ///
-	#endif ///
-#else ///
+		native CST_SetVehicleNumberPlate(vehicleid, const numberPlate[]) = SetVehicleNumberPlate; /// <p/>
+		#define _ALS_SetVehicleNumberPlate /// <p/>
+		#define SetVehicleNumberPlate( CST_SetVehicleNumberPlate( /// <p/>
+	#endif /// <p/>
+#else /// <p/>
 	_FIXES_HIDE_PAWNDOC(_FIXES_const);
 #endif
 
@@ -13380,210 +13380,210 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 /// control the names and keep them fairly well hidden.  Basically we're
 /// bypassing all the assurances of fixes.inc to get direct access to the
 /// underlying implementations.
-#if defined SAMP_BYPASS_NATIVES ///
+#if defined SAMP_BYPASS_NATIVES /// <p/>
 	/// Do nothing
-#elseif _FIXES_NPC ///
+#elseif _FIXES_NPC /// <p/>
 	/// Declare variants of all NPC natives.
 	/// <library>fixes.inc</library>
-	native Print__(const string[]) = print; ///
+	native Print__(const string[]) = print; /// <p/>
 	/// <library>fixes.inc</library>
-	native PrintF__(const format[], {Float, _}:...) = printf; ///
+	native PrintF__(const format[], {Float, _}:...) = printf; /// <p/>
 	/// <library>fixes.inc</library>
-	native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format; ///
+	native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer; ///
+	native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer; /// <p/>
 	/// <library>fixes.inc</library>
-	native KillTimer__(timerid) = KillTimer; ///
+	native KillTimer__(timerid) = KillTimer; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetTickCount__() = GetTickCount; ///
+	native GetTickCount__() = GetTickCount; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:ASin__(Float:value) = asin; ///
+	native Float:ASin__(Float:value) = asin; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:ACos__(Float:value) = acos; ///
+	native Float:ACos__(Float:value) = acos; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:ATan__(Float:value) = atan; ///
+	native Float:ATan__(Float:value) = atan; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:ATan2__(Float:y, Float:x) = atan2; ///
+	native Float:ATan2__(Float:y, Float:x) = atan2; /// <p/>
 	/// <library>fixes.inc</library>
-	native SendChat__(const message[]) = SendChat; ///
+	native SendChat__(const message[]) = SendChat; /// <p/>
 	/// <library>fixes.inc</library>
-	native SendCommand__(const command[]) = SendCommand; ///
+	native SendCommand__(const command[]) = SendCommand; /// <p/>
 	/// <library>fixes.inc</library>
-	native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState; ///
+	native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos; ///
+	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID; ///
+	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID; /// <p/>
 	/// <library>fixes.inc</library>
-	native WEAPON:GetPlayerArmedWeapon__(playerid) = GetPlayerArmedWeapon; ///
+	native WEAPON:GetPlayerArmedWeapon__(playerid) = GetPlayerArmedWeapon; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerHealth__(playerid) = GetPlayerHealth; ///
+	native GetPlayerHealth__(playerid) = GetPlayerHealth; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerArmour__(playerid) = GetPlayerArmour; ///
+	native GetPlayerArmour__(playerid) = GetPlayerArmour; /// <p/>
 	/// <library>fixes.inc</library>
-	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction; ///
+	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerStreamedIn__(playerid) = IsPlayerStreamedIn; ///
+	native bool:IsPlayerStreamedIn__(playerid) = IsPlayerStreamedIn; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsVehicleStreamedIn__(vehicleid) = IsVehicleStreamedIn; ///
+	native bool:IsVehicleStreamedIn__(vehicleid) = IsVehicleStreamedIn; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys; ///
+	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerActions__(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys; ///
+	native GetPlayerActions__(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle; ///
+	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetMyPos__(&Float:x, &Float:y, &Float:z) = GetMyPos; ///
+	native GetMyPos__(&Float:x, &Float:y, &Float:z) = GetMyPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetMyPos__(Float:x, Float:y, Float:z) = SetMyPos; ///
+	native SetMyPos__(Float:x, Float:y, Float:z) = SetMyPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetMyFacingAngle__(&Float:ang) = GetMyFacingAngle; ///
+	native GetMyFacingAngle__(&Float:ang) = GetMyFacingAngle; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetMyFacingAngle__(Float:ang) = SetMyFacingAngle; ///
+	native SetMyFacingAngle__(Float:ang) = SetMyFacingAngle; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetDistanceFromMeToPoint__(Float:x, Float:y, Float:z, &Float:distance) = GetDistanceFromMeToPoint; ///
+	native GetDistanceFromMeToPoint__(Float:x, Float:y, Float:z, &Float:distance) = GetDistanceFromMeToPoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint; ///
+	native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName; ///
+	native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected; ///
+	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected; /// <p/>
 	/// <library>fixes.inc</library>
-	native StartRecordingPlayback__(PLAYER_RECORDING_TYPE:playbacktype, const recordFile[]) = StartRecordingPlayback; ///
+	native StartRecordingPlayback__(PLAYER_RECORDING_TYPE:playbacktype, const recordFile[]) = StartRecordingPlayback; /// <p/>
 	/// <library>fixes.inc</library>
-	native StopRecordingPlayback__() = StopRecordingPlayback; ///
+	native StopRecordingPlayback__() = StopRecordingPlayback; /// <p/>
 	/// <library>fixes.inc</library>
-	native PauseRecordingPlayback__() = PauseRecordingPlayback; ///
+	native PauseRecordingPlayback__() = PauseRecordingPlayback; /// <p/>
 	/// <library>fixes.inc</library>
-	native ResumeRecordingPlayback__() = ResumeRecordingPlayback; ///
-#else ///
+	native ResumeRecordingPlayback__() = ResumeRecordingPlayback; /// <p/>
+#else /// <p/>
 	/// <library>fixes.inc</library>
-	native Print__(const string[]) = print; ///
+	native Print__(const string[]) = print; /// <p/>
 	/// <library>fixes.inc</library>
-	native PrintF__(const format[], {Float, _}:...) = printf; ///
+	native PrintF__(const format[], {Float, _}:...) = printf; /// <p/>
 	/// <library>fixes.inc</library>
-	native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format; ///
+	native Format__(output[], len = sizeof (output), const format[], {Float, _}:...) = format; /// <p/>
 	/// <library>fixes.inc</library>
-	native SendClientMessage__(playerid, colour, const message[]) = SendClientMessage; ///
+	native SendClientMessage__(playerid, colour, const message[]) = SendClientMessage; /// <p/>
 	/// <library>fixes.inc</library>
-	native SendClientMessageToAll__(colour, const message[]) = SendClientMessageToAll; ///
+	native SendClientMessageToAll__(colour, const message[]) = SendClientMessageToAll; /// <p/>
 	/// <library>fixes.inc</library>
-	native SendPlayerMessageToPlayer__(playerid, senderid, const message[]) = SendPlayerMessageToPlayer; ///
+	native SendPlayerMessageToPlayer__(playerid, senderid, const message[]) = SendPlayerMessageToPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native SendPlayerMessageToAll__(senderid, const message[]) = SendPlayerMessageToAll; ///
+	native SendPlayerMessageToAll__(senderid, const message[]) = SendPlayerMessageToAll; /// <p/>
 	/// <library>fixes.inc</library>
-	native SendDeathMessage__(killer, killee, weapon) = SendDeathMessage; ///
+	native SendDeathMessage__(killer, killee, weapon) = SendDeathMessage; /// <p/>
 	/// <library>fixes.inc</library>
-	native SendDeathMessageToPlayer__(playerid, killer, killee, weapon) = SendDeathMessageToPlayer; ///
+	native SendDeathMessageToPlayer__(playerid, killer, killee, weapon) = SendDeathMessageToPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native GameTextForAll__(const string[], time, style) = GameTextForAll; ///
+	native GameTextForAll__(const string[], time, style) = GameTextForAll; /// <p/>
 	/// <library>fixes.inc</library>
-	native GameTextForPlayer__(playerid, const string[], time, style) = GameTextForPlayer; ///
+	native GameTextForPlayer__(playerid, const string[], time, style) = GameTextForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer; ///
+	native SetTimer__(const functionName[], interval, bool:repeating) = SetTimer; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetTimerEx__(const functionName[], interval, bool:repeating, const format[] = "", {Float, _}:...) = SetTimerEx; ///
+	native SetTimerEx__(const functionName[], interval, bool:repeating, const format[] = "", {Float, _}:...) = SetTimerEx; /// <p/>
 	/// <library>fixes.inc</library>
-	native KillTimer__(timerid) = KillTimer; ///
+	native KillTimer__(timerid) = KillTimer; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetTickCount__() = GetTickCount; ///
+	native GetTickCount__() = GetTickCount; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetMaxPlayers__() = GetMaxPlayers; ///
+	native GetMaxPlayers__() = GetMaxPlayers; /// <p/>
 	/// <library>fixes.inc</library>
-	native CallRemoteFunction__(const function[], const format[] = "", {Float, _}:...) = CallRemoteFunction; ///
+	native CallRemoteFunction__(const function[], const format[] = "", {Float, _}:...) = CallRemoteFunction; /// <p/>
 	/// <library>fixes.inc</library>
-	native CallLocalFunction__(const function[], const format[] = "", {Float, _}:...) = CallLocalFunction; ///
+	native CallLocalFunction__(const function[], const format[] = "", {Float, _}:...) = CallLocalFunction; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:VectorSize__(Float:x, Float:y, Float:z) = VectorSize; ///
+	native Float:VectorSize__(Float:x, Float:y, Float:z) = VectorSize; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:ASin__(Float:value) = asin; ///
+	native Float:ASin__(Float:value) = asin; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:ACos__(Float:value) = acos; ///
+	native Float:ACos__(Float:value) = acos; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:ATan__(Float:value) = atan; ///
+	native Float:ATan__(Float:value) = atan; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:ATan2__(Float:y, Float:x) = atan2; ///
+	native Float:ATan2__(Float:y, Float:x) = atan2; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerPoolSize__() = GetPlayerPoolSize; ///
+	native GetPlayerPoolSize__() = GetPlayerPoolSize; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehiclePoolSize__() = GetVehiclePoolSize; ///
+	native GetVehiclePoolSize__() = GetVehiclePoolSize; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetActorPoolSize__() = GetActorPoolSize; ///
+	native GetActorPoolSize__() = GetActorPoolSize; /// <p/>
 	/// <library>fixes.inc</library>
-	#pragma deprecated Use BCrypt or better for hashing passwords. ///
+	#pragma deprecated Use BCrypt or better for hashing passwords. /// <p/>
 	native SHA256_PassHash__(const password[], const salt[], output[], size = sizeof (output)) = SHA256_PassHash; /// 
 	/// <library>fixes.inc</library> 
-	native SetSVarInt__(const svar[], value) = SetSVarInt; ///
+	native SetSVarInt__(const svar[], value) = SetSVarInt; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetSVarInt__(const svar[]) = GetSVarInt; ///
+	native GetSVarInt__(const svar[]) = GetSVarInt; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetSVarString__(const svar[], const value[]) = SetSVarString; ///
+	native SetSVarString__(const svar[], const value[]) = SetSVarString; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetSVarString__(const svar[], output[], len = sizeof (output)) = GetSVarString; ///
+	native GetSVarString__(const svar[], output[], len = sizeof (output)) = GetSVarString; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetSVarFloat__(const svar[], Float:value) = SetSVarFloat; ///
+	native SetSVarFloat__(const svar[], Float:value) = SetSVarFloat; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:GetSVarFloat__(const svar[]) = GetSVarFloat; ///
+	native Float:GetSVarFloat__(const svar[]) = GetSVarFloat; /// <p/>
 	/// <library>fixes.inc</library>
-	native DeleteSVar__(const svar[]) = DeleteSVar; ///
+	native DeleteSVar__(const svar[]) = DeleteSVar; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetSVarsUpperIndex__() = GetSVarsUpperIndex; ///
+	native GetSVarsUpperIndex__() = GetSVarsUpperIndex; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetSVarNameAtIndex__(index, output[], size = sizeof (output)) = GetSVarNameAtIndex; ///
+	native GetSVarNameAtIndex__(index, output[], size = sizeof (output)) = GetSVarNameAtIndex; /// <p/>
 	/// <library>fixes.inc</library>
-	native SERVER_VARTYPE:GetSVarType__(const svar[]) = GetSVarType; ///
+	native SERVER_VARTYPE:GetSVarType__(const svar[]) = GetSVarType; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetGameModeText__(const string[]) = SetGameModeText; ///
+	native SetGameModeText__(const string[]) = SetGameModeText; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetTeamCount__(count) = SetTeamCount; ///
+	native SetTeamCount__(count) = SetTeamCount; /// <p/>
 	/// <library>fixes.inc</library>
-	native AddPlayerClass__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass; ///
+	native AddPlayerClass__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClass; /// <p/>
 	/// <library>fixes.inc</library>
-	native AddPlayerClassEx__(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx; ///
+	native AddPlayerClassEx__(teamid, modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = AddPlayerClassEx; /// <p/>
 	/// <library>fixes.inc</library>
-	native AddStaticVehicle__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle; ///
+	native AddStaticVehicle__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2) = AddStaticVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native AddStaticVehicleEx__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, bool:addSiren = false) = AddStaticVehicleEx; ///
+	native AddStaticVehicleEx__(modelid, Float:spawnX, Float:spawnY, Float:spawnZ, Float:angle, colour1, colour2, respawnDelay, bool:addSiren = false) = AddStaticVehicleEx; /// <p/>
 	/// <library>fixes.inc</library>
-	native AddStaticPickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup; ///
+	native AddStaticPickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = AddStaticPickup; /// <p/>
 	/// <library>fixes.inc</library>
-	native CreatePickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup; ///
+	native CreatePickup__(model, type, Float:x, Float:y, Float:z, virtualWorld = 0) = CreatePickup; /// <p/>
 	/// <library>fixes.inc</library>
-	native DestroyPickup__(pickup) = DestroyPickup; ///
+	native DestroyPickup__(pickup) = DestroyPickup; /// <p/>
 	/// <library>fixes.inc</library>
-	native ShowNameTags__(bool:show) = ShowNameTags; ///
+	native ShowNameTags__(bool:show) = ShowNameTags; /// <p/>
 	/// <library>fixes.inc</library>
-	native ShowPlayerMarkers__(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers; ///
+	native ShowPlayerMarkers__(PLAYER_MARKERS_MODE:mode) = ShowPlayerMarkers; /// <p/>
 	/// <library>fixes.inc</library>
-	native GameModeExit__() = GameModeExit; ///
+	native GameModeExit__() = GameModeExit; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetWorldTime__(hour) = SetWorldTime; ///
+	native SetWorldTime__(hour) = SetWorldTime; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetWeaponName__(WEAPON:weaponid, weapon[], len = sizeof (weapon)) = GetWeaponName; ///
+	native GetWeaponName__(WEAPON:weaponid, weapon[], len = sizeof (weapon)) = GetWeaponName; /// <p/>
 	/// <library>fixes.inc</library>
-	#pragma deprecated Use `OnVehicleDamageStatusUpdate`. ///
+	#pragma deprecated Use `OnVehicleDamageStatusUpdate`. /// <p/>
 	native EnableTirePopping__(bool:enable) = EnableTirePopping; /// 
 	/// <library>fixes.inc</library> 
-	native EnableVehicleFriendlyFire__() = EnableVehicleFriendlyFire; ///
+	native EnableVehicleFriendlyFire__() = EnableVehicleFriendlyFire; /// <p/>
 	/// <library>fixes.inc</library>
-	#pragma deprecated Use `OnPlayerInteriorChange`. ///
-	native AllowInteriorWeapons__(bool:allow) = AllowInteriorWeapons; ///
+	#pragma deprecated Use `OnPlayerInteriorChange`. /// <p/>
+	native AllowInteriorWeapons__(bool:allow) = AllowInteriorWeapons; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetWeather__(weatherid) = SetWeather; ///
+	native SetWeather__(weatherid) = SetWeather; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:GetGravity__() = GetGravity; ///
+	native Float:GetGravity__() = GetGravity; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetGravity__(Float:gravity) = SetGravity; ///
+	native SetGravity__(Float:gravity) = SetGravity; /// <p/>
 	/// <library>fixes.inc</library>
-	#pragma deprecated Use `OnPlayerClickMap`. ///
-	native AllowAdminTeleport__(bool:allow) = AllowAdminTeleport; ///
+	#pragma deprecated Use `OnPlayerClickMap`. /// <p/>
+	native AllowAdminTeleport__(bool:allow) = AllowAdminTeleport; /// <p/>
 	/// <library>fixes.inc</library>
-	#pragma deprecated Use `CreatePickup`. ///
-	native SetDeathDropAmount__(amount) = SetDeathDropAmount; ///
+	#pragma deprecated Use `CreatePickup`. /// <p/>
+	native SetDeathDropAmount__(amount) = SetDeathDropAmount; /// <p/>
 	/// <library>fixes.inc</library>
-	native CreateExplosion__(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion; ///
+	native CreateExplosion__(Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosion; /// <p/>
 	/// <library>fixes.inc</library>
-	native EnableZoneNames__(bool:enable) = EnableZoneNames; ///
+	native EnableZoneNames__(bool:enable) = EnableZoneNames; /// <p/>
 	/// <library>fixes.inc</library>
 	native UsePlayerPedAnims__() = UsePlayerPedAnims; /// 
 	/// <library>fixes.inc</library> 
@@ -13593,248 +13593,248 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	/// <library>fixes.inc</library> 
 	native DisableNameTagLOS__() = DisableNameTagLOS; /// 
 	/// <library>fixes.inc</library> 
-	native LimitGlobalChatRadius__(Float:chatRadius) = LimitGlobalChatRadius; ///
+	native LimitGlobalChatRadius__(Float:chatRadius) = LimitGlobalChatRadius; /// <p/>
 	/// <library>fixes.inc</library>
-	native LimitPlayerMarkerRadius__(Float:markerRadius) = LimitPlayerMarkerRadius; ///
+	native LimitPlayerMarkerRadius__(Float:markerRadius) = LimitPlayerMarkerRadius; /// <p/>
 	/// <library>fixes.inc</library>
-	native ConnectNPC__(const name[], const script[]) = ConnectNPC; ///
+	native ConnectNPC__(const name[], const script[]) = ConnectNPC; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerNPC__(playerid) = IsPlayerNPC; ///
+	native bool:IsPlayerNPC__(playerid) = IsPlayerNPC; /// <p/>
 	/// <library>fixes.inc</library>
-	native AddCharModel__(baseid, newid, const dff[], const textureLibrary[]) = AddCharModel; ///
+	native AddCharModel__(baseid, newid, const dff[], const textureLibrary[]) = AddCharModel; /// <p/>
 	/// <library>fixes.inc</library>
-	native AddSimpleModel__(virtualWorld, baseid, newid, const dff[], const textureLibrary[]) = AddSimpleModel; ///
+	native AddSimpleModel__(virtualWorld, baseid, newid, const dff[], const textureLibrary[]) = AddSimpleModel; /// <p/>
 	/// <library>fixes.inc</library>
-	native AddSimpleModelTimed__(virtualWorld, baseid, newid, const dff[], const textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed; ///
+	native AddSimpleModelTimed__(virtualWorld, baseid, newid, const dff[], const textureLibrary[], timeOn, timeOff) = AddSimpleModelTimed; /// <p/>
 	/// <library>fixes.inc</library>
-	native FindModelFileNameFromCRC__(crc, output[], retstr_size = sizeof (output)) = FindModelFileNameFromCRC; ///
+	native FindModelFileNameFromCRC__(crc, output[], retstr_size = sizeof (output)) = FindModelFileNameFromCRC; /// <p/>
 	/// <library>fixes.inc</library>
-	native FindTextureFileNameFromCRC__(crc, output[], retstr_size = sizeof (output)) = FindTextureFileNameFromCRC; ///
+	native FindTextureFileNameFromCRC__(crc, output[], retstr_size = sizeof (output)) = FindTextureFileNameFromCRC; /// <p/>
 	/// <library>fixes.inc</library>
-	native RedirectDownload__(playerid, const url[]) = RedirectDownload; ///
+	native RedirectDownload__(playerid, const url[]) = RedirectDownload; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin; ///
+	native bool:IsPlayerAdmin__(playerid) = IsPlayerAdmin; /// <p/>
 	/// <library>fixes.inc</library>
-	native Kick__(playerid) = Kick; ///
+	native Kick__(playerid) = Kick; /// <p/>
 	/// <library>fixes.inc</library>
-	native Ban__(playerid) = Ban; ///
+	native Ban__(playerid) = Ban; /// <p/>
 	/// <library>fixes.inc</library>
-	native BanEx__(playerid, const reason[]) = BanEx; ///
+	native BanEx__(playerid, const reason[]) = BanEx; /// <p/>
 	/// <library>fixes.inc</library>
-	native SendRconCommand__(const command[]) = SendRconCommand; ///
+	native SendRconCommand__(const command[]) = SendRconCommand; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerNetworkStats__(playerid, output[], size = sizeof (output)) = GetPlayerNetworkStats; ///
+	native GetPlayerNetworkStats__(playerid, output[], size = sizeof (output)) = GetPlayerNetworkStats; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetNetworkStats__(output[], size = sizeof (output)) = GetNetworkStats; ///
+	native GetNetworkStats__(output[], size = sizeof (output)) = GetNetworkStats; /// <p/>
 	/// <library>fixes.inc</library>
 	native GetPlayerVersion__(playerid, version[], len = sizeof (version)) = GetPlayerVersion; /// 
 	/// <library>fixes.inc</library> 
-	native BlockIpAddress__(const ipAddress[], timeMS) = BlockIpAddress; ///
+	native BlockIpAddress__(const ipAddress[], timeMS) = BlockIpAddress; /// <p/>
 	/// <library>fixes.inc</library>
-	native UnBlockIpAddress__(const ipAddress[]) = UnBlockIpAddress; ///
+	native UnBlockIpAddress__(const ipAddress[]) = UnBlockIpAddress; /// <p/>
 	/// <library>fixes.inc</library>
-	#pragma deprecated Use `GetConsoleVarAsString`. ///
-	native GetServerVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetServerVarAsString; ///
+	#pragma deprecated Use `GetConsoleVarAsString`. /// <p/>
+	native GetServerVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetServerVarAsString; /// <p/>
 	/// <library>fixes.inc</library>
-	#pragma deprecated Use `GetConsoleVarAsInt`. ///
-	native GetServerVarAsInt__(const cvar[]) = GetServerVarAsInt; ///
+	#pragma deprecated Use `GetConsoleVarAsInt`. /// <p/>
+	native GetServerVarAsInt__(const cvar[]) = GetServerVarAsInt; /// <p/>
 	/// <library>fixes.inc</library>
-	#pragma deprecated Use `GetConsoleVarAsBool`. ///
-	native bool:GetServerVarAsBool__(const cvar[]) = GetServerVarAsBool; ///
+	#pragma deprecated Use `GetConsoleVarAsBool`. /// <p/>
+	native bool:GetServerVarAsBool__(const cvar[]) = GetServerVarAsBool; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetConsoleVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetConsoleVarAsString; ///
+	native GetConsoleVarAsString__(const cvar[], buffer[], len = sizeof (buffer)) = GetConsoleVarAsString; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetConsoleVarAsInt__(const cvar[]) = GetConsoleVarAsInt; ///
+	native GetConsoleVarAsInt__(const cvar[]) = GetConsoleVarAsInt; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:GetConsoleVarAsBool__(const cvar[]) = GetConsoleVarAsBool; ///
+	native bool:GetConsoleVarAsBool__(const cvar[]) = GetConsoleVarAsBool; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetServerTickRate__() = GetServerTickRate; ///
+	native GetServerTickRate__() = GetServerTickRate; /// <p/>
 	/// <library>fixes.inc</library>
-	native NetStats_GetConnectedTime__(playerid) = NetStats_GetConnectedTime; ///
+	native NetStats_GetConnectedTime__(playerid) = NetStats_GetConnectedTime; /// <p/>
 	/// <library>fixes.inc</library>
-	native NetStats_MessagesReceived__(playerid) = NetStats_MessagesReceived; ///
+	native NetStats_MessagesReceived__(playerid) = NetStats_MessagesReceived; /// <p/>
 	/// <library>fixes.inc</library>
-	native NetStats_BytesReceived__(playerid) = NetStats_BytesReceived; ///
+	native NetStats_BytesReceived__(playerid) = NetStats_BytesReceived; /// <p/>
 	/// <library>fixes.inc</library>
-	native NetStats_MessagesSent__(playerid) = NetStats_MessagesSent; ///
+	native NetStats_MessagesSent__(playerid) = NetStats_MessagesSent; /// <p/>
 	/// <library>fixes.inc</library>
-	native NetStats_BytesSent__(playerid) = NetStats_BytesSent; ///
+	native NetStats_BytesSent__(playerid) = NetStats_BytesSent; /// <p/>
 	/// <library>fixes.inc</library>
-	native NetStats_MsgsRecvPerSecond__(playerid) = NetStats_MessagesRecvPerSecond; ///
+	native NetStats_MsgsRecvPerSecond__(playerid) = NetStats_MessagesRecvPerSecond; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:NetStats_PacketLossPercent__(playerid) = NetStats_PacketLossPercent; ///
+	native Float:NetStats_PacketLossPercent__(playerid) = NetStats_PacketLossPercent; /// <p/>
 	/// <library>fixes.inc</library>
-	native NetStats_ConnectionStatus__(playerid) = NetStats_ConnectionStatus; ///
+	native NetStats_ConnectionStatus__(playerid) = NetStats_ConnectionStatus; /// <p/>
 	/// <library>fixes.inc</library>
-	native NetStats_GetIpPort__(playerid, output[], size = sizeof (output)) = NetStats_GetIpPort; ///
+	native NetStats_GetIpPort__(playerid, output[], size = sizeof (output)) = NetStats_GetIpPort; /// <p/>
 	/// <library>fixes.inc</library>
-	native Menu:CreateMenu__(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu; ///
+	native Menu:CreateMenu__(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0) = CreateMenu; /// <p/>
 	/// <library>fixes.inc</library>
-	native DestroyMenu__(Menu:menuid) = DestroyMenu; ///
+	native DestroyMenu__(Menu:menuid) = DestroyMenu; /// <p/>
 	/// <library>fixes.inc</library>
-	native AddMenuItem__(Menu:menuid, column, const text[]) = AddMenuItem; ///
+	native AddMenuItem__(Menu:menuid, column, const text[]) = AddMenuItem; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetMenuColumnHeader__(Menu:menuid, column, const heading[]) = SetMenuColumnHeader; ///
+	native SetMenuColumnHeader__(Menu:menuid, column, const heading[]) = SetMenuColumnHeader; /// <p/>
 	/// <library>fixes.inc</library>
-	native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer; ///
+	native ShowMenuForPlayer__(Menu:menuid, playerid) = ShowMenuForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer; ///
+	native HideMenuForPlayer__(Menu:menuid, playerid) = HideMenuForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsValidMenu__(Menu:menuid) = IsValidMenu; ///
+	native bool:IsValidMenu__(Menu:menuid) = IsValidMenu; /// <p/>
 	/// <library>fixes.inc</library>
-	native DisableMenu__(Menu:menuid) = DisableMenu; ///
+	native DisableMenu__(Menu:menuid) = DisableMenu; /// <p/>
 	/// <library>fixes.inc</library>
-	native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow; ///
+	native DisableMenuRow__(Menu:menuid, row) = DisableMenuRow; /// <p/>
 	/// <library>fixes.inc</library>
-	native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu; ///
+	native Menu:GetPlayerMenu__(playerid) = GetPlayerMenu; /// <p/>
 	/// <library>fixes.inc</library>
-	native Text:TextDrawCreate__(Float:x, Float:y, const text[]) = TextDrawCreate; ///
+	native Text:TextDrawCreate__(Float:x, Float:y, const text[]) = TextDrawCreate; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawDestroy__(Text:text) = TextDrawDestroy; ///
+	native TextDrawDestroy__(Text:text) = TextDrawDestroy; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawLetterSize__(Text:text, Float:width, Float:height) = TextDrawLetterSize; ///
+	native TextDrawLetterSize__(Text:text, Float:width, Float:height) = TextDrawLetterSize; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawTextSize__(Text:text, Float:width, Float:height) = TextDrawTextSize; ///
+	native TextDrawTextSize__(Text:text, Float:width, Float:height) = TextDrawTextSize; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawAlignment__(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment; ///
+	native TextDrawAlignment__(Text:text, TEXT_DRAW_ALIGN:alignment) = TextDrawAlignment; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawColor__(Text:text, colour) = TextDrawColor; ///
+	native TextDrawColor__(Text:text, colour) = TextDrawColor; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawUseBox__(Text:text, bool:use) = TextDrawUseBox; ///
+	native TextDrawUseBox__(Text:text, bool:use) = TextDrawUseBox; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawBoxColor__(Text:text, colour) = TextDrawBoxColor; ///
+	native TextDrawBoxColor__(Text:text, colour) = TextDrawBoxColor; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawSetShadow__(Text:text, size) = TextDrawSetShadow; ///
+	native TextDrawSetShadow__(Text:text, size) = TextDrawSetShadow; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawSetOutline__(Text:text, size) = TextDrawSetOutline; ///
+	native TextDrawSetOutline__(Text:text, size) = TextDrawSetOutline; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawBackgroundColor__(Text:text, colour) = TextDrawBackgroundColor; ///
+	native TextDrawBackgroundColor__(Text:text, colour) = TextDrawBackgroundColor; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawFont__(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont; ///
+	native TextDrawFont__(Text:text, TEXT_DRAW_FONT:font) = TextDrawFont; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawSetProportional__(Text:text, bool:set) = TextDrawSetProportional; ///
+	native TextDrawSetProportional__(Text:text, bool:set) = TextDrawSetProportional; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawSetSelectable__(Text:text, bool:set) = TextDrawSetSelectable; ///
+	native TextDrawSetSelectable__(Text:text, bool:set) = TextDrawSetSelectable; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawShowForPlayer__(playerid, Text:text) = TextDrawShowForPlayer; ///
+	native TextDrawShowForPlayer__(playerid, Text:text) = TextDrawShowForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawHideForPlayer__(playerid, Text:text) = TextDrawHideForPlayer; ///
+	native TextDrawHideForPlayer__(playerid, Text:text) = TextDrawHideForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawShowForAll__(Text:text) = TextDrawShowForAll; ///
+	native TextDrawShowForAll__(Text:text) = TextDrawShowForAll; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawHideForAll__(Text:text) = TextDrawHideForAll; ///
+	native TextDrawHideForAll__(Text:text) = TextDrawHideForAll; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawSetString__(Text:text, const string[]) = TextDrawSetString; ///
+	native TextDrawSetString__(Text:text, const string[]) = TextDrawSetString; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawSetPreviewModel__(Text:text, modelIndex) = TextDrawSetPreviewModel; ///
+	native TextDrawSetPreviewModel__(Text:text, modelIndex) = TextDrawSetPreviewModel; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawSetPreviewRot__(Text:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = TextDrawSetPreviewRot; ///
+	native TextDrawSetPreviewRot__(Text:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = TextDrawSetPreviewRot; /// <p/>
 	/// <library>fixes.inc</library>
-	native TextDrawSetPreviewVehCol__(Text:text, colour1, colour2) = TextDrawSetPreviewVehCol; ///
+	native TextDrawSetPreviewVehCol__(Text:text, colour1, colour2) = TextDrawSetPreviewVehCol; /// <p/>
 	/// <library>fixes.inc</library>
-	native GangZoneCreate__(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZoneCreate; ///
+	native GangZoneCreate__(Float:minX, Float:minY, Float:maxX, Float:maxY) = GangZoneCreate; /// <p/>
 	/// <library>fixes.inc</library>
-	native GangZoneDestroy__(zone) = GangZoneDestroy; ///
+	native GangZoneDestroy__(zone) = GangZoneDestroy; /// <p/>
 	/// <library>fixes.inc</library>
-	native GangZoneShowForPlayer__(playerid, zone, colour) = GangZoneShowForPlayer; ///
+	native GangZoneShowForPlayer__(playerid, zone, colour) = GangZoneShowForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native GangZoneShowForAll__(zone, colour) = GangZoneShowForAll; ///
+	native GangZoneShowForAll__(zone, colour) = GangZoneShowForAll; /// <p/>
 	/// <library>fixes.inc</library>
-	native GangZoneHideForPlayer__(playerid, zone) = GangZoneHideForPlayer; ///
+	native GangZoneHideForPlayer__(playerid, zone) = GangZoneHideForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native GangZoneHideForAll__(zone) = GangZoneHideForAll; ///
+	native GangZoneHideForAll__(zone) = GangZoneHideForAll; /// <p/>
 	/// <library>fixes.inc</library>
-	native GangZoneFlashForPlayer__(playerid, zone, flashColour) = GangZoneFlashForPlayer; ///
+	native GangZoneFlashForPlayer__(playerid, zone, flashColour) = GangZoneFlashForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native GangZoneFlashForAll__(zone, flashColour) = GangZoneFlashForAll; ///
+	native GangZoneFlashForAll__(zone, flashColour) = GangZoneFlashForAll; /// <p/>
 	/// <library>fixes.inc</library>
-	native GangZoneStopFlashForPlayer__(playerid, zone) = GangZoneStopFlashForPlayer; ///
+	native GangZoneStopFlashForPlayer__(playerid, zone) = GangZoneStopFlashForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native GangZoneStopFlashForAll__(zone) = GangZoneStopFlashForAll; ///
+	native GangZoneStopFlashForAll__(zone) = GangZoneStopFlashForAll; /// <p/>
 	/// <library>fixes.inc</library>
-	native Text3D:Create3DTextLabel__(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false) = Create3DTextLabel; ///
+	native Text3D:Create3DTextLabel__(const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, virtualWorld, bool:testLOS = false) = Create3DTextLabel; /// <p/>
 	/// <library>fixes.inc</library>
-	native Delete3DTextLabel__(Text3D:textid) = Delete3DTextLabel; ///
+	native Delete3DTextLabel__(Text3D:textid) = Delete3DTextLabel; /// <p/>
 	/// <library>fixes.inc</library>
-	native Attach3DTextLabelToPlayer__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer; ///
+	native Attach3DTextLabelToPlayer__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native Attach3DTextLabelToVehicle__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle; ///
+	native Attach3DTextLabelToVehicle__(Text3D:textid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ) = Attach3DTextLabelToVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native Update3DTextLabelText__(Text3D:textid, colour, const text[]) = Update3DTextLabelText; ///
+	native Update3DTextLabelText__(Text3D:textid, colour, const text[]) = Update3DTextLabelText; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerText3D:CreatePlayer3DTextLabel__(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false) = CreatePlayer3DTextLabel; ///
+	native PlayerText3D:CreatePlayer3DTextLabel__(playerid, const text[], colour, Float:x, Float:y, Float:z, Float:drawDistance, parentPlayerid = INVALID_PLAYER_ID, parentVehicleid = INVALID_VEHICLE_ID, bool:testLOS = false) = CreatePlayer3DTextLabel; /// <p/>
 	/// <library>fixes.inc</library>
-	native DeletePlayer3DTextLabel__(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel; ///
+	native DeletePlayer3DTextLabel__(playerid, PlayerText3D:textid) = DeletePlayer3DTextLabel; /// <p/>
 	/// <library>fixes.inc</library>
-	native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText; ///
+	native UpdatePlayer3DTextLabelText__(playerid, PlayerText3D:textid, colour, const text[]) = UpdatePlayer3DTextLabelText; /// <p/>
 	/// <library>fixes.inc</library>
-	native ShowPlayerDialog__(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog; ///
+	native ShowPlayerDialog__(playerid, dialogid, DIALOG_STYLE:style, const caption[], const info[], const button1[], const button2[]) = ShowPlayerDialog; /// <p/>
 	/// <library>fixes.inc</library>
-	native GPCI__(playerid, output[], size = sizeof (output)) = gpci; ///
+	native GPCI__(playerid, output[], size = sizeof (output)) = gpci; /// <p/>
 	/// <library>fixes.inc</library>
-	native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false) = CreateVehicle; ///
+	native CreateVehicle__(modelid, Float:x, Float:y, Float:z, Float:rotation, colour1, colour2, respawnDelay, bool:addSiren = false) = CreateVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native DestroyVehicle__(vehicleid) = DestroyVehicle; ///
+	native DestroyVehicle__(vehicleid) = DestroyVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn; ///
+	native bool:IsVehicleStreamedIn__(vehicleid, playerid) = IsVehicleStreamedIn; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos; ///
+	native GetVehiclePos__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehiclePos; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos; ///
+	native SetVehiclePos__(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleZAngle__(vehicleid, &Float:angle) = GetVehicleZAngle; ///
+	native GetVehicleZAngle__(vehicleid, &Float:angle) = GetVehicleZAngle; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleRotationQuat__(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat; ///
+	native GetVehicleRotationQuat__(vehicleid, &Float:w, &Float:x, &Float:y, &Float:z) = GetVehicleRotationQuat; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:GetVehicleDistanceFromPoint__(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint; ///
+	native Float:GetVehicleDistanceFromPoint__(vehicleid, Float:x, Float:y, Float:z) = GetVehicleDistanceFromPoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehicleZAngle__(vehicleid, Float:angle) = SetVehicleZAngle; ///
+	native SetVehicleZAngle__(vehicleid, Float:angle) = SetVehicleZAngle; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehicleParamsForPlayer__(vehicleid, playerid, objective, doors) = SetVehicleParamsForPlayer; ///
+	native SetVehicleParamsForPlayer__(vehicleid, playerid, objective, doors) = SetVehicleParamsForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native ManualVehicleEngineAndLights__() = ManualVehicleEngineAndLights; ///
+	native ManualVehicleEngineAndLights__() = ManualVehicleEngineAndLights; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehicleParamsEx__(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx; ///
+	native SetVehicleParamsEx__(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:lights, VEHICLE_PARAMS:alarm, VEHICLE_PARAMS:doors, VEHICLE_PARAMS:bonnet, VEHICLE_PARAMS:boot, VEHICLE_PARAMS:objective) = SetVehicleParamsEx; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleParamsEx__(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx; ///
+	native GetVehicleParamsEx__(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS:lights, &VEHICLE_PARAMS:alarm, &VEHICLE_PARAMS:doors, &VEHICLE_PARAMS:bonnet, &VEHICLE_PARAMS:boot, &VEHICLE_PARAMS:objective) = GetVehicleParamsEx; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleParamsSirenState__(vehicleid) = GetVehicleParamsSirenState; ///
+	native GetVehicleParamsSirenState__(vehicleid) = GetVehicleParamsSirenState; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehicleParamsCarDoors__(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarDoors; ///
+	native SetVehicleParamsCarDoors__(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarDoors; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleParamsCarDoors__(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarDoors; ///
+	native GetVehicleParamsCarDoors__(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarDoors; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehicleParamsCarWindows__(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarWindows; ///
+	native SetVehicleParamsCarWindows__(vehicleid, frontLeft, frontRight, rearLeft, rearRight) = SetVehicleParamsCarWindows; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleParamsCarWindows__(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarWindows; ///
+	native GetVehicleParamsCarWindows__(vehicleid, &frontLeft, &frontRight, &rearLeft, &rearRight) = GetVehicleParamsCarWindows; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehicleToRespawn__(vehicleid) = SetVehicleToRespawn; ///
+	native SetVehicleToRespawn__(vehicleid) = SetVehicleToRespawn; /// <p/>
 	/// <library>fixes.inc</library>
-	native LinkVehicleToInterior__(vehicleid, interiorid) = LinkVehicleToInterior; ///
+	native LinkVehicleToInterior__(vehicleid, interiorid) = LinkVehicleToInterior; /// <p/>
 	/// <library>fixes.inc</library>
-	native AddVehicleComponent__(vehicleid, componentid) = AddVehicleComponent; ///
+	native AddVehicleComponent__(vehicleid, componentid) = AddVehicleComponent; /// <p/>
 	/// <library>fixes.inc</library>
-	native RemoveVehicleComponent__(vehicleid, componentid) = RemoveVehicleComponent; ///
+	native RemoveVehicleComponent__(vehicleid, componentid) = RemoveVehicleComponent; /// <p/>
 	/// <library>fixes.inc</library>
-	native ChangeVehicleColor__(vehicleid, colour1, colour2) = ChangeVehicleColor; ///
+	native ChangeVehicleColor__(vehicleid, colour1, colour2) = ChangeVehicleColor; /// <p/>
 	/// <library>fixes.inc</library>
-	native ChangeVehiclePaintjob__(vehicleid, paintjobid) = ChangeVehiclePaintjob; ///
+	native ChangeVehiclePaintjob__(vehicleid, paintjobid) = ChangeVehiclePaintjob; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehicleHealth__(vehicleid, Float:health) = SetVehicleHealth; ///
+	native SetVehicleHealth__(vehicleid, Float:health) = SetVehicleHealth; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleHealth__(vehicleid, &Float:health) = GetVehicleHealth; ///
+	native GetVehicleHealth__(vehicleid, &Float:health) = GetVehicleHealth; /// <p/>
 	/// <library>fixes.inc</library>
-	native AttachTrailerToVehicle__(trailerid, vehicleid) = AttachTrailerToVehicle; ///
+	native AttachTrailerToVehicle__(trailerid, vehicleid) = AttachTrailerToVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle; ///
+	native DetachTrailerFromVehicle__(vehicleid) = DetachTrailerFromVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle; ///
+	native bool:IsTrailerAttachedToVehicle__(vehicleid) = IsTrailerAttachedToVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer; ///
+	native GetVehicleTrailer__(vehicleid) = GetVehicleTrailer; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehicleNumberPlate__(vehicleid, const numberPlate[]) = SetVehicleNumberPlate; ///
+	native SetVehicleNumberPlate__(vehicleid, const numberPlate[]) = SetVehicleNumberPlate; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleModel__(vehicleid) = GetVehicleModel; ///
+	native GetVehicleModel__(vehicleid) = GetVehicleModel; /// <p/>
 	/// <library>fixes.inc</library>
 	native GetVehicleComponentInSlot__(vehicleid, CARMODTYPE:slot) = GetVehicleComponentInSlot; /// 
 	/// <library>fixes.inc</library> 
@@ -13842,492 +13842,492 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	/// <library>fixes.inc</library> 
 	native RepairVehicle__(vehicleid) = RepairVehicle; /// 
 	/// <library>fixes.inc</library> 
-	native GetVehicleVelocity__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicleVelocity; ///
+	native GetVehicleVelocity__(vehicleid, &Float:x, &Float:y, &Float:z) = GetVehicleVelocity; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehicleVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVelocity; ///
+	native SetVehicleVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVehicleVelocity; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehicleAngularVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVehicleAngularVelocity; ///
+	native SetVehicleAngularVelocity__(vehicleid, Float:x, Float:y, Float:z) = SetVehicleAngularVelocity; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleDamageStatus__(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus; ///
+	native GetVehicleDamageStatus__(vehicleid, &panels, &doors, &lights, &tires) = GetVehicleDamageStatus; /// <p/>
 	/// <library>fixes.inc</library>
-	native UpdateVehicleDamageStatus__(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus; ///
+	native UpdateVehicleDamageStatus__(vehicleid, panels, doors, lights, tires) = UpdateVehicleDamageStatus; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleModelInfo__(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo; ///
+	native GetVehicleModelInfo__(vehiclemodel, VEHICLE_MODEL_INFO:infotype, &Float:x, &Float:y, &Float:z) = GetVehicleModelInfo; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetVehicleVirtualWorld__(vehicleid, virtualWorld) = SetVehicleVirtualWorld; ///
+	native SetVehicleVirtualWorld__(vehicleid, virtualWorld) = SetVehicleVirtualWorld; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld; ///
+	native GetVehicleVirtualWorld__(vehicleid) = GetVehicleVirtualWorld; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsValidVehicle__(vehicleid) = IsValidVehicle; ///
+	native bool:IsValidVehicle__(vehicleid) = IsValidVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native DB:DB_Open__(const name[]) = db_open; ///
+	native DB:DB_Open__(const name[]) = db_open; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:DB_Close__(DB:db) = db_close; ///
+	native bool:DB_Close__(DB:db) = db_close; /// <p/>
 	/// <library>fixes.inc</library>
-	native DBResult:DB_Query__(DB:db, const query[]) = db_query; ///
+	native DBResult:DB_Query__(DB:db, const query[]) = db_query; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:DB_FreeResult__(DBResult:result) = db_free_result; ///
+	native bool:DB_FreeResult__(DBResult:result) = db_free_result; /// <p/>
 	/// <library>fixes.inc</library>
-	native DB_NumRows__(DBResult:result) = db_num_rows; ///
+	native DB_NumRows__(DBResult:result) = db_num_rows; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:DB_NextRow__(DBResult:result) = db_next_row; ///
+	native bool:DB_NextRow__(DBResult:result) = db_next_row; /// <p/>
 	/// <library>fixes.inc</library>
-	native DB_NumFields__(DBResult:result) = db_num_fields; ///
+	native DB_NumFields__(DBResult:result) = db_num_fields; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:DB_FieldName__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name; ///
+	native bool:DB_FieldName__(DBResult:result, field, output[], size = sizeof (output)) = db_field_name; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:DB_GetField__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field; ///
+	native bool:DB_GetField__(DBResult:result, field, output[], size = sizeof (output)) = db_get_field; /// <p/>
 	/// <library>fixes.inc</library>
-	native DB_GetFieldInt__(DBResult:result, field = 0) = db_get_field_int; ///
+	native DB_GetFieldInt__(DBResult:result, field = 0) = db_get_field_int; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:DB_GetFieldFloat__(DBResult:result, field = 0) = db_get_field_float; ///
+	native Float:DB_GetFieldFloat__(DBResult:result, field = 0) = db_get_field_float; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:DB_GetFieldAssoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc; ///
+	native bool:DB_GetFieldAssoc__(DBResult:result, const field[], output[], size = sizeof (output)) = db_get_field_assoc; /// <p/>
 	/// <library>fixes.inc</library>
-	native DB_GetFieldAssocInt__(DBResult:result, const field[]) = db_get_field_assoc_int; ///
+	native DB_GetFieldAssocInt__(DBResult:result, const field[]) = db_get_field_assoc_int; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:DB_GetFieldAssocFloat__(DBResult:result, const field[]) = db_get_field_assoc_float; ///
+	native Float:DB_GetFieldAssocFloat__(DBResult:result, const field[]) = db_get_field_assoc_float; /// <p/>
 	/// <library>fixes.inc</library>
-	native DB_GetMemHandle__(DB:db) = db_get_mem_handle; ///
+	native DB_GetMemHandle__(DB:db) = db_get_mem_handle; /// <p/>
 	/// <library>fixes.inc</library>
-	native DB_GetResultMemHandle__(DBResult:result) = db_get_result_mem_handle; ///
+	native DB_GetResultMemHandle__(DBResult:result) = db_get_result_mem_handle; /// <p/>
 	/// <library>fixes.inc</library>
-	native DB_DebugOpenFiles__() = db_debug_openfiles; ///
+	native DB_DebugOpenFiles__() = db_debug_openfiles; /// <p/>
 	/// <library>fixes.inc</library>
-	native DB_DebugOpenResults__() = db_debug_openresults; ///
+	native DB_DebugOpenResults__() = db_debug_openresults; /// <p/>
 	/// <library>fixes.inc</library>
-	native CreateActor__(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor; ///
+	native CreateActor__(modelid, Float:x, Float:y, Float:z, Float:angle) = CreateActor; /// <p/>
 	/// <library>fixes.inc</library>
-	native DestroyActor__(actorid) = DestroyActor; ///
+	native DestroyActor__(actorid) = DestroyActor; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn; ///
+	native bool:IsActorStreamedIn__(actorid, playerid) = IsActorStreamedIn; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetActorVirtualWorld__(actorid, virtualWorld) = SetActorVirtualWorld; ///
+	native SetActorVirtualWorld__(actorid, virtualWorld) = SetActorVirtualWorld; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld; ///
+	native GetActorVirtualWorld__(actorid) = GetActorVirtualWorld; /// <p/>
 	/// <library>fixes.inc</library>
-	native ApplyActorAnimation__(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time) = ApplyActorAnimation; ///
+	native ApplyActorAnimation__(actorid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time) = ApplyActorAnimation; /// <p/>
 	/// <library>fixes.inc</library>
-	native ClearActorAnimations__(actorid) = ClearActorAnimations; ///
+	native ClearActorAnimations__(actorid) = ClearActorAnimations; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetActorPos__(actorid, Float:x, Float:y, Float:z) = SetActorPos; ///
+	native SetActorPos__(actorid, Float:x, Float:y, Float:z) = SetActorPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetActorPos__(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos; ///
+	native GetActorPos__(actorid, &Float:x, &Float:y, &Float:z) = GetActorPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetActorFacingAngle__(actorid, Float:angle) = SetActorFacingAngle; ///
+	native SetActorFacingAngle__(actorid, Float:angle) = SetActorFacingAngle; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetActorFacingAngle__(actorid, &Float:angle) = GetActorFacingAngle; ///
+	native GetActorFacingAngle__(actorid, &Float:angle) = GetActorFacingAngle; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetActorHealth__(actorid, Float:health) = SetActorHealth; ///
+	native SetActorHealth__(actorid, Float:health) = SetActorHealth; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetActorHealth__(actorid, &Float:health) = GetActorHealth; ///
+	native GetActorHealth__(actorid, &Float:health) = GetActorHealth; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetActorInvulnerable__(actorid, bool:invulnerable = true) = SetActorInvulnerable; ///
+	native SetActorInvulnerable__(actorid, bool:invulnerable = true) = SetActorInvulnerable; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable; ///
+	native bool:IsActorInvulnerable__(actorid) = IsActorInvulnerable; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsValidActor__(actorid) = IsValidActor; ///
+	native bool:IsValidActor__(actorid) = IsValidActor; /// <p/>
 	/// <library>fixes.inc</library>
-	native HTTP__(index, HTTP_METHOD:method, const url[], const data[], const callback[]) = HTTP; ///
+	native HTTP__(index, HTTP_METHOD:method, const url[], const data[], const callback[]) = HTTP; /// <p/>
 	/// <library>fixes.inc</library>
-	native CreateObject__(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject; ///
+	native CreateObject__(modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreateObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native AttachObjectToVehicle__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle; ///
+	native AttachObjectToVehicle__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native AttachObjectToObject__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, bool:syncRotation = true) = AttachObjectToObject; ///
+	native AttachObjectToObject__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ, bool:syncRotation = true) = AttachObjectToObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native AttachObjectToPlayer__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer; ///
+	native AttachObjectToPlayer__(objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachObjectToPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetObjectPos__(objectid, Float:x, Float:y, Float:z) = SetObjectPos; ///
+	native SetObjectPos__(objectid, Float:x, Float:y, Float:z) = SetObjectPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetObjectPos__(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos; ///
+	native GetObjectPos__(objectid, &Float:x, &Float:y, &Float:z) = GetObjectPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetObjectRot__(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectRot; ///
+	native SetObjectRot__(objectid, Float:rotX, Float:rotY, Float:rotZ) = SetObjectRot; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetObjectRot__(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot; ///
+	native GetObjectRot__(objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetObjectRot; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetObjectModel__(objectid) = GetObjectModel; ///
+	native GetObjectModel__(objectid) = GetObjectModel; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol; ///
+	native SetObjectNoCameraCol__(objectid) = SetObjectNoCameraCol; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsValidObject__(objectid) = IsValidObject; ///
+	native bool:IsValidObject__(objectid) = IsValidObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native DestroyObject__(objectid) = DestroyObject; ///
+	native DestroyObject__(objectid) = DestroyObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native MoveObject__(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject; ///
+	native MoveObject__(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MoveObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native StopObject__(objectid) = StopObject; ///
+	native StopObject__(objectid) = StopObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsObjectMoving__(objectid) = IsObjectMoving; ///
+	native bool:IsObjectMoving__(objectid) = IsObjectMoving; /// <p/>
 	/// <library>fixes.inc</library>
-	native EditObject__(playerid, objectid) = EditObject; ///
+	native EditObject__(playerid, objectid) = EditObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native EditPlayerObject__(playerid, objectid) = EditPlayerObject; ///
+	native EditPlayerObject__(playerid, objectid) = EditPlayerObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native SelectObject__(playerid) = SelectObject; ///
+	native SelectObject__(playerid) = SelectObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native CancelEdit__(playerid) = CancelEdit; ///
+	native CancelEdit__(playerid) = CancelEdit; /// <p/>
 	/// <library>fixes.inc</library>
-	native CreatePlayerObject__(playerid, modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreatePlayerObject; ///
+	native CreatePlayerObject__(playerid, modelid, Float:x, Float:y, Float:z, Float:rotX, Float:rotY, Float:rotZ, Float:drawDistance = 0.0) = CreatePlayerObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native AttachPlayerObjectToVehicle__(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToVehicle; ///
+	native AttachPlayerObjectToVehicle__(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerObjectPos__(playerid, objectid, Float:x, Float:y, Float:z) = SetPlayerObjectPos; ///
+	native SetPlayerObjectPos__(playerid, objectid, Float:x, Float:y, Float:z) = SetPlayerObjectPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerObjectPos__(playerid, objectid, &Float:x, &Float:y, &Float:z) = GetPlayerObjectPos; ///
+	native GetPlayerObjectPos__(playerid, objectid, &Float:x, &Float:y, &Float:z) = GetPlayerObjectPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerObjectRot__(playerid, objectid, Float:rotX, Float:rotY, Float:rotZ) = SetPlayerObjectRot; ///
+	native SetPlayerObjectRot__(playerid, objectid, Float:rotX, Float:rotY, Float:rotZ) = SetPlayerObjectRot; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerObjectRot__(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot; ///
+	native GetPlayerObjectRot__(playerid, objectid, &Float:rotX, &Float:rotY, &Float:rotZ) = GetPlayerObjectRot; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerObjectModel__(playerid, objectid) = GetPlayerObjectModel; ///
+	native GetPlayerObjectModel__(playerid, objectid) = GetPlayerObjectModel; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCameraCol; ///
+	native SetPlayerObjectNoCameraCol__(playerid, objectid) = SetPlayerObjectNoCameraCol; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject; ///
+	native bool:IsValidPlayerObject__(playerid, objectid) = IsValidPlayerObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native DestroyPlayerObject__(playerid, objectid) = DestroyPlayerObject; ///
+	native DestroyPlayerObject__(playerid, objectid) = DestroyPlayerObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native MovePlayerObject__(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject; ///
+	native MovePlayerObject__(playerid, objectid, Float:x, Float:y, Float:z, Float:speed, Float:rotX = -1000.0, Float:rotY = -1000.0, Float:rotZ = -1000.0) = MovePlayerObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native StopPlayerObject__(playerid, objectid) = StopPlayerObject; ///
+	native StopPlayerObject__(playerid, objectid) = StopPlayerObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving; ///
+	native bool:IsPlayerObjectMoving__(playerid, objectid) = IsPlayerObjectMoving; /// <p/>
 	/// <library>fixes.inc</library>
-	native AttachPlayerObjectToPlayer__(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer; ///
+	native AttachPlayerObjectToPlayer__(playerid, objectid, parentid, Float:offsetX, Float:offsetY, Float:offsetZ, Float:rotX, Float:rotY, Float:rotZ) = AttachPlayerObjectToPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetObjectMaterial__(objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetObjectMaterial; ///
+	native SetObjectMaterial__(objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetObjectMaterial; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerObjectMaterial__(playerid, objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetPlayerObjectMaterial; ///
+	native SetPlayerObjectMaterial__(playerid, objectid, materialIndex, modelid, const textureLibrary[], const textureName[], materialColour = 0) = SetPlayerObjectMaterial; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetObjectMaterialText__(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText; ///
+	native SetObjectMaterialText__(objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetObjectMaterialText; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerObjectMaterialText__(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText; ///
+	native SetPlayerObjectMaterialText__(playerid, objectid, const text[], materialIndex = 0, OBJECT_MATERIAL_SIZE:materialSize = OBJECT_MATERIAL_SIZE_256x128, const fontFace[] = "Arial", fontSize = 24, bool:bold = true, fontColour = 0xFFFFFFFF, backgroundColour = 0, OBJECT_MATERIAL_TEXT_ALIGN:textalignment = OBJECT_MATERIAL_TEXT_ALIGN_LEFT) = SetPlayerObjectMaterialText; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetObjectsDefaultCameraCol__(bool:disable) = SetObjectsDefaultCameraCol; ///
+	native SetObjectsDefaultCameraCol__(bool:disable) = SetObjectsDefaultCameraCol; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetSpawnInfo__(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo; ///
+	native SetSpawnInfo__(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, ammo1, weapon2, ammo2, weapon3, ammo3) = SetSpawnInfo; /// <p/>
 	/// <library>fixes.inc</library>
-	native SpawnPlayer__(playerid) = SpawnPlayer; ///
+	native SpawnPlayer__(playerid) = SpawnPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerPos; ///
+	native SetPlayerPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerPosFindZ__(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ; ///
+	native SetPlayerPosFindZ__(playerid, Float:x, Float:y, Float:z) = SetPlayerPosFindZ; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos; ///
+	native GetPlayerPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerFacingAngle__(playerid, Float:ang) = SetPlayerFacingAngle; ///
+	native SetPlayerFacingAngle__(playerid, Float:ang) = SetPlayerFacingAngle; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle; ///
+	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint; ///
+	native bool:IsPlayerInRangeOfPoint__(playerid, Float:range, Float:x, Float:y, Float:z) = IsPlayerInRangeOfPoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:GetPlayerDistanceFromPoint__(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint; ///
+	native Float:GetPlayerDistanceFromPoint__(playerid, Float:x, Float:y, Float:z) = GetPlayerDistanceFromPoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerStreamedIn__(targetid, playerid) = IsPlayerStreamedIn; ///
+	native bool:IsPlayerStreamedIn__(targetid, playerid) = IsPlayerStreamedIn; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerInterior__(playerid, interiorid) = SetPlayerInterior; ///
+	native SetPlayerInterior__(playerid, interiorid) = SetPlayerInterior; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerInterior__(playerid) = GetPlayerInterior; ///
+	native GetPlayerInterior__(playerid) = GetPlayerInterior; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerHealth__(playerid, Float:health) = SetPlayerHealth; ///
+	native SetPlayerHealth__(playerid, Float:health) = SetPlayerHealth; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerHealth__(playerid, &Float:health) = GetPlayerHealth; ///
+	native GetPlayerHealth__(playerid, &Float:health) = GetPlayerHealth; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerArmour__(playerid, Float:armour) = SetPlayerArmour; ///
+	native SetPlayerArmour__(playerid, Float:armour) = SetPlayerArmour; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerArmour__(playerid, &Float:armour) = GetPlayerArmour; ///
+	native GetPlayerArmour__(playerid, &Float:armour) = GetPlayerArmour; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerAmmo__(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo; ///
+	native SetPlayerAmmo__(playerid, WEAPON:weaponid, ammo) = SetPlayerAmmo; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerAmmo__(playerid) = GetPlayerAmmo; ///
+	native GetPlayerAmmo__(playerid) = GetPlayerAmmo; /// <p/>
 	/// <library>fixes.inc</library>
-	native WEAPONSTATE:GetPlayerWeaponState__(playerid) = GetPlayerWeaponState; ///
+	native WEAPONSTATE:GetPlayerWeaponState__(playerid) = GetPlayerWeaponState; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerTargetPlayer__(playerid) = GetPlayerTargetPlayer; ///
+	native GetPlayerTargetPlayer__(playerid) = GetPlayerTargetPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerTargetActor__(playerid) = GetPlayerTargetActor; ///
+	native GetPlayerTargetActor__(playerid) = GetPlayerTargetActor; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerTeam__(playerid, teamid) = SetPlayerTeam; ///
+	native SetPlayerTeam__(playerid, teamid) = SetPlayerTeam; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerTeam__(playerid) = GetPlayerTeam; ///
+	native GetPlayerTeam__(playerid) = GetPlayerTeam; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerScore__(playerid, score) = SetPlayerScore; ///
+	native SetPlayerScore__(playerid, score) = SetPlayerScore; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerScore__(playerid) = GetPlayerScore; ///
+	native GetPlayerScore__(playerid) = GetPlayerScore; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerDrunkLevel__(playerid) = GetPlayerDrunkLevel; ///
+	native GetPlayerDrunkLevel__(playerid) = GetPlayerDrunkLevel; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerDrunkLevel__(playerid, level) = SetPlayerDrunkLevel; ///
+	native SetPlayerDrunkLevel__(playerid, level) = SetPlayerDrunkLevel; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerColor__(playerid, colour) = SetPlayerColor; ///
+	native SetPlayerColor__(playerid, colour) = SetPlayerColor; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerColor__(playerid) = GetPlayerColor; ///
+	native GetPlayerColor__(playerid) = GetPlayerColor; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerSkin__(playerid, skinid) = SetPlayerSkin; ///
+	native SetPlayerSkin__(playerid, skinid) = SetPlayerSkin; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerSkin__(playerid) = GetPlayerSkin; ///
+	native GetPlayerSkin__(playerid) = GetPlayerSkin; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerCustomSkin__(playerid) = GetPlayerCustomSkin; ///
+	native GetPlayerCustomSkin__(playerid) = GetPlayerCustomSkin; /// <p/>
 	/// <library>fixes.inc</library>
-	native GivePlayerWeapon__(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon; ///
+	native GivePlayerWeapon__(playerid, WEAPON:weaponid, ammo) = GivePlayerWeapon; /// <p/>
 	/// <library>fixes.inc</library>
-	native ResetPlayerWeapons__(playerid) = ResetPlayerWeapons; ///
+	native ResetPlayerWeapons__(playerid) = ResetPlayerWeapons; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerArmedWeapon__(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon; ///
+	native SetPlayerArmedWeapon__(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerWeaponData__(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData; ///
+	native GetPlayerWeaponData__(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData; /// <p/>
 	/// <library>fixes.inc</library>
-	native GivePlayerMoney__(playerid, money) = GivePlayerMoney; ///
+	native GivePlayerMoney__(playerid, money) = GivePlayerMoney; /// <p/>
 	/// <library>fixes.inc</library>
-	native ResetPlayerMoney__(playerid) = ResetPlayerMoney; ///
+	native ResetPlayerMoney__(playerid) = ResetPlayerMoney; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerName__(playerid, const name[]) = SetPlayerName; ///
+	native SetPlayerName__(playerid, const name[]) = SetPlayerName; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerMoney__(playerid) = GetPlayerMoney; ///
+	native GetPlayerMoney__(playerid) = GetPlayerMoney; /// <p/>
 	/// <library>fixes.inc</library>
-	native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState; ///
+	native PLAYER_STATE:GetPlayerState__(playerid) = GetPlayerState; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerIp__(playerid, ip[], len = sizeof (ip)) = GetPlayerIp; ///
+	native GetPlayerIp__(playerid, ip[], len = sizeof (ip)) = GetPlayerIp; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerPing__(playerid) = GetPlayerPing; ///
+	native GetPlayerPing__(playerid) = GetPlayerPing; /// <p/>
 	/// <library>fixes.inc</library>
-	native WEAPON:GetPlayerWeapon__(playerid) = GetPlayerWeapon; ///
+	native WEAPON:GetPlayerWeapon__(playerid) = GetPlayerWeapon; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys; ///
+	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerActions__(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys; ///
+	native GetPlayerActions__(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName; ///
+	native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime; ///
+	native SetPlayerTime__(playerid, hour, minute) = SetPlayerTime; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerTime__(playerid, &hour, &minute) = GetPlayerTime; ///
+	native GetPlayerTime__(playerid, &hour, &minute) = GetPlayerTime; /// <p/>
 	/// <library>fixes.inc</library>
-	native TogglePlayerClock__(playerid, bool:toggle) = TogglePlayerClock; ///
+	native TogglePlayerClock__(playerid, bool:toggle) = TogglePlayerClock; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerWeather__(playerid, weather) = SetPlayerWeather; ///
+	native SetPlayerWeather__(playerid, weather) = SetPlayerWeather; /// <p/>
 	/// <library>fixes.inc</library>
-	native ForceClassSelection__(playerid) = ForceClassSelection; ///
+	native ForceClassSelection__(playerid) = ForceClassSelection; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerWantedLevel__(playerid, level) = SetPlayerWantedLevel; ///
+	native SetPlayerWantedLevel__(playerid, level) = SetPlayerWantedLevel; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerWantedLevel__(playerid) = GetPlayerWantedLevel; ///
+	native GetPlayerWantedLevel__(playerid) = GetPlayerWantedLevel; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerFightingStyle__(playerid, FIGHT_STYLE:style) = SetPlayerFightingStyle; ///
+	native SetPlayerFightingStyle__(playerid, FIGHT_STYLE:style) = SetPlayerFightingStyle; /// <p/>
 	/// <library>fixes.inc</library>
-	native FIGHT_STYLE:GetPlayerFightingStyle__(playerid) = GetPlayerFightingStyle; ///
+	native FIGHT_STYLE:GetPlayerFightingStyle__(playerid) = GetPlayerFightingStyle; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerVelocity__(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity; ///
+	native SetPlayerVelocity__(playerid, Float:x, Float:y, Float:z) = SetPlayerVelocity; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerVelocity__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity; ///
+	native GetPlayerVelocity__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerVelocity; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayCrimeReportForPlayer__(playerid, suspectid, crime) = PlayCrimeReportForPlayer; ///
+	native PlayCrimeReportForPlayer__(playerid, suspectid, crime) = PlayCrimeReportForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayAudioStreamForPlayer__(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, bool:usepos = false) = PlayAudioStreamForPlayer; ///
+	native PlayAudioStreamForPlayer__(playerid, const url[], Float:posX = 0.0, Float:posY = 0.0, Float:posZ = 0.0, Float:distance = 50.0, bool:usepos = false) = PlayAudioStreamForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native StopAudioStreamForPlayer__(playerid) = StopAudioStreamForPlayer; ///
+	native StopAudioStreamForPlayer__(playerid) = StopAudioStreamForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerShopName__(playerid, const shopname[]) = SetPlayerShopName; ///
+	native SetPlayerShopName__(playerid, const shopname[]) = SetPlayerShopName; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerSkillLevel__(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel; ///
+	native SetPlayerSkillLevel__(playerid, WEAPONSKILL:skill, level) = SetPlayerSkillLevel; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerSurfingVehicleID__(playerid) = GetPlayerSurfingVehicleID; ///
+	native GetPlayerSurfingVehicleID__(playerid) = GetPlayerSurfingVehicleID; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerSurfingObjectID__(playerid) = GetPlayerSurfingObjectID; ///
+	native GetPlayerSurfingObjectID__(playerid) = GetPlayerSurfingObjectID; /// <p/>
 	/// <library>fixes.inc</library>
-	native RemoveBuildingForPlayer__(playerid, modelid, Float:centerX, Float:centerY, Float:centerZ, Float:radius) = RemoveBuildingForPlayer; ///
+	native RemoveBuildingForPlayer__(playerid, modelid, Float:centerX, Float:centerY, Float:centerZ, Float:radius) = RemoveBuildingForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerLastShotVectors__(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors; ///
+	native GetPlayerLastShotVectors__(playerid, &Float:originX, &Float:originY, &Float:originZ, &Float:hitPosX, &Float:hitPosY, &Float:hitPosZ) = GetPlayerLastShotVectors; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject; ///
+	native SetPlayerAttachedObject__(playerid, index, modelid, bone, Float:offsetX = 0.0, Float:offsetY = 0.0, Float:offsetZ = 0.0, Float:rotX = 0.0, Float:rotY = 0.0, Float:rotZ = 0.0, Float:scaleX = 1.0, Float:scaleY = 1.0, Float:scaleZ = 1.0, materialColour1 = 0, materialColour2 = 0) = SetPlayerAttachedObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject; ///
+	native RemovePlayerAttachedObject__(playerid, index) = RemovePlayerAttachedObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed; ///
+	native bool:IsPlayerAttachedSlotUsed__(playerid, index) = IsPlayerAttachedObjectSlotUsed; /// <p/>
 	/// <library>fixes.inc</library>
-	native EditAttachedObject__(playerid, index) = EditAttachedObject; ///
+	native EditAttachedObject__(playerid, index) = EditAttachedObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw; ///
+	native PlayerText:CreatePlayerTextDraw__(playerid, Float:x, Float:y, const text[]) = CreatePlayerTextDraw; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy; ///
+	native PlayerTextDrawDestroy__(playerid, PlayerText:text) = PlayerTextDrawDestroy; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawLetterSize__(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawLetterSize; ///
+	native PlayerTextDrawLetterSize__(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawLetterSize; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawTextSize__(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize; ///
+	native PlayerTextDrawTextSize__(playerid, PlayerText:text, Float:width, Float:height) = PlayerTextDrawTextSize; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawAlignment__(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment; ///
+	native PlayerTextDrawAlignment__(playerid, PlayerText:text, TEXT_DRAW_ALIGN:alignment) = PlayerTextDrawAlignment; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawColor__(playerid, PlayerText:text, colour) = PlayerTextDrawColor; ///
+	native PlayerTextDrawColor__(playerid, PlayerText:text, colour) = PlayerTextDrawColor; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawUseBox__(playerid, PlayerText:text, bool:use) = PlayerTextDrawUseBox; ///
+	native PlayerTextDrawUseBox__(playerid, PlayerText:text, bool:use) = PlayerTextDrawUseBox; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawBoxColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor; ///
+	native PlayerTextDrawBoxColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBoxColor; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawSetShadow__(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow; ///
+	native PlayerTextDrawSetShadow__(playerid, PlayerText:text, size) = PlayerTextDrawSetShadow; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawSetOutline__(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline; ///
+	native PlayerTextDrawSetOutline__(playerid, PlayerText:text, size) = PlayerTextDrawSetOutline; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawBackgroundColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor; ///
+	native PlayerTextDrawBackgroundColor__(playerid, PlayerText:text, colour) = PlayerTextDrawBackgroundColor; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawFont__(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont; ///
+	native PlayerTextDrawFont__(playerid, PlayerText:text, TEXT_DRAW_FONT:font) = PlayerTextDrawFont; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawSetProportional__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetProportional; ///
+	native PlayerTextDrawSetProportional__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetProportional; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetSelectable; ///
+	native PlayerTextDrawSetSelectable__(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetSelectable; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawShow__(playerid, PlayerText:text) = PlayerTextDrawShow; ///
+	native PlayerTextDrawShow__(playerid, PlayerText:text) = PlayerTextDrawShow; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawHide__(playerid, PlayerText:text) = PlayerTextDrawHide; ///
+	native PlayerTextDrawHide__(playerid, PlayerText:text) = PlayerTextDrawHide; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawSetString__(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString; ///
+	native PlayerTextDrawSetString__(playerid, PlayerText:text, const string[]) = PlayerTextDrawSetString; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawSetPreviewModel__(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel; ///
+	native PlayerTextDrawSetPreviewModel__(playerid, PlayerText:text, modelIndex) = PlayerTextDrawSetPreviewModel; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTextDrawSetPreviewRot__(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot; ///
+	native PlayerTextDrawSetPreviewRot__(playerid, PlayerText:text, Float:rotX, Float:rotY, Float:rotZ, Float:zoom = 1.0) = PlayerTextDrawSetPreviewRot; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerTDSetPreviewVehCol__(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol; ///
+	native PlayerTDSetPreviewVehCol__(playerid, PlayerText:text, colour1, colour2) = PlayerTextDrawSetPreviewVehCol; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPVarInt__(playerid, const pvar[], value) = SetPVarInt; ///
+	native SetPVarInt__(playerid, const pvar[], value) = SetPVarInt; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPVarInt__(playerid, const pvar[]) = GetPVarInt; ///
+	native GetPVarInt__(playerid, const pvar[]) = GetPVarInt; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPVarString__(playerid, const pvar[], const value[]) = SetPVarString; ///
+	native SetPVarString__(playerid, const pvar[], const value[]) = SetPVarString; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPVarString__(playerid, const pvar[], output[], len = sizeof (output)) = GetPVarString; ///
+	native GetPVarString__(playerid, const pvar[], output[], len = sizeof (output)) = GetPVarString; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPVarFloat__(playerid, const pvar[], Float:value) = SetPVarFloat; ///
+	native SetPVarFloat__(playerid, const pvar[], Float:value) = SetPVarFloat; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:GetPVarFloat__(playerid, const pvar[]) = GetPVarFloat; ///
+	native Float:GetPVarFloat__(playerid, const pvar[]) = GetPVarFloat; /// <p/>
 	/// <library>fixes.inc</library>
-	native DeletePVar__(playerid, const pvar[]) = DeletePVar; ///
+	native DeletePVar__(playerid, const pvar[]) = DeletePVar; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPVarsUpperIndex__(playerid) = GetPVarsUpperIndex; ///
+	native GetPVarsUpperIndex__(playerid) = GetPVarsUpperIndex; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPVarNameAtIndex__(playerid, index, output[], size = sizeof (output)) = GetPVarNameAtIndex; ///
+	native GetPVarNameAtIndex__(playerid, index, output[], size = sizeof (output)) = GetPVarNameAtIndex; /// <p/>
 	/// <library>fixes.inc</library>
-	native PLAYER_VARTYPE:GetPVarType__(playerid, const pvar[]) = GetPVarType; ///
+	native PLAYER_VARTYPE:GetPVarType__(playerid, const pvar[]) = GetPVarType; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerChatBubble__(playerid, const text[], colour, Float:drawdistance, expiretime) = SetPlayerChatBubble; ///
+	native SetPlayerChatBubble__(playerid, const text[], colour, Float:drawdistance, expiretime) = SetPlayerChatBubble; /// <p/>
 	/// <library>fixes.inc</library>
-	native PutPlayerInVehicle__(playerid, vehicleid, seatid) = PutPlayerInVehicle; ///
+	native PutPlayerInVehicle__(playerid, vehicleid, seatid) = PutPlayerInVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID; ///
+	native GetPlayerVehicleID__(playerid) = GetPlayerVehicleID; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerVehicleSeat__(playerid) = GetPlayerVehicleSeat; ///
+	native GetPlayerVehicleSeat__(playerid) = GetPlayerVehicleSeat; /// <p/>
 	/// <library>fixes.inc</library>
-	native RemovePlayerFromVehicle__(playerid) = RemovePlayerFromVehicle; ///
+	native RemovePlayerFromVehicle__(playerid) = RemovePlayerFromVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native TogglePlayerControllable__(playerid, bool:toggle) = TogglePlayerControllable; ///
+	native TogglePlayerControllable__(playerid, bool:toggle) = TogglePlayerControllable; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerPlaySound__(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound; ///
+	native PlayerPlaySound__(playerid, soundid, Float:x, Float:y, Float:z) = PlayerPlaySound; /// <p/>
 	/// <library>fixes.inc</library>
-	native ApplyAnimation__(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE) = ApplyAnimation; ///
+	native ApplyAnimation__(playerid, const animationLibrary[], const animationName[], Float:delta, bool:loop, bool:lockX, bool:lockY, bool:freeze, time, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE) = ApplyAnimation; /// <p/>
 	/// <library>fixes.inc</library>
-	native ClearAnimations__(playerid, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE) = ClearAnimations; ///
+	native ClearAnimations__(playerid, FORCE_SYNC:forceSync = _FIXES_FORCE_SYNC_NONE) = ClearAnimations; /// <p/>
 	/// <library>fixes.inc</library>
 	native GetPlayerAnimationIndex__(playerid) = GetPlayerAnimationIndex; /// 
 	/// <library>fixes.inc</library> 
 	native GetAnimationName__(index, animationLibrary[], len1 = sizeof (animationLibrary), animationName[], len2 = sizeof (animationName)) = GetAnimationName; /// 
 	/// <library>fixes.inc</library> 
-	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction; ///
+	native SPECIAL_ACTION:GetPlayerSpecialAction__(playerid) = GetPlayerSpecialAction; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerSpecialAction__(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction; ///
+	native SetPlayerSpecialAction__(playerid, SPECIAL_ACTION:actionid) = SetPlayerSpecialAction; /// <p/>
 	/// <library>fixes.inc</library>
-	native DisableRemoteVehCollisions__(playerid, bool:disable) = DisableRemoteVehicleCollisions; ///
+	native DisableRemoteVehCollisions__(playerid, bool:disable) = DisableRemoteVehicleCollisions; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint; ///
+	native SetPlayerCheckpoint__(playerid, Float:x, Float:y, Float:z, Float:size) = SetPlayerCheckpoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint; ///
+	native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerRaceCheckpoint__(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint; ///
+	native SetPlayerRaceCheckpoint__(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native DisablePlayerRaceCheckpoint__(playerid) = DisablePlayerRaceCheckpoint; ///
+	native DisablePlayerRaceCheckpoint__(playerid) = DisablePlayerRaceCheckpoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerWorldBounds__(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds; ///
+	native SetPlayerWorldBounds__(playerid, Float:maxX, Float:minX, Float:maxY, Float:minY) = SetPlayerWorldBounds; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerMarkerForPlayer__(playerid, targetid, colour) = SetPlayerMarkerForPlayer; ///
+	native SetPlayerMarkerForPlayer__(playerid, targetid, colour) = SetPlayerMarkerForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native ShowPlayerNameTagForPlayer__(playerid, targetid, bool:show) = ShowPlayerNameTagForPlayer; ///
+	native ShowPlayerNameTagForPlayer__(playerid, targetid, bool:show) = ShowPlayerNameTagForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerMapIcon__(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon; ///
+	native SetPlayerMapIcon__(playerid, iconid, Float:x, Float:y, Float:z, markerType, colour, MAPICON:style = MAPICON_LOCAL) = SetPlayerMapIcon; /// <p/>
 	/// <library>fixes.inc</library>
-	native RemovePlayerMapIcon__(playerid, iconid) = RemovePlayerMapIcon; ///
+	native RemovePlayerMapIcon__(playerid, iconid) = RemovePlayerMapIcon; /// <p/>
 	/// <library>fixes.inc</library>
-	#pragma deprecated Use `OnPlayerClickMap`. ///
-	native AllowPlayerTeleport__(playerid, bool:allow) = AllowPlayerTeleport; ///
+	#pragma deprecated Use `OnPlayerClickMap`. /// <p/>
+	native AllowPlayerTeleport__(playerid, bool:allow) = AllowPlayerTeleport; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerCameraPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos; ///
+	native SetPlayerCameraPos__(playerid, Float:x, Float:y, Float:z) = SetPlayerCameraPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerCameraLookAt__(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt; ///
+	native SetPlayerCameraLookAt__(playerid, Float:x, Float:y, Float:z, CAM_MOVE:cut = CAMERA_CUT) = SetPlayerCameraLookAt; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetCameraBehindPlayer__(playerid) = SetCameraBehindPlayer; ///
+	native SetCameraBehindPlayer__(playerid) = SetCameraBehindPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerCameraPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos; ///
+	native GetPlayerCameraPos__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerCameraFrontVector__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector; ///
+	native GetPlayerCameraFrontVector__(playerid, &Float:x, &Float:y, &Float:z) = GetPlayerCameraFrontVector; /// <p/>
 	/// <library>fixes.inc</library>
-	native CAM_MODE:GetPlayerCameraMode__(playerid) = GetPlayerCameraMode; ///
+	native CAM_MODE:GetPlayerCameraMode__(playerid) = GetPlayerCameraMode; /// <p/>
 	/// <library>fixes.inc</library>
-	native EnablePlayerCameraTarget__(playerid, bool:enable) = EnablePlayerCameraTarget; ///
+	native EnablePlayerCameraTarget__(playerid, bool:enable) = EnablePlayerCameraTarget; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerCameraTargetObject__(playerid) = GetPlayerCameraTargetObject; ///
+	native GetPlayerCameraTargetObject__(playerid) = GetPlayerCameraTargetObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerCameraTargetVehicle__(playerid) = GetPlayerCameraTargetVehicle; ///
+	native GetPlayerCameraTargetVehicle__(playerid) = GetPlayerCameraTargetVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerCameraTargetPlayer__(playerid) = GetPlayerCameraTargetPlayer; ///
+	native GetPlayerCameraTargetPlayer__(playerid) = GetPlayerCameraTargetPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerCameraTargetActor__(playerid) = GetPlayerCameraTargetActor; ///
+	native GetPlayerCameraTargetActor__(playerid) = GetPlayerCameraTargetActor; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:GetPlayerCameraAspectRatio__(playerid) = GetPlayerCameraAspectRatio; ///
+	native Float:GetPlayerCameraAspectRatio__(playerid) = GetPlayerCameraAspectRatio; /// <p/>
 	/// <library>fixes.inc</library>
-	native Float:GetPlayerCameraZoom__(playerid) = GetPlayerCameraZoom; ///
+	native Float:GetPlayerCameraZoom__(playerid) = GetPlayerCameraZoom; /// <p/>
 	/// <library>fixes.inc</library>
-	native AttachCameraToObject__(playerid, objectid) = AttachCameraToObject; ///
+	native AttachCameraToObject__(playerid, objectid) = AttachCameraToObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native AttachCameraToPlayerObject__(playerid, objectid) = AttachCameraToPlayerObject; ///
+	native AttachCameraToPlayerObject__(playerid, objectid) = AttachCameraToPlayerObject; /// <p/>
 	/// <library>fixes.inc</library>
-	native InterpolateCameraPos__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos; ///
+	native InterpolateCameraPos__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraPos; /// <p/>
 	/// <library>fixes.inc</library>
-	native InterpolateCameraLookAt__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt; ///
+	native InterpolateCameraLookAt__(playerid, Float:fromX, Float:fromY, Float:fromZ, Float:toX, Float:toY, Float:toZ, time, CAM_MOVE:cut = CAMERA_CUT) = InterpolateCameraLookAt; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected; ///
+	native bool:IsPlayerConnected__(playerid) = IsPlayerConnected; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle; ///
+	native bool:IsPlayerInVehicle__(playerid, vehicleid) = IsPlayerInVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle; ///
+	native bool:IsPlayerInAnyVehicle__(playerid) = IsPlayerInAnyVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint; ///
+	native bool:IsPlayerInCheckpoint__(playerid) = IsPlayerInCheckpoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint; ///
+	native bool:IsPlayerInRaceCheckpoint__(playerid) = IsPlayerInRaceCheckpoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerVirtualWorld__(playerid, virtualWorld) = SetPlayerVirtualWorld; ///
+	native SetPlayerVirtualWorld__(playerid, virtualWorld) = SetPlayerVirtualWorld; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld; ///
+	native GetPlayerVirtualWorld__(playerid) = GetPlayerVirtualWorld; /// <p/>
 	/// <library>fixes.inc</library>
-	native EnableStuntBonusForPlayer__(playerid, bool:enable) = EnableStuntBonusForPlayer; ///
+	native EnableStuntBonusForPlayer__(playerid, bool:enable) = EnableStuntBonusForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native EnableStuntBonusForAll__(bool:enable) = EnableStuntBonusForAll; ///
+	native EnableStuntBonusForAll__(bool:enable) = EnableStuntBonusForAll; /// <p/>
 	/// <library>fixes.inc</library>
-	native TogglePlayerSpectating__(playerid, bool:toggle) = TogglePlayerSpectating; ///
+	native TogglePlayerSpectating__(playerid, bool:toggle) = TogglePlayerSpectating; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerSpectatePlayer__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer; ///
+	native PlayerSpectatePlayer__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectatePlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native PlayerSpectateVehicle__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle; ///
+	native PlayerSpectateVehicle__(playerid, targetid, SPECTATE_MODE:mode = SPECTATE_MODE_NORMAL) = PlayerSpectateVehicle; /// <p/>
 	/// <library>fixes.inc</library>
-	native StartRecordingPlayerData__(playerid, PLAYER_RECORDING_TYPE:recordType, const recordFile[]) = StartRecordingPlayerData; ///
+	native StartRecordingPlayerData__(playerid, PLAYER_RECORDING_TYPE:recordType, const recordFile[]) = StartRecordingPlayerData; /// <p/>
 	/// <library>fixes.inc</library>
-	native StopRecordingPlayerData__(playerid) = StopRecordingPlayerData; ///
+	native StopRecordingPlayerData__(playerid) = StopRecordingPlayerData; /// <p/>
 	/// <library>fixes.inc</library>
 	native SelectTextDraw__(playerid, hoverColour) = SelectTextDraw; /// 
 	/// <library>fixes.inc</library> 
 	native CancelSelectTextDraw__(playerid) = CancelSelectTextDraw; ///	
 	/// <library>fixes.inc</library>	
-	native CreateExplosionForPlayer__(playerid, Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosionForPlayer; ///
+	native CreateExplosionForPlayer__(playerid, Float:x, Float:y, Float:z, type, Float:radius) = CreateExplosionForPlayer; /// <p/>
 	/// <library>fixes.inc</library>
-	native SendClientCheck__(playerid, type, memoryAddress, memoryOffset, byteCount) = SendClientCheck; ///
-#endif ///
-#if defined SAMP_BYPASS_NATIVES ///
+	native SendClientCheck__(playerid, type, memoryAddress, memoryOffset, byteCount) = SendClientCheck; /// <p/>
+#endif /// <p/>
+#if defined SAMP_BYPASS_NATIVES /// <p/>
 	_FIXES_HIDE_PAWNDOC(SAMP_BYPASS_NATIVES);
 #endif
 
@@ -14850,71 +14850,71 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 
 */
 
-///
+/// <p/>
 /// <remarks>
 /// File operators.
-///
+/// <p/>
 /// Forwards for operators that shouldn't exist, so they won't exist.
 /// </remarks>
-///
-#if FIX_FileMaths ///
+/// <p/>
+#if FIX_FileMaths /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator++(File:a); ///
+	forward File:operator++(File:a); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator--(File:a); ///
+	forward File:operator--(File:a); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator-(File:a); ///
+	forward File:operator-(File:a); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator+(File:a, File:b); ///
+	forward File:operator+(File:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator+(File:a, _:b); ///
+	forward File:operator+(File:a, _:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator-(File:a, File:b); ///
+	forward File:operator-(File:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator-(_:a, File:b); ///
+	forward File:operator-(_:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator-(File:a, _:b); ///
+	forward File:operator-(File:a, _:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator*(File:a, File:b); ///
+	forward File:operator*(File:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator*(File:a, _:b); ///
+	forward File:operator*(File:a, _:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator/(File:a, File:b); ///
+	forward File:operator/(File:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator/(_:a, File:b); ///
+	forward File:operator/(_:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator/(File:a, _:b); ///
+	forward File:operator/(File:a, _:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator%(File:a, File:b); ///
+	forward File:operator%(File:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator%(_:a, File:b); ///
+	forward File:operator%(_:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward File:operator%(File:a, _:b); ///
+	forward File:operator%(File:a, _:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator<(File:a, File:b); ///
+	forward bool:operator<(File:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator<(_:a, File:b); ///
+	forward bool:operator<(_:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator<(File:a, _:b); ///
+	forward bool:operator<(File:a, _:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator<=(File:a, File:b); ///
+	forward bool:operator<=(File:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator<=(_:a, File:b); ///
+	forward bool:operator<=(_:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator<=(File:a, _:b); ///
+	forward bool:operator<=(File:a, _:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator>(File:a, File:b); ///
+	forward bool:operator>(File:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator>(_:a, File:b); ///
+	forward bool:operator>(_:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator>(File:a, _:b); ///
+	forward bool:operator>(File:a, _:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator>=(File:a, File:b); ///
+	forward bool:operator>=(File:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator>=(_:a, File:b); ///
+	forward bool:operator>=(_:a, File:b); /// <p/>
 	/// <library>fixes.inc</library>
-	forward bool:operator>=(File:a, _:b); ///
-#else ///
+	forward bool:operator>=(File:a, _:b); /// <p/>
+#else /// <p/>
 	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS);
 #endif
 
