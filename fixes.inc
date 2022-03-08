@@ -25216,7 +25216,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
  * <fixes>GetPVarString</fixes>
  */
 
-#if !FIX_const
+#if !FIX_const && !FIX_defaults
 	#if _FIXES_SAMP && defined _ALS_GetPVarString
 		#error _ALS_GetPVarString defined
 	#endif
