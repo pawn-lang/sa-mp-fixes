@@ -7665,7 +7665,7 @@ _FIXES_CONST_PAWNDOC(FIXES_API = 1);
  */
 
 #if FIXES_NoYSI
-	_FIXES_HIDE_PAWNDOC(FIXES_USES_STATE_HOOKS);
+	_FIXES_HIDE_PAWNDOC(FIXES_USES_STATE_HOOKS_);
 #else
 	_FIXES_CONST_PAWNDOC(FIXES_USES_STATE_HOOKS = 1);
 	#define FIXES_UseStateHooks
@@ -8221,7 +8221,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined ACTION
-	_FIXES_HIDE_PAWNDOC(FIXES_ACTION);
+	_FIXES_HIDE_PAWNDOC(FIXES_ACTION_);
 #elseif FIX_GetPlayerKeys
 	_FIXES_CONST_PAWNDOC(ACTION = cellmin);
 	#if defined __TAG
@@ -8241,7 +8241,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined KEY
-	_FIXES_HIDE_PAWNDOC(FIXES_KEY);
+	_FIXES_HIDE_PAWNDOC(FIXES_KEY_);
 #else
 	_FIXES_CONST_PAWNDOC(KEY = cellmin);
 	#if defined __TAG
@@ -8261,7 +8261,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined VEHICLE_PARAMS
-	_FIXES_HIDE_PAWNDOC(FIXES_VEHICLE_PARAMS);
+	_FIXES_HIDE_PAWNDOC(FIXES_VEHICLE_PARAMS_);
 #else
 	_FIXES_CONST_PAWNDOC(VEHICLE_PARAMS = cellmin);
 	#if defined __TAG
@@ -8281,7 +8281,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined PLAYER_STATE
-	_FIXES_HIDE_PAWNDOC(FIXES_PLAYER_STATE);
+	_FIXES_HIDE_PAWNDOC(FIXES_PLAYER_STATE_);
 #else
 	_FIXES_CONST_PAWNDOC(PLAYER_STATE = cellmin);
 	#if defined __TAG
@@ -8301,7 +8301,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined SPECIAL_ACTION
-	_FIXES_HIDE_PAWNDOC(FIXES_SPECIAL_ACTION);
+	_FIXES_HIDE_PAWNDOC(FIXES_SPECIAL_ACTION_);
 #else
 	_FIXES_CONST_PAWNDOC(SPECIAL_ACTION = cellmin);
 	#if defined __TAG
@@ -8321,7 +8321,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined PLAYER_VARTYPE
-	_FIXES_HIDE_PAWNDOC(FIXES_PLAYER_VARTYPE);
+	_FIXES_HIDE_PAWNDOC(FIXES_PLAYER_VARTYPE_);
 #else
 	_FIXES_CONST_PAWNDOC(PLAYER_VARTYPE = cellmin);
 	#if defined __TAG
@@ -8341,7 +8341,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined BODY_PART
-	_FIXES_HIDE_PAWNDOC(FIXES_BODY_PART);
+	_FIXES_HIDE_PAWNDOC(FIXES_BODY_PART_);
 #else
 	_FIXES_CONST_PAWNDOC(BODY_PART = cellmin);
 	#if defined __TAG
@@ -8361,7 +8361,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined CAM_MODE
-	_FIXES_HIDE_PAWNDOC(FIXES_CAM_MODE);
+	_FIXES_HIDE_PAWNDOC(FIXES_CAM_MODE_);
 #else
 	_FIXES_CONST_PAWNDOC(CAM_MODE = cellmin);
 	#if defined __TAG
@@ -8380,7 +8380,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined VEHICLE
-	_FIXES_HIDE_PAWNDOC(FIXES_VEHICLE);
+	_FIXES_HIDE_PAWNDOC(FIXES_VEHICLE_);
 #else
 	_FIXES_CONST_PAWNDOC(VEHICLE = cellmin);
 	// `__TAG(VEHICLE):` is not currently in the enhanced SA:MP includes.
@@ -8401,7 +8401,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined CARMODTYPE
-	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE);
+	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_);
 #else
 	_FIXES_CONST_PAWNDOC(CARMODTYPE = cellmin);
 	#if defined __TAG
@@ -8421,7 +8421,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined WEAPON
-	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON);
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_);
 #else
 	_FIXES_CONST_PAWNDOC(WEAPON = cellmin);
 	#if defined __TAG
@@ -8441,7 +8441,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined MAPICON
-	_FIXES_HIDE_PAWNDOC(FIXES_MAPICON);
+	_FIXES_HIDE_PAWNDOC(FIXES_MAPICON_);
 #else
 	_FIXES_CONST_PAWNDOC(MAPICON = cellmin);
 	#if defined __TAG
@@ -8461,7 +8461,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined CAM_MOVE
-	_FIXES_HIDE_PAWNDOC(FIXES_CAM_MOVE);
+	_FIXES_HIDE_PAWNDOC(FIXES_CAM_MOVE_);
 #else
 	_FIXES_CONST_PAWNDOC(CAM_MOVE = cellmin);
 	#if defined __TAG
@@ -8481,7 +8481,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined SPECTATE_MODE
-	_FIXES_HIDE_PAWNDOC(FIXES_SPECTATE_MODE);
+	_FIXES_HIDE_PAWNDOC(FIXES_SPECTATE_MODE_);
 #else
 	_FIXES_CONST_PAWNDOC(SPECTATE_MODE = cellmin);
 	#if defined __TAG
@@ -8501,7 +8501,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined PLAYER_RECORDING_TYPE
-	_FIXES_HIDE_PAWNDOC(FIXES_PLAYER_RECORDING_TYPE);
+	_FIXES_HIDE_PAWNDOC(FIXES_PLAYER_RECORDING_TYPE_);
 #else
 	_FIXES_CONST_PAWNDOC(PLAYER_RECORDING_TYPE = cellmin);
 	#if defined __TAG
@@ -8521,7 +8521,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined VEHICLE_MODEL_INFO
-	_FIXES_HIDE_PAWNDOC(FIXES_VEHICLE_MODEL_INFO);
+	_FIXES_HIDE_PAWNDOC(FIXES_VEHICLE_MODEL_INFO_);
 #else
 	_FIXES_CONST_PAWNDOC(VEHICLE_MODEL_INFO = cellmin);
 	#if defined __TAG
@@ -8541,7 +8541,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined OBJECT_MATERIAL_SIZE
-	_FIXES_HIDE_PAWNDOC(FIXES_OBJECT_MATERIAL_SIZE);
+	_FIXES_HIDE_PAWNDOC(FIXES_OBJECT_MATERIAL_SIZE_);
 #else
 	_FIXES_CONST_PAWNDOC(OBJECT_MATERIAL_SIZE = cellmin);
 	#if defined __TAG
@@ -8561,7 +8561,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined OBJECT_MATERIAL_TEXT_ALIGN
-	_FIXES_HIDE_PAWNDOC(FIXES_OBJECT_MATERIAL_TEXT_ALN);
+	_FIXES_HIDE_PAWNDOC(FIXES_OBJECT_MATERIAL_TEXT_ALN_);
 #else
 	_FIXES_CONST_PAWNDOC(OBJECT_MATERIAL_TEXT_ALIGN = cellmin);
 	#if defined __TAG
@@ -8581,7 +8581,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined HTTP_METHOD
-	_FIXES_HIDE_PAWNDOC(FIXES_HTTP_METHOD);
+	_FIXES_HIDE_PAWNDOC(FIXES_HTTP_METHOD_);
 #else
 	_FIXES_CONST_PAWNDOC(HTTP_METHOD = cellmin);
 	#if defined __TAG
@@ -8601,7 +8601,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined HTTP_ERROR
-	_FIXES_HIDE_PAWNDOC(FIXES_HTTP_ERROR);
+	_FIXES_HIDE_PAWNDOC(FIXES_HTTP_ERROR_);
 #else
 	_FIXES_CONST_PAWNDOC(HTTP_ERROR = cellmin);
 	#if defined __TAG
@@ -8621,7 +8621,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined FIGHT_STYLE
-	_FIXES_HIDE_PAWNDOC(FIXES_FIGHT_STYLE);
+	_FIXES_HIDE_PAWNDOC(FIXES_FIGHT_STYLE_);
 #else
 	_FIXES_CONST_PAWNDOC(FIGHT_STYLE = cellmin);
 	#if defined __TAG
@@ -8641,7 +8641,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined WEAPONSKILL
-	_FIXES_HIDE_PAWNDOC(FIXES_WEAPONSKILL);
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPONSKILL_);
 #else
 	_FIXES_CONST_PAWNDOC(WEAPONSKILL = cellmin);
 	#if defined __TAG
@@ -8661,7 +8661,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined WEAPONSTATE
-	_FIXES_HIDE_PAWNDOC(FIXES_WEAPONSTATE);
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPONSTATE_);
 #else
 	_FIXES_CONST_PAWNDOC(WEAPONSTATE = cellmin);
 	#if defined __TAG
@@ -8681,7 +8681,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined SELECT_OBJECT
-	_FIXES_HIDE_PAWNDOC(FIXES_SELECT_OBJECT);
+	_FIXES_HIDE_PAWNDOC(FIXES_SELECT_OBJECT_);
 #else
 	_FIXES_CONST_PAWNDOC(SELECT_OBJECT = cellmin);
 	#if defined __TAG
@@ -8701,7 +8701,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined BULLET_HIT_TYPE
-	_FIXES_HIDE_PAWNDOC(FIXES_BULLET_HIT_TYPE);
+	_FIXES_HIDE_PAWNDOC(FIXES_BULLET_HIT_TYPE_);
 #else
 	_FIXES_CONST_PAWNDOC(BULLET_HIT_TYPE = cellmin);
 	#if defined __TAG
@@ -8721,7 +8721,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined DOWNLOAD_REQUEST
-	_FIXES_HIDE_PAWNDOC(FIXES_DOWNLOAD_REQUEST);
+	_FIXES_HIDE_PAWNDOC(FIXES_DOWNLOAD_REQUEST_);
 #else
 	_FIXES_CONST_PAWNDOC(DOWNLOAD_REQUEST = cellmin);
 	#if defined __TAG
@@ -8741,7 +8741,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined CLICK_SOURCE
-	_FIXES_HIDE_PAWNDOC(FIXES_CLICK_SOURCE);
+	_FIXES_HIDE_PAWNDOC(FIXES_CLICK_SOURCE_);
 #else
 	_FIXES_CONST_PAWNDOC(CLICK_SOURCE = cellmin);
 	#if defined __TAG
@@ -8761,7 +8761,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined EDIT_RESPONSE
-	_FIXES_HIDE_PAWNDOC(FIXES_EDIT_RESPONSE);
+	_FIXES_HIDE_PAWNDOC(FIXES_EDIT_RESPONSE_);
 #else
 	_FIXES_CONST_PAWNDOC(EDIT_RESPONSE = cellmin);
 	#if defined __TAG
@@ -8781,7 +8781,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined DIALOG_STYLE
-	_FIXES_HIDE_PAWNDOC(FIXES_DIALOG_STYLE);
+	_FIXES_HIDE_PAWNDOC(FIXES_DIALOG_STYLE_);
 #else
 	_FIXES_CONST_PAWNDOC(DIALOG_STYLE = cellmin);
 	#if defined __TAG
@@ -8801,7 +8801,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined TEXT_DRAW_FONT
-	_FIXES_HIDE_PAWNDOC(FIXES_TEXT_DRAW_FONT);
+	_FIXES_HIDE_PAWNDOC(FIXES_TEXT_DRAW_FONT_);
 #else
 	_FIXES_CONST_PAWNDOC(TEXT_DRAW_FONT = cellmin);
 	#if defined __TAG
@@ -8821,7 +8821,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined TEXT_DRAW_ALIGN
-	_FIXES_HIDE_PAWNDOC(FIXES_TEXT_DRAW_ALIGN);
+	_FIXES_HIDE_PAWNDOC(FIXES_TEXT_DRAW_ALIGN_);
 #else
 	_FIXES_CONST_PAWNDOC(TEXT_DRAW_ALIGN = cellmin);
 	#if defined __TAG
@@ -8841,7 +8841,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined SERVER_VARTYPE
-	_FIXES_HIDE_PAWNDOC(FIXES_SERVER_VARTYPE);
+	_FIXES_HIDE_PAWNDOC(FIXES_SERVER_VARTYPE_);
 #else
 	_FIXES_CONST_PAWNDOC(SERVER_VARTYPE = cellmin);
 	#if defined __TAG
@@ -8861,7 +8861,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  */
 
 #if defined FORCE_SYNC
-	_FIXES_HIDE_PAWNDOC(FIXES_FORCE_SYNC);
+	_FIXES_HIDE_PAWNDOC(FIXES_FORCE_SYNC_);
 #else
 	_FIXES_CONST_PAWNDOC(FORCE_SYNC = cellmin);
 	#if defined __TAG
@@ -8896,7 +8896,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT = cellmin);
  */
 
 #if defined INVALID_DIALOG_ID
-	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_DIALOG_ID);
+	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_DIALOG_ID_);
 #else
 	_FIXES_CONST_PAWNDOC(INVALID_DIALOG_ID = (-1));
 	#define INVALID_DIALOG_ID (-1)
@@ -8909,7 +8909,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT = cellmin);
  */
 
 #if defined MAX_ACTORS
-	_FIXES_HIDE_PAWNDOC(FIXES_MAX_ACTORS);
+	_FIXES_HIDE_PAWNDOC(FIXES_MAX_ACTORS_);
 #else
 	_FIXES_CONST_PAWNDOC(MAX_ACTORS = (1000));
 	#define MAX_ACTORS (1000)
@@ -8923,7 +8923,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT = cellmin);
  */
 
 #if defined INVALID_ACTOR_ID
-	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_ACTOR_ID);
+	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_ACTOR_ID_);
 #else
 	_FIXES_CONST_PAWNDOC(INVALID_ACTOR_ID = (0xFFFF));
 	#define INVALID_ACTOR_ID (0xFFFF)
@@ -8937,7 +8937,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT = cellmin);
  */
 
 #if defined MAX_PLAYER_TEXT_DRAWS
-	_FIXES_HIDE_PAWNDOC(FIXES_MAX_PLAYER_TEXT_DRAWS);
+	_FIXES_HIDE_PAWNDOC(FIXES_MAX_PLAYER_TEXT_DRAWS_);
 #else
 	_FIXES_CONST_PAWNDOC(MAX_PLAYER_TEXT_DRAWS = (256));
 	#define MAX_PLAYER_TEXT_DRAWS (256)
@@ -8951,7 +8951,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT = cellmin);
  */
 
 #if defined MAX_3DTEXT_GLOBAL
-	_FIXES_HIDE_PAWNDOC(FIXES_MAX_3DTEXT_GLOBAL);
+	_FIXES_HIDE_PAWNDOC(FIXES_MAX_3DTEXT_GLOBAL_);
 #else
 	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_GLOBAL = (1024));
 	#define MAX_3DTEXT_GLOBAL (1024)
@@ -8965,7 +8965,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT = cellmin);
  */
 
 #if defined MAX_3DTEXT_PLAYER
-	_FIXES_HIDE_PAWNDOC(FIXES_MAX_3DTEXT_PLAYER);
+	_FIXES_HIDE_PAWNDOC(FIXES_MAX_3DTEXT_PLAYER_);
 #else
 	_FIXES_CONST_PAWNDOC(MAX_3DTEXT_PLAYER = (1024));
 	#define MAX_3DTEXT_PLAYER (1024)
@@ -8979,7 +8979,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT = cellmin);
  */
 
 #if defined MAX_PICKUPS
-	_FIXES_HIDE_PAWNDOC(FIXES_MAX_PICKUPS);
+	_FIXES_HIDE_PAWNDOC(FIXES_MAX_PICKUPS_);
 #else
 	_FIXES_CONST_PAWNDOC(MAX_PICKUPS = (4096));
 	#define MAX_PICKUPS (4096)
@@ -8993,7 +8993,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT = cellmin);
  */
 
 #if defined INVALID_3DTEXT_ID
-	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_3DTEXT_ID);
+	_FIXES_HIDE_PAWNDOC(FIXES_INVALID_3DTEXT_ID_);
 #else
 	_FIXES_CONST_PAWNDOC(INVALID_3DTEXT_ID = (0xFFFF));
 	#define INVALID_3DTEXT_ID (0xFFFF)
@@ -9060,7 +9060,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS = (cellbits / MAX_PLAYER_ATTACHED_OBJECT
 
 #define _FIXES_KEY_AIM                           (ACTION:128)
 #if defined KEY_AIM
-	_FIXES_HIDE_PAWNDOC(FIXES_KEY_AIM);
+	_FIXES_HIDE_PAWNDOC(FIXES_KEY_AIM_);
 #else
 	_FIXES_CONST_PAWNDOC(ACTION:KEY_AIM = _FIXES_KEY_AIM);
 	#define KEY_AIM                              _FIXES_KEY_AIM
@@ -9076,7 +9076,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS = (cellbits / MAX_PLAYER_ATTACHED_OBJECT
 
 #define _FIXES_SPECIAL_ACTION_PISSING            (SPECIAL_ACTION:68)
 #if defined SPECIAL_ACTION_PISSING
-	_FIXES_HIDE_PAWNDOC(FIXES_SPECIAL_ACTION_PISSING);
+	_FIXES_HIDE_PAWNDOC(FIXES_SPECIAL_ACTION_PISSING_);
 #else
 	_FIXES_CONST_PAWNDOC(SPECIAL_ACTION:SPECIAL_ACTION_PISSING = _FIXES_SPECIAL_ACTION_PISSING);
 	#define SPECIAL_ACTION_PISSING               _FIXES_SPECIAL_ACTION_PISSING
@@ -9100,7 +9100,7 @@ _FIXES_CONST_PAWNDOC(CARMODTYPE:_FIXES_PROPERTY_OFFSET = (CARMODTYPE:12));
  */
 
 #if defined CARMODTYPE_FRONT_BULLBAR
-	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_FRONT_BULLBAR);
+	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_FRONT_BULLBAR_);
 #else
 	_FIXES_CONST_PAWNDOC(CARMODTYPE:CARMODTYPE_FRONT_BULLBAR = (CARMODTYPE:14));
 	#define CARMODTYPE_FRONT_BULLBAR             (CARMODTYPE:14)
@@ -9114,7 +9114,7 @@ _FIXES_CONST_PAWNDOC(CARMODTYPE:_FIXES_PROPERTY_OFFSET = (CARMODTYPE:12));
  */
 
 #if defined CARMODTYPE_REAR_BULLBAR
-	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_REAR_BULLBAR);
+	_FIXES_HIDE_PAWNDOC(FIXES_CARMODTYPE_REAR_BULLBAR_);
 #else
 	_FIXES_CONST_PAWNDOC(CARMODTYPE:CARMODTYPE_REAR_BULLBAR = (CARMODTYPE:15));
 	#define CARMODTYPE_REAR_BULLBAR              (CARMODTYPE:15)
@@ -9130,7 +9130,7 @@ _FIXES_CONST_PAWNDOC(CARMODTYPE:_FIXES_PROPERTY_OFFSET = (CARMODTYPE:12));
 
 #define _FIXES_WEAPON_FIST                       (WEAPON:0)
 #if defined WEAPON_FIST
-	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_FIST);
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_FIST_);
 #else
 	_FIXES_CONST_PAWNDOC(WEAPON:WEAPON_FIST = _FIXES_WEAPON_FIST);
 	#define WEAPON_FIST                          _FIXES_WEAPON_FIST
@@ -9144,7 +9144,7 @@ _FIXES_CONST_PAWNDOC(CARMODTYPE:_FIXES_PROPERTY_OFFSET = (CARMODTYPE:12));
  */
 
 #if defined WEAPON_NIGHTSTICK
-	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_NIGHTSTICK);
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_NIGHTSTICK_);
 #else
 	_FIXES_CONST_PAWNDOC(WEAPON:WEAPON_NIGHTSTICK = WEAPON_NITESTICK);
 	#define WEAPON_NIGHTSTICK                    WEAPON_NITESTICK
@@ -9158,7 +9158,7 @@ _FIXES_CONST_PAWNDOC(CARMODTYPE:_FIXES_PROPERTY_OFFSET = (CARMODTYPE:12));
  */
 
 #if defined WEAPON_MOLOTOV
-	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_MOLOTOV);
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_MOLOTOV_);
 #else
 	_FIXES_CONST_PAWNDOC(WEAPON:WEAPON_MOLOTOV = WEAPON_MOLTOV);
 	#define WEAPON_MOLOTOV                       WEAPON_MOLTOV
@@ -9174,7 +9174,7 @@ _FIXES_CONST_PAWNDOC(CARMODTYPE:_FIXES_PROPERTY_OFFSET = (CARMODTYPE:12));
 
 #define _FIXES_WEAPON_NIGHT_VIS_GOGGLES          (WEAPON:44)
 #if defined WEAPON_NIGHT_VIS_GOGGLES
-	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_NIGHT_VIS_GOGGLES);
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_NIGHT_VIS_GOGGLES_);
 #else
 	_FIXES_CONST_PAWNDOC(WEAPON:WEAPON_NIGHT_VIS_GOGGLES = _FIXES_WEAPON_NIGHT_VIS_GOGGLES);
 	#define WEAPON_NIGHT_VIS_GOGGLES             _FIXES_WEAPON_NIGHT_VIS_GOGGLES
@@ -9190,7 +9190,7 @@ _FIXES_CONST_PAWNDOC(CARMODTYPE:_FIXES_PROPERTY_OFFSET = (CARMODTYPE:12));
 
 #define _FIXES_WEAPON_THERMAL_GOGGLES            (WEAPON:45)
 #if defined WEAPON_THERMAL_GOGGLES
-	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_THERMAL_GOGGLES);
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_THERMAL_GOGGLES_);
 #else
 	_FIXES_CONST_PAWNDOC(WEAPON:WEAPON_THERMAL_GOGGLES = _FIXES_WEAPON_THERMAL_GOGGLES);
 	#define WEAPON_THERMAL_GOGGLES               _FIXES_WEAPON_THERMAL_GOGGLES
@@ -9229,7 +9229,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS = 0);
 	_FIXES_CONST_PAWNDOC(IS_JIT = (_FIXES_gIsJIT));
 	#define IS_JIT (_FIXES_gIsJIT)
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_IS_JIT);
+	_FIXES_HIDE_PAWNDOC(FIXES_IS_JIT_);
 #endif
 
 /**
@@ -9244,7 +9244,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS = 0);
 	_FIXES_CONST_PAWNDOC(IS_FILTERSCRIPT = (_FIXES_gIsFilterscript));
 	#define IS_FILTERSCRIPT (_FIXES_gIsFilterscript)
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_IS_FILTERSCRIPT);
+	_FIXES_HIDE_PAWNDOC(FIXES_IS_FILTERSCRIPT_);
 #endif
 
 /**
@@ -9259,7 +9259,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS = 0);
 	_FIXES_CONST_PAWNDOC(IS_WINDOWS = (_FIXES_gIsWindows));
 	#define IS_WINDOWS (_FIXES_gIsWindows)
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_IS_WINDOWS);
+	_FIXES_HIDE_PAWNDOC(FIXES_IS_WINDOWS_);
 #endif
 
 /**
@@ -9274,7 +9274,7 @@ _FIXES_CONST_PAWNDOC(_FIXES_STREAMER_ALL_TAGS = 0);
 	_FIXES_CONST_PAWNDOC(IS_LINUX = (!_FIXES_gIsWindows));
 	#define IS_LINUX (!_FIXES_gIsWindows)
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_IS_LINUX);
+	_FIXES_HIDE_PAWNDOC(FIXES_IS_LINUX_);
 #endif
 
 /*
@@ -9390,7 +9390,7 @@ static stock _FIXES_IncludeStates() <_ALS : _ALS_go>
 
 	_FIXES_ENUM_PAWNDOC(__BODY_PART);
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES___BODY_PART);
+	_FIXES_HIDE_PAWNDOC(FIXES___BODY_PART_);
 #endif
 
 /// <p/>
@@ -9488,7 +9488,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_TEXT_DRAW_FONT);
 
 	#define _FIXES_CAMMODE_AIMWEAPONFROMCAR CAM_MODE_AIMWEAPON_FROMCAR
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES___CAM_MODE);
+	_FIXES_HIDE_PAWNDOC(FIXES___CAM_MODE_);
 
 	#define _FIXES_CAMMODE_AIMWEAPONFROMCAR (CAM_MODE:55)
 #endif
@@ -10044,7 +10044,7 @@ _FIXES_ENUM_PAWNDOC(___FIXES_FORCE_SYNC);
 
 	_FIXES_ENUM_PAWNDOC(__VEHICLE);
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES___VEHICLE);
+	_FIXES_HIDE_PAWNDOC(FIXES___VEHICLE_);
 #endif
 
 /// <p/>
@@ -10155,7 +10155,7 @@ _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
 
 	_FIXES_ENUM_PAWNDOC(__ACTION);
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES___ACTION);
+	_FIXES_HIDE_PAWNDOC(FIXES___ACTION_);
 #endif
 
 /*
@@ -10398,7 +10398,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayersIterator[MAX_PLAYERS + 1] = {0, 1, ...};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayersIterator);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayersIterator_);
 #endif
 
 #if _FIX_Menus || (FIX_API && !_FIXES_NPC)
@@ -10411,7 +10411,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsValidMenus[_FIXES_CEILDIV(_:MAX_MENUS, cellbits)];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsValidMenus);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsValidMenus_);
 #endif
 
 #if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
@@ -10424,7 +10424,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerIP[MAX_PLAYERS] = {-1, ...};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerIP);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerIP_);
 #endif
 
 #if FIX_OnPlayerEnterVehicle_3
@@ -10438,7 +10438,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerVehicleID[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerVehicleID);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerVehicleID_);
 #endif
 
 #if FIX_OnPlayerEnterVehicle_3
@@ -10452,7 +10452,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerVehicleTickCount[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerVehicleTickCount);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerVehicleTickCount_);
 #endif
 
 #if FIX_OnPlayerEnterVehicle_3
@@ -10465,7 +10465,7 @@ _FIXES_STATIC_STOCK
 	 */
 	bool:FIXES_gsVehicleIsLocked[MAX_VEHICLES + 1];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsVehicleIsLocked);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsVehicleIsLocked_);
 #endif
 
 #if FIXES_Single && FIX_GetPlayerSkin
@@ -10478,7 +10478,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerSkin[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerSkin);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerSkin_);
 #endif
 
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
@@ -10502,7 +10502,7 @@ _FIXES_STATIC_STOCK
 	 */
 	Float:FIXES_gsWorldbounds_PX[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_PX);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_PX_);
 #endif
 
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
@@ -10526,7 +10526,7 @@ _FIXES_STATIC_STOCK
 	 */
 	Float:FIXES_gsWorldbounds_PY[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_PY);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_PY_);
 #endif
 
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
@@ -10550,7 +10550,7 @@ _FIXES_STATIC_STOCK
 	 */
 	Float:FIXES_gsWorldbounds_PZ[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_PZ);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_PZ_);
 #endif
 
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
@@ -10574,7 +10574,7 @@ _FIXES_STATIC_STOCK
 	 */
 	Float:FIXES_gsWorldbounds_LX[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_LX);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_LX_);
 #endif
 
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
@@ -10598,7 +10598,7 @@ _FIXES_STATIC_STOCK
 	 */
 	Float:FIXES_gsWorldbounds_LY[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_LY);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_LY_);
 #endif
 
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
@@ -10622,7 +10622,7 @@ _FIXES_STATIC_STOCK
 	 */
 	Float:FIXES_gsWorldbounds_UX[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_UX);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_UX_);
 #endif
 
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
@@ -10646,7 +10646,7 @@ _FIXES_STATIC_STOCK
 	 */
 	Float:FIXES_gsWorldbounds_UY[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_UY);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsWorldbounds_UY_);
 #endif
 
 #if FIXES_Single && FIX_GetPlayerWeapon
@@ -10659,7 +10659,7 @@ _FIXES_STATIC_STOCK
 	 */
 	WEAPON:FIXES_gsPlayerWeapon[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerWeapon);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerWeapon_);
 #endif
 
 #if FIX_PutPlayerInVehicle
@@ -10672,7 +10672,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsVehicleSeatData[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsVehicleSeatData);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsVehicleSeatData_);
 #endif
 
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
@@ -10686,7 +10686,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerDialog[MAX_PLAYERS] = {-1, ...};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerDialog);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerDialog_);
 #endif
 
 #if FIX_GetPlayerWeather
@@ -10699,7 +10699,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerWeather[MAX_PLAYERS] = {-1, ...};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerWeather);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerWeather_);
 #endif
 
 #if FIXES_Single && FIX_GetPlayerInterior
@@ -10712,7 +10712,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerInterior[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerInterior);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerInterior_);
 #endif
 
 #if FIX_OnPlayerDeath
@@ -10725,7 +10725,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsLastAnimation[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsLastAnimation);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsLastAnimation_);
 #endif
 
 #if FIX_OnPlayerSpawn
@@ -10738,7 +10738,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerLastCash[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerLastCash);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerLastCash_);
 #endif
 
 #if FIX_DriveBy
@@ -10751,7 +10751,7 @@ _FIXES_STATIC_STOCK
 	 */
 	WEAPON:FIXES_gsDriveByWeapon[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsDriveByWeapon);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsDriveByWeapon_);
 #endif
 
 #if FIX_GetPlayerMenu
@@ -10764,7 +10764,7 @@ _FIXES_STATIC_STOCK
 	 */
 	Menu:FIXES_gsCurrentMenu[MAX_PLAYERS] = {Menu:INVALID_MENU, ...};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsCurrentMenu);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsCurrentMenu_);
 #endif
 
 #if FIX_GameText
@@ -10778,7 +10778,7 @@ _FIXES_STATIC_STOCK
 	 */
 	Text:FIXES_gsGTStyle[FIXES_GT_STYLE_COUNT];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsGTStyle);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsGTStyle_);
 #endif
 
 #if FIX_GameText
@@ -10791,7 +10791,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerPGTShown[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerPGTShown);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerPGTShown_);
 #endif
 
 #if FIX_GameText
@@ -10805,7 +10805,7 @@ _FIXES_STATIC_STOCK
 	 */
 	PlayerText:FIXES_gsPGTStyle[MAX_PLAYERS][FIXES_GT_STYLE_COUNT];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPGTStyle);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPGTStyle_);
 #endif
 
 #if FIX_GameText
@@ -10818,7 +10818,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsGTTimer[FIXES_GT_STYLE_COUNT][MAX_PLAYERS + 1];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsGTTimer);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsGTTimer_);
 #endif
 
 #if FIX_ApplyAnimation_2
@@ -10832,7 +10832,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerAnimTimer[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerAnimTimer);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerAnimTimer_);
 #endif
 
 #if FIX_ApplyAnimation_2
@@ -10845,7 +10845,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerAnimName[MAX_PLAYERS * 64];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerAnimName);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerAnimName_);
 #endif
 
 #if FIX_ApplyAnimation_2
@@ -10858,7 +10858,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPlayerAnimLibs[MAX_PLAYERS][_FIXES_CEILDIV(135, cellbits)];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerAnimLibs);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPlayerAnimLibs_);
 #endif
 
 #if FIX_ApplyActorAnimation_2
@@ -10872,7 +10872,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsActorAnimTimer[MAX_ACTORS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsActorAnimTimer);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsActorAnimTimer_);
 #endif
 
 #if FIX_ApplyActorAnimation_2
@@ -10885,7 +10885,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsActorAnimName[MAX_ACTORS * 64];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsActorAnimName);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsActorAnimName_);
 #endif
 
 #if FIX_ApplyActorAnimation_2
@@ -10898,7 +10898,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsActorAnimLibs[MAX_ACTORS][_FIXES_CEILDIV(135, cellbits)];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsActorAnimLibs);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsActorAnimLibs_);
 #endif
 
 #if FIX_PassengerSeating
@@ -10911,7 +10911,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsPSTimer[MAX_PLAYERS];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsPSTimer);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsPSTimer_);
 #endif
 
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
@@ -10924,7 +10924,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsStereo[MAX_VEHICLES + 1];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsStereo);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsStereo_);
 #endif
 
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
@@ -10937,7 +10937,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsFrontBumper[MAX_VEHICLES + 1];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsFrontBumper);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsFrontBumper_);
 #endif
 
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
@@ -10950,7 +10950,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsRearBumper[MAX_VEHICLES + 1];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsRearBumper);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsRearBumper_);
 #endif
 
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
@@ -10963,7 +10963,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsFrontBullbar[MAX_VEHICLES + 1];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsFrontBullbar);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsFrontBullbar_);
 #endif
 
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
@@ -10976,7 +10976,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsRearBullbar[MAX_VEHICLES + 1];
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsRearBullbar);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsRearBullbar_);
 #endif
 
 #if FIX_SilentTeleport
@@ -10989,7 +10989,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsJackedId[MAX_PLAYERS] = {INVALID_PLAYER_ID, ...};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsJackedId);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsJackedId_);
 #endif
 
 #if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
@@ -11002,7 +11002,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsRandomVehicleColour1[_FIXES_CEILDIV((MAX_VEHICLES + 1), cellbits)] = {0, ...};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour1);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour1_);
 #endif
 
 #if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
@@ -11015,7 +11015,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsRandomVehicleColour2[_FIXES_CEILDIV((MAX_VEHICLES + 1), cellbits)] = {0, ...};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour2);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour2_);
 #endif
 
 #if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
@@ -11030,7 +11030,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsBackupVehicleColour[(MAX_VEHICLES + 1) char] = {0, ...};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsBackupVehicleColour);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsBackupVehicleColour_);
 #endif
 
 #if FIX_OnVehicleSpawn && !FIXES_OneRandomVehicleColour
@@ -11043,7 +11043,7 @@ _FIXES_STATIC_STOCK
 	 */
 	FIXES_gsRandomVehicleColour[_FIXES_CEILDIV((MAX_VEHICLES + 1), cellbits)] = {0, ...};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour);
+	_FIXES_HIDE_PAWNDOC(FIXES_gsRandomVehicleColour_);
 #endif
 
 /*
@@ -11516,7 +11516,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarNotNewPlayer[] = "FIXES_pvarNotNewPlayer";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarNotNewPlayer);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarNotNewPlayer_);
 #endif
 
 #if !FIXES_Single && FIX_GetPlayerWeapon
@@ -11529,7 +11529,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarPlayerWeapon[] = "FIXES_pvarPlayerWeapon";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerWeapon);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerWeapon_);
 #endif
 
 #if !FIXES_Single && FIX_GetPlayerSkin
@@ -11542,7 +11542,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarPlayerSkin[] = "FIXES_pvarPlayerSkin";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerSkin);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerSkin_);
 #endif
 
 #if !FIXES_Single && FIX_SetPlayerCamera
@@ -11555,7 +11555,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarPlayerSpectate[] = "FIXES_pvarPlayerSpectate";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerSpectate);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerSpectate_);
 #endif
 
 #if FIX_Kick
@@ -11568,7 +11568,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_gscKick[] = "_FIXES_Kick";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscKick);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscKick_);
 #endif
 
 #if FIX_Kick
@@ -11581,7 +11581,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarKick[] = "FIXES_pvarKick";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarKick);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarKick_);
 #endif
 
 #if !FIXES_Single && FIX_OnDialogResponse || FIX_GetPlayerDialog
@@ -11594,7 +11594,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarPlayerDialog[] = "FIXES_pvarPlayerDialog";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerDialog);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerDialog_);
 #endif
 
 #if !FIXES_Single && FIX_GetPlayerWeather
@@ -11607,7 +11607,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarPlayerWeather[] = "FIXES_pvarPlayerWeather";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerWeather);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerWeather_);
 #endif
 
 #if !FIXES_Single && FIX_GetPlayerInterior
@@ -11620,7 +11620,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarPlayerInterior[] = "FIXES_pvarPlayerInterior";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerInterior);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerInterior_);
 #endif
 
 #if !FIXES_Single && FIX_OnDialogResponse
@@ -11634,7 +11634,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarCurrentDialog[] = "FIXES_pvarCurrentDialog";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarCurrentDialog);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarCurrentDialog_);
 #endif
 
 #if !FIXES_Single && FIX_OnPlayerSpawn
@@ -11647,7 +11647,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarPlayerLastCash[] = "FIXES_pvarPlayerLastCash";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerLastCash);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerLastCash_);
 #endif
 
 #if !FIXES_Single && FIX_SetPlayerCheckpoint
@@ -11660,7 +11660,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarPlayerCheckpoint[] = "FIXES_pvarPlayerCheckpoint";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerCheckpoint);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerCheckpoint_);
 #endif
 
 #if !FIXES_Single && FIX_SetPlayerRaceCheckpoint
@@ -11673,7 +11673,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_pvarPlayerRaceCheckpoint[] = "FIXES_pvarPlayerRaceCheckpoint";
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerRaceCheckpoint);
+	_FIXES_HIDE_PAWNDOC(FIXES_pvarPlayerRaceCheckpoint_);
 #endif
 
 #if FIX_OnVehicleSpawn || FIX_API
@@ -11900,7 +11900,7 @@ _FIXES_STATIC_STOCK_CONST
 			                                       // 611 - utiltr1
 		};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscVehiclePrimary);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscVehiclePrimary_);
 #endif
 
 #if FIX_OnVehicleSpawn || FIX_API
@@ -12127,7 +12127,7 @@ _FIXES_STATIC_STOCK_CONST
 			                                       // 611 - utiltr1
 		};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscVehicleSecondary);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscVehicleSecondary_);
 #endif
 
 #if FIX_OnVehicleSpawn || FIX_API
@@ -12356,7 +12356,7 @@ _FIXES_STATIC_STOCK_CONST
 			1158
 		};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscVehicleIndexes);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscVehicleIndexes_);
 #endif
 
 #if FIX_OnVehicleSpawn || FIX_API
@@ -12371,7 +12371,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_gscColour3Camper[8 char] = {0x01010300, 0x03030878}; // 483
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscColour3Camper);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscColour3Camper_);
 #endif
 
 #if FIX_OnVehicleSpawn || FIX_API
@@ -12386,7 +12386,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_gscColour3Cement[8 char] = {0x177B1F1E, 0x173E4040}; // 524
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscColour3Cement);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscColour3Cement_);
 #endif
 
 #if FIX_OnVehicleSpawn || FIX_API
@@ -12401,7 +12401,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_gscColour3Squalo[8 char] = {0x00010001, 0x01010101}; // 446
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscColour3Squalo);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscColour3Squalo_);
 #endif
 
 #if FIX_OnVehicleSpawn || FIX_API
@@ -12416,7 +12416,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_gscColour4Camper[8 char] = {0x00000000, 0x00000000}; // 483
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscColour4Camper);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscColour4Camper_);
 #endif
 
 #if FIX_OnVehicleSpawn || FIX_API
@@ -12431,7 +12431,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_gscColour4Cement[8 char] = {0x00000000, 0x00000000}; // 524
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscColour4Cement);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscColour4Cement_);
 #endif
 
 #if FIX_OnVehicleSpawn || FIX_API
@@ -12446,7 +12446,7 @@ _FIXES_STATIC_STOCK_CONST
 	 */
 	FIXES_gscColour4Squalo[8 char] = {0x01010101, 0x01010101}; // 446
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscColour4Squalo);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscColour4Squalo_);
 #endif
 
 #if FIX_API
@@ -12493,7 +12493,7 @@ _FIXES_STATIC_STOCK_CONST
 			0x561A2800, 0x4E0E2700, 0x706C6700, 0x3B3E4200, 0x2E2D3300, 0x7B7E7D00, 0x4A444200, 0x28344E00
 		};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscVehicleColours);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscVehicleColours_);
 #endif
 
 #if FIX_GetPlayerColour || FIX_API
@@ -12529,7 +12529,7 @@ _FIXES_STATIC_STOCK_CONST
 			0xCF72A9FF, 0xE59338FF, 0xEEDC2DFF, 0xD8C762FF, 0xD8C762FF
 		};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscPlayerColours);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscPlayerColours_);
 #endif
 
 #if FIX_OnPlayerEnterVehicle || FIX_API
@@ -12549,7 +12549,7 @@ _FIXES_STATIC_STOCK_CONST
 			0x33113311, 0x11111101, 0x33101133, 0x10100510, 0x03133111, 0xFF11113F, 0x13330111, 0xFF131111, 0x0000FF3F
 		};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscMaxPassengers);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscMaxPassengers_);
 #endif
 
 #if FIX_OnVehicleMod || FIX_API
@@ -12786,7 +12786,7 @@ _FIXES_STATIC_STOCK_CONST
 			0x02000700, 0x00000000, 0x00FFFE00, 0x00000007, 0x00000000, 0x00000000
 		};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscVehicleMods);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscVehicleMods_);
 #endif
 
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
@@ -12802,7 +12802,7 @@ _FIXES_STATIC_STOCK_CONST
 			0, 2, 21, 35, 42, 42, 53, 62, 64, 67, 68, 71, 75, 81, 82, 84, 94, 96, 104, 122, 127, 128, 131, 135
 		};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscAnimIndexes);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscAnimIndexes_);
 #endif
 
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
@@ -12844,7 +12844,7 @@ _FIXES_STATIC_STOCK_CONST
 			"VORTEX",       "WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
 		};
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_gscAnimLib);
+	_FIXES_HIDE_PAWNDOC(FIXES_gscAnimLib_);
 #endif
 
 /*
@@ -14350,7 +14350,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 
 	native BAD_GetPlayerName(playerid, const name[], len) = GetPlayerName;
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerName_1);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerName_1_);
 #endif
 
 /**
@@ -14370,7 +14370,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 		#define GetPlayerName( FIXES_GetPlayerName(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerName_2);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerName_2_);
 #endif
 
 /**
@@ -14406,10 +14406,10 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 			#define GetWeaponName( FIXES_GetWeaponName(
 		#endif
 	#else
-		_FIXES_HIDE_PAWNDOC(FIXES_GetWeaponNameDeconst);
+		_FIXES_HIDE_PAWNDOC(FIXES_GetWeaponNameDeconst_);
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetWeaponNameDeconst);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetWeaponNameDeconst_);
 #endif
 
 /**
@@ -14429,7 +14429,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 		#define format( FIXES_format(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_format);
+	_FIXES_HIDE_PAWNDOC(FIXES_format_);
 #endif
 
 /**
@@ -14450,7 +14450,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 		#define SHA256_PassHash( FIXES_SHA256_PassHash(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SHA256_PassHashDefault);
+	_FIXES_HIDE_PAWNDOC(FIXES_SHA256_PassHashDefault_);
 #endif
 
 /**
@@ -14470,7 +14470,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 		#define GetPlayerVersion( FIXES_GetPlayerVersion(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerVersionDefault);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerVersionDefault_);
 #endif
 
 /**
@@ -14500,7 +14500,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 		#define GetSVarString( FIXES_GetSVarString(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetSVarStringDefault);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetSVarStringDefault_);
 #endif
 
 /**
@@ -14520,7 +14520,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 		#define GetSVarNameAtIndex( FIXES_GetSVarNameAtIndex(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetSVarNameAtIndex);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetSVarNameAtIndex_);
 #endif
 
 /**
@@ -14540,7 +14540,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 		#define GetPlayerNetworkStats( FIXES_GetPlayerNetworkStats(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerNetworkStats);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerNetworkStats_);
 #endif
 
 /**
@@ -14560,7 +14560,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 		#define GetNetworkStats( FIXES_GetNetworkStats(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetNetworkStats);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetNetworkStats_);
 #endif
 
 /**
@@ -14597,7 +14597,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		#define GetServerVarAsString( FIXES_GetServerVarAsString(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsStringDef);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsStringDef_);
 #endif
 
 /**
@@ -14613,7 +14613,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		#define GetConsoleVarAsString( FIXES_GetConsoleVarAsString(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetConsoleVarAsStringDef);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetConsoleVarAsStringDef_);
 #endif
 
 /**
@@ -14633,7 +14633,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		#define NetStats_GetIpPort( FIXES_NetStats_GetIpPort(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_NetStats_GetIpPort);
+	_FIXES_HIDE_PAWNDOC(FIXES_NetStats_GetIpPort_);
 #endif
 
 /**
@@ -14653,7 +14653,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		#define GetPlayerIp( FIXES_GetPlayerIp(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerIpDefault);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerIpDefault_);
 #endif
 
 /**
@@ -14673,7 +14673,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		#define GetPVarString( FIXES_GetPVarString(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPVarStringDefault);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPVarStringDefault_);
 #endif
 
 /**
@@ -14713,7 +14713,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		#define GetAnimationName( FIXES_GetAnimationName(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetAnimationNameDefault);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetAnimationNameDefault_);
 #endif
 
 /**
@@ -14733,7 +14733,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		#define db_field_name( FIXES_db_field_name(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_db_field_name);
+	_FIXES_HIDE_PAWNDOC(FIXES_db_field_name_);
 #endif
 
 /**
@@ -14753,7 +14753,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		#define db_get_field( FIXES_db_get_field(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_db_get_field);
+	_FIXES_HIDE_PAWNDOC(FIXES_db_get_field_);
 #endif
 
 /**
@@ -14773,7 +14773,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		#define db_get_field_assoc( FIXES_db_get_field_assoc(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_db_get_field_assoc);
+	_FIXES_HIDE_PAWNDOC(FIXES_db_get_field_assoc_);
 #endif
 
 /**
@@ -14790,7 +14790,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		#define GetPlayerKeys( FIXES_GetPlayerKeys(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerKeys);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerKeys_);
 #endif
 
 /**
@@ -14806,7 +14806,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 		#define GetPlayerActions( FIXES_GetPlayerActions(
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerActions);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerActions_);
 #endif
 
 /**
@@ -14915,7 +14915,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
 	/// <library>fixes.inc</library>
 	forward bool:operator>=(File:a, _:b); /// <p/>
 #else /// <p/>
-	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS);
+	_FIXES_HIDE_PAWNDOC(FIXES_FILE_MATHS_);
 #endif
 
 /*
@@ -16683,7 +16683,7 @@ static stock _FIXES_CountFilterscripts()
 	#define _ALS_SetTimerEx__
 	#define SetTimerEx__( FIXES_SetTimerExNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetTimerExNPC);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetTimerExNPC_);
 #endif
 
 /**
@@ -16708,7 +16708,7 @@ static stock _FIXES_CountFilterscripts()
 	#define _ALS_SendRconCommand__
 	#define SendRconCommand__( FIXES_SendRconCommandNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SendRconCommandNPC);
+	_FIXES_HIDE_PAWNDOC(FIXES_SendRconCommandNPC_);
 #endif
 
 /**
@@ -16734,7 +16734,7 @@ static stock _FIXES_CountFilterscripts()
 	#define _ALS_VectorSize__
 	#define VectorSize__( FIXES_VectorSizeNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_VectorSizeNPC);
+	_FIXES_HIDE_PAWNDOC(FIXES_VectorSizeNPC_);
 #endif
 
 /**
@@ -16759,7 +16759,7 @@ static stock _FIXES_CountFilterscripts()
 	#define _ALS_CallRemoteFunction__
 	#define CallRemoteFunction__( FIXES_CallRemoteFunctionNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_CallRemoteFunctionNPC);
+	_FIXES_HIDE_PAWNDOC(FIXES_CallRemoteFunctionNPC_);
 #endif
 
 /**
@@ -16879,7 +16879,7 @@ static stock _FIXES_CountFilterscripts()
 	#define _ALS_GetWeaponName__
 	#define GetWeaponName__( FIXES_GetWeaponNameNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetWeaponNameNPC);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetWeaponNameNPC_);
 #endif
 
 /**
@@ -16903,7 +16903,7 @@ static stock _FIXES_CountFilterscripts()
 	#define _ALS_GetPlayerPoolSize__
 	#define GetPlayerPoolSize__( FIXES_GetPlayerPoolSizeNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerPoolSizeNPC);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerPoolSizeNPC_);
 #endif
 
 /**
@@ -16927,7 +16927,7 @@ static stock _FIXES_CountFilterscripts()
 	#define _ALS_GetVehiclePoolSize__
 	#define GetVehiclePoolSize__( FIXES_GetVehiclePoolSizeNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetVehiclePoolSize);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetVehiclePoolSize_);
 #endif
 
 /**
@@ -16951,7 +16951,7 @@ static stock _FIXES_CountFilterscripts()
 	#define _ALS_GetActorPoolSize__
 	#define GetActorPoolSize__( FIXES_GetActorPoolSizeNPC(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetActorPoolSizeNPC);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetActorPoolSizeNPC_);
 #endif
 
 /**
@@ -16966,7 +16966,7 @@ static stock _FIXES_CountFilterscripts()
 		native WEAPON:GetPlayerWeapon(playerid) = GetPlayerArmedWeapon;
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerArmedWeapon);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerArmedWeapon_);
 #endif
 
 /*
@@ -17013,7 +17013,7 @@ native bool:BAD_IsPlayerConnected(playerid) = IsPlayerConnected;
 	#define _ALS_IsPlayerConnected__
 	#define IsPlayerConnected__( FIXES_IsPlayerConnected(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_IsPlayerConnected);
+	_FIXES_HIDE_PAWNDOC(FIXES_IsPlayerConnected_);
 #endif
 
 /**
@@ -18253,7 +18253,7 @@ native BAD_SetVehiclePos(vehicleid, Float:x, Float:y, Float:z) = SetVehiclePos;
 	#define _ALS_SetVehiclePos__
 	#define SetVehiclePos__( FIXES_SetVehiclePos(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetVehiclePos);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetVehiclePos_);
 #endif
 
 /**
@@ -18319,7 +18319,7 @@ native BAD_SpawnPlayer(playerid) = SpawnPlayer;
 	#define _ALS_SpawnPlayer__
 	#define SpawnPlayer__( FIXES_SpawnPlayer(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SpawnPlayer);
+	_FIXES_HIDE_PAWNDOC(FIXES_SpawnPlayer_);
 #endif
 
 /**
@@ -18376,7 +18376,7 @@ native BAD_SetPlayerName(playerid, const name[]) = SetPlayerName;
 	#define _ALS_SetPlayerName__
 	#define SetPlayerName__( FIXES_SetPlayerName(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerName);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerName_);
 #endif
 
 /**
@@ -18637,7 +18637,7 @@ native BAD_GetVehicleComponentInSlot(vehicleid, slot) = GetVehicleComponentInSlo
 	#define _ALS_GetVehicleComponentType__
 	#define GetVehicleComponentType__( FIXES_GetVehicleComponentType(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleComponentType);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleComponentType_);
 #endif
 
 /**
@@ -18885,7 +18885,7 @@ native BAD_SetPlayerSkin(playerid, skinid) = SetPlayerSkin;
 	#define _ALS_SetPlayerSkin__
 	#define SetPlayerSkin__( FIXES_SetPlayerSkin(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerSkin);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerSkin_);
 #endif
 
 /**
@@ -18917,7 +18917,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 	#define _ALS_GetPlayerSkin__
 	#define GetPlayerSkin__( FIXES_GetPlayerSkin(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerSkin);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerSkin_);
 #endif
 
 /**
@@ -18962,7 +18962,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 	#define _ALS_GetWeaponName__
 	#define GetWeaponName__( FIXES_GetWeaponName(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetWeaponName);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetWeaponName_);
 #endif
 
 /**
@@ -19431,7 +19431,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 	#define _ALS_SetPlayerWorldBounds__
 	#define SetPlayerWorldBounds__( FIXES_SetPlayerWorldBounds(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerWorldBounds);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerWorldBounds_);
 #endif
 
 #if FIX_GetPlayerWorldBounds
@@ -19454,7 +19454,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 	#define _ALS_GetPlayerWorldBounds__
 	#define GetPlayerWorldBounds__( FIXES_GetPlayerWorldBounds(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerWorldBounds);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerWorldBounds_);
 #endif
 
 #if FIX_ClearPlayerWorldBounds
@@ -19471,7 +19471,7 @@ native BAD_SetPlayerWorldBounds(playerid, Float:x_max, Float:x_min, Float:y_max,
 	#define _ALS_ClearPlayerWorldBounds__
 	#define ClearPlayerWorldBounds__( FIXES_ClearPlayerWorldBounds(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_ClearPlayerWorldBounds);
+	_FIXES_HIDE_PAWNDOC(FIXES_ClearPlayerWorldBounds_);
 #endif
 
 /**
@@ -19546,7 +19546,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#define _ALS_TogglePlayerControllable__
 	#define TogglePlayerControllable__( FIXES_TogglePlayerControllable(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_TogglePlayerControllabl);
+	_FIXES_HIDE_PAWNDOC(FIXES_TogglePlayerControllabl_);
 #endif
 
 /**
@@ -19664,7 +19664,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#endif
 	native BAD_SetTimerEx(funcname[], interval, repeating, format[], {Float,_}:...) = SetTimerEx;
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_BAD_SetTimer);
+	_FIXES_HIDE_PAWNDOC(FIXES_BAD_SetTimer_);
 #endif
 
 /**
@@ -19884,7 +19884,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 	#define _ALS_KillTimer__
 	#define KillTimer__( FIXES_KillTimer(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_KillTimer);
+	_FIXES_HIDE_PAWNDOC(FIXES_KillTimer_);
 #endif
 
 /**
@@ -20013,7 +20013,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 	forward FIXES_RemoveJackedId(playerid);
 	public FIXES_RemoveJackedId(playerid) return FIXES_gsJackedId[playerid] = INVALID_PLAYER_ID;
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_RemoveJackedId);
+	_FIXES_HIDE_PAWNDOC(FIXES_RemoveJackedId_);
 #endif
 
 /**
@@ -20473,7 +20473,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 	_FIXES_FUNC_PAWNDOC(FIXES_IS_VALID_MENU(Menu:menuid));
 	#define FIXES_IS_VALID_MENU(%0) (_FIXES_IN_RANGE(_:(%0), 0, MAX_MENUS) && (FIXES_gsValidMenus[_:(%0) >>> 5] >>> (_:(%0) & 0x1F) & 1))
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_IS_VALID_MENU);
+	_FIXES_HIDE_PAWNDOC(FIXES_IS_VALID_MENU_);
 #endif
 
 /**
@@ -20518,7 +20518,7 @@ native Menu:BAD_CreateMenu(const title[], columns, Float:x, Float:y, Float:col1w
 		}
 	#endif
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_CreateMenu);
+	_FIXES_HIDE_PAWNDOC(FIXES_CreateMenu_);
 #endif
 
 /**
@@ -20624,7 +20624,7 @@ native BAD_DestroyMenu(Menu:menuid) = DestroyMenu;
 	#define _ALS_DestroyMenu__
 	#define DestroyMenu__( FIXES_DestroyMenu(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_DestroyMenu);
+	_FIXES_HIDE_PAWNDOC(FIXES_DestroyMenu_);
 #endif
 
 /**
@@ -20656,7 +20656,7 @@ native BAD_AddMenuItem(Menu:menuid, column, const menutext[]) = AddMenuItem;
 	#define _ALS_AddMenuItem__
 	#define AddMenuItem__( FIXES_AddMenuItem(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_AddMenuItem);
+	_FIXES_HIDE_PAWNDOC(FIXES_AddMenuItem_);
 #endif
 
 /**
@@ -20688,7 +20688,7 @@ native BAD_SetMenuColumnHeader(Menu:menuid, column, const columnheader[]) = SetM
 	#define _ALS_SetMenuColumnHeader__
 	#define SetMenuColumnHeader__( FIXES_SetMenuColumnHeader(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetMenuColumnHeader);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetMenuColumnHeader_);
 #endif
 
 /**
@@ -20741,7 +20741,7 @@ native BAD_ShowMenuForPlayer(Menu:menuid, playerid) = ShowMenuForPlayer;
 	#define _ALS_ShowMenuForPlayer__
 	#define ShowMenuForPlayer__( FIXES_ShowMenuForPlayer(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_ShowMenuForPlayer);
+	_FIXES_HIDE_PAWNDOC(FIXES_ShowMenuForPlayer_);
 #endif
 
 /**
@@ -20804,7 +20804,7 @@ native BAD_HideMenuForPlayer(Menu:menuid, playerid) = HideMenuForPlayer;
 	#define _ALS_HideMenuForPlayer__
 	#define HideMenuForPlayer__( FIXES_HideMenuForPlayer(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_HideMenuForPlayer);
+	_FIXES_HIDE_PAWNDOC(FIXES_HideMenuForPlayer_);
 #endif
 
 /**
@@ -20840,7 +20840,7 @@ native BAD_DisableMenu(Menu:menuid) = DisableMenu;
 	#define _ALS_DisableMenu__
 	#define DisableMenu__( FIXES_DisableMenu(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_DisableMenu);
+	_FIXES_HIDE_PAWNDOC(FIXES_DisableMenu_);
 #endif
 
 /**
@@ -20872,7 +20872,7 @@ native BAD_DisableMenuRow(Menu:menuid, row) = DisableMenuRow;
 	#define _ALS_DisableMenuRow__
 	#define DisableMenuRow__( FIXES_DisableMenuRow(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_DisableMenuRow);
+	_FIXES_HIDE_PAWNDOC(FIXES_DisableMenuRow_);
 #endif
 
 /**
@@ -20904,7 +20904,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 	#define _ALS_GetPlayerMenu__
 	#define GetPlayerMenu__( FIXES_GetPlayerMenu(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerMenu);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerMenu_);
 #endif
 
 /**
@@ -21226,7 +21226,7 @@ native BAD_GivePlayerWeapon(playerid, weaponid, ammo) = GivePlayerWeapon;
 	#define _ALS_GivePlayerWeapon__
 	#define GivePlayerWeapon__( FIXES_GivePlayerWeapon(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GivePlayerWeapon);
+	_FIXES_HIDE_PAWNDOC(FIXES_GivePlayerWeapon_);
 #endif
 
 
@@ -21264,7 +21264,7 @@ native BAD_ResetPlayerWeapons(playerid) = ResetPlayerWeapons;
 	#define _ALS_ResetPlayerWeapons__
 	#define ResetPlayerWeapons__( FIXES_ResetPlayerWeapons(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_ResetPlayerWeapons);
+	_FIXES_HIDE_PAWNDOC(FIXES_ResetPlayerWeapons_);
 #endif
 
 /**
@@ -21319,7 +21319,7 @@ native BAD_SetPlayerArmedWeapon(playerid, weaponid) = SetPlayerArmedWeapon;
 	#define _ALS_SetPlayerArmedWeapon__
 	#define SetPlayerArmedWeapon__( FIXES_SetPlayerArmedWeapon(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerArmedWeapon);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerArmedWeapon_);
 #endif
 
 /**
@@ -21357,7 +21357,7 @@ native BAD_GetPlayerWeapon(playerid) = GetPlayerWeapon;
 	#define _ALS_GetPlayerWeapon__
 	#define GetPlayerWeapon__( FIXES_GetPlayerWeapon(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerWeapon);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerWeapon_);
 #endif
 
 /**
@@ -21527,7 +21527,7 @@ native BAD_PutPlayerInVehicle(playerid, vehicleid, seatid) = PutPlayerInVehicle;
 	#define _ALS_PutPlayerInVehicle__
 	#define PutPlayerInVehicle__( FIXES_PutPlayerInVehicle(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_PutPlayerInVehicle);
+	_FIXES_HIDE_PAWNDOC(FIXES_PutPlayerInVehicle_);
 #endif
 
 /**
@@ -21597,7 +21597,7 @@ native BAD_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size) 
 	#define _ALS_SetPlayerCheckpoint__
 	#define SetPlayerCheckpoint__( FIXES_SetPlayerCheckpoint(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerCheckpoint);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerCheckpoint_);
 #endif
 
 /**
@@ -21635,7 +21635,7 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
 	#define _ALS_DisablePlayerCheckpoint__
 	#define DisablePlayerCheckpoint__( FIXES_DisablePlayerCheckpoint(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_DisablePlayerCheckpoint);
+	_FIXES_HIDE_PAWNDOC(FIXES_DisablePlayerCheckpoint_);
 #endif
 
 /**
@@ -21705,7 +21705,7 @@ native BAD_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Fl
 	#define _ALS_SetPlayerRaceCheckpoint__
 	#define SetPlayerRaceCheckpoint__( FIXES_SetPlayerRaceCheckpoint(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerRaceCheckpoint);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerRaceCheckpoint_);
 #endif
 
 /**
@@ -21738,7 +21738,7 @@ native BAD_DisablePlayerRaceCheckpoint(playerid) = DisablePlayerRaceCheckpoint;
 	#define _ALS_DisablePlayerRaceCP
 	#define DisablePlayerRaceCheckpoint( FIXES_DisablePlayerRaceCP(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_DisablePlayerRaceCP);
+	_FIXES_HIDE_PAWNDOC(FIXES_DisablePlayerRaceCP_);
 #endif
 
 /**
@@ -21894,7 +21894,7 @@ native BAD_GameTextForAll(const string[], time, style) = GameTextForAll;
 	#define _ALS_GameTextForAll__
 	#define GameTextForAll__( FIXES_GameTextForAll(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GameTextForAll);
+	_FIXES_HIDE_PAWNDOC(FIXES_GameTextForAll_);
 #endif
 
 /**
@@ -21945,7 +21945,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#define _ALS_GameTextForPlayer__
 	#define GameTextForPlayer__( FIXES_GameTextForPlayer(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GameTextForPlayer);
+	_FIXES_HIDE_PAWNDOC(FIXES_GameTextForPlayer_);
 #endif
 
 /**
@@ -21963,7 +21963,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#define _ALS_HideGameTextForAll
 	#define HideGameTextForAll(%0) GameTextForAll__(_FIXES_gcNull, 0, (%0))
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_HideGameTextForAll);
+	_FIXES_HIDE_PAWNDOC(FIXES_HideGameTextForAll_);
 #endif
 
 /**
@@ -21981,7 +21981,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#define _ALS_HideGameTextForPlayer
 	#define HideGameTextForPlayer(%0,%1) GameTextForPlayer__((%0), _FIXES_gcNull, 0, (%1))
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_HideGameTextForPlayer);
+	_FIXES_HIDE_PAWNDOC(FIXES_HideGameTextForPlayer_);
 #endif
 
 /**
@@ -22051,7 +22051,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#define _ALS_CreatePlayerTextDraw__
 	#define CreatePlayerTextDraw__( FIXES_CreatePlayerTextDraw(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_CreatePlayerTextDraw);
+	_FIXES_HIDE_PAWNDOC(FIXES_CreatePlayerTextDraw_);
 #endif
 
 /**
@@ -22129,7 +22129,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#define _ALS_PlayerTextDrawSetString__
 	#define PlayerTextDrawSetString__( FIXES_PlayerTextDrawSetString(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_PlayerTextDrawSetString);
+	_FIXES_HIDE_PAWNDOC(FIXES_PlayerTextDrawSetString_);
 #endif
 
 /**
@@ -22144,7 +22144,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#endif
 	native Text:BAD_TextDrawCreate(Float:x, Float:y, text[]) = TextDrawCreate;
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_BAD_TextDrawCreate);
+	_FIXES_HIDE_PAWNDOC(FIXES_BAD_TextDrawCreate_);
 #endif
 
 /**
@@ -22207,7 +22207,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#define _ALS_TextDrawCreate__
 	#define TextDrawCreate__( FIXES_TextDrawCreate(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_TextDrawCreate);
+	_FIXES_HIDE_PAWNDOC(FIXES_TextDrawCreate_);
 #endif
 
 /**
@@ -22222,7 +22222,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#endif
 	native BAD_TextDrawSetString(Text:text, string[]) = TextDrawSetString;
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_BAD_TextDrawSetString);
+	_FIXES_HIDE_PAWNDOC(FIXES_BAD_TextDrawSetString_);
 #endif
 
 /**
@@ -22285,7 +22285,7 @@ native BAD_GameTextForPlayer(playerid, const string[], time, style) = GameTextFo
 	#define _ALS_TextDrawSetString__
 	#define TextDrawSetString__( FIXES_TextDrawSetString(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_TextDrawSetString);
+	_FIXES_HIDE_PAWNDOC(FIXES_TextDrawSetString_);
 #endif
 
 /**
@@ -22371,7 +22371,7 @@ native BAD_AllowInteriorWeapons(allow) = AllowInteriorWeapons;
 	#define _ALS_AllowInteriorWeapons__
 	#define AllowInteriorWeapons__( FIXES_AllowInteriorWeapons(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_AllowInteriorWeapons);
+	_FIXES_HIDE_PAWNDOC(FIXES_AllowInteriorWeapons_);
 #endif
 
 /**
@@ -22407,7 +22407,7 @@ native BAD_GetPlayerInterior(playerid) = GetPlayerInterior;
 	#define _ALS_GetPlayerInterior__
 	#define GetPlayerInterior__( FIXES_GetPlayerInterior(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerInterior);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerInterior_);
 #endif
 
 /**
@@ -22444,7 +22444,7 @@ native BAD_SetPlayerInterior(playerid, interiorid) = SetPlayerInterior;
 	#define _ALS_SetPlayerInterior__
 	#define SetPlayerInterior__( FIXES_SetPlayerInterior(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerInterior);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerInterior_);
 #endif
 
 #if FIX_AllowTeleport && !defined FILTERSCRIPT && !FIXES_Single
@@ -22556,7 +22556,7 @@ native BAD_AllowPlayerTeleport(playerid, allow) = AllowPlayerTeleport;
 	#define _ALS_AllowPlayerTeleport__
 	#define AllowPlayerTeleport__( FIXES_AllowPlayerTeleport(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_AllowPlayerTeleport);
+	_FIXES_HIDE_PAWNDOC(FIXES_AllowPlayerTeleport_);
 #endif
 
 /**
@@ -22605,7 +22605,7 @@ native BAD_AllowAdminTeleport(allow) = AllowAdminTeleport;
 	#define _ALS_AllowAdminTeleport__
 	#define AllowAdminTeleport__( FIXES_AllowAdminTeleport(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_AllowAdminTeleport);
+	_FIXES_HIDE_PAWNDOC(FIXES_AllowAdminTeleport_);
 #endif
 
 /**
@@ -22680,7 +22680,7 @@ native BAD_SetPlayerSpecialAction(playerid, actionid) = SetPlayerSpecialAction;
 	#define _ALS_SetPlayerSpecialAction__
 	#define SetPlayerSpecialAction__( FIXES_SetPlayerSpecialAction(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerSpecialAction);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerSpecialAction_);
 #endif
 
 /**
@@ -22733,7 +22733,7 @@ native BAD_ClearAnimations(playerid, forcesync = 0) = ClearAnimations;
 	#define _ALS_ClearAnimations__
 	#define ClearAnimations__( FIXES_ClearAnimations(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_ClearAnimations);
+	_FIXES_HIDE_PAWNDOC(FIXES_ClearAnimations_);
 #endif
 
 /**
@@ -22765,7 +22765,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 	#define _ALS_GangZoneCreate__
 	#define GangZoneCreate__( FIXES_GangZoneCreate(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GangZoneCreate);
+	_FIXES_HIDE_PAWNDOC(FIXES_GangZoneCreate_);
 #endif
 
 /**
@@ -22838,7 +22838,7 @@ native BAD_GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy) = Gang
 	#define _ALS_ShowPlayerDialog__
 	#define ShowPlayerDialog__( FIXES_ShowPlayerDialog(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_ShowPlayerDialog);
+	_FIXES_HIDE_PAWNDOC(FIXES_ShowPlayerDialog_);
 #endif
 
 /**
@@ -23084,7 +23084,7 @@ native BAD_CreateVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, col
 	#define _ALS_CreateVehicle__
 	#define CreateVehicle__( FIXES_CreateVehicle(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_CreateVehicle);
+	_FIXES_HIDE_PAWNDOC(FIXES_CreateVehicle_);
 #endif
 
 /**
@@ -23258,7 +23258,7 @@ native BAD_AddStaticVehicleEx(modelid, Float:x, Float:y, Float:z, Float:rotation
 	#define _ALS_AddStaticVehicleEx__
 	#define AddStaticVehicleEx__( FIXES_AddStaticVehicleEx(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_AddStaticVehicleEx);
+	_FIXES_HIDE_PAWNDOC(FIXES_AddStaticVehicleEx_);
 #endif
 
 /**
@@ -23325,7 +23325,7 @@ native BAD_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, 
 	#define _ALS_AddStaticVehicle__
 	#define AddStaticVehicle__( FIXES_AddStaticVehicle(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_AddStaticVehicle);
+	_FIXES_HIDE_PAWNDOC(FIXES_AddStaticVehicle_);
 #endif
 
 /**
@@ -23436,7 +23436,7 @@ native BAD_AddStaticVehicle(modelid, Float:x, Float:y, Float:z, Float:rotation, 
 	#define _ALS_GetPlayerDialog__
 	#define GetPlayerDialog__( FIXES_GetPlayerDialog(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerDialog);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerDialog_);
 #endif
 
 /**
@@ -23480,7 +23480,7 @@ native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 	#define _ALS_valstr__
 	#define valstr__( FIXES_valstr(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_valstr);
+	_FIXES_HIDE_PAWNDOC(FIXES_valstr_);
 #endif
 
 /**
@@ -23512,7 +23512,7 @@ native BAD_fclose(File:handle) = fclose;
 	#define _ALS_fclose__
 	#define fclose__( FIXES_fclose(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_fclose);
+	_FIXES_HIDE_PAWNDOC(FIXES_fclose_);
 #endif
 
 /**
@@ -23544,7 +23544,7 @@ native BAD_fwrite(File:handle, const string[]) = fwrite;
 	#define _ALS_fwrite__
 	#define fwrite__( FIXES_fwrite(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_fwrite);
+	_FIXES_HIDE_PAWNDOC(FIXES_fwrite_);
 #endif
 
 /**
@@ -23576,7 +23576,7 @@ native BAD_fread(File:handle, string[], size = sizeof (string), bool:pack = fals
 	#define _ALS_fread__
 	#define fread__( FIXES_fread(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_fread);
+	_FIXES_HIDE_PAWNDOC(FIXES_fread_);
 #endif
 
 /**
@@ -23608,7 +23608,7 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 	#define _ALS_fputchar__
 	#define fputchar__( FIXES_fputchar(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_fputchar);
+	_FIXES_HIDE_PAWNDOC(FIXES_fputchar_);
 #endif
 
 /**
@@ -23644,7 +23644,7 @@ native BAD_fgetchar(File:handle, bool:utf8 = true) = fgetchar;
 	#define _ALS_fgetchar__
 	#define fgetchar__( FIXES_fgetchar(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_fgetchar);
+	_FIXES_HIDE_PAWNDOC(FIXES_fgetchar_);
 #endif
 
 /**
@@ -23676,7 +23676,7 @@ native BAD_fblockwrite(File:handle, const buffer[], size = sizeof (buffer)) = fb
 	#define _ALS_fblockwrite__
 	#define fblockwrite__( FIXES_fblockwrite(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_fblockwrite);
+	_FIXES_HIDE_PAWNDOC(FIXES_fblockwrite_);
 #endif
 
 /**
@@ -23708,7 +23708,7 @@ native BAD_fblockread(File:handle, buffer[], size = sizeof (buffer)) = fblockrea
 	#define _ALS_fblockread__
 	#define fblockread__( FIXES_fblockread(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_fblockread);
+	_FIXES_HIDE_PAWNDOC(FIXES_fblockread_);
 #endif
 
 /**
@@ -23740,7 +23740,7 @@ native BAD_fseek(File:handle, position = 0, seek_whence:whence = seek_start) = f
 	#define _ALS_fseek__
 	#define fseek__( FIXES_fseek(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_fseek);
+	_FIXES_HIDE_PAWNDOC(FIXES_fseek_);
 #endif
 
 /**
@@ -23772,7 +23772,7 @@ native BAD_flength(File:handle) = flength;
 	#define _ALS_flength__
 	#define flength__( FIXES_flength(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_flength);
+	_FIXES_HIDE_PAWNDOC(FIXES_flength_);
 #endif
 
 /**
@@ -23794,7 +23794,7 @@ native BAD_flength(File:handle) = flength;
 	#define _ALS_floatfract__
 	#define floatfract__( FIXES_floatfract(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_floatfract);
+	_FIXES_HIDE_PAWNDOC(FIXES_floatfract_);
 #endif
 
 /**
@@ -23816,7 +23816,7 @@ native BAD_flength(File:handle) = flength;
 	#define _ALS_strfind__
 	#define strfind__( FIXES_strfind(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_strfind);
+	_FIXES_HIDE_PAWNDOC(FIXES_strfind_);
 #endif
 
 /**
@@ -23838,7 +23838,7 @@ native BAD_flength(File:handle) = flength;
 	#define _ALS_strdel__
 	#define strdel__( FIXES_strdel(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_strdel);
+	_FIXES_HIDE_PAWNDOC(FIXES_strdel_);
 #endif
 
 /**
@@ -23905,7 +23905,7 @@ native BAD_Kick(playerid) = Kick;
 	#define _ALS_Kick__
 	#define Kick__( FIXES_Kick(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_Kick);
+	_FIXES_HIDE_PAWNDOC(FIXES_Kick_);
 #endif
 
 /**
@@ -23991,7 +23991,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 	#define _ALS_strins__
 	#define strins__( FIXES_strins(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_strins);
+	_FIXES_HIDE_PAWNDOC(FIXES_strins_);
 #endif
 
 /**
@@ -24048,7 +24048,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 	#endif
 	native BAD_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0) = ApplyAnimation;
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_BAD_ApplyAnimation);
+	_FIXES_HIDE_PAWNDOC(FIXES_BAD_ApplyAnimation_);
 #endif
 
 /**
@@ -24101,7 +24101,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 	#define _ALS_ApplyAnimation__
 	#define ApplyAnimation__( FIXES_ApplyAnimation(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_ApplyAnimation);
+	_FIXES_HIDE_PAWNDOC(FIXES_ApplyAnimation_);
 #endif
 
 /**
@@ -24211,7 +24211,7 @@ native BAD_strins(string[], const substr[], pos, maxlength = sizeof (string)) = 
 	#define _ALS_ApplyActorAnimation__
 	#define ApplyActorAnimation__( FIXES_ApplyActorAnimation(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_ApplyActorAnimation);
+	_FIXES_HIDE_PAWNDOC(FIXES_ApplyActorAnimation_);
 #endif
 
 /**
@@ -24254,7 +24254,7 @@ native BAD_CreateActor(modelid, Float:X, Float:Y, Float:Z, Float:rotation) = Cre
 	#define _ALS_CreateActor__
 	#define CreateActor__( FIXES_CreateActor(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_CreateActor);
+	_FIXES_HIDE_PAWNDOC(FIXES_CreateActor_);
 #endif
 
 /**
@@ -24292,7 +24292,7 @@ native BAD_DestroyActor(actorid) = DestroyActor;
 	#define _ALS_DestroyActor__
 	#define DestroyActor__( FIXES_DestroyActor(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_DestroyActor);
+	_FIXES_HIDE_PAWNDOC(FIXES_DestroyActor_);
 #endif
 
 /**
@@ -24341,7 +24341,7 @@ native BAD_DestroyVehicle(vehicleid) = DestroyVehicle;
 	#define _ALS_DestroyVehicle__
 	#define DestroyVehicle__( FIXES_DestroyVehicle(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_DestroyVehicle);
+	_FIXES_HIDE_PAWNDOC(FIXES_DestroyVehicle_);
 #endif
 
 /**
@@ -24432,7 +24432,7 @@ native BAD_AddVehicleComponent(vehicleid, componentid) = AddVehicleComponent;
 	#define _ALS_AddVehicleComponent__
 	#define AddVehicleComponent__( FIXES_AddVehicleComponent(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_AddVehicleComponent);
+	_FIXES_HIDE_PAWNDOC(FIXES_AddVehicleComponent_);
 #endif
 
 /**
@@ -24514,7 +24514,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 	#define _ALS_RemoveVehicleComponent__
 	#define RemoveVehicleComponent__( FIXES_RemoveVehicleComponent(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_RemoveVehicleComponent);
+	_FIXES_HIDE_PAWNDOC(FIXES_RemoveVehicleComponent_);
 #endif
 
 /**
@@ -24599,7 +24599,7 @@ native BAD_RemoveVehicleComponent(vehicleid, componentid) = RemoveVehicleCompone
 	#define _ALS_GetVehComponentInSlot__
 	#define GetVehicleComponentInSlot__( FIXES_GetVehicleComponentInSlot(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleComponentInSl);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleComponentInSl_);
 #endif
 
 
@@ -24630,7 +24630,7 @@ native BAD_AttachTrailerToVehicle(trailerid, vehicleid) = AttachTrailerToVehicle
 	#define _ALS_AttachTrailerToVehicle__
 	#define AttachTrailerToVehicle__( FIXES_AttachTrailerToVehicle(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_AttachTrailerToVehicle);
+	_FIXES_HIDE_PAWNDOC(FIXES_AttachTrailerToVehicle_);
 #endif
 
 
@@ -24665,7 +24665,7 @@ native BAD_SetVehicleParamsEx(vehicleid, VEHICLE_PARAMS:engine, VEHICLE_PARAMS:l
 	#define _ALS_SetVehicleParamsEx__
 	#define SetVehicleParamsEx__( FIXES_SetVehicleParamsEx(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetVehicleParamsEx);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetVehicleParamsEx_);
 #endif
 
 /**
@@ -24708,7 +24708,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS
 	#define _ALS_GetVehicleParamsEx__
 	#define GetVehicleParamsEx__( FIXES_GetVehicleParamsEx(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleParamsEx);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleParamsEx_);
 #endif
 
 /**
@@ -24724,7 +24724,7 @@ native BAD_GetVehicleParamsEx(vehicleid, &VEHICLE_PARAMS:engine, &VEHICLE_PARAMS
 		return FIXES_gsVehicleIsLocked[vehicleid];
 	}
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleDoorsEx);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleDoorsEx_);
 #endif
 
 /**
@@ -24763,7 +24763,7 @@ native BAD_random(max) = random;
 	#define _ALS_random__
 	#define random__( FIXES_random(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_random);
+	_FIXES_HIDE_PAWNDOC(FIXES_random_);
 #endif
 
 /**
@@ -24814,7 +24814,7 @@ native bool:_FIXES_Streamer_HasIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data
 	#define _ALS_Streamer_HasIntData__
 	#define Streamer_HasIntData__( FIXES_Streamer_HasIntData(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_Streamer_HasIntData);
+	_FIXES_HIDE_PAWNDOC(FIXES_Streamer_HasIntData_);
 #endif
 
 /**
@@ -24865,7 +24865,7 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 	#define _ALS_Streamer_RemoveIntData__
 	#define Streamer_RemoveIntData__( FIXES_Streamer_RemoveIntData(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_Streamer_RemoveIntData);
+	_FIXES_HIDE_PAWNDOC(FIXES_Streamer_RemoveIntData_);
 #endif
 
 /**
@@ -24904,7 +24904,7 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
 	#define FIXES_sleep(%0;) FIXES_sleep _FIXES_SLEEP_BRACKET %0);
 	#define _FIXES_SLEEP_BRACKET (
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_sleep);
+	_FIXES_HIDE_PAWNDOC(FIXES_sleep_);
 #endif
 
 /**
@@ -24978,7 +24978,7 @@ native BAD_SetPlayerCameraPos(playerid, Float:x, Float:y, Float:z) = SetPlayerCa
 	#define _ALS_SetPlayerCameraPos__
 	#define SetPlayerCameraPos__( FIXES_SetPlayerCameraPos(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerCameraPos);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerCameraPos_);
 #endif
 
 /**
@@ -25025,7 +25025,7 @@ native BAD_SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z) = SetPlaye
 	#define _ALS_SetPlayerCameraLookAt__
 	#define SetPlayerCameraLookAt__( FIXES_SetPlayerCameraLookAt(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerCameraLookAt);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerCameraLookAt_);
 #endif
 
 /**
@@ -25077,7 +25077,7 @@ native BAD_TogglePlayerSpectating(playerid, toggle) = TogglePlayerSpectating;
 	#define _ALS_TogglePlayerSpectating__
 	#define TogglePlayerSpectating__( FIXES_TogglePlayerSpectating(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_TogglePlayerSpectating);
+	_FIXES_HIDE_PAWNDOC(FIXES_TogglePlayerSpectating_);
 #endif
 
 /**
@@ -25124,7 +25124,7 @@ native BAD_SetPlayerTime(playerid, hour, minute) = SetPlayerTime;
 	#define _ALS_SetPlayerTime__
 	#define SetPlayerTime__( FIXES_SetPlayerTime(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerTime);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerTime_);
 #endif
 
 /**
@@ -25171,7 +25171,7 @@ native BAD_SetPlayerColor(playerid, color) = SetPlayerColor;
 	#define _ALS_SetPlayerColor__
 	#define SetPlayerColor__( FIXES_SetPlayerColor(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerColor);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerColor_);
 #endif
 
 /**
@@ -25208,7 +25208,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 	#define _ALS_GetPlayerWeaponData__
 	#define GetPlayerWeaponData__( FIXES_GetPlayerWeaponData(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerWeaponData);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerWeaponData_);
 #endif
 
 /**
@@ -25266,7 +25266,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 	#define _ALS_GetPVarString__
 	#define GetPVarString__( FIXES_GetPVarString(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPVarString);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPVarString_);
 #endif
 
 /**
@@ -25310,7 +25310,7 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
 	#define _ALS_GetSVarString__
 	#define GetSVarString__( FIXES_GetSVarString(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetSVarString);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetSVarString_);
 #endif
 
 /**
@@ -25350,7 +25350,7 @@ native BAD_toupper(c) = toupper;
 	#define _ALS_toupper__
 	#define toupper__( FIXES_toupper(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_toupper);
+	_FIXES_HIDE_PAWNDOC(FIXES_toupper_);
 #endif
 
 /**
@@ -25390,7 +25390,7 @@ native BAD_tolower(c) = tolower;
 	#define _ALS_tolower__
 	#define tolower__( FIXES_tolower(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_tolower);
+	_FIXES_HIDE_PAWNDOC(FIXES_tolower_);
 #endif
 
 /**
@@ -25423,7 +25423,7 @@ native bool:BAD_ispacked(const string[]) = ispacked;
 	#define _ALS_ispacked__
 	#define ispacked__(%0) (((%0)[0] & ~0xFF) != 0)
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_ispacked);
+	_FIXES_HIDE_PAWNDOC(FIXES_ispacked_);
 #endif
 
 /**
@@ -25457,7 +25457,7 @@ native BAD_GetPlayerPoolSize() = GetPlayerPoolSize;
 	#define _ALS_GetPlayerPoolSize__
 	#define GetPlayerPoolSize__( FIXES_GetPlayerPoolSize(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerPoolSize);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerPoolSize_);
 #endif
 
 /**
@@ -25510,7 +25510,7 @@ native BAD_SetPlayerPos(playerid, Float:x, Float:y, Float:z) = SetPlayerPos;
 	#define _ALS_SetPlayerPos__
 	#define SetPlayerPos__( FIXES_SetPlayerPos(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerPos);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerPos_);
 #endif
 
 /**
@@ -25549,7 +25549,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 	#define _ALS_SetPlayerPosFindZ__
 	#define SetPlayerPosFindZ__( FIXES_SetPlayerPosFindZ(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerPosFindZ);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerPosFindZ_);
 #endif
 
 /**
@@ -25615,7 +25615,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	#define _ALS_SetPlayerAmmo__
 	#define SetPlayerAmmo__(%0,%1,%2) FIXES_SetPlayerAmmo((%0),(%1),clamp((%2),0,32767))
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerAmmo);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerAmmo_);
 #endif
 
 /**
@@ -25645,7 +25645,7 @@ native BAD_SetPlayerAmmo(playerid, weaponid, ammo) = SetPlayerAmmo;
 	#define _ALS_GetPlayerWeather__
 	#define GetPlayerWeather__( FIXES_GetPlayerWeather(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerWeather);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetPlayerWeather_);
 #endif
 
 /**
@@ -25682,7 +25682,7 @@ native BAD_SetPlayerWeather(playerid, weather) = SetPlayerWeather;
 	#define _ALS_SetPlayerWeather__
 	#define SetPlayerWeather__( FIXES_SetPlayerWeather(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerWeather);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetPlayerWeather_);
 #endif
 
 /**
@@ -25757,7 +25757,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 	#define _ALS_TogglePlayerClock__
 	#define TogglePlayerClock__( FIXES_TogglePlayerClock(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_TogglePlayerClock);
+	_FIXES_HIDE_PAWNDOC(FIXES_TogglePlayerClock_);
 #endif
 
 /**
@@ -25783,7 +25783,7 @@ native BAD_TogglePlayerClock(playerid, toggle) = TogglePlayerClock;
 	#define _ALS_GetWeather__
 	#define GetWeather__( FIXES_GetWeather(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetWeather);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetWeather_);
 #endif
 
 /**
@@ -25835,7 +25835,7 @@ native BAD_SetWeather(weather) = SetWeather;
 	#define _ALS_SetWeather__
 	#define SetWeather__( FIXES_SetWeather(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetWeather);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetWeather_);
 #endif
 
 /**
@@ -25853,7 +25853,7 @@ native BAD_SetWeather(weather) = SetWeather;
 	#define _ALS_ResetWeather__
 	#define ResetWeather__() SetWeather(10)
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_ResetWeather);
+	_FIXES_HIDE_PAWNDOC(FIXES_ResetWeather_);
 #endif
 
 /**
@@ -25881,7 +25881,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 	#define _ALS_SetWorldTime__
 	#define SetWorldTime__(%0) BAD_SetWorldTime((_FIXES_gsWorldTime=(%0)))
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_SetWorldTime);
+	_FIXES_HIDE_PAWNDOC(FIXES_SetWorldTime_);
 #endif
 
 /**
@@ -25904,7 +25904,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 	#define _ALS_GetWorldTime__
 	#define GetWorldTime__() (_FIXES_gsWorldTime)
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetWorldTime);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetWorldTime_);
 #endif
 
 /**
@@ -25927,7 +25927,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 	#define _ALS_GetMaxPlayers__
 	#define GetMaxPlayers__() (_FIXES_gsMaxPlayers)
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetMaxPlayers);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetMaxPlayers_);
 #endif
 
 /**
@@ -26044,7 +26044,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 		return true;
 	}
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetConsoleVarAsString);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetConsoleVarAsString_);
 #endif
 
 #if FIX_GetConsoleVarAsString
@@ -26070,7 +26070,7 @@ native BAD_SetWorldTime(hour) = SetWorldTime;
 	#define _ALS_GetServerVarAsString__
 	#define GetServerVarAsString__( FIXES_GetServerVarAsString(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsString);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsString_);
 #endif
 
 /**
@@ -26162,7 +26162,7 @@ native BAD_GetServerVarAsInt(const varname[]) = GetServerVarAsInt;
 	#define _ALS_GetServerVarAsInt__
 	#define GetServerVarAsInt__( FIXES_GetServerVarAsInt(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsInt);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsInt_);
 #endif
 
 /**
@@ -26240,7 +26240,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define _ALS_GetServerVarAsBool__
 	#define GetServerVarAsBool__( FIXES_GetServerVarAsBool(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsBool);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsBool_);
 #endif
 
 /**
@@ -26294,7 +26294,7 @@ native BAD_GetServerVarAsBool(const varname[]) = GetServerVarAsBool;
 	#define _ALS_GetServerVarAsFloat__
 	#define GetServerVarAsFloat__( FIXES_GetServerVarAsFloat(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsFloat);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetServerVarAsFloat_);
 #endif
 
 /**
@@ -26354,7 +26354,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	#define _ALS_strcmp__
 	#define strcmp__( FIXES_strcmp(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_strcmp);
+	_FIXES_HIDE_PAWNDOC(FIXES_strcmp_);
 #endif
 
 #if _FIXES_SAMP && FIX_bool_tags
@@ -26723,7 +26723,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	#define _ALS_GetDefaultPlayerColor__
 	#define GetDefaultPlayerColor__( FIXES_GetDefaultPlayerColour(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetDefaultPlayerColor);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetDefaultPlayerColor_);
 #endif
 
 /**
@@ -26754,7 +26754,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	#define _ALS_GetVehicleSeats__
 	#define GetVehicleSeats__( FIXES_GetVehicleSeats(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleSeats);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetVehicleSeats_);
 #endif
 
 /**
@@ -26793,7 +26793,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	#define _ALS_VehicleCanHaveComponent__
 	#define VehicleCanHaveComponent__( FIXES_VehicleCanHaveComponent(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_VehicleCanHaveComponent);
+	_FIXES_HIDE_PAWNDOC(FIXES_VehicleCanHaveComponent_);
 #endif
 
 /**
@@ -26815,7 +26815,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	#define _ALS_IsValidAnimationLibrary__
 	#define IsValidAnimationLibrary__( FIXES_IsValidAnimationLibrary(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_IsValidAnimationLibrary);
+	_FIXES_HIDE_PAWNDOC(FIXES_IsValidAnimationLibrary_);
 #endif
 
 /**
@@ -26837,7 +26837,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	#define _ALS_GetRandomCarColPair__
 	#define GetRandomCarColPair__( _FIXES_GetRandomCarColPair(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_GetRandomCarColPair);
+	_FIXES_HIDE_PAWNDOC(FIXES_GetRandomCarColPair_);
 #endif
 
 /**
@@ -26873,7 +26873,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	#define _ALS_CarColIndexToColor__
 	#define CarColIndexToColor__( FIXES_CarColIndexToColour(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_CarColIndexToColor);
+	_FIXES_HIDE_PAWNDOC(FIXES_CarColIndexToColor_);
 #endif
 
 /**
@@ -26897,7 +26897,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	#define _ALS_PlayerHasClockEnabled__
 	#define PlayerHasClockEnabled__( FIXES_PlayerHasClockEnabled(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_PlayerHasClockEnabled);
+	_FIXES_HIDE_PAWNDOC(FIXES_PlayerHasClockEnabled_);
 #endif
 
 /**
@@ -26921,7 +26921,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	#define _ALS_IsMenuValid__
 	#define IsMenuValid__( FIXES_IsMenuValid(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_IsMenuValid);
+	_FIXES_HIDE_PAWNDOC(FIXES_IsMenuValid_);
 #endif
 
 /*
@@ -27497,7 +27497,7 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_NameOfFixHere__
 	#define NameOfFixHere__( FIXES_NameOfFixHere(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_NameOfFixHere);
+	_FIXES_HIDE_PAWNDOC(FIXES_NameOfFixHere_);
 #endif
 
 // Added API function template.
@@ -27523,6 +27523,6 @@ native BAD_NameOfFixHere(params) = NameOfFixHere;
 	#define _ALS_XXX__
 	#define XXX__( FIXES_XXX(
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES_XXX);
+	_FIXES_HIDE_PAWNDOC(FIXES_XXX_);
 #endif
 
