@@ -7497,11 +7497,23 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  */
 
 #if !defined FIX_fgetchar2
-	#define _FIXES_WARNING 142
-	#tryinclude "_fixes_options"
-	#undef _FIXES_WARNING
-	static _FIXES_OPTION FIX_fgetchar2 = _FIXES_DEFAULT;
-	#define FIX_fgetchar2                        _FIXES_DEFAULT
+	#if defined __fgetchar
+		#if FIXES_EnableDeprecated
+			#define _FIXES_WARNING 142
+			#tryinclude "_fixes_options"
+			#undef _FIXES_WARNING
+			static _FIXES_OPTION FIX_fgetchar2 = FIXES_EnableDeprecated;
+		#else
+			_FIXES_CONST_PAWNDOC(FIX_fgetchar2 = FIXES_EnableDeprecated);
+		#endif
+		#define FIX_fgetchar2                    FIXES_EnableDeprecated
+	#else
+		#define _FIXES_WARNING 142
+		#tryinclude "_fixes_options"
+		#undef _FIXES_WARNING
+		static _FIXES_OPTION FIX_fgetchar2 = _FIXES_DEFAULT;
+		#define FIX_fgetchar2                    _FIXES_DEFAULT
+	#endif
 #elseif _FIXES_IS_UNSET(FIX_fgetchar2)
 	#undef FIX_fgetchar2
 	static stock FIX_fgetchar2= 2;
