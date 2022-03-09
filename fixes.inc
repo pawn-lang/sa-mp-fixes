@@ -23685,16 +23685,16 @@ native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 			#undef fgetchar
 		#endif
 		#define _ALS_fgetchar
-		#define fgetchar( FIXES_fgetchar(
+		#define fgetchar(%0) (FIXES_fgetchar(%0)_FIXES_DEFER_EXPANSION)
 	#endif
 
 	#define _ALS_fgetchar__
-	#define fgetchar__( FIXES_fgetchar(
+	#define fgetchar__(%0) (FIXES_fgetchar(%0)_FIXES_DEFER_EXPANSION)
 
 	#if FIX_fgetchar2
 		// Swap the order so the correct parameter is used, but don't remove the
 		// extra one, so a warning is still given.
-		#define FIXES_fgetchar(%0,%1,%2) FIXES_fgetchar _FIXES_DEFER_EXPANSION((%0),(%2),(%1))
+		#define FIXES_fgetchar(%0,%1,%2)_FIXES_DEFER_EXPANSION) FIXES_fgetchar(%0,%2,%1))
 	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_fgetchar_);
