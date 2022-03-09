@@ -529,7 +529,7 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 
 #if _FIXES_FIRST_PASS
 	// First compiler pass only.
-	#define _FIXES_FUNC_PAWNDOC(%0(%1)); native %0(%1) = __PAWNDOC; stock PAWNDOC _FIXES_BRACKETS <__PAWNDOC:%0> { (%0()); }
+	#define _FIXES_FUNC_PAWNDOC(%0(%1)); native %0(%1) = __PAWNDOC; stock PAWNDOC _FIXES_DEFER_EXPANSION() <__PAWNDOC:%0> { (%0()); }
 #else
 	#define _FIXES_FUNC_PAWNDOC(%0(%1));
 #endif
@@ -538,7 +538,7 @@ const _HIDE_THE_FIXES_COMMENT_2 = 2;
 #define __PAWNDOC:%0:%1> __PAWNDOC:%1>
 
 // Defer macro expansion.
-#define _FIXES_BRACKETS ()
+#define _FIXES_DEFER_EXPANSION
 
 _FIXES_FUNC_PAWNDOC(FUNC_PAWNDOC(const symbol[]));
 
@@ -611,7 +611,7 @@ _FIXES_FUNC_PAWNDOC(HIDE_PAWNDOC(const symbol[]));
  */
 
 _FIXES_FUNC_PAWNDOC(ENUM_PAWNDOC(const symbol[]));
-#define _FIXES_ENUM_PAWNDOC(%0); stock PAWNDOC _FIXES_BRACKETS <__PAWNDOC:%0> { random(_:%0); }
+#define _FIXES_ENUM_PAWNDOC(%0); stock PAWNDOC _FIXES_DEFER_EXPANSION() <__PAWNDOC:%0> { random(_:%0); }
 
 /**
  * <library>fixes.inc</library>
@@ -23692,11 +23692,9 @@ native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 	#define fgetchar__( FIXES_fgetchar(
 
 	#if FIX_fgetchar2
-		// Prevent recursive macro expansions.
-		#define _FIXES_ENCLOSE(%0) (%0)
 		// Swap the order so the correct parameter is used, but don't remove the
 		// extra one, so a warning is still given.
-		#define FIXES_fgetchar(%0,%1,%2) FIXES_fgetchar _FIXES_ENCLOSE((%0),(%2),(%1))
+		#define FIXES_fgetchar(%0,%1,%2) FIXES_fgetchar _FIXES_DEFER_EXPANSION((%0),(%2),(%1))
 	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_fgetchar_);
