@@ -23693,6 +23693,9 @@ native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 	}
 
 	#if _FIXES_SAMP
+		#if defined __fgetchar
+			#undef fgetchar
+		#endif
 		#define _ALS_fgetchar
 		#define fgetchar( FIXES_fgetchar(
 	#endif
