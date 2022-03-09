@@ -11,7 +11,7 @@
 
 /**
  * <!--
- * <transition target[^/]+/>
+ * <transition target(.*?)/>
  * -->
 */
 #if (__Pawn & 0x0F) >= 0x0A
@@ -37,7 +37,7 @@ const _HIDE_THE_FIXES_COMMENT_1 = 1;
  * after generation of the XML file, you should clean it up with the following
  * RegEx replacement:
  *
- * Search: <transition target[^/]+/>
+ * Search: <transition target(.*?)/>
  * Replace: (nothing)
  *
  * This works 99% of the time, though you may get one where the corrupted target
