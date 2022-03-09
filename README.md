@@ -211,6 +211,7 @@ FORCE_SYNC | The sync modes for `ApplyAnimation` are not defined by default. | D
 address_naught | When there are internal code errors that result in the wrong address being written to, more often than not that write clobbers whatever value is in address naught (`0x00000000`). | While we can't stop all the bad address writes there are two things we can do.  Enable the anonymous automata, which is always at address naught, and never use it so that bad writes don't break something else, and enable address naught write detection in crashdetect.  Note that this will have to be disabled if you use the anonymous automata. | [Y_Less](https://github.com/Y-Less) | |
 main2 | `main` isn't called in filterscripts. | Call it. | [Y_Less](https://github.com/Y-Less) | |
 npcmodes | There's no way to specify NPC modes in `server.cfg`. | Read `npcmodes` from the file ONCE and load them automatically. | [Y_Less](https://github.com/Y-Less) | |
+fgetchar2 | Has an extra `value` parameter. | Remove it. | [Y_Less](https://github.com/Y-Less) | |
 
 A few fixes are disabled by default, to enable them all do:
 

@@ -64,6 +64,11 @@ public CompileTest()
 	new KEY:kvar;
 	new ACTION:avar;
 
+	// Gives a warning.
+	fgetchar(File:0, 0, false);
+	// Doesn't give a warning.
+	fgetchar(File:0, false);
+
 	// Using defaults.
 	Print__("STRING");
 	PrintF__("STRING");

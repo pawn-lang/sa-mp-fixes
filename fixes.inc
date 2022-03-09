@@ -7482,6 +7482,40 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_npcmodes                         (0)
 #endif
 
+/**
+ * <library>fixes.inc</library>
+ * <fix name="fgetchar2">
+ *     <problem>
+ *         Has an extra <c>value</c> parameter.
+ *     </problem>
+ *     <solution>
+ *         Remove it.
+ *     </solution>
+ *     <see>FIXES_fgetchar</see>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_fgetchar2
+	#define _FIXES_WARNING 142
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_fgetchar2 = _FIXES_DEFAULT;
+	#define FIX_fgetchar2                        _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_fgetchar2)
+	#undef FIX_fgetchar2
+	static stock FIX_fgetchar2= 2;
+	#define FIX_fgetchar2                        (2)
+#elseif FIX_fgetchar2
+	#undef FIX_fgetchar2
+	static stock FIX_fgetchar2= 1;
+	#define FIX_fgetchar2                        (1)
+#else
+	#undef FIX_fgetchar2
+	static stock FIX_fgetchar2= 0;
+	#define FIX_fgetchar2                        (0)
+#endif
+
 /*
 
     88b           d88
@@ -23619,21 +23653,31 @@ native BAD_fputchar(File:handle, value, bool:utf8 = true) = fputchar;
 #if _FIXES_SAMP && defined _ALS_fgetchar
 	#error _ALS_fgetchar defined
 #endif
-native BAD_fgetchar(File:handle, bool:utf8 = true) = fgetchar;
+native BAD_fgetchar(File:handle, value, bool:utf8 = true) = fgetchar;
 
 /**
  * <library>fixes.inc</library>
  * <fixes>fgetchar</fixes>
  */
 
-#if FIX_fgetchar
-	stock FIXES_fgetchar(File:handle, value, bool:utf8 = true)
+#if FIX_fgetchar || FIX_fgetchar2
+	#if FIX_fgetchar2
+		stock FIXES_fgetchar(File:handle, bool:utf8 = true)
+	#else
+		stock FIXES_fgetchar(File:handle, value, bool:utf8 = true)
+	#endif
 	{
-		// Ignore `value`.
-		#pragma unused value
+		#if !FIX_fgetchar2
+			// Ignore `value`.
+			#pragma unused value
+		#endif
 		// Pass `utf8` to both parameters, as the native was fixed later so the `utf8` parameter
 		// could be second or third depending on pawn version.
-		return handle ? fgetchar(handle, (_:utf8), utf8) : '\0';
+		#if FIX_fgetchar
+			return handle ? BAD_fgetchar(handle, (_:utf8), utf8) : '\0';
+		#else
+			return BAD_fgetchar(handle, (_:utf8), utf8);
+		#endif
 	}
 
 	#if _FIXES_SAMP
@@ -23643,6 +23687,14 @@ native BAD_fgetchar(File:handle, bool:utf8 = true) = fgetchar;
 
 	#define _ALS_fgetchar__
 	#define fgetchar__( FIXES_fgetchar(
+
+	#if FIX_fgetchar2
+		// Prevent recursive macro expansions.
+		#define _FIXES_ENCLOSE(%0) (%0)
+		// Swap the order so the correct parameter is used, but don't remove the
+		// extra one, so a warning is still given.
+		#define FIXES_fgetchar(%0,%1,%2) FIXES_fgetchar _FIXES_ENCLOSE((%0),(%2),(%1))
+	#endif
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_fgetchar_);
 #endif
