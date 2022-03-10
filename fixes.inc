@@ -7504,15 +7504,15 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_fgetchar2                        _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_fgetchar2)
 	#undef FIX_fgetchar2
-	static stock FIX_fgetchar2= 2;
+	static stock FIX_fgetchar2 = 2;
 	#define FIX_fgetchar2                        (2)
 #elseif FIX_fgetchar2
 	#undef FIX_fgetchar2
-	static stock FIX_fgetchar2= 1;
+	static stock FIX_fgetchar2 = 1;
 	#define FIX_fgetchar2                        (1)
 #else
 	#undef FIX_fgetchar2
-	static stock FIX_fgetchar2= 0;
+	static stock FIX_fgetchar2 = 0;
 	#define FIX_fgetchar2                        (0)
 #endif
 
@@ -7539,19 +7539,19 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#tryinclude "_fixes_options"
 	#undef _FIXES_WARNING
 	static _FIXES_OPTION FIX_memcpy = _FIXES_DEFAULT;
-	#define FIX_memcpy                        _FIXES_DEFAULT
+	#define FIX_memcpy                           _FIXES_DEFAULT
 #elseif _FIXES_IS_UNSET(FIX_memcpy)
 	#undef FIX_memcpy
-	static stock FIX_memcpy= 2;
-	#define FIX_memcpy                        (2)
+	static stock FIX_memcpy = 2;
+	#define FIX_memcpy                           (2)
 #elseif FIX_memcpy
 	#undef FIX_memcpy
-	static stock FIX_memcpy= 1;
-	#define FIX_memcpy                        (1)
+	static stock FIX_memcpy = 1;
+	#define FIX_memcpy                           (1)
 #else
 	#undef FIX_memcpy
-	static stock FIX_memcpy= 0;
-	#define FIX_memcpy                        (0)
+	static stock FIX_memcpy = 0;
+	#define FIX_memcpy                           (0)
 #endif
 
 /*
@@ -23975,6 +23975,7 @@ native BAD_memcpy(dest[], const source[], index = 0, numbytes, maxlength = sizeo
 		index /= _FIXES_CELLBYTES;
 		if (fraction)
 		{
+			new small[2];
 			// The `index` is meant to be an index in to `source` (in bytes) for
 			// where to read the data from; however, it is treated as an index
 			// (in bytes) for where to write the data to in `dest`.  This
@@ -23982,15 +23983,25 @@ native BAD_memcpy(dest[], const source[], index = 0, numbytes, maxlength = sizeo
 			// save the second of those cells, then copy the rest.  So if we
 			// want an `index` of `1`, we instead use an index of `3`, and just
 			// take the top cell.
-			new small[2];
-			if (
-				memcpy(small, source[index], _FIXES_CELLBYTES - fraction, _FIXES_CELLBYTES + fraction, 2) &&
-				memcpy(dest, source[index + 1], _FIXES_CELLBYTES - fraction, numbytes - _FIXES_CELLBYTES + fraction, 2)
-			)
+			if (numbytes <= _FIXES_CELLBYTES)
 			{
-				return
-					dest[0] = small[1],
-					true;
+				// Silly case.
+				if (memcpy(small, source[index], _FIXES_CELLBYTES - fraction, numbytes + fraction, 2))
+				{
+					return
+						dest[0] = small[1],
+						true;
+				}
+			}
+			else
+			{
+				if (memcpy(small, source[index], _FIXES_CELLBYTES - fraction, _FIXES_CELLBYTES + fraction, 2) &&
+					memcpy(dest, source[index + 1], _FIXES_CELLBYTES - fraction, numbytes - _FIXES_CELLBYTES + fraction, 2))
+				{
+					return
+						dest[0] = small[1],
+						true;
+				}
 			}
 			return false;
 		}
