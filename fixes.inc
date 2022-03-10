@@ -7516,6 +7516,44 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_fgetchar2                        (0)
 #endif
 
+/**
+ * <library>fixes.inc</library>
+ * <fix name="memcpy">
+ *     <problem>
+ *         The <c>index</c> is meant to be an index in to <c>source</c> (in
+ *         bytes) for where to read the data from; however, it is treated as an
+ *         index (in bytes) for where to write the data to in <c>dest</c>.
+ *     </problem>
+ *     <solution>
+ *         Copy two cells with an offset to a temporary buffer, copy the rest of
+ *         the data to the next cell in the destination, then save the high cell
+ *         of the temporary storage.
+ *     </solution>
+ *     <see>FIXES_memcpy</see>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_memcpy
+	#define _FIXES_WARNING 143
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_memcpy = _FIXES_DEFAULT;
+	#define FIX_memcpy                        _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_memcpy)
+	#undef FIX_memcpy
+	static stock FIX_memcpy= 2;
+	#define FIX_memcpy                        (2)
+#elseif FIX_memcpy
+	#undef FIX_memcpy
+	static stock FIX_memcpy= 1;
+	#define FIX_memcpy                        (1)
+#else
+	#undef FIX_memcpy
+	static stock FIX_memcpy= 0;
+	#define FIX_memcpy                        (0)
+#endif
+
 /*
 
     88b           d88
@@ -7951,6 +7989,16 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_FALSE = 0);
 #else
 	#define _FIXES_MAYBE_FALSE 0
 #endif
+
+/**
+ * <library>fixes.inc</library>
+ * <remarks>
+ * The number of bytes in a cell.
+ * </remarks>
+ */
+
+_FIXES_CONST_PAWNDOC(_FIXES_CELLBYTES = cellbits / charbits);
+#define _FIXES_CELLBYTES (cellbits / charbits)
 
 /*
 
@@ -23896,6 +23944,75 @@ native BAD_flength(File:handle) = flength;
 
 /**
  * <library>fixes.inc</library>
+ * <fixes>memcpy</fixes>
+ */
+
+#if _FIXES_SAMP && defined _ALS_memcpy
+	#error _ALS_memcpy defined
+#endif
+native BAD_memcpy(dest[], const source[], index = 0, numbytes, maxlength = sizeof (dest)) = memcpy;
+
+/**
+ * <library>fixes.inc</library>
+ * <fixes>memcpy</fixes>
+ */
+
+#if FIX_memcpy
+	stock bool:FIXES_memcpy(dest[], const source[], index = 0, numbytes, maxlength = sizeof (dest))
+	{
+		#if cellbits == 8
+			new fraction = index & 1;
+		#elseif cellbits == 16
+			new fraction = index & 2;
+		#elseif cellbits == 32
+			new fraction = index & 3;
+		#elseif cellbits == 64
+			new fraction = index & 4;
+		#else
+			#error fixes.inc unknown `cellbits` size.
+		#endif
+		#pragma tabsize 4
+		index /= _FIXES_CELLBYTES;
+		if (fraction)
+		{
+			// The `index` is meant to be an index in to `source` (in bytes) for
+			// where to read the data from; however, it is treated as an index
+			// (in bytes) for where to write the data to in `dest`.  This
+			// clearly will not do!  Instead, copy two cells with an offset,
+			// save the second of those cells, then copy the rest.  So if we
+			// want an `index` of `1`, we instead use an index of `3`, and just
+			// take the top cell.
+			new small[2];
+			if (
+				memcpy(small, source[index], _FIXES_CELLBYTES - fraction, _FIXES_CELLBYTES + fraction, 2) &&
+				memcpy(dest, source[index + 1], _FIXES_CELLBYTES - fraction, numbytes - _FIXES_CELLBYTES + fraction, 2)
+			)
+			{
+				return
+					dest[0] = small[1],
+					true;
+			}
+			return false;
+		}
+		else
+		{
+			return !!memcpy(dest, source[index], 0, numbytes, maxlength);
+		}
+	}
+
+	#if _FIXES_SAMP
+		#define _ALS_memcpy
+		#define memcpy( FIXES_memcpy(
+	#endif
+
+	#define _ALS_memcpy__
+	#define memcpy__( FIXES_memcpy(
+#else
+	_FIXES_HIDE_PAWNDOC(FIXES_memcpy_);
+#endif
+
+/**
+ * <library>fixes.inc</library>
  * <fixes>Kick</fixes>
  */
 
@@ -27053,6 +27170,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #if !FIXES_NoYSI
 	#undef _FIXES_FORWARD
 #endif
+#undef _FIXES_CELLBYTES
 
 /**
 	<library>fixes.inc</library>

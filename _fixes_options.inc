@@ -337,6 +337,8 @@
 	#warning Option `FIX_npcmodes` must now be explicit.
 #elseif _FIXES_WARNING == 142
 	#warning Option `FIX_fgetchar2` must now be explicit.
+#elseif _FIXES_WARNING == 143
+	#warning Option `FIX_memcpy` must now be explicit.
 #else
 	#error `_fixes_options.inc` included, but `_FIXES_WARNING` is not set to a valid warning message.
 #endif
