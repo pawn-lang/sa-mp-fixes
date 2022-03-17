@@ -10257,7 +10257,7 @@ _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
 
 public
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The unique ID of this script.
 	 * </remarks>
@@ -10288,7 +10288,7 @@ static
 #endif
 stock
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Runtime equivalent of "FILTERSCRIPT" for when it is not set by the user.
 	 * </remarks>
@@ -10300,7 +10300,7 @@ static
 #endif
 stock
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * True when the JIT plugin is being used.
 	 * </remarks>
@@ -10312,7 +10312,7 @@ static
 #endif
 stock
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * True on Windows, false on Linux.
 	 * </remarks>
@@ -10324,7 +10324,7 @@ static
 #endif
 stock
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * <c>maxplayers</c> server var value.
 	 * </remarks>
@@ -10336,7 +10336,7 @@ static
 #endif
 stock
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the current server world time (hours).
 	 * </remarks>
@@ -10363,7 +10363,7 @@ static
 #endif
 stock const
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * A single re-usable null string.  Const not static because it is used in
 	 * macros <c>HideGameTextForAll</c> and <c>HideGameTextForPlayer</c>.
@@ -10388,7 +10388,7 @@ stock const
 
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * A single re-usable space.  Static not const because it is used in this
 	 * file in functions that don't take <c>const</c> strings.
@@ -10398,7 +10398,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Only determine the OS once.
 	 * </remarks>
@@ -10407,7 +10407,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Collection of boolean values for players.
 	 * </remarks>
@@ -10416,7 +10416,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Handle to read from server.cfg.
 	 * </remarks>
@@ -10425,7 +10425,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the ID of the server weather.
 	 * </remarks>
@@ -10434,7 +10434,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * A collection of 1-bit options, compressed together to save space.
 	 * </remarks>
@@ -10443,7 +10443,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The position of the character right-trimmed from a "const" string.
 	 * </remarks>
@@ -10452,7 +10452,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The character right-trimmed from a "const" string.
 	 * </remarks>
@@ -10461,7 +10461,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Local copy of the streamer version, read from the public variable.
 	 * </remarks>
@@ -10471,7 +10471,7 @@ _FIXES_STATIC_STOCK
 #if _FIX_Menus || FIX_GetPlayerMenu || FIX_OnPlayerDisconnect || FIX_GameText || FIX_AllowInteriorWeapons || FIX_TogglePlayerControllable
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * A record of which players are connected to the server.  We ensure that
 	 * this only exists when required, since it depends on add and remove
@@ -10486,7 +10486,7 @@ _FIXES_STATIC_STOCK
 #if _FIX_Menus || (FIX_API && !_FIXES_NPC)
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * A record of which menus have and haven't been shown yet.
 	 * </remarks>
@@ -10499,7 +10499,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_SilentKick && (FIX_OnVehicleMod || FIX_OnPlayerEnterVehicle || FIX_OnPlayerEnterVehicle_2)
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * A player's IP as a 32-bit integer.
 	 * </remarks>
@@ -10512,7 +10512,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnPlayerEnterVehicle_3
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the locked vehicle's id that the player
 	 * is currently trying to enter.
@@ -10526,7 +10526,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnPlayerEnterVehicle_3
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the server tick when the player started
 	 * trying to enter the locked vehicle.
@@ -10540,7 +10540,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnPlayerEnterVehicle_3
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Boolean: Stores if a certain vehicle is 'locked' or not.
 	 * </remarks>
@@ -10553,7 +10553,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetPlayerSkin
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The skin the player is currently using.
 	 * </remarks>
@@ -10566,7 +10566,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10590,7 +10590,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10614,7 +10614,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10638,7 +10638,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10662,7 +10662,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10686,7 +10686,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10710,7 +10710,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SetPlayerWorldBounds || FIX_GetPlayerWorldBounds
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * All data for players on where their worldbounds are and where they last
 	 * were before they went through the bounds by crouching.
@@ -10734,7 +10734,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetPlayerWeapon
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the weapon set by "SetPlayerArmedWeapon" when in a vehicle.
 	 * </remarks>
@@ -10747,7 +10747,7 @@ _FIXES_STATIC_STOCK
 #if FIX_PutPlayerInVehicle
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * What vehicle the player is due to go in.
 	 * </remarks>
@@ -10760,7 +10760,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnDialogResponse || FIX_GetPlayerDialog
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the true ID of the dialog the player is looking at to prevent
 	 * spoofing.
@@ -10774,7 +10774,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GetPlayerWeather
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Stores the ID of the player weather.
 	 * </remarks>
@@ -10787,7 +10787,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetPlayerInterior
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The player's current interior.
 	 * </remarks>
@@ -10800,7 +10800,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnPlayerDeath
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The last animation a player used.
 	 * </remarks>
@@ -10813,7 +10813,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnPlayerSpawn
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * A player's cash before dying.
 	 * </remarks>
@@ -10826,7 +10826,7 @@ _FIXES_STATIC_STOCK
 #if FIX_DriveBy
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The weapon to set after re-enter to vehicle.
 	 * </remarks>
@@ -10839,7 +10839,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GetPlayerMenu
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The menu the player can currently see.
 	 * </remarks>
@@ -10852,7 +10852,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GameText
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The pre-defined TextDraw styles used to recreate the bugged GameText
 	 * styles for GameTextForAll.
@@ -10866,7 +10866,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GameText
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * A linked list of which players can see a certain GameText style.
 	 * </remarks>
@@ -10879,7 +10879,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GameText
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The predefined TextDraw styles used to recreate the bugged GameText
 	 * styles for GameTextForPlayer.
@@ -10893,7 +10893,7 @@ _FIXES_STATIC_STOCK
 #if FIX_GameText
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The timers used to hide per-player GameText messages.
 	 * </remarks>
@@ -10906,7 +10906,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyAnimation_2
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used for storing the timer ID for deferring class selection animation
 	 * application.
@@ -10920,7 +10920,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyAnimation_2
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used for storing the animation name.
 	 * </remarks>
@@ -10933,7 +10933,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyAnimation_2
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Which animation libraries the player has synced.
 	 * </remarks>
@@ -10946,7 +10946,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyActorAnimation_2
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used for storing the timer ID for deferring class selection animation
 	 * application.
@@ -10960,7 +10960,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyActorAnimation_2
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used for storing the animation name.
 	 * </remarks>
@@ -10973,7 +10973,7 @@ _FIXES_STATIC_STOCK
 #if FIX_ApplyActorAnimation_2
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Which animation libraries the actor has synced.
 	 * </remarks>
@@ -10986,7 +10986,7 @@ _FIXES_STATIC_STOCK
 #if FIX_PassengerSeating
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The timers used to prevent players seating.
 	 * </remarks>
@@ -10999,7 +10999,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle's stereo used in GetVehicleComponent.
 	 * </remarks>
@@ -11012,7 +11012,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle's front bumper used in GetVehicleComponent.
 	 * </remarks>
@@ -11025,7 +11025,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle's rear bumper used in GetVehicleComponent.
 	 * </remarks>
@@ -11038,7 +11038,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle's front bullbar used in GetVehicleComponent.
 	 * </remarks>
@@ -11051,7 +11051,7 @@ _FIXES_STATIC_STOCK
 #if FIXES_Single && FIX_GetVehicleComponentInSlot
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle's rear bullbar used in GetVehicleComponent.
 	 * </remarks>
@@ -11064,7 +11064,7 @@ _FIXES_STATIC_STOCK
 #if FIX_SilentTeleport
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The player id who is getting carjacked before the car teleports.
 	 * </remarks>
@@ -11077,7 +11077,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Is the first colour on a vehicle random?  Bit array of booleans.
 	 * </remarks>
@@ -11090,7 +11090,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Is the second colour on a vehicle random?  Bit array of booleans.
 	 * </remarks>
@@ -11103,7 +11103,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnVehicleSpawn && FIXES_OneRandomVehicleColour
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * If only one of the two vehicle colours is random we need to support
 	 * keeping the other one constant.  That means we need to remember one
@@ -11118,7 +11118,7 @@ _FIXES_STATIC_STOCK
 #if FIX_OnVehicleSpawn && !FIXES_OneRandomVehicleColour
 _FIXES_STATIC_STOCK
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Are the colours on a vehicle random?  Bit array of booleans.
 	 * </remarks>
@@ -11145,7 +11145,7 @@ _FIXES_STATIC_STOCK
 
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the GameText hide timer function.
 	 * </remarks>
@@ -11153,7 +11153,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscHideGameTextTimer[] = "_FIXES_HideGameTextTimer",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the Drive-By timer function.
 	 * </remarks>
@@ -11161,7 +11161,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscDriveBy[] = "_FIXES_DriveBy",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetCamera timer function.
 	 * </remarks>
@@ -11169,7 +11169,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetCamera[] = "_FIXES_SetCamera",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetTime timer function.
 	 * </remarks>
@@ -11177,7 +11177,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetTime[] = "_FIXES_SetTime",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetColor timer function.
 	 * </remarks>
@@ -11185,7 +11185,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetColor[] = "_FIXES_SetColor",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetCheckpoint timer function.
 	 * </remarks>
@@ -11193,7 +11193,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetCheckpoint[] = "_FIXES_SetCheckpoint",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetCheckpoint timer function.
 	 * </remarks>
@@ -11201,7 +11201,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscPrintFFS[] = "* FIXES_PRINTF (FS):",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetCheckpoint timer function.
 	 * </remarks>
@@ -11209,7 +11209,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscPrintFGM[] = "* FIXES_PRINTF (GM):",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * <c>***</c>, for debug prints.
 	 * </remarks>
@@ -11217,7 +11217,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscThreeStars[] = "***",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the SetRaceCheckpoint timer function.
 	 * </remarks>
@@ -11225,7 +11225,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetRaceCheckpoint[] = "_FIXES_SetRaceCheckpoint",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the ID/existence determination function.
 	 * </remarks>
@@ -11233,7 +11233,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscDetermineID[] = "_FIXES_DetermineID",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * ".".
 	 * </remarks>
@@ -11241,7 +11241,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscDot[] = ".",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * <c>0</c> as a string.
 	 * </remarks>
@@ -11249,7 +11249,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gsc0[] = "0",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c></c>.
 	 * </remarks>
@@ -11257,7 +11257,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@[] = "",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>i</c>.
 	 * </remarks>
@@ -11265,7 +11265,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@i[] = "i",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>ii</c>.
 	 * </remarks>
@@ -11273,7 +11273,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@ii[] = "ii",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>ai</c>.
 	 * </remarks>
@@ -11281,7 +11281,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@ai[] = "ai",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>is</c>.
 	 * </remarks>
@@ -11289,7 +11289,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@is[] = "is",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iii</c>.
 	 * </remarks>
@@ -11297,7 +11297,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iii[] = "iii",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>isii</c>.
 	 * </remarks>
@@ -11305,7 +11305,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@isii[] = "isii",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>ifff</c>.
 	 * </remarks>
@@ -11313,7 +11313,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@ifff[] = "ifff",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iifff</c>.
 	 * </remarks>
@@ -11321,7 +11321,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iifff[] = "iifff",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iifffi</c>.
 	 * </remarks>
@@ -11329,7 +11329,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iifffi[] = "iifffi",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iifffffff</c>.
 	 * </remarks>
@@ -11337,7 +11337,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iifffffff[] = "iifffffff",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iffffiiii</c>.
 	 * </remarks>
@@ -11345,7 +11345,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iffffiiii[] = "iffffiiii",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iffff</c>.
 	 * </remarks>
@@ -11353,7 +11353,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iffff[] = "iffff",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iiiis</c>.
 	 * </remarks>
@@ -11361,7 +11361,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iiiis[] = "iiiis",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iiiii</c>.
 	 * </remarks>
@@ -11369,7 +11369,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iiiii[] = "iiiii",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Specifier <c>iiiiii</c>.
 	 * </remarks>
@@ -11377,7 +11377,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSpec@iiiiii[] = "iiiiii",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The temporary name to give when renaming people.
 	 * </remarks>
@@ -11385,7 +11385,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscTempName[] = "FIXES_TEMP_NAME",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property to check for script ordering.
 	 * </remarks>
@@ -11393,7 +11393,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscOrderProperty[] = "FIXES_gscOrderProperty",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Call <symbolref name="_FIXES_DetermineOrderRemote" /> in the GM or not?
 	 * </remarks>
@@ -11401,7 +11401,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscNoGMProperty[] = "FIXES_gscNoGMProperty",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the ordering callback.
 	 * </remarks>
@@ -11409,7 +11409,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscDetermineOrder[] = "_FIXES_DetermineOrderRemote",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote set player menu function.
 	 * </remarks>
@@ -11417,7 +11417,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetPlayerMenu[] = "_FIXES_SetPlayerMenu",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote function to clear a player's menu set.
 	 * </remarks>
@@ -11425,7 +11425,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscClearPlayerMenu[] = "_FIXES_ClearPlayerMenu",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote allow teleport function.
 	 * </remarks>
@@ -11433,7 +11433,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscAllowTeleport[] = "_FIXES_AllowTeleport",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote vehicle entry function.
 	 * </remarks>
@@ -11441,7 +11441,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscPutPlayerInVehicle[] = "_FIXES_PutPlayerInVehicle",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote interior weapons function.
 	 * </remarks>
@@ -11449,7 +11449,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscAllowInteriorWeapons[] = "_FIXES_AllowInteriorWeapons",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote player toggle function.
 	 * </remarks>
@@ -11457,7 +11457,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscTogglePlayerControl[] = "_FIXES_TogglePlayerControllable",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote player clock function.
 	 * </remarks>
@@ -11465,7 +11465,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscTogglePlayerClock[] = "_FIXES_TogglePlayerClock",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote world bounds function.
 	 * </remarks>
@@ -11473,7 +11473,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSetPlayerWorldBounds[] = "_FIXES_SetPlayerWorldBounds",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote add static vehicle function.
 	 * </remarks>
@@ -11481,7 +11481,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscAddStaticVehicleEx[] = "_FIXES_AddStaticVehicleEx",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote create vehicle function.
 	 * </remarks>
@@ -11489,7 +11489,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscCreateVehicle[] = "_FIXES_CreateVehicle",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote GameText show function.
 	 * </remarks>
@@ -11497,7 +11497,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscGameTextShow[] = "_FIXES_GameTextShow",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the remote block update function.
 	 * </remarks>
@@ -11505,7 +11505,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscBlockUpdate[] = "_FIXES_BlockUpdateRemote",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property for accurate returns.
 	 * </remarks>
@@ -11513,7 +11513,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscReturnProperty[] = "FIXES_gscReturnProperty",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property for checking this is the only running script with fixes in.
 	 * </remarks>
@@ -11521,7 +11521,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscSingleProperty[] = "FIXES_gscSingleProperty",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property for a player's current menu.
 	 * </remarks>
@@ -11529,7 +11529,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscMenuProperty[] = "FIXES_gscMenuProperty",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property for a player's current menu.
 	 * </remarks>
@@ -11537,7 +11537,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscRconFixFS[] = "callbackfix.amx",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The property AND command to check for RCON fix presence.
 	 * </remarks>
@@ -11545,7 +11545,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscOnClientCheckResponse[] = !"FIXES_OnClientCheckResponse",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * A function that doesn't exist for timer 0.  Its intended to be both
 	 * always invalid (you can't declare a function called just <c>_</c>), and
@@ -11555,7 +11555,7 @@ _FIXES_STATIC_STOCK_CONST
 	FIXES_gscFakeTimerFunc[] = !"_",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Error shown when multiple scripts are detected with <c>FIXES_SINGLE</c>.
 	 * </remarks>
@@ -11568,7 +11568,7 @@ _FIXES_STATIC_STOCK_CONST
 		"***",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Error shown when server.cfg can't be read from an NPC mode.
 	 * </remarks>
@@ -11577,7 +11577,7 @@ _FIXES_STATIC_STOCK_CONST
 		"*** fixes.inc warning: Could not get .cfg \"%s\" from NPC mode.",
 
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Error shown when server.cfg can't be read from an NPC mode.
 	 * </remarks>
@@ -11588,7 +11588,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * This variable records wether or not this player is brand new to the
 	 * server, and not just having "OnPlayerConnect" called due to a script
@@ -11604,7 +11604,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_GetPlayerWeapon
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current weapon.
 	 * </remarks>
@@ -11617,7 +11617,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_GetPlayerSkin
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current skin.
 	 * </remarks>
@@ -11630,7 +11630,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_SetPlayerCamera
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's spectator mode.
 	 * </remarks>
@@ -11643,7 +11643,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_Kick
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the kick timer function.
 	 * </remarks>
@@ -11656,7 +11656,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_Kick
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store a player's kick timer.
 	 * </remarks>
@@ -11669,7 +11669,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_OnDialogResponse || FIX_GetPlayerDialog
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current dialogid.
 	 * </remarks>
@@ -11682,7 +11682,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_GetPlayerWeather
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's current weather.
 	 * </remarks>
@@ -11695,7 +11695,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_GetPlayerInterior
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * A player's current interior.
 	 * </remarks>
@@ -11708,7 +11708,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_OnDialogResponse
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used in OnDialogResponse to be able to get the correct ID in multiple
 	 * scripts while still correctly resetting the ID for future use.
@@ -11722,7 +11722,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_OnPlayerSpawn
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Used in OnPlayerDeath to save a player's cash before death.
 	 * </remarks>
@@ -11735,7 +11735,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_SetPlayerCheckpoint
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's checkpoint state.
 	 * </remarks>
@@ -11748,7 +11748,7 @@ _FIXES_STATIC_STOCK_CONST
 #if !FIXES_Single && FIX_SetPlayerRaceCheckpoint
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Name of the pvar in which to store the player's race checkpoint state.
 	 * </remarks>
@@ -11761,7 +11761,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * All vehicle primary colours from carcols.dat.
 	 * </remarks>
@@ -11988,7 +11988,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * All vehicle secondary colours from carcols.dat.
 	 * </remarks>
@@ -12215,7 +12215,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * The vehicle colours are in a flat array.  These are the offsets for each
 	 * model type.  N+1 so there's a final end-point.
@@ -12444,7 +12444,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the camper van.  The other two are the cement
@@ -12459,7 +12459,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the cement truck.  The other two are the camper
@@ -12474,7 +12474,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the squalo.  The other two are the camper van and
@@ -12489,7 +12489,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the camper van.  The other two are the cement
@@ -12504,7 +12504,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the cement truck.  The other two are the camper
@@ -12519,7 +12519,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleSpawn || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.  This
 	 * is the third colour for the squalo.  The other two are the camper van and
@@ -12534,7 +12534,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Three vehicles have 4 colours.  It's easier to just hard-code them.
 	 * </remarks>
@@ -12581,7 +12581,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_GetPlayerColour || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * There are only 100 colours used by default, with SA:MP looping through
 	 * them repeatedly.
@@ -12617,7 +12617,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnPlayerEnterVehicle || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * This is a compressed (4-bit) list of the maximum number of passengers in
 	 * any vehicle, confirmed by a number of sources. "F" (15) means invalid
@@ -12637,7 +12637,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_OnVehicleMod || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * This is a bit array of all the valid mods (-1000) for all vehicles (-400)
 	 * EXCEPT for vehicle 576 (Tornado), which has just TWO extra mods on it,
@@ -12874,7 +12874,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * Which index each letter starts at.  Sometimes crashes the compiler...
 	 * </remarks>
@@ -12890,7 +12890,7 @@ _FIXES_STATIC_STOCK_CONST
 #if FIX_ApplyAnimation || FIX_ApplyAnimation_2 || FIX_ApplyActorAnimation || FIX_ApplyActorAnimation_2 || FIX_API
 _FIXES_STATIC_STOCK_CONST
 	/**
- * <library>fixes.inc</library>
+	 * <library>fixes.inc</library>
 	 * <remarks>
 	 * List of valid animation libraries.
 	 * </remarks>
