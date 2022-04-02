@@ -4678,7 +4678,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  *         San Andreas deducts $100 from players.
  *     </problem>
  *     <solution>
- *         Give them it back.
+ *         Reset the player's money to what it was before they died.
  *     </solution>
  *     <see>OnPlayerSpawn</see>
  *     <author    href="https://github.com/Y-Less/" >Y_Less</author>

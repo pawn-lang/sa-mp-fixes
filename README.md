@@ -142,7 +142,7 @@ ApplyAnimation | Passing an invalid animation library in ApplyAnimation causes a
 ApplyAnimation_2 | First time a library is used, it does nothing. | Apply animations twice when first using a library. | [simonepri](https://github.com/simonepri/) [Lordzy](https://github.com/Lordzy/) [Y_Less](https://github.com/Y-Less/) | |
 ApplyActorAnimation | Passing an invalid animation library in ApplyAnimation causes a client crash for streamed in players. | Block ApplyActorAnimation when an invalid library is passed. | [simonepri](https://github.com/simonepri/) [ziggi](https://github.com/ziggi/) | |
 ApplyActorAnimation_2 | First time a library is used, it does nothing. | Apply animations twice when first using a library. | [simonepri](https://github.com/simonepri/) [Lordzy](https://github.com/Lordzy/) [Y_Less](https://github.com/Y-Less/) [ziggi](https://github.com/ziggi/) | |
-OnPlayerSpawn | San Andreas deducts $100 from players. | Give them it back. | [Y_Less](https://github.com/Y-Less/) | |
+OnPlayerSpawn | San Andreas deducts $100 from players. | Reset the player's money to what it was before they died. | [Y_Less](https://github.com/Y-Less/) | |
 GetGravity | "GetGravity" isn't defined by default. | Define it. | [Whitetiger](https://github.com/Whitetigerswt) | [Link](http://web-old.archive.org/web/20190415184625/https://forum.sa-mp.com/showpost.php?p=1706447) |
 gpci | "gpci" isn't defined by default. | Define it. | [simonepri](https://github.com/simonepri/) | [Link](http://pastebin.com/VQSGpbSm) |
 Natives | Several natives are included by default, this enables or disables them all. Therefore this is an umbrella fix for several fixes. | Define them. | [Y_Less](https://github.com/Y-Less/) | |
