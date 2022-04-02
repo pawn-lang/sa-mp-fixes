@@ -20345,9 +20345,6 @@ native BAD_KillTimer(timerid) = KillTimer;
 #if FIX_OnPlayerEnterVehicle_3
 	static stock _FIXES_StopPlayerEnterVehicle(playerid)
 	{
-		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER,
-		FIXES_gsPlayerBools[playerid] &= ~e_FIXES_BOOLS_VEH_ENTER_ANIM;
-
 		new
 			vehicleid = FIXES_gsPlayerVehicleID[playerid],
 			VEHICLE_PARAMS:engine,
@@ -20357,6 +20354,8 @@ native BAD_KillTimer(timerid) = KillTimer;
 			VEHICLE_PARAMS:bonnet,
 			VEHICLE_PARAMS:boot,
 			VEHICLE_PARAMS:objective;
+
+		FIXES_gsPlayerBools[playerid] &= ~(e_FIXES_BOOLS_VEH_ENTER | e_FIXES_BOOLS_VEH_ENTER_ANIM),
 
 		GetVehicleParamsEx__(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective),
 		SetVehicleParamsEx__(vehicleid, engine, lights, alarm, VEHICLE_PARAMS_OFF, bonnet, boot, objective),
