@@ -8983,6 +8983,7 @@ _FIXES_CONST_PAWNDOC(FIXES_GT_STYLE_COUNT = cellmin);
 	_FIXES_CONST_PAWNDOC(INVALID_DIALOG_ID = (-1));
 	#define INVALID_DIALOG_ID (-1)
 #endif
+
 /**
  * <library>fixes.inc</library>
  * <remarks>
