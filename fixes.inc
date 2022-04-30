@@ -19576,7 +19576,7 @@ native BAD_TogglePlayerControllable(playerid, toggle) = TogglePlayerControllable
 	#if FIXES_Single
 		stock FIXES_TogglePlayerControllable(playerid, _FIXES_MAYBE_BOOL:toggle)
 		{
-			if (TogglePlayerControllable__(playerid, _FIXES_MAYBE_BOOL:toggle))
+			if (TogglePlayerControllable__(playerid, _FIXES_TO_BOOL(toggle)))
 			{
 				if (toggle)
 				{
