@@ -7295,7 +7295,7 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
  *         deprecate the old ones.
  *     </solution>
  *     <see>FIXES_GetPlayerActions</see>
- *     <see>OnPlayerActionStateChange</see>
+ *     <see>OnPlayerControlsStateChange</see>
  *     <author href="https://github.com/Y-Less/">Y_Less</author>
  * </fix>
  */
@@ -8297,22 +8297,22 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 /**
  * <library>fixes.inc</library>
  * <remarks>
- * Future-compatible tag definitions.  <c>ACTION:</c> is defined as <c>_:</c>
+ * Future-compatible tag definitions.  <c>CONTROLS:</c> is defined as <c>_:</c>
  * when enhanced tags are disabled, and <c>E_KEY:</c> when they are enabled.
  * </remarks>
  */
 
-#if defined ACTION
-	_FIXES_HIDE_PAWNDOC(FIXES_ACTION_);
+#if defined CONTROLS
+	_FIXES_HIDE_PAWNDOC(FIXES_CONTROLS_);
 #elseif FIX_GetPlayerKeys
-	_FIXES_CONST_PAWNDOC(ACTION = cellmin);
+	_FIXES_CONST_PAWNDOC(CONTROLS = cellmin);
 	#if defined __TAG
-		#define ACTION: __TAG(ACTION):
+		#define CONTROLS: __TAG(CONTROLS):
 	#else
-		#define ACTION: _:
+		#define CONTROLS: _:
 	#endif
 #else
-	#define ACTION: KEY:
+	#define CONTROLS: KEY:
 #endif
 
 /**
@@ -9141,11 +9141,11 @@ _FIXES_CONST_PAWNDOC(_FIXES_ATTACHMENTS = (cellbits / MAX_PLAYER_ATTACHED_OBJECT
  * </remarks>
  */
 
-#define _FIXES_KEY_AIM                           (ACTION:128)
+#define _FIXES_KEY_AIM                           (KEY:128)
 #if defined KEY_AIM
 	_FIXES_HIDE_PAWNDOC(FIXES_KEY_AIM_);
 #else
-	_FIXES_CONST_PAWNDOC(ACTION:KEY_AIM = _FIXES_KEY_AIM);
+	_FIXES_CONST_PAWNDOC(KEY:KEY_AIM = _FIXES_KEY_AIM);
 	#define KEY_AIM                              _FIXES_KEY_AIM
 #endif
 
@@ -10204,42 +10204,45 @@ _FIXES_ENUM_PAWNDOC(e_FIXES_SETTINGS);
 /**
  * <library>fixes.inc</library>
  * <remarks>
- * Renaming the <c>KEY_</c> definitions to <c>ACTION_</c> to reduce confusion.
+ * Renaming the <c>KEY_</c> definitions to <c>CONTROLS_</c> to reduce confusion.
  * </remarks>
  */
-#if FIX_GetPlayerKeys && !defined __ACTION
-	enum ACTION:__ACTION (<<= 1)
+#if FIX_GetPlayerKeys && !defined __CONTROLS
+	enum CONTROLS:__CONTROLS (<<= 1)
 	{
-		ACTION_ACTION                                 = 1,
-		ACTION_CROUCH,
-		ACTION_FIRE,
-		ACTION_SPRINT,
-		ACTION_SECONDARY_ATTACK,
-		ACTION_JUMP,
-		ACTION_LOOK_RIGHT,
-		ACTION_HANDBRAKE,
-		ACTION_LOOK_LEFT,
-		ACTION_SUBMISSION,
-		ACTION_LOOK_BEHIND                            = ACTION_SUBMISSION,
-		ACTION_WALK,
-		ACTION_ANALOG_UP,
-		ACTION_ANALOG_DOWN,
-		ACTION_ANALOG_LEFT,
-		ACTION_ANALOG_RIGHT,
-		ACTION_YES                                    = 65536,
-		ACTION_NO,
-		ACTION_CTRL_BACK,
+		CONTROLS_ACTION                               = 1,
+		CONTROLS_CROUCH,
+		CONTROLS_FIRE,
+		CONTROLS_SPRINT,
+		CONTROLS_SECONDARY_ATTACK,
+		CONTROLS_JUMP,
+		CONTROLS_LOOK_RIGHT,
+		CONTROLS_HANDBRAKE,
+		CONTROLS_AIM                                  = CONTROLS_HANDBRAKE,
+		CONTROLS_LOOK_LEFT,
+		CONTROLS_SUBMISSION,
+		CONTROLS_LOOK_BEHIND                          = CONTROLS_SUBMISSION,
+		CONTROLS_WALK,
+		CONTROLS_ANALOG_UP,
+		CONTROLS_ANALOG_DOWN,
+		CONTROLS_ANALOG_LEFT,
+		CONTROLS_ANALOG_RIGHT,
+		CONTROLS_YES                                  = 65536,
+		CONTROLS_NO,
+		CONTROLS_CTRL_BACK,
 
-		ACTION_UP                                     = -128,
-		ACTION_DOWN                                   =  128,
-		ACTION_LEFT                                   = -128,
-		ACTION_RIGHT                                  =  128,
+		CONTROLS_UP                                   = -128,
+		CONTROLS_DOWN                                 =  128,
+		CONTROLS_LEFT                                 = -128,
+		CONTROLS_RIGHT                                =  128,
 	}
 
-	_FIXES_ENUM_PAWNDOC(__ACTION);
+	_FIXES_ENUM_PAWNDOC(__CONTROLS);
 #else
-	_FIXES_HIDE_PAWNDOC(FIXES___ACTION_);
+	_FIXES_HIDE_PAWNDOC(FIXES___CONTROLS_);
 #endif
+
+#define _FIXES_CONTROLS_AIM (CONTROLS:128)
 
 /*
 
@@ -13512,7 +13515,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	/// <library>fixes.inc</library>
 	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerActions__(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys; /// <p/>
+	native GetPlayerActions__(playerid, &CONTROLS:controls, &CONTROLS:upDown, &CONTROLS:leftRight) = GetPlayerKeys; /// <p/>
 	/// <library>fixes.inc</library>
 	native GetPlayerFacingAngle__(playerid, &Float:ang) = GetPlayerFacingAngle; /// <p/>
 	/// <library>fixes.inc</library>
@@ -14179,7 +14182,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	/// <library>fixes.inc</library>
 	native GetPlayerKeys__(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerActions__(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys; /// <p/>
+	native GetPlayerActions__(playerid, &CONTROLS:controls, &CONTROLS:upDown, &CONTROLS:leftRight) = GetPlayerKeys; /// <p/>
 	/// <library>fixes.inc</library>
 	native GetPlayerName__(playerid, name[], len = sizeof (name)) = GetPlayerName; /// <p/>
 	/// <library>fixes.inc</library>
@@ -14882,7 +14885,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  */
 
 #if FIX_GetPlayerKeys
-	native FIXES_GetPlayerActions(playerid, &ACTION:actions, &ACTION:updown, &ACTION:leftright) = GetPlayerKeys;
+	native FIXES_GetPlayerActions(playerid, &CONTROLS:controls, &CONTROLS:upDown, &CONTROLS:leftRight) = GetPlayerKeys;
 
 	#if _FIXES_SAMP
 		#define _ALS_GetPlayerActions
@@ -19223,10 +19226,10 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 
 		#if FIX_SetPlayerWorldBounds || FIX_TogglePlayerControllable || FIX_GogglesSync
 			new
-				ACTION:ud,
-				ACTION:lr,
-				ACTION:keys;
-			GetPlayerActions__(playerid, keys, ud, lr);
+				CONTROLS:ud,
+				CONTROLS:lr,
+				CONTROLS:controls;
+			GetPlayerActions__(playerid, controls, ud, lr);
 		#endif
 
 		#if (FIX_SetPlayerWorldBounds || FIX_GogglesSync) && !FIX_TogglePlayerControllable
@@ -19237,7 +19240,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 		//  BEGIN: SetPlayerWorldBounds
 		// =============================
 		#if FIX_SetPlayerWorldBounds
-			if (keys & _FIXES_KEY_AIM)
+			if (controls & _FIXES_CONTROLS_AIM)
 			{
 				new
 					Float:x,
@@ -19288,10 +19291,10 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 				#if defined On_PlayerUpdate
 					return
 						playerid = On_PlayerUpdate(playerid),
-						(keys || ud || lr) ? 0 : playerid;
+						(controls || ud || lr) ? 0 : playerid;
 				#else
 					return
-						!(keys || ud || lr);
+						!(controls || ud || lr);
 				#endif
 			}
 		#endif
@@ -20026,11 +20029,11 @@ native BAD_KillTimer(timerid) = KillTimer;
 		//  END: DriveBy
 		// =============================
 
-		#if FIX_GetPlayerKeys && defined On_PlayerActionStateChange
+		#if FIX_GetPlayerKeys && defined On_PlayerControlsStateChange
 			#if defined On_PlayerKeyStateChange
-				return On_PlayerActionStateChange(playerid, ACTION:newkeys, ACTION:oldkeys) && On_PlayerKeyStateChange(playerid, newkeys, oldkeys);
+				return On_PlayerControlsStateChange(playerid, CONTROLS:newkeys, CONTROLS:oldkeys) && On_PlayerKeyStateChange(playerid, newkeys, oldkeys);
 			#else
-				return On_PlayerActionStateChange(playerid, ACTION:newkeys, ACTION:oldkeys);
+				return On_PlayerControlsStateChange(playerid, CONTROLS:newkeys, CONTROLS:oldkeys);
 			#endif
 		#elseif defined On_PlayerKeyStateChange
 			return On_PlayerKeyStateChange(playerid, newkeys, oldkeys);
@@ -20045,29 +20048,29 @@ native BAD_KillTimer(timerid) = KillTimer;
 	#define _ALS_OnPlayerKeyStateChange
 
 	#if FIX_GetPlayerKeys
-		#pragma deprecated Use `OnPlayerActionStateChange`.
+		#pragma deprecated Use `OnPlayerControlsStateChange`.
 		forward BAD_OnPlayerKeyStateChange();
 
 		#if FIXES_NoYSI
-			#define OnPlayerActionStateChange( On_PlayerActionStateChange(
+			#define OnPlayerControlsStateChange( On_PlayerControlsStateChange(
 			#define OnPlayerKeyStateChange(%0) BAD_OnPlayerKeyStateChange() { } public On_PlayerKeyStateChange(%0)
 
-			#if defined On_PlayerActionStateChange
-				forward On_PlayerActionStateChange(playerid, ACTION:newactions, ACTION:oldactions);
+			#if defined On_PlayerControlsStateChange
+				forward On_PlayerControlsStateChange(playerid, CONTROLS:newControls, CONTROLS:oldControls);
 			#endif
 
 			#if defined On_PlayerKeyStateChange
 				forward On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
 			#endif
 		#else
-			#define OnPlayerActionStateChange(%0) On_PlayerActionStateChange(%0) <_ALS : _ALS_go>
+			#define OnPlayerControlsStateChange(%0) On_PlayerControlsStateChange(%0) <_ALS : _ALS_go>
 			#define OnPlayerKeyStateChange(%0) BAD_OnPlayerKeyStateChange() { } public On_PlayerKeyStateChange(%0) <_ALS : _ALS_go>
 
-			_FIXES_FORWARD On_PlayerActionStateChange(playerid, ACTION:newactions, ACTION:oldactions);
+			_FIXES_FORWARD On_PlayerControlsStateChange(playerid, CONTROLS:newControls, CONTROLS:oldControls);
 			_FIXES_FORWARD On_PlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys);
 		#endif
 
-		#define _ALS_OnPlayerActionStateChange
+		#define _ALS_OnPlayerControlsStateChange
 	#else
 		#if FIXES_NoYSI
 			#define OnPlayerKeyStateChange(%0) On_PlayerKeyStateChange(%0)
