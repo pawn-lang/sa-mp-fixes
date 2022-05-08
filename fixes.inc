@@ -19342,7 +19342,7 @@ native BAD_GetPlayerSkin(playerid) = GetPlayerSkin;
 			{
 				case _FIXES_WEAPON_NIGHT_VIS_GOGGLES, _FIXES_WEAPON_THERMAL_GOGGLES:
 				{
-					if ((_:keys & _:KEY_FIRE) && GetPlayerState__(playerid) == PLAYER_STATE_ONFOOT)
+					if ((_:controls & _:KEY_FIRE) && GetPlayerState__(playerid) == PLAYER_STATE_ONFOOT)
 					{
 						return 0;
 					}
