@@ -14868,7 +14868,7 @@ native BAD_GetServerVarAsString(const varname[], buffer[], len) = GetServerVarAs
  */
 
 #if FIX_GetPlayerKeys
-	#pragma deprecated Use `GetPlayerActions`
+	//#pragma deprecated Use `GetPlayerActions`
 	native FIXES_GetPlayerKeys(playerid, &KEY:keys, &KEY:updown, &KEY:leftright) = GetPlayerKeys;
 
 	#if _FIXES_SAMP
@@ -20048,7 +20048,7 @@ native BAD_KillTimer(timerid) = KillTimer;
 	#define _ALS_OnPlayerKeyStateChange
 
 	#if FIX_GetPlayerKeys
-		#pragma deprecated Use `OnPlayerControlsStateChange`.
+		//#pragma deprecated Use `OnPlayerControlsStateChange`.
 		forward BAD_OnPlayerKeyStateChange();
 
 		#if FIXES_NoYSI
