@@ -26781,11 +26781,13 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 		native FIXES_PlayerTDSetProportional(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetProportional;
 		#define PlayerTextDrawSetProportional( FIXES_PlayerTDSetProportional(
 		#define _ALS_PlayerTDSetProportional
+		#define _ALS_PlayerTextDrawSetProportio
 	#endif
 	#if !defined _ALS_PlayerTDSetSelectable
 		native FIXES_PlayerTDSetSelectable(playerid, PlayerText:text, bool:set) = PlayerTextDrawSetSelectable;
 		#define PlayerTextDrawSetSelectable( FIXES_PlayerTDSetSelectable(
 		#define _ALS_PlayerTDSetSelectable
+		#define _ALS_PlayerTextDrawSetSelectabl
 	#endif
 	#if !defined _ALS_TogglePlayerControllable
 		native FIXES_TogglePlayerControllable(playerid, bool:toggle) = TogglePlayerControllable;
