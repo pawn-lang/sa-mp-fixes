@@ -16514,8 +16514,8 @@ static stock _FIXES_CountFilterscripts()
 			0x706F7270, 0x79747265, 0x00000000, 0x2E007880, 0x01270827, 0x05270027, 0x7B800A27, 0x300E2C00,
 			_FIXES_FS_COUNT_CODE // Starts at `A` and do `+= 265`.
 		},
-		lFSCountFile[] = "fs-count-A.amx",
-		lFSCountLoad[] = "unloadfs ../scriptfiles/fs-count-A";
+		lFSCountFile[] = _FIXES_UNPACK"fs-count-A.amx",
+		lFSCountLoad[] = _FIXES_UNPACK"unloadfs ../scriptfiles/fs-count-A";
 
 	// Spawn up to 16 copies of this FS, each one taking up a slot so we can
 	// determine how many slots are free.
