@@ -8000,6 +8000,25 @@ _FIXES_CONST_PAWNDOC(_FIXES_MAYBE_FALSE = 0);
 _FIXES_CONST_PAWNDOC(_FIXES_CELLBYTES = cellbits / charbits);
 #define _FIXES_CELLBYTES (cellbits / charbits)
 
+/**
+ * <library>fixes.inc</library>
+ * <remarks>
+ * A test to see if <c>#pragma pack 1</c> is enabled.
+ * </remarks>
+ */
+
+static stock const _FIXES_PACKED_TEST[] = " ";
+
+#if sizeof (_FIXES_PACKED_TEST) == 1
+	#define _FIXES_STRING_PACKING (1)
+	#define _FIXES_PACK
+	#define _FIXES_UKPACK !
+#else
+	#define _FIXES_STRING_PACKING (0)
+	#define _FIXES_PACK !
+	#define _FIXES_UKPACK
+#endif
+
 /*
 
     88888888ba,                   ad88  88               88           88
@@ -11546,7 +11565,7 @@ _FIXES_STATIC_STOCK_CONST
 	 * The property AND command to check for RCON fix presence.
 	 * </remarks>
 	 */
-	FIXES_gscOnClientCheckResponse[] = !"FIXES_OnClientCheckResponse",
+	FIXES_gscOnClientCheckResponse[] = _FIXES_PACK"FIXES_OnClientCheckResponse",
 
 	/**
 	 * <library>fixes.inc</library>
@@ -11556,7 +11575,7 @@ _FIXES_STATIC_STOCK_CONST
 	 * in the middle of the function list (to reduce search overhead).
 	 * </remarks>
 	 */
-	FIXES_gscFakeTimerFunc[] = !"_",
+	FIXES_gscFakeTimerFunc[] = _FIXES_PACK"_",
 
 	/**
 	 * <library>fixes.inc</library>
@@ -23544,7 +23563,7 @@ native BAD_valstr(dest[], value, bool:pack = false) = valstr;
 	{
 		// "format" can't handle cellmin properly.
 		static const
-			sc_szCellmin[] = !"-2147483648";
+			sc_szCellmin[] = _FIXES_PACK"-2147483648";
 		if (value == cellmin)
 		{
 			pack && strpack(dest, sc_szCellmin, 12) || strunpack(dest, sc_szCellmin, 12);
@@ -27183,6 +27202,9 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #undef _FIXES_MAYBE_BOOL
 #undef _FIXES_MAYBE_TRUE
 #undef _FIXES_MAYBE_FALSE
+#undef _FIXES_STRING_PACKING
+#undef _FIXES_PACK
+#undef _FIXES_UKPACK
 #if !FIXES_NoYSI
 	#undef _FIXES_FORWARD
 #endif
