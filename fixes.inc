@@ -8012,11 +8012,11 @@ static stock const _FIXES_PACKED_TEST[] = " ";
 #if sizeof (_FIXES_PACKED_TEST) == 1
 	#define _FIXES_STRING_PACKING (1)
 	#define _FIXES_PACK
-	#define _FIXES_UKPACK !
+	#define _FIXES_UNPACK !
 #else
 	#define _FIXES_STRING_PACKING (0)
 	#define _FIXES_PACK !
-	#define _FIXES_UKPACK
+	#define _FIXES_UNPACK
 #endif
 
 /*
@@ -27204,7 +27204,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 #undef _FIXES_MAYBE_FALSE
 #undef _FIXES_STRING_PACKING
 #undef _FIXES_PACK
-#undef _FIXES_UKPACK
+#undef _FIXES_UNPACK
 #if !FIXES_NoYSI
 	#undef _FIXES_FORWARD
 #endif
