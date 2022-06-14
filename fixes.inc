@@ -25621,10 +25621,10 @@ native bool:BAD_ispacked(const string[]) = ispacked;
 	_FIXES_FUNC_PAWNDOC(bool:ispacked(const packedString[]));
 	#if _FIXES_SAMP
 		#define _ALS_ispacked
-		#define ispacked(%0) (((%0)[0] & ~0xFF) != 0)
+		#define ispacked(%0) (((%0)[0] >>> 24) != 0)
 	#endif
 	#define _ALS_ispacked__
-	#define ispacked__(%0) (((%0)[0] & ~0xFF) != 0)
+	#define ispacked__(%0) (((%0)[0] >>> 24) != 0)
 #else
 	_FIXES_HIDE_PAWNDOC(FIXES_ispacked_);
 #endif
