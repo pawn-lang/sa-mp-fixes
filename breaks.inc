@@ -576,6 +576,33 @@ stock BREAKS_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop,
 //#define ApplyActorAnimation BREAKS_ApplyActorAnimation
 //#define _ALS_ApplyActorAnimation
 
+stock BREAKS_valstr(dest[], value, bool:pack = false)
+{
+	if (value == cellmin)
+	{
+		if (pack)
+		{
+			dest{0} = '-';
+			dest{1} = '-';
+			dest{2} = '\0';
+		}
+		else
+		{
+			dest[0] = '-';
+			dest[1] = '-';
+			dest[2] = '\0';
+		}
+		return 0;
+	}
+	return valstr(dest, value, pack);
+}
+
+#if defined _ALS_valstr
+	#undef valstr
+#endif
+#define valstr BREAKS_valstr
+#define _ALS_valstr
+
 #endinput
 
 stock BREAKS_$()
