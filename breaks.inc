@@ -310,6 +310,21 @@ forward BREAKS_AllowInteriorWeapons(allow);
 #define AllowInteriorWeapons BREAKS_AllowInteriorWeapons
 #define _ALS_AllowInteriorWeapons
 
+stock BREAKS_random(max)
+{
+	if (max < 0)
+	{
+		return 0;
+	}
+	return random(max);
+}
+
+#if defined _ALS_random
+	#undef random
+#endif
+#define random BREAKS_random
+#define _ALS_random
+
 #endinput
 
 stock BREAKS_$(weaponid, const weapon[], len)
