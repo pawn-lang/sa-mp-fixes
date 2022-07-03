@@ -1,12 +1,14 @@
 #define IS_FILTERSCRIPT // Remove it.
 
 static
+	bool:BREAKS_gFilterscript = false,
 	BREAKS_gRCPSize[MAX_PLAYERS] = { 0, ... },
 	BREAKS_gCPSize[MAX_PLAYERS] = { 0, ... },
 	bool:BREAKS_gRCPInitialised[MAX_PLAYERS] = { false, ... },
 	bool:BREAKS_gCPInitialised[MAX_PLAYERS] = { false, ... },
 	BREAKS_gPlayerColour[MAX_PLAYERS] = { 0, ... },
-	BREAKS_gPlayerSkin[MAX_PLAYERS] = { 0, ... };
+	BREAKS_gPlayerSkin[MAX_PLAYERS] = { 0, ... },
+	bool:BREAKS_gExtraOPC[MAX_PLAYERS] = { false, ... };
 
 stock BREAKS_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo)
 {
@@ -66,6 +68,60 @@ stock BREAKS_GetPlayerColor(playerid)
 #define GetPlayerColor BREAKS_GetPlayerColor
 #define _ALS_GetPlayerColor
 
+public OnFilterScriptInit()
+{
+	BREAKS_gFilterscript = true;
+	for (new i = 0; i != MAX_PLAYERS; ++i)
+	{
+		if (IsPlayerConnected(i))
+		{
+			BREAKS_gExtraOPC[i] = true;
+		}
+	}
+	#if defined BREAKS_OnFilterScriptInit
+		BREAKS_OnFilterScriptInit();
+	#endif
+	return 1;
+}
+
+#if defined _ALS_OnFilterScriptInit
+	#undef OnFilterScriptInit
+#endif
+#define OnFilterScriptInit BREAKS_OnFilterScriptInit
+#define _ALS_OnFilterScriptInit
+
+#if defined BREAKS_OnFilterScriptInit
+	forward BREAKS_OnFilterScriptInit();
+#endif
+
+public OnGameModeInit()
+{
+	if (!BREAKS_gFilterscript)
+	{
+		for (new i = 0; i != MAX_PLAYERS; ++i)
+		{
+			if (IsPlayerConnected(i))
+			{
+				BREAKS_gExtraOPC[i] = true;
+			}
+		}
+	}
+	#if defined BREAKS_OnGameModeInit
+		BREAKS_OnGameModeInit();
+	#endif
+	return 1;
+}
+
+#if defined _ALS_OnGameModeInit
+	#undef OnGameModeInit
+#endif
+#define OnGameModeInit BREAKS_OnGameModeInit
+#define _ALS_OnGameModeInit
+
+#if defined BREAKS_OnGameModeInit
+	forward BREAKS_OnGameModeInit();
+#endif
+
 public OnPlayerConnect(playerid)
 {
 	BREAKS_gPlayerColour[playerid] = 0;
@@ -74,8 +130,15 @@ public OnPlayerConnect(playerid)
 	BREAKS_gRCPInitialised[playerid] = false;
 	BREAKS_gCPSize[playerid] = 0;
 	BREAKS_gRCPSize[playerid] = 0;
+	if (BREAKS_gExtraOPC[playerid])
+	{
+		BREAKS_gExtraOPC[playerid] = false;
+	}
 	#if defined BREAKS_OnPlayerConnect
-		BREAKS_OnPlayerConnect(playerid);
+		else
+		{
+			BREAKS_OnPlayerConnect(playerid);
+		}
 	#endif
 	return 1;
 }
@@ -88,6 +151,27 @@ public OnPlayerConnect(playerid)
 
 #if defined BREAKS_OnPlayerConnect
 	forward BREAKS_OnPlayerConnect(playerid);
+#endif
+
+public OnPlayerDisconnect(playerid, reason)
+{
+	#if defined BREAKS_OnPlayerDisconnect
+		if (reason != 4)
+		{
+			BREAKS_OnPlayerDisconnect(playerid, reason);
+		}
+	#endif
+	return 1;
+}
+
+#if defined _ALS_OnPlayerDisconnect
+	#undef OnPlayerDisconnect
+#endif
+#define OnPlayerDisconnect BREAKS_OnPlayerDisconnect
+#define _ALS_OnPlayerDisconnect
+
+#if defined BREAKS_OnPlayerDisconnect
+	forward BREAKS_OnPlayerDisconnect(playerid, reason);
 #endif
 
 public OnPlayerDeath(playerid, killerid, reason)
