@@ -222,6 +222,86 @@ stock BREAKS_IsPlayerInRaceCheckpoint(playerid)
 #define IsPlayerInRaceCheckpoint BREAKS_IsPlayerInRaceCheckpoint
 #define _ALS_IsPlayerInRaceCheckpoint
 
+stock Text:BREAKS_TextDrawCreate(Float:x, Float:y, text[])
+{
+	new len = strlen(text);
+	if (len == 0 || len > 1024)
+	{
+		#emit HALT 100
+	}
+	if (text[len - 1] == ' ')
+	{
+		return TextDrawCreate(x, y, " ");
+	}
+	return TextDrawCreate(x, y, text);
+}
+
+#if defined _ALS_TextDrawCreate
+	#undef TextDrawCreate
+#endif
+#define TextDrawCreate BREAKS_TextDrawCreate
+#define _ALS_TextDrawCreate
+
+stock PlayerText:BREAKS_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
+{
+	new len = strlen(text);
+	if (len == 0 || len > 1024)
+	{
+		#emit HALT 100
+	}
+	if (text[len - 1] == ' ')
+	{
+		return CreatePlayerTextDraw(playerid, x, y, " ");
+	}
+	return CreatePlayerTextDraw(playerid, x, y, text);
+}
+
+#if defined _ALS_CreatePlayerTextDraw
+	#undef CreatePlayerTextDraw
+#endif
+#define CreatePlayerTextDraw BREAKS_CreatePlayerTextDraw
+#define _ALS_CreatePlayerTextDraw
+
+stock BREAKS_TextDrawSetString(Text:text, string[])
+{
+	new len = strlen(string);
+	if (len == 0 || len > 1024)
+	{
+		#emit HALT 100
+	}
+	if (string[len - 1] == ' ')
+	{
+		return TextDrawSetString(text, " ");
+	}
+	return TextDrawSetString(text, string);
+}
+
+#if defined _ALS_TextDrawSetString
+	#undef TextDrawSetString
+#endif
+#define TextDrawSetString BREAKS_TextDrawSetString
+#define _ALS_TextDrawSetString
+
+stock BREAKS_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
+{
+	new len = strlen(string);
+	if (len == 0 || len > 1024)
+	{
+		#emit HALT 100
+	}
+	if (string[len - 1] == ' ')
+	{
+		return PlayerTextDrawSetString(playerid, text, " ");
+	}
+	return PlayerTextDrawSetString(playerid, text, string);
+}
+
+#if defined _ALS_PlayerTextDrawSetString
+	#undef PlayerTextDrawSetString
+#endif
+#define PlayerTextDrawSetString BREAKS_PlayerTextDrawSetString
+#define _ALS_PlayerTextDrawSetString
+
 #endinput
 
 stock BREAKS_$(weaponid, const weapon[], len)
