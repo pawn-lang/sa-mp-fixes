@@ -325,6 +325,17 @@ stock BREAKS_random(max)
 #define random BREAKS_random
 #define _ALS_random
 
+stock BREAKS_IsPlayerConnected(playerid)
+{
+	return IsPlayerConnected(playerid & 0xFFFF);
+}
+
+#if defined _ALS_IsPlayerConnected
+	#undef IsPlayerConnected
+#endif
+#define IsPlayerConnected BREAKS_IsPlayerConnected
+#define _ALS_IsPlayerConnected
+
 #endinput
 
 stock BREAKS_$(weaponid, const weapon[], len)
