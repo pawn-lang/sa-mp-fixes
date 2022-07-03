@@ -44,3 +44,18 @@ public OnPlayerConnect(playerid)
 	forward BREAKS_OnPlayerConnect(playerid);
 #endif
 
+stock BREAKS_SpawnPlayer(playerid)
+{
+	if (IsPlayerInAnyVehicle(playerid))
+	{
+		SetPlayerHealth(playerid, 0.0);
+	}
+	return SpawnPlayer(playerid);
+}
+
+#if defined _ALS_SpawnPlayer
+	#undef SpawnPlayer
+#endif
+#define SpawnPlayer BREAKS_SpawnPlayer
+#define _ALS_SpawnPlayer
+
