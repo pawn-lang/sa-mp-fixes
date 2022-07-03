@@ -1,6 +1,6 @@
 #define IS_FILTERSCRIPT // Remove it.
 
-static
+static stock
 	bool:BREAKS_gFilterscript = false,
 	BREAKS_gRCPSize[MAX_PLAYERS] = { 0, ... },
 	BREAKS_gCPSize[MAX_PLAYERS] = { 0, ... },
@@ -8,7 +8,40 @@ static
 	bool:BREAKS_gCPInitialised[MAX_PLAYERS] = { false, ... },
 	BREAKS_gPlayerColour[MAX_PLAYERS] = { 0, ... },
 	BREAKS_gPlayerSkin[MAX_PLAYERS] = { 0, ... },
-	bool:BREAKS_gExtraOPC[MAX_PLAYERS] = { false, ... };
+	bool:BREAKS_gExtraOPC[MAX_PLAYERS] = { false, ... },
+	BREAKS_gLibraryInitialised[MAX_PLAYERS][5];
+
+static stock const
+	BREAKS_gscAnimLib[135][] =
+		{
+			"AIRPORT",      "ATTRACTORS",   "BAR",          "BASEBALL",     "BD_FIRE",
+			"BEACH",        "BENCHPRESS",   "BF_INJECTION", "BIKE_DBZ",     "BIKED",
+			"BIKEH",        "BIKELEAP",     "BIKES",        "BIKEV",        "BLOWJOBZ",
+			"BMX",          "BOMBER",       "BOX",          "BSKTBALL",     "BUDDY",
+			"BUS",          "CAMERA",       "CAR",          "CAR_CHAT",     "CARRY",
+			"CASINO",       "CHAINSAW",     "CHOPPA",       "CLOTHES",      "COACH",
+			"COLT45",       "COP_AMBIENT",  "COP_DVBYZ",    "CRACK",        "CRIB",
+			"DAM_JUMP",     "DANCING",      "DEALER",       "DILDO",        "DODGE",
+			"DOZER",        "DRIVEBYS",     "FAT",          "FIGHT_B",      "FIGHT_C",
+			"FIGHT_D",      "FIGHT_E",      "FINALE",       "FINALE2",      "FLAME",
+			"FLOWERS",      "FOOD",         "FREEWEIGHTS",  "GANGS",        "GFUNK",
+			"GHANDS",       "GHETTO_DB",    "GOGGLES",      "GRAFFITI",     "GRAVEYARD",
+			"GRENADE",      "GYMNASIUM",    "HAIRCUTS",     "HEIST9",       "INT_HOUSE",
+			"INT_OFFICE",   "INT_SHOP",     "JST_BUISNESS", "KART",         "KISSING",
+			"KNIFE",        "LAPDAN1",      "LAPDAN2",      "LAPDAN3",      "LOWRIDER",
+			"MD_CHASE",     "MD_END",       "MEDIC",        "MISC",         "MTB",
+			"MUSCULAR",     "NEVADA",       "ON_LOOKERS",   "OTB",          "PARACHUTE",
+			"PARK",         "PAULNMAC",     "PED",          "PLAYER_DVBYS", "PLAYIDLES",
+			"POLICE",       "POOL",         "POOR",         "PYTHON",       "QUAD",
+			"QUAD_DBZ",     "RAPPING",      "RIFLE",        "RIOT",         "ROB_BANK",
+			"ROCKET",       "RUNNINGMAN",   "RUSTLER",      "RYDER",        "SAMP",
+			"SCRATCHING",   "SEX",          "SHAMAL",       "SHOP",         "SHOTGUN",
+			"SILENCED",     "SKATE",        "SMOKING",      "SNIPER",       "SNM",
+			"SPRAYCAN",     "STRIP",        "SUNBATHE",     "SWAT",         "SWEET",
+			"SWIM",         "SWORD",        "TANK",         "TATTOOS",      "TEC",
+			"TRAIN",        "TRUCK",        "UZI",          "VAN",          "VENDING",
+			"VORTEX",       "WAYFARER",     "WEAPONS",      "WOP",          "WUZI"
+		};
 
 stock BREAKS_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo)
 {
@@ -487,17 +520,67 @@ stock BREAKS_IsPlayerConnected(playerid)
 #define IsPlayerConnected BREAKS_IsPlayerConnected
 #define _ALS_IsPlayerConnected
 
+stock BREAKS_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
+{
+	for (new i = 0; i != sizeof (BREAKS_gscAnimLib); ++i)
+	{
+		if (strcmp(animlib, BREAKS_gscAnimLib[i], true) == 0)
+		{
+			if (BREAKS_gLibraryInitialised[playerid][i / 32] & (1 << (i % 32)))
+			{
+				return ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
+			}
+			else
+			{
+				BREAKS_gLibraryInitialised[playerid][i / 32] |= (1 << (i % 32));
+			}
+			return 1;
+		}
+	}
+	return 0;
+}
+
+#if defined _ALS_ApplyAnimation
+	#undef ApplyAnimation
+#endif
+#define ApplyAnimation BREAKS_ApplyAnimation
+#define _ALS_ApplyAnimation
+
+stock BREAKS_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time)
+{
+	for (new i = 0; i != sizeof (BREAKS_gscAnimLib); ++i)
+	{
+		if (strcmp(animlib, BREAKS_gscAnimLib[i], true) == 0)
+		{
+			// TODO: Per-player actor animations.
+			for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
+			{
+				if (BREAKS_gLibraryInitialised[playerid][i / 32] & (1 << (i % 32)))
+				{
+					return ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time);
+				}
+				else
+				{
+					BREAKS_gLibraryInitialised[playerid][i / 32] |= (1 << (i % 32));
+				}
+			}
+			return 1;
+		}
+	}
+	return 0;
+}
+
+#if defined _ALS_ApplyActorAnimation
+	#undef ApplyActorAnimation
+#endif
+#define ApplyActorAnimation BREAKS_ApplyActorAnimation
+#define _ALS_ApplyActorAnimation
+
 #endinput
 
-stock BREAKS_$(weaponid, const weapon[], len)
+stock BREAKS_$()
 {
-	switch (weaponid)
-	{
-	case 18, 44, 45:
-		weapon[0] = '\0';
-		return 0;
-	}
-	return $(weaponid, weapon, len);
+	return $();
 }
 
 #if defined _ALS_$
