@@ -1,6 +1,8 @@
 #define IS_FILTERSCRIPT // Remove it.
 
 static
+	bool:BREAKS_gRCPInitialised[MAX_PLAYERS] = { false, ... },
+	bool:BREAKS_gCPInitialised[MAX_PLAYERS] = { false, ... },
 	BREAKS_gPlayerColour[MAX_PLAYERS] = { 0, ... },
 	BREAKS_gPlayerSkin[MAX_PLAYERS] = { 0, ... };
 
@@ -66,6 +68,8 @@ public OnPlayerConnect(playerid)
 {
 	BREAKS_gPlayerColour[playerid] = 0;
 	BREAKS_gPlayerSkin[playerid] = 0;
+	BREAKS_gCPInitialised[playerid] = false;
+	BREAKS_gRCPInitialised[playerid] = false;
 	#if defined BREAKS_OnPlayerConnect
 		BREAKS_OnPlayerConnect(playerid);
 	#endif
@@ -133,4 +137,93 @@ stock BREAKS_GetWeaponName(weaponid, const weapon[], len)
 #endif
 #define GetWeaponName BREAKS_GetWeaponName
 #define _ALS_GetWeaponName
+
+stock BREAKS_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
+{
+	BREAKS_gCPInitialised = true;
+	return SetPlayerCheckpoint(playerid, x, y, z, size);
+}
+
+#if defined _ALS_SetPlayerCheckpoint
+	#undef SetPlayerCheckpoint
+#endif
+#define SetPlayerCheckpoint BREAKS_SetPlayerCheckpoint
+#define _ALS_SetPlayerCheckpoint
+
+stock BREAKS_DisablePlayerCheckpoint(playerid)
+{
+	BREAKS_gCPInitialised = true;
+	return DisablePlayerCheckpoint(playerid);
+}
+
+#if defined _ALS_DisablePlayerCheckpoint
+	#undef DisablePlayerCheckpoint
+#endif
+#define DisablePlayerCheckpoint BREAKS_DisablePlayerCheckpoint
+#define _ALS_DisablePlayerCheckpoint
+
+stock BREAKS_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
+{
+	BREAKS_gRCPInitialised = true;
+	return SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, size);
+}
+
+#if defined _ALS_SetPlayerRaceCheckpoint
+	#undef SetPlayerRaceCheckpoint
+#endif
+#define SetPlayerRaceCheckpoint BREAKS_SetPlayerRaceCheckpoint
+#define _ALS_SetPlayerRaceCheckpoint
+
+stock BREAKS_DisablePlayerRaceCheckpoint(playerid)
+{
+	BREAKS_gRCPInitialised = true;
+	return DisablePlayerRaceCheckpoint(playerid);
+}
+
+#if defined _ALS_DisablePlayerRaceCheckpoint
+	#undef DisablePlayerRaceCheckpoint
+#endif
+#define DisablePlayerRaceCheckpoint BREAKS_DisablePlayerRaceCheckpoint
+#define _ALS_DisablePlayerRaceCheckpoint
+
+stock BREAKS_IsPlayerInCheckpoint(playerid)
+{
+	return BREAKS_gCPInitialised[playerid] ? IsPlayerInCheckpoint(playerid) : random(cellmax);
+}
+
+#if defined _ALS_IsPlayerInCheckpoint
+	#undef IsPlayerInCheckpoint
+#endif
+#define IsPlayerInCheckpoint BREAKS_IsPlayerInCheckpoint
+#define _ALS_IsPlayerInCheckpoint
+
+stock BREAKS_IsPlayerInRaceCheckpoint(playerid)
+{
+	return BREAKS_gRCPInitialised[playerid] ? IsPlayerInRaceCheckpoint(playerid) : random(cellmax);
+}
+
+#if defined _ALS_IsPlayerInRaceCheckpoint
+	#undef IsPlayerInRaceCheckpoint
+#endif
+#define IsPlayerInRaceCheckpoint BREAKS_IsPlayerInRaceCheckpoint
+#define _ALS_IsPlayerInRaceCheckpoint
+
+#endinput
+
+stock BREAKS_$(weaponid, const weapon[], len)
+{
+	switch (weaponid)
+	{
+	case 18, 44, 45:
+		weapon[0] = '\0';
+		return 0;
+	}
+	return $(weaponid, weapon, len);
+}
+
+#if defined _ALS_$
+	#undef $
+#endif
+#define $ BREAKS_$
+#define _ALS_$
 
