@@ -345,6 +345,14 @@ forward BREAKS_GetGravity(allow);
 #define GetGravity BREAKS_GetGravity
 #define _ALS_GetGravity
 
+forward BREAKS_gpci(allow);
+
+#if defined _ALS_gpci
+	#undef gpci
+#endif
+#define gpci BREAKS_gpci
+#define _ALS_gpci
+
 forward BREAKS_IsValidVehicle(allow);
 
 #if defined _ALS_IsValidVehicle
