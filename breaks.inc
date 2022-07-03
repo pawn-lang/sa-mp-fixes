@@ -52,7 +52,7 @@ stock BREAKS_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float
 #if defined _ALS_SetSpawnInfo
 	#undef SetSpawnInfo
 #endif
-#define SetSpawnInfo BREAKS_SetSpawnInfo
+#define SetSpawnInfo( BREAKS_SetSpawnInfo(
 #define _ALS_SetSpawnInfo
 
 stock BREAKS_SetPlayerSkin(playerid, skin)
@@ -64,7 +64,7 @@ stock BREAKS_SetPlayerSkin(playerid, skin)
 #if defined _ALS_SetPlayerSkin
 	#undef SetPlayerSkin
 #endif
-#define SetPlayerSkin BREAKS_SetPlayerSkin
+#define SetPlayerSkin( BREAKS_SetPlayerSkin(
 #define _ALS_SetPlayerSkin
 
 stock BREAKS_GetPlayerSkin(playerid)
@@ -75,7 +75,7 @@ stock BREAKS_GetPlayerSkin(playerid)
 #if defined _ALS_GetPlayerSkin
 	#undef GetPlayerSkin
 #endif
-#define GetPlayerSkin BREAKS_GetPlayerSkin
+#define GetPlayerSkin( BREAKS_GetPlayerSkin(
 #define _ALS_GetPlayerSkin
 
 stock BREAKS_SetPlayerColor(playerid, colour)
@@ -87,7 +87,7 @@ stock BREAKS_SetPlayerColor(playerid, colour)
 #if defined _ALS_SetPlayerColor
 	#undef SetPlayerColor
 #endif
-#define SetPlayerColor BREAKS_SetPlayerColor
+#define SetPlayerColor( BREAKS_SetPlayerColor(
 #define _ALS_SetPlayerColor
 
 stock BREAKS_GetPlayerColor(playerid)
@@ -98,7 +98,7 @@ stock BREAKS_GetPlayerColor(playerid)
 #if defined _ALS_GetPlayerColor
 	#undef GetPlayerColor
 #endif
-#define GetPlayerColor BREAKS_GetPlayerColor
+#define GetPlayerColor( BREAKS_GetPlayerColor(
 #define _ALS_GetPlayerColor
 
 public OnFilterScriptInit()
@@ -120,7 +120,7 @@ public OnFilterScriptInit()
 #if defined _ALS_OnFilterScriptInit
 	#undef OnFilterScriptInit
 #endif
-#define OnFilterScriptInit BREAKS_OnFilterScriptInit
+#define OnFilterScriptInit( BREAKS_OnFilterScriptInit(
 #define _ALS_OnFilterScriptInit
 
 #if defined BREAKS_OnFilterScriptInit
@@ -148,7 +148,7 @@ public OnGameModeInit()
 #if defined _ALS_OnGameModeInit
 	#undef OnGameModeInit
 #endif
-#define OnGameModeInit BREAKS_OnGameModeInit
+#define OnGameModeInit( BREAKS_OnGameModeInit(
 #define _ALS_OnGameModeInit
 
 #if defined BREAKS_OnGameModeInit
@@ -179,7 +179,7 @@ public OnPlayerConnect(playerid)
 #if defined _ALS_OnPlayerConnect
 	#undef OnPlayerConnect
 #endif
-#define OnPlayerConnect BREAKS_OnPlayerConnect
+#define OnPlayerConnect( BREAKS_OnPlayerConnect(
 #define _ALS_OnPlayerConnect
 
 #if defined BREAKS_OnPlayerConnect
@@ -200,7 +200,7 @@ public OnPlayerDisconnect(playerid, reason)
 #if defined _ALS_OnPlayerDisconnect
 	#undef OnPlayerDisconnect
 #endif
-#define OnPlayerDisconnect BREAKS_OnPlayerDisconnect
+#define OnPlayerDisconnect( BREAKS_OnPlayerDisconnect(
 #define _ALS_OnPlayerDisconnect
 
 #if defined BREAKS_OnPlayerDisconnect
@@ -227,7 +227,7 @@ public OnPlayerDeath(playerid, killerid, reason)
 #if defined _ALS_OnPlayerDeath
 	#undef OnPlayerDeath
 #endif
-#define OnPlayerDeath BREAKS_OnPlayerDeath
+#define OnPlayerDeath( BREAKS_OnPlayerDeath(
 #define _ALS_OnPlayerDeath
 
 #if defined BREAKS_OnPlayerDeath
@@ -246,7 +246,7 @@ stock BREAKS_SpawnPlayer(playerid)
 #if defined _ALS_SpawnPlayer
 	#undef SpawnPlayer
 #endif
-#define SpawnPlayer BREAKS_SpawnPlayer
+#define SpawnPlayer( BREAKS_SpawnPlayer(
 #define _ALS_SpawnPlayer
 
 stock BREAKS_SetPlayerName(playerid, name[])
@@ -266,7 +266,7 @@ stock BREAKS_SetPlayerName(playerid, name[])
 #if defined _ALS_SetPlayerName
 	#undef SetPlayerName
 #endif
-#define SetPlayerName BREAKS_SetPlayerName
+#define SetPlayerName( BREAKS_SetPlayerName(
 #define _ALS_SetPlayerName
 
 stock BREAKS_GetWeaponName(weaponid, const weapon[], len)
@@ -283,7 +283,7 @@ stock BREAKS_GetWeaponName(weaponid, const weapon[], len)
 #if defined _ALS_GetWeaponName
 	#undef GetWeaponName
 #endif
-#define GetWeaponName BREAKS_GetWeaponName
+#define GetWeaponName( BREAKS_GetWeaponName(
 #define _ALS_GetWeaponName
 
 stock BREAKS_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
@@ -299,7 +299,7 @@ stock BREAKS_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size
 #if defined _ALS_SetPlayerCheckpoint
 	#undef SetPlayerCheckpoint
 #endif
-#define SetPlayerCheckpoint BREAKS_SetPlayerCheckpoint
+#define SetPlayerCheckpoint( BREAKS_SetPlayerCheckpoint(
 #define _ALS_SetPlayerCheckpoint
 
 stock BREAKS_DisablePlayerCheckpoint(playerid)
@@ -312,7 +312,7 @@ stock BREAKS_DisablePlayerCheckpoint(playerid)
 #if defined _ALS_DisablePlayerCheckpoint
 	#undef DisablePlayerCheckpoint
 #endif
-#define DisablePlayerCheckpoint BREAKS_DisablePlayerCheckpoint
+#define DisablePlayerCheckpoint( BREAKS_DisablePlayerCheckpoint(
 #define _ALS_DisablePlayerCheckpoint
 
 stock BREAKS_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
@@ -328,7 +328,7 @@ stock BREAKS_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, 
 #if defined _ALS_SetPlayerRaceCheckpoint
 	#undef SetPlayerRaceCheckpoint
 #endif
-#define SetPlayerRaceCheckpoint BREAKS_SetPlayerRaceCheckpoint
+#define SetPlayerRaceCheckpoint( BREAKS_SetPlayerRaceCheckpoint(
 #define _ALS_SetPlayerRaceCheckpoint
 
 stock BREAKS_DisablePlayerRaceCheckpoint(playerid)
@@ -341,7 +341,7 @@ stock BREAKS_DisablePlayerRaceCheckpoint(playerid)
 #if defined _ALS_DisablePlayerRaceCheckpoint
 	#undef DisablePlayerRaceCheckpoint
 #endif
-#define DisablePlayerRaceCheckpoint BREAKS_DisablePlayerRaceCheckpoint
+#define DisablePlayerRaceCheckpoint( BREAKS_DisablePlayerRaceCheckpoint(
 #define _ALS_DisablePlayerRaceCheckpoint
 
 stock BREAKS_IsPlayerInCheckpoint(playerid)
@@ -352,7 +352,7 @@ stock BREAKS_IsPlayerInCheckpoint(playerid)
 #if defined _ALS_IsPlayerInCheckpoint
 	#undef IsPlayerInCheckpoint
 #endif
-#define IsPlayerInCheckpoint BREAKS_IsPlayerInCheckpoint
+#define IsPlayerInCheckpoint( BREAKS_IsPlayerInCheckpoint(
 #define _ALS_IsPlayerInCheckpoint
 
 stock BREAKS_IsPlayerInRaceCheckpoint(playerid)
@@ -363,7 +363,7 @@ stock BREAKS_IsPlayerInRaceCheckpoint(playerid)
 #if defined _ALS_IsPlayerInRaceCheckpoint
 	#undef IsPlayerInRaceCheckpoint
 #endif
-#define IsPlayerInRaceCheckpoint BREAKS_IsPlayerInRaceCheckpoint
+#define IsPlayerInRaceCheckpoint( BREAKS_IsPlayerInRaceCheckpoint(
 #define _ALS_IsPlayerInRaceCheckpoint
 
 stock Text:BREAKS_TextDrawCreate(Float:x, Float:y, text[])
@@ -383,7 +383,7 @@ stock Text:BREAKS_TextDrawCreate(Float:x, Float:y, text[])
 #if defined _ALS_TextDrawCreate
 	#undef TextDrawCreate
 #endif
-#define TextDrawCreate BREAKS_TextDrawCreate
+#define TextDrawCreate( BREAKS_TextDrawCreate(
 #define _ALS_TextDrawCreate
 
 stock PlayerText:BREAKS_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
@@ -403,7 +403,7 @@ stock PlayerText:BREAKS_CreatePlayerTextDraw(playerid, Float:x, Float:y, text[])
 #if defined _ALS_CreatePlayerTextDraw
 	#undef CreatePlayerTextDraw
 #endif
-#define CreatePlayerTextDraw BREAKS_CreatePlayerTextDraw
+#define CreatePlayerTextDraw( BREAKS_CreatePlayerTextDraw(
 #define _ALS_CreatePlayerTextDraw
 
 stock BREAKS_TextDrawSetString(Text:text, string[])
@@ -423,7 +423,7 @@ stock BREAKS_TextDrawSetString(Text:text, string[])
 #if defined _ALS_TextDrawSetString
 	#undef TextDrawSetString
 #endif
-#define TextDrawSetString BREAKS_TextDrawSetString
+#define TextDrawSetString( BREAKS_TextDrawSetString(
 #define _ALS_TextDrawSetString
 
 stock BREAKS_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
@@ -443,7 +443,7 @@ stock BREAKS_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
 #if defined _ALS_PlayerTextDrawSetString
 	#undef PlayerTextDrawSetString
 #endif
-#define PlayerTextDrawSetString BREAKS_PlayerTextDrawSetString
+#define PlayerTextDrawSetString( BREAKS_PlayerTextDrawSetString(
 #define _ALS_PlayerTextDrawSetString
 
 forward BREAKS_AllowInteriorWeapons(allow);
@@ -451,7 +451,7 @@ forward BREAKS_AllowInteriorWeapons(allow);
 #if defined _ALS_AllowInteriorWeapons
 	#undef AllowInteriorWeapons
 #endif
-#define AllowInteriorWeapons BREAKS_AllowInteriorWeapons
+#define AllowInteriorWeapons( BREAKS_AllowInteriorWeapons(
 #define _ALS_AllowInteriorWeapons
 
 forward Float:BREAKS_GetGravity();
@@ -459,7 +459,7 @@ forward Float:BREAKS_GetGravity();
 #if defined _ALS_GetGravity
 	#undef GetGravity
 #endif
-#define GetGravity BREAKS_GetGravity
+#define GetGravity( BREAKS_GetGravity(
 #define _ALS_GetGravity
 
 forward BREAKS_gpci(playerid, serial[], len = sizeof (serial));
@@ -467,7 +467,7 @@ forward BREAKS_gpci(playerid, serial[], len = sizeof (serial));
 #if defined _ALS_gpci
 	#undef gpci
 #endif
-#define gpci BREAKS_gpci
+#define gpci( BREAKS_gpci(
 #define _ALS_gpci
 
 forward BREAKS_HideGameTextForPlayer(playerid, style);
@@ -475,7 +475,7 @@ forward BREAKS_HideGameTextForPlayer(playerid, style);
 #if defined _ALS_HideGameTextForPlayer
 	#undef HideGameTextForPlayer
 #endif
-#define HideGameTextForPlayer BREAKS_HideGameTextForPlayer
+#define HideGameTextForPlayer( BREAKS_HideGameTextForPlayer(
 #define _ALS_HideGameTextForPlayer
 
 forward BREAKS_HideGameTextForAll(style);
@@ -483,7 +483,7 @@ forward BREAKS_HideGameTextForAll(style);
 #if defined _ALS_HideGameTextForAll
 	#undef HideGameTextForAll
 #endif
-#define HideGameTextForAll BREAKS_HideGameTextForAll
+#define HideGameTextForAll( BREAKS_HideGameTextForAll(
 #define _ALS_HideGameTextForAll
 
 forward bool:BREAKS_IsValidVehicle(vehicleid);
@@ -491,7 +491,7 @@ forward bool:BREAKS_IsValidVehicle(vehicleid);
 #if defined _ALS_IsValidVehicle
 	#undef IsValidVehicle
 #endif
-#define IsValidVehicle BREAKS_IsValidVehicle
+#define IsValidVehicle( BREAKS_IsValidVehicle(
 #define _ALS_IsValidVehicle
 
 stock BREAKS_random(max)
@@ -506,7 +506,7 @@ stock BREAKS_random(max)
 #if defined _ALS_random
 	#undef random
 #endif
-#define random BREAKS_random
+#define random( BREAKS_random(
 #define _ALS_random
 
 stock BREAKS_IsPlayerConnected(playerid)
@@ -517,7 +517,7 @@ stock BREAKS_IsPlayerConnected(playerid)
 #if defined _ALS_IsPlayerConnected
 	#undef IsPlayerConnected
 #endif
-#define IsPlayerConnected BREAKS_IsPlayerConnected
+#define IsPlayerConnected( BREAKS_IsPlayerConnected(
 #define _ALS_IsPlayerConnected
 
 stock BREAKS_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time, forcesync = 0)
@@ -543,7 +543,7 @@ stock BREAKS_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop,
 #if defined _ALS_ApplyAnimation
 	#undef ApplyAnimation
 #endif
-#define ApplyAnimation BREAKS_ApplyAnimation
+#define ApplyAnimation( BREAKS_ApplyAnimation(
 #define _ALS_ApplyAnimation
 
 //stock BREAKS_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time)
@@ -573,7 +573,7 @@ stock BREAKS_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop,
 //#if defined _ALS_ApplyActorAnimation
 //	#undef ApplyActorAnimation
 //#endif
-//#define ApplyActorAnimation BREAKS_ApplyActorAnimation
+//#define ApplyActorAnimation( BREAKS_ApplyActorAnimation(
 //#define _ALS_ApplyActorAnimation
 
 stock BREAKS_valstr(dest[], value, bool:pack = false)
@@ -600,7 +600,7 @@ stock BREAKS_valstr(dest[], value, bool:pack = false)
 #if defined _ALS_valstr
 	#undef valstr
 #endif
-#define valstr BREAKS_valstr
+#define valstr( BREAKS_valstr(
 #define _ALS_valstr
 
 stock BREAKS_ispacked(const string[])
@@ -611,7 +611,7 @@ stock BREAKS_ispacked(const string[])
 #if defined _ALS_ispacked
 	#undef ispacked
 #endif
-#define ispacked BREAKS_ispacked
+#define ispacked( BREAKS_ispacked(
 #define _ALS_ispacked
 
 stock Float:BREAKS_floatfract(Float:value)
@@ -622,7 +622,7 @@ stock Float:BREAKS_floatfract(Float:value)
 #if defined _ALS_floatfract
 	#undef floatfract
 #endif
-#define floatfract BREAKS_floatfract
+#define floatfract( BREAKS_floatfract(
 #define _ALS_floatfract
 
 #endinput
@@ -635,6 +635,6 @@ stock BREAKS_$()
 #if defined _ALS_$
 	#undef $
 #endif
-#define $ BREAKS_$
+#define $( BREAKS_$(
 #define _ALS_$
 
