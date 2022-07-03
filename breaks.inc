@@ -337,7 +337,7 @@ forward BREAKS_AllowInteriorWeapons(allow);
 #define AllowInteriorWeapons BREAKS_AllowInteriorWeapons
 #define _ALS_AllowInteriorWeapons
 
-forward BREAKS_GetGravity(allow);
+forward Float:BREAKS_GetGravity();
 
 #if defined _ALS_GetGravity
 	#undef GetGravity
@@ -345,7 +345,7 @@ forward BREAKS_GetGravity(allow);
 #define GetGravity BREAKS_GetGravity
 #define _ALS_GetGravity
 
-forward BREAKS_gpci(allow);
+forward BREAKS_gpci(playerid, serial[], len = sizeof (serial));
 
 #if defined _ALS_gpci
 	#undef gpci
@@ -353,7 +353,23 @@ forward BREAKS_gpci(allow);
 #define gpci BREAKS_gpci
 #define _ALS_gpci
 
-forward BREAKS_IsValidVehicle(allow);
+forward BREAKS_HideGameTextForPlayer(playerid, style);
+
+#if defined _ALS_HideGameTextForPlayer
+	#undef HideGameTextForPlayer
+#endif
+#define HideGameTextForPlayer BREAKS_HideGameTextForPlayer
+#define _ALS_HideGameTextForPlayer
+
+forward BREAKS_HideGameTextForAll(style);
+
+#if defined _ALS_HideGameTextForAll
+	#undef HideGameTextForAll
+#endif
+#define HideGameTextForAll BREAKS_HideGameTextForAll
+#define _ALS_HideGameTextForAll
+
+forward bool:BREAKS_IsValidVehicle(vehicleid);
 
 #if defined _ALS_IsValidVehicle
 	#undef IsValidVehicle
