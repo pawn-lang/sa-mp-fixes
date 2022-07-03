@@ -337,6 +337,14 @@ forward BREAKS_AllowInteriorWeapons(allow);
 #define AllowInteriorWeapons BREAKS_AllowInteriorWeapons
 #define _ALS_AllowInteriorWeapons
 
+forward BREAKS_GetGravity(allow);
+
+#if defined _ALS_GetGravity
+	#undef GetGravity
+#endif
+#define GetGravity BREAKS_GetGravity
+#define _ALS_GetGravity
+
 forward BREAKS_IsValidVehicle(allow);
 
 #if defined _ALS_IsValidVehicle
