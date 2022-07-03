@@ -117,3 +117,20 @@ stock BREAKS_SetPlayerName(playerid, name[])
 #define SetPlayerName BREAKS_SetPlayerName
 #define _ALS_SetPlayerName
 
+stock BREAKS_GetWeaponName(weaponid, const weapon[], len)
+{
+	switch (weaponid)
+	{
+	case 18, 44, 45:
+		weapon[0] = '\0';
+		return 0;
+	}
+	return GetWeaponName(weaponid, weapon, len);
+}
+
+#if defined _ALS_GetWeaponName
+	#undef GetWeaponName
+#endif
+#define GetWeaponName BREAKS_GetWeaponName
+#define _ALS_GetWeaponName
+
