@@ -59,3 +59,23 @@ stock BREAKS_SpawnPlayer(playerid)
 #define SpawnPlayer BREAKS_SpawnPlayer
 #define _ALS_SpawnPlayer
 
+stock BREAKS_SetPlayerName(playerid, name[])
+{
+	new old[MAX_PLAYER_NAME + 1];
+	if (GetPlayerName(playerid, old, sizeof (old)))
+	{
+		if (strcmp(name, old, true) == 0)
+		{
+			return 1;
+		}
+		return SetPlayerName(playerid, name);
+	}
+	return 0;
+}
+
+#if defined _ALS_SetPlayerName
+	#undef SetPlayerName
+#endif
+#define SetPlayerName BREAKS_SetPlayerName
+#define _ALS_SetPlayerName
+
