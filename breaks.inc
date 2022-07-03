@@ -302,6 +302,14 @@ stock BREAKS_PlayerTextDrawSetString(playerid, PlayerText:text, string[])
 #define PlayerTextDrawSetString BREAKS_PlayerTextDrawSetString
 #define _ALS_PlayerTextDrawSetString
 
+forward BREAKS_AllowInteriorWeapons(allow);
+
+#if defined _ALS_AllowInteriorWeapons
+	#undef AllowInteriorWeapons
+#endif
+#define AllowInteriorWeapons BREAKS_AllowInteriorWeapons
+#define _ALS_AllowInteriorWeapons
+
 #endinput
 
 stock BREAKS_$(weaponid, const weapon[], len)
