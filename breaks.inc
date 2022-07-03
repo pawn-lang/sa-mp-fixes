@@ -331,18 +331,18 @@ stock BREAKS_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, 
 #define SetPlayerRaceCheckpoint( BREAKS_SetPlayerRaceCheckpoint(
 #define _ALS_SetPlayerRaceCheckpoint
 
-stock BREAKS_DisablePlayerRaceCheckpoint(playerid)
+stock BREAKS_DisablePlayerRaceCP(playerid)
 {
 	BREAKS_gRCPInitialised = true;
 	BREAKS_gRCPSize[playerid] = 0;
 	return DisablePlayerRaceCheckpoint(playerid);
 }
 
-#if defined _ALS_DisablePlayerRaceCheckpoint
+#if defined _ALS_DisablePlayerRaceCP
 	#undef DisablePlayerRaceCheckpoint
 #endif
-#define DisablePlayerRaceCheckpoint( BREAKS_DisablePlayerRaceCheckpoint(
-#define _ALS_DisablePlayerRaceCheckpoint
+#define DisablePlayerRaceCheckpoint( BREAKS_DisablePlayerRaceCP(
+#define _ALS_DisablePlayerRaceCP
 
 stock BREAKS_IsPlayerInCheckpoint(playerid)
 {
