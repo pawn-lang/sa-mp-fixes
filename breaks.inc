@@ -546,35 +546,35 @@ stock BREAKS_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop,
 #define ApplyAnimation BREAKS_ApplyAnimation
 #define _ALS_ApplyAnimation
 
-stock BREAKS_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time)
-{
-	for (new i = 0; i != sizeof (BREAKS_gscAnimLib); ++i)
-	{
-		if (strcmp(animlib, BREAKS_gscAnimLib[i], true) == 0)
-		{
-			// TODO: Per-player actor animations.
-			for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
-			{
-				if (BREAKS_gLibraryInitialised[playerid][i / 32] & (1 << (i % 32)))
-				{
-					return ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time);
-				}
-				else
-				{
-					BREAKS_gLibraryInitialised[playerid][i / 32] |= (1 << (i % 32));
-				}
-			}
-			return 1;
-		}
-	}
-	return 0;
-}
-
-#if defined _ALS_ApplyActorAnimation
-	#undef ApplyActorAnimation
-#endif
-#define ApplyActorAnimation BREAKS_ApplyActorAnimation
-#define _ALS_ApplyActorAnimation
+//stock BREAKS_ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time)
+//{
+//	for (new i = 0; i != sizeof (BREAKS_gscAnimLib); ++i)
+//	{
+//		if (strcmp(animlib, BREAKS_gscAnimLib[i], true) == 0)
+//		{
+//			// TODO: Per-player actor animations.
+//			for (new playerid = 0; playerid != MAX_PLAYERS; ++playerid)
+//			{
+//				if (BREAKS_gLibraryInitialised[playerid][i / 32] & (1 << (i % 32)))
+//				{
+//					return ApplyActorAnimation(actorid, animlib[], animname[], Float:fDelta, loop, lockx, locky, freeze, time);
+//				}
+//				else
+//				{
+//					BREAKS_gLibraryInitialised[playerid][i / 32] |= (1 << (i % 32));
+//				}
+//			}
+//			return 1;
+//		}
+//	}
+//	return 0;
+//}
+//
+//#if defined _ALS_ApplyActorAnimation
+//	#undef ApplyActorAnimation
+//#endif
+//#define ApplyActorAnimation BREAKS_ApplyActorAnimation
+//#define _ALS_ApplyActorAnimation
 
 #endinput
 
