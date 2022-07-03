@@ -1,6 +1,8 @@
 #define IS_FILTERSCRIPT // Remove it.
 
 static
+	BREAKS_gRCPSize[MAX_PLAYERS] = { 0, ... },
+	BREAKS_gCPSize[MAX_PLAYERS] = { 0, ... },
 	bool:BREAKS_gRCPInitialised[MAX_PLAYERS] = { false, ... },
 	bool:BREAKS_gCPInitialised[MAX_PLAYERS] = { false, ... },
 	BREAKS_gPlayerColour[MAX_PLAYERS] = { 0, ... },
@@ -70,6 +72,8 @@ public OnPlayerConnect(playerid)
 	BREAKS_gPlayerSkin[playerid] = 0;
 	BREAKS_gCPInitialised[playerid] = false;
 	BREAKS_gRCPInitialised[playerid] = false;
+	BREAKS_gCPSize[playerid] = 0;
+	BREAKS_gRCPSize[playerid] = 0;
 	#if defined BREAKS_OnPlayerConnect
 		BREAKS_OnPlayerConnect(playerid);
 	#endif
@@ -141,7 +145,11 @@ stock BREAKS_GetWeaponName(weaponid, const weapon[], len)
 stock BREAKS_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size)
 {
 	BREAKS_gCPInitialised = true;
-	return SetPlayerCheckpoint(playerid, x, y, z, size);
+	if (BREAKS_gCPSize[playerid] == 0)
+	{
+		BREAKS_gCPSize[playerid] size;
+	}
+	return SetPlayerCheckpoint(playerid, x, y, z, BREAKS_gCPSize[playerid]);
 }
 
 #if defined _ALS_SetPlayerCheckpoint
@@ -153,6 +161,7 @@ stock BREAKS_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size
 stock BREAKS_DisablePlayerCheckpoint(playerid)
 {
 	BREAKS_gCPInitialised = true;
+	BREAKS_gCPSize[playerid] = 0;
 	return DisablePlayerCheckpoint(playerid);
 }
 
@@ -165,7 +174,11 @@ stock BREAKS_DisablePlayerCheckpoint(playerid)
 stock BREAKS_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
 {
 	BREAKS_gRCPInitialised = true;
-	return SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, size);
+	if (BREAKS_gRCPSize[playerid] == 0)
+	{
+		BREAKS_gRCPSize[playerid] size;
+	}
+	return SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, BREAKS_gRCPSize[playerid]);
 }
 
 #if defined _ALS_SetPlayerRaceCheckpoint
@@ -177,6 +190,7 @@ stock BREAKS_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, 
 stock BREAKS_DisablePlayerRaceCheckpoint(playerid)
 {
 	BREAKS_gRCPInitialised = true;
+	BREAKS_gRCPSize[playerid] = 0;
 	return DisablePlayerRaceCheckpoint(playerid);
 }
 
