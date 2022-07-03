@@ -1,15 +1,6 @@
 static
 	BREAKS_gPlayerColour[MAX_PLAYERS] = { 0, ... };
 
-
-
-
-
-
-
-
-
-
 stock BREAKS_SetPlayerColor(playerid, colour)
 {
 	BREAKS_gPlayerColour[playerid] = colour;
@@ -32,12 +23,22 @@ stock BREAKS_GetPlayerColor(playerid)
 #define GetPlayerColor BREAKS_GetPlayerColor
 #define _ALS_GetPlayerColor
 
-
-
-
-
-
 public OnPlayerConnect(playerid)
 {
 	BREAKS_gPlayerColour[playerid] = 0;
+	#if defined BREAKS_OnPlayerConnect
+		BREAKS_OnPlayerConnect(playerid);
+	#endif
+	return 1;
 }
+
+#if defined _ALS_OnPlayerConnect
+	#undef OnPlayerConnect
+#endif
+#define OnPlayerConnect BREAKS_OnPlayerConnect
+#define _ALS_OnPlayerConnect
+
+#if defined BREAKS_OnPlayerConnect
+	forward BREAKS_OnPlayerConnect(playerid);
+#endif
+
