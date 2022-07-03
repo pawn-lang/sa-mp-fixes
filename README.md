@@ -213,6 +213,7 @@ main2 | `main` isn't called in filterscripts. | Call it. | [Y_Less](https://gith
 npcmodes | There's no way to specify NPC modes in `server.cfg`. | Read `npcmodes` from the file ONCE and load them automatically. | [Y_Less](https://github.com/Y-Less) | |
 fgetchar2 | Has an extra `value` parameter. | Remove it. | [Y_Less](https://github.com/Y-Less) | |
 memcpy | The `index` is meant to be an index in to `source` (in bytes) for where to read the data from; however, it is treated as an index (in bytes) for where to write the data to in `dest`. | Copy two cells with an offset to a temporary buffer, copy the rest of the data to the next cell in the destination, then save the high cell of the temporary storage. | [Y_Less](https://github.com/Y-Less) | |
+ispacked | Returns false when the string is packed and starts with a symbol with code 128 and above. | [Daniel_Cortez](https://github.com/Daniel-Cortez), [VVWVV](https://github.com/VVWVV) | |
 
 A few fixes are disabled by default, to enable them all do:
 

@@ -603,6 +603,17 @@ stock BREAKS_valstr(dest[], value, bool:pack = false)
 #define valstr BREAKS_valstr
 #define _ALS_valstr
 
+stock BREAKS_ispacked(const string[])
+{
+	return string[0] >= (1 << (cellbits - 8)) - 1;
+}
+
+#if defined _ALS_ispacked
+	#undef ispacked
+#endif
+#define ispacked BREAKS_ispacked
+#define _ALS_ispacked
+
 #endinput
 
 stock BREAKS_$()
