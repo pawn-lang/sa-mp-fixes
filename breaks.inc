@@ -614,6 +614,17 @@ stock BREAKS_ispacked(const string[])
 #define ispacked BREAKS_ispacked
 #define _ALS_ispacked
 
+stock Float:BREAKS_floatfract(Float:value)
+{
+	return (value - floatround(value, floatround_floor));
+}
+
+#if defined _ALS_floatfract
+	#undef floatfract
+#endif
+#define floatfract BREAKS_floatfract
+#define _ALS_floatfract
+
 #endinput
 
 stock BREAKS_$()
