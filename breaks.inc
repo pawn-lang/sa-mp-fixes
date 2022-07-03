@@ -1,11 +1,48 @@
 #define IS_FILTERSCRIPT // Remove it.
 
 static
-	BREAKS_gPlayerColour[MAX_PLAYERS] = { 0, ... };
+	BREAKS_gPlayerColour[MAX_PLAYERS] = { 0, ... },
+	BREAKS_gPlayerSkin[MAX_PLAYERS] = { 0, ... };
+
+stock BREAKS_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo)
+{
+	BREAKS_gPlayerSkin[playerid] = skin;
+	return SetSpawnInfo(playerid, team, skin, x, y, z, rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo);
+}
+
+#if defined _ALS_SetSpawnInfo
+	#undef SetSpawnInfo
+#endif
+#define SetSpawnInfo BREAKS_SetSpawnInfo
+#define _ALS_SetSpawnInfo
+
+stock BREAKS_SetPlayerSkin(playerid, skin)
+{
+	BREAKS_gPlayerSkin[playerid] = skin;
+	return SetPlayerSkin(playerid, skin);
+}
+
+#if defined _ALS_SetPlayerSkin
+	#undef SetPlayerSkin
+#endif
+#define SetPlayerSkin BREAKS_SetPlayerSkin
+#define _ALS_SetPlayerSkin
+
+stock BREAKS_GetPlayerSkin(playerid)
+{
+	return BREAKS_gPlayerSkin[playerid];
+}
+
+#if defined _ALS_GetPlayerSkin
+	#undef GetPlayerSkin
+#endif
+#define GetPlayerSkin BREAKS_GetPlayerSkin
+#define _ALS_GetPlayerSkin
 
 stock BREAKS_SetPlayerColor(playerid, colour)
 {
 	BREAKS_gPlayerColour[playerid] = colour;
+	return SetPlayerColor(playerid, colour);
 }
 
 #if defined _ALS_SetPlayerColor
@@ -28,6 +65,7 @@ stock BREAKS_GetPlayerColor(playerid)
 public OnPlayerConnect(playerid)
 {
 	BREAKS_gPlayerColour[playerid] = 0;
+	BREAKS_gPlayerSkin[playerid] = 0;
 	#if defined BREAKS_OnPlayerConnect
 		BREAKS_OnPlayerConnect(playerid);
 	#endif
