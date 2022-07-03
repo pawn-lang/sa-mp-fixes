@@ -310,6 +310,14 @@ forward BREAKS_AllowInteriorWeapons(allow);
 #define AllowInteriorWeapons BREAKS_AllowInteriorWeapons
 #define _ALS_AllowInteriorWeapons
 
+forward BREAKS_IsValidVehicle(allow);
+
+#if defined _ALS_IsValidVehicle
+	#undef IsValidVehicle
+#endif
+#define IsValidVehicle BREAKS_IsValidVehicle
+#define _ALS_IsValidVehicle
+
 stock BREAKS_random(max)
 {
 	if (max < 0)
