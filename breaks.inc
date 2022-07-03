@@ -90,6 +90,33 @@ public OnPlayerConnect(playerid)
 	forward BREAKS_OnPlayerConnect(playerid);
 #endif
 
+public OnPlayerDeath(playerid, killerid, reason)
+{
+	new money = GetPlayerMoney(playerid);
+	if (money > 0)
+	{
+		ResetPlayerMoney(playerid);
+		if (money > 100)
+		{
+			GivePlayerMoney(playerid, money - 100);
+		}
+	}
+	#if defined BREAKS_OnPlayerDeath
+		BREAKS_OnPlayerDeath(playerid, killerid, reason);
+	#endif
+	return 1;
+}
+
+#if defined _ALS_OnPlayerDeath
+	#undef OnPlayerDeath
+#endif
+#define OnPlayerDeath BREAKS_OnPlayerDeath
+#define _ALS_OnPlayerDeath
+
+#if defined BREAKS_OnPlayerDeath
+	forward BREAKS_OnPlayerDeath(playerid, killerid, reason);
+#endif
+
 stock BREAKS_SpawnPlayer(playerid)
 {
 	if (IsPlayerInAnyVehicle(playerid))
