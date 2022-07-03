@@ -1,3 +1,5 @@
+#define IS_FILTERSCRIPT // Remove it.
+
 static
 	BREAKS_gPlayerColour[MAX_PLAYERS] = { 0, ... };
 
