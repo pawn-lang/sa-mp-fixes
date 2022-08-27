@@ -7598,6 +7598,27 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 /**
  * <library>fixes.inc</library>
  * <remarks>
+ * Mark all natives as const-correct in an a_samp-compatible way.
+ * </remarks>
+ */
+
+// Just in case the define already exists, don't break the documentation.
+#if defined SAMP_CONST_CORRECT
+	#undef SAMP_CONST_CORRECT
+	_FIXES_CONST_PAWNDOC(SAMP_CONST_CORRECT = 1);
+	#define SAMP_CONST_CORRECT
+#else
+	_FIXES_CONST_PAWNDOC(SAMP_CONST_CORRECT = 1);
+#endif
+
+// And redefine it either way.
+#if FIX_const
+	#define SAMP_CONST_CORRECT
+#endif
+
+/**
+ * <library>fixes.inc</library>
+ * <remarks>
  * Breaks <c>#pragma tabsize 0</c> in such a way that the compiler gives the
  * following error:
  *
