@@ -16714,8 +16714,9 @@ static stock _FIXES_CountFilterscripts()
 		// Reset the frame header.
 
 		// Adjust the parameter count.
+		const minus8 = -8;
 		#emit LOAD.S.pri       8
-		#emit ADD.C            0xFFFFFFF8
+		#emit ADD.C            minus8
 		#emit STOR.S.pri       16
 
 		// Move the return address.
