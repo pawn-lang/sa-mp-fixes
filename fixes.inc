@@ -15706,7 +15706,6 @@ static stock _FIXES_CheckMaxPlayers()
 					Text:t;
 
 			#if FIX_GameTextStyles
-
 				// Global style 7 (vehicle name).
 				t = FIXES_gsGTStyle[7] = TextDrawCreate__(608.0, 344.0, FIXES_gsSpace),
 				TextDrawLetterSize__(t, 1.0, 3.0),
@@ -15832,7 +15831,6 @@ static stock _FIXES_CheckMaxPlayers()
 				TextDrawUseBox__(t, true),
 				TextDrawBoxColor__(t, 0x00000080),
 				TextDrawTextSize__(t, 230.5, 200.0);
-
 			#endif
 
 				// Global style 0.
@@ -15939,7 +15937,6 @@ static stock _FIXES_CheckMaxPlayers()
 					PlayerText:t;
 
 			#if FIX_GameTextStyles
-
 				// Global style 7 (playerid, vehicle name).
 				t = FIXES_gsPGTStyle[playerid][7] = CreatePlayerTextDraw__(playerid, 608.0, 344.0, FIXES_gsSpace),
 				PlayerTextDrawLetterSize__(playerid, t, 1.0, 3.0),
@@ -16065,7 +16062,6 @@ static stock _FIXES_CheckMaxPlayers()
 				PlayerTextDrawUseBox__(playerid, t, true),
 				PlayerTextDrawBoxColor__(playerid, t, 0x00000080),
 				PlayerTextDrawTextSize__(playerid, t, 230.5, 200.0);
-
 			#endif
 
 				// Global style 0.
