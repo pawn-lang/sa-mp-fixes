@@ -24026,6 +24026,7 @@ native BAD_memcpy(dest[], const source[], index = 0, numbytes, maxlength = sizeo
 			if (numbytes <= _FIXES_CELLBYTES)
 			{
 				// Silly case.
+				small[1] = dest[0];
 				if (memcpy(small, source[index], _FIXES_CELLBYTES - fraction, numbytes + fraction, 2))
 				{
 					return
