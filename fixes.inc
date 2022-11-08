@@ -25636,7 +25636,7 @@ native bool:BAD_ispacked(const string[]) = ispacked;
 	// function with the same name as a `native` for one compiler pass.  It also
 	// doesn't seem to appear in the compiled output, which was an effect I
 	// tried to create for a long time then gave up on (see
-	// <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ()</c> for my alternative work-around).
+	// <c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz()</c> for my alternative work-around).
 	_FIXES_FUNC_PAWNDOC(bool:ispacked(const packedString[]));
 	#if _FIXES_SAMP
 		#define _ALS_ispacked
@@ -27242,10 +27242,10 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 		still see one function (this one), but at least the documentation for
 		this one function can explain why it exists.
 		<p />
-		This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> and starts the internal
+		This is <c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> and starts the internal
 		functions block.  This is the last possible name before the first
 		character is <c>_</c> when the functions are sorted lexicographically
-		(alphabetically).  There's also <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c>
+		(alphabetically).  There's also <c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c>
 		that starts the variables block; they could have the same name if they
 		were not declared in the same scope, but they might not always be
 		separately defined.
@@ -27257,7 +27257,7 @@ native BAD_strcmp(const string1[], const string2[], bool:ignorecase = false, len
 	<!--
 */
 
-static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
+static stock Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 
 /**
 	<library>fixes.inc</library>
@@ -27269,7 +27269,7 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ() {}
 		common pattern used throughout fixes.inc (and most of programming).
 		Unfortunately these weirdly named internal functions appear in the
 		generated documentation always.  This is the best way to hide them.  You
-		still see one function (<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c>), but at
+		still see one function (<c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c>), but at
 		least the documentation for that can explain why it exists.
 		<p />
 		This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> and ends the internal
@@ -27302,11 +27302,11 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 		still see one variable (this one), but at least the documentation for
 		this one variable can explain why it exists.
 		<p />
-		This is <c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c> and starts the internal
+		This is <c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> and starts the internal
 		variables block.  This is the last possible name, except one, before the
 		first character is <c>_</c> when the functions are sorted
 		lexicographically (alphabetically).  There's also
-		<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ</c> that starts the functions block;
+		<c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz</c> that starts the functions block;
 		they could have the same name if they were not declared in the same
 		scope, but they might not always be separately defined.
 		<p />
@@ -27317,7 +27317,7 @@ static stock _zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz() {}
 	<!--
 */
 
-static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
+static stock Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy;
 
 /**
 	<library>fixes.inc</library>
@@ -27329,7 +27329,7 @@ static stock ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY;
 		common pattern used throughout fixes.inc (and most of programming).
 		Unfortunately these weirdly named internal variables appear in the
 		generated documentation always.  This is the best way to hide them.  You
-		still see one variable (<c>ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZY</c>), but at
+		still see one variable (<c>Zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c>), but at
 		least the documentation for that can explain why it exists.
 		<p />
 		This is <c>_zzzzzzzzzzzzzzzzzzzzzzzzzzzzzy</c> and ends the internal
