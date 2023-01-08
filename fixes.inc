@@ -8416,6 +8416,26 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 /**
  * <library>fixes.inc</library>
  * <remarks>
+ * Future-compatible tag definitions.  <c>CP_TYPE:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>E_CP_TYPE:</c> when
+ * they are enabled.
+ * </remarks>
+ */
+
+#if defined CP_TYPE
+	_FIXES_HIDE_PAWNDOC(FIXES_CP_TYPE_);
+#else
+	_FIXES_CONST_PAWNDOC(CP_TYPE = cellmin);
+	#if defined __TAG
+		#define CP_TYPE: __TAG(CP_TYPE):
+	#else
+		#define CP_TYPE: _:
+	#endif
+#endif
+
+/**
+ * <library>fixes.inc</library>
+ * <remarks>
  * Future-compatible tag definitions.  <c>SPECIAL_ACTION:</c> is defined as
  * <c>_:</c> when enhanced tags are disabled, and <c>E_SPECIAL_ACTION:</c> when
  * they are enabled.
@@ -14366,7 +14386,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	/// <library>fixes.inc</library>
 	native DisablePlayerCheckpoint__(playerid) = DisablePlayerCheckpoint; /// <p/>
 	/// <library>fixes.inc</library>
-	native SetPlayerRaceCheckpoint__(playerid, type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint; /// <p/>
+	native SetPlayerRaceCheckpoint__(playerid, CP_TYPE:type, Float:centerX, Float:centerY, Float:centerZ, Float:nextX, Float:nextY, Float:nextZ, Float:size) = SetPlayerRaceCheckpoint; /// <p/>
 	/// <library>fixes.inc</library>
 	native DisablePlayerRaceCheckpoint__(playerid) = DisablePlayerRaceCheckpoint; /// <p/>
 	/// <library>fixes.inc</library>
@@ -21766,9 +21786,9 @@ native BAD_DisablePlayerCheckpoint(playerid) = DisablePlayerCheckpoint;
  */
 
 #if FIX_SetPlayerRaceCheckpoint
-	forward _FIXES_SetRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size);
+	forward _FIXES_SetRaceCheckpoint(playerid, CP_TYPE:type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size);
 
-	public _FIXES_SetRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
+	public _FIXES_SetRaceCheckpoint(playerid, CP_TYPE:type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size)
 	{
 		#if FIXES_Single
 			if (FIXES_gsPlayerBools[playerid] & e_FIXES_BOOLS_RACE_CP_DELAYED)
