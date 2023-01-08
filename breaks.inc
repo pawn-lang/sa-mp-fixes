@@ -46,7 +46,7 @@ static stock const
 stock BREAKS_SetSpawnInfo(playerid, team, skin, Float:x, Float:y, Float:z, Float:rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo)
 {
 	BREAKS_gPlayerSkin[playerid] = skin;
-	return SetSpawnInfo(playerid, team, skin, x, y, z, rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo);
+	return SetSpawnInfo(playerid, team, skin, x, y, z, rotation, WEAPON:weapon1, weapon1_ammo, WEAPON:weapon2, weapon2_ammo, WEAPON:weapon3, weapon3_ammo);
 }
 
 #if defined _ALS_SetSpawnInfo
@@ -277,7 +277,7 @@ stock BREAKS_GetWeaponName(weaponid, const weapon[], len)
 		weapon[0] = '\0';
 		return 0;
 	}
-	return GetWeaponName(weaponid, weapon, len);
+	return _:GetWeaponName(WEAPON:weaponid, weapon, len);
 }
 
 #if defined _ALS_GetWeaponName
@@ -322,7 +322,7 @@ stock BREAKS_SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, 
 	{
 		BREAKS_gRCPSize[playerid] size;
 	}
-	return SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, BREAKS_gRCPSize[playerid]);
+	return _:SetPlayerRaceCheckpoint(playerid, CP_TYPE:type, x, y, z, nextx, nexty, nextz, BREAKS_gRCPSize[playerid]);
 }
 
 #if defined _ALS_SetPlayerRaceCheckpoint
@@ -528,7 +528,7 @@ stock BREAKS_ApplyAnimation(playerid, animlib[], animname[], Float:fDelta, loop,
 		{
 			if (BREAKS_gLibraryInitialised[playerid][i / 32] & (1 << (i % 32)))
 			{
-				return ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
+				return ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, FORCE_SYNC:forcesync);
 			}
 			else
 			{
