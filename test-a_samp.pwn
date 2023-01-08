@@ -109,8 +109,8 @@ public CompileTest()
 	GetSVarType("STRING");
 	SetGameModeText("STRING");
 	SetTeamCount(0);
-	AddPlayerClass(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	AddPlayerClassEx(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	AddPlayerClass(0, 0, 0, 0, 0, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
+	AddPlayerClassEx(0, 0, 0, 0, 0, 0, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
 	AddStaticVehicle(0, 0, 0, 0, 0, 0, 0);
 	AddStaticVehicleEx(0, 0, 0, 0, 0, 0, 0, 0);
 	AddStaticPickup(0, 0, 0, 0, 0);
@@ -262,7 +262,7 @@ public CompileTest()
 	SetVehicleVelocity(0, 0, 0, 0);
 	SetVehicleAngularVelocity(0, 0, 0, 0);
 	GetVehicleDamageStatus(0, ivar, ivar, ivar, ivar);
-	UpdateVehicleDamageStatus(0, 0, 0, 0, 0);
+	UpdateVehicleDamageStatus(0, VEHICLE_PANEL_STATUS_NONE, VEHICLE_DOOR_STATUS_NONE, 0, 0);
 	GetVehicleModelInfo(0, VEHICLE_MODEL_INFO_SIZE, fvar, fvar, fvar);
 	SetVehicleVirtualWorld(0, 0);
 	GetVehicleVirtualWorld(0);
@@ -285,7 +285,7 @@ public CompileTest()
 	DB_GetResultMemHandle__(DBResult:0);
 	DB_DebugOpenFiles__();
 	DB_DebugOpenResults__();
-	SetSpawnInfo(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	SetSpawnInfo(0, 0, 0, 0, 0, 0, 0, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
 	SpawnPlayer(0);
 	SetPlayerPos(0, 0, 0, 0);
 	SetPlayerPosFindZ(0, 0, 0, 0);
@@ -320,7 +320,7 @@ public CompileTest()
 	GivePlayerWeapon(0, WEAPON_FIST, 0);
 	ResetPlayerWeapons(0);
 	SetPlayerArmedWeapon(0, WEAPON_FIST);
-	GetPlayerWeaponData(0, 0, wvar, ivar);
+	GetPlayerWeaponData(0, WEAPON_SLOT_UNARMED, wvar, ivar);
 	GivePlayerMoney(0, 0);
 	ResetPlayerMoney(0);
 	SetPlayerName(0, "STRING");
@@ -402,7 +402,7 @@ public CompileTest()
 	DisableRemoteVehicleCollisions(0, false);
 	SetPlayerCheckpoint(0, 0, 0, 0, 0);
 	DisablePlayerCheckpoint(0);
-	SetPlayerRaceCheckpoint(0, 0, 0, 0, 0, 0, 0, 0, 0);
+	SetPlayerRaceCheckpoint(0, CP_TYPE_GROUND_NORMAL, 0, 0, 0, 0, 0, 0, 0);
 	DisablePlayerRaceCheckpoint(0);
 	SetPlayerWorldBounds(0, 0, 0, 0, 0);
 	SetPlayerMarkerForPlayer(0, 0, 0);
@@ -544,8 +544,8 @@ public CompileTest()
 	GetSVarType("STRING");
 	SetGameModeText("STRING");
 	SetTeamCount(0);
-	AddPlayerClass(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-	AddPlayerClassEx(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	AddPlayerClass(0, 0, 0, 0, 0, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
+	AddPlayerClassEx(0, 0, 0, 0, 0, 0, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
 	AddStaticVehicle(0, 0, 0, 0, 0, 0, 0);
 	AddStaticVehicleEx(0, 0, 0, 0, 0, 0, 0, 0, false);
 	AddStaticPickup(0, 0, 0, 0, 0, 0);
@@ -698,7 +698,7 @@ public CompileTest()
 	SetVehicleVelocity(0, 0, 0, 0);
 	SetVehicleAngularVelocity(0, 0, 0, 0);
 	GetVehicleDamageStatus(0, ivar, ivar, ivar, ivar);
-	UpdateVehicleDamageStatus(0, 0, 0, 0, 0);
+	UpdateVehicleDamageStatus(0, VEHICLE_PANEL_STATUS_NONE, VEHICLE_DOOR_STATUS_NONE, 0, 0);
 	GetVehicleModelInfo(0, VEHICLE_MODEL_INFO_SIZE, fvar, fvar, fvar);
 	SetVehicleVirtualWorld(0, 0);
 	GetVehicleVirtualWorld(0);
@@ -721,7 +721,7 @@ public CompileTest()
 	DB_GetResultMemHandle__(DBResult:0);
 	DB_DebugOpenFiles__();
 	DB_DebugOpenResults__();
-	SetSpawnInfo(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+	SetSpawnInfo(0, 0, 0, 0, 0, 0, 0, WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
 	SpawnPlayer(0);
 	SetPlayerPos(0, 0, 0, 0);
 	SetPlayerPosFindZ(0, 0, 0, 0);
@@ -756,7 +756,7 @@ public CompileTest()
 	GivePlayerWeapon(0, WEAPON_FIST, 0);
 	ResetPlayerWeapons(0);
 	SetPlayerArmedWeapon(0, WEAPON_FIST);
-	GetPlayerWeaponData(0, 0, wvar, ivar);
+	GetPlayerWeaponData(0, WEAPON_SLOT_UNARMED, wvar, ivar);
 	GivePlayerMoney(0, 0);
 	ResetPlayerMoney(0);
 	SetPlayerName(0, "STRING");
@@ -837,7 +837,7 @@ public CompileTest()
 	DisableRemoteVehicleCollisions(0, false);
 	SetPlayerCheckpoint(0, 0, 0, 0, 0);
 	DisablePlayerCheckpoint(0);
-	SetPlayerRaceCheckpoint(0, 0, 0, 0, 0, 0, 0, 0, 0);
+	SetPlayerRaceCheckpoint(0, CP_TYPE_GROUND_NORMAL, 0, 0, 0, 0, 0, 0, 0);
 	DisablePlayerRaceCheckpoint(0);
 	SetPlayerWorldBounds(0, 0, 0, 0, 0);
 	SetPlayerMarkerForPlayer(0, 0, 0);

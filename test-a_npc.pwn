@@ -67,7 +67,7 @@ public CompileTest()
 	IsTrailerAttachedToVehicle(0);
 	GetVehicleTrailer(0);
 	GetVehicleModel(0);
-	GetVehicleComponentInSlot(0, 0);
+	GetVehicleComponentInSlot(0, CARMODTYPE_SPOILER);
 	GetVehicleComponentType(0);
 	GetVehicleVelocity(0, fvar, fvar, fvar);
 	GetVehicleDamageStatus(0, ivar, ivar, ivar, ivar);
@@ -90,7 +90,7 @@ public CompileTest()
 	GetPlayerColor(0);
 	GetPlayerSkin(0);
 	GetPlayerCustomSkin__(0);
-	GetPlayerWeaponData(0, 0, ivar, ivar);
+	GetPlayerWeaponData(0, WEAPON_SLOT_UNARMED, ivar, ivar);
 	GetPlayerMoney(0);
 	GetPlayerState(0);
 	GetPlayerIp(0, output, sizeof (output));
@@ -181,7 +181,7 @@ public CompileTest()
 	IsTrailerAttachedToVehicle(0);
 	GetVehicleTrailer(0);
 	GetVehicleModel(0);
-	GetVehicleComponentInSlot(0, 0);
+	GetVehicleComponentInSlot(0, CARMODTYPE_SPOILER);
 	GetVehicleComponentType(0);
 	GetVehicleVelocity(0, fvar, fvar, fvar);
 	GetVehicleDamageStatus(0, ivar, ivar, ivar, ivar);
@@ -206,7 +206,7 @@ public CompileTest()
 	GetPlayerColor(0);
 	GetPlayerSkin(0);
 	GetPlayerCustomSkin(0);
-	GetPlayerWeaponData(0, 0, ivar, ivar);
+	GetPlayerWeaponData(0, WEAPON_SLOT_UNARMED, ivar, ivar);
 	GetPlayerMoney(0);
 	GetPlayerState(0);
 	GetPlayerIp(0, output, _);
