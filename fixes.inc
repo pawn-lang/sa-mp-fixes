@@ -14511,9 +14511,9 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 		#endif
 
 		#if FIX_defaults
-			native FIXES_GetWeaponName(playerid, name[], len) = GetWeaponName;
+			native FIXES_GetWeaponName(weaponid, weapon[], len) = GetWeaponName;
 		#else
-			native FIXES_GetWeaponName(playerid, name[], len = sizeof (name)) = GetWeaponName;
+			native FIXES_GetWeaponName(weaponid, weapon[], len = sizeof (name)) = GetWeaponName;
 		#endif
 
 		#if _FIXES_SAMP
@@ -14525,7 +14525,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 			#error _ALS_GetWeaponName defined
 		#endif
 
-		native FIXES_GetWeaponName(playerid, const name[], len = sizeof (name)) = GetWeaponName;
+		native FIXES_GetWeaponName(weaponid, const weapon[], len = sizeof (name)) = GetWeaponName;
 
 		#if _FIXES_SAMP
 			#define _ALS_GetWeaponName
