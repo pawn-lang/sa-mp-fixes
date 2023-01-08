@@ -8377,7 +8377,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>VEHICLE_PARAMS:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_VEHICLE_PARAMS:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_VEHICLE_PARAMS:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8397,7 +8397,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>PLAYER_STATE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_PLAYER_STATE:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_PLAYER_STATE:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8416,9 +8416,8 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 /**
  * <library>fixes.inc</library>
  * <remarks>
- * Future-compatible tag definitions.  <c>CP_TYPE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_CP_TYPE:</c> when
- * they are enabled.
+ * Future-compatible tag definitions.  <c>CP_TYPE:</c> is defined as <c>_:</c>
+ * when enhanced tags are disabled, and <c>T_CP_TYPE:</c> when they are enabled.
  * </remarks>
  */
 
@@ -8437,7 +8436,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>SPECIAL_ACTION:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_SPECIAL_ACTION:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_SPECIAL_ACTION:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8457,7 +8456,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>PLAYER_VARTYPE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_PLAYER_VARTYPE:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_PLAYER_VARTYPE:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8477,7 +8476,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>BODY_PART:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_BODY_PART:</c> when they are
+ * when enhanced tags are disabled, and <c>T_BODY_PART:</c> when they are
  * enabled.
  * </remarks>
  */
@@ -8497,7 +8496,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>CAM_MODE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_CAM_MODE:</c> when they are
+ * when enhanced tags are disabled, and <c>T_CAM_MODE:</c> when they are
  * enabled.
  * </remarks>
  */
@@ -8517,7 +8516,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>VEHICLE:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_VEHICLE:</c> when they are enabled.
+ * when enhanced tags are disabled, and <c>T_VEHICLE:</c> when they are enabled.
  * </remarks>
  */
 
@@ -8537,7 +8536,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>CARMODTYPE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_CARMODTYPE:</c> when they
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_CARMODTYPE:</c> when they
  * are enabled.
  * </remarks>
  */
@@ -8557,7 +8556,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>WEAPON:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_WEAPON:</c> when they
+ * when enhanced tags are disabled, and <c>T_WEAPON:</c> when they
  * are enabled.
  * </remarks>
  */
@@ -8577,7 +8576,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>MAPICON:</c> is defined as <c>_:</c>
- * when enhanced tags are disabled, and <c>E_MAPICON:</c> when they
+ * when enhanced tags are disabled, and <c>T_MAPICON:</c> when they
  * are enabled.
  * </remarks>
  */
@@ -8597,7 +8596,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>CAM_MOVE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_CAMERA:</c> when they
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_CAMERA:</c> when they
  * are enabled.
  * </remarks>
  */
@@ -8617,7 +8616,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>SPECTATE_MODE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_SPECTATE_MODE:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_SPECTATE_MODE:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8638,7 +8637,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <remarks>
  * Future-compatible tag definitions.  <c>PLAYER_RECORDING_TYPE:</c> is defined
  * as <c>_:</c> when enhanced tags are disabled, and
- * <c>E_PLAYER_RECORDING_TYPE:</c> when they are enabled.
+ * <c>T_PLAYER_RECORDING_TYPE:</c> when they are enabled.
  * </remarks>
  */
 
@@ -8657,7 +8656,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>VEHICLE_MODEL_INFO:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_VEHICLE_MODEL_INFO:</c>
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_VEHICLE_MODEL_INFO:</c>
  * when they are enabled.
  * </remarks>
  */
@@ -8678,7 +8677,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <remarks>
  * Future-compatible tag definitions.  <c>OBJECT_MATERIAL_SIZE:</c> is defined
  * as <c>_:</c> when enhanced tags are disabled, and
- * <c>E_OBJECT_MATERIAL_SIZE:</c> when they are enabled.
+ * <c>T_OBJECT_MATERIAL_SIZE:</c> when they are enabled.
  * </remarks>
  */
 
@@ -8698,7 +8697,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <remarks>
  * Future-compatible tag definitions.  <c>OBJECT_MATERIAL_TEXT_ALIGN:</c> is
  * defined as <c>_:</c> when enhanced tags are disabled, and
- * <c>E_OBJECT_MATERIAL_TEXT_ALIGN:</c> when they are enabled.
+ * <c>T_OBJECT_MATERIAL_TEXT_ALIGN:</c> when they are enabled.
  * </remarks>
  */
 
@@ -8717,7 +8716,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>HTTP_METHOD:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_HTTP_METHOD:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_HTTP_METHOD:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8737,7 +8736,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>HTTP_ERROR:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_HTTP_ERROR:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_HTTP_ERROR:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8757,7 +8756,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>FIGHT_STYLE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_FIGHT_STYLE:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_FIGHT_STYLE:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8777,7 +8776,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>WEAPONSKILL:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_WEAPONSKILL:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_WEAPONSKILL:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8797,7 +8796,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>WEAPONSTATE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_WEAPONSTATE:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_WEAPONSTATE:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8817,7 +8816,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>SELECT_OBJECT:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_SELECT_OBJECT:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_SELECT_OBJECT:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8837,7 +8836,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>BULLET_HIT_TYPE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_BULLET_HIT_TYPE:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_BULLET_HIT_TYPE:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8857,7 +8856,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>DOWNLOAD_REQUEST:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_DOWNLOAD_REQUEST:</c>
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_DOWNLOAD_REQUEST:</c>
  * when they are enabled.
  * </remarks>
  */
@@ -8877,7 +8876,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>CLICK_SOURCE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_CLICK_SOURCE:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_CLICK_SOURCE:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8897,7 +8896,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>EDIT_RESPONSE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_EDIT_RESPONSE:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_EDIT_RESPONSE:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8917,7 +8916,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>DIALOG_STYLE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_DIALOG_STYLE:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_DIALOG_STYLE:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8937,7 +8936,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>TEXT_DRAW_FONT:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_TEXT_DRAW_FONT:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_TEXT_DRAW_FONT:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8957,7 +8956,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>TEXT_DRAW_ALIGN:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_TEXT_DRAW_ALIGN:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_TEXT_DRAW_ALIGN:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8977,7 +8976,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>SERVER_VARTYPE:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_SERVER_VARTYPE:</c> when
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_SERVER_VARTYPE:</c> when
  * they are enabled.
  * </remarks>
  */
@@ -8997,7 +8996,7 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
  * <library>fixes.inc</library>
  * <remarks>
  * Future-compatible tag definitions.  <c>FORCE_SYNC:</c> is defined as
- * <c>_:</c> when enhanced tags are disabled, and <c>E_FORCE_SYNC:</c> when they
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_FORCE_SYNC:</c> when they
  * are enabled.
  * </remarks>
  */
