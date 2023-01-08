@@ -8416,6 +8416,26 @@ const Text:INVALID_TEXT_DRAW__ = Text:INVALID_TEXT_DRAW;
 /**
  * <library>fixes.inc</library>
  * <remarks>
+ * Future-compatible tag definitions.  <c>WEAPON_SLOT:</c> is defined as
+ * <c>_:</c> when enhanced tags are disabled, and <c>T_WEAPON_SLOT:</c> when
+ * they are enabled.
+ * </remarks>
+ */
+
+#if defined WEAPON_SLOT
+	_FIXES_HIDE_PAWNDOC(FIXES_WEAPON_SLOT_);
+#else
+	_FIXES_CONST_PAWNDOC(WEAPON_SLOT = cellmin);
+	#if defined __TAG
+		#define WEAPON_SLOT: __TAG(WEAPON_SLOT):
+	#else
+		#define WEAPON_SLOT: _:
+	#endif
+#endif
+
+/**
+ * <library>fixes.inc</library>
+ * <remarks>
  * Future-compatible tag definitions.  <c>CP_TYPE:</c> is defined as <c>_:</c>
  * when enhanced tags are disabled, and <c>T_CP_TYPE:</c> when they are enabled.
  * </remarks>
