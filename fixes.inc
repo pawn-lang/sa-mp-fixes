@@ -14241,7 +14241,7 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 	/// <library>fixes.inc</library>
 	native SetPlayerArmedWeapon__(playerid, WEAPON:weaponid) = SetPlayerArmedWeapon; /// <p/>
 	/// <library>fixes.inc</library>
-	native GetPlayerWeaponData__(playerid, slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData; /// <p/>
+	native GetPlayerWeaponData__(playerid, WEAPON_SLOT:slot, &WEAPON:weapons, &ammo) = GetPlayerWeaponData; /// <p/>
 	/// <library>fixes.inc</library>
 	native GivePlayerMoney__(playerid, money) = GivePlayerMoney; /// <p/>
 	/// <library>fixes.inc</library>
@@ -21197,7 +21197,7 @@ native BAD_GetPlayerMenu(playerid) = GetPlayerMenu;
 					// And have the weapon data clobber the ammo data, thus
 					// avoiding a variable allocation (wow, a whole ONE
 					// instruction...).
-					GetPlayerWeaponData__(playerid, 4, WEAPON:model, ammo);
+					GetPlayerWeaponData__(playerid, WEAPON_SLOT:4, WEAPON:model, ammo);
 					if (model)
 					{
 						SetPlayerArmedWeapon__(playerid, WEAPON:model);
@@ -25451,14 +25451,14 @@ native BAD_GetPlayerWeaponData(playerid, slot, &weapon, &ammo) = GetPlayerWeapon
  */
 
 #if FIX_GetPlayerWeaponData
-	stock FIXES_GetPlayerWeaponData(playerid, slot, &WEAPON:weapon, &ammo)
+	stock FIXES_GetPlayerWeaponData(playerid, WEAPON_SLOT:slot, &WEAPON:weapon, &ammo)
 	{
 		// This reuses the "slot" variable so we don't have to declare a new one
 		// and can put all the code in a single statement.
 		return
-			slot = GetPlayerWeaponData__(playerid, slot, weapon, ammo),
+			slot = WEAPON_SLOT:GetPlayerWeaponData__(playerid, slot, weapon, ammo),
 			weapon = ammo ? weapon : _FIXES_WEAPON_FIST,
-			slot;
+			_:slot;
 	}
 
 	#if _FIXES_SAMP
@@ -25835,7 +25835,7 @@ native BAD_SetPlayerPosFindZ(playerid, Float:x, Float:y, Float:z) = SetPlayerPos
 						ammo[_FIXES_WEAPON_SLOTS];
 					for (slot = 0; slot != _FIXES_WEAPON_SLOTS; ++slot)
 					{
-						GetPlayerWeaponData__(playerid, slot, weapons[slot], ammo[slot]);
+						GetPlayerWeaponData__(playerid, WEAPON_SLOT:slot, weapons[slot], ammo[slot]);
 					}
 					weapons[11] = _FIXES_WEAPON_FIST,
 					ResetPlayerWeapons__(playerid);
