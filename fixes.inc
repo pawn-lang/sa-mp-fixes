@@ -7554,6 +7554,40 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_memcpy                           (0)
 #endif
 
+/**
+ * <library>fixes.inc</library>
+ * <fix name="SHA256">
+ *     <problem>
+ *         Is not good for using for passwords.
+ *     </problem>
+ *     <solution>
+ *         Deprecate it.
+ *     </solution>
+ *     <see>FIXES_SHA256</see>
+ *     <author href="https://github.com/Y-Less/">Y_Less</author>
+ * </fix>
+ */
+
+#if !defined FIX_SHA256
+	#define _FIXES_WARNING 144
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_SHA256 = _FIXES_DEFAULT;
+	#define FIX_SHA256                           _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_SHA256)
+	#undef FIX_SHA256
+	static stock FIX_SHA256 = 2;
+	#define FIX_SHA256                           (2)
+#elseif FIX_SHA256
+	#undef FIX_SHA256
+	static stock FIX_SHA256 = 1;
+	#define FIX_SHA256                           (1)
+#else
+	#undef FIX_SHA256
+	static stock FIX_SHA256 = 0;
+	#define FIX_SHA256                           (0)
+#endif
+
 /*
 
     88b           d88
@@ -13348,11 +13382,15 @@ native BAD_gpci(playerid, serial[], len) = gpci;
 			#error _ALS_SHA256_PassHash defined /// <p/>
 		#endif /// <p/>
 		#if FIX_defaults /// <p/>
-			#pragma deprecated Use BCrypt or better for hashing passwords. /// <p/>
+			#if FIX_SHA256 /// <p/>
+				#pragma deprecated Use BCrypt or better for hashing passwords. /// <p/>
+			#endif /// <p/>
 			/// <library>fixes.inc</library>
 			native CST_SHA256_PassHash(const password[], const salt[], output[], len = sizeof (output)) = SHA256_PassHash; /// <p/>
 		#else /// <p/>
-			#pragma deprecated Use BCrypt or better for hashing passwords. /// <p/>
+			#if FIX_SHA256 /// <p/>
+				#pragma deprecated Use BCrypt or better for hashing passwords. /// <p/>
+			#endif /// <p/>
 			/// <library>fixes.inc</library>
 			native CST_SHA256_PassHash(const password[], const salt[], output[], len) = SHA256_PassHash; /// <p/>
 		#endif /// <p/>
@@ -14605,9 +14643,11 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #if FIX_defaults && !FIX_const
 	#if _FIXES_SAMP && defined _ALS_SHA256_PassHash
 		#error _ALS_SHA256_PassHash defined
-	#endif
+	#endif0
 
-	#pragma deprecated Use BCrypt or better for hashing passwords.
+	#if FIX_SHA256
+		#pragma deprecated Use BCrypt or better for hashing passwords.
+	#endif
 	native FIXES_SHA256_PassHash(password[], salt[], output[], len = sizeof (output)) = SHA256_PassHash;
 
 	#if _FIXES_SAMP
