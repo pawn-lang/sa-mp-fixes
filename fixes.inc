@@ -14643,7 +14643,7 @@ native BAD_GetWeaponName(weaponid, const weapon[], len) = GetWeaponName;
 #if FIX_defaults && !FIX_const
 	#if _FIXES_SAMP && defined _ALS_SHA256_PassHash
 		#error _ALS_SHA256_PassHash defined
-	#endif0
+	#endif
 
 	#if FIX_SHA256
 		#pragma deprecated Use BCrypt or better for hashing passwords.
