@@ -25084,8 +25084,9 @@ native bool:_FIXES_Streamer_HasIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, data
  */
 
 #if FIX_Streamer_HasIntData
-	stock bool:FIXES_Streamer_HasIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data)
+	stock bool:FIXES_Streamer_HasIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0)
 	{
+		#pragma unused fakeExtraParameter
 		assert(FIXES_gsStreamer_IncludeVersion != 0);
 		// This isn't a compile-time constant, so we can't use `#if`.
 		if (FIXES_gsStreamer_IncludeVersion > 0x295)
@@ -25135,8 +25136,9 @@ native bool:_FIXES_Streamer_RemoveIntData_B(type, _FIXES_STREAMER_ALL_TAGS:id, d
  */
 
 #if FIX_Streamer_RemoveIntData
-	stock bool:FIXES_Streamer_RemoveIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data)
+	stock bool:FIXES_Streamer_RemoveIntData(type, _FIXES_STREAMER_ALL_TAGS:id, data, fakeExtraParameter = 0)
 	{
+		#pragma unused fakeExtraParameter
 		assert(FIXES_gsStreamer_IncludeVersion != 0);
 		// This isn't a compile-time constant, so we can't use `#if`.
 		if (FIXES_gsStreamer_IncludeVersion > 0x295)
