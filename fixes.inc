@@ -7628,6 +7628,46 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_OnPlayerSpawnCall                  (0)
 #endif
 
+/**
+ * <library>fixes.inc</library>
+ * <fix name="OnPlayerStateChange">
+ *     <problem>
+ *         This function isn't called for players who are already in the server with state when a filterscript starts.
+ *     </problem>
+ *     <solution>
+ *         Call it for all players.
+ *     </solution>
+ *     <see>On_FilterScriptInit</see>
+ *     <author    href="https://github.com/AmyrAhmady/" >iAmir</author>
+ * </fix>
+ */
+
+#if _FIXES_NPC
+	#if defined FIX_OnPlayerStateChange
+		#undef FIX_OnPlayerStateChange
+	#endif
+	static stock FIX_OnPlayerStateChange = 0;
+	#define FIX_OnPlayerStateChange                  (0)
+#elseif !defined FIX_OnPlayerStateChange
+	#define _FIXES_WARNING 146
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_OnPlayerStateChange = _FIXES_DEFAULT;
+	#define FIX_OnPlayerStateChange                  _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_OnPlayerStateChange)
+	#undef FIX_OnPlayerStateChange
+	static stock FIX_OnPlayerStateChange = 2;
+	#define FIX_OnPlayerStateChange                  (2)
+#elseif FIX_OnPlayerStateChange
+	#undef FIX_OnPlayerStateChange
+	static stock FIX_OnPlayerStateChange = 1;
+	#define FIX_OnPlayerStateChange                  (1)
+#else
+	#undef FIX_OnPlayerStateChange
+	static stock FIX_OnPlayerStateChange = 0;
+	#define FIX_OnPlayerStateChange                  (0)
+#endif
+
 /*
 
     88b           d88
@@ -17464,11 +17504,11 @@ public OnJITCompile()
 						#endif
 					#endif
 
-					// Just like above with "OnPlayerConnect", if you don't have 
-					// "OnPlayerSpawn" script it's your fault! Just disable the fix!
+					// Just like above, if you don't have "OnPlayerSpawn"
+					// script it's your fault! Just disable the fix!
 					#if FIX_OnPlayerSpawnCall
 						// ========================
-						//  BEGIN: OnPlayerSpawn
+						//  BEGIN: OnPlayerSpawnCall
 						// ========================
 						// If it's any state other than the ones below, it means player
 						// has surely been spawned once, so let's call it because then how
@@ -17479,7 +17519,23 @@ public OnJITCompile()
 							OnPlayerSpawn(playerid);
 						}
 						// ========================
-						//  END:   OnPlayerSpawn
+						//  END:   OnPlayerSpawnCall
+						// ========================
+					#endif
+
+					// This time since we don't have any "OnPlayerStateChange" defined
+					// we use "CallLocalFunction" for it
+					#if FIX_OnPlayerStateChange
+						// ========================
+						//  BEGIN: OnPlayerStateChange
+						// ========================
+						// If state is not "none", then let's call OnPlayerStateChange
+						if (GetPlayerState__(playerid) != PLAYER_STATE_NONE)
+						{
+							CallLocalFunction("OnPlayerStateChange", "iii", playerid, GetPlayerState__(playerid), PLAYER_STATE_NONE);
+						}
+						// ========================
+						//  END:   OnPlayerStateChange
 						// ========================
 					#endif
 				}
