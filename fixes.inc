@@ -7668,6 +7668,48 @@ _FIXES_FUNC_PAWNDOC(_FIXES_IS_UNSET(const symbol[]));
 	#define FIX_OnPlayerStateChange                  (0)
 #endif
 
+/**
+ * <library>fixes.inc</library>
+ * <fix name="OnPlayerStateChange">
+ *     <problem>
+ *         This function isn't called for players who are already in the server holding or pressing a key when a filterscript starts.
+ *         So this way it calls OnPlayerStateChange to make sure script never misses user action based code execution just key state
+ *         didn't change to call it yet.
+ *     </problem>
+ *     <solution>
+ *         Call it for all players.
+ *     </solution>
+ *     <see>On_FilterScriptInit</see>
+ *     <author    href="https://github.com/AmyrAhmady/" >iAmir</author>
+ * </fix>
+ */
+
+#if _FIXES_NPC
+	#if defined FIX_OnPlayerKeyStateChange
+		#undef FIX_OnPlayerKeyStateChange
+	#endif
+	static stock FIX_OnPlayerKeyStateChange = 0;
+	#define FIX_OnPlayerKeyStateChange                  (0)
+#elseif !defined FIX_OnPlayerKeyStateChange
+	#define _FIXES_WARNING 147
+	#tryinclude "_fixes_options"
+	#undef _FIXES_WARNING
+	static _FIXES_OPTION FIX_OnPlayerKeyStateChange = _FIXES_DEFAULT;
+	#define FIX_OnPlayerKeyStateChange                  _FIXES_DEFAULT
+#elseif _FIXES_IS_UNSET(FIX_OnPlayerKeyStateChange)
+	#undef FIX_OnPlayerKeyStateChange
+	static stock FIX_OnPlayerKeyStateChange = 2;
+	#define FIX_OnPlayerKeyStateChange                  (2)
+#elseif FIX_OnPlayerKeyStateChange
+	#undef FIX_OnPlayerKeyStateChange
+	static stock FIX_OnPlayerKeyStateChange = 1;
+	#define FIX_OnPlayerKeyStateChange                  (1)
+#else
+	#undef FIX_OnPlayerKeyStateChange
+	static stock FIX_OnPlayerKeyStateChange = 0;
+	#define FIX_OnPlayerKeyStateChange                  (0)
+#endif
+
 /*
 
     88b           d88
@@ -17533,6 +17575,24 @@ public OnJITCompile()
 						if (GetPlayerState__(playerid) != PLAYER_STATE_NONE)
 						{
 							CallLocalFunction("OnPlayerStateChange", "iii", playerid, GetPlayerState__(playerid), PLAYER_STATE_NONE);
+						}
+						// ========================
+						//  END:   OnPlayerStateChange
+						// ========================
+					#endif
+
+					// Just like above, if you don't have "OnPlayerKeyStateChange"
+					// script it's your fault! Just disable the fix!
+					#if FIX_OnPlayerKeyStateChange
+						// ========================
+						//  BEGIN: OnPlayerKeyStateChange
+						// ========================
+						// If key value is not 0, then let's call OnPlayerKeyStateChange
+						new KEY:keys, KEY:updown, KEY:leftright;
+						GetPlayerKeys__(playerid, keys, updown, leftright);
+						if (_:keys != 0)
+						{
+							OnPlayerKeyStateChange(playerid, keys, KEY:0);
 						}
 						// ========================
 						//  END:   OnPlayerStateChange

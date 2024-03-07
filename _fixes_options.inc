@@ -345,6 +345,8 @@
 	#warning Option `FIX_OnPlayerSpawnCall` must now be explicit.
 #elseif _FIXES_WARNING == 146
 	#warning Option `FIX_OnPlayerStateChange` must now be explicit.
+#elseif _FIXES_WARNING == 147
+	#warning Option `FIX_OnPlayerKeyStateChange` must now be explicit.
 #else
 	#error `_fixes_options.inc` included, but `_FIXES_WARNING` is not set to a valid warning message.
 #endif
